@@ -17,24 +17,27 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/consul"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/consul"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := consul.NewSecretBackend(ctx, "test", &consul.SecretBackendArgs{
-// 			Address:     pulumi.String("127.0.0.1:8500"),
-// 			Description: pulumi.String("Manages the Consul backend"),
-// 			Path:        pulumi.String("consul"),
-// 			Token:       pulumi.String("4240861b-ce3d-8530-115a-521ff070dd29"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := consul.NewSecretBackend(ctx, "test", &consul.SecretBackendArgs{
+//				Address:     pulumi.String("127.0.0.1:8500"),
+//				Description: pulumi.String("Manages the Consul backend"),
+//				Path:        pulumi.String("consul"),
+//				Token:       pulumi.String("4240861b-ce3d-8530-115a-521ff070dd29"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -42,7 +45,9 @@ import (
 // Consul secret backends can be imported using the `path`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:consul/secretBackend:SecretBackend example consul
+//
+//	$ pulumi import vault:consul/secretBackend:SecretBackend example consul
+//
 // ```
 type SecretBackend struct {
 	pulumi.CustomResourceState
@@ -241,7 +246,7 @@ func (i *SecretBackend) ToSecretBackendOutputWithContext(ctx context.Context) Se
 // SecretBackendArrayInput is an input type that accepts SecretBackendArray and SecretBackendArrayOutput values.
 // You can construct a concrete instance of `SecretBackendArrayInput` via:
 //
-//          SecretBackendArray{ SecretBackendArgs{...} }
+//	SecretBackendArray{ SecretBackendArgs{...} }
 type SecretBackendArrayInput interface {
 	pulumi.Input
 
@@ -266,7 +271,7 @@ func (i SecretBackendArray) ToSecretBackendArrayOutputWithContext(ctx context.Co
 // SecretBackendMapInput is an input type that accepts SecretBackendMap and SecretBackendMapOutput values.
 // You can construct a concrete instance of `SecretBackendMapInput` via:
 //
-//          SecretBackendMap{ "key": SecretBackendArgs{...} }
+//	SecretBackendMap{ "key": SecretBackendArgs{...} }
 type SecretBackendMapInput interface {
 	pulumi.Input
 
@@ -300,6 +305,62 @@ func (o SecretBackendOutput) ToSecretBackendOutput() SecretBackendOutput {
 
 func (o SecretBackendOutput) ToSecretBackendOutputWithContext(ctx context.Context) SecretBackendOutput {
 	return o
+}
+
+// Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
+func (o SecretBackendOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringOutput { return v.Address }).(pulumi.StringOutput)
+}
+
+// CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
+func (o SecretBackendOutput) CaCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.CaCert }).(pulumi.StringPtrOutput)
+}
+
+// Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.
+func (o SecretBackendOutput) ClientCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.ClientCert }).(pulumi.StringPtrOutput)
+}
+
+// Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+func (o SecretBackendOutput) ClientKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.ClientKey }).(pulumi.StringPtrOutput)
+}
+
+// The default TTL for credentials issued by this backend.
+func (o SecretBackendOutput) DefaultLeaseTtlSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.DefaultLeaseTtlSeconds }).(pulumi.IntPtrOutput)
+}
+
+// A human-friendly description for this backend.
+func (o SecretBackendOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// Specifies if the secret backend is local only.
+func (o SecretBackendOutput) Local() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.Local }).(pulumi.BoolPtrOutput)
+}
+
+// The maximum TTL that can be requested
+// for credentials issued by this backend.
+func (o SecretBackendOutput) MaxLeaseTtlSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.MaxLeaseTtlSeconds }).(pulumi.IntPtrOutput)
+}
+
+// The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `consul`.
+func (o SecretBackendOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the URL scheme to use. Defaults to `http`.
+func (o SecretBackendOutput) Scheme() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Scheme }).(pulumi.StringPtrOutput)
+}
+
+// The Consul management token this backend should use to issue new tokens.
+func (o SecretBackendOutput) Token() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringOutput { return v.Token }).(pulumi.StringOutput)
 }
 
 type SecretBackendArrayOutput struct{ *pulumi.OutputState }

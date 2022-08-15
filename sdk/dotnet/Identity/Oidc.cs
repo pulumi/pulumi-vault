@@ -20,24 +20,22 @@ namespace Pulumi.Vault.Identity
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var server = new Vault.Identity.Oidc("server", new()
     ///     {
-    ///         var server = new Vault.Identity.Oidc("server", new Vault.Identity.OidcArgs
-    ///         {
-    ///             Issuer = "https://www.acme.com",
-    ///         });
-    ///     }
+    ///         Issuer = "https://www.acme.com",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// </summary>
     [VaultResourceType("vault:identity/oidc:Oidc")]
-    public partial class Oidc : Pulumi.CustomResource
+    public partial class Oidc : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Issuer URL to be used in the iss claim of the token. If not set, Vault's
@@ -92,7 +90,7 @@ namespace Pulumi.Vault.Identity
         }
     }
 
-    public sealed class OidcArgs : Pulumi.ResourceArgs
+    public sealed class OidcArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Issuer URL to be used in the iss claim of the token. If not set, Vault's
@@ -106,9 +104,10 @@ namespace Pulumi.Vault.Identity
         public OidcArgs()
         {
         }
+        public static new OidcArgs Empty => new OidcArgs();
     }
 
-    public sealed class OidcState : Pulumi.ResourceArgs
+    public sealed class OidcState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Issuer URL to be used in the iss claim of the token. If not set, Vault's
@@ -122,5 +121,6 @@ namespace Pulumi.Vault.Identity
         public OidcState()
         {
         }
+        public static new OidcState Empty => new OidcState();
     }
 }

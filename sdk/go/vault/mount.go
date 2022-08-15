@@ -17,97 +17,109 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := vault.NewMount(ctx, "example", &vault.MountArgs{
-// 			Description: pulumi.String("This is an example mount"),
-// 			Path:        pulumi.String("dummy"),
-// 			Type:        pulumi.String("generic"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vault.NewMount(ctx, "example", &vault.MountArgs{
+//				Description: pulumi.String("This is an example mount"),
+//				Path:        pulumi.String("dummy"),
+//				Type:        pulumi.String("generic"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ```go
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := vault.NewMount(ctx, "kvv2-example", &vault.MountArgs{
-// 			Description: pulumi.String("This is an example KV Version 2 secret engine mount"),
-// 			Path:        pulumi.String("version2-example"),
-// 			Type:        pulumi.String("kv-v2"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vault.NewMount(ctx, "kvv2-example", &vault.MountArgs{
+//				Description: pulumi.String("This is an example KV Version 2 secret engine mount"),
+//				Path:        pulumi.String("version2-example"),
+//				Type:        pulumi.String("kv-v2"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ```go
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := vault.NewMount(ctx, "transit-example", &vault.MountArgs{
-// 			Description: pulumi.String("This is an example transit secret engine mount"),
-// 			Options: pulumi.AnyMap{
-// 				"convergent_encryption": pulumi.Any(false),
-// 			},
-// 			Path: pulumi.String("transit-example"),
-// 			Type: pulumi.String("transit"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vault.NewMount(ctx, "transit-example", &vault.MountArgs{
+//				Description: pulumi.String("This is an example transit secret engine mount"),
+//				Options: pulumi.AnyMap{
+//					"convergent_encryption": pulumi.Any(false),
+//				},
+//				Path: pulumi.String("transit-example"),
+//				Type: pulumi.String("transit"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ```go
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := vault.NewMount(ctx, "pki-example", &vault.MountArgs{
-// 			DefaultLeaseTtlSeconds: pulumi.Int(3600),
-// 			Description:            pulumi.String("This is an example PKI mount"),
-// 			MaxLeaseTtlSeconds:     pulumi.Int(86400),
-// 			Path:                   pulumi.String("pki-example"),
-// 			Type:                   pulumi.String("pki"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vault.NewMount(ctx, "pki-example", &vault.MountArgs{
+//				DefaultLeaseTtlSeconds: pulumi.Int(3600),
+//				Description:            pulumi.String("This is an example PKI mount"),
+//				MaxLeaseTtlSeconds:     pulumi.Int(86400),
+//				Path:                   pulumi.String("pki-example"),
+//				Type:                   pulumi.String("pki"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -115,7 +127,9 @@ import (
 // Mounts can be imported using the `path`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:index/mount:Mount example dummy
+//
+//	$ pulumi import vault:index/mount:Mount example dummy
+//
 // ```
 type Mount struct {
 	pulumi.CustomResourceState
@@ -315,7 +329,7 @@ func (i *Mount) ToMountOutputWithContext(ctx context.Context) MountOutput {
 // MountArrayInput is an input type that accepts MountArray and MountArrayOutput values.
 // You can construct a concrete instance of `MountArrayInput` via:
 //
-//          MountArray{ MountArgs{...} }
+//	MountArray{ MountArgs{...} }
 type MountArrayInput interface {
 	pulumi.Input
 
@@ -340,7 +354,7 @@ func (i MountArray) ToMountArrayOutputWithContext(ctx context.Context) MountArra
 // MountMapInput is an input type that accepts MountMap and MountMapOutput values.
 // You can construct a concrete instance of `MountMapInput` via:
 //
-//          MountMap{ "key": MountArgs{...} }
+//	MountMap{ "key": MountArgs{...} }
 type MountMapInput interface {
 	pulumi.Input
 
@@ -374,6 +388,66 @@ func (o MountOutput) ToMountOutput() MountOutput {
 
 func (o MountOutput) ToMountOutputWithContext(ctx context.Context) MountOutput {
 	return o
+}
+
+// The accessor for this mount.
+func (o MountOutput) Accessor() pulumi.StringOutput {
+	return o.ApplyT(func(v *Mount) pulumi.StringOutput { return v.Accessor }).(pulumi.StringOutput)
+}
+
+// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+func (o MountOutput) AuditNonHmacRequestKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Mount) pulumi.StringArrayOutput { return v.AuditNonHmacRequestKeys }).(pulumi.StringArrayOutput)
+}
+
+// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+func (o MountOutput) AuditNonHmacResponseKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Mount) pulumi.StringArrayOutput { return v.AuditNonHmacResponseKeys }).(pulumi.StringArrayOutput)
+}
+
+// Default lease duration for tokens and secrets in seconds
+func (o MountOutput) DefaultLeaseTtlSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v *Mount) pulumi.IntOutput { return v.DefaultLeaseTtlSeconds }).(pulumi.IntOutput)
+}
+
+// Human-friendly description of the mount
+func (o MountOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Mount) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+func (o MountOutput) ExternalEntropyAccess() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Mount) pulumi.BoolPtrOutput { return v.ExternalEntropyAccess }).(pulumi.BoolPtrOutput)
+}
+
+// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+func (o MountOutput) Local() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Mount) pulumi.BoolPtrOutput { return v.Local }).(pulumi.BoolPtrOutput)
+}
+
+// Maximum possible lease duration for tokens and secrets in seconds
+func (o MountOutput) MaxLeaseTtlSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v *Mount) pulumi.IntOutput { return v.MaxLeaseTtlSeconds }).(pulumi.IntOutput)
+}
+
+// Specifies mount type specific options that are passed to the backend
+func (o MountOutput) Options() pulumi.MapOutput {
+	return o.ApplyT(func(v *Mount) pulumi.MapOutput { return v.Options }).(pulumi.MapOutput)
+}
+
+// Where the secret backend will be mounted
+func (o MountOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v *Mount) pulumi.StringOutput { return v.Path }).(pulumi.StringOutput)
+}
+
+// Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+func (o MountOutput) SealWrap() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Mount) pulumi.BoolOutput { return v.SealWrap }).(pulumi.BoolOutput)
+}
+
+// Type of the backend, such as "aws"
+func (o MountOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *Mount) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
 type MountArrayOutput struct{ *pulumi.OutputState }

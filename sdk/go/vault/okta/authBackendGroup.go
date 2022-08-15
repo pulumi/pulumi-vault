@@ -20,33 +20,36 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/okta"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/okta"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		example, err := okta.NewAuthBackend(ctx, "example", &okta.AuthBackendArgs{
-// 			Path:         pulumi.String("group_okta"),
-// 			Organization: pulumi.String("dummy"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = okta.NewAuthBackendGroup(ctx, "foo", &okta.AuthBackendGroupArgs{
-// 			Path:      example.Path,
-// 			GroupName: pulumi.String("foo"),
-// 			Policies: pulumi.StringArray{
-// 				pulumi.String("one"),
-// 				pulumi.String("two"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := okta.NewAuthBackend(ctx, "example", &okta.AuthBackendArgs{
+//				Path:         pulumi.String("group_okta"),
+//				Organization: pulumi.String("dummy"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = okta.NewAuthBackendGroup(ctx, "foo", &okta.AuthBackendGroupArgs{
+//				Path:      example.Path,
+//				GroupName: pulumi.String("foo"),
+//				Policies: pulumi.StringArray{
+//					pulumi.String("one"),
+//					pulumi.String("two"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -54,7 +57,9 @@ import (
 // Okta authentication backend groups can be imported using the format `backend/groupName` e.g.
 //
 // ```sh
-//  $ pulumi import vault:okta/authBackendGroup:AuthBackendGroup foo okta/foo
+//
+//	$ pulumi import vault:okta/authBackendGroup:AuthBackendGroup foo okta/foo
+//
 // ```
 type AuthBackendGroup struct {
 	pulumi.CustomResourceState
@@ -168,7 +173,7 @@ func (i *AuthBackendGroup) ToAuthBackendGroupOutputWithContext(ctx context.Conte
 // AuthBackendGroupArrayInput is an input type that accepts AuthBackendGroupArray and AuthBackendGroupArrayOutput values.
 // You can construct a concrete instance of `AuthBackendGroupArrayInput` via:
 //
-//          AuthBackendGroupArray{ AuthBackendGroupArgs{...} }
+//	AuthBackendGroupArray{ AuthBackendGroupArgs{...} }
 type AuthBackendGroupArrayInput interface {
 	pulumi.Input
 
@@ -193,7 +198,7 @@ func (i AuthBackendGroupArray) ToAuthBackendGroupArrayOutputWithContext(ctx cont
 // AuthBackendGroupMapInput is an input type that accepts AuthBackendGroupMap and AuthBackendGroupMapOutput values.
 // You can construct a concrete instance of `AuthBackendGroupMapInput` via:
 //
-//          AuthBackendGroupMap{ "key": AuthBackendGroupArgs{...} }
+//	AuthBackendGroupMap{ "key": AuthBackendGroupArgs{...} }
 type AuthBackendGroupMapInput interface {
 	pulumi.Input
 
@@ -227,6 +232,21 @@ func (o AuthBackendGroupOutput) ToAuthBackendGroupOutput() AuthBackendGroupOutpu
 
 func (o AuthBackendGroupOutput) ToAuthBackendGroupOutputWithContext(ctx context.Context) AuthBackendGroupOutput {
 	return o
+}
+
+// Name of the group within the Okta
+func (o AuthBackendGroupOutput) GroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendGroup) pulumi.StringOutput { return v.GroupName }).(pulumi.StringOutput)
+}
+
+// The path where the Okta auth backend is mounted
+func (o AuthBackendGroupOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendGroup) pulumi.StringOutput { return v.Path }).(pulumi.StringOutput)
+}
+
+// Vault policies to associate with this group
+func (o AuthBackendGroupOutput) Policies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendGroup) pulumi.StringArrayOutput { return v.Policies }).(pulumi.StringArrayOutput)
 }
 
 type AuthBackendGroupArrayOutput struct{ *pulumi.OutputState }

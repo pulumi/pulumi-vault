@@ -21,23 +21,26 @@ import (
 // package main
 //
 // import (
-// 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := vault.NewPasswordPolicy(ctx, "alphanumeric", &vault.PasswordPolicyArgs{
-// 			Policy: pulumi.String(fmt.Sprintf("%v%v%v%v%v", "    length = 20\n", "    rule \"charset\" {\n", "      charset = \"abcdefghijklmnopqrstuvwxyz0123456789\"\n", "    }\n", "  \n")),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vault.NewPasswordPolicy(ctx, "alphanumeric", &vault.PasswordPolicyArgs{
+//				Policy: pulumi.String(fmt.Sprintf("    length = 20\n    rule \"charset\" {\n      charset = \"abcdefghijklmnopqrstuvwxyz0123456789\"\n    }\n  \n")),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -45,7 +48,9 @@ import (
 // Password policies can be imported using the `name`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:index/passwordPolicy:PasswordPolicy alphanumeric alphanumeric
+//
+//	$ pulumi import vault:index/passwordPolicy:PasswordPolicy alphanumeric alphanumeric
+//
 // ```
 type PasswordPolicy struct {
 	pulumi.CustomResourceState
@@ -146,7 +151,7 @@ func (i *PasswordPolicy) ToPasswordPolicyOutputWithContext(ctx context.Context) 
 // PasswordPolicyArrayInput is an input type that accepts PasswordPolicyArray and PasswordPolicyArrayOutput values.
 // You can construct a concrete instance of `PasswordPolicyArrayInput` via:
 //
-//          PasswordPolicyArray{ PasswordPolicyArgs{...} }
+//	PasswordPolicyArray{ PasswordPolicyArgs{...} }
 type PasswordPolicyArrayInput interface {
 	pulumi.Input
 
@@ -171,7 +176,7 @@ func (i PasswordPolicyArray) ToPasswordPolicyArrayOutputWithContext(ctx context.
 // PasswordPolicyMapInput is an input type that accepts PasswordPolicyMap and PasswordPolicyMapOutput values.
 // You can construct a concrete instance of `PasswordPolicyMapInput` via:
 //
-//          PasswordPolicyMap{ "key": PasswordPolicyArgs{...} }
+//	PasswordPolicyMap{ "key": PasswordPolicyArgs{...} }
 type PasswordPolicyMapInput interface {
 	pulumi.Input
 
@@ -205,6 +210,16 @@ func (o PasswordPolicyOutput) ToPasswordPolicyOutput() PasswordPolicyOutput {
 
 func (o PasswordPolicyOutput) ToPasswordPolicyOutputWithContext(ctx context.Context) PasswordPolicyOutput {
 	return o
+}
+
+// The name of the password policy.
+func (o PasswordPolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *PasswordPolicy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// String containing a password policy.
+func (o PasswordPolicyOutput) Policy() pulumi.StringOutput {
+	return o.ApplyT(func(v *PasswordPolicy) pulumi.StringOutput { return v.Policy }).(pulumi.StringOutput)
 }
 
 type PasswordPolicyArrayOutput struct{ *pulumi.OutputState }

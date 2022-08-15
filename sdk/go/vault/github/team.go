@@ -21,32 +21,35 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/github"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/github"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		example, err := github.NewAuthBackend(ctx, "example", &github.AuthBackendArgs{
-// 			Organization: pulumi.String("myorg"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = github.NewTeam(ctx, "tfDevs", &github.TeamArgs{
-// 			Backend: example.ID(),
-// 			Team:    pulumi.String("terraform-developers"),
-// 			Policies: pulumi.StringArray{
-// 				pulumi.String("developer"),
-// 				pulumi.String("read-only"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := github.NewAuthBackend(ctx, "example", &github.AuthBackendArgs{
+//				Organization: pulumi.String("myorg"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = github.NewTeam(ctx, "tfDevs", &github.TeamArgs{
+//				Backend: example.ID(),
+//				Team:    pulumi.String("terraform-developers"),
+//				Policies: pulumi.StringArray{
+//					pulumi.String("developer"),
+//					pulumi.String("read-only"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -54,7 +57,9 @@ import (
 // Github team mappings can be imported using the `path`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:github/team:Team tf_devs auth/github/map/teams/terraform-developers
+//
+//	$ pulumi import vault:github/team:Team tf_devs auth/github/map/teams/terraform-developers
+//
 // ```
 type Team struct {
 	pulumi.CustomResourceState
@@ -175,7 +180,7 @@ func (i *Team) ToTeamOutputWithContext(ctx context.Context) TeamOutput {
 // TeamArrayInput is an input type that accepts TeamArray and TeamArrayOutput values.
 // You can construct a concrete instance of `TeamArrayInput` via:
 //
-//          TeamArray{ TeamArgs{...} }
+//	TeamArray{ TeamArgs{...} }
 type TeamArrayInput interface {
 	pulumi.Input
 
@@ -200,7 +205,7 @@ func (i TeamArray) ToTeamArrayOutputWithContext(ctx context.Context) TeamArrayOu
 // TeamMapInput is an input type that accepts TeamMap and TeamMapOutput values.
 // You can construct a concrete instance of `TeamMapInput` via:
 //
-//          TeamMap{ "key": TeamArgs{...} }
+//	TeamMap{ "key": TeamArgs{...} }
 type TeamMapInput interface {
 	pulumi.Input
 
@@ -234,6 +239,23 @@ func (o TeamOutput) ToTeamOutput() TeamOutput {
 
 func (o TeamOutput) ToTeamOutputWithContext(ctx context.Context) TeamOutput {
 	return o
+}
+
+// Path where the github auth backend is mounted. Defaults to `github`
+// if not specified.
+func (o TeamOutput) Backend() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Team) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
+}
+
+// An array of strings specifying the policies to be set on tokens
+// issued using this role.
+func (o TeamOutput) Policies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Team) pulumi.StringArrayOutput { return v.Policies }).(pulumi.StringArrayOutput)
+}
+
+// GitHub team name in "slugified" format.
+func (o TeamOutput) Team() pulumi.StringOutput {
+	return o.ApplyT(func(v *Team) pulumi.StringOutput { return v.Team }).(pulumi.StringOutput)
 }
 
 type TeamArrayOutput struct{ *pulumi.OutputState }

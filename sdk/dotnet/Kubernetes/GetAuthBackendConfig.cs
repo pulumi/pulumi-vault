@@ -29,7 +29,7 @@ namespace Pulumi.Vault.Kubernetes
     }
 
 
-    public sealed class GetAuthBackendConfigArgs : Pulumi.InvokeArgs
+    public sealed class GetAuthBackendConfigArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The unique name for the Kubernetes backend the config to
@@ -77,9 +77,10 @@ namespace Pulumi.Vault.Kubernetes
         public GetAuthBackendConfigArgs()
         {
         }
+        public static new GetAuthBackendConfigArgs Empty => new GetAuthBackendConfigArgs();
     }
 
-    public sealed class GetAuthBackendConfigInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetAuthBackendConfigInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The unique name for the Kubernetes backend the config to
@@ -127,6 +128,7 @@ namespace Pulumi.Vault.Kubernetes
         public GetAuthBackendConfigInvokeArgs()
         {
         }
+        public static new GetAuthBackendConfigInvokeArgs Empty => new GetAuthBackendConfigInvokeArgs();
     }
 
 

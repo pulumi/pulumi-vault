@@ -170,7 +170,7 @@ func (i *Template) ToTemplateOutputWithContext(ctx context.Context) TemplateOutp
 // TemplateArrayInput is an input type that accepts TemplateArray and TemplateArrayOutput values.
 // You can construct a concrete instance of `TemplateArrayInput` via:
 //
-//          TemplateArray{ TemplateArgs{...} }
+//	TemplateArray{ TemplateArgs{...} }
 type TemplateArrayInput interface {
 	pulumi.Input
 
@@ -195,7 +195,7 @@ func (i TemplateArray) ToTemplateArrayOutputWithContext(ctx context.Context) Tem
 // TemplateMapInput is an input type that accepts TemplateMap and TemplateMapOutput values.
 // You can construct a concrete instance of `TemplateMapInput` via:
 //
-//          TemplateMap{ "key": TemplateArgs{...} }
+//	TemplateMap{ "key": TemplateArgs{...} }
 type TemplateMapInput interface {
 	pulumi.Input
 
@@ -229,6 +229,43 @@ func (o TemplateOutput) ToTemplateOutput() TemplateOutput {
 
 func (o TemplateOutput) ToTemplateOutputWithContext(ctx context.Context) TemplateOutput {
 	return o
+}
+
+// The alphabet to use for this template. This is only used during FPE transformations.
+func (o TemplateOutput) Alphabet() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Template) pulumi.StringPtrOutput { return v.Alphabet }).(pulumi.StringPtrOutput)
+}
+
+//   - Optional mapping of name to regular expression template, used to customize
+//     the decoded output. (requires Vault Enterprise 1.9+)
+func (o TemplateOutput) DecodeFormats() pulumi.MapOutput {
+	return o.ApplyT(func(v *Template) pulumi.MapOutput { return v.DecodeFormats }).(pulumi.MapOutput)
+}
+
+//   - The regular expression template used to format encoded values.
+//     (requires Vault Enterprise 1.9+)
+func (o TemplateOutput) EncodeFormat() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Template) pulumi.StringPtrOutput { return v.EncodeFormat }).(pulumi.StringPtrOutput)
+}
+
+// The name of the template.
+func (o TemplateOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Template) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Path to where the back-end is mounted within Vault.
+func (o TemplateOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v *Template) pulumi.StringOutput { return v.Path }).(pulumi.StringOutput)
+}
+
+// The pattern used for matching. Currently, only regular expression pattern is supported.
+func (o TemplateOutput) Pattern() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Template) pulumi.StringPtrOutput { return v.Pattern }).(pulumi.StringPtrOutput)
+}
+
+// The pattern type to use for match detection. Currently, only regex is supported.
+func (o TemplateOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Template) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
 }
 
 type TemplateArrayOutput struct{ *pulumi.OutputState }

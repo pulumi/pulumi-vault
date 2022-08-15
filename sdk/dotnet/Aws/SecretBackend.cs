@@ -13,21 +13,19 @@ namespace Pulumi.Vault.Aws
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var aws = new Vault.Aws.SecretBackend("aws", new()
     ///     {
-    ///         var aws = new Vault.Aws.SecretBackend("aws", new Vault.Aws.SecretBackendArgs
-    ///         {
-    ///             AccessKey = "AKIA.....",
-    ///             SecretKey = "AWS secret key",
-    ///         });
-    ///     }
+    ///         AccessKey = "AKIA.....",
+    ///         SecretKey = "AWS secret key",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -39,7 +37,7 @@ namespace Pulumi.Vault.Aws
     /// ```
     /// </summary>
     [VaultResourceType("vault:aws/secretBackend:SecretBackend")]
-    public partial class SecretBackend : Pulumi.CustomResource
+    public partial class SecretBackend : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The AWS Access Key ID this backend should use to
@@ -150,7 +148,7 @@ namespace Pulumi.Vault.Aws
         }
     }
 
-    public sealed class SecretBackendArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The AWS Access Key ID this backend should use to
@@ -220,9 +218,10 @@ namespace Pulumi.Vault.Aws
         public SecretBackendArgs()
         {
         }
+        public static new SecretBackendArgs Empty => new SecretBackendArgs();
     }
 
-    public sealed class SecretBackendState : Pulumi.ResourceArgs
+    public sealed class SecretBackendState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The AWS Access Key ID this backend should use to
@@ -292,5 +291,6 @@ namespace Pulumi.Vault.Aws
         public SecretBackendState()
         {
         }
+        public static new SecretBackendState Empty => new SecretBackendState();
     }
 }

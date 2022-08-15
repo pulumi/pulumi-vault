@@ -26,30 +26,35 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := vault.NewQuotaLeaseCount(ctx, "global", &vault.QuotaLeaseCountArgs{
-// 			MaxLeases: pulumi.Int(100),
-// 			Path:      pulumi.String(""),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vault.NewQuotaLeaseCount(ctx, "global", &vault.QuotaLeaseCountArgs{
+//				MaxLeases: pulumi.Int(100),
+//				Path:      pulumi.String(""),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
-// Lease count quotas can be imported using their names
+// # Lease count quotas can be imported using their names
 //
 // ```sh
-//  $ pulumi import vault:index/quotaLeaseCount:QuotaLeaseCount global global
+//
+//	$ pulumi import vault:index/quotaLeaseCount:QuotaLeaseCount global global
+//
 // ```
 type QuotaLeaseCount struct {
 	pulumi.CustomResourceState
@@ -190,7 +195,7 @@ func (i *QuotaLeaseCount) ToQuotaLeaseCountOutputWithContext(ctx context.Context
 // QuotaLeaseCountArrayInput is an input type that accepts QuotaLeaseCountArray and QuotaLeaseCountArrayOutput values.
 // You can construct a concrete instance of `QuotaLeaseCountArrayInput` via:
 //
-//          QuotaLeaseCountArray{ QuotaLeaseCountArgs{...} }
+//	QuotaLeaseCountArray{ QuotaLeaseCountArgs{...} }
 type QuotaLeaseCountArrayInput interface {
 	pulumi.Input
 
@@ -215,7 +220,7 @@ func (i QuotaLeaseCountArray) ToQuotaLeaseCountArrayOutputWithContext(ctx contex
 // QuotaLeaseCountMapInput is an input type that accepts QuotaLeaseCountMap and QuotaLeaseCountMapOutput values.
 // You can construct a concrete instance of `QuotaLeaseCountMapInput` via:
 //
-//          QuotaLeaseCountMap{ "key": QuotaLeaseCountArgs{...} }
+//	QuotaLeaseCountMap{ "key": QuotaLeaseCountArgs{...} }
 type QuotaLeaseCountMapInput interface {
 	pulumi.Input
 
@@ -249,6 +254,27 @@ func (o QuotaLeaseCountOutput) ToQuotaLeaseCountOutput() QuotaLeaseCountOutput {
 
 func (o QuotaLeaseCountOutput) ToQuotaLeaseCountOutputWithContext(ctx context.Context) QuotaLeaseCountOutput {
 	return o
+}
+
+// The maximum number of leases to be allowed by the quota
+// rule. The `maxLeases` must be positive.
+func (o QuotaLeaseCountOutput) MaxLeases() pulumi.IntOutput {
+	return o.ApplyT(func(v *QuotaLeaseCount) pulumi.IntOutput { return v.MaxLeases }).(pulumi.IntOutput)
+}
+
+// Name of the rate limit quota
+func (o QuotaLeaseCountOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *QuotaLeaseCount) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Path of the mount or namespace to apply the quota. A blank path configures a
+// global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
+// `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
+// Updating this field on an existing quota can have "moving" effects. For example, updating
+// `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
+// a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
+func (o QuotaLeaseCountOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *QuotaLeaseCount) pulumi.StringPtrOutput { return v.Path }).(pulumi.StringPtrOutput)
 }
 
 type QuotaLeaseCountArrayOutput struct{ *pulumi.OutputState }

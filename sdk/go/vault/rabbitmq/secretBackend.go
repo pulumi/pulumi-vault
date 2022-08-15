@@ -17,23 +17,26 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/rabbitMq"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/rabbitMq"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := rabbitMq.NewSecretBackend(ctx, "rabbitmq", &rabbitMq.SecretBackendArgs{
-// 			ConnectionUri: pulumi.String("https://....."),
-// 			Password:      pulumi.String("password"),
-// 			Username:      pulumi.String("user"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := rabbitMq.NewSecretBackend(ctx, "rabbitmq", &rabbitMq.SecretBackendArgs{
+//				ConnectionUri: pulumi.String("https://....."),
+//				Password:      pulumi.String("password"),
+//				Username:      pulumi.String("user"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -41,7 +44,9 @@ import (
 // RabbitMQ secret backends can be imported using the `path`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:rabbitMq/secretBackend:SecretBackend rabbitmq rabbitmq
+//
+//	$ pulumi import vault:rabbitMq/secretBackend:SecretBackend rabbitmq rabbitmq
+//
 // ```
 type SecretBackend struct {
 	pulumi.CustomResourceState
@@ -248,7 +253,7 @@ func (i *SecretBackend) ToSecretBackendOutputWithContext(ctx context.Context) Se
 // SecretBackendArrayInput is an input type that accepts SecretBackendArray and SecretBackendArrayOutput values.
 // You can construct a concrete instance of `SecretBackendArrayInput` via:
 //
-//          SecretBackendArray{ SecretBackendArgs{...} }
+//	SecretBackendArray{ SecretBackendArgs{...} }
 type SecretBackendArrayInput interface {
 	pulumi.Input
 
@@ -273,7 +278,7 @@ func (i SecretBackendArray) ToSecretBackendArrayOutputWithContext(ctx context.Co
 // SecretBackendMapInput is an input type that accepts SecretBackendMap and SecretBackendMapOutput values.
 // You can construct a concrete instance of `SecretBackendMapInput` via:
 //
-//          SecretBackendMap{ "key": SecretBackendArgs{...} }
+//	SecretBackendMap{ "key": SecretBackendArgs{...} }
 type SecretBackendMapInput interface {
 	pulumi.Input
 
@@ -307,6 +312,60 @@ func (o SecretBackendOutput) ToSecretBackendOutput() SecretBackendOutput {
 
 func (o SecretBackendOutput) ToSecretBackendOutputWithContext(ctx context.Context) SecretBackendOutput {
 	return o
+}
+
+// Specifies the RabbitMQ connection URI.
+func (o SecretBackendOutput) ConnectionUri() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringOutput { return v.ConnectionUri }).(pulumi.StringOutput)
+}
+
+// The default TTL for credentials
+// issued by this backend.
+func (o SecretBackendOutput) DefaultLeaseTtlSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntOutput { return v.DefaultLeaseTtlSeconds }).(pulumi.IntOutput)
+}
+
+// A human-friendly description for this backend.
+func (o SecretBackendOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// The maximum TTL that can be requested
+// for credentials issued by this backend.
+func (o SecretBackendOutput) MaxLeaseTtlSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntOutput { return v.MaxLeaseTtlSeconds }).(pulumi.IntOutput)
+}
+
+// Specifies the RabbitMQ management administrator password.
+func (o SecretBackendOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
+}
+
+// Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
+func (o SecretBackendOutput) PasswordPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.PasswordPolicy }).(pulumi.StringPtrOutput)
+}
+
+// The unique path this backend should be mounted at. Must
+// not begin or end with a `/`. Defaults to `rabbitmq`.
+func (o SecretBackendOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the RabbitMQ management administrator username.
+func (o SecretBackendOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
+}
+
+// Template describing how dynamic usernames are generated.
+func (o SecretBackendOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
+}
+
+// Specifies whether to verify connection URI, username, and password.
+// Defaults to `true`.
+func (o SecretBackendOutput) VerifyConnection() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.VerifyConnection }).(pulumi.BoolPtrOutput)
 }
 
 type SecretBackendArrayOutput struct{ *pulumi.OutputState }

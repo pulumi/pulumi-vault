@@ -15,27 +15,26 @@ namespace Pulumi.Vault.AliCloud
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var alicloudAuthBackend = new Vault.AuthBackend("alicloudAuthBackend", new()
     ///     {
-    ///         var alicloudAuthBackend = new Vault.AuthBackend("alicloudAuthBackend", new Vault.AuthBackendArgs
-    ///         {
-    ///             Type = "alicloud",
-    ///             Path = "alicloud",
-    ///         });
-    ///         var alicloudAuthBackendRole = new Vault.AliCloud.AuthBackendRole("alicloudAuthBackendRole", new Vault.AliCloud.AuthBackendRoleArgs
-    ///         {
-    ///             Backend = alicloudAuthBackend.Path,
-    ///             Role = "example",
-    ///             Arn = "acs:ram:123456:tf:role/foobar",
-    ///         });
-    ///     }
+    ///         Type = "alicloud",
+    ///         Path = "alicloud",
+    ///     });
     /// 
-    /// }
+    ///     var alicloudAuthBackendRole = new Vault.AliCloud.AuthBackendRole("alicloudAuthBackendRole", new()
+    ///     {
+    ///         Backend = alicloudAuthBackend.Path,
+    ///         Role = "example",
+    ///         Arn = "acs:ram:123456:tf:role/foobar",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -47,7 +46,7 @@ namespace Pulumi.Vault.AliCloud
     /// ```
     /// </summary>
     [VaultResourceType("vault:alicloud/authBackendRole:AuthBackendRole")]
-    public partial class AuthBackendRole : Pulumi.CustomResource
+    public partial class AuthBackendRole : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The role's arn.
@@ -184,7 +183,7 @@ namespace Pulumi.Vault.AliCloud
         }
     }
 
-    public sealed class AuthBackendRoleArgs : Pulumi.ResourceArgs
+    public sealed class AuthBackendRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The role's arn.
@@ -292,9 +291,10 @@ namespace Pulumi.Vault.AliCloud
         public AuthBackendRoleArgs()
         {
         }
+        public static new AuthBackendRoleArgs Empty => new AuthBackendRoleArgs();
     }
 
-    public sealed class AuthBackendRoleState : Pulumi.ResourceArgs
+    public sealed class AuthBackendRoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The role's arn.
@@ -402,5 +402,6 @@ namespace Pulumi.Vault.AliCloud
         public AuthBackendRoleState()
         {
         }
+        public static new AuthBackendRoleState Empty => new AuthBackendRoleState();
     }
 }

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Inputs
 {
 
-    public sealed class GetPolicyDocumentRuleInputArgs : Pulumi.ResourceArgs
+    public sealed class GetPolicyDocumentRuleInputArgs : global::Pulumi.ResourceArgs
     {
         [Input("allowedParameters")]
         private InputList<Inputs.GetPolicyDocumentRuleAllowedParameterInputArgs>? _allowedParameters;
@@ -87,5 +87,6 @@ namespace Pulumi.Vault.Inputs
         public GetPolicyDocumentRuleInputArgs()
         {
         }
+        public static new GetPolicyDocumentRuleInputArgs Empty => new GetPolicyDocumentRuleInputArgs();
     }
 }

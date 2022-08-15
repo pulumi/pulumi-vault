@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Inputs
 {
 
-    public sealed class ProviderHeaderArgs : Pulumi.ResourceArgs
+    public sealed class ProviderHeaderArgs : global::Pulumi.ResourceArgs
     {
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
@@ -21,5 +21,6 @@ namespace Pulumi.Vault.Inputs
         public ProviderHeaderArgs()
         {
         }
+        public static new ProviderHeaderArgs Empty => new ProviderHeaderArgs();
     }
 }

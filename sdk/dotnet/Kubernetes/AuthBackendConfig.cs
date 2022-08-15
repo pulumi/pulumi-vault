@@ -17,31 +17,30 @@ namespace Pulumi.Vault.Kubernetes
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var kubernetes = new Vault.AuthBackend("kubernetes", new()
     ///     {
-    ///         var kubernetes = new Vault.AuthBackend("kubernetes", new Vault.AuthBackendArgs
-    ///         {
-    ///             Type = "kubernetes",
-    ///         });
-    ///         var example = new Vault.Kubernetes.AuthBackendConfig("example", new Vault.Kubernetes.AuthBackendConfigArgs
-    ///         {
-    ///             Backend = kubernetes.Path,
-    ///             KubernetesHost = "http://example.com:443",
-    ///             KubernetesCaCert = @"-----BEGIN CERTIFICATE-----
+    ///         Type = "kubernetes",
+    ///     });
+    /// 
+    ///     var example = new Vault.Kubernetes.AuthBackendConfig("example", new()
+    ///     {
+    ///         Backend = kubernetes.Path,
+    ///         KubernetesHost = "http://example.com:443",
+    ///         KubernetesCaCert = @"-----BEGIN CERTIFICATE-----
     /// example
     /// -----END CERTIFICATE-----",
-    ///             TokenReviewerJwt = "ZXhhbXBsZQo=",
-    ///             Issuer = "api",
-    ///             DisableIssValidation = true,
-    ///         });
-    ///     }
+    ///         TokenReviewerJwt = "ZXhhbXBsZQo=",
+    ///         Issuer = "api",
+    ///         DisableIssValidation = true,
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -53,7 +52,7 @@ namespace Pulumi.Vault.Kubernetes
     /// ```
     /// </summary>
     [VaultResourceType("vault:kubernetes/authBackendConfig:AuthBackendConfig")]
-    public partial class AuthBackendConfig : Pulumi.CustomResource
+    public partial class AuthBackendConfig : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Unique name of the kubernetes backend to configure.
@@ -147,7 +146,7 @@ namespace Pulumi.Vault.Kubernetes
         }
     }
 
-    public sealed class AuthBackendConfigArgs : Pulumi.ResourceArgs
+    public sealed class AuthBackendConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Unique name of the kubernetes backend to configure.
@@ -206,9 +205,10 @@ namespace Pulumi.Vault.Kubernetes
         public AuthBackendConfigArgs()
         {
         }
+        public static new AuthBackendConfigArgs Empty => new AuthBackendConfigArgs();
     }
 
-    public sealed class AuthBackendConfigState : Pulumi.ResourceArgs
+    public sealed class AuthBackendConfigState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Unique name of the kubernetes backend to configure.
@@ -267,5 +267,6 @@ namespace Pulumi.Vault.Kubernetes
         public AuthBackendConfigState()
         {
         }
+        public static new AuthBackendConfigState Empty => new AuthBackendConfigState();
     }
 }

@@ -29,7 +29,7 @@ namespace Pulumi.Vault.Kubernetes
     }
 
 
-    public sealed class GetAuthBackendRoleArgs : Pulumi.InvokeArgs
+    public sealed class GetAuthBackendRoleArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Audience claim to verify in the JWT.
@@ -137,9 +137,10 @@ namespace Pulumi.Vault.Kubernetes
         public GetAuthBackendRoleArgs()
         {
         }
+        public static new GetAuthBackendRoleArgs Empty => new GetAuthBackendRoleArgs();
     }
 
-    public sealed class GetAuthBackendRoleInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetAuthBackendRoleInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Audience claim to verify in the JWT.
@@ -247,6 +248,7 @@ namespace Pulumi.Vault.Kubernetes
         public GetAuthBackendRoleInvokeArgs()
         {
         }
+        public static new GetAuthBackendRoleInvokeArgs Empty => new GetAuthBackendRoleInvokeArgs();
     }
 
 

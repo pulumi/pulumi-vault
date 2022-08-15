@@ -13,25 +13,23 @@ namespace Pulumi.Vault.AD
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var config = new Vault.AD.SecretBackend("config", new()
     ///     {
-    ///         var config = new Vault.AD.SecretBackend("config", new Vault.AD.SecretBackendArgs
-    ///         {
-    ///             Backend = "ad",
-    ///             Binddn = "CN=Administrator,CN=Users,DC=corp,DC=example,DC=net",
-    ///             Bindpass = "SuperSecretPassw0rd",
-    ///             InsecureTls = true,
-    ///             Url = "ldaps://ad",
-    ///             Userdn = "CN=Users,DC=corp,DC=example,DC=net",
-    ///         });
-    ///     }
+    ///         Backend = "ad",
+    ///         Binddn = "CN=Administrator,CN=Users,DC=corp,DC=example,DC=net",
+    ///         Bindpass = "SuperSecretPassw0rd",
+    ///         InsecureTls = true,
+    ///         Url = "ldaps://ad",
+    ///         Userdn = "CN=Users,DC=corp,DC=example,DC=net",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -43,7 +41,7 @@ namespace Pulumi.Vault.AD
     /// ```
     /// </summary>
     [VaultResourceType("vault:ad/secretBackend:SecretBackend")]
-    public partial class SecretBackend : Pulumi.CustomResource
+    public partial class SecretBackend : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Use anonymous binds when performing LDAP group searches
@@ -313,7 +311,7 @@ namespace Pulumi.Vault.AD
         }
     }
 
-    public sealed class SecretBackendArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Use anonymous binds when performing LDAP group searches
@@ -542,9 +540,10 @@ namespace Pulumi.Vault.AD
         public SecretBackendArgs()
         {
         }
+        public static new SecretBackendArgs Empty => new SecretBackendArgs();
     }
 
-    public sealed class SecretBackendState : Pulumi.ResourceArgs
+    public sealed class SecretBackendState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Use anonymous binds when performing LDAP group searches
@@ -773,5 +772,6 @@ namespace Pulumi.Vault.AD
         public SecretBackendState()
         {
         }
+        public static new SecretBackendState Empty => new SecretBackendState();
     }
 }

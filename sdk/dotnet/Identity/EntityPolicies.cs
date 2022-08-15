@@ -16,71 +16,70 @@ namespace Pulumi.Vault.Identity
     /// ### Exclusive Policies
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var entity = new Vault.Identity.Entity("entity", new()
     ///     {
-    ///         var entity = new Vault.Identity.Entity("entity", new Vault.Identity.EntityArgs
-    ///         {
-    ///             ExternalPolicies = true,
-    ///         });
-    ///         var policies = new Vault.Identity.EntityPolicies("policies", new Vault.Identity.EntityPoliciesArgs
-    ///         {
-    ///             Policies = 
-    ///             {
-    ///                 "default",
-    ///                 "test",
-    ///             },
-    ///             Exclusive = true,
-    ///             EntityId = entity.Id,
-    ///         });
-    ///     }
+    ///         ExternalPolicies = true,
+    ///     });
     /// 
-    /// }
+    ///     var policies = new Vault.Identity.EntityPolicies("policies", new()
+    ///     {
+    ///         Policies = new[]
+    ///         {
+    ///             "default",
+    ///             "test",
+    ///         },
+    ///         Exclusive = true,
+    ///         EntityId = entity.Id,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// ### Non-exclusive Policies
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var entity = new Vault.Identity.Entity("entity", new()
     ///     {
-    ///         var entity = new Vault.Identity.Entity("entity", new Vault.Identity.EntityArgs
-    ///         {
-    ///             ExternalPolicies = true,
-    ///         });
-    ///         var @default = new Vault.Identity.EntityPolicies("default", new Vault.Identity.EntityPoliciesArgs
-    ///         {
-    ///             Policies = 
-    ///             {
-    ///                 "default",
-    ///                 "test",
-    ///             },
-    ///             Exclusive = false,
-    ///             EntityId = entity.Id,
-    ///         });
-    ///         var others = new Vault.Identity.EntityPolicies("others", new Vault.Identity.EntityPoliciesArgs
-    ///         {
-    ///             Policies = 
-    ///             {
-    ///                 "others",
-    ///             },
-    ///             Exclusive = false,
-    ///             EntityId = entity.Id,
-    ///         });
-    ///     }
+    ///         ExternalPolicies = true,
+    ///     });
     /// 
-    /// }
+    ///     var @default = new Vault.Identity.EntityPolicies("default", new()
+    ///     {
+    ///         Policies = new[]
+    ///         {
+    ///             "default",
+    ///             "test",
+    ///         },
+    ///         Exclusive = false,
+    ///         EntityId = entity.Id,
+    ///     });
+    /// 
+    ///     var others = new Vault.Identity.EntityPolicies("others", new()
+    ///     {
+    ///         Policies = new[]
+    ///         {
+    ///             "others",
+    ///         },
+    ///         Exclusive = false,
+    ///         EntityId = entity.Id,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// </summary>
     [VaultResourceType("vault:identity/entityPolicies:EntityPolicies")]
-    public partial class EntityPolicies : Pulumi.CustomResource
+    public partial class EntityPolicies : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Entity ID to assign policies to.
@@ -150,7 +149,7 @@ namespace Pulumi.Vault.Identity
         }
     }
 
-    public sealed class EntityPoliciesArgs : Pulumi.ResourceArgs
+    public sealed class EntityPoliciesArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Entity ID to assign policies to.
@@ -179,9 +178,10 @@ namespace Pulumi.Vault.Identity
         public EntityPoliciesArgs()
         {
         }
+        public static new EntityPoliciesArgs Empty => new EntityPoliciesArgs();
     }
 
-    public sealed class EntityPoliciesState : Pulumi.ResourceArgs
+    public sealed class EntityPoliciesState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Entity ID to assign policies to.
@@ -216,5 +216,6 @@ namespace Pulumi.Vault.Identity
         public EntityPoliciesState()
         {
         }
+        public static new EntityPoliciesState Empty => new EntityPoliciesState();
     }
 }

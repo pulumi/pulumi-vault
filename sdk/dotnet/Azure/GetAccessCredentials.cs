@@ -17,24 +17,22 @@ namespace Pulumi.Vault.Azure
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Vault = Pulumi.Vault;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var creds = Vault.Azure.GetAccessCredentials.Invoke(new()
         ///     {
-        ///         var creds = Output.Create(Vault.Azure.GetAccessCredentials.InvokeAsync(new Vault.Azure.GetAccessCredentialsArgs
-        ///         {
-        ///             Role = "my-role",
-        ///             ValidateCreds = true,
-        ///             NumSequentialSuccesses = 8,
-        ///             NumSecondsBetweenTests = 1,
-        ///             MaxCredValidationSeconds = 300,
-        ///         }));
-        ///     }
+        ///         Role = "my-role",
+        ///         ValidateCreds = true,
+        ///         NumSequentialSuccesses = 8,
+        ///         NumSecondsBetweenTests = 1,
+        ///         MaxCredValidationSeconds = 300,
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -53,24 +51,22 @@ namespace Pulumi.Vault.Azure
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Vault = Pulumi.Vault;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var creds = Vault.Azure.GetAccessCredentials.Invoke(new()
         ///     {
-        ///         var creds = Output.Create(Vault.Azure.GetAccessCredentials.InvokeAsync(new Vault.Azure.GetAccessCredentialsArgs
-        ///         {
-        ///             Role = "my-role",
-        ///             ValidateCreds = true,
-        ///             NumSequentialSuccesses = 8,
-        ///             NumSecondsBetweenTests = 1,
-        ///             MaxCredValidationSeconds = 300,
-        ///         }));
-        ///     }
+        ///         Role = "my-role",
+        ///         ValidateCreds = true,
+        ///         NumSequentialSuccesses = 8,
+        ///         NumSecondsBetweenTests = 1,
+        ///         MaxCredValidationSeconds = 300,
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -85,7 +81,7 @@ namespace Pulumi.Vault.Azure
     }
 
 
-    public sealed class GetAccessCredentialsArgs : Pulumi.InvokeArgs
+    public sealed class GetAccessCredentialsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The path to the Azure secret backend to
@@ -162,9 +158,10 @@ namespace Pulumi.Vault.Azure
         public GetAccessCredentialsArgs()
         {
         }
+        public static new GetAccessCredentialsArgs Empty => new GetAccessCredentialsArgs();
     }
 
-    public sealed class GetAccessCredentialsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetAccessCredentialsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The path to the Azure secret backend to
@@ -241,6 +238,7 @@ namespace Pulumi.Vault.Azure
         public GetAccessCredentialsInvokeArgs()
         {
         }
+        public static new GetAccessCredentialsInvokeArgs Empty => new GetAccessCredentialsInvokeArgs();
     }
 
 

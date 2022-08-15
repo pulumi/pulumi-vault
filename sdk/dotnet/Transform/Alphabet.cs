@@ -17,30 +17,29 @@ namespace Pulumi.Vault.Transform
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var mountTransform = new Vault.Mount("mountTransform", new()
     ///     {
-    ///         var mountTransform = new Vault.Mount("mountTransform", new Vault.MountArgs
-    ///         {
-    ///             Path = "transform",
-    ///             Type = "transform",
-    ///         });
-    ///         var test = new Vault.Transform.Alphabet("test", new Vault.Transform.AlphabetArgs
-    ///         {
-    ///             Path = mountTransform.Path,
-    ///             Alphabet = "0123456789",
-    ///         });
-    ///     }
+    ///         Path = "transform",
+    ///         Type = "transform",
+    ///     });
     /// 
-    /// }
+    ///     var test = new Vault.Transform.Alphabet("test", new()
+    ///     {
+    ///         Path = mountTransform.Path,
+    ///         AlphabetSet = "0123456789",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// </summary>
     [VaultResourceType("vault:transform/alphabet:Alphabet")]
-    public partial class Alphabet : Pulumi.CustomResource
+    public partial class Alphabet : global::Pulumi.CustomResource
     {
         /// <summary>
         /// A string of characters that contains the alphabet set.
@@ -104,7 +103,7 @@ namespace Pulumi.Vault.Transform
         }
     }
 
-    public sealed class AlphabetArgs : Pulumi.ResourceArgs
+    public sealed class AlphabetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// A string of characters that contains the alphabet set.
@@ -127,9 +126,10 @@ namespace Pulumi.Vault.Transform
         public AlphabetArgs()
         {
         }
+        public static new AlphabetArgs Empty => new AlphabetArgs();
     }
 
-    public sealed class AlphabetState : Pulumi.ResourceArgs
+    public sealed class AlphabetState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// A string of characters that contains the alphabet set.
@@ -152,5 +152,6 @@ namespace Pulumi.Vault.Transform
         public AlphabetState()
         {
         }
+        public static new AlphabetState Empty => new AlphabetState();
     }
 }

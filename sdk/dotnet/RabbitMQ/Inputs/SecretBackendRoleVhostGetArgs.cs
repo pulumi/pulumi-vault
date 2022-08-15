@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.RabbitMQ.Inputs
 {
 
-    public sealed class SecretBackendRoleVhostGetArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendRoleVhostGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("configure", required: true)]
         public Input<string> Configure { get; set; } = null!;
@@ -27,5 +27,6 @@ namespace Pulumi.Vault.RabbitMQ.Inputs
         public SecretBackendRoleVhostGetArgs()
         {
         }
+        public static new SecretBackendRoleVhostGetArgs Empty => new SecretBackendRoleVhostGetArgs();
     }
 }

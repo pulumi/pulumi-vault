@@ -20,33 +20,36 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/okta"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/okta"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		example, err := okta.NewAuthBackend(ctx, "example", &okta.AuthBackendArgs{
-// 			Path:         pulumi.String("user_okta"),
-// 			Organization: pulumi.String("dummy"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = okta.NewAuthBackendUser(ctx, "foo", &okta.AuthBackendUserArgs{
-// 			Path:     example.Path,
-// 			Username: pulumi.String("foo"),
-// 			Groups: pulumi.StringArray{
-// 				pulumi.String("one"),
-// 				pulumi.String("two"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := okta.NewAuthBackend(ctx, "example", &okta.AuthBackendArgs{
+//				Path:         pulumi.String("user_okta"),
+//				Organization: pulumi.String("dummy"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = okta.NewAuthBackendUser(ctx, "foo", &okta.AuthBackendUserArgs{
+//				Path:     example.Path,
+//				Username: pulumi.String("foo"),
+//				Groups: pulumi.StringArray{
+//					pulumi.String("one"),
+//					pulumi.String("two"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -54,7 +57,9 @@ import (
 // Okta authentication backend users can be imported using its `path/user` ID format, e.g.
 //
 // ```sh
-//  $ pulumi import vault:okta/authBackendUser:AuthBackendUser example okta/foo
+//
+//	$ pulumi import vault:okta/authBackendUser:AuthBackendUser example okta/foo
+//
 // ```
 type AuthBackendUser struct {
 	pulumi.CustomResourceState
@@ -178,7 +183,7 @@ func (i *AuthBackendUser) ToAuthBackendUserOutputWithContext(ctx context.Context
 // AuthBackendUserArrayInput is an input type that accepts AuthBackendUserArray and AuthBackendUserArrayOutput values.
 // You can construct a concrete instance of `AuthBackendUserArrayInput` via:
 //
-//          AuthBackendUserArray{ AuthBackendUserArgs{...} }
+//	AuthBackendUserArray{ AuthBackendUserArgs{...} }
 type AuthBackendUserArrayInput interface {
 	pulumi.Input
 
@@ -203,7 +208,7 @@ func (i AuthBackendUserArray) ToAuthBackendUserArrayOutputWithContext(ctx contex
 // AuthBackendUserMapInput is an input type that accepts AuthBackendUserMap and AuthBackendUserMapOutput values.
 // You can construct a concrete instance of `AuthBackendUserMapInput` via:
 //
-//          AuthBackendUserMap{ "key": AuthBackendUserArgs{...} }
+//	AuthBackendUserMap{ "key": AuthBackendUserArgs{...} }
 type AuthBackendUserMapInput interface {
 	pulumi.Input
 
@@ -237,6 +242,26 @@ func (o AuthBackendUserOutput) ToAuthBackendUserOutput() AuthBackendUserOutput {
 
 func (o AuthBackendUserOutput) ToAuthBackendUserOutputWithContext(ctx context.Context) AuthBackendUserOutput {
 	return o
+}
+
+// List of Okta groups to associate with this user
+func (o AuthBackendUserOutput) Groups() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendUser) pulumi.StringArrayOutput { return v.Groups }).(pulumi.StringArrayOutput)
+}
+
+// The path where the Okta auth backend is mounted
+func (o AuthBackendUserOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendUser) pulumi.StringOutput { return v.Path }).(pulumi.StringOutput)
+}
+
+// List of Vault policies to associate with this user
+func (o AuthBackendUserOutput) Policies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendUser) pulumi.StringArrayOutput { return v.Policies }).(pulumi.StringArrayOutput)
+}
+
+// Name of the user within Okta
+func (o AuthBackendUserOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendUser) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
 }
 
 type AuthBackendUserArrayOutput struct{ *pulumi.OutputState }

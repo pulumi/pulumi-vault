@@ -22,62 +22,65 @@ import (
 // package main
 //
 // import (
-// 	"fmt"
-// 	"io/ioutil"
 //
-// 	"github.com/pulumi/pulumi-gcp/sdk/v5/go/gcp/serviceAccount"
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/gcp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"fmt"
+//	"io/ioutil"
+//
+//	"github.com/pulumi/pulumi-gcp/sdk/v5/go/gcp/serviceAccount"
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/gcp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func readFileOrPanic(path string) pulumi.StringPtrInput {
-// 	data, err := ioutil.ReadFile(path)
-// 	if err != nil {
-// 		panic(err.Error())
-// 	}
-// 	return pulumi.String(string(data))
-// }
+//	func readFileOrPanic(path string) pulumi.StringPtrInput {
+//		data, err := ioutil.ReadFile(path)
+//		if err != nil {
+//			panic(err.Error())
+//		}
+//		return pulumi.String(string(data))
+//	}
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		this, err := serviceAccount.NewAccount(ctx, "this", &serviceAccount.AccountArgs{
-// 			AccountId: pulumi.String("my-awesome-account"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		gcp, err := gcp.NewSecretBackend(ctx, "gcp", &gcp.SecretBackendArgs{
-// 			Path:        pulumi.String("gcp"),
-// 			Credentials: readFileOrPanic("credentials.json"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = gcp.NewSecretStaticAccount(ctx, "staticAccount", &gcp.SecretStaticAccountArgs{
-// 			Backend:       gcp.Path,
-// 			StaticAccount: pulumi.String("project_viewer"),
-// 			SecretType:    pulumi.String("access_token"),
-// 			TokenScopes: pulumi.StringArray{
-// 				pulumi.String("https://www.googleapis.com/auth/cloud-platform"),
-// 			},
-// 			ServiceAccountEmail: this.Email,
-// 			Bindings: gcp.SecretStaticAccountBindingArray{
-// 				&gcp.SecretStaticAccountBindingArgs{
-// 					Resource: this.Project.ApplyT(func(project string) (string, error) {
-// 						return fmt.Sprintf("%v%v", "//cloudresourcemanager.googleapis.com/projects/", project), nil
-// 					}).(pulumi.StringOutput),
-// 					Roles: pulumi.StringArray{
-// 						pulumi.String("roles/viewer"),
-// 					},
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			this, err := serviceAccount.NewAccount(ctx, "this", &serviceAccount.AccountArgs{
+//				AccountId: pulumi.String("my-awesome-account"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			gcp, err := gcp.NewSecretBackend(ctx, "gcp", &gcp.SecretBackendArgs{
+//				Path:        pulumi.String("gcp"),
+//				Credentials: readFileOrPanic("credentials.json"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = gcp.NewSecretStaticAccount(ctx, "staticAccount", &gcp.SecretStaticAccountArgs{
+//				Backend:       gcp.Path,
+//				StaticAccount: pulumi.String("project_viewer"),
+//				SecretType:    pulumi.String("access_token"),
+//				TokenScopes: pulumi.StringArray{
+//					pulumi.String("https://www.googleapis.com/auth/cloud-platform"),
+//				},
+//				ServiceAccountEmail: this.Email,
+//				Bindings: gcp.SecretStaticAccountBindingArray{
+//					&gcp.SecretStaticAccountBindingArgs{
+//						Resource: this.Project.ApplyT(func(project string) (string, error) {
+//							return fmt.Sprintf("//cloudresourcemanager.googleapis.com/projects/%v", project), nil
+//						}).(pulumi.StringOutput),
+//						Roles: pulumi.StringArray{
+//							pulumi.String("roles/viewer"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -85,7 +88,9 @@ import (
 // A static account can be imported using its Vault Path. For example, referencing the example above,
 //
 // ```sh
-//  $ pulumi import vault:gcp/secretStaticAccount:SecretStaticAccount static_account gcp/static-account/project_viewer
+//
+//	$ pulumi import vault:gcp/secretStaticAccount:SecretStaticAccount static_account gcp/static-account/project_viewer
+//
 // ```
 type SecretStaticAccount struct {
 	pulumi.CustomResourceState
@@ -238,7 +243,7 @@ func (i *SecretStaticAccount) ToSecretStaticAccountOutputWithContext(ctx context
 // SecretStaticAccountArrayInput is an input type that accepts SecretStaticAccountArray and SecretStaticAccountArrayOutput values.
 // You can construct a concrete instance of `SecretStaticAccountArrayInput` via:
 //
-//          SecretStaticAccountArray{ SecretStaticAccountArgs{...} }
+//	SecretStaticAccountArray{ SecretStaticAccountArgs{...} }
 type SecretStaticAccountArrayInput interface {
 	pulumi.Input
 
@@ -263,7 +268,7 @@ func (i SecretStaticAccountArray) ToSecretStaticAccountArrayOutputWithContext(ct
 // SecretStaticAccountMapInput is an input type that accepts SecretStaticAccountMap and SecretStaticAccountMapOutput values.
 // You can construct a concrete instance of `SecretStaticAccountMapInput` via:
 //
-//          SecretStaticAccountMap{ "key": SecretStaticAccountArgs{...} }
+//	SecretStaticAccountMap{ "key": SecretStaticAccountArgs{...} }
 type SecretStaticAccountMapInput interface {
 	pulumi.Input
 
@@ -297,6 +302,41 @@ func (o SecretStaticAccountOutput) ToSecretStaticAccountOutput() SecretStaticAcc
 
 func (o SecretStaticAccountOutput) ToSecretStaticAccountOutputWithContext(ctx context.Context) SecretStaticAccountOutput {
 	return o
+}
+
+// Path where the GCP Secrets Engine is mounted
+func (o SecretStaticAccountOutput) Backend() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretStaticAccount) pulumi.StringOutput { return v.Backend }).(pulumi.StringOutput)
+}
+
+// Bindings to create for this static account. This can be specified multiple times for multiple bindings. Structure is documented below.
+func (o SecretStaticAccountOutput) Bindings() SecretStaticAccountBindingArrayOutput {
+	return o.ApplyT(func(v *SecretStaticAccount) SecretStaticAccountBindingArrayOutput { return v.Bindings }).(SecretStaticAccountBindingArrayOutput)
+}
+
+// Type of secret generated for this static account. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
+func (o SecretStaticAccountOutput) SecretType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretStaticAccount) pulumi.StringOutput { return v.SecretType }).(pulumi.StringOutput)
+}
+
+// Email of the GCP service account to manage.
+func (o SecretStaticAccountOutput) ServiceAccountEmail() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretStaticAccount) pulumi.StringOutput { return v.ServiceAccountEmail }).(pulumi.StringOutput)
+}
+
+// Project the service account belongs to.
+func (o SecretStaticAccountOutput) ServiceAccountProject() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretStaticAccount) pulumi.StringOutput { return v.ServiceAccountProject }).(pulumi.StringOutput)
+}
+
+// Name of the Static Account to create
+func (o SecretStaticAccountOutput) StaticAccount() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretStaticAccount) pulumi.StringOutput { return v.StaticAccount }).(pulumi.StringOutput)
+}
+
+// List of OAuth scopes to assign to `accessToken` secrets generated under this static account (`accessToken` static accounts only).
+func (o SecretStaticAccountOutput) TokenScopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretStaticAccount) pulumi.StringArrayOutput { return v.TokenScopes }).(pulumi.StringArrayOutput)
 }
 
 type SecretStaticAccountArrayOutput struct{ *pulumi.OutputState }

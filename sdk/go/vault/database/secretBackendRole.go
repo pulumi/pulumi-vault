@@ -17,46 +17,49 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/database"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/database"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		db, err := vault.NewMount(ctx, "db", &vault.MountArgs{
-// 			Path: pulumi.String("postgres"),
-// 			Type: pulumi.String("database"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		postgres, err := database.NewSecretBackendConnection(ctx, "postgres", &database.SecretBackendConnectionArgs{
-// 			Backend: db.Path,
-// 			AllowedRoles: pulumi.StringArray{
-// 				pulumi.String("dev"),
-// 				pulumi.String("prod"),
-// 			},
-// 			Postgresql: &database.SecretBackendConnectionPostgresqlArgs{
-// 				ConnectionUrl: pulumi.String("postgres://username:password@host:port/database"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = database.NewSecretBackendRole(ctx, "role", &database.SecretBackendRoleArgs{
-// 			Backend: db.Path,
-// 			DbName:  postgres.Name,
-// 			CreationStatements: pulumi.StringArray{
-// 				pulumi.String("CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			db, err := vault.NewMount(ctx, "db", &vault.MountArgs{
+//				Path: pulumi.String("postgres"),
+//				Type: pulumi.String("database"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			postgres, err := database.NewSecretBackendConnection(ctx, "postgres", &database.SecretBackendConnectionArgs{
+//				Backend: db.Path,
+//				AllowedRoles: pulumi.StringArray{
+//					pulumi.String("dev"),
+//					pulumi.String("prod"),
+//				},
+//				Postgresql: &database.SecretBackendConnectionPostgresqlArgs{
+//					ConnectionUrl: pulumi.String("postgres://username:password@host:port/database"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = database.NewSecretBackendRole(ctx, "role", &database.SecretBackendRoleArgs{
+//				Backend: db.Path,
+//				DbName:  postgres.Name,
+//				CreationStatements: pulumi.StringArray{
+//					pulumi.String("CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -64,7 +67,9 @@ import (
 // Database secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
 //
 // ```sh
-//  $ pulumi import vault:database/secretBackendRole:SecretBackendRole example postgres/roles/my-role
+//
+//	$ pulumi import vault:database/secretBackendRole:SecretBackendRole example postgres/roles/my-role
+//
 // ```
 type SecretBackendRole struct {
 	pulumi.CustomResourceState
@@ -276,7 +281,7 @@ func (i *SecretBackendRole) ToSecretBackendRoleOutputWithContext(ctx context.Con
 // SecretBackendRoleArrayInput is an input type that accepts SecretBackendRoleArray and SecretBackendRoleArrayOutput values.
 // You can construct a concrete instance of `SecretBackendRoleArrayInput` via:
 //
-//          SecretBackendRoleArray{ SecretBackendRoleArgs{...} }
+//	SecretBackendRoleArray{ SecretBackendRoleArgs{...} }
 type SecretBackendRoleArrayInput interface {
 	pulumi.Input
 
@@ -301,7 +306,7 @@ func (i SecretBackendRoleArray) ToSecretBackendRoleArrayOutputWithContext(ctx co
 // SecretBackendRoleMapInput is an input type that accepts SecretBackendRoleMap and SecretBackendRoleMapOutput values.
 // You can construct a concrete instance of `SecretBackendRoleMapInput` via:
 //
-//          SecretBackendRoleMap{ "key": SecretBackendRoleArgs{...} }
+//	SecretBackendRoleMap{ "key": SecretBackendRoleArgs{...} }
 type SecretBackendRoleMapInput interface {
 	pulumi.Input
 
@@ -335,6 +340,58 @@ func (o SecretBackendRoleOutput) ToSecretBackendRoleOutput() SecretBackendRoleOu
 
 func (o SecretBackendRoleOutput) ToSecretBackendRoleOutputWithContext(ctx context.Context) SecretBackendRoleOutput {
 	return o
+}
+
+// The unique name of the Vault mount to configure.
+func (o SecretBackendRoleOutput) Backend() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.Backend }).(pulumi.StringOutput)
+}
+
+// The database statements to execute when
+// creating a user.
+func (o SecretBackendRoleOutput) CreationStatements() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.CreationStatements }).(pulumi.StringArrayOutput)
+}
+
+// The unique name of the database connection to use for
+// the role.
+func (o SecretBackendRoleOutput) DbName() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.DbName }).(pulumi.StringOutput)
+}
+
+// The default number of seconds for leases for this
+// role.
+func (o SecretBackendRoleOutput) DefaultTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.IntPtrOutput { return v.DefaultTtl }).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of seconds for leases for this
+// role.
+func (o SecretBackendRoleOutput) MaxTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.IntPtrOutput { return v.MaxTtl }).(pulumi.IntPtrOutput)
+}
+
+// A unique name to give the role.
+func (o SecretBackendRoleOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The database statements to execute when
+// renewing a user.
+func (o SecretBackendRoleOutput) RenewStatements() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.RenewStatements }).(pulumi.StringArrayOutput)
+}
+
+// The database statements to execute when
+// revoking a user.
+func (o SecretBackendRoleOutput) RevocationStatements() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.RevocationStatements }).(pulumi.StringArrayOutput)
+}
+
+// The database statements to execute when
+// rolling back creation due to an error.
+func (o SecretBackendRoleOutput) RollbackStatements() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.RollbackStatements }).(pulumi.StringArrayOutput)
 }
 
 type SecretBackendRoleArrayOutput struct{ *pulumi.OutputState }

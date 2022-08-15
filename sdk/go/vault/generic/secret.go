@@ -16,7 +16,9 @@ import (
 // Generic secrets can be imported using the `path`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:generic/secret:Secret example secret/foo
+//
+//	$ pulumi import vault:generic/secret:Secret example secret/foo
+//
 // ```
 type Secret struct {
 	pulumi.CustomResourceState
@@ -205,7 +207,7 @@ func (i *Secret) ToSecretOutputWithContext(ctx context.Context) SecretOutput {
 // SecretArrayInput is an input type that accepts SecretArray and SecretArrayOutput values.
 // You can construct a concrete instance of `SecretArrayInput` via:
 //
-//          SecretArray{ SecretArgs{...} }
+//	SecretArray{ SecretArgs{...} }
 type SecretArrayInput interface {
 	pulumi.Input
 
@@ -230,7 +232,7 @@ func (i SecretArray) ToSecretArrayOutputWithContext(ctx context.Context) SecretA
 // SecretMapInput is an input type that accepts SecretMap and SecretMapOutput values.
 // You can construct a concrete instance of `SecretMapInput` via:
 //
-//          SecretMap{ "key": SecretArgs{...} }
+//	SecretMap{ "key": SecretArgs{...} }
 type SecretMapInput interface {
 	pulumi.Input
 
@@ -264,6 +266,44 @@ func (o SecretOutput) ToSecretOutput() SecretOutput {
 
 func (o SecretOutput) ToSecretOutputWithContext(ctx context.Context) SecretOutput {
 	return o
+}
+
+// A mapping whose keys are the top-level data keys returned from
+// Vault and whose values are the corresponding values. This map can only
+// represent string data, so any non-string values returned from Vault are
+// serialized as JSON.
+func (o SecretOutput) Data() pulumi.MapOutput {
+	return o.ApplyT(func(v *Secret) pulumi.MapOutput { return v.Data }).(pulumi.MapOutput)
+}
+
+// String containing a JSON-encoded object that will be
+// written as the secret data at the given path.
+func (o SecretOutput) DataJson() pulumi.StringOutput {
+	return o.ApplyT(func(v *Secret) pulumi.StringOutput { return v.DataJson }).(pulumi.StringOutput)
+}
+
+// true/false.  Only applicable for kv-v2 stores.
+// If set to `true`, permanently deletes all versions for
+// the specified key. The default behavior is to only delete the latest version of the
+// secret.
+func (o SecretOutput) DeleteAllVersions() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Secret) pulumi.BoolPtrOutput { return v.DeleteAllVersions }).(pulumi.BoolPtrOutput)
+}
+
+// true/false. Set this to true if your vault
+// authentication is not able to read the data. Setting this to `true` will
+// break drift detection. Defaults to false.
+func (o SecretOutput) DisableRead() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Secret) pulumi.BoolPtrOutput { return v.DisableRead }).(pulumi.BoolPtrOutput)
+}
+
+// The full logical path at which to write the given data.
+// To write data into the "generic" secret backend mounted in Vault by default,
+// this should be prefixed with `secret/`. Writing to other backends with this
+// resource is possible; consult each backend's documentation to see which
+// endpoints support the `PUT` and `DELETE` methods.
+func (o SecretOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v *Secret) pulumi.StringOutput { return v.Path }).(pulumi.StringOutput)
 }
 
 type SecretArrayOutput struct{ *pulumi.OutputState }

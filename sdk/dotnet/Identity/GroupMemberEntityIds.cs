@@ -16,92 +16,87 @@ namespace Pulumi.Vault.Identity
     /// ### Exclusive Member Entities
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var @internal = new Vault.Identity.Group("internal", new()
     ///     {
-    ///         var @internal = new Vault.Identity.Group("internal", new Vault.Identity.GroupArgs
+    ///         Type = "internal",
+    ///         ExternalMemberEntityIds = true,
+    ///         Metadata = 
     ///         {
-    ///             Type = "internal",
-    ///             ExternalMemberEntityIds = true,
-    ///             Metadata = 
-    ///             {
-    ///                 { "version", "2" },
-    ///             },
-    ///         });
-    ///         var user = new Vault.Identity.Entity("user", new Vault.Identity.EntityArgs
-    ///         {
-    ///         });
-    ///         var members = new Vault.Identity.GroupMemberEntityIds("members", new Vault.Identity.GroupMemberEntityIdsArgs
-    ///         {
-    ///             Exclusive = true,
-    ///             MemberEntityIds = 
-    ///             {
-    ///                 user.Id,
-    ///             },
-    ///             GroupId = @internal.Id,
-    ///         });
-    ///     }
+    ///             { "version", "2" },
+    ///         },
+    ///     });
     /// 
-    /// }
+    ///     var user = new Vault.Identity.Entity("user");
+    /// 
+    ///     var members = new Vault.Identity.GroupMemberEntityIds("members", new()
+    ///     {
+    ///         Exclusive = true,
+    ///         MemberEntityIds = new[]
+    ///         {
+    ///             user.Id,
+    ///         },
+    ///         GroupId = @internal.Id,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// ### Non-exclusive Member Entities
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var @internal = new Vault.Identity.Group("internal", new()
     ///     {
-    ///         var @internal = new Vault.Identity.Group("internal", new Vault.Identity.GroupArgs
+    ///         Type = "internal",
+    ///         ExternalMemberEntityIds = true,
+    ///         Metadata = 
     ///         {
-    ///             Type = "internal",
-    ///             ExternalMemberEntityIds = true,
-    ///             Metadata = 
-    ///             {
-    ///                 { "version", "2" },
-    ///             },
-    ///         });
-    ///         var testUser = new Vault.Identity.Entity("testUser", new Vault.Identity.EntityArgs
-    ///         {
-    ///         });
-    ///         var secondTestUser = new Vault.Identity.Entity("secondTestUser", new Vault.Identity.EntityArgs
-    ///         {
-    ///         });
-    ///         var devUser = new Vault.Identity.Entity("devUser", new Vault.Identity.EntityArgs
-    ///         {
-    ///         });
-    ///         var test = new Vault.Identity.GroupMemberEntityIds("test", new Vault.Identity.GroupMemberEntityIdsArgs
-    ///         {
-    ///             MemberEntityIds = 
-    ///             {
-    ///                 testUser.Id,
-    ///                 secondTestUser.Id,
-    ///             },
-    ///             Exclusive = false,
-    ///             GroupId = @internal.Id,
-    ///         });
-    ///         var others = new Vault.Identity.GroupMemberEntityIds("others", new Vault.Identity.GroupMemberEntityIdsArgs
-    ///         {
-    ///             MemberEntityIds = 
-    ///             {
-    ///                 devUser.Id,
-    ///             },
-    ///             Exclusive = false,
-    ///             GroupId = @internal.Id,
-    ///         });
-    ///     }
+    ///             { "version", "2" },
+    ///         },
+    ///     });
     /// 
-    /// }
+    ///     var testUser = new Vault.Identity.Entity("testUser");
+    /// 
+    ///     var secondTestUser = new Vault.Identity.Entity("secondTestUser");
+    /// 
+    ///     var devUser = new Vault.Identity.Entity("devUser");
+    /// 
+    ///     var test = new Vault.Identity.GroupMemberEntityIds("test", new()
+    ///     {
+    ///         MemberEntityIds = new[]
+    ///         {
+    ///             testUser.Id,
+    ///             secondTestUser.Id,
+    ///         },
+    ///         Exclusive = false,
+    ///         GroupId = @internal.Id,
+    ///     });
+    /// 
+    ///     var others = new Vault.Identity.GroupMemberEntityIds("others", new()
+    ///     {
+    ///         MemberEntityIds = new[]
+    ///         {
+    ///             devUser.Id,
+    ///         },
+    ///         Exclusive = false,
+    ///         GroupId = @internal.Id,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// </summary>
     [VaultResourceType("vault:identity/groupMemberEntityIds:GroupMemberEntityIds")]
-    public partial class GroupMemberEntityIds : Pulumi.CustomResource
+    public partial class GroupMemberEntityIds : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Defaults to `true`.
@@ -173,7 +168,7 @@ namespace Pulumi.Vault.Identity
         }
     }
 
-    public sealed class GroupMemberEntityIdsArgs : Pulumi.ResourceArgs
+    public sealed class GroupMemberEntityIdsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Defaults to `true`.
@@ -202,9 +197,10 @@ namespace Pulumi.Vault.Identity
         public GroupMemberEntityIdsArgs()
         {
         }
+        public static new GroupMemberEntityIdsArgs Empty => new GroupMemberEntityIdsArgs();
     }
 
-    public sealed class GroupMemberEntityIdsState : Pulumi.ResourceArgs
+    public sealed class GroupMemberEntityIdsState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Defaults to `true`.
@@ -241,5 +237,6 @@ namespace Pulumi.Vault.Identity
         public GroupMemberEntityIdsState()
         {
         }
+        public static new GroupMemberEntityIdsState Empty => new GroupMemberEntityIdsState();
     }
 }

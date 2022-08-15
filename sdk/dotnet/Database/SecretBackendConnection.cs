@@ -13,34 +13,33 @@ namespace Pulumi.Vault.Database
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var db = new Vault.Mount("db", new()
     ///     {
-    ///         var db = new Vault.Mount("db", new Vault.MountArgs
-    ///         {
-    ///             Path = "postgres",
-    ///             Type = "database",
-    ///         });
-    ///         var postgres = new Vault.Database.SecretBackendConnection("postgres", new Vault.Database.SecretBackendConnectionArgs
-    ///         {
-    ///             Backend = db.Path,
-    ///             AllowedRoles = 
-    ///             {
-    ///                 "dev",
-    ///                 "prod",
-    ///             },
-    ///             Postgresql = new Vault.Database.Inputs.SecretBackendConnectionPostgresqlArgs
-    ///             {
-    ///                 ConnectionUrl = "postgres://username:password@host:port/database",
-    ///             },
-    ///         });
-    ///     }
+    ///         Path = "postgres",
+    ///         Type = "database",
+    ///     });
     /// 
-    /// }
+    ///     var postgres = new Vault.Database.SecretBackendConnection("postgres", new()
+    ///     {
+    ///         Backend = db.Path,
+    ///         AllowedRoles = new[]
+    ///         {
+    ///             "dev",
+    ///             "prod",
+    ///         },
+    ///         Postgresql = new Vault.Database.Inputs.SecretBackendConnectionPostgresqlArgs
+    ///         {
+    ///             ConnectionUrl = "postgres://username:password@host:port/database",
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -52,7 +51,7 @@ namespace Pulumi.Vault.Database
     /// ```
     /// </summary>
     [VaultResourceType("vault:database/secretBackendConnection:SecretBackendConnection")]
-    public partial class SecretBackendConnection : Pulumi.CustomResource
+    public partial class SecretBackendConnection : global::Pulumi.CustomResource
     {
         /// <summary>
         /// A list of roles that are allowed to use this
@@ -238,7 +237,7 @@ namespace Pulumi.Vault.Database
         }
     }
 
-    public sealed class SecretBackendConnectionArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendConnectionArgs : global::Pulumi.ResourceArgs
     {
         [Input("allowedRoles")]
         private InputList<string>? _allowedRoles;
@@ -401,9 +400,10 @@ namespace Pulumi.Vault.Database
         public SecretBackendConnectionArgs()
         {
         }
+        public static new SecretBackendConnectionArgs Empty => new SecretBackendConnectionArgs();
     }
 
-    public sealed class SecretBackendConnectionState : Pulumi.ResourceArgs
+    public sealed class SecretBackendConnectionState : global::Pulumi.ResourceArgs
     {
         [Input("allowedRoles")]
         private InputList<string>? _allowedRoles;
@@ -566,5 +566,6 @@ namespace Pulumi.Vault.Database
         public SecretBackendConnectionState()
         {
         }
+        public static new SecretBackendConnectionState Empty => new SecretBackendConnectionState();
     }
 }

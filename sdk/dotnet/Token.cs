@@ -13,29 +13,27 @@ namespace Pulumi.Vault
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var example = new Vault.Token("example", new()
     ///     {
-    ///         var example = new Vault.Token("example", new Vault.TokenArgs
+    ///         Policies = new[]
     ///         {
-    ///             Policies = 
-    ///             {
-    ///                 "policy1",
-    ///                 "policy2",
-    ///             },
-    ///             RenewIncrement = 86400,
-    ///             RenewMinLease = 43200,
-    ///             Renewable = true,
-    ///             RoleName = "app",
-    ///             Ttl = "24h",
-    ///         });
-    ///     }
+    ///             "policy1",
+    ///             "policy2",
+    ///         },
+    ///         RenewIncrement = 86400,
+    ///         RenewMinLease = 43200,
+    ///         Renewable = true,
+    ///         RoleName = "app",
+    ///         Ttl = "24h",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -47,7 +45,7 @@ namespace Pulumi.Vault
     /// ```
     /// </summary>
     [VaultResourceType("vault:index/token:Token")]
-    public partial class Token : Pulumi.CustomResource
+    public partial class Token : global::Pulumi.CustomResource
     {
         /// <summary>
         /// String containing the client token if stored in present file
@@ -201,7 +199,7 @@ namespace Pulumi.Vault
         }
     }
 
-    public sealed class TokenArgs : Pulumi.ResourceArgs
+    public sealed class TokenArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// String containing the token display name
@@ -290,9 +288,10 @@ namespace Pulumi.Vault
         public TokenArgs()
         {
         }
+        public static new TokenArgs Empty => new TokenArgs();
     }
 
-    public sealed class TokenState : Pulumi.ResourceArgs
+    public sealed class TokenState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// String containing the client token if stored in present file
@@ -411,5 +410,6 @@ namespace Pulumi.Vault
         public TokenState()
         {
         }
+        public static new TokenState Empty => new TokenState();
     }
 }

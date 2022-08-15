@@ -18,30 +18,29 @@ namespace Pulumi.Vault.Identity
     /// role's Client ID to allow the role to use the key.
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var config = new Config();
+    ///     var key = config.Get("key") ?? "key";
+    ///     var role = new Vault.Identity.OidcRole("role", new()
     ///     {
-    ///         var config = new Config();
-    ///         var key = config.Get("key") ?? "key";
-    ///         var role = new Vault.Identity.OidcRole("role", new Vault.Identity.OidcRoleArgs
-    ///         {
-    ///             Key = key,
-    ///         });
-    ///         var keyOidcKey = new Vault.Identity.OidcKey("keyOidcKey", new Vault.Identity.OidcKeyArgs
-    ///         {
-    ///             Algorithm = "RS256",
-    ///             AllowedClientIds = 
-    ///             {
-    ///                 role.ClientId,
-    ///             },
-    ///         });
-    ///     }
+    ///         Key = key,
+    ///     });
     /// 
-    /// }
+    ///     var keyOidcKey = new Vault.Identity.OidcKey("keyOidcKey", new()
+    ///     {
+    ///         Algorithm = "RS256",
+    ///         AllowedClientIds = new[]
+    ///         {
+    ///             role.ClientId,
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// If you want to create the key first before creating the role, you can use a separate
@@ -49,29 +48,29 @@ namespace Pulumi.Vault.Identity
     /// the key.
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var key = new Vault.Identity.OidcKey("key", new()
     ///     {
-    ///         var key = new Vault.Identity.OidcKey("key", new Vault.Identity.OidcKeyArgs
-    ///         {
-    ///             Algorithm = "RS256",
-    ///         });
-    ///         var roleOidcRole = new Vault.Identity.OidcRole("roleOidcRole", new Vault.Identity.OidcRoleArgs
-    ///         {
-    ///             Key = key.Name,
-    ///         });
-    ///         var roleOidcKeyAllowedClientID = new Vault.Identity.OidcKeyAllowedClientID("roleOidcKeyAllowedClientID", new Vault.Identity.OidcKeyAllowedClientIDArgs
-    ///         {
-    ///             KeyName = key.Name,
-    ///             AllowedClientId = roleOidcRole.ClientId,
-    ///         });
-    ///     }
+    ///         Algorithm = "RS256",
+    ///     });
     /// 
-    /// }
+    ///     var roleOidcRole = new Vault.Identity.OidcRole("roleOidcRole", new()
+    ///     {
+    ///         Key = key.Name,
+    ///     });
+    /// 
+    ///     var roleOidcKeyAllowedClientID = new Vault.Identity.OidcKeyAllowedClientID("roleOidcKeyAllowedClientID", new()
+    ///     {
+    ///         KeyName = key.Name,
+    ///         AllowedClientId = roleOidcRole.ClientId,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -83,7 +82,7 @@ namespace Pulumi.Vault.Identity
     /// ```
     /// </summary>
     [VaultResourceType("vault:identity/oidcRole:OidcRole")]
-    public partial class OidcRole : Pulumi.CustomResource
+    public partial class OidcRole : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The value that will be included in the `aud` field of all the OIDC identity
@@ -164,7 +163,7 @@ namespace Pulumi.Vault.Identity
         }
     }
 
-    public sealed class OidcRoleArgs : Pulumi.ResourceArgs
+    public sealed class OidcRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The value that will be included in the `aud` field of all the OIDC identity
@@ -204,9 +203,10 @@ namespace Pulumi.Vault.Identity
         public OidcRoleArgs()
         {
         }
+        public static new OidcRoleArgs Empty => new OidcRoleArgs();
     }
 
-    public sealed class OidcRoleState : Pulumi.ResourceArgs
+    public sealed class OidcRoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The value that will be included in the `aud` field of all the OIDC identity
@@ -246,5 +246,6 @@ namespace Pulumi.Vault.Identity
         public OidcRoleState()
         {
         }
+        public static new OidcRoleState Empty => new OidcRoleState();
     }
 }

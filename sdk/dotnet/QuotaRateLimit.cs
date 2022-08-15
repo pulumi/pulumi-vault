@@ -20,21 +20,19 @@ namespace Pulumi.Vault
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var @global = new Vault.QuotaRateLimit("global", new()
     ///     {
-    ///         var @global = new Vault.QuotaRateLimit("global", new Vault.QuotaRateLimitArgs
-    ///         {
-    ///             Path = "",
-    ///             Rate = 100,
-    ///         });
-    ///     }
+    ///         Path = "",
+    ///         Rate = 100,
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -46,7 +44,7 @@ namespace Pulumi.Vault
     /// ```
     /// </summary>
     [VaultResourceType("vault:index/quotaRateLimit:QuotaRateLimit")]
-    public partial class QuotaRateLimit : Pulumi.CustomResource
+    public partial class QuotaRateLimit : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Name of the rate limit quota
@@ -116,7 +114,7 @@ namespace Pulumi.Vault
         }
     }
 
-    public sealed class QuotaRateLimitArgs : Pulumi.ResourceArgs
+    public sealed class QuotaRateLimitArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Name of the rate limit quota
@@ -145,9 +143,10 @@ namespace Pulumi.Vault
         public QuotaRateLimitArgs()
         {
         }
+        public static new QuotaRateLimitArgs Empty => new QuotaRateLimitArgs();
     }
 
-    public sealed class QuotaRateLimitState : Pulumi.ResourceArgs
+    public sealed class QuotaRateLimitState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Name of the rate limit quota
@@ -176,5 +175,6 @@ namespace Pulumi.Vault
         public QuotaRateLimitState()
         {
         }
+        public static new QuotaRateLimitState Empty => new QuotaRateLimitState();
     }
 }

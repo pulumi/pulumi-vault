@@ -17,35 +17,38 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ad"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ad"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		config, err := ad.NewSecretBackend(ctx, "config", &ad.SecretBackendArgs{
-// 			Backend:     pulumi.String("ad"),
-// 			Binddn:      pulumi.String("CN=Administrator,CN=Users,DC=corp,DC=example,DC=net"),
-// 			Bindpass:    pulumi.String("SuperSecretPassw0rd"),
-// 			Url:         pulumi.String("ldaps://ad"),
-// 			InsecureTls: pulumi.Bool(true),
-// 			Userdn:      pulumi.String("CN=Users,DC=corp,DC=example,DC=net"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = ad.NewSecretRole(ctx, "role", &ad.SecretRoleArgs{
-// 			Backend:            config.Backend,
-// 			Role:               pulumi.String("bob"),
-// 			ServiceAccountName: pulumi.String("Bob"),
-// 			Ttl:                pulumi.Int(60),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			config, err := ad.NewSecretBackend(ctx, "config", &ad.SecretBackendArgs{
+//				Backend:     pulumi.String("ad"),
+//				Binddn:      pulumi.String("CN=Administrator,CN=Users,DC=corp,DC=example,DC=net"),
+//				Bindpass:    pulumi.String("SuperSecretPassw0rd"),
+//				Url:         pulumi.String("ldaps://ad"),
+//				InsecureTls: pulumi.Bool(true),
+//				Userdn:      pulumi.String("CN=Users,DC=corp,DC=example,DC=net"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ad.NewSecretRole(ctx, "role", &ad.SecretRoleArgs{
+//				Backend:            config.Backend,
+//				Role:               pulumi.String("bob"),
+//				ServiceAccountName: pulumi.String("Bob"),
+//				Ttl:                pulumi.Int(60),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -53,7 +56,9 @@ import (
 // AD secret backend roles can be imported using the `path`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:ad/secretRole:SecretRole role ad/roles/bob
+//
+//	$ pulumi import vault:ad/secretRole:SecretRole role ad/roles/bob
+//
 // ```
 type SecretRole struct {
 	pulumi.CustomResourceState
@@ -212,7 +217,7 @@ func (i *SecretRole) ToSecretRoleOutputWithContext(ctx context.Context) SecretRo
 // SecretRoleArrayInput is an input type that accepts SecretRoleArray and SecretRoleArrayOutput values.
 // You can construct a concrete instance of `SecretRoleArrayInput` via:
 //
-//          SecretRoleArray{ SecretRoleArgs{...} }
+//	SecretRoleArray{ SecretRoleArgs{...} }
 type SecretRoleArrayInput interface {
 	pulumi.Input
 
@@ -237,7 +242,7 @@ func (i SecretRoleArray) ToSecretRoleArrayOutputWithContext(ctx context.Context)
 // SecretRoleMapInput is an input type that accepts SecretRoleMap and SecretRoleMapOutput values.
 // You can construct a concrete instance of `SecretRoleMapInput` via:
 //
-//          SecretRoleMap{ "key": SecretRoleArgs{...} }
+//	SecretRoleMap{ "key": SecretRoleArgs{...} }
 type SecretRoleMapInput interface {
 	pulumi.Input
 
@@ -271,6 +276,40 @@ func (o SecretRoleOutput) ToSecretRoleOutput() SecretRoleOutput {
 
 func (o SecretRoleOutput) ToSecretRoleOutputWithContext(ctx context.Context) SecretRoleOutput {
 	return o
+}
+
+// The path the AD secret backend is mounted at,
+// with no leading or trailing `/`s.
+func (o SecretRoleOutput) Backend() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.StringOutput { return v.Backend }).(pulumi.StringOutput)
+}
+
+// Timestamp of the last password rotation by Vault.
+func (o SecretRoleOutput) LastVaultRotation() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.StringOutput { return v.LastVaultRotation }).(pulumi.StringOutput)
+}
+
+// Timestamp of the last password set by Vault.
+func (o SecretRoleOutput) PasswordLastSet() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.StringOutput { return v.PasswordLastSet }).(pulumi.StringOutput)
+}
+
+// The name to identify this role within the backend.
+// Must be unique within the backend.
+func (o SecretRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.StringOutput { return v.Role }).(pulumi.StringOutput)
+}
+
+// Specifies the name of the Active Directory service
+// account mapped to this role.
+func (o SecretRoleOutput) ServiceAccountName() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.StringOutput { return v.ServiceAccountName }).(pulumi.StringOutput)
+}
+
+// The password time-to-live in seconds. Defaults to the configuration
+// ttl if not provided.
+func (o SecretRoleOutput) Ttl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.IntPtrOutput { return v.Ttl }).(pulumi.IntPtrOutput)
 }
 
 type SecretRoleArrayOutput struct{ *pulumi.OutputState }

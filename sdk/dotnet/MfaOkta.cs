@@ -17,28 +17,27 @@ namespace Pulumi.Vault
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var userpass = new Vault.AuthBackend("userpass", new()
     ///     {
-    ///         var userpass = new Vault.AuthBackend("userpass", new Vault.AuthBackendArgs
-    ///         {
-    ///             Type = "userpass",
-    ///             Path = "userpass",
-    ///         });
-    ///         var myOkta = new Vault.MfaOkta("myOkta", new Vault.MfaOktaArgs
-    ///         {
-    ///             MountAccessor = userpass.Accessor,
-    ///             UsernameFormat = "user@example.com",
-    ///             OrgName = "hashicorp",
-    ///             ApiToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
-    ///         });
-    ///     }
+    ///         Type = "userpass",
+    ///         Path = "userpass",
+    ///     });
     /// 
-    /// }
+    ///     var myOkta = new Vault.MfaOkta("myOkta", new()
+    ///     {
+    ///         MountAccessor = userpass.Accessor,
+    ///         UsernameFormat = "user@example.com",
+    ///         OrgName = "hashicorp",
+    ///         ApiToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -50,7 +49,7 @@ namespace Pulumi.Vault
     /// ```
     /// </summary>
     [VaultResourceType("vault:index/mfaOkta:MfaOkta")]
-    public partial class MfaOkta : Pulumi.CustomResource
+    public partial class MfaOkta : global::Pulumi.CustomResource
     {
         /// <summary>
         /// `(string: &lt;required&gt;)` - Okta API key.
@@ -147,7 +146,7 @@ namespace Pulumi.Vault
         }
     }
 
-    public sealed class MfaOktaArgs : Pulumi.ResourceArgs
+    public sealed class MfaOktaArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// `(string: &lt;required&gt;)` - Okta API key.
@@ -203,9 +202,10 @@ namespace Pulumi.Vault
         public MfaOktaArgs()
         {
         }
+        public static new MfaOktaArgs Empty => new MfaOktaArgs();
     }
 
-    public sealed class MfaOktaState : Pulumi.ResourceArgs
+    public sealed class MfaOktaState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// `(string: &lt;required&gt;)` - Okta API key.
@@ -261,5 +261,6 @@ namespace Pulumi.Vault
         public MfaOktaState()
         {
         }
+        public static new MfaOktaState Empty => new MfaOktaState();
     }
 }

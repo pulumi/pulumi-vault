@@ -18,49 +18,49 @@ namespace Pulumi.Vault.Gcp
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using System.IO;
     /// using Pulumi;
     /// using Gcp = Pulumi.Gcp;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var @this = new Gcp.ServiceAccount.Account("this", new()
     ///     {
-    ///         var @this = new Gcp.ServiceAccount.Account("this", new Gcp.ServiceAccount.AccountArgs
+    ///         AccountId = "my-awesome-account",
+    ///     });
+    /// 
+    ///     var gcp = new Vault.Gcp.SecretBackend("gcp", new()
+    ///     {
+    ///         Path = "gcp",
+    ///         Credentials = File.ReadAllText("credentials.json"),
+    ///     });
+    /// 
+    ///     var staticAccount = new Vault.Gcp.SecretStaticAccount("staticAccount", new()
+    ///     {
+    ///         Backend = gcp.Path,
+    ///         StaticAccount = "project_viewer",
+    ///         SecretType = "access_token",
+    ///         TokenScopes = new[]
     ///         {
-    ///             AccountId = "my-awesome-account",
-    ///         });
-    ///         var gcp = new Vault.Gcp.SecretBackend("gcp", new Vault.Gcp.SecretBackendArgs
+    ///             "https://www.googleapis.com/auth/cloud-platform",
+    ///         },
+    ///         ServiceAccountEmail = @this.Email,
+    ///         Bindings = new[]
     ///         {
-    ///             Path = "gcp",
-    ///             Credentials = File.ReadAllText("credentials.json"),
-    ///         });
-    ///         var staticAccount = new Vault.Gcp.SecretStaticAccount("staticAccount", new Vault.Gcp.SecretStaticAccountArgs
-    ///         {
-    ///             Backend = gcp.Path,
-    ///             StaticAccount = "project_viewer",
-    ///             SecretType = "access_token",
-    ///             TokenScopes = 
+    ///             new Vault.Gcp.Inputs.SecretStaticAccountBindingArgs
     ///             {
-    ///                 "https://www.googleapis.com/auth/cloud-platform",
-    ///             },
-    ///             ServiceAccountEmail = @this.Email,
-    ///             Bindings = 
-    ///             {
-    ///                 new Vault.Gcp.Inputs.SecretStaticAccountBindingArgs
+    ///                 Resource = @this.Project.Apply(project =&gt; $"//cloudresourcemanager.googleapis.com/projects/{project}"),
+    ///                 Roles = new[]
     ///                 {
-    ///                     Resource = @this.Project.Apply(project =&gt; $"//cloudresourcemanager.googleapis.com/projects/{project}"),
-    ///                     Roles = 
-    ///                     {
-    ///                         "roles/viewer",
-    ///                     },
+    ///                     "roles/viewer",
     ///                 },
     ///             },
-    ///         });
-    ///     }
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -72,7 +72,7 @@ namespace Pulumi.Vault.Gcp
     /// ```
     /// </summary>
     [VaultResourceType("vault:gcp/secretStaticAccount:SecretStaticAccount")]
-    public partial class SecretStaticAccount : Pulumi.CustomResource
+    public partial class SecretStaticAccount : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Path where the GCP Secrets Engine is mounted
@@ -160,7 +160,7 @@ namespace Pulumi.Vault.Gcp
         }
     }
 
-    public sealed class SecretStaticAccountArgs : Pulumi.ResourceArgs
+    public sealed class SecretStaticAccountArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Path where the GCP Secrets Engine is mounted
@@ -213,9 +213,10 @@ namespace Pulumi.Vault.Gcp
         public SecretStaticAccountArgs()
         {
         }
+        public static new SecretStaticAccountArgs Empty => new SecretStaticAccountArgs();
     }
 
-    public sealed class SecretStaticAccountState : Pulumi.ResourceArgs
+    public sealed class SecretStaticAccountState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Path where the GCP Secrets Engine is mounted
@@ -274,5 +275,6 @@ namespace Pulumi.Vault.Gcp
         public SecretStaticAccountState()
         {
         }
+        public static new SecretStaticAccountState Empty => new SecretStaticAccountState();
     }
 }

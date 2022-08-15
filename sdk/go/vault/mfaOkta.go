@@ -21,31 +21,34 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		userpass, err := vault.NewAuthBackend(ctx, "userpass", &vault.AuthBackendArgs{
-// 			Type: pulumi.String("userpass"),
-// 			Path: pulumi.String("userpass"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = vault.NewMfaOkta(ctx, "myOkta", &vault.MfaOktaArgs{
-// 			MountAccessor:  userpass.Accessor,
-// 			UsernameFormat: pulumi.String("user@example.com"),
-// 			OrgName:        pulumi.String("hashicorp"),
-// 			ApiToken:       pulumi.String("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			userpass, err := vault.NewAuthBackend(ctx, "userpass", &vault.AuthBackendArgs{
+//				Type: pulumi.String("userpass"),
+//				Path: pulumi.String("userpass"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vault.NewMfaOkta(ctx, "myOkta", &vault.MfaOktaArgs{
+//				MountAccessor:  userpass.Accessor,
+//				UsernameFormat: pulumi.String("user@example.com"),
+//				OrgName:        pulumi.String("hashicorp"),
+//				ApiToken:       pulumi.String("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -53,7 +56,9 @@ import (
 // Mounts can be imported using the `path`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:index/mfaOkta:MfaOkta my_okta my_okta
+//
+//	$ pulumi import vault:index/mfaOkta:MfaOkta my_okta my_okta
+//
 // ```
 type MfaOkta struct {
 	pulumi.CustomResourceState
@@ -255,7 +260,7 @@ func (i *MfaOkta) ToMfaOktaOutputWithContext(ctx context.Context) MfaOktaOutput 
 // MfaOktaArrayInput is an input type that accepts MfaOktaArray and MfaOktaArrayOutput values.
 // You can construct a concrete instance of `MfaOktaArrayInput` via:
 //
-//          MfaOktaArray{ MfaOktaArgs{...} }
+//	MfaOktaArray{ MfaOktaArgs{...} }
 type MfaOktaArrayInput interface {
 	pulumi.Input
 
@@ -280,7 +285,7 @@ func (i MfaOktaArray) ToMfaOktaArrayOutputWithContext(ctx context.Context) MfaOk
 // MfaOktaMapInput is an input type that accepts MfaOktaMap and MfaOktaMapOutput values.
 // You can construct a concrete instance of `MfaOktaMapInput` via:
 //
-//          MfaOktaMap{ "key": MfaOktaArgs{...} }
+//	MfaOktaMap{ "key": MfaOktaArgs{...} }
 type MfaOktaMapInput interface {
 	pulumi.Input
 
@@ -314,6 +319,50 @@ func (o MfaOktaOutput) ToMfaOktaOutput() MfaOktaOutput {
 
 func (o MfaOktaOutput) ToMfaOktaOutputWithContext(ctx context.Context) MfaOktaOutput {
 	return o
+}
+
+// `(string: <required>)` - Okta API key.
+func (o MfaOktaOutput) ApiToken() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaOkta) pulumi.StringOutput { return v.ApiToken }).(pulumi.StringOutput)
+}
+
+// `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`,
+// `oktapreview.com`, and `okta-emea.com`.
+func (o MfaOktaOutput) BaseUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MfaOkta) pulumi.StringPtrOutput { return v.BaseUrl }).(pulumi.StringPtrOutput)
+}
+
+// `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
+// The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
+func (o MfaOktaOutput) MountAccessor() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaOkta) pulumi.StringOutput { return v.MountAccessor }).(pulumi.StringOutput)
+}
+
+// `(string: <required>)` – Name of the MFA method.
+func (o MfaOktaOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaOkta) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// `(string: <required>)` - Name of the organization to be used in the Okta API.
+func (o MfaOktaOutput) OrgName() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaOkta) pulumi.StringOutput { return v.OrgName }).(pulumi.StringOutput)
+}
+
+// `(string: <required>)` - If set to true, the username will only match the
+// primary email for the account.
+func (o MfaOktaOutput) PrimaryEmail() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *MfaOkta) pulumi.BoolPtrOutput { return v.PrimaryEmail }).(pulumi.BoolPtrOutput)
+}
+
+// `(string)` - A format string for mapping Identity names to MFA method names.
+// Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
+// If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
+// - alias.name: The name returned by the mount configured via the `mountAccessor` parameter
+// - entity.name: The name configured for the Entity
+// - alias.metadata.`<key>`: The value of the Alias's metadata parameter
+// - entity.metadata.`<key>`: The value of the Entity's metadata parameter
+func (o MfaOktaOutput) UsernameFormat() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MfaOkta) pulumi.StringPtrOutput { return v.UsernameFormat }).(pulumi.StringPtrOutput)
 }
 
 type MfaOktaArrayOutput struct{ *pulumi.OutputState }

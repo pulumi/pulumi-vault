@@ -15,42 +15,41 @@ namespace Pulumi.Vault
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using System.IO;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var certAuthBackend = new Vault.AuthBackend("certAuthBackend", new()
     ///     {
-    ///         var certAuthBackend = new Vault.AuthBackend("certAuthBackend", new Vault.AuthBackendArgs
-    ///         {
-    ///             Path = "cert",
-    ///             Type = "cert",
-    ///         });
-    ///         var certCertAuthBackendRole = new Vault.CertAuthBackendRole("certCertAuthBackendRole", new Vault.CertAuthBackendRoleArgs
-    ///         {
-    ///             Certificate = File.ReadAllText("/path/to/certs/ca-cert.pem"),
-    ///             Backend = certAuthBackend.Path,
-    ///             AllowedNames = 
-    ///             {
-    ///                 "foo.example.org",
-    ///                 "baz.example.org",
-    ///             },
-    ///             TokenTtl = 300,
-    ///             TokenMaxTtl = 600,
-    ///             TokenPolicies = 
-    ///             {
-    ///                 "foo",
-    ///             },
-    ///         });
-    ///     }
+    ///         Path = "cert",
+    ///         Type = "cert",
+    ///     });
     /// 
-    /// }
+    ///     var certCertAuthBackendRole = new Vault.CertAuthBackendRole("certCertAuthBackendRole", new()
+    ///     {
+    ///         Certificate = File.ReadAllText("/path/to/certs/ca-cert.pem"),
+    ///         Backend = certAuthBackend.Path,
+    ///         AllowedNames = new[]
+    ///         {
+    ///             "foo.example.org",
+    ///             "baz.example.org",
+    ///         },
+    ///         TokenTtl = 300,
+    ///         TokenMaxTtl = 600,
+    ///         TokenPolicies = new[]
+    ///         {
+    ///             "foo",
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// </summary>
     [VaultResourceType("vault:index/certAuthBackendRole:CertAuthBackendRole")]
-    public partial class CertAuthBackendRole : Pulumi.CustomResource
+    public partial class CertAuthBackendRole : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Allowed the common names for authenticated client certificates
@@ -233,7 +232,7 @@ namespace Pulumi.Vault
         }
     }
 
-    public sealed class CertAuthBackendRoleArgs : Pulumi.ResourceArgs
+    public sealed class CertAuthBackendRoleArgs : global::Pulumi.ResourceArgs
     {
         [Input("allowedCommonNames")]
         private InputList<string>? _allowedCommonNames;
@@ -429,9 +428,10 @@ namespace Pulumi.Vault
         public CertAuthBackendRoleArgs()
         {
         }
+        public static new CertAuthBackendRoleArgs Empty => new CertAuthBackendRoleArgs();
     }
 
-    public sealed class CertAuthBackendRoleState : Pulumi.ResourceArgs
+    public sealed class CertAuthBackendRoleState : global::Pulumi.ResourceArgs
     {
         [Input("allowedCommonNames")]
         private InputList<string>? _allowedCommonNames;
@@ -627,5 +627,6 @@ namespace Pulumi.Vault
         public CertAuthBackendRoleState()
         {
         }
+        public static new CertAuthBackendRoleState Empty => new CertAuthBackendRoleState();
     }
 }

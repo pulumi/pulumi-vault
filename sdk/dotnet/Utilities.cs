@@ -74,7 +74,7 @@ namespace Pulumi.Vault
         }
     }
 
-    internal sealed class VaultResourceTypeAttribute : Pulumi.ResourceTypeAttribute
+    internal sealed class VaultResourceTypeAttribute : global::Pulumi.ResourceTypeAttribute
     {
         public VaultResourceTypeAttribute(string type) : base(type, Utilities.Version)
         {

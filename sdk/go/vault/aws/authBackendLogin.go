@@ -314,7 +314,7 @@ func (i *AuthBackendLogin) ToAuthBackendLoginOutputWithContext(ctx context.Conte
 // AuthBackendLoginArrayInput is an input type that accepts AuthBackendLoginArray and AuthBackendLoginArrayOutput values.
 // You can construct a concrete instance of `AuthBackendLoginArrayInput` via:
 //
-//          AuthBackendLoginArray{ AuthBackendLoginArgs{...} }
+//	AuthBackendLoginArray{ AuthBackendLoginArgs{...} }
 type AuthBackendLoginArrayInput interface {
 	pulumi.Input
 
@@ -339,7 +339,7 @@ func (i AuthBackendLoginArray) ToAuthBackendLoginArrayOutputWithContext(ctx cont
 // AuthBackendLoginMapInput is an input type that accepts AuthBackendLoginMap and AuthBackendLoginMapOutput values.
 // You can construct a concrete instance of `AuthBackendLoginMapInput` via:
 //
-//          AuthBackendLoginMap{ "key": AuthBackendLoginArgs{...} }
+//	AuthBackendLoginMap{ "key": AuthBackendLoginArgs{...} }
 type AuthBackendLoginMapInput interface {
 	pulumi.Input
 
@@ -373,6 +373,112 @@ func (o AuthBackendLoginOutput) ToAuthBackendLoginOutput() AuthBackendLoginOutpu
 
 func (o AuthBackendLoginOutput) ToAuthBackendLoginOutputWithContext(ctx context.Context) AuthBackendLoginOutput {
 	return o
+}
+
+// The token's accessor.
+func (o AuthBackendLoginOutput) Accessor() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.StringOutput { return v.Accessor }).(pulumi.StringOutput)
+}
+
+// The authentication type used to generate this token.
+func (o AuthBackendLoginOutput) AuthType() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.StringOutput { return v.AuthType }).(pulumi.StringOutput)
+}
+
+// The unique name of the AWS auth backend. Defaults to
+// 'aws'.
+func (o AuthBackendLoginOutput) Backend() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
+}
+
+// The token returned by Vault.
+func (o AuthBackendLoginOutput) ClientToken() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.StringOutput { return v.ClientToken }).(pulumi.StringOutput)
+}
+
+// The HTTP method used in the signed IAM
+// request.
+func (o AuthBackendLoginOutput) IamHttpRequestMethod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.StringPtrOutput { return v.IamHttpRequestMethod }).(pulumi.StringPtrOutput)
+}
+
+// The base64-encoded body of the signed
+// request.
+func (o AuthBackendLoginOutput) IamRequestBody() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.StringPtrOutput { return v.IamRequestBody }).(pulumi.StringPtrOutput)
+}
+
+// The base64-encoded, JSON serialized
+// representation of the GetCallerIdentity HTTP request headers.
+func (o AuthBackendLoginOutput) IamRequestHeaders() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.StringPtrOutput { return v.IamRequestHeaders }).(pulumi.StringPtrOutput)
+}
+
+// The base64-encoded HTTP URL used in the signed
+// request.
+func (o AuthBackendLoginOutput) IamRequestUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.StringPtrOutput { return v.IamRequestUrl }).(pulumi.StringPtrOutput)
+}
+
+// The base64-encoded EC2 instance identity document to
+// authenticate with. Can be retrieved from the EC2 metadata server.
+func (o AuthBackendLoginOutput) Identity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.StringPtrOutput { return v.Identity }).(pulumi.StringPtrOutput)
+}
+
+// The duration in seconds the token will be valid, relative
+// to the time in `leaseStartTime`.
+func (o AuthBackendLoginOutput) LeaseDuration() pulumi.IntOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.IntOutput { return v.LeaseDuration }).(pulumi.IntOutput)
+}
+
+// Time at which the lease was read, using the clock of the system where Terraform was running
+func (o AuthBackendLoginOutput) LeaseStartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.StringOutput { return v.LeaseStartTime }).(pulumi.StringOutput)
+}
+
+// A map of information returned by the Vault server about the
+// authentication used to generate this token.
+func (o AuthBackendLoginOutput) Metadata() pulumi.MapOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.MapOutput { return v.Metadata }).(pulumi.MapOutput)
+}
+
+// The unique nonce to be used for login requests. Can be
+// set to a user-specified value, or will contain the server-generated value
+// once a token is issued. EC2 instances can only acquire a single token until
+// the whitelist is tidied again unless they keep track of this nonce.
+func (o AuthBackendLoginOutput) Nonce() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.StringOutput { return v.Nonce }).(pulumi.StringOutput)
+}
+
+// The PKCS#7 signature of the identity document to
+// authenticate with, with all newline characters removed. Can be retrieved from
+// the EC2 metadata server.
+func (o AuthBackendLoginOutput) Pkcs7() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.StringPtrOutput { return v.Pkcs7 }).(pulumi.StringPtrOutput)
+}
+
+// The Vault policies assigned to this token.
+func (o AuthBackendLoginOutput) Policies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.StringArrayOutput { return v.Policies }).(pulumi.StringArrayOutput)
+}
+
+// Set to true if the token can be extended through renewal.
+func (o AuthBackendLoginOutput) Renewable() pulumi.BoolOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.BoolOutput { return v.Renewable }).(pulumi.BoolOutput)
+}
+
+// The name of the AWS auth backend role to create tokens
+// against.
+func (o AuthBackendLoginOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.StringOutput { return v.Role }).(pulumi.StringOutput)
+}
+
+// The base64-encoded SHA256 RSA signature of the
+// instance identity document to authenticate with, with all newline characters
+// removed. Can be retrieved from the EC2 metadata server.
+func (o AuthBackendLoginOutput) Signature() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.StringPtrOutput { return v.Signature }).(pulumi.StringPtrOutput)
 }
 
 type AuthBackendLoginArrayOutput struct{ *pulumi.OutputState }

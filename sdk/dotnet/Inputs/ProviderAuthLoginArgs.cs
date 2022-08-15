@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Inputs
 {
 
-    public sealed class ProviderAuthLoginArgs : Pulumi.ResourceArgs
+    public sealed class ProviderAuthLoginArgs : global::Pulumi.ResourceArgs
     {
         [Input("method")]
         public Input<string>? Method { get; set; }
@@ -32,5 +32,6 @@ namespace Pulumi.Vault.Inputs
         public ProviderAuthLoginArgs()
         {
         }
+        public static new ProviderAuthLoginArgs Empty => new ProviderAuthLoginArgs();
     }
 }

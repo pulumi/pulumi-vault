@@ -19,35 +19,38 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		root, err := vault.NewMount(ctx, "root", &vault.MountArgs{
-// 			Path:                   pulumi.String("pki-root"),
-// 			Type:                   pulumi.String("pki"),
-// 			Description:            pulumi.String("root PKI"),
-// 			DefaultLeaseTtlSeconds: pulumi.Int(8640000),
-// 			MaxLeaseTtlSeconds:     pulumi.Int(8640000),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = pkiSecret.NewSecretBackendConfigUrls(ctx, "example", &pkiSecret.SecretBackendConfigUrlsArgs{
-// 			Backend: root.Path,
-// 			IssuingCertificates: pulumi.StringArray{
-// 				pulumi.String("http://127.0.0.1:8200/v1/pki/ca"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			root, err := vault.NewMount(ctx, "root", &vault.MountArgs{
+//				Path:                   pulumi.String("pki-root"),
+//				Type:                   pulumi.String("pki"),
+//				Description:            pulumi.String("root PKI"),
+//				DefaultLeaseTtlSeconds: pulumi.Int(8640000),
+//				MaxLeaseTtlSeconds:     pulumi.Int(8640000),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = pkiSecret.NewSecretBackendConfigUrls(ctx, "example", &pkiSecret.SecretBackendConfigUrlsArgs{
+//				Backend: root.Path,
+//				IssuingCertificates: pulumi.StringArray{
+//					pulumi.String("http://127.0.0.1:8200/v1/pki/ca"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -59,7 +62,9 @@ import (
 // where the `pki-root` component is the resource's `backend`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls example pki-root/config/urls
+//
+//	$ pulumi import vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls example pki-root/config/urls
+//
 // ```
 type SecretBackendConfigUrls struct {
 	pulumi.CustomResourceState
@@ -180,7 +185,7 @@ func (i *SecretBackendConfigUrls) ToSecretBackendConfigUrlsOutputWithContext(ctx
 // SecretBackendConfigUrlsArrayInput is an input type that accepts SecretBackendConfigUrlsArray and SecretBackendConfigUrlsArrayOutput values.
 // You can construct a concrete instance of `SecretBackendConfigUrlsArrayInput` via:
 //
-//          SecretBackendConfigUrlsArray{ SecretBackendConfigUrlsArgs{...} }
+//	SecretBackendConfigUrlsArray{ SecretBackendConfigUrlsArgs{...} }
 type SecretBackendConfigUrlsArrayInput interface {
 	pulumi.Input
 
@@ -205,7 +210,7 @@ func (i SecretBackendConfigUrlsArray) ToSecretBackendConfigUrlsArrayOutputWithCo
 // SecretBackendConfigUrlsMapInput is an input type that accepts SecretBackendConfigUrlsMap and SecretBackendConfigUrlsMapOutput values.
 // You can construct a concrete instance of `SecretBackendConfigUrlsMapInput` via:
 //
-//          SecretBackendConfigUrlsMap{ "key": SecretBackendConfigUrlsArgs{...} }
+//	SecretBackendConfigUrlsMap{ "key": SecretBackendConfigUrlsArgs{...} }
 type SecretBackendConfigUrlsMapInput interface {
 	pulumi.Input
 
@@ -239,6 +244,26 @@ func (o SecretBackendConfigUrlsOutput) ToSecretBackendConfigUrlsOutput() SecretB
 
 func (o SecretBackendConfigUrlsOutput) ToSecretBackendConfigUrlsOutputWithContext(ctx context.Context) SecretBackendConfigUrlsOutput {
 	return o
+}
+
+// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
+func (o SecretBackendConfigUrlsOutput) Backend() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendConfigUrls) pulumi.StringOutput { return v.Backend }).(pulumi.StringOutput)
+}
+
+// Specifies the URL values for the CRL Distribution Points field.
+func (o SecretBackendConfigUrlsOutput) CrlDistributionPoints() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendConfigUrls) pulumi.StringArrayOutput { return v.CrlDistributionPoints }).(pulumi.StringArrayOutput)
+}
+
+// Specifies the URL values for the Issuing Certificate field.
+func (o SecretBackendConfigUrlsOutput) IssuingCertificates() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendConfigUrls) pulumi.StringArrayOutput { return v.IssuingCertificates }).(pulumi.StringArrayOutput)
+}
+
+// Specifies the URL values for the OCSP Servers field.
+func (o SecretBackendConfigUrlsOutput) OcspServers() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendConfigUrls) pulumi.StringArrayOutput { return v.OcspServers }).(pulumi.StringArrayOutput)
 }
 
 type SecretBackendConfigUrlsArrayOutput struct{ *pulumi.OutputState }

@@ -19,31 +19,34 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/alicloud"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/alicloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		alicloudAuthBackend, err := vault.NewAuthBackend(ctx, "alicloudAuthBackend", &vault.AuthBackendArgs{
-// 			Type: pulumi.String("alicloud"),
-// 			Path: pulumi.String("alicloud"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = alicloud.NewAuthBackendRole(ctx, "alicloudAuthBackendRole", &alicloud.AuthBackendRoleArgs{
-// 			Backend: alicloudAuthBackend.Path,
-// 			Role:    pulumi.String("example"),
-// 			Arn:     pulumi.String("acs:ram:123456:tf:role/foobar"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			alicloudAuthBackend, err := vault.NewAuthBackend(ctx, "alicloudAuthBackend", &vault.AuthBackendArgs{
+//				Type: pulumi.String("alicloud"),
+//				Path: pulumi.String("alicloud"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = alicloud.NewAuthBackendRole(ctx, "alicloudAuthBackendRole", &alicloud.AuthBackendRoleArgs{
+//				Backend: alicloudAuthBackend.Path,
+//				Role:    pulumi.String("example"),
+//				Arn:     pulumi.String("acs:ram:123456:tf:role/foobar"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -51,7 +54,9 @@ import (
 // Alicloud authentication roles can be imported using the `path`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:alicloud/authBackendRole:AuthBackendRole my_role auth/alicloud/role/my_role
+//
+//	$ pulumi import vault:alicloud/authBackendRole:AuthBackendRole my_role auth/alicloud/role/my_role
+//
 // ```
 type AuthBackendRole struct {
 	pulumi.CustomResourceState
@@ -350,7 +355,7 @@ func (i *AuthBackendRole) ToAuthBackendRoleOutputWithContext(ctx context.Context
 // AuthBackendRoleArrayInput is an input type that accepts AuthBackendRoleArray and AuthBackendRoleArrayOutput values.
 // You can construct a concrete instance of `AuthBackendRoleArrayInput` via:
 //
-//          AuthBackendRoleArray{ AuthBackendRoleArgs{...} }
+//	AuthBackendRoleArray{ AuthBackendRoleArgs{...} }
 type AuthBackendRoleArrayInput interface {
 	pulumi.Input
 
@@ -375,7 +380,7 @@ func (i AuthBackendRoleArray) ToAuthBackendRoleArrayOutputWithContext(ctx contex
 // AuthBackendRoleMapInput is an input type that accepts AuthBackendRoleMap and AuthBackendRoleMapOutput values.
 // You can construct a concrete instance of `AuthBackendRoleMapInput` via:
 //
-//          AuthBackendRoleMap{ "key": AuthBackendRoleArgs{...} }
+//	AuthBackendRoleMap{ "key": AuthBackendRoleArgs{...} }
 type AuthBackendRoleMapInput interface {
 	pulumi.Input
 
@@ -409,6 +414,85 @@ func (o AuthBackendRoleOutput) ToAuthBackendRoleOutput() AuthBackendRoleOutput {
 
 func (o AuthBackendRoleOutput) ToAuthBackendRoleOutputWithContext(ctx context.Context) AuthBackendRoleOutput {
 	return o
+}
+
+// The role's arn.
+func (o AuthBackendRoleOutput) Arn() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringOutput { return v.Arn }).(pulumi.StringOutput)
+}
+
+// Path to the mounted AliCloud auth backend.
+// Defaults to `alicloud`
+func (o AuthBackendRoleOutput) Backend() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
+}
+
+// Name of the role. Must correspond with the name of
+// the role reflected in the arn.
+func (o AuthBackendRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringOutput { return v.Role }).(pulumi.StringOutput)
+}
+
+// List of CIDR blocks; if set, specifies blocks of IP
+// addresses which can authenticate successfully, and ties the resulting token to these blocks
+// as well.
+func (o AuthBackendRoleOutput) TokenBoundCidrs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringArrayOutput { return v.TokenBoundCidrs }).(pulumi.StringArrayOutput)
+}
+
+// If set, will encode an
+// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+// onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
+// `tokenMaxTtl` would otherwise allow a renewal.
+func (o AuthBackendRoleOutput) TokenExplicitMaxTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.IntPtrOutput { return v.TokenExplicitMaxTtl }).(pulumi.IntPtrOutput)
+}
+
+// The maximum lifetime for generated tokens in number of seconds.
+// Its current value will be referenced at renewal time.
+func (o AuthBackendRoleOutput) TokenMaxTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.IntPtrOutput { return v.TokenMaxTtl }).(pulumi.IntPtrOutput)
+}
+
+// If set, the default policy will not be set on
+// generated tokens; otherwise it will be added to the policies set in token_policies.
+func (o AuthBackendRoleOutput) TokenNoDefaultPolicy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.BoolPtrOutput { return v.TokenNoDefaultPolicy }).(pulumi.BoolPtrOutput)
+}
+
+// The [maximum number](https://www.vaultproject.io/api-docs/auth/alicloud#token_num_uses)
+// of times a generated token may be used (within its lifetime); 0 means unlimited.
+func (o AuthBackendRoleOutput) TokenNumUses() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.IntPtrOutput { return v.TokenNumUses }).(pulumi.IntPtrOutput)
+}
+
+// If set, indicates that the
+// token generated using this role should never expire. The token should be renewed within the
+// duration specified by this value. At each renewal, the token's TTL will be set to the
+// value of this field. Specified in seconds.
+func (o AuthBackendRoleOutput) TokenPeriod() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.IntPtrOutput { return v.TokenPeriod }).(pulumi.IntPtrOutput)
+}
+
+// List of policies to encode onto generated tokens. Depending
+// on the auth method, this list may be supplemented by user/group/other values.
+func (o AuthBackendRoleOutput) TokenPolicies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringArrayOutput { return v.TokenPolicies }).(pulumi.StringArrayOutput)
+}
+
+// The incremental lifetime for generated tokens in number of seconds.
+// Its current value will be referenced at renewal time.
+func (o AuthBackendRoleOutput) TokenTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.IntPtrOutput { return v.TokenTtl }).(pulumi.IntPtrOutput)
+}
+
+// The type of token that should be generated. Can be `service`,
+// `batch`, or `default` to use the mount's tuned default (which unless changed will be
+// `service` tokens). For token store roles, there are two additional possibilities:
+// `default-service` and `default-batch` which specify the type to return unless the client
+// requests a different type at generation time.
+func (o AuthBackendRoleOutput) TokenType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringPtrOutput { return v.TokenType }).(pulumi.StringPtrOutput)
 }
 
 type AuthBackendRoleArrayOutput struct{ *pulumi.OutputState }

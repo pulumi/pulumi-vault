@@ -16,23 +16,26 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/terraformcloud"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/terraformcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := terraformcloud.NewSecretBackend(ctx, "test", &terraformcloud.SecretBackendArgs{
-// 			Backend:     pulumi.String("terraform"),
-// 			Description: pulumi.String("Manages the Terraform Cloud backend"),
-// 			Token:       pulumi.String("V0idfhi2iksSDU234ucdbi2nidsi..."),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := terraformcloud.NewSecretBackend(ctx, "test", &terraformcloud.SecretBackendArgs{
+//				Backend:     pulumi.String("terraform"),
+//				Description: pulumi.String("Manages the Terraform Cloud backend"),
+//				Token:       pulumi.String("V0idfhi2iksSDU234ucdbi2nidsi..."),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -40,7 +43,9 @@ import (
 // Terraform Cloud secret backends can be imported using the `backend`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:terraformcloud/secretBackend:SecretBackend example terraform
+//
+//	$ pulumi import vault:terraformcloud/secretBackend:SecretBackend example terraform
+//
 // ```
 type SecretBackend struct {
 	pulumi.CustomResourceState
@@ -193,7 +198,7 @@ func (i *SecretBackend) ToSecretBackendOutputWithContext(ctx context.Context) Se
 // SecretBackendArrayInput is an input type that accepts SecretBackendArray and SecretBackendArrayOutput values.
 // You can construct a concrete instance of `SecretBackendArrayInput` via:
 //
-//          SecretBackendArray{ SecretBackendArgs{...} }
+//	SecretBackendArray{ SecretBackendArgs{...} }
 type SecretBackendArrayInput interface {
 	pulumi.Input
 
@@ -218,7 +223,7 @@ func (i SecretBackendArray) ToSecretBackendArrayOutputWithContext(ctx context.Co
 // SecretBackendMapInput is an input type that accepts SecretBackendMap and SecretBackendMapOutput values.
 // You can construct a concrete instance of `SecretBackendMapInput` via:
 //
-//          SecretBackendMap{ "key": SecretBackendArgs{...} }
+//	SecretBackendMap{ "key": SecretBackendArgs{...} }
 type SecretBackendMapInput interface {
 	pulumi.Input
 
@@ -252,6 +257,42 @@ func (o SecretBackendOutput) ToSecretBackendOutput() SecretBackendOutput {
 
 func (o SecretBackendOutput) ToSecretBackendOutputWithContext(ctx context.Context) SecretBackendOutput {
 	return o
+}
+
+// Specifies the address of the Terraform Cloud instance, provided as "host:port" like "127.0.0.1:8500".
+func (o SecretBackendOutput) Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Address }).(pulumi.StringPtrOutput)
+}
+
+// Unique name of the Vault Terraform Cloud mount to configure
+func (o SecretBackendOutput) Backend() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the base path for the Terraform Cloud or Enterprise API.
+func (o SecretBackendOutput) BasePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.BasePath }).(pulumi.StringPtrOutput)
+}
+
+// The default TTL for credentials issued by this backend.
+func (o SecretBackendOutput) DefaultLeaseTtlSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.DefaultLeaseTtlSeconds }).(pulumi.IntPtrOutput)
+}
+
+// A human-friendly description for this backend.
+func (o SecretBackendOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// The maximum TTL that can be requested
+// for credentials issued by this backend.
+func (o SecretBackendOutput) MaxLeaseTtlSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.MaxLeaseTtlSeconds }).(pulumi.IntPtrOutput)
+}
+
+// Specifies the Terraform Cloud access token to use.
+func (o SecretBackendOutput) Token() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Token }).(pulumi.StringPtrOutput)
 }
 
 type SecretBackendArrayOutput struct{ *pulumi.OutputState }

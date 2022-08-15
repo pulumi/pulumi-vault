@@ -13,85 +13,77 @@ namespace Pulumi.Vault
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var example = new Vault.Mount("example", new()
     ///     {
-    ///         var example = new Vault.Mount("example", new Vault.MountArgs
-    ///         {
-    ///             Description = "This is an example mount",
-    ///             Path = "dummy",
-    ///             Type = "generic",
-    ///         });
-    ///     }
+    ///         Description = "This is an example mount",
+    ///         Path = "dummy",
+    ///         Type = "generic",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var kvv2_example = new Vault.Mount("kvv2-example", new()
     ///     {
-    ///         var kvv2_example = new Vault.Mount("kvv2-example", new Vault.MountArgs
-    ///         {
-    ///             Description = "This is an example KV Version 2 secret engine mount",
-    ///             Path = "version2-example",
-    ///             Type = "kv-v2",
-    ///         });
-    ///     }
+    ///         Description = "This is an example KV Version 2 secret engine mount",
+    ///         Path = "version2-example",
+    ///         Type = "kv-v2",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var transit_example = new Vault.Mount("transit-example", new()
     ///     {
-    ///         var transit_example = new Vault.Mount("transit-example", new Vault.MountArgs
+    ///         Description = "This is an example transit secret engine mount",
+    ///         Options = 
     ///         {
-    ///             Description = "This is an example transit secret engine mount",
-    ///             Options = 
-    ///             {
-    ///                 { "convergent_encryption", false },
-    ///             },
-    ///             Path = "transit-example",
-    ///             Type = "transit",
-    ///         });
-    ///     }
+    ///             { "convergent_encryption", false },
+    ///         },
+    ///         Path = "transit-example",
+    ///         Type = "transit",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var pki_example = new Vault.Mount("pki-example", new()
     ///     {
-    ///         var pki_example = new Vault.Mount("pki-example", new Vault.MountArgs
-    ///         {
-    ///             DefaultLeaseTtlSeconds = 3600,
-    ///             Description = "This is an example PKI mount",
-    ///             MaxLeaseTtlSeconds = 86400,
-    ///             Path = "pki-example",
-    ///             Type = "pki",
-    ///         });
-    ///     }
+    ///         DefaultLeaseTtlSeconds = 3600,
+    ///         Description = "This is an example PKI mount",
+    ///         MaxLeaseTtlSeconds = 86400,
+    ///         Path = "pki-example",
+    ///         Type = "pki",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -103,7 +95,7 @@ namespace Pulumi.Vault
     /// ```
     /// </summary>
     [VaultResourceType("vault:index/mount:Mount")]
-    public partial class Mount : Pulumi.CustomResource
+    public partial class Mount : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The accessor for this mount.
@@ -221,7 +213,7 @@ namespace Pulumi.Vault
         }
     }
 
-    public sealed class MountArgs : Pulumi.ResourceArgs
+    public sealed class MountArgs : global::Pulumi.ResourceArgs
     {
         [Input("auditNonHmacRequestKeys")]
         private InputList<string>? _auditNonHmacRequestKeys;
@@ -310,9 +302,10 @@ namespace Pulumi.Vault
         public MountArgs()
         {
         }
+        public static new MountArgs Empty => new MountArgs();
     }
 
-    public sealed class MountState : Pulumi.ResourceArgs
+    public sealed class MountState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The accessor for this mount.
@@ -407,5 +400,6 @@ namespace Pulumi.Vault
         public MountState()
         {
         }
+        public static new MountState Empty => new MountState();
     }
 }

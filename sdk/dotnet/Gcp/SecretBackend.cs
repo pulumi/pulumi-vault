@@ -13,25 +13,23 @@ namespace Pulumi.Vault.Gcp
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using System.IO;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var gcp = new Vault.Gcp.SecretBackend("gcp", new()
     ///     {
-    ///         var gcp = new Vault.Gcp.SecretBackend("gcp", new Vault.Gcp.SecretBackendArgs
-    ///         {
-    ///             Credentials = File.ReadAllText("credentials.json"),
-    ///         });
-    ///     }
+    ///         Credentials = File.ReadAllText("credentials.json"),
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// </summary>
     [VaultResourceType("vault:gcp/secretBackend:SecretBackend")]
-    public partial class SecretBackend : Pulumi.CustomResource
+    public partial class SecretBackend : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The GCP service account credentials in JSON format.
@@ -116,7 +114,7 @@ namespace Pulumi.Vault.Gcp
         }
     }
 
-    public sealed class SecretBackendArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The GCP service account credentials in JSON format.
@@ -160,9 +158,10 @@ namespace Pulumi.Vault.Gcp
         public SecretBackendArgs()
         {
         }
+        public static new SecretBackendArgs Empty => new SecretBackendArgs();
     }
 
-    public sealed class SecretBackendState : Pulumi.ResourceArgs
+    public sealed class SecretBackendState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The GCP service account credentials in JSON format.
@@ -206,5 +205,6 @@ namespace Pulumi.Vault.Gcp
         public SecretBackendState()
         {
         }
+        public static new SecretBackendState Empty => new SecretBackendState();
     }
 }

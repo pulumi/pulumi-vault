@@ -25,7 +25,7 @@ namespace Pulumi.Vault.Transit
     }
 
 
-    public sealed class GetEncryptArgs : Pulumi.InvokeArgs
+    public sealed class GetEncryptArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The path the transit secret backend is mounted at, with no leading or trailing `/`.
@@ -60,9 +60,10 @@ namespace Pulumi.Vault.Transit
         public GetEncryptArgs()
         {
         }
+        public static new GetEncryptArgs Empty => new GetEncryptArgs();
     }
 
-    public sealed class GetEncryptInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetEncryptInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The path the transit secret backend is mounted at, with no leading or trailing `/`.
@@ -97,6 +98,7 @@ namespace Pulumi.Vault.Transit
         public GetEncryptInvokeArgs()
         {
         }
+        public static new GetEncryptInvokeArgs Empty => new GetEncryptInvokeArgs();
     }
 
 

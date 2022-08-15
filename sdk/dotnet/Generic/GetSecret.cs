@@ -18,20 +18,18 @@ namespace Pulumi.Vault.Generic
         /// ### Generic secret
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Vault = Pulumi.Vault;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var rundeckAuth = Vault.Generic.GetSecret.Invoke(new()
         ///     {
-        ///         var rundeckAuth = Output.Create(Vault.Generic.GetSecret.InvokeAsync(new Vault.Generic.GetSecretArgs
-        ///         {
-        ///             Path = "secret/rundeck_auth",
-        ///         }));
-        ///     }
+        ///         Path = "secret/rundeck_auth",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -49,20 +47,18 @@ namespace Pulumi.Vault.Generic
         /// ### Generic secret
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Vault = Pulumi.Vault;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var rundeckAuth = Vault.Generic.GetSecret.Invoke(new()
         ///     {
-        ///         var rundeckAuth = Output.Create(Vault.Generic.GetSecret.InvokeAsync(new Vault.Generic.GetSecretArgs
-        ///         {
-        ///             Path = "secret/rundeck_auth",
-        ///         }));
-        ///     }
+        ///         Path = "secret/rundeck_auth",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -75,7 +71,7 @@ namespace Pulumi.Vault.Generic
     }
 
 
-    public sealed class GetSecretArgs : Pulumi.InvokeArgs
+    public sealed class GetSecretArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The full logical path from which to request data.
@@ -101,9 +97,10 @@ namespace Pulumi.Vault.Generic
         public GetSecretArgs()
         {
         }
+        public static new GetSecretArgs Empty => new GetSecretArgs();
     }
 
-    public sealed class GetSecretInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetSecretInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The full logical path from which to request data.
@@ -129,6 +126,7 @@ namespace Pulumi.Vault.Generic
         public GetSecretInvokeArgs()
         {
         }
+        public static new GetSecretInvokeArgs Empty => new GetSecretInvokeArgs();
     }
 
 

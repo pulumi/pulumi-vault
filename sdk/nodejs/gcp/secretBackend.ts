@@ -9,8 +9,8 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as fs from "fs";
  * import * as vault from "@pulumi/vault";
- * import * from "fs";
  *
  * const gcp = new vault.gcp.SecretBackend("gcp", {credentials: fs.readFileSync("credentials.json")});
  * ```

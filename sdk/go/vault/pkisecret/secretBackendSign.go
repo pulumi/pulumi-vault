@@ -17,27 +17,59 @@ import (
 // package main
 //
 // import (
-// 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := pkiSecret.NewSecretBackendSign(ctx, "test", &pkiSecret.SecretBackendSignArgs{
-// 			Backend:    pulumi.Any(vault_mount.Pki.Path),
-// 			Csr:        pulumi.String(fmt.Sprintf("%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v", "-----BEGIN CERTIFICATE REQUEST-----\n", "MIIEqDCCApACAQAwYzELMAkGA1UEBhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUx\n", "ITAfBgNVBAoMGEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZDEcMBoGA1UEAwwTY2Vy\n", "dC50ZXN0Lm15LmRvbWFpbjCCAiIwDQYJKoZIhvcNAQEBBQADggIPADCCAgoCggIB\n", "AJupYCQ8UVCWII1Zof1c6YcSSaM9hEaDU78cfKP5RoSeH10BvrWRfT+mzCONVpNP\n", "CW9Iabtvk6hm0ot6ilnndEyVJbc0g7hdDLBX5BM25D+DGZGJRKUz1V+uBrWmXtIt\n", "Vonj7JTDTe7ViH0GDsB7CvqXFGXO2a2cDYBchLkL6vQiFPshxvUsLtwxuy/qdYgy\n", "X6ya+AUoZcoQGy1XxNjfH6cPtWSWQGEp1oPR6vL9hU3laTZb3C+VV4jZem+he8/0\n", "V+qV6fLG92WTXm2hmf8nrtUqqJ+C7mW/RJod+TviviBadIX0OHXW7k5HVsZood01\n", "te8vMRUNJNiZfa9EMIK5oncbQn0LcM3Wo9VrjpL7jREb/4HCS2gswYGv7hzk9cCS\n", "kVY4rDucchKbApuI3kfzmO7GFOF5eiSkYZpY/czNn7VVM3WCu6dpOX4+3rhgrZQw\n", "kY14L930DaLVRUgve/zKVP2D2GHdEOs+MbV7s96UgigT9pXly/yHPj+1sSYqmnaD\n", "5b7jSeJusmzO/nrwXVGLsnezR87VzHl9Ux9g5s6zh+R+PrZuVxYsLvoUpaasH47O\n", "gIcBzSb/6pSGZKAUizmYsHsR1k88dAvsQ+FsUDaNokdi9VndEB4QPmiFmjyLV+0I\n", "1TFoXop4sW11NPz1YCq+IxnYrEaIN3PyhY0GvBJDFY1/AgMBAAGgADANBgkqhkiG\n", "9w0BAQsFAAOCAgEActuqnqS8Y9UF7e08w7tR3FPzGecWreuvxILrlFEZJxiLPFqL\n", "It7uJvtypCVQvz6UQzKdBYO7tMpRaWViB8DrWzXNZjLMrg+QHcpveg8C0Ett4scG\n", "fnvLk6fTDFYrnGvwHTqiHos5i0y3bFLyS1BGwSpdLAykGtvC+VM8mRyw/Y7CPcKN\n", "77kebY/9xduW1g2uxWLr0x90RuQDv9psPojT+59tRLGSp5Kt0IeD3QtnAZEFE4aN\n", "vt+Pd69eg3BgZ8ZeDgoqAw3yppvOkpAFiE5pw2qPZaM4SRphl4d2Lek2zNIMyZqv\n", "do5zh356HOgXtDaSg0POnRGrN/Ua+LMCRTg6GEPUnx9uQb/zt8Zu0hIexDGyykp1\n", "OGqtWlv/Nc8UYuS38v0BeB6bMPeoqQUjkqs8nHlAEFn0KlgYdtDC+7SdQx6wS4te\n", "dBKRNDfC4lS3jYJgs55jHqonZgkpSi3bamlxpfpW0ukGBcmq91wRe4bOw/4uD/vf\n", "UwqMWOdCYcU3mdYNjTWy22ORW3SGFQxMBwpUEURCSoeqWr6aJeQ7KAYkx1PrB5T8\n", "OTEc13lWf+B0PU9UJuGTsmpIuImPDVd0EVDayr3mT5dDbqTVDbe8ppf2IswABmf0\n", "o3DybUeUmknYjl109rdSf+76nuREICHatxXgN3xCMFuBaN4WLO+ksd6Y1Ys=\n", "-----END CERTIFICATE REQUEST-----\n")),
-// 			CommonName: pulumi.String("test.my.domain"),
-// 		}, pulumi.DependsOn([]pulumi.Resource{
-// 			vault_pki_secret_backend_role.Admin,
-// 		}))
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := pkiSecret.NewSecretBackendSign(ctx, "test", &pkiSecret.SecretBackendSignArgs{
+//				Backend: pulumi.Any(vault_mount.Pki.Path),
+//				Csr: pulumi.String(fmt.Sprintf(`-----BEGIN CERTIFICATE REQUEST-----
+//
+// MIIEqDCCApACAQAwYzELMAkGA1UEBhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUx
+// ITAfBgNVBAoMGEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZDEcMBoGA1UEAwwTY2Vy
+// dC50ZXN0Lm15LmRvbWFpbjCCAiIwDQYJKoZIhvcNAQEBBQADggIPADCCAgoCggIB
+// AJupYCQ8UVCWII1Zof1c6YcSSaM9hEaDU78cfKP5RoSeH10BvrWRfT+mzCONVpNP
+// CW9Iabtvk6hm0ot6ilnndEyVJbc0g7hdDLBX5BM25D+DGZGJRKUz1V+uBrWmXtIt
+// Vonj7JTDTe7ViH0GDsB7CvqXFGXO2a2cDYBchLkL6vQiFPshxvUsLtwxuy/qdYgy
+// X6ya+AUoZcoQGy1XxNjfH6cPtWSWQGEp1oPR6vL9hU3laTZb3C+VV4jZem+he8/0
+// V+qV6fLG92WTXm2hmf8nrtUqqJ+C7mW/RJod+TviviBadIX0OHXW7k5HVsZood01
+// te8vMRUNJNiZfa9EMIK5oncbQn0LcM3Wo9VrjpL7jREb/4HCS2gswYGv7hzk9cCS
+// kVY4rDucchKbApuI3kfzmO7GFOF5eiSkYZpY/czNn7VVM3WCu6dpOX4+3rhgrZQw
+// kY14L930DaLVRUgve/zKVP2D2GHdEOs+MbV7s96UgigT9pXly/yHPj+1sSYqmnaD
+// 5b7jSeJusmzO/nrwXVGLsnezR87VzHl9Ux9g5s6zh+R+PrZuVxYsLvoUpaasH47O
+// gIcBzSb/6pSGZKAUizmYsHsR1k88dAvsQ+FsUDaNokdi9VndEB4QPmiFmjyLV+0I
+// 1TFoXop4sW11NPz1YCq+IxnYrEaIN3PyhY0GvBJDFY1/AgMBAAGgADANBgkqhkiG
+// 9w0BAQsFAAOCAgEActuqnqS8Y9UF7e08w7tR3FPzGecWreuvxILrlFEZJxiLPFqL
+// It7uJvtypCVQvz6UQzKdBYO7tMpRaWViB8DrWzXNZjLMrg+QHcpveg8C0Ett4scG
+// fnvLk6fTDFYrnGvwHTqiHos5i0y3bFLyS1BGwSpdLAykGtvC+VM8mRyw/Y7CPcKN
+// 77kebY/9xduW1g2uxWLr0x90RuQDv9psPojT+59tRLGSp5Kt0IeD3QtnAZEFE4aN
+// vt+Pd69eg3BgZ8ZeDgoqAw3yppvOkpAFiE5pw2qPZaM4SRphl4d2Lek2zNIMyZqv
+// do5zh356HOgXtDaSg0POnRGrN/Ua+LMCRTg6GEPUnx9uQb/zt8Zu0hIexDGyykp1
+// OGqtWlv/Nc8UYuS38v0BeB6bMPeoqQUjkqs8nHlAEFn0KlgYdtDC+7SdQx6wS4te
+// dBKRNDfC4lS3jYJgs55jHqonZgkpSi3bamlxpfpW0ukGBcmq91wRe4bOw/4uD/vf
+// UwqMWOdCYcU3mdYNjTWy22ORW3SGFQxMBwpUEURCSoeqWr6aJeQ7KAYkx1PrB5T8
+// OTEc13lWf+B0PU9UJuGTsmpIuImPDVd0EVDayr3mT5dDbqTVDbe8ppf2IswABmf0
+// o3DybUeUmknYjl109rdSf+76nuREICHatxXgN3xCMFuBaN4WLO+ksd6Y1Ys=
+// -----END CERTIFICATE REQUEST-----
+// `)),
+//
+//				CommonName: pulumi.String("test.my.domain"),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				vault_pki_secret_backend_role.Admin,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ## Deprecations
 //
@@ -299,7 +331,7 @@ func (i *SecretBackendSign) ToSecretBackendSignOutputWithContext(ctx context.Con
 // SecretBackendSignArrayInput is an input type that accepts SecretBackendSignArray and SecretBackendSignArrayOutput values.
 // You can construct a concrete instance of `SecretBackendSignArrayInput` via:
 //
-//          SecretBackendSignArray{ SecretBackendSignArgs{...} }
+//	SecretBackendSignArray{ SecretBackendSignArgs{...} }
 type SecretBackendSignArrayInput interface {
 	pulumi.Input
 
@@ -324,7 +356,7 @@ func (i SecretBackendSignArray) ToSecretBackendSignArrayOutputWithContext(ctx co
 // SecretBackendSignMapInput is an input type that accepts SecretBackendSignMap and SecretBackendSignMapOutput values.
 // You can construct a concrete instance of `SecretBackendSignMapInput` via:
 //
-//          SecretBackendSignMap{ "key": SecretBackendSignArgs{...} }
+//	SecretBackendSignMap{ "key": SecretBackendSignArgs{...} }
 type SecretBackendSignMapInput interface {
 	pulumi.Input
 
@@ -358,6 +390,103 @@ func (o SecretBackendSignOutput) ToSecretBackendSignOutput() SecretBackendSignOu
 
 func (o SecretBackendSignOutput) ToSecretBackendSignOutputWithContext(ctx context.Context) SecretBackendSignOutput {
 	return o
+}
+
+// List of alternative names
+func (o SecretBackendSignOutput) AltNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendSign) pulumi.StringArrayOutput { return v.AltNames }).(pulumi.StringArrayOutput)
+}
+
+// If set to `true`, certs will be renewed if the expiration is within `minSecondsRemaining`. Default `false`
+func (o SecretBackendSignOutput) AutoRenew() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendSign) pulumi.BoolPtrOutput { return v.AutoRenew }).(pulumi.BoolPtrOutput)
+}
+
+// The PKI secret backend the resource belongs to.
+func (o SecretBackendSignOutput) Backend() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendSign) pulumi.StringOutput { return v.Backend }).(pulumi.StringOutput)
+}
+
+// The CA chain
+func (o SecretBackendSignOutput) CaChains() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendSign) pulumi.StringArrayOutput { return v.CaChains }).(pulumi.StringArrayOutput)
+}
+
+// The certificate
+func (o SecretBackendSignOutput) Certificate() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendSign) pulumi.StringOutput { return v.Certificate }).(pulumi.StringOutput)
+}
+
+// CN of certificate to create
+func (o SecretBackendSignOutput) CommonName() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendSign) pulumi.StringOutput { return v.CommonName }).(pulumi.StringOutput)
+}
+
+// The CSR
+func (o SecretBackendSignOutput) Csr() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendSign) pulumi.StringOutput { return v.Csr }).(pulumi.StringOutput)
+}
+
+// Flag to exclude CN from SANs
+func (o SecretBackendSignOutput) ExcludeCnFromSans() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendSign) pulumi.BoolPtrOutput { return v.ExcludeCnFromSans }).(pulumi.BoolPtrOutput)
+}
+
+// The expiration date of the certificate in unix epoch format
+func (o SecretBackendSignOutput) Expiration() pulumi.IntOutput {
+	return o.ApplyT(func(v *SecretBackendSign) pulumi.IntOutput { return v.Expiration }).(pulumi.IntOutput)
+}
+
+// The format of data
+func (o SecretBackendSignOutput) Format() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendSign) pulumi.StringPtrOutput { return v.Format }).(pulumi.StringPtrOutput)
+}
+
+// List of alternative IPs
+func (o SecretBackendSignOutput) IpSans() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendSign) pulumi.StringArrayOutput { return v.IpSans }).(pulumi.StringArrayOutput)
+}
+
+// The issuing CA
+func (o SecretBackendSignOutput) IssuingCa() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendSign) pulumi.StringOutput { return v.IssuingCa }).(pulumi.StringOutput)
+}
+
+// Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
+func (o SecretBackendSignOutput) MinSecondsRemaining() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendSign) pulumi.IntPtrOutput { return v.MinSecondsRemaining }).(pulumi.IntPtrOutput)
+}
+
+// Name of the role to create the certificate against
+func (o SecretBackendSignOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendSign) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// List of other SANs
+func (o SecretBackendSignOutput) OtherSans() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendSign) pulumi.StringArrayOutput { return v.OtherSans }).(pulumi.StringArrayOutput)
+}
+
+// The serial number.
+//
+// Deprecated: Use serial_number instead
+func (o SecretBackendSignOutput) Serial() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendSign) pulumi.StringOutput { return v.Serial }).(pulumi.StringOutput)
+}
+
+// The certificate's serial number, hex formatted.
+func (o SecretBackendSignOutput) SerialNumber() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendSign) pulumi.StringOutput { return v.SerialNumber }).(pulumi.StringOutput)
+}
+
+// Time to live
+func (o SecretBackendSignOutput) Ttl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendSign) pulumi.StringPtrOutput { return v.Ttl }).(pulumi.StringPtrOutput)
+}
+
+// List of alternative URIs
+func (o SecretBackendSignOutput) UriSans() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendSign) pulumi.StringArrayOutput { return v.UriSans }).(pulumi.StringArrayOutput)
 }
 
 type SecretBackendSignArrayOutput struct{ *pulumi.OutputState }

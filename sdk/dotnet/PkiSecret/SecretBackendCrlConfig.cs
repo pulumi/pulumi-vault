@@ -15,33 +15,32 @@ namespace Pulumi.Vault.PkiSecret
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var pki = new Vault.Mount("pki", new()
     ///     {
-    ///         var pki = new Vault.Mount("pki", new Vault.MountArgs
-    ///         {
-    ///             Path = "%s",
-    ///             Type = "pki",
-    ///             DefaultLeaseTtlSeconds = 3600,
-    ///             MaxLeaseTtlSeconds = 86400,
-    ///         });
-    ///         var crlConfig = new Vault.PkiSecret.SecretBackendCrlConfig("crlConfig", new Vault.PkiSecret.SecretBackendCrlConfigArgs
-    ///         {
-    ///             Backend = pki.Path,
-    ///             Expiry = "72h",
-    ///             Disable = false,
-    ///         });
-    ///     }
+    ///         Path = "%s",
+    ///         Type = "pki",
+    ///         DefaultLeaseTtlSeconds = 3600,
+    ///         MaxLeaseTtlSeconds = 86400,
+    ///     });
     /// 
-    /// }
+    ///     var crlConfig = new Vault.PkiSecret.SecretBackendCrlConfig("crlConfig", new()
+    ///     {
+    ///         Backend = pki.Path,
+    ///         Expiry = "72h",
+    ///         Disable = false,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// </summary>
     [VaultResourceType("vault:pkiSecret/secretBackendCrlConfig:SecretBackendCrlConfig")]
-    public partial class SecretBackendCrlConfig : Pulumi.CustomResource
+    public partial class SecretBackendCrlConfig : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
@@ -105,7 +104,7 @@ namespace Pulumi.Vault.PkiSecret
         }
     }
 
-    public sealed class SecretBackendCrlConfigArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendCrlConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
@@ -128,9 +127,10 @@ namespace Pulumi.Vault.PkiSecret
         public SecretBackendCrlConfigArgs()
         {
         }
+        public static new SecretBackendCrlConfigArgs Empty => new SecretBackendCrlConfigArgs();
     }
 
-    public sealed class SecretBackendCrlConfigState : Pulumi.ResourceArgs
+    public sealed class SecretBackendCrlConfigState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
@@ -153,5 +153,6 @@ namespace Pulumi.Vault.PkiSecret
         public SecretBackendCrlConfigState()
         {
         }
+        public static new SecretBackendCrlConfigState Empty => new SecretBackendCrlConfigState();
     }
 }

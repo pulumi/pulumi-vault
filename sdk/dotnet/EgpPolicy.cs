@@ -17,33 +17,31 @@ namespace Pulumi.Vault
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var allow_all = new Vault.EgpPolicy("allow-all", new()
     ///     {
-    ///         var allow_all = new Vault.EgpPolicy("allow-all", new Vault.EgpPolicyArgs
+    ///         EnforcementLevel = "soft-mandatory",
+    ///         Paths = new[]
     ///         {
-    ///             EnforcementLevel = "soft-mandatory",
-    ///             Paths = 
-    ///             {
-    ///                 "*",
-    ///             },
-    ///             Policy = @"main = rule {
+    ///             "*",
+    ///         },
+    ///         Policy = @"main = rule {
     ///   true
     /// }
     /// 
     /// ",
-    ///         });
-    ///     }
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// </summary>
     [VaultResourceType("vault:index/egpPolicy:EgpPolicy")]
-    public partial class EgpPolicy : Pulumi.CustomResource
+    public partial class EgpPolicy : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
@@ -113,7 +111,7 @@ namespace Pulumi.Vault
         }
     }
 
-    public sealed class EgpPolicyArgs : Pulumi.ResourceArgs
+    public sealed class EgpPolicyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
@@ -148,9 +146,10 @@ namespace Pulumi.Vault
         public EgpPolicyArgs()
         {
         }
+        public static new EgpPolicyArgs Empty => new EgpPolicyArgs();
     }
 
-    public sealed class EgpPolicyState : Pulumi.ResourceArgs
+    public sealed class EgpPolicyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
@@ -185,5 +184,6 @@ namespace Pulumi.Vault
         public EgpPolicyState()
         {
         }
+        public static new EgpPolicyState Empty => new EgpPolicyState();
     }
 }

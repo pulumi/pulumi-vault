@@ -20,40 +20,43 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/okta"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/okta"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := okta.NewAuthBackend(ctx, "example", &okta.AuthBackendArgs{
-// 			Description: pulumi.String("Demonstration of the Terraform Okta auth backend"),
-// 			Groups: okta.AuthBackendGroupArray{
-// 				&okta.AuthBackendGroupArgs{
-// 					GroupName: pulumi.String("foo"),
-// 					Policies: pulumi.StringArray{
-// 						pulumi.String("one"),
-// 						pulumi.String("two"),
-// 					},
-// 				},
-// 			},
-// 			Organization: pulumi.String("example"),
-// 			Token:        pulumi.String("something that should be kept secret"),
-// 			Users: okta.AuthBackendUserArray{
-// 				&okta.AuthBackendUserArgs{
-// 					Groups: pulumi.StringArray{
-// 						pulumi.String("foo"),
-// 					},
-// 					Username: pulumi.String("bar"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := okta.NewAuthBackend(ctx, "example", &okta.AuthBackendArgs{
+//				Description: pulumi.String("Demonstration of the Terraform Okta auth backend"),
+//				Groups: okta.AuthBackendGroupTypeArray{
+//					&okta.AuthBackendGroupTypeArgs{
+//						GroupName: pulumi.String("foo"),
+//						Policies: pulumi.StringArray{
+//							pulumi.String("one"),
+//							pulumi.String("two"),
+//						},
+//					},
+//				},
+//				Organization: pulumi.String("example"),
+//				Token:        pulumi.String("something that should be kept secret"),
+//				Users: okta.AuthBackendUserTypeArray{
+//					&okta.AuthBackendUserTypeArgs{
+//						Groups: pulumi.StringArray{
+//							pulumi.String("foo"),
+//						},
+//						Username: pulumi.String("bar"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -61,7 +64,9 @@ import (
 // Okta authentication backends can be imported using its `path`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:okta/authBackend:AuthBackend example okta
+//
+//	$ pulumi import vault:okta/authBackend:AuthBackend example okta
+//
 // ```
 type AuthBackend struct {
 	pulumi.CustomResourceState
@@ -273,7 +278,7 @@ func (i *AuthBackend) ToAuthBackendOutputWithContext(ctx context.Context) AuthBa
 // AuthBackendArrayInput is an input type that accepts AuthBackendArray and AuthBackendArrayOutput values.
 // You can construct a concrete instance of `AuthBackendArrayInput` via:
 //
-//          AuthBackendArray{ AuthBackendArgs{...} }
+//	AuthBackendArray{ AuthBackendArgs{...} }
 type AuthBackendArrayInput interface {
 	pulumi.Input
 
@@ -298,7 +303,7 @@ func (i AuthBackendArray) ToAuthBackendArrayOutputWithContext(ctx context.Contex
 // AuthBackendMapInput is an input type that accepts AuthBackendMap and AuthBackendMapOutput values.
 // You can construct a concrete instance of `AuthBackendMapInput` via:
 //
-//          AuthBackendMap{ "key": AuthBackendArgs{...} }
+//	AuthBackendMap{ "key": AuthBackendArgs{...} }
 type AuthBackendMapInput interface {
 	pulumi.Input
 
@@ -332,6 +337,66 @@ func (o AuthBackendOutput) ToAuthBackendOutput() AuthBackendOutput {
 
 func (o AuthBackendOutput) ToAuthBackendOutputWithContext(ctx context.Context) AuthBackendOutput {
 	return o
+}
+
+// The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
+func (o AuthBackendOutput) Accessor() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Accessor }).(pulumi.StringOutput)
+}
+
+// The Okta url. Examples: oktapreview.com, okta.com
+func (o AuthBackendOutput) BaseUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.BaseUrl }).(pulumi.StringPtrOutput)
+}
+
+// When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
+func (o AuthBackendOutput) BypassOktaMfa() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.BoolPtrOutput { return v.BypassOktaMfa }).(pulumi.BoolPtrOutput)
+}
+
+// The description of the auth backend
+func (o AuthBackendOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// Associate Okta groups with policies within Vault.
+// See below for more details.
+func (o AuthBackendOutput) Groups() AuthBackendGroupTypeArrayOutput {
+	return o.ApplyT(func(v *AuthBackend) AuthBackendGroupTypeArrayOutput { return v.Groups }).(AuthBackendGroupTypeArrayOutput)
+}
+
+// Maximum duration after which authentication will be expired
+// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
+func (o AuthBackendOutput) MaxTtl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.MaxTtl }).(pulumi.StringPtrOutput)
+}
+
+// The Okta organization. This will be the first part of the url `https://XXX.okta.com`
+func (o AuthBackendOutput) Organization() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Organization }).(pulumi.StringOutput)
+}
+
+// Path to mount the Okta auth backend
+func (o AuthBackendOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+// The Okta API token. This is required to query Okta for user group membership.
+// If this is not supplied only locally configured groups will be enabled.
+func (o AuthBackendOutput) Token() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Token }).(pulumi.StringPtrOutput)
+}
+
+// Duration after which authentication will be expired.
+// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
+func (o AuthBackendOutput) Ttl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Ttl }).(pulumi.StringPtrOutput)
+}
+
+// Associate Okta users with groups or policies within Vault.
+// See below for more details.
+func (o AuthBackendOutput) Users() AuthBackendUserTypeArrayOutput {
+	return o.ApplyT(func(v *AuthBackend) AuthBackendUserTypeArrayOutput { return v.Users }).(AuthBackendUserTypeArrayOutput)
 }
 
 type AuthBackendArrayOutput struct{ *pulumi.OutputState }

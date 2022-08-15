@@ -13,17 +13,16 @@ namespace Pulumi.Vault.PkiSecret
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Vault.PkiSecret.SecretBackendSign("test", new()
     ///     {
-    ///         var test = new Vault.PkiSecret.SecretBackendSign("test", new Vault.PkiSecret.SecretBackendSignArgs
-    ///         {
-    ///             Backend = vault_mount.Pki.Path,
-    ///             Csr = @"-----BEGIN CERTIFICATE REQUEST-----
+    ///         Backend = vault_mount.Pki.Path,
+    ///         Csr = @"-----BEGIN CERTIFICATE REQUEST-----
     /// MIIEqDCCApACAQAwYzELMAkGA1UEBhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUx
     /// ITAfBgNVBAoMGEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZDEcMBoGA1UEAwwTY2Vy
     /// dC50ZXN0Lm15LmRvbWFpbjCCAiIwDQYJKoZIhvcNAQEBBQADggIPADCCAgoCggIB
@@ -51,24 +50,23 @@ namespace Pulumi.Vault.PkiSecret
     /// o3DybUeUmknYjl109rdSf+76nuREICHatxXgN3xCMFuBaN4WLO+ksd6Y1Ys=
     /// -----END CERTIFICATE REQUEST-----
     /// ",
-    ///             CommonName = "test.my.domain",
-    ///         }, new CustomResourceOptions
+    ///         CommonName = "test.my.domain",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
     ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 vault_pki_secret_backend_role.Admin,
-    ///             },
-    ///         });
-    ///     }
+    ///             vault_pki_secret_backend_role.Admin,
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// ## Deprecations
     /// 
     /// * `serial` - Use `serial_number` instead.
     /// </summary>
     [VaultResourceType("vault:pkiSecret/secretBackendSign:SecretBackendSign")]
-    public partial class SecretBackendSign : Pulumi.CustomResource
+    public partial class SecretBackendSign : global::Pulumi.CustomResource
     {
         /// <summary>
         /// List of alternative names
@@ -228,7 +226,7 @@ namespace Pulumi.Vault.PkiSecret
         }
     }
 
-    public sealed class SecretBackendSignArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendSignArgs : global::Pulumi.ResourceArgs
     {
         [Input("altNames")]
         private InputList<string>? _altNames;
@@ -335,9 +333,10 @@ namespace Pulumi.Vault.PkiSecret
         public SecretBackendSignArgs()
         {
         }
+        public static new SecretBackendSignArgs Empty => new SecretBackendSignArgs();
     }
 
-    public sealed class SecretBackendSignState : Pulumi.ResourceArgs
+    public sealed class SecretBackendSignState : global::Pulumi.ResourceArgs
     {
         [Input("altNames")]
         private InputList<string>? _altNames;
@@ -486,5 +485,6 @@ namespace Pulumi.Vault.PkiSecret
         public SecretBackendSignState()
         {
         }
+        public static new SecretBackendSignState Empty => new SecretBackendSignState();
     }
 }

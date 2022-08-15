@@ -16,25 +16,28 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/azure"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/azure"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := azure.GetAccessCredentials(ctx, &azure.GetAccessCredentialsArgs{
-// 			Role:                     "my-role",
-// 			ValidateCreds:            pulumi.BoolRef(true),
-// 			NumSequentialSuccesses:   pulumi.IntRef(8),
-// 			NumSecondsBetweenTests:   pulumi.IntRef(1),
-// 			MaxCredValidationSeconds: pulumi.IntRef(300),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := azure.GetAccessCredentials(ctx, &azure.GetAccessCredentialsArgs{
+//				Role:                     "my-role",
+//				ValidateCreds:            pulumi.BoolRef(true),
+//				NumSequentialSuccesses:   pulumi.IntRef(8),
+//				NumSecondsBetweenTests:   pulumi.IntRef(1),
+//				MaxCredValidationSeconds: pulumi.IntRef(300),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ## Caveats
 //

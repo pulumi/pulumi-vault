@@ -17,44 +17,44 @@ namespace Pulumi.Vault.Database
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var db = new Vault.Mount("db", new()
     ///     {
-    ///         var db = new Vault.Mount("db", new Vault.MountArgs
-    ///         {
-    ///             Path = "postgres",
-    ///             Type = "database",
-    ///         });
-    ///         var postgres = new Vault.Database.SecretBackendConnection("postgres", new Vault.Database.SecretBackendConnectionArgs
-    ///         {
-    ///             Backend = db.Path,
-    ///             AllowedRoles = 
-    ///             {
-    ///                 "*",
-    ///             },
-    ///             Postgresql = new Vault.Database.Inputs.SecretBackendConnectionPostgresqlArgs
-    ///             {
-    ///                 ConnectionUrl = "postgres://username:password@host:port/database",
-    ///             },
-    ///         });
-    ///         var staticRole = new Vault.Database.SecretBackendStaticRole("staticRole", new Vault.Database.SecretBackendStaticRoleArgs
-    ///         {
-    ///             Backend = db.Path,
-    ///             DbName = postgres.Name,
-    ///             Username = "example",
-    ///             RotationPeriod = 3600,
-    ///             RotationStatements = 
-    ///             {
-    ///                 "ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';",
-    ///             },
-    ///         });
-    ///     }
+    ///         Path = "postgres",
+    ///         Type = "database",
+    ///     });
     /// 
-    /// }
+    ///     var postgres = new Vault.Database.SecretBackendConnection("postgres", new()
+    ///     {
+    ///         Backend = db.Path,
+    ///         AllowedRoles = new[]
+    ///         {
+    ///             "*",
+    ///         },
+    ///         Postgresql = new Vault.Database.Inputs.SecretBackendConnectionPostgresqlArgs
+    ///         {
+    ///             ConnectionUrl = "postgres://username:password@host:port/database",
+    ///         },
+    ///     });
+    /// 
+    ///     var staticRole = new Vault.Database.SecretBackendStaticRole("staticRole", new()
+    ///     {
+    ///         Backend = db.Path,
+    ///         DbName = postgres.Name,
+    ///         Username = "example",
+    ///         RotationPeriod = 3600,
+    ///         RotationStatements = new[]
+    ///         {
+    ///             "ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';",
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -66,7 +66,7 @@ namespace Pulumi.Vault.Database
     /// ```
     /// </summary>
     [VaultResourceType("vault:database/secretBackendStaticRole:SecretBackendStaticRole")]
-    public partial class SecretBackendStaticRole : Pulumi.CustomResource
+    public partial class SecretBackendStaticRole : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The unique name of the Vault mount to configure.
@@ -148,7 +148,7 @@ namespace Pulumi.Vault.Database
         }
     }
 
-    public sealed class SecretBackendStaticRoleArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendStaticRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The unique name of the Vault mount to configure.
@@ -195,9 +195,10 @@ namespace Pulumi.Vault.Database
         public SecretBackendStaticRoleArgs()
         {
         }
+        public static new SecretBackendStaticRoleArgs Empty => new SecretBackendStaticRoleArgs();
     }
 
-    public sealed class SecretBackendStaticRoleState : Pulumi.ResourceArgs
+    public sealed class SecretBackendStaticRoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The unique name of the Vault mount to configure.
@@ -244,5 +245,6 @@ namespace Pulumi.Vault.Database
         public SecretBackendStaticRoleState()
         {
         }
+        public static new SecretBackendStaticRoleState Empty => new SecretBackendStaticRoleState();
     }
 }

@@ -17,20 +17,18 @@ namespace Pulumi.Vault.Identity
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Vault = Pulumi.Vault;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var entity = Vault.Identity.GetEntity.Invoke(new()
         ///     {
-        ///         var entity = Output.Create(Vault.Identity.GetEntity.InvokeAsync(new Vault.Identity.GetEntityArgs
-        ///         {
-        ///             EntityName = "entity_12345",
-        ///         }));
-        ///     }
+        ///         EntityName = "entity_12345",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -47,20 +45,18 @@ namespace Pulumi.Vault.Identity
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Vault = Pulumi.Vault;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var entity = Vault.Identity.GetEntity.Invoke(new()
         ///     {
-        ///         var entity = Output.Create(Vault.Identity.GetEntity.InvokeAsync(new Vault.Identity.GetEntityArgs
-        ///         {
-        ///             EntityName = "entity_12345",
-        ///         }));
-        ///     }
+        ///         EntityName = "entity_12345",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -73,7 +69,7 @@ namespace Pulumi.Vault.Identity
     }
 
 
-    public sealed class GetEntityArgs : Pulumi.InvokeArgs
+    public sealed class GetEntityArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// ID of the alias.
@@ -110,9 +106,10 @@ namespace Pulumi.Vault.Identity
         public GetEntityArgs()
         {
         }
+        public static new GetEntityArgs Empty => new GetEntityArgs();
     }
 
-    public sealed class GetEntityInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetEntityInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// ID of the alias.
@@ -149,6 +146,7 @@ namespace Pulumi.Vault.Identity
         public GetEntityInvokeArgs()
         {
         }
+        public static new GetEntityInvokeArgs Empty => new GetEntityInvokeArgs();
     }
 
 

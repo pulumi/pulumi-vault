@@ -17,29 +17,27 @@ namespace Pulumi.Vault
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var allow_all = new Vault.RgpPolicy("allow-all", new()
     ///     {
-    ///         var allow_all = new Vault.RgpPolicy("allow-all", new Vault.RgpPolicyArgs
-    ///         {
-    ///             EnforcementLevel = "soft-mandatory",
-    ///             Policy = @"main = rule {
+    ///         EnforcementLevel = "soft-mandatory",
+    ///         Policy = @"main = rule {
     ///   true
     /// }
     /// 
     /// ",
-    ///         });
-    ///     }
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// </summary>
     [VaultResourceType("vault:index/rgpPolicy:RgpPolicy")]
-    public partial class RgpPolicy : Pulumi.CustomResource
+    public partial class RgpPolicy : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
@@ -103,7 +101,7 @@ namespace Pulumi.Vault
         }
     }
 
-    public sealed class RgpPolicyArgs : Pulumi.ResourceArgs
+    public sealed class RgpPolicyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
@@ -126,9 +124,10 @@ namespace Pulumi.Vault
         public RgpPolicyArgs()
         {
         }
+        public static new RgpPolicyArgs Empty => new RgpPolicyArgs();
     }
 
-    public sealed class RgpPolicyState : Pulumi.ResourceArgs
+    public sealed class RgpPolicyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
@@ -151,5 +150,6 @@ namespace Pulumi.Vault
         public RgpPolicyState()
         {
         }
+        public static new RgpPolicyState Empty => new RgpPolicyState();
     }
 }

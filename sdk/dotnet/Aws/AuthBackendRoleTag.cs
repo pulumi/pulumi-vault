@@ -13,7 +13,7 @@ namespace Pulumi.Vault.Aws
     /// Reads role tag information from an AWS auth backend in Vault.
     /// </summary>
     [VaultResourceType("vault:aws/authBackendRoleTag:AuthBackendRoleTag")]
-    public partial class AuthBackendRoleTag : Pulumi.CustomResource
+    public partial class AuthBackendRoleTag : global::Pulumi.CustomResource
     {
         /// <summary>
         /// If set, allows migration of the underlying instances where the client resides. Use with caution.
@@ -115,7 +115,7 @@ namespace Pulumi.Vault.Aws
         }
     }
 
-    public sealed class AuthBackendRoleTagArgs : Pulumi.ResourceArgs
+    public sealed class AuthBackendRoleTagArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// If set, allows migration of the underlying instances where the client resides. Use with caution.
@@ -170,9 +170,10 @@ namespace Pulumi.Vault.Aws
         public AuthBackendRoleTagArgs()
         {
         }
+        public static new AuthBackendRoleTagArgs Empty => new AuthBackendRoleTagArgs();
     }
 
-    public sealed class AuthBackendRoleTagState : Pulumi.ResourceArgs
+    public sealed class AuthBackendRoleTagState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// If set, allows migration of the underlying instances where the client resides. Use with caution.
@@ -239,5 +240,6 @@ namespace Pulumi.Vault.Aws
         public AuthBackendRoleTagState()
         {
         }
+        public static new AuthBackendRoleTagState Empty => new AuthBackendRoleTagState();
     }
 }

@@ -17,38 +17,36 @@ namespace Pulumi.Vault.TokenAuth
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var example = new Vault.TokenAuth.AuthBackendRole("example", new()
     ///     {
-    ///         var example = new Vault.TokenAuth.AuthBackendRole("example", new Vault.TokenAuth.AuthBackendRoleArgs
+    ///         AllowedEntityAliases = new[]
     ///         {
-    ///             AllowedEntityAliases = 
-    ///             {
-    ///                 "test_entity",
-    ///             },
-    ///             AllowedPolicies = 
-    ///             {
-    ///                 "dev",
-    ///                 "test",
-    ///             },
-    ///             DisallowedPolicies = 
-    ///             {
-    ///                 "default",
-    ///             },
-    ///             Orphan = true,
-    ///             PathSuffix = "path-suffix",
-    ///             Renewable = true,
-    ///             RoleName = "my-role",
-    ///             TokenExplicitMaxTtl = 115200,
-    ///             TokenPeriod = 86400,
-    ///         });
-    ///     }
+    ///             "test_entity",
+    ///         },
+    ///         AllowedPolicies = new[]
+    ///         {
+    ///             "dev",
+    ///             "test",
+    ///         },
+    ///         DisallowedPolicies = new[]
+    ///         {
+    ///             "default",
+    ///         },
+    ///         Orphan = true,
+    ///         PathSuffix = "path-suffix",
+    ///         Renewable = true,
+    ///         RoleName = "my-role",
+    ///         TokenExplicitMaxTtl = 115200,
+    ///         TokenPeriod = 86400,
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -60,7 +58,7 @@ namespace Pulumi.Vault.TokenAuth
     /// ```
     /// </summary>
     [VaultResourceType("vault:tokenauth/authBackendRole:AuthBackendRole")]
-    public partial class AuthBackendRole : Pulumi.CustomResource
+    public partial class AuthBackendRole : global::Pulumi.CustomResource
     {
         /// <summary>
         /// List of allowed entity aliases.
@@ -230,7 +228,7 @@ namespace Pulumi.Vault.TokenAuth
         }
     }
 
-    public sealed class AuthBackendRoleArgs : Pulumi.ResourceArgs
+    public sealed class AuthBackendRoleArgs : global::Pulumi.ResourceArgs
     {
         [Input("allowedEntityAliases")]
         private InputList<string>? _allowedEntityAliases;
@@ -401,9 +399,10 @@ namespace Pulumi.Vault.TokenAuth
         public AuthBackendRoleArgs()
         {
         }
+        public static new AuthBackendRoleArgs Empty => new AuthBackendRoleArgs();
     }
 
-    public sealed class AuthBackendRoleState : Pulumi.ResourceArgs
+    public sealed class AuthBackendRoleState : global::Pulumi.ResourceArgs
     {
         [Input("allowedEntityAliases")]
         private InputList<string>? _allowedEntityAliases;
@@ -574,5 +573,6 @@ namespace Pulumi.Vault.TokenAuth
         public AuthBackendRoleState()
         {
         }
+        public static new AuthBackendRoleState Empty => new AuthBackendRoleState();
     }
 }

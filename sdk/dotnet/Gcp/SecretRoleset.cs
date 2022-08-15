@@ -17,45 +17,45 @@ namespace Pulumi.Vault.Gcp
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using System.IO;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var project = "my-awesome-project";
+    /// 
+    ///     var gcp = new Vault.Gcp.SecretBackend("gcp", new()
     ///     {
-    ///         var project = "my-awesome-project";
-    ///         var gcp = new Vault.Gcp.SecretBackend("gcp", new Vault.Gcp.SecretBackendArgs
+    ///         Path = "gcp",
+    ///         Credentials = File.ReadAllText("credentials.json"),
+    ///     });
+    /// 
+    ///     var roleset = new Vault.Gcp.SecretRoleset("roleset", new()
+    ///     {
+    ///         Backend = gcp.Path,
+    ///         Roleset = "project_viewer",
+    ///         SecretType = "access_token",
+    ///         Project = project,
+    ///         TokenScopes = new[]
     ///         {
-    ///             Path = "gcp",
-    ///             Credentials = File.ReadAllText("credentials.json"),
-    ///         });
-    ///         var roleset = new Vault.Gcp.SecretRoleset("roleset", new Vault.Gcp.SecretRolesetArgs
+    ///             "https://www.googleapis.com/auth/cloud-platform",
+    ///         },
+    ///         Bindings = new[]
     ///         {
-    ///             Backend = gcp.Path,
-    ///             Roleset = "project_viewer",
-    ///             SecretType = "access_token",
-    ///             Project = project,
-    ///             TokenScopes = 
+    ///             new Vault.Gcp.Inputs.SecretRolesetBindingArgs
     ///             {
-    ///                 "https://www.googleapis.com/auth/cloud-platform",
-    ///             },
-    ///             Bindings = 
-    ///             {
-    ///                 new Vault.Gcp.Inputs.SecretRolesetBindingArgs
+    ///                 Resource = $"//cloudresourcemanager.googleapis.com/projects/{project}",
+    ///                 Roles = new[]
     ///                 {
-    ///                     Resource = $"//cloudresourcemanager.googleapis.com/projects/{project}",
-    ///                     Roles = 
-    ///                     {
-    ///                         "roles/viewer",
-    ///                     },
+    ///                     "roles/viewer",
     ///                 },
     ///             },
-    ///         });
-    ///     }
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -67,7 +67,7 @@ namespace Pulumi.Vault.Gcp
     /// ```
     /// </summary>
     [VaultResourceType("vault:gcp/secretRoleset:SecretRoleset")]
-    public partial class SecretRoleset : Pulumi.CustomResource
+    public partial class SecretRoleset : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Path where the GCP Secrets Engine is mounted
@@ -155,7 +155,7 @@ namespace Pulumi.Vault.Gcp
         }
     }
 
-    public sealed class SecretRolesetArgs : Pulumi.ResourceArgs
+    public sealed class SecretRolesetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Path where the GCP Secrets Engine is mounted
@@ -208,9 +208,10 @@ namespace Pulumi.Vault.Gcp
         public SecretRolesetArgs()
         {
         }
+        public static new SecretRolesetArgs Empty => new SecretRolesetArgs();
     }
 
-    public sealed class SecretRolesetState : Pulumi.ResourceArgs
+    public sealed class SecretRolesetState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Path where the GCP Secrets Engine is mounted
@@ -269,5 +270,6 @@ namespace Pulumi.Vault.Gcp
         public SecretRolesetState()
         {
         }
+        public static new SecretRolesetState Empty => new SecretRolesetState();
     }
 }

@@ -13,22 +13,20 @@ namespace Pulumi.Vault.RabbitMQ
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var rabbitmq = new Vault.RabbitMQ.SecretBackend("rabbitmq", new()
     ///     {
-    ///         var rabbitmq = new Vault.RabbitMQ.SecretBackend("rabbitmq", new Vault.RabbitMQ.SecretBackendArgs
-    ///         {
-    ///             ConnectionUri = "https://.....",
-    ///             Password = "password",
-    ///             Username = "user",
-    ///         });
-    ///     }
+    ///         ConnectionUri = "https://.....",
+    ///         Password = "password",
+    ///         Username = "user",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -40,7 +38,7 @@ namespace Pulumi.Vault.RabbitMQ
     /// ```
     /// </summary>
     [VaultResourceType("vault:rabbitMq/secretBackend:SecretBackend")]
-    public partial class SecretBackend : Pulumi.CustomResource
+    public partial class SecretBackend : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Specifies the RabbitMQ connection URI.
@@ -150,7 +148,7 @@ namespace Pulumi.Vault.RabbitMQ
         }
     }
 
-    public sealed class SecretBackendArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Specifies the RabbitMQ connection URI.
@@ -219,9 +217,10 @@ namespace Pulumi.Vault.RabbitMQ
         public SecretBackendArgs()
         {
         }
+        public static new SecretBackendArgs Empty => new SecretBackendArgs();
     }
 
-    public sealed class SecretBackendState : Pulumi.ResourceArgs
+    public sealed class SecretBackendState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Specifies the RabbitMQ connection URI.
@@ -290,5 +289,6 @@ namespace Pulumi.Vault.RabbitMQ
         public SecretBackendState()
         {
         }
+        public static new SecretBackendState Empty => new SecretBackendState();
     }
 }

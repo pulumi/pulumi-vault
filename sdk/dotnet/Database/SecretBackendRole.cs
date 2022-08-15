@@ -13,43 +13,43 @@ namespace Pulumi.Vault.Database
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var db = new Vault.Mount("db", new()
     ///     {
-    ///         var db = new Vault.Mount("db", new Vault.MountArgs
-    ///         {
-    ///             Path = "postgres",
-    ///             Type = "database",
-    ///         });
-    ///         var postgres = new Vault.Database.SecretBackendConnection("postgres", new Vault.Database.SecretBackendConnectionArgs
-    ///         {
-    ///             Backend = db.Path,
-    ///             AllowedRoles = 
-    ///             {
-    ///                 "dev",
-    ///                 "prod",
-    ///             },
-    ///             Postgresql = new Vault.Database.Inputs.SecretBackendConnectionPostgresqlArgs
-    ///             {
-    ///                 ConnectionUrl = "postgres://username:password@host:port/database",
-    ///             },
-    ///         });
-    ///         var role = new Vault.Database.SecretBackendRole("role", new Vault.Database.SecretBackendRoleArgs
-    ///         {
-    ///             Backend = db.Path,
-    ///             DbName = postgres.Name,
-    ///             CreationStatements = 
-    ///             {
-    ///                 "CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';",
-    ///             },
-    ///         });
-    ///     }
+    ///         Path = "postgres",
+    ///         Type = "database",
+    ///     });
     /// 
-    /// }
+    ///     var postgres = new Vault.Database.SecretBackendConnection("postgres", new()
+    ///     {
+    ///         Backend = db.Path,
+    ///         AllowedRoles = new[]
+    ///         {
+    ///             "dev",
+    ///             "prod",
+    ///         },
+    ///         Postgresql = new Vault.Database.Inputs.SecretBackendConnectionPostgresqlArgs
+    ///         {
+    ///             ConnectionUrl = "postgres://username:password@host:port/database",
+    ///         },
+    ///     });
+    /// 
+    ///     var role = new Vault.Database.SecretBackendRole("role", new()
+    ///     {
+    ///         Backend = db.Path,
+    ///         DbName = postgres.Name,
+    ///         CreationStatements = new[]
+    ///         {
+    ///             "CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';",
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -61,7 +61,7 @@ namespace Pulumi.Vault.Database
     /// ```
     /// </summary>
     [VaultResourceType("vault:database/secretBackendRole:SecretBackendRole")]
-    public partial class SecretBackendRole : Pulumi.CustomResource
+    public partial class SecretBackendRole : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The unique name of the Vault mount to configure.
@@ -168,7 +168,7 @@ namespace Pulumi.Vault.Database
         }
     }
 
-    public sealed class SecretBackendRoleArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The unique name of the Vault mount to configure.
@@ -258,9 +258,10 @@ namespace Pulumi.Vault.Database
         public SecretBackendRoleArgs()
         {
         }
+        public static new SecretBackendRoleArgs Empty => new SecretBackendRoleArgs();
     }
 
-    public sealed class SecretBackendRoleState : Pulumi.ResourceArgs
+    public sealed class SecretBackendRoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The unique name of the Vault mount to configure.
@@ -350,5 +351,6 @@ namespace Pulumi.Vault.Database
         public SecretBackendRoleState()
         {
         }
+        public static new SecretBackendRoleState Empty => new SecretBackendRoleState();
     }
 }

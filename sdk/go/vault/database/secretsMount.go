@@ -17,71 +17,74 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/database"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/database"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		db, err := database.NewSecretsMount(ctx, "db", &database.SecretsMountArgs{
-// 			Path: pulumi.String("db"),
-// 			Mssqls: database.SecretsMountMssqlArray{
-// 				&database.SecretsMountMssqlArgs{
-// 					Name:          pulumi.String("db1"),
-// 					Username:      pulumi.String("sa"),
-// 					Password:      pulumi.String("super_secret_1"),
-// 					ConnectionUrl: pulumi.String("sqlserver://{{username}}:{{password}}@127.0.0.1:1433"),
-// 					AllowedRoles: pulumi.StringArray{
-// 						pulumi.String("dev1"),
-// 					},
-// 				},
-// 			},
-// 			Postgresqls: database.SecretsMountPostgresqlArray{
-// 				&database.SecretsMountPostgresqlArgs{
-// 					Name:             pulumi.String("db2"),
-// 					Username:         pulumi.String("postgres"),
-// 					Password:         pulumi.String("super_secret_2"),
-// 					ConnectionUrl:    pulumi.String("postgresql://{{username}}:{{password}}@127.0.0.1:5432/postgres"),
-// 					VerifyConnection: pulumi.Bool(true),
-// 					AllowedRoles: pulumi.StringArray{
-// 						pulumi.String("dev2"),
-// 					},
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = database.NewSecretBackendRole(ctx, "dev1", &database.SecretBackendRoleArgs{
-// 			Backend: db.Path,
-// 			DbName: db.Mssqls.ApplyT(func(mssqls []database.SecretsMountMssql) (string, error) {
-// 				return mssqls[0].Name, nil
-// 			}).(pulumi.StringOutput),
-// 			CreationStatements: pulumi.StringArray{
-// 				pulumi.String("CREATE LOGIN [{{name}}] WITH PASSWORD = '{{password}}';"),
-// 				pulumi.String("CREATE USER [{{name}}] FOR LOGIN [{{name}}];"),
-// 				pulumi.String("GRANT SELECT ON SCHEMA::dbo TO [{{name}}];"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = database.NewSecretBackendRole(ctx, "dev2", &database.SecretBackendRoleArgs{
-// 			Backend: db.Path,
-// 			DbName: db.Postgresqls.ApplyT(func(postgresqls []database.SecretsMountPostgresql) (string, error) {
-// 				return postgresqls[0].Name, nil
-// 			}).(pulumi.StringOutput),
-// 			CreationStatements: pulumi.StringArray{
-// 				pulumi.String("CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';"),
-// 				pulumi.String("GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"{{name}}\";"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			db, err := database.NewSecretsMount(ctx, "db", &database.SecretsMountArgs{
+//				Path: pulumi.String("db"),
+//				Mssqls: database.SecretsMountMssqlArray{
+//					&database.SecretsMountMssqlArgs{
+//						Name:          pulumi.String("db1"),
+//						Username:      pulumi.String("sa"),
+//						Password:      pulumi.String("super_secret_1"),
+//						ConnectionUrl: pulumi.String("sqlserver://{{username}}:{{password}}@127.0.0.1:1433"),
+//						AllowedRoles: pulumi.StringArray{
+//							pulumi.String("dev1"),
+//						},
+//					},
+//				},
+//				Postgresqls: database.SecretsMountPostgresqlArray{
+//					&database.SecretsMountPostgresqlArgs{
+//						Name:             pulumi.String("db2"),
+//						Username:         pulumi.String("postgres"),
+//						Password:         pulumi.String("super_secret_2"),
+//						ConnectionUrl:    pulumi.String("postgresql://{{username}}:{{password}}@127.0.0.1:5432/postgres"),
+//						VerifyConnection: pulumi.Bool(true),
+//						AllowedRoles: pulumi.StringArray{
+//							pulumi.String("dev2"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = database.NewSecretBackendRole(ctx, "dev1", &database.SecretBackendRoleArgs{
+//				Backend: db.Path,
+//				DbName: db.Mssqls.ApplyT(func(mssqls []database.SecretsMountMssql) (string, error) {
+//					return mssqls[0].Name, nil
+//				}).(pulumi.StringOutput),
+//				CreationStatements: pulumi.StringArray{
+//					pulumi.String("CREATE LOGIN [{{name}}] WITH PASSWORD = '{{password}}';"),
+//					pulumi.String("CREATE USER [{{name}}] FOR LOGIN [{{name}}];"),
+//					pulumi.String("GRANT SELECT ON SCHEMA::dbo TO [{{name}}];"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = database.NewSecretBackendRole(ctx, "dev2", &database.SecretBackendRoleArgs{
+//				Backend: db.Path,
+//				DbName: db.Postgresqls.ApplyT(func(postgresqls []database.SecretsMountPostgresql) (string, error) {
+//					return postgresqls[0].Name, nil
+//				}).(pulumi.StringOutput),
+//				CreationStatements: pulumi.StringArray{
+//					pulumi.String("CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';"),
+//					pulumi.String("GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"{{name}}\";"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -89,7 +92,9 @@ import (
 // Database secret backend connections can be imported using the `path` e.g.
 //
 // ```sh
-//  $ pulumi import vault:database/secretsMount:SecretsMount db db
+//
+//	$ pulumi import vault:database/secretsMount:SecretsMount db db
+//
 // ```
 type SecretsMount struct {
 	pulumi.CustomResourceState
@@ -522,7 +527,7 @@ func (i *SecretsMount) ToSecretsMountOutputWithContext(ctx context.Context) Secr
 // SecretsMountArrayInput is an input type that accepts SecretsMountArray and SecretsMountArrayOutput values.
 // You can construct a concrete instance of `SecretsMountArrayInput` via:
 //
-//          SecretsMountArray{ SecretsMountArgs{...} }
+//	SecretsMountArray{ SecretsMountArgs{...} }
 type SecretsMountArrayInput interface {
 	pulumi.Input
 
@@ -547,7 +552,7 @@ func (i SecretsMountArray) ToSecretsMountArrayOutputWithContext(ctx context.Cont
 // SecretsMountMapInput is an input type that accepts SecretsMountMap and SecretsMountMapOutput values.
 // You can construct a concrete instance of `SecretsMountMapInput` via:
 //
-//          SecretsMountMap{ "key": SecretsMountArgs{...} }
+//	SecretsMountMap{ "key": SecretsMountArgs{...} }
 type SecretsMountMapInput interface {
 	pulumi.Input
 
@@ -581,6 +586,162 @@ func (o SecretsMountOutput) ToSecretsMountOutput() SecretsMountOutput {
 
 func (o SecretsMountOutput) ToSecretsMountOutputWithContext(ctx context.Context) SecretsMountOutput {
 	return o
+}
+
+// Accessor of the mount
+func (o SecretsMountOutput) Accessor() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretsMount) pulumi.StringOutput { return v.Accessor }).(pulumi.StringOutput)
+}
+
+// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+func (o SecretsMountOutput) AuditNonHmacRequestKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretsMount) pulumi.StringArrayOutput { return v.AuditNonHmacRequestKeys }).(pulumi.StringArrayOutput)
+}
+
+// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+func (o SecretsMountOutput) AuditNonHmacResponseKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretsMount) pulumi.StringArrayOutput { return v.AuditNonHmacResponseKeys }).(pulumi.StringArrayOutput)
+}
+
+// A nested block containing configuration options for Cassandra connections.\
+// *See Configuration Options for more info*
+func (o SecretsMountOutput) Cassandras() SecretsMountCassandraArrayOutput {
+	return o.ApplyT(func(v *SecretsMount) SecretsMountCassandraArrayOutput { return v.Cassandras }).(SecretsMountCassandraArrayOutput)
+}
+
+// A nested block containing configuration options for Couchbase connections.\
+// *See Configuration Options for more info*
+func (o SecretsMountOutput) Couchbases() SecretsMountCouchbaseArrayOutput {
+	return o.ApplyT(func(v *SecretsMount) SecretsMountCouchbaseArrayOutput { return v.Couchbases }).(SecretsMountCouchbaseArrayOutput)
+}
+
+// Default lease duration for tokens and secrets in seconds
+func (o SecretsMountOutput) DefaultLeaseTtlSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v *SecretsMount) pulumi.IntOutput { return v.DefaultLeaseTtlSeconds }).(pulumi.IntOutput)
+}
+
+// Human-friendly description of the mount
+func (o SecretsMountOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretsMount) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// A nested block containing configuration options for Elasticsearch connections.\
+// *See Configuration Options for more info*
+func (o SecretsMountOutput) Elasticsearches() SecretsMountElasticsearchArrayOutput {
+	return o.ApplyT(func(v *SecretsMount) SecretsMountElasticsearchArrayOutput { return v.Elasticsearches }).(SecretsMountElasticsearchArrayOutput)
+}
+
+// The total number of database secrets engines configured.
+func (o SecretsMountOutput) EngineCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *SecretsMount) pulumi.IntOutput { return v.EngineCount }).(pulumi.IntOutput)
+}
+
+// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+func (o SecretsMountOutput) ExternalEntropyAccess() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretsMount) pulumi.BoolPtrOutput { return v.ExternalEntropyAccess }).(pulumi.BoolPtrOutput)
+}
+
+// A nested block containing configuration options for SAP HanaDB connections.\
+// *See Configuration Options for more info*
+func (o SecretsMountOutput) Hanas() SecretsMountHanaArrayOutput {
+	return o.ApplyT(func(v *SecretsMount) SecretsMountHanaArrayOutput { return v.Hanas }).(SecretsMountHanaArrayOutput)
+}
+
+// A nested block containing configuration options for InfluxDB connections.\
+// *See Configuration Options for more info*
+func (o SecretsMountOutput) Influxdbs() SecretsMountInfluxdbArrayOutput {
+	return o.ApplyT(func(v *SecretsMount) SecretsMountInfluxdbArrayOutput { return v.Influxdbs }).(SecretsMountInfluxdbArrayOutput)
+}
+
+// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+func (o SecretsMountOutput) Local() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretsMount) pulumi.BoolPtrOutput { return v.Local }).(pulumi.BoolPtrOutput)
+}
+
+// Maximum possible lease duration for tokens and secrets in seconds
+func (o SecretsMountOutput) MaxLeaseTtlSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v *SecretsMount) pulumi.IntOutput { return v.MaxLeaseTtlSeconds }).(pulumi.IntOutput)
+}
+
+// A nested block containing configuration options for MongoDB Atlas connections.\
+// *See Configuration Options for more info*
+func (o SecretsMountOutput) Mongodbatlas() SecretsMountMongodbatlaArrayOutput {
+	return o.ApplyT(func(v *SecretsMount) SecretsMountMongodbatlaArrayOutput { return v.Mongodbatlas }).(SecretsMountMongodbatlaArrayOutput)
+}
+
+// A nested block containing configuration options for MongoDB connections.\
+// *See Configuration Options for more info*
+func (o SecretsMountOutput) Mongodbs() SecretsMountMongodbArrayOutput {
+	return o.ApplyT(func(v *SecretsMount) SecretsMountMongodbArrayOutput { return v.Mongodbs }).(SecretsMountMongodbArrayOutput)
+}
+
+// A nested block containing configuration options for MSSQL connections.\
+// *See Configuration Options for more info*
+func (o SecretsMountOutput) Mssqls() SecretsMountMssqlArrayOutput {
+	return o.ApplyT(func(v *SecretsMount) SecretsMountMssqlArrayOutput { return v.Mssqls }).(SecretsMountMssqlArrayOutput)
+}
+
+// A nested block containing configuration options for Aurora MySQL connections.\
+// *See Configuration Options for more info*
+func (o SecretsMountOutput) MysqlAuroras() SecretsMountMysqlAuroraArrayOutput {
+	return o.ApplyT(func(v *SecretsMount) SecretsMountMysqlAuroraArrayOutput { return v.MysqlAuroras }).(SecretsMountMysqlAuroraArrayOutput)
+}
+
+// A nested block containing configuration options for legacy MySQL connections.\
+// *See Configuration Options for more info*
+func (o SecretsMountOutput) MysqlLegacies() SecretsMountMysqlLegacyArrayOutput {
+	return o.ApplyT(func(v *SecretsMount) SecretsMountMysqlLegacyArrayOutput { return v.MysqlLegacies }).(SecretsMountMysqlLegacyArrayOutput)
+}
+
+// A nested block containing configuration options for RDS MySQL connections.\
+// *See Configuration Options for more info*
+func (o SecretsMountOutput) MysqlRds() SecretsMountMysqlRdArrayOutput {
+	return o.ApplyT(func(v *SecretsMount) SecretsMountMysqlRdArrayOutput { return v.MysqlRds }).(SecretsMountMysqlRdArrayOutput)
+}
+
+// A nested block containing configuration options for MySQL connections.\
+// *See Configuration Options for more info*
+func (o SecretsMountOutput) Mysqls() SecretsMountMysqlArrayOutput {
+	return o.ApplyT(func(v *SecretsMount) SecretsMountMysqlArrayOutput { return v.Mysqls }).(SecretsMountMysqlArrayOutput)
+}
+
+// Specifies mount type specific options that are passed to the backend
+func (o SecretsMountOutput) Options() pulumi.MapOutput {
+	return o.ApplyT(func(v *SecretsMount) pulumi.MapOutput { return v.Options }).(pulumi.MapOutput)
+}
+
+// A nested block containing configuration options for Oracle connections.\
+// *See Configuration Options for more info*
+func (o SecretsMountOutput) Oracles() SecretsMountOracleArrayOutput {
+	return o.ApplyT(func(v *SecretsMount) SecretsMountOracleArrayOutput { return v.Oracles }).(SecretsMountOracleArrayOutput)
+}
+
+// Where the secret backend will be mounted
+func (o SecretsMountOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretsMount) pulumi.StringOutput { return v.Path }).(pulumi.StringOutput)
+}
+
+// A nested block containing configuration options for PostgreSQL connections.\
+// *See Configuration Options for more info*
+func (o SecretsMountOutput) Postgresqls() SecretsMountPostgresqlArrayOutput {
+	return o.ApplyT(func(v *SecretsMount) SecretsMountPostgresqlArrayOutput { return v.Postgresqls }).(SecretsMountPostgresqlArrayOutput)
+}
+
+// A nested block containing configuration options for AWS Redshift connections.\
+// *See Configuration Options for more info*
+func (o SecretsMountOutput) Redshifts() SecretsMountRedshiftArrayOutput {
+	return o.ApplyT(func(v *SecretsMount) SecretsMountRedshiftArrayOutput { return v.Redshifts }).(SecretsMountRedshiftArrayOutput)
+}
+
+// Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+func (o SecretsMountOutput) SealWrap() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretsMount) pulumi.BoolOutput { return v.SealWrap }).(pulumi.BoolOutput)
+}
+
+// A nested block containing configuration options for Snowflake connections.\
+// *See Configuration Options for more info*
+func (o SecretsMountOutput) Snowflakes() SecretsMountSnowflakeArrayOutput {
+	return o.ApplyT(func(v *SecretsMount) SecretsMountSnowflakeArrayOutput { return v.Snowflakes }).(SecretsMountSnowflakeArrayOutput)
 }
 
 type SecretsMountArrayOutput struct{ *pulumi.OutputState }

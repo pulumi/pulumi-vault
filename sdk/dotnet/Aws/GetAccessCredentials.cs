@@ -19,7 +19,7 @@ namespace Pulumi.Vault.Aws
     }
 
 
-    public sealed class GetAccessCredentialsArgs : Pulumi.InvokeArgs
+    public sealed class GetAccessCredentialsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The path to the AWS secret backend to
@@ -66,9 +66,10 @@ namespace Pulumi.Vault.Aws
         public GetAccessCredentialsArgs()
         {
         }
+        public static new GetAccessCredentialsArgs Empty => new GetAccessCredentialsArgs();
     }
 
-    public sealed class GetAccessCredentialsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetAccessCredentialsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The path to the AWS secret backend to
@@ -115,6 +116,7 @@ namespace Pulumi.Vault.Aws
         public GetAccessCredentialsInvokeArgs()
         {
         }
+        public static new GetAccessCredentialsInvokeArgs Empty => new GetAccessCredentialsInvokeArgs();
     }
 
 

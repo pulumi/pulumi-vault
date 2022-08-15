@@ -21,25 +21,28 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := vault.NewMfaTotp(ctx, "myTotp", &vault.MfaTotpArgs{
-// 			Algorithm: pulumi.String("SHA256"),
-// 			Digits:    pulumi.Int(8),
-// 			Issuer:    pulumi.String("hashicorp"),
-// 			KeySize:   pulumi.Int(20),
-// 			Period:    pulumi.Int(60),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vault.NewMfaTotp(ctx, "myTotp", &vault.MfaTotpArgs{
+//				Algorithm: pulumi.String("SHA256"),
+//				Digits:    pulumi.Int(8),
+//				Issuer:    pulumi.String("hashicorp"),
+//				KeySize:   pulumi.Int(20),
+//				Period:    pulumi.Int(60),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -47,7 +50,9 @@ import (
 // Mounts can be imported using the `path`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:index/mfaTotp:MfaTotp my_totp my_totp
+//
+//	$ pulumi import vault:index/mfaTotp:MfaTotp my_totp my_totp
+//
 // ```
 type MfaTotp struct {
 	pulumi.CustomResourceState
@@ -223,7 +228,7 @@ func (i *MfaTotp) ToMfaTotpOutputWithContext(ctx context.Context) MfaTotpOutput 
 // MfaTotpArrayInput is an input type that accepts MfaTotpArray and MfaTotpArrayOutput values.
 // You can construct a concrete instance of `MfaTotpArrayInput` via:
 //
-//          MfaTotpArray{ MfaTotpArgs{...} }
+//	MfaTotpArray{ MfaTotpArgs{...} }
 type MfaTotpArrayInput interface {
 	pulumi.Input
 
@@ -248,7 +253,7 @@ func (i MfaTotpArray) ToMfaTotpArrayOutputWithContext(ctx context.Context) MfaTo
 // MfaTotpMapInput is an input type that accepts MfaTotpMap and MfaTotpMapOutput values.
 // You can construct a concrete instance of `MfaTotpMapInput` via:
 //
-//          MfaTotpMap{ "key": MfaTotpArgs{...} }
+//	MfaTotpMap{ "key": MfaTotpArgs{...} }
 type MfaTotpMapInput interface {
 	pulumi.Input
 
@@ -282,6 +287,49 @@ func (o MfaTotpOutput) ToMfaTotpOutput() MfaTotpOutput {
 
 func (o MfaTotpOutput) ToMfaTotpOutputWithContext(ctx context.Context) MfaTotpOutput {
 	return o
+}
+
+// `(string)` - Specifies the hashing algorithm used to generate the TOTP code.
+// Options include `SHA1`, `SHA256` and `SHA512`
+func (o MfaTotpOutput) Algorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MfaTotp) pulumi.StringPtrOutput { return v.Algorithm }).(pulumi.StringPtrOutput)
+}
+
+// `(int)` - The number of digits in the generated TOTP token.
+// This value can either be 6 or 8.
+func (o MfaTotpOutput) Digits() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *MfaTotp) pulumi.IntPtrOutput { return v.Digits }).(pulumi.IntPtrOutput)
+}
+
+// `(string: <required>)` - The name of the key's issuing organization.
+func (o MfaTotpOutput) Issuer() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaTotp) pulumi.StringOutput { return v.Issuer }).(pulumi.StringOutput)
+}
+
+// `(int)` - Specifies the size in bytes of the generated key.
+func (o MfaTotpOutput) KeySize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *MfaTotp) pulumi.IntPtrOutput { return v.KeySize }).(pulumi.IntPtrOutput)
+}
+
+// `(string: <required>)` – Name of the MFA method.
+func (o MfaTotpOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaTotp) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// `(int)` - The length of time used to generate a counter for the TOTP token calculation.
+func (o MfaTotpOutput) Period() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *MfaTotp) pulumi.IntPtrOutput { return v.Period }).(pulumi.IntPtrOutput)
+}
+
+// `(int)` - The pixel size of the generated square QR code.
+func (o MfaTotpOutput) QrSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *MfaTotp) pulumi.IntPtrOutput { return v.QrSize }).(pulumi.IntPtrOutput)
+}
+
+// `(int)` - The number of delay periods that are allowed when validating a TOTP token.
+// This value can either be 0 or 1.
+func (o MfaTotpOutput) Skew() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *MfaTotp) pulumi.IntPtrOutput { return v.Skew }).(pulumi.IntPtrOutput)
 }
 
 type MfaTotpArrayOutput struct{ *pulumi.OutputState }

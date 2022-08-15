@@ -19,7 +19,7 @@ namespace Pulumi.Vault.Aws
     /// ```
     /// </summary>
     [VaultResourceType("vault:aws/authBackendCert:AuthBackendCert")]
-    public partial class AuthBackendCert : Pulumi.CustomResource
+    public partial class AuthBackendCert : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The  Base64 encoded AWS Public key required to
@@ -95,7 +95,7 @@ namespace Pulumi.Vault.Aws
         }
     }
 
-    public sealed class AuthBackendCertArgs : Pulumi.ResourceArgs
+    public sealed class AuthBackendCertArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The  Base64 encoded AWS Public key required to
@@ -130,9 +130,10 @@ namespace Pulumi.Vault.Aws
         public AuthBackendCertArgs()
         {
         }
+        public static new AuthBackendCertArgs Empty => new AuthBackendCertArgs();
     }
 
-    public sealed class AuthBackendCertState : Pulumi.ResourceArgs
+    public sealed class AuthBackendCertState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The  Base64 encoded AWS Public key required to
@@ -167,5 +168,6 @@ namespace Pulumi.Vault.Aws
         public AuthBackendCertState()
         {
         }
+        public static new AuthBackendCertState Empty => new AuthBackendCertState();
     }
 }

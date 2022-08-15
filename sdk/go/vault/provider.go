@@ -174,6 +174,46 @@ func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) Provide
 	return o
 }
 
+// If true, adds the value of the `address` argument to the Terraform process environment.
+func (o ProviderOutput) AddAddressToEnv() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.AddAddressToEnv }).(pulumi.StringPtrOutput)
+}
+
+// URL of the root of the target Vault server.
+func (o ProviderOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringOutput { return v.Address }).(pulumi.StringOutput)
+}
+
+// Path to directory containing CA certificate files to validate the server's certificate.
+func (o ProviderOutput) CaCertDir() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CaCertDir }).(pulumi.StringPtrOutput)
+}
+
+// Path to a CA certificate file to validate the server's certificate.
+func (o ProviderOutput) CaCertFile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CaCertFile }).(pulumi.StringPtrOutput)
+}
+
+// The namespace to use. Available only for Vault Enterprise.
+func (o ProviderOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+// Name to use as the SNI host when connecting via TLS.
+func (o ProviderOutput) TlsServerName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.TlsServerName }).(pulumi.StringPtrOutput)
+}
+
+// Token to use to authenticate to Vault.
+func (o ProviderOutput) Token() pulumi.StringOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringOutput { return v.Token }).(pulumi.StringOutput)
+}
+
+// Token name to use for creating the Vault child token.
+func (o ProviderOutput) TokenName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.TokenName }).(pulumi.StringPtrOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderInput)(nil)).Elem(), &Provider{})
 	pulumi.RegisterOutputType(ProviderOutput{})

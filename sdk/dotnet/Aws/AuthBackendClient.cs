@@ -13,26 +13,25 @@ namespace Pulumi.Vault.Aws
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var exampleAuthBackend = new Vault.AuthBackend("exampleAuthBackend", new()
     ///     {
-    ///         var exampleAuthBackend = new Vault.AuthBackend("exampleAuthBackend", new Vault.AuthBackendArgs
-    ///         {
-    ///             Type = "aws",
-    ///         });
-    ///         var exampleAuthBackendClient = new Vault.Aws.AuthBackendClient("exampleAuthBackendClient", new Vault.Aws.AuthBackendClientArgs
-    ///         {
-    ///             Backend = exampleAuthBackend.Path,
-    ///             AccessKey = "INSERT_AWS_ACCESS_KEY",
-    ///             SecretKey = "INSERT_AWS_SECRET_KEY",
-    ///         });
-    ///     }
+    ///         Type = "aws",
+    ///     });
     /// 
-    /// }
+    ///     var exampleAuthBackendClient = new Vault.Aws.AuthBackendClient("exampleAuthBackendClient", new()
+    ///     {
+    ///         Backend = exampleAuthBackend.Path,
+    ///         AccessKey = "INSERT_AWS_ACCESS_KEY",
+    ///         SecretKey = "INSERT_AWS_SECRET_KEY",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -44,7 +43,7 @@ namespace Pulumi.Vault.Aws
     /// ```
     /// </summary>
     [VaultResourceType("vault:aws/authBackendClient:AuthBackendClient")]
-    public partial class AuthBackendClient : Pulumi.CustomResource
+    public partial class AuthBackendClient : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The AWS access key that Vault should use for the
@@ -147,7 +146,7 @@ namespace Pulumi.Vault.Aws
         }
     }
 
-    public sealed class AuthBackendClientArgs : Pulumi.ResourceArgs
+    public sealed class AuthBackendClientArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The AWS access key that Vault should use for the
@@ -209,9 +208,10 @@ namespace Pulumi.Vault.Aws
         public AuthBackendClientArgs()
         {
         }
+        public static new AuthBackendClientArgs Empty => new AuthBackendClientArgs();
     }
 
-    public sealed class AuthBackendClientState : Pulumi.ResourceArgs
+    public sealed class AuthBackendClientState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The AWS access key that Vault should use for the
@@ -273,5 +273,6 @@ namespace Pulumi.Vault.Aws
         public AuthBackendClientState()
         {
         }
+        public static new AuthBackendClientState Empty => new AuthBackendClientState();
     }
 }

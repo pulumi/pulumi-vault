@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Database.Inputs
 {
 
-    public sealed class SecretBackendConnectionElasticsearchGetArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendConnectionElasticsearchGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
@@ -76,5 +76,6 @@ namespace Pulumi.Vault.Database.Inputs
         public SecretBackendConnectionElasticsearchGetArgs()
         {
         }
+        public static new SecretBackendConnectionElasticsearchGetArgs Empty => new SecretBackendConnectionElasticsearchGetArgs();
     }
 }

@@ -19,60 +19,59 @@ namespace Pulumi.Vault.Aws
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var aws = new Vault.AuthBackend("aws", new()
     ///     {
-    ///         var aws = new Vault.AuthBackend("aws", new Vault.AuthBackendArgs
-    ///         {
-    ///             Type = "aws",
-    ///         });
-    ///         var example = new Vault.Aws.AuthBackendRole("example", new Vault.Aws.AuthBackendRoleArgs
-    ///         {
-    ///             Backend = aws.Path,
-    ///             Role = "test-role",
-    ///             AuthType = "iam",
-    ///             BoundAmiIds = 
-    ///             {
-    ///                 "ami-8c1be5f6",
-    ///             },
-    ///             BoundAccountIds = 
-    ///             {
-    ///                 "123456789012",
-    ///             },
-    ///             BoundVpcIds = 
-    ///             {
-    ///                 "vpc-b61106d4",
-    ///             },
-    ///             BoundSubnetIds = 
-    ///             {
-    ///                 "vpc-133128f1",
-    ///             },
-    ///             BoundIamRoleArns = 
-    ///             {
-    ///                 "arn:aws:iam::123456789012:role/MyRole",
-    ///             },
-    ///             BoundIamInstanceProfileArns = 
-    ///             {
-    ///                 "arn:aws:iam::123456789012:instance-profile/MyProfile",
-    ///             },
-    ///             InferredEntityType = "ec2_instance",
-    ///             InferredAwsRegion = "us-east-1",
-    ///             TokenTtl = 60,
-    ///             TokenMaxTtl = 120,
-    ///             TokenPolicies = 
-    ///             {
-    ///                 "default",
-    ///                 "dev",
-    ///                 "prod",
-    ///             },
-    ///         });
-    ///     }
+    ///         Type = "aws",
+    ///     });
     /// 
-    /// }
+    ///     var example = new Vault.Aws.AuthBackendRole("example", new()
+    ///     {
+    ///         Backend = aws.Path,
+    ///         Role = "test-role",
+    ///         AuthType = "iam",
+    ///         BoundAmiIds = new[]
+    ///         {
+    ///             "ami-8c1be5f6",
+    ///         },
+    ///         BoundAccountIds = new[]
+    ///         {
+    ///             "123456789012",
+    ///         },
+    ///         BoundVpcIds = new[]
+    ///         {
+    ///             "vpc-b61106d4",
+    ///         },
+    ///         BoundSubnetIds = new[]
+    ///         {
+    ///             "vpc-133128f1",
+    ///         },
+    ///         BoundIamRoleArns = new[]
+    ///         {
+    ///             "arn:aws:iam::123456789012:role/MyRole",
+    ///         },
+    ///         BoundIamInstanceProfileArns = new[]
+    ///         {
+    ///             "arn:aws:iam::123456789012:instance-profile/MyProfile",
+    ///         },
+    ///         InferredEntityType = "ec2_instance",
+    ///         InferredAwsRegion = "us-east-1",
+    ///         TokenTtl = 60,
+    ///         TokenMaxTtl = 120,
+    ///         TokenPolicies = new[]
+    ///         {
+    ///             "default",
+    ///             "dev",
+    ///             "prod",
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -84,7 +83,7 @@ namespace Pulumi.Vault.Aws
     /// ```
     /// </summary>
     [VaultResourceType("vault:aws/authBackendRole:AuthBackendRole")]
-    public partial class AuthBackendRole : Pulumi.CustomResource
+    public partial class AuthBackendRole : global::Pulumi.CustomResource
     {
         /// <summary>
         /// If set to `true`, allows migration of
@@ -366,7 +365,7 @@ namespace Pulumi.Vault.Aws
         }
     }
 
-    public sealed class AuthBackendRoleArgs : Pulumi.ResourceArgs
+    public sealed class AuthBackendRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// If set to `true`, allows migration of
@@ -667,9 +666,10 @@ namespace Pulumi.Vault.Aws
         public AuthBackendRoleArgs()
         {
         }
+        public static new AuthBackendRoleArgs Empty => new AuthBackendRoleArgs();
     }
 
-    public sealed class AuthBackendRoleState : Pulumi.ResourceArgs
+    public sealed class AuthBackendRoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// If set to `true`, allows migration of
@@ -976,5 +976,6 @@ namespace Pulumi.Vault.Aws
         public AuthBackendRoleState()
         {
         }
+        public static new AuthBackendRoleState Empty => new AuthBackendRoleState();
     }
 }

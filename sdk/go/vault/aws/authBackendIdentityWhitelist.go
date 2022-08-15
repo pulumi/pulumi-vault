@@ -21,29 +21,32 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/aws"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/aws"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		exampleAuthBackend, err := vault.NewAuthBackend(ctx, "exampleAuthBackend", &vault.AuthBackendArgs{
-// 			Type: pulumi.String("aws"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = aws.NewAuthBackendIdentityWhitelist(ctx, "exampleAuthBackendIdentityWhitelist", &aws.AuthBackendIdentityWhitelistArgs{
-// 			Backend:      exampleAuthBackend.Path,
-// 			SafetyBuffer: pulumi.Int(3600),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleAuthBackend, err := vault.NewAuthBackend(ctx, "exampleAuthBackend", &vault.AuthBackendArgs{
+//				Type: pulumi.String("aws"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = aws.NewAuthBackendIdentityWhitelist(ctx, "exampleAuthBackendIdentityWhitelist", &aws.AuthBackendIdentityWhitelistArgs{
+//				Backend:      exampleAuthBackend.Path,
+//				SafetyBuffer: pulumi.Int(3600),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -51,7 +54,9 @@ import (
 // AWS auth backend identity whitelists can be imported using `auth/`, the `backend` path, and `/config/tidy/identity-whitelist` e.g.
 //
 // ```sh
-//  $ pulumi import vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist example auth/aws/config/tidy/identity-whitelist
+//
+//	$ pulumi import vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist example auth/aws/config/tidy/identity-whitelist
+//
 // ```
 type AuthBackendIdentityWhitelist struct {
 	pulumi.CustomResourceState
@@ -174,7 +179,7 @@ func (i *AuthBackendIdentityWhitelist) ToAuthBackendIdentityWhitelistOutputWithC
 // AuthBackendIdentityWhitelistArrayInput is an input type that accepts AuthBackendIdentityWhitelistArray and AuthBackendIdentityWhitelistArrayOutput values.
 // You can construct a concrete instance of `AuthBackendIdentityWhitelistArrayInput` via:
 //
-//          AuthBackendIdentityWhitelistArray{ AuthBackendIdentityWhitelistArgs{...} }
+//	AuthBackendIdentityWhitelistArray{ AuthBackendIdentityWhitelistArgs{...} }
 type AuthBackendIdentityWhitelistArrayInput interface {
 	pulumi.Input
 
@@ -199,7 +204,7 @@ func (i AuthBackendIdentityWhitelistArray) ToAuthBackendIdentityWhitelistArrayOu
 // AuthBackendIdentityWhitelistMapInput is an input type that accepts AuthBackendIdentityWhitelistMap and AuthBackendIdentityWhitelistMapOutput values.
 // You can construct a concrete instance of `AuthBackendIdentityWhitelistMapInput` via:
 //
-//          AuthBackendIdentityWhitelistMap{ "key": AuthBackendIdentityWhitelistArgs{...} }
+//	AuthBackendIdentityWhitelistMap{ "key": AuthBackendIdentityWhitelistArgs{...} }
 type AuthBackendIdentityWhitelistMapInput interface {
 	pulumi.Input
 
@@ -233,6 +238,24 @@ func (o AuthBackendIdentityWhitelistOutput) ToAuthBackendIdentityWhitelistOutput
 
 func (o AuthBackendIdentityWhitelistOutput) ToAuthBackendIdentityWhitelistOutputWithContext(ctx context.Context) AuthBackendIdentityWhitelistOutput {
 	return o
+}
+
+// The path of the AWS backend being configured.
+func (o AuthBackendIdentityWhitelistOutput) Backend() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendIdentityWhitelist) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
+}
+
+// If set to true, disables the periodic
+// tidying of the identity-whitelist entries.
+func (o AuthBackendIdentityWhitelistOutput) DisablePeriodicTidy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AuthBackendIdentityWhitelist) pulumi.BoolPtrOutput { return v.DisablePeriodicTidy }).(pulumi.BoolPtrOutput)
+}
+
+// The amount of extra time, in minutes, that must
+// have passed beyond the roletag expiration, before it is removed from the
+// backend storage.
+func (o AuthBackendIdentityWhitelistOutput) SafetyBuffer() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendIdentityWhitelist) pulumi.IntPtrOutput { return v.SafetyBuffer }).(pulumi.IntPtrOutput)
 }
 
 type AuthBackendIdentityWhitelistArrayOutput struct{ *pulumi.OutputState }

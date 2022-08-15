@@ -13,32 +13,30 @@ namespace Pulumi.Vault.PkiSecret
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Vault.PkiSecret.SecretBackendIntermediateCertRequest("test", new()
     ///     {
-    ///         var test = new Vault.PkiSecret.SecretBackendIntermediateCertRequest("test", new Vault.PkiSecret.SecretBackendIntermediateCertRequestArgs
+    ///         Backend = vault_mount.Pki.Path,
+    ///         Type = "internal",
+    ///         CommonName = "app.my.domain",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
     ///         {
-    ///             Backend = vault_mount.Pki.Path,
-    ///             Type = "internal",
-    ///             CommonName = "app.my.domain",
-    ///         }, new CustomResourceOptions
-    ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 vault_mount.Pki,
-    ///             },
-    ///         });
-    ///     }
+    ///             vault_mount.Pki,
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// </summary>
     [VaultResourceType("vault:pkiSecret/secretBackendIntermediateCertRequest:SecretBackendIntermediateCertRequest")]
-    public partial class SecretBackendIntermediateCertRequest : Pulumi.CustomResource
+    public partial class SecretBackendIntermediateCertRequest : global::Pulumi.CustomResource
     {
         /// <summary>
         /// List of alternative names
@@ -216,7 +214,7 @@ namespace Pulumi.Vault.PkiSecret
         }
     }
 
-    public sealed class SecretBackendIntermediateCertRequestArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendIntermediateCertRequestArgs : global::Pulumi.ResourceArgs
     {
         [Input("altNames")]
         private InputList<string>? _altNames;
@@ -359,9 +357,10 @@ namespace Pulumi.Vault.PkiSecret
         public SecretBackendIntermediateCertRequestArgs()
         {
         }
+        public static new SecretBackendIntermediateCertRequestArgs Empty => new SecretBackendIntermediateCertRequestArgs();
     }
 
-    public sealed class SecretBackendIntermediateCertRequestState : Pulumi.ResourceArgs
+    public sealed class SecretBackendIntermediateCertRequestState : global::Pulumi.ResourceArgs
     {
         [Input("altNames")]
         private InputList<string>? _altNames;
@@ -522,5 +521,6 @@ namespace Pulumi.Vault.PkiSecret
         public SecretBackendIntermediateCertRequestState()
         {
         }
+        public static new SecretBackendIntermediateCertRequestState Empty => new SecretBackendIntermediateCertRequestState();
     }
 }

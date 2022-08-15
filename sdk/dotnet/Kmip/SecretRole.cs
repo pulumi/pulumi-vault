@@ -17,40 +17,40 @@ namespace Pulumi.Vault.Kmip
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var @default = new Vault.Kmip.SecretBackend("default", new()
     ///     {
-    ///         var @default = new Vault.Kmip.SecretBackend("default", new Vault.Kmip.SecretBackendArgs
-    ///         {
-    ///             Path = "kmip",
-    ///             Description = "Vault KMIP backend",
-    ///         });
-    ///         var dev = new Vault.Kmip.SecretScope("dev", new Vault.Kmip.SecretScopeArgs
-    ///         {
-    ///             Path = @default.Path,
-    ///             Scope = "dev",
-    ///             Force = true,
-    ///         });
-    ///         var admin = new Vault.Kmip.SecretRole("admin", new Vault.Kmip.SecretRoleArgs
-    ///         {
-    ///             Path = dev.Path,
-    ///             Scope = dev.Scope,
-    ///             Role = "admin",
-    ///             TlsClientKeyType = "ec",
-    ///             TlsClientKeyBits = 256,
-    ///             OperationActivate = true,
-    ///             OperationGet = true,
-    ///             OperationGetAttributes = true,
-    ///             OperationCreate = true,
-    ///             OperationDestroy = true,
-    ///         });
-    ///     }
+    ///         Path = "kmip",
+    ///         Description = "Vault KMIP backend",
+    ///     });
     /// 
-    /// }
+    ///     var dev = new Vault.Kmip.SecretScope("dev", new()
+    ///     {
+    ///         Path = @default.Path,
+    ///         Scope = "dev",
+    ///         Force = true,
+    ///     });
+    /// 
+    ///     var admin = new Vault.Kmip.SecretRole("admin", new()
+    ///     {
+    ///         Path = dev.Path,
+    ///         Scope = dev.Scope,
+    ///         Role = "admin",
+    ///         TlsClientKeyType = "ec",
+    ///         TlsClientKeyBits = 256,
+    ///         OperationActivate = true,
+    ///         OperationGet = true,
+    ///         OperationGetAttributes = true,
+    ///         OperationCreate = true,
+    ///         OperationDestroy = true,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -62,7 +62,7 @@ namespace Pulumi.Vault.Kmip
     /// ```
     /// </summary>
     [VaultResourceType("vault:kmip/secretRole:SecretRole")]
-    public partial class SecretRole : Pulumi.CustomResource
+    public partial class SecretRole : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Grant permission to use the KMIP Activate operation.
@@ -229,7 +229,7 @@ namespace Pulumi.Vault.Kmip
         }
     }
 
-    public sealed class SecretRoleArgs : Pulumi.ResourceArgs
+    public sealed class SecretRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Grant permission to use the KMIP Activate operation.
@@ -355,9 +355,10 @@ namespace Pulumi.Vault.Kmip
         public SecretRoleArgs()
         {
         }
+        public static new SecretRoleArgs Empty => new SecretRoleArgs();
     }
 
-    public sealed class SecretRoleState : Pulumi.ResourceArgs
+    public sealed class SecretRoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Grant permission to use the KMIP Activate operation.
@@ -483,5 +484,6 @@ namespace Pulumi.Vault.Kmip
         public SecretRoleState()
         {
         }
+        public static new SecretRoleState Empty => new SecretRoleState();
     }
 }

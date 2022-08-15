@@ -42,7 +42,7 @@ type AuthBackendTune struct {
 // AuthBackendTuneInput is an input type that accepts AuthBackendTuneArgs and AuthBackendTuneOutput values.
 // You can construct a concrete instance of `AuthBackendTuneInput` via:
 //
-//          AuthBackendTuneArgs{...}
+//	AuthBackendTuneArgs{...}
 type AuthBackendTuneInput interface {
 	pulumi.Input
 
@@ -102,11 +102,11 @@ func (i AuthBackendTuneArgs) ToAuthBackendTunePtrOutputWithContext(ctx context.C
 // AuthBackendTunePtrInput is an input type that accepts AuthBackendTuneArgs, AuthBackendTunePtr and AuthBackendTunePtrOutput values.
 // You can construct a concrete instance of `AuthBackendTunePtrInput` via:
 //
-//          AuthBackendTuneArgs{...}
+//	        AuthBackendTuneArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type AuthBackendTunePtrInput interface {
 	pulumi.Input
 
@@ -330,7 +330,7 @@ type ProviderAuthLogin struct {
 // ProviderAuthLoginInput is an input type that accepts ProviderAuthLoginArgs and ProviderAuthLoginOutput values.
 // You can construct a concrete instance of `ProviderAuthLoginInput` via:
 //
-//          ProviderAuthLoginArgs{...}
+//	ProviderAuthLoginArgs{...}
 type ProviderAuthLoginInput interface {
 	pulumi.Input
 
@@ -360,7 +360,7 @@ func (i ProviderAuthLoginArgs) ToProviderAuthLoginOutputWithContext(ctx context.
 // ProviderAuthLoginArrayInput is an input type that accepts ProviderAuthLoginArray and ProviderAuthLoginArrayOutput values.
 // You can construct a concrete instance of `ProviderAuthLoginArrayInput` via:
 //
-//          ProviderAuthLoginArray{ ProviderAuthLoginArgs{...} }
+//	ProviderAuthLoginArray{ ProviderAuthLoginArgs{...} }
 type ProviderAuthLoginArrayInput interface {
 	pulumi.Input
 
@@ -440,7 +440,7 @@ type ProviderClientAuth struct {
 // ProviderClientAuthInput is an input type that accepts ProviderClientAuthArgs and ProviderClientAuthOutput values.
 // You can construct a concrete instance of `ProviderClientAuthInput` via:
 //
-//          ProviderClientAuthArgs{...}
+//	ProviderClientAuthArgs{...}
 type ProviderClientAuthInput interface {
 	pulumi.Input
 
@@ -468,7 +468,7 @@ func (i ProviderClientAuthArgs) ToProviderClientAuthOutputWithContext(ctx contex
 // ProviderClientAuthArrayInput is an input type that accepts ProviderClientAuthArray and ProviderClientAuthArrayOutput values.
 // You can construct a concrete instance of `ProviderClientAuthArrayInput` via:
 //
-//          ProviderClientAuthArray{ ProviderClientAuthArgs{...} }
+//	ProviderClientAuthArray{ ProviderClientAuthArgs{...} }
 type ProviderClientAuthArrayInput interface {
 	pulumi.Input
 
@@ -540,7 +540,7 @@ type ProviderHeader struct {
 // ProviderHeaderInput is an input type that accepts ProviderHeaderArgs and ProviderHeaderOutput values.
 // You can construct a concrete instance of `ProviderHeaderInput` via:
 //
-//          ProviderHeaderArgs{...}
+//	ProviderHeaderArgs{...}
 type ProviderHeaderInput interface {
 	pulumi.Input
 
@@ -568,7 +568,7 @@ func (i ProviderHeaderArgs) ToProviderHeaderOutputWithContext(ctx context.Contex
 // ProviderHeaderArrayInput is an input type that accepts ProviderHeaderArray and ProviderHeaderArrayOutput values.
 // You can construct a concrete instance of `ProviderHeaderArrayInput` via:
 //
-//          ProviderHeaderArray{ ProviderHeaderArgs{...} }
+//	ProviderHeaderArray{ ProviderHeaderArgs{...} }
 type ProviderHeaderArrayInput interface {
 	pulumi.Input
 
@@ -654,7 +654,7 @@ type GetPolicyDocumentRule struct {
 // GetPolicyDocumentRuleInput is an input type that accepts GetPolicyDocumentRuleArgs and GetPolicyDocumentRuleOutput values.
 // You can construct a concrete instance of `GetPolicyDocumentRuleInput` via:
 //
-//          GetPolicyDocumentRuleArgs{...}
+//	GetPolicyDocumentRuleArgs{...}
 type GetPolicyDocumentRuleInput interface {
 	pulumi.Input
 
@@ -696,7 +696,7 @@ func (i GetPolicyDocumentRuleArgs) ToGetPolicyDocumentRuleOutputWithContext(ctx 
 // GetPolicyDocumentRuleArrayInput is an input type that accepts GetPolicyDocumentRuleArray and GetPolicyDocumentRuleArrayOutput values.
 // You can construct a concrete instance of `GetPolicyDocumentRuleArrayInput` via:
 //
-//          GetPolicyDocumentRuleArray{ GetPolicyDocumentRuleArgs{...} }
+//	GetPolicyDocumentRuleArray{ GetPolicyDocumentRuleArgs{...} }
 type GetPolicyDocumentRuleArrayInput interface {
 	pulumi.Input
 
@@ -802,7 +802,7 @@ type GetPolicyDocumentRuleAllowedParameter struct {
 // GetPolicyDocumentRuleAllowedParameterInput is an input type that accepts GetPolicyDocumentRuleAllowedParameterArgs and GetPolicyDocumentRuleAllowedParameterOutput values.
 // You can construct a concrete instance of `GetPolicyDocumentRuleAllowedParameterInput` via:
 //
-//          GetPolicyDocumentRuleAllowedParameterArgs{...}
+//	GetPolicyDocumentRuleAllowedParameterArgs{...}
 type GetPolicyDocumentRuleAllowedParameterInput interface {
 	pulumi.Input
 
@@ -832,7 +832,7 @@ func (i GetPolicyDocumentRuleAllowedParameterArgs) ToGetPolicyDocumentRuleAllowe
 // GetPolicyDocumentRuleAllowedParameterArrayInput is an input type that accepts GetPolicyDocumentRuleAllowedParameterArray and GetPolicyDocumentRuleAllowedParameterArrayOutput values.
 // You can construct a concrete instance of `GetPolicyDocumentRuleAllowedParameterArrayInput` via:
 //
-//          GetPolicyDocumentRuleAllowedParameterArray{ GetPolicyDocumentRuleAllowedParameterArgs{...} }
+//	GetPolicyDocumentRuleAllowedParameterArray{ GetPolicyDocumentRuleAllowedParameterArgs{...} }
 type GetPolicyDocumentRuleAllowedParameterArrayInput interface {
 	pulumi.Input
 
@@ -908,7 +908,7 @@ type GetPolicyDocumentRuleDeniedParameter struct {
 // GetPolicyDocumentRuleDeniedParameterInput is an input type that accepts GetPolicyDocumentRuleDeniedParameterArgs and GetPolicyDocumentRuleDeniedParameterOutput values.
 // You can construct a concrete instance of `GetPolicyDocumentRuleDeniedParameterInput` via:
 //
-//          GetPolicyDocumentRuleDeniedParameterArgs{...}
+//	GetPolicyDocumentRuleDeniedParameterArgs{...}
 type GetPolicyDocumentRuleDeniedParameterInput interface {
 	pulumi.Input
 
@@ -938,7 +938,7 @@ func (i GetPolicyDocumentRuleDeniedParameterArgs) ToGetPolicyDocumentRuleDeniedP
 // GetPolicyDocumentRuleDeniedParameterArrayInput is an input type that accepts GetPolicyDocumentRuleDeniedParameterArray and GetPolicyDocumentRuleDeniedParameterArrayOutput values.
 // You can construct a concrete instance of `GetPolicyDocumentRuleDeniedParameterArrayInput` via:
 //
-//          GetPolicyDocumentRuleDeniedParameterArray{ GetPolicyDocumentRuleDeniedParameterArgs{...} }
+//	GetPolicyDocumentRuleDeniedParameterArray{ GetPolicyDocumentRuleDeniedParameterArgs{...} }
 type GetPolicyDocumentRuleDeniedParameterArrayInput interface {
 	pulumi.Input
 

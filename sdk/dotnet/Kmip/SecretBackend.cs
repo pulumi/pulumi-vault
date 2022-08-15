@@ -17,31 +17,29 @@ namespace Pulumi.Vault.Kmip
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var @default = new Vault.Kmip.SecretBackend("default", new()
     ///     {
-    ///         var @default = new Vault.Kmip.SecretBackend("default", new Vault.Kmip.SecretBackendArgs
+    ///         DefaultTlsClientKeyBits = 4096,
+    ///         DefaultTlsClientKeyType = "rsa",
+    ///         DefaultTlsClientTtl = 86400,
+    ///         Description = "Vault KMIP backend",
+    ///         ListenAddrs = new[]
     ///         {
-    ///             DefaultTlsClientKeyBits = 4096,
-    ///             DefaultTlsClientKeyType = "rsa",
-    ///             DefaultTlsClientTtl = 86400,
-    ///             Description = "Vault KMIP backend",
-    ///             ListenAddrs = 
-    ///             {
-    ///                 "127.0.0.1:5696",
-    ///                 "127.0.0.1:8080",
-    ///             },
-    ///             Path = "kmip",
-    ///             TlsCaKeyBits = 4096,
-    ///             TlsCaKeyType = "rsa",
-    ///         });
-    ///     }
+    ///             "127.0.0.1:5696",
+    ///             "127.0.0.1:8080",
+    ///         },
+    ///         Path = "kmip",
+    ///         TlsCaKeyBits = 4096,
+    ///         TlsCaKeyType = "rsa",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -53,7 +51,7 @@ namespace Pulumi.Vault.Kmip
     /// ```
     /// </summary>
     [VaultResourceType("vault:kmip/secretBackend:SecretBackend")]
-    public partial class SecretBackend : Pulumi.CustomResource
+    public partial class SecretBackend : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Client certificate key bits, valid values depend on key type.
@@ -166,7 +164,7 @@ namespace Pulumi.Vault.Kmip
         }
     }
 
-    public sealed class SecretBackendArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Client certificate key bits, valid values depend on key type.
@@ -256,9 +254,10 @@ namespace Pulumi.Vault.Kmip
         public SecretBackendArgs()
         {
         }
+        public static new SecretBackendArgs Empty => new SecretBackendArgs();
     }
 
-    public sealed class SecretBackendState : Pulumi.ResourceArgs
+    public sealed class SecretBackendState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Client certificate key bits, valid values depend on key type.
@@ -348,5 +347,6 @@ namespace Pulumi.Vault.Kmip
         public SecretBackendState()
         {
         }
+        public static new SecretBackendState Empty => new SecretBackendState();
     }
 }

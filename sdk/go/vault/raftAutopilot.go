@@ -21,26 +21,29 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := vault.NewRaftAutopilot(ctx, "autopilot", &vault.RaftAutopilotArgs{
-// 			CleanupDeadServers:             pulumi.Bool(true),
-// 			DeadServerLastContactThreshold: pulumi.String("24h0m0s"),
-// 			LastContactThreshold:           pulumi.String("10s"),
-// 			MaxTrailingLogs:                pulumi.Int(1000),
-// 			MinQuorum:                      pulumi.Int(3),
-// 			ServerStabilizationTime:        pulumi.String("10s"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vault.NewRaftAutopilot(ctx, "autopilot", &vault.RaftAutopilotArgs{
+//				CleanupDeadServers:             pulumi.Bool(true),
+//				DeadServerLastContactThreshold: pulumi.String("24h0m0s"),
+//				LastContactThreshold:           pulumi.String("10s"),
+//				MaxTrailingLogs:                pulumi.Int(1000),
+//				MinQuorum:                      pulumi.Int(3),
+//				ServerStabilizationTime:        pulumi.String("10s"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type RaftAutopilot struct {
 	pulumi.CustomResourceState
@@ -218,7 +221,7 @@ func (i *RaftAutopilot) ToRaftAutopilotOutputWithContext(ctx context.Context) Ra
 // RaftAutopilotArrayInput is an input type that accepts RaftAutopilotArray and RaftAutopilotArrayOutput values.
 // You can construct a concrete instance of `RaftAutopilotArrayInput` via:
 //
-//          RaftAutopilotArray{ RaftAutopilotArgs{...} }
+//	RaftAutopilotArray{ RaftAutopilotArgs{...} }
 type RaftAutopilotArrayInput interface {
 	pulumi.Input
 
@@ -243,7 +246,7 @@ func (i RaftAutopilotArray) ToRaftAutopilotArrayOutputWithContext(ctx context.Co
 // RaftAutopilotMapInput is an input type that accepts RaftAutopilotMap and RaftAutopilotMapOutput values.
 // You can construct a concrete instance of `RaftAutopilotMapInput` via:
 //
-//          RaftAutopilotMap{ "key": RaftAutopilotArgs{...} }
+//	RaftAutopilotMap{ "key": RaftAutopilotArgs{...} }
 type RaftAutopilotMapInput interface {
 	pulumi.Input
 
@@ -277,6 +280,44 @@ func (o RaftAutopilotOutput) ToRaftAutopilotOutput() RaftAutopilotOutput {
 
 func (o RaftAutopilotOutput) ToRaftAutopilotOutputWithContext(ctx context.Context) RaftAutopilotOutput {
 	return o
+}
+
+// Specifies whether to remove dead server nodes
+// periodically or when a new server joins. This requires that `min-quorum` is also set.
+func (o RaftAutopilotOutput) CleanupDeadServers() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RaftAutopilot) pulumi.BoolPtrOutput { return v.CleanupDeadServers }).(pulumi.BoolPtrOutput)
+}
+
+// Limit the amount of time a
+// server can go without leader contact before being considered failed. This only takes
+// effect when `cleanupDeadServers` is set.
+func (o RaftAutopilotOutput) DeadServerLastContactThreshold() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RaftAutopilot) pulumi.StringPtrOutput { return v.DeadServerLastContactThreshold }).(pulumi.StringPtrOutput)
+}
+
+// Limit the amount of time a server can go
+// without leader contact before being considered unhealthy.
+func (o RaftAutopilotOutput) LastContactThreshold() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RaftAutopilot) pulumi.StringPtrOutput { return v.LastContactThreshold }).(pulumi.StringPtrOutput)
+}
+
+// Maximum number of log entries in the Raft log
+// that a server can be behind its leader before being considered unhealthy.
+func (o RaftAutopilotOutput) MaxTrailingLogs() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RaftAutopilot) pulumi.IntPtrOutput { return v.MaxTrailingLogs }).(pulumi.IntPtrOutput)
+}
+
+// Minimum number of servers allowed in a cluster before
+// autopilot can prune dead servers. This should at least be 3. Applicable only for
+// voting nodes.
+func (o RaftAutopilotOutput) MinQuorum() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RaftAutopilot) pulumi.IntPtrOutput { return v.MinQuorum }).(pulumi.IntPtrOutput)
+}
+
+// Minimum amount of time a server must be
+// stable in the 'healthy' state before being added to the cluster.
+func (o RaftAutopilotOutput) ServerStabilizationTime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RaftAutopilot) pulumi.StringPtrOutput { return v.ServerStabilizationTime }).(pulumi.StringPtrOutput)
 }
 
 type RaftAutopilotArrayOutput struct{ *pulumi.OutputState }

@@ -13,24 +13,22 @@ namespace Pulumi.Vault
     /// ## Example Usage
     /// ### Local Storage
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var localBackups = new Vault.RaftSnapshotAgentConfig("localBackups", new()
     ///     {
-    ///         var localBackups = new Vault.RaftSnapshotAgentConfig("localBackups", new Vault.RaftSnapshotAgentConfigArgs
-    ///         {
-    ///             IntervalSeconds = 86400,
-    ///             LocalMaxSpace = 10000000,
-    ///             PathPrefix = "/opt/vault/snapshots/",
-    ///             Retain = 7,
-    ///             StorageType = "local",
-    ///         });
-    ///     }
+    ///         IntervalSeconds = 86400,
+    ///         LocalMaxSpace = 10000000,
+    ///         PathPrefix = "/opt/vault/snapshots/",
+    ///         Retain = 7,
+    ///         StorageType = "local",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -42,7 +40,7 @@ namespace Pulumi.Vault
     /// ```
     /// </summary>
     [VaultResourceType("vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig")]
-    public partial class RaftSnapshotAgentConfig : Pulumi.CustomResource
+    public partial class RaftSnapshotAgentConfig : global::Pulumi.CustomResource
     {
         /// <summary>
         /// AWS access key ID.
@@ -271,7 +269,7 @@ namespace Pulumi.Vault
         }
     }
 
-    public sealed class RaftSnapshotAgentConfigArgs : Pulumi.ResourceArgs
+    public sealed class RaftSnapshotAgentConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// AWS access key ID.
@@ -459,9 +457,10 @@ namespace Pulumi.Vault
         public RaftSnapshotAgentConfigArgs()
         {
         }
+        public static new RaftSnapshotAgentConfigArgs Empty => new RaftSnapshotAgentConfigArgs();
     }
 
-    public sealed class RaftSnapshotAgentConfigState : Pulumi.ResourceArgs
+    public sealed class RaftSnapshotAgentConfigState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// AWS access key ID.
@@ -649,5 +648,6 @@ namespace Pulumi.Vault
         public RaftSnapshotAgentConfigState()
         {
         }
+        public static new RaftSnapshotAgentConfigState Empty => new RaftSnapshotAgentConfigState();
     }
 }

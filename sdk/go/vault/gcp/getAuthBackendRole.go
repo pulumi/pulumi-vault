@@ -18,23 +18,26 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/gcp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/gcp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		role, err := gcp.LookupAuthBackendRole(ctx, &gcp.LookupAuthBackendRoleArgs{
-// 			Backend:  pulumi.StringRef("my-gcp-backend"),
-// 			RoleName: "my-role",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		ctx.Export("role-id", role.RoleId)
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			role, err := gcp.LookupAuthBackendRole(ctx, &gcp.LookupAuthBackendRoleArgs{
+//				Backend:  pulumi.StringRef("my-gcp-backend"),
+//				RoleName: "my-role",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("role-id", role.RoleId)
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupAuthBackendRole(ctx *pulumi.Context, args *LookupAuthBackendRoleArgs, opts ...pulumi.InvokeOption) (*LookupAuthBackendRoleResult, error) {
 	var rv LookupAuthBackendRoleResult

@@ -16,7 +16,7 @@ namespace Pulumi.Vault
     /// [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
     /// </summary>
     [VaultResourceType("pulumi:providers:vault")]
-    public partial class Provider : Pulumi.ProviderResource
+    public partial class Provider : global::Pulumi.ProviderResource
     {
         /// <summary>
         /// If true, adds the value of the `address` argument to the Terraform process environment.
@@ -92,7 +92,7 @@ namespace Pulumi.Vault
         }
     }
 
-    public sealed class ProviderArgs : Pulumi.ResourceArgs
+    public sealed class ProviderArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// If true, adds the value of the `address` argument to the Terraform process environment.
@@ -214,5 +214,6 @@ namespace Pulumi.Vault
             MaxRetries = Utilities.GetEnvInt32("VAULT_MAX_RETRIES") ?? 2;
             SkipTlsVerify = Utilities.GetEnvBoolean("VAULT_SKIP_VERIFY");
         }
+        public static new ProviderArgs Empty => new ProviderArgs();
     }
 }

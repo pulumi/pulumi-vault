@@ -14,52 +14,48 @@ namespace Pulumi.Vault.Azure
     /// ### *Vault-1.9 And Above*
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var azure = new Vault.Azure.Backend("azure", new()
     ///     {
-    ///         var azure = new Vault.Azure.Backend("azure", new Vault.Azure.BackendArgs
-    ///         {
-    ///             ClientId = "11111111-2222-3333-4444-333333333333",
-    ///             ClientSecret = "12345678901234567890",
-    ///             Environment = "AzurePublicCloud",
-    ///             SubscriptionId = "11111111-2222-3333-4444-111111111111",
-    ///             TenantId = "11111111-2222-3333-4444-222222222222",
-    ///             UseMicrosoftGraphApi = true,
-    ///         });
-    ///     }
+    ///         ClientId = "11111111-2222-3333-4444-333333333333",
+    ///         ClientSecret = "12345678901234567890",
+    ///         Environment = "AzurePublicCloud",
+    ///         SubscriptionId = "11111111-2222-3333-4444-111111111111",
+    ///         TenantId = "11111111-2222-3333-4444-222222222222",
+    ///         UseMicrosoftGraphApi = true,
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// ### *Vault-1.8 And Below*
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var azure = new Vault.Azure.Backend("azure", new()
     ///     {
-    ///         var azure = new Vault.Azure.Backend("azure", new Vault.Azure.BackendArgs
-    ///         {
-    ///             ClientId = "11111111-2222-3333-4444-333333333333",
-    ///             ClientSecret = "12345678901234567890",
-    ///             Environment = "AzurePublicCloud",
-    ///             SubscriptionId = "11111111-2222-3333-4444-111111111111",
-    ///             TenantId = "11111111-2222-3333-4444-222222222222",
-    ///             UseMicrosoftGraphApi = false,
-    ///         });
-    ///     }
+    ///         ClientId = "11111111-2222-3333-4444-333333333333",
+    ///         ClientSecret = "12345678901234567890",
+    ///         Environment = "AzurePublicCloud",
+    ///         SubscriptionId = "11111111-2222-3333-4444-111111111111",
+    ///         TenantId = "11111111-2222-3333-4444-222222222222",
+    ///         UseMicrosoftGraphApi = false,
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// </summary>
     [VaultResourceType("vault:azure/backend:Backend")]
-    public partial class Backend : Pulumi.CustomResource
+    public partial class Backend : global::Pulumi.CustomResource
     {
         /// <summary>
         /// - The OAuth2 client id to connect to Azure.
@@ -154,7 +150,7 @@ namespace Pulumi.Vault.Azure
         }
     }
 
-    public sealed class BackendArgs : Pulumi.ResourceArgs
+    public sealed class BackendArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// - The OAuth2 client id to connect to Azure.
@@ -208,9 +204,10 @@ namespace Pulumi.Vault.Azure
         public BackendArgs()
         {
         }
+        public static new BackendArgs Empty => new BackendArgs();
     }
 
-    public sealed class BackendState : Pulumi.ResourceArgs
+    public sealed class BackendState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// - The OAuth2 client id to connect to Azure.
@@ -264,5 +261,6 @@ namespace Pulumi.Vault.Azure
         public BackendState()
         {
         }
+        public static new BackendState Empty => new BackendState();
     }
 }

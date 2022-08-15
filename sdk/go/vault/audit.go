@@ -18,24 +18,27 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := vault.NewAudit(ctx, "test", &vault.AuditArgs{
-// 			Options: pulumi.StringMap{
-// 				"file_path": pulumi.String("C:/temp/audit.txt"),
-// 			},
-// 			Type: pulumi.String("file"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vault.NewAudit(ctx, "test", &vault.AuditArgs{
+//				Options: pulumi.StringMap{
+//					"file_path": pulumi.String("C:/temp/audit.txt"),
+//				},
+//				Type: pulumi.String("file"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ### Socket Audit Device)
 //
@@ -43,28 +46,31 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := vault.NewAudit(ctx, "test", &vault.AuditArgs{
-// 			Local: pulumi.Bool(false),
-// 			Options: pulumi.StringMap{
-// 				"address":     pulumi.String("127.0.0.1:8000"),
-// 				"description": pulumi.String("application x socket"),
-// 				"socket_type": pulumi.String("tcp"),
-// 			},
-// 			Path: pulumi.String("app_socket"),
-// 			Type: pulumi.String("socket"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vault.NewAudit(ctx, "test", &vault.AuditArgs{
+//				Local: pulumi.Bool(false),
+//				Options: pulumi.StringMap{
+//					"address":     pulumi.String("127.0.0.1:8000"),
+//					"description": pulumi.String("application x socket"),
+//					"socket_type": pulumi.String("tcp"),
+//				},
+//				Path: pulumi.String("app_socket"),
+//				Type: pulumi.String("socket"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -72,7 +78,9 @@ import (
 // Audit devices can be imported using the `path`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:index/audit:Audit test syslog
+//
+//	$ pulumi import vault:index/audit:Audit test syslog
+//
 // ```
 type Audit struct {
 	pulumi.CustomResourceState
@@ -206,7 +214,7 @@ func (i *Audit) ToAuditOutputWithContext(ctx context.Context) AuditOutput {
 // AuditArrayInput is an input type that accepts AuditArray and AuditArrayOutput values.
 // You can construct a concrete instance of `AuditArrayInput` via:
 //
-//          AuditArray{ AuditArgs{...} }
+//	AuditArray{ AuditArgs{...} }
 type AuditArrayInput interface {
 	pulumi.Input
 
@@ -231,7 +239,7 @@ func (i AuditArray) ToAuditArrayOutputWithContext(ctx context.Context) AuditArra
 // AuditMapInput is an input type that accepts AuditMap and AuditMapOutput values.
 // You can construct a concrete instance of `AuditMapInput` via:
 //
-//          AuditMap{ "key": AuditArgs{...} }
+//	AuditMap{ "key": AuditArgs{...} }
 type AuditMapInput interface {
 	pulumi.Input
 
@@ -265,6 +273,31 @@ func (o AuditOutput) ToAuditOutput() AuditOutput {
 
 func (o AuditOutput) ToAuditOutputWithContext(ctx context.Context) AuditOutput {
 	return o
+}
+
+// Human-friendly description of the audit device.
+func (o AuditOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Audit) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
+func (o AuditOutput) Local() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Audit) pulumi.BoolPtrOutput { return v.Local }).(pulumi.BoolPtrOutput)
+}
+
+// Configuration options to pass to the audit device itself.
+func (o AuditOutput) Options() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Audit) pulumi.StringMapOutput { return v.Options }).(pulumi.StringMapOutput)
+}
+
+// The path to mount the audit device. This defaults to the type.
+func (o AuditOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v *Audit) pulumi.StringOutput { return v.Path }).(pulumi.StringOutput)
+}
+
+// Type of the audit device, such as 'file'.
+func (o AuditOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *Audit) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
 type AuditArrayOutput struct{ *pulumi.OutputState }

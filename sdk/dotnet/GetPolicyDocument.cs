@@ -19,39 +19,38 @@ namespace Pulumi.Vault
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Vault = Pulumi.Vault;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var examplePolicyDocument = Vault.GetPolicyDocument.Invoke(new()
         ///     {
-        ///         var examplePolicyDocument = Output.Create(Vault.GetPolicyDocument.InvokeAsync(new Vault.GetPolicyDocumentArgs
+        ///         Rules = new[]
         ///         {
-        ///             Rules = 
+        ///             new Vault.Inputs.GetPolicyDocumentRuleInputArgs
         ///             {
-        ///                 new Vault.Inputs.GetPolicyDocumentRuleArgs
+        ///                 Path = "secret/*",
+        ///                 Capabilities = new[]
         ///                 {
-        ///                     Path = "secret/*",
-        ///                     Capabilities = 
-        ///                     {
-        ///                         "create",
-        ///                         "read",
-        ///                         "update",
-        ///                         "delete",
-        ///                         "list",
-        ///                     },
-        ///                     Description = "allow all on secrets",
+        ///                     "create",
+        ///                     "read",
+        ///                     "update",
+        ///                     "delete",
+        ///                     "list",
         ///                 },
+        ///                 Description = "allow all on secrets",
         ///             },
-        ///         }));
-        ///         var examplePolicy = new Vault.Policy("examplePolicy", new Vault.PolicyArgs
-        ///         {
-        ///             Policy = examplePolicyDocument.Apply(examplePolicyDocument =&gt; examplePolicyDocument.Hcl),
-        ///         });
-        ///     }
+        ///         },
+        ///     });
         /// 
-        /// }
+        ///     var examplePolicy = new Vault.Policy("examplePolicy", new()
+        ///     {
+        ///         PolicyContents = examplePolicyDocument.Apply(getPolicyDocumentResult =&gt; getPolicyDocumentResult.Hcl),
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -67,39 +66,38 @@ namespace Pulumi.Vault
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Vault = Pulumi.Vault;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var examplePolicyDocument = Vault.GetPolicyDocument.Invoke(new()
         ///     {
-        ///         var examplePolicyDocument = Output.Create(Vault.GetPolicyDocument.InvokeAsync(new Vault.GetPolicyDocumentArgs
+        ///         Rules = new[]
         ///         {
-        ///             Rules = 
+        ///             new Vault.Inputs.GetPolicyDocumentRuleInputArgs
         ///             {
-        ///                 new Vault.Inputs.GetPolicyDocumentRuleArgs
+        ///                 Path = "secret/*",
+        ///                 Capabilities = new[]
         ///                 {
-        ///                     Path = "secret/*",
-        ///                     Capabilities = 
-        ///                     {
-        ///                         "create",
-        ///                         "read",
-        ///                         "update",
-        ///                         "delete",
-        ///                         "list",
-        ///                     },
-        ///                     Description = "allow all on secrets",
+        ///                     "create",
+        ///                     "read",
+        ///                     "update",
+        ///                     "delete",
+        ///                     "list",
         ///                 },
+        ///                 Description = "allow all on secrets",
         ///             },
-        ///         }));
-        ///         var examplePolicy = new Vault.Policy("examplePolicy", new Vault.PolicyArgs
-        ///         {
-        ///             Policy = examplePolicyDocument.Apply(examplePolicyDocument =&gt; examplePolicyDocument.Hcl),
-        ///         });
-        ///     }
+        ///         },
+        ///     });
         /// 
-        /// }
+        ///     var examplePolicy = new Vault.Policy("examplePolicy", new()
+        ///     {
+        ///         PolicyContents = examplePolicyDocument.Apply(getPolicyDocumentResult =&gt; getPolicyDocumentResult.Hcl),
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -109,7 +107,7 @@ namespace Pulumi.Vault
     }
 
 
-    public sealed class GetPolicyDocumentArgs : Pulumi.InvokeArgs
+    public sealed class GetPolicyDocumentArgs : global::Pulumi.InvokeArgs
     {
         [Input("rules")]
         private List<Inputs.GetPolicyDocumentRuleArgs>? _rules;
@@ -122,9 +120,10 @@ namespace Pulumi.Vault
         public GetPolicyDocumentArgs()
         {
         }
+        public static new GetPolicyDocumentArgs Empty => new GetPolicyDocumentArgs();
     }
 
-    public sealed class GetPolicyDocumentInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetPolicyDocumentInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("rules")]
         private InputList<Inputs.GetPolicyDocumentRuleInputArgs>? _rules;
@@ -137,6 +136,7 @@ namespace Pulumi.Vault
         public GetPolicyDocumentInvokeArgs()
         {
         }
+        public static new GetPolicyDocumentInvokeArgs Empty => new GetPolicyDocumentInvokeArgs();
     }
 
 

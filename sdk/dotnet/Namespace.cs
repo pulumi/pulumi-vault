@@ -17,20 +17,18 @@ namespace Pulumi.Vault
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var ns1 = new Vault.Namespace("ns1", new()
     ///     {
-    ///         var ns1 = new Vault.Namespace("ns1", new Vault.NamespaceArgs
-    ///         {
-    ///             Path = "ns1",
-    ///         });
-    ///     }
+    ///         Path = "ns1",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -70,7 +68,7 @@ namespace Pulumi.Vault
     ///  = "example2" }
     /// </summary>
     [VaultResourceType("vault:index/namespace:Namespace")]
-    public partial class Namespace : Pulumi.CustomResource
+    public partial class Namespace : global::Pulumi.CustomResource
     {
         /// <summary>
         /// ID of the namepsace.
@@ -128,7 +126,7 @@ namespace Pulumi.Vault
         }
     }
 
-    public sealed class NamespaceArgs : Pulumi.ResourceArgs
+    public sealed class NamespaceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The path of the namespace. Must not have a trailing `/`
@@ -139,9 +137,10 @@ namespace Pulumi.Vault
         public NamespaceArgs()
         {
         }
+        public static new NamespaceArgs Empty => new NamespaceArgs();
     }
 
-    public sealed class NamespaceState : Pulumi.ResourceArgs
+    public sealed class NamespaceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// ID of the namepsace.
@@ -158,5 +157,6 @@ namespace Pulumi.Vault
         public NamespaceState()
         {
         }
+        public static new NamespaceState Empty => new NamespaceState();
     }
 }

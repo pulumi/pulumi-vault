@@ -18,29 +18,27 @@ namespace Pulumi.Vault
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var autopilot = new Vault.RaftAutopilot("autopilot", new()
     ///     {
-    ///         var autopilot = new Vault.RaftAutopilot("autopilot", new Vault.RaftAutopilotArgs
-    ///         {
-    ///             CleanupDeadServers = true,
-    ///             DeadServerLastContactThreshold = "24h0m0s",
-    ///             LastContactThreshold = "10s",
-    ///             MaxTrailingLogs = 1000,
-    ///             MinQuorum = 3,
-    ///             ServerStabilizationTime = "10s",
-    ///         });
-    ///     }
+    ///         CleanupDeadServers = true,
+    ///         DeadServerLastContactThreshold = "24h0m0s",
+    ///         LastContactThreshold = "10s",
+    ///         MaxTrailingLogs = 1000,
+    ///         MinQuorum = 3,
+    ///         ServerStabilizationTime = "10s",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// </summary>
     [VaultResourceType("vault:index/raftAutopilot:RaftAutopilot")]
-    public partial class RaftAutopilot : Pulumi.CustomResource
+    public partial class RaftAutopilot : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Specifies whether to remove dead server nodes
@@ -130,7 +128,7 @@ namespace Pulumi.Vault
         }
     }
 
-    public sealed class RaftAutopilotArgs : Pulumi.ResourceArgs
+    public sealed class RaftAutopilotArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Specifies whether to remove dead server nodes
@@ -179,9 +177,10 @@ namespace Pulumi.Vault
         public RaftAutopilotArgs()
         {
         }
+        public static new RaftAutopilotArgs Empty => new RaftAutopilotArgs();
     }
 
-    public sealed class RaftAutopilotState : Pulumi.ResourceArgs
+    public sealed class RaftAutopilotState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Specifies whether to remove dead server nodes
@@ -230,5 +229,6 @@ namespace Pulumi.Vault
         public RaftAutopilotState()
         {
         }
+        public static new RaftAutopilotState Empty => new RaftAutopilotState();
     }
 }

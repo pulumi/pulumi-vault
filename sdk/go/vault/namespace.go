@@ -21,58 +21,65 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := vault.NewNamespace(ctx, "ns1", &vault.NamespaceArgs{
-// 			Path: pulumi.String("ns1"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vault.NewNamespace(ctx, "ns1", &vault.NamespaceArgs{
+//				Path: pulumi.String("ns1"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
-// Namespaces can be imported using its `name` as accessor id
+// # Namespaces can be imported using its `name` as accessor id
 //
 // ```sh
-//  $ pulumi import vault:index/namespace:Namespace example <name>
+//
+//	$ pulumi import vault:index/namespace:Namespace example <name>
+//
 // ```
 //
-//  If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path. provider "vault" {
+//	If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path. provider "vault" {
 //
 // # Configuration options
 //
-//  namespace = "example"
+//	namespace = "example"
 //
-//  alias
+//	alias
 //
-//  = "example" } resource vault_namespace "example2" {
+//	= "example" } resource vault_namespace "example2" {
 //
-//  provider = vault.example }
+//	provider = vault.example }
 //
 // ```sh
-//  $ pulumi import vault:index/namespace:Namespace example2 example2
+//
+//	$ pulumi import vault:index/namespace:Namespace example2 example2
+//
 // ```
 //
-//  $ terraform state show vault_namespace.example2 # vault_namespace.example2 resource "vault_namespace" "example2" {
+//	$ terraform state show vault_namespace.example2 # vault_namespace.example2 resource "vault_namespace" "example2" {
 //
-//  id
+//	id
 //
-//  = "example/example2/"
+//	= "example/example2/"
 //
-//  namespace_id = <known after import>
+//	namespace_id = <known after import>
 //
-//  path
+//	path
 //
-//  = "example2" }
+//	= "example2" }
 type Namespace struct {
 	pulumi.CustomResourceState
 
@@ -168,7 +175,7 @@ func (i *Namespace) ToNamespaceOutputWithContext(ctx context.Context) NamespaceO
 // NamespaceArrayInput is an input type that accepts NamespaceArray and NamespaceArrayOutput values.
 // You can construct a concrete instance of `NamespaceArrayInput` via:
 //
-//          NamespaceArray{ NamespaceArgs{...} }
+//	NamespaceArray{ NamespaceArgs{...} }
 type NamespaceArrayInput interface {
 	pulumi.Input
 
@@ -193,7 +200,7 @@ func (i NamespaceArray) ToNamespaceArrayOutputWithContext(ctx context.Context) N
 // NamespaceMapInput is an input type that accepts NamespaceMap and NamespaceMapOutput values.
 // You can construct a concrete instance of `NamespaceMapInput` via:
 //
-//          NamespaceMap{ "key": NamespaceArgs{...} }
+//	NamespaceMap{ "key": NamespaceArgs{...} }
 type NamespaceMapInput interface {
 	pulumi.Input
 
@@ -227,6 +234,16 @@ func (o NamespaceOutput) ToNamespaceOutput() NamespaceOutput {
 
 func (o NamespaceOutput) ToNamespaceOutputWithContext(ctx context.Context) NamespaceOutput {
 	return o
+}
+
+// ID of the namepsace.
+func (o NamespaceOutput) NamespaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Namespace) pulumi.StringOutput { return v.NamespaceId }).(pulumi.StringOutput)
+}
+
+// The path of the namespace. Must not have a trailing `/`
+func (o NamespaceOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v *Namespace) pulumi.StringOutput { return v.Path }).(pulumi.StringOutput)
 }
 
 type NamespaceArrayOutput struct{ *pulumi.OutputState }

@@ -19,81 +19,84 @@ import (
 // package main
 //
 // import (
-// 	"encoding/json"
 //
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"encoding/json"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		testOidcKey, err := identity.NewOidcKey(ctx, "testOidcKey", &identity.OidcKeyArgs{
-// 			AllowedClientIds: pulumi.StringArray{
-// 				pulumi.String("*"),
-// 			},
-// 			RotationPeriod:  pulumi.Int(3600),
-// 			VerificationTtl: pulumi.Int(3600),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		testOidcAssignment, err := identity.NewOidcAssignment(ctx, "testOidcAssignment", &identity.OidcAssignmentArgs{
-// 			EntityIds: pulumi.StringArray{
-// 				pulumi.String("fake-ascbascas-2231a-sdfaa"),
-// 			},
-// 			GroupIds: pulumi.StringArray{
-// 				pulumi.String("fake-sajkdsad-32414-sfsada"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		testOidcClient, err := identity.NewOidcClient(ctx, "testOidcClient", &identity.OidcClientArgs{
-// 			Key: testOidcKey.Name,
-// 			RedirectUris: pulumi.StringArray{
-// 				pulumi.String("http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback"),
-// 				pulumi.String("http://127.0.0.1:8251/callback"),
-// 				pulumi.String("http://127.0.0.1:8080/callback"),
-// 			},
-// 			Assignments: pulumi.StringArray{
-// 				testOidcAssignment.Name,
-// 			},
-// 			IdTokenTtl:     pulumi.Int(2400),
-// 			AccessTokenTtl: pulumi.Int(7200),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		tmpJSON0, err := json.Marshal(map[string]interface{}{
-// 			"groups": "{{identity.entity.groups.names}}",
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		json0 := string(tmpJSON0)
-// 		testOidcScope, err := identity.NewOidcScope(ctx, "testOidcScope", &identity.OidcScopeArgs{
-// 			Template:    pulumi.String(json0),
-// 			Description: pulumi.String("Groups scope."),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = identity.NewOidcProvider(ctx, "testOidcProvider", &identity.OidcProviderArgs{
-// 			HttpsEnabled: pulumi.Bool(false),
-// 			IssuerHost:   pulumi.String("127.0.0.1:8200"),
-// 			AllowedClientIds: pulumi.StringArray{
-// 				testOidcClient.ClientId,
-// 			},
-// 			ScopesSupporteds: pulumi.StringArray{
-// 				testOidcScope.Name,
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testOidcKey, err := identity.NewOidcKey(ctx, "testOidcKey", &identity.OidcKeyArgs{
+//				AllowedClientIds: pulumi.StringArray{
+//					pulumi.String("*"),
+//				},
+//				RotationPeriod:  pulumi.Int(3600),
+//				VerificationTtl: pulumi.Int(3600),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testOidcAssignment, err := identity.NewOidcAssignment(ctx, "testOidcAssignment", &identity.OidcAssignmentArgs{
+//				EntityIds: pulumi.StringArray{
+//					pulumi.String("fake-ascbascas-2231a-sdfaa"),
+//				},
+//				GroupIds: pulumi.StringArray{
+//					pulumi.String("fake-sajkdsad-32414-sfsada"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testOidcClient, err := identity.NewOidcClient(ctx, "testOidcClient", &identity.OidcClientArgs{
+//				Key: testOidcKey.Name,
+//				RedirectUris: pulumi.StringArray{
+//					pulumi.String("http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback"),
+//					pulumi.String("http://127.0.0.1:8251/callback"),
+//					pulumi.String("http://127.0.0.1:8080/callback"),
+//				},
+//				Assignments: pulumi.StringArray{
+//					testOidcAssignment.Name,
+//				},
+//				IdTokenTtl:     pulumi.Int(2400),
+//				AccessTokenTtl: pulumi.Int(7200),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"groups": "{{identity.entity.groups.names}}",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			testOidcScope, err := identity.NewOidcScope(ctx, "testOidcScope", &identity.OidcScopeArgs{
+//				Template:    pulumi.String(json0),
+//				Description: pulumi.String("Groups scope."),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = identity.NewOidcProvider(ctx, "testOidcProvider", &identity.OidcProviderArgs{
+//				HttpsEnabled: pulumi.Bool(false),
+//				IssuerHost:   pulumi.String("127.0.0.1:8200"),
+//				AllowedClientIds: pulumi.StringArray{
+//					testOidcClient.ClientId,
+//				},
+//				ScopesSupporteds: pulumi.StringArray{
+//					testOidcScope.Name,
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -101,7 +104,9 @@ import (
 // OIDC Providers can be imported using the `name`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:identity/oidcProvider:OidcProvider test my-provider
+//
+//	$ pulumi import vault:identity/oidcProvider:OidcProvider test my-provider
+//
 // ```
 type OidcProvider struct {
 	pulumi.CustomResourceState
@@ -246,7 +251,7 @@ func (i *OidcProvider) ToOidcProviderOutputWithContext(ctx context.Context) Oidc
 // OidcProviderArrayInput is an input type that accepts OidcProviderArray and OidcProviderArrayOutput values.
 // You can construct a concrete instance of `OidcProviderArrayInput` via:
 //
-//          OidcProviderArray{ OidcProviderArgs{...} }
+//	OidcProviderArray{ OidcProviderArgs{...} }
 type OidcProviderArrayInput interface {
 	pulumi.Input
 
@@ -271,7 +276,7 @@ func (i OidcProviderArray) ToOidcProviderArrayOutputWithContext(ctx context.Cont
 // OidcProviderMapInput is an input type that accepts OidcProviderMap and OidcProviderMapOutput values.
 // You can construct a concrete instance of `OidcProviderMapInput` via:
 //
-//          OidcProviderMap{ "key": OidcProviderArgs{...} }
+//	OidcProviderMap{ "key": OidcProviderArgs{...} }
 type OidcProviderMapInput interface {
 	pulumi.Input
 
@@ -305,6 +310,39 @@ func (o OidcProviderOutput) ToOidcProviderOutput() OidcProviderOutput {
 
 func (o OidcProviderOutput) ToOidcProviderOutputWithContext(ctx context.Context) OidcProviderOutput {
 	return o
+}
+
+// The client IDs that are permitted to use the provider.
+// If empty, no clients are allowed. If `*`, all clients are allowed.
+func (o OidcProviderOutput) AllowedClientIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *OidcProvider) pulumi.StringArrayOutput { return v.AllowedClientIds }).(pulumi.StringArrayOutput)
+}
+
+// Set to true if the issuer endpoint uses HTTPS.
+func (o OidcProviderOutput) HttpsEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *OidcProvider) pulumi.BoolPtrOutput { return v.HttpsEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// Specifies what will be used as the `scheme://host:port`
+// component for the `iss` claim of ID tokens. This value is computed using the
+// `issuerHost` and `httpsEnabled` fields.
+func (o OidcProviderOutput) Issuer() pulumi.StringOutput {
+	return o.ApplyT(func(v *OidcProvider) pulumi.StringOutput { return v.Issuer }).(pulumi.StringOutput)
+}
+
+// The host for the issuer. Can be either host or host:port.
+func (o OidcProviderOutput) IssuerHost() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OidcProvider) pulumi.StringPtrOutput { return v.IssuerHost }).(pulumi.StringPtrOutput)
+}
+
+// The name of the provider.
+func (o OidcProviderOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *OidcProvider) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The scopes available for requesting on the provider.
+func (o OidcProviderOutput) ScopesSupporteds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *OidcProvider) pulumi.StringArrayOutput { return v.ScopesSupporteds }).(pulumi.StringArrayOutput)
 }
 
 type OidcProviderArrayOutput struct{ *pulumi.OutputState }

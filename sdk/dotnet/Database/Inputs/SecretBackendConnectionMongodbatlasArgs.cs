@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Database.Inputs
 {
 
-    public sealed class SecretBackendConnectionMongodbatlasArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendConnectionMongodbatlasArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Private Programmatic API Key used to connect with MongoDB Atlas API.
@@ -33,5 +33,6 @@ namespace Pulumi.Vault.Database.Inputs
         public SecretBackendConnectionMongodbatlasArgs()
         {
         }
+        public static new SecretBackendConnectionMongodbatlasArgs Empty => new SecretBackendConnectionMongodbatlasArgs();
     }
 }

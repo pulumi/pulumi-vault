@@ -13,26 +13,25 @@ namespace Pulumi.Vault.Aws
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var aws = new Vault.AuthBackend("aws", new()
     ///     {
-    ///         var aws = new Vault.AuthBackend("aws", new Vault.AuthBackendArgs
-    ///         {
-    ///             Type = "aws",
-    ///         });
-    ///         var role = new Vault.Aws.AuthBackendStsRole("role", new Vault.Aws.AuthBackendStsRoleArgs
-    ///         {
-    ///             Backend = aws.Path,
-    ///             AccountId = "1234567890",
-    ///             StsRole = "arn:aws:iam::1234567890:role/my-role",
-    ///         });
-    ///     }
+    ///         Type = "aws",
+    ///     });
     /// 
-    /// }
+    ///     var role = new Vault.Aws.AuthBackendStsRole("role", new()
+    ///     {
+    ///         Backend = aws.Path,
+    ///         AccountId = "1234567890",
+    ///         StsRole = "arn:aws:iam::1234567890:role/my-role",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -44,7 +43,7 @@ namespace Pulumi.Vault.Aws
     /// ```
     /// </summary>
     [VaultResourceType("vault:aws/authBackendStsRole:AuthBackendStsRole")]
-    public partial class AuthBackendStsRole : Pulumi.CustomResource
+    public partial class AuthBackendStsRole : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The AWS account ID to configure the STS role for.
@@ -110,7 +109,7 @@ namespace Pulumi.Vault.Aws
         }
     }
 
-    public sealed class AuthBackendStsRoleArgs : Pulumi.ResourceArgs
+    public sealed class AuthBackendStsRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The AWS account ID to configure the STS role for.
@@ -135,9 +134,10 @@ namespace Pulumi.Vault.Aws
         public AuthBackendStsRoleArgs()
         {
         }
+        public static new AuthBackendStsRoleArgs Empty => new AuthBackendStsRoleArgs();
     }
 
-    public sealed class AuthBackendStsRoleState : Pulumi.ResourceArgs
+    public sealed class AuthBackendStsRoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The AWS account ID to configure the STS role for.
@@ -162,5 +162,6 @@ namespace Pulumi.Vault.Aws
         public AuthBackendStsRoleState()
         {
         }
+        public static new AuthBackendStsRoleState Empty => new AuthBackendStsRoleState();
     }
 }

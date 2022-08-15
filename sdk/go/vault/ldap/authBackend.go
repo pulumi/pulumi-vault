@@ -19,28 +19,31 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ldap"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ldap"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := ldap.NewAuthBackend(ctx, "ldap", &ldap.AuthBackendArgs{
-// 			Discoverdn:  pulumi.Bool(false),
-// 			Groupdn:     pulumi.String("OU=Groups,DC=example,DC=org"),
-// 			Groupfilter: pulumi.String("(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))"),
-// 			Path:        pulumi.String("ldap"),
-// 			Upndomain:   pulumi.String("EXAMPLE.ORG"),
-// 			Url:         pulumi.String("ldaps://dc-01.example.org"),
-// 			Userattr:    pulumi.String("sAMAccountName"),
-// 			Userdn:      pulumi.String("OU=Users,OU=Accounts,DC=example,DC=org"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := ldap.NewAuthBackend(ctx, "ldap", &ldap.AuthBackendArgs{
+//				Discoverdn:  pulumi.Bool(false),
+//				Groupdn:     pulumi.String("OU=Groups,DC=example,DC=org"),
+//				Groupfilter: pulumi.String("(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))"),
+//				Path:        pulumi.String("ldap"),
+//				Upndomain:   pulumi.String("EXAMPLE.ORG"),
+//				Url:         pulumi.String("ldaps://dc-01.example.org"),
+//				Userattr:    pulumi.String("sAMAccountName"),
+//				Userdn:      pulumi.String("OU=Users,OU=Accounts,DC=example,DC=org"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -48,7 +51,9 @@ import (
 // LDAP authentication backends can be imported using the `path`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:ldap/authBackend:AuthBackend ldap ldap
+//
+//	$ pulumi import vault:ldap/authBackend:AuthBackend ldap ldap
+//
 // ```
 type AuthBackend struct {
 	pulumi.CustomResourceState
@@ -530,7 +535,7 @@ func (i *AuthBackend) ToAuthBackendOutputWithContext(ctx context.Context) AuthBa
 // AuthBackendArrayInput is an input type that accepts AuthBackendArray and AuthBackendArrayOutput values.
 // You can construct a concrete instance of `AuthBackendArrayInput` via:
 //
-//          AuthBackendArray{ AuthBackendArgs{...} }
+//	AuthBackendArray{ AuthBackendArgs{...} }
 type AuthBackendArrayInput interface {
 	pulumi.Input
 
@@ -555,7 +560,7 @@ func (i AuthBackendArray) ToAuthBackendArrayOutputWithContext(ctx context.Contex
 // AuthBackendMapInput is an input type that accepts AuthBackendMap and AuthBackendMapOutput values.
 // You can construct a concrete instance of `AuthBackendMapInput` via:
 //
-//          AuthBackendMap{ "key": AuthBackendArgs{...} }
+//	AuthBackendMap{ "key": AuthBackendArgs{...} }
 type AuthBackendMapInput interface {
 	pulumi.Input
 
@@ -589,6 +594,189 @@ func (o AuthBackendOutput) ToAuthBackendOutput() AuthBackendOutput {
 
 func (o AuthBackendOutput) ToAuthBackendOutputWithContext(ctx context.Context) AuthBackendOutput {
 	return o
+}
+
+// The accessor for this auth mount.
+func (o AuthBackendOutput) Accessor() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Accessor }).(pulumi.StringOutput)
+}
+
+// DN of object to bind when performing user search
+func (o AuthBackendOutput) Binddn() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Binddn }).(pulumi.StringOutput)
+}
+
+// Password to use with `binddn` when performing user search
+func (o AuthBackendOutput) Bindpass() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Bindpass }).(pulumi.StringOutput)
+}
+
+// Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
+func (o AuthBackendOutput) CaseSensitiveNames() pulumi.BoolOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.BoolOutput { return v.CaseSensitiveNames }).(pulumi.BoolOutput)
+}
+
+// Trusted CA to validate TLS certificate
+func (o AuthBackendOutput) Certificate() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Certificate }).(pulumi.StringOutput)
+}
+
+func (o AuthBackendOutput) ClientTlsCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.ClientTlsCert }).(pulumi.StringOutput)
+}
+
+func (o AuthBackendOutput) ClientTlsKey() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.ClientTlsKey }).(pulumi.StringOutput)
+}
+
+func (o AuthBackendOutput) DenyNullBind() pulumi.BoolOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.BoolOutput { return v.DenyNullBind }).(pulumi.BoolOutput)
+}
+
+// Description for the LDAP auth backend mount
+func (o AuthBackendOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o AuthBackendOutput) Discoverdn() pulumi.BoolOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.BoolOutput { return v.Discoverdn }).(pulumi.BoolOutput)
+}
+
+// LDAP attribute to follow on objects returned by groupfilter
+func (o AuthBackendOutput) Groupattr() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Groupattr }).(pulumi.StringOutput)
+}
+
+// Base DN under which to perform group search
+func (o AuthBackendOutput) Groupdn() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Groupdn }).(pulumi.StringOutput)
+}
+
+// Go template used to construct group membership query
+func (o AuthBackendOutput) Groupfilter() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Groupfilter }).(pulumi.StringOutput)
+}
+
+// Control whether or TLS certificates must be validated
+func (o AuthBackendOutput) InsecureTls() pulumi.BoolOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.BoolOutput { return v.InsecureTls }).(pulumi.BoolOutput)
+}
+
+// Specifies if the auth method is local only.
+func (o AuthBackendOutput) Local() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.BoolPtrOutput { return v.Local }).(pulumi.BoolPtrOutput)
+}
+
+// Path to mount the LDAP auth backend under
+func (o AuthBackendOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+// Control use of TLS when conecting to LDAP
+func (o AuthBackendOutput) Starttls() pulumi.BoolOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.BoolOutput { return v.Starttls }).(pulumi.BoolOutput)
+}
+
+// Maximum acceptable version of TLS
+func (o AuthBackendOutput) TlsMaxVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.TlsMaxVersion }).(pulumi.StringOutput)
+}
+
+// Minimum acceptable version of TLS
+func (o AuthBackendOutput) TlsMinVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.TlsMinVersion }).(pulumi.StringOutput)
+}
+
+// List of CIDR blocks; if set, specifies blocks of IP
+// addresses which can authenticate successfully, and ties the resulting token to these blocks
+// as well.
+func (o AuthBackendOutput) TokenBoundCidrs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringArrayOutput { return v.TokenBoundCidrs }).(pulumi.StringArrayOutput)
+}
+
+// If set, will encode an
+// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+// onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
+// `tokenMaxTtl` would otherwise allow a renewal.
+func (o AuthBackendOutput) TokenExplicitMaxTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.IntPtrOutput { return v.TokenExplicitMaxTtl }).(pulumi.IntPtrOutput)
+}
+
+// The maximum lifetime for generated tokens in number of seconds.
+// Its current value will be referenced at renewal time.
+func (o AuthBackendOutput) TokenMaxTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.IntPtrOutput { return v.TokenMaxTtl }).(pulumi.IntPtrOutput)
+}
+
+// If set, the default policy will not be set on
+// generated tokens; otherwise it will be added to the policies set in token_policies.
+func (o AuthBackendOutput) TokenNoDefaultPolicy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.BoolPtrOutput { return v.TokenNoDefaultPolicy }).(pulumi.BoolPtrOutput)
+}
+
+// The [maximum number](https://www.vaultproject.io/api-docs/ldap#token_num_uses)
+// of times a generated token may be used (within its lifetime); 0 means unlimited.
+func (o AuthBackendOutput) TokenNumUses() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.IntPtrOutput { return v.TokenNumUses }).(pulumi.IntPtrOutput)
+}
+
+// If set, indicates that the
+// token generated using this role should never expire. The token should be renewed within the
+// duration specified by this value. At each renewal, the token's TTL will be set to the
+// value of this field. Specified in seconds.
+func (o AuthBackendOutput) TokenPeriod() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.IntPtrOutput { return v.TokenPeriod }).(pulumi.IntPtrOutput)
+}
+
+// List of policies to encode onto generated tokens. Depending
+// on the auth method, this list may be supplemented by user/group/other values.
+func (o AuthBackendOutput) TokenPolicies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringArrayOutput { return v.TokenPolicies }).(pulumi.StringArrayOutput)
+}
+
+// The incremental lifetime for generated tokens in number of seconds.
+// Its current value will be referenced at renewal time.
+func (o AuthBackendOutput) TokenTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.IntPtrOutput { return v.TokenTtl }).(pulumi.IntPtrOutput)
+}
+
+// The type of token that should be generated. Can be `service`,
+// `batch`, or `default` to use the mount's tuned default (which unless changed will be
+// `service` tokens). For token store roles, there are two additional possibilities:
+// `default-service` and `default-batch` which specify the type to return unless the client
+// requests a different type at generation time.
+func (o AuthBackendOutput) TokenType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.TokenType }).(pulumi.StringPtrOutput)
+}
+
+// The userPrincipalDomain used to construct UPN string
+func (o AuthBackendOutput) Upndomain() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Upndomain }).(pulumi.StringOutput)
+}
+
+// The URL of the LDAP server
+func (o AuthBackendOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Url }).(pulumi.StringOutput)
+}
+
+// Use the Active Directory tokenGroups constructed attribute of the user to find the group memberships
+func (o AuthBackendOutput) UseTokenGroups() pulumi.BoolOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.BoolOutput { return v.UseTokenGroups }).(pulumi.BoolOutput)
+}
+
+// Attribute on user object matching username passed in
+func (o AuthBackendOutput) Userattr() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Userattr }).(pulumi.StringOutput)
+}
+
+// Base DN under which to perform user search
+func (o AuthBackendOutput) Userdn() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Userdn }).(pulumi.StringOutput)
+}
+
+// LDAP user search filter
+func (o AuthBackendOutput) Userfilter() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Userfilter }).(pulumi.StringOutput)
 }
 
 type AuthBackendArrayOutput struct{ *pulumi.OutputState }

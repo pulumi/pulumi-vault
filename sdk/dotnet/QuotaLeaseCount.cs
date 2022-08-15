@@ -22,21 +22,19 @@ namespace Pulumi.Vault
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var @global = new Vault.QuotaLeaseCount("global", new()
     ///     {
-    ///         var @global = new Vault.QuotaLeaseCount("global", new Vault.QuotaLeaseCountArgs
-    ///         {
-    ///             MaxLeases = 100,
-    ///             Path = "",
-    ///         });
-    ///     }
+    ///         MaxLeases = 100,
+    ///         Path = "",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -48,7 +46,7 @@ namespace Pulumi.Vault
     /// ```
     /// </summary>
     [VaultResourceType("vault:index/quotaLeaseCount:QuotaLeaseCount")]
-    public partial class QuotaLeaseCount : Pulumi.CustomResource
+    public partial class QuotaLeaseCount : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The maximum number of leases to be allowed by the quota
@@ -118,7 +116,7 @@ namespace Pulumi.Vault
         }
     }
 
-    public sealed class QuotaLeaseCountArgs : Pulumi.ResourceArgs
+    public sealed class QuotaLeaseCountArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The maximum number of leases to be allowed by the quota
@@ -147,9 +145,10 @@ namespace Pulumi.Vault
         public QuotaLeaseCountArgs()
         {
         }
+        public static new QuotaLeaseCountArgs Empty => new QuotaLeaseCountArgs();
     }
 
-    public sealed class QuotaLeaseCountState : Pulumi.ResourceArgs
+    public sealed class QuotaLeaseCountState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The maximum number of leases to be allowed by the quota
@@ -178,5 +177,6 @@ namespace Pulumi.Vault
         public QuotaLeaseCountState()
         {
         }
+        public static new QuotaLeaseCountState Empty => new QuotaLeaseCountState();
     }
 }

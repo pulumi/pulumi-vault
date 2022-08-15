@@ -19,35 +19,38 @@ import (
 // package main
 //
 // import (
-// 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		pki, err := vault.NewMount(ctx, "pki", &vault.MountArgs{
-// 			Path:                   pulumi.String(fmt.Sprintf("%v%v", "%", "s")),
-// 			Type:                   pulumi.String("pki"),
-// 			DefaultLeaseTtlSeconds: pulumi.Int(3600),
-// 			MaxLeaseTtlSeconds:     pulumi.Int(86400),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = pkiSecret.NewSecretBackendCrlConfig(ctx, "crlConfig", &pkiSecret.SecretBackendCrlConfigArgs{
-// 			Backend: pki.Path,
-// 			Expiry:  pulumi.String("72h"),
-// 			Disable: pulumi.Bool(false),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			pki, err := vault.NewMount(ctx, "pki", &vault.MountArgs{
+//				Path:                   pulumi.String(fmt.Sprintf("%vs", "%")),
+//				Type:                   pulumi.String("pki"),
+//				DefaultLeaseTtlSeconds: pulumi.Int(3600),
+//				MaxLeaseTtlSeconds:     pulumi.Int(86400),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = pkiSecret.NewSecretBackendCrlConfig(ctx, "crlConfig", &pkiSecret.SecretBackendCrlConfigArgs{
+//				Backend: pki.Path,
+//				Expiry:  pulumi.String("72h"),
+//				Disable: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type SecretBackendCrlConfig struct {
 	pulumi.CustomResourceState
@@ -158,7 +161,7 @@ func (i *SecretBackendCrlConfig) ToSecretBackendCrlConfigOutputWithContext(ctx c
 // SecretBackendCrlConfigArrayInput is an input type that accepts SecretBackendCrlConfigArray and SecretBackendCrlConfigArrayOutput values.
 // You can construct a concrete instance of `SecretBackendCrlConfigArrayInput` via:
 //
-//          SecretBackendCrlConfigArray{ SecretBackendCrlConfigArgs{...} }
+//	SecretBackendCrlConfigArray{ SecretBackendCrlConfigArgs{...} }
 type SecretBackendCrlConfigArrayInput interface {
 	pulumi.Input
 
@@ -183,7 +186,7 @@ func (i SecretBackendCrlConfigArray) ToSecretBackendCrlConfigArrayOutputWithCont
 // SecretBackendCrlConfigMapInput is an input type that accepts SecretBackendCrlConfigMap and SecretBackendCrlConfigMapOutput values.
 // You can construct a concrete instance of `SecretBackendCrlConfigMapInput` via:
 //
-//          SecretBackendCrlConfigMap{ "key": SecretBackendCrlConfigArgs{...} }
+//	SecretBackendCrlConfigMap{ "key": SecretBackendCrlConfigArgs{...} }
 type SecretBackendCrlConfigMapInput interface {
 	pulumi.Input
 
@@ -217,6 +220,21 @@ func (o SecretBackendCrlConfigOutput) ToSecretBackendCrlConfigOutput() SecretBac
 
 func (o SecretBackendCrlConfigOutput) ToSecretBackendCrlConfigOutputWithContext(ctx context.Context) SecretBackendCrlConfigOutput {
 	return o
+}
+
+// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
+func (o SecretBackendCrlConfigOutput) Backend() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendCrlConfig) pulumi.StringOutput { return v.Backend }).(pulumi.StringOutput)
+}
+
+// Disables or enables CRL building.
+func (o SecretBackendCrlConfigOutput) Disable() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendCrlConfig) pulumi.BoolPtrOutput { return v.Disable }).(pulumi.BoolPtrOutput)
+}
+
+// Specifies the time until expiration.
+func (o SecretBackendCrlConfigOutput) Expiry() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendCrlConfig) pulumi.StringPtrOutput { return v.Expiry }).(pulumi.StringPtrOutput)
 }
 
 type SecretBackendCrlConfigArrayOutput struct{ *pulumi.OutputState }

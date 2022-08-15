@@ -17,30 +17,33 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/aws"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/aws"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		aws, err := vault.NewAuthBackend(ctx, "aws", &vault.AuthBackendArgs{
-// 			Type: pulumi.String("aws"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = aws.NewAuthBackendStsRole(ctx, "role", &aws.AuthBackendStsRoleArgs{
-// 			Backend:   aws.Path,
-// 			AccountId: pulumi.String("1234567890"),
-// 			StsRole:   pulumi.String("arn:aws:iam::1234567890:role/my-role"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			aws, err := vault.NewAuthBackend(ctx, "aws", &vault.AuthBackendArgs{
+//				Type: pulumi.String("aws"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = aws.NewAuthBackendStsRole(ctx, "role", &aws.AuthBackendStsRoleArgs{
+//				Backend:   aws.Path,
+//				AccountId: pulumi.String("1234567890"),
+//				StsRole:   pulumi.String("arn:aws:iam::1234567890:role/my-role"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -48,7 +51,9 @@ import (
 // AWS auth backend STS roles can be imported using `auth/`, the `backend` path, `/config/sts/`, and the `account_id` e.g.
 //
 // ```sh
-//  $ pulumi import vault:aws/authBackendStsRole:AuthBackendStsRole example auth/aws/config/sts/1234567890
+//
+//	$ pulumi import vault:aws/authBackendStsRole:AuthBackendStsRole example auth/aws/config/sts/1234567890
+//
 // ```
 type AuthBackendStsRole struct {
 	pulumi.CustomResourceState
@@ -172,7 +177,7 @@ func (i *AuthBackendStsRole) ToAuthBackendStsRoleOutputWithContext(ctx context.C
 // AuthBackendStsRoleArrayInput is an input type that accepts AuthBackendStsRoleArray and AuthBackendStsRoleArrayOutput values.
 // You can construct a concrete instance of `AuthBackendStsRoleArrayInput` via:
 //
-//          AuthBackendStsRoleArray{ AuthBackendStsRoleArgs{...} }
+//	AuthBackendStsRoleArray{ AuthBackendStsRoleArgs{...} }
 type AuthBackendStsRoleArrayInput interface {
 	pulumi.Input
 
@@ -197,7 +202,7 @@ func (i AuthBackendStsRoleArray) ToAuthBackendStsRoleArrayOutputWithContext(ctx 
 // AuthBackendStsRoleMapInput is an input type that accepts AuthBackendStsRoleMap and AuthBackendStsRoleMapOutput values.
 // You can construct a concrete instance of `AuthBackendStsRoleMapInput` via:
 //
-//          AuthBackendStsRoleMap{ "key": AuthBackendStsRoleArgs{...} }
+//	AuthBackendStsRoleMap{ "key": AuthBackendStsRoleArgs{...} }
 type AuthBackendStsRoleMapInput interface {
 	pulumi.Input
 
@@ -231,6 +236,23 @@ func (o AuthBackendStsRoleOutput) ToAuthBackendStsRoleOutput() AuthBackendStsRol
 
 func (o AuthBackendStsRoleOutput) ToAuthBackendStsRoleOutputWithContext(ctx context.Context) AuthBackendStsRoleOutput {
 	return o
+}
+
+// The AWS account ID to configure the STS role for.
+func (o AuthBackendStsRoleOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendStsRole) pulumi.StringOutput { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// The path the AWS auth backend being configured was
+// mounted at.  Defaults to `aws`.
+func (o AuthBackendStsRoleOutput) Backend() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendStsRole) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
+}
+
+// The STS role to assume when verifying requests made
+// by EC2 instances in the account specified by `accountId`.
+func (o AuthBackendStsRoleOutput) StsRole() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendStsRole) pulumi.StringOutput { return v.StsRole }).(pulumi.StringOutput)
 }
 
 type AuthBackendStsRoleArrayOutput struct{ *pulumi.OutputState }

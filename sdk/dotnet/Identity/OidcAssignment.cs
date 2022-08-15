@@ -16,43 +16,43 @@ namespace Pulumi.Vault.Identity
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var @internal = new Vault.Identity.Group("internal", new()
     ///     {
-    ///         var @internal = new Vault.Identity.Group("internal", new Vault.Identity.GroupArgs
+    ///         Type = "internal",
+    ///         Policies = new[]
     ///         {
-    ///             Type = "internal",
-    ///             Policies = 
-    ///             {
-    ///                 "dev",
-    ///                 "test",
-    ///             },
-    ///         });
-    ///         var test = new Vault.Identity.Entity("test", new Vault.Identity.EntityArgs
-    ///         {
-    ///             Policies = 
-    ///             {
-    ///                 "test",
-    ///             },
-    ///         });
-    ///         var @default = new Vault.Identity.OidcAssignment("default", new Vault.Identity.OidcAssignmentArgs
-    ///         {
-    ///             EntityIds = 
-    ///             {
-    ///                 test.Name,
-    ///             },
-    ///             GroupIds = 
-    ///             {
-    ///                 @internal.Name,
-    ///             },
-    ///         });
-    ///     }
+    ///             "dev",
+    ///             "test",
+    ///         },
+    ///     });
     /// 
-    /// }
+    ///     var test = new Vault.Identity.Entity("test", new()
+    ///     {
+    ///         Policies = new[]
+    ///         {
+    ///             "test",
+    ///         },
+    ///     });
+    /// 
+    ///     var @default = new Vault.Identity.OidcAssignment("default", new()
+    ///     {
+    ///         EntityIds = new[]
+    ///         {
+    ///             test.Name,
+    ///         },
+    ///         GroupIds = new[]
+    ///         {
+    ///             @internal.Name,
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -64,7 +64,7 @@ namespace Pulumi.Vault.Identity
     /// ```
     /// </summary>
     [VaultResourceType("vault:identity/oidcAssignment:OidcAssignment")]
-    public partial class OidcAssignment : Pulumi.CustomResource
+    public partial class OidcAssignment : global::Pulumi.CustomResource
     {
         /// <summary>
         /// A set of Vault entity IDs.
@@ -128,7 +128,7 @@ namespace Pulumi.Vault.Identity
         }
     }
 
-    public sealed class OidcAssignmentArgs : Pulumi.ResourceArgs
+    public sealed class OidcAssignmentArgs : global::Pulumi.ResourceArgs
     {
         [Input("entityIds")]
         private InputList<string>? _entityIds;
@@ -163,9 +163,10 @@ namespace Pulumi.Vault.Identity
         public OidcAssignmentArgs()
         {
         }
+        public static new OidcAssignmentArgs Empty => new OidcAssignmentArgs();
     }
 
-    public sealed class OidcAssignmentState : Pulumi.ResourceArgs
+    public sealed class OidcAssignmentState : global::Pulumi.ResourceArgs
     {
         [Input("entityIds")]
         private InputList<string>? _entityIds;
@@ -200,5 +201,6 @@ namespace Pulumi.Vault.Identity
         public OidcAssignmentState()
         {
         }
+        public static new OidcAssignmentState Empty => new OidcAssignmentState();
     }
 }

@@ -16,31 +16,34 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/terraformcloud"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/terraformcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		test, err := terraformcloud.NewSecretBackend(ctx, "test", &terraformcloud.SecretBackendArgs{
-// 			Backend:     pulumi.String("terraform"),
-// 			Description: pulumi.String("Manages the Terraform Cloud backend"),
-// 			Token:       pulumi.String("V0idfhi2iksSDU234ucdbi2nidsi..."),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = terraformcloud.NewSecretRole(ctx, "example", &terraformcloud.SecretRoleArgs{
-// 			Backend:      test.Backend,
-// 			Organization: pulumi.String("example-organization-name"),
-// 			TeamId:       pulumi.String("team-ieF4isC..."),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			test, err := terraformcloud.NewSecretBackend(ctx, "test", &terraformcloud.SecretBackendArgs{
+//				Backend:     pulumi.String("terraform"),
+//				Description: pulumi.String("Manages the Terraform Cloud backend"),
+//				Token:       pulumi.String("V0idfhi2iksSDU234ucdbi2nidsi..."),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = terraformcloud.NewSecretRole(ctx, "example", &terraformcloud.SecretRoleArgs{
+//				Backend:      test.Backend,
+//				Organization: pulumi.String("example-organization-name"),
+//				TeamId:       pulumi.String("team-ieF4isC..."),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -48,7 +51,9 @@ import (
 // Terraform Cloud secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
 //
 // ```sh
-//  $ pulumi import vault:terraformcloud/secretRole:SecretRole example terraform/roles/my-role
+//
+//	$ pulumi import vault:terraformcloud/secretRole:SecretRole example terraform/roles/my-role
+//
 // ```
 type SecretRole struct {
 	pulumi.CustomResourceState
@@ -196,7 +201,7 @@ func (i *SecretRole) ToSecretRoleOutputWithContext(ctx context.Context) SecretRo
 // SecretRoleArrayInput is an input type that accepts SecretRoleArray and SecretRoleArrayOutput values.
 // You can construct a concrete instance of `SecretRoleArrayInput` via:
 //
-//          SecretRoleArray{ SecretRoleArgs{...} }
+//	SecretRoleArray{ SecretRoleArgs{...} }
 type SecretRoleArrayInput interface {
 	pulumi.Input
 
@@ -221,7 +226,7 @@ func (i SecretRoleArray) ToSecretRoleArrayOutputWithContext(ctx context.Context)
 // SecretRoleMapInput is an input type that accepts SecretRoleMap and SecretRoleMapOutput values.
 // You can construct a concrete instance of `SecretRoleMapInput` via:
 //
-//          SecretRoleMap{ "key": SecretRoleArgs{...} }
+//	SecretRoleMap{ "key": SecretRoleArgs{...} }
 type SecretRoleMapInput interface {
 	pulumi.Input
 
@@ -255,6 +260,41 @@ func (o SecretRoleOutput) ToSecretRoleOutput() SecretRoleOutput {
 
 func (o SecretRoleOutput) ToSecretRoleOutputWithContext(ctx context.Context) SecretRoleOutput {
 	return o
+}
+
+// The path of the Terraform Cloud Secret Backend the role belongs to.
+func (o SecretRoleOutput) Backend() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
+}
+
+// Maximum TTL for leases associated with this role, in seconds.
+func (o SecretRoleOutput) MaxTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.IntPtrOutput { return v.MaxTtl }).(pulumi.IntPtrOutput)
+}
+
+// The name of an existing role against which to create this Terraform Cloud credential
+func (o SecretRoleOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Name of the Terraform Cloud or Enterprise organization
+func (o SecretRoleOutput) Organization() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.StringPtrOutput { return v.Organization }).(pulumi.StringPtrOutput)
+}
+
+// ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
+func (o SecretRoleOutput) TeamId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.StringPtrOutput { return v.TeamId }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the TTL for this role.
+func (o SecretRoleOutput) Ttl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.IntPtrOutput { return v.Ttl }).(pulumi.IntPtrOutput)
+}
+
+// ID of the Terraform Cloud or Enterprise user (e.g., user-xxxxxxxxxxxxxxxx)
+func (o SecretRoleOutput) UserId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.StringPtrOutput { return v.UserId }).(pulumi.StringPtrOutput)
 }
 
 type SecretRoleArrayOutput struct{ *pulumi.OutputState }

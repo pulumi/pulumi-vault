@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Inputs
 {
 
-    public sealed class GetPolicyDocumentRuleDeniedParameterInputArgs : Pulumi.ResourceArgs
+    public sealed class GetPolicyDocumentRuleDeniedParameterInputArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// name of permitted or denied parameter.
@@ -33,5 +33,6 @@ namespace Pulumi.Vault.Inputs
         public GetPolicyDocumentRuleDeniedParameterInputArgs()
         {
         }
+        public static new GetPolicyDocumentRuleDeniedParameterInputArgs Empty => new GetPolicyDocumentRuleDeniedParameterInputArgs();
     }
 }

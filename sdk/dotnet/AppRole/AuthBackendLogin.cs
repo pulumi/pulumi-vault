@@ -17,46 +17,47 @@ namespace Pulumi.Vault.AppRole
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var approle = new Vault.AuthBackend("approle", new()
     ///     {
-    ///         var approle = new Vault.AuthBackend("approle", new Vault.AuthBackendArgs
-    ///         {
-    ///             Type = "approle",
-    ///         });
-    ///         var example = new Vault.AppRole.AuthBackendRole("example", new Vault.AppRole.AuthBackendRoleArgs
-    ///         {
-    ///             Backend = approle.Path,
-    ///             RoleName = "test-role",
-    ///             TokenPolicies = 
-    ///             {
-    ///                 "default",
-    ///                 "dev",
-    ///                 "prod",
-    ///             },
-    ///         });
-    ///         var id = new Vault.AppRole.AuthBackendRoleSecretID("id", new Vault.AppRole.AuthBackendRoleSecretIDArgs
-    ///         {
-    ///             Backend = approle.Path,
-    ///             RoleName = example.RoleName,
-    ///         });
-    ///         var login = new Vault.AppRole.AuthBackendLogin("login", new Vault.AppRole.AuthBackendLoginArgs
-    ///         {
-    ///             Backend = approle.Path,
-    ///             RoleId = example.RoleId,
-    ///             SecretId = id.SecretId,
-    ///         });
-    ///     }
+    ///         Type = "approle",
+    ///     });
     /// 
-    /// }
+    ///     var example = new Vault.AppRole.AuthBackendRole("example", new()
+    ///     {
+    ///         Backend = approle.Path,
+    ///         RoleName = "test-role",
+    ///         TokenPolicies = new[]
+    ///         {
+    ///             "default",
+    ///             "dev",
+    ///             "prod",
+    ///         },
+    ///     });
+    /// 
+    ///     var id = new Vault.AppRole.AuthBackendRoleSecretID("id", new()
+    ///     {
+    ///         Backend = approle.Path,
+    ///         RoleName = example.RoleName,
+    ///     });
+    /// 
+    ///     var login = new Vault.AppRole.AuthBackendLogin("login", new()
+    ///     {
+    ///         Backend = approle.Path,
+    ///         RoleId = example.RoleId,
+    ///         SecretId = id.SecretId,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// </summary>
     [VaultResourceType("vault:appRole/authBackendLogin:AuthBackendLogin")]
-    public partial class AuthBackendLogin : Pulumi.CustomResource
+    public partial class AuthBackendLogin : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The accessor for the token.
@@ -163,7 +164,7 @@ namespace Pulumi.Vault.AppRole
         }
     }
 
-    public sealed class AuthBackendLoginArgs : Pulumi.ResourceArgs
+    public sealed class AuthBackendLoginArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The unique path of the Vault backend to log in with.
@@ -187,9 +188,10 @@ namespace Pulumi.Vault.AppRole
         public AuthBackendLoginArgs()
         {
         }
+        public static new AuthBackendLoginArgs Empty => new AuthBackendLoginArgs();
     }
 
-    public sealed class AuthBackendLoginState : Pulumi.ResourceArgs
+    public sealed class AuthBackendLoginState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The accessor for the token.
@@ -267,5 +269,6 @@ namespace Pulumi.Vault.AppRole
         public AuthBackendLoginState()
         {
         }
+        public static new AuthBackendLoginState Empty => new AuthBackendLoginState();
     }
 }

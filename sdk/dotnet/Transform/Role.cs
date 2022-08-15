@@ -18,33 +18,32 @@ namespace Pulumi.Vault.Transform
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var mountTransform = new Vault.Mount("mountTransform", new()
     ///     {
-    ///         var mountTransform = new Vault.Mount("mountTransform", new Vault.MountArgs
-    ///         {
-    ///             Path = "transform",
-    ///             Type = "transform",
-    ///         });
-    ///         var test = new Vault.Transform.Role("test", new Vault.Transform.RoleArgs
-    ///         {
-    ///             Path = mountTransform.Path,
-    ///             Transformations = 
-    ///             {
-    ///                 "ccn-fpe",
-    ///             },
-    ///         });
-    ///     }
+    ///         Path = "transform",
+    ///         Type = "transform",
+    ///     });
     /// 
-    /// }
+    ///     var test = new Vault.Transform.Role("test", new()
+    ///     {
+    ///         Path = mountTransform.Path,
+    ///         Transformations = new[]
+    ///         {
+    ///             "ccn-fpe",
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// </summary>
     [VaultResourceType("vault:transform/role:Role")]
-    public partial class Role : Pulumi.CustomResource
+    public partial class Role : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The name of the role.
@@ -108,7 +107,7 @@ namespace Pulumi.Vault.Transform
         }
     }
 
-    public sealed class RoleArgs : Pulumi.ResourceArgs
+    public sealed class RoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the role.
@@ -137,9 +136,10 @@ namespace Pulumi.Vault.Transform
         public RoleArgs()
         {
         }
+        public static new RoleArgs Empty => new RoleArgs();
     }
 
-    public sealed class RoleState : Pulumi.ResourceArgs
+    public sealed class RoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the role.
@@ -168,5 +168,6 @@ namespace Pulumi.Vault.Transform
         public RoleState()
         {
         }
+        public static new RoleState Empty => new RoleState();
     }
 }

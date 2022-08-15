@@ -18,7 +18,7 @@ type BackendRoleAzureGroup struct {
 // BackendRoleAzureGroupInput is an input type that accepts BackendRoleAzureGroupArgs and BackendRoleAzureGroupOutput values.
 // You can construct a concrete instance of `BackendRoleAzureGroupInput` via:
 //
-//          BackendRoleAzureGroupArgs{...}
+//	BackendRoleAzureGroupArgs{...}
 type BackendRoleAzureGroupInput interface {
 	pulumi.Input
 
@@ -46,7 +46,7 @@ func (i BackendRoleAzureGroupArgs) ToBackendRoleAzureGroupOutputWithContext(ctx 
 // BackendRoleAzureGroupArrayInput is an input type that accepts BackendRoleAzureGroupArray and BackendRoleAzureGroupArrayOutput values.
 // You can construct a concrete instance of `BackendRoleAzureGroupArrayInput` via:
 //
-//          BackendRoleAzureGroupArray{ BackendRoleAzureGroupArgs{...} }
+//	BackendRoleAzureGroupArray{ BackendRoleAzureGroupArgs{...} }
 type BackendRoleAzureGroupArrayInput interface {
 	pulumi.Input
 
@@ -119,7 +119,7 @@ type BackendRoleAzureRole struct {
 // BackendRoleAzureRoleInput is an input type that accepts BackendRoleAzureRoleArgs and BackendRoleAzureRoleOutput values.
 // You can construct a concrete instance of `BackendRoleAzureRoleInput` via:
 //
-//          BackendRoleAzureRoleArgs{...}
+//	BackendRoleAzureRoleArgs{...}
 type BackendRoleAzureRoleInput interface {
 	pulumi.Input
 
@@ -148,7 +148,7 @@ func (i BackendRoleAzureRoleArgs) ToBackendRoleAzureRoleOutputWithContext(ctx co
 // BackendRoleAzureRoleArrayInput is an input type that accepts BackendRoleAzureRoleArray and BackendRoleAzureRoleArrayOutput values.
 // You can construct a concrete instance of `BackendRoleAzureRoleArrayInput` via:
 //
-//          BackendRoleAzureRoleArray{ BackendRoleAzureRoleArgs{...} }
+//	BackendRoleAzureRoleArray{ BackendRoleAzureRoleArgs{...} }
 type BackendRoleAzureRoleArrayInput interface {
 	pulumi.Input
 

@@ -17,35 +17,35 @@ namespace Pulumi.Vault.Identity
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var @group = new Vault.Identity.Group("group", new()
     ///     {
-    ///         var @group = new Vault.Identity.Group("group", new Vault.Identity.GroupArgs
+    ///         Type = "external",
+    ///         Policies = new[]
     ///         {
-    ///             Type = "external",
-    ///             Policies = 
-    ///             {
-    ///                 "test",
-    ///             },
-    ///         });
-    ///         var github = new Vault.AuthBackend("github", new Vault.AuthBackendArgs
-    ///         {
-    ///             Type = "github",
-    ///             Path = "github",
-    ///         });
-    ///         var group_alias = new Vault.Identity.GroupAlias("group-alias", new Vault.Identity.GroupAliasArgs
-    ///         {
-    ///             Name = "Github_Team_Slug",
-    ///             MountAccessor = github.Accessor,
-    ///             CanonicalId = @group.Id,
-    ///         });
-    ///     }
+    ///             "test",
+    ///         },
+    ///     });
     /// 
-    /// }
+    ///     var github = new Vault.AuthBackend("github", new()
+    ///     {
+    ///         Type = "github",
+    ///         Path = "github",
+    ///     });
+    /// 
+    ///     var group_alias = new Vault.Identity.GroupAlias("group-alias", new()
+    ///     {
+    ///         Name = "Github_Team_Slug",
+    ///         MountAccessor = github.Accessor,
+    ///         CanonicalId = @group.Id,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -63,7 +63,7 @@ namespace Pulumi.Vault.Identity
     /// ```
     /// </summary>
     [VaultResourceType("vault:identity/groupAlias:GroupAlias")]
-    public partial class GroupAlias : Pulumi.CustomResource
+    public partial class GroupAlias : global::Pulumi.CustomResource
     {
         /// <summary>
         /// ID of the group to which this is an alias.
@@ -127,7 +127,7 @@ namespace Pulumi.Vault.Identity
         }
     }
 
-    public sealed class GroupAliasArgs : Pulumi.ResourceArgs
+    public sealed class GroupAliasArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// ID of the group to which this is an alias.
@@ -150,9 +150,10 @@ namespace Pulumi.Vault.Identity
         public GroupAliasArgs()
         {
         }
+        public static new GroupAliasArgs Empty => new GroupAliasArgs();
     }
 
-    public sealed class GroupAliasState : Pulumi.ResourceArgs
+    public sealed class GroupAliasState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// ID of the group to which this is an alias.
@@ -175,5 +176,6 @@ namespace Pulumi.Vault.Identity
         public GroupAliasState()
         {
         }
+        public static new GroupAliasState Empty => new GroupAliasState();
     }
 }

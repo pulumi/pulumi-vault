@@ -17,25 +17,28 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := vault.NewRaftSnapshotAgentConfig(ctx, "localBackups", &vault.RaftSnapshotAgentConfigArgs{
-// 			IntervalSeconds: pulumi.Int(86400),
-// 			LocalMaxSpace:   pulumi.Int(10000000),
-// 			PathPrefix:      pulumi.String("/opt/vault/snapshots/"),
-// 			Retain:          pulumi.Int(7),
-// 			StorageType:     pulumi.String("local"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vault.NewRaftSnapshotAgentConfig(ctx, "localBackups", &vault.RaftSnapshotAgentConfigArgs{
+//				IntervalSeconds: pulumi.Int(86400),
+//				LocalMaxSpace:   pulumi.Int(10000000),
+//				PathPrefix:      pulumi.String("/opt/vault/snapshots/"),
+//				Retain:          pulumi.Int(7),
+//				StorageType:     pulumi.String("local"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -43,7 +46,9 @@ import (
 // Raft Snapshot Agent Configurations can be imported using the `name`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig local local
+//
+//	$ pulumi import vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig local local
+//
 // ```
 type RaftSnapshotAgentConfig struct {
 	pulumi.CustomResourceState
@@ -505,7 +510,7 @@ func (i *RaftSnapshotAgentConfig) ToRaftSnapshotAgentConfigOutputWithContext(ctx
 // RaftSnapshotAgentConfigArrayInput is an input type that accepts RaftSnapshotAgentConfigArray and RaftSnapshotAgentConfigArrayOutput values.
 // You can construct a concrete instance of `RaftSnapshotAgentConfigArrayInput` via:
 //
-//          RaftSnapshotAgentConfigArray{ RaftSnapshotAgentConfigArgs{...} }
+//	RaftSnapshotAgentConfigArray{ RaftSnapshotAgentConfigArgs{...} }
 type RaftSnapshotAgentConfigArrayInput interface {
 	pulumi.Input
 
@@ -530,7 +535,7 @@ func (i RaftSnapshotAgentConfigArray) ToRaftSnapshotAgentConfigArrayOutputWithCo
 // RaftSnapshotAgentConfigMapInput is an input type that accepts RaftSnapshotAgentConfigMap and RaftSnapshotAgentConfigMapOutput values.
 // You can construct a concrete instance of `RaftSnapshotAgentConfigMapInput` via:
 //
-//          RaftSnapshotAgentConfigMap{ "key": RaftSnapshotAgentConfigArgs{...} }
+//	RaftSnapshotAgentConfigMap{ "key": RaftSnapshotAgentConfigArgs{...} }
 type RaftSnapshotAgentConfigMapInput interface {
 	pulumi.Input
 
@@ -564,6 +569,162 @@ func (o RaftSnapshotAgentConfigOutput) ToRaftSnapshotAgentConfigOutput() RaftSna
 
 func (o RaftSnapshotAgentConfigOutput) ToRaftSnapshotAgentConfigOutputWithContext(ctx context.Context) RaftSnapshotAgentConfigOutput {
 	return o
+}
+
+// AWS access key ID.
+func (o RaftSnapshotAgentConfigOutput) AwsAccessKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.StringPtrOutput { return v.AwsAccessKeyId }).(pulumi.StringPtrOutput)
+}
+
+// `<required>` - S3 bucket to write snapshots to.
+func (o RaftSnapshotAgentConfigOutput) AwsS3Bucket() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.StringPtrOutput { return v.AwsS3Bucket }).(pulumi.StringPtrOutput)
+}
+
+// Disable TLS for the S3 endpoint. This
+// should only be used for testing purposes, typically in conjunction with
+// `awsS3Endpoint`.
+func (o RaftSnapshotAgentConfigOutput) AwsS3DisableTls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.BoolPtrOutput { return v.AwsS3DisableTls }).(pulumi.BoolPtrOutput)
+}
+
+// Use KMS to encrypt bucket contents.
+func (o RaftSnapshotAgentConfigOutput) AwsS3EnableKms() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.BoolPtrOutput { return v.AwsS3EnableKms }).(pulumi.BoolPtrOutput)
+}
+
+// AWS endpoint. This is typically only set when
+// using a non-AWS S3 implementation like Minio.
+func (o RaftSnapshotAgentConfigOutput) AwsS3Endpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.StringPtrOutput { return v.AwsS3Endpoint }).(pulumi.StringPtrOutput)
+}
+
+// Use the endpoint/bucket URL style
+// instead of bucket.endpoint. May be needed when setting `awsS3Endpoint`.
+func (o RaftSnapshotAgentConfigOutput) AwsS3ForcePathStyle() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.BoolPtrOutput { return v.AwsS3ForcePathStyle }).(pulumi.BoolPtrOutput)
+}
+
+// Use named KMS key, when `awsS3EnableKms = true`
+func (o RaftSnapshotAgentConfigOutput) AwsS3KmsKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.StringPtrOutput { return v.AwsS3KmsKey }).(pulumi.StringPtrOutput)
+}
+
+// `<required>` - AWS region bucket is in.
+func (o RaftSnapshotAgentConfigOutput) AwsS3Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.StringPtrOutput { return v.AwsS3Region }).(pulumi.StringPtrOutput)
+}
+
+// Use AES256 to encrypt bucket contents.
+func (o RaftSnapshotAgentConfigOutput) AwsS3ServerSideEncryption() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.BoolPtrOutput { return v.AwsS3ServerSideEncryption }).(pulumi.BoolPtrOutput)
+}
+
+// AWS secret access key.
+func (o RaftSnapshotAgentConfigOutput) AwsSecretAccessKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.StringPtrOutput { return v.AwsSecretAccessKey }).(pulumi.StringPtrOutput)
+}
+
+// AWS session token.
+func (o RaftSnapshotAgentConfigOutput) AwsSessionToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.StringPtrOutput { return v.AwsSessionToken }).(pulumi.StringPtrOutput)
+}
+
+// Azure account key.
+func (o RaftSnapshotAgentConfigOutput) AzureAccountKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.StringPtrOutput { return v.AzureAccountKey }).(pulumi.StringPtrOutput)
+}
+
+// Azure account name.
+func (o RaftSnapshotAgentConfigOutput) AzureAccountName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.StringPtrOutput { return v.AzureAccountName }).(pulumi.StringPtrOutput)
+}
+
+// Azure blob environment.
+func (o RaftSnapshotAgentConfigOutput) AzureBlobEnvironment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.StringPtrOutput { return v.AzureBlobEnvironment }).(pulumi.StringPtrOutput)
+}
+
+// `<required>` - Azure container name to write
+// snapshots to.
+func (o RaftSnapshotAgentConfigOutput) AzureContainerName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.StringPtrOutput { return v.AzureContainerName }).(pulumi.StringPtrOutput)
+}
+
+// Azure blob storage endpoint. This is typically
+// only set when using a non-Azure implementation like Azurite.
+func (o RaftSnapshotAgentConfigOutput) AzureEndpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.StringPtrOutput { return v.AzureEndpoint }).(pulumi.StringPtrOutput)
+}
+
+// Within the directory or bucket
+// prefix given by `pathPrefix`, the file or object name of snapshot files
+// will start with this string.
+func (o RaftSnapshotAgentConfigOutput) FilePrefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.StringPtrOutput { return v.FilePrefix }).(pulumi.StringPtrOutput)
+}
+
+// Disable TLS for the GCS endpoint. This
+// should only be used for testing purposes, typically in conjunction with
+// `googleEndpoint`.
+func (o RaftSnapshotAgentConfigOutput) GoogleDisableTls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.BoolPtrOutput { return v.GoogleDisableTls }).(pulumi.BoolPtrOutput)
+}
+
+// GCS endpoint. This is typically only set when
+// using a non-Google GCS implementation like fake-gcs-server.
+func (o RaftSnapshotAgentConfigOutput) GoogleEndpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.StringPtrOutput { return v.GoogleEndpoint }).(pulumi.StringPtrOutput)
+}
+
+// `<required>` - GCS bucket to write snapshots to.
+func (o RaftSnapshotAgentConfigOutput) GoogleGcsBucket() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.StringPtrOutput { return v.GoogleGcsBucket }).(pulumi.StringPtrOutput)
+}
+
+// Google service account key in JSON format.
+// The raw value looks like this:
+func (o RaftSnapshotAgentConfigOutput) GoogleServiceAccountKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.StringPtrOutput { return v.GoogleServiceAccountKey }).(pulumi.StringPtrOutput)
+}
+
+// `<required>` - Time (in seconds) between snapshots.
+func (o RaftSnapshotAgentConfigOutput) IntervalSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.IntOutput { return v.IntervalSeconds }).(pulumi.IntOutput)
+}
+
+// For `storageType = local`, the maximum
+// space, in bytes, to use for snapshots. Snapshot attempts will fail if there is not enough
+// space left in this allowance.
+func (o RaftSnapshotAgentConfigOutput) LocalMaxSpace() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.IntPtrOutput { return v.LocalMaxSpace }).(pulumi.IntPtrOutput)
+}
+
+// `<required>` – Name of the configuration to modify.
+func (o RaftSnapshotAgentConfigOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// `<required>` - For `storageType = "local"`, the directory to
+// write the snapshots in. For cloud storage types, the bucket prefix to use.
+// Types `azure-s3` and `google-gcs` require a trailing `/` (slash).
+// Types `local` and `aws-s3` the trailing `/` is optional.
+func (o RaftSnapshotAgentConfigOutput) PathPrefix() pulumi.StringOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.StringOutput { return v.PathPrefix }).(pulumi.StringOutput)
+}
+
+// How many snapshots are to be kept; when writing a
+// snapshot, if there are more snapshots already stored than this number, the
+// oldest ones will be deleted.
+func (o RaftSnapshotAgentConfigOutput) Retain() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.IntPtrOutput { return v.Retain }).(pulumi.IntPtrOutput)
+}
+
+// `<required>` - One of "local", "azure-blob", "aws-s3",
+// or "google-gcs". The remaining parameters described below are all specific to
+// the selected `storageType` and prefixed accordingly.
+func (o RaftSnapshotAgentConfigOutput) StorageType() pulumi.StringOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.StringOutput { return v.StorageType }).(pulumi.StringOutput)
 }
 
 type RaftSnapshotAgentConfigArrayOutput struct{ *pulumi.OutputState }

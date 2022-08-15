@@ -18,55 +18,51 @@ namespace Pulumi.Vault.Identity
     /// ### Internal Group
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var @internal = new Vault.Identity.Group("internal", new()
     ///     {
-    ///         var @internal = new Vault.Identity.Group("internal", new Vault.Identity.GroupArgs
+    ///         Metadata = 
     ///         {
-    ///             Metadata = 
-    ///             {
-    ///                 { "version", "2" },
-    ///             },
-    ///             Policies = 
-    ///             {
-    ///                 "dev",
-    ///                 "test",
-    ///             },
-    ///             Type = "internal",
-    ///         });
-    ///     }
+    ///             { "version", "2" },
+    ///         },
+    ///         Policies = new[]
+    ///         {
+    ///             "dev",
+    ///             "test",
+    ///         },
+    ///         Type = "internal",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// ### External Group
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var @group = new Vault.Identity.Group("group", new()
     ///     {
-    ///         var @group = new Vault.Identity.Group("group", new Vault.Identity.GroupArgs
+    ///         Metadata = 
     ///         {
-    ///             Metadata = 
-    ///             {
-    ///                 { "version", "1" },
-    ///             },
-    ///             Policies = 
-    ///             {
-    ///                 "test",
-    ///             },
-    ///             Type = "external",
-    ///         });
-    ///     }
+    ///             { "version", "1" },
+    ///         },
+    ///         Policies = new[]
+    ///         {
+    ///             "test",
+    ///         },
+    ///         Type = "external",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// ## Caveats
     /// 
@@ -75,42 +71,41 @@ namespace Pulumi.Vault.Identity
     /// 
     /// This sort of pattern should be avoided:
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var internalIdentity_groupGroup = new Vault.Identity.Group("internalIdentity/groupGroup", new()
     ///     {
-    ///         var internalIdentity_groupGroup = new Vault.Identity.Group("internalIdentity/groupGroup", new Vault.Identity.GroupArgs
+    ///         Metadata = 
     ///         {
-    ///             Metadata = 
-    ///             {
-    ///                 { "version", "2" },
-    ///             },
-    ///             Policies = 
-    ///             {
-    ///                 "dev",
-    ///                 "test",
-    ///             },
-    ///             Type = "internal",
-    ///         });
-    ///         var internalGroup = new Vault.Identity.Group("internalGroup", new Vault.Identity.GroupArgs
+    ///             { "version", "2" },
+    ///         },
+    ///         Policies = new[]
     ///         {
-    ///             Metadata = 
-    ///             {
-    ///                 { "version", "2" },
-    ///             },
-    ///             Policies = 
-    ///             {
-    ///                 "dev",
-    ///                 "test",
-    ///             },
-    ///             Type = "internal",
-    ///         });
-    ///     }
+    ///             "dev",
+    ///             "test",
+    ///         },
+    ///         Type = "internal",
+    ///     });
     /// 
-    /// }
+    ///     var internalGroup = new Vault.Identity.Group("internalGroup", new()
+    ///     {
+    ///         Metadata = 
+    ///         {
+    ///             { "version", "2" },
+    ///         },
+    ///         Policies = new[]
+    ///         {
+    ///             "dev",
+    ///             "test",
+    ///         },
+    ///         Type = "internal",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -122,7 +117,7 @@ namespace Pulumi.Vault.Identity
     /// ```
     /// </summary>
     [VaultResourceType("vault:identity/group:Group")]
-    public partial class Group : Pulumi.CustomResource
+    public partial class Group : global::Pulumi.CustomResource
     {
         /// <summary>
         /// `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
@@ -216,7 +211,7 @@ namespace Pulumi.Vault.Identity
         }
     }
 
-    public sealed class GroupArgs : Pulumi.ResourceArgs
+    public sealed class GroupArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
@@ -293,9 +288,10 @@ namespace Pulumi.Vault.Identity
         public GroupArgs()
         {
         }
+        public static new GroupArgs Empty => new GroupArgs();
     }
 
-    public sealed class GroupState : Pulumi.ResourceArgs
+    public sealed class GroupState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
@@ -372,5 +368,6 @@ namespace Pulumi.Vault.Identity
         public GroupState()
         {
         }
+        public static new GroupState Empty => new GroupState();
     }
 }

@@ -17,48 +17,49 @@ namespace Pulumi.Vault.Identity
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Vault = Pulumi.Vault;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var key = new Vault.Identity.OidcKey("key", new()
         ///     {
-        ///         var key = new Vault.Identity.OidcKey("key", new Vault.Identity.OidcKeyArgs
+        ///         AllowedClientIds = new[]
         ///         {
-        ///             AllowedClientIds = 
-        ///             {
-        ///                 "*",
-        ///             },
-        ///             RotationPeriod = 3600,
-        ///             VerificationTtl = 3600,
-        ///         });
-        ///         var app = new Vault.Identity.OidcClient("app", new Vault.Identity.OidcClientArgs
-        ///         {
-        ///             Key = key.Name,
-        ///             RedirectUris = 
-        ///             {
-        ///                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
-        ///                 "http://127.0.0.1:8251/callback",
-        ///                 "http://127.0.0.1:8080/callback",
-        ///             },
-        ///             IdTokenTtl = 2400,
-        ///             AccessTokenTtl = 7200,
-        ///         });
-        ///         var provider = new Vault.Identity.OidcProvider("provider", new Vault.Identity.OidcProviderArgs
-        ///         {
-        ///             AllowedClientIds = 
-        ///             {
-        ///                 vault_identity_oidc_client.Test.Client_id,
-        ///             },
-        ///         });
-        ///         var publicKeys = Vault.Identity.GetOidcPublicKeys.Invoke(new Vault.Identity.GetOidcPublicKeysInvokeArgs
-        ///         {
-        ///             Name = provider.Name,
-        ///         });
-        ///     }
+        ///             "*",
+        ///         },
+        ///         RotationPeriod = 3600,
+        ///         VerificationTtl = 3600,
+        ///     });
         /// 
-        /// }
+        ///     var app = new Vault.Identity.OidcClient("app", new()
+        ///     {
+        ///         Key = key.Name,
+        ///         RedirectUris = new[]
+        ///         {
+        ///             "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+        ///             "http://127.0.0.1:8251/callback",
+        ///             "http://127.0.0.1:8080/callback",
+        ///         },
+        ///         IdTokenTtl = 2400,
+        ///         AccessTokenTtl = 7200,
+        ///     });
+        /// 
+        ///     var provider = new Vault.Identity.OidcProvider("provider", new()
+        ///     {
+        ///         AllowedClientIds = new[]
+        ///         {
+        ///             vault_identity_oidc_client.Test.Client_id,
+        ///         },
+        ///     });
+        /// 
+        ///     var publicKeys = Vault.Identity.GetOidcPublicKeys.Invoke(new()
+        ///     {
+        ///         Name = provider.Name,
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -72,48 +73,49 @@ namespace Pulumi.Vault.Identity
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Vault = Pulumi.Vault;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var key = new Vault.Identity.OidcKey("key", new()
         ///     {
-        ///         var key = new Vault.Identity.OidcKey("key", new Vault.Identity.OidcKeyArgs
+        ///         AllowedClientIds = new[]
         ///         {
-        ///             AllowedClientIds = 
-        ///             {
-        ///                 "*",
-        ///             },
-        ///             RotationPeriod = 3600,
-        ///             VerificationTtl = 3600,
-        ///         });
-        ///         var app = new Vault.Identity.OidcClient("app", new Vault.Identity.OidcClientArgs
-        ///         {
-        ///             Key = key.Name,
-        ///             RedirectUris = 
-        ///             {
-        ///                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
-        ///                 "http://127.0.0.1:8251/callback",
-        ///                 "http://127.0.0.1:8080/callback",
-        ///             },
-        ///             IdTokenTtl = 2400,
-        ///             AccessTokenTtl = 7200,
-        ///         });
-        ///         var provider = new Vault.Identity.OidcProvider("provider", new Vault.Identity.OidcProviderArgs
-        ///         {
-        ///             AllowedClientIds = 
-        ///             {
-        ///                 vault_identity_oidc_client.Test.Client_id,
-        ///             },
-        ///         });
-        ///         var publicKeys = Vault.Identity.GetOidcPublicKeys.Invoke(new Vault.Identity.GetOidcPublicKeysInvokeArgs
-        ///         {
-        ///             Name = provider.Name,
-        ///         });
-        ///     }
+        ///             "*",
+        ///         },
+        ///         RotationPeriod = 3600,
+        ///         VerificationTtl = 3600,
+        ///     });
         /// 
-        /// }
+        ///     var app = new Vault.Identity.OidcClient("app", new()
+        ///     {
+        ///         Key = key.Name,
+        ///         RedirectUris = new[]
+        ///         {
+        ///             "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+        ///             "http://127.0.0.1:8251/callback",
+        ///             "http://127.0.0.1:8080/callback",
+        ///         },
+        ///         IdTokenTtl = 2400,
+        ///         AccessTokenTtl = 7200,
+        ///     });
+        /// 
+        ///     var provider = new Vault.Identity.OidcProvider("provider", new()
+        ///     {
+        ///         AllowedClientIds = new[]
+        ///         {
+        ///             vault_identity_oidc_client.Test.Client_id,
+        ///         },
+        ///     });
+        /// 
+        ///     var publicKeys = Vault.Identity.GetOidcPublicKeys.Invoke(new()
+        ///     {
+        ///         Name = provider.Name,
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -123,7 +125,7 @@ namespace Pulumi.Vault.Identity
     }
 
 
-    public sealed class GetOidcPublicKeysArgs : Pulumi.InvokeArgs
+    public sealed class GetOidcPublicKeysArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name of the OIDC Provider in Vault.
@@ -134,9 +136,10 @@ namespace Pulumi.Vault.Identity
         public GetOidcPublicKeysArgs()
         {
         }
+        public static new GetOidcPublicKeysArgs Empty => new GetOidcPublicKeysArgs();
     }
 
-    public sealed class GetOidcPublicKeysInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetOidcPublicKeysInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name of the OIDC Provider in Vault.
@@ -147,6 +150,7 @@ namespace Pulumi.Vault.Identity
         public GetOidcPublicKeysInvokeArgs()
         {
         }
+        public static new GetOidcPublicKeysInvokeArgs Empty => new GetOidcPublicKeysInvokeArgs();
     }
 
 

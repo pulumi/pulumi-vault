@@ -23,57 +23,60 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/aws"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/aws"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		aws, err := vault.NewAuthBackend(ctx, "aws", &vault.AuthBackendArgs{
-// 			Type: pulumi.String("aws"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = aws.NewAuthBackendRole(ctx, "example", &aws.AuthBackendRoleArgs{
-// 			Backend:  aws.Path,
-// 			Role:     pulumi.String("test-role"),
-// 			AuthType: pulumi.String("iam"),
-// 			BoundAmiIds: pulumi.StringArray{
-// 				pulumi.String("ami-8c1be5f6"),
-// 			},
-// 			BoundAccountIds: pulumi.StringArray{
-// 				pulumi.String("123456789012"),
-// 			},
-// 			BoundVpcIds: pulumi.StringArray{
-// 				pulumi.String("vpc-b61106d4"),
-// 			},
-// 			BoundSubnetIds: pulumi.StringArray{
-// 				pulumi.String("vpc-133128f1"),
-// 			},
-// 			BoundIamRoleArns: pulumi.StringArray{
-// 				pulumi.String("arn:aws:iam::123456789012:role/MyRole"),
-// 			},
-// 			BoundIamInstanceProfileArns: pulumi.StringArray{
-// 				pulumi.String("arn:aws:iam::123456789012:instance-profile/MyProfile"),
-// 			},
-// 			InferredEntityType: pulumi.String("ec2_instance"),
-// 			InferredAwsRegion:  pulumi.String("us-east-1"),
-// 			TokenTtl:           pulumi.Int(60),
-// 			TokenMaxTtl:        pulumi.Int(120),
-// 			TokenPolicies: pulumi.StringArray{
-// 				pulumi.String("default"),
-// 				pulumi.String("dev"),
-// 				pulumi.String("prod"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			aws, err := vault.NewAuthBackend(ctx, "aws", &vault.AuthBackendArgs{
+//				Type: pulumi.String("aws"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = aws.NewAuthBackendRole(ctx, "example", &aws.AuthBackendRoleArgs{
+//				Backend:  aws.Path,
+//				Role:     pulumi.String("test-role"),
+//				AuthType: pulumi.String("iam"),
+//				BoundAmiIds: pulumi.StringArray{
+//					pulumi.String("ami-8c1be5f6"),
+//				},
+//				BoundAccountIds: pulumi.StringArray{
+//					pulumi.String("123456789012"),
+//				},
+//				BoundVpcIds: pulumi.StringArray{
+//					pulumi.String("vpc-b61106d4"),
+//				},
+//				BoundSubnetIds: pulumi.StringArray{
+//					pulumi.String("vpc-133128f1"),
+//				},
+//				BoundIamRoleArns: pulumi.StringArray{
+//					pulumi.String("arn:aws:iam::123456789012:role/MyRole"),
+//				},
+//				BoundIamInstanceProfileArns: pulumi.StringArray{
+//					pulumi.String("arn:aws:iam::123456789012:instance-profile/MyProfile"),
+//				},
+//				InferredEntityType: pulumi.String("ec2_instance"),
+//				InferredAwsRegion:  pulumi.String("us-east-1"),
+//				TokenTtl:           pulumi.Int(60),
+//				TokenMaxTtl:        pulumi.Int(120),
+//				TokenPolicies: pulumi.StringArray{
+//					pulumi.String("default"),
+//					pulumi.String("dev"),
+//					pulumi.String("prod"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -81,7 +84,9 @@ import (
 // AWS auth backend roles can be imported using `auth/`, the `backend` path, `/role/`, and the `role` name e.g.
 //
 // ```sh
-//  $ pulumi import vault:aws/authBackendRole:AuthBackendRole example auth/aws/role/test-role
+//
+//	$ pulumi import vault:aws/authBackendRole:AuthBackendRole example auth/aws/role/test-role
+//
 // ```
 type AuthBackendRole struct {
 	pulumi.CustomResourceState
@@ -778,7 +783,7 @@ func (i *AuthBackendRole) ToAuthBackendRoleOutputWithContext(ctx context.Context
 // AuthBackendRoleArrayInput is an input type that accepts AuthBackendRoleArray and AuthBackendRoleArrayOutput values.
 // You can construct a concrete instance of `AuthBackendRoleArrayInput` via:
 //
-//          AuthBackendRoleArray{ AuthBackendRoleArgs{...} }
+//	AuthBackendRoleArray{ AuthBackendRoleArgs{...} }
 type AuthBackendRoleArrayInput interface {
 	pulumi.Input
 
@@ -803,7 +808,7 @@ func (i AuthBackendRoleArray) ToAuthBackendRoleArrayOutputWithContext(ctx contex
 // AuthBackendRoleMapInput is an input type that accepts AuthBackendRoleMap and AuthBackendRoleMapOutput values.
 // You can construct a concrete instance of `AuthBackendRoleMapInput` via:
 //
-//          AuthBackendRoleMap{ "key": AuthBackendRoleArgs{...} }
+//	AuthBackendRoleMap{ "key": AuthBackendRoleArgs{...} }
 type AuthBackendRoleMapInput interface {
 	pulumi.Input
 
@@ -837,6 +842,214 @@ func (o AuthBackendRoleOutput) ToAuthBackendRoleOutput() AuthBackendRoleOutput {
 
 func (o AuthBackendRoleOutput) ToAuthBackendRoleOutputWithContext(ctx context.Context) AuthBackendRoleOutput {
 	return o
+}
+
+// If set to `true`, allows migration of
+// the underlying instance where the client resides.
+func (o AuthBackendRoleOutput) AllowInstanceMigration() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.BoolPtrOutput { return v.AllowInstanceMigration }).(pulumi.BoolPtrOutput)
+}
+
+// The auth type permitted for this role. Valid choices
+// are `ec2` and `iam`. Defaults to `iam`.
+func (o AuthBackendRoleOutput) AuthType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringPtrOutput { return v.AuthType }).(pulumi.StringPtrOutput)
+}
+
+// Unique name of the auth backend to configure.
+func (o AuthBackendRoleOutput) Backend() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
+}
+
+// If set, defines a constraint on the EC2
+// instances that can perform the login operation that they should be using the
+// account ID specified by this field. `authType` must be set to `ec2` or
+// `inferredEntityType` must be set to `ec2Instance` to use this constraint.
+func (o AuthBackendRoleOutput) BoundAccountIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringArrayOutput { return v.BoundAccountIds }).(pulumi.StringArrayOutput)
+}
+
+// If set, defines a constraint on the EC2 instances
+// that can perform the login operation that they should be using the AMI ID
+// specified by this field. `authType` must be set to `ec2` or
+// `inferredEntityType` must be set to `ec2Instance` to use this constraint.
+func (o AuthBackendRoleOutput) BoundAmiIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringArrayOutput { return v.BoundAmiIds }).(pulumi.StringArrayOutput)
+}
+
+// Only EC2 instances that match this instance ID will be permitted to log in.
+func (o AuthBackendRoleOutput) BoundEc2InstanceIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringArrayOutput { return v.BoundEc2InstanceIds }).(pulumi.StringArrayOutput)
+}
+
+// If set, defines a constraint on
+// the EC2 instances that can perform the login operation that they must be
+// associated with an IAM instance profile ARN which has a prefix that matches
+// the value specified by this field. The value is prefix-matched as though it
+// were a glob ending in `*`. `authType` must be set to `ec2` or
+// `inferredEntityType` must be set to `ec2Instance` to use this constraint.
+func (o AuthBackendRoleOutput) BoundIamInstanceProfileArns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringArrayOutput { return v.BoundIamInstanceProfileArns }).(pulumi.StringArrayOutput)
+}
+
+// If set, defines the IAM principal that
+// must be authenticated when `authType` is set to `iam`. Wildcards are
+// supported at the end of the ARN.
+func (o AuthBackendRoleOutput) BoundIamPrincipalArns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringArrayOutput { return v.BoundIamPrincipalArns }).(pulumi.StringArrayOutput)
+}
+
+// If set, defines a constraint on the EC2
+// instances that can perform the login operation that they must match the IAM
+// role ARN specified by this field. `authType` must be set to `ec2` or
+// `inferredEntityType` must be set to `ec2Instance` to use this constraint.
+func (o AuthBackendRoleOutput) BoundIamRoleArns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringArrayOutput { return v.BoundIamRoleArns }).(pulumi.StringArrayOutput)
+}
+
+// If set, defines a constraint on the EC2 instances
+// that can perform the login operation that the region in their identity
+// document must match the one specified by this field. `authType` must be set
+// to `ec2` or `inferredEntityType` must be set to `ec2Instance` to use this
+// constraint.
+func (o AuthBackendRoleOutput) BoundRegions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringArrayOutput { return v.BoundRegions }).(pulumi.StringArrayOutput)
+}
+
+// If set, defines a constraint on the EC2
+// instances that can perform the login operation that they be associated with
+// the subnet ID that matches the value specified by this field. `authType`
+// must be set to `ec2` or `inferredEntityType` must be set to `ec2Instance`
+// to use this constraint.
+func (o AuthBackendRoleOutput) BoundSubnetIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringArrayOutput { return v.BoundSubnetIds }).(pulumi.StringArrayOutput)
+}
+
+// If set, defines a constraint on the EC2 instances
+// that can perform the login operation that they be associated with the VPC ID
+// that matches the value specified by this field. `authType` must be set to
+// `ec2` or `inferredEntityType` must be set to `ec2Instance` to use this
+// constraint.
+func (o AuthBackendRoleOutput) BoundVpcIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringArrayOutput { return v.BoundVpcIds }).(pulumi.StringArrayOutput)
+}
+
+// IF set to `true`, only allows a
+// single token to be granted per instance ID. This can only be set when
+// `authType` is set to `ec2`.
+func (o AuthBackendRoleOutput) DisallowReauthentication() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.BoolPtrOutput { return v.DisallowReauthentication }).(pulumi.BoolPtrOutput)
+}
+
+// When `inferredEntityType` is set, this
+// is the region to search for the inferred entities. Required if
+// `inferredEntityType` is set. This only applies when `authType` is set to
+// `iam`.
+func (o AuthBackendRoleOutput) InferredAwsRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringPtrOutput { return v.InferredAwsRegion }).(pulumi.StringPtrOutput)
+}
+
+// If set, instructs Vault to turn on
+// inferencing. The only valid value is `ec2Instance`, which instructs Vault to
+// infer that the role comes from an EC2 instance in an IAM instance profile.
+// This only applies when `authType` is set to `iam`.
+func (o AuthBackendRoleOutput) InferredEntityType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringPtrOutput { return v.InferredEntityType }).(pulumi.StringPtrOutput)
+}
+
+// Only valid when
+// `authType` is `iam`. If set to `true`, the `boundIamPrincipalArns` are
+// resolved to [AWS Unique
+// IDs](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids)
+// for the bound principal ARN. This field is ignored when a
+// `boundIamPrincipalArn` ends in a wildcard. Resolving to unique IDs more
+// closely mimics the behavior of AWS services in that if an IAM user or role is
+// deleted and a new one is recreated with the same name, those new users or
+// roles won't get access to roles in Vault that were permissioned to the prior
+// principals of the same name. Defaults to `true`.
+// Once set to `true`, this cannot be changed to `false` without recreating the role.
+func (o AuthBackendRoleOutput) ResolveAwsUniqueIds() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.BoolPtrOutput { return v.ResolveAwsUniqueIds }).(pulumi.BoolPtrOutput)
+}
+
+// The name of the role.
+func (o AuthBackendRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringOutput { return v.Role }).(pulumi.StringOutput)
+}
+
+// The Vault generated role ID.
+func (o AuthBackendRoleOutput) RoleId() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringOutput { return v.RoleId }).(pulumi.StringOutput)
+}
+
+// If set, enable role tags for this role. The value set
+// for this field should be the key of the tag on the EC2 instance. `authType`
+// must be set to `ec2` or `inferredEntityType` must be set to `ec2Instance`
+// to use this constraint.
+func (o AuthBackendRoleOutput) RoleTag() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringPtrOutput { return v.RoleTag }).(pulumi.StringPtrOutput)
+}
+
+// List of CIDR blocks; if set, specifies blocks of IP
+// addresses which can authenticate successfully, and ties the resulting token to these blocks
+// as well.
+func (o AuthBackendRoleOutput) TokenBoundCidrs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringArrayOutput { return v.TokenBoundCidrs }).(pulumi.StringArrayOutput)
+}
+
+// If set, will encode an
+// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+// onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
+// `tokenMaxTtl` would otherwise allow a renewal.
+func (o AuthBackendRoleOutput) TokenExplicitMaxTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.IntPtrOutput { return v.TokenExplicitMaxTtl }).(pulumi.IntPtrOutput)
+}
+
+// The maximum lifetime for generated tokens in number of seconds.
+// Its current value will be referenced at renewal time.
+func (o AuthBackendRoleOutput) TokenMaxTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.IntPtrOutput { return v.TokenMaxTtl }).(pulumi.IntPtrOutput)
+}
+
+// If set, the default policy will not be set on
+// generated tokens; otherwise it will be added to the policies set in token_policies.
+func (o AuthBackendRoleOutput) TokenNoDefaultPolicy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.BoolPtrOutput { return v.TokenNoDefaultPolicy }).(pulumi.BoolPtrOutput)
+}
+
+// The [maximum number](https://www.vaultproject.io/api-docs/auth/aws#token_num_uses)
+// of times a generated token may be used (within its lifetime); 0 means unlimited.
+func (o AuthBackendRoleOutput) TokenNumUses() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.IntPtrOutput { return v.TokenNumUses }).(pulumi.IntPtrOutput)
+}
+
+// If set, indicates that the
+// token generated using this role should never expire. The token should be renewed within the
+// duration specified by this value. At each renewal, the token's TTL will be set to the
+// value of this field. Specified in seconds.
+func (o AuthBackendRoleOutput) TokenPeriod() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.IntPtrOutput { return v.TokenPeriod }).(pulumi.IntPtrOutput)
+}
+
+// List of policies to encode onto generated tokens. Depending
+// on the auth method, this list may be supplemented by user/group/other values.
+func (o AuthBackendRoleOutput) TokenPolicies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringArrayOutput { return v.TokenPolicies }).(pulumi.StringArrayOutput)
+}
+
+// The incremental lifetime for generated tokens in number of seconds.
+// Its current value will be referenced at renewal time.
+func (o AuthBackendRoleOutput) TokenTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.IntPtrOutput { return v.TokenTtl }).(pulumi.IntPtrOutput)
+}
+
+// The type of token that should be generated. Can be `service`,
+// `batch`, or `default` to use the mount's tuned default (which unless changed will be
+// `service` tokens). For token store roles, there are two additional possibilities:
+// `default-service` and `default-batch` which specify the type to return unless the client
+// requests a different type at generation time.
+func (o AuthBackendRoleOutput) TokenType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringPtrOutput { return v.TokenType }).(pulumi.StringPtrOutput)
 }
 
 type AuthBackendRoleArrayOutput struct{ *pulumi.OutputState }

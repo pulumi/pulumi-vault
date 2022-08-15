@@ -18,36 +18,35 @@ namespace Pulumi.Vault.Transform
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var mountTransform = new Vault.Mount("mountTransform", new()
     ///     {
-    ///         var mountTransform = new Vault.Mount("mountTransform", new Vault.MountArgs
-    ///         {
-    ///             Path = "transform",
-    ///             Type = "transform",
-    ///         });
-    ///         var test = new Vault.Transform.Transformation("test", new Vault.Transform.TransformationArgs
-    ///         {
-    ///             Path = mountTransform.Path,
-    ///             Type = "fpe",
-    ///             Template = "ccn",
-    ///             TweakSource = "internal",
-    ///             AllowedRoles = 
-    ///             {
-    ///                 "payments",
-    ///             },
-    ///         });
-    ///     }
+    ///         Path = "transform",
+    ///         Type = "transform",
+    ///     });
     /// 
-    /// }
+    ///     var test = new Vault.Transform.Transformation("test", new()
+    ///     {
+    ///         Path = mountTransform.Path,
+    ///         Type = "fpe",
+    ///         Template = "ccn",
+    ///         TweakSource = "internal",
+    ///         AllowedRoles = new[]
+    ///         {
+    ///             "payments",
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// </summary>
     [VaultResourceType("vault:transform/transformation:Transformation")]
-    public partial class Transformation : Pulumi.CustomResource
+    public partial class Transformation : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The set of roles allowed to perform this transformation.
@@ -141,7 +140,7 @@ namespace Pulumi.Vault.Transform
         }
     }
 
-    public sealed class TransformationArgs : Pulumi.ResourceArgs
+    public sealed class TransformationArgs : global::Pulumi.ResourceArgs
     {
         [Input("allowedRoles")]
         private InputList<string>? _allowedRoles;
@@ -206,9 +205,10 @@ namespace Pulumi.Vault.Transform
         public TransformationArgs()
         {
         }
+        public static new TransformationArgs Empty => new TransformationArgs();
     }
 
-    public sealed class TransformationState : Pulumi.ResourceArgs
+    public sealed class TransformationState : global::Pulumi.ResourceArgs
     {
         [Input("allowedRoles")]
         private InputList<string>? _allowedRoles;
@@ -273,5 +273,6 @@ namespace Pulumi.Vault.Transform
         public TransformationState()
         {
         }
+        public static new TransformationState Empty => new TransformationState();
     }
 }

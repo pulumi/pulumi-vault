@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Database.Inputs
 {
 
-    public sealed class SecretBackendConnectionMysqlArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendConnectionMysqlArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Specifies the Redshift DSN. See
@@ -74,5 +74,6 @@ namespace Pulumi.Vault.Database.Inputs
         public SecretBackendConnectionMysqlArgs()
         {
         }
+        public static new SecretBackendConnectionMysqlArgs Empty => new SecretBackendConnectionMysqlArgs();
     }
 }

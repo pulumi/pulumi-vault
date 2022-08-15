@@ -13,27 +13,25 @@ namespace Pulumi.Vault
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var config = new Vault.NomadSecretBackend("config", new()
     ///     {
-    ///         var config = new Vault.NomadSecretBackend("config", new Vault.NomadSecretBackendArgs
-    ///         {
-    ///             Address = "https://127.0.0.1:4646",
-    ///             Backend = "nomad",
-    ///             DefaultLeaseTtlSeconds = 3600,
-    ///             Description = "test description",
-    ///             MaxLeaseTtlSeconds = 7200,
-    ///             MaxTtl = 240,
-    ///             Token = "ae20ceaa-...",
-    ///             Ttl = 120,
-    ///         });
-    ///     }
+    ///         Address = "https://127.0.0.1:4646",
+    ///         Backend = "nomad",
+    ///         DefaultLeaseTtlSeconds = 3600,
+    ///         Description = "test description",
+    ///         MaxLeaseTtlSeconds = 7200,
+    ///         MaxTtl = 240,
+    ///         Token = "ae20ceaa-...",
+    ///         Ttl = 120,
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -45,7 +43,7 @@ namespace Pulumi.Vault
     /// ```
     /// </summary>
     [VaultResourceType("vault:index/nomadSecretBackend:NomadSecretBackend")]
-    public partial class NomadSecretBackend : Pulumi.CustomResource
+    public partial class NomadSecretBackend : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Specifies the address of the Nomad instance, provided
@@ -175,7 +173,7 @@ namespace Pulumi.Vault
         }
     }
 
-    public sealed class NomadSecretBackendArgs : Pulumi.ResourceArgs
+    public sealed class NomadSecretBackendArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Specifies the address of the Nomad instance, provided
@@ -264,9 +262,10 @@ namespace Pulumi.Vault
         public NomadSecretBackendArgs()
         {
         }
+        public static new NomadSecretBackendArgs Empty => new NomadSecretBackendArgs();
     }
 
-    public sealed class NomadSecretBackendState : Pulumi.ResourceArgs
+    public sealed class NomadSecretBackendState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Specifies the address of the Nomad instance, provided
@@ -355,5 +354,6 @@ namespace Pulumi.Vault
         public NomadSecretBackendState()
         {
         }
+        public static new NomadSecretBackendState Empty => new NomadSecretBackendState();
     }
 }

@@ -19,24 +19,23 @@ namespace Pulumi.Vault.AppRole
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Vault = Pulumi.Vault;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var role = Vault.AppRole.GetAuthBackendRoleId.Invoke(new()
         ///     {
-        ///         var role = Output.Create(Vault.AppRole.GetAuthBackendRoleId.InvokeAsync(new Vault.AppRole.GetAuthBackendRoleIdArgs
-        ///         {
-        ///             Backend = "my-approle-backend",
-        ///             RoleName = "my-role",
-        ///         }));
-        ///         this.Role_id = role.Apply(role =&gt; role.RoleId);
-        ///     }
+        ///         Backend = "my-approle-backend",
+        ///         RoleName = "my-role",
+        ///     });
         /// 
-        ///     [Output("role-id")]
-        ///     public Output&lt;string&gt; Role_id { get; set; }
-        /// }
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["role-id"] = role.Apply(getAuthBackendRoleIdResult =&gt; getAuthBackendRoleIdResult.RoleId),
+        ///     };
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -52,24 +51,23 @@ namespace Pulumi.Vault.AppRole
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Vault = Pulumi.Vault;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var role = Vault.AppRole.GetAuthBackendRoleId.Invoke(new()
         ///     {
-        ///         var role = Output.Create(Vault.AppRole.GetAuthBackendRoleId.InvokeAsync(new Vault.AppRole.GetAuthBackendRoleIdArgs
-        ///         {
-        ///             Backend = "my-approle-backend",
-        ///             RoleName = "my-role",
-        ///         }));
-        ///         this.Role_id = role.Apply(role =&gt; role.RoleId);
-        ///     }
+        ///         Backend = "my-approle-backend",
+        ///         RoleName = "my-role",
+        ///     });
         /// 
-        ///     [Output("role-id")]
-        ///     public Output&lt;string&gt; Role_id { get; set; }
-        /// }
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["role-id"] = role.Apply(getAuthBackendRoleIdResult =&gt; getAuthBackendRoleIdResult.RoleId),
+        ///     };
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -79,7 +77,7 @@ namespace Pulumi.Vault.AppRole
     }
 
 
-    public sealed class GetAuthBackendRoleIdArgs : Pulumi.InvokeArgs
+    public sealed class GetAuthBackendRoleIdArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The unique name for the AppRole backend the role to
@@ -97,9 +95,10 @@ namespace Pulumi.Vault.AppRole
         public GetAuthBackendRoleIdArgs()
         {
         }
+        public static new GetAuthBackendRoleIdArgs Empty => new GetAuthBackendRoleIdArgs();
     }
 
-    public sealed class GetAuthBackendRoleIdInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetAuthBackendRoleIdInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The unique name for the AppRole backend the role to
@@ -117,6 +116,7 @@ namespace Pulumi.Vault.AppRole
         public GetAuthBackendRoleIdInvokeArgs()
         {
         }
+        public static new GetAuthBackendRoleIdInvokeArgs Empty => new GetAuthBackendRoleIdInvokeArgs();
     }
 
 

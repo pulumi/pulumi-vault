@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Database.Inputs
 {
 
-    public sealed class SecretBackendConnectionInfluxdbArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendConnectionInfluxdbArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The number of seconds to use as a connection
@@ -79,5 +79,6 @@ namespace Pulumi.Vault.Database.Inputs
         public SecretBackendConnectionInfluxdbArgs()
         {
         }
+        public static new SecretBackendConnectionInfluxdbArgs Empty => new SecretBackendConnectionInfluxdbArgs();
     }
 }

@@ -14,50 +14,46 @@ namespace Pulumi.Vault
     /// ### File Audit Device)
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Vault.Audit("test", new()
     ///     {
-    ///         var test = new Vault.Audit("test", new Vault.AuditArgs
+    ///         Options = 
     ///         {
-    ///             Options = 
-    ///             {
-    ///                 { "file_path", "C:/temp/audit.txt" },
-    ///             },
-    ///             Type = "file",
-    ///         });
-    ///     }
+    ///             { "file_path", "C:/temp/audit.txt" },
+    ///         },
+    ///         Type = "file",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// ### Socket Audit Device)
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Vault.Audit("test", new()
     ///     {
-    ///         var test = new Vault.Audit("test", new Vault.AuditArgs
+    ///         Local = false,
+    ///         Options = 
     ///         {
-    ///             Local = false,
-    ///             Options = 
-    ///             {
-    ///                 { "address", "127.0.0.1:8000" },
-    ///                 { "description", "application x socket" },
-    ///                 { "socket_type", "tcp" },
-    ///             },
-    ///             Path = "app_socket",
-    ///             Type = "socket",
-    ///         });
-    ///     }
+    ///             { "address", "127.0.0.1:8000" },
+    ///             { "description", "application x socket" },
+    ///             { "socket_type", "tcp" },
+    ///         },
+    ///         Path = "app_socket",
+    ///         Type = "socket",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -69,7 +65,7 @@ namespace Pulumi.Vault
     /// ```
     /// </summary>
     [VaultResourceType("vault:index/audit:Audit")]
-    public partial class Audit : Pulumi.CustomResource
+    public partial class Audit : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Human-friendly description of the audit device.
@@ -145,7 +141,7 @@ namespace Pulumi.Vault
         }
     }
 
-    public sealed class AuditArgs : Pulumi.ResourceArgs
+    public sealed class AuditArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Human-friendly description of the audit device.
@@ -186,9 +182,10 @@ namespace Pulumi.Vault
         public AuditArgs()
         {
         }
+        public static new AuditArgs Empty => new AuditArgs();
     }
 
-    public sealed class AuditState : Pulumi.ResourceArgs
+    public sealed class AuditState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Human-friendly description of the audit device.
@@ -229,5 +226,6 @@ namespace Pulumi.Vault
         public AuditState()
         {
         }
+        public static new AuditState Empty => new AuditState();
     }
 }

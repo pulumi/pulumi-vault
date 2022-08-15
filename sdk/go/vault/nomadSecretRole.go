@@ -17,37 +17,40 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		config, err := vault.NewNomadSecretBackend(ctx, "config", &vault.NomadSecretBackendArgs{
-// 			Backend:                pulumi.String("nomad"),
-// 			Description:            pulumi.String("test description"),
-// 			DefaultLeaseTtlSeconds: pulumi.Int(3600),
-// 			MaxLeaseTtlSeconds:     pulumi.Int(7200),
-// 			Address:                pulumi.String("https://127.0.0.1:4646"),
-// 			Token:                  pulumi.String("ae20ceaa-..."),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = vault.NewNomadSecretRole(ctx, "test", &vault.NomadSecretRoleArgs{
-// 			Backend: config.Backend,
-// 			Role:    pulumi.String("test"),
-// 			Type:    pulumi.String("client"),
-// 			Policies: pulumi.StringArray{
-// 				pulumi.String("readonly"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			config, err := vault.NewNomadSecretBackend(ctx, "config", &vault.NomadSecretBackendArgs{
+//				Backend:                pulumi.String("nomad"),
+//				Description:            pulumi.String("test description"),
+//				DefaultLeaseTtlSeconds: pulumi.Int(3600),
+//				MaxLeaseTtlSeconds:     pulumi.Int(7200),
+//				Address:                pulumi.String("https://127.0.0.1:4646"),
+//				Token:                  pulumi.String("ae20ceaa-..."),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vault.NewNomadSecretRole(ctx, "test", &vault.NomadSecretRoleArgs{
+//				Backend: config.Backend,
+//				Role:    pulumi.String("test"),
+//				Type:    pulumi.String("client"),
+//				Policies: pulumi.StringArray{
+//					pulumi.String("readonly"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -55,7 +58,9 @@ import (
 // Nomad secret role can be imported using the `backend`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:index/nomadSecretRole:NomadSecretRole bob nomad/role/bob
+//
+//	$ pulumi import vault:index/nomadSecretRole:NomadSecretRole bob nomad/role/bob
+//
 // ```
 type NomadSecretRole struct {
 	pulumi.CustomResourceState
@@ -214,7 +219,7 @@ func (i *NomadSecretRole) ToNomadSecretRoleOutputWithContext(ctx context.Context
 // NomadSecretRoleArrayInput is an input type that accepts NomadSecretRoleArray and NomadSecretRoleArrayOutput values.
 // You can construct a concrete instance of `NomadSecretRoleArrayInput` via:
 //
-//          NomadSecretRoleArray{ NomadSecretRoleArgs{...} }
+//	NomadSecretRoleArray{ NomadSecretRoleArgs{...} }
 type NomadSecretRoleArrayInput interface {
 	pulumi.Input
 
@@ -239,7 +244,7 @@ func (i NomadSecretRoleArray) ToNomadSecretRoleArrayOutputWithContext(ctx contex
 // NomadSecretRoleMapInput is an input type that accepts NomadSecretRoleMap and NomadSecretRoleMapOutput values.
 // You can construct a concrete instance of `NomadSecretRoleMapInput` via:
 //
-//          NomadSecretRoleMap{ "key": NomadSecretRoleArgs{...} }
+//	NomadSecretRoleMap{ "key": NomadSecretRoleArgs{...} }
 type NomadSecretRoleMapInput interface {
 	pulumi.Input
 
@@ -273,6 +278,36 @@ func (o NomadSecretRoleOutput) ToNomadSecretRoleOutput() NomadSecretRoleOutput {
 
 func (o NomadSecretRoleOutput) ToNomadSecretRoleOutputWithContext(ctx context.Context) NomadSecretRoleOutput {
 	return o
+}
+
+// The unique path this backend should be mounted at. Must
+// not begin or end with a `/`. Defaults to `nomad`.
+func (o NomadSecretRoleOutput) Backend() pulumi.StringOutput {
+	return o.ApplyT(func(v *NomadSecretRole) pulumi.StringOutput { return v.Backend }).(pulumi.StringOutput)
+}
+
+// Specifies if the generated token should be global. Defaults to
+// false.
+func (o NomadSecretRoleOutput) Global() pulumi.BoolOutput {
+	return o.ApplyT(func(v *NomadSecretRole) pulumi.BoolOutput { return v.Global }).(pulumi.BoolOutput)
+}
+
+// List of policies attached to the generated token. This setting is only used
+// when `type` is 'client'.
+func (o NomadSecretRoleOutput) Policies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *NomadSecretRole) pulumi.StringArrayOutput { return v.Policies }).(pulumi.StringArrayOutput)
+}
+
+// The name to identify this role within the backend.
+// Must be unique within the backend.
+func (o NomadSecretRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v *NomadSecretRole) pulumi.StringOutput { return v.Role }).(pulumi.StringOutput)
+}
+
+// Specifies the type of token to create when using this role. Valid
+// settings are 'client' and 'management'. Defaults to 'client'.
+func (o NomadSecretRoleOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *NomadSecretRole) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
 type NomadSecretRoleArrayOutput struct{ *pulumi.OutputState }

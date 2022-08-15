@@ -17,51 +17,54 @@ import (
 // package main
 //
 // import (
-// 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/azure"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/azure"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		azure, err := azure.NewBackend(ctx, "azure", &azure.BackendArgs{
-// 			SubscriptionId: pulumi.Any(_var.Subscription_id),
-// 			TenantId:       pulumi.Any(_var.Tenant_id),
-// 			ClientSecret:   pulumi.Any(_var.Client_secret),
-// 			ClientId:       pulumi.Any(_var.Client_id),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = azure.NewBackendRole(ctx, "generatedRole", &azure.BackendRoleArgs{
-// 			Backend: azure.Path,
-// 			Role:    pulumi.String("generated_role"),
-// 			Ttl:     pulumi.String("300"),
-// 			MaxTtl:  pulumi.String("600"),
-// 			AzureRoles: azure.BackendRoleAzureRoleArray{
-// 				&azure.BackendRoleAzureRoleArgs{
-// 					RoleName: pulumi.String("Reader"),
-// 					Scope:    pulumi.String(fmt.Sprintf("%v%v%v", "/subscriptions/", _var.Subscription_id, "/resourceGroups/azure-vault-group")),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = azure.NewBackendRole(ctx, "existingObjectId", &azure.BackendRoleArgs{
-// 			Backend:             azure.Path,
-// 			Role:                pulumi.String("existing_object_id"),
-// 			ApplicationObjectId: pulumi.String("11111111-2222-3333-4444-44444444444"),
-// 			Ttl:                 pulumi.String("300"),
-// 			MaxTtl:              pulumi.String("600"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			azure, err := azure.NewBackend(ctx, "azure", &azure.BackendArgs{
+//				SubscriptionId: pulumi.Any(_var.Subscription_id),
+//				TenantId:       pulumi.Any(_var.Tenant_id),
+//				ClientSecret:   pulumi.Any(_var.Client_secret),
+//				ClientId:       pulumi.Any(_var.Client_id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = azure.NewBackendRole(ctx, "generatedRole", &azure.BackendRoleArgs{
+//				Backend: azure.Path,
+//				Role:    pulumi.String("generated_role"),
+//				Ttl:     pulumi.String("300"),
+//				MaxTtl:  pulumi.String("600"),
+//				AzureRoles: azure.BackendRoleAzureRoleArray{
+//					&azure.BackendRoleAzureRoleArgs{
+//						RoleName: pulumi.String("Reader"),
+//						Scope:    pulumi.String(fmt.Sprintf("/subscriptions/%v/resourceGroups/azure-vault-group", _var.Subscription_id)),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = azure.NewBackendRole(ctx, "existingObjectId", &azure.BackendRoleArgs{
+//				Backend:             azure.Path,
+//				Role:                pulumi.String("existing_object_id"),
+//				ApplicationObjectId: pulumi.String("11111111-2222-3333-4444-44444444444"),
+//				Ttl:                 pulumi.String("300"),
+//				MaxTtl:              pulumi.String("600"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type BackendRole struct {
 	pulumi.CustomResourceState
@@ -237,7 +240,7 @@ func (i *BackendRole) ToBackendRoleOutputWithContext(ctx context.Context) Backen
 // BackendRoleArrayInput is an input type that accepts BackendRoleArray and BackendRoleArrayOutput values.
 // You can construct a concrete instance of `BackendRoleArrayInput` via:
 //
-//          BackendRoleArray{ BackendRoleArgs{...} }
+//	BackendRoleArray{ BackendRoleArgs{...} }
 type BackendRoleArrayInput interface {
 	pulumi.Input
 
@@ -262,7 +265,7 @@ func (i BackendRoleArray) ToBackendRoleArrayOutputWithContext(ctx context.Contex
 // BackendRoleMapInput is an input type that accepts BackendRoleMap and BackendRoleMapOutput values.
 // You can construct a concrete instance of `BackendRoleMapInput` via:
 //
-//          BackendRoleMap{ "key": BackendRoleArgs{...} }
+//	BackendRoleMap{ "key": BackendRoleArgs{...} }
 type BackendRoleMapInput interface {
 	pulumi.Input
 
@@ -296,6 +299,49 @@ func (o BackendRoleOutput) ToBackendRoleOutput() BackendRoleOutput {
 
 func (o BackendRoleOutput) ToBackendRoleOutputWithContext(ctx context.Context) BackendRoleOutput {
 	return o
+}
+
+// Application Object ID for an existing service principal that will
+// be used instead of creating dynamic service principals. If present, `azureRoles` will be ignored.
+func (o BackendRoleOutput) ApplicationObjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackendRole) pulumi.StringPtrOutput { return v.ApplicationObjectId }).(pulumi.StringPtrOutput)
+}
+
+// List of Azure groups to be assigned to the generated service principal.
+func (o BackendRoleOutput) AzureGroups() BackendRoleAzureGroupArrayOutput {
+	return o.ApplyT(func(v *BackendRole) BackendRoleAzureGroupArrayOutput { return v.AzureGroups }).(BackendRoleAzureGroupArrayOutput)
+}
+
+// List of Azure roles to be assigned to the generated service principal.
+func (o BackendRoleOutput) AzureRoles() BackendRoleAzureRoleArrayOutput {
+	return o.ApplyT(func(v *BackendRole) BackendRoleAzureRoleArrayOutput { return v.AzureRoles }).(BackendRoleAzureRoleArrayOutput)
+}
+
+// Path to the mounted Azure auth backend
+func (o BackendRoleOutput) Backend() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackendRole) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
+}
+
+// Human-friendly description of the mount for the backend.
+func (o BackendRoleOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackendRole) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the maximum TTL for service principals generated using this role. Accepts time
+// suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
+func (o BackendRoleOutput) MaxTtl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackendRole) pulumi.StringPtrOutput { return v.MaxTtl }).(pulumi.StringPtrOutput)
+}
+
+// Name of the Azure role
+func (o BackendRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v *BackendRole) pulumi.StringOutput { return v.Role }).(pulumi.StringOutput)
+}
+
+// Specifies the default TTL for service principals generated using this role.
+// Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
+func (o BackendRoleOutput) Ttl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackendRole) pulumi.StringPtrOutput { return v.Ttl }).(pulumi.StringPtrOutput)
 }
 
 type BackendRoleArrayOutput struct{ *pulumi.OutputState }

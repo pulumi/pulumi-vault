@@ -21,24 +21,27 @@ import (
 // package main
 //
 // import (
-// 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := vault.NewRgpPolicy(ctx, "allow-all", &vault.RgpPolicyArgs{
-// 			EnforcementLevel: pulumi.String("soft-mandatory"),
-// 			Policy:           pulumi.String(fmt.Sprintf("%v%v%v%v", "main = rule {\n", "  true\n", "}\n", "\n")),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vault.NewRgpPolicy(ctx, "allow-all", &vault.RgpPolicyArgs{
+//				EnforcementLevel: pulumi.String("soft-mandatory"),
+//				Policy:           pulumi.String(fmt.Sprintf("main = rule {\n  true\n}\n\n")),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type RgpPolicy struct {
 	pulumi.CustomResourceState
@@ -152,7 +155,7 @@ func (i *RgpPolicy) ToRgpPolicyOutputWithContext(ctx context.Context) RgpPolicyO
 // RgpPolicyArrayInput is an input type that accepts RgpPolicyArray and RgpPolicyArrayOutput values.
 // You can construct a concrete instance of `RgpPolicyArrayInput` via:
 //
-//          RgpPolicyArray{ RgpPolicyArgs{...} }
+//	RgpPolicyArray{ RgpPolicyArgs{...} }
 type RgpPolicyArrayInput interface {
 	pulumi.Input
 
@@ -177,7 +180,7 @@ func (i RgpPolicyArray) ToRgpPolicyArrayOutputWithContext(ctx context.Context) R
 // RgpPolicyMapInput is an input type that accepts RgpPolicyMap and RgpPolicyMapOutput values.
 // You can construct a concrete instance of `RgpPolicyMapInput` via:
 //
-//          RgpPolicyMap{ "key": RgpPolicyArgs{...} }
+//	RgpPolicyMap{ "key": RgpPolicyArgs{...} }
 type RgpPolicyMapInput interface {
 	pulumi.Input
 
@@ -211,6 +214,21 @@ func (o RgpPolicyOutput) ToRgpPolicyOutput() RgpPolicyOutput {
 
 func (o RgpPolicyOutput) ToRgpPolicyOutputWithContext(ctx context.Context) RgpPolicyOutput {
 	return o
+}
+
+// Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
+func (o RgpPolicyOutput) EnforcementLevel() pulumi.StringOutput {
+	return o.ApplyT(func(v *RgpPolicy) pulumi.StringOutput { return v.EnforcementLevel }).(pulumi.StringOutput)
+}
+
+// The name of the policy
+func (o RgpPolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *RgpPolicy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// String containing a Sentinel policy
+func (o RgpPolicyOutput) Policy() pulumi.StringOutput {
+	return o.ApplyT(func(v *RgpPolicy) pulumi.StringOutput { return v.Policy }).(pulumi.StringOutput)
 }
 
 type RgpPolicyArrayOutput struct{ *pulumi.OutputState }

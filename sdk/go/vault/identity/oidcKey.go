@@ -16,42 +16,47 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		key, err := identity.NewOidcKey(ctx, "key", &identity.OidcKeyArgs{
-// 			Algorithm: pulumi.String("RS256"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		roleOidcRole, err := identity.NewOidcRole(ctx, "roleOidcRole", &identity.OidcRoleArgs{
-// 			Key: key.Name,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = identity.NewOidcKeyAllowedClientID(ctx, "roleOidcKeyAllowedClientID", &identity.OidcKeyAllowedClientIDArgs{
-// 			KeyName:         key.Name,
-// 			AllowedClientId: roleOidcRole.ClientId,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			key, err := identity.NewOidcKey(ctx, "key", &identity.OidcKeyArgs{
+//				Algorithm: pulumi.String("RS256"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			roleOidcRole, err := identity.NewOidcRole(ctx, "roleOidcRole", &identity.OidcRoleArgs{
+//				Key: key.Name,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = identity.NewOidcKeyAllowedClientID(ctx, "roleOidcKeyAllowedClientID", &identity.OidcKeyAllowedClientIDArgs{
+//				KeyName:         key.Name,
+//				AllowedClientId: roleOidcRole.ClientId,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
-// The key can be imported with the key name, for example
+// # The key can be imported with the key name, for example
 //
 // ```sh
-//  $ pulumi import vault:identity/oidcKey:OidcKey key key
+//
+//	$ pulumi import vault:identity/oidcKey:OidcKey key key
+//
 // ```
 type OidcKey struct {
 	pulumi.CustomResourceState
@@ -194,7 +199,7 @@ func (i *OidcKey) ToOidcKeyOutputWithContext(ctx context.Context) OidcKeyOutput 
 // OidcKeyArrayInput is an input type that accepts OidcKeyArray and OidcKeyArrayOutput values.
 // You can construct a concrete instance of `OidcKeyArrayInput` via:
 //
-//          OidcKeyArray{ OidcKeyArgs{...} }
+//	OidcKeyArray{ OidcKeyArgs{...} }
 type OidcKeyArrayInput interface {
 	pulumi.Input
 
@@ -219,7 +224,7 @@ func (i OidcKeyArray) ToOidcKeyArrayOutputWithContext(ctx context.Context) OidcK
 // OidcKeyMapInput is an input type that accepts OidcKeyMap and OidcKeyMapOutput values.
 // You can construct a concrete instance of `OidcKeyMapInput` via:
 //
-//          OidcKeyMap{ "key": OidcKeyArgs{...} }
+//	OidcKeyMap{ "key": OidcKeyArgs{...} }
 type OidcKeyMapInput interface {
 	pulumi.Input
 
@@ -253,6 +258,34 @@ func (o OidcKeyOutput) ToOidcKeyOutput() OidcKeyOutput {
 
 func (o OidcKeyOutput) ToOidcKeyOutputWithContext(ctx context.Context) OidcKeyOutput {
 	return o
+}
+
+// Signing algorithm to use. Signing algorithm to use.
+// Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
+func (o OidcKeyOutput) Algorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OidcKey) pulumi.StringPtrOutput { return v.Algorithm }).(pulumi.StringPtrOutput)
+}
+
+// Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
+// allowed.
+func (o OidcKeyOutput) AllowedClientIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *OidcKey) pulumi.StringArrayOutput { return v.AllowedClientIds }).(pulumi.StringArrayOutput)
+}
+
+// Name of the OIDC Key to create.
+func (o OidcKeyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *OidcKey) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// How often to generate a new signing key in number of seconds
+func (o OidcKeyOutput) RotationPeriod() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *OidcKey) pulumi.IntPtrOutput { return v.RotationPeriod }).(pulumi.IntPtrOutput)
+}
+
+// "Controls how long the public portion of a signing key will be
+// available for verification after being rotated in seconds.
+func (o OidcKeyOutput) VerificationTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *OidcKey) pulumi.IntPtrOutput { return v.VerificationTtl }).(pulumi.IntPtrOutput)
 }
 
 type OidcKeyArrayOutput struct{ *pulumi.OutputState }

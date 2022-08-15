@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Okta.Inputs
 {
 
-    public sealed class AuthBackendGroupArgs : Pulumi.ResourceArgs
+    public sealed class AuthBackendGroupArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Name of the group within the Okta
@@ -33,5 +33,6 @@ namespace Pulumi.Vault.Okta.Inputs
         public AuthBackendGroupArgs()
         {
         }
+        public static new AuthBackendGroupArgs Empty => new AuthBackendGroupArgs();
     }
 }

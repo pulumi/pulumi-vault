@@ -13,29 +13,29 @@ namespace Pulumi.Vault.Identity
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var key = new Vault.Identity.OidcKey("key", new()
     ///     {
-    ///         var key = new Vault.Identity.OidcKey("key", new Vault.Identity.OidcKeyArgs
-    ///         {
-    ///             Algorithm = "RS256",
-    ///         });
-    ///         var roleOidcRole = new Vault.Identity.OidcRole("roleOidcRole", new Vault.Identity.OidcRoleArgs
-    ///         {
-    ///             Key = key.Name,
-    ///         });
-    ///         var roleOidcKeyAllowedClientID = new Vault.Identity.OidcKeyAllowedClientID("roleOidcKeyAllowedClientID", new Vault.Identity.OidcKeyAllowedClientIDArgs
-    ///         {
-    ///             KeyName = key.Name,
-    ///             AllowedClientId = roleOidcRole.ClientId,
-    ///         });
-    ///     }
+    ///         Algorithm = "RS256",
+    ///     });
     /// 
-    /// }
+    ///     var roleOidcRole = new Vault.Identity.OidcRole("roleOidcRole", new()
+    ///     {
+    ///         Key = key.Name,
+    ///     });
+    /// 
+    ///     var roleOidcKeyAllowedClientID = new Vault.Identity.OidcKeyAllowedClientID("roleOidcKeyAllowedClientID", new()
+    ///     {
+    ///         KeyName = key.Name,
+    ///         AllowedClientId = roleOidcRole.ClientId,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -47,7 +47,7 @@ namespace Pulumi.Vault.Identity
     /// ```
     /// </summary>
     [VaultResourceType("vault:identity/oidcKey:OidcKey")]
-    public partial class OidcKey : Pulumi.CustomResource
+    public partial class OidcKey : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Signing algorithm to use. Signing algorithm to use.
@@ -126,7 +126,7 @@ namespace Pulumi.Vault.Identity
         }
     }
 
-    public sealed class OidcKeyArgs : Pulumi.ResourceArgs
+    public sealed class OidcKeyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Signing algorithm to use. Signing algorithm to use.
@@ -170,9 +170,10 @@ namespace Pulumi.Vault.Identity
         public OidcKeyArgs()
         {
         }
+        public static new OidcKeyArgs Empty => new OidcKeyArgs();
     }
 
-    public sealed class OidcKeyState : Pulumi.ResourceArgs
+    public sealed class OidcKeyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Signing algorithm to use. Signing algorithm to use.
@@ -216,5 +217,6 @@ namespace Pulumi.Vault.Identity
         public OidcKeyState()
         {
         }
+        public static new OidcKeyState Empty => new OidcKeyState();
     }
 }

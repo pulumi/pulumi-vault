@@ -19,78 +19,76 @@ namespace Pulumi.Vault.Jwt
     /// Role for JWT backend:
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var jwt = new Vault.Jwt.AuthBackend("jwt", new()
     ///     {
-    ///         var jwt = new Vault.Jwt.AuthBackend("jwt", new Vault.Jwt.AuthBackendArgs
-    ///         {
-    ///             Path = "jwt",
-    ///         });
-    ///         var example = new Vault.Jwt.AuthBackendRole("example", new Vault.Jwt.AuthBackendRoleArgs
-    ///         {
-    ///             Backend = jwt.Path,
-    ///             RoleName = "test-role",
-    ///             TokenPolicies = 
-    ///             {
-    ///                 "default",
-    ///                 "dev",
-    ///                 "prod",
-    ///             },
-    ///             BoundAudiences = 
-    ///             {
-    ///                 "https://myco.test",
-    ///             },
-    ///             BoundClaims = 
-    ///             {
-    ///                 { "color", "red,green,blue" },
-    ///             },
-    ///             UserClaim = "https://vault/user",
-    ///             RoleType = "jwt",
-    ///         });
-    ///     }
+    ///         Path = "jwt",
+    ///     });
     /// 
-    /// }
+    ///     var example = new Vault.Jwt.AuthBackendRole("example", new()
+    ///     {
+    ///         Backend = jwt.Path,
+    ///         RoleName = "test-role",
+    ///         TokenPolicies = new[]
+    ///         {
+    ///             "default",
+    ///             "dev",
+    ///             "prod",
+    ///         },
+    ///         BoundAudiences = new[]
+    ///         {
+    ///             "https://myco.test",
+    ///         },
+    ///         BoundClaims = 
+    ///         {
+    ///             { "color", "red,green,blue" },
+    ///         },
+    ///         UserClaim = "https://vault/user",
+    ///         RoleType = "jwt",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// Role for OIDC backend:
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var oidc = new Vault.Jwt.AuthBackend("oidc", new()
     ///     {
-    ///         var oidc = new Vault.Jwt.AuthBackend("oidc", new Vault.Jwt.AuthBackendArgs
-    ///         {
-    ///             Path = "oidc",
-    ///             DefaultRole = "test-role",
-    ///         });
-    ///         var example = new Vault.Jwt.AuthBackendRole("example", new Vault.Jwt.AuthBackendRoleArgs
-    ///         {
-    ///             Backend = oidc.Path,
-    ///             RoleName = "test-role",
-    ///             TokenPolicies = 
-    ///             {
-    ///                 "default",
-    ///                 "dev",
-    ///                 "prod",
-    ///             },
-    ///             UserClaim = "https://vault/user",
-    ///             RoleType = "oidc",
-    ///             AllowedRedirectUris = 
-    ///             {
-    ///                 "http://localhost:8200/ui/vault/auth/oidc/oidc/callback",
-    ///             },
-    ///         });
-    ///     }
+    ///         Path = "oidc",
+    ///         DefaultRole = "test-role",
+    ///     });
     /// 
-    /// }
+    ///     var example = new Vault.Jwt.AuthBackendRole("example", new()
+    ///     {
+    ///         Backend = oidc.Path,
+    ///         RoleName = "test-role",
+    ///         TokenPolicies = new[]
+    ///         {
+    ///             "default",
+    ///             "dev",
+    ///             "prod",
+    ///         },
+    ///         UserClaim = "https://vault/user",
+    ///         RoleType = "oidc",
+    ///         AllowedRedirectUris = new[]
+    ///         {
+    ///             "http://localhost:8200/ui/vault/auth/oidc/oidc/callback",
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -102,7 +100,7 @@ namespace Pulumi.Vault.Jwt
     /// ```
     /// </summary>
     [VaultResourceType("vault:jwt/authBackendRole:AuthBackendRole")]
-    public partial class AuthBackendRole : Pulumi.CustomResource
+    public partial class AuthBackendRole : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The list of allowed values for redirect_uri during OIDC logins.
@@ -344,7 +342,7 @@ namespace Pulumi.Vault.Jwt
         }
     }
 
-    public sealed class AuthBackendRoleArgs : Pulumi.ResourceArgs
+    public sealed class AuthBackendRoleArgs : global::Pulumi.ResourceArgs
     {
         [Input("allowedRedirectUris")]
         private InputList<string>? _allowedRedirectUris;
@@ -587,9 +585,10 @@ namespace Pulumi.Vault.Jwt
         public AuthBackendRoleArgs()
         {
         }
+        public static new AuthBackendRoleArgs Empty => new AuthBackendRoleArgs();
     }
 
-    public sealed class AuthBackendRoleState : Pulumi.ResourceArgs
+    public sealed class AuthBackendRoleState : global::Pulumi.ResourceArgs
     {
         [Input("allowedRedirectUris")]
         private InputList<string>? _allowedRedirectUris;
@@ -832,5 +831,6 @@ namespace Pulumi.Vault.Jwt
         public AuthBackendRoleState()
         {
         }
+        public static new AuthBackendRoleState Empty => new AuthBackendRoleState();
     }
 }

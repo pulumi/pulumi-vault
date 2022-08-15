@@ -13,40 +13,38 @@ namespace Pulumi.Vault.PkiSecret
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Vault.PkiSecret.SecretBackendRootCert("test", new()
     ///     {
-    ///         var test = new Vault.PkiSecret.SecretBackendRootCert("test", new Vault.PkiSecret.SecretBackendRootCertArgs
+    ///         Backend = vault_mount.Pki.Path,
+    ///         Type = "internal",
+    ///         CommonName = "Root CA",
+    ///         Ttl = "315360000",
+    ///         Format = "pem",
+    ///         PrivateKeyFormat = "der",
+    ///         KeyType = "rsa",
+    ///         KeyBits = 4096,
+    ///         ExcludeCnFromSans = true,
+    ///         Ou = "My OU",
+    ///         Organization = "My organization",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
     ///         {
-    ///             Backend = vault_mount.Pki.Path,
-    ///             Type = "internal",
-    ///             CommonName = "Root CA",
-    ///             Ttl = "315360000",
-    ///             Format = "pem",
-    ///             PrivateKeyFormat = "der",
-    ///             KeyType = "rsa",
-    ///             KeyBits = 4096,
-    ///             ExcludeCnFromSans = true,
-    ///             Ou = "My OU",
-    ///             Organization = "My organization",
-    ///         }, new CustomResourceOptions
-    ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 vault_mount.Pki,
-    ///             },
-    ///         });
-    ///     }
+    ///             vault_mount.Pki,
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// </summary>
     [VaultResourceType("vault:pkiSecret/secretBackendRootCert:SecretBackendRootCert")]
-    public partial class SecretBackendRootCert : Pulumi.CustomResource
+    public partial class SecretBackendRootCert : global::Pulumi.CustomResource
     {
         /// <summary>
         /// List of alternative names
@@ -248,7 +246,7 @@ namespace Pulumi.Vault.PkiSecret
         }
     }
 
-    public sealed class SecretBackendRootCertArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendRootCertArgs : global::Pulumi.ResourceArgs
     {
         [Input("altNames")]
         private InputList<string>? _altNames;
@@ -415,9 +413,10 @@ namespace Pulumi.Vault.PkiSecret
         public SecretBackendRootCertArgs()
         {
         }
+        public static new SecretBackendRootCertArgs Empty => new SecretBackendRootCertArgs();
     }
 
-    public sealed class SecretBackendRootCertState : Pulumi.ResourceArgs
+    public sealed class SecretBackendRootCertState : global::Pulumi.ResourceArgs
     {
         [Input("altNames")]
         private InputList<string>? _altNames;
@@ -608,5 +607,6 @@ namespace Pulumi.Vault.PkiSecret
         public SecretBackendRootCertState()
         {
         }
+        public static new SecretBackendRootCertState Empty => new SecretBackendRootCertState();
     }
 }

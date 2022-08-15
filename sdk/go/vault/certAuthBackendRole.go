@@ -19,48 +19,51 @@ import (
 // package main
 //
 // import (
-// 	"io/ioutil"
 //
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"io/ioutil"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func readFileOrPanic(path string) pulumi.StringPtrInput {
-// 	data, err := ioutil.ReadFile(path)
-// 	if err != nil {
-// 		panic(err.Error())
-// 	}
-// 	return pulumi.String(string(data))
-// }
+//	func readFileOrPanic(path string) pulumi.StringPtrInput {
+//		data, err := ioutil.ReadFile(path)
+//		if err != nil {
+//			panic(err.Error())
+//		}
+//		return pulumi.String(string(data))
+//	}
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		certAuthBackend, err := vault.NewAuthBackend(ctx, "certAuthBackend", &vault.AuthBackendArgs{
-// 			Path: pulumi.String("cert"),
-// 			Type: pulumi.String("cert"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = vault.NewCertAuthBackendRole(ctx, "certCertAuthBackendRole", &vault.CertAuthBackendRoleArgs{
-// 			Certificate: readFileOrPanic("/path/to/certs/ca-cert.pem"),
-// 			Backend:     certAuthBackend.Path,
-// 			AllowedNames: pulumi.StringArray{
-// 				pulumi.String("foo.example.org"),
-// 				pulumi.String("baz.example.org"),
-// 			},
-// 			TokenTtl:    pulumi.Int(300),
-// 			TokenMaxTtl: pulumi.Int(600),
-// 			TokenPolicies: pulumi.StringArray{
-// 				pulumi.String("foo"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			certAuthBackend, err := vault.NewAuthBackend(ctx, "certAuthBackend", &vault.AuthBackendArgs{
+//				Path: pulumi.String("cert"),
+//				Type: pulumi.String("cert"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vault.NewCertAuthBackendRole(ctx, "certCertAuthBackendRole", &vault.CertAuthBackendRoleArgs{
+//				Certificate: readFileOrPanic("/path/to/certs/ca-cert.pem"),
+//				Backend:     certAuthBackend.Path,
+//				AllowedNames: pulumi.StringArray{
+//					pulumi.String("foo.example.org"),
+//					pulumi.String("baz.example.org"),
+//				},
+//				TokenTtl:    pulumi.Int(300),
+//				TokenMaxTtl: pulumi.Int(600),
+//				TokenPolicies: pulumi.StringArray{
+//					pulumi.String("foo"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type CertAuthBackendRole struct {
 	pulumi.CustomResourceState
@@ -426,7 +429,7 @@ func (i *CertAuthBackendRole) ToCertAuthBackendRoleOutputWithContext(ctx context
 // CertAuthBackendRoleArrayInput is an input type that accepts CertAuthBackendRoleArray and CertAuthBackendRoleArrayOutput values.
 // You can construct a concrete instance of `CertAuthBackendRoleArrayInput` via:
 //
-//          CertAuthBackendRoleArray{ CertAuthBackendRoleArgs{...} }
+//	CertAuthBackendRoleArray{ CertAuthBackendRoleArgs{...} }
 type CertAuthBackendRoleArrayInput interface {
 	pulumi.Input
 
@@ -451,7 +454,7 @@ func (i CertAuthBackendRoleArray) ToCertAuthBackendRoleArrayOutputWithContext(ct
 // CertAuthBackendRoleMapInput is an input type that accepts CertAuthBackendRoleMap and CertAuthBackendRoleMapOutput values.
 // You can construct a concrete instance of `CertAuthBackendRoleMapInput` via:
 //
-//          CertAuthBackendRoleMap{ "key": CertAuthBackendRoleArgs{...} }
+//	CertAuthBackendRoleMap{ "key": CertAuthBackendRoleArgs{...} }
 type CertAuthBackendRoleMapInput interface {
 	pulumi.Input
 
@@ -485,6 +488,123 @@ func (o CertAuthBackendRoleOutput) ToCertAuthBackendRoleOutput() CertAuthBackend
 
 func (o CertAuthBackendRoleOutput) ToCertAuthBackendRoleOutputWithContext(ctx context.Context) CertAuthBackendRoleOutput {
 	return o
+}
+
+// Allowed the common names for authenticated client certificates
+func (o CertAuthBackendRoleOutput) AllowedCommonNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringArrayOutput { return v.AllowedCommonNames }).(pulumi.StringArrayOutput)
+}
+
+// Allowed alternative dns names for authenticated client certificates
+func (o CertAuthBackendRoleOutput) AllowedDnsSans() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringArrayOutput { return v.AllowedDnsSans }).(pulumi.StringArrayOutput)
+}
+
+// Allowed emails for authenticated client certificates
+func (o CertAuthBackendRoleOutput) AllowedEmailSans() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringArrayOutput { return v.AllowedEmailSans }).(pulumi.StringArrayOutput)
+}
+
+// Allowed subject names for authenticated client certificates
+func (o CertAuthBackendRoleOutput) AllowedNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringArrayOutput { return v.AllowedNames }).(pulumi.StringArrayOutput)
+}
+
+// Allowed organization units for authenticated client certificates
+func (o CertAuthBackendRoleOutput) AllowedOrganizationUnits() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringArrayOutput { return v.AllowedOrganizationUnits }).(pulumi.StringArrayOutput)
+}
+
+// Allowed URIs for authenticated client certificates
+func (o CertAuthBackendRoleOutput) AllowedUriSans() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringArrayOutput { return v.AllowedUriSans }).(pulumi.StringArrayOutput)
+}
+
+// Path to the mounted Cert auth backend
+func (o CertAuthBackendRoleOutput) Backend() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
+}
+
+// CA certificate used to validate client certificates
+func (o CertAuthBackendRoleOutput) Certificate() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringOutput { return v.Certificate }).(pulumi.StringOutput)
+}
+
+// The name to display on tokens issued under this role.
+func (o CertAuthBackendRoleOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringOutput { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// Name of the role
+func (o CertAuthBackendRoleOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// TLS extensions required on client certificates
+func (o CertAuthBackendRoleOutput) RequiredExtensions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringArrayOutput { return v.RequiredExtensions }).(pulumi.StringArrayOutput)
+}
+
+// List of CIDR blocks; if set, specifies blocks of IP
+// addresses which can authenticate successfully, and ties the resulting token to these blocks
+// as well.
+func (o CertAuthBackendRoleOutput) TokenBoundCidrs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringArrayOutput { return v.TokenBoundCidrs }).(pulumi.StringArrayOutput)
+}
+
+// If set, will encode an
+// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+// onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
+// `tokenMaxTtl` would otherwise allow a renewal.
+func (o CertAuthBackendRoleOutput) TokenExplicitMaxTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.IntPtrOutput { return v.TokenExplicitMaxTtl }).(pulumi.IntPtrOutput)
+}
+
+// The maximum lifetime for generated tokens in number of seconds.
+// Its current value will be referenced at renewal time.
+func (o CertAuthBackendRoleOutput) TokenMaxTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.IntPtrOutput { return v.TokenMaxTtl }).(pulumi.IntPtrOutput)
+}
+
+// If set, the default policy will not be set on
+// generated tokens; otherwise it will be added to the policies set in token_policies.
+func (o CertAuthBackendRoleOutput) TokenNoDefaultPolicy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.BoolPtrOutput { return v.TokenNoDefaultPolicy }).(pulumi.BoolPtrOutput)
+}
+
+// The [maximum number](https://www.vaultproject.io/api-docs/auth/cert#token_num_uses)
+// of times a generated token may be used (within its lifetime); 0 means unlimited.
+func (o CertAuthBackendRoleOutput) TokenNumUses() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.IntPtrOutput { return v.TokenNumUses }).(pulumi.IntPtrOutput)
+}
+
+// If set, indicates that the
+// token generated using this role should never expire. The token should be renewed within the
+// duration specified by this value. At each renewal, the token's TTL will be set to the
+// value of this field. Specified in seconds.
+func (o CertAuthBackendRoleOutput) TokenPeriod() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.IntPtrOutput { return v.TokenPeriod }).(pulumi.IntPtrOutput)
+}
+
+// List of policies to encode onto generated tokens. Depending
+// on the auth method, this list may be supplemented by user/group/other values.
+func (o CertAuthBackendRoleOutput) TokenPolicies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringArrayOutput { return v.TokenPolicies }).(pulumi.StringArrayOutput)
+}
+
+// The incremental lifetime for generated tokens in number of seconds.
+// Its current value will be referenced at renewal time.
+func (o CertAuthBackendRoleOutput) TokenTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.IntPtrOutput { return v.TokenTtl }).(pulumi.IntPtrOutput)
+}
+
+// The type of token that should be generated. Can be `service`,
+// `batch`, or `default` to use the mount's tuned default (which unless changed will be
+// `service` tokens). For token store roles, there are two additional possibilities:
+// `default-service` and `default-batch` which specify the type to return unless the client
+// requests a different type at generation time.
+func (o CertAuthBackendRoleOutput) TokenType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringPtrOutput { return v.TokenType }).(pulumi.StringPtrOutput)
 }
 
 type CertAuthBackendRoleArrayOutput struct{ *pulumi.OutputState }

@@ -23,42 +23,45 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/azure"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/azure"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		azure, err := vault.NewAuthBackend(ctx, "azure", &vault.AuthBackendArgs{
-// 			Type: pulumi.String("azure"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = azure.NewAuthBackendRole(ctx, "example", &azure.AuthBackendRoleArgs{
-// 			Backend: azure.Path,
-// 			Role:    pulumi.String("test-role"),
-// 			BoundSubscriptionIds: pulumi.StringArray{
-// 				pulumi.String("11111111-2222-3333-4444-555555555555"),
-// 			},
-// 			BoundResourceGroups: pulumi.StringArray{
-// 				pulumi.String("123456789012"),
-// 			},
-// 			TokenTtl:    pulumi.Int(60),
-// 			TokenMaxTtl: pulumi.Int(120),
-// 			TokenPolicies: pulumi.StringArray{
-// 				pulumi.String("default"),
-// 				pulumi.String("dev"),
-// 				pulumi.String("prod"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			azure, err := vault.NewAuthBackend(ctx, "azure", &vault.AuthBackendArgs{
+//				Type: pulumi.String("azure"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = azure.NewAuthBackendRole(ctx, "example", &azure.AuthBackendRoleArgs{
+//				Backend: azure.Path,
+//				Role:    pulumi.String("test-role"),
+//				BoundSubscriptionIds: pulumi.StringArray{
+//					pulumi.String("11111111-2222-3333-4444-555555555555"),
+//				},
+//				BoundResourceGroups: pulumi.StringArray{
+//					pulumi.String("123456789012"),
+//				},
+//				TokenTtl:    pulumi.Int(60),
+//				TokenMaxTtl: pulumi.Int(120),
+//				TokenPolicies: pulumi.StringArray{
+//					pulumi.String("default"),
+//					pulumi.String("dev"),
+//					pulumi.String("prod"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -66,7 +69,9 @@ import (
 // Azure auth backend roles can be imported using `auth/`, the `backend` path, `/role/`, and the `role` name e.g.
 //
 // ```sh
-//  $ pulumi import vault:azure/authBackendRole:AuthBackendRole example auth/azure/role/test-role
+//
+//	$ pulumi import vault:azure/authBackendRole:AuthBackendRole example auth/azure/role/test-role
+//
 // ```
 type AuthBackendRole struct {
 	pulumi.CustomResourceState
@@ -462,7 +467,7 @@ func (i *AuthBackendRole) ToAuthBackendRoleOutputWithContext(ctx context.Context
 // AuthBackendRoleArrayInput is an input type that accepts AuthBackendRoleArray and AuthBackendRoleArrayOutput values.
 // You can construct a concrete instance of `AuthBackendRoleArrayInput` via:
 //
-//          AuthBackendRoleArray{ AuthBackendRoleArgs{...} }
+//	AuthBackendRoleArray{ AuthBackendRoleArgs{...} }
 type AuthBackendRoleArrayInput interface {
 	pulumi.Input
 
@@ -487,7 +492,7 @@ func (i AuthBackendRoleArray) ToAuthBackendRoleArrayOutputWithContext(ctx contex
 // AuthBackendRoleMapInput is an input type that accepts AuthBackendRoleMap and AuthBackendRoleMapOutput values.
 // You can construct a concrete instance of `AuthBackendRoleMapInput` via:
 //
-//          AuthBackendRoleMap{ "key": AuthBackendRoleArgs{...} }
+//	AuthBackendRoleMap{ "key": AuthBackendRoleArgs{...} }
 type AuthBackendRoleMapInput interface {
 	pulumi.Input
 
@@ -521,6 +526,120 @@ func (o AuthBackendRoleOutput) ToAuthBackendRoleOutput() AuthBackendRoleOutput {
 
 func (o AuthBackendRoleOutput) ToAuthBackendRoleOutputWithContext(ctx context.Context) AuthBackendRoleOutput {
 	return o
+}
+
+// Unique name of the auth backend to configure.
+func (o AuthBackendRoleOutput) Backend() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
+}
+
+// If set, defines a constraint on the groups
+// that can perform the login operation that they should be using the group
+// ID specified by this field.
+func (o AuthBackendRoleOutput) BoundGroupIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringArrayOutput { return v.BoundGroupIds }).(pulumi.StringArrayOutput)
+}
+
+// If set, defines a constraint on the virtual machines
+// that can perform the login operation that the location in their identity
+// document must match the one specified by this field.
+func (o AuthBackendRoleOutput) BoundLocations() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringArrayOutput { return v.BoundLocations }).(pulumi.StringArrayOutput)
+}
+
+// If set, defines a constraint on the virtual
+// machines that can perform the login operation that they be associated with
+// the resource group that matches the value specified by this field.
+func (o AuthBackendRoleOutput) BoundResourceGroups() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringArrayOutput { return v.BoundResourceGroups }).(pulumi.StringArrayOutput)
+}
+
+// If set, defines a constraint on the virtual
+// machines that can perform the login operation that they must match the scale set
+// specified by this field.
+func (o AuthBackendRoleOutput) BoundScaleSets() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringArrayOutput { return v.BoundScaleSets }).(pulumi.StringArrayOutput)
+}
+
+// If set, defines a constraint on the
+// service principals that can perform the login operation that they should be possess
+// the ids specified by this field.
+func (o AuthBackendRoleOutput) BoundServicePrincipalIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringArrayOutput { return v.BoundServicePrincipalIds }).(pulumi.StringArrayOutput)
+}
+
+// If set, defines a constraint on the subscriptions
+// that can perform the login operation to ones which  matches the value specified by this
+// field.
+func (o AuthBackendRoleOutput) BoundSubscriptionIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringArrayOutput { return v.BoundSubscriptionIds }).(pulumi.StringArrayOutput)
+}
+
+// The name of the role.
+func (o AuthBackendRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringOutput { return v.Role }).(pulumi.StringOutput)
+}
+
+// List of CIDR blocks; if set, specifies blocks of IP
+// addresses which can authenticate successfully, and ties the resulting token to these blocks
+// as well.
+func (o AuthBackendRoleOutput) TokenBoundCidrs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringArrayOutput { return v.TokenBoundCidrs }).(pulumi.StringArrayOutput)
+}
+
+// If set, will encode an
+// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+// onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
+// `tokenMaxTtl` would otherwise allow a renewal.
+func (o AuthBackendRoleOutput) TokenExplicitMaxTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.IntPtrOutput { return v.TokenExplicitMaxTtl }).(pulumi.IntPtrOutput)
+}
+
+// The maximum lifetime for generated tokens in number of seconds.
+// Its current value will be referenced at renewal time.
+func (o AuthBackendRoleOutput) TokenMaxTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.IntPtrOutput { return v.TokenMaxTtl }).(pulumi.IntPtrOutput)
+}
+
+// If set, the default policy will not be set on
+// generated tokens; otherwise it will be added to the policies set in token_policies.
+func (o AuthBackendRoleOutput) TokenNoDefaultPolicy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.BoolPtrOutput { return v.TokenNoDefaultPolicy }).(pulumi.BoolPtrOutput)
+}
+
+// The [maximum number](https://www.vaultproject.io/api-docs/azure#token_num_uses)
+// of times a generated token may be used (within its lifetime); 0 means unlimited.
+func (o AuthBackendRoleOutput) TokenNumUses() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.IntPtrOutput { return v.TokenNumUses }).(pulumi.IntPtrOutput)
+}
+
+// If set, indicates that the
+// token generated using this role should never expire. The token should be renewed within the
+// duration specified by this value. At each renewal, the token's TTL will be set to the
+// value of this field. Specified in seconds.
+func (o AuthBackendRoleOutput) TokenPeriod() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.IntPtrOutput { return v.TokenPeriod }).(pulumi.IntPtrOutput)
+}
+
+// List of policies to encode onto generated tokens. Depending
+// on the auth method, this list may be supplemented by user/group/other values.
+func (o AuthBackendRoleOutput) TokenPolicies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringArrayOutput { return v.TokenPolicies }).(pulumi.StringArrayOutput)
+}
+
+// The incremental lifetime for generated tokens in number of seconds.
+// Its current value will be referenced at renewal time.
+func (o AuthBackendRoleOutput) TokenTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.IntPtrOutput { return v.TokenTtl }).(pulumi.IntPtrOutput)
+}
+
+// The type of token that should be generated. Can be `service`,
+// `batch`, or `default` to use the mount's tuned default (which unless changed will be
+// `service` tokens). For token store roles, there are two additional possibilities:
+// `default-service` and `default-batch` which specify the type to return unless the client
+// requests a different type at generation time.
+func (o AuthBackendRoleOutput) TokenType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringPtrOutput { return v.TokenType }).(pulumi.StringPtrOutput)
 }
 
 type AuthBackendRoleArrayOutput struct{ *pulumi.OutputState }

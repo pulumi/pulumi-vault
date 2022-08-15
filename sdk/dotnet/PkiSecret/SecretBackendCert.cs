@@ -13,31 +13,29 @@ namespace Pulumi.Vault.PkiSecret
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var app = new Vault.PkiSecret.SecretBackendCert("app", new()
     ///     {
-    ///         var app = new Vault.PkiSecret.SecretBackendCert("app", new Vault.PkiSecret.SecretBackendCertArgs
+    ///         Backend = vault_mount.Intermediate.Path,
+    ///         CommonName = "app.my.domain",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
     ///         {
-    ///             Backend = vault_mount.Intermediate.Path,
-    ///             CommonName = "app.my.domain",
-    ///         }, new CustomResourceOptions
-    ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 vault_pki_secret_backend_role.Admin,
-    ///             },
-    ///         });
-    ///     }
+    ///             vault_pki_secret_backend_role.Admin,
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// </summary>
     [VaultResourceType("vault:pkiSecret/secretBackendCert:SecretBackendCert")]
-    public partial class SecretBackendCert : Pulumi.CustomResource
+    public partial class SecretBackendCert : global::Pulumi.CustomResource
     {
         /// <summary>
         /// List of alternative names
@@ -209,7 +207,7 @@ namespace Pulumi.Vault.PkiSecret
         }
     }
 
-    public sealed class SecretBackendCertArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendCertArgs : global::Pulumi.ResourceArgs
     {
         [Input("altNames")]
         private InputList<string>? _altNames;
@@ -322,9 +320,10 @@ namespace Pulumi.Vault.PkiSecret
         public SecretBackendCertArgs()
         {
         }
+        public static new SecretBackendCertArgs Empty => new SecretBackendCertArgs();
     }
 
-    public sealed class SecretBackendCertState : Pulumi.ResourceArgs
+    public sealed class SecretBackendCertState : global::Pulumi.ResourceArgs
     {
         [Input("altNames")]
         private InputList<string>? _altNames;
@@ -479,5 +478,6 @@ namespace Pulumi.Vault.PkiSecret
         public SecretBackendCertState()
         {
         }
+        public static new SecretBackendCertState Empty => new SecretBackendCertState();
     }
 }

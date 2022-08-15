@@ -17,32 +17,47 @@ import (
 // package main
 //
 // import (
-// 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/aws"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/aws"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		aws, err := aws.NewSecretBackend(ctx, "aws", &aws.SecretBackendArgs{
-// 			AccessKey: pulumi.String("AKIA....."),
-// 			SecretKey: pulumi.String("AWS secret key"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = aws.NewSecretBackendRole(ctx, "role", &aws.SecretBackendRoleArgs{
-// 			Backend:        aws.Path,
-// 			CredentialType: pulumi.String("iam_user"),
-// 			PolicyDocument: pulumi.String(fmt.Sprintf("%v%v%v%v%v%v%v%v%v%v", "{\n", "  \"Version\": \"2012-10-17\",\n", "  \"Statement\": [\n", "    {\n", "      \"Effect\": \"Allow\",\n", "      \"Action\": \"iam:*\",\n", "      \"Resource\": \"*\"\n", "    }\n", "  ]\n", "}\n")),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			aws, err := aws.NewSecretBackend(ctx, "aws", &aws.SecretBackendArgs{
+//				AccessKey: pulumi.String("AKIA....."),
+//				SecretKey: pulumi.String("AWS secret key"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = aws.NewSecretBackendRole(ctx, "role", &aws.SecretBackendRoleArgs{
+//				Backend:        aws.Path,
+//				CredentialType: pulumi.String("iam_user"),
+//				PolicyDocument: pulumi.String(fmt.Sprintf(`{
+//	  "Version": "2012-10-17",
+//	  "Statement": [
+//	    {
+//	      "Effect": "Allow",
+//	      "Action": "iam:*",
+//	      "Resource": "*"
+//	    }
+//	  ]
+//	}
+//
+// `)),
+//
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -50,7 +65,9 @@ import (
 // AWS secret backend roles can be imported using the `path`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:aws/secretBackendRole:SecretBackendRole role aws/roles/deploy
+//
+//	$ pulumi import vault:aws/secretBackendRole:SecretBackendRole role aws/roles/deploy
+//
 // ```
 type SecretBackendRole struct {
 	pulumi.CustomResourceState
@@ -399,7 +416,7 @@ func (i *SecretBackendRole) ToSecretBackendRoleOutputWithContext(ctx context.Con
 // SecretBackendRoleArrayInput is an input type that accepts SecretBackendRoleArray and SecretBackendRoleArrayOutput values.
 // You can construct a concrete instance of `SecretBackendRoleArrayInput` via:
 //
-//          SecretBackendRoleArray{ SecretBackendRoleArgs{...} }
+//	SecretBackendRoleArray{ SecretBackendRoleArgs{...} }
 type SecretBackendRoleArrayInput interface {
 	pulumi.Input
 
@@ -424,7 +441,7 @@ func (i SecretBackendRoleArray) ToSecretBackendRoleArrayOutputWithContext(ctx co
 // SecretBackendRoleMapInput is an input type that accepts SecretBackendRoleMap and SecretBackendRoleMapOutput values.
 // You can construct a concrete instance of `SecretBackendRoleMapInput` via:
 //
-//          SecretBackendRoleMap{ "key": SecretBackendRoleArgs{...} }
+//	SecretBackendRoleMap{ "key": SecretBackendRoleArgs{...} }
 type SecretBackendRoleMapInput interface {
 	pulumi.Input
 
@@ -458,6 +475,92 @@ func (o SecretBackendRoleOutput) ToSecretBackendRoleOutput() SecretBackendRoleOu
 
 func (o SecretBackendRoleOutput) ToSecretBackendRoleOutputWithContext(ctx context.Context) SecretBackendRoleOutput {
 	return o
+}
+
+// The path the AWS secret backend is mounted at,
+// with no leading or trailing `/`s.
+func (o SecretBackendRoleOutput) Backend() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.Backend }).(pulumi.StringOutput)
+}
+
+// Specifies the type of credential to be used when
+// retrieving credentials from the role. Must be one of `iamUser`, `assumedRole`, or
+// `federationToken`.
+func (o SecretBackendRoleOutput) CredentialType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.CredentialType }).(pulumi.StringOutput)
+}
+
+// The default TTL in seconds for STS credentials.
+// When a TTL is not specified when STS credentials are requested,
+// and a default TTL is specified on the role,
+// then this default TTL will be used. Valid only when `credentialType` is one of
+// `assumedRole` or `federationToken`.
+func (o SecretBackendRoleOutput) DefaultStsTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.IntOutput { return v.DefaultStsTtl }).(pulumi.IntOutput)
+}
+
+// A list of IAM group names. IAM users generated
+// against this vault role will be added to these IAM Groups. For a credential
+// type of `assumedRole` or `federationToken`, the policies sent to the
+// corresponding AWS call (sts:AssumeRole or sts:GetFederation) will be the
+// policies from each group in `iamGroups` combined with the `policyDocument`
+// and `policyArns` parameters.
+func (o SecretBackendRoleOutput) IamGroups() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.IamGroups }).(pulumi.StringArrayOutput)
+}
+
+// The max allowed TTL in seconds for STS credentials
+// (credentials TTL are capped to `maxStsTtl`). Valid only when `credentialType` is
+// one of `assumedRole` or `federationToken`.
+func (o SecretBackendRoleOutput) MaxStsTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.IntOutput { return v.MaxStsTtl }).(pulumi.IntOutput)
+}
+
+// The name to identify this role within the backend.
+// Must be unique within the backend.
+func (o SecretBackendRoleOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The ARN of the AWS Permissions
+// Boundary to attach to IAM users created in the role. Valid only when
+// `credentialType` is `iamUser`. If not specified, then no permissions boundary
+// policy will be attached.
+func (o SecretBackendRoleOutput) PermissionsBoundaryArn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.PermissionsBoundaryArn }).(pulumi.StringPtrOutput)
+}
+
+// Specifies a list of AWS managed policy ARNs. The
+// behavior depends on the credential type. With `iamUser`, the policies will be
+// attached to IAM users when they are requested. With `assumedRole` and
+// `federationToken`, the policy ARNs will act as a filter on what the credentials
+// can do, similar to `policyDocument`. When `credentialType` is `iamUser` or
+// `federationToken`, at least one of `policyDocument` or `policyArns` must
+// be specified.
+func (o SecretBackendRoleOutput) PolicyArns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.PolicyArns }).(pulumi.StringArrayOutput)
+}
+
+// The IAM policy document for the role. The
+// behavior depends on the credential type. With `iamUser`, the policy document
+// will be attached to the IAM user generated and augment the permissions the IAM
+// user has. With `assumedRole` and `federationToken`, the policy document will
+// act as a filter on what the credentials can do, similar to `policyArns`.
+func (o SecretBackendRoleOutput) PolicyDocument() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.PolicyDocument }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the ARNs of the AWS roles this Vault role
+// is allowed to assume. Required when `credentialType` is `assumedRole` and
+// prohibited otherwise.
+func (o SecretBackendRoleOutput) RoleArns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.RoleArns }).(pulumi.StringArrayOutput)
+}
+
+// The path for the user name. Valid only when
+// `credentialType` is `iamUser`. Default is `/`.
+func (o SecretBackendRoleOutput) UserPath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.UserPath }).(pulumi.StringPtrOutput)
 }
 
 type SecretBackendRoleArrayOutput struct{ *pulumi.OutputState }

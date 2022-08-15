@@ -15,32 +15,31 @@ namespace Pulumi.Vault.PkiSecret
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var root = new Vault.Mount("root", new()
     ///     {
-    ///         var root = new Vault.Mount("root", new Vault.MountArgs
-    ///         {
-    ///             Path = "pki-root",
-    ///             Type = "pki",
-    ///             Description = "root PKI",
-    ///             DefaultLeaseTtlSeconds = 8640000,
-    ///             MaxLeaseTtlSeconds = 8640000,
-    ///         });
-    ///         var example = new Vault.PkiSecret.SecretBackendConfigUrls("example", new Vault.PkiSecret.SecretBackendConfigUrlsArgs
-    ///         {
-    ///             Backend = root.Path,
-    ///             IssuingCertificates = 
-    ///             {
-    ///                 "http://127.0.0.1:8200/v1/pki/ca",
-    ///             },
-    ///         });
-    ///     }
+    ///         Path = "pki-root",
+    ///         Type = "pki",
+    ///         Description = "root PKI",
+    ///         DefaultLeaseTtlSeconds = 8640000,
+    ///         MaxLeaseTtlSeconds = 8640000,
+    ///     });
     /// 
-    /// }
+    ///     var example = new Vault.PkiSecret.SecretBackendConfigUrls("example", new()
+    ///     {
+    ///         Backend = root.Path,
+    ///         IssuingCertificates = new[]
+    ///         {
+    ///             "http://127.0.0.1:8200/v1/pki/ca",
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -56,7 +55,7 @@ namespace Pulumi.Vault.PkiSecret
     /// ```
     /// </summary>
     [VaultResourceType("vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls")]
-    public partial class SecretBackendConfigUrls : Pulumi.CustomResource
+    public partial class SecretBackendConfigUrls : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
@@ -126,7 +125,7 @@ namespace Pulumi.Vault.PkiSecret
         }
     }
 
-    public sealed class SecretBackendConfigUrlsArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendConfigUrlsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
@@ -173,9 +172,10 @@ namespace Pulumi.Vault.PkiSecret
         public SecretBackendConfigUrlsArgs()
         {
         }
+        public static new SecretBackendConfigUrlsArgs Empty => new SecretBackendConfigUrlsArgs();
     }
 
-    public sealed class SecretBackendConfigUrlsState : Pulumi.ResourceArgs
+    public sealed class SecretBackendConfigUrlsState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
@@ -222,5 +222,6 @@ namespace Pulumi.Vault.PkiSecret
         public SecretBackendConfigUrlsState()
         {
         }
+        public static new SecretBackendConfigUrlsState Empty => new SecretBackendConfigUrlsState();
     }
 }

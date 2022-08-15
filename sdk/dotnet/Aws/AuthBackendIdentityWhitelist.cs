@@ -18,25 +18,24 @@ namespace Pulumi.Vault.Aws
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var exampleAuthBackend = new Vault.AuthBackend("exampleAuthBackend", new()
     ///     {
-    ///         var exampleAuthBackend = new Vault.AuthBackend("exampleAuthBackend", new Vault.AuthBackendArgs
-    ///         {
-    ///             Type = "aws",
-    ///         });
-    ///         var exampleAuthBackendIdentityWhitelist = new Vault.Aws.AuthBackendIdentityWhitelist("exampleAuthBackendIdentityWhitelist", new Vault.Aws.AuthBackendIdentityWhitelistArgs
-    ///         {
-    ///             Backend = exampleAuthBackend.Path,
-    ///             SafetyBuffer = 3600,
-    ///         });
-    ///     }
+    ///         Type = "aws",
+    ///     });
     /// 
-    /// }
+    ///     var exampleAuthBackendIdentityWhitelist = new Vault.Aws.AuthBackendIdentityWhitelist("exampleAuthBackendIdentityWhitelist", new()
+    ///     {
+    ///         Backend = exampleAuthBackend.Path,
+    ///         SafetyBuffer = 3600,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -48,7 +47,7 @@ namespace Pulumi.Vault.Aws
     /// ```
     /// </summary>
     [VaultResourceType("vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist")]
-    public partial class AuthBackendIdentityWhitelist : Pulumi.CustomResource
+    public partial class AuthBackendIdentityWhitelist : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The path of the AWS backend being configured.
@@ -115,7 +114,7 @@ namespace Pulumi.Vault.Aws
         }
     }
 
-    public sealed class AuthBackendIdentityWhitelistArgs : Pulumi.ResourceArgs
+    public sealed class AuthBackendIdentityWhitelistArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The path of the AWS backend being configured.
@@ -141,9 +140,10 @@ namespace Pulumi.Vault.Aws
         public AuthBackendIdentityWhitelistArgs()
         {
         }
+        public static new AuthBackendIdentityWhitelistArgs Empty => new AuthBackendIdentityWhitelistArgs();
     }
 
-    public sealed class AuthBackendIdentityWhitelistState : Pulumi.ResourceArgs
+    public sealed class AuthBackendIdentityWhitelistState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The path of the AWS backend being configured.
@@ -169,5 +169,6 @@ namespace Pulumi.Vault.Aws
         public AuthBackendIdentityWhitelistState()
         {
         }
+        public static new AuthBackendIdentityWhitelistState Empty => new AuthBackendIdentityWhitelistState();
     }
 }

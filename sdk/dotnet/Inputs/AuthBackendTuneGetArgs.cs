@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Inputs
 {
 
-    public sealed class AuthBackendTuneGetArgs : Pulumi.ResourceArgs
+    public sealed class AuthBackendTuneGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("allowedResponseHeaders")]
         private InputList<string>? _allowedResponseHeaders;
@@ -97,5 +97,6 @@ namespace Pulumi.Vault.Inputs
         public AuthBackendTuneGetArgs()
         {
         }
+        public static new AuthBackendTuneGetArgs Empty => new AuthBackendTuneGetArgs();
     }
 }

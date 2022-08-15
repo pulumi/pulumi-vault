@@ -16,31 +16,30 @@ namespace Pulumi.Vault.Okta
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var example = new Vault.Okta.AuthBackend("example", new()
     ///     {
-    ///         var example = new Vault.Okta.AuthBackend("example", new Vault.Okta.AuthBackendArgs
-    ///         {
-    ///             Path = "user_okta",
-    ///             Organization = "dummy",
-    ///         });
-    ///         var foo = new Vault.Okta.AuthBackendUser("foo", new Vault.Okta.AuthBackendUserArgs
-    ///         {
-    ///             Path = example.Path,
-    ///             Username = "foo",
-    ///             Groups = 
-    ///             {
-    ///                 "one",
-    ///                 "two",
-    ///             },
-    ///         });
-    ///     }
+    ///         Path = "user_okta",
+    ///         Organization = "dummy",
+    ///     });
     /// 
-    /// }
+    ///     var foo = new Vault.Okta.AuthBackendUser("foo", new()
+    ///     {
+    ///         Path = example.Path,
+    ///         Username = "foo",
+    ///         Groups = new[]
+    ///         {
+    ///             "one",
+    ///             "two",
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -52,7 +51,7 @@ namespace Pulumi.Vault.Okta
     /// ```
     /// </summary>
     [VaultResourceType("vault:okta/authBackendUser:AuthBackendUser")]
-    public partial class AuthBackendUser : Pulumi.CustomResource
+    public partial class AuthBackendUser : global::Pulumi.CustomResource
     {
         /// <summary>
         /// List of Okta groups to associate with this user
@@ -122,7 +121,7 @@ namespace Pulumi.Vault.Okta
         }
     }
 
-    public sealed class AuthBackendUserArgs : Pulumi.ResourceArgs
+    public sealed class AuthBackendUserArgs : global::Pulumi.ResourceArgs
     {
         [Input("groups")]
         private InputList<string>? _groups;
@@ -163,9 +162,10 @@ namespace Pulumi.Vault.Okta
         public AuthBackendUserArgs()
         {
         }
+        public static new AuthBackendUserArgs Empty => new AuthBackendUserArgs();
     }
 
-    public sealed class AuthBackendUserState : Pulumi.ResourceArgs
+    public sealed class AuthBackendUserState : global::Pulumi.ResourceArgs
     {
         [Input("groups")]
         private InputList<string>? _groups;
@@ -206,5 +206,6 @@ namespace Pulumi.Vault.Okta
         public AuthBackendUserState()
         {
         }
+        public static new AuthBackendUserState Empty => new AuthBackendUserState();
     }
 }

@@ -17,30 +17,29 @@ namespace Pulumi.Vault.GitHub
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var example = new Vault.GitHub.AuthBackend("example", new()
     ///     {
-    ///         var example = new Vault.GitHub.AuthBackend("example", new Vault.GitHub.AuthBackendArgs
-    ///         {
-    ///             Organization = "myorg",
-    ///         });
-    ///         var tfUser = new Vault.GitHub.User("tfUser", new Vault.GitHub.UserArgs
-    ///         {
-    ///             Backend = example.Id,
-    ///             User = "john.doe",
-    ///             Policies = 
-    ///             {
-    ///                 "developer",
-    ///                 "read-only",
-    ///             },
-    ///         });
-    ///     }
+    ///         Organization = "myorg",
+    ///     });
     /// 
-    /// }
+    ///     var tfUser = new Vault.GitHub.User("tfUser", new()
+    ///     {
+    ///         Backend = example.Id,
+    ///         UserName = "john.doe",
+    ///         Policies = new[]
+    ///         {
+    ///             "developer",
+    ///             "read-only",
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -52,7 +51,7 @@ namespace Pulumi.Vault.GitHub
     /// ```
     /// </summary>
     [VaultResourceType("vault:github/user:User")]
-    public partial class User : Pulumi.CustomResource
+    public partial class User : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Path where the github auth backend is mounted. Defaults to `github`
@@ -118,7 +117,7 @@ namespace Pulumi.Vault.GitHub
         }
     }
 
-    public sealed class UserArgs : Pulumi.ResourceArgs
+    public sealed class UserArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Path where the github auth backend is mounted. Defaults to `github`
@@ -149,9 +148,10 @@ namespace Pulumi.Vault.GitHub
         public UserArgs()
         {
         }
+        public static new UserArgs Empty => new UserArgs();
     }
 
-    public sealed class UserState : Pulumi.ResourceArgs
+    public sealed class UserState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Path where the github auth backend is mounted. Defaults to `github`
@@ -182,5 +182,6 @@ namespace Pulumi.Vault.GitHub
         public UserState()
         {
         }
+        public static new UserState Empty => new UserState();
     }
 }

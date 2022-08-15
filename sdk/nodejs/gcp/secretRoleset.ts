@@ -14,8 +14,8 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as fs from "fs";
  * import * as vault from "@pulumi/vault";
- * import * from "fs";
  *
  * const project = "my-awesome-project";
  * const gcp = new vault.gcp.SecretBackend("gcp", {

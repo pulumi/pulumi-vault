@@ -19,28 +19,31 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := pkiSecret.NewSecretBackendRootSignIntermediate(ctx, "root", &pkiSecret.SecretBackendRootSignIntermediateArgs{
-// 			Backend:           pulumi.Any(vault_mount.Root.Path),
-// 			Csr:               pulumi.Any(vault_pki_secret_backend_intermediate_cert_request.Intermediate.Csr),
-// 			CommonName:        pulumi.String("Intermediate CA"),
-// 			ExcludeCnFromSans: pulumi.Bool(true),
-// 			Ou:                pulumi.String("My OU"),
-// 			Organization:      pulumi.String("My organization"),
-// 		}, pulumi.DependsOn([]pulumi.Resource{
-// 			vault_pki_secret_backend_intermediate_cert_request.Intermediate,
-// 		}))
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := pkiSecret.NewSecretBackendRootSignIntermediate(ctx, "root", &pkiSecret.SecretBackendRootSignIntermediateArgs{
+//				Backend:           pulumi.Any(vault_mount.Root.Path),
+//				Csr:               pulumi.Any(vault_pki_secret_backend_intermediate_cert_request.Intermediate.Csr),
+//				CommonName:        pulumi.String("Intermediate CA"),
+//				ExcludeCnFromSans: pulumi.Bool(true),
+//				Ou:                pulumi.String("My OU"),
+//				Organization:      pulumi.String("My organization"),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				vault_pki_secret_backend_intermediate_cert_request.Intermediate,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ## Deprecations
 //
@@ -385,7 +388,7 @@ func (i *SecretBackendRootSignIntermediate) ToSecretBackendRootSignIntermediateO
 // SecretBackendRootSignIntermediateArrayInput is an input type that accepts SecretBackendRootSignIntermediateArray and SecretBackendRootSignIntermediateArrayOutput values.
 // You can construct a concrete instance of `SecretBackendRootSignIntermediateArrayInput` via:
 //
-//          SecretBackendRootSignIntermediateArray{ SecretBackendRootSignIntermediateArgs{...} }
+//	SecretBackendRootSignIntermediateArray{ SecretBackendRootSignIntermediateArgs{...} }
 type SecretBackendRootSignIntermediateArrayInput interface {
 	pulumi.Input
 
@@ -410,7 +413,7 @@ func (i SecretBackendRootSignIntermediateArray) ToSecretBackendRootSignIntermedi
 // SecretBackendRootSignIntermediateMapInput is an input type that accepts SecretBackendRootSignIntermediateMap and SecretBackendRootSignIntermediateMapOutput values.
 // You can construct a concrete instance of `SecretBackendRootSignIntermediateMapInput` via:
 //
-//          SecretBackendRootSignIntermediateMap{ "key": SecretBackendRootSignIntermediateArgs{...} }
+//	SecretBackendRootSignIntermediateMap{ "key": SecretBackendRootSignIntermediateArgs{...} }
 type SecretBackendRootSignIntermediateMapInput interface {
 	pulumi.Input
 
@@ -444,6 +447,144 @@ func (o SecretBackendRootSignIntermediateOutput) ToSecretBackendRootSignIntermed
 
 func (o SecretBackendRootSignIntermediateOutput) ToSecretBackendRootSignIntermediateOutputWithContext(ctx context.Context) SecretBackendRootSignIntermediateOutput {
 	return o
+}
+
+// List of alternative names
+func (o SecretBackendRootSignIntermediateOutput) AltNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringArrayOutput { return v.AltNames }).(pulumi.StringArrayOutput)
+}
+
+// The PKI secret backend the resource belongs to.
+func (o SecretBackendRootSignIntermediateOutput) Backend() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringOutput { return v.Backend }).(pulumi.StringOutput)
+}
+
+// A list of the issuing and intermediate CA certificates in the `format` specified.
+func (o SecretBackendRootSignIntermediateOutput) CaChains() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringArrayOutput { return v.CaChains }).(pulumi.StringArrayOutput)
+}
+
+// The intermediate CA certificate in the `format` specified.
+func (o SecretBackendRootSignIntermediateOutput) Certificate() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringOutput { return v.Certificate }).(pulumi.StringOutput)
+}
+
+// The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded).
+// Requires the `format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.
+func (o SecretBackendRootSignIntermediateOutput) CertificateBundle() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringOutput { return v.CertificateBundle }).(pulumi.StringOutput)
+}
+
+// CN of intermediate to create
+func (o SecretBackendRootSignIntermediateOutput) CommonName() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringOutput { return v.CommonName }).(pulumi.StringOutput)
+}
+
+// The country
+func (o SecretBackendRootSignIntermediateOutput) Country() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringPtrOutput { return v.Country }).(pulumi.StringPtrOutput)
+}
+
+// The CSR
+func (o SecretBackendRootSignIntermediateOutput) Csr() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringOutput { return v.Csr }).(pulumi.StringOutput)
+}
+
+// Flag to exclude CN from SANs
+func (o SecretBackendRootSignIntermediateOutput) ExcludeCnFromSans() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.BoolPtrOutput { return v.ExcludeCnFromSans }).(pulumi.BoolPtrOutput)
+}
+
+// The format of data
+func (o SecretBackendRootSignIntermediateOutput) Format() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringPtrOutput { return v.Format }).(pulumi.StringPtrOutput)
+}
+
+// List of alternative IPs
+func (o SecretBackendRootSignIntermediateOutput) IpSans() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringArrayOutput { return v.IpSans }).(pulumi.StringArrayOutput)
+}
+
+// The issuing CA certificate in the `format` specified.
+func (o SecretBackendRootSignIntermediateOutput) IssuingCa() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringOutput { return v.IssuingCa }).(pulumi.StringOutput)
+}
+
+// The locality
+func (o SecretBackendRootSignIntermediateOutput) Locality() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringPtrOutput { return v.Locality }).(pulumi.StringPtrOutput)
+}
+
+// The maximum path length to encode in the generated certificate
+func (o SecretBackendRootSignIntermediateOutput) MaxPathLength() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.IntPtrOutput { return v.MaxPathLength }).(pulumi.IntPtrOutput)
+}
+
+// The organization
+func (o SecretBackendRootSignIntermediateOutput) Organization() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringPtrOutput { return v.Organization }).(pulumi.StringPtrOutput)
+}
+
+// List of other SANs
+func (o SecretBackendRootSignIntermediateOutput) OtherSans() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringArrayOutput { return v.OtherSans }).(pulumi.StringArrayOutput)
+}
+
+// The organization unit
+func (o SecretBackendRootSignIntermediateOutput) Ou() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringPtrOutput { return v.Ou }).(pulumi.StringPtrOutput)
+}
+
+// List of domains for which certificates are allowed to be issued
+func (o SecretBackendRootSignIntermediateOutput) PermittedDnsDomains() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringArrayOutput { return v.PermittedDnsDomains }).(pulumi.StringArrayOutput)
+}
+
+// The postal code
+func (o SecretBackendRootSignIntermediateOutput) PostalCode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringPtrOutput { return v.PostalCode }).(pulumi.StringPtrOutput)
+}
+
+// The province
+func (o SecretBackendRootSignIntermediateOutput) Province() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringPtrOutput { return v.Province }).(pulumi.StringPtrOutput)
+}
+
+// If set to `true`, the certificate will be revoked on resource destruction.
+func (o SecretBackendRootSignIntermediateOutput) Revoke() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.BoolPtrOutput { return v.Revoke }).(pulumi.BoolPtrOutput)
+}
+
+// The serial number.
+//
+// Deprecated: Use serial_number instead
+func (o SecretBackendRootSignIntermediateOutput) Serial() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringOutput { return v.Serial }).(pulumi.StringOutput)
+}
+
+// The certificate's serial number, hex formatted.
+func (o SecretBackendRootSignIntermediateOutput) SerialNumber() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringOutput { return v.SerialNumber }).(pulumi.StringOutput)
+}
+
+// The street address
+func (o SecretBackendRootSignIntermediateOutput) StreetAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringPtrOutput { return v.StreetAddress }).(pulumi.StringPtrOutput)
+}
+
+// Time to live
+func (o SecretBackendRootSignIntermediateOutput) Ttl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringPtrOutput { return v.Ttl }).(pulumi.StringPtrOutput)
+}
+
+// List of alternative URIs
+func (o SecretBackendRootSignIntermediateOutput) UriSans() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringArrayOutput { return v.UriSans }).(pulumi.StringArrayOutput)
+}
+
+// Preserve CSR values
+func (o SecretBackendRootSignIntermediateOutput) UseCsrValues() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.BoolPtrOutput { return v.UseCsrValues }).(pulumi.BoolPtrOutput)
 }
 
 type SecretBackendRootSignIntermediateArrayOutput struct{ *pulumi.OutputState }

@@ -16,29 +16,32 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := vault.NewToken(ctx, "example", &vault.TokenArgs{
-// 			Policies: pulumi.StringArray{
-// 				pulumi.String("policy1"),
-// 				pulumi.String("policy2"),
-// 			},
-// 			RenewIncrement: pulumi.Int(86400),
-// 			RenewMinLease:  pulumi.Int(43200),
-// 			Renewable:      pulumi.Bool(true),
-// 			RoleName:       pulumi.String("app"),
-// 			Ttl:            pulumi.String("24h"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vault.NewToken(ctx, "example", &vault.TokenArgs{
+//				Policies: pulumi.StringArray{
+//					pulumi.String("policy1"),
+//					pulumi.String("policy2"),
+//				},
+//				RenewIncrement: pulumi.Int(86400),
+//				RenewMinLease:  pulumi.Int(43200),
+//				Renewable:      pulumi.Bool(true),
+//				RoleName:       pulumi.String("app"),
+//				Ttl:            pulumi.String("24h"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -46,7 +49,9 @@ import (
 // Tokens can be imported using its `id` as accessor id, e.g.
 //
 // ```sh
-//  $ pulumi import vault:index/token:Token example <accessor_id>
+//
+//	$ pulumi import vault:index/token:Token example <accessor_id>
+//
 // ```
 type Token struct {
 	pulumi.CustomResourceState
@@ -284,7 +289,7 @@ func (i *Token) ToTokenOutputWithContext(ctx context.Context) TokenOutput {
 // TokenArrayInput is an input type that accepts TokenArray and TokenArrayOutput values.
 // You can construct a concrete instance of `TokenArrayInput` via:
 //
-//          TokenArray{ TokenArgs{...} }
+//	TokenArray{ TokenArgs{...} }
 type TokenArrayInput interface {
 	pulumi.Input
 
@@ -309,7 +314,7 @@ func (i TokenArray) ToTokenArrayOutputWithContext(ctx context.Context) TokenArra
 // TokenMapInput is an input type that accepts TokenMap and TokenMapOutput values.
 // You can construct a concrete instance of `TokenMapInput` via:
 //
-//          TokenMap{ "key": TokenArgs{...} }
+//	TokenMap{ "key": TokenArgs{...} }
 type TokenMapInput interface {
 	pulumi.Input
 
@@ -343,6 +348,96 @@ func (o TokenOutput) ToTokenOutput() TokenOutput {
 
 func (o TokenOutput) ToTokenOutputWithContext(ctx context.Context) TokenOutput {
 	return o
+}
+
+// String containing the client token if stored in present file
+func (o TokenOutput) ClientToken() pulumi.StringOutput {
+	return o.ApplyT(func(v *Token) pulumi.StringOutput { return v.ClientToken }).(pulumi.StringOutput)
+}
+
+// String containing the token display name
+func (o TokenOutput) DisplayName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Token) pulumi.StringPtrOutput { return v.DisplayName }).(pulumi.StringPtrOutput)
+}
+
+// The explicit max TTL of this token
+func (o TokenOutput) ExplicitMaxTtl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Token) pulumi.StringPtrOutput { return v.ExplicitMaxTtl }).(pulumi.StringPtrOutput)
+}
+
+// String containing the token lease duration if present in state file
+func (o TokenOutput) LeaseDuration() pulumi.IntOutput {
+	return o.ApplyT(func(v *Token) pulumi.IntOutput { return v.LeaseDuration }).(pulumi.IntOutput)
+}
+
+// String containing the token lease started time if present in state file
+func (o TokenOutput) LeaseStarted() pulumi.StringOutput {
+	return o.ApplyT(func(v *Token) pulumi.StringOutput { return v.LeaseStarted }).(pulumi.StringOutput)
+}
+
+// Flag to not attach the default policy to this token
+func (o TokenOutput) NoDefaultPolicy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Token) pulumi.BoolPtrOutput { return v.NoDefaultPolicy }).(pulumi.BoolPtrOutput)
+}
+
+// Flag to create a token without parent
+func (o TokenOutput) NoParent() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Token) pulumi.BoolOutput { return v.NoParent }).(pulumi.BoolOutput)
+}
+
+// The number of allowed uses of this token
+func (o TokenOutput) NumUses() pulumi.IntOutput {
+	return o.ApplyT(func(v *Token) pulumi.IntOutput { return v.NumUses }).(pulumi.IntOutput)
+}
+
+// The period of this token
+func (o TokenOutput) Period() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Token) pulumi.StringPtrOutput { return v.Period }).(pulumi.StringPtrOutput)
+}
+
+// List of policies to attach to this token
+func (o TokenOutput) Policies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Token) pulumi.StringArrayOutput { return v.Policies }).(pulumi.StringArrayOutput)
+}
+
+// The renew increment
+func (o TokenOutput) RenewIncrement() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Token) pulumi.IntPtrOutput { return v.RenewIncrement }).(pulumi.IntPtrOutput)
+}
+
+// The minimal lease to renew this token
+func (o TokenOutput) RenewMinLease() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Token) pulumi.IntPtrOutput { return v.RenewMinLease }).(pulumi.IntPtrOutput)
+}
+
+// Flag to allow to renew this token
+func (o TokenOutput) Renewable() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Token) pulumi.BoolOutput { return v.Renewable }).(pulumi.BoolOutput)
+}
+
+// The token role name
+func (o TokenOutput) RoleName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Token) pulumi.StringPtrOutput { return v.RoleName }).(pulumi.StringPtrOutput)
+}
+
+// The TTL period of this token
+func (o TokenOutput) Ttl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Token) pulumi.StringPtrOutput { return v.Ttl }).(pulumi.StringPtrOutput)
+}
+
+// The client wrapped token.
+func (o TokenOutput) WrappedToken() pulumi.StringOutput {
+	return o.ApplyT(func(v *Token) pulumi.StringOutput { return v.WrappedToken }).(pulumi.StringOutput)
+}
+
+// The client wrapping accessor.
+func (o TokenOutput) WrappingAccessor() pulumi.StringOutput {
+	return o.ApplyT(func(v *Token) pulumi.StringOutput { return v.WrappingAccessor }).(pulumi.StringOutput)
+}
+
+// The TTL period of the wrapped token.
+func (o TokenOutput) WrappingTtl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Token) pulumi.StringPtrOutput { return v.WrappingTtl }).(pulumi.StringPtrOutput)
 }
 
 type TokenArrayOutput struct{ *pulumi.OutputState }

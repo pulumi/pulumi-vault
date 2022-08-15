@@ -21,49 +21,52 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/appRole"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/appRole"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		approle, err := vault.NewAuthBackend(ctx, "approle", &vault.AuthBackendArgs{
-// 			Type: pulumi.String("approle"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		example, err := appRole.NewAuthBackendRole(ctx, "example", &appRole.AuthBackendRoleArgs{
-// 			Backend:  approle.Path,
-// 			RoleName: pulumi.String("test-role"),
-// 			TokenPolicies: pulumi.StringArray{
-// 				pulumi.String("default"),
-// 				pulumi.String("dev"),
-// 				pulumi.String("prod"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		id, err := appRole.NewAuthBackendRoleSecretID(ctx, "id", &appRole.AuthBackendRoleSecretIDArgs{
-// 			Backend:  approle.Path,
-// 			RoleName: example.RoleName,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = appRole.NewAuthBackendLogin(ctx, "login", &appRole.AuthBackendLoginArgs{
-// 			Backend:  approle.Path,
-// 			RoleId:   example.RoleId,
-// 			SecretId: id.SecretId,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			approle, err := vault.NewAuthBackend(ctx, "approle", &vault.AuthBackendArgs{
+//				Type: pulumi.String("approle"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			example, err := appRole.NewAuthBackendRole(ctx, "example", &appRole.AuthBackendRoleArgs{
+//				Backend:  approle.Path,
+//				RoleName: pulumi.String("test-role"),
+//				TokenPolicies: pulumi.StringArray{
+//					pulumi.String("default"),
+//					pulumi.String("dev"),
+//					pulumi.String("prod"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			id, err := appRole.NewAuthBackendRoleSecretID(ctx, "id", &appRole.AuthBackendRoleSecretIDArgs{
+//				Backend:  approle.Path,
+//				RoleName: example.RoleName,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = appRole.NewAuthBackendLogin(ctx, "login", &appRole.AuthBackendLoginArgs{
+//				Backend:  approle.Path,
+//				RoleId:   example.RoleId,
+//				SecretId: id.SecretId,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type AuthBackendLogin struct {
 	pulumi.CustomResourceState
@@ -221,7 +224,7 @@ func (i *AuthBackendLogin) ToAuthBackendLoginOutputWithContext(ctx context.Conte
 // AuthBackendLoginArrayInput is an input type that accepts AuthBackendLoginArray and AuthBackendLoginArrayOutput values.
 // You can construct a concrete instance of `AuthBackendLoginArrayInput` via:
 //
-//          AuthBackendLoginArray{ AuthBackendLoginArgs{...} }
+//	AuthBackendLoginArray{ AuthBackendLoginArgs{...} }
 type AuthBackendLoginArrayInput interface {
 	pulumi.Input
 
@@ -246,7 +249,7 @@ func (i AuthBackendLoginArray) ToAuthBackendLoginArrayOutputWithContext(ctx cont
 // AuthBackendLoginMapInput is an input type that accepts AuthBackendLoginMap and AuthBackendLoginMapOutput values.
 // You can construct a concrete instance of `AuthBackendLoginMapInput` via:
 //
-//          AuthBackendLoginMap{ "key": AuthBackendLoginArgs{...} }
+//	AuthBackendLoginMap{ "key": AuthBackendLoginArgs{...} }
 type AuthBackendLoginMapInput interface {
 	pulumi.Input
 
@@ -280,6 +283,57 @@ func (o AuthBackendLoginOutput) ToAuthBackendLoginOutput() AuthBackendLoginOutpu
 
 func (o AuthBackendLoginOutput) ToAuthBackendLoginOutputWithContext(ctx context.Context) AuthBackendLoginOutput {
 	return o
+}
+
+// The accessor for the token.
+func (o AuthBackendLoginOutput) Accessor() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.StringOutput { return v.Accessor }).(pulumi.StringOutput)
+}
+
+// The unique path of the Vault backend to log in with.
+func (o AuthBackendLoginOutput) Backend() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
+}
+
+// The Vault token created.
+func (o AuthBackendLoginOutput) ClientToken() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.StringOutput { return v.ClientToken }).(pulumi.StringOutput)
+}
+
+// How long the token is valid for, in seconds.
+func (o AuthBackendLoginOutput) LeaseDuration() pulumi.IntOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.IntOutput { return v.LeaseDuration }).(pulumi.IntOutput)
+}
+
+// The date and time the lease started, in RFC 3339 format.
+func (o AuthBackendLoginOutput) LeaseStarted() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.StringOutput { return v.LeaseStarted }).(pulumi.StringOutput)
+}
+
+// The metadata associated with the token.
+func (o AuthBackendLoginOutput) Metadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.StringMapOutput { return v.Metadata }).(pulumi.StringMapOutput)
+}
+
+// A list of policies applied to the token.
+func (o AuthBackendLoginOutput) Policies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.StringArrayOutput { return v.Policies }).(pulumi.StringArrayOutput)
+}
+
+// Whether the token is renewable or not.
+func (o AuthBackendLoginOutput) Renewable() pulumi.BoolOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.BoolOutput { return v.Renewable }).(pulumi.BoolOutput)
+}
+
+// The ID of the role to log in with.
+func (o AuthBackendLoginOutput) RoleId() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.StringOutput { return v.RoleId }).(pulumi.StringOutput)
+}
+
+// The secret ID of the role to log in with. Required
+// unless `bindSecretId` is set to false on the role.
+func (o AuthBackendLoginOutput) SecretId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.StringPtrOutput { return v.SecretId }).(pulumi.StringPtrOutput)
 }
 
 type AuthBackendLoginArrayOutput struct{ *pulumi.OutputState }

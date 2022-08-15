@@ -16,45 +16,43 @@ namespace Pulumi.Vault.Okta
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var example = new Vault.Okta.AuthBackend("example", new()
     ///     {
-    ///         var example = new Vault.Okta.AuthBackend("example", new Vault.Okta.AuthBackendArgs
+    ///         Description = "Demonstration of the Terraform Okta auth backend",
+    ///         Groups = new[]
     ///         {
-    ///             Description = "Demonstration of the Terraform Okta auth backend",
-    ///             Groups = 
+    ///             new Vault.Okta.Inputs.AuthBackendGroupArgs
     ///             {
-    ///                 new Vault.Okta.Inputs.AuthBackendGroupArgs
+    ///                 GroupName = "foo",
+    ///                 Policies = new[]
     ///                 {
-    ///                     GroupName = "foo",
-    ///                     Policies = 
-    ///                     {
-    ///                         "one",
-    ///                         "two",
-    ///                     },
+    ///                     "one",
+    ///                     "two",
     ///                 },
     ///             },
-    ///             Organization = "example",
-    ///             Token = "something that should be kept secret",
-    ///             Users = 
+    ///         },
+    ///         Organization = "example",
+    ///         Token = "something that should be kept secret",
+    ///         Users = new[]
+    ///         {
+    ///             new Vault.Okta.Inputs.AuthBackendUserArgs
     ///             {
-    ///                 new Vault.Okta.Inputs.AuthBackendUserArgs
+    ///                 Groups = new[]
     ///                 {
-    ///                     Groups = 
-    ///                     {
-    ///                         "foo",
-    ///                     },
-    ///                     Username = "bar",
+    ///                     "foo",
     ///                 },
+    ///                 Username = "bar",
     ///             },
-    ///         });
-    ///     }
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -66,7 +64,7 @@ namespace Pulumi.Vault.Okta
     /// ```
     /// </summary>
     [VaultResourceType("vault:okta/authBackend:AuthBackend")]
-    public partial class AuthBackend : Pulumi.CustomResource
+    public partial class AuthBackend : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
@@ -183,7 +181,7 @@ namespace Pulumi.Vault.Okta
         }
     }
 
-    public sealed class AuthBackendArgs : Pulumi.ResourceArgs
+    public sealed class AuthBackendArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Okta url. Examples: oktapreview.com, okta.com
@@ -265,9 +263,10 @@ namespace Pulumi.Vault.Okta
         public AuthBackendArgs()
         {
         }
+        public static new AuthBackendArgs Empty => new AuthBackendArgs();
     }
 
-    public sealed class AuthBackendState : Pulumi.ResourceArgs
+    public sealed class AuthBackendState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
@@ -355,5 +354,6 @@ namespace Pulumi.Vault.Okta
         public AuthBackendState()
         {
         }
+        public static new AuthBackendState Empty => new AuthBackendState();
     }
 }

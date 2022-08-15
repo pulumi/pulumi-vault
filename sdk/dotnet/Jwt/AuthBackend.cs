@@ -18,81 +18,75 @@ namespace Pulumi.Vault.Jwt
     /// Manage JWT auth backend:
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var example = new Vault.Jwt.AuthBackend("example", new()
     ///     {
-    ///         var example = new Vault.Jwt.AuthBackend("example", new Vault.Jwt.AuthBackendArgs
-    ///         {
-    ///             BoundIssuer = "https://myco.auth0.com/",
-    ///             Description = "Demonstration of the Terraform JWT auth backend",
-    ///             OidcDiscoveryUrl = "https://myco.auth0.com/",
-    ///             Path = "jwt",
-    ///         });
-    ///     }
+    ///         BoundIssuer = "https://myco.auth0.com/",
+    ///         Description = "Demonstration of the Terraform JWT auth backend",
+    ///         OidcDiscoveryUrl = "https://myco.auth0.com/",
+    ///         Path = "jwt",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// Manage OIDC auth backend:
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var example = new Vault.Jwt.AuthBackend("example", new()
     ///     {
-    ///         var example = new Vault.Jwt.AuthBackend("example", new Vault.Jwt.AuthBackendArgs
+    ///         BoundIssuer = "https://myco.auth0.com/",
+    ///         Description = "Demonstration of the Terraform JWT auth backend",
+    ///         OidcClientId = "1234567890",
+    ///         OidcClientSecret = "secret123456",
+    ///         OidcDiscoveryUrl = "https://myco.auth0.com/",
+    ///         Path = "oidc",
+    ///         Tune = new Vault.Jwt.Inputs.AuthBackendTuneArgs
     ///         {
-    ///             BoundIssuer = "https://myco.auth0.com/",
-    ///             Description = "Demonstration of the Terraform JWT auth backend",
-    ///             OidcClientId = "1234567890",
-    ///             OidcClientSecret = "secret123456",
-    ///             OidcDiscoveryUrl = "https://myco.auth0.com/",
-    ///             Path = "oidc",
-    ///             Tune = new Vault.Jwt.Inputs.AuthBackendTuneArgs
-    ///             {
-    ///                 ListingVisibility = "unauth",
-    ///             },
-    ///             Type = "oidc",
-    ///         });
-    ///     }
+    ///             ListingVisibility = "unauth",
+    ///         },
+    ///         Type = "oidc",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// Configuring the auth backend with a `provider_config:
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var gsuite = new Vault.Jwt.AuthBackend("gsuite", new()
     ///     {
-    ///         var gsuite = new Vault.Jwt.AuthBackend("gsuite", new Vault.Jwt.AuthBackendArgs
+    ///         Description = "OIDC backend",
+    ///         OidcDiscoveryUrl = "https://accounts.google.com",
+    ///         Path = "oidc",
+    ///         ProviderConfig = 
     ///         {
-    ///             Description = "OIDC backend",
-    ///             OidcDiscoveryUrl = "https://accounts.google.com",
-    ///             Path = "oidc",
-    ///             ProviderConfig = 
-    ///             {
-    ///                 { "fetch_groups", "true" },
-    ///                 { "fetch_user_info", "true" },
-    ///                 { "groups_recurse_max_depth", "1" },
-    ///                 { "provider", "gsuite" },
-    ///             },
-    ///             Type = "oidc",
-    ///         });
-    ///     }
+    ///             { "fetch_groups", "true" },
+    ///             { "fetch_user_info", "true" },
+    ///             { "groups_recurse_max_depth", "1" },
+    ///             { "provider", "gsuite" },
+    ///         },
+    ///         Type = "oidc",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -110,7 +104,7 @@ namespace Pulumi.Vault.Jwt
     /// ```
     /// </summary>
     [VaultResourceType("vault:jwt/authBackend:AuthBackend")]
-    public partial class AuthBackend : Pulumi.CustomResource
+    public partial class AuthBackend : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The accessor for this auth method
@@ -273,7 +267,7 @@ namespace Pulumi.Vault.Jwt
         }
     }
 
-    public sealed class AuthBackendArgs : Pulumi.ResourceArgs
+    public sealed class AuthBackendArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The value against which to match the iss claim in a JWT
@@ -413,9 +407,10 @@ namespace Pulumi.Vault.Jwt
         public AuthBackendArgs()
         {
         }
+        public static new AuthBackendArgs Empty => new AuthBackendArgs();
     }
 
-    public sealed class AuthBackendState : Pulumi.ResourceArgs
+    public sealed class AuthBackendState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The accessor for this auth method
@@ -561,5 +556,6 @@ namespace Pulumi.Vault.Jwt
         public AuthBackendState()
         {
         }
+        public static new AuthBackendState Empty => new AuthBackendState();
     }
 }

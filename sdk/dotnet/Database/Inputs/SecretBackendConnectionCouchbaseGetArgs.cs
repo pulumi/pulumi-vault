@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Database.Inputs
 {
 
-    public sealed class SecretBackendConnectionCouchbaseGetArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendConnectionCouchbaseGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
@@ -70,5 +70,6 @@ namespace Pulumi.Vault.Database.Inputs
         public SecretBackendConnectionCouchbaseGetArgs()
         {
         }
+        public static new SecretBackendConnectionCouchbaseGetArgs Empty => new SecretBackendConnectionCouchbaseGetArgs();
     }
 }

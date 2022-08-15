@@ -16,30 +16,33 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		app, err := identity.NewOidcClient(ctx, "app", &identity.OidcClientArgs{
-// 			RedirectUris: pulumi.StringArray{
-// 				pulumi.String("http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback"),
-// 				pulumi.String("http://127.0.0.1:8251/callback"),
-// 				pulumi.String("http://127.0.0.1:8080/callback"),
-// 			},
-// 			IdTokenTtl:     pulumi.Int(2400),
-// 			AccessTokenTtl: pulumi.Int(7200),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_ = identity.GetOidcClientCredsOutput(ctx, identity.GetOidcClientCredsOutputArgs{
-// 			Name: app.Name,
-// 		}, nil)
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			app, err := identity.NewOidcClient(ctx, "app", &identity.OidcClientArgs{
+//				RedirectUris: pulumi.StringArray{
+//					pulumi.String("http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback"),
+//					pulumi.String("http://127.0.0.1:8251/callback"),
+//					pulumi.String("http://127.0.0.1:8080/callback"),
+//				},
+//				IdTokenTtl:     pulumi.Int(2400),
+//				AccessTokenTtl: pulumi.Int(7200),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = identity.GetOidcClientCredsOutput(ctx, identity.GetOidcClientCredsOutputArgs{
+//				Name: app.Name,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
 // ```
 func GetOidcClientCreds(ctx *pulumi.Context, args *GetOidcClientCredsArgs, opts ...pulumi.InvokeOption) (*GetOidcClientCredsResult, error) {
 	var rv GetOidcClientCredsResult

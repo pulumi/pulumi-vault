@@ -17,24 +17,22 @@ namespace Pulumi.Vault
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var myTotp = new Vault.MfaTotp("myTotp", new()
     ///     {
-    ///         var myTotp = new Vault.MfaTotp("myTotp", new Vault.MfaTotpArgs
-    ///         {
-    ///             Algorithm = "SHA256",
-    ///             Digits = 8,
-    ///             Issuer = "hashicorp",
-    ///             KeySize = 20,
-    ///             Period = 60,
-    ///         });
-    ///     }
+    ///         Algorithm = "SHA256",
+    ///         Digits = 8,
+    ///         Issuer = "hashicorp",
+    ///         KeySize = 20,
+    ///         Period = 60,
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -46,7 +44,7 @@ namespace Pulumi.Vault
     /// ```
     /// </summary>
     [VaultResourceType("vault:index/mfaTotp:MfaTotp")]
-    public partial class MfaTotp : Pulumi.CustomResource
+    public partial class MfaTotp : global::Pulumi.CustomResource
     {
         /// <summary>
         /// `(string)` - Specifies the hashing algorithm used to generate the TOTP code.
@@ -143,7 +141,7 @@ namespace Pulumi.Vault
         }
     }
 
-    public sealed class MfaTotpArgs : Pulumi.ResourceArgs
+    public sealed class MfaTotpArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// `(string)` - Specifies the hashing algorithm used to generate the TOTP code.
@@ -199,9 +197,10 @@ namespace Pulumi.Vault
         public MfaTotpArgs()
         {
         }
+        public static new MfaTotpArgs Empty => new MfaTotpArgs();
     }
 
-    public sealed class MfaTotpState : Pulumi.ResourceArgs
+    public sealed class MfaTotpState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// `(string)` - Specifies the hashing algorithm used to generate the TOTP code.
@@ -257,5 +256,6 @@ namespace Pulumi.Vault
         public MfaTotpState()
         {
         }
+        public static new MfaTotpState Empty => new MfaTotpState();
     }
 }

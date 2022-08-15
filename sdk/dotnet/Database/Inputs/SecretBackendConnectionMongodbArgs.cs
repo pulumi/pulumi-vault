@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Database.Inputs
 {
 
-    public sealed class SecretBackendConnectionMongodbArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendConnectionMongodbArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Specifies the Redshift DSN. See
@@ -62,5 +62,6 @@ namespace Pulumi.Vault.Database.Inputs
         public SecretBackendConnectionMongodbArgs()
         {
         }
+        public static new SecretBackendConnectionMongodbArgs Empty => new SecretBackendConnectionMongodbArgs();
     }
 }

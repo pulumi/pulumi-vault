@@ -15,21 +15,19 @@ namespace Pulumi.Vault.Gcp
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using System.IO;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var gcp = new Vault.Gcp.AuthBackend("gcp", new()
     ///     {
-    ///         var gcp = new Vault.Gcp.AuthBackend("gcp", new Vault.Gcp.AuthBackendArgs
-    ///         {
-    ///             Credentials = File.ReadAllText("vault-gcp-credentials.json"),
-    ///         });
-    ///     }
+    ///         Credentials = File.ReadAllText("vault-gcp-credentials.json"),
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -41,7 +39,7 @@ namespace Pulumi.Vault.Gcp
     /// ```
     /// </summary>
     [VaultResourceType("vault:gcp/authBackend:AuthBackend")]
-    public partial class AuthBackend : Pulumi.CustomResource
+    public partial class AuthBackend : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The clients email associated with the credentials
@@ -135,7 +133,7 @@ namespace Pulumi.Vault.Gcp
         }
     }
 
-    public sealed class AuthBackendArgs : Pulumi.ResourceArgs
+    public sealed class AuthBackendArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The clients email associated with the credentials
@@ -188,9 +186,10 @@ namespace Pulumi.Vault.Gcp
         public AuthBackendArgs()
         {
         }
+        public static new AuthBackendArgs Empty => new AuthBackendArgs();
     }
 
-    public sealed class AuthBackendState : Pulumi.ResourceArgs
+    public sealed class AuthBackendState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The clients email associated with the credentials
@@ -243,5 +242,6 @@ namespace Pulumi.Vault.Gcp
         public AuthBackendState()
         {
         }
+        public static new AuthBackendState Empty => new AuthBackendState();
     }
 }

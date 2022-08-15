@@ -16,28 +16,31 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := vault.NewNomadSecretBackend(ctx, "config", &vault.NomadSecretBackendArgs{
-// 			Address:                pulumi.String("https://127.0.0.1:4646"),
-// 			Backend:                pulumi.String("nomad"),
-// 			DefaultLeaseTtlSeconds: pulumi.Int(3600),
-// 			Description:            pulumi.String("test description"),
-// 			MaxLeaseTtlSeconds:     pulumi.Int(7200),
-// 			MaxTtl:                 pulumi.Int(240),
-// 			Token:                  pulumi.String("ae20ceaa-..."),
-// 			Ttl:                    pulumi.Int(120),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vault.NewNomadSecretBackend(ctx, "config", &vault.NomadSecretBackendArgs{
+//				Address:                pulumi.String("https://127.0.0.1:4646"),
+//				Backend:                pulumi.String("nomad"),
+//				DefaultLeaseTtlSeconds: pulumi.Int(3600),
+//				Description:            pulumi.String("test description"),
+//				MaxLeaseTtlSeconds:     pulumi.Int(7200),
+//				MaxTtl:                 pulumi.Int(240),
+//				Token:                  pulumi.String("ae20ceaa-..."),
+//				Ttl:                    pulumi.Int(120),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -45,7 +48,9 @@ import (
 // Nomad secret backend can be imported using the `backend`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:index/nomadSecretBackend:NomadSecretBackend nomad nomad
+//
+//	$ pulumi import vault:index/nomadSecretBackend:NomadSecretBackend nomad nomad
+//
 // ```
 type NomadSecretBackend struct {
 	pulumi.CustomResourceState
@@ -283,7 +288,7 @@ func (i *NomadSecretBackend) ToNomadSecretBackendOutputWithContext(ctx context.C
 // NomadSecretBackendArrayInput is an input type that accepts NomadSecretBackendArray and NomadSecretBackendArrayOutput values.
 // You can construct a concrete instance of `NomadSecretBackendArrayInput` via:
 //
-//          NomadSecretBackendArray{ NomadSecretBackendArgs{...} }
+//	NomadSecretBackendArray{ NomadSecretBackendArgs{...} }
 type NomadSecretBackendArrayInput interface {
 	pulumi.Input
 
@@ -308,7 +313,7 @@ func (i NomadSecretBackendArray) ToNomadSecretBackendArrayOutputWithContext(ctx 
 // NomadSecretBackendMapInput is an input type that accepts NomadSecretBackendMap and NomadSecretBackendMapOutput values.
 // You can construct a concrete instance of `NomadSecretBackendMapInput` via:
 //
-//          NomadSecretBackendMap{ "key": NomadSecretBackendArgs{...} }
+//	NomadSecretBackendMap{ "key": NomadSecretBackendArgs{...} }
 type NomadSecretBackendMapInput interface {
 	pulumi.Input
 
@@ -342,6 +347,77 @@ func (o NomadSecretBackendOutput) ToNomadSecretBackendOutput() NomadSecretBacken
 
 func (o NomadSecretBackendOutput) ToNomadSecretBackendOutputWithContext(ctx context.Context) NomadSecretBackendOutput {
 	return o
+}
+
+// Specifies the address of the Nomad instance, provided
+// as "protocol://host:port" like "http://127.0.0.1:4646".
+func (o NomadSecretBackendOutput) Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.StringPtrOutput { return v.Address }).(pulumi.StringPtrOutput)
+}
+
+// The unique path this backend should be mounted at. Must
+// not begin or end with a `/`. Defaults to `nomad`.
+func (o NomadSecretBackendOutput) Backend() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
+}
+
+// CA certificate to use when verifying the Nomad server certificate, must be
+// x509 PEM encoded.
+func (o NomadSecretBackendOutput) CaCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.StringPtrOutput { return v.CaCert }).(pulumi.StringPtrOutput)
+}
+
+// Client certificate to provide to the Nomad server, must be x509 PEM encoded.
+func (o NomadSecretBackendOutput) ClientCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.StringPtrOutput { return v.ClientCert }).(pulumi.StringPtrOutput)
+}
+
+// Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+func (o NomadSecretBackendOutput) ClientKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.StringPtrOutput { return v.ClientKey }).(pulumi.StringPtrOutput)
+}
+
+// Default lease duration for secrets in seconds.
+func (o NomadSecretBackendOutput) DefaultLeaseTtlSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.IntOutput { return v.DefaultLeaseTtlSeconds }).(pulumi.IntOutput)
+}
+
+// Human-friendly description of the mount for the Active Directory backend.
+func (o NomadSecretBackendOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// Mark the secrets engine as local-only. Local engines are not replicated or removed by
+// replication.Tolerance duration to use when checking the last rotation time.
+func (o NomadSecretBackendOutput) Local() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.BoolPtrOutput { return v.Local }).(pulumi.BoolPtrOutput)
+}
+
+// Maximum possible lease duration for secrets in seconds.
+func (o NomadSecretBackendOutput) MaxLeaseTtlSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.IntOutput { return v.MaxLeaseTtlSeconds }).(pulumi.IntOutput)
+}
+
+// Specifies the maximum length to use for the name of the Nomad token
+// generated with Generate Credential. If omitted, 0 is used and ignored, defaulting to the max value allowed
+// by the Nomad version.
+func (o NomadSecretBackendOutput) MaxTokenNameLength() pulumi.IntOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.IntOutput { return v.MaxTokenNameLength }).(pulumi.IntOutput)
+}
+
+// Maximum possible lease duration for secrets in seconds.
+func (o NomadSecretBackendOutput) MaxTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.IntOutput { return v.MaxTtl }).(pulumi.IntOutput)
+}
+
+// Specifies the Nomad Management token to use.
+func (o NomadSecretBackendOutput) Token() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.StringPtrOutput { return v.Token }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the ttl of the lease for the generated token.
+func (o NomadSecretBackendOutput) Ttl() pulumi.IntOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.IntOutput { return v.Ttl }).(pulumi.IntOutput)
 }
 
 type NomadSecretBackendArrayOutput struct{ *pulumi.OutputState }

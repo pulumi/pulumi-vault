@@ -17,25 +17,23 @@ namespace Pulumi.Vault
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var alphanumeric = new Vault.PasswordPolicy("alphanumeric", new()
     ///     {
-    ///         var alphanumeric = new Vault.PasswordPolicy("alphanumeric", new Vault.PasswordPolicyArgs
-    ///         {
-    ///             Policy = @"    length = 20
+    ///         Policy = @"    length = 20
     ///     rule ""charset"" {
     ///       charset = ""abcdefghijklmnopqrstuvwxyz0123456789""
     ///     }
     ///   
     /// ",
-    ///         });
-    ///     }
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -47,7 +45,7 @@ namespace Pulumi.Vault
     /// ```
     /// </summary>
     [VaultResourceType("vault:index/passwordPolicy:PasswordPolicy")]
-    public partial class PasswordPolicy : Pulumi.CustomResource
+    public partial class PasswordPolicy : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The name of the password policy.
@@ -105,7 +103,7 @@ namespace Pulumi.Vault
         }
     }
 
-    public sealed class PasswordPolicyArgs : Pulumi.ResourceArgs
+    public sealed class PasswordPolicyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the password policy.
@@ -122,9 +120,10 @@ namespace Pulumi.Vault
         public PasswordPolicyArgs()
         {
         }
+        public static new PasswordPolicyArgs Empty => new PasswordPolicyArgs();
     }
 
-    public sealed class PasswordPolicyState : Pulumi.ResourceArgs
+    public sealed class PasswordPolicyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the password policy.
@@ -141,5 +140,6 @@ namespace Pulumi.Vault
         public PasswordPolicyState()
         {
         }
+        public static new PasswordPolicyState Empty => new PasswordPolicyState();
     }
 }
