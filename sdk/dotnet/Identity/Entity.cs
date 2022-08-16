@@ -13,27 +13,25 @@ namespace Pulumi.Vault.Identity
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Vault.Identity.Entity("test", new()
     ///     {
-    ///         var test = new Vault.Identity.Entity("test", new Vault.Identity.EntityArgs
+    ///         Metadata = 
     ///         {
-    ///             Metadata = 
-    ///             {
-    ///                 { "foo", "bar" },
-    ///             },
-    ///             Policies = 
-    ///             {
-    ///                 "test",
-    ///             },
-    ///         });
-    ///     }
+    ///             { "foo", "bar" },
+    ///         },
+    ///         Policies = new[]
+    ///         {
+    ///             "test",
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -45,7 +43,7 @@ namespace Pulumi.Vault.Identity
     /// ```
     /// </summary>
     [VaultResourceType("vault:identity/entity:Entity")]
-    public partial class Entity : Pulumi.CustomResource
+    public partial class Entity : global::Pulumi.CustomResource
     {
         /// <summary>
         /// True/false Is this entity currently disabled. Defaults to `false`
@@ -121,7 +119,7 @@ namespace Pulumi.Vault.Identity
         }
     }
 
-    public sealed class EntityArgs : Pulumi.ResourceArgs
+    public sealed class EntityArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// True/false Is this entity currently disabled. Defaults to `false`
@@ -168,9 +166,10 @@ namespace Pulumi.Vault.Identity
         public EntityArgs()
         {
         }
+        public static new EntityArgs Empty => new EntityArgs();
     }
 
-    public sealed class EntityState : Pulumi.ResourceArgs
+    public sealed class EntityState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// True/false Is this entity currently disabled. Defaults to `false`
@@ -217,5 +216,6 @@ namespace Pulumi.Vault.Identity
         public EntityState()
         {
         }
+        public static new EntityState Empty => new EntityState();
     }
 }

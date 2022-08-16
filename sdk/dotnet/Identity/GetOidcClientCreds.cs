@@ -17,31 +17,30 @@ namespace Pulumi.Vault.Identity
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Vault = Pulumi.Vault;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var app = new Vault.Identity.OidcClient("app", new()
         ///     {
-        ///         var app = new Vault.Identity.OidcClient("app", new Vault.Identity.OidcClientArgs
+        ///         RedirectUris = new[]
         ///         {
-        ///             RedirectUris = 
-        ///             {
-        ///                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
-        ///                 "http://127.0.0.1:8251/callback",
-        ///                 "http://127.0.0.1:8080/callback",
-        ///             },
-        ///             IdTokenTtl = 2400,
-        ///             AccessTokenTtl = 7200,
-        ///         });
-        ///         var creds = Vault.Identity.GetOidcClientCreds.Invoke(new Vault.Identity.GetOidcClientCredsInvokeArgs
-        ///         {
-        ///             Name = app.Name,
-        ///         });
-        ///     }
+        ///             "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+        ///             "http://127.0.0.1:8251/callback",
+        ///             "http://127.0.0.1:8080/callback",
+        ///         },
+        ///         IdTokenTtl = 2400,
+        ///         AccessTokenTtl = 7200,
+        ///     });
         /// 
-        /// }
+        ///     var creds = Vault.Identity.GetOidcClientCreds.Invoke(new()
+        ///     {
+        ///         Name = app.Name,
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -55,31 +54,30 @@ namespace Pulumi.Vault.Identity
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Vault = Pulumi.Vault;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var app = new Vault.Identity.OidcClient("app", new()
         ///     {
-        ///         var app = new Vault.Identity.OidcClient("app", new Vault.Identity.OidcClientArgs
+        ///         RedirectUris = new[]
         ///         {
-        ///             RedirectUris = 
-        ///             {
-        ///                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
-        ///                 "http://127.0.0.1:8251/callback",
-        ///                 "http://127.0.0.1:8080/callback",
-        ///             },
-        ///             IdTokenTtl = 2400,
-        ///             AccessTokenTtl = 7200,
-        ///         });
-        ///         var creds = Vault.Identity.GetOidcClientCreds.Invoke(new Vault.Identity.GetOidcClientCredsInvokeArgs
-        ///         {
-        ///             Name = app.Name,
-        ///         });
-        ///     }
+        ///             "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+        ///             "http://127.0.0.1:8251/callback",
+        ///             "http://127.0.0.1:8080/callback",
+        ///         },
+        ///         IdTokenTtl = 2400,
+        ///         AccessTokenTtl = 7200,
+        ///     });
         /// 
-        /// }
+        ///     var creds = Vault.Identity.GetOidcClientCreds.Invoke(new()
+        ///     {
+        ///         Name = app.Name,
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -89,7 +87,7 @@ namespace Pulumi.Vault.Identity
     }
 
 
-    public sealed class GetOidcClientCredsArgs : Pulumi.InvokeArgs
+    public sealed class GetOidcClientCredsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name of the OIDC Client in Vault.
@@ -100,9 +98,10 @@ namespace Pulumi.Vault.Identity
         public GetOidcClientCredsArgs()
         {
         }
+        public static new GetOidcClientCredsArgs Empty => new GetOidcClientCredsArgs();
     }
 
-    public sealed class GetOidcClientCredsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetOidcClientCredsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name of the OIDC Client in Vault.
@@ -113,6 +112,7 @@ namespace Pulumi.Vault.Identity
         public GetOidcClientCredsInvokeArgs()
         {
         }
+        public static new GetOidcClientCredsInvokeArgs Empty => new GetOidcClientCredsInvokeArgs();
     }
 
 

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Inputs
 {
 
-    public sealed class ProviderClientAuthArgs : Pulumi.ResourceArgs
+    public sealed class ProviderClientAuthArgs : global::Pulumi.ResourceArgs
     {
         [Input("certFile", required: true)]
         public Input<string> CertFile { get; set; } = null!;
@@ -21,5 +21,6 @@ namespace Pulumi.Vault.Inputs
         public ProviderClientAuthArgs()
         {
         }
+        public static new ProviderClientAuthArgs Empty => new ProviderClientAuthArgs();
     }
 }

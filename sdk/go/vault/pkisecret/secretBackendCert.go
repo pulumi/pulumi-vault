@@ -17,24 +17,27 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := pkiSecret.NewSecretBackendCert(ctx, "app", &pkiSecret.SecretBackendCertArgs{
-// 			Backend:    pulumi.Any(vault_mount.Intermediate.Path),
-// 			CommonName: pulumi.String("app.my.domain"),
-// 		}, pulumi.DependsOn([]pulumi.Resource{
-// 			vault_pki_secret_backend_role.Admin,
-// 		}))
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := pkiSecret.NewSecretBackendCert(ctx, "app", &pkiSecret.SecretBackendCertArgs{
+//				Backend:    pulumi.Any(vault_mount.Intermediate.Path),
+//				CommonName: pulumi.String("app.my.domain"),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				vault_pki_secret_backend_role.Admin,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type SecretBackendCert struct {
 	pulumi.CustomResourceState
@@ -300,7 +303,7 @@ func (i *SecretBackendCert) ToSecretBackendCertOutputWithContext(ctx context.Con
 // SecretBackendCertArrayInput is an input type that accepts SecretBackendCertArray and SecretBackendCertArrayOutput values.
 // You can construct a concrete instance of `SecretBackendCertArrayInput` via:
 //
-//          SecretBackendCertArray{ SecretBackendCertArgs{...} }
+//	SecretBackendCertArray{ SecretBackendCertArgs{...} }
 type SecretBackendCertArrayInput interface {
 	pulumi.Input
 
@@ -325,7 +328,7 @@ func (i SecretBackendCertArray) ToSecretBackendCertArrayOutputWithContext(ctx co
 // SecretBackendCertMapInput is an input type that accepts SecretBackendCertMap and SecretBackendCertMapOutput values.
 // You can construct a concrete instance of `SecretBackendCertMapInput` via:
 //
-//          SecretBackendCertMap{ "key": SecretBackendCertArgs{...} }
+//	SecretBackendCertMap{ "key": SecretBackendCertArgs{...} }
 type SecretBackendCertMapInput interface {
 	pulumi.Input
 
@@ -359,6 +362,111 @@ func (o SecretBackendCertOutput) ToSecretBackendCertOutput() SecretBackendCertOu
 
 func (o SecretBackendCertOutput) ToSecretBackendCertOutputWithContext(ctx context.Context) SecretBackendCertOutput {
 	return o
+}
+
+// List of alternative names
+func (o SecretBackendCertOutput) AltNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringArrayOutput { return v.AltNames }).(pulumi.StringArrayOutput)
+}
+
+// If set to `true`, certs will be renewed if the expiration is within `minSecondsRemaining`. Default `false`
+func (o SecretBackendCertOutput) AutoRenew() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.BoolPtrOutput { return v.AutoRenew }).(pulumi.BoolPtrOutput)
+}
+
+// The PKI secret backend the resource belongs to.
+func (o SecretBackendCertOutput) Backend() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringOutput { return v.Backend }).(pulumi.StringOutput)
+}
+
+// The CA chain
+func (o SecretBackendCertOutput) CaChain() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringOutput { return v.CaChain }).(pulumi.StringOutput)
+}
+
+// The certificate
+func (o SecretBackendCertOutput) Certificate() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringOutput { return v.Certificate }).(pulumi.StringOutput)
+}
+
+// CN of certificate to create
+func (o SecretBackendCertOutput) CommonName() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringOutput { return v.CommonName }).(pulumi.StringOutput)
+}
+
+// Flag to exclude CN from SANs
+func (o SecretBackendCertOutput) ExcludeCnFromSans() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.BoolPtrOutput { return v.ExcludeCnFromSans }).(pulumi.BoolPtrOutput)
+}
+
+// The expiration date of the certificate in unix epoch format
+func (o SecretBackendCertOutput) Expiration() pulumi.IntOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.IntOutput { return v.Expiration }).(pulumi.IntOutput)
+}
+
+// The format of data
+func (o SecretBackendCertOutput) Format() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringPtrOutput { return v.Format }).(pulumi.StringPtrOutput)
+}
+
+// List of alternative IPs
+func (o SecretBackendCertOutput) IpSans() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringArrayOutput { return v.IpSans }).(pulumi.StringArrayOutput)
+}
+
+// The issuing CA
+func (o SecretBackendCertOutput) IssuingCa() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringOutput { return v.IssuingCa }).(pulumi.StringOutput)
+}
+
+// Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
+func (o SecretBackendCertOutput) MinSecondsRemaining() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.IntPtrOutput { return v.MinSecondsRemaining }).(pulumi.IntPtrOutput)
+}
+
+// Name of the role to create the certificate against
+func (o SecretBackendCertOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// List of other SANs
+func (o SecretBackendCertOutput) OtherSans() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringArrayOutput { return v.OtherSans }).(pulumi.StringArrayOutput)
+}
+
+// The private key
+func (o SecretBackendCertOutput) PrivateKey() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringOutput { return v.PrivateKey }).(pulumi.StringOutput)
+}
+
+// The private key format
+func (o SecretBackendCertOutput) PrivateKeyFormat() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringPtrOutput { return v.PrivateKeyFormat }).(pulumi.StringPtrOutput)
+}
+
+// The private key type
+func (o SecretBackendCertOutput) PrivateKeyType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringOutput { return v.PrivateKeyType }).(pulumi.StringOutput)
+}
+
+// If set to `true`, the certificate will be revoked on resource destruction.
+func (o SecretBackendCertOutput) Revoke() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.BoolPtrOutput { return v.Revoke }).(pulumi.BoolPtrOutput)
+}
+
+// The serial number
+func (o SecretBackendCertOutput) SerialNumber() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringOutput { return v.SerialNumber }).(pulumi.StringOutput)
+}
+
+// Time to live
+func (o SecretBackendCertOutput) Ttl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringPtrOutput { return v.Ttl }).(pulumi.StringPtrOutput)
+}
+
+// List of alternative URIs
+func (o SecretBackendCertOutput) UriSans() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringArrayOutput { return v.UriSans }).(pulumi.StringArrayOutput)
 }
 
 type SecretBackendCertArrayOutput struct{ *pulumi.OutputState }

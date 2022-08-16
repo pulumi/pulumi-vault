@@ -16,7 +16,7 @@ namespace Pulumi.Vault.Aws
     /// documentation](https://www.vaultproject.io/docs/auth/aws.html).
     /// </summary>
     [VaultResourceType("vault:aws/authBackendLogin:AuthBackendLogin")]
-    public partial class AuthBackendLogin : Pulumi.CustomResource
+    public partial class AuthBackendLogin : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The token's accessor.
@@ -186,7 +186,7 @@ namespace Pulumi.Vault.Aws
         }
     }
 
-    public sealed class AuthBackendLoginArgs : Pulumi.ResourceArgs
+    public sealed class AuthBackendLoginArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The unique name of the AWS auth backend. Defaults to
@@ -265,9 +265,10 @@ namespace Pulumi.Vault.Aws
         public AuthBackendLoginArgs()
         {
         }
+        public static new AuthBackendLoginArgs Empty => new AuthBackendLoginArgs();
     }
 
-    public sealed class AuthBackendLoginState : Pulumi.ResourceArgs
+    public sealed class AuthBackendLoginState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The token's accessor.
@@ -408,5 +409,6 @@ namespace Pulumi.Vault.Aws
         public AuthBackendLoginState()
         {
         }
+        public static new AuthBackendLoginState Empty => new AuthBackendLoginState();
     }
 }

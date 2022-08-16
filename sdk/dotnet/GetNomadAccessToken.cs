@@ -17,45 +17,40 @@ namespace Pulumi.Vault
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Vault = Pulumi.Vault;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var config = new Vault.NomadSecretBackend("config", new()
         ///     {
-        ///         var config = new Vault.NomadSecretBackend("config", new Vault.NomadSecretBackendArgs
-        ///         {
-        ///             Backend = "nomad",
-        ///             Description = "test description",
-        ///             DefaultLeaseTtlSeconds = 3600,
-        ///             MaxLeaseTtlSeconds = 7200,
-        ///             Address = "https://127.0.0.1:4646",
-        ///             Token = "ae20ceaa-...",
-        ///         });
-        ///         var test = new Vault.NomadSecretRole("test", new Vault.NomadSecretRoleArgs
-        ///         {
-        ///             Backend = config.Backend,
-        ///             Role = "test",
-        ///             Type = "client",
-        ///             Policies = 
-        ///             {
-        ///                 "readonly",
-        ///             },
-        ///         });
-        ///         var token = Output.Tuple(config.Backend, test.Role).Apply(values =&gt;
-        ///         {
-        ///             var backend = values.Item1;
-        ///             var role = values.Item2;
-        ///             return Vault.GetNomadAccessToken.Invoke(new Vault.GetNomadAccessTokenInvokeArgs
-        ///             {
-        ///                 Backend = backend,
-        ///                 Role = role,
-        ///             });
-        ///         });
-        ///     }
+        ///         Backend = "nomad",
+        ///         Description = "test description",
+        ///         DefaultLeaseTtlSeconds = 3600,
+        ///         MaxLeaseTtlSeconds = 7200,
+        ///         Address = "https://127.0.0.1:4646",
+        ///         Token = "ae20ceaa-...",
+        ///     });
         /// 
-        /// }
+        ///     var test = new Vault.NomadSecretRole("test", new()
+        ///     {
+        ///         Backend = config.Backend,
+        ///         Role = "test",
+        ///         Type = "client",
+        ///         Policies = new[]
+        ///         {
+        ///             "readonly",
+        ///         },
+        ///     });
+        /// 
+        ///     var token = Vault.GetNomadAccessToken.Invoke(new()
+        ///     {
+        ///         Backend = config.Backend,
+        ///         Role = test.Role,
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -69,45 +64,40 @@ namespace Pulumi.Vault
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Vault = Pulumi.Vault;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var config = new Vault.NomadSecretBackend("config", new()
         ///     {
-        ///         var config = new Vault.NomadSecretBackend("config", new Vault.NomadSecretBackendArgs
-        ///         {
-        ///             Backend = "nomad",
-        ///             Description = "test description",
-        ///             DefaultLeaseTtlSeconds = 3600,
-        ///             MaxLeaseTtlSeconds = 7200,
-        ///             Address = "https://127.0.0.1:4646",
-        ///             Token = "ae20ceaa-...",
-        ///         });
-        ///         var test = new Vault.NomadSecretRole("test", new Vault.NomadSecretRoleArgs
-        ///         {
-        ///             Backend = config.Backend,
-        ///             Role = "test",
-        ///             Type = "client",
-        ///             Policies = 
-        ///             {
-        ///                 "readonly",
-        ///             },
-        ///         });
-        ///         var token = Output.Tuple(config.Backend, test.Role).Apply(values =&gt;
-        ///         {
-        ///             var backend = values.Item1;
-        ///             var role = values.Item2;
-        ///             return Vault.GetNomadAccessToken.Invoke(new Vault.GetNomadAccessTokenInvokeArgs
-        ///             {
-        ///                 Backend = backend,
-        ///                 Role = role,
-        ///             });
-        ///         });
-        ///     }
+        ///         Backend = "nomad",
+        ///         Description = "test description",
+        ///         DefaultLeaseTtlSeconds = 3600,
+        ///         MaxLeaseTtlSeconds = 7200,
+        ///         Address = "https://127.0.0.1:4646",
+        ///         Token = "ae20ceaa-...",
+        ///     });
         /// 
-        /// }
+        ///     var test = new Vault.NomadSecretRole("test", new()
+        ///     {
+        ///         Backend = config.Backend,
+        ///         Role = "test",
+        ///         Type = "client",
+        ///         Policies = new[]
+        ///         {
+        ///             "readonly",
+        ///         },
+        ///     });
+        /// 
+        ///     var token = Vault.GetNomadAccessToken.Invoke(new()
+        ///     {
+        ///         Backend = config.Backend,
+        ///         Role = test.Role,
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -117,7 +107,7 @@ namespace Pulumi.Vault
     }
 
 
-    public sealed class GetNomadAccessTokenArgs : Pulumi.InvokeArgs
+    public sealed class GetNomadAccessTokenArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The path to the Nomad secret backend to
@@ -136,9 +126,10 @@ namespace Pulumi.Vault
         public GetNomadAccessTokenArgs()
         {
         }
+        public static new GetNomadAccessTokenArgs Empty => new GetNomadAccessTokenArgs();
     }
 
-    public sealed class GetNomadAccessTokenInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetNomadAccessTokenInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The path to the Nomad secret backend to
@@ -157,6 +148,7 @@ namespace Pulumi.Vault
         public GetNomadAccessTokenInvokeArgs()
         {
         }
+        public static new GetNomadAccessTokenInvokeArgs Empty => new GetNomadAccessTokenInvokeArgs();
     }
 
 

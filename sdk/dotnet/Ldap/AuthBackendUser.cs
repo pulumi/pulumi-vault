@@ -15,37 +15,36 @@ namespace Pulumi.Vault.Ldap
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var ldap = new Vault.Ldap.AuthBackend("ldap", new()
     ///     {
-    ///         var ldap = new Vault.Ldap.AuthBackend("ldap", new Vault.Ldap.AuthBackendArgs
-    ///         {
-    ///             Path = "ldap",
-    ///             Url = "ldaps://dc-01.example.org",
-    ///             Userdn = "OU=Users,OU=Accounts,DC=example,DC=org",
-    ///             Userattr = "sAMAccountName",
-    ///             Upndomain = "EXAMPLE.ORG",
-    ///             Discoverdn = false,
-    ///             Groupdn = "OU=Groups,DC=example,DC=org",
-    ///             Groupfilter = "(&amp;(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))",
-    ///         });
-    ///         var user = new Vault.Ldap.AuthBackendUser("user", new Vault.Ldap.AuthBackendUserArgs
-    ///         {
-    ///             Username = "test-user",
-    ///             Policies = 
-    ///             {
-    ///                 "dba",
-    ///                 "sysops",
-    ///             },
-    ///             Backend = ldap.Path,
-    ///         });
-    ///     }
+    ///         Path = "ldap",
+    ///         Url = "ldaps://dc-01.example.org",
+    ///         Userdn = "OU=Users,OU=Accounts,DC=example,DC=org",
+    ///         Userattr = "sAMAccountName",
+    ///         Upndomain = "EXAMPLE.ORG",
+    ///         Discoverdn = false,
+    ///         Groupdn = "OU=Groups,DC=example,DC=org",
+    ///         Groupfilter = "(&amp;(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))",
+    ///     });
     /// 
-    /// }
+    ///     var user = new Vault.Ldap.AuthBackendUser("user", new()
+    ///     {
+    ///         Username = "test-user",
+    ///         Policies = new[]
+    ///         {
+    ///             "dba",
+    ///             "sysops",
+    ///         },
+    ///         Backend = ldap.Path,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -57,7 +56,7 @@ namespace Pulumi.Vault.Ldap
     /// ```
     /// </summary>
     [VaultResourceType("vault:ldap/authBackendUser:AuthBackendUser")]
-    public partial class AuthBackendUser : Pulumi.CustomResource
+    public partial class AuthBackendUser : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Path to the authentication backend
@@ -127,7 +126,7 @@ namespace Pulumi.Vault.Ldap
         }
     }
 
-    public sealed class AuthBackendUserArgs : Pulumi.ResourceArgs
+    public sealed class AuthBackendUserArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Path to the authentication backend
@@ -168,9 +167,10 @@ namespace Pulumi.Vault.Ldap
         public AuthBackendUserArgs()
         {
         }
+        public static new AuthBackendUserArgs Empty => new AuthBackendUserArgs();
     }
 
-    public sealed class AuthBackendUserState : Pulumi.ResourceArgs
+    public sealed class AuthBackendUserState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Path to the authentication backend
@@ -211,5 +211,6 @@ namespace Pulumi.Vault.Ldap
         public AuthBackendUserState()
         {
         }
+        public static new AuthBackendUserState Empty => new AuthBackendUserState();
     }
 }

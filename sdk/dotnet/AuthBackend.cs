@@ -19,7 +19,7 @@ namespace Pulumi.Vault
     /// ```
     /// </summary>
     [VaultResourceType("vault:index/authBackend:AuthBackend")]
-    public partial class AuthBackend : Pulumi.CustomResource
+    public partial class AuthBackend : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The accessor for this auth method
@@ -101,7 +101,7 @@ namespace Pulumi.Vault
         }
     }
 
-    public sealed class AuthBackendArgs : Pulumi.ResourceArgs
+    public sealed class AuthBackendArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// A description of the auth method
@@ -136,9 +136,10 @@ namespace Pulumi.Vault
         public AuthBackendArgs()
         {
         }
+        public static new AuthBackendArgs Empty => new AuthBackendArgs();
     }
 
-    public sealed class AuthBackendState : Pulumi.ResourceArgs
+    public sealed class AuthBackendState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The accessor for this auth method
@@ -179,5 +180,6 @@ namespace Pulumi.Vault
         public AuthBackendState()
         {
         }
+        public static new AuthBackendState Empty => new AuthBackendState();
     }
 }

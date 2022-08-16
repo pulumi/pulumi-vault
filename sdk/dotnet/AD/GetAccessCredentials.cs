@@ -19,7 +19,7 @@ namespace Pulumi.Vault.AD
     }
 
 
-    public sealed class GetAccessCredentialsArgs : Pulumi.InvokeArgs
+    public sealed class GetAccessCredentialsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The path to the AD secret backend to
@@ -38,9 +38,10 @@ namespace Pulumi.Vault.AD
         public GetAccessCredentialsArgs()
         {
         }
+        public static new GetAccessCredentialsArgs Empty => new GetAccessCredentialsArgs();
     }
 
-    public sealed class GetAccessCredentialsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetAccessCredentialsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The path to the AD secret backend to
@@ -59,6 +60,7 @@ namespace Pulumi.Vault.AD
         public GetAccessCredentialsInvokeArgs()
         {
         }
+        public static new GetAccessCredentialsInvokeArgs Empty => new GetAccessCredentialsInvokeArgs();
     }
 
 

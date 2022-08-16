@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Database.Inputs
 {
 
-    public sealed class SecretsMountPostgresqlGetArgs : Pulumi.ResourceArgs
+    public sealed class SecretsMountPostgresqlGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("allowedRoles")]
         private InputList<string>? _allowedRoles;
@@ -114,5 +114,6 @@ namespace Pulumi.Vault.Database.Inputs
         public SecretsMountPostgresqlGetArgs()
         {
         }
+        public static new SecretsMountPostgresqlGetArgs Empty => new SecretsMountPostgresqlGetArgs();
     }
 }

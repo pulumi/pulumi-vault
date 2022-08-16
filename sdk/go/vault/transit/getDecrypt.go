@@ -18,23 +18,26 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/transit"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/transit"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := transit.GetDecrypt(ctx, &transit.GetDecryptArgs{
-// 			Backend:    "transit",
-// 			Ciphertext: "vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==",
-// 			Key:        "test",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := transit.GetDecrypt(ctx, &transit.GetDecryptArgs{
+//				Backend:    "transit",
+//				Ciphertext: "vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==",
+//				Key:        "test",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func GetDecrypt(ctx *pulumi.Context, args *GetDecryptArgs, opts ...pulumi.InvokeOption) (*GetDecryptResult, error) {
 	var rv GetDecryptResult

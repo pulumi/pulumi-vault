@@ -15,33 +15,32 @@ namespace Pulumi.Vault.Transit
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var transit = new Vault.Mount("transit", new()
     ///     {
-    ///         var transit = new Vault.Mount("transit", new Vault.MountArgs
-    ///         {
-    ///             Path = "transit",
-    ///             Type = "transit",
-    ///             Description = "Example description",
-    ///             DefaultLeaseTtlSeconds = 3600,
-    ///             MaxLeaseTtlSeconds = 86400,
-    ///         });
-    ///         var cfg = new Vault.Transit.SecretCacheConfig("cfg", new Vault.Transit.SecretCacheConfigArgs
-    ///         {
-    ///             Backend = transit.Path,
-    ///             Size = 500,
-    ///         });
-    ///     }
+    ///         Path = "transit",
+    ///         Type = "transit",
+    ///         Description = "Example description",
+    ///         DefaultLeaseTtlSeconds = 3600,
+    ///         MaxLeaseTtlSeconds = 86400,
+    ///     });
     /// 
-    /// }
+    ///     var cfg = new Vault.Transit.SecretCacheConfig("cfg", new()
+    ///     {
+    ///         Backend = transit.Path,
+    ///         Size = 500,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// </summary>
     [VaultResourceType("vault:transit/secretCacheConfig:SecretCacheConfig")]
-    public partial class SecretCacheConfig : Pulumi.CustomResource
+    public partial class SecretCacheConfig : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
@@ -99,7 +98,7 @@ namespace Pulumi.Vault.Transit
         }
     }
 
-    public sealed class SecretCacheConfigArgs : Pulumi.ResourceArgs
+    public sealed class SecretCacheConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
@@ -116,9 +115,10 @@ namespace Pulumi.Vault.Transit
         public SecretCacheConfigArgs()
         {
         }
+        public static new SecretCacheConfigArgs Empty => new SecretCacheConfigArgs();
     }
 
-    public sealed class SecretCacheConfigState : Pulumi.ResourceArgs
+    public sealed class SecretCacheConfigState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
@@ -135,5 +135,6 @@ namespace Pulumi.Vault.Transit
         public SecretCacheConfigState()
         {
         }
+        public static new SecretCacheConfigState Empty => new SecretCacheConfigState();
     }
 }

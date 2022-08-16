@@ -19,38 +19,41 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ldap"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ldap"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		ldap, err := ldap.NewAuthBackend(ctx, "ldap", &ldap.AuthBackendArgs{
-// 			Path:        pulumi.String("ldap"),
-// 			Url:         pulumi.String("ldaps://dc-01.example.org"),
-// 			Userdn:      pulumi.String("OU=Users,OU=Accounts,DC=example,DC=org"),
-// 			Userattr:    pulumi.String("sAMAccountName"),
-// 			Upndomain:   pulumi.String("EXAMPLE.ORG"),
-// 			Discoverdn:  pulumi.Bool(false),
-// 			Groupdn:     pulumi.String("OU=Groups,DC=example,DC=org"),
-// 			Groupfilter: pulumi.String("(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = ldap.NewAuthBackendGroup(ctx, "group", &ldap.AuthBackendGroupArgs{
-// 			Groupname: pulumi.String("dba"),
-// 			Policies: pulumi.StringArray{
-// 				pulumi.String("dba"),
-// 			},
-// 			Backend: ldap.Path,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			ldap, err := ldap.NewAuthBackend(ctx, "ldap", &ldap.AuthBackendArgs{
+//				Path:        pulumi.String("ldap"),
+//				Url:         pulumi.String("ldaps://dc-01.example.org"),
+//				Userdn:      pulumi.String("OU=Users,OU=Accounts,DC=example,DC=org"),
+//				Userattr:    pulumi.String("sAMAccountName"),
+//				Upndomain:   pulumi.String("EXAMPLE.ORG"),
+//				Discoverdn:  pulumi.Bool(false),
+//				Groupdn:     pulumi.String("OU=Groups,DC=example,DC=org"),
+//				Groupfilter: pulumi.String("(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ldap.NewAuthBackendGroup(ctx, "group", &ldap.AuthBackendGroupArgs{
+//				Groupname: pulumi.String("dba"),
+//				Policies: pulumi.StringArray{
+//					pulumi.String("dba"),
+//				},
+//				Backend: ldap.Path,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -58,7 +61,9 @@ import (
 // LDAP authentication backend groups can be imported using the `path`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:ldap/authBackendGroup:AuthBackendGroup foo auth/ldap/groups/foo
+//
+//	$ pulumi import vault:ldap/authBackendGroup:AuthBackendGroup foo auth/ldap/groups/foo
+//
 // ```
 type AuthBackendGroup struct {
 	pulumi.CustomResourceState
@@ -169,7 +174,7 @@ func (i *AuthBackendGroup) ToAuthBackendGroupOutputWithContext(ctx context.Conte
 // AuthBackendGroupArrayInput is an input type that accepts AuthBackendGroupArray and AuthBackendGroupArrayOutput values.
 // You can construct a concrete instance of `AuthBackendGroupArrayInput` via:
 //
-//          AuthBackendGroupArray{ AuthBackendGroupArgs{...} }
+//	AuthBackendGroupArray{ AuthBackendGroupArgs{...} }
 type AuthBackendGroupArrayInput interface {
 	pulumi.Input
 
@@ -194,7 +199,7 @@ func (i AuthBackendGroupArray) ToAuthBackendGroupArrayOutputWithContext(ctx cont
 // AuthBackendGroupMapInput is an input type that accepts AuthBackendGroupMap and AuthBackendGroupMapOutput values.
 // You can construct a concrete instance of `AuthBackendGroupMapInput` via:
 //
-//          AuthBackendGroupMap{ "key": AuthBackendGroupArgs{...} }
+//	AuthBackendGroupMap{ "key": AuthBackendGroupArgs{...} }
 type AuthBackendGroupMapInput interface {
 	pulumi.Input
 
@@ -228,6 +233,21 @@ func (o AuthBackendGroupOutput) ToAuthBackendGroupOutput() AuthBackendGroupOutpu
 
 func (o AuthBackendGroupOutput) ToAuthBackendGroupOutputWithContext(ctx context.Context) AuthBackendGroupOutput {
 	return o
+}
+
+// Path to the authentication backend
+func (o AuthBackendGroupOutput) Backend() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendGroup) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
+}
+
+// The LDAP groupname
+func (o AuthBackendGroupOutput) Groupname() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendGroup) pulumi.StringOutput { return v.Groupname }).(pulumi.StringOutput)
+}
+
+// Policies which should be granted to members of the group
+func (o AuthBackendGroupOutput) Policies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendGroup) pulumi.StringArrayOutput { return v.Policies }).(pulumi.StringArrayOutput)
 }
 
 type AuthBackendGroupArrayOutput struct{ *pulumi.OutputState }

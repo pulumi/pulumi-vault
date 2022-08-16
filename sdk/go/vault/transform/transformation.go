@@ -22,35 +22,38 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/transform"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/transform"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		mountTransform, err := vault.NewMount(ctx, "mountTransform", &vault.MountArgs{
-// 			Path: pulumi.String("transform"),
-// 			Type: pulumi.String("transform"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = transform.NewTransformation(ctx, "test", &transform.TransformationArgs{
-// 			Path:        mountTransform.Path,
-// 			Type:        pulumi.String("fpe"),
-// 			Template:    pulumi.String("ccn"),
-// 			TweakSource: pulumi.String("internal"),
-// 			AllowedRoles: pulumi.StringArray{
-// 				pulumi.String("payments"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			mountTransform, err := vault.NewMount(ctx, "mountTransform", &vault.MountArgs{
+//				Path: pulumi.String("transform"),
+//				Type: pulumi.String("transform"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = transform.NewTransformation(ctx, "test", &transform.TransformationArgs{
+//				Path:        mountTransform.Path,
+//				Type:        pulumi.String("fpe"),
+//				Template:    pulumi.String("ccn"),
+//				TweakSource: pulumi.String("internal"),
+//				AllowedRoles: pulumi.StringArray{
+//					pulumi.String("payments"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type Transformation struct {
 	pulumi.CustomResourceState
@@ -211,7 +214,7 @@ func (i *Transformation) ToTransformationOutputWithContext(ctx context.Context) 
 // TransformationArrayInput is an input type that accepts TransformationArray and TransformationArrayOutput values.
 // You can construct a concrete instance of `TransformationArrayInput` via:
 //
-//          TransformationArray{ TransformationArgs{...} }
+//	TransformationArray{ TransformationArgs{...} }
 type TransformationArrayInput interface {
 	pulumi.Input
 
@@ -236,7 +239,7 @@ func (i TransformationArray) ToTransformationArrayOutputWithContext(ctx context.
 // TransformationMapInput is an input type that accepts TransformationMap and TransformationMapOutput values.
 // You can construct a concrete instance of `TransformationMapInput` via:
 //
-//          TransformationMap{ "key": TransformationArgs{...} }
+//	TransformationMap{ "key": TransformationArgs{...} }
 type TransformationMapInput interface {
 	pulumi.Input
 
@@ -270,6 +273,46 @@ func (o TransformationOutput) ToTransformationOutput() TransformationOutput {
 
 func (o TransformationOutput) ToTransformationOutputWithContext(ctx context.Context) TransformationOutput {
 	return o
+}
+
+// The set of roles allowed to perform this transformation.
+func (o TransformationOutput) AllowedRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Transformation) pulumi.StringArrayOutput { return v.AllowedRoles }).(pulumi.StringArrayOutput)
+}
+
+// The character used to replace data when in masking mode
+func (o TransformationOutput) MaskingCharacter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Transformation) pulumi.StringPtrOutput { return v.MaskingCharacter }).(pulumi.StringPtrOutput)
+}
+
+// The name of the transformation.
+func (o TransformationOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Transformation) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Path to where the back-end is mounted within Vault.
+func (o TransformationOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v *Transformation) pulumi.StringOutput { return v.Path }).(pulumi.StringOutput)
+}
+
+// The name of the template to use.
+func (o TransformationOutput) Template() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Transformation) pulumi.StringPtrOutput { return v.Template }).(pulumi.StringPtrOutput)
+}
+
+// Templates configured for transformation.
+func (o TransformationOutput) Templates() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Transformation) pulumi.StringArrayOutput { return v.Templates }).(pulumi.StringArrayOutput)
+}
+
+// The source of where the tweak value comes from. Only valid when in FPE mode.
+func (o TransformationOutput) TweakSource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Transformation) pulumi.StringPtrOutput { return v.TweakSource }).(pulumi.StringPtrOutput)
+}
+
+// The type of transformation to perform.
+func (o TransformationOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Transformation) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
 }
 
 type TransformationArrayOutput struct{ *pulumi.OutputState }

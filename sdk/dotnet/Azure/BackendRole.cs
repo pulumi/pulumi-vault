@@ -13,50 +13,50 @@ namespace Pulumi.Vault.Azure
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var azure = new Vault.Azure.Backend("azure", new()
     ///     {
-    ///         var azure = new Vault.Azure.Backend("azure", new Vault.Azure.BackendArgs
-    ///         {
-    ///             SubscriptionId = @var.Subscription_id,
-    ///             TenantId = @var.Tenant_id,
-    ///             ClientSecret = @var.Client_secret,
-    ///             ClientId = @var.Client_id,
-    ///         });
-    ///         var generatedRole = new Vault.Azure.BackendRole("generatedRole", new Vault.Azure.BackendRoleArgs
-    ///         {
-    ///             Backend = azure.Path,
-    ///             Role = "generated_role",
-    ///             Ttl = "300",
-    ///             MaxTtl = "600",
-    ///             AzureRoles = 
-    ///             {
-    ///                 new Vault.Azure.Inputs.BackendRoleAzureRoleArgs
-    ///                 {
-    ///                     RoleName = "Reader",
-    ///                     Scope = $"/subscriptions/{@var.Subscription_id}/resourceGroups/azure-vault-group",
-    ///                 },
-    ///             },
-    ///         });
-    ///         var existingObjectId = new Vault.Azure.BackendRole("existingObjectId", new Vault.Azure.BackendRoleArgs
-    ///         {
-    ///             Backend = azure.Path,
-    ///             Role = "existing_object_id",
-    ///             ApplicationObjectId = "11111111-2222-3333-4444-44444444444",
-    ///             Ttl = "300",
-    ///             MaxTtl = "600",
-    ///         });
-    ///     }
+    ///         SubscriptionId = @var.Subscription_id,
+    ///         TenantId = @var.Tenant_id,
+    ///         ClientSecret = @var.Client_secret,
+    ///         ClientId = @var.Client_id,
+    ///     });
     /// 
-    /// }
+    ///     var generatedRole = new Vault.Azure.BackendRole("generatedRole", new()
+    ///     {
+    ///         Backend = azure.Path,
+    ///         Role = "generated_role",
+    ///         Ttl = "300",
+    ///         MaxTtl = "600",
+    ///         AzureRoles = new[]
+    ///         {
+    ///             new Vault.Azure.Inputs.BackendRoleAzureRoleArgs
+    ///             {
+    ///                 RoleName = "Reader",
+    ///                 Scope = $"/subscriptions/{@var.Subscription_id}/resourceGroups/azure-vault-group",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var existingObjectId = new Vault.Azure.BackendRole("existingObjectId", new()
+    ///     {
+    ///         Backend = azure.Path,
+    ///         Role = "existing_object_id",
+    ///         ApplicationObjectId = "11111111-2222-3333-4444-44444444444",
+    ///         Ttl = "300",
+    ///         MaxTtl = "600",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// </summary>
     [VaultResourceType("vault:azure/backendRole:BackendRole")]
-    public partial class BackendRole : Pulumi.CustomResource
+    public partial class BackendRole : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Application Object ID for an existing service principal that will
@@ -153,7 +153,7 @@ namespace Pulumi.Vault.Azure
         }
     }
 
-    public sealed class BackendRoleArgs : Pulumi.ResourceArgs
+    public sealed class BackendRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Application Object ID for an existing service principal that will
@@ -221,9 +221,10 @@ namespace Pulumi.Vault.Azure
         public BackendRoleArgs()
         {
         }
+        public static new BackendRoleArgs Empty => new BackendRoleArgs();
     }
 
-    public sealed class BackendRoleState : Pulumi.ResourceArgs
+    public sealed class BackendRoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Application Object ID for an existing service principal that will
@@ -291,5 +292,6 @@ namespace Pulumi.Vault.Azure
         public BackendRoleState()
         {
         }
+        public static new BackendRoleState Empty => new BackendRoleState();
     }
 }

@@ -17,41 +17,40 @@ namespace Pulumi.Vault.Kubernetes
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var kubernetes = new Vault.AuthBackend("kubernetes", new()
     ///     {
-    ///         var kubernetes = new Vault.AuthBackend("kubernetes", new Vault.AuthBackendArgs
-    ///         {
-    ///             Type = "kubernetes",
-    ///         });
-    ///         var example = new Vault.Kubernetes.AuthBackendRole("example", new Vault.Kubernetes.AuthBackendRoleArgs
-    ///         {
-    ///             Backend = kubernetes.Path,
-    ///             RoleName = "example-role",
-    ///             BoundServiceAccountNames = 
-    ///             {
-    ///                 "example",
-    ///             },
-    ///             BoundServiceAccountNamespaces = 
-    ///             {
-    ///                 "example",
-    ///             },
-    ///             TokenTtl = 3600,
-    ///             TokenPolicies = 
-    ///             {
-    ///                 "default",
-    ///                 "dev",
-    ///                 "prod",
-    ///             },
-    ///             Audience = "vault",
-    ///         });
-    ///     }
+    ///         Type = "kubernetes",
+    ///     });
     /// 
-    /// }
+    ///     var example = new Vault.Kubernetes.AuthBackendRole("example", new()
+    ///     {
+    ///         Backend = kubernetes.Path,
+    ///         RoleName = "example-role",
+    ///         BoundServiceAccountNames = new[]
+    ///         {
+    ///             "example",
+    ///         },
+    ///         BoundServiceAccountNamespaces = new[]
+    ///         {
+    ///             "example",
+    ///         },
+    ///         TokenTtl = 3600,
+    ///         TokenPolicies = new[]
+    ///         {
+    ///             "default",
+    ///             "dev",
+    ///             "prod",
+    ///         },
+    ///         Audience = "vault",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -63,7 +62,7 @@ namespace Pulumi.Vault.Kubernetes
     /// ```
     /// </summary>
     [VaultResourceType("vault:kubernetes/authBackendRole:AuthBackendRole")]
-    public partial class AuthBackendRole : Pulumi.CustomResource
+    public partial class AuthBackendRole : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Configures how identity aliases are generated.
@@ -216,7 +215,7 @@ namespace Pulumi.Vault.Kubernetes
         }
     }
 
-    public sealed class AuthBackendRoleArgs : Pulumi.ResourceArgs
+    public sealed class AuthBackendRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Configures how identity aliases are generated.
@@ -352,9 +351,10 @@ namespace Pulumi.Vault.Kubernetes
         public AuthBackendRoleArgs()
         {
         }
+        public static new AuthBackendRoleArgs Empty => new AuthBackendRoleArgs();
     }
 
-    public sealed class AuthBackendRoleState : Pulumi.ResourceArgs
+    public sealed class AuthBackendRoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Configures how identity aliases are generated.
@@ -490,5 +490,6 @@ namespace Pulumi.Vault.Kubernetes
         public AuthBackendRoleState()
         {
         }
+        public static new AuthBackendRoleState Empty => new AuthBackendRoleState();
     }
 }

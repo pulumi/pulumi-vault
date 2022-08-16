@@ -13,28 +13,27 @@ namespace Pulumi.Vault.Azure
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var exampleAuthBackend = new Vault.AuthBackend("exampleAuthBackend", new()
     ///     {
-    ///         var exampleAuthBackend = new Vault.AuthBackend("exampleAuthBackend", new Vault.AuthBackendArgs
-    ///         {
-    ///             Type = "azure",
-    ///         });
-    ///         var exampleAuthBackendConfig = new Vault.Azure.AuthBackendConfig("exampleAuthBackendConfig", new Vault.Azure.AuthBackendConfigArgs
-    ///         {
-    ///             Backend = exampleAuthBackend.Path,
-    ///             TenantId = "11111111-2222-3333-4444-555555555555",
-    ///             ClientId = "11111111-2222-3333-4444-555555555555",
-    ///             ClientSecret = "01234567890123456789",
-    ///             Resource = "https://vault.hashicorp.com",
-    ///         });
-    ///     }
+    ///         Type = "azure",
+    ///     });
     /// 
-    /// }
+    ///     var exampleAuthBackendConfig = new Vault.Azure.AuthBackendConfig("exampleAuthBackendConfig", new()
+    ///     {
+    ///         Backend = exampleAuthBackend.Path,
+    ///         TenantId = "11111111-2222-3333-4444-555555555555",
+    ///         ClientId = "11111111-2222-3333-4444-555555555555",
+    ///         ClientSecret = "01234567890123456789",
+    ///         Resource = "https://vault.hashicorp.com",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -46,7 +45,7 @@ namespace Pulumi.Vault.Azure
     /// ```
     /// </summary>
     [VaultResourceType("vault:azure/authBackendConfig:AuthBackendConfig")]
-    public partial class AuthBackendConfig : Pulumi.CustomResource
+    public partial class AuthBackendConfig : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The path the Azure auth backend being configured was
@@ -135,7 +134,7 @@ namespace Pulumi.Vault.Azure
         }
     }
 
-    public sealed class AuthBackendConfigArgs : Pulumi.ResourceArgs
+    public sealed class AuthBackendConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The path the Azure auth backend being configured was
@@ -183,9 +182,10 @@ namespace Pulumi.Vault.Azure
         public AuthBackendConfigArgs()
         {
         }
+        public static new AuthBackendConfigArgs Empty => new AuthBackendConfigArgs();
     }
 
-    public sealed class AuthBackendConfigState : Pulumi.ResourceArgs
+    public sealed class AuthBackendConfigState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The path the Azure auth backend being configured was
@@ -233,5 +233,6 @@ namespace Pulumi.Vault.Azure
         public AuthBackendConfigState()
         {
         }
+        public static new AuthBackendConfigState Empty => new AuthBackendConfigState();
     }
 }

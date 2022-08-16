@@ -15,29 +15,28 @@ namespace Pulumi.Vault.Aws
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var exampleAuthBackend = new Vault.AuthBackend("exampleAuthBackend", new()
     ///     {
-    ///         var exampleAuthBackend = new Vault.AuthBackend("exampleAuthBackend", new Vault.AuthBackendArgs
-    ///         {
-    ///             Type = "aws",
-    ///         });
-    ///         var exampleAuthBackendRoletagBlacklist = new Vault.Aws.AuthBackendRoletagBlacklist("exampleAuthBackendRoletagBlacklist", new Vault.Aws.AuthBackendRoletagBlacklistArgs
-    ///         {
-    ///             Backend = exampleAuthBackend.Path,
-    ///             SafetyBuffer = 360,
-    ///         });
-    ///     }
+    ///         Type = "aws",
+    ///     });
     /// 
-    /// }
+    ///     var exampleAuthBackendRoletagBlacklist = new Vault.Aws.AuthBackendRoletagBlacklist("exampleAuthBackendRoletagBlacklist", new()
+    ///     {
+    ///         Backend = exampleAuthBackend.Path,
+    ///         SafetyBuffer = 360,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// </summary>
     [VaultResourceType("vault:aws/authBackendRoletagBlacklist:AuthBackendRoletagBlacklist")]
-    public partial class AuthBackendRoletagBlacklist : Pulumi.CustomResource
+    public partial class AuthBackendRoletagBlacklist : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The path the AWS auth backend being configured was
@@ -105,7 +104,7 @@ namespace Pulumi.Vault.Aws
         }
     }
 
-    public sealed class AuthBackendRoletagBlacklistArgs : Pulumi.ResourceArgs
+    public sealed class AuthBackendRoletagBlacklistArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The path the AWS auth backend being configured was
@@ -132,9 +131,10 @@ namespace Pulumi.Vault.Aws
         public AuthBackendRoletagBlacklistArgs()
         {
         }
+        public static new AuthBackendRoletagBlacklistArgs Empty => new AuthBackendRoletagBlacklistArgs();
     }
 
-    public sealed class AuthBackendRoletagBlacklistState : Pulumi.ResourceArgs
+    public sealed class AuthBackendRoletagBlacklistState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The path the AWS auth backend being configured was
@@ -161,5 +161,6 @@ namespace Pulumi.Vault.Aws
         public AuthBackendRoletagBlacklistState()
         {
         }
+        public static new AuthBackendRoletagBlacklistState Empty => new AuthBackendRoletagBlacklistState();
     }
 }

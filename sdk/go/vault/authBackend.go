@@ -16,7 +16,9 @@ import (
 // Auth methods can be imported using the `path`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:index/authBackend:AuthBackend example github
+//
+//	$ pulumi import vault:index/authBackend:AuthBackend example github
+//
 // ```
 type AuthBackend struct {
 	pulumi.CustomResourceState
@@ -153,7 +155,7 @@ func (i *AuthBackend) ToAuthBackendOutputWithContext(ctx context.Context) AuthBa
 // AuthBackendArrayInput is an input type that accepts AuthBackendArray and AuthBackendArrayOutput values.
 // You can construct a concrete instance of `AuthBackendArrayInput` via:
 //
-//          AuthBackendArray{ AuthBackendArgs{...} }
+//	AuthBackendArray{ AuthBackendArgs{...} }
 type AuthBackendArrayInput interface {
 	pulumi.Input
 
@@ -178,7 +180,7 @@ func (i AuthBackendArray) ToAuthBackendArrayOutputWithContext(ctx context.Contex
 // AuthBackendMapInput is an input type that accepts AuthBackendMap and AuthBackendMapOutput values.
 // You can construct a concrete instance of `AuthBackendMapInput` via:
 //
-//          AuthBackendMap{ "key": AuthBackendArgs{...} }
+//	AuthBackendMap{ "key": AuthBackendArgs{...} }
 type AuthBackendMapInput interface {
 	pulumi.Input
 
@@ -212,6 +214,36 @@ func (o AuthBackendOutput) ToAuthBackendOutput() AuthBackendOutput {
 
 func (o AuthBackendOutput) ToAuthBackendOutputWithContext(ctx context.Context) AuthBackendOutput {
 	return o
+}
+
+// The accessor for this auth method
+func (o AuthBackendOutput) Accessor() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Accessor }).(pulumi.StringOutput)
+}
+
+// A description of the auth method
+func (o AuthBackendOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// Specifies if the auth method is local only.
+func (o AuthBackendOutput) Local() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.BoolPtrOutput { return v.Local }).(pulumi.BoolPtrOutput)
+}
+
+// The path to mount the auth method — this defaults to the name of the type
+func (o AuthBackendOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Path }).(pulumi.StringOutput)
+}
+
+// Extra configuration block. Structure is documented below.
+func (o AuthBackendOutput) Tune() AuthBackendTuneOutput {
+	return o.ApplyT(func(v *AuthBackend) AuthBackendTuneOutput { return v.Tune }).(AuthBackendTuneOutput)
+}
+
+// The name of the auth method type
+func (o AuthBackendOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
 type AuthBackendArrayOutput struct{ *pulumi.OutputState }

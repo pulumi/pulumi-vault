@@ -17,29 +17,28 @@ namespace Pulumi.Vault
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var config = new Config();
+    ///     var settingsFile = config.RequireObject&lt;dynamic&gt;("settingsFile");
+    ///     var userpass = new Vault.AuthBackend("userpass", new()
     ///     {
-    ///         var config = new Config();
-    ///         var settingsFile = config.RequireObject&lt;dynamic&gt;("settingsFile");
-    ///         var userpass = new Vault.AuthBackend("userpass", new Vault.AuthBackendArgs
-    ///         {
-    ///             Type = "userpass",
-    ///             Path = "userpass",
-    ///         });
-    ///         var myPingid = new Vault.MfaPingid("myPingid", new Vault.MfaPingidArgs
-    ///         {
-    ///             MountAccessor = userpass.Accessor,
-    ///             UsernameFormat = "user@example.com",
-    ///             SettingsFileBase64 = settingsFile,
-    ///         });
-    ///     }
+    ///         Type = "userpass",
+    ///         Path = "userpass",
+    ///     });
     /// 
-    /// }
+    ///     var myPingid = new Vault.MfaPingid("myPingid", new()
+    ///     {
+    ///         MountAccessor = userpass.Accessor,
+    ///         UsernameFormat = "user@example.com",
+    ///         SettingsFileBase64 = settingsFile,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -51,7 +50,7 @@ namespace Pulumi.Vault
     /// ```
     /// </summary>
     [VaultResourceType("vault:index/mfaPingid:MfaPingid")]
-    public partial class MfaPingid : Pulumi.CustomResource
+    public partial class MfaPingid : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Admin URL computed by Vault.
@@ -171,7 +170,7 @@ namespace Pulumi.Vault
         }
     }
 
-    public sealed class MfaPingidArgs : Pulumi.ResourceArgs
+    public sealed class MfaPingidArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// `(string: &lt;required&gt;)` - The mount to tie this method to for use in automatic mappings. 
@@ -208,9 +207,10 @@ namespace Pulumi.Vault
         public MfaPingidArgs()
         {
         }
+        public static new MfaPingidArgs Empty => new MfaPingidArgs();
     }
 
-    public sealed class MfaPingidState : Pulumi.ResourceArgs
+    public sealed class MfaPingidState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Admin URL computed by Vault.
@@ -289,5 +289,6 @@ namespace Pulumi.Vault
         public MfaPingidState()
         {
         }
+        public static new MfaPingidState Empty => new MfaPingidState();
     }
 }

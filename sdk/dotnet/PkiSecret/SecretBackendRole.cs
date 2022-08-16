@@ -15,37 +15,36 @@ namespace Pulumi.Vault.PkiSecret
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var pki = new Vault.Mount("pki", new()
     ///     {
-    ///         var pki = new Vault.Mount("pki", new Vault.MountArgs
-    ///         {
-    ///             Path = "pki",
-    ///             Type = "pki",
-    ///             DefaultLeaseTtlSeconds = 3600,
-    ///             MaxLeaseTtlSeconds = 86400,
-    ///         });
-    ///         var role = new Vault.PkiSecret.SecretBackendRole("role", new Vault.PkiSecret.SecretBackendRoleArgs
-    ///         {
-    ///             Backend = pki.Path,
-    ///             Ttl = "3600",
-    ///             AllowIpSans = true,
-    ///             KeyType = "rsa",
-    ///             KeyBits = 4096,
-    ///             AllowedDomains = 
-    ///             {
-    ///                 "example.com",
-    ///                 "my.domain",
-    ///             },
-    ///             AllowSubdomains = true,
-    ///         });
-    ///     }
+    ///         Path = "pki",
+    ///         Type = "pki",
+    ///         DefaultLeaseTtlSeconds = 3600,
+    ///         MaxLeaseTtlSeconds = 86400,
+    ///     });
     /// 
-    /// }
+    ///     var role = new Vault.PkiSecret.SecretBackendRole("role", new()
+    ///     {
+    ///         Backend = pki.Path,
+    ///         Ttl = "3600",
+    ///         AllowIpSans = true,
+    ///         KeyType = "rsa",
+    ///         KeyBits = 4096,
+    ///         AllowedDomains = new[]
+    ///         {
+    ///             "example.com",
+    ///             "my.domain",
+    ///         },
+    ///         AllowSubdomains = true,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -57,7 +56,7 @@ namespace Pulumi.Vault.PkiSecret
     /// ```
     /// </summary>
     [VaultResourceType("vault:pkiSecret/secretBackendRole:SecretBackendRole")]
-    public partial class SecretBackendRole : Pulumi.CustomResource
+    public partial class SecretBackendRole : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Flag to allow any name
@@ -338,7 +337,7 @@ namespace Pulumi.Vault.PkiSecret
         }
     }
 
-    public sealed class SecretBackendRoleArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Flag to allow any name
@@ -662,9 +661,10 @@ namespace Pulumi.Vault.PkiSecret
         public SecretBackendRoleArgs()
         {
         }
+        public static new SecretBackendRoleArgs Empty => new SecretBackendRoleArgs();
     }
 
-    public sealed class SecretBackendRoleState : Pulumi.ResourceArgs
+    public sealed class SecretBackendRoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Flag to allow any name
@@ -988,5 +988,6 @@ namespace Pulumi.Vault.PkiSecret
         public SecretBackendRoleState()
         {
         }
+        public static new SecretBackendRoleState Empty => new SecretBackendRoleState();
     }
 }

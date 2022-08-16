@@ -19,7 +19,7 @@ namespace Pulumi.Vault
     /// ```
     /// </summary>
     [VaultResourceType("vault:index/policy:Policy")]
-    public partial class Policy : Pulumi.CustomResource
+    public partial class Policy : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The name of the policy
@@ -77,7 +77,7 @@ namespace Pulumi.Vault
         }
     }
 
-    public sealed class PolicyArgs : Pulumi.ResourceArgs
+    public sealed class PolicyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the policy
@@ -94,9 +94,10 @@ namespace Pulumi.Vault
         public PolicyArgs()
         {
         }
+        public static new PolicyArgs Empty => new PolicyArgs();
     }
 
-    public sealed class PolicyState : Pulumi.ResourceArgs
+    public sealed class PolicyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the policy
@@ -113,5 +114,6 @@ namespace Pulumi.Vault
         public PolicyState()
         {
         }
+        public static new PolicyState Empty => new PolicyState();
     }
 }

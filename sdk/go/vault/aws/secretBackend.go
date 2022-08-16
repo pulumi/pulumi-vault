@@ -16,22 +16,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/aws"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/aws"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := aws.NewSecretBackend(ctx, "aws", &aws.SecretBackendArgs{
-// 			AccessKey: pulumi.String("AKIA....."),
-// 			SecretKey: pulumi.String("AWS secret key"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := aws.NewSecretBackend(ctx, "aws", &aws.SecretBackendArgs{
+//				AccessKey: pulumi.String("AKIA....."),
+//				SecretKey: pulumi.String("AWS secret key"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -39,7 +42,9 @@ import (
 // AWS secret backends can be imported using the `path`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:aws/secretBackend:SecretBackend aws aws
+//
+//	$ pulumi import vault:aws/secretBackend:SecretBackend aws aws
+//
 // ```
 type SecretBackend struct {
 	pulumi.CustomResourceState
@@ -242,7 +247,7 @@ func (i *SecretBackend) ToSecretBackendOutputWithContext(ctx context.Context) Se
 // SecretBackendArrayInput is an input type that accepts SecretBackendArray and SecretBackendArrayOutput values.
 // You can construct a concrete instance of `SecretBackendArrayInput` via:
 //
-//          SecretBackendArray{ SecretBackendArgs{...} }
+//	SecretBackendArray{ SecretBackendArgs{...} }
 type SecretBackendArrayInput interface {
 	pulumi.Input
 
@@ -267,7 +272,7 @@ func (i SecretBackendArray) ToSecretBackendArrayOutputWithContext(ctx context.Co
 // SecretBackendMapInput is an input type that accepts SecretBackendMap and SecretBackendMapOutput values.
 // You can construct a concrete instance of `SecretBackendMapInput` via:
 //
-//          SecretBackendMap{ "key": SecretBackendArgs{...} }
+//	SecretBackendMap{ "key": SecretBackendArgs{...} }
 type SecretBackendMapInput interface {
 	pulumi.Input
 
@@ -301,6 +306,61 @@ func (o SecretBackendOutput) ToSecretBackendOutput() SecretBackendOutput {
 
 func (o SecretBackendOutput) ToSecretBackendOutputWithContext(ctx context.Context) SecretBackendOutput {
 	return o
+}
+
+// The AWS Access Key ID this backend should use to
+// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+func (o SecretBackendOutput) AccessKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.AccessKey }).(pulumi.StringPtrOutput)
+}
+
+// The default TTL for credentials
+// issued by this backend.
+func (o SecretBackendOutput) DefaultLeaseTtlSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntOutput { return v.DefaultLeaseTtlSeconds }).(pulumi.IntOutput)
+}
+
+// A human-friendly description for this backend.
+func (o SecretBackendOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// Specifies a custom HTTP IAM endpoint to use.
+func (o SecretBackendOutput) IamEndpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.IamEndpoint }).(pulumi.StringPtrOutput)
+}
+
+// The maximum TTL that can be requested
+// for credentials issued by this backend.
+func (o SecretBackendOutput) MaxLeaseTtlSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntOutput { return v.MaxLeaseTtlSeconds }).(pulumi.IntOutput)
+}
+
+// The unique path this backend should be mounted at. Must
+// not begin or end with a `/`. Defaults to `aws`.
+func (o SecretBackendOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+// The AWS region for API calls. Defaults to `us-east-1`.
+func (o SecretBackendOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
+// The AWS Secret Key this backend should use to
+// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+func (o SecretBackendOutput) SecretKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.SecretKey }).(pulumi.StringPtrOutput)
+}
+
+// Specifies a custom HTTP STS endpoint to use.
+func (o SecretBackendOutput) StsEndpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.StsEndpoint }).(pulumi.StringPtrOutput)
+}
+
+// Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
+func (o SecretBackendOutput) UsernameTemplate() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringOutput { return v.UsernameTemplate }).(pulumi.StringOutput)
 }
 
 type SecretBackendArrayOutput struct{ *pulumi.OutputState }

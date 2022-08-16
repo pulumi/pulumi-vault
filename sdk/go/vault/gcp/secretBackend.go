@@ -16,31 +16,34 @@ import (
 // package main
 //
 // import (
-// 	"io/ioutil"
 //
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/gcp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"io/ioutil"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/gcp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func readFileOrPanic(path string) pulumi.StringPtrInput {
-// 	data, err := ioutil.ReadFile(path)
-// 	if err != nil {
-// 		panic(err.Error())
-// 	}
-// 	return pulumi.String(string(data))
-// }
+//	func readFileOrPanic(path string) pulumi.StringPtrInput {
+//		data, err := ioutil.ReadFile(path)
+//		if err != nil {
+//			panic(err.Error())
+//		}
+//		return pulumi.String(string(data))
+//	}
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := gcp.NewSecretBackend(ctx, "gcp", &gcp.SecretBackendArgs{
-// 			Credentials: readFileOrPanic("credentials.json"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := gcp.NewSecretBackend(ctx, "gcp", &gcp.SecretBackendArgs{
+//				Credentials: readFileOrPanic("credentials.json"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type SecretBackend struct {
 	pulumi.CustomResourceState
@@ -193,7 +196,7 @@ func (i *SecretBackend) ToSecretBackendOutputWithContext(ctx context.Context) Se
 // SecretBackendArrayInput is an input type that accepts SecretBackendArray and SecretBackendArrayOutput values.
 // You can construct a concrete instance of `SecretBackendArrayInput` via:
 //
-//          SecretBackendArray{ SecretBackendArgs{...} }
+//	SecretBackendArray{ SecretBackendArgs{...} }
 type SecretBackendArrayInput interface {
 	pulumi.Input
 
@@ -218,7 +221,7 @@ func (i SecretBackendArray) ToSecretBackendArrayOutputWithContext(ctx context.Co
 // SecretBackendMapInput is an input type that accepts SecretBackendMap and SecretBackendMapOutput values.
 // You can construct a concrete instance of `SecretBackendMapInput` via:
 //
-//          SecretBackendMap{ "key": SecretBackendArgs{...} }
+//	SecretBackendMap{ "key": SecretBackendArgs{...} }
 type SecretBackendMapInput interface {
 	pulumi.Input
 
@@ -252,6 +255,39 @@ func (o SecretBackendOutput) ToSecretBackendOutput() SecretBackendOutput {
 
 func (o SecretBackendOutput) ToSecretBackendOutputWithContext(ctx context.Context) SecretBackendOutput {
 	return o
+}
+
+// The GCP service account credentials in JSON format.
+func (o SecretBackendOutput) Credentials() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Credentials }).(pulumi.StringPtrOutput)
+}
+
+// The default TTL for credentials
+// issued by this backend. Defaults to '0'.
+func (o SecretBackendOutput) DefaultLeaseTtlSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.DefaultLeaseTtlSeconds }).(pulumi.IntPtrOutput)
+}
+
+// A human-friendly description for this backend.
+func (o SecretBackendOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+func (o SecretBackendOutput) Local() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.Local }).(pulumi.BoolPtrOutput)
+}
+
+// The maximum TTL that can be requested
+// for credentials issued by this backend. Defaults to '0'.
+func (o SecretBackendOutput) MaxLeaseTtlSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.MaxLeaseTtlSeconds }).(pulumi.IntPtrOutput)
+}
+
+// The unique path this backend should be mounted at. Must
+// not begin or end with a `/`. Defaults to `gcp`.
+func (o SecretBackendOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Path }).(pulumi.StringPtrOutput)
 }
 
 type SecretBackendArrayOutput struct{ *pulumi.OutputState }

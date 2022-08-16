@@ -15,31 +15,30 @@ namespace Pulumi.Vault.Consul
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Vault.Consul.SecretBackend("test", new()
     ///     {
-    ///         var test = new Vault.Consul.SecretBackend("test", new Vault.Consul.SecretBackendArgs
-    ///         {
-    ///             Path = "consul",
-    ///             Description = "Manages the Consul backend",
-    ///             Address = "127.0.0.1:8500",
-    ///             Token = "4240861b-ce3d-8530-115a-521ff070dd29",
-    ///         });
-    ///         var example = new Vault.Consul.SecretBackendRole("example", new Vault.Consul.SecretBackendRoleArgs
-    ///         {
-    ///             Backend = test.Path,
-    ///             Policies = 
-    ///             {
-    ///                 "example-policy",
-    ///             },
-    ///         });
-    ///     }
+    ///         Path = "consul",
+    ///         Description = "Manages the Consul backend",
+    ///         Address = "127.0.0.1:8500",
+    ///         Token = "4240861b-ce3d-8530-115a-521ff070dd29",
+    ///     });
     /// 
-    /// }
+    ///     var example = new Vault.Consul.SecretBackendRole("example", new()
+    ///     {
+    ///         Backend = test.Path,
+    ///         Policies = new[]
+    ///         {
+    ///             "example-policy",
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -51,7 +50,7 @@ namespace Pulumi.Vault.Consul
     /// ```
     /// </summary>
     [VaultResourceType("vault:consul/secretBackendRole:SecretBackendRole")]
-    public partial class SecretBackendRole : Pulumi.CustomResource
+    public partial class SecretBackendRole : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
@@ -160,7 +159,7 @@ namespace Pulumi.Vault.Consul
         }
     }
 
-    public sealed class SecretBackendRoleArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
@@ -240,9 +239,10 @@ namespace Pulumi.Vault.Consul
         public SecretBackendRoleArgs()
         {
         }
+        public static new SecretBackendRoleArgs Empty => new SecretBackendRoleArgs();
     }
 
-    public sealed class SecretBackendRoleState : Pulumi.ResourceArgs
+    public sealed class SecretBackendRoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
@@ -322,5 +322,6 @@ namespace Pulumi.Vault.Consul
         public SecretBackendRoleState()
         {
         }
+        public static new SecretBackendRoleState Empty => new SecretBackendRoleState();
     }
 }

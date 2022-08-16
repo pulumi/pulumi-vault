@@ -16,42 +16,41 @@ namespace Pulumi.Vault.Identity
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var testOidcAssignment = new Vault.Identity.OidcAssignment("testOidcAssignment", new()
     ///     {
-    ///         var testOidcAssignment = new Vault.Identity.OidcAssignment("testOidcAssignment", new Vault.Identity.OidcAssignmentArgs
+    ///         EntityIds = new[]
     ///         {
-    ///             EntityIds = 
-    ///             {
-    ///                 "ascbascas-2231a-sdfaa",
-    ///             },
-    ///             GroupIds = 
-    ///             {
-    ///                 "sajkdsad-32414-sfsada",
-    ///             },
-    ///         });
-    ///         var testOidcClient = new Vault.Identity.OidcClient("testOidcClient", new Vault.Identity.OidcClientArgs
+    ///             "ascbascas-2231a-sdfaa",
+    ///         },
+    ///         GroupIds = new[]
     ///         {
-    ///             RedirectUris = 
-    ///             {
-    ///                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
-    ///                 "http://127.0.0.1:8251/callback",
-    ///                 "http://127.0.0.1:8080/callback",
-    ///             },
-    ///             Assignments = 
-    ///             {
-    ///                 testOidcAssignment.Name,
-    ///             },
-    ///             IdTokenTtl = 2400,
-    ///             AccessTokenTtl = 7200,
-    ///         });
-    ///     }
+    ///             "sajkdsad-32414-sfsada",
+    ///         },
+    ///     });
     /// 
-    /// }
+    ///     var testOidcClient = new Vault.Identity.OidcClient("testOidcClient", new()
+    ///     {
+    ///         RedirectUris = new[]
+    ///         {
+    ///             "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+    ///             "http://127.0.0.1:8251/callback",
+    ///             "http://127.0.0.1:8080/callback",
+    ///         },
+    ///         Assignments = new[]
+    ///         {
+    ///             testOidcAssignment.Name,
+    ///         },
+    ///         IdTokenTtl = 2400,
+    ///         AccessTokenTtl = 7200,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -63,7 +62,7 @@ namespace Pulumi.Vault.Identity
     /// ```
     /// </summary>
     [VaultResourceType("vault:identity/oidcClient:OidcClient")]
-    public partial class OidcClient : Pulumi.CustomResource
+    public partial class OidcClient : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The time-to-live for access tokens obtained by the client.
@@ -169,7 +168,7 @@ namespace Pulumi.Vault.Identity
         }
     }
 
-    public sealed class OidcClientArgs : Pulumi.ResourceArgs
+    public sealed class OidcClientArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The time-to-live for access tokens obtained by the client.
@@ -234,9 +233,10 @@ namespace Pulumi.Vault.Identity
         public OidcClientArgs()
         {
         }
+        public static new OidcClientArgs Empty => new OidcClientArgs();
     }
 
-    public sealed class OidcClientState : Pulumi.ResourceArgs
+    public sealed class OidcClientState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The time-to-live for access tokens obtained by the client.
@@ -313,5 +313,6 @@ namespace Pulumi.Vault.Identity
         public OidcClientState()
         {
         }
+        public static new OidcClientState Empty => new OidcClientState();
     }
 }

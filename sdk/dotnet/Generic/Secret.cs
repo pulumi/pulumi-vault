@@ -19,7 +19,7 @@ namespace Pulumi.Vault.Generic
     /// ```
     /// </summary>
     [VaultResourceType("vault:generic/secret:Secret")]
-    public partial class Secret : Pulumi.CustomResource
+    public partial class Secret : global::Pulumi.CustomResource
     {
         /// <summary>
         /// A mapping whose keys are the top-level data keys returned from
@@ -108,7 +108,7 @@ namespace Pulumi.Vault.Generic
         }
     }
 
-    public sealed class SecretArgs : Pulumi.ResourceArgs
+    public sealed class SecretArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// String containing a JSON-encoded object that will be
@@ -147,9 +147,10 @@ namespace Pulumi.Vault.Generic
         public SecretArgs()
         {
         }
+        public static new SecretArgs Empty => new SecretArgs();
     }
 
-    public sealed class SecretState : Pulumi.ResourceArgs
+    public sealed class SecretState : global::Pulumi.ResourceArgs
     {
         [Input("data")]
         private InputMap<object>? _data;
@@ -203,5 +204,6 @@ namespace Pulumi.Vault.Generic
         public SecretState()
         {
         }
+        public static new SecretState Empty => new SecretState();
     }
 }

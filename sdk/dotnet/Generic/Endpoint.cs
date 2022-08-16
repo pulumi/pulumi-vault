@@ -13,77 +13,79 @@ namespace Pulumi.Vault.Generic
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var userpass = new Vault.AuthBackend("userpass", new()
     ///     {
-    ///         var userpass = new Vault.AuthBackend("userpass", new Vault.AuthBackendArgs
-    ///         {
-    ///             Type = "userpass",
-    ///         });
-    ///         var u1 = new Vault.Generic.Endpoint("u1", new Vault.Generic.EndpointArgs
-    ///         {
-    ///             Path = "auth/userpass/users/u1",
-    ///             IgnoreAbsentFields = true,
-    ///             DataJson = @"{
+    ///         Type = "userpass",
+    ///     });
+    /// 
+    ///     var u1 = new Vault.Generic.Endpoint("u1", new()
+    ///     {
+    ///         Path = "auth/userpass/users/u1",
+    ///         IgnoreAbsentFields = true,
+    ///         DataJson = @"{
     ///   ""policies"": [""p1""],
     ///   ""password"": ""changeme""
     /// }
     /// ",
-    ///         }, new CustomResourceOptions
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
     ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 userpass,
-    ///             },
-    ///         });
-    ///         var u1Token = new Vault.Generic.Endpoint("u1Token", new Vault.Generic.EndpointArgs
-    ///         {
-    ///             Path = "auth/userpass/login/u1",
-    ///             DisableRead = true,
-    ///             DisableDelete = true,
-    ///             DataJson = @"{
+    ///             userpass,
+    ///         },
+    ///     });
+    /// 
+    ///     var u1Token = new Vault.Generic.Endpoint("u1Token", new()
+    ///     {
+    ///         Path = "auth/userpass/login/u1",
+    ///         DisableRead = true,
+    ///         DisableDelete = true,
+    ///         DataJson = @"{
     ///   ""password"": ""changeme""
     /// }
     /// ",
-    ///         }, new CustomResourceOptions
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
     ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 u1,
-    ///             },
-    ///         });
-    ///         var u1Entity = new Vault.Generic.Endpoint("u1Entity", new Vault.Generic.EndpointArgs
+    ///             u1,
+    ///         },
+    ///     });
+    /// 
+    ///     var u1Entity = new Vault.Generic.Endpoint("u1Entity", new()
+    ///     {
+    ///         DisableRead = true,
+    ///         DisableDelete = true,
+    ///         Path = "identity/lookup/entity",
+    ///         IgnoreAbsentFields = true,
+    ///         WriteFields = new[]
     ///         {
-    ///             DisableRead = true,
-    ///             DisableDelete = true,
-    ///             Path = "identity/lookup/entity",
-    ///             IgnoreAbsentFields = true,
-    ///             WriteFields = 
-    ///             {
-    ///                 "id",
-    ///             },
-    ///             DataJson = @"{
+    ///             "id",
+    ///         },
+    ///         DataJson = @"{
     ///   ""alias_name"": ""u1"",
     ///   ""alias_mount_accessor"": vault_auth_backend.userpass.accessor
     /// }
     /// ",
-    ///         }, new CustomResourceOptions
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
     ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 u1Token,
-    ///             },
-    ///         });
-    ///         this.U1Id = u1Entity.WriteData.Apply(writeData =&gt; writeData.Id);
-    ///     }
+    ///             u1Token,
+    ///         },
+    ///     });
     /// 
-    ///     [Output("u1Id")]
-    ///     public Output&lt;string&gt; U1Id { get; set; }
-    /// }
+    ///     return new Dictionary&lt;string, object?&gt;
+    ///     {
+    ///         ["u1Id"] = u1Entity.WriteData.Apply(writeData =&gt; writeData.Id),
+    ///     };
+    /// });
     /// ```
     /// ## Required Vault Capabilities
     /// 
@@ -97,7 +99,7 @@ namespace Pulumi.Vault.Generic
     /// Import is not supported for this resource.
     /// </summary>
     [VaultResourceType("vault:generic/endpoint:Endpoint")]
-    public partial class Endpoint : Pulumi.CustomResource
+    public partial class Endpoint : global::Pulumi.CustomResource
     {
         /// <summary>
         /// String containing a JSON-encoded object that will be
@@ -199,7 +201,7 @@ namespace Pulumi.Vault.Generic
         }
     }
 
-    public sealed class EndpointArgs : Pulumi.ResourceArgs
+    public sealed class EndpointArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// String containing a JSON-encoded object that will be
@@ -254,9 +256,10 @@ namespace Pulumi.Vault.Generic
         public EndpointArgs()
         {
         }
+        public static new EndpointArgs Empty => new EndpointArgs();
     }
 
-    public sealed class EndpointState : Pulumi.ResourceArgs
+    public sealed class EndpointState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// String containing a JSON-encoded object that will be
@@ -329,5 +332,6 @@ namespace Pulumi.Vault.Generic
         public EndpointState()
         {
         }
+        public static new EndpointState Empty => new EndpointState();
     }
 }

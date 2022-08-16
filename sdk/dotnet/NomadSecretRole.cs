@@ -13,35 +13,34 @@ namespace Pulumi.Vault
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var config = new Vault.NomadSecretBackend("config", new()
     ///     {
-    ///         var config = new Vault.NomadSecretBackend("config", new Vault.NomadSecretBackendArgs
-    ///         {
-    ///             Backend = "nomad",
-    ///             Description = "test description",
-    ///             DefaultLeaseTtlSeconds = 3600,
-    ///             MaxLeaseTtlSeconds = 7200,
-    ///             Address = "https://127.0.0.1:4646",
-    ///             Token = "ae20ceaa-...",
-    ///         });
-    ///         var test = new Vault.NomadSecretRole("test", new Vault.NomadSecretRoleArgs
-    ///         {
-    ///             Backend = config.Backend,
-    ///             Role = "test",
-    ///             Type = "client",
-    ///             Policies = 
-    ///             {
-    ///                 "readonly",
-    ///             },
-    ///         });
-    ///     }
+    ///         Backend = "nomad",
+    ///         Description = "test description",
+    ///         DefaultLeaseTtlSeconds = 3600,
+    ///         MaxLeaseTtlSeconds = 7200,
+    ///         Address = "https://127.0.0.1:4646",
+    ///         Token = "ae20ceaa-...",
+    ///     });
     /// 
-    /// }
+    ///     var test = new Vault.NomadSecretRole("test", new()
+    ///     {
+    ///         Backend = config.Backend,
+    ///         Role = "test",
+    ///         Type = "client",
+    ///         Policies = new[]
+    ///         {
+    ///             "readonly",
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -53,7 +52,7 @@ namespace Pulumi.Vault
     /// ```
     /// </summary>
     [VaultResourceType("vault:index/nomadSecretRole:NomadSecretRole")]
-    public partial class NomadSecretRole : Pulumi.CustomResource
+    public partial class NomadSecretRole : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The unique path this backend should be mounted at. Must
@@ -134,7 +133,7 @@ namespace Pulumi.Vault
         }
     }
 
-    public sealed class NomadSecretRoleArgs : Pulumi.ResourceArgs
+    public sealed class NomadSecretRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The unique path this backend should be mounted at. Must
@@ -180,9 +179,10 @@ namespace Pulumi.Vault
         public NomadSecretRoleArgs()
         {
         }
+        public static new NomadSecretRoleArgs Empty => new NomadSecretRoleArgs();
     }
 
-    public sealed class NomadSecretRoleState : Pulumi.ResourceArgs
+    public sealed class NomadSecretRoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The unique path this backend should be mounted at. Must
@@ -228,5 +228,6 @@ namespace Pulumi.Vault
         public NomadSecretRoleState()
         {
         }
+        public static new NomadSecretRoleState Empty => new NomadSecretRoleState();
     }
 }

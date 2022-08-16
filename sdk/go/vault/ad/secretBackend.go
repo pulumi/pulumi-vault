@@ -17,26 +17,29 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ad"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ad"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := ad.NewSecretBackend(ctx, "config", &ad.SecretBackendArgs{
-// 			Backend:     pulumi.String("ad"),
-// 			Binddn:      pulumi.String("CN=Administrator,CN=Users,DC=corp,DC=example,DC=net"),
-// 			Bindpass:    pulumi.String("SuperSecretPassw0rd"),
-// 			InsecureTls: pulumi.Bool(true),
-// 			Url:         pulumi.String("ldaps://ad"),
-// 			Userdn:      pulumi.String("CN=Users,DC=corp,DC=example,DC=net"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := ad.NewSecretBackend(ctx, "config", &ad.SecretBackendArgs{
+//				Backend:     pulumi.String("ad"),
+//				Binddn:      pulumi.String("CN=Administrator,CN=Users,DC=corp,DC=example,DC=net"),
+//				Bindpass:    pulumi.String("SuperSecretPassw0rd"),
+//				InsecureTls: pulumi.Bool(true),
+//				Url:         pulumi.String("ldaps://ad"),
+//				Userdn:      pulumi.String("CN=Users,DC=corp,DC=example,DC=net"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -44,7 +47,9 @@ import (
 // AD secret backend can be imported using the `backend`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:ad/secretBackend:SecretBackend ad ad
+//
+//	$ pulumi import vault:ad/secretBackend:SecretBackend ad ad
+//
 // ```
 type SecretBackend struct {
 	pulumi.CustomResourceState
@@ -588,7 +593,7 @@ func (i *SecretBackend) ToSecretBackendOutputWithContext(ctx context.Context) Se
 // SecretBackendArrayInput is an input type that accepts SecretBackendArray and SecretBackendArrayOutput values.
 // You can construct a concrete instance of `SecretBackendArrayInput` via:
 //
-//          SecretBackendArray{ SecretBackendArgs{...} }
+//	SecretBackendArray{ SecretBackendArgs{...} }
 type SecretBackendArrayInput interface {
 	pulumi.Input
 
@@ -613,7 +618,7 @@ func (i SecretBackendArray) ToSecretBackendArrayOutputWithContext(ctx context.Co
 // SecretBackendMapInput is an input type that accepts SecretBackendMap and SecretBackendMapOutput values.
 // You can construct a concrete instance of `SecretBackendMapInput` via:
 //
-//          SecretBackendMap{ "key": SecretBackendArgs{...} }
+//	SecretBackendMap{ "key": SecretBackendArgs{...} }
 type SecretBackendMapInput interface {
 	pulumi.Input
 
@@ -647,6 +652,200 @@ func (o SecretBackendOutput) ToSecretBackendOutput() SecretBackendOutput {
 
 func (o SecretBackendOutput) ToSecretBackendOutputWithContext(ctx context.Context) SecretBackendOutput {
 	return o
+}
+
+// Use anonymous binds when performing LDAP group searches
+// (if true the initial credentials will still be used for the initial connection test).
+func (o SecretBackendOutput) AnonymousGroupSearch() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.AnonymousGroupSearch }).(pulumi.BoolPtrOutput)
+}
+
+// The unique path this backend should be mounted at. Must
+// not begin or end with a `/`. Defaults to `ad`.
+func (o SecretBackendOutput) Backend() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
+}
+
+// Distinguished name of object to bind when performing user and group search.
+func (o SecretBackendOutput) Binddn() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringOutput { return v.Binddn }).(pulumi.StringOutput)
+}
+
+// Password to use along with binddn when performing user search.
+func (o SecretBackendOutput) Bindpass() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringOutput { return v.Bindpass }).(pulumi.StringOutput)
+}
+
+// If set, user and group names assigned to policies within the
+// backend will be case sensitive. Otherwise, names will be normalized to lower case.
+func (o SecretBackendOutput) CaseSensitiveNames() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.CaseSensitiveNames }).(pulumi.BoolPtrOutput)
+}
+
+// CA certificate to use when verifying LDAP server certificate, must be
+// x509 PEM encoded.
+func (o SecretBackendOutput) Certificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Certificate }).(pulumi.StringPtrOutput)
+}
+
+// Client certificate to provide to the LDAP server, must be x509 PEM encoded.
+func (o SecretBackendOutput) ClientTlsCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.ClientTlsCert }).(pulumi.StringPtrOutput)
+}
+
+// Client certificate key to provide to the LDAP server, must be x509 PEM encoded.
+func (o SecretBackendOutput) ClientTlsKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.ClientTlsKey }).(pulumi.StringPtrOutput)
+}
+
+// Default lease duration for secrets in seconds.
+func (o SecretBackendOutput) DefaultLeaseTtlSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntOutput { return v.DefaultLeaseTtlSeconds }).(pulumi.IntOutput)
+}
+
+// Denies an unauthenticated LDAP bind request if the user's password is empty;
+// defaults to true.
+func (o SecretBackendOutput) DenyNullBind() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.DenyNullBind }).(pulumi.BoolPtrOutput)
+}
+
+// Human-friendly description of the mount for the Active Directory backend.
+func (o SecretBackendOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// Use anonymous bind to discover the bind Distinguished Name of a user.
+func (o SecretBackendOutput) Discoverdn() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.Discoverdn }).(pulumi.BoolPtrOutput)
+}
+
+// **Deprecated** use `passwordPolicy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
+//
+// Deprecated: Formatter is deprecated and password_policy should be used with Vault >= 1.5.
+func (o SecretBackendOutput) Formatter() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringOutput { return v.Formatter }).(pulumi.StringOutput)
+}
+
+// LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
+// user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
+func (o SecretBackendOutput) Groupattr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Groupattr }).(pulumi.StringPtrOutput)
+}
+
+// LDAP search base to use for group membership search (eg: ou=Groups,dc=example,dc=org).
+func (o SecretBackendOutput) Groupdn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Groupdn }).(pulumi.StringPtrOutput)
+}
+
+// Go template for querying group membership of user (optional) The template can access
+// the following context variables: UserDN, Username. Defaults to `(|(memberUid={{.Username}})(member={{.UserDN}})(uniqueMember={{.UserDN}}))`
+func (o SecretBackendOutput) Groupfilter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Groupfilter }).(pulumi.StringPtrOutput)
+}
+
+// Skip LDAP server SSL Certificate verification. This is not recommended for production.
+// Defaults to `false`.
+func (o SecretBackendOutput) InsecureTls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.InsecureTls }).(pulumi.BoolPtrOutput)
+}
+
+// The number of seconds after a Vault rotation where, if Active Directory
+// shows a later rotation, it should be considered out-of-band
+func (o SecretBackendOutput) LastRotationTolerance() pulumi.IntOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntOutput { return v.LastRotationTolerance }).(pulumi.IntOutput)
+}
+
+// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
+//
+// Deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.
+func (o SecretBackendOutput) Length() pulumi.IntOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntOutput { return v.Length }).(pulumi.IntOutput)
+}
+
+// Mark the secrets engine as local-only. Local engines are not replicated or removed by
+// replication.Tolerance duration to use when checking the last rotation time.
+func (o SecretBackendOutput) Local() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.Local }).(pulumi.BoolPtrOutput)
+}
+
+// Maximum possible lease duration for secrets in seconds.
+func (o SecretBackendOutput) MaxLeaseTtlSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntOutput { return v.MaxLeaseTtlSeconds }).(pulumi.IntOutput)
+}
+
+// In seconds, the maximum password time-to-live.
+func (o SecretBackendOutput) MaxTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntOutput { return v.MaxTtl }).(pulumi.IntOutput)
+}
+
+// Name of the password policy to use to generate passwords.
+func (o SecretBackendOutput) PasswordPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.PasswordPolicy }).(pulumi.StringPtrOutput)
+}
+
+// Timeout, in seconds, for the connection when making requests against the server
+// before returning back an error.
+func (o SecretBackendOutput) RequestTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.RequestTimeout }).(pulumi.IntPtrOutput)
+}
+
+// Issue a StartTLS command after establishing unencrypted connection.
+func (o SecretBackendOutput) Starttls() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.BoolOutput { return v.Starttls }).(pulumi.BoolOutput)
+}
+
+// Maximum TLS version to use. Accepted values are `tls10`, `tls11`,
+// `tls12` or `tls13`. Defaults to `tls12`.
+func (o SecretBackendOutput) TlsMaxVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringOutput { return v.TlsMaxVersion }).(pulumi.StringOutput)
+}
+
+// Minimum TLS version to use. Accepted values are `tls10`, `tls11`,
+// `tls12` or `tls13`. Defaults to `tls12`.
+func (o SecretBackendOutput) TlsMinVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringOutput { return v.TlsMinVersion }).(pulumi.StringOutput)
+}
+
+// In seconds, the default password time-to-live.
+func (o SecretBackendOutput) Ttl() pulumi.IntOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntOutput { return v.Ttl }).(pulumi.IntOutput)
+}
+
+// Enables userPrincipalDomain login with [username]@UPNDomain.
+func (o SecretBackendOutput) Upndomain() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringOutput { return v.Upndomain }).(pulumi.StringOutput)
+}
+
+// LDAP URL to connect to. Multiple URLs can be specified by concatenating
+// them with commas; they will be tried in-order. Defaults to `ldap://127.0.0.1`.
+func (o SecretBackendOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+// In Vault 1.1.1 a fix for handling group CN values of
+// different cases unfortunately introduced a regression that could cause previously defined groups
+// to not be found due to a change in the resulting name. If set true, the pre-1.1.1 behavior for
+// matching group CNs will be used. This is only needed in some upgrade scenarios for backwards
+// compatibility. It is enabled by default if the config is upgraded but disabled by default on
+// new configurations.
+func (o SecretBackendOutput) UsePre111GroupCnBehavior() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.BoolOutput { return v.UsePre111GroupCnBehavior }).(pulumi.BoolOutput)
+}
+
+// If true, use the Active Directory tokenGroups constructed attribute of the
+// user to find the group memberships. This will find all security groups including nested ones.
+func (o SecretBackendOutput) UseTokenGroups() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.UseTokenGroups }).(pulumi.BoolPtrOutput)
+}
+
+// Attribute used when searching users. Defaults to `cn`.
+func (o SecretBackendOutput) Userattr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Userattr }).(pulumi.StringPtrOutput)
+}
+
+// LDAP domain to use for users (eg: ou=People,dc=example,dc=org)`.
+func (o SecretBackendOutput) Userdn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Userdn }).(pulumi.StringPtrOutput)
 }
 
 type SecretBackendArrayOutput struct{ *pulumi.OutputState }

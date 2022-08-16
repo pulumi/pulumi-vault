@@ -13,33 +13,33 @@ namespace Pulumi.Vault.Identity
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var key = new Vault.Identity.OidcKey("key", new()
     ///     {
-    ///         var key = new Vault.Identity.OidcKey("key", new Vault.Identity.OidcKeyArgs
-    ///         {
-    ///             Algorithm = "RS256",
-    ///         });
-    ///         var roleOidcRole = new Vault.Identity.OidcRole("roleOidcRole", new Vault.Identity.OidcRoleArgs
-    ///         {
-    ///             Key = key.Name,
-    ///         });
-    ///         var roleOidcKeyAllowedClientID = new Vault.Identity.OidcKeyAllowedClientID("roleOidcKeyAllowedClientID", new Vault.Identity.OidcKeyAllowedClientIDArgs
-    ///         {
-    ///             KeyName = key.Name,
-    ///             AllowedClientId = roleOidcRole.ClientId,
-    ///         });
-    ///     }
+    ///         Algorithm = "RS256",
+    ///     });
     /// 
-    /// }
+    ///     var roleOidcRole = new Vault.Identity.OidcRole("roleOidcRole", new()
+    ///     {
+    ///         Key = key.Name,
+    ///     });
+    /// 
+    ///     var roleOidcKeyAllowedClientID = new Vault.Identity.OidcKeyAllowedClientID("roleOidcKeyAllowedClientID", new()
+    ///     {
+    ///         KeyName = key.Name,
+    ///         AllowedClientId = roleOidcRole.ClientId,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// </summary>
     [VaultResourceType("vault:identity/oidcKeyAllowedClientID:OidcKeyAllowedClientID")]
-    public partial class OidcKeyAllowedClientID : Pulumi.CustomResource
+    public partial class OidcKeyAllowedClientID : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Client ID to allow usage with the OIDC named key
@@ -97,7 +97,7 @@ namespace Pulumi.Vault.Identity
         }
     }
 
-    public sealed class OidcKeyAllowedClientIDArgs : Pulumi.ResourceArgs
+    public sealed class OidcKeyAllowedClientIDArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Client ID to allow usage with the OIDC named key
@@ -114,9 +114,10 @@ namespace Pulumi.Vault.Identity
         public OidcKeyAllowedClientIDArgs()
         {
         }
+        public static new OidcKeyAllowedClientIDArgs Empty => new OidcKeyAllowedClientIDArgs();
     }
 
-    public sealed class OidcKeyAllowedClientIDState : Pulumi.ResourceArgs
+    public sealed class OidcKeyAllowedClientIDState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Client ID to allow usage with the OIDC named key
@@ -133,5 +134,6 @@ namespace Pulumi.Vault.Identity
         public OidcKeyAllowedClientIDState()
         {
         }
+        public static new OidcKeyAllowedClientIDState Empty => new OidcKeyAllowedClientIDState();
     }
 }

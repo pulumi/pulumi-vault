@@ -20,40 +20,43 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ssh"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ssh"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		example, err := vault.NewMount(ctx, "example", &vault.MountArgs{
-// 			Type: pulumi.String("ssh"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = ssh.NewSecretBackendRole(ctx, "foo", &ssh.SecretBackendRoleArgs{
-// 			Backend:               example.Path,
-// 			KeyType:               pulumi.String("ca"),
-// 			AllowUserCertificates: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = ssh.NewSecretBackendRole(ctx, "bar", &ssh.SecretBackendRoleArgs{
-// 			Backend:      example.Path,
-// 			KeyType:      pulumi.String("otp"),
-// 			DefaultUser:  pulumi.String("default"),
-// 			AllowedUsers: pulumi.String("default,baz"),
-// 			CidrList:     pulumi.String("0.0.0.0/0"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := vault.NewMount(ctx, "example", &vault.MountArgs{
+//				Type: pulumi.String("ssh"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ssh.NewSecretBackendRole(ctx, "foo", &ssh.SecretBackendRoleArgs{
+//				Backend:               example.Path,
+//				KeyType:               pulumi.String("ca"),
+//				AllowUserCertificates: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ssh.NewSecretBackendRole(ctx, "bar", &ssh.SecretBackendRoleArgs{
+//				Backend:      example.Path,
+//				KeyType:      pulumi.String("otp"),
+//				DefaultUser:  pulumi.String("default"),
+//				AllowedUsers: pulumi.String("default,baz"),
+//				CidrList:     pulumi.String("0.0.0.0/0"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -61,7 +64,9 @@ import (
 // SSH secret backend roles can be imported using the `path`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:ssh/secretBackendRole:SecretBackendRole foo ssh/roles/my-role
+//
+//	$ pulumi import vault:ssh/secretBackendRole:SecretBackendRole foo ssh/roles/my-role
+//
 // ```
 type SecretBackendRole struct {
 	pulumi.CustomResourceState
@@ -405,7 +410,7 @@ func (i *SecretBackendRole) ToSecretBackendRoleOutputWithContext(ctx context.Con
 // SecretBackendRoleArrayInput is an input type that accepts SecretBackendRoleArray and SecretBackendRoleArrayOutput values.
 // You can construct a concrete instance of `SecretBackendRoleArrayInput` via:
 //
-//          SecretBackendRoleArray{ SecretBackendRoleArgs{...} }
+//	SecretBackendRoleArray{ SecretBackendRoleArgs{...} }
 type SecretBackendRoleArrayInput interface {
 	pulumi.Input
 
@@ -430,7 +435,7 @@ func (i SecretBackendRoleArray) ToSecretBackendRoleArrayOutputWithContext(ctx co
 // SecretBackendRoleMapInput is an input type that accepts SecretBackendRoleMap and SecretBackendRoleMapOutput values.
 // You can construct a concrete instance of `SecretBackendRoleMapInput` via:
 //
-//          SecretBackendRoleMap{ "key": SecretBackendRoleArgs{...} }
+//	SecretBackendRoleMap{ "key": SecretBackendRoleArgs{...} }
 type SecretBackendRoleMapInput interface {
 	pulumi.Input
 
@@ -464,6 +469,129 @@ func (o SecretBackendRoleOutput) ToSecretBackendRoleOutput() SecretBackendRoleOu
 
 func (o SecretBackendRoleOutput) ToSecretBackendRoleOutputWithContext(ctx context.Context) SecretBackendRoleOutput {
 	return o
+}
+
+// When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
+func (o SecretBackendRoleOutput) AlgorithmSigner() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.AlgorithmSigner }).(pulumi.StringOutput)
+}
+
+// Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
+func (o SecretBackendRoleOutput) AllowBareDomains() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.AllowBareDomains }).(pulumi.BoolPtrOutput)
+}
+
+// Specifies if certificates are allowed to be signed for use as a 'host'.
+func (o SecretBackendRoleOutput) AllowHostCertificates() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.AllowHostCertificates }).(pulumi.BoolPtrOutput)
+}
+
+// Specifies if host certificates that are requested are allowed to be subdomains of those listed in `allowedDomains`.
+func (o SecretBackendRoleOutput) AllowSubdomains() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.AllowSubdomains }).(pulumi.BoolPtrOutput)
+}
+
+// Specifies if certificates are allowed to be signed for use as a 'user'.
+func (o SecretBackendRoleOutput) AllowUserCertificates() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.AllowUserCertificates }).(pulumi.BoolPtrOutput)
+}
+
+// Specifies if users can override the key ID for a signed certificate with the `keyId` field.
+func (o SecretBackendRoleOutput) AllowUserKeyIds() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.AllowUserKeyIds }).(pulumi.BoolPtrOutput)
+}
+
+// Specifies a comma-separated list of critical options that certificates can have when signed.
+func (o SecretBackendRoleOutput) AllowedCriticalOptions() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.AllowedCriticalOptions }).(pulumi.StringPtrOutput)
+}
+
+// The list of domains for which a client can request a host certificate.
+func (o SecretBackendRoleOutput) AllowedDomains() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.AllowedDomains }).(pulumi.StringPtrOutput)
+}
+
+// Specifies a comma-separated list of extensions that certificates can have when signed.
+func (o SecretBackendRoleOutput) AllowedExtensions() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.AllowedExtensions }).(pulumi.StringPtrOutput)
+}
+
+// Set of configuration blocks to define allowed\
+// user key configuration, like key type and their lengths. Can be specified multiple times.
+// *See Configuration-Options for more info*
+func (o SecretBackendRoleOutput) AllowedUserKeyConfigs() SecretBackendRoleAllowedUserKeyConfigArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRole) SecretBackendRoleAllowedUserKeyConfigArrayOutput {
+		return v.AllowedUserKeyConfigs
+	}).(SecretBackendRoleAllowedUserKeyConfigArrayOutput)
+}
+
+// Specifies a map of ssh key types and their expected sizes which
+// are allowed to be signed by the CA type.
+// *Deprecated: use* allowedUserKeyConfig *instead*
+//
+// Deprecated: Set in allowed_user_key_config
+func (o SecretBackendRoleOutput) AllowedUserKeyLengths() pulumi.IntMapOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.IntMapOutput { return v.AllowedUserKeyLengths }).(pulumi.IntMapOutput)
+}
+
+// Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
+func (o SecretBackendRoleOutput) AllowedUsers() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.AllowedUsers }).(pulumi.StringPtrOutput)
+}
+
+// Specifies if `allowedUsers` can be declared using identity template policies. Non-templated users are also permitted.
+func (o SecretBackendRoleOutput) AllowedUsersTemplate() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.AllowedUsersTemplate }).(pulumi.BoolPtrOutput)
+}
+
+// The path where the SSH secret backend is mounted.
+func (o SecretBackendRoleOutput) Backend() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.Backend }).(pulumi.StringOutput)
+}
+
+// The comma-separated string of CIDR blocks for which this role is applicable.
+func (o SecretBackendRoleOutput) CidrList() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.CidrList }).(pulumi.StringPtrOutput)
+}
+
+// Specifies a map of critical options that certificates have when signed.
+func (o SecretBackendRoleOutput) DefaultCriticalOptions() pulumi.MapOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.MapOutput { return v.DefaultCriticalOptions }).(pulumi.MapOutput)
+}
+
+// Specifies a map of extensions that certificates have when signed.
+func (o SecretBackendRoleOutput) DefaultExtensions() pulumi.MapOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.MapOutput { return v.DefaultExtensions }).(pulumi.MapOutput)
+}
+
+// Specifies the default username for which a credential will be generated.
+func (o SecretBackendRoleOutput) DefaultUser() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.DefaultUser }).(pulumi.StringPtrOutput)
+}
+
+// Specifies a custom format for the key id of a signed certificate.
+func (o SecretBackendRoleOutput) KeyIdFormat() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.KeyIdFormat }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the type of credentials generated by this role. This can be either `otp`, `dynamic` or `ca`.
+func (o SecretBackendRoleOutput) KeyType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.KeyType }).(pulumi.StringOutput)
+}
+
+// Specifies the maximum Time To Live value.
+func (o SecretBackendRoleOutput) MaxTtl() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.MaxTtl }).(pulumi.StringOutput)
+}
+
+// Specifies the name of the role to create.
+func (o SecretBackendRoleOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Specifies the Time To Live value.
+func (o SecretBackendRoleOutput) Ttl() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.Ttl }).(pulumi.StringOutput)
 }
 
 type SecretBackendRoleArrayOutput struct{ *pulumi.OutputState }

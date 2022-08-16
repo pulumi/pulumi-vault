@@ -13,37 +13,37 @@ namespace Pulumi.Vault.TerraformCloud
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Vault.TerraformCloud.SecretBackend("test", new()
     ///     {
-    ///         var test = new Vault.TerraformCloud.SecretBackend("test", new Vault.TerraformCloud.SecretBackendArgs
-    ///         {
-    ///             Backend = "terraform",
-    ///             Description = "Manages the Terraform Cloud backend",
-    ///             Token = "V0idfhi2iksSDU234ucdbi2nidsi...",
-    ///         });
-    ///         var example = new Vault.TerraformCloud.SecretRole("example", new Vault.TerraformCloud.SecretRoleArgs
-    ///         {
-    ///             Backend = test.Backend,
-    ///             Organization = "example-organization-name",
-    ///             TeamId = "team-ieF4isC...",
-    ///         });
-    ///         var token = new Vault.TerraformCloud.SecretCreds("token", new Vault.TerraformCloud.SecretCredsArgs
-    ///         {
-    ///             Backend = test.Backend,
-    ///             Role = example.Name,
-    ///         });
-    ///     }
+    ///         Backend = "terraform",
+    ///         Description = "Manages the Terraform Cloud backend",
+    ///         Token = "V0idfhi2iksSDU234ucdbi2nidsi...",
+    ///     });
     /// 
-    /// }
+    ///     var example = new Vault.TerraformCloud.SecretRole("example", new()
+    ///     {
+    ///         Backend = test.Backend,
+    ///         Organization = "example-organization-name",
+    ///         TeamId = "team-ieF4isC...",
+    ///     });
+    /// 
+    ///     var token = new Vault.TerraformCloud.SecretCreds("token", new()
+    ///     {
+    ///         Backend = test.Backend,
+    ///         Role = example.Name,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// </summary>
     [VaultResourceType("vault:terraformcloud/secretCreds:SecretCreds")]
-    public partial class SecretCreds : Pulumi.CustomResource
+    public partial class SecretCreds : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Terraform Cloud secret backend to generate tokens from
@@ -134,7 +134,7 @@ namespace Pulumi.Vault.TerraformCloud
         }
     }
 
-    public sealed class SecretCredsArgs : Pulumi.ResourceArgs
+    public sealed class SecretCredsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Terraform Cloud secret backend to generate tokens from
@@ -151,9 +151,10 @@ namespace Pulumi.Vault.TerraformCloud
         public SecretCredsArgs()
         {
         }
+        public static new SecretCredsArgs Empty => new SecretCredsArgs();
     }
 
-    public sealed class SecretCredsState : Pulumi.ResourceArgs
+    public sealed class SecretCredsState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Terraform Cloud secret backend to generate tokens from
@@ -203,5 +204,6 @@ namespace Pulumi.Vault.TerraformCloud
         public SecretCredsState()
         {
         }
+        public static new SecretCredsState Empty => new SecretCredsState();
     }
 }

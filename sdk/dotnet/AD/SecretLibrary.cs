@@ -13,37 +13,36 @@ namespace Pulumi.Vault.AD
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var config = new Vault.AD.SecretBackend("config", new()
     ///     {
-    ///         var config = new Vault.AD.SecretBackend("config", new Vault.AD.SecretBackendArgs
-    ///         {
-    ///             Backend = "ad",
-    ///             Binddn = "CN=Administrator,CN=Users,DC=corp,DC=example,DC=net",
-    ///             Bindpass = "SuperSecretPassw0rd",
-    ///             Url = "ldaps://ad",
-    ///             InsecureTls = true,
-    ///             Userdn = "CN=Users,DC=corp,DC=example,DC=net",
-    ///         });
-    ///         var qa = new Vault.AD.SecretLibrary("qa", new Vault.AD.SecretLibraryArgs
-    ///         {
-    ///             Backend = config.Backend,
-    ///             ServiceAccountNames = 
-    ///             {
-    ///                 "Bob",
-    ///                 "Mary",
-    ///             },
-    ///             Ttl = 60,
-    ///             DisableCheckInEnforcement = true,
-    ///             MaxTtl = 120,
-    ///         });
-    ///     }
+    ///         Backend = "ad",
+    ///         Binddn = "CN=Administrator,CN=Users,DC=corp,DC=example,DC=net",
+    ///         Bindpass = "SuperSecretPassw0rd",
+    ///         Url = "ldaps://ad",
+    ///         InsecureTls = true,
+    ///         Userdn = "CN=Users,DC=corp,DC=example,DC=net",
+    ///     });
     /// 
-    /// }
+    ///     var qa = new Vault.AD.SecretLibrary("qa", new()
+    ///     {
+    ///         Backend = config.Backend,
+    ///         ServiceAccountNames = new[]
+    ///         {
+    ///             "Bob",
+    ///             "Mary",
+    ///         },
+    ///         Ttl = 60,
+    ///         DisableCheckInEnforcement = true,
+    ///         MaxTtl = 120,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -55,7 +54,7 @@ namespace Pulumi.Vault.AD
     /// ```
     /// </summary>
     [VaultResourceType("vault:ad/secretLibrary:SecretLibrary")]
-    public partial class SecretLibrary : Pulumi.CustomResource
+    public partial class SecretLibrary : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The path the AD secret backend is mounted at,
@@ -141,7 +140,7 @@ namespace Pulumi.Vault.AD
         }
     }
 
-    public sealed class SecretLibraryArgs : Pulumi.ResourceArgs
+    public sealed class SecretLibraryArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The path the AD secret backend is mounted at,
@@ -192,9 +191,10 @@ namespace Pulumi.Vault.AD
         public SecretLibraryArgs()
         {
         }
+        public static new SecretLibraryArgs Empty => new SecretLibraryArgs();
     }
 
-    public sealed class SecretLibraryState : Pulumi.ResourceArgs
+    public sealed class SecretLibraryState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The path the AD secret backend is mounted at,
@@ -245,5 +245,6 @@ namespace Pulumi.Vault.AD
         public SecretLibraryState()
         {
         }
+        public static new SecretLibraryState Empty => new SecretLibraryState();
     }
 }

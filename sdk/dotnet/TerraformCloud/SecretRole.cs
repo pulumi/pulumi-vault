@@ -13,28 +13,27 @@ namespace Pulumi.Vault.TerraformCloud
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Vault.TerraformCloud.SecretBackend("test", new()
     ///     {
-    ///         var test = new Vault.TerraformCloud.SecretBackend("test", new Vault.TerraformCloud.SecretBackendArgs
-    ///         {
-    ///             Backend = "terraform",
-    ///             Description = "Manages the Terraform Cloud backend",
-    ///             Token = "V0idfhi2iksSDU234ucdbi2nidsi...",
-    ///         });
-    ///         var example = new Vault.TerraformCloud.SecretRole("example", new Vault.TerraformCloud.SecretRoleArgs
-    ///         {
-    ///             Backend = test.Backend,
-    ///             Organization = "example-organization-name",
-    ///             TeamId = "team-ieF4isC...",
-    ///         });
-    ///     }
+    ///         Backend = "terraform",
+    ///         Description = "Manages the Terraform Cloud backend",
+    ///         Token = "V0idfhi2iksSDU234ucdbi2nidsi...",
+    ///     });
     /// 
-    /// }
+    ///     var example = new Vault.TerraformCloud.SecretRole("example", new()
+    ///     {
+    ///         Backend = test.Backend,
+    ///         Organization = "example-organization-name",
+    ///         TeamId = "team-ieF4isC...",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -46,7 +45,7 @@ namespace Pulumi.Vault.TerraformCloud
     /// ```
     /// </summary>
     [VaultResourceType("vault:terraformcloud/secretRole:SecretRole")]
-    public partial class SecretRole : Pulumi.CustomResource
+    public partial class SecretRole : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The path of the Terraform Cloud Secret Backend the role belongs to.
@@ -134,7 +133,7 @@ namespace Pulumi.Vault.TerraformCloud
         }
     }
 
-    public sealed class SecretRoleArgs : Pulumi.ResourceArgs
+    public sealed class SecretRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The path of the Terraform Cloud Secret Backend the role belongs to.
@@ -181,9 +180,10 @@ namespace Pulumi.Vault.TerraformCloud
         public SecretRoleArgs()
         {
         }
+        public static new SecretRoleArgs Empty => new SecretRoleArgs();
     }
 
-    public sealed class SecretRoleState : Pulumi.ResourceArgs
+    public sealed class SecretRoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The path of the Terraform Cloud Secret Backend the role belongs to.
@@ -230,5 +230,6 @@ namespace Pulumi.Vault.TerraformCloud
         public SecretRoleState()
         {
         }
+        public static new SecretRoleState Empty => new SecretRoleState();
     }
 }

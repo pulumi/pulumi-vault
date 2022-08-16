@@ -17,38 +17,41 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/terraformcloud"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/terraformcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		test, err := terraformcloud.NewSecretBackend(ctx, "test", &terraformcloud.SecretBackendArgs{
-// 			Backend:     pulumi.String("terraform"),
-// 			Description: pulumi.String("Manages the Terraform Cloud backend"),
-// 			Token:       pulumi.String("V0idfhi2iksSDU234ucdbi2nidsi..."),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		example, err := terraformcloud.NewSecretRole(ctx, "example", &terraformcloud.SecretRoleArgs{
-// 			Backend:      test.Backend,
-// 			Organization: pulumi.String("example-organization-name"),
-// 			TeamId:       pulumi.String("team-ieF4isC..."),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = terraformcloud.NewSecretCreds(ctx, "token", &terraformcloud.SecretCredsArgs{
-// 			Backend: test.Backend,
-// 			Role:    example.Name,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			test, err := terraformcloud.NewSecretBackend(ctx, "test", &terraformcloud.SecretBackendArgs{
+//				Backend:     pulumi.String("terraform"),
+//				Description: pulumi.String("Manages the Terraform Cloud backend"),
+//				Token:       pulumi.String("V0idfhi2iksSDU234ucdbi2nidsi..."),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			example, err := terraformcloud.NewSecretRole(ctx, "example", &terraformcloud.SecretRoleArgs{
+//				Backend:      test.Backend,
+//				Organization: pulumi.String("example-organization-name"),
+//				TeamId:       pulumi.String("team-ieF4isC..."),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = terraformcloud.NewSecretCreds(ctx, "token", &terraformcloud.SecretCredsArgs{
+//				Backend: test.Backend,
+//				Role:    example.Name,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type SecretCreds struct {
 	pulumi.CustomResourceState
@@ -191,7 +194,7 @@ func (i *SecretCreds) ToSecretCredsOutputWithContext(ctx context.Context) Secret
 // SecretCredsArrayInput is an input type that accepts SecretCredsArray and SecretCredsArrayOutput values.
 // You can construct a concrete instance of `SecretCredsArrayInput` via:
 //
-//          SecretCredsArray{ SecretCredsArgs{...} }
+//	SecretCredsArray{ SecretCredsArgs{...} }
 type SecretCredsArrayInput interface {
 	pulumi.Input
 
@@ -216,7 +219,7 @@ func (i SecretCredsArray) ToSecretCredsArrayOutputWithContext(ctx context.Contex
 // SecretCredsMapInput is an input type that accepts SecretCredsMap and SecretCredsMapOutput values.
 // You can construct a concrete instance of `SecretCredsMapInput` via:
 //
-//          SecretCredsMap{ "key": SecretCredsArgs{...} }
+//	SecretCredsMap{ "key": SecretCredsArgs{...} }
 type SecretCredsMapInput interface {
 	pulumi.Input
 
@@ -250,6 +253,44 @@ func (o SecretCredsOutput) ToSecretCredsOutput() SecretCredsOutput {
 
 func (o SecretCredsOutput) ToSecretCredsOutputWithContext(ctx context.Context) SecretCredsOutput {
 	return o
+}
+
+// Terraform Cloud secret backend to generate tokens from
+func (o SecretCredsOutput) Backend() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretCreds) pulumi.StringOutput { return v.Backend }).(pulumi.StringOutput)
+}
+
+// The lease associated with the token. Only user tokens will have a
+// Vault lease associated with them.
+func (o SecretCredsOutput) LeaseId() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretCreds) pulumi.StringOutput { return v.LeaseId }).(pulumi.StringOutput)
+}
+
+// The organization associated with the token provided.
+func (o SecretCredsOutput) Organization() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretCreds) pulumi.StringOutput { return v.Organization }).(pulumi.StringOutput)
+}
+
+// Name of the role.
+func (o SecretCredsOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretCreds) pulumi.StringOutput { return v.Role }).(pulumi.StringOutput)
+}
+
+// The team id associated with the token provided.
+func (o SecretCredsOutput) TeamId() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretCreds) pulumi.StringOutput { return v.TeamId }).(pulumi.StringOutput)
+}
+
+// The actual token that was generated and can be used with API calls
+// to identify the user of the call.
+func (o SecretCredsOutput) Token() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretCreds) pulumi.StringOutput { return v.Token }).(pulumi.StringOutput)
+}
+
+// The public identifier for a specific token. It can be used
+// to look up information about a token or to revoke a token.
+func (o SecretCredsOutput) TokenId() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretCreds) pulumi.StringOutput { return v.TokenId }).(pulumi.StringOutput)
 }
 
 type SecretCredsArrayOutput struct{ *pulumi.OutputState }

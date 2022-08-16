@@ -13,77 +13,80 @@ namespace Pulumi.Vault.PkiSecret
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var root = new Vault.Mount("root", new()
     ///     {
-    ///         var root = new Vault.Mount("root", new Vault.MountArgs
-    ///         {
-    ///             Path = "pki-root",
-    ///             Type = "pki",
-    ///             Description = "root",
-    ///             DefaultLeaseTtlSeconds = 8640000,
-    ///             MaxLeaseTtlSeconds = 8640000,
-    ///         });
-    ///         var intermediate = new Vault.Mount("intermediate", new Vault.MountArgs
-    ///         {
-    ///             Path = "pki-int",
-    ///             Type = root.Type,
-    ///             Description = "intermediate",
-    ///             DefaultLeaseTtlSeconds = 86400,
-    ///             MaxLeaseTtlSeconds = 86400,
-    ///         });
-    ///         var exampleSecretBackendRootCert = new Vault.PkiSecret.SecretBackendRootCert("exampleSecretBackendRootCert", new Vault.PkiSecret.SecretBackendRootCertArgs
-    ///         {
-    ///             Backend = root.Path,
-    ///             Type = "internal",
-    ///             CommonName = "RootOrg Root CA",
-    ///             Ttl = "86400",
-    ///             Format = "pem",
-    ///             PrivateKeyFormat = "der",
-    ///             KeyType = "rsa",
-    ///             KeyBits = 4096,
-    ///             ExcludeCnFromSans = true,
-    ///             Ou = "Organizational Unit",
-    ///             Organization = "RootOrg",
-    ///             Country = "US",
-    ///             Locality = "San Francisco",
-    ///             Province = "CA",
-    ///         });
-    ///         var exampleSecretBackendIntermediateCertRequest = new Vault.PkiSecret.SecretBackendIntermediateCertRequest("exampleSecretBackendIntermediateCertRequest", new Vault.PkiSecret.SecretBackendIntermediateCertRequestArgs
-    ///         {
-    ///             Backend = intermediate.Path,
-    ///             Type = exampleSecretBackendRootCert.Type,
-    ///             CommonName = "SubOrg Intermediate CA",
-    ///         });
-    ///         var exampleSecretBackendRootSignIntermediate = new Vault.PkiSecret.SecretBackendRootSignIntermediate("exampleSecretBackendRootSignIntermediate", new Vault.PkiSecret.SecretBackendRootSignIntermediateArgs
-    ///         {
-    ///             Backend = root.Path,
-    ///             Csr = exampleSecretBackendIntermediateCertRequest.Csr,
-    ///             CommonName = "SubOrg Intermediate CA",
-    ///             ExcludeCnFromSans = true,
-    ///             Ou = "SubUnit",
-    ///             Organization = "SubOrg",
-    ///             Country = "US",
-    ///             Locality = "San Francisco",
-    ///             Province = "CA",
-    ///             Revoke = true,
-    ///         });
-    ///         var exampleSecretBackendIntermediateSetSigned = new Vault.PkiSecret.SecretBackendIntermediateSetSigned("exampleSecretBackendIntermediateSetSigned", new Vault.PkiSecret.SecretBackendIntermediateSetSignedArgs
-    ///         {
-    ///             Backend = intermediate.Path,
-    ///             Certificate = exampleSecretBackendRootSignIntermediate.Certificate,
-    ///         });
-    ///     }
+    ///         Path = "pki-root",
+    ///         Type = "pki",
+    ///         Description = "root",
+    ///         DefaultLeaseTtlSeconds = 8640000,
+    ///         MaxLeaseTtlSeconds = 8640000,
+    ///     });
     /// 
-    /// }
+    ///     var intermediate = new Vault.Mount("intermediate", new()
+    ///     {
+    ///         Path = "pki-int",
+    ///         Type = root.Type,
+    ///         Description = "intermediate",
+    ///         DefaultLeaseTtlSeconds = 86400,
+    ///         MaxLeaseTtlSeconds = 86400,
+    ///     });
+    /// 
+    ///     var exampleSecretBackendRootCert = new Vault.PkiSecret.SecretBackendRootCert("exampleSecretBackendRootCert", new()
+    ///     {
+    ///         Backend = root.Path,
+    ///         Type = "internal",
+    ///         CommonName = "RootOrg Root CA",
+    ///         Ttl = "86400",
+    ///         Format = "pem",
+    ///         PrivateKeyFormat = "der",
+    ///         KeyType = "rsa",
+    ///         KeyBits = 4096,
+    ///         ExcludeCnFromSans = true,
+    ///         Ou = "Organizational Unit",
+    ///         Organization = "RootOrg",
+    ///         Country = "US",
+    ///         Locality = "San Francisco",
+    ///         Province = "CA",
+    ///     });
+    /// 
+    ///     var exampleSecretBackendIntermediateCertRequest = new Vault.PkiSecret.SecretBackendIntermediateCertRequest("exampleSecretBackendIntermediateCertRequest", new()
+    ///     {
+    ///         Backend = intermediate.Path,
+    ///         Type = exampleSecretBackendRootCert.Type,
+    ///         CommonName = "SubOrg Intermediate CA",
+    ///     });
+    /// 
+    ///     var exampleSecretBackendRootSignIntermediate = new Vault.PkiSecret.SecretBackendRootSignIntermediate("exampleSecretBackendRootSignIntermediate", new()
+    ///     {
+    ///         Backend = root.Path,
+    ///         Csr = exampleSecretBackendIntermediateCertRequest.Csr,
+    ///         CommonName = "SubOrg Intermediate CA",
+    ///         ExcludeCnFromSans = true,
+    ///         Ou = "SubUnit",
+    ///         Organization = "SubOrg",
+    ///         Country = "US",
+    ///         Locality = "San Francisco",
+    ///         Province = "CA",
+    ///         Revoke = true,
+    ///     });
+    /// 
+    ///     var exampleSecretBackendIntermediateSetSigned = new Vault.PkiSecret.SecretBackendIntermediateSetSigned("exampleSecretBackendIntermediateSetSigned", new()
+    ///     {
+    ///         Backend = intermediate.Path,
+    ///         Certificate = exampleSecretBackendRootSignIntermediate.Certificate,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// </summary>
     [VaultResourceType("vault:pkiSecret/secretBackendIntermediateSetSigned:SecretBackendIntermediateSetSigned")]
-    public partial class SecretBackendIntermediateSetSigned : Pulumi.CustomResource
+    public partial class SecretBackendIntermediateSetSigned : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The PKI secret backend the resource belongs to.
@@ -143,7 +146,7 @@ namespace Pulumi.Vault.PkiSecret
         }
     }
 
-    public sealed class SecretBackendIntermediateSetSignedArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendIntermediateSetSignedArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The PKI secret backend the resource belongs to.
@@ -162,9 +165,10 @@ namespace Pulumi.Vault.PkiSecret
         public SecretBackendIntermediateSetSignedArgs()
         {
         }
+        public static new SecretBackendIntermediateSetSignedArgs Empty => new SecretBackendIntermediateSetSignedArgs();
     }
 
-    public sealed class SecretBackendIntermediateSetSignedState : Pulumi.ResourceArgs
+    public sealed class SecretBackendIntermediateSetSignedState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The PKI secret backend the resource belongs to.
@@ -183,5 +187,6 @@ namespace Pulumi.Vault.PkiSecret
         public SecretBackendIntermediateSetSignedState()
         {
         }
+        public static new SecretBackendIntermediateSetSignedState Empty => new SecretBackendIntermediateSetSignedState();
     }
 }

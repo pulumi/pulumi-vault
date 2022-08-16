@@ -16,7 +16,9 @@ import (
 // AWS auth backend certificates can be imported using `auth/`, the `backend` path, `/config/certificate/`, and the `cert_name` e.g.
 //
 // ```sh
-//  $ pulumi import vault:aws/authBackendCert:AuthBackendCert example auth/aws/config/certificate/my-cert
+//
+//	$ pulumi import vault:aws/authBackendCert:AuthBackendCert example auth/aws/config/certificate/my-cert
+//
 // ```
 type AuthBackendCert struct {
 	pulumi.CustomResourceState
@@ -170,7 +172,7 @@ func (i *AuthBackendCert) ToAuthBackendCertOutputWithContext(ctx context.Context
 // AuthBackendCertArrayInput is an input type that accepts AuthBackendCertArray and AuthBackendCertArrayOutput values.
 // You can construct a concrete instance of `AuthBackendCertArrayInput` via:
 //
-//          AuthBackendCertArray{ AuthBackendCertArgs{...} }
+//	AuthBackendCertArray{ AuthBackendCertArgs{...} }
 type AuthBackendCertArrayInput interface {
 	pulumi.Input
 
@@ -195,7 +197,7 @@ func (i AuthBackendCertArray) ToAuthBackendCertArrayOutputWithContext(ctx contex
 // AuthBackendCertMapInput is an input type that accepts AuthBackendCertMap and AuthBackendCertMapOutput values.
 // You can construct a concrete instance of `AuthBackendCertMapInput` via:
 //
-//          AuthBackendCertMap{ "key": AuthBackendCertArgs{...} }
+//	AuthBackendCertMap{ "key": AuthBackendCertArgs{...} }
 type AuthBackendCertMapInput interface {
 	pulumi.Input
 
@@ -229,6 +231,32 @@ func (o AuthBackendCertOutput) ToAuthBackendCertOutput() AuthBackendCertOutput {
 
 func (o AuthBackendCertOutput) ToAuthBackendCertOutputWithContext(ctx context.Context) AuthBackendCertOutput {
 	return o
+}
+
+// The  Base64 encoded AWS Public key required to
+// verify PKCS7 signature of the EC2 instance metadata. You can find this key in
+// the [AWS
+// documentation](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-identity-documents.html).
+func (o AuthBackendCertOutput) AwsPublicCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendCert) pulumi.StringOutput { return v.AwsPublicCert }).(pulumi.StringOutput)
+}
+
+// The path the AWS auth backend being configured was
+// mounted at.  Defaults to `aws`.
+func (o AuthBackendCertOutput) Backend() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendCert) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
+}
+
+// The name of the certificate.
+func (o AuthBackendCertOutput) CertName() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendCert) pulumi.StringOutput { return v.CertName }).(pulumi.StringOutput)
+}
+
+// Either "pkcs7" or "identity", indicating the type of
+// document which can be verified using the given certificate. Defaults to
+// "pkcs7".
+func (o AuthBackendCertOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendCert) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
 }
 
 type AuthBackendCertArrayOutput struct{ *pulumi.OutputState }

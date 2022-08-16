@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Gcp.Inputs
 {
 
-    public sealed class SecretRolesetBindingGetArgs : Pulumi.ResourceArgs
+    public sealed class SecretRolesetBindingGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings).
@@ -33,5 +33,6 @@ namespace Pulumi.Vault.Gcp.Inputs
         public SecretRolesetBindingGetArgs()
         {
         }
+        public static new SecretRolesetBindingGetArgs Empty => new SecretRolesetBindingGetArgs();
     }
 }

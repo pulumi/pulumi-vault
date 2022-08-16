@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Transform
 {
     [VaultResourceType("vault:transform/template:Template")]
-    public partial class Template : Pulumi.CustomResource
+    public partial class Template : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The alphabet to use for this template. This is only used during FPE transformations.
@@ -100,7 +100,7 @@ namespace Pulumi.Vault.Transform
         }
     }
 
-    public sealed class TemplateArgs : Pulumi.ResourceArgs
+    public sealed class TemplateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The alphabet to use for this template. This is only used during FPE transformations.
@@ -155,9 +155,10 @@ namespace Pulumi.Vault.Transform
         public TemplateArgs()
         {
         }
+        public static new TemplateArgs Empty => new TemplateArgs();
     }
 
-    public sealed class TemplateState : Pulumi.ResourceArgs
+    public sealed class TemplateState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The alphabet to use for this template. This is only used during FPE transformations.
@@ -212,5 +213,6 @@ namespace Pulumi.Vault.Transform
         public TemplateState()
         {
         }
+        public static new TemplateState Empty => new TemplateState();
     }
 }

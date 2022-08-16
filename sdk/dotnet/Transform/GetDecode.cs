@@ -29,7 +29,7 @@ namespace Pulumi.Vault.Transform
     }
 
 
-    public sealed class GetDecodeArgs : Pulumi.InvokeArgs
+    public sealed class GetDecodeArgs : global::Pulumi.InvokeArgs
     {
         [Input("batchInputs")]
         private List<ImmutableDictionary<string, object>>? _batchInputs;
@@ -94,9 +94,10 @@ namespace Pulumi.Vault.Transform
         public GetDecodeArgs()
         {
         }
+        public static new GetDecodeArgs Empty => new GetDecodeArgs();
     }
 
-    public sealed class GetDecodeInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetDecodeInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("batchInputs")]
         private InputList<ImmutableDictionary<string, object>>? _batchInputs;
@@ -161,6 +162,7 @@ namespace Pulumi.Vault.Transform
         public GetDecodeInvokeArgs()
         {
         }
+        public static new GetDecodeInvokeArgs Empty => new GetDecodeInvokeArgs();
     }
 
 

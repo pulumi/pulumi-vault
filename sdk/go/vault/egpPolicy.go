@@ -21,27 +21,30 @@ import (
 // package main
 //
 // import (
-// 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := vault.NewEgpPolicy(ctx, "allow-all", &vault.EgpPolicyArgs{
-// 			EnforcementLevel: pulumi.String("soft-mandatory"),
-// 			Paths: pulumi.StringArray{
-// 				pulumi.String("*"),
-// 			},
-// 			Policy: pulumi.String(fmt.Sprintf("%v%v%v%v", "main = rule {\n", "  true\n", "}\n", "\n")),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vault.NewEgpPolicy(ctx, "allow-all", &vault.EgpPolicyArgs{
+//				EnforcementLevel: pulumi.String("soft-mandatory"),
+//				Paths: pulumi.StringArray{
+//					pulumi.String("*"),
+//				},
+//				Policy: pulumi.String(fmt.Sprintf("main = rule {\n  true\n}\n\n")),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type EgpPolicy struct {
 	pulumi.CustomResourceState
@@ -168,7 +171,7 @@ func (i *EgpPolicy) ToEgpPolicyOutputWithContext(ctx context.Context) EgpPolicyO
 // EgpPolicyArrayInput is an input type that accepts EgpPolicyArray and EgpPolicyArrayOutput values.
 // You can construct a concrete instance of `EgpPolicyArrayInput` via:
 //
-//          EgpPolicyArray{ EgpPolicyArgs{...} }
+//	EgpPolicyArray{ EgpPolicyArgs{...} }
 type EgpPolicyArrayInput interface {
 	pulumi.Input
 
@@ -193,7 +196,7 @@ func (i EgpPolicyArray) ToEgpPolicyArrayOutputWithContext(ctx context.Context) E
 // EgpPolicyMapInput is an input type that accepts EgpPolicyMap and EgpPolicyMapOutput values.
 // You can construct a concrete instance of `EgpPolicyMapInput` via:
 //
-//          EgpPolicyMap{ "key": EgpPolicyArgs{...} }
+//	EgpPolicyMap{ "key": EgpPolicyArgs{...} }
 type EgpPolicyMapInput interface {
 	pulumi.Input
 
@@ -227,6 +230,26 @@ func (o EgpPolicyOutput) ToEgpPolicyOutput() EgpPolicyOutput {
 
 func (o EgpPolicyOutput) ToEgpPolicyOutputWithContext(ctx context.Context) EgpPolicyOutput {
 	return o
+}
+
+// Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
+func (o EgpPolicyOutput) EnforcementLevel() pulumi.StringOutput {
+	return o.ApplyT(func(v *EgpPolicy) pulumi.StringOutput { return v.EnforcementLevel }).(pulumi.StringOutput)
+}
+
+// The name of the policy
+func (o EgpPolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *EgpPolicy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// List of paths to which the policy will be applied to
+func (o EgpPolicyOutput) Paths() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *EgpPolicy) pulumi.StringArrayOutput { return v.Paths }).(pulumi.StringArrayOutput)
+}
+
+// String containing a Sentinel policy
+func (o EgpPolicyOutput) Policy() pulumi.StringOutput {
+	return o.ApplyT(func(v *EgpPolicy) pulumi.StringOutput { return v.Policy }).(pulumi.StringOutput)
 }
 
 type EgpPolicyArrayOutput struct{ *pulumi.OutputState }

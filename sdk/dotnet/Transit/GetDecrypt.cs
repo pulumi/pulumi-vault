@@ -19,22 +19,20 @@ namespace Pulumi.Vault.Transit
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Vault = Pulumi.Vault;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var test = Vault.Transit.GetDecrypt.Invoke(new()
         ///     {
-        ///         var test = Output.Create(Vault.Transit.GetDecrypt.InvokeAsync(new Vault.Transit.GetDecryptArgs
-        ///         {
-        ///             Backend = "transit",
-        ///             Ciphertext = "vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==",
-        ///             Key = "test",
-        ///         }));
-        ///     }
+        ///         Backend = "transit",
+        ///         Ciphertext = "vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==",
+        ///         Key = "test",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -50,22 +48,20 @@ namespace Pulumi.Vault.Transit
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Vault = Pulumi.Vault;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var test = Vault.Transit.GetDecrypt.Invoke(new()
         ///     {
-        ///         var test = Output.Create(Vault.Transit.GetDecrypt.InvokeAsync(new Vault.Transit.GetDecryptArgs
-        ///         {
-        ///             Backend = "transit",
-        ///             Ciphertext = "vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==",
-        ///             Key = "test",
-        ///         }));
-        ///     }
+        ///         Backend = "transit",
+        ///         Ciphertext = "vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==",
+        ///         Key = "test",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -75,7 +71,7 @@ namespace Pulumi.Vault.Transit
     }
 
 
-    public sealed class GetDecryptArgs : Pulumi.InvokeArgs
+    public sealed class GetDecryptArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The path the transit secret backend is mounted at, with no leading or trailing `/`.
@@ -104,9 +100,10 @@ namespace Pulumi.Vault.Transit
         public GetDecryptArgs()
         {
         }
+        public static new GetDecryptArgs Empty => new GetDecryptArgs();
     }
 
-    public sealed class GetDecryptInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetDecryptInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The path the transit secret backend is mounted at, with no leading or trailing `/`.
@@ -135,6 +132,7 @@ namespace Pulumi.Vault.Transit
         public GetDecryptInvokeArgs()
         {
         }
+        public static new GetDecryptInvokeArgs Empty => new GetDecryptInvokeArgs();
     }
 
 

@@ -20,7 +20,7 @@ type AuthBackendGroupType struct {
 // AuthBackendGroupTypeInput is an input type that accepts AuthBackendGroupTypeArgs and AuthBackendGroupTypeOutput values.
 // You can construct a concrete instance of `AuthBackendGroupTypeInput` via:
 //
-//          AuthBackendGroupTypeArgs{...}
+//	AuthBackendGroupTypeArgs{...}
 type AuthBackendGroupTypeInput interface {
 	pulumi.Input
 
@@ -50,7 +50,7 @@ func (i AuthBackendGroupTypeArgs) ToAuthBackendGroupTypeOutputWithContext(ctx co
 // AuthBackendGroupTypeArrayInput is an input type that accepts AuthBackendGroupTypeArray and AuthBackendGroupTypeArrayOutput values.
 // You can construct a concrete instance of `AuthBackendGroupTypeArrayInput` via:
 //
-//          AuthBackendGroupTypeArray{ AuthBackendGroupTypeArgs{...} }
+//	AuthBackendGroupTypeArray{ AuthBackendGroupTypeArgs{...} }
 type AuthBackendGroupTypeArrayInput interface {
 	pulumi.Input
 
@@ -128,7 +128,7 @@ type AuthBackendUserType struct {
 // AuthBackendUserTypeInput is an input type that accepts AuthBackendUserTypeArgs and AuthBackendUserTypeOutput values.
 // You can construct a concrete instance of `AuthBackendUserTypeInput` via:
 //
-//          AuthBackendUserTypeArgs{...}
+//	AuthBackendUserTypeArgs{...}
 type AuthBackendUserTypeInput interface {
 	pulumi.Input
 
@@ -160,7 +160,7 @@ func (i AuthBackendUserTypeArgs) ToAuthBackendUserTypeOutputWithContext(ctx cont
 // AuthBackendUserTypeArrayInput is an input type that accepts AuthBackendUserTypeArray and AuthBackendUserTypeArrayOutput values.
 // You can construct a concrete instance of `AuthBackendUserTypeArrayInput` via:
 //
-//          AuthBackendUserTypeArray{ AuthBackendUserTypeArgs{...} }
+//	AuthBackendUserTypeArray{ AuthBackendUserTypeArgs{...} }
 type AuthBackendUserTypeArrayInput interface {
 	pulumi.Input
 

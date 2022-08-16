@@ -13,17 +13,16 @@ namespace Pulumi.Vault.PkiSecret
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var intermediate = new Vault.PkiSecret.SecretBackendConfigCa("intermediate", new()
     ///     {
-    ///         var intermediate = new Vault.PkiSecret.SecretBackendConfigCa("intermediate", new Vault.PkiSecret.SecretBackendConfigCaArgs
-    ///         {
-    ///             Backend = vault_mount.Intermediate.Path,
-    ///             PemBundle = @"-----BEGIN RSA PRIVATE KEY-----
+    ///         Backend = vault_mount.Intermediate.Path,
+    ///         PemBundle = @"-----BEGIN RSA PRIVATE KEY-----
     /// MIIEowIBAAKCAQEAwvEHeJCXnFgi88rE1dTX6FHdBPK0wSjedh0ywVnCZxLWbBv/
     /// 5PytjTcCPdrfW7g2sfbPwOge/WF3X2KeYSP8SxZA0czmz6QDspeG921JkZWtyp5o
     /// ++N0leLTIUAhq339p3O1onAOUO1k4sHfmCwfrDpTn2hcx4URa5Pzzb1fHigusjIH
@@ -72,20 +71,19 @@ namespace Pulumi.Vault.PkiSecret
     /// MUR4qFxeUOW/GJGccMUd
     /// -----END CERTIFICATE-----
     /// ",
-    ///         }, new CustomResourceOptions
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
     ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 vault_mount.Intermediate,
-    ///             },
-    ///         });
-    ///     }
+    ///             vault_mount.Intermediate,
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// </summary>
     [VaultResourceType("vault:pkiSecret/secretBackendConfigCa:SecretBackendConfigCa")]
-    public partial class SecretBackendConfigCa : Pulumi.CustomResource
+    public partial class SecretBackendConfigCa : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The PKI secret backend the resource belongs to.
@@ -143,7 +141,7 @@ namespace Pulumi.Vault.PkiSecret
         }
     }
 
-    public sealed class SecretBackendConfigCaArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendConfigCaArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The PKI secret backend the resource belongs to.
@@ -160,9 +158,10 @@ namespace Pulumi.Vault.PkiSecret
         public SecretBackendConfigCaArgs()
         {
         }
+        public static new SecretBackendConfigCaArgs Empty => new SecretBackendConfigCaArgs();
     }
 
-    public sealed class SecretBackendConfigCaState : Pulumi.ResourceArgs
+    public sealed class SecretBackendConfigCaState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The PKI secret backend the resource belongs to.
@@ -179,5 +178,6 @@ namespace Pulumi.Vault.PkiSecret
         public SecretBackendConfigCaState()
         {
         }
+        public static new SecretBackendConfigCaState Empty => new SecretBackendConfigCaState();
     }
 }

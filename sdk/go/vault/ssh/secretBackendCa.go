@@ -19,28 +19,31 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ssh"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ssh"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		example, err := vault.NewMount(ctx, "example", &vault.MountArgs{
-// 			Type: pulumi.String("ssh"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = ssh.NewSecretBackendCa(ctx, "foo", &ssh.SecretBackendCaArgs{
-// 			Backend: example.Path,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := vault.NewMount(ctx, "example", &vault.MountArgs{
+//				Type: pulumi.String("ssh"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ssh.NewSecretBackendCa(ctx, "foo", &ssh.SecretBackendCaArgs{
+//				Backend: example.Path,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type SecretBackendCa struct {
 	pulumi.CustomResourceState
@@ -158,7 +161,7 @@ func (i *SecretBackendCa) ToSecretBackendCaOutputWithContext(ctx context.Context
 // SecretBackendCaArrayInput is an input type that accepts SecretBackendCaArray and SecretBackendCaArrayOutput values.
 // You can construct a concrete instance of `SecretBackendCaArrayInput` via:
 //
-//          SecretBackendCaArray{ SecretBackendCaArgs{...} }
+//	SecretBackendCaArray{ SecretBackendCaArgs{...} }
 type SecretBackendCaArrayInput interface {
 	pulumi.Input
 
@@ -183,7 +186,7 @@ func (i SecretBackendCaArray) ToSecretBackendCaArrayOutputWithContext(ctx contex
 // SecretBackendCaMapInput is an input type that accepts SecretBackendCaMap and SecretBackendCaMapOutput values.
 // You can construct a concrete instance of `SecretBackendCaMapInput` via:
 //
-//          SecretBackendCaMap{ "key": SecretBackendCaArgs{...} }
+//	SecretBackendCaMap{ "key": SecretBackendCaArgs{...} }
 type SecretBackendCaMapInput interface {
 	pulumi.Input
 
@@ -217,6 +220,26 @@ func (o SecretBackendCaOutput) ToSecretBackendCaOutput() SecretBackendCaOutput {
 
 func (o SecretBackendCaOutput) ToSecretBackendCaOutputWithContext(ctx context.Context) SecretBackendCaOutput {
 	return o
+}
+
+// The path where the SSH secret backend is mounted. Defaults to 'ssh'
+func (o SecretBackendCaOutput) Backend() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendCa) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
+}
+
+// Whether Vault should generate the signing key pair internally. Defaults to true
+func (o SecretBackendCaOutput) GenerateSigningKey() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendCa) pulumi.BoolPtrOutput { return v.GenerateSigningKey }).(pulumi.BoolPtrOutput)
+}
+
+// The private key part the SSH CA key pair; required if generateSigningKey is false.
+func (o SecretBackendCaOutput) PrivateKey() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendCa) pulumi.StringOutput { return v.PrivateKey }).(pulumi.StringOutput)
+}
+
+// The public key part the SSH CA key pair; required if generateSigningKey is false.
+func (o SecretBackendCaOutput) PublicKey() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendCa) pulumi.StringOutput { return v.PublicKey }).(pulumi.StringOutput)
 }
 
 type SecretBackendCaArrayOutput struct{ *pulumi.OutputState }

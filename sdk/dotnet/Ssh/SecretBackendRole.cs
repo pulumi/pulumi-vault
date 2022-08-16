@@ -16,34 +16,34 @@ namespace Pulumi.Vault.Ssh
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var example = new Vault.Mount("example", new()
     ///     {
-    ///         var example = new Vault.Mount("example", new Vault.MountArgs
-    ///         {
-    ///             Type = "ssh",
-    ///         });
-    ///         var foo = new Vault.Ssh.SecretBackendRole("foo", new Vault.Ssh.SecretBackendRoleArgs
-    ///         {
-    ///             Backend = example.Path,
-    ///             KeyType = "ca",
-    ///             AllowUserCertificates = true,
-    ///         });
-    ///         var bar = new Vault.Ssh.SecretBackendRole("bar", new Vault.Ssh.SecretBackendRoleArgs
-    ///         {
-    ///             Backend = example.Path,
-    ///             KeyType = "otp",
-    ///             DefaultUser = "default",
-    ///             AllowedUsers = "default,baz",
-    ///             CidrList = "0.0.0.0/0",
-    ///         });
-    ///     }
+    ///         Type = "ssh",
+    ///     });
     /// 
-    /// }
+    ///     var foo = new Vault.Ssh.SecretBackendRole("foo", new()
+    ///     {
+    ///         Backend = example.Path,
+    ///         KeyType = "ca",
+    ///         AllowUserCertificates = true,
+    ///     });
+    /// 
+    ///     var bar = new Vault.Ssh.SecretBackendRole("bar", new()
+    ///     {
+    ///         Backend = example.Path,
+    ///         KeyType = "otp",
+    ///         DefaultUser = "default",
+    ///         AllowedUsers = "default,baz",
+    ///         CidrList = "0.0.0.0/0",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -55,7 +55,7 @@ namespace Pulumi.Vault.Ssh
     /// ```
     /// </summary>
     [VaultResourceType("vault:ssh/secretBackendRole:SecretBackendRole")]
-    public partial class SecretBackendRole : Pulumi.CustomResource
+    public partial class SecretBackendRole : global::Pulumi.CustomResource
     {
         /// <summary>
         /// When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
@@ -243,7 +243,7 @@ namespace Pulumi.Vault.Ssh
         }
     }
 
-    public sealed class SecretBackendRoleArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
@@ -415,9 +415,10 @@ namespace Pulumi.Vault.Ssh
         public SecretBackendRoleArgs()
         {
         }
+        public static new SecretBackendRoleArgs Empty => new SecretBackendRoleArgs();
     }
 
-    public sealed class SecretBackendRoleState : Pulumi.ResourceArgs
+    public sealed class SecretBackendRoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
@@ -589,5 +590,6 @@ namespace Pulumi.Vault.Ssh
         public SecretBackendRoleState()
         {
         }
+        public static new SecretBackendRoleState Empty => new SecretBackendRoleState();
     }
 }

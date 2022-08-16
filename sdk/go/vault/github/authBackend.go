@@ -21,21 +21,24 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/github"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/github"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := github.NewAuthBackend(ctx, "example", &github.AuthBackendArgs{
-// 			Organization: pulumi.String("myorg"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := github.NewAuthBackend(ctx, "example", &github.AuthBackendArgs{
+//				Organization: pulumi.String("myorg"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -43,7 +46,9 @@ import (
 // GitHub authentication mounts can be imported using the `path`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:github/authBackend:AuthBackend example github
+//
+//	$ pulumi import vault:github/authBackend:AuthBackend example github
+//
 // ```
 type AuthBackend struct {
 	pulumi.CustomResourceState
@@ -370,7 +375,7 @@ func (i *AuthBackend) ToAuthBackendOutputWithContext(ctx context.Context) AuthBa
 // AuthBackendArrayInput is an input type that accepts AuthBackendArray and AuthBackendArrayOutput values.
 // You can construct a concrete instance of `AuthBackendArrayInput` via:
 //
-//          AuthBackendArray{ AuthBackendArgs{...} }
+//	AuthBackendArray{ AuthBackendArgs{...} }
 type AuthBackendArrayInput interface {
 	pulumi.Input
 
@@ -395,7 +400,7 @@ func (i AuthBackendArray) ToAuthBackendArrayOutputWithContext(ctx context.Contex
 // AuthBackendMapInput is an input type that accepts AuthBackendMap and AuthBackendMapOutput values.
 // You can construct a concrete instance of `AuthBackendMapInput` via:
 //
-//          AuthBackendMap{ "key": AuthBackendArgs{...} }
+//	AuthBackendMap{ "key": AuthBackendArgs{...} }
 type AuthBackendMapInput interface {
 	pulumi.Input
 
@@ -429,6 +434,104 @@ func (o AuthBackendOutput) ToAuthBackendOutput() AuthBackendOutput {
 
 func (o AuthBackendOutput) ToAuthBackendOutputWithContext(ctx context.Context) AuthBackendOutput {
 	return o
+}
+
+// The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
+func (o AuthBackendOutput) Accessor() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Accessor }).(pulumi.StringOutput)
+}
+
+// The API endpoint to use. Useful if you
+// are running GitHub Enterprise or an API-compatible authentication server.
+func (o AuthBackendOutput) BaseUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.BaseUrl }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the description of the mount.
+// This overrides the current stored value, if any.
+func (o AuthBackendOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// The organization configured users must be part of.
+func (o AuthBackendOutput) Organization() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Organization }).(pulumi.StringOutput)
+}
+
+// The ID of the organization users must be part of.
+// Vault will attempt to fetch and set this value if it is not provided. (Vault 1.10+)
+func (o AuthBackendOutput) OrganizationId() pulumi.IntOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.IntOutput { return v.OrganizationId }).(pulumi.IntOutput)
+}
+
+// Path where the auth backend is mounted. Defaults to `auth/github`
+// if not specified.
+func (o AuthBackendOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+// (Optional) List of CIDR blocks; if set, specifies blocks of IP
+// addresses which can authenticate successfully, and ties the resulting token to these blocks
+// as well.
+func (o AuthBackendOutput) TokenBoundCidrs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringArrayOutput { return v.TokenBoundCidrs }).(pulumi.StringArrayOutput)
+}
+
+// (Optional) If set, will encode an
+// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+// onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
+// `tokenMaxTtl` would otherwise allow a renewal.
+func (o AuthBackendOutput) TokenExplicitMaxTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.IntPtrOutput { return v.TokenExplicitMaxTtl }).(pulumi.IntPtrOutput)
+}
+
+// (Optional) The maximum lifetime for generated tokens in number of seconds.
+// Its current value will be referenced at renewal time.
+func (o AuthBackendOutput) TokenMaxTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.IntPtrOutput { return v.TokenMaxTtl }).(pulumi.IntPtrOutput)
+}
+
+// (Optional) If set, the default policy will not be set on
+// generated tokens; otherwise it will be added to the policies set in token_policies.
+func (o AuthBackendOutput) TokenNoDefaultPolicy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.BoolPtrOutput { return v.TokenNoDefaultPolicy }).(pulumi.BoolPtrOutput)
+}
+
+// (Optional) The [maximum number](https://www.vaultproject.io/api-docs/github#token_num_uses)
+// of times a generated token may be used (within its lifetime); 0 means unlimited.
+func (o AuthBackendOutput) TokenNumUses() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.IntPtrOutput { return v.TokenNumUses }).(pulumi.IntPtrOutput)
+}
+
+// (Optional) If set, indicates that the
+// token generated using this role should never expire. The token should be renewed within the
+// duration specified by this value. At each renewal, the token's TTL will be set to the
+// value of this field. Specified in seconds.
+func (o AuthBackendOutput) TokenPeriod() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.IntPtrOutput { return v.TokenPeriod }).(pulumi.IntPtrOutput)
+}
+
+// (Optional) List of policies to encode onto generated tokens. Depending
+// on the auth method, this list may be supplemented by user/group/other values.
+func (o AuthBackendOutput) TokenPolicies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringArrayOutput { return v.TokenPolicies }).(pulumi.StringArrayOutput)
+}
+
+// (Optional) The incremental lifetime for generated tokens in number of seconds.
+// Its current value will be referenced at renewal time.
+func (o AuthBackendOutput) TokenTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.IntPtrOutput { return v.TokenTtl }).(pulumi.IntPtrOutput)
+}
+
+// Specifies the type of tokens that should be returned by
+// the mount. Valid values are "default-service", "default-batch", "service", "batch".
+func (o AuthBackendOutput) TokenType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.TokenType }).(pulumi.StringPtrOutput)
+}
+
+// Extra configuration block. Structure is documented below.
+func (o AuthBackendOutput) Tune() AuthBackendTuneOutput {
+	return o.ApplyT(func(v *AuthBackend) AuthBackendTuneOutput { return v.Tune }).(AuthBackendTuneOutput)
 }
 
 type AuthBackendArrayOutput struct{ *pulumi.OutputState }

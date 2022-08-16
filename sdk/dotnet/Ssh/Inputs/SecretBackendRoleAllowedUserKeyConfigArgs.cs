@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Ssh.Inputs
 {
 
-    public sealed class SecretBackendRoleAllowedUserKeyConfigArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendRoleAllowedUserKeyConfigArgs : global::Pulumi.ResourceArgs
     {
         [Input("lengths", required: true)]
         private InputList<int>? _lengths;
@@ -39,5 +39,6 @@ namespace Pulumi.Vault.Ssh.Inputs
         public SecretBackendRoleAllowedUserKeyConfigArgs()
         {
         }
+        public static new SecretBackendRoleAllowedUserKeyConfigArgs Empty => new SecretBackendRoleAllowedUserKeyConfigArgs();
     }
 }

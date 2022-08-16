@@ -19,24 +19,23 @@ namespace Pulumi.Vault.Gcp
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Vault = Pulumi.Vault;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var role = Vault.Gcp.GetAuthBackendRole.Invoke(new()
         ///     {
-        ///         var role = Output.Create(Vault.Gcp.GetAuthBackendRole.InvokeAsync(new Vault.Gcp.GetAuthBackendRoleArgs
-        ///         {
-        ///             Backend = "my-gcp-backend",
-        ///             RoleName = "my-role",
-        ///         }));
-        ///         this.Role_id = role.Apply(role =&gt; role.RoleId);
-        ///     }
+        ///         Backend = "my-gcp-backend",
+        ///         RoleName = "my-role",
+        ///     });
         /// 
-        ///     [Output("role-id")]
-        ///     public Output&lt;string&gt; Role_id { get; set; }
-        /// }
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["role-id"] = role.Apply(getAuthBackendRoleResult =&gt; getAuthBackendRoleResult.RoleId),
+        ///     };
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -52,24 +51,23 @@ namespace Pulumi.Vault.Gcp
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Vault = Pulumi.Vault;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var role = Vault.Gcp.GetAuthBackendRole.Invoke(new()
         ///     {
-        ///         var role = Output.Create(Vault.Gcp.GetAuthBackendRole.InvokeAsync(new Vault.Gcp.GetAuthBackendRoleArgs
-        ///         {
-        ///             Backend = "my-gcp-backend",
-        ///             RoleName = "my-role",
-        ///         }));
-        ///         this.Role_id = role.Apply(role =&gt; role.RoleId);
-        ///     }
+        ///         Backend = "my-gcp-backend",
+        ///         RoleName = "my-role",
+        ///     });
         /// 
-        ///     [Output("role-id")]
-        ///     public Output&lt;string&gt; Role_id { get; set; }
-        /// }
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["role-id"] = role.Apply(getAuthBackendRoleResult =&gt; getAuthBackendRoleResult.RoleId),
+        ///     };
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -79,7 +77,7 @@ namespace Pulumi.Vault.Gcp
     }
 
 
-    public sealed class GetAuthBackendRoleArgs : Pulumi.InvokeArgs
+    public sealed class GetAuthBackendRoleArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The unique name for the GCP backend from which to fetch the role. Defaults to "gcp".
@@ -180,9 +178,10 @@ namespace Pulumi.Vault.Gcp
         public GetAuthBackendRoleArgs()
         {
         }
+        public static new GetAuthBackendRoleArgs Empty => new GetAuthBackendRoleArgs();
     }
 
-    public sealed class GetAuthBackendRoleInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetAuthBackendRoleInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The unique name for the GCP backend from which to fetch the role. Defaults to "gcp".
@@ -283,6 +282,7 @@ namespace Pulumi.Vault.Gcp
         public GetAuthBackendRoleInvokeArgs()
         {
         }
+        public static new GetAuthBackendRoleInvokeArgs Empty => new GetAuthBackendRoleInvokeArgs();
     }
 
 

@@ -21,54 +21,57 @@ import (
 // package main
 //
 // import (
-// 	"fmt"
-// 	"io/ioutil"
 //
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/gcp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"fmt"
+//	"io/ioutil"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/gcp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func readFileOrPanic(path string) pulumi.StringPtrInput {
-// 	data, err := ioutil.ReadFile(path)
-// 	if err != nil {
-// 		panic(err.Error())
-// 	}
-// 	return pulumi.String(string(data))
-// }
+//	func readFileOrPanic(path string) pulumi.StringPtrInput {
+//		data, err := ioutil.ReadFile(path)
+//		if err != nil {
+//			panic(err.Error())
+//		}
+//		return pulumi.String(string(data))
+//	}
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		project := "my-awesome-project"
-// 		gcp, err := gcp.NewSecretBackend(ctx, "gcp", &gcp.SecretBackendArgs{
-// 			Path:        pulumi.String("gcp"),
-// 			Credentials: readFileOrPanic("credentials.json"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = gcp.NewSecretRoleset(ctx, "roleset", &gcp.SecretRolesetArgs{
-// 			Backend:    gcp.Path,
-// 			Roleset:    pulumi.String("project_viewer"),
-// 			SecretType: pulumi.String("access_token"),
-// 			Project:    pulumi.String(project),
-// 			TokenScopes: pulumi.StringArray{
-// 				pulumi.String("https://www.googleapis.com/auth/cloud-platform"),
-// 			},
-// 			Bindings: gcp.SecretRolesetBindingArray{
-// 				&gcp.SecretRolesetBindingArgs{
-// 					Resource: pulumi.String(fmt.Sprintf("%v%v", "//cloudresourcemanager.googleapis.com/projects/", project)),
-// 					Roles: pulumi.StringArray{
-// 						pulumi.String("roles/viewer"),
-// 					},
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			project := "my-awesome-project"
+//			gcp, err := gcp.NewSecretBackend(ctx, "gcp", &gcp.SecretBackendArgs{
+//				Path:        pulumi.String("gcp"),
+//				Credentials: readFileOrPanic("credentials.json"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = gcp.NewSecretRoleset(ctx, "roleset", &gcp.SecretRolesetArgs{
+//				Backend:    gcp.Path,
+//				Roleset:    pulumi.String("project_viewer"),
+//				SecretType: pulumi.String("access_token"),
+//				Project:    pulumi.String(project),
+//				TokenScopes: pulumi.StringArray{
+//					pulumi.String("https://www.googleapis.com/auth/cloud-platform"),
+//				},
+//				Bindings: gcp.SecretRolesetBindingArray{
+//					&gcp.SecretRolesetBindingArgs{
+//						Resource: pulumi.String(fmt.Sprintf("//cloudresourcemanager.googleapis.com/projects/%v", project)),
+//						Roles: pulumi.StringArray{
+//							pulumi.String("roles/viewer"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -76,7 +79,9 @@ import (
 // A roleset can be imported using its Vault Path. For example, referencing the example above,
 //
 // ```sh
-//  $ pulumi import vault:gcp/secretRoleset:SecretRoleset roleset gcp/roleset/project_viewer
+//
+//	$ pulumi import vault:gcp/secretRoleset:SecretRoleset roleset gcp/roleset/project_viewer
+//
 // ```
 type SecretRoleset struct {
 	pulumi.CustomResourceState
@@ -232,7 +237,7 @@ func (i *SecretRoleset) ToSecretRolesetOutputWithContext(ctx context.Context) Se
 // SecretRolesetArrayInput is an input type that accepts SecretRolesetArray and SecretRolesetArrayOutput values.
 // You can construct a concrete instance of `SecretRolesetArrayInput` via:
 //
-//          SecretRolesetArray{ SecretRolesetArgs{...} }
+//	SecretRolesetArray{ SecretRolesetArgs{...} }
 type SecretRolesetArrayInput interface {
 	pulumi.Input
 
@@ -257,7 +262,7 @@ func (i SecretRolesetArray) ToSecretRolesetArrayOutputWithContext(ctx context.Co
 // SecretRolesetMapInput is an input type that accepts SecretRolesetMap and SecretRolesetMapOutput values.
 // You can construct a concrete instance of `SecretRolesetMapInput` via:
 //
-//          SecretRolesetMap{ "key": SecretRolesetArgs{...} }
+//	SecretRolesetMap{ "key": SecretRolesetArgs{...} }
 type SecretRolesetMapInput interface {
 	pulumi.Input
 
@@ -291,6 +296,41 @@ func (o SecretRolesetOutput) ToSecretRolesetOutput() SecretRolesetOutput {
 
 func (o SecretRolesetOutput) ToSecretRolesetOutputWithContext(ctx context.Context) SecretRolesetOutput {
 	return o
+}
+
+// Path where the GCP Secrets Engine is mounted
+func (o SecretRolesetOutput) Backend() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretRoleset) pulumi.StringOutput { return v.Backend }).(pulumi.StringOutput)
+}
+
+// Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
+func (o SecretRolesetOutput) Bindings() SecretRolesetBindingArrayOutput {
+	return o.ApplyT(func(v *SecretRoleset) SecretRolesetBindingArrayOutput { return v.Bindings }).(SecretRolesetBindingArrayOutput)
+}
+
+// Name of the GCP project that this roleset's service account will belong to.
+func (o SecretRolesetOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretRoleset) pulumi.StringOutput { return v.Project }).(pulumi.StringOutput)
+}
+
+// Name of the Roleset to create
+func (o SecretRolesetOutput) Roleset() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretRoleset) pulumi.StringOutput { return v.Roleset }).(pulumi.StringOutput)
+}
+
+// Type of secret generated for this role set. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
+func (o SecretRolesetOutput) SecretType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretRoleset) pulumi.StringOutput { return v.SecretType }).(pulumi.StringOutput)
+}
+
+// Email of the service account created by Vault for this Roleset
+func (o SecretRolesetOutput) ServiceAccountEmail() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretRoleset) pulumi.StringOutput { return v.ServiceAccountEmail }).(pulumi.StringOutput)
+}
+
+// List of OAuth scopes to assign to `accessToken` secrets generated under this role set (`accessToken` role sets only).
+func (o SecretRolesetOutput) TokenScopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretRoleset) pulumi.StringArrayOutput { return v.TokenScopes }).(pulumi.StringArrayOutput)
 }
 
 type SecretRolesetArrayOutput struct{ *pulumi.OutputState }

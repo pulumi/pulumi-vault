@@ -13,23 +13,23 @@ namespace Pulumi.Vault.Aws
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var aws = new Vault.Aws.SecretBackend("aws", new()
     ///     {
-    ///         var aws = new Vault.Aws.SecretBackend("aws", new Vault.Aws.SecretBackendArgs
-    ///         {
-    ///             AccessKey = "AKIA.....",
-    ///             SecretKey = "AWS secret key",
-    ///         });
-    ///         var role = new Vault.Aws.SecretBackendRole("role", new Vault.Aws.SecretBackendRoleArgs
-    ///         {
-    ///             Backend = aws.Path,
-    ///             CredentialType = "iam_user",
-    ///             PolicyDocument = @"{
+    ///         AccessKey = "AKIA.....",
+    ///         SecretKey = "AWS secret key",
+    ///     });
+    /// 
+    ///     var role = new Vault.Aws.SecretBackendRole("role", new()
+    ///     {
+    ///         Backend = aws.Path,
+    ///         CredentialType = "iam_user",
+    ///         PolicyDocument = @"{
     ///   ""Version"": ""2012-10-17"",
     ///   ""Statement"": [
     ///     {
@@ -40,10 +40,9 @@ namespace Pulumi.Vault.Aws
     ///   ]
     /// }
     /// ",
-    ///         });
-    ///     }
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -55,7 +54,7 @@ namespace Pulumi.Vault.Aws
     /// ```
     /// </summary>
     [VaultResourceType("vault:aws/secretBackendRole:SecretBackendRole")]
-    public partial class SecretBackendRole : Pulumi.CustomResource
+    public partial class SecretBackendRole : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The path the AWS secret backend is mounted at,
@@ -198,7 +197,7 @@ namespace Pulumi.Vault.Aws
         }
     }
 
-    public sealed class SecretBackendRoleArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The path the AWS secret backend is mounted at,
@@ -318,9 +317,10 @@ namespace Pulumi.Vault.Aws
         public SecretBackendRoleArgs()
         {
         }
+        public static new SecretBackendRoleArgs Empty => new SecretBackendRoleArgs();
     }
 
-    public sealed class SecretBackendRoleState : Pulumi.ResourceArgs
+    public sealed class SecretBackendRoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The path the AWS secret backend is mounted at,
@@ -440,5 +440,6 @@ namespace Pulumi.Vault.Aws
         public SecretBackendRoleState()
         {
         }
+        public static new SecretBackendRoleState Empty => new SecretBackendRoleState();
     }
 }

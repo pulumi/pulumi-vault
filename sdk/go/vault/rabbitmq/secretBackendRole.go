@@ -17,50 +17,53 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/rabbitMq"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/rabbitMq"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		rabbitmq, err := rabbitMq.NewSecretBackend(ctx, "rabbitmq", &rabbitMq.SecretBackendArgs{
-// 			ConnectionUri: pulumi.String("https://....."),
-// 			Username:      pulumi.String("user"),
-// 			Password:      pulumi.String("password"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = rabbitMq.NewSecretBackendRole(ctx, "role", &rabbitMq.SecretBackendRoleArgs{
-// 			Backend: rabbitmq.Path,
-// 			Tags:    pulumi.String("tag1,tag2"),
-// 			Vhosts: rabbitmq.SecretBackendRoleVhostArray{
-// 				&rabbitmq.SecretBackendRoleVhostArgs{
-// 					Host:      pulumi.String("/"),
-// 					Configure: pulumi.String(""),
-// 					Read:      pulumi.String(".*"),
-// 					Write:     pulumi.String(""),
-// 				},
-// 			},
-// 			VhostTopics: rabbitmq.SecretBackendRoleVhostTopicArray{
-// 				&rabbitmq.SecretBackendRoleVhostTopicArgs{
-// 					Vhosts: rabbitmq.SecretBackendRoleVhostTopicVhostArray{
-// 						&rabbitmq.SecretBackendRoleVhostTopicVhostArgs{
-// 							Topic: pulumi.String("amq.topic"),
-// 							Read:  pulumi.String(".*"),
-// 							Write: pulumi.String(""),
-// 						},
-// 					},
-// 					Host: pulumi.String("/"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			rabbitmq, err := rabbitMq.NewSecretBackend(ctx, "rabbitmq", &rabbitMq.SecretBackendArgs{
+//				ConnectionUri: pulumi.String("https://....."),
+//				Username:      pulumi.String("user"),
+//				Password:      pulumi.String("password"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = rabbitMq.NewSecretBackendRole(ctx, "role", &rabbitMq.SecretBackendRoleArgs{
+//				Backend: rabbitmq.Path,
+//				Tags:    pulumi.String("tag1,tag2"),
+//				Vhosts: rabbitmq.SecretBackendRoleVhostArray{
+//					&rabbitmq.SecretBackendRoleVhostArgs{
+//						Host:      pulumi.String("/"),
+//						Configure: pulumi.String(""),
+//						Read:      pulumi.String(".*"),
+//						Write:     pulumi.String(""),
+//					},
+//				},
+//				VhostTopics: rabbitmq.SecretBackendRoleVhostTopicArray{
+//					&rabbitmq.SecretBackendRoleVhostTopicArgs{
+//						Vhosts: rabbitmq.SecretBackendRoleVhostTopicVhostArray{
+//							&rabbitmq.SecretBackendRoleVhostTopicVhostArgs{
+//								Topic: pulumi.String("amq.topic"),
+//								Read:  pulumi.String(".*"),
+//								Write: pulumi.String(""),
+//							},
+//						},
+//						Host: pulumi.String("/"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -68,7 +71,9 @@ import (
 // RabbitMQ secret backend roles can be imported using the `path`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:rabbitMq/secretBackendRole:SecretBackendRole role rabbitmq/roles/deploy
+//
+//	$ pulumi import vault:rabbitMq/secretBackendRole:SecretBackendRole role rabbitmq/roles/deploy
+//
 // ```
 type SecretBackendRole struct {
 	pulumi.CustomResourceState
@@ -209,7 +214,7 @@ func (i *SecretBackendRole) ToSecretBackendRoleOutputWithContext(ctx context.Con
 // SecretBackendRoleArrayInput is an input type that accepts SecretBackendRoleArray and SecretBackendRoleArrayOutput values.
 // You can construct a concrete instance of `SecretBackendRoleArrayInput` via:
 //
-//          SecretBackendRoleArray{ SecretBackendRoleArgs{...} }
+//	SecretBackendRoleArray{ SecretBackendRoleArgs{...} }
 type SecretBackendRoleArrayInput interface {
 	pulumi.Input
 
@@ -234,7 +239,7 @@ func (i SecretBackendRoleArray) ToSecretBackendRoleArrayOutputWithContext(ctx co
 // SecretBackendRoleMapInput is an input type that accepts SecretBackendRoleMap and SecretBackendRoleMapOutput values.
 // You can construct a concrete instance of `SecretBackendRoleMapInput` via:
 //
-//          SecretBackendRoleMap{ "key": SecretBackendRoleArgs{...} }
+//	SecretBackendRoleMap{ "key": SecretBackendRoleArgs{...} }
 type SecretBackendRoleMapInput interface {
 	pulumi.Input
 
@@ -268,6 +273,33 @@ func (o SecretBackendRoleOutput) ToSecretBackendRoleOutput() SecretBackendRoleOu
 
 func (o SecretBackendRoleOutput) ToSecretBackendRoleOutputWithContext(ctx context.Context) SecretBackendRoleOutput {
 	return o
+}
+
+// The path the RabbitMQ secret backend is mounted at,
+// with no leading or trailing `/`s.
+func (o SecretBackendRoleOutput) Backend() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.Backend }).(pulumi.StringOutput)
+}
+
+// The name to identify this role within the backend.
+// Must be unique within the backend.
+func (o SecretBackendRoleOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Specifies a comma-separated RabbitMQ management tags.
+func (o SecretBackendRoleOutput) Tags() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.Tags }).(pulumi.StringPtrOutput)
+}
+
+// Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
+func (o SecretBackendRoleOutput) VhostTopics() SecretBackendRoleVhostTopicArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRole) SecretBackendRoleVhostTopicArrayOutput { return v.VhostTopics }).(SecretBackendRoleVhostTopicArrayOutput)
+}
+
+// Specifies a map of virtual hosts to permissions.
+func (o SecretBackendRoleOutput) Vhosts() SecretBackendRoleVhostArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRole) SecretBackendRoleVhostArrayOutput { return v.Vhosts }).(SecretBackendRoleVhostArrayOutput)
 }
 
 type SecretBackendRoleArrayOutput struct{ *pulumi.OutputState }

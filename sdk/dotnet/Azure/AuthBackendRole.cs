@@ -19,41 +19,40 @@ namespace Pulumi.Vault.Azure
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var azure = new Vault.AuthBackend("azure", new()
     ///     {
-    ///         var azure = new Vault.AuthBackend("azure", new Vault.AuthBackendArgs
-    ///         {
-    ///             Type = "azure",
-    ///         });
-    ///         var example = new Vault.Azure.AuthBackendRole("example", new Vault.Azure.AuthBackendRoleArgs
-    ///         {
-    ///             Backend = azure.Path,
-    ///             Role = "test-role",
-    ///             BoundSubscriptionIds = 
-    ///             {
-    ///                 "11111111-2222-3333-4444-555555555555",
-    ///             },
-    ///             BoundResourceGroups = 
-    ///             {
-    ///                 "123456789012",
-    ///             },
-    ///             TokenTtl = 60,
-    ///             TokenMaxTtl = 120,
-    ///             TokenPolicies = 
-    ///             {
-    ///                 "default",
-    ///                 "dev",
-    ///                 "prod",
-    ///             },
-    ///         });
-    ///     }
+    ///         Type = "azure",
+    ///     });
     /// 
-    /// }
+    ///     var example = new Vault.Azure.AuthBackendRole("example", new()
+    ///     {
+    ///         Backend = azure.Path,
+    ///         Role = "test-role",
+    ///         BoundSubscriptionIds = new[]
+    ///         {
+    ///             "11111111-2222-3333-4444-555555555555",
+    ///         },
+    ///         BoundResourceGroups = new[]
+    ///         {
+    ///             "123456789012",
+    ///         },
+    ///         TokenTtl = 60,
+    ///         TokenMaxTtl = 120,
+    ///         TokenPolicies = new[]
+    ///         {
+    ///             "default",
+    ///             "dev",
+    ///             "prod",
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -65,7 +64,7 @@ namespace Pulumi.Vault.Azure
     /// ```
     /// </summary>
     [VaultResourceType("vault:azure/authBackendRole:AuthBackendRole")]
-    public partial class AuthBackendRole : Pulumi.CustomResource
+    public partial class AuthBackendRole : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Unique name of the auth backend to configure.
@@ -242,7 +241,7 @@ namespace Pulumi.Vault.Azure
         }
     }
 
-    public sealed class AuthBackendRoleArgs : Pulumi.ResourceArgs
+    public sealed class AuthBackendRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Unique name of the auth backend to configure.
@@ -426,9 +425,10 @@ namespace Pulumi.Vault.Azure
         public AuthBackendRoleArgs()
         {
         }
+        public static new AuthBackendRoleArgs Empty => new AuthBackendRoleArgs();
     }
 
-    public sealed class AuthBackendRoleState : Pulumi.ResourceArgs
+    public sealed class AuthBackendRoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Unique name of the auth backend to configure.
@@ -612,5 +612,6 @@ namespace Pulumi.Vault.Azure
         public AuthBackendRoleState()
         {
         }
+        public static new AuthBackendRoleState Empty => new AuthBackendRoleState();
     }
 }

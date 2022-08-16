@@ -15,38 +15,36 @@ namespace Pulumi.Vault.PkiSecret
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var root = new Vault.PkiSecret.SecretBackendRootSignIntermediate("root", new()
     ///     {
-    ///         var root = new Vault.PkiSecret.SecretBackendRootSignIntermediate("root", new Vault.PkiSecret.SecretBackendRootSignIntermediateArgs
+    ///         Backend = vault_mount.Root.Path,
+    ///         Csr = vault_pki_secret_backend_intermediate_cert_request.Intermediate.Csr,
+    ///         CommonName = "Intermediate CA",
+    ///         ExcludeCnFromSans = true,
+    ///         Ou = "My OU",
+    ///         Organization = "My organization",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
     ///         {
-    ///             Backend = vault_mount.Root.Path,
-    ///             Csr = vault_pki_secret_backend_intermediate_cert_request.Intermediate.Csr,
-    ///             CommonName = "Intermediate CA",
-    ///             ExcludeCnFromSans = true,
-    ///             Ou = "My OU",
-    ///             Organization = "My organization",
-    ///         }, new CustomResourceOptions
-    ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 vault_pki_secret_backend_intermediate_cert_request.Intermediate,
-    ///             },
-    ///         });
-    ///     }
+    ///             vault_pki_secret_backend_intermediate_cert_request.Intermediate,
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// ## Deprecations
     /// 
     /// * `serial` - Use `serial_number` instead.
     /// </summary>
     [VaultResourceType("vault:pkiSecret/secretBackendRootSignIntermediate:SecretBackendRootSignIntermediate")]
-    public partial class SecretBackendRootSignIntermediate : Pulumi.CustomResource
+    public partial class SecretBackendRootSignIntermediate : global::Pulumi.CustomResource
     {
         /// <summary>
         /// List of alternative names
@@ -255,7 +253,7 @@ namespace Pulumi.Vault.PkiSecret
         }
     }
 
-    public sealed class SecretBackendRootSignIntermediateArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendRootSignIntermediateArgs : global::Pulumi.ResourceArgs
     {
         [Input("altNames")]
         private InputList<string>? _altNames;
@@ -416,9 +414,10 @@ namespace Pulumi.Vault.PkiSecret
         public SecretBackendRootSignIntermediateArgs()
         {
         }
+        public static new SecretBackendRootSignIntermediateArgs Empty => new SecretBackendRootSignIntermediateArgs();
     }
 
-    public sealed class SecretBackendRootSignIntermediateState : Pulumi.ResourceArgs
+    public sealed class SecretBackendRootSignIntermediateState : global::Pulumi.ResourceArgs
     {
         [Input("altNames")]
         private InputList<string>? _altNames;
@@ -622,5 +621,6 @@ namespace Pulumi.Vault.PkiSecret
         public SecretBackendRootSignIntermediateState()
         {
         }
+        public static new SecretBackendRootSignIntermediateState Empty => new SecretBackendRootSignIntermediateState();
     }
 }

@@ -17,36 +17,39 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/database"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/database"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		db, err := vault.NewMount(ctx, "db", &vault.MountArgs{
-// 			Path: pulumi.String("postgres"),
-// 			Type: pulumi.String("database"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = database.NewSecretBackendConnection(ctx, "postgres", &database.SecretBackendConnectionArgs{
-// 			Backend: db.Path,
-// 			AllowedRoles: pulumi.StringArray{
-// 				pulumi.String("dev"),
-// 				pulumi.String("prod"),
-// 			},
-// 			Postgresql: &database.SecretBackendConnectionPostgresqlArgs{
-// 				ConnectionUrl: pulumi.String("postgres://username:password@host:port/database"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			db, err := vault.NewMount(ctx, "db", &vault.MountArgs{
+//				Path: pulumi.String("postgres"),
+//				Type: pulumi.String("database"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = database.NewSecretBackendConnection(ctx, "postgres", &database.SecretBackendConnectionArgs{
+//				Backend: db.Path,
+//				AllowedRoles: pulumi.StringArray{
+//					pulumi.String("dev"),
+//					pulumi.String("prod"),
+//				},
+//				Postgresql: &database.SecretBackendConnectionPostgresqlArgs{
+//					ConnectionUrl: pulumi.String("postgres://username:password@host:port/database"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -54,7 +57,9 @@ import (
 // Database secret backend connections can be imported using the `backend`, `/config/`, and the `name` e.g.
 //
 // ```sh
-//  $ pulumi import vault:database/secretBackendConnection:SecretBackendConnection example postgres/config/postgres
+//
+//	$ pulumi import vault:database/secretBackendConnection:SecretBackendConnection example postgres/config/postgres
+//
 // ```
 type SecretBackendConnection struct {
 	pulumi.CustomResourceState
@@ -375,7 +380,7 @@ func (i *SecretBackendConnection) ToSecretBackendConnectionOutputWithContext(ctx
 // SecretBackendConnectionArrayInput is an input type that accepts SecretBackendConnectionArray and SecretBackendConnectionArrayOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionArrayInput` via:
 //
-//          SecretBackendConnectionArray{ SecretBackendConnectionArgs{...} }
+//	SecretBackendConnectionArray{ SecretBackendConnectionArgs{...} }
 type SecretBackendConnectionArrayInput interface {
 	pulumi.Input
 
@@ -400,7 +405,7 @@ func (i SecretBackendConnectionArray) ToSecretBackendConnectionArrayOutputWithCo
 // SecretBackendConnectionMapInput is an input type that accepts SecretBackendConnectionMap and SecretBackendConnectionMapOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionMapInput` via:
 //
-//          SecretBackendConnectionMap{ "key": SecretBackendConnectionArgs{...} }
+//	SecretBackendConnectionMap{ "key": SecretBackendConnectionArgs{...} }
 type SecretBackendConnectionMapInput interface {
 	pulumi.Input
 
@@ -434,6 +439,123 @@ func (o SecretBackendConnectionOutput) ToSecretBackendConnectionOutput() SecretB
 
 func (o SecretBackendConnectionOutput) ToSecretBackendConnectionOutputWithContext(ctx context.Context) SecretBackendConnectionOutput {
 	return o
+}
+
+// A list of roles that are allowed to use this
+// connection.
+func (o SecretBackendConnectionOutput) AllowedRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) pulumi.StringArrayOutput { return v.AllowedRoles }).(pulumi.StringArrayOutput)
+}
+
+// The unique name of the Vault mount to configure.
+func (o SecretBackendConnectionOutput) Backend() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) pulumi.StringOutput { return v.Backend }).(pulumi.StringOutput)
+}
+
+// A nested block containing configuration options for Cassandra connections.
+func (o SecretBackendConnectionOutput) Cassandra() SecretBackendConnectionCassandraPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) SecretBackendConnectionCassandraPtrOutput { return v.Cassandra }).(SecretBackendConnectionCassandraPtrOutput)
+}
+
+// A nested block containing configuration options for Couchbase connections.
+func (o SecretBackendConnectionOutput) Couchbase() SecretBackendConnectionCouchbasePtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) SecretBackendConnectionCouchbasePtrOutput { return v.Couchbase }).(SecretBackendConnectionCouchbasePtrOutput)
+}
+
+// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+func (o SecretBackendConnectionOutput) Data() pulumi.MapOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) pulumi.MapOutput { return v.Data }).(pulumi.MapOutput)
+}
+
+// A nested block containing configuration options for Elasticsearch connections.
+func (o SecretBackendConnectionOutput) Elasticsearch() SecretBackendConnectionElasticsearchPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) SecretBackendConnectionElasticsearchPtrOutput { return v.Elasticsearch }).(SecretBackendConnectionElasticsearchPtrOutput)
+}
+
+// A nested block containing configuration options for SAP HanaDB connections.
+func (o SecretBackendConnectionOutput) Hana() SecretBackendConnectionHanaPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) SecretBackendConnectionHanaPtrOutput { return v.Hana }).(SecretBackendConnectionHanaPtrOutput)
+}
+
+// A nested block containing configuration options for InfluxDB connections.
+func (o SecretBackendConnectionOutput) Influxdb() SecretBackendConnectionInfluxdbPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) SecretBackendConnectionInfluxdbPtrOutput { return v.Influxdb }).(SecretBackendConnectionInfluxdbPtrOutput)
+}
+
+// A nested block containing configuration options for MongoDB connections.
+func (o SecretBackendConnectionOutput) Mongodb() SecretBackendConnectionMongodbPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) SecretBackendConnectionMongodbPtrOutput { return v.Mongodb }).(SecretBackendConnectionMongodbPtrOutput)
+}
+
+// A nested block containing configuration options for MongoDB Atlas connections.
+func (o SecretBackendConnectionOutput) Mongodbatlas() SecretBackendConnectionMongodbatlasPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) SecretBackendConnectionMongodbatlasPtrOutput { return v.Mongodbatlas }).(SecretBackendConnectionMongodbatlasPtrOutput)
+}
+
+// A nested block containing configuration options for MSSQL connections.
+func (o SecretBackendConnectionOutput) Mssql() SecretBackendConnectionMssqlPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) SecretBackendConnectionMssqlPtrOutput { return v.Mssql }).(SecretBackendConnectionMssqlPtrOutput)
+}
+
+// A nested block containing configuration options for MySQL connections.
+func (o SecretBackendConnectionOutput) Mysql() SecretBackendConnectionMysqlPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) SecretBackendConnectionMysqlPtrOutput { return v.Mysql }).(SecretBackendConnectionMysqlPtrOutput)
+}
+
+// A nested block containing configuration options for Aurora MySQL connections.
+func (o SecretBackendConnectionOutput) MysqlAurora() SecretBackendConnectionMysqlAuroraPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) SecretBackendConnectionMysqlAuroraPtrOutput { return v.MysqlAurora }).(SecretBackendConnectionMysqlAuroraPtrOutput)
+}
+
+// A nested block containing configuration options for legacy MySQL connections.
+func (o SecretBackendConnectionOutput) MysqlLegacy() SecretBackendConnectionMysqlLegacyPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) SecretBackendConnectionMysqlLegacyPtrOutput { return v.MysqlLegacy }).(SecretBackendConnectionMysqlLegacyPtrOutput)
+}
+
+// A nested block containing configuration options for RDS MySQL connections.
+func (o SecretBackendConnectionOutput) MysqlRds() SecretBackendConnectionMysqlRdsPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) SecretBackendConnectionMysqlRdsPtrOutput { return v.MysqlRds }).(SecretBackendConnectionMysqlRdsPtrOutput)
+}
+
+// A unique name to give the database connection.
+func (o SecretBackendConnectionOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// A nested block containing configuration options for Oracle connections.
+func (o SecretBackendConnectionOutput) Oracle() SecretBackendConnectionOraclePtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) SecretBackendConnectionOraclePtrOutput { return v.Oracle }).(SecretBackendConnectionOraclePtrOutput)
+}
+
+// Specifies the name of the plugin to use.
+func (o SecretBackendConnectionOutput) PluginName() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) pulumi.StringOutput { return v.PluginName }).(pulumi.StringOutput)
+}
+
+// A nested block containing configuration options for PostgreSQL connections.
+func (o SecretBackendConnectionOutput) Postgresql() SecretBackendConnectionPostgresqlPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) SecretBackendConnectionPostgresqlPtrOutput { return v.Postgresql }).(SecretBackendConnectionPostgresqlPtrOutput)
+}
+
+// Connection parameters for the redshift-database-plugin plugin.
+func (o SecretBackendConnectionOutput) Redshift() SecretBackendConnectionRedshiftPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) SecretBackendConnectionRedshiftPtrOutput { return v.Redshift }).(SecretBackendConnectionRedshiftPtrOutput)
+}
+
+// A list of database statements to be executed to rotate the root user's credentials.
+func (o SecretBackendConnectionOutput) RootRotationStatements() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) pulumi.StringArrayOutput { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
+}
+
+// A nested block containing configuration options for Snowflake connections.
+func (o SecretBackendConnectionOutput) Snowflake() SecretBackendConnectionSnowflakePtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) SecretBackendConnectionSnowflakePtrOutput { return v.Snowflake }).(SecretBackendConnectionSnowflakePtrOutput)
+}
+
+// Whether the connection should be verified on
+// initial configuration or not.
+func (o SecretBackendConnectionOutput) VerifyConnection() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) pulumi.BoolPtrOutput { return v.VerifyConnection }).(pulumi.BoolPtrOutput)
 }
 
 type SecretBackendConnectionArrayOutput struct{ *pulumi.OutputState }

@@ -17,39 +17,42 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ad"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ad"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		config, err := ad.NewSecretBackend(ctx, "config", &ad.SecretBackendArgs{
-// 			Backend:     pulumi.String("ad"),
-// 			Binddn:      pulumi.String("CN=Administrator,CN=Users,DC=corp,DC=example,DC=net"),
-// 			Bindpass:    pulumi.String("SuperSecretPassw0rd"),
-// 			Url:         pulumi.String("ldaps://ad"),
-// 			InsecureTls: pulumi.Bool(true),
-// 			Userdn:      pulumi.String("CN=Users,DC=corp,DC=example,DC=net"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = ad.NewSecretLibrary(ctx, "qa", &ad.SecretLibraryArgs{
-// 			Backend: config.Backend,
-// 			ServiceAccountNames: pulumi.StringArray{
-// 				pulumi.String("Bob"),
-// 				pulumi.String("Mary"),
-// 			},
-// 			Ttl:                       pulumi.Int(60),
-// 			DisableCheckInEnforcement: pulumi.Bool(true),
-// 			MaxTtl:                    pulumi.Int(120),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			config, err := ad.NewSecretBackend(ctx, "config", &ad.SecretBackendArgs{
+//				Backend:     pulumi.String("ad"),
+//				Binddn:      pulumi.String("CN=Administrator,CN=Users,DC=corp,DC=example,DC=net"),
+//				Bindpass:    pulumi.String("SuperSecretPassw0rd"),
+//				Url:         pulumi.String("ldaps://ad"),
+//				InsecureTls: pulumi.Bool(true),
+//				Userdn:      pulumi.String("CN=Users,DC=corp,DC=example,DC=net"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ad.NewSecretLibrary(ctx, "qa", &ad.SecretLibraryArgs{
+//				Backend: config.Backend,
+//				ServiceAccountNames: pulumi.StringArray{
+//					pulumi.String("Bob"),
+//					pulumi.String("Mary"),
+//				},
+//				Ttl:                       pulumi.Int(60),
+//				DisableCheckInEnforcement: pulumi.Bool(true),
+//				MaxTtl:                    pulumi.Int(120),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -57,7 +60,9 @@ import (
 // AD secret backend libraries can be imported using the `path`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:ad/secretLibrary:SecretLibrary role ad/library/bob
+//
+//	$ pulumi import vault:ad/secretLibrary:SecretLibrary role ad/library/bob
+//
 // ```
 type SecretLibrary struct {
 	pulumi.CustomResourceState
@@ -221,7 +226,7 @@ func (i *SecretLibrary) ToSecretLibraryOutputWithContext(ctx context.Context) Se
 // SecretLibraryArrayInput is an input type that accepts SecretLibraryArray and SecretLibraryArrayOutput values.
 // You can construct a concrete instance of `SecretLibraryArrayInput` via:
 //
-//          SecretLibraryArray{ SecretLibraryArgs{...} }
+//	SecretLibraryArray{ SecretLibraryArgs{...} }
 type SecretLibraryArrayInput interface {
 	pulumi.Input
 
@@ -246,7 +251,7 @@ func (i SecretLibraryArray) ToSecretLibraryArrayOutputWithContext(ctx context.Co
 // SecretLibraryMapInput is an input type that accepts SecretLibraryMap and SecretLibraryMapOutput values.
 // You can construct a concrete instance of `SecretLibraryMapInput` via:
 //
-//          SecretLibraryMap{ "key": SecretLibraryArgs{...} }
+//	SecretLibraryMap{ "key": SecretLibraryArgs{...} }
 type SecretLibraryMapInput interface {
 	pulumi.Input
 
@@ -280,6 +285,40 @@ func (o SecretLibraryOutput) ToSecretLibraryOutput() SecretLibraryOutput {
 
 func (o SecretLibraryOutput) ToSecretLibraryOutputWithContext(ctx context.Context) SecretLibraryOutput {
 	return o
+}
+
+// The path the AD secret backend is mounted at,
+// with no leading or trailing `/`s.
+func (o SecretLibraryOutput) Backend() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretLibrary) pulumi.StringOutput { return v.Backend }).(pulumi.StringOutput)
+}
+
+// Disable enforcing that service accounts must be checked in by the entity or client token that checked them out.
+func (o SecretLibraryOutput) DisableCheckInEnforcement() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretLibrary) pulumi.BoolPtrOutput { return v.DisableCheckInEnforcement }).(pulumi.BoolPtrOutput)
+}
+
+// The maximum password time-to-live in seconds. Defaults to the configuration
+// maxTtl if not provided.
+func (o SecretLibraryOutput) MaxTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *SecretLibrary) pulumi.IntOutput { return v.MaxTtl }).(pulumi.IntOutput)
+}
+
+// The name to identify this set of service accounts.
+// Must be unique within the backend.
+func (o SecretLibraryOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretLibrary) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Specifies the slice of service accounts mapped to this set.
+func (o SecretLibraryOutput) ServiceAccountNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretLibrary) pulumi.StringArrayOutput { return v.ServiceAccountNames }).(pulumi.StringArrayOutput)
+}
+
+// The password time-to-live in seconds. Defaults to the configuration
+// ttl if not provided.
+func (o SecretLibraryOutput) Ttl() pulumi.IntOutput {
+	return o.ApplyT(func(v *SecretLibrary) pulumi.IntOutput { return v.Ttl }).(pulumi.IntOutput)
 }
 
 type SecretLibraryArrayOutput struct{ *pulumi.OutputState }

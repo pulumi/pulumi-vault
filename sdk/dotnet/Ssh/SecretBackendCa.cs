@@ -16,28 +16,27 @@ namespace Pulumi.Vault.Ssh
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var example = new Vault.Mount("example", new()
     ///     {
-    ///         var example = new Vault.Mount("example", new Vault.MountArgs
-    ///         {
-    ///             Type = "ssh",
-    ///         });
-    ///         var foo = new Vault.Ssh.SecretBackendCa("foo", new Vault.Ssh.SecretBackendCaArgs
-    ///         {
-    ///             Backend = example.Path,
-    ///         });
-    ///     }
+    ///         Type = "ssh",
+    ///     });
     /// 
-    /// }
+    ///     var foo = new Vault.Ssh.SecretBackendCa("foo", new()
+    ///     {
+    ///         Backend = example.Path,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// </summary>
     [VaultResourceType("vault:ssh/secretBackendCa:SecretBackendCa")]
-    public partial class SecretBackendCa : Pulumi.CustomResource
+    public partial class SecretBackendCa : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The path where the SSH secret backend is mounted. Defaults to 'ssh'
@@ -107,7 +106,7 @@ namespace Pulumi.Vault.Ssh
         }
     }
 
-    public sealed class SecretBackendCaArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendCaArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The path where the SSH secret backend is mounted. Defaults to 'ssh'
@@ -136,9 +135,10 @@ namespace Pulumi.Vault.Ssh
         public SecretBackendCaArgs()
         {
         }
+        public static new SecretBackendCaArgs Empty => new SecretBackendCaArgs();
     }
 
-    public sealed class SecretBackendCaState : Pulumi.ResourceArgs
+    public sealed class SecretBackendCaState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The path where the SSH secret backend is mounted. Defaults to 'ssh'
@@ -167,5 +167,6 @@ namespace Pulumi.Vault.Ssh
         public SecretBackendCaState()
         {
         }
+        public static new SecretBackendCaState Empty => new SecretBackendCaState();
     }
 }

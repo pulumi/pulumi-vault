@@ -21,7 +21,7 @@ namespace Pulumi.Vault.Gcp
     /// ```
     /// </summary>
     [VaultResourceType("vault:gcp/authBackendRole:AuthBackendRole")]
-    public partial class AuthBackendRole : Pulumi.CustomResource
+    public partial class AuthBackendRole : global::Pulumi.CustomResource
     {
         [Output("addGroupAliases")]
         public Output<bool> AddGroupAliases { get; private set; } = null!;
@@ -207,7 +207,7 @@ namespace Pulumi.Vault.Gcp
         }
     }
 
-    public sealed class AuthBackendRoleArgs : Pulumi.ResourceArgs
+    public sealed class AuthBackendRoleArgs : global::Pulumi.ResourceArgs
     {
         [Input("addGroupAliases")]
         public Input<bool>? AddGroupAliases { get; set; }
@@ -400,9 +400,10 @@ namespace Pulumi.Vault.Gcp
         public AuthBackendRoleArgs()
         {
         }
+        public static new AuthBackendRoleArgs Empty => new AuthBackendRoleArgs();
     }
 
-    public sealed class AuthBackendRoleState : Pulumi.ResourceArgs
+    public sealed class AuthBackendRoleState : global::Pulumi.ResourceArgs
     {
         [Input("addGroupAliases")]
         public Input<bool>? AddGroupAliases { get; set; }
@@ -595,5 +596,6 @@ namespace Pulumi.Vault.Gcp
         public AuthBackendRoleState()
         {
         }
+        public static new AuthBackendRoleState Empty => new AuthBackendRoleState();
     }
 }

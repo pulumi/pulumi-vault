@@ -20,7 +20,7 @@ type SecretRolesetBinding struct {
 // SecretRolesetBindingInput is an input type that accepts SecretRolesetBindingArgs and SecretRolesetBindingOutput values.
 // You can construct a concrete instance of `SecretRolesetBindingInput` via:
 //
-//          SecretRolesetBindingArgs{...}
+//	SecretRolesetBindingArgs{...}
 type SecretRolesetBindingInput interface {
 	pulumi.Input
 
@@ -50,7 +50,7 @@ func (i SecretRolesetBindingArgs) ToSecretRolesetBindingOutputWithContext(ctx co
 // SecretRolesetBindingArrayInput is an input type that accepts SecretRolesetBindingArray and SecretRolesetBindingArrayOutput values.
 // You can construct a concrete instance of `SecretRolesetBindingArrayInput` via:
 //
-//          SecretRolesetBindingArray{ SecretRolesetBindingArgs{...} }
+//	SecretRolesetBindingArray{ SecretRolesetBindingArgs{...} }
 type SecretRolesetBindingArrayInput interface {
 	pulumi.Input
 
@@ -126,7 +126,7 @@ type SecretStaticAccountBinding struct {
 // SecretStaticAccountBindingInput is an input type that accepts SecretStaticAccountBindingArgs and SecretStaticAccountBindingOutput values.
 // You can construct a concrete instance of `SecretStaticAccountBindingInput` via:
 //
-//          SecretStaticAccountBindingArgs{...}
+//	SecretStaticAccountBindingArgs{...}
 type SecretStaticAccountBindingInput interface {
 	pulumi.Input
 
@@ -156,7 +156,7 @@ func (i SecretStaticAccountBindingArgs) ToSecretStaticAccountBindingOutputWithCo
 // SecretStaticAccountBindingArrayInput is an input type that accepts SecretStaticAccountBindingArray and SecretStaticAccountBindingArrayOutput values.
 // You can construct a concrete instance of `SecretStaticAccountBindingArrayInput` via:
 //
-//          SecretStaticAccountBindingArray{ SecretStaticAccountBindingArgs{...} }
+//	SecretStaticAccountBindingArray{ SecretStaticAccountBindingArgs{...} }
 type SecretStaticAccountBindingArrayInput interface {
 	pulumi.Input
 

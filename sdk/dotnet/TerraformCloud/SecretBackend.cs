@@ -13,22 +13,20 @@ namespace Pulumi.Vault.TerraformCloud
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Vault.TerraformCloud.SecretBackend("test", new()
     ///     {
-    ///         var test = new Vault.TerraformCloud.SecretBackend("test", new Vault.TerraformCloud.SecretBackendArgs
-    ///         {
-    ///             Backend = "terraform",
-    ///             Description = "Manages the Terraform Cloud backend",
-    ///             Token = "V0idfhi2iksSDU234ucdbi2nidsi...",
-    ///         });
-    ///     }
+    ///         Backend = "terraform",
+    ///         Description = "Manages the Terraform Cloud backend",
+    ///         Token = "V0idfhi2iksSDU234ucdbi2nidsi...",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -40,7 +38,7 @@ namespace Pulumi.Vault.TerraformCloud
     /// ```
     /// </summary>
     [VaultResourceType("vault:terraformcloud/secretBackend:SecretBackend")]
-    public partial class SecretBackend : Pulumi.CustomResource
+    public partial class SecretBackend : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Specifies the address of the Terraform Cloud instance, provided as "host:port" like "127.0.0.1:8500".
@@ -129,7 +127,7 @@ namespace Pulumi.Vault.TerraformCloud
         }
     }
 
-    public sealed class SecretBackendArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Specifies the address of the Terraform Cloud instance, provided as "host:port" like "127.0.0.1:8500".
@@ -177,9 +175,10 @@ namespace Pulumi.Vault.TerraformCloud
         public SecretBackendArgs()
         {
         }
+        public static new SecretBackendArgs Empty => new SecretBackendArgs();
     }
 
-    public sealed class SecretBackendState : Pulumi.ResourceArgs
+    public sealed class SecretBackendState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Specifies the address of the Terraform Cloud instance, provided as "host:port" like "127.0.0.1:8500".
@@ -227,5 +226,6 @@ namespace Pulumi.Vault.TerraformCloud
         public SecretBackendState()
         {
         }
+        public static new SecretBackendState Empty => new SecretBackendState();
     }
 }

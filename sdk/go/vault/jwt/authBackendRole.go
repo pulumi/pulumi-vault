@@ -23,41 +23,44 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/jwt"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/jwt"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		jwt, err := jwt.NewAuthBackend(ctx, "jwt", &jwt.AuthBackendArgs{
-// 			Path: pulumi.String("jwt"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = jwt.NewAuthBackendRole(ctx, "example", &jwt.AuthBackendRoleArgs{
-// 			Backend:  jwt.Path,
-// 			RoleName: pulumi.String("test-role"),
-// 			TokenPolicies: pulumi.StringArray{
-// 				pulumi.String("default"),
-// 				pulumi.String("dev"),
-// 				pulumi.String("prod"),
-// 			},
-// 			BoundAudiences: pulumi.StringArray{
-// 				pulumi.String("https://myco.test"),
-// 			},
-// 			BoundClaims: pulumi.AnyMap{
-// 				"color": pulumi.Any("red,green,blue"),
-// 			},
-// 			UserClaim: pulumi.String("https://vault/user"),
-// 			RoleType:  pulumi.String("jwt"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			jwt, err := jwt.NewAuthBackend(ctx, "jwt", &jwt.AuthBackendArgs{
+//				Path: pulumi.String("jwt"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = jwt.NewAuthBackendRole(ctx, "example", &jwt.AuthBackendRoleArgs{
+//				Backend:  jwt.Path,
+//				RoleName: pulumi.String("test-role"),
+//				TokenPolicies: pulumi.StringArray{
+//					pulumi.String("default"),
+//					pulumi.String("dev"),
+//					pulumi.String("prod"),
+//				},
+//				BoundAudiences: pulumi.StringArray{
+//					pulumi.String("https://myco.test"),
+//				},
+//				BoundClaims: pulumi.AnyMap{
+//					"color": pulumi.Any("red,green,blue"),
+//				},
+//				UserClaim: pulumi.String("https://vault/user"),
+//				RoleType:  pulumi.String("jwt"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // Role for OIDC backend:
@@ -66,39 +69,42 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/jwt"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/jwt"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		oidc, err := jwt.NewAuthBackend(ctx, "oidc", &jwt.AuthBackendArgs{
-// 			Path:        pulumi.String("oidc"),
-// 			DefaultRole: pulumi.String("test-role"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = jwt.NewAuthBackendRole(ctx, "example", &jwt.AuthBackendRoleArgs{
-// 			Backend:  oidc.Path,
-// 			RoleName: pulumi.String("test-role"),
-// 			TokenPolicies: pulumi.StringArray{
-// 				pulumi.String("default"),
-// 				pulumi.String("dev"),
-// 				pulumi.String("prod"),
-// 			},
-// 			UserClaim: pulumi.String("https://vault/user"),
-// 			RoleType:  pulumi.String("oidc"),
-// 			AllowedRedirectUris: pulumi.StringArray{
-// 				pulumi.String("http://localhost:8200/ui/vault/auth/oidc/oidc/callback"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			oidc, err := jwt.NewAuthBackend(ctx, "oidc", &jwt.AuthBackendArgs{
+//				Path:        pulumi.String("oidc"),
+//				DefaultRole: pulumi.String("test-role"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = jwt.NewAuthBackendRole(ctx, "example", &jwt.AuthBackendRoleArgs{
+//				Backend:  oidc.Path,
+//				RoleName: pulumi.String("test-role"),
+//				TokenPolicies: pulumi.StringArray{
+//					pulumi.String("default"),
+//					pulumi.String("dev"),
+//					pulumi.String("prod"),
+//				},
+//				UserClaim: pulumi.String("https://vault/user"),
+//				RoleType:  pulumi.String("oidc"),
+//				AllowedRedirectUris: pulumi.StringArray{
+//					pulumi.String("http://localhost:8200/ui/vault/auth/oidc/oidc/callback"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -106,7 +112,9 @@ import (
 // JWT authentication backend roles can be imported using the `path`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:jwt/authBackendRole:AuthBackendRole example auth/jwt/role/test-role
+//
+//	$ pulumi import vault:jwt/authBackendRole:AuthBackendRole example auth/jwt/role/test-role
+//
 // ```
 type AuthBackendRole struct {
 	pulumi.CustomResourceState
@@ -650,7 +658,7 @@ func (i *AuthBackendRole) ToAuthBackendRoleOutputWithContext(ctx context.Context
 // AuthBackendRoleArrayInput is an input type that accepts AuthBackendRoleArray and AuthBackendRoleArrayOutput values.
 // You can construct a concrete instance of `AuthBackendRoleArrayInput` via:
 //
-//          AuthBackendRoleArray{ AuthBackendRoleArgs{...} }
+//	AuthBackendRoleArray{ AuthBackendRoleArgs{...} }
 type AuthBackendRoleArrayInput interface {
 	pulumi.Input
 
@@ -675,7 +683,7 @@ func (i AuthBackendRoleArray) ToAuthBackendRoleArrayOutputWithContext(ctx contex
 // AuthBackendRoleMapInput is an input type that accepts AuthBackendRoleMap and AuthBackendRoleMapOutput values.
 // You can construct a concrete instance of `AuthBackendRoleMapInput` via:
 //
-//          AuthBackendRoleMap{ "key": AuthBackendRoleArgs{...} }
+//	AuthBackendRoleMap{ "key": AuthBackendRoleArgs{...} }
 type AuthBackendRoleMapInput interface {
 	pulumi.Input
 
@@ -709,6 +717,176 @@ func (o AuthBackendRoleOutput) ToAuthBackendRoleOutput() AuthBackendRoleOutput {
 
 func (o AuthBackendRoleOutput) ToAuthBackendRoleOutputWithContext(ctx context.Context) AuthBackendRoleOutput {
 	return o
+}
+
+// The list of allowed values for redirectUri during OIDC logins.
+// Required for OIDC roles
+func (o AuthBackendRoleOutput) AllowedRedirectUris() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringArrayOutput { return v.AllowedRedirectUris }).(pulumi.StringArrayOutput)
+}
+
+// The unique name of the auth backend to configure.
+// Defaults to `jwt`.
+func (o AuthBackendRoleOutput) Backend() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
+}
+
+// (Required for roles of type `jwt`, optional for roles of
+// type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+func (o AuthBackendRoleOutput) BoundAudiences() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringArrayOutput { return v.BoundAudiences }).(pulumi.StringArrayOutput)
+}
+
+// If set, a map of claims to values to match against.
+// A claim's value must be a string, which may contain one value or multiple
+// comma-separated values, e.g. `"red"` or `"red,green,blue"`.
+func (o AuthBackendRoleOutput) BoundClaims() pulumi.MapOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.MapOutput { return v.BoundClaims }).(pulumi.MapOutput)
+}
+
+// How to interpret values in the claims/values
+// map (`boundClaims`): can be either `string` (exact match) or `glob` (wildcard
+// match). Requires Vault 1.4.0 or above.
+func (o AuthBackendRoleOutput) BoundClaimsType() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringOutput { return v.BoundClaimsType }).(pulumi.StringOutput)
+}
+
+// If set, requires that the `sub` claim matches
+// this value.
+func (o AuthBackendRoleOutput) BoundSubject() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringPtrOutput { return v.BoundSubject }).(pulumi.StringPtrOutput)
+}
+
+// If set, a map of claims (keys) to be copied
+// to specified metadata fields (values).
+func (o AuthBackendRoleOutput) ClaimMappings() pulumi.MapOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.MapOutput { return v.ClaimMappings }).(pulumi.MapOutput)
+}
+
+// The amount of leeway to add to all claims to account for clock skew, in
+// seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+// Only applicable with "jwt" roles.
+func (o AuthBackendRoleOutput) ClockSkewLeeway() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.IntPtrOutput { return v.ClockSkewLeeway }).(pulumi.IntPtrOutput)
+}
+
+// Disable bound claim value parsing. Useful when values contain commas.
+func (o AuthBackendRoleOutput) DisableBoundClaimsParsing() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.BoolPtrOutput { return v.DisableBoundClaimsParsing }).(pulumi.BoolPtrOutput)
+}
+
+// The amount of leeway to add to expiration (`exp`) claims to account for
+// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+// Only applicable with "jwt" roles.
+func (o AuthBackendRoleOutput) ExpirationLeeway() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.IntPtrOutput { return v.ExpirationLeeway }).(pulumi.IntPtrOutput)
+}
+
+// The claim to use to uniquely identify
+// the set of groups to which the user belongs; this will be used as the names
+// for the Identity group aliases created due to a successful login. The claim
+// value must be a list of strings.
+func (o AuthBackendRoleOutput) GroupsClaim() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringPtrOutput { return v.GroupsClaim }).(pulumi.StringPtrOutput)
+}
+
+// The amount of leeway to add to not before (`nbf`) claims to account for
+// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+// Only applicable with "jwt" roles.
+func (o AuthBackendRoleOutput) NotBeforeLeeway() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.IntPtrOutput { return v.NotBeforeLeeway }).(pulumi.IntPtrOutput)
+}
+
+// If set, a list of OIDC scopes to be used with an OIDC role.
+// The standard scope "openid" is automatically included and need not be specified.
+func (o AuthBackendRoleOutput) OidcScopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringArrayOutput { return v.OidcScopes }).(pulumi.StringArrayOutput)
+}
+
+// The name of the role.
+func (o AuthBackendRoleOutput) RoleName() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringOutput { return v.RoleName }).(pulumi.StringOutput)
+}
+
+// Type of role, either "oidc" (default) or "jwt".
+func (o AuthBackendRoleOutput) RoleType() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringOutput { return v.RoleType }).(pulumi.StringOutput)
+}
+
+// List of CIDR blocks; if set, specifies blocks of IP
+// addresses which can authenticate successfully, and ties the resulting token to these blocks
+// as well.
+func (o AuthBackendRoleOutput) TokenBoundCidrs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringArrayOutput { return v.TokenBoundCidrs }).(pulumi.StringArrayOutput)
+}
+
+// If set, will encode an
+// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+// onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
+// `tokenMaxTtl` would otherwise allow a renewal.
+func (o AuthBackendRoleOutput) TokenExplicitMaxTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.IntPtrOutput { return v.TokenExplicitMaxTtl }).(pulumi.IntPtrOutput)
+}
+
+// The maximum lifetime for generated tokens in number of seconds.
+// Its current value will be referenced at renewal time.
+func (o AuthBackendRoleOutput) TokenMaxTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.IntPtrOutput { return v.TokenMaxTtl }).(pulumi.IntPtrOutput)
+}
+
+// If set, the default policy will not be set on
+// generated tokens; otherwise it will be added to the policies set in token_policies.
+func (o AuthBackendRoleOutput) TokenNoDefaultPolicy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.BoolPtrOutput { return v.TokenNoDefaultPolicy }).(pulumi.BoolPtrOutput)
+}
+
+// The [maximum number](https://www.vaultproject.io/api-docs/jwt#token_num_uses)
+// of times a generated token may be used (within its lifetime); 0 means unlimited.
+func (o AuthBackendRoleOutput) TokenNumUses() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.IntPtrOutput { return v.TokenNumUses }).(pulumi.IntPtrOutput)
+}
+
+// If set, indicates that the
+// token generated using this role should never expire. The token should be renewed within the
+// duration specified by this value. At each renewal, the token's TTL will be set to the
+// value of this field. Specified in seconds.
+func (o AuthBackendRoleOutput) TokenPeriod() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.IntPtrOutput { return v.TokenPeriod }).(pulumi.IntPtrOutput)
+}
+
+// List of policies to encode onto generated tokens. Depending
+// on the auth method, this list may be supplemented by user/group/other values.
+func (o AuthBackendRoleOutput) TokenPolicies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringArrayOutput { return v.TokenPolicies }).(pulumi.StringArrayOutput)
+}
+
+// The incremental lifetime for generated tokens in number of seconds.
+// Its current value will be referenced at renewal time.
+func (o AuthBackendRoleOutput) TokenTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.IntPtrOutput { return v.TokenTtl }).(pulumi.IntPtrOutput)
+}
+
+// The type of token that should be generated. Can be `service`,
+// `batch`, or `default` to use the mount's tuned default (which unless changed will be
+// `service` tokens). For token store roles, there are two additional possibilities:
+// `default-service` and `default-batch` which specify the type to return unless the client
+// requests a different type at generation time.
+func (o AuthBackendRoleOutput) TokenType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringPtrOutput { return v.TokenType }).(pulumi.StringPtrOutput)
+}
+
+// The claim to use to uniquely identify
+// the user; this will be used as the name for the Identity entity alias created
+// due to a successful login.
+func (o AuthBackendRoleOutput) UserClaim() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringOutput { return v.UserClaim }).(pulumi.StringOutput)
+}
+
+// Log received OIDC tokens and claims when debug-level
+// logging is active. Not recommended in production since sensitive information may be present
+// in OIDC responses.
+func (o AuthBackendRoleOutput) VerboseOidcLogging() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.BoolPtrOutput { return v.VerboseOidcLogging }).(pulumi.BoolPtrOutput)
 }
 
 type AuthBackendRoleArrayOutput struct{ *pulumi.OutputState }

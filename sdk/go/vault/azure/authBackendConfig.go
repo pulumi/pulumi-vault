@@ -17,32 +17,35 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/azure"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/azure"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		exampleAuthBackend, err := vault.NewAuthBackend(ctx, "exampleAuthBackend", &vault.AuthBackendArgs{
-// 			Type: pulumi.String("azure"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = azure.NewAuthBackendConfig(ctx, "exampleAuthBackendConfig", &azure.AuthBackendConfigArgs{
-// 			Backend:      exampleAuthBackend.Path,
-// 			TenantId:     pulumi.String("11111111-2222-3333-4444-555555555555"),
-// 			ClientId:     pulumi.String("11111111-2222-3333-4444-555555555555"),
-// 			ClientSecret: pulumi.String("01234567890123456789"),
-// 			Resource:     pulumi.String("https://vault.hashicorp.com"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleAuthBackend, err := vault.NewAuthBackend(ctx, "exampleAuthBackend", &vault.AuthBackendArgs{
+//				Type: pulumi.String("azure"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = azure.NewAuthBackendConfig(ctx, "exampleAuthBackendConfig", &azure.AuthBackendConfigArgs{
+//				Backend:      exampleAuthBackend.Path,
+//				TenantId:     pulumi.String("11111111-2222-3333-4444-555555555555"),
+//				ClientId:     pulumi.String("11111111-2222-3333-4444-555555555555"),
+//				ClientSecret: pulumi.String("01234567890123456789"),
+//				Resource:     pulumi.String("https://vault.hashicorp.com"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -50,7 +53,9 @@ import (
 // Azure auth backends can be imported using `auth/`, the `backend` path, and `/config` e.g.
 //
 // ```sh
-//  $ pulumi import vault:azure/authBackendConfig:AuthBackendConfig example auth/azure/config
+//
+//	$ pulumi import vault:azure/authBackendConfig:AuthBackendConfig example auth/azure/config
+//
 // ```
 type AuthBackendConfig struct {
 	pulumi.CustomResourceState
@@ -229,7 +234,7 @@ func (i *AuthBackendConfig) ToAuthBackendConfigOutputWithContext(ctx context.Con
 // AuthBackendConfigArrayInput is an input type that accepts AuthBackendConfigArray and AuthBackendConfigArrayOutput values.
 // You can construct a concrete instance of `AuthBackendConfigArrayInput` via:
 //
-//          AuthBackendConfigArray{ AuthBackendConfigArgs{...} }
+//	AuthBackendConfigArray{ AuthBackendConfigArgs{...} }
 type AuthBackendConfigArrayInput interface {
 	pulumi.Input
 
@@ -254,7 +259,7 @@ func (i AuthBackendConfigArray) ToAuthBackendConfigArrayOutputWithContext(ctx co
 // AuthBackendConfigMapInput is an input type that accepts AuthBackendConfigMap and AuthBackendConfigMapOutput values.
 // You can construct a concrete instance of `AuthBackendConfigMapInput` via:
 //
-//          AuthBackendConfigMap{ "key": AuthBackendConfigArgs{...} }
+//	AuthBackendConfigMap{ "key": AuthBackendConfigArgs{...} }
 type AuthBackendConfigMapInput interface {
 	pulumi.Input
 
@@ -288,6 +293,43 @@ func (o AuthBackendConfigOutput) ToAuthBackendConfigOutput() AuthBackendConfigOu
 
 func (o AuthBackendConfigOutput) ToAuthBackendConfigOutputWithContext(ctx context.Context) AuthBackendConfigOutput {
 	return o
+}
+
+// The path the Azure auth backend being configured was
+// mounted at.  Defaults to `azure`.
+func (o AuthBackendConfigOutput) Backend() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
+}
+
+// The client id for credentials to query the Azure APIs.
+// Currently read permissions to query compute resources are required.
+func (o AuthBackendConfigOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringPtrOutput { return v.ClientId }).(pulumi.StringPtrOutput)
+}
+
+// The client secret for credentials to query the
+// Azure APIs.
+func (o AuthBackendConfigOutput) ClientSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringPtrOutput { return v.ClientSecret }).(pulumi.StringPtrOutput)
+}
+
+// The Azure cloud environment. Valid values:
+// AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
+// AzureGermanCloud.  Defaults to `AzurePublicCloud`.
+func (o AuthBackendConfigOutput) Environment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringPtrOutput { return v.Environment }).(pulumi.StringPtrOutput)
+}
+
+// The configured URL for the application registered in
+// Azure Active Directory.
+func (o AuthBackendConfigOutput) Resource() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringOutput { return v.Resource }).(pulumi.StringOutput)
+}
+
+// The tenant id for the Azure Active Directory
+// organization.
+func (o AuthBackendConfigOutput) TenantId() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringOutput { return v.TenantId }).(pulumi.StringOutput)
 }
 
 type AuthBackendConfigArrayOutput struct{ *pulumi.OutputState }

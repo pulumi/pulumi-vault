@@ -13,53 +13,52 @@ namespace Pulumi.Vault.RabbitMQ
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var rabbitmq = new Vault.RabbitMQ.SecretBackend("rabbitmq", new()
     ///     {
-    ///         var rabbitmq = new Vault.RabbitMQ.SecretBackend("rabbitmq", new Vault.RabbitMQ.SecretBackendArgs
-    ///         {
-    ///             ConnectionUri = "https://.....",
-    ///             Username = "user",
-    ///             Password = "password",
-    ///         });
-    ///         var role = new Vault.RabbitMQ.SecretBackendRole("role", new Vault.RabbitMQ.SecretBackendRoleArgs
-    ///         {
-    ///             Backend = rabbitmq.Path,
-    ///             Tags = "tag1,tag2",
-    ///             Vhosts = 
-    ///             {
-    ///                 new Vault.RabbitMQ.Inputs.SecretBackendRoleVhostArgs
-    ///                 {
-    ///                     Host = "/",
-    ///                     Configure = "",
-    ///                     Read = ".*",
-    ///                     Write = "",
-    ///                 },
-    ///             },
-    ///             VhostTopics = 
-    ///             {
-    ///                 new Vault.RabbitMQ.Inputs.SecretBackendRoleVhostTopicArgs
-    ///                 {
-    ///                     Vhosts = 
-    ///                     {
-    ///                         new Vault.RabbitMQ.Inputs.SecretBackendRoleVhostTopicVhostArgs
-    ///                         {
-    ///                             Topic = "amq.topic",
-    ///                             Read = ".*",
-    ///                             Write = "",
-    ///                         },
-    ///                     },
-    ///                     Host = "/",
-    ///                 },
-    ///             },
-    ///         });
-    ///     }
+    ///         ConnectionUri = "https://.....",
+    ///         Username = "user",
+    ///         Password = "password",
+    ///     });
     /// 
-    /// }
+    ///     var role = new Vault.RabbitMQ.SecretBackendRole("role", new()
+    ///     {
+    ///         Backend = rabbitmq.Path,
+    ///         Tags = "tag1,tag2",
+    ///         Vhosts = new[]
+    ///         {
+    ///             new Vault.RabbitMQ.Inputs.SecretBackendRoleVhostArgs
+    ///             {
+    ///                 Host = "/",
+    ///                 Configure = "",
+    ///                 Read = ".*",
+    ///                 Write = "",
+    ///             },
+    ///         },
+    ///         VhostTopics = new[]
+    ///         {
+    ///             new Vault.RabbitMQ.Inputs.SecretBackendRoleVhostTopicArgs
+    ///             {
+    ///                 Vhosts = new[]
+    ///                 {
+    ///                     new Vault.RabbitMQ.Inputs.SecretBackendRoleVhostTopicVhostArgs
+    ///                     {
+    ///                         Topic = "amq.topic",
+    ///                         Read = ".*",
+    ///                         Write = "",
+    ///                     },
+    ///                 },
+    ///                 Host = "/",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -71,7 +70,7 @@ namespace Pulumi.Vault.RabbitMQ
     /// ```
     /// </summary>
     [VaultResourceType("vault:rabbitMq/secretBackendRole:SecretBackendRole")]
-    public partial class SecretBackendRole : Pulumi.CustomResource
+    public partial class SecretBackendRole : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The path the RabbitMQ secret backend is mounted at,
@@ -149,7 +148,7 @@ namespace Pulumi.Vault.RabbitMQ
         }
     }
 
-    public sealed class SecretBackendRoleArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The path the RabbitMQ secret backend is mounted at,
@@ -198,9 +197,10 @@ namespace Pulumi.Vault.RabbitMQ
         public SecretBackendRoleArgs()
         {
         }
+        public static new SecretBackendRoleArgs Empty => new SecretBackendRoleArgs();
     }
 
-    public sealed class SecretBackendRoleState : Pulumi.ResourceArgs
+    public sealed class SecretBackendRoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The path the RabbitMQ secret backend is mounted at,
@@ -249,5 +249,6 @@ namespace Pulumi.Vault.RabbitMQ
         public SecretBackendRoleState()
         {
         }
+        public static new SecretBackendRoleState Empty => new SecretBackendRoleState();
     }
 }

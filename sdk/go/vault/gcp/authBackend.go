@@ -18,31 +18,34 @@ import (
 // package main
 //
 // import (
-// 	"io/ioutil"
 //
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/gcp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"io/ioutil"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/gcp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func readFileOrPanic(path string) pulumi.StringPtrInput {
-// 	data, err := ioutil.ReadFile(path)
-// 	if err != nil {
-// 		panic(err.Error())
-// 	}
-// 	return pulumi.String(string(data))
-// }
+//	func readFileOrPanic(path string) pulumi.StringPtrInput {
+//		data, err := ioutil.ReadFile(path)
+//		if err != nil {
+//			panic(err.Error())
+//		}
+//		return pulumi.String(string(data))
+//	}
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := gcp.NewAuthBackend(ctx, "gcp", &gcp.AuthBackendArgs{
-// 			Credentials: readFileOrPanic("vault-gcp-credentials.json"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := gcp.NewAuthBackend(ctx, "gcp", &gcp.AuthBackendArgs{
+//				Credentials: readFileOrPanic("vault-gcp-credentials.json"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -50,7 +53,9 @@ import (
 // GCP authentication backends can be imported using the backend name, e.g.
 //
 // ```sh
-//  $ pulumi import vault:gcp/authBackend:AuthBackend gcp gcp
+//
+//	$ pulumi import vault:gcp/authBackend:AuthBackend gcp gcp
+//
 // ```
 type AuthBackend struct {
 	pulumi.CustomResourceState
@@ -208,7 +213,7 @@ func (i *AuthBackend) ToAuthBackendOutputWithContext(ctx context.Context) AuthBa
 // AuthBackendArrayInput is an input type that accepts AuthBackendArray and AuthBackendArrayOutput values.
 // You can construct a concrete instance of `AuthBackendArrayInput` via:
 //
-//          AuthBackendArray{ AuthBackendArgs{...} }
+//	AuthBackendArray{ AuthBackendArgs{...} }
 type AuthBackendArrayInput interface {
 	pulumi.Input
 
@@ -233,7 +238,7 @@ func (i AuthBackendArray) ToAuthBackendArrayOutputWithContext(ctx context.Contex
 // AuthBackendMapInput is an input type that accepts AuthBackendMap and AuthBackendMapOutput values.
 // You can construct a concrete instance of `AuthBackendMapInput` via:
 //
-//          AuthBackendMap{ "key": AuthBackendArgs{...} }
+//	AuthBackendMap{ "key": AuthBackendArgs{...} }
 type AuthBackendMapInput interface {
 	pulumi.Input
 
@@ -267,6 +272,46 @@ func (o AuthBackendOutput) ToAuthBackendOutput() AuthBackendOutput {
 
 func (o AuthBackendOutput) ToAuthBackendOutputWithContext(ctx context.Context) AuthBackendOutput {
 	return o
+}
+
+// The clients email associated with the credentials
+func (o AuthBackendOutput) ClientEmail() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.ClientEmail }).(pulumi.StringOutput)
+}
+
+// The Client ID of the credentials
+func (o AuthBackendOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.ClientId }).(pulumi.StringOutput)
+}
+
+// A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+func (o AuthBackendOutput) Credentials() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Credentials }).(pulumi.StringPtrOutput)
+}
+
+// A description of the auth method.
+func (o AuthBackendOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// Specifies if the auth method is local only.
+func (o AuthBackendOutput) Local() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.BoolPtrOutput { return v.Local }).(pulumi.BoolPtrOutput)
+}
+
+// The path to mount the auth method — this defaults to 'gcp'.
+func (o AuthBackendOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the private key from the credentials
+func (o AuthBackendOutput) PrivateKeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.PrivateKeyId }).(pulumi.StringOutput)
+}
+
+// The GCP Project ID
+func (o AuthBackendOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 type AuthBackendArrayOutput struct{ *pulumi.OutputState }

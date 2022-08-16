@@ -17,22 +17,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := identity.NewEntityAlias(ctx, "test", &identity.EntityAliasArgs{
-// 			CanonicalId:   pulumi.String("49877D63-07AD-4B85-BDA8-B61626C477E8"),
-// 			MountAccessor: pulumi.String("token_1f2bd5"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := identity.NewEntityAlias(ctx, "test", &identity.EntityAliasArgs{
+//				CanonicalId:   pulumi.String("49877D63-07AD-4B85-BDA8-B61626C477E8"),
+//				MountAccessor: pulumi.String("token_1f2bd5"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -40,7 +43,9 @@ import (
 // Identity entity alias can be imported using the `id`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:identity/entityAlias:EntityAlias test "3856fb4d-3c91-dcaf-2401-68f446796bfb"
+//
+//	$ pulumi import vault:identity/entityAlias:EntityAlias test "3856fb4d-3c91-dcaf-2401-68f446796bfb"
+//
 // ```
 type EntityAlias struct {
 	pulumi.CustomResourceState
@@ -164,7 +169,7 @@ func (i *EntityAlias) ToEntityAliasOutputWithContext(ctx context.Context) Entity
 // EntityAliasArrayInput is an input type that accepts EntityAliasArray and EntityAliasArrayOutput values.
 // You can construct a concrete instance of `EntityAliasArrayInput` via:
 //
-//          EntityAliasArray{ EntityAliasArgs{...} }
+//	EntityAliasArray{ EntityAliasArgs{...} }
 type EntityAliasArrayInput interface {
 	pulumi.Input
 
@@ -189,7 +194,7 @@ func (i EntityAliasArray) ToEntityAliasArrayOutputWithContext(ctx context.Contex
 // EntityAliasMapInput is an input type that accepts EntityAliasMap and EntityAliasMapOutput values.
 // You can construct a concrete instance of `EntityAliasMapInput` via:
 //
-//          EntityAliasMap{ "key": EntityAliasArgs{...} }
+//	EntityAliasMap{ "key": EntityAliasArgs{...} }
 type EntityAliasMapInput interface {
 	pulumi.Input
 
@@ -223,6 +228,26 @@ func (o EntityAliasOutput) ToEntityAliasOutput() EntityAliasOutput {
 
 func (o EntityAliasOutput) ToEntityAliasOutputWithContext(ctx context.Context) EntityAliasOutput {
 	return o
+}
+
+// Entity ID to which this alias belongs to.
+func (o EntityAliasOutput) CanonicalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *EntityAlias) pulumi.StringOutput { return v.CanonicalId }).(pulumi.StringOutput)
+}
+
+// Custom metadata to be associated with this alias.
+func (o EntityAliasOutput) CustomMetadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *EntityAlias) pulumi.StringMapOutput { return v.CustomMetadata }).(pulumi.StringMapOutput)
+}
+
+// Accessor of the mount to which the alias should belong to.
+func (o EntityAliasOutput) MountAccessor() pulumi.StringOutput {
+	return o.ApplyT(func(v *EntityAlias) pulumi.StringOutput { return v.MountAccessor }).(pulumi.StringOutput)
+}
+
+// Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
+func (o EntityAliasOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *EntityAlias) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
 type EntityAliasArrayOutput struct{ *pulumi.OutputState }

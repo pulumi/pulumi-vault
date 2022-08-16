@@ -13,32 +13,31 @@ namespace Pulumi.Vault.AD
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var config = new Vault.AD.SecretBackend("config", new()
     ///     {
-    ///         var config = new Vault.AD.SecretBackend("config", new Vault.AD.SecretBackendArgs
-    ///         {
-    ///             Backend = "ad",
-    ///             Binddn = "CN=Administrator,CN=Users,DC=corp,DC=example,DC=net",
-    ///             Bindpass = "SuperSecretPassw0rd",
-    ///             Url = "ldaps://ad",
-    ///             InsecureTls = true,
-    ///             Userdn = "CN=Users,DC=corp,DC=example,DC=net",
-    ///         });
-    ///         var role = new Vault.AD.SecretRole("role", new Vault.AD.SecretRoleArgs
-    ///         {
-    ///             Backend = config.Backend,
-    ///             Role = "bob",
-    ///             ServiceAccountName = "Bob",
-    ///             Ttl = 60,
-    ///         });
-    ///     }
+    ///         Backend = "ad",
+    ///         Binddn = "CN=Administrator,CN=Users,DC=corp,DC=example,DC=net",
+    ///         Bindpass = "SuperSecretPassw0rd",
+    ///         Url = "ldaps://ad",
+    ///         InsecureTls = true,
+    ///         Userdn = "CN=Users,DC=corp,DC=example,DC=net",
+    ///     });
     /// 
-    /// }
+    ///     var role = new Vault.AD.SecretRole("role", new()
+    ///     {
+    ///         Backend = config.Backend,
+    ///         Role = "bob",
+    ///         ServiceAccountName = "Bob",
+    ///         Ttl = 60,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -50,7 +49,7 @@ namespace Pulumi.Vault.AD
     /// ```
     /// </summary>
     [VaultResourceType("vault:ad/secretRole:SecretRole")]
-    public partial class SecretRole : Pulumi.CustomResource
+    public partial class SecretRole : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The path the AD secret backend is mounted at,
@@ -136,7 +135,7 @@ namespace Pulumi.Vault.AD
         }
     }
 
-    public sealed class SecretRoleArgs : Pulumi.ResourceArgs
+    public sealed class SecretRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The path the AD secret backend is mounted at,
@@ -169,9 +168,10 @@ namespace Pulumi.Vault.AD
         public SecretRoleArgs()
         {
         }
+        public static new SecretRoleArgs Empty => new SecretRoleArgs();
     }
 
-    public sealed class SecretRoleState : Pulumi.ResourceArgs
+    public sealed class SecretRoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The path the AD secret backend is mounted at,
@@ -216,5 +216,6 @@ namespace Pulumi.Vault.AD
         public SecretRoleState()
         {
         }
+        public static new SecretRoleState Empty => new SecretRoleState();
     }
 }

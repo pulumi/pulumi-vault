@@ -19,31 +19,34 @@ import (
 // package main
 //
 // import (
-// 	"encoding/json"
 //
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"encoding/json"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		tmpJSON0, err := json.Marshal(map[string]interface{}{
-// 			"groups": "{{identity.entity.groups.names}}",
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		json0 := string(tmpJSON0)
-// 		_, err := identity.NewOidcScope(ctx, "groups", &identity.OidcScopeArgs{
-// 			Template:    pulumi.String(json0),
-// 			Description: pulumi.String("Vault OIDC Groups Scope"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"groups": "{{identity.entity.groups.names}}",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			_, err = identity.NewOidcScope(ctx, "groups", &identity.OidcScopeArgs{
+//				Template:    pulumi.String(json0),
+//				Description: pulumi.String("Vault OIDC Groups Scope"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -51,7 +54,9 @@ import (
 // OIDC Scopes can be imported using the `name`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:identity/oidcScope:OidcScope groups groups
+//
+//	$ pulumi import vault:identity/oidcScope:OidcScope groups groups
+//
 // ```
 type OidcScope struct {
 	pulumi.CustomResourceState
@@ -159,7 +164,7 @@ func (i *OidcScope) ToOidcScopeOutputWithContext(ctx context.Context) OidcScopeO
 // OidcScopeArrayInput is an input type that accepts OidcScopeArray and OidcScopeArrayOutput values.
 // You can construct a concrete instance of `OidcScopeArrayInput` via:
 //
-//          OidcScopeArray{ OidcScopeArgs{...} }
+//	OidcScopeArray{ OidcScopeArgs{...} }
 type OidcScopeArrayInput interface {
 	pulumi.Input
 
@@ -184,7 +189,7 @@ func (i OidcScopeArray) ToOidcScopeArrayOutputWithContext(ctx context.Context) O
 // OidcScopeMapInput is an input type that accepts OidcScopeMap and OidcScopeMapOutput values.
 // You can construct a concrete instance of `OidcScopeMapInput` via:
 //
-//          OidcScopeMap{ "key": OidcScopeArgs{...} }
+//	OidcScopeMap{ "key": OidcScopeArgs{...} }
 type OidcScopeMapInput interface {
 	pulumi.Input
 
@@ -218,6 +223,21 @@ func (o OidcScopeOutput) ToOidcScopeOutput() OidcScopeOutput {
 
 func (o OidcScopeOutput) ToOidcScopeOutputWithContext(ctx context.Context) OidcScopeOutput {
 	return o
+}
+
+// A description of the scope.
+func (o OidcScopeOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OidcScope) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// The name of the scope. The `openid` scope name is reserved.
+func (o OidcScopeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *OidcScope) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The template string for the scope. This may be provided as escaped JSON or base64 encoded JSON.
+func (o OidcScopeOutput) Template() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OidcScope) pulumi.StringPtrOutput { return v.Template }).(pulumi.StringPtrOutput)
 }
 
 type OidcScopeArrayOutput struct{ *pulumi.OutputState }

@@ -22,41 +22,40 @@ namespace Pulumi.Vault.AppRole
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var approle = new Vault.AuthBackend("approle", new()
     ///     {
-    ///         var approle = new Vault.AuthBackend("approle", new Vault.AuthBackendArgs
-    ///         {
-    ///             Type = "approle",
-    ///         });
-    ///         var example = new Vault.AppRole.AuthBackendRole("example", new Vault.AppRole.AuthBackendRoleArgs
-    ///         {
-    ///             Backend = approle.Path,
-    ///             RoleName = "test-role",
-    ///             TokenPolicies = 
-    ///             {
-    ///                 "default",
-    ///                 "dev",
-    ///                 "prod",
-    ///             },
-    ///         });
-    ///         var id = new Vault.AppRole.AuthBackendRoleSecretID("id", new Vault.AppRole.AuthBackendRoleSecretIDArgs
-    ///         {
-    ///             Backend = approle.Path,
-    ///             RoleName = example.RoleName,
-    ///             Metadata = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
-    ///             {
-    ///                 { "hello", "world" },
-    ///             }),
-    ///         });
-    ///     }
+    ///         Type = "approle",
+    ///     });
     /// 
-    /// }
+    ///     var example = new Vault.AppRole.AuthBackendRole("example", new()
+    ///     {
+    ///         Backend = approle.Path,
+    ///         RoleName = "test-role",
+    ///         TokenPolicies = new[]
+    ///         {
+    ///             "default",
+    ///             "dev",
+    ///             "prod",
+    ///         },
+    ///     });
+    /// 
+    ///     var id = new Vault.AppRole.AuthBackendRoleSecretID("id", new()
+    ///     {
+    ///         Backend = approle.Path,
+    ///         RoleName = example.RoleName,
+    ///         Metadata = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["hello"] = "world",
+    ///         }),
+    ///     });
+    /// 
+    /// });
     /// ```
     /// </summary>
     [VaultResourceType("vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID")]
-    public partial class AuthBackendRoleSecretID : Pulumi.CustomResource
+    public partial class AuthBackendRoleSecretID : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The unique ID for this SecretID that can be safely logged.
@@ -171,7 +170,7 @@ namespace Pulumi.Vault.AppRole
         }
     }
 
-    public sealed class AuthBackendRoleSecretIDArgs : Pulumi.ResourceArgs
+    public sealed class AuthBackendRoleSecretIDArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Unique name of the auth backend to configure.
@@ -232,9 +231,10 @@ namespace Pulumi.Vault.AppRole
         public AuthBackendRoleSecretIDArgs()
         {
         }
+        public static new AuthBackendRoleSecretIDArgs Empty => new AuthBackendRoleSecretIDArgs();
     }
 
-    public sealed class AuthBackendRoleSecretIDState : Pulumi.ResourceArgs
+    public sealed class AuthBackendRoleSecretIDState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The unique ID for this SecretID that can be safely logged.
@@ -314,5 +314,6 @@ namespace Pulumi.Vault.AppRole
         public AuthBackendRoleSecretIDState()
         {
         }
+        public static new AuthBackendRoleSecretIDState Empty => new AuthBackendRoleSecretIDState();
     }
 }

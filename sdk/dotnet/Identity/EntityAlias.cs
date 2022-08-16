@@ -13,21 +13,19 @@ namespace Pulumi.Vault.Identity
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Vault.Identity.EntityAlias("test", new()
     ///     {
-    ///         var test = new Vault.Identity.EntityAlias("test", new Vault.Identity.EntityAliasArgs
-    ///         {
-    ///             CanonicalId = "49877D63-07AD-4B85-BDA8-B61626C477E8",
-    ///             MountAccessor = "token_1f2bd5",
-    ///         });
-    ///     }
+    ///         CanonicalId = "49877D63-07AD-4B85-BDA8-B61626C477E8",
+    ///         MountAccessor = "token_1f2bd5",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -39,7 +37,7 @@ namespace Pulumi.Vault.Identity
     /// ```
     /// </summary>
     [VaultResourceType("vault:identity/entityAlias:EntityAlias")]
-    public partial class EntityAlias : Pulumi.CustomResource
+    public partial class EntityAlias : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Entity ID to which this alias belongs to.
@@ -109,7 +107,7 @@ namespace Pulumi.Vault.Identity
         }
     }
 
-    public sealed class EntityAliasArgs : Pulumi.ResourceArgs
+    public sealed class EntityAliasArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Entity ID to which this alias belongs to.
@@ -144,9 +142,10 @@ namespace Pulumi.Vault.Identity
         public EntityAliasArgs()
         {
         }
+        public static new EntityAliasArgs Empty => new EntityAliasArgs();
     }
 
-    public sealed class EntityAliasState : Pulumi.ResourceArgs
+    public sealed class EntityAliasState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Entity ID to which this alias belongs to.
@@ -181,5 +180,6 @@ namespace Pulumi.Vault.Identity
         public EntityAliasState()
         {
         }
+        public static new EntityAliasState Empty => new EntityAliasState();
     }
 }

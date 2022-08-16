@@ -15,27 +15,25 @@ namespace Pulumi.Vault.Ldap
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var ldap = new Vault.Ldap.AuthBackend("ldap", new()
     ///     {
-    ///         var ldap = new Vault.Ldap.AuthBackend("ldap", new Vault.Ldap.AuthBackendArgs
-    ///         {
-    ///             Discoverdn = false,
-    ///             Groupdn = "OU=Groups,DC=example,DC=org",
-    ///             Groupfilter = "(&amp;(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))",
-    ///             Path = "ldap",
-    ///             Upndomain = "EXAMPLE.ORG",
-    ///             Url = "ldaps://dc-01.example.org",
-    ///             Userattr = "sAMAccountName",
-    ///             Userdn = "OU=Users,OU=Accounts,DC=example,DC=org",
-    ///         });
-    ///     }
+    ///         Discoverdn = false,
+    ///         Groupdn = "OU=Groups,DC=example,DC=org",
+    ///         Groupfilter = "(&amp;(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))",
+    ///         Path = "ldap",
+    ///         Upndomain = "EXAMPLE.ORG",
+    ///         Url = "ldaps://dc-01.example.org",
+    ///         Userattr = "sAMAccountName",
+    ///         Userdn = "OU=Users,OU=Accounts,DC=example,DC=org",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -47,7 +45,7 @@ namespace Pulumi.Vault.Ldap
     /// ```
     /// </summary>
     [VaultResourceType("vault:ldap/authBackend:AuthBackend")]
-    public partial class AuthBackend : Pulumi.CustomResource
+    public partial class AuthBackend : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The accessor for this auth mount.
@@ -302,7 +300,7 @@ namespace Pulumi.Vault.Ldap
         }
     }
 
-    public sealed class AuthBackendArgs : Pulumi.ResourceArgs
+    public sealed class AuthBackendArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// DN of object to bind when performing user search
@@ -522,9 +520,10 @@ namespace Pulumi.Vault.Ldap
         public AuthBackendArgs()
         {
         }
+        public static new AuthBackendArgs Empty => new AuthBackendArgs();
     }
 
-    public sealed class AuthBackendState : Pulumi.ResourceArgs
+    public sealed class AuthBackendState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The accessor for this auth mount.
@@ -750,5 +749,6 @@ namespace Pulumi.Vault.Ldap
         public AuthBackendState()
         {
         }
+        public static new AuthBackendState Empty => new AuthBackendState();
     }
 }

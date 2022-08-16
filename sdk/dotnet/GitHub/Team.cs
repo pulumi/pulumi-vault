@@ -17,30 +17,29 @@ namespace Pulumi.Vault.GitHub
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var example = new Vault.GitHub.AuthBackend("example", new()
     ///     {
-    ///         var example = new Vault.GitHub.AuthBackend("example", new Vault.GitHub.AuthBackendArgs
-    ///         {
-    ///             Organization = "myorg",
-    ///         });
-    ///         var tfDevs = new Vault.GitHub.Team("tfDevs", new Vault.GitHub.TeamArgs
-    ///         {
-    ///             Backend = example.Id,
-    ///             Team = "terraform-developers",
-    ///             Policies = 
-    ///             {
-    ///                 "developer",
-    ///                 "read-only",
-    ///             },
-    ///         });
-    ///     }
+    ///         Organization = "myorg",
+    ///     });
     /// 
-    /// }
+    ///     var tfDevs = new Vault.GitHub.Team("tfDevs", new()
+    ///     {
+    ///         Backend = example.Id,
+    ///         TeamCity = "terraform-developers",
+    ///         Policies = new[]
+    ///         {
+    ///             "developer",
+    ///             "read-only",
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -52,7 +51,7 @@ namespace Pulumi.Vault.GitHub
     /// ```
     /// </summary>
     [VaultResourceType("vault:github/team:Team")]
-    public partial class Team : Pulumi.CustomResource
+    public partial class Team : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Path where the github auth backend is mounted. Defaults to `github`
@@ -118,7 +117,7 @@ namespace Pulumi.Vault.GitHub
         }
     }
 
-    public sealed class TeamArgs : Pulumi.ResourceArgs
+    public sealed class TeamArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Path where the github auth backend is mounted. Defaults to `github`
@@ -149,9 +148,10 @@ namespace Pulumi.Vault.GitHub
         public TeamArgs()
         {
         }
+        public static new TeamArgs Empty => new TeamArgs();
     }
 
-    public sealed class TeamState : Pulumi.ResourceArgs
+    public sealed class TeamState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Path where the github auth backend is mounted. Defaults to `github`
@@ -182,5 +182,6 @@ namespace Pulumi.Vault.GitHub
         public TeamState()
         {
         }
+        public static new TeamState Empty => new TeamState();
     }
 }

@@ -18,33 +18,36 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/consul"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/consul"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		test, err := consul.NewSecretBackend(ctx, "test", &consul.SecretBackendArgs{
-// 			Path:        pulumi.String("consul"),
-// 			Description: pulumi.String("Manages the Consul backend"),
-// 			Address:     pulumi.String("127.0.0.1:8500"),
-// 			Token:       pulumi.String("4240861b-ce3d-8530-115a-521ff070dd29"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = consul.NewSecretBackendRole(ctx, "example", &consul.SecretBackendRoleArgs{
-// 			Backend: test.Path,
-// 			Policies: pulumi.StringArray{
-// 				pulumi.String("example-policy"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			test, err := consul.NewSecretBackend(ctx, "test", &consul.SecretBackendArgs{
+//				Path:        pulumi.String("consul"),
+//				Description: pulumi.String("Manages the Consul backend"),
+//				Address:     pulumi.String("127.0.0.1:8500"),
+//				Token:       pulumi.String("4240861b-ce3d-8530-115a-521ff070dd29"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = consul.NewSecretBackendRole(ctx, "example", &consul.SecretBackendRoleArgs{
+//				Backend: test.Path,
+//				Policies: pulumi.StringArray{
+//					pulumi.String("example-policy"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -52,7 +55,9 @@ import (
 // Consul secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
 //
 // ```sh
-//  $ pulumi import vault:consul/secretBackendRole:SecretBackendRole example consul/roles/my-role
+//
+//	$ pulumi import vault:consul/secretBackendRole:SecretBackendRole example consul/roles/my-role
+//
 // ```
 type SecretBackendRole struct {
 	pulumi.CustomResourceState
@@ -245,7 +250,7 @@ func (i *SecretBackendRole) ToSecretBackendRoleOutputWithContext(ctx context.Con
 // SecretBackendRoleArrayInput is an input type that accepts SecretBackendRoleArray and SecretBackendRoleArrayOutput values.
 // You can construct a concrete instance of `SecretBackendRoleArrayInput` via:
 //
-//          SecretBackendRoleArray{ SecretBackendRoleArgs{...} }
+//	SecretBackendRoleArray{ SecretBackendRoleArgs{...} }
 type SecretBackendRoleArrayInput interface {
 	pulumi.Input
 
@@ -270,7 +275,7 @@ func (i SecretBackendRoleArray) ToSecretBackendRoleArrayOutputWithContext(ctx co
 // SecretBackendRoleMapInput is an input type that accepts SecretBackendRoleMap and SecretBackendRoleMapOutput values.
 // You can construct a concrete instance of `SecretBackendRoleMapInput` via:
 //
-//          SecretBackendRoleMap{ "key": SecretBackendRoleArgs{...} }
+//	SecretBackendRoleMap{ "key": SecretBackendRoleArgs{...} }
 type SecretBackendRoleMapInput interface {
 	pulumi.Input
 
@@ -304,6 +309,59 @@ func (o SecretBackendRoleOutput) ToSecretBackendRoleOutput() SecretBackendRoleOu
 
 func (o SecretBackendRoleOutput) ToSecretBackendRoleOutputWithContext(ctx context.Context) SecretBackendRoleOutput {
 	return o
+}
+
+// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
+func (o SecretBackendRoleOutput) Backend() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
+}
+
+// The Consul namespace that the token will be created in.
+// Applicable for Vault 1.10+ and Consul 1.7+",
+func (o SecretBackendRoleOutput) ConsulNamespace() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.ConsulNamespace }).(pulumi.StringOutput)
+}
+
+// Set of Consul roles to attach to the token.
+// Applicable for Vault 1.10+ with Consul 1.5+.
+func (o SecretBackendRoleOutput) ConsulRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.ConsulRoles }).(pulumi.StringArrayOutput)
+}
+
+// Indicates that the token should not be replicated globally and instead be local to the current datacenter.
+func (o SecretBackendRoleOutput) Local() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.Local }).(pulumi.BoolPtrOutput)
+}
+
+// Maximum TTL for leases associated with this role, in seconds.
+func (o SecretBackendRoleOutput) MaxTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.IntPtrOutput { return v.MaxTtl }).(pulumi.IntPtrOutput)
+}
+
+// The name of the Consul secrets engine role to create.
+func (o SecretBackendRoleOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The admin partition that the token will be created in.
+// Applicable for Vault 1.10+ and Consul 1.11+",
+func (o SecretBackendRoleOutput) Partition() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.Partition }).(pulumi.StringOutput)
+}
+
+// The list of Consul ACL policies to associate with these roles.
+func (o SecretBackendRoleOutput) Policies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.Policies }).(pulumi.StringArrayOutput)
+}
+
+// Specifies the type of token to create when using this role. Valid values are "client" or "management".
+func (o SecretBackendRoleOutput) TokenType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.TokenType }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the TTL for this role.
+func (o SecretBackendRoleOutput) Ttl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.IntPtrOutput { return v.Ttl }).(pulumi.IntPtrOutput)
 }
 
 type SecretBackendRoleArrayOutput struct{ *pulumi.OutputState }

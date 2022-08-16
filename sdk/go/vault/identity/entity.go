@@ -16,26 +16,29 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := identity.NewEntity(ctx, "test", &identity.EntityArgs{
-// 			Metadata: pulumi.StringMap{
-// 				"foo": pulumi.String("bar"),
-// 			},
-// 			Policies: pulumi.StringArray{
-// 				pulumi.String("test"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := identity.NewEntity(ctx, "test", &identity.EntityArgs{
+//				Metadata: pulumi.StringMap{
+//					"foo": pulumi.String("bar"),
+//				},
+//				Policies: pulumi.StringArray{
+//					pulumi.String("test"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -43,7 +46,9 @@ import (
 // Identity entity can be imported using the `id`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:identity/entity:Entity test "ae6f8ued-0f1a-9f6b-2915-1a2be20dc053"
+//
+//	$ pulumi import vault:identity/entity:Entity test "ae6f8ued-0f1a-9f6b-2915-1a2be20dc053"
+//
 // ```
 type Entity struct {
 	pulumi.CustomResourceState
@@ -171,7 +176,7 @@ func (i *Entity) ToEntityOutputWithContext(ctx context.Context) EntityOutput {
 // EntityArrayInput is an input type that accepts EntityArray and EntityArrayOutput values.
 // You can construct a concrete instance of `EntityArrayInput` via:
 //
-//          EntityArray{ EntityArgs{...} }
+//	EntityArray{ EntityArgs{...} }
 type EntityArrayInput interface {
 	pulumi.Input
 
@@ -196,7 +201,7 @@ func (i EntityArray) ToEntityArrayOutputWithContext(ctx context.Context) EntityA
 // EntityMapInput is an input type that accepts EntityMap and EntityMapOutput values.
 // You can construct a concrete instance of `EntityMapInput` via:
 //
-//          EntityMap{ "key": EntityArgs{...} }
+//	EntityMap{ "key": EntityArgs{...} }
 type EntityMapInput interface {
 	pulumi.Input
 
@@ -230,6 +235,31 @@ func (o EntityOutput) ToEntityOutput() EntityOutput {
 
 func (o EntityOutput) ToEntityOutputWithContext(ctx context.Context) EntityOutput {
 	return o
+}
+
+// True/false Is this entity currently disabled. Defaults to `false`
+func (o EntityOutput) Disabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Entity) pulumi.BoolPtrOutput { return v.Disabled }).(pulumi.BoolPtrOutput)
+}
+
+// `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
+func (o EntityOutput) ExternalPolicies() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Entity) pulumi.BoolPtrOutput { return v.ExternalPolicies }).(pulumi.BoolPtrOutput)
+}
+
+// A Map of additional metadata to associate with the user.
+func (o EntityOutput) Metadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Entity) pulumi.StringMapOutput { return v.Metadata }).(pulumi.StringMapOutput)
+}
+
+// Name of the identity entity to create.
+func (o EntityOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Entity) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// A list of policies to apply to the entity.
+func (o EntityOutput) Policies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Entity) pulumi.StringArrayOutput { return v.Policies }).(pulumi.StringArrayOutput)
 }
 
 type EntityArrayOutput struct{ *pulumi.OutputState }

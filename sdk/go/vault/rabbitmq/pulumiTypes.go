@@ -20,7 +20,7 @@ type SecretBackendRoleVhost struct {
 // SecretBackendRoleVhostInput is an input type that accepts SecretBackendRoleVhostArgs and SecretBackendRoleVhostOutput values.
 // You can construct a concrete instance of `SecretBackendRoleVhostInput` via:
 //
-//          SecretBackendRoleVhostArgs{...}
+//	SecretBackendRoleVhostArgs{...}
 type SecretBackendRoleVhostInput interface {
 	pulumi.Input
 
@@ -50,7 +50,7 @@ func (i SecretBackendRoleVhostArgs) ToSecretBackendRoleVhostOutputWithContext(ct
 // SecretBackendRoleVhostArrayInput is an input type that accepts SecretBackendRoleVhostArray and SecretBackendRoleVhostArrayOutput values.
 // You can construct a concrete instance of `SecretBackendRoleVhostArrayInput` via:
 //
-//          SecretBackendRoleVhostArray{ SecretBackendRoleVhostArgs{...} }
+//	SecretBackendRoleVhostArray{ SecretBackendRoleVhostArgs{...} }
 type SecretBackendRoleVhostArrayInput interface {
 	pulumi.Input
 
@@ -131,7 +131,7 @@ type SecretBackendRoleVhostTopic struct {
 // SecretBackendRoleVhostTopicInput is an input type that accepts SecretBackendRoleVhostTopicArgs and SecretBackendRoleVhostTopicOutput values.
 // You can construct a concrete instance of `SecretBackendRoleVhostTopicInput` via:
 //
-//          SecretBackendRoleVhostTopicArgs{...}
+//	SecretBackendRoleVhostTopicArgs{...}
 type SecretBackendRoleVhostTopicInput interface {
 	pulumi.Input
 
@@ -160,7 +160,7 @@ func (i SecretBackendRoleVhostTopicArgs) ToSecretBackendRoleVhostTopicOutputWith
 // SecretBackendRoleVhostTopicArrayInput is an input type that accepts SecretBackendRoleVhostTopicArray and SecretBackendRoleVhostTopicArrayOutput values.
 // You can construct a concrete instance of `SecretBackendRoleVhostTopicArrayInput` via:
 //
-//          SecretBackendRoleVhostTopicArray{ SecretBackendRoleVhostTopicArgs{...} }
+//	SecretBackendRoleVhostTopicArray{ SecretBackendRoleVhostTopicArgs{...} }
 type SecretBackendRoleVhostTopicArrayInput interface {
 	pulumi.Input
 
@@ -234,7 +234,7 @@ type SecretBackendRoleVhostTopicVhost struct {
 // SecretBackendRoleVhostTopicVhostInput is an input type that accepts SecretBackendRoleVhostTopicVhostArgs and SecretBackendRoleVhostTopicVhostOutput values.
 // You can construct a concrete instance of `SecretBackendRoleVhostTopicVhostInput` via:
 //
-//          SecretBackendRoleVhostTopicVhostArgs{...}
+//	SecretBackendRoleVhostTopicVhostArgs{...}
 type SecretBackendRoleVhostTopicVhostInput interface {
 	pulumi.Input
 
@@ -263,7 +263,7 @@ func (i SecretBackendRoleVhostTopicVhostArgs) ToSecretBackendRoleVhostTopicVhost
 // SecretBackendRoleVhostTopicVhostArrayInput is an input type that accepts SecretBackendRoleVhostTopicVhostArray and SecretBackendRoleVhostTopicVhostArrayOutput values.
 // You can construct a concrete instance of `SecretBackendRoleVhostTopicVhostArrayInput` via:
 //
-//          SecretBackendRoleVhostTopicVhostArray{ SecretBackendRoleVhostTopicVhostArgs{...} }
+//	SecretBackendRoleVhostTopicVhostArray{ SecretBackendRoleVhostTopicVhostArgs{...} }
 type SecretBackendRoleVhostTopicVhostArrayInput interface {
 	pulumi.Input
 

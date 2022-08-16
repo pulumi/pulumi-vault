@@ -21,24 +21,27 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/jwt"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/jwt"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := jwt.NewAuthBackend(ctx, "example", &jwt.AuthBackendArgs{
-// 			BoundIssuer:      pulumi.String("https://myco.auth0.com/"),
-// 			Description:      pulumi.String("Demonstration of the Terraform JWT auth backend"),
-// 			OidcDiscoveryUrl: pulumi.String("https://myco.auth0.com/"),
-// 			Path:             pulumi.String("jwt"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := jwt.NewAuthBackend(ctx, "example", &jwt.AuthBackendArgs{
+//				BoundIssuer:      pulumi.String("https://myco.auth0.com/"),
+//				Description:      pulumi.String("Demonstration of the Terraform JWT auth backend"),
+//				OidcDiscoveryUrl: pulumi.String("https://myco.auth0.com/"),
+//				Path:             pulumi.String("jwt"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // Manage OIDC auth backend:
@@ -47,30 +50,33 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/jwt"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/jwt"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := jwt.NewAuthBackend(ctx, "example", &jwt.AuthBackendArgs{
-// 			BoundIssuer:      pulumi.String("https://myco.auth0.com/"),
-// 			Description:      pulumi.String("Demonstration of the Terraform JWT auth backend"),
-// 			OidcClientId:     pulumi.String("1234567890"),
-// 			OidcClientSecret: pulumi.String("secret123456"),
-// 			OidcDiscoveryUrl: pulumi.String("https://myco.auth0.com/"),
-// 			Path:             pulumi.String("oidc"),
-// 			Tune: &jwt.AuthBackendTuneArgs{
-// 				ListingVisibility: pulumi.String("unauth"),
-// 			},
-// 			Type: pulumi.String("oidc"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := jwt.NewAuthBackend(ctx, "example", &jwt.AuthBackendArgs{
+//				BoundIssuer:      pulumi.String("https://myco.auth0.com/"),
+//				Description:      pulumi.String("Demonstration of the Terraform JWT auth backend"),
+//				OidcClientId:     pulumi.String("1234567890"),
+//				OidcClientSecret: pulumi.String("secret123456"),
+//				OidcDiscoveryUrl: pulumi.String("https://myco.auth0.com/"),
+//				Path:             pulumi.String("oidc"),
+//				Tune: &jwt.AuthBackendTuneArgs{
+//					ListingVisibility: pulumi.String("unauth"),
+//				},
+//				Type: pulumi.String("oidc"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // Configuring the auth backend with a `provider_config:
@@ -79,30 +85,33 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/jwt"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/jwt"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := jwt.NewAuthBackend(ctx, "gsuite", &jwt.AuthBackendArgs{
-// 			Description:      pulumi.String("OIDC backend"),
-// 			OidcDiscoveryUrl: pulumi.String("https://accounts.google.com"),
-// 			Path:             pulumi.String("oidc"),
-// 			ProviderConfig: pulumi.StringMap{
-// 				"fetch_groups":             pulumi.String("true"),
-// 				"fetch_user_info":          pulumi.String("true"),
-// 				"groups_recurse_max_depth": pulumi.String("1"),
-// 				"provider":                 pulumi.String("gsuite"),
-// 			},
-// 			Type: pulumi.String("oidc"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := jwt.NewAuthBackend(ctx, "gsuite", &jwt.AuthBackendArgs{
+//				Description:      pulumi.String("OIDC backend"),
+//				OidcDiscoveryUrl: pulumi.String("https://accounts.google.com"),
+//				Path:             pulumi.String("oidc"),
+//				ProviderConfig: pulumi.StringMap{
+//					"fetch_groups":             pulumi.String("true"),
+//					"fetch_user_info":          pulumi.String("true"),
+//					"groups_recurse_max_depth": pulumi.String("1"),
+//					"provider":                 pulumi.String("gsuite"),
+//				},
+//				Type: pulumi.String("oidc"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -110,13 +119,17 @@ import (
 // JWT auth backend can be imported using the `type`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:jwt/authBackend:AuthBackend oidc oidc
+//
+//	$ pulumi import vault:jwt/authBackend:AuthBackend oidc oidc
+//
 // ```
 //
-//  or
+//	or
 //
 // ```sh
-//  $ pulumi import vault:jwt/authBackend:AuthBackend jwt jwt
+//
+//	$ pulumi import vault:jwt/authBackend:AuthBackend jwt jwt
+//
 // ```
 type AuthBackend struct {
 	pulumi.CustomResourceState
@@ -385,7 +398,7 @@ func (i *AuthBackend) ToAuthBackendOutputWithContext(ctx context.Context) AuthBa
 // AuthBackendArrayInput is an input type that accepts AuthBackendArray and AuthBackendArrayOutput values.
 // You can construct a concrete instance of `AuthBackendArrayInput` via:
 //
-//          AuthBackendArray{ AuthBackendArgs{...} }
+//	AuthBackendArray{ AuthBackendArgs{...} }
 type AuthBackendArrayInput interface {
 	pulumi.Input
 
@@ -410,7 +423,7 @@ func (i AuthBackendArray) ToAuthBackendArrayOutputWithContext(ctx context.Contex
 // AuthBackendMapInput is an input type that accepts AuthBackendMap and AuthBackendMapOutput values.
 // You can construct a concrete instance of `AuthBackendMapInput` via:
 //
-//          AuthBackendMap{ "key": AuthBackendArgs{...} }
+//	AuthBackendMap{ "key": AuthBackendArgs{...} }
 type AuthBackendMapInput interface {
 	pulumi.Input
 
@@ -444,6 +457,105 @@ func (o AuthBackendOutput) ToAuthBackendOutput() AuthBackendOutput {
 
 func (o AuthBackendOutput) ToAuthBackendOutputWithContext(ctx context.Context) AuthBackendOutput {
 	return o
+}
+
+// The accessor for this auth method
+func (o AuthBackendOutput) Accessor() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Accessor }).(pulumi.StringOutput)
+}
+
+// The value against which to match the iss claim in a JWT
+func (o AuthBackendOutput) BoundIssuer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.BoundIssuer }).(pulumi.StringPtrOutput)
+}
+
+// The default role to use if none is provided during login
+func (o AuthBackendOutput) DefaultRole() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.DefaultRole }).(pulumi.StringPtrOutput)
+}
+
+// The description of the auth backend
+func (o AuthBackendOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
+func (o AuthBackendOutput) JwksCaPem() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.JwksCaPem }).(pulumi.StringPtrOutput)
+}
+
+// JWKS URL to use to authenticate signatures. Cannot be used with "oidcDiscoveryUrl" or "jwtValidationPubkeys".
+func (o AuthBackendOutput) JwksUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.JwksUrl }).(pulumi.StringPtrOutput)
+}
+
+// A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
+func (o AuthBackendOutput) JwtSupportedAlgs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringArrayOutput { return v.JwtSupportedAlgs }).(pulumi.StringArrayOutput)
+}
+
+// A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidcDiscoveryUrl`
+func (o AuthBackendOutput) JwtValidationPubkeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringArrayOutput { return v.JwtValidationPubkeys }).(pulumi.StringArrayOutput)
+}
+
+// Specifies if the auth method is local only.
+func (o AuthBackendOutput) Local() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.BoolPtrOutput { return v.Local }).(pulumi.BoolPtrOutput)
+}
+
+// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
+func (o AuthBackendOutput) NamespaceInState() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.BoolPtrOutput { return v.NamespaceInState }).(pulumi.BoolPtrOutput)
+}
+
+// Client ID used for OIDC backends
+func (o AuthBackendOutput) OidcClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.OidcClientId }).(pulumi.StringPtrOutput)
+}
+
+// Client Secret used for OIDC backends
+func (o AuthBackendOutput) OidcClientSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.OidcClientSecret }).(pulumi.StringPtrOutput)
+}
+
+// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
+func (o AuthBackendOutput) OidcDiscoveryCaPem() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.OidcDiscoveryCaPem }).(pulumi.StringPtrOutput)
+}
+
+// The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwtValidationPubkeys`
+func (o AuthBackendOutput) OidcDiscoveryUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.OidcDiscoveryUrl }).(pulumi.StringPtrOutput)
+}
+
+// The response mode to be used in the OAuth2 request. Allowed values are `query` and `formPost`. Defaults to `query`. If using Vault namespaces, and `oidcResponseMode` is `formPost`, then `namespaceInState` should be set to `false`.
+func (o AuthBackendOutput) OidcResponseMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.OidcResponseMode }).(pulumi.StringPtrOutput)
+}
+
+// List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to `["code"]`. Note: `idToken` may only be used if `oidcResponseMode` is set to `formPost`.
+func (o AuthBackendOutput) OidcResponseTypes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringArrayOutput { return v.OidcResponseTypes }).(pulumi.StringArrayOutput)
+}
+
+// Path to mount the JWT/OIDC auth backend
+func (o AuthBackendOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+// Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
+func (o AuthBackendOutput) ProviderConfig() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringMapOutput { return v.ProviderConfig }).(pulumi.StringMapOutput)
+}
+
+func (o AuthBackendOutput) Tune() AuthBackendTuneOutput {
+	return o.ApplyT(func(v *AuthBackend) AuthBackendTuneOutput { return v.Tune }).(AuthBackendTuneOutput)
+}
+
+// Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
+func (o AuthBackendOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
 }
 
 type AuthBackendArrayOutput struct{ *pulumi.OutputState }

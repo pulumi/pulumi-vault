@@ -17,31 +17,30 @@ namespace Pulumi.Vault.AppRole
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var approle = new Vault.AuthBackend("approle", new()
     ///     {
-    ///         var approle = new Vault.AuthBackend("approle", new Vault.AuthBackendArgs
-    ///         {
-    ///             Type = "approle",
-    ///         });
-    ///         var example = new Vault.AppRole.AuthBackendRole("example", new Vault.AppRole.AuthBackendRoleArgs
-    ///         {
-    ///             Backend = approle.Path,
-    ///             RoleName = "test-role",
-    ///             TokenPolicies = 
-    ///             {
-    ///                 "default",
-    ///                 "dev",
-    ///                 "prod",
-    ///             },
-    ///         });
-    ///     }
+    ///         Type = "approle",
+    ///     });
     /// 
-    /// }
+    ///     var example = new Vault.AppRole.AuthBackendRole("example", new()
+    ///     {
+    ///         Backend = approle.Path,
+    ///         RoleName = "test-role",
+    ///         TokenPolicies = new[]
+    ///         {
+    ///             "default",
+    ///             "dev",
+    ///             "prod",
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -53,7 +52,7 @@ namespace Pulumi.Vault.AppRole
     /// ```
     /// </summary>
     [VaultResourceType("vault:appRole/authBackendRole:AuthBackendRole")]
-    public partial class AuthBackendRole : Pulumi.CustomResource
+    public partial class AuthBackendRole : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The unique name of the auth backend to configure.
@@ -219,7 +218,7 @@ namespace Pulumi.Vault.AppRole
         }
     }
 
-    public sealed class AuthBackendRoleArgs : Pulumi.ResourceArgs
+    public sealed class AuthBackendRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The unique name of the auth backend to configure.
@@ -362,9 +361,10 @@ namespace Pulumi.Vault.AppRole
         public AuthBackendRoleArgs()
         {
         }
+        public static new AuthBackendRoleArgs Empty => new AuthBackendRoleArgs();
     }
 
-    public sealed class AuthBackendRoleState : Pulumi.ResourceArgs
+    public sealed class AuthBackendRoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The unique name of the auth backend to configure.
@@ -507,5 +507,6 @@ namespace Pulumi.Vault.AppRole
         public AuthBackendRoleState()
         {
         }
+        public static new AuthBackendRoleState Empty => new AuthBackendRoleState();
     }
 }

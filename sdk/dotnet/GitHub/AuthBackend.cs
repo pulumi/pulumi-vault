@@ -17,20 +17,18 @@ namespace Pulumi.Vault.GitHub
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var example = new Vault.GitHub.AuthBackend("example", new()
     ///     {
-    ///         var example = new Vault.GitHub.AuthBackend("example", new Vault.GitHub.AuthBackendArgs
-    ///         {
-    ///             Organization = "myorg",
-    ///         });
-    ///     }
+    ///         Organization = "myorg",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -42,7 +40,7 @@ namespace Pulumi.Vault.GitHub
     /// ```
     /// </summary>
     [VaultResourceType("vault:github/authBackend:AuthBackend")]
-    public partial class AuthBackend : Pulumi.CustomResource
+    public partial class AuthBackend : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
@@ -202,7 +200,7 @@ namespace Pulumi.Vault.GitHub
         }
     }
 
-    public sealed class AuthBackendArgs : Pulumi.ResourceArgs
+    public sealed class AuthBackendArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The API endpoint to use. Useful if you
@@ -327,9 +325,10 @@ namespace Pulumi.Vault.GitHub
         public AuthBackendArgs()
         {
         }
+        public static new AuthBackendArgs Empty => new AuthBackendArgs();
     }
 
-    public sealed class AuthBackendState : Pulumi.ResourceArgs
+    public sealed class AuthBackendState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
@@ -460,5 +459,6 @@ namespace Pulumi.Vault.GitHub
         public AuthBackendState()
         {
         }
+        public static new AuthBackendState Empty => new AuthBackendState();
     }
 }

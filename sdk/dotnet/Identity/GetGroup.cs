@@ -17,20 +17,18 @@ namespace Pulumi.Vault.Identity
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Vault = Pulumi.Vault;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @group = Vault.Identity.GetGroup.Invoke(new()
         ///     {
-        ///         var @group = Output.Create(Vault.Identity.GetGroup.InvokeAsync(new Vault.Identity.GetGroupArgs
-        ///         {
-        ///             GroupName = "user",
-        ///         }));
-        ///     }
+        ///         GroupName = "user",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -47,20 +45,18 @@ namespace Pulumi.Vault.Identity
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Vault = Pulumi.Vault;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @group = Vault.Identity.GetGroup.Invoke(new()
         ///     {
-        ///         var @group = Output.Create(Vault.Identity.GetGroup.InvokeAsync(new Vault.Identity.GetGroupArgs
-        ///         {
-        ///             GroupName = "user",
-        ///         }));
-        ///     }
+        ///         GroupName = "user",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -73,7 +69,7 @@ namespace Pulumi.Vault.Identity
     }
 
 
-    public sealed class GetGroupArgs : Pulumi.InvokeArgs
+    public sealed class GetGroupArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// ID of the alias.
@@ -110,9 +106,10 @@ namespace Pulumi.Vault.Identity
         public GetGroupArgs()
         {
         }
+        public static new GetGroupArgs Empty => new GetGroupArgs();
     }
 
-    public sealed class GetGroupInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetGroupInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// ID of the alias.
@@ -149,6 +146,7 @@ namespace Pulumi.Vault.Identity
         public GetGroupInvokeArgs()
         {
         }
+        public static new GetGroupInvokeArgs Empty => new GetGroupInvokeArgs();
     }
 
 

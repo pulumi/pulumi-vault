@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Azure.Inputs
 {
 
-    public sealed class BackendRoleAzureGroupArgs : Pulumi.ResourceArgs
+    public sealed class BackendRoleAzureGroupArgs : global::Pulumi.ResourceArgs
     {
         [Input("groupName", required: true)]
         public Input<string> GroupName { get; set; } = null!;
@@ -21,5 +21,6 @@ namespace Pulumi.Vault.Azure.Inputs
         public BackendRoleAzureGroupArgs()
         {
         }
+        public static new BackendRoleAzureGroupArgs Empty => new BackendRoleAzureGroupArgs();
     }
 }

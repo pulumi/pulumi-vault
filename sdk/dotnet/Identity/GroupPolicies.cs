@@ -16,81 +16,80 @@ namespace Pulumi.Vault.Identity
     /// ### Exclusive Policies
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var @internal = new Vault.Identity.Group("internal", new()
     ///     {
-    ///         var @internal = new Vault.Identity.Group("internal", new Vault.Identity.GroupArgs
+    ///         Type = "internal",
+    ///         ExternalPolicies = true,
+    ///         Metadata = 
     ///         {
-    ///             Type = "internal",
-    ///             ExternalPolicies = true,
-    ///             Metadata = 
-    ///             {
-    ///                 { "version", "2" },
-    ///             },
-    ///         });
-    ///         var policies = new Vault.Identity.GroupPolicies("policies", new Vault.Identity.GroupPoliciesArgs
-    ///         {
-    ///             Policies = 
-    ///             {
-    ///                 "default",
-    ///                 "test",
-    ///             },
-    ///             Exclusive = true,
-    ///             GroupId = @internal.Id,
-    ///         });
-    ///     }
+    ///             { "version", "2" },
+    ///         },
+    ///     });
     /// 
-    /// }
+    ///     var policies = new Vault.Identity.GroupPolicies("policies", new()
+    ///     {
+    ///         Policies = new[]
+    ///         {
+    ///             "default",
+    ///             "test",
+    ///         },
+    ///         Exclusive = true,
+    ///         GroupId = @internal.Id,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// ### Non-exclusive Policies
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var @internal = new Vault.Identity.Group("internal", new()
     ///     {
-    ///         var @internal = new Vault.Identity.Group("internal", new Vault.Identity.GroupArgs
+    ///         Type = "internal",
+    ///         ExternalPolicies = true,
+    ///         Metadata = 
     ///         {
-    ///             Type = "internal",
-    ///             ExternalPolicies = true,
-    ///             Metadata = 
-    ///             {
-    ///                 { "version", "2" },
-    ///             },
-    ///         });
-    ///         var @default = new Vault.Identity.GroupPolicies("default", new Vault.Identity.GroupPoliciesArgs
-    ///         {
-    ///             Policies = 
-    ///             {
-    ///                 "default",
-    ///                 "test",
-    ///             },
-    ///             Exclusive = false,
-    ///             GroupId = @internal.Id,
-    ///         });
-    ///         var others = new Vault.Identity.GroupPolicies("others", new Vault.Identity.GroupPoliciesArgs
-    ///         {
-    ///             Policies = 
-    ///             {
-    ///                 "others",
-    ///             },
-    ///             Exclusive = false,
-    ///             GroupId = @internal.Id,
-    ///         });
-    ///     }
+    ///             { "version", "2" },
+    ///         },
+    ///     });
     /// 
-    /// }
+    ///     var @default = new Vault.Identity.GroupPolicies("default", new()
+    ///     {
+    ///         Policies = new[]
+    ///         {
+    ///             "default",
+    ///             "test",
+    ///         },
+    ///         Exclusive = false,
+    ///         GroupId = @internal.Id,
+    ///     });
+    /// 
+    ///     var others = new Vault.Identity.GroupPolicies("others", new()
+    ///     {
+    ///         Policies = new[]
+    ///         {
+    ///             "others",
+    ///         },
+    ///         Exclusive = false,
+    ///         GroupId = @internal.Id,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// </summary>
     [VaultResourceType("vault:identity/groupPolicies:GroupPolicies")]
-    public partial class GroupPolicies : Pulumi.CustomResource
+    public partial class GroupPolicies : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Defaults to `true`.
@@ -160,7 +159,7 @@ namespace Pulumi.Vault.Identity
         }
     }
 
-    public sealed class GroupPoliciesArgs : Pulumi.ResourceArgs
+    public sealed class GroupPoliciesArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Defaults to `true`.
@@ -189,9 +188,10 @@ namespace Pulumi.Vault.Identity
         public GroupPoliciesArgs()
         {
         }
+        public static new GroupPoliciesArgs Empty => new GroupPoliciesArgs();
     }
 
-    public sealed class GroupPoliciesState : Pulumi.ResourceArgs
+    public sealed class GroupPoliciesState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Defaults to `true`.
@@ -226,5 +226,6 @@ namespace Pulumi.Vault.Identity
         public GroupPoliciesState()
         {
         }
+        public static new GroupPoliciesState Empty => new GroupPoliciesState();
     }
 }

@@ -16,30 +16,33 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/aws"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/aws"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		exampleAuthBackend, err := vault.NewAuthBackend(ctx, "exampleAuthBackend", &vault.AuthBackendArgs{
-// 			Type: pulumi.String("aws"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = aws.NewAuthBackendClient(ctx, "exampleAuthBackendClient", &aws.AuthBackendClientArgs{
-// 			Backend:   exampleAuthBackend.Path,
-// 			AccessKey: pulumi.String("INSERT_AWS_ACCESS_KEY"),
-// 			SecretKey: pulumi.String("INSERT_AWS_SECRET_KEY"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleAuthBackend, err := vault.NewAuthBackend(ctx, "exampleAuthBackend", &vault.AuthBackendArgs{
+//				Type: pulumi.String("aws"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = aws.NewAuthBackendClient(ctx, "exampleAuthBackendClient", &aws.AuthBackendClientArgs{
+//				Backend:   exampleAuthBackend.Path,
+//				AccessKey: pulumi.String("INSERT_AWS_ACCESS_KEY"),
+//				SecretKey: pulumi.String("INSERT_AWS_SECRET_KEY"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -47,7 +50,9 @@ import (
 // AWS auth backend clients can be imported using `auth/`, the `backend` path, and `/config/client` e.g.
 //
 // ```sh
-//  $ pulumi import vault:aws/authBackendClient:AuthBackendClient example auth/aws/config/client
+//
+//	$ pulumi import vault:aws/authBackendClient:AuthBackendClient example auth/aws/config/client
+//
 // ```
 type AuthBackendClient struct {
 	pulumi.CustomResourceState
@@ -250,7 +255,7 @@ func (i *AuthBackendClient) ToAuthBackendClientOutputWithContext(ctx context.Con
 // AuthBackendClientArrayInput is an input type that accepts AuthBackendClientArray and AuthBackendClientArrayOutput values.
 // You can construct a concrete instance of `AuthBackendClientArrayInput` via:
 //
-//          AuthBackendClientArray{ AuthBackendClientArgs{...} }
+//	AuthBackendClientArray{ AuthBackendClientArgs{...} }
 type AuthBackendClientArrayInput interface {
 	pulumi.Input
 
@@ -275,7 +280,7 @@ func (i AuthBackendClientArray) ToAuthBackendClientArrayOutputWithContext(ctx co
 // AuthBackendClientMapInput is an input type that accepts AuthBackendClientMap and AuthBackendClientMapOutput values.
 // You can construct a concrete instance of `AuthBackendClientMapInput` via:
 //
-//          AuthBackendClientMap{ "key": AuthBackendClientArgs{...} }
+//	AuthBackendClientMap{ "key": AuthBackendClientArgs{...} }
 type AuthBackendClientMapInput interface {
 	pulumi.Input
 
@@ -309,6 +314,55 @@ func (o AuthBackendClientOutput) ToAuthBackendClientOutput() AuthBackendClientOu
 
 func (o AuthBackendClientOutput) ToAuthBackendClientOutputWithContext(ctx context.Context) AuthBackendClientOutput {
 	return o
+}
+
+// The AWS access key that Vault should use for the
+// auth backend.
+func (o AuthBackendClientOutput) AccessKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendClient) pulumi.StringPtrOutput { return v.AccessKey }).(pulumi.StringPtrOutput)
+}
+
+// The path the AWS auth backend being configured was
+// mounted at.  Defaults to `aws`.
+func (o AuthBackendClientOutput) Backend() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendClient) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
+}
+
+// Override the URL Vault uses when making EC2 API
+// calls.
+func (o AuthBackendClientOutput) Ec2Endpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendClient) pulumi.StringPtrOutput { return v.Ec2Endpoint }).(pulumi.StringPtrOutput)
+}
+
+// Override the URL Vault uses when making IAM API
+// calls.
+func (o AuthBackendClientOutput) IamEndpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendClient) pulumi.StringPtrOutput { return v.IamEndpoint }).(pulumi.StringPtrOutput)
+}
+
+// The value to require in the
+// `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
+// that are used in the IAM auth method.
+func (o AuthBackendClientOutput) IamServerIdHeaderValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendClient) pulumi.StringPtrOutput { return v.IamServerIdHeaderValue }).(pulumi.StringPtrOutput)
+}
+
+// The AWS secret key that Vault should use for the
+// auth backend.
+func (o AuthBackendClientOutput) SecretKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendClient) pulumi.StringPtrOutput { return v.SecretKey }).(pulumi.StringPtrOutput)
+}
+
+// Override the URL Vault uses when making STS API
+// calls.
+func (o AuthBackendClientOutput) StsEndpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendClient) pulumi.StringPtrOutput { return v.StsEndpoint }).(pulumi.StringPtrOutput)
+}
+
+// Override the default region when making STS API
+// calls. The `stsEndpoint` argument must be set when using `stsRegion`.
+func (o AuthBackendClientOutput) StsRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendClient) pulumi.StringPtrOutput { return v.StsRegion }).(pulumi.StringPtrOutput)
 }
 
 type AuthBackendClientArrayOutput struct{ *pulumi.OutputState }

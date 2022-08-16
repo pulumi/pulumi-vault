@@ -21,33 +21,36 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kubernetes"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kubernetes"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		kubernetes, err := vault.NewAuthBackend(ctx, "kubernetes", &vault.AuthBackendArgs{
-// 			Type: pulumi.String("kubernetes"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = kubernetes.NewAuthBackendConfig(ctx, "example", &kubernetes.AuthBackendConfigArgs{
-// 			Backend:              kubernetes.Path,
-// 			KubernetesHost:       pulumi.String("http://example.com:443"),
-// 			KubernetesCaCert:     pulumi.String("-----BEGIN CERTIFICATE-----\nexample\n-----END CERTIFICATE-----"),
-// 			TokenReviewerJwt:     pulumi.String("ZXhhbXBsZQo="),
-// 			Issuer:               pulumi.String("api"),
-// 			DisableIssValidation: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			kubernetes, err := vault.NewAuthBackend(ctx, "kubernetes", &vault.AuthBackendArgs{
+//				Type: pulumi.String("kubernetes"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = kubernetes.NewAuthBackendConfig(ctx, "example", &kubernetes.AuthBackendConfigArgs{
+//				Backend:              kubernetes.Path,
+//				KubernetesHost:       pulumi.String("http://example.com:443"),
+//				KubernetesCaCert:     pulumi.String("-----BEGIN CERTIFICATE-----\nexample\n-----END CERTIFICATE-----"),
+//				TokenReviewerJwt:     pulumi.String("ZXhhbXBsZQo="),
+//				Issuer:               pulumi.String("api"),
+//				DisableIssValidation: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -55,7 +58,9 @@ import (
 // Kubernetes authentication backend can be imported using the `path`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:kubernetes/authBackendConfig:AuthBackendConfig config auth/kubernetes/config
+//
+//	$ pulumi import vault:kubernetes/authBackendConfig:AuthBackendConfig config auth/kubernetes/config
+//
 // ```
 type AuthBackendConfig struct {
 	pulumi.CustomResourceState
@@ -216,7 +221,7 @@ func (i *AuthBackendConfig) ToAuthBackendConfigOutputWithContext(ctx context.Con
 // AuthBackendConfigArrayInput is an input type that accepts AuthBackendConfigArray and AuthBackendConfigArrayOutput values.
 // You can construct a concrete instance of `AuthBackendConfigArrayInput` via:
 //
-//          AuthBackendConfigArray{ AuthBackendConfigArgs{...} }
+//	AuthBackendConfigArray{ AuthBackendConfigArgs{...} }
 type AuthBackendConfigArrayInput interface {
 	pulumi.Input
 
@@ -241,7 +246,7 @@ func (i AuthBackendConfigArray) ToAuthBackendConfigArrayOutputWithContext(ctx co
 // AuthBackendConfigMapInput is an input type that accepts AuthBackendConfigMap and AuthBackendConfigMapOutput values.
 // You can construct a concrete instance of `AuthBackendConfigMapInput` via:
 //
-//          AuthBackendConfigMap{ "key": AuthBackendConfigArgs{...} }
+//	AuthBackendConfigMap{ "key": AuthBackendConfigArgs{...} }
 type AuthBackendConfigMapInput interface {
 	pulumi.Input
 
@@ -275,6 +280,46 @@ func (o AuthBackendConfigOutput) ToAuthBackendConfigOutput() AuthBackendConfigOu
 
 func (o AuthBackendConfigOutput) ToAuthBackendConfigOutputWithContext(ctx context.Context) AuthBackendConfigOutput {
 	return o
+}
+
+// Unique name of the kubernetes backend to configure.
+func (o AuthBackendConfigOutput) Backend() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
+}
+
+// Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+func (o AuthBackendConfigOutput) DisableIssValidation() pulumi.BoolOutput {
+	return o.ApplyT(func(v *AuthBackendConfig) pulumi.BoolOutput { return v.DisableIssValidation }).(pulumi.BoolOutput)
+}
+
+// Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+func (o AuthBackendConfigOutput) DisableLocalCaJwt() pulumi.BoolOutput {
+	return o.ApplyT(func(v *AuthBackendConfig) pulumi.BoolOutput { return v.DisableLocalCaJwt }).(pulumi.BoolOutput)
+}
+
+// JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
+func (o AuthBackendConfigOutput) Issuer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringPtrOutput { return v.Issuer }).(pulumi.StringPtrOutput)
+}
+
+// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
+func (o AuthBackendConfigOutput) KubernetesCaCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringOutput { return v.KubernetesCaCert }).(pulumi.StringOutput)
+}
+
+// Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
+func (o AuthBackendConfigOutput) KubernetesHost() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringOutput { return v.KubernetesHost }).(pulumi.StringOutput)
+}
+
+// List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
+func (o AuthBackendConfigOutput) PemKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringArrayOutput { return v.PemKeys }).(pulumi.StringArrayOutput)
+}
+
+// A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+func (o AuthBackendConfigOutput) TokenReviewerJwt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringPtrOutput { return v.TokenReviewerJwt }).(pulumi.StringPtrOutput)
 }
 
 type AuthBackendConfigArrayOutput struct{ *pulumi.OutputState }

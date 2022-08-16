@@ -21,31 +21,34 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		userpass, err := vault.NewAuthBackend(ctx, "userpass", &vault.AuthBackendArgs{
-// 			Type: pulumi.String("userpass"),
-// 			Path: pulumi.String("userpass"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = vault.NewMfaDuo(ctx, "myDuo", &vault.MfaDuoArgs{
-// 			MountAccessor:  userpass.Accessor,
-// 			SecretKey:      pulumi.String("8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz"),
-// 			IntegrationKey: pulumi.String("BIACEUEAXI20BNWTEYXT"),
-// 			ApiHostname:    pulumi.String("api-2b5c39f5.duosecurity.com"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			userpass, err := vault.NewAuthBackend(ctx, "userpass", &vault.AuthBackendArgs{
+//				Type: pulumi.String("userpass"),
+//				Path: pulumi.String("userpass"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vault.NewMfaDuo(ctx, "myDuo", &vault.MfaDuoArgs{
+//				MountAccessor:  userpass.Accessor,
+//				SecretKey:      pulumi.String("8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz"),
+//				IntegrationKey: pulumi.String("BIACEUEAXI20BNWTEYXT"),
+//				ApiHostname:    pulumi.String("api-2b5c39f5.duosecurity.com"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -53,7 +56,9 @@ import (
 // Mounts can be imported using the `path`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:index/mfaDuo:MfaDuo my_duo my_duo
+//
+//	$ pulumi import vault:index/mfaDuo:MfaDuo my_duo my_duo
+//
 // ```
 type MfaDuo struct {
 	pulumi.CustomResourceState
@@ -233,7 +238,7 @@ func (i *MfaDuo) ToMfaDuoOutputWithContext(ctx context.Context) MfaDuoOutput {
 // MfaDuoArrayInput is an input type that accepts MfaDuoArray and MfaDuoArrayOutput values.
 // You can construct a concrete instance of `MfaDuoArrayInput` via:
 //
-//          MfaDuoArray{ MfaDuoArgs{...} }
+//	MfaDuoArray{ MfaDuoArgs{...} }
 type MfaDuoArrayInput interface {
 	pulumi.Input
 
@@ -258,7 +263,7 @@ func (i MfaDuoArray) ToMfaDuoArrayOutputWithContext(ctx context.Context) MfaDuoA
 // MfaDuoMapInput is an input type that accepts MfaDuoMap and MfaDuoMapOutput values.
 // You can construct a concrete instance of `MfaDuoMapInput` via:
 //
-//          MfaDuoMap{ "key": MfaDuoArgs{...} }
+//	MfaDuoMap{ "key": MfaDuoArgs{...} }
 type MfaDuoMapInput interface {
 	pulumi.Input
 
@@ -292,6 +297,45 @@ func (o MfaDuoOutput) ToMfaDuoOutput() MfaDuoOutput {
 
 func (o MfaDuoOutput) ToMfaDuoOutputWithContext(ctx context.Context) MfaDuoOutput {
 	return o
+}
+
+// `(string: <required>)` - API hostname for Duo.
+func (o MfaDuoOutput) ApiHostname() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaDuo) pulumi.StringOutput { return v.ApiHostname }).(pulumi.StringOutput)
+}
+
+// `(string: <required>)` - Integration key for Duo.
+func (o MfaDuoOutput) IntegrationKey() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaDuo) pulumi.StringOutput { return v.IntegrationKey }).(pulumi.StringOutput)
+}
+
+// `(string: <required>)` - The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
+func (o MfaDuoOutput) MountAccessor() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaDuo) pulumi.StringOutput { return v.MountAccessor }).(pulumi.StringOutput)
+}
+
+// `(string: <required>)` – Name of the MFA method.
+func (o MfaDuoOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaDuo) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// `(string)` - Push information for Duo.
+func (o MfaDuoOutput) PushInfo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MfaDuo) pulumi.StringPtrOutput { return v.PushInfo }).(pulumi.StringPtrOutput)
+}
+
+// `(string: <required>)` - Secret key for Duo.
+func (o MfaDuoOutput) SecretKey() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaDuo) pulumi.StringOutput { return v.SecretKey }).(pulumi.StringOutput)
+}
+
+// `(string)` - A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
+// - alias.name: The name returned by the mount configured via the `mountAccessor` parameter
+// - entity.name: The name configured for the Entity
+// - alias.metadata.`<key>`: The value of the Alias's metadata parameter
+// - entity.metadata.`<key>`: The value of the Entity's metadata parameter
+func (o MfaDuoOutput) UsernameFormat() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MfaDuo) pulumi.StringPtrOutput { return v.UsernameFormat }).(pulumi.StringPtrOutput)
 }
 
 type MfaDuoArrayOutput struct{ *pulumi.OutputState }

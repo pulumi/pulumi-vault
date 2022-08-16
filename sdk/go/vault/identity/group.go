@@ -21,28 +21,31 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := identity.NewGroup(ctx, "internal", &identity.GroupArgs{
-// 			Metadata: pulumi.StringMap{
-// 				"version": pulumi.String("2"),
-// 			},
-// 			Policies: pulumi.StringArray{
-// 				pulumi.String("dev"),
-// 				pulumi.String("test"),
-// 			},
-// 			Type: pulumi.String("internal"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := identity.NewGroup(ctx, "internal", &identity.GroupArgs{
+//				Metadata: pulumi.StringMap{
+//					"version": pulumi.String("2"),
+//				},
+//				Policies: pulumi.StringArray{
+//					pulumi.String("dev"),
+//					pulumi.String("test"),
+//				},
+//				Type: pulumi.String("internal"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ### External Group
 //
@@ -50,27 +53,30 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := identity.NewGroup(ctx, "group", &identity.GroupArgs{
-// 			Metadata: pulumi.StringMap{
-// 				"version": pulumi.String("1"),
-// 			},
-// 			Policies: pulumi.StringArray{
-// 				pulumi.String("test"),
-// 			},
-// 			Type: pulumi.String("external"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := identity.NewGroup(ctx, "group", &identity.GroupArgs{
+//				Metadata: pulumi.StringMap{
+//					"version": pulumi.String("1"),
+//				},
+//				Policies: pulumi.StringArray{
+//					pulumi.String("test"),
+//				},
+//				Type: pulumi.String("external"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ## Caveats
 //
@@ -82,41 +88,44 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := identity.NewGroup(ctx, "internalIdentity/groupGroup", &identity.GroupArgs{
-// 			Metadata: pulumi.StringMap{
-// 				"version": pulumi.String("2"),
-// 			},
-// 			Policies: pulumi.StringArray{
-// 				pulumi.String("dev"),
-// 				pulumi.String("test"),
-// 			},
-// 			Type: pulumi.String("internal"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = identity.NewGroup(ctx, "internalGroup", &identity.GroupArgs{
-// 			Metadata: pulumi.StringMap{
-// 				"version": pulumi.String("2"),
-// 			},
-// 			Policies: pulumi.StringArray{
-// 				pulumi.String("dev"),
-// 				pulumi.String("test"),
-// 			},
-// 			Type: pulumi.String("internal"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := identity.NewGroup(ctx, "internalIdentity/groupGroup", &identity.GroupArgs{
+//				Metadata: pulumi.StringMap{
+//					"version": pulumi.String("2"),
+//				},
+//				Policies: pulumi.StringArray{
+//					pulumi.String("dev"),
+//					pulumi.String("test"),
+//				},
+//				Type: pulumi.String("internal"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = identity.NewGroup(ctx, "internalGroup", &identity.GroupArgs{
+//				Metadata: pulumi.StringMap{
+//					"version": pulumi.String("2"),
+//				},
+//				Policies: pulumi.StringArray{
+//					pulumi.String("dev"),
+//					pulumi.String("test"),
+//				},
+//				Type: pulumi.String("internal"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -124,7 +133,9 @@ import (
 // Identity group can be imported using the `id`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:identity/group:Group test 'fcbf1efb-2b69-4209-bed8-811e3475dad3'
+//
+//	$ pulumi import vault:identity/group:Group test 'fcbf1efb-2b69-4209-bed8-811e3475dad3'
+//
 // ```
 type Group struct {
 	pulumi.CustomResourceState
@@ -282,7 +293,7 @@ func (i *Group) ToGroupOutputWithContext(ctx context.Context) GroupOutput {
 // GroupArrayInput is an input type that accepts GroupArray and GroupArrayOutput values.
 // You can construct a concrete instance of `GroupArrayInput` via:
 //
-//          GroupArray{ GroupArgs{...} }
+//	GroupArray{ GroupArgs{...} }
 type GroupArrayInput interface {
 	pulumi.Input
 
@@ -307,7 +318,7 @@ func (i GroupArray) ToGroupArrayOutputWithContext(ctx context.Context) GroupArra
 // GroupMapInput is an input type that accepts GroupMap and GroupMapOutput values.
 // You can construct a concrete instance of `GroupMapInput` via:
 //
-//          GroupMap{ "key": GroupArgs{...} }
+//	GroupMap{ "key": GroupArgs{...} }
 type GroupMapInput interface {
 	pulumi.Input
 
@@ -341,6 +352,46 @@ func (o GroupOutput) ToGroupOutput() GroupOutput {
 
 func (o GroupOutput) ToGroupOutputWithContext(ctx context.Context) GroupOutput {
 	return o
+}
+
+// `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
+func (o GroupOutput) ExternalMemberEntityIds() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Group) pulumi.BoolPtrOutput { return v.ExternalMemberEntityIds }).(pulumi.BoolPtrOutput)
+}
+
+// `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+func (o GroupOutput) ExternalPolicies() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Group) pulumi.BoolPtrOutput { return v.ExternalPolicies }).(pulumi.BoolPtrOutput)
+}
+
+// A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
+func (o GroupOutput) MemberEntityIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Group) pulumi.StringArrayOutput { return v.MemberEntityIds }).(pulumi.StringArrayOutput)
+}
+
+// A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
+func (o GroupOutput) MemberGroupIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Group) pulumi.StringArrayOutput { return v.MemberGroupIds }).(pulumi.StringArrayOutput)
+}
+
+// A Map of additional metadata to associate with the group.
+func (o GroupOutput) Metadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Group) pulumi.StringMapOutput { return v.Metadata }).(pulumi.StringMapOutput)
+}
+
+// Name of the identity group to create.
+func (o GroupOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Group) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// A list of policies to apply to the group.
+func (o GroupOutput) Policies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Group) pulumi.StringArrayOutput { return v.Policies }).(pulumi.StringArrayOutput)
+}
+
+// Type of the group, internal or external. Defaults to `internal`.
+func (o GroupOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Group) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
 }
 
 type GroupArrayOutput struct{ *pulumi.OutputState }

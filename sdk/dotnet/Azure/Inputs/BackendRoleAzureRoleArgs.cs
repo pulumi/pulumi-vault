@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Azure.Inputs
 {
 
-    public sealed class BackendRoleAzureRoleArgs : Pulumi.ResourceArgs
+    public sealed class BackendRoleAzureRoleArgs : global::Pulumi.ResourceArgs
     {
         [Input("roleId")]
         public Input<string>? RoleId { get; set; }
@@ -24,5 +24,6 @@ namespace Pulumi.Vault.Azure.Inputs
         public BackendRoleAzureRoleArgs()
         {
         }
+        public static new BackendRoleAzureRoleArgs Empty => new BackendRoleAzureRoleArgs();
     }
 }

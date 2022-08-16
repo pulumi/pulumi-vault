@@ -17,27 +17,26 @@ namespace Pulumi.Vault.Kmip
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var @default = new Vault.Kmip.SecretBackend("default", new()
     ///     {
-    ///         var @default = new Vault.Kmip.SecretBackend("default", new Vault.Kmip.SecretBackendArgs
-    ///         {
-    ///             Path = "kmip",
-    ///             Description = "Vault KMIP backend",
-    ///         });
-    ///         var dev = new Vault.Kmip.SecretScope("dev", new Vault.Kmip.SecretScopeArgs
-    ///         {
-    ///             Path = @default.Path,
-    ///             Scope = "dev",
-    ///             Force = true,
-    ///         });
-    ///     }
+    ///         Path = "kmip",
+    ///         Description = "Vault KMIP backend",
+    ///     });
     /// 
-    /// }
+    ///     var dev = new Vault.Kmip.SecretScope("dev", new()
+    ///     {
+    ///         Path = @default.Path,
+    ///         Scope = "dev",
+    ///         Force = true,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -49,7 +48,7 @@ namespace Pulumi.Vault.Kmip
     /// ```
     /// </summary>
     [VaultResourceType("vault:kmip/secretScope:SecretScope")]
-    public partial class SecretScope : Pulumi.CustomResource
+    public partial class SecretScope : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Boolean field to force deletion even if there are managed objects in the scope.
@@ -114,7 +113,7 @@ namespace Pulumi.Vault.Kmip
         }
     }
 
-    public sealed class SecretScopeArgs : Pulumi.ResourceArgs
+    public sealed class SecretScopeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Boolean field to force deletion even if there are managed objects in the scope.
@@ -138,9 +137,10 @@ namespace Pulumi.Vault.Kmip
         public SecretScopeArgs()
         {
         }
+        public static new SecretScopeArgs Empty => new SecretScopeArgs();
     }
 
-    public sealed class SecretScopeState : Pulumi.ResourceArgs
+    public sealed class SecretScopeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Boolean field to force deletion even if there are managed objects in the scope.
@@ -164,5 +164,6 @@ namespace Pulumi.Vault.Kmip
         public SecretScopeState()
         {
         }
+        public static new SecretScopeState Empty => new SecretScopeState();
     }
 }

@@ -13,70 +13,70 @@ namespace Pulumi.Vault.Database
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var db = new Vault.Database.SecretsMount("db", new()
     ///     {
-    ///         var db = new Vault.Database.SecretsMount("db", new Vault.Database.SecretsMountArgs
+    ///         Path = "db",
+    ///         Mssqls = new[]
     ///         {
-    ///             Path = "db",
-    ///             Mssqls = 
+    ///             new Vault.Database.Inputs.SecretsMountMssqlArgs
     ///             {
-    ///                 new Vault.Database.Inputs.SecretsMountMssqlArgs
+    ///                 Name = "db1",
+    ///                 Username = "sa",
+    ///                 Password = "super_secret_1",
+    ///                 ConnectionUrl = "sqlserver://{{username}}:{{password}}@127.0.0.1:1433",
+    ///                 AllowedRoles = new[]
     ///                 {
-    ///                     Name = "db1",
-    ///                     Username = "sa",
-    ///                     Password = "super_secret_1",
-    ///                     ConnectionUrl = "sqlserver://{{username}}:{{password}}@127.0.0.1:1433",
-    ///                     AllowedRoles = 
-    ///                     {
-    ///                         "dev1",
-    ///                     },
+    ///                     "dev1",
     ///                 },
     ///             },
-    ///             Postgresqls = 
+    ///         },
+    ///         Postgresqls = new[]
+    ///         {
+    ///             new Vault.Database.Inputs.SecretsMountPostgresqlArgs
     ///             {
-    ///                 new Vault.Database.Inputs.SecretsMountPostgresqlArgs
+    ///                 Name = "db2",
+    ///                 Username = "postgres",
+    ///                 Password = "super_secret_2",
+    ///                 ConnectionUrl = "postgresql://{{username}}:{{password}}@127.0.0.1:5432/postgres",
+    ///                 VerifyConnection = true,
+    ///                 AllowedRoles = new[]
     ///                 {
-    ///                     Name = "db2",
-    ///                     Username = "postgres",
-    ///                     Password = "super_secret_2",
-    ///                     ConnectionUrl = "postgresql://{{username}}:{{password}}@127.0.0.1:5432/postgres",
-    ///                     VerifyConnection = true,
-    ///                     AllowedRoles = 
-    ///                     {
-    ///                         "dev2",
-    ///                     },
+    ///                     "dev2",
     ///                 },
     ///             },
-    ///         });
-    ///         var dev1 = new Vault.Database.SecretBackendRole("dev1", new Vault.Database.SecretBackendRoleArgs
-    ///         {
-    ///             Backend = db.Path,
-    ///             DbName = db.Mssqls.Apply(mssqls =&gt; mssqls?[0]?.Name),
-    ///             CreationStatements = 
-    ///             {
-    ///                 "CREATE LOGIN [{{name}}] WITH PASSWORD = '{{password}}';",
-    ///                 "CREATE USER [{{name}}] FOR LOGIN [{{name}}];",
-    ///                 "GRANT SELECT ON SCHEMA::dbo TO [{{name}}];",
-    ///             },
-    ///         });
-    ///         var dev2 = new Vault.Database.SecretBackendRole("dev2", new Vault.Database.SecretBackendRoleArgs
-    ///         {
-    ///             Backend = db.Path,
-    ///             DbName = db.Postgresqls.Apply(postgresqls =&gt; postgresqls?[0]?.Name),
-    ///             CreationStatements = 
-    ///             {
-    ///                 "CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';",
-    ///                 "GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"{{name}}\";",
-    ///             },
-    ///         });
-    ///     }
+    ///         },
+    ///     });
     /// 
-    /// }
+    ///     var dev1 = new Vault.Database.SecretBackendRole("dev1", new()
+    ///     {
+    ///         Backend = db.Path,
+    ///         DbName = db.Mssqls.Apply(mssqls =&gt; mssqls[0]?.Name),
+    ///         CreationStatements = new[]
+    ///         {
+    ///             "CREATE LOGIN [{{name}}] WITH PASSWORD = '{{password}}';",
+    ///             "CREATE USER [{{name}}] FOR LOGIN [{{name}}];",
+    ///             "GRANT SELECT ON SCHEMA::dbo TO [{{name}}];",
+    ///         },
+    ///     });
+    /// 
+    ///     var dev2 = new Vault.Database.SecretBackendRole("dev2", new()
+    ///     {
+    ///         Backend = db.Path,
+    ///         DbName = db.Postgresqls.Apply(postgresqls =&gt; postgresqls[0]?.Name),
+    ///         CreationStatements = new[]
+    ///         {
+    ///             "CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';",
+    ///             "GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"{{name}}\";",
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -88,7 +88,7 @@ namespace Pulumi.Vault.Database
     /// ```
     /// </summary>
     [VaultResourceType("vault:database/secretsMount:SecretsMount")]
-    public partial class SecretsMount : Pulumi.CustomResource
+    public partial class SecretsMount : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Accessor of the mount
@@ -318,7 +318,7 @@ namespace Pulumi.Vault.Database
         }
     }
 
-    public sealed class SecretsMountArgs : Pulumi.ResourceArgs
+    public sealed class SecretsMountArgs : global::Pulumi.ResourceArgs
     {
         [Input("auditNonHmacRequestKeys")]
         private InputList<string>? _auditNonHmacRequestKeys;
@@ -609,9 +609,10 @@ namespace Pulumi.Vault.Database
         public SecretsMountArgs()
         {
         }
+        public static new SecretsMountArgs Empty => new SecretsMountArgs();
     }
 
-    public sealed class SecretsMountState : Pulumi.ResourceArgs
+    public sealed class SecretsMountState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Accessor of the mount
@@ -914,5 +915,6 @@ namespace Pulumi.Vault.Database
         public SecretsMountState()
         {
         }
+        public static new SecretsMountState Empty => new SecretsMountState();
     }
 }

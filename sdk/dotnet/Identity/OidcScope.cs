@@ -21,21 +21,18 @@ namespace Pulumi.Vault.Identity
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var groups = new Vault.Identity.OidcScope("groups", new()
     ///     {
-    ///         var groups = new Vault.Identity.OidcScope("groups", new Vault.Identity.OidcScopeArgs
+    ///         Template = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///         {
-    ///             Template = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
-    ///             {
-    ///                 { "groups", "{{identity.entity.groups.names}}" },
-    ///             }),
-    ///             Description = "Vault OIDC Groups Scope",
-    ///         });
-    ///     }
+    ///             ["groups"] = "{{identity.entity.groups.names}}",
+    ///         }),
+    ///         Description = "Vault OIDC Groups Scope",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -47,7 +44,7 @@ namespace Pulumi.Vault.Identity
     /// ```
     /// </summary>
     [VaultResourceType("vault:identity/oidcScope:OidcScope")]
-    public partial class OidcScope : Pulumi.CustomResource
+    public partial class OidcScope : global::Pulumi.CustomResource
     {
         /// <summary>
         /// A description of the scope.
@@ -111,7 +108,7 @@ namespace Pulumi.Vault.Identity
         }
     }
 
-    public sealed class OidcScopeArgs : Pulumi.ResourceArgs
+    public sealed class OidcScopeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// A description of the scope.
@@ -134,9 +131,10 @@ namespace Pulumi.Vault.Identity
         public OidcScopeArgs()
         {
         }
+        public static new OidcScopeArgs Empty => new OidcScopeArgs();
     }
 
-    public sealed class OidcScopeState : Pulumi.ResourceArgs
+    public sealed class OidcScopeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// A description of the scope.
@@ -159,5 +157,6 @@ namespace Pulumi.Vault.Identity
         public OidcScopeState()
         {
         }
+        public static new OidcScopeState Empty => new OidcScopeState();
     }
 }

@@ -24,30 +24,35 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := vault.NewQuotaRateLimit(ctx, "global", &vault.QuotaRateLimitArgs{
-// 			Path: pulumi.String(""),
-// 			Rate: pulumi.Float64(100),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vault.NewQuotaRateLimit(ctx, "global", &vault.QuotaRateLimitArgs{
+//				Path: pulumi.String(""),
+//				Rate: pulumi.Float64(100),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
-// Rate limit quotas can be imported using their names
+// # Rate limit quotas can be imported using their names
 //
 // ```sh
-//  $ pulumi import vault:index/quotaRateLimit:QuotaRateLimit global global
+//
+//	$ pulumi import vault:index/quotaRateLimit:QuotaRateLimit global global
+//
 // ```
 type QuotaRateLimit struct {
 	pulumi.CustomResourceState
@@ -188,7 +193,7 @@ func (i *QuotaRateLimit) ToQuotaRateLimitOutputWithContext(ctx context.Context) 
 // QuotaRateLimitArrayInput is an input type that accepts QuotaRateLimitArray and QuotaRateLimitArrayOutput values.
 // You can construct a concrete instance of `QuotaRateLimitArrayInput` via:
 //
-//          QuotaRateLimitArray{ QuotaRateLimitArgs{...} }
+//	QuotaRateLimitArray{ QuotaRateLimitArgs{...} }
 type QuotaRateLimitArrayInput interface {
 	pulumi.Input
 
@@ -213,7 +218,7 @@ func (i QuotaRateLimitArray) ToQuotaRateLimitArrayOutputWithContext(ctx context.
 // QuotaRateLimitMapInput is an input type that accepts QuotaRateLimitMap and QuotaRateLimitMapOutput values.
 // You can construct a concrete instance of `QuotaRateLimitMapInput` via:
 //
-//          QuotaRateLimitMap{ "key": QuotaRateLimitArgs{...} }
+//	QuotaRateLimitMap{ "key": QuotaRateLimitArgs{...} }
 type QuotaRateLimitMapInput interface {
 	pulumi.Input
 
@@ -247,6 +252,27 @@ func (o QuotaRateLimitOutput) ToQuotaRateLimitOutput() QuotaRateLimitOutput {
 
 func (o QuotaRateLimitOutput) ToQuotaRateLimitOutputWithContext(ctx context.Context) QuotaRateLimitOutput {
 	return o
+}
+
+// Name of the rate limit quota
+func (o QuotaRateLimitOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *QuotaRateLimit) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Path of the mount or namespace to apply the quota. A blank path configures a
+// global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
+// `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
+// Updating this field on an existing quota can have "moving" effects. For example, updating
+// `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
+// a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
+func (o QuotaRateLimitOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *QuotaRateLimit) pulumi.StringPtrOutput { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+// The maximum number of requests at any given second to be allowed by the quota
+// rule. The `rate` must be positive.
+func (o QuotaRateLimitOutput) Rate() pulumi.Float64Output {
+	return o.ApplyT(func(v *QuotaRateLimit) pulumi.Float64Output { return v.Rate }).(pulumi.Float64Output)
 }
 
 type QuotaRateLimitArrayOutput struct{ *pulumi.OutputState }

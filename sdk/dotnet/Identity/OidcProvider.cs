@@ -21,70 +21,71 @@ namespace Pulumi.Vault.Identity
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var testOidcKey = new Vault.Identity.OidcKey("testOidcKey", new()
     ///     {
-    ///         var testOidcKey = new Vault.Identity.OidcKey("testOidcKey", new Vault.Identity.OidcKeyArgs
+    ///         AllowedClientIds = new[]
     ///         {
-    ///             AllowedClientIds = 
-    ///             {
-    ///                 "*",
-    ///             },
-    ///             RotationPeriod = 3600,
-    ///             VerificationTtl = 3600,
-    ///         });
-    ///         var testOidcAssignment = new Vault.Identity.OidcAssignment("testOidcAssignment", new Vault.Identity.OidcAssignmentArgs
-    ///         {
-    ///             EntityIds = 
-    ///             {
-    ///                 "fake-ascbascas-2231a-sdfaa",
-    ///             },
-    ///             GroupIds = 
-    ///             {
-    ///                 "fake-sajkdsad-32414-sfsada",
-    ///             },
-    ///         });
-    ///         var testOidcClient = new Vault.Identity.OidcClient("testOidcClient", new Vault.Identity.OidcClientArgs
-    ///         {
-    ///             Key = testOidcKey.Name,
-    ///             RedirectUris = 
-    ///             {
-    ///                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
-    ///                 "http://127.0.0.1:8251/callback",
-    ///                 "http://127.0.0.1:8080/callback",
-    ///             },
-    ///             Assignments = 
-    ///             {
-    ///                 testOidcAssignment.Name,
-    ///             },
-    ///             IdTokenTtl = 2400,
-    ///             AccessTokenTtl = 7200,
-    ///         });
-    ///         var testOidcScope = new Vault.Identity.OidcScope("testOidcScope", new Vault.Identity.OidcScopeArgs
-    ///         {
-    ///             Template = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
-    ///             {
-    ///                 { "groups", "{{identity.entity.groups.names}}" },
-    ///             }),
-    ///             Description = "Groups scope.",
-    ///         });
-    ///         var testOidcProvider = new Vault.Identity.OidcProvider("testOidcProvider", new Vault.Identity.OidcProviderArgs
-    ///         {
-    ///             HttpsEnabled = false,
-    ///             IssuerHost = "127.0.0.1:8200",
-    ///             AllowedClientIds = 
-    ///             {
-    ///                 testOidcClient.ClientId,
-    ///             },
-    ///             ScopesSupporteds = 
-    ///             {
-    ///                 testOidcScope.Name,
-    ///             },
-    ///         });
-    ///     }
+    ///             "*",
+    ///         },
+    ///         RotationPeriod = 3600,
+    ///         VerificationTtl = 3600,
+    ///     });
     /// 
-    /// }
+    ///     var testOidcAssignment = new Vault.Identity.OidcAssignment("testOidcAssignment", new()
+    ///     {
+    ///         EntityIds = new[]
+    ///         {
+    ///             "fake-ascbascas-2231a-sdfaa",
+    ///         },
+    ///         GroupIds = new[]
+    ///         {
+    ///             "fake-sajkdsad-32414-sfsada",
+    ///         },
+    ///     });
+    /// 
+    ///     var testOidcClient = new Vault.Identity.OidcClient("testOidcClient", new()
+    ///     {
+    ///         Key = testOidcKey.Name,
+    ///         RedirectUris = new[]
+    ///         {
+    ///             "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+    ///             "http://127.0.0.1:8251/callback",
+    ///             "http://127.0.0.1:8080/callback",
+    ///         },
+    ///         Assignments = new[]
+    ///         {
+    ///             testOidcAssignment.Name,
+    ///         },
+    ///         IdTokenTtl = 2400,
+    ///         AccessTokenTtl = 7200,
+    ///     });
+    /// 
+    ///     var testOidcScope = new Vault.Identity.OidcScope("testOidcScope", new()
+    ///     {
+    ///         Template = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["groups"] = "{{identity.entity.groups.names}}",
+    ///         }),
+    ///         Description = "Groups scope.",
+    ///     });
+    /// 
+    ///     var testOidcProvider = new Vault.Identity.OidcProvider("testOidcProvider", new()
+    ///     {
+    ///         HttpsEnabled = false,
+    ///         IssuerHost = "127.0.0.1:8200",
+    ///         AllowedClientIds = new[]
+    ///         {
+    ///             testOidcClient.ClientId,
+    ///         },
+    ///         ScopesSupporteds = new[]
+    ///         {
+    ///             testOidcScope.Name,
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -96,7 +97,7 @@ namespace Pulumi.Vault.Identity
     /// ```
     /// </summary>
     [VaultResourceType("vault:identity/oidcProvider:OidcProvider")]
-    public partial class OidcProvider : Pulumi.CustomResource
+    public partial class OidcProvider : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The client IDs that are permitted to use the provider. 
@@ -181,7 +182,7 @@ namespace Pulumi.Vault.Identity
         }
     }
 
-    public sealed class OidcProviderArgs : Pulumi.ResourceArgs
+    public sealed class OidcProviderArgs : global::Pulumi.ResourceArgs
     {
         [Input("allowedClientIds")]
         private InputList<string>? _allowedClientIds;
@@ -229,9 +230,10 @@ namespace Pulumi.Vault.Identity
         public OidcProviderArgs()
         {
         }
+        public static new OidcProviderArgs Empty => new OidcProviderArgs();
     }
 
-    public sealed class OidcProviderState : Pulumi.ResourceArgs
+    public sealed class OidcProviderState : global::Pulumi.ResourceArgs
     {
         [Input("allowedClientIds")]
         private InputList<string>? _allowedClientIds;
@@ -287,5 +289,6 @@ namespace Pulumi.Vault.Identity
         public OidcProviderState()
         {
         }
+        public static new OidcProviderState Empty => new OidcProviderState();
     }
 }

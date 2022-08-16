@@ -17,20 +17,18 @@ namespace Pulumi.Vault
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Vault = Pulumi.Vault;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var example = Vault.GetAuthBackend.Invoke(new()
         ///     {
-        ///         var example = Output.Create(Vault.GetAuthBackend.InvokeAsync(new Vault.GetAuthBackendArgs
-        ///         {
-        ///             Path = "userpass",
-        ///         }));
-        ///     }
+        ///         Path = "userpass",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -44,20 +42,18 @@ namespace Pulumi.Vault
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Vault = Pulumi.Vault;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var example = Vault.GetAuthBackend.Invoke(new()
         ///     {
-        ///         var example = Output.Create(Vault.GetAuthBackend.InvokeAsync(new Vault.GetAuthBackendArgs
-        ///         {
-        ///             Path = "userpass",
-        ///         }));
-        ///     }
+        ///         Path = "userpass",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -67,7 +63,7 @@ namespace Pulumi.Vault
     }
 
 
-    public sealed class GetAuthBackendArgs : Pulumi.InvokeArgs
+    public sealed class GetAuthBackendArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The auth backend mount point.
@@ -78,9 +74,10 @@ namespace Pulumi.Vault
         public GetAuthBackendArgs()
         {
         }
+        public static new GetAuthBackendArgs Empty => new GetAuthBackendArgs();
     }
 
-    public sealed class GetAuthBackendInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetAuthBackendInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The auth backend mount point.
@@ -91,6 +88,7 @@ namespace Pulumi.Vault
         public GetAuthBackendInvokeArgs()
         {
         }
+        public static new GetAuthBackendInvokeArgs Empty => new GetAuthBackendInvokeArgs();
     }
 
 

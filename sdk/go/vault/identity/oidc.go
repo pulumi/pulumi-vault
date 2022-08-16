@@ -23,21 +23,24 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := identity.NewOidc(ctx, "server", &identity.OidcArgs{
-// 			Issuer: pulumi.String("https://www.acme.com"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := identity.NewOidc(ctx, "server", &identity.OidcArgs{
+//				Issuer: pulumi.String("https://www.acme.com"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type Oidc struct {
 	pulumi.CustomResourceState
@@ -140,7 +143,7 @@ func (i *Oidc) ToOidcOutputWithContext(ctx context.Context) OidcOutput {
 // OidcArrayInput is an input type that accepts OidcArray and OidcArrayOutput values.
 // You can construct a concrete instance of `OidcArrayInput` via:
 //
-//          OidcArray{ OidcArgs{...} }
+//	OidcArray{ OidcArgs{...} }
 type OidcArrayInput interface {
 	pulumi.Input
 
@@ -165,7 +168,7 @@ func (i OidcArray) ToOidcArrayOutputWithContext(ctx context.Context) OidcArrayOu
 // OidcMapInput is an input type that accepts OidcMap and OidcMapOutput values.
 // You can construct a concrete instance of `OidcMapInput` via:
 //
-//          OidcMap{ "key": OidcArgs{...} }
+//	OidcMap{ "key": OidcArgs{...} }
 type OidcMapInput interface {
 	pulumi.Input
 
@@ -199,6 +202,14 @@ func (o OidcOutput) ToOidcOutput() OidcOutput {
 
 func (o OidcOutput) ToOidcOutputWithContext(ctx context.Context) OidcOutput {
 	return o
+}
+
+// Issuer URL to be used in the iss claim of the token. If not set, Vault's
+// `apiAddr` will be used. The issuer is a case sensitive URL using the https scheme that contains
+// scheme, host, and optionally, port number and path components, but no query or fragment
+// components.
+func (o OidcOutput) Issuer() pulumi.StringOutput {
+	return o.ApplyT(func(v *Oidc) pulumi.StringOutput { return v.Issuer }).(pulumi.StringOutput)
 }
 
 type OidcArrayOutput struct{ *pulumi.OutputState }

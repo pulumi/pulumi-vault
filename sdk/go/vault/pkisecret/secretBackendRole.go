@@ -19,40 +19,43 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		pki, err := vault.NewMount(ctx, "pki", &vault.MountArgs{
-// 			Path:                   pulumi.String("pki"),
-// 			Type:                   pulumi.String("pki"),
-// 			DefaultLeaseTtlSeconds: pulumi.Int(3600),
-// 			MaxLeaseTtlSeconds:     pulumi.Int(86400),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = pkiSecret.NewSecretBackendRole(ctx, "role", &pkiSecret.SecretBackendRoleArgs{
-// 			Backend:     pki.Path,
-// 			Ttl:         pulumi.String("3600"),
-// 			AllowIpSans: pulumi.Bool(true),
-// 			KeyType:     pulumi.String("rsa"),
-// 			KeyBits:     pulumi.Int(4096),
-// 			AllowedDomains: pulumi.StringArray{
-// 				pulumi.String("example.com"),
-// 				pulumi.String("my.domain"),
-// 			},
-// 			AllowSubdomains: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			pki, err := vault.NewMount(ctx, "pki", &vault.MountArgs{
+//				Path:                   pulumi.String("pki"),
+//				Type:                   pulumi.String("pki"),
+//				DefaultLeaseTtlSeconds: pulumi.Int(3600),
+//				MaxLeaseTtlSeconds:     pulumi.Int(86400),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = pkiSecret.NewSecretBackendRole(ctx, "role", &pkiSecret.SecretBackendRoleArgs{
+//				Backend:     pki.Path,
+//				Ttl:         pulumi.String("3600"),
+//				AllowIpSans: pulumi.Bool(true),
+//				KeyType:     pulumi.String("rsa"),
+//				KeyBits:     pulumi.Int(4096),
+//				AllowedDomains: pulumi.StringArray{
+//					pulumi.String("example.com"),
+//					pulumi.String("my.domain"),
+//				},
+//				AllowSubdomains: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -60,7 +63,9 @@ import (
 // PKI secret backend roles can be imported using the `path`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:pkiSecret/secretBackendRole:SecretBackendRole role pki/roles/my_role
+//
+//	$ pulumi import vault:pkiSecret/secretBackendRole:SecretBackendRole role pki/roles/my_role
+//
 // ```
 type SecretBackendRole struct {
 	pulumi.CustomResourceState
@@ -536,7 +541,7 @@ func (i *SecretBackendRole) ToSecretBackendRoleOutputWithContext(ctx context.Con
 // SecretBackendRoleArrayInput is an input type that accepts SecretBackendRoleArray and SecretBackendRoleArrayOutput values.
 // You can construct a concrete instance of `SecretBackendRoleArrayInput` via:
 //
-//          SecretBackendRoleArray{ SecretBackendRoleArgs{...} }
+//	SecretBackendRoleArray{ SecretBackendRoleArgs{...} }
 type SecretBackendRoleArrayInput interface {
 	pulumi.Input
 
@@ -561,7 +566,7 @@ func (i SecretBackendRoleArray) ToSecretBackendRoleArrayOutputWithContext(ctx co
 // SecretBackendRoleMapInput is an input type that accepts SecretBackendRoleMap and SecretBackendRoleMapOutput values.
 // You can construct a concrete instance of `SecretBackendRoleMapInput` via:
 //
-//          SecretBackendRoleMap{ "key": SecretBackendRoleArgs{...} }
+//	SecretBackendRoleMap{ "key": SecretBackendRoleArgs{...} }
 type SecretBackendRoleMapInput interface {
 	pulumi.Input
 
@@ -595,6 +600,202 @@ func (o SecretBackendRoleOutput) ToSecretBackendRoleOutput() SecretBackendRoleOu
 
 func (o SecretBackendRoleOutput) ToSecretBackendRoleOutputWithContext(ctx context.Context) SecretBackendRoleOutput {
 	return o
+}
+
+// Flag to allow any name
+func (o SecretBackendRoleOutput) AllowAnyName() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.AllowAnyName }).(pulumi.BoolPtrOutput)
+}
+
+// Flag to allow certificates matching the actual domain
+func (o SecretBackendRoleOutput) AllowBareDomains() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.AllowBareDomains }).(pulumi.BoolPtrOutput)
+}
+
+// Flag to allow names containing glob patterns.
+func (o SecretBackendRoleOutput) AllowGlobDomains() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.AllowGlobDomains }).(pulumi.BoolPtrOutput)
+}
+
+// Flag to allow IP SANs
+func (o SecretBackendRoleOutput) AllowIpSans() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.AllowIpSans }).(pulumi.BoolPtrOutput)
+}
+
+// Flag to allow certificates for localhost
+func (o SecretBackendRoleOutput) AllowLocalhost() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.AllowLocalhost }).(pulumi.BoolPtrOutput)
+}
+
+// Flag to allow certificates matching subdomains
+func (o SecretBackendRoleOutput) AllowSubdomains() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.AllowSubdomains }).(pulumi.BoolPtrOutput)
+}
+
+// List of allowed domains for certificates
+func (o SecretBackendRoleOutput) AllowedDomains() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.AllowedDomains }).(pulumi.StringArrayOutput)
+}
+
+// Flag, if set, `allowedDomains` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
+func (o SecretBackendRoleOutput) AllowedDomainsTemplate() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.AllowedDomainsTemplate }).(pulumi.BoolPtrOutput)
+}
+
+// Defines allowed custom SANs
+func (o SecretBackendRoleOutput) AllowedOtherSans() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.AllowedOtherSans }).(pulumi.StringArrayOutput)
+}
+
+// An array of allowed serial numbers to put in Subject
+func (o SecretBackendRoleOutput) AllowedSerialNumbers() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.AllowedSerialNumbers }).(pulumi.StringArrayOutput)
+}
+
+// Defines allowed URI SANs
+func (o SecretBackendRoleOutput) AllowedUriSans() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.AllowedUriSans }).(pulumi.StringArrayOutput)
+}
+
+// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
+func (o SecretBackendRoleOutput) Backend() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.Backend }).(pulumi.StringOutput)
+}
+
+// Flag to mark basic constraints valid when issuing non-CA certificates
+func (o SecretBackendRoleOutput) BasicConstraintsValidForNonCa() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.BasicConstraintsValidForNonCa }).(pulumi.BoolPtrOutput)
+}
+
+// Flag to specify certificates for client use
+func (o SecretBackendRoleOutput) ClientFlag() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.ClientFlag }).(pulumi.BoolPtrOutput)
+}
+
+// Flag to specify certificates for code signing use
+func (o SecretBackendRoleOutput) CodeSigningFlag() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.CodeSigningFlag }).(pulumi.BoolPtrOutput)
+}
+
+// The country of generated certificates
+func (o SecretBackendRoleOutput) Countries() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.Countries }).(pulumi.StringArrayOutput)
+}
+
+// Flag to specify certificates for email protection use
+func (o SecretBackendRoleOutput) EmailProtectionFlag() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.EmailProtectionFlag }).(pulumi.BoolPtrOutput)
+}
+
+// Flag to allow only valid host names
+func (o SecretBackendRoleOutput) EnforceHostnames() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.EnforceHostnames }).(pulumi.BoolPtrOutput)
+}
+
+// Specify the allowed extended key usage constraint on issued certificates
+func (o SecretBackendRoleOutput) ExtKeyUsages() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.ExtKeyUsages }).(pulumi.StringArrayOutput)
+}
+
+// Flag to generate leases with certificates
+func (o SecretBackendRoleOutput) GenerateLease() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.GenerateLease }).(pulumi.BoolPtrOutput)
+}
+
+// The number of bits of generated keys
+func (o SecretBackendRoleOutput) KeyBits() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.IntPtrOutput { return v.KeyBits }).(pulumi.IntPtrOutput)
+}
+
+// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`\
+// Defaults to `rsa`
+func (o SecretBackendRoleOutput) KeyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.KeyType }).(pulumi.StringPtrOutput)
+}
+
+// Specify the allowed key usage constraint on issued certificates
+func (o SecretBackendRoleOutput) KeyUsages() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.KeyUsages }).(pulumi.StringArrayOutput)
+}
+
+// The locality of generated certificates
+func (o SecretBackendRoleOutput) Localities() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.Localities }).(pulumi.StringArrayOutput)
+}
+
+// The maximum lease TTL, in seconds, for the role.
+func (o SecretBackendRoleOutput) MaxTtl() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.MaxTtl }).(pulumi.StringOutput)
+}
+
+// The name to identify this role within the backend. Must be unique within the backend.
+func (o SecretBackendRoleOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Flag to not store certificates in the storage backend
+func (o SecretBackendRoleOutput) NoStore() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.NoStore }).(pulumi.BoolPtrOutput)
+}
+
+// Specifies the duration by which to backdate the NotBefore property.
+func (o SecretBackendRoleOutput) NotBeforeDuration() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.NotBeforeDuration }).(pulumi.StringOutput)
+}
+
+// The organization unit of generated certificates
+func (o SecretBackendRoleOutput) OrganizationUnit() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.OrganizationUnit }).(pulumi.StringArrayOutput)
+}
+
+// The organization of generated certificates
+func (o SecretBackendRoleOutput) Organizations() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.Organizations }).(pulumi.StringArrayOutput)
+}
+
+// Specify the list of allowed policies IODs
+func (o SecretBackendRoleOutput) PolicyIdentifiers() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.PolicyIdentifiers }).(pulumi.StringArrayOutput)
+}
+
+// The postal code of generated certificates
+func (o SecretBackendRoleOutput) PostalCodes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.PostalCodes }).(pulumi.StringArrayOutput)
+}
+
+// The province of generated certificates
+func (o SecretBackendRoleOutput) Provinces() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.Provinces }).(pulumi.StringArrayOutput)
+}
+
+// Flag to force CN usage
+func (o SecretBackendRoleOutput) RequireCn() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.RequireCn }).(pulumi.BoolPtrOutput)
+}
+
+// Flag to specify certificates for server use
+func (o SecretBackendRoleOutput) ServerFlag() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.ServerFlag }).(pulumi.BoolPtrOutput)
+}
+
+// The street address of generated certificates
+func (o SecretBackendRoleOutput) StreetAddresses() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.StreetAddresses }).(pulumi.StringArrayOutput)
+}
+
+// The TTL, in seconds, for any certificate issued against this role.
+func (o SecretBackendRoleOutput) Ttl() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.Ttl }).(pulumi.StringOutput)
+}
+
+// Flag to use the CN in the CSR
+func (o SecretBackendRoleOutput) UseCsrCommonName() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.UseCsrCommonName }).(pulumi.BoolPtrOutput)
+}
+
+// Flag to use the SANs in the CSR
+func (o SecretBackendRoleOutput) UseCsrSans() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.UseCsrSans }).(pulumi.BoolPtrOutput)
 }
 
 type SecretBackendRoleArrayOutput struct{ *pulumi.OutputState }

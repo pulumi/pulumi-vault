@@ -15,28 +15,27 @@ namespace Pulumi.Vault.Transit
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var transit = new Vault.Mount("transit", new()
     ///     {
-    ///         var transit = new Vault.Mount("transit", new Vault.MountArgs
-    ///         {
-    ///             Path = "transit",
-    ///             Type = "transit",
-    ///             Description = "Example description",
-    ///             DefaultLeaseTtlSeconds = 3600,
-    ///             MaxLeaseTtlSeconds = 86400,
-    ///         });
-    ///         var key = new Vault.Transit.SecretBackendKey("key", new Vault.Transit.SecretBackendKeyArgs
-    ///         {
-    ///             Backend = transit.Path,
-    ///         });
-    ///     }
+    ///         Path = "transit",
+    ///         Type = "transit",
+    ///         Description = "Example description",
+    ///         DefaultLeaseTtlSeconds = 3600,
+    ///         MaxLeaseTtlSeconds = 86400,
+    ///     });
     /// 
-    /// }
+    ///     var key = new Vault.Transit.SecretBackendKey("key", new()
+    ///     {
+    ///         Backend = transit.Path,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// ## Deprecations
     /// 
@@ -51,7 +50,7 @@ namespace Pulumi.Vault.Transit
     /// ```
     /// </summary>
     [VaultResourceType("vault:transit/secretBackendKey:SecretBackendKey")]
-    public partial class SecretBackendKey : Pulumi.CustomResource
+    public partial class SecretBackendKey : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
@@ -217,7 +216,7 @@ namespace Pulumi.Vault.Transit
         }
     }
 
-    public sealed class SecretBackendKeyArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendKeyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
@@ -298,9 +297,10 @@ namespace Pulumi.Vault.Transit
         public SecretBackendKeyArgs()
         {
         }
+        public static new SecretBackendKeyArgs Empty => new SecretBackendKeyArgs();
     }
 
-    public sealed class SecretBackendKeyState : Pulumi.ResourceArgs
+    public sealed class SecretBackendKeyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
@@ -431,5 +431,6 @@ namespace Pulumi.Vault.Transit
         public SecretBackendKeyState()
         {
         }
+        public static new SecretBackendKeyState Empty => new SecretBackendKeyState();
     }
 }

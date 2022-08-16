@@ -16,31 +16,30 @@ namespace Pulumi.Vault.Okta
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var example = new Vault.Okta.AuthBackend("example", new()
     ///     {
-    ///         var example = new Vault.Okta.AuthBackend("example", new Vault.Okta.AuthBackendArgs
-    ///         {
-    ///             Path = "group_okta",
-    ///             Organization = "dummy",
-    ///         });
-    ///         var foo = new Vault.Okta.AuthBackendGroup("foo", new Vault.Okta.AuthBackendGroupArgs
-    ///         {
-    ///             Path = example.Path,
-    ///             GroupName = "foo",
-    ///             Policies = 
-    ///             {
-    ///                 "one",
-    ///                 "two",
-    ///             },
-    ///         });
-    ///     }
+    ///         Path = "group_okta",
+    ///         Organization = "dummy",
+    ///     });
     /// 
-    /// }
+    ///     var foo = new Vault.Okta.AuthBackendGroup("foo", new()
+    ///     {
+    ///         Path = example.Path,
+    ///         GroupName = "foo",
+    ///         Policies = new[]
+    ///         {
+    ///             "one",
+    ///             "two",
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -52,7 +51,7 @@ namespace Pulumi.Vault.Okta
     /// ```
     /// </summary>
     [VaultResourceType("vault:okta/authBackendGroup:AuthBackendGroup")]
-    public partial class AuthBackendGroup : Pulumi.CustomResource
+    public partial class AuthBackendGroup : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Name of the group within the Okta
@@ -116,7 +115,7 @@ namespace Pulumi.Vault.Okta
         }
     }
 
-    public sealed class AuthBackendGroupArgs : Pulumi.ResourceArgs
+    public sealed class AuthBackendGroupArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Name of the group within the Okta
@@ -145,9 +144,10 @@ namespace Pulumi.Vault.Okta
         public AuthBackendGroupArgs()
         {
         }
+        public static new AuthBackendGroupArgs Empty => new AuthBackendGroupArgs();
     }
 
-    public sealed class AuthBackendGroupState : Pulumi.ResourceArgs
+    public sealed class AuthBackendGroupState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Name of the group within the Okta
@@ -176,5 +176,6 @@ namespace Pulumi.Vault.Okta
         public AuthBackendGroupState()
         {
         }
+        public static new AuthBackendGroupState Empty => new AuthBackendGroupState();
     }
 }

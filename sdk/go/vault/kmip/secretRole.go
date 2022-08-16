@@ -21,45 +21,48 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kmip"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kmip"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := kmip.NewSecretBackend(ctx, "default", &kmip.SecretBackendArgs{
-// 			Path:        pulumi.String("kmip"),
-// 			Description: pulumi.String("Vault KMIP backend"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		dev, err := kmip.NewSecretScope(ctx, "dev", &kmip.SecretScopeArgs{
-// 			Path:  _default.Path,
-// 			Scope: pulumi.String("dev"),
-// 			Force: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = kmip.NewSecretRole(ctx, "admin", &kmip.SecretRoleArgs{
-// 			Path:                   dev.Path,
-// 			Scope:                  dev.Scope,
-// 			Role:                   pulumi.String("admin"),
-// 			TlsClientKeyType:       pulumi.String("ec"),
-// 			TlsClientKeyBits:       pulumi.Int(256),
-// 			OperationActivate:      pulumi.Bool(true),
-// 			OperationGet:           pulumi.Bool(true),
-// 			OperationGetAttributes: pulumi.Bool(true),
-// 			OperationCreate:        pulumi.Bool(true),
-// 			OperationDestroy:       pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := kmip.NewSecretBackend(ctx, "default", &kmip.SecretBackendArgs{
+//				Path:        pulumi.String("kmip"),
+//				Description: pulumi.String("Vault KMIP backend"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			dev, err := kmip.NewSecretScope(ctx, "dev", &kmip.SecretScopeArgs{
+//				Path:  _default.Path,
+//				Scope: pulumi.String("dev"),
+//				Force: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = kmip.NewSecretRole(ctx, "admin", &kmip.SecretRoleArgs{
+//				Path:                   dev.Path,
+//				Scope:                  dev.Scope,
+//				Role:                   pulumi.String("admin"),
+//				TlsClientKeyType:       pulumi.String("ec"),
+//				TlsClientKeyBits:       pulumi.Int(256),
+//				OperationActivate:      pulumi.Bool(true),
+//				OperationGet:           pulumi.Bool(true),
+//				OperationGetAttributes: pulumi.Bool(true),
+//				OperationCreate:        pulumi.Bool(true),
+//				OperationDestroy:       pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -67,7 +70,9 @@ import (
 // KMIP Secret role can be imported using the `path`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:kmip/secretRole:SecretRole admin kmip
+//
+//	$ pulumi import vault:kmip/secretRole:SecretRole admin kmip
+//
 // ```
 type SecretRole struct {
 	pulumi.CustomResourceState
@@ -359,7 +364,7 @@ func (i *SecretRole) ToSecretRoleOutputWithContext(ctx context.Context) SecretRo
 // SecretRoleArrayInput is an input type that accepts SecretRoleArray and SecretRoleArrayOutput values.
 // You can construct a concrete instance of `SecretRoleArrayInput` via:
 //
-//          SecretRoleArray{ SecretRoleArgs{...} }
+//	SecretRoleArray{ SecretRoleArgs{...} }
 type SecretRoleArrayInput interface {
 	pulumi.Input
 
@@ -384,7 +389,7 @@ func (i SecretRoleArray) ToSecretRoleArrayOutputWithContext(ctx context.Context)
 // SecretRoleMapInput is an input type that accepts SecretRoleMap and SecretRoleMapOutput values.
 // You can construct a concrete instance of `SecretRoleMapInput` via:
 //
-//          SecretRoleMap{ "key": SecretRoleArgs{...} }
+//	SecretRoleMap{ "key": SecretRoleArgs{...} }
 type SecretRoleMapInput interface {
 	pulumi.Input
 
@@ -418,6 +423,107 @@ func (o SecretRoleOutput) ToSecretRoleOutput() SecretRoleOutput {
 
 func (o SecretRoleOutput) ToSecretRoleOutputWithContext(ctx context.Context) SecretRoleOutput {
 	return o
+}
+
+// Grant permission to use the KMIP Activate operation.
+func (o SecretRoleOutput) OperationActivate() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationActivate }).(pulumi.BoolOutput)
+}
+
+// Grant permission to use the KMIP Add Attribute operation.
+func (o SecretRoleOutput) OperationAddAttribute() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationAddAttribute }).(pulumi.BoolOutput)
+}
+
+// Grant all permissions to this role. May not be specified with any other `operation_*` params.
+func (o SecretRoleOutput) OperationAll() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationAll }).(pulumi.BoolOutput)
+}
+
+// Grant permission to use the KMIP Create operation.
+func (o SecretRoleOutput) OperationCreate() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationCreate }).(pulumi.BoolOutput)
+}
+
+// Grant permission to use the KMIP Destroy operation.
+func (o SecretRoleOutput) OperationDestroy() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationDestroy }).(pulumi.BoolOutput)
+}
+
+// Grant permission to use the KMIP Discover Version operation.
+func (o SecretRoleOutput) OperationDiscoverVersions() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationDiscoverVersions }).(pulumi.BoolOutput)
+}
+
+// Grant permission to use the KMIP Get operation.
+func (o SecretRoleOutput) OperationGet() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationGet }).(pulumi.BoolOutput)
+}
+
+// Grant permission to use the KMIP Get Atrribute List operation.
+func (o SecretRoleOutput) OperationGetAttributeList() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationGetAttributeList }).(pulumi.BoolOutput)
+}
+
+// Grant permission to use the KMIP Get Atrributes operation.
+func (o SecretRoleOutput) OperationGetAttributes() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationGetAttributes }).(pulumi.BoolOutput)
+}
+
+// Grant permission to use the KMIP Get Locate operation.
+func (o SecretRoleOutput) OperationLocate() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationLocate }).(pulumi.BoolOutput)
+}
+
+// Remove all permissions from this role. May not be specified with any other `operation_*` params.
+func (o SecretRoleOutput) OperationNone() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationNone }).(pulumi.BoolOutput)
+}
+
+// Grant permission to use the KMIP Register operation.
+func (o SecretRoleOutput) OperationRegister() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationRegister }).(pulumi.BoolOutput)
+}
+
+// Grant permission to use the KMIP Rekey operation.
+func (o SecretRoleOutput) OperationRekey() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationRekey }).(pulumi.BoolOutput)
+}
+
+// Grant permission to use the KMIP Revoke operation.
+func (o SecretRoleOutput) OperationRevoke() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationRevoke }).(pulumi.BoolOutput)
+}
+
+// The unique path this backend should be mounted at. Must
+// not begin or end with a `/`. Defaults to `kmip`.
+func (o SecretRoleOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.StringOutput { return v.Path }).(pulumi.StringOutput)
+}
+
+// Name of the role.
+func (o SecretRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.StringOutput { return v.Role }).(pulumi.StringOutput)
+}
+
+// Name of the scope.
+func (o SecretRoleOutput) Scope() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.StringOutput { return v.Scope }).(pulumi.StringOutput)
+}
+
+// Client certificate key bits, valid values depend on key type.
+func (o SecretRoleOutput) TlsClientKeyBits() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.IntPtrOutput { return v.TlsClientKeyBits }).(pulumi.IntPtrOutput)
+}
+
+// Client certificate key type, `rsa` or `ec`.
+func (o SecretRoleOutput) TlsClientKeyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.StringPtrOutput { return v.TlsClientKeyType }).(pulumi.StringPtrOutput)
+}
+
+// Client certificate TTL in seconds.
+func (o SecretRoleOutput) TlsClientTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.IntPtrOutput { return v.TlsClientTtl }).(pulumi.IntPtrOutput)
 }
 
 type SecretRoleArrayOutput struct{ *pulumi.OutputState }

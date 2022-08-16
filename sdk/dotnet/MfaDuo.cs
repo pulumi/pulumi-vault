@@ -17,28 +17,27 @@ namespace Pulumi.Vault
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var userpass = new Vault.AuthBackend("userpass", new()
     ///     {
-    ///         var userpass = new Vault.AuthBackend("userpass", new Vault.AuthBackendArgs
-    ///         {
-    ///             Type = "userpass",
-    ///             Path = "userpass",
-    ///         });
-    ///         var myDuo = new Vault.MfaDuo("myDuo", new Vault.MfaDuoArgs
-    ///         {
-    ///             MountAccessor = userpass.Accessor,
-    ///             SecretKey = "8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz",
-    ///             IntegrationKey = "BIACEUEAXI20BNWTEYXT",
-    ///             ApiHostname = "api-2b5c39f5.duosecurity.com",
-    ///         });
-    ///     }
+    ///         Type = "userpass",
+    ///         Path = "userpass",
+    ///     });
     /// 
-    /// }
+    ///     var myDuo = new Vault.MfaDuo("myDuo", new()
+    ///     {
+    ///         MountAccessor = userpass.Accessor,
+    ///         SecretKey = "8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz",
+    ///         IntegrationKey = "BIACEUEAXI20BNWTEYXT",
+    ///         ApiHostname = "api-2b5c39f5.duosecurity.com",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -50,7 +49,7 @@ namespace Pulumi.Vault
     /// ```
     /// </summary>
     [VaultResourceType("vault:index/mfaDuo:MfaDuo")]
-    public partial class MfaDuo : Pulumi.CustomResource
+    public partial class MfaDuo : global::Pulumi.CustomResource
     {
         /// <summary>
         /// `(string: &lt;required&gt;)` - API hostname for Duo.
@@ -142,7 +141,7 @@ namespace Pulumi.Vault
         }
     }
 
-    public sealed class MfaDuoArgs : Pulumi.ResourceArgs
+    public sealed class MfaDuoArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// `(string: &lt;required&gt;)` - API hostname for Duo.
@@ -193,9 +192,10 @@ namespace Pulumi.Vault
         public MfaDuoArgs()
         {
         }
+        public static new MfaDuoArgs Empty => new MfaDuoArgs();
     }
 
-    public sealed class MfaDuoState : Pulumi.ResourceArgs
+    public sealed class MfaDuoState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// `(string: &lt;required&gt;)` - API hostname for Duo.
@@ -246,5 +246,6 @@ namespace Pulumi.Vault
         public MfaDuoState()
         {
         }
+        public static new MfaDuoState Empty => new MfaDuoState();
     }
 }

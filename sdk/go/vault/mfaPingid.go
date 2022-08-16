@@ -21,33 +21,36 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		cfg := config.New(ctx, "")
-// 		settingsFile := cfg.RequireObject("settingsFile")
-// 		userpass, err := vault.NewAuthBackend(ctx, "userpass", &vault.AuthBackendArgs{
-// 			Type: pulumi.String("userpass"),
-// 			Path: pulumi.String("userpass"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = vault.NewMfaPingid(ctx, "myPingid", &vault.MfaPingidArgs{
-// 			MountAccessor:      userpass.Accessor,
-// 			UsernameFormat:     pulumi.String("user@example.com"),
-// 			SettingsFileBase64: pulumi.Any(settingsFile),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			cfg := config.New(ctx, "")
+//			settingsFile := cfg.RequireObject("settingsFile")
+//			userpass, err := vault.NewAuthBackend(ctx, "userpass", &vault.AuthBackendArgs{
+//				Type: pulumi.String("userpass"),
+//				Path: pulumi.String("userpass"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vault.NewMfaPingid(ctx, "myPingid", &vault.MfaPingidArgs{
+//				MountAccessor:      userpass.Accessor,
+//				UsernameFormat:     pulumi.String("user@example.com"),
+//				SettingsFileBase64: pulumi.Any(settingsFile),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -55,7 +58,9 @@ import (
 // Mounts can be imported using the `path`, e.g.
 //
 // ```sh
-//  $ pulumi import vault:index/mfaPingid:MfaPingid my_pingid my_pingid
+//
+//	$ pulumi import vault:index/mfaPingid:MfaPingid my_pingid my_pingid
+//
 // ```
 type MfaPingid struct {
 	pulumi.CustomResourceState
@@ -261,7 +266,7 @@ func (i *MfaPingid) ToMfaPingidOutputWithContext(ctx context.Context) MfaPingidO
 // MfaPingidArrayInput is an input type that accepts MfaPingidArray and MfaPingidArrayOutput values.
 // You can construct a concrete instance of `MfaPingidArrayInput` via:
 //
-//          MfaPingidArray{ MfaPingidArgs{...} }
+//	MfaPingidArray{ MfaPingidArgs{...} }
 type MfaPingidArrayInput interface {
 	pulumi.Input
 
@@ -286,7 +291,7 @@ func (i MfaPingidArray) ToMfaPingidArrayOutputWithContext(ctx context.Context) M
 // MfaPingidMapInput is an input type that accepts MfaPingidMap and MfaPingidMapOutput values.
 // You can construct a concrete instance of `MfaPingidMapInput` via:
 //
-//          MfaPingidMap{ "key": MfaPingidArgs{...} }
+//	MfaPingidMap{ "key": MfaPingidArgs{...} }
 type MfaPingidMapInput interface {
 	pulumi.Input
 
@@ -320,6 +325,69 @@ func (o MfaPingidOutput) ToMfaPingidOutput() MfaPingidOutput {
 
 func (o MfaPingidOutput) ToMfaPingidOutputWithContext(ctx context.Context) MfaPingidOutput {
 	return o
+}
+
+// Admin URL computed by Vault.
+func (o MfaPingidOutput) AdminUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaPingid) pulumi.StringOutput { return v.AdminUrl }).(pulumi.StringOutput)
+}
+
+// Authenticator URL computed by Vault.
+func (o MfaPingidOutput) AuthenticatorUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaPingid) pulumi.StringOutput { return v.AuthenticatorUrl }).(pulumi.StringOutput)
+}
+
+// IDP URL computed by Vault.
+func (o MfaPingidOutput) IdpUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaPingid) pulumi.StringOutput { return v.IdpUrl }).(pulumi.StringOutput)
+}
+
+// `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
+// The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
+func (o MfaPingidOutput) MountAccessor() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaPingid) pulumi.StringOutput { return v.MountAccessor }).(pulumi.StringOutput)
+}
+
+// `(string: <required>)` – Name of the MFA method.
+func (o MfaPingidOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaPingid) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Namespace ID computed by Vault.
+func (o MfaPingidOutput) NamespaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaPingid) pulumi.StringOutput { return v.NamespaceId }).(pulumi.StringOutput)
+}
+
+// Org Alias computed by Vault.
+func (o MfaPingidOutput) OrgAlias() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaPingid) pulumi.StringOutput { return v.OrgAlias }).(pulumi.StringOutput)
+}
+
+// `(string: <required>)` - A base64-encoded third-party settings file retrieved
+// from PingID's configuration page.
+func (o MfaPingidOutput) SettingsFileBase64() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaPingid) pulumi.StringOutput { return v.SettingsFileBase64 }).(pulumi.StringOutput)
+}
+
+// Type of configuration computed by Vault.
+func (o MfaPingidOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaPingid) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+// If set, enables use of PingID signature. Computed by Vault
+func (o MfaPingidOutput) UseSignature() pulumi.BoolOutput {
+	return o.ApplyT(func(v *MfaPingid) pulumi.BoolOutput { return v.UseSignature }).(pulumi.BoolOutput)
+}
+
+// `(string)` - A format string for mapping Identity names to MFA method names.
+// Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
+// If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
+// - alias.name: The name returned by the mount configured via the `mountAccessor` parameter
+// - entity.name: The name configured for the Entity
+// - alias.metadata.`<key>`: The value of the Alias's metadata parameter
+// - entity.metadata.`<key>`: The value of the Entity's metadata parameter
+func (o MfaPingidOutput) UsernameFormat() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MfaPingid) pulumi.StringPtrOutput { return v.UsernameFormat }).(pulumi.StringPtrOutput)
 }
 
 type MfaPingidArrayOutput struct{ *pulumi.OutputState }

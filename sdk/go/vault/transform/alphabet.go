@@ -21,30 +21,33 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/transform"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/transform"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		mountTransform, err := vault.NewMount(ctx, "mountTransform", &vault.MountArgs{
-// 			Path: pulumi.String("transform"),
-// 			Type: pulumi.String("transform"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = transform.NewAlphabet(ctx, "test", &transform.AlphabetArgs{
-// 			Path:     mountTransform.Path,
-// 			Alphabet: pulumi.String("0123456789"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			mountTransform, err := vault.NewMount(ctx, "mountTransform", &vault.MountArgs{
+//				Path: pulumi.String("transform"),
+//				Type: pulumi.String("transform"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = transform.NewAlphabet(ctx, "test", &transform.AlphabetArgs{
+//				Path:     mountTransform.Path,
+//				Alphabet: pulumi.String("0123456789"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type Alphabet struct {
 	pulumi.CustomResourceState
@@ -155,7 +158,7 @@ func (i *Alphabet) ToAlphabetOutputWithContext(ctx context.Context) AlphabetOutp
 // AlphabetArrayInput is an input type that accepts AlphabetArray and AlphabetArrayOutput values.
 // You can construct a concrete instance of `AlphabetArrayInput` via:
 //
-//          AlphabetArray{ AlphabetArgs{...} }
+//	AlphabetArray{ AlphabetArgs{...} }
 type AlphabetArrayInput interface {
 	pulumi.Input
 
@@ -180,7 +183,7 @@ func (i AlphabetArray) ToAlphabetArrayOutputWithContext(ctx context.Context) Alp
 // AlphabetMapInput is an input type that accepts AlphabetMap and AlphabetMapOutput values.
 // You can construct a concrete instance of `AlphabetMapInput` via:
 //
-//          AlphabetMap{ "key": AlphabetArgs{...} }
+//	AlphabetMap{ "key": AlphabetArgs{...} }
 type AlphabetMapInput interface {
 	pulumi.Input
 
@@ -214,6 +217,21 @@ func (o AlphabetOutput) ToAlphabetOutput() AlphabetOutput {
 
 func (o AlphabetOutput) ToAlphabetOutputWithContext(ctx context.Context) AlphabetOutput {
 	return o
+}
+
+// A string of characters that contains the alphabet set.
+func (o AlphabetOutput) Alphabet() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Alphabet) pulumi.StringPtrOutput { return v.Alphabet }).(pulumi.StringPtrOutput)
+}
+
+// The name of the alphabet.
+func (o AlphabetOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Alphabet) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Path to where the back-end is mounted within Vault.
+func (o AlphabetOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v *Alphabet) pulumi.StringOutput { return v.Path }).(pulumi.StringOutput)
 }
 
 type AlphabetArrayOutput struct{ *pulumi.OutputState }
