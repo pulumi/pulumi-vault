@@ -163,7 +163,8 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_mount":                  {Tok: makeResource(mainMod, "Mount")},
 			"vault_namespace": {Tok: makeResource(mainMod, "Namespace"),
 				Fields: map[string]*tfbridge.SchemaInfo{"namespace": {
-					CSharpName: "TargetNamespace", // error CS0542: 'Namespace': member names cannot be the same as their enclosing type
+					// error CS0542: 'Namespace': member names cannot be the same as their enclosing type
+					CSharpName: "TargetNamespace",
 				}}},
 			"vault_policy": {
 				Tok: makeResource(mainMod, "Policy"),
