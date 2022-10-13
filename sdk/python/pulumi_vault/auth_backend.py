@@ -18,22 +18,34 @@ class AuthBackendArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  tune: Optional[pulumi.Input['AuthBackendTuneArgs']] = None):
         """
         The set of arguments for constructing a AuthBackend resource.
-        :param pulumi.Input[str] type: The name of the auth method type
-        :param pulumi.Input[str] description: A description of the auth method
+        :param pulumi.Input[str] type: The name of the auth method type.
+        :param pulumi.Input[str] description: A description of the auth method.
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[bool] local: Specifies if the auth method is local only.
-        :param pulumi.Input[str] path: The path to mount the auth method — this defaults to the name of the type
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] path: The path to mount the auth method — this defaults to the name of the type.
         :param pulumi.Input['AuthBackendTuneArgs'] tune: Extra configuration block. Structure is documented below.
         """
         pulumi.set(__self__, "type", type)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if disable_remount is not None:
+            pulumi.set(__self__, "disable_remount", disable_remount)
         if local is not None:
             pulumi.set(__self__, "local", local)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if path is not None:
             pulumi.set(__self__, "path", path)
         if tune is not None:
@@ -43,7 +55,7 @@ class AuthBackendArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        The name of the auth method type
+        The name of the auth method type.
         """
         return pulumi.get(self, "type")
 
@@ -55,13 +67,26 @@ class AuthBackendArgs:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        A description of the auth method
+        A description of the auth method.
         """
         return pulumi.get(self, "description")
 
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="disableRemount")
+    def disable_remount(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, opts out of mount migration on path updates.
+        See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        """
+        return pulumi.get(self, "disable_remount")
+
+    @disable_remount.setter
+    def disable_remount(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_remount", value)
 
     @property
     @pulumi.getter
@@ -77,9 +102,24 @@ class AuthBackendArgs:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
         """
-        The path to mount the auth method — this defaults to the name of the type
+        The path to mount the auth method — this defaults to the name of the type.
         """
         return pulumi.get(self, "path")
 
@@ -105,25 +145,37 @@ class _AuthBackendState:
     def __init__(__self__, *,
                  accessor: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  tune: Optional[pulumi.Input['AuthBackendTuneArgs']] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AuthBackend resources.
         :param pulumi.Input[str] accessor: The accessor for this auth method
-        :param pulumi.Input[str] description: A description of the auth method
+        :param pulumi.Input[str] description: A description of the auth method.
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[bool] local: Specifies if the auth method is local only.
-        :param pulumi.Input[str] path: The path to mount the auth method — this defaults to the name of the type
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] path: The path to mount the auth method — this defaults to the name of the type.
         :param pulumi.Input['AuthBackendTuneArgs'] tune: Extra configuration block. Structure is documented below.
-        :param pulumi.Input[str] type: The name of the auth method type
+        :param pulumi.Input[str] type: The name of the auth method type.
         """
         if accessor is not None:
             pulumi.set(__self__, "accessor", accessor)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if disable_remount is not None:
+            pulumi.set(__self__, "disable_remount", disable_remount)
         if local is not None:
             pulumi.set(__self__, "local", local)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if path is not None:
             pulumi.set(__self__, "path", path)
         if tune is not None:
@@ -147,13 +199,26 @@ class _AuthBackendState:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        A description of the auth method
+        A description of the auth method.
         """
         return pulumi.get(self, "description")
 
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="disableRemount")
+    def disable_remount(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, opts out of mount migration on path updates.
+        See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        """
+        return pulumi.get(self, "disable_remount")
+
+    @disable_remount.setter
+    def disable_remount(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_remount", value)
 
     @property
     @pulumi.getter
@@ -169,9 +234,24 @@ class _AuthBackendState:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
         """
-        The path to mount the auth method — this defaults to the name of the type
+        The path to mount the auth method — this defaults to the name of the type.
         """
         return pulumi.get(self, "path")
 
@@ -195,7 +275,7 @@ class _AuthBackendState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the auth method type
+        The name of the auth method type.
         """
         return pulumi.get(self, "type")
 
@@ -210,7 +290,9 @@ class AuthBackend(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  tune: Optional[pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -226,11 +308,17 @@ class AuthBackend(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: A description of the auth method
+        :param pulumi.Input[str] description: A description of the auth method.
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[bool] local: Specifies if the auth method is local only.
-        :param pulumi.Input[str] path: The path to mount the auth method — this defaults to the name of the type
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] path: The path to mount the auth method — this defaults to the name of the type.
         :param pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']] tune: Extra configuration block. Structure is documented below.
-        :param pulumi.Input[str] type: The name of the auth method type
+        :param pulumi.Input[str] type: The name of the auth method type.
         """
         ...
     @overload
@@ -263,7 +351,9 @@ class AuthBackend(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  tune: Optional[pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -277,7 +367,9 @@ class AuthBackend(pulumi.CustomResource):
             __props__ = AuthBackendArgs.__new__(AuthBackendArgs)
 
             __props__.__dict__["description"] = description
+            __props__.__dict__["disable_remount"] = disable_remount
             __props__.__dict__["local"] = local
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["path"] = path
             __props__.__dict__["tune"] = tune
             if type is None and not opts.urn:
@@ -296,7 +388,9 @@ class AuthBackend(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             accessor: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            disable_remount: Optional[pulumi.Input[bool]] = None,
             local: Optional[pulumi.Input[bool]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
             tune: Optional[pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'AuthBackend':
@@ -308,11 +402,17 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] accessor: The accessor for this auth method
-        :param pulumi.Input[str] description: A description of the auth method
+        :param pulumi.Input[str] description: A description of the auth method.
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[bool] local: Specifies if the auth method is local only.
-        :param pulumi.Input[str] path: The path to mount the auth method — this defaults to the name of the type
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] path: The path to mount the auth method — this defaults to the name of the type.
         :param pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']] tune: Extra configuration block. Structure is documented below.
-        :param pulumi.Input[str] type: The name of the auth method type
+        :param pulumi.Input[str] type: The name of the auth method type.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -320,7 +420,9 @@ class AuthBackend(pulumi.CustomResource):
 
         __props__.__dict__["accessor"] = accessor
         __props__.__dict__["description"] = description
+        __props__.__dict__["disable_remount"] = disable_remount
         __props__.__dict__["local"] = local
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["path"] = path
         __props__.__dict__["tune"] = tune
         __props__.__dict__["type"] = type
@@ -338,9 +440,18 @@ class AuthBackend(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
         """
-        A description of the auth method
+        A description of the auth method.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="disableRemount")
+    def disable_remount(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If set, opts out of mount migration on path updates.
+        See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        """
+        return pulumi.get(self, "disable_remount")
 
     @property
     @pulumi.getter
@@ -352,9 +463,20 @@ class AuthBackend(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @property
+    @pulumi.getter
     def path(self) -> pulumi.Output[str]:
         """
-        The path to mount the auth method — this defaults to the name of the type
+        The path to mount the auth method — this defaults to the name of the type.
         """
         return pulumi.get(self, "path")
 
@@ -370,7 +492,7 @@ class AuthBackend(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        The name of the auth method type
+        The name of the auth method type.
         """
         return pulumi.get(self, "type")
 

@@ -17,6 +17,7 @@ class OidcKeyArgs:
                  algorithm: Optional[pulumi.Input[str]] = None,
                  allowed_client_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  rotation_period: Optional[pulumi.Input[int]] = None,
                  verification_ttl: Optional[pulumi.Input[int]] = None):
         """
@@ -26,6 +27,10 @@ class OidcKeyArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_client_ids: Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
                allowed.
         :param pulumi.Input[str] name: Name of the OIDC Key to create.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[int] rotation_period: How often to generate a new signing key in number of seconds
         :param pulumi.Input[int] verification_ttl: "Controls how long the public portion of a signing key will be
                available for verification after being rotated in seconds.
@@ -36,6 +41,8 @@ class OidcKeyArgs:
             pulumi.set(__self__, "allowed_client_ids", allowed_client_ids)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if rotation_period is not None:
             pulumi.set(__self__, "rotation_period", rotation_period)
         if verification_ttl is not None:
@@ -78,6 +85,21 @@ class OidcKeyArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter(name="rotationPeriod")
@@ -111,6 +133,7 @@ class _OidcKeyState:
                  algorithm: Optional[pulumi.Input[str]] = None,
                  allowed_client_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  rotation_period: Optional[pulumi.Input[int]] = None,
                  verification_ttl: Optional[pulumi.Input[int]] = None):
         """
@@ -120,6 +143,10 @@ class _OidcKeyState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_client_ids: Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
                allowed.
         :param pulumi.Input[str] name: Name of the OIDC Key to create.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[int] rotation_period: How often to generate a new signing key in number of seconds
         :param pulumi.Input[int] verification_ttl: "Controls how long the public portion of a signing key will be
                available for verification after being rotated in seconds.
@@ -130,6 +157,8 @@ class _OidcKeyState:
             pulumi.set(__self__, "allowed_client_ids", allowed_client_ids)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if rotation_period is not None:
             pulumi.set(__self__, "rotation_period", rotation_period)
         if verification_ttl is not None:
@@ -172,6 +201,21 @@ class _OidcKeyState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter(name="rotationPeriod")
@@ -207,6 +251,7 @@ class OidcKey(pulumi.CustomResource):
                  algorithm: Optional[pulumi.Input[str]] = None,
                  allowed_client_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  rotation_period: Optional[pulumi.Input[int]] = None,
                  verification_ttl: Optional[pulumi.Input[int]] = None,
                  __props__=None):
@@ -239,6 +284,10 @@ class OidcKey(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_client_ids: Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
                allowed.
         :param pulumi.Input[str] name: Name of the OIDC Key to create.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[int] rotation_period: How often to generate a new signing key in number of seconds
         :param pulumi.Input[int] verification_ttl: "Controls how long the public portion of a signing key will be
                available for verification after being rotated in seconds.
@@ -289,6 +338,7 @@ class OidcKey(pulumi.CustomResource):
                  algorithm: Optional[pulumi.Input[str]] = None,
                  allowed_client_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  rotation_period: Optional[pulumi.Input[int]] = None,
                  verification_ttl: Optional[pulumi.Input[int]] = None,
                  __props__=None):
@@ -303,6 +353,7 @@ class OidcKey(pulumi.CustomResource):
             __props__.__dict__["algorithm"] = algorithm
             __props__.__dict__["allowed_client_ids"] = allowed_client_ids
             __props__.__dict__["name"] = name
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["rotation_period"] = rotation_period
             __props__.__dict__["verification_ttl"] = verification_ttl
         super(OidcKey, __self__).__init__(
@@ -318,6 +369,7 @@ class OidcKey(pulumi.CustomResource):
             algorithm: Optional[pulumi.Input[str]] = None,
             allowed_client_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             rotation_period: Optional[pulumi.Input[int]] = None,
             verification_ttl: Optional[pulumi.Input[int]] = None) -> 'OidcKey':
         """
@@ -332,6 +384,10 @@ class OidcKey(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_client_ids: Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
                allowed.
         :param pulumi.Input[str] name: Name of the OIDC Key to create.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[int] rotation_period: How often to generate a new signing key in number of seconds
         :param pulumi.Input[int] verification_ttl: "Controls how long the public portion of a signing key will be
                available for verification after being rotated in seconds.
@@ -343,6 +399,7 @@ class OidcKey(pulumi.CustomResource):
         __props__.__dict__["algorithm"] = algorithm
         __props__.__dict__["allowed_client_ids"] = allowed_client_ids
         __props__.__dict__["name"] = name
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["rotation_period"] = rotation_period
         __props__.__dict__["verification_ttl"] = verification_ttl
         return OidcKey(resource_name, opts=opts, __props__=__props__)
@@ -372,6 +429,17 @@ class OidcKey(pulumi.CustomResource):
         Name of the OIDC Key to create.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="rotationPeriod")

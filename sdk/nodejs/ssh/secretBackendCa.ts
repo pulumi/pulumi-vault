@@ -17,6 +17,14 @@ import * as utilities from "../utilities";
  * const example = new vault.Mount("example", {type: "ssh"});
  * const foo = new vault.ssh.SecretBackendCa("foo", {backend: example.path});
  * ```
+ *
+ * ## Import
+ *
+ * SSH secret backend CAs can be imported using the `path`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:ssh/secretBackendCa:SecretBackendCa foo ssh
+ * ```
  */
 export class SecretBackendCa extends pulumi.CustomResource {
     /**
@@ -55,6 +63,13 @@ export class SecretBackendCa extends pulumi.CustomResource {
      */
     public readonly generateSigningKey!: pulumi.Output<boolean | undefined>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * The private key part the SSH CA key pair; required if generateSigningKey is false.
      */
     public readonly privateKey!: pulumi.Output<string>;
@@ -78,16 +93,20 @@ export class SecretBackendCa extends pulumi.CustomResource {
             const state = argsOrState as SecretBackendCaState | undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["generateSigningKey"] = state ? state.generateSigningKey : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["privateKey"] = state ? state.privateKey : undefined;
             resourceInputs["publicKey"] = state ? state.publicKey : undefined;
         } else {
             const args = argsOrState as SecretBackendCaArgs | undefined;
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["generateSigningKey"] = args ? args.generateSigningKey : undefined;
-            resourceInputs["privateKey"] = args ? args.privateKey : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["privateKey"] = args?.privateKey ? pulumi.secret(args.privateKey) : undefined;
             resourceInputs["publicKey"] = args ? args.publicKey : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["privateKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SecretBackendCa.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -104,6 +123,13 @@ export interface SecretBackendCaState {
      * Whether Vault should generate the signing key pair internally. Defaults to true
      */
     generateSigningKey?: pulumi.Input<boolean>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The private key part the SSH CA key pair; required if generateSigningKey is false.
      */
@@ -126,6 +152,13 @@ export interface SecretBackendCaArgs {
      * Whether Vault should generate the signing key pair internally. Defaults to true
      */
     generateSigningKey?: pulumi.Input<boolean>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The private key part the SSH CA key pair; required if generateSigningKey is false.
      */

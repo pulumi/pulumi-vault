@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -82,6 +83,13 @@ export class SecretStaticAccount extends pulumi.CustomResource {
      */
     public readonly bindings!: pulumi.Output<outputs.gcp.SecretStaticAccountBinding[] | undefined>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * Type of secret generated for this static account. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
      */
     public readonly secretType!: pulumi.Output<string>;
@@ -117,6 +125,7 @@ export class SecretStaticAccount extends pulumi.CustomResource {
             const state = argsOrState as SecretStaticAccountState | undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["bindings"] = state ? state.bindings : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["secretType"] = state ? state.secretType : undefined;
             resourceInputs["serviceAccountEmail"] = state ? state.serviceAccountEmail : undefined;
             resourceInputs["serviceAccountProject"] = state ? state.serviceAccountProject : undefined;
@@ -135,6 +144,7 @@ export class SecretStaticAccount extends pulumi.CustomResource {
             }
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["bindings"] = args ? args.bindings : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["secretType"] = args ? args.secretType : undefined;
             resourceInputs["serviceAccountEmail"] = args ? args.serviceAccountEmail : undefined;
             resourceInputs["staticAccount"] = args ? args.staticAccount : undefined;
@@ -158,6 +168,13 @@ export interface SecretStaticAccountState {
      * Bindings to create for this static account. This can be specified multiple times for multiple bindings. Structure is documented below.
      */
     bindings?: pulumi.Input<pulumi.Input<inputs.gcp.SecretStaticAccountBinding>[]>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Type of secret generated for this static account. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
      */
@@ -192,6 +209,13 @@ export interface SecretStaticAccountArgs {
      * Bindings to create for this static account. This can be specified multiple times for multiple bindings. Structure is documented below.
      */
     bindings?: pulumi.Input<pulumi.Input<inputs.gcp.SecretStaticAccountBinding>[]>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Type of secret generated for this static account. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
      */

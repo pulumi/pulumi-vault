@@ -116,6 +116,15 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
         /// List of other SANs
         /// </summary>
         [Output("otherSans")]
@@ -138,6 +147,12 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Output("privateKeyType")]
         public Output<string> PrivateKeyType { get; private set; } = null!;
+
+        /// <summary>
+        /// `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
+        /// </summary>
+        [Output("renewPending")]
+        public Output<bool> RenewPending { get; private set; } = null!;
 
         /// <summary>
         /// If set to `true`, the certificate will be revoked on resource destruction.
@@ -186,6 +201,10 @@ namespace Pulumi.Vault.PkiSecret
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "privateKey",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -274,6 +293,15 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         [Input("otherSans")]
         private InputList<string>? _otherSans;
@@ -415,6 +443,15 @@ namespace Pulumi.Vault.PkiSecret
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
         [Input("otherSans")]
         private InputList<string>? _otherSans;
 
@@ -427,11 +464,21 @@ namespace Pulumi.Vault.PkiSecret
             set => _otherSans = value;
         }
 
+        [Input("privateKey")]
+        private Input<string>? _privateKey;
+
         /// <summary>
         /// The private key
         /// </summary>
-        [Input("privateKey")]
-        public Input<string>? PrivateKey { get; set; }
+        public Input<string>? PrivateKey
+        {
+            get => _privateKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The private key format
@@ -444,6 +491,12 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("privateKeyType")]
         public Input<string>? PrivateKeyType { get; set; }
+
+        /// <summary>
+        /// `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
+        /// </summary>
+        [Input("renewPending")]
+        public Input<bool>? RenewPending { get; set; }
 
         /// <summary>
         /// If set to `true`, the certificate will be revoked on resource destruction.

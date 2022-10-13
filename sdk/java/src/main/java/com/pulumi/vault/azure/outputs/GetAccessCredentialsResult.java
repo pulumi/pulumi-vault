@@ -13,81 +13,47 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetAccessCredentialsResult {
-    private final String backend;
+    private String backend;
     /**
      * @return The client id for credentials to query the Azure APIs.
      * 
      */
-    private final String clientId;
+    private String clientId;
     /**
      * @return The client secret for credentials to query the Azure APIs.
      * 
      */
-    private final String clientSecret;
-    private final @Nullable String environment;
+    private String clientSecret;
+    private @Nullable String environment;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
+    private String id;
     /**
      * @return The duration of the secret lease, in seconds relative
      * to the time the data was requested. Once this time has passed any plan
      * generated with this data may fail to apply.
      * 
      */
-    private final Integer leaseDuration;
+    private Integer leaseDuration;
     /**
      * @return The lease identifier assigned by Vault.
      * 
      */
-    private final String leaseId;
-    private final Boolean leaseRenewable;
-    private final String leaseStartTime;
-    private final @Nullable Integer maxCredValidationSeconds;
-    private final @Nullable Integer numSecondsBetweenTests;
-    private final @Nullable Integer numSequentialSuccesses;
-    private final String role;
-    private final @Nullable String subscriptionId;
-    private final @Nullable String tenantId;
-    private final @Nullable Boolean validateCreds;
+    private String leaseId;
+    private Boolean leaseRenewable;
+    private String leaseStartTime;
+    private @Nullable Integer maxCredValidationSeconds;
+    private @Nullable String namespace;
+    private @Nullable Integer numSecondsBetweenTests;
+    private @Nullable Integer numSequentialSuccesses;
+    private String role;
+    private @Nullable String subscriptionId;
+    private @Nullable String tenantId;
+    private @Nullable Boolean validateCreds;
 
-    @CustomType.Constructor
-    private GetAccessCredentialsResult(
-        @CustomType.Parameter("backend") String backend,
-        @CustomType.Parameter("clientId") String clientId,
-        @CustomType.Parameter("clientSecret") String clientSecret,
-        @CustomType.Parameter("environment") @Nullable String environment,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("leaseDuration") Integer leaseDuration,
-        @CustomType.Parameter("leaseId") String leaseId,
-        @CustomType.Parameter("leaseRenewable") Boolean leaseRenewable,
-        @CustomType.Parameter("leaseStartTime") String leaseStartTime,
-        @CustomType.Parameter("maxCredValidationSeconds") @Nullable Integer maxCredValidationSeconds,
-        @CustomType.Parameter("numSecondsBetweenTests") @Nullable Integer numSecondsBetweenTests,
-        @CustomType.Parameter("numSequentialSuccesses") @Nullable Integer numSequentialSuccesses,
-        @CustomType.Parameter("role") String role,
-        @CustomType.Parameter("subscriptionId") @Nullable String subscriptionId,
-        @CustomType.Parameter("tenantId") @Nullable String tenantId,
-        @CustomType.Parameter("validateCreds") @Nullable Boolean validateCreds) {
-        this.backend = backend;
-        this.clientId = clientId;
-        this.clientSecret = clientSecret;
-        this.environment = environment;
-        this.id = id;
-        this.leaseDuration = leaseDuration;
-        this.leaseId = leaseId;
-        this.leaseRenewable = leaseRenewable;
-        this.leaseStartTime = leaseStartTime;
-        this.maxCredValidationSeconds = maxCredValidationSeconds;
-        this.numSecondsBetweenTests = numSecondsBetweenTests;
-        this.numSequentialSuccesses = numSequentialSuccesses;
-        this.role = role;
-        this.subscriptionId = subscriptionId;
-        this.tenantId = tenantId;
-        this.validateCreds = validateCreds;
-    }
-
+    private GetAccessCredentialsResult() {}
     public String backend() {
         return this.backend;
     }
@@ -140,6 +106,9 @@ public final class GetAccessCredentialsResult {
     public Optional<Integer> maxCredValidationSeconds() {
         return Optional.ofNullable(this.maxCredValidationSeconds);
     }
+    public Optional<String> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
     public Optional<Integer> numSecondsBetweenTests() {
         return Optional.ofNullable(this.numSecondsBetweenTests);
     }
@@ -166,7 +135,7 @@ public final class GetAccessCredentialsResult {
     public static Builder builder(GetAccessCredentialsResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String backend;
         private String clientId;
@@ -178,17 +147,14 @@ public final class GetAccessCredentialsResult {
         private Boolean leaseRenewable;
         private String leaseStartTime;
         private @Nullable Integer maxCredValidationSeconds;
+        private @Nullable String namespace;
         private @Nullable Integer numSecondsBetweenTests;
         private @Nullable Integer numSequentialSuccesses;
         private String role;
         private @Nullable String subscriptionId;
         private @Nullable String tenantId;
         private @Nullable Boolean validateCreds;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetAccessCredentialsResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.backend = defaults.backend;
@@ -201,6 +167,7 @@ public final class GetAccessCredentialsResult {
     	      this.leaseRenewable = defaults.leaseRenewable;
     	      this.leaseStartTime = defaults.leaseStartTime;
     	      this.maxCredValidationSeconds = defaults.maxCredValidationSeconds;
+    	      this.namespace = defaults.namespace;
     	      this.numSecondsBetweenTests = defaults.numSecondsBetweenTests;
     	      this.numSequentialSuccesses = defaults.numSequentialSuccesses;
     	      this.role = defaults.role;
@@ -209,71 +176,111 @@ public final class GetAccessCredentialsResult {
     	      this.validateCreds = defaults.validateCreds;
         }
 
+        @CustomType.Setter
         public Builder backend(String backend) {
             this.backend = Objects.requireNonNull(backend);
             return this;
         }
+        @CustomType.Setter
         public Builder clientId(String clientId) {
             this.clientId = Objects.requireNonNull(clientId);
             return this;
         }
+        @CustomType.Setter
         public Builder clientSecret(String clientSecret) {
             this.clientSecret = Objects.requireNonNull(clientSecret);
             return this;
         }
+        @CustomType.Setter
         public Builder environment(@Nullable String environment) {
             this.environment = environment;
             return this;
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder leaseDuration(Integer leaseDuration) {
             this.leaseDuration = Objects.requireNonNull(leaseDuration);
             return this;
         }
+        @CustomType.Setter
         public Builder leaseId(String leaseId) {
             this.leaseId = Objects.requireNonNull(leaseId);
             return this;
         }
+        @CustomType.Setter
         public Builder leaseRenewable(Boolean leaseRenewable) {
             this.leaseRenewable = Objects.requireNonNull(leaseRenewable);
             return this;
         }
+        @CustomType.Setter
         public Builder leaseStartTime(String leaseStartTime) {
             this.leaseStartTime = Objects.requireNonNull(leaseStartTime);
             return this;
         }
+        @CustomType.Setter
         public Builder maxCredValidationSeconds(@Nullable Integer maxCredValidationSeconds) {
             this.maxCredValidationSeconds = maxCredValidationSeconds;
             return this;
         }
+        @CustomType.Setter
+        public Builder namespace(@Nullable String namespace) {
+            this.namespace = namespace;
+            return this;
+        }
+        @CustomType.Setter
         public Builder numSecondsBetweenTests(@Nullable Integer numSecondsBetweenTests) {
             this.numSecondsBetweenTests = numSecondsBetweenTests;
             return this;
         }
+        @CustomType.Setter
         public Builder numSequentialSuccesses(@Nullable Integer numSequentialSuccesses) {
             this.numSequentialSuccesses = numSequentialSuccesses;
             return this;
         }
+        @CustomType.Setter
         public Builder role(String role) {
             this.role = Objects.requireNonNull(role);
             return this;
         }
+        @CustomType.Setter
         public Builder subscriptionId(@Nullable String subscriptionId) {
             this.subscriptionId = subscriptionId;
             return this;
         }
+        @CustomType.Setter
         public Builder tenantId(@Nullable String tenantId) {
             this.tenantId = tenantId;
             return this;
         }
+        @CustomType.Setter
         public Builder validateCreds(@Nullable Boolean validateCreds) {
             this.validateCreds = validateCreds;
             return this;
-        }        public GetAccessCredentialsResult build() {
-            return new GetAccessCredentialsResult(backend, clientId, clientSecret, environment, id, leaseDuration, leaseId, leaseRenewable, leaseStartTime, maxCredValidationSeconds, numSecondsBetweenTests, numSequentialSuccesses, role, subscriptionId, tenantId, validateCreds);
+        }
+        public GetAccessCredentialsResult build() {
+            final var o = new GetAccessCredentialsResult();
+            o.backend = backend;
+            o.clientId = clientId;
+            o.clientSecret = clientSecret;
+            o.environment = environment;
+            o.id = id;
+            o.leaseDuration = leaseDuration;
+            o.leaseId = leaseId;
+            o.leaseRenewable = leaseRenewable;
+            o.leaseStartTime = leaseStartTime;
+            o.maxCredValidationSeconds = maxCredValidationSeconds;
+            o.namespace = namespace;
+            o.numSecondsBetweenTests = numSecondsBetweenTests;
+            o.numSequentialSuccesses = numSequentialSuccesses;
+            o.role = role;
+            o.subscriptionId = subscriptionId;
+            o.tenantId = tenantId;
+            o.validateCreds = validateCreds;
+            return o;
         }
     }
 }

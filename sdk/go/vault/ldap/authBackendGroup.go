@@ -72,6 +72,11 @@ type AuthBackendGroup struct {
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
 	// The LDAP groupname
 	Groupname pulumi.StringOutput `pulumi:"groupname"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Policies which should be granted to members of the group
 	Policies pulumi.StringArrayOutput `pulumi:"policies"`
 }
@@ -112,6 +117,11 @@ type authBackendGroupState struct {
 	Backend *string `pulumi:"backend"`
 	// The LDAP groupname
 	Groupname *string `pulumi:"groupname"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Policies which should be granted to members of the group
 	Policies []string `pulumi:"policies"`
 }
@@ -121,6 +131,11 @@ type AuthBackendGroupState struct {
 	Backend pulumi.StringPtrInput
 	// The LDAP groupname
 	Groupname pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Policies which should be granted to members of the group
 	Policies pulumi.StringArrayInput
 }
@@ -134,6 +149,11 @@ type authBackendGroupArgs struct {
 	Backend *string `pulumi:"backend"`
 	// The LDAP groupname
 	Groupname string `pulumi:"groupname"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Policies which should be granted to members of the group
 	Policies []string `pulumi:"policies"`
 }
@@ -144,6 +164,11 @@ type AuthBackendGroupArgs struct {
 	Backend pulumi.StringPtrInput
 	// The LDAP groupname
 	Groupname pulumi.StringInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Policies which should be granted to members of the group
 	Policies pulumi.StringArrayInput
 }
@@ -243,6 +268,14 @@ func (o AuthBackendGroupOutput) Backend() pulumi.StringPtrOutput {
 // The LDAP groupname
 func (o AuthBackendGroupOutput) Groupname() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthBackendGroup) pulumi.StringOutput { return v.Groupname }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o AuthBackendGroupOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendGroup) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Policies which should be granted to members of the group

@@ -135,9 +135,20 @@ export class SecretBackendSign extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * List of other SANs
      */
     public readonly otherSans!: pulumi.Output<string[] | undefined>;
+    /**
+     * `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
+     */
+    public /*out*/ readonly renewPending!: pulumi.Output<boolean>;
     /**
      * The serial number.
      *
@@ -184,7 +195,9 @@ export class SecretBackendSign extends pulumi.CustomResource {
             resourceInputs["issuingCa"] = state ? state.issuingCa : undefined;
             resourceInputs["minSecondsRemaining"] = state ? state.minSecondsRemaining : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["otherSans"] = state ? state.otherSans : undefined;
+            resourceInputs["renewPending"] = state ? state.renewPending : undefined;
             resourceInputs["serial"] = state ? state.serial : undefined;
             resourceInputs["serialNumber"] = state ? state.serialNumber : undefined;
             resourceInputs["ttl"] = state ? state.ttl : undefined;
@@ -210,6 +223,7 @@ export class SecretBackendSign extends pulumi.CustomResource {
             resourceInputs["ipSans"] = args ? args.ipSans : undefined;
             resourceInputs["minSecondsRemaining"] = args ? args.minSecondsRemaining : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["otherSans"] = args ? args.otherSans : undefined;
             resourceInputs["ttl"] = args ? args.ttl : undefined;
             resourceInputs["uriSans"] = args ? args.uriSans : undefined;
@@ -217,6 +231,7 @@ export class SecretBackendSign extends pulumi.CustomResource {
             resourceInputs["certificate"] = undefined /*out*/;
             resourceInputs["expiration"] = undefined /*out*/;
             resourceInputs["issuingCa"] = undefined /*out*/;
+            resourceInputs["renewPending"] = undefined /*out*/;
             resourceInputs["serial"] = undefined /*out*/;
             resourceInputs["serialNumber"] = undefined /*out*/;
         }
@@ -286,9 +301,20 @@ export interface SecretBackendSignState {
      */
     name?: pulumi.Input<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
+    /**
      * List of other SANs
      */
     otherSans?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
+     */
+    renewPending?: pulumi.Input<boolean>;
     /**
      * The serial number.
      *
@@ -353,6 +379,13 @@ export interface SecretBackendSignArgs {
      * Name of the role to create the certificate against
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * List of other SANs
      */

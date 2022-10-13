@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -84,6 +85,13 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * Specifies a comma-separated RabbitMQ management tags.
      */
     public readonly tags!: pulumi.Output<string | undefined>;
@@ -111,6 +119,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             const state = argsOrState as SecretBackendRoleState | undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["vhostTopics"] = state ? state.vhostTopics : undefined;
             resourceInputs["vhosts"] = state ? state.vhosts : undefined;
@@ -121,6 +130,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             }
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["vhostTopics"] = args ? args.vhostTopics : undefined;
             resourceInputs["vhosts"] = args ? args.vhosts : undefined;
@@ -144,6 +154,13 @@ export interface SecretBackendRoleState {
      * Must be unique within the backend.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Specifies a comma-separated RabbitMQ management tags.
      */
@@ -172,6 +189,13 @@ export interface SecretBackendRoleArgs {
      * Must be unique within the backend.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Specifies a comma-separated RabbitMQ management tags.
      */

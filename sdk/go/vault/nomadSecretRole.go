@@ -71,6 +71,11 @@ type NomadSecretRole struct {
 	// Specifies if the generated token should be global. Defaults to
 	// false.
 	Global pulumi.BoolOutput `pulumi:"global"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// List of policies attached to the generated token. This setting is only used
 	// when `type` is 'client'.
 	Policies pulumi.StringArrayOutput `pulumi:"policies"`
@@ -123,6 +128,11 @@ type nomadSecretRoleState struct {
 	// Specifies if the generated token should be global. Defaults to
 	// false.
 	Global *bool `pulumi:"global"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// List of policies attached to the generated token. This setting is only used
 	// when `type` is 'client'.
 	Policies []string `pulumi:"policies"`
@@ -141,6 +151,11 @@ type NomadSecretRoleState struct {
 	// Specifies if the generated token should be global. Defaults to
 	// false.
 	Global pulumi.BoolPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// List of policies attached to the generated token. This setting is only used
 	// when `type` is 'client'.
 	Policies pulumi.StringArrayInput
@@ -163,6 +178,11 @@ type nomadSecretRoleArgs struct {
 	// Specifies if the generated token should be global. Defaults to
 	// false.
 	Global *bool `pulumi:"global"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// List of policies attached to the generated token. This setting is only used
 	// when `type` is 'client'.
 	Policies []string `pulumi:"policies"`
@@ -182,6 +202,11 @@ type NomadSecretRoleArgs struct {
 	// Specifies if the generated token should be global. Defaults to
 	// false.
 	Global pulumi.BoolPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// List of policies attached to the generated token. This setting is only used
 	// when `type` is 'client'.
 	Policies pulumi.StringArrayInput
@@ -290,6 +315,14 @@ func (o NomadSecretRoleOutput) Backend() pulumi.StringOutput {
 // false.
 func (o NomadSecretRoleOutput) Global() pulumi.BoolOutput {
 	return o.ApplyT(func(v *NomadSecretRole) pulumi.BoolOutput { return v.Global }).(pulumi.BoolOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o NomadSecretRoleOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NomadSecretRole) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // List of policies attached to the generated token. This setting is only used

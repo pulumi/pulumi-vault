@@ -72,6 +72,9 @@ type NomadSecretBackend struct {
 	DefaultLeaseTtlSeconds pulumi.IntOutput `pulumi:"defaultLeaseTtlSeconds"`
 	// Human-friendly description of the mount for the Active Directory backend.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
 	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
 	// replication.Tolerance duration to use when checking the last rotation time.
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
@@ -83,6 +86,11 @@ type NomadSecretBackend struct {
 	MaxTokenNameLength pulumi.IntOutput `pulumi:"maxTokenNameLength"`
 	// Maximum possible lease duration for secrets in seconds.
 	MaxTtl pulumi.IntOutput `pulumi:"maxTtl"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Specifies the Nomad Management token to use.
 	Token pulumi.StringPtrOutput `pulumi:"token"`
 	// Specifies the ttl of the lease for the generated token.
@@ -96,6 +104,21 @@ func NewNomadSecretBackend(ctx *pulumi.Context,
 		args = &NomadSecretBackendArgs{}
 	}
 
+	if args.ClientCert != nil {
+		args.ClientCert = pulumi.ToSecret(args.ClientCert).(pulumi.StringPtrOutput)
+	}
+	if args.ClientKey != nil {
+		args.ClientKey = pulumi.ToSecret(args.ClientKey).(pulumi.StringPtrOutput)
+	}
+	if args.Token != nil {
+		args.Token = pulumi.ToSecret(args.Token).(pulumi.StringPtrOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"clientCert",
+		"clientKey",
+		"token",
+	})
+	opts = append(opts, secrets)
 	var resource NomadSecretBackend
 	err := ctx.RegisterResource("vault:index/nomadSecretBackend:NomadSecretBackend", name, args, &resource, opts...)
 	if err != nil {
@@ -135,6 +158,9 @@ type nomadSecretBackendState struct {
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// Human-friendly description of the mount for the Active Directory backend.
 	Description *string `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount *bool `pulumi:"disableRemount"`
 	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
 	// replication.Tolerance duration to use when checking the last rotation time.
 	Local *bool `pulumi:"local"`
@@ -146,6 +172,11 @@ type nomadSecretBackendState struct {
 	MaxTokenNameLength *int `pulumi:"maxTokenNameLength"`
 	// Maximum possible lease duration for secrets in seconds.
 	MaxTtl *int `pulumi:"maxTtl"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Specifies the Nomad Management token to use.
 	Token *string `pulumi:"token"`
 	// Specifies the ttl of the lease for the generated token.
@@ -170,6 +201,9 @@ type NomadSecretBackendState struct {
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// Human-friendly description of the mount for the Active Directory backend.
 	Description pulumi.StringPtrInput
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrInput
 	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
 	// replication.Tolerance duration to use when checking the last rotation time.
 	Local pulumi.BoolPtrInput
@@ -181,6 +215,11 @@ type NomadSecretBackendState struct {
 	MaxTokenNameLength pulumi.IntPtrInput
 	// Maximum possible lease duration for secrets in seconds.
 	MaxTtl pulumi.IntPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Specifies the Nomad Management token to use.
 	Token pulumi.StringPtrInput
 	// Specifies the ttl of the lease for the generated token.
@@ -209,6 +248,9 @@ type nomadSecretBackendArgs struct {
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// Human-friendly description of the mount for the Active Directory backend.
 	Description *string `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount *bool `pulumi:"disableRemount"`
 	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
 	// replication.Tolerance duration to use when checking the last rotation time.
 	Local *bool `pulumi:"local"`
@@ -220,6 +262,11 @@ type nomadSecretBackendArgs struct {
 	MaxTokenNameLength *int `pulumi:"maxTokenNameLength"`
 	// Maximum possible lease duration for secrets in seconds.
 	MaxTtl *int `pulumi:"maxTtl"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Specifies the Nomad Management token to use.
 	Token *string `pulumi:"token"`
 	// Specifies the ttl of the lease for the generated token.
@@ -245,6 +292,9 @@ type NomadSecretBackendArgs struct {
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// Human-friendly description of the mount for the Active Directory backend.
 	Description pulumi.StringPtrInput
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrInput
 	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
 	// replication.Tolerance duration to use when checking the last rotation time.
 	Local pulumi.BoolPtrInput
@@ -256,6 +306,11 @@ type NomadSecretBackendArgs struct {
 	MaxTokenNameLength pulumi.IntPtrInput
 	// Maximum possible lease duration for secrets in seconds.
 	MaxTtl pulumi.IntPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Specifies the Nomad Management token to use.
 	Token pulumi.StringPtrInput
 	// Specifies the ttl of the lease for the generated token.
@@ -387,6 +442,12 @@ func (o NomadSecretBackendOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *NomadSecretBackend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// If set, opts out of mount migration on path updates.
+// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+func (o NomadSecretBackendOutput) DisableRemount() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.BoolPtrOutput { return v.DisableRemount }).(pulumi.BoolPtrOutput)
+}
+
 // Mark the secrets engine as local-only. Local engines are not replicated or removed by
 // replication.Tolerance duration to use when checking the last rotation time.
 func (o NomadSecretBackendOutput) Local() pulumi.BoolPtrOutput {
@@ -408,6 +469,14 @@ func (o NomadSecretBackendOutput) MaxTokenNameLength() pulumi.IntOutput {
 // Maximum possible lease duration for secrets in seconds.
 func (o NomadSecretBackendOutput) MaxTtl() pulumi.IntOutput {
 	return o.ApplyT(func(v *NomadSecretBackend) pulumi.IntOutput { return v.MaxTtl }).(pulumi.IntOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o NomadSecretBackendOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Specifies the Nomad Management token to use.

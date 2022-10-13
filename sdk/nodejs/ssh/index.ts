@@ -5,12 +5,16 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./secretBackendCa";
-export * from "./secretBackendRole";
+export { SecretBackendCaArgs, SecretBackendCaState } from "./secretBackendCa";
+export type SecretBackendCa = import("./secretBackendCa").SecretBackendCa;
+export const SecretBackendCa: typeof import("./secretBackendCa").SecretBackendCa = null as any;
 
-// Import resources to register:
-import { SecretBackendCa } from "./secretBackendCa";
-import { SecretBackendRole } from "./secretBackendRole";
+export { SecretBackendRoleArgs, SecretBackendRoleState } from "./secretBackendRole";
+export type SecretBackendRole = import("./secretBackendRole").SecretBackendRole;
+export const SecretBackendRole: typeof import("./secretBackendRole").SecretBackendRole = null as any;
+
+utilities.lazyLoad(exports, ["SecretBackendCa"], () => require("./secretBackendCa"));
+utilities.lazyLoad(exports, ["SecretBackendRole"], () => require("./secretBackendRole"));
 
 const _module = {
     version: utilities.getVersion(),

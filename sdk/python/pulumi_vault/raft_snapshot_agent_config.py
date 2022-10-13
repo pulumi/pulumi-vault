@@ -40,6 +40,7 @@ class RaftSnapshotAgentConfigArgs:
                  google_service_account_key: Optional[pulumi.Input[str]] = None,
                  local_max_space: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  retain: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a RaftSnapshotAgentConfig resource.
@@ -88,6 +89,10 @@ class RaftSnapshotAgentConfigArgs:
                space, in bytes, to use for snapshots. Snapshot attempts will fail if there is not enough
                space left in this allowance.
         :param pulumi.Input[str] name: `<required>` – Name of the configuration to modify.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[int] retain: How many snapshots are to be kept; when writing a
                snapshot, if there are more snapshots already stored than this number, the
                oldest ones will be deleted.
@@ -141,6 +146,8 @@ class RaftSnapshotAgentConfigArgs:
             pulumi.set(__self__, "local_max_space", local_max_space)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if retain is not None:
             pulumi.set(__self__, "retain", retain)
 
@@ -477,6 +484,21 @@ class RaftSnapshotAgentConfigArgs:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def retain(self) -> Optional[pulumi.Input[int]]:
         """
         How many snapshots are to be kept; when writing a
@@ -517,6 +539,7 @@ class _RaftSnapshotAgentConfigState:
                  interval_seconds: Optional[pulumi.Input[int]] = None,
                  local_max_space: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path_prefix: Optional[pulumi.Input[str]] = None,
                  retain: Optional[pulumi.Input[int]] = None,
                  storage_type: Optional[pulumi.Input[str]] = None):
@@ -560,6 +583,10 @@ class _RaftSnapshotAgentConfigState:
                space, in bytes, to use for snapshots. Snapshot attempts will fail if there is not enough
                space left in this allowance.
         :param pulumi.Input[str] name: `<required>` – Name of the configuration to modify.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path_prefix: `<required>` - For `storage_type = "local"`, the directory to
                write the snapshots in. For cloud storage types, the bucket prefix to use.
                Types `azure-s3` and `google-gcs` require a trailing `/` (slash).
@@ -619,6 +646,8 @@ class _RaftSnapshotAgentConfigState:
             pulumi.set(__self__, "local_max_space", local_max_space)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if path_prefix is not None:
             pulumi.set(__self__, "path_prefix", path_prefix)
         if retain is not None:
@@ -929,6 +958,21 @@ class _RaftSnapshotAgentConfigState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="pathPrefix")
     def path_prefix(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1001,6 +1045,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
                  interval_seconds: Optional[pulumi.Input[int]] = None,
                  local_max_space: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path_prefix: Optional[pulumi.Input[str]] = None,
                  retain: Optional[pulumi.Input[int]] = None,
                  storage_type: Optional[pulumi.Input[str]] = None,
@@ -1018,6 +1063,45 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             path_prefix="/opt/vault/snapshots/",
             retain=7,
             storage_type="local")
+        ```
+        ### AWS S3
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_vault as vault
+
+        config = pulumi.Config()
+        aws_access_key_id = config.require_object("awsAccessKeyId")
+        aws_secret_access_key = config.require_object("awsSecretAccessKey")
+        current = aws.get_region()
+        s3_backups = vault.RaftSnapshotAgentConfig("s3Backups",
+            interval_seconds=86400,
+            retain=7,
+            path_prefix="/path/in/bucket",
+            storage_type="aws-s3",
+            aws_s3_bucket="my-bucket",
+            aws_s3_region=current.name,
+            aws_access_key_id=aws_access_key_id,
+            aws_secret_access_key=aws_secret_access_key,
+            aws_s3_enable_kms=True)
+        ```
+        ### Azure BLOB
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        config = pulumi.Config()
+        azure_account_name = config.require_object("azureAccountName")
+        azure_account_key = config.require_object("azureAccountKey")
+        azure_backups = vault.RaftSnapshotAgentConfig("azureBackups",
+            interval_seconds=86400,
+            retain=7,
+            path_prefix="/",
+            storage_type="azure-blob",
+            azure_container_name="vault-blob",
+            azure_account_name=azure_account_name,
+            azure_account_key=azure_account_key)
         ```
 
         ## Import
@@ -1068,6 +1152,10 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
                space, in bytes, to use for snapshots. Snapshot attempts will fail if there is not enough
                space left in this allowance.
         :param pulumi.Input[str] name: `<required>` – Name of the configuration to modify.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path_prefix: `<required>` - For `storage_type = "local"`, the directory to
                write the snapshots in. For cloud storage types, the bucket prefix to use.
                Types `azure-s3` and `google-gcs` require a trailing `/` (slash).
@@ -1098,6 +1186,45 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             path_prefix="/opt/vault/snapshots/",
             retain=7,
             storage_type="local")
+        ```
+        ### AWS S3
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_vault as vault
+
+        config = pulumi.Config()
+        aws_access_key_id = config.require_object("awsAccessKeyId")
+        aws_secret_access_key = config.require_object("awsSecretAccessKey")
+        current = aws.get_region()
+        s3_backups = vault.RaftSnapshotAgentConfig("s3Backups",
+            interval_seconds=86400,
+            retain=7,
+            path_prefix="/path/in/bucket",
+            storage_type="aws-s3",
+            aws_s3_bucket="my-bucket",
+            aws_s3_region=current.name,
+            aws_access_key_id=aws_access_key_id,
+            aws_secret_access_key=aws_secret_access_key,
+            aws_s3_enable_kms=True)
+        ```
+        ### Azure BLOB
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        config = pulumi.Config()
+        azure_account_name = config.require_object("azureAccountName")
+        azure_account_key = config.require_object("azureAccountKey")
+        azure_backups = vault.RaftSnapshotAgentConfig("azureBackups",
+            interval_seconds=86400,
+            retain=7,
+            path_prefix="/",
+            storage_type="azure-blob",
+            azure_container_name="vault-blob",
+            azure_account_name=azure_account_name,
+            azure_account_key=azure_account_key)
         ```
 
         ## Import
@@ -1147,6 +1274,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
                  interval_seconds: Optional[pulumi.Input[int]] = None,
                  local_max_space: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path_prefix: Optional[pulumi.Input[str]] = None,
                  retain: Optional[pulumi.Input[int]] = None,
                  storage_type: Optional[pulumi.Input[str]] = None,
@@ -1185,6 +1313,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             __props__.__dict__["interval_seconds"] = interval_seconds
             __props__.__dict__["local_max_space"] = local_max_space
             __props__.__dict__["name"] = name
+            __props__.__dict__["namespace"] = namespace
             if path_prefix is None and not opts.urn:
                 raise TypeError("Missing required property 'path_prefix'")
             __props__.__dict__["path_prefix"] = path_prefix
@@ -1226,6 +1355,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             interval_seconds: Optional[pulumi.Input[int]] = None,
             local_max_space: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             path_prefix: Optional[pulumi.Input[str]] = None,
             retain: Optional[pulumi.Input[int]] = None,
             storage_type: Optional[pulumi.Input[str]] = None) -> 'RaftSnapshotAgentConfig':
@@ -1274,6 +1404,10 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
                space, in bytes, to use for snapshots. Snapshot attempts will fail if there is not enough
                space left in this allowance.
         :param pulumi.Input[str] name: `<required>` – Name of the configuration to modify.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path_prefix: `<required>` - For `storage_type = "local"`, the directory to
                write the snapshots in. For cloud storage types, the bucket prefix to use.
                Types `azure-s3` and `google-gcs` require a trailing `/` (slash).
@@ -1313,6 +1447,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         __props__.__dict__["interval_seconds"] = interval_seconds
         __props__.__dict__["local_max_space"] = local_max_space
         __props__.__dict__["name"] = name
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["path_prefix"] = path_prefix
         __props__.__dict__["retain"] = retain
         __props__.__dict__["storage_type"] = storage_type
@@ -1523,6 +1658,17 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         `<required>` – Name of the configuration to modify.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="pathPrefix")

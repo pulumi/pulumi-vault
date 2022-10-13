@@ -97,6 +97,13 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured namespace.
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * The database statements to execute when
      * renewing a user.
      */
@@ -131,6 +138,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["defaultTtl"] = state ? state.defaultTtl : undefined;
             resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["renewStatements"] = state ? state.renewStatements : undefined;
             resourceInputs["revocationStatements"] = state ? state.revocationStatements : undefined;
             resourceInputs["rollbackStatements"] = state ? state.rollbackStatements : undefined;
@@ -151,6 +159,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["defaultTtl"] = args ? args.defaultTtl : undefined;
             resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["renewStatements"] = args ? args.renewStatements : undefined;
             resourceInputs["revocationStatements"] = args ? args.revocationStatements : undefined;
             resourceInputs["rollbackStatements"] = args ? args.rollbackStatements : undefined;
@@ -192,6 +201,13 @@ export interface SecretBackendRoleState {
      * A unique name to give the role.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured namespace.
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The database statements to execute when
      * renewing a user.
@@ -241,6 +257,13 @@ export interface SecretBackendRoleArgs {
      * A unique name to give the role.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured namespace.
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The database statements to execute when
      * renewing a user.

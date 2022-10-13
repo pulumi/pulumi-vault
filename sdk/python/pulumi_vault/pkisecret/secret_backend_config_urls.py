@@ -17,12 +17,17 @@ class SecretBackendConfigUrlsArgs:
                  backend: pulumi.Input[str],
                  crl_distribution_points: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  issuing_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  ocsp_servers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a SecretBackendConfigUrls resource.
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] crl_distribution_points: Specifies the URL values for the CRL Distribution Points field.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] issuing_certificates: Specifies the URL values for the Issuing Certificate field.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ocsp_servers: Specifies the URL values for the OCSP Servers field.
         """
         pulumi.set(__self__, "backend", backend)
@@ -30,6 +35,8 @@ class SecretBackendConfigUrlsArgs:
             pulumi.set(__self__, "crl_distribution_points", crl_distribution_points)
         if issuing_certificates is not None:
             pulumi.set(__self__, "issuing_certificates", issuing_certificates)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if ocsp_servers is not None:
             pulumi.set(__self__, "ocsp_servers", ocsp_servers)
 
@@ -70,6 +77,21 @@ class SecretBackendConfigUrlsArgs:
         pulumi.set(self, "issuing_certificates", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="ocspServers")
     def ocsp_servers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -88,12 +110,17 @@ class _SecretBackendConfigUrlsState:
                  backend: Optional[pulumi.Input[str]] = None,
                  crl_distribution_points: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  issuing_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  ocsp_servers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering SecretBackendConfigUrls resources.
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] crl_distribution_points: Specifies the URL values for the CRL Distribution Points field.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] issuing_certificates: Specifies the URL values for the Issuing Certificate field.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ocsp_servers: Specifies the URL values for the OCSP Servers field.
         """
         if backend is not None:
@@ -102,6 +129,8 @@ class _SecretBackendConfigUrlsState:
             pulumi.set(__self__, "crl_distribution_points", crl_distribution_points)
         if issuing_certificates is not None:
             pulumi.set(__self__, "issuing_certificates", issuing_certificates)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if ocsp_servers is not None:
             pulumi.set(__self__, "ocsp_servers", ocsp_servers)
 
@@ -142,6 +171,21 @@ class _SecretBackendConfigUrlsState:
         pulumi.set(self, "issuing_certificates", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="ocspServers")
     def ocsp_servers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -162,6 +206,7 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
                  backend: Optional[pulumi.Input[str]] = None,
                  crl_distribution_points: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  issuing_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  ocsp_servers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
@@ -201,6 +246,10 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] crl_distribution_points: Specifies the URL values for the CRL Distribution Points field.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] issuing_certificates: Specifies the URL values for the Issuing Certificate field.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ocsp_servers: Specifies the URL values for the OCSP Servers field.
         """
         ...
@@ -259,6 +308,7 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
                  backend: Optional[pulumi.Input[str]] = None,
                  crl_distribution_points: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  issuing_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  ocsp_servers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -274,6 +324,7 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
             __props__.__dict__["backend"] = backend
             __props__.__dict__["crl_distribution_points"] = crl_distribution_points
             __props__.__dict__["issuing_certificates"] = issuing_certificates
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["ocsp_servers"] = ocsp_servers
         super(SecretBackendConfigUrls, __self__).__init__(
             'vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls',
@@ -288,6 +339,7 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
             backend: Optional[pulumi.Input[str]] = None,
             crl_distribution_points: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             issuing_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             ocsp_servers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'SecretBackendConfigUrls':
         """
         Get an existing SecretBackendConfigUrls resource's state with the given name, id, and optional extra
@@ -299,6 +351,10 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] crl_distribution_points: Specifies the URL values for the CRL Distribution Points field.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] issuing_certificates: Specifies the URL values for the Issuing Certificate field.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ocsp_servers: Specifies the URL values for the OCSP Servers field.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -308,6 +364,7 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
         __props__.__dict__["backend"] = backend
         __props__.__dict__["crl_distribution_points"] = crl_distribution_points
         __props__.__dict__["issuing_certificates"] = issuing_certificates
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["ocsp_servers"] = ocsp_servers
         return SecretBackendConfigUrls(resource_name, opts=opts, __props__=__props__)
 
@@ -334,6 +391,17 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
         Specifies the URL values for the Issuing Certificate field.
         """
         return pulumi.get(self, "issuing_certificates")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="ocspServers")

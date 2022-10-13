@@ -25,6 +25,9 @@ class SecretBackendIntermediateCertRequestArgs:
                  key_bits: Optional[pulumi.Input[int]] = None,
                  key_type: Optional[pulumi.Input[str]] = None,
                  locality: Optional[pulumi.Input[str]] = None,
+                 managed_key_id: Optional[pulumi.Input[str]] = None,
+                 managed_key_name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ou: Optional[pulumi.Input[str]] = None,
@@ -38,6 +41,7 @@ class SecretBackendIntermediateCertRequestArgs:
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[str] common_name: CN of intermediate to create
         :param pulumi.Input[str] type: Type of intermediate to create. Must be either \\"exported\\" or \\"internal\\"
+               or \\"kms\\"
         :param pulumi.Input[Sequence[pulumi.Input[str]]] alt_names: List of alternative names
         :param pulumi.Input[str] country: The country
         :param pulumi.Input[bool] exclude_cn_from_sans: Flag to exclude CN from SANs
@@ -46,6 +50,14 @@ class SecretBackendIntermediateCertRequestArgs:
         :param pulumi.Input[int] key_bits: The number of bits to use
         :param pulumi.Input[str] key_type: The desired key type
         :param pulumi.Input[str] locality: The locality
+        :param pulumi.Input[str] managed_key_id: The ID of the previously configured managed key. This field is
+               required if `type` is `kms` and it conflicts with `managed_key_name`
+        :param pulumi.Input[str] managed_key_name: The name of the previously configured managed key. This field is
+               required if `type` is `kms`  and it conflicts with `managed_key_id`
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] ou: The organization unit
@@ -74,6 +86,12 @@ class SecretBackendIntermediateCertRequestArgs:
             pulumi.set(__self__, "key_type", key_type)
         if locality is not None:
             pulumi.set(__self__, "locality", locality)
+        if managed_key_id is not None:
+            pulumi.set(__self__, "managed_key_id", managed_key_id)
+        if managed_key_name is not None:
+            pulumi.set(__self__, "managed_key_name", managed_key_name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if organization is not None:
             pulumi.set(__self__, "organization", organization)
         if other_sans is not None:
@@ -120,6 +138,7 @@ class SecretBackendIntermediateCertRequestArgs:
     def type(self) -> pulumi.Input[str]:
         """
         Type of intermediate to create. Must be either \\"exported\\" or \\"internal\\"
+        or \\"kms\\"
         """
         return pulumi.get(self, "type")
 
@@ -222,6 +241,47 @@ class SecretBackendIntermediateCertRequestArgs:
     @locality.setter
     def locality(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "locality", value)
+
+    @property
+    @pulumi.getter(name="managedKeyId")
+    def managed_key_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the previously configured managed key. This field is
+        required if `type` is `kms` and it conflicts with `managed_key_name`
+        """
+        return pulumi.get(self, "managed_key_id")
+
+    @managed_key_id.setter
+    def managed_key_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "managed_key_id", value)
+
+    @property
+    @pulumi.getter(name="managedKeyName")
+    def managed_key_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the previously configured managed key. This field is
+        required if `type` is `kms`  and it conflicts with `managed_key_id`
+        """
+        return pulumi.get(self, "managed_key_name")
+
+    @managed_key_name.setter
+    def managed_key_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "managed_key_name", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -334,6 +394,9 @@ class _SecretBackendIntermediateCertRequestState:
                  key_bits: Optional[pulumi.Input[int]] = None,
                  key_type: Optional[pulumi.Input[str]] = None,
                  locality: Optional[pulumi.Input[str]] = None,
+                 managed_key_id: Optional[pulumi.Input[str]] = None,
+                 managed_key_name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ou: Optional[pulumi.Input[str]] = None,
@@ -358,6 +421,14 @@ class _SecretBackendIntermediateCertRequestState:
         :param pulumi.Input[int] key_bits: The number of bits to use
         :param pulumi.Input[str] key_type: The desired key type
         :param pulumi.Input[str] locality: The locality
+        :param pulumi.Input[str] managed_key_id: The ID of the previously configured managed key. This field is
+               required if `type` is `kms` and it conflicts with `managed_key_name`
+        :param pulumi.Input[str] managed_key_name: The name of the previously configured managed key. This field is
+               required if `type` is `kms`  and it conflicts with `managed_key_id`
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] ou: The organization unit
@@ -368,6 +439,7 @@ class _SecretBackendIntermediateCertRequestState:
         :param pulumi.Input[str] province: The province
         :param pulumi.Input[str] street_address: The street address
         :param pulumi.Input[str] type: Type of intermediate to create. Must be either \\"exported\\" or \\"internal\\"
+               or \\"kms\\"
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
         """
         if alt_names is not None:
@@ -392,6 +464,12 @@ class _SecretBackendIntermediateCertRequestState:
             pulumi.set(__self__, "key_type", key_type)
         if locality is not None:
             pulumi.set(__self__, "locality", locality)
+        if managed_key_id is not None:
+            pulumi.set(__self__, "managed_key_id", managed_key_id)
+        if managed_key_name is not None:
+            pulumi.set(__self__, "managed_key_name", managed_key_name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if organization is not None:
             pulumi.set(__self__, "organization", organization)
         if other_sans is not None:
@@ -548,6 +626,47 @@ class _SecretBackendIntermediateCertRequestState:
         pulumi.set(self, "locality", value)
 
     @property
+    @pulumi.getter(name="managedKeyId")
+    def managed_key_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the previously configured managed key. This field is
+        required if `type` is `kms` and it conflicts with `managed_key_name`
+        """
+        return pulumi.get(self, "managed_key_id")
+
+    @managed_key_id.setter
+    def managed_key_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "managed_key_id", value)
+
+    @property
+    @pulumi.getter(name="managedKeyName")
+    def managed_key_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the previously configured managed key. This field is
+        required if `type` is `kms`  and it conflicts with `managed_key_id`
+        """
+        return pulumi.get(self, "managed_key_name")
+
+    @managed_key_name.setter
+    def managed_key_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "managed_key_name", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter
     def organization(self) -> Optional[pulumi.Input[str]]:
         """
@@ -660,6 +779,7 @@ class _SecretBackendIntermediateCertRequestState:
     def type(self) -> Optional[pulumi.Input[str]]:
         """
         Type of intermediate to create. Must be either \\"exported\\" or \\"internal\\"
+        or \\"kms\\"
         """
         return pulumi.get(self, "type")
 
@@ -695,6 +815,9 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
                  key_bits: Optional[pulumi.Input[int]] = None,
                  key_type: Optional[pulumi.Input[str]] = None,
                  locality: Optional[pulumi.Input[str]] = None,
+                 managed_key_id: Optional[pulumi.Input[str]] = None,
+                 managed_key_name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ou: Optional[pulumi.Input[str]] = None,
@@ -731,6 +854,14 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         :param pulumi.Input[int] key_bits: The number of bits to use
         :param pulumi.Input[str] key_type: The desired key type
         :param pulumi.Input[str] locality: The locality
+        :param pulumi.Input[str] managed_key_id: The ID of the previously configured managed key. This field is
+               required if `type` is `kms` and it conflicts with `managed_key_name`
+        :param pulumi.Input[str] managed_key_name: The name of the previously configured managed key. This field is
+               required if `type` is `kms`  and it conflicts with `managed_key_id`
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] ou: The organization unit
@@ -739,6 +870,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         :param pulumi.Input[str] province: The province
         :param pulumi.Input[str] street_address: The street address
         :param pulumi.Input[str] type: Type of intermediate to create. Must be either \\"exported\\" or \\"internal\\"
+               or \\"kms\\"
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
         """
         ...
@@ -786,6 +918,9 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
                  key_bits: Optional[pulumi.Input[int]] = None,
                  key_type: Optional[pulumi.Input[str]] = None,
                  locality: Optional[pulumi.Input[str]] = None,
+                 managed_key_id: Optional[pulumi.Input[str]] = None,
+                 managed_key_name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ou: Optional[pulumi.Input[str]] = None,
@@ -818,6 +953,9 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
             __props__.__dict__["key_bits"] = key_bits
             __props__.__dict__["key_type"] = key_type
             __props__.__dict__["locality"] = locality
+            __props__.__dict__["managed_key_id"] = managed_key_id
+            __props__.__dict__["managed_key_name"] = managed_key_name
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["organization"] = organization
             __props__.__dict__["other_sans"] = other_sans
             __props__.__dict__["ou"] = ou
@@ -832,6 +970,8 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
             __props__.__dict__["csr"] = None
             __props__.__dict__["private_key"] = None
             __props__.__dict__["private_key_type"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["privateKey"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(SecretBackendIntermediateCertRequest, __self__).__init__(
             'vault:pkiSecret/secretBackendIntermediateCertRequest:SecretBackendIntermediateCertRequest',
             resource_name,
@@ -853,6 +993,9 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
             key_bits: Optional[pulumi.Input[int]] = None,
             key_type: Optional[pulumi.Input[str]] = None,
             locality: Optional[pulumi.Input[str]] = None,
+            managed_key_id: Optional[pulumi.Input[str]] = None,
+            managed_key_name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             organization: Optional[pulumi.Input[str]] = None,
             other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             ou: Optional[pulumi.Input[str]] = None,
@@ -882,6 +1025,14 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         :param pulumi.Input[int] key_bits: The number of bits to use
         :param pulumi.Input[str] key_type: The desired key type
         :param pulumi.Input[str] locality: The locality
+        :param pulumi.Input[str] managed_key_id: The ID of the previously configured managed key. This field is
+               required if `type` is `kms` and it conflicts with `managed_key_name`
+        :param pulumi.Input[str] managed_key_name: The name of the previously configured managed key. This field is
+               required if `type` is `kms`  and it conflicts with `managed_key_id`
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] ou: The organization unit
@@ -892,6 +1043,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         :param pulumi.Input[str] province: The province
         :param pulumi.Input[str] street_address: The street address
         :param pulumi.Input[str] type: Type of intermediate to create. Must be either \\"exported\\" or \\"internal\\"
+               or \\"kms\\"
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -909,6 +1061,9 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         __props__.__dict__["key_bits"] = key_bits
         __props__.__dict__["key_type"] = key_type
         __props__.__dict__["locality"] = locality
+        __props__.__dict__["managed_key_id"] = managed_key_id
+        __props__.__dict__["managed_key_name"] = managed_key_name
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["organization"] = organization
         __props__.__dict__["other_sans"] = other_sans
         __props__.__dict__["ou"] = ou
@@ -1011,6 +1166,35 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         return pulumi.get(self, "locality")
 
     @property
+    @pulumi.getter(name="managedKeyId")
+    def managed_key_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The ID of the previously configured managed key. This field is
+        required if `type` is `kms` and it conflicts with `managed_key_name`
+        """
+        return pulumi.get(self, "managed_key_id")
+
+    @property
+    @pulumi.getter(name="managedKeyName")
+    def managed_key_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        The name of the previously configured managed key. This field is
+        required if `type` is `kms`  and it conflicts with `managed_key_id`
+        """
+        return pulumi.get(self, "managed_key_name")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @property
     @pulumi.getter
     def organization(self) -> pulumi.Output[Optional[str]]:
         """
@@ -1087,6 +1271,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
     def type(self) -> pulumi.Output[str]:
         """
         Type of intermediate to create. Must be either \\"exported\\" or \\"internal\\"
+        or \\"kms\\"
         """
         return pulumi.get(self, "type")
 

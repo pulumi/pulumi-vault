@@ -93,6 +93,27 @@ use ""data.vault_identity_group.*.group_name"", ""vault_identity_group.*.group_n
         return Optional.ofNullable(this.memberEntityIds);
     }
 
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable Output<String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
+
     private GroupMemberEntityIdsState() {}
 
     private GroupMemberEntityIdsState(GroupMemberEntityIdsState $) {
@@ -100,6 +121,7 @@ use ""data.vault_identity_group.*.group_name"", ""vault_identity_group.*.group_n
         this.groupId = $.groupId;
         this.groupName = $.groupName;
         this.memberEntityIds = $.memberEntityIds;
+        this.namespace = $.namespace;
     }
 
     public static Builder builder() {
@@ -228,6 +250,33 @@ use ""data.vault_identity_group.*.group_name"", ""vault_identity_group.*.group_n
          */
         public Builder memberEntityIds(String... memberEntityIds) {
             return memberEntityIds(List.of(memberEntityIds));
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable Output<String> namespace) {
+            $.namespace = namespace;
+            return this;
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(String namespace) {
+            return namespace(Output.of(namespace));
         }
 
         public GroupMemberEntityIdsState build() {

@@ -60,11 +60,27 @@ namespace Pulumi.Vault.RabbitMQ
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Output("disableRemount")]
+        public Output<bool?> DisableRemount { get; private set; } = null!;
+
+        /// <summary>
         /// The maximum TTL that can be requested
         /// for credentials issued by this backend.
         /// </summary>
         [Output("maxLeaseTtlSeconds")]
         public Output<int> MaxLeaseTtlSeconds { get; private set; } = null!;
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
         /// Specifies the RabbitMQ management administrator password.
@@ -127,6 +143,11 @@ namespace Pulumi.Vault.RabbitMQ
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "password",
+                    "username",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -170,6 +191,13 @@ namespace Pulumi.Vault.RabbitMQ
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Input("disableRemount")]
+        public Input<bool>? DisableRemount { get; set; }
+
+        /// <summary>
         /// The maximum TTL that can be requested
         /// for credentials issued by this backend.
         /// </summary>
@@ -177,10 +205,29 @@ namespace Pulumi.Vault.RabbitMQ
         public Input<int>? MaxLeaseTtlSeconds { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        [Input("password", required: true)]
+        private Input<string>? _password;
+
+        /// <summary>
         /// Specifies the RabbitMQ management administrator password.
         /// </summary>
-        [Input("password", required: true)]
-        public Input<string> Password { get; set; } = null!;
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
@@ -195,11 +242,21 @@ namespace Pulumi.Vault.RabbitMQ
         [Input("path")]
         public Input<string>? Path { get; set; }
 
+        [Input("username", required: true)]
+        private Input<string>? _username;
+
         /// <summary>
         /// Specifies the RabbitMQ management administrator username.
         /// </summary>
-        [Input("username", required: true)]
-        public Input<string> Username { get; set; } = null!;
+        public Input<string>? Username
+        {
+            get => _username;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _username = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Template describing how dynamic usernames are generated.
@@ -242,6 +299,13 @@ namespace Pulumi.Vault.RabbitMQ
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Input("disableRemount")]
+        public Input<bool>? DisableRemount { get; set; }
+
+        /// <summary>
         /// The maximum TTL that can be requested
         /// for credentials issued by this backend.
         /// </summary>
@@ -249,10 +313,29 @@ namespace Pulumi.Vault.RabbitMQ
         public Input<int>? MaxLeaseTtlSeconds { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        [Input("password")]
+        private Input<string>? _password;
+
+        /// <summary>
         /// Specifies the RabbitMQ management administrator password.
         /// </summary>
-        [Input("password")]
-        public Input<string>? Password { get; set; }
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
@@ -267,11 +350,21 @@ namespace Pulumi.Vault.RabbitMQ
         [Input("path")]
         public Input<string>? Path { get; set; }
 
+        [Input("username")]
+        private Input<string>? _username;
+
         /// <summary>
         /// Specifies the RabbitMQ management administrator username.
         /// </summary>
-        [Input("username")]
-        public Input<string>? Username { get; set; }
+        public Input<string>? Username
+        {
+            get => _username;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _username = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Template describing how dynamic usernames are generated.

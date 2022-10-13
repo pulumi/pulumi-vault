@@ -17,13 +17,18 @@ class EntityAliasArgs:
                  canonical_id: pulumi.Input[str],
                  mount_accessor: pulumi.Input[str],
                  custom_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
+                 name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a EntityAlias resource.
         :param pulumi.Input[str] canonical_id: Entity ID to which this alias belongs to.
         :param pulumi.Input[str] mount_accessor: Accessor of the mount to which the alias should belong to.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] custom_metadata: Custom metadata to be associated with this alias.
         :param pulumi.Input[str] name: Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         pulumi.set(__self__, "canonical_id", canonical_id)
         pulumi.set(__self__, "mount_accessor", mount_accessor)
@@ -31,6 +36,8 @@ class EntityAliasArgs:
             pulumi.set(__self__, "custom_metadata", custom_metadata)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter(name="canonicalId")
@@ -80,6 +87,21 @@ class EntityAliasArgs:
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
 
 @pulumi.input_type
 class _EntityAliasState:
@@ -87,13 +109,18 @@ class _EntityAliasState:
                  canonical_id: Optional[pulumi.Input[str]] = None,
                  custom_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  mount_accessor: Optional[pulumi.Input[str]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
+                 name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering EntityAlias resources.
         :param pulumi.Input[str] canonical_id: Entity ID to which this alias belongs to.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] custom_metadata: Custom metadata to be associated with this alias.
         :param pulumi.Input[str] mount_accessor: Accessor of the mount to which the alias should belong to.
         :param pulumi.Input[str] name: Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         if canonical_id is not None:
             pulumi.set(__self__, "canonical_id", canonical_id)
@@ -103,6 +130,8 @@ class _EntityAliasState:
             pulumi.set(__self__, "mount_accessor", mount_accessor)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter(name="canonicalId")
@@ -152,6 +181,21 @@ class _EntityAliasState:
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
 
 class EntityAlias(pulumi.CustomResource):
     @overload
@@ -162,6 +206,7 @@ class EntityAlias(pulumi.CustomResource):
                  custom_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  mount_accessor: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         ## Example Usage
@@ -189,6 +234,10 @@ class EntityAlias(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] custom_metadata: Custom metadata to be associated with this alias.
         :param pulumi.Input[str] mount_accessor: Accessor of the mount to which the alias should belong to.
         :param pulumi.Input[str] name: Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         ...
     @overload
@@ -235,6 +284,7 @@ class EntityAlias(pulumi.CustomResource):
                  custom_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  mount_accessor: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -252,6 +302,7 @@ class EntityAlias(pulumi.CustomResource):
                 raise TypeError("Missing required property 'mount_accessor'")
             __props__.__dict__["mount_accessor"] = mount_accessor
             __props__.__dict__["name"] = name
+            __props__.__dict__["namespace"] = namespace
         super(EntityAlias, __self__).__init__(
             'vault:identity/entityAlias:EntityAlias',
             resource_name,
@@ -265,7 +316,8 @@ class EntityAlias(pulumi.CustomResource):
             canonical_id: Optional[pulumi.Input[str]] = None,
             custom_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             mount_accessor: Optional[pulumi.Input[str]] = None,
-            name: Optional[pulumi.Input[str]] = None) -> 'EntityAlias':
+            name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None) -> 'EntityAlias':
         """
         Get an existing EntityAlias resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -277,6 +329,10 @@ class EntityAlias(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] custom_metadata: Custom metadata to be associated with this alias.
         :param pulumi.Input[str] mount_accessor: Accessor of the mount to which the alias should belong to.
         :param pulumi.Input[str] name: Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -286,6 +342,7 @@ class EntityAlias(pulumi.CustomResource):
         __props__.__dict__["custom_metadata"] = custom_metadata
         __props__.__dict__["mount_accessor"] = mount_accessor
         __props__.__dict__["name"] = name
+        __props__.__dict__["namespace"] = namespace
         return EntityAlias(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -319,4 +376,15 @@ class EntityAlias(pulumi.CustomResource):
         Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 

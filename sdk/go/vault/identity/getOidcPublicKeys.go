@@ -76,6 +76,11 @@ func GetOidcPublicKeys(ctx *pulumi.Context, args *GetOidcPublicKeysArgs, opts ..
 type GetOidcPublicKeysArgs struct {
 	// The name of the OIDC Provider in Vault.
 	Name string `pulumi:"name"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 }
 
 // A collection of values returned by getOidcPublicKeys.
@@ -84,8 +89,9 @@ type GetOidcPublicKeysResult struct {
 	Id string `pulumi:"id"`
 	// The public portion of keys for an OIDC provider.
 	// Clients can use them to validate the authenticity of an identity token.
-	Keys []map[string]interface{} `pulumi:"keys"`
-	Name string                   `pulumi:"name"`
+	Keys      []map[string]interface{} `pulumi:"keys"`
+	Name      string                   `pulumi:"name"`
+	Namespace *string                  `pulumi:"namespace"`
 }
 
 func GetOidcPublicKeysOutput(ctx *pulumi.Context, args GetOidcPublicKeysOutputArgs, opts ...pulumi.InvokeOption) GetOidcPublicKeysResultOutput {
@@ -105,6 +111,11 @@ func GetOidcPublicKeysOutput(ctx *pulumi.Context, args GetOidcPublicKeysOutputAr
 type GetOidcPublicKeysOutputArgs struct {
 	// The name of the OIDC Provider in Vault.
 	Name pulumi.StringInput `pulumi:"name"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 }
 
 func (GetOidcPublicKeysOutputArgs) ElementType() reflect.Type {
@@ -139,6 +150,10 @@ func (o GetOidcPublicKeysResultOutput) Keys() pulumi.MapArrayOutput {
 
 func (o GetOidcPublicKeysResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOidcPublicKeysResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetOidcPublicKeysResultOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetOidcPublicKeysResult) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 func init() {

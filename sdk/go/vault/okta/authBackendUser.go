@@ -66,6 +66,11 @@ type AuthBackendUser struct {
 
 	// List of Okta groups to associate with this user
 	Groups pulumi.StringArrayOutput `pulumi:"groups"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The path where the Okta auth backend is mounted
 	Path pulumi.StringOutput `pulumi:"path"`
 	// List of Vault policies to associate with this user
@@ -111,6 +116,11 @@ func GetAuthBackendUser(ctx *pulumi.Context,
 type authBackendUserState struct {
 	// List of Okta groups to associate with this user
 	Groups []string `pulumi:"groups"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The path where the Okta auth backend is mounted
 	Path *string `pulumi:"path"`
 	// List of Vault policies to associate with this user
@@ -122,6 +132,11 @@ type authBackendUserState struct {
 type AuthBackendUserState struct {
 	// List of Okta groups to associate with this user
 	Groups pulumi.StringArrayInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The path where the Okta auth backend is mounted
 	Path pulumi.StringPtrInput
 	// List of Vault policies to associate with this user
@@ -137,6 +152,11 @@ func (AuthBackendUserState) ElementType() reflect.Type {
 type authBackendUserArgs struct {
 	// List of Okta groups to associate with this user
 	Groups []string `pulumi:"groups"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The path where the Okta auth backend is mounted
 	Path string `pulumi:"path"`
 	// List of Vault policies to associate with this user
@@ -149,6 +169,11 @@ type authBackendUserArgs struct {
 type AuthBackendUserArgs struct {
 	// List of Okta groups to associate with this user
 	Groups pulumi.StringArrayInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The path where the Okta auth backend is mounted
 	Path pulumi.StringInput
 	// List of Vault policies to associate with this user
@@ -247,6 +272,14 @@ func (o AuthBackendUserOutput) ToAuthBackendUserOutputWithContext(ctx context.Co
 // List of Okta groups to associate with this user
 func (o AuthBackendUserOutput) Groups() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AuthBackendUser) pulumi.StringArrayOutput { return v.Groups }).(pulumi.StringArrayOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o AuthBackendUserOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendUser) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The path where the Okta auth backend is mounted

@@ -72,6 +72,13 @@ export class SecretRole extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * Name of the Terraform Cloud or Enterprise organization
      */
     public readonly organization!: pulumi.Output<string | undefined>;
@@ -104,6 +111,7 @@ export class SecretRole extends pulumi.CustomResource {
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["organization"] = state ? state.organization : undefined;
             resourceInputs["teamId"] = state ? state.teamId : undefined;
             resourceInputs["ttl"] = state ? state.ttl : undefined;
@@ -113,6 +121,7 @@ export class SecretRole extends pulumi.CustomResource {
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["organization"] = args ? args.organization : undefined;
             resourceInputs["teamId"] = args ? args.teamId : undefined;
             resourceInputs["ttl"] = args ? args.ttl : undefined;
@@ -139,6 +148,13 @@ export interface SecretRoleState {
      * The name of an existing role against which to create this Terraform Cloud credential
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Name of the Terraform Cloud or Enterprise organization
      */
@@ -173,6 +189,13 @@ export interface SecretRoleArgs {
      * The name of an existing role against which to create this Terraform Cloud credential
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Name of the Terraform Cloud or Enterprise organization
      */

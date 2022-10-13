@@ -39,6 +39,7 @@ export function getNomadAccessToken(args: GetNomadAccessTokenArgs, opts?: pulumi
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("vault:index/getNomadAccessToken:getNomadAccessToken", {
         "backend": args.backend,
+        "namespace": args.namespace,
         "role": args.role,
     }, opts);
 }
@@ -52,6 +53,13 @@ export interface GetNomadAccessTokenArgs {
      * read credentials from, with no leading or trailing `/`s.
      */
     backend: string;
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: string;
     /**
      * The name of the Nomad secret backend role to generate
      * a token for, with no leading or trailing `/`s.
@@ -73,6 +81,7 @@ export interface GetNomadAccessTokenResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly namespace?: string;
     readonly role: string;
     /**
      * The token to be used when making requests to Nomad and should be kept private.
@@ -93,6 +102,13 @@ export interface GetNomadAccessTokenOutputArgs {
      * read credentials from, with no leading or trailing `/`s.
      */
     backend: pulumi.Input<string>;
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The name of the Nomad secret backend role to generate
      * a token for, with no leading or trailing `/`s.

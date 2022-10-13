@@ -58,6 +58,13 @@ export class Oidc extends pulumi.CustomResource {
      * components.
      */
     public readonly issuer!: pulumi.Output<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Oidc resource with the given unique name, arguments, and options.
@@ -73,9 +80,11 @@ export class Oidc extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as OidcState | undefined;
             resourceInputs["issuer"] = state ? state.issuer : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
         } else {
             const args = argsOrState as OidcArgs | undefined;
             resourceInputs["issuer"] = args ? args.issuer : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Oidc.__pulumiType, name, resourceInputs, opts);
@@ -93,6 +102,13 @@ export interface OidcState {
      * components.
      */
     issuer?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
 }
 
 /**
@@ -106,4 +122,11 @@ export interface OidcArgs {
      * components.
      */
     issuer?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
 }

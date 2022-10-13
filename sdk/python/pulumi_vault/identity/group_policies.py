@@ -16,17 +16,24 @@ class GroupPoliciesArgs:
     def __init__(__self__, *,
                  group_id: pulumi.Input[str],
                  policies: pulumi.Input[Sequence[pulumi.Input[str]]],
-                 exclusive: Optional[pulumi.Input[bool]] = None):
+                 exclusive: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a GroupPolicies resource.
         :param pulumi.Input[str] group_id: Group ID to assign policies to.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to assign to the group
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         pulumi.set(__self__, "group_id", group_id)
         pulumi.set(__self__, "policies", policies)
         if exclusive is not None:
             pulumi.set(__self__, "exclusive", exclusive)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter(name="groupId")
@@ -64,6 +71,21 @@ class GroupPoliciesArgs:
     def exclusive(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "exclusive", value)
 
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
 
 @pulumi.input_type
 class _GroupPoliciesState:
@@ -71,12 +93,17 @@ class _GroupPoliciesState:
                  exclusive: Optional[pulumi.Input[bool]] = None,
                  group_id: Optional[pulumi.Input[str]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering GroupPolicies resources.
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
         :param pulumi.Input[str] group_id: Group ID to assign policies to.
         :param pulumi.Input[str] group_name: The name of the group that are assigned the policies.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to assign to the group
         """
         if exclusive is not None:
@@ -85,6 +112,8 @@ class _GroupPoliciesState:
             pulumi.set(__self__, "group_id", group_id)
         if group_name is not None:
             pulumi.set(__self__, "group_name", group_name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if policies is not None:
             pulumi.set(__self__, "policies", policies)
 
@@ -126,6 +155,21 @@ class _GroupPoliciesState:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         List of policies to assign to the group
@@ -144,6 +188,7 @@ class GroupPolicies(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  exclusive: Optional[pulumi.Input[bool]] = None,
                  group_id: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
@@ -199,6 +244,10 @@ class GroupPolicies(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
         :param pulumi.Input[str] group_id: Group ID to assign policies to.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to assign to the group
         """
         ...
@@ -273,6 +322,7 @@ class GroupPolicies(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  exclusive: Optional[pulumi.Input[bool]] = None,
                  group_id: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -287,6 +337,7 @@ class GroupPolicies(pulumi.CustomResource):
             if group_id is None and not opts.urn:
                 raise TypeError("Missing required property 'group_id'")
             __props__.__dict__["group_id"] = group_id
+            __props__.__dict__["namespace"] = namespace
             if policies is None and not opts.urn:
                 raise TypeError("Missing required property 'policies'")
             __props__.__dict__["policies"] = policies
@@ -304,6 +355,7 @@ class GroupPolicies(pulumi.CustomResource):
             exclusive: Optional[pulumi.Input[bool]] = None,
             group_id: Optional[pulumi.Input[str]] = None,
             group_name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'GroupPolicies':
         """
         Get an existing GroupPolicies resource's state with the given name, id, and optional extra
@@ -315,6 +367,10 @@ class GroupPolicies(pulumi.CustomResource):
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
         :param pulumi.Input[str] group_id: Group ID to assign policies to.
         :param pulumi.Input[str] group_name: The name of the group that are assigned the policies.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to assign to the group
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -324,6 +380,7 @@ class GroupPolicies(pulumi.CustomResource):
         __props__.__dict__["exclusive"] = exclusive
         __props__.__dict__["group_id"] = group_id
         __props__.__dict__["group_name"] = group_name
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["policies"] = policies
         return GroupPolicies(resource_name, opts=opts, __props__=__props__)
 
@@ -350,6 +407,17 @@ class GroupPolicies(pulumi.CustomResource):
         The name of the group that are assigned the policies.
         """
         return pulumi.get(self, "group_name")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

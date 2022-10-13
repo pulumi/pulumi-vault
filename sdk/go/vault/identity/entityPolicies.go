@@ -105,6 +105,11 @@ type EntityPolicies struct {
 	EntityName pulumi.StringOutput `pulumi:"entityName"`
 	// Defaults to `true`.
 	Exclusive pulumi.BoolPtrOutput `pulumi:"exclusive"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// List of policies to assign to the entity
 	Policies pulumi.StringArrayOutput `pulumi:"policies"`
 }
@@ -150,6 +155,11 @@ type entityPoliciesState struct {
 	EntityName *string `pulumi:"entityName"`
 	// Defaults to `true`.
 	Exclusive *bool `pulumi:"exclusive"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// List of policies to assign to the entity
 	Policies []string `pulumi:"policies"`
 }
@@ -161,6 +171,11 @@ type EntityPoliciesState struct {
 	EntityName pulumi.StringPtrInput
 	// Defaults to `true`.
 	Exclusive pulumi.BoolPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// List of policies to assign to the entity
 	Policies pulumi.StringArrayInput
 }
@@ -174,6 +189,11 @@ type entityPoliciesArgs struct {
 	EntityId string `pulumi:"entityId"`
 	// Defaults to `true`.
 	Exclusive *bool `pulumi:"exclusive"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// List of policies to assign to the entity
 	Policies []string `pulumi:"policies"`
 }
@@ -184,6 +204,11 @@ type EntityPoliciesArgs struct {
 	EntityId pulumi.StringInput
 	// Defaults to `true`.
 	Exclusive pulumi.BoolPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// List of policies to assign to the entity
 	Policies pulumi.StringArrayInput
 }
@@ -288,6 +313,14 @@ func (o EntityPoliciesOutput) EntityName() pulumi.StringOutput {
 // Defaults to `true`.
 func (o EntityPoliciesOutput) Exclusive() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *EntityPolicies) pulumi.BoolPtrOutput { return v.Exclusive }).(pulumi.BoolPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o EntityPoliciesOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EntityPolicies) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // List of policies to assign to the entity

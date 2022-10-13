@@ -61,6 +61,11 @@ type LookupGroupArgs struct {
 	GroupId *string `pulumi:"groupId"`
 	// Name of the group.
 	GroupName *string `pulumi:"groupName"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 }
 
 // A collection of values returned by getGroup.
@@ -100,7 +105,8 @@ type LookupGroupResult struct {
 	// Arbitrary metadata
 	Metadata map[string]interface{} `pulumi:"metadata"`
 	// Modify index of the group
-	ModifyIndex int `pulumi:"modifyIndex"`
+	ModifyIndex int     `pulumi:"modifyIndex"`
+	Namespace   *string `pulumi:"namespace"`
 	// Namespace of which the group is part of
 	NamespaceId string `pulumi:"namespaceId"`
 	// List of Group IDs which are parents of this group.
@@ -138,6 +144,11 @@ type LookupGroupOutputArgs struct {
 	GroupId pulumi.StringPtrInput `pulumi:"groupId"`
 	// Name of the group.
 	GroupName pulumi.StringPtrInput `pulumi:"groupName"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 }
 
 func (LookupGroupOutputArgs) ElementType() reflect.Type {
@@ -253,6 +264,10 @@ func (o LookupGroupResultOutput) Metadata() pulumi.MapOutput {
 // Modify index of the group
 func (o LookupGroupResultOutput) ModifyIndex() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupGroupResult) int { return v.ModifyIndex }).(pulumi.IntOutput)
+}
+
+func (o LookupGroupResultOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupGroupResult) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Namespace of which the group is part of

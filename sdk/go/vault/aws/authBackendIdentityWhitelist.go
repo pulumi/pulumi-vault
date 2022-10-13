@@ -66,6 +66,11 @@ type AuthBackendIdentityWhitelist struct {
 	// If set to true, disables the periodic
 	// tidying of the identity-whitelist entries.
 	DisablePeriodicTidy pulumi.BoolPtrOutput `pulumi:"disablePeriodicTidy"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The amount of extra time, in minutes, that must
 	// have passed beyond the roletag expiration, before it is removed from the
 	// backend storage.
@@ -106,6 +111,11 @@ type authBackendIdentityWhitelistState struct {
 	// If set to true, disables the periodic
 	// tidying of the identity-whitelist entries.
 	DisablePeriodicTidy *bool `pulumi:"disablePeriodicTidy"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The amount of extra time, in minutes, that must
 	// have passed beyond the roletag expiration, before it is removed from the
 	// backend storage.
@@ -118,6 +128,11 @@ type AuthBackendIdentityWhitelistState struct {
 	// If set to true, disables the periodic
 	// tidying of the identity-whitelist entries.
 	DisablePeriodicTidy pulumi.BoolPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The amount of extra time, in minutes, that must
 	// have passed beyond the roletag expiration, before it is removed from the
 	// backend storage.
@@ -134,6 +149,11 @@ type authBackendIdentityWhitelistArgs struct {
 	// If set to true, disables the periodic
 	// tidying of the identity-whitelist entries.
 	DisablePeriodicTidy *bool `pulumi:"disablePeriodicTidy"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The amount of extra time, in minutes, that must
 	// have passed beyond the roletag expiration, before it is removed from the
 	// backend storage.
@@ -147,6 +167,11 @@ type AuthBackendIdentityWhitelistArgs struct {
 	// If set to true, disables the periodic
 	// tidying of the identity-whitelist entries.
 	DisablePeriodicTidy pulumi.BoolPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The amount of extra time, in minutes, that must
 	// have passed beyond the roletag expiration, before it is removed from the
 	// backend storage.
@@ -249,6 +274,14 @@ func (o AuthBackendIdentityWhitelistOutput) Backend() pulumi.StringPtrOutput {
 // tidying of the identity-whitelist entries.
 func (o AuthBackendIdentityWhitelistOutput) DisablePeriodicTidy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AuthBackendIdentityWhitelist) pulumi.BoolPtrOutput { return v.DisablePeriodicTidy }).(pulumi.BoolPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o AuthBackendIdentityWhitelistOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendIdentityWhitelist) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The amount of extra time, in minutes, that must

@@ -8,75 +8,57 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetAuthBackendResult {
     /**
-     * @return The accessor for this auth method
+     * @return The accessor for this auth method.
      * 
      */
-    private final String accessor;
+    private String accessor;
     /**
      * @return The default lease duration in seconds.
      * 
      */
-    private final Integer defaultLeaseTtlSeconds;
+    private Integer defaultLeaseTtlSeconds;
     /**
      * @return A description of the auth method.
      * 
      */
-    private final String description;
+    private String description;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
+    private String id;
     /**
      * @return Specifies whether to show this mount in the UI-specific listing endpoint.
      * 
      */
-    private final String listingVisibility;
+    private String listingVisibility;
     /**
      * @return Specifies if the auth method is local only.
      * 
      */
-    private final Boolean local;
+    private Boolean local;
     /**
      * @return The maximum lease duration in seconds.
      * 
      */
-    private final Integer maxLeaseTtlSeconds;
-    private final String path;
+    private Integer maxLeaseTtlSeconds;
+    private @Nullable String namespace;
+    private String path;
     /**
      * @return The name of the auth method type.
      * 
      */
-    private final String type;
+    private String type;
 
-    @CustomType.Constructor
-    private GetAuthBackendResult(
-        @CustomType.Parameter("accessor") String accessor,
-        @CustomType.Parameter("defaultLeaseTtlSeconds") Integer defaultLeaseTtlSeconds,
-        @CustomType.Parameter("description") String description,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("listingVisibility") String listingVisibility,
-        @CustomType.Parameter("local") Boolean local,
-        @CustomType.Parameter("maxLeaseTtlSeconds") Integer maxLeaseTtlSeconds,
-        @CustomType.Parameter("path") String path,
-        @CustomType.Parameter("type") String type) {
-        this.accessor = accessor;
-        this.defaultLeaseTtlSeconds = defaultLeaseTtlSeconds;
-        this.description = description;
-        this.id = id;
-        this.listingVisibility = listingVisibility;
-        this.local = local;
-        this.maxLeaseTtlSeconds = maxLeaseTtlSeconds;
-        this.path = path;
-        this.type = type;
-    }
-
+    private GetAuthBackendResult() {}
     /**
-     * @return The accessor for this auth method
+     * @return The accessor for this auth method.
      * 
      */
     public String accessor() {
@@ -124,6 +106,9 @@ public final class GetAuthBackendResult {
     public Integer maxLeaseTtlSeconds() {
         return this.maxLeaseTtlSeconds;
     }
+    public Optional<String> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
     public String path() {
         return this.path;
     }
@@ -142,7 +127,7 @@ public final class GetAuthBackendResult {
     public static Builder builder(GetAuthBackendResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String accessor;
         private Integer defaultLeaseTtlSeconds;
@@ -151,13 +136,10 @@ public final class GetAuthBackendResult {
         private String listingVisibility;
         private Boolean local;
         private Integer maxLeaseTtlSeconds;
+        private @Nullable String namespace;
         private String path;
         private String type;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetAuthBackendResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.accessor = defaults.accessor;
@@ -167,47 +149,74 @@ public final class GetAuthBackendResult {
     	      this.listingVisibility = defaults.listingVisibility;
     	      this.local = defaults.local;
     	      this.maxLeaseTtlSeconds = defaults.maxLeaseTtlSeconds;
+    	      this.namespace = defaults.namespace;
     	      this.path = defaults.path;
     	      this.type = defaults.type;
         }
 
+        @CustomType.Setter
         public Builder accessor(String accessor) {
             this.accessor = Objects.requireNonNull(accessor);
             return this;
         }
+        @CustomType.Setter
         public Builder defaultLeaseTtlSeconds(Integer defaultLeaseTtlSeconds) {
             this.defaultLeaseTtlSeconds = Objects.requireNonNull(defaultLeaseTtlSeconds);
             return this;
         }
+        @CustomType.Setter
         public Builder description(String description) {
             this.description = Objects.requireNonNull(description);
             return this;
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder listingVisibility(String listingVisibility) {
             this.listingVisibility = Objects.requireNonNull(listingVisibility);
             return this;
         }
+        @CustomType.Setter
         public Builder local(Boolean local) {
             this.local = Objects.requireNonNull(local);
             return this;
         }
+        @CustomType.Setter
         public Builder maxLeaseTtlSeconds(Integer maxLeaseTtlSeconds) {
             this.maxLeaseTtlSeconds = Objects.requireNonNull(maxLeaseTtlSeconds);
             return this;
         }
+        @CustomType.Setter
+        public Builder namespace(@Nullable String namespace) {
+            this.namespace = namespace;
+            return this;
+        }
+        @CustomType.Setter
         public Builder path(String path) {
             this.path = Objects.requireNonNull(path);
             return this;
         }
+        @CustomType.Setter
         public Builder type(String type) {
             this.type = Objects.requireNonNull(type);
             return this;
-        }        public GetAuthBackendResult build() {
-            return new GetAuthBackendResult(accessor, defaultLeaseTtlSeconds, description, id, listingVisibility, local, maxLeaseTtlSeconds, path, type);
+        }
+        public GetAuthBackendResult build() {
+            final var o = new GetAuthBackendResult();
+            o.accessor = accessor;
+            o.defaultLeaseTtlSeconds = defaultLeaseTtlSeconds;
+            o.description = description;
+            o.id = id;
+            o.listingVisibility = listingVisibility;
+            o.local = local;
+            o.maxLeaseTtlSeconds = maxLeaseTtlSeconds;
+            o.namespace = namespace;
+            o.path = path;
+            o.type = type;
+            return o;
         }
     }
 }

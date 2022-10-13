@@ -21,7 +21,7 @@ class GetDecryptResult:
     """
     A collection of values returned by getDecrypt.
     """
-    def __init__(__self__, backend=None, ciphertext=None, context=None, id=None, key=None, plaintext=None):
+    def __init__(__self__, backend=None, ciphertext=None, context=None, id=None, key=None, namespace=None, plaintext=None):
         if backend and not isinstance(backend, str):
             raise TypeError("Expected argument 'backend' to be a str")
         pulumi.set(__self__, "backend", backend)
@@ -37,6 +37,9 @@ class GetDecryptResult:
         if key and not isinstance(key, str):
             raise TypeError("Expected argument 'key' to be a str")
         pulumi.set(__self__, "key", key)
+        if namespace and not isinstance(namespace, str):
+            raise TypeError("Expected argument 'namespace' to be a str")
+        pulumi.set(__self__, "namespace", namespace)
         if plaintext and not isinstance(plaintext, str):
             raise TypeError("Expected argument 'plaintext' to be a str")
         pulumi.set(__self__, "plaintext", plaintext)
@@ -71,6 +74,11 @@ class GetDecryptResult:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[str]:
+        return pulumi.get(self, "namespace")
+
+    @property
+    @pulumi.getter
     def plaintext(self) -> str:
         """
         Decrypted plaintext returned from Vault
@@ -89,6 +97,7 @@ class AwaitableGetDecryptResult(GetDecryptResult):
             context=self.context,
             id=self.id,
             key=self.key,
+            namespace=self.namespace,
             plaintext=self.plaintext)
 
 
@@ -96,6 +105,7 @@ def get_decrypt(backend: Optional[str] = None,
                 ciphertext: Optional[str] = None,
                 context: Optional[str] = None,
                 key: Optional[str] = None,
+                namespace: Optional[str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDecryptResult:
     """
     This is a data source which can be used to decrypt ciphertext using a Vault Transit key.
@@ -122,6 +132,7 @@ def get_decrypt(backend: Optional[str] = None,
     __args__['ciphertext'] = ciphertext
     __args__['context'] = context
     __args__['key'] = key
+    __args__['namespace'] = namespace
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('vault:transit/getDecrypt:getDecrypt', __args__, opts=opts, typ=GetDecryptResult).value
 
@@ -131,6 +142,7 @@ def get_decrypt(backend: Optional[str] = None,
         context=__ret__.context,
         id=__ret__.id,
         key=__ret__.key,
+        namespace=__ret__.namespace,
         plaintext=__ret__.plaintext)
 
 
@@ -139,6 +151,7 @@ def get_decrypt_output(backend: Optional[pulumi.Input[str]] = None,
                        ciphertext: Optional[pulumi.Input[str]] = None,
                        context: Optional[pulumi.Input[Optional[str]]] = None,
                        key: Optional[pulumi.Input[str]] = None,
+                       namespace: Optional[pulumi.Input[Optional[str]]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDecryptResult]:
     """
     This is a data source which can be used to decrypt ciphertext using a Vault Transit key.

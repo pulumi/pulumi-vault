@@ -11,25 +11,16 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class BackendRoleAzureRole {
-    private final @Nullable String roleId;
-    private final String roleName;
-    private final String scope;
+    private @Nullable String roleId;
+    private @Nullable String roleName;
+    private String scope;
 
-    @CustomType.Constructor
-    private BackendRoleAzureRole(
-        @CustomType.Parameter("roleId") @Nullable String roleId,
-        @CustomType.Parameter("roleName") String roleName,
-        @CustomType.Parameter("scope") String scope) {
-        this.roleId = roleId;
-        this.roleName = roleName;
-        this.scope = scope;
-    }
-
+    private BackendRoleAzureRole() {}
     public Optional<String> roleId() {
         return Optional.ofNullable(this.roleId);
     }
-    public String roleName() {
-        return this.roleName;
+    public Optional<String> roleName() {
+        return Optional.ofNullable(this.roleName);
     }
     public String scope() {
         return this.scope;
@@ -42,16 +33,12 @@ public final class BackendRoleAzureRole {
     public static Builder builder(BackendRoleAzureRole defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable String roleId;
-        private String roleName;
+        private @Nullable String roleName;
         private String scope;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(BackendRoleAzureRole defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.roleId = defaults.roleId;
@@ -59,19 +46,27 @@ public final class BackendRoleAzureRole {
     	      this.scope = defaults.scope;
         }
 
+        @CustomType.Setter
         public Builder roleId(@Nullable String roleId) {
             this.roleId = roleId;
             return this;
         }
-        public Builder roleName(String roleName) {
-            this.roleName = Objects.requireNonNull(roleName);
+        @CustomType.Setter
+        public Builder roleName(@Nullable String roleName) {
+            this.roleName = roleName;
             return this;
         }
+        @CustomType.Setter
         public Builder scope(String scope) {
             this.scope = Objects.requireNonNull(scope);
             return this;
-        }        public BackendRoleAzureRole build() {
-            return new BackendRoleAzureRole(roleId, roleName, scope);
+        }
+        public BackendRoleAzureRole build() {
+            final var o = new BackendRoleAzureRole();
+            o.roleId = roleId;
+            o.roleName = roleName;
+            o.scope = scope;
+            return o;
         }
     }
 }

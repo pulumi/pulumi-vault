@@ -5,15 +5,26 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./getAccessCredentials";
-export * from "./secretBackend";
-export * from "./secretLibrary";
-export * from "./secretRole";
+export { GetAccessCredentialsArgs, GetAccessCredentialsResult, GetAccessCredentialsOutputArgs } from "./getAccessCredentials";
+export const getAccessCredentials: typeof import("./getAccessCredentials").getAccessCredentials = null as any;
+export const getAccessCredentialsOutput: typeof import("./getAccessCredentials").getAccessCredentialsOutput = null as any;
 
-// Import resources to register:
-import { SecretBackend } from "./secretBackend";
-import { SecretLibrary } from "./secretLibrary";
-import { SecretRole } from "./secretRole";
+export { SecretBackendArgs, SecretBackendState } from "./secretBackend";
+export type SecretBackend = import("./secretBackend").SecretBackend;
+export const SecretBackend: typeof import("./secretBackend").SecretBackend = null as any;
+
+export { SecretLibraryArgs, SecretLibraryState } from "./secretLibrary";
+export type SecretLibrary = import("./secretLibrary").SecretLibrary;
+export const SecretLibrary: typeof import("./secretLibrary").SecretLibrary = null as any;
+
+export { SecretRoleArgs, SecretRoleState } from "./secretRole";
+export type SecretRole = import("./secretRole").SecretRole;
+export const SecretRole: typeof import("./secretRole").SecretRole = null as any;
+
+utilities.lazyLoad(exports, ["getAccessCredentials","getAccessCredentialsOutput"], () => require("./getAccessCredentials"));
+utilities.lazyLoad(exports, ["SecretBackend"], () => require("./secretBackend"));
+utilities.lazyLoad(exports, ["SecretLibrary"], () => require("./secretLibrary"));
+utilities.lazyLoad(exports, ["SecretRole"], () => require("./secretRole"));
 
 const _module = {
     version: utilities.getVersion(),

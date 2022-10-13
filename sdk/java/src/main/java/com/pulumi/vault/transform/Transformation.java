@@ -15,54 +15,6 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
-/**
- * This resource supports the &#34;/transform/transformation/{name}&#34; Vault endpoint.
- * 
- * It creates or updates a transformation with the given name. If a transformation with the name does not exist,
- * it will be created. If the transformation exists, it will be updated with the new attributes.
- * 
- * ## Example Usage
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.vault.Mount;
- * import com.pulumi.vault.MountArgs;
- * import com.pulumi.vault.transform.Transformation;
- * import com.pulumi.vault.transform.TransformationArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var mountTransform = new Mount(&#34;mountTransform&#34;, MountArgs.builder()        
- *             .path(&#34;transform&#34;)
- *             .type(&#34;transform&#34;)
- *             .build());
- * 
- *         var test = new Transformation(&#34;test&#34;, TransformationArgs.builder()        
- *             .path(mountTransform.path())
- *             .type(&#34;fpe&#34;)
- *             .template(&#34;ccn&#34;)
- *             .tweakSource(&#34;internal&#34;)
- *             .allowedRoles(&#34;payments&#34;)
- *             .build());
- * 
- *     }
- * }
- * ```
- * 
- */
 @ResourceType(type="vault:transform/transformation:Transformation")
 public class Transformation extends com.pulumi.resources.CustomResource {
     /**

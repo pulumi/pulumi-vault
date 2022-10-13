@@ -17,7 +17,8 @@ class SecretArgs:
                  data_json: pulumi.Input[str],
                  path: pulumi.Input[str],
                  delete_all_versions: Optional[pulumi.Input[bool]] = None,
-                 disable_read: Optional[pulumi.Input[bool]] = None):
+                 disable_read: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Secret resource.
         :param pulumi.Input[str] data_json: String containing a JSON-encoded object that will be
@@ -34,6 +35,10 @@ class SecretArgs:
         :param pulumi.Input[bool] disable_read: true/false. Set this to true if your vault
                authentication is not able to read the data. Setting this to `true` will
                break drift detection. Defaults to false.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         pulumi.set(__self__, "data_json", data_json)
         pulumi.set(__self__, "path", path)
@@ -41,6 +46,8 @@ class SecretArgs:
             pulumi.set(__self__, "delete_all_versions", delete_all_versions)
         if disable_read is not None:
             pulumi.set(__self__, "disable_read", disable_read)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter(name="dataJson")
@@ -100,6 +107,21 @@ class SecretArgs:
     def disable_read(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "disable_read", value)
 
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
 
 @pulumi.input_type
 class _SecretState:
@@ -108,6 +130,7 @@ class _SecretState:
                  data_json: Optional[pulumi.Input[str]] = None,
                  delete_all_versions: Optional[pulumi.Input[bool]] = None,
                  disable_read: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Secret resources.
@@ -124,6 +147,10 @@ class _SecretState:
         :param pulumi.Input[bool] disable_read: true/false. Set this to true if your vault
                authentication is not able to read the data. Setting this to `true` will
                break drift detection. Defaults to false.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The full logical path at which to write the given data.
                To write data into the "generic" secret backend mounted in Vault by default,
                this should be prefixed with `secret/`. Writing to other backends with this
@@ -138,6 +165,8 @@ class _SecretState:
             pulumi.set(__self__, "delete_all_versions", delete_all_versions)
         if disable_read is not None:
             pulumi.set(__self__, "disable_read", disable_read)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if path is not None:
             pulumi.set(__self__, "path", path)
 
@@ -200,6 +229,21 @@ class _SecretState:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
         """
         The full logical path at which to write the given data.
@@ -223,6 +267,7 @@ class Secret(pulumi.CustomResource):
                  data_json: Optional[pulumi.Input[str]] = None,
                  delete_all_versions: Optional[pulumi.Input[bool]] = None,
                  disable_read: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -245,6 +290,10 @@ class Secret(pulumi.CustomResource):
         :param pulumi.Input[bool] disable_read: true/false. Set this to true if your vault
                authentication is not able to read the data. Setting this to `true` will
                break drift detection. Defaults to false.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The full logical path at which to write the given data.
                To write data into the "generic" secret backend mounted in Vault by default,
                this should be prefixed with `secret/`. Writing to other backends with this
@@ -284,6 +333,7 @@ class Secret(pulumi.CustomResource):
                  data_json: Optional[pulumi.Input[str]] = None,
                  delete_all_versions: Optional[pulumi.Input[bool]] = None,
                  disable_read: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -296,13 +346,16 @@ class Secret(pulumi.CustomResource):
 
             if data_json is None and not opts.urn:
                 raise TypeError("Missing required property 'data_json'")
-            __props__.__dict__["data_json"] = data_json
+            __props__.__dict__["data_json"] = None if data_json is None else pulumi.Output.secret(data_json)
             __props__.__dict__["delete_all_versions"] = delete_all_versions
             __props__.__dict__["disable_read"] = disable_read
+            __props__.__dict__["namespace"] = namespace
             if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
             __props__.__dict__["path"] = path
             __props__.__dict__["data"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["data", "dataJson"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Secret, __self__).__init__(
             'vault:generic/secret:Secret',
             resource_name,
@@ -317,6 +370,7 @@ class Secret(pulumi.CustomResource):
             data_json: Optional[pulumi.Input[str]] = None,
             delete_all_versions: Optional[pulumi.Input[bool]] = None,
             disable_read: Optional[pulumi.Input[bool]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None) -> 'Secret':
         """
         Get an existing Secret resource's state with the given name, id, and optional extra
@@ -338,6 +392,10 @@ class Secret(pulumi.CustomResource):
         :param pulumi.Input[bool] disable_read: true/false. Set this to true if your vault
                authentication is not able to read the data. Setting this to `true` will
                break drift detection. Defaults to false.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The full logical path at which to write the given data.
                To write data into the "generic" secret backend mounted in Vault by default,
                this should be prefixed with `secret/`. Writing to other backends with this
@@ -352,6 +410,7 @@ class Secret(pulumi.CustomResource):
         __props__.__dict__["data_json"] = data_json
         __props__.__dict__["delete_all_versions"] = delete_all_versions
         __props__.__dict__["disable_read"] = disable_read
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["path"] = path
         return Secret(resource_name, opts=opts, __props__=__props__)
 
@@ -395,6 +454,17 @@ class Secret(pulumi.CustomResource):
         break drift detection. Defaults to false.
         """
         return pulumi.get(self, "disable_read")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

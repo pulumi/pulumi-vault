@@ -63,6 +63,11 @@ type AuthBackendStsRole struct {
 	// The path the AWS auth backend being configured was
 	// mounted at.  Defaults to `aws`.
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The STS role to assume when verifying requests made
 	// by EC2 instances in the account specified by `accountId`.
 	StsRole pulumi.StringOutput `pulumi:"stsRole"`
@@ -108,6 +113,11 @@ type authBackendStsRoleState struct {
 	// The path the AWS auth backend being configured was
 	// mounted at.  Defaults to `aws`.
 	Backend *string `pulumi:"backend"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The STS role to assume when verifying requests made
 	// by EC2 instances in the account specified by `accountId`.
 	StsRole *string `pulumi:"stsRole"`
@@ -119,6 +129,11 @@ type AuthBackendStsRoleState struct {
 	// The path the AWS auth backend being configured was
 	// mounted at.  Defaults to `aws`.
 	Backend pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The STS role to assume when verifying requests made
 	// by EC2 instances in the account specified by `accountId`.
 	StsRole pulumi.StringPtrInput
@@ -134,6 +149,11 @@ type authBackendStsRoleArgs struct {
 	// The path the AWS auth backend being configured was
 	// mounted at.  Defaults to `aws`.
 	Backend *string `pulumi:"backend"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The STS role to assume when verifying requests made
 	// by EC2 instances in the account specified by `accountId`.
 	StsRole string `pulumi:"stsRole"`
@@ -146,6 +166,11 @@ type AuthBackendStsRoleArgs struct {
 	// The path the AWS auth backend being configured was
 	// mounted at.  Defaults to `aws`.
 	Backend pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The STS role to assume when verifying requests made
 	// by EC2 instances in the account specified by `accountId`.
 	StsRole pulumi.StringInput
@@ -247,6 +272,14 @@ func (o AuthBackendStsRoleOutput) AccountId() pulumi.StringOutput {
 // mounted at.  Defaults to `aws`.
 func (o AuthBackendStsRoleOutput) Backend() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendStsRole) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o AuthBackendStsRoleOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendStsRole) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The STS role to assume when verifying requests made

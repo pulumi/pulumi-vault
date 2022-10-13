@@ -17,6 +17,7 @@ class SecretRoleArgs:
                  backend: Optional[pulumi.Input[str]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
                  team_id: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None,
@@ -26,6 +27,10 @@ class SecretRoleArgs:
         :param pulumi.Input[str] backend: The path of the Terraform Cloud Secret Backend the role belongs to.
         :param pulumi.Input[int] max_ttl: Maximum TTL for leases associated with this role, in seconds.
         :param pulumi.Input[str] name: The name of an existing role against which to create this Terraform Cloud credential
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: Name of the Terraform Cloud or Enterprise organization
         :param pulumi.Input[str] team_id: ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
         :param pulumi.Input[int] ttl: Specifies the TTL for this role.
@@ -37,6 +42,8 @@ class SecretRoleArgs:
             pulumi.set(__self__, "max_ttl", max_ttl)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if organization is not None:
             pulumi.set(__self__, "organization", organization)
         if team_id is not None:
@@ -81,6 +88,21 @@ class SecretRoleArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -137,6 +159,7 @@ class _SecretRoleState:
                  backend: Optional[pulumi.Input[str]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
                  team_id: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None,
@@ -146,6 +169,10 @@ class _SecretRoleState:
         :param pulumi.Input[str] backend: The path of the Terraform Cloud Secret Backend the role belongs to.
         :param pulumi.Input[int] max_ttl: Maximum TTL for leases associated with this role, in seconds.
         :param pulumi.Input[str] name: The name of an existing role against which to create this Terraform Cloud credential
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: Name of the Terraform Cloud or Enterprise organization
         :param pulumi.Input[str] team_id: ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
         :param pulumi.Input[int] ttl: Specifies the TTL for this role.
@@ -157,6 +184,8 @@ class _SecretRoleState:
             pulumi.set(__self__, "max_ttl", max_ttl)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if organization is not None:
             pulumi.set(__self__, "organization", organization)
         if team_id is not None:
@@ -201,6 +230,21 @@ class _SecretRoleState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -259,6 +303,7 @@ class SecretRole(pulumi.CustomResource):
                  backend: Optional[pulumi.Input[str]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
                  team_id: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None,
@@ -294,6 +339,10 @@ class SecretRole(pulumi.CustomResource):
         :param pulumi.Input[str] backend: The path of the Terraform Cloud Secret Backend the role belongs to.
         :param pulumi.Input[int] max_ttl: Maximum TTL for leases associated with this role, in seconds.
         :param pulumi.Input[str] name: The name of an existing role against which to create this Terraform Cloud credential
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: Name of the Terraform Cloud or Enterprise organization
         :param pulumi.Input[str] team_id: ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
         :param pulumi.Input[int] ttl: Specifies the TTL for this role.
@@ -348,6 +397,7 @@ class SecretRole(pulumi.CustomResource):
                  backend: Optional[pulumi.Input[str]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
                  team_id: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None,
@@ -364,6 +414,7 @@ class SecretRole(pulumi.CustomResource):
             __props__.__dict__["backend"] = backend
             __props__.__dict__["max_ttl"] = max_ttl
             __props__.__dict__["name"] = name
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["organization"] = organization
             __props__.__dict__["team_id"] = team_id
             __props__.__dict__["ttl"] = ttl
@@ -381,6 +432,7 @@ class SecretRole(pulumi.CustomResource):
             backend: Optional[pulumi.Input[str]] = None,
             max_ttl: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             organization: Optional[pulumi.Input[str]] = None,
             team_id: Optional[pulumi.Input[str]] = None,
             ttl: Optional[pulumi.Input[int]] = None,
@@ -395,6 +447,10 @@ class SecretRole(pulumi.CustomResource):
         :param pulumi.Input[str] backend: The path of the Terraform Cloud Secret Backend the role belongs to.
         :param pulumi.Input[int] max_ttl: Maximum TTL for leases associated with this role, in seconds.
         :param pulumi.Input[str] name: The name of an existing role against which to create this Terraform Cloud credential
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: Name of the Terraform Cloud or Enterprise organization
         :param pulumi.Input[str] team_id: ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
         :param pulumi.Input[int] ttl: Specifies the TTL for this role.
@@ -407,6 +463,7 @@ class SecretRole(pulumi.CustomResource):
         __props__.__dict__["backend"] = backend
         __props__.__dict__["max_ttl"] = max_ttl
         __props__.__dict__["name"] = name
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["organization"] = organization
         __props__.__dict__["team_id"] = team_id
         __props__.__dict__["ttl"] = ttl
@@ -436,6 +493,17 @@ class SecretRole(pulumi.CustomResource):
         The name of an existing role against which to create this Terraform Cloud credential
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

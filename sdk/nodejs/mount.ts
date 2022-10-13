@@ -97,6 +97,10 @@ export class Mount extends pulumi.CustomResource {
      */
     public /*out*/ readonly accessor!: pulumi.Output<string>;
     /**
+     * Set of managed key registry entry names that the mount in question is allowed to access
+     */
+    public readonly allowedManagedKeys!: pulumi.Output<string[] | undefined>;
+    /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
      */
     public readonly auditNonHmacRequestKeys!: pulumi.Output<string[]>;
@@ -124,6 +128,13 @@ export class Mount extends pulumi.CustomResource {
      * Maximum possible lease duration for tokens and secrets in seconds
      */
     public readonly maxLeaseTtlSeconds!: pulumi.Output<number>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
     /**
      * Specifies mount type specific options that are passed to the backend
      */
@@ -155,6 +166,7 @@ export class Mount extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as MountState | undefined;
             resourceInputs["accessor"] = state ? state.accessor : undefined;
+            resourceInputs["allowedManagedKeys"] = state ? state.allowedManagedKeys : undefined;
             resourceInputs["auditNonHmacRequestKeys"] = state ? state.auditNonHmacRequestKeys : undefined;
             resourceInputs["auditNonHmacResponseKeys"] = state ? state.auditNonHmacResponseKeys : undefined;
             resourceInputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
@@ -162,6 +174,7 @@ export class Mount extends pulumi.CustomResource {
             resourceInputs["externalEntropyAccess"] = state ? state.externalEntropyAccess : undefined;
             resourceInputs["local"] = state ? state.local : undefined;
             resourceInputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["options"] = state ? state.options : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
             resourceInputs["sealWrap"] = state ? state.sealWrap : undefined;
@@ -174,6 +187,7 @@ export class Mount extends pulumi.CustomResource {
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
+            resourceInputs["allowedManagedKeys"] = args ? args.allowedManagedKeys : undefined;
             resourceInputs["auditNonHmacRequestKeys"] = args ? args.auditNonHmacRequestKeys : undefined;
             resourceInputs["auditNonHmacResponseKeys"] = args ? args.auditNonHmacResponseKeys : undefined;
             resourceInputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
@@ -181,6 +195,7 @@ export class Mount extends pulumi.CustomResource {
             resourceInputs["externalEntropyAccess"] = args ? args.externalEntropyAccess : undefined;
             resourceInputs["local"] = args ? args.local : undefined;
             resourceInputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["options"] = args ? args.options : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["sealWrap"] = args ? args.sealWrap : undefined;
@@ -200,6 +215,10 @@ export interface MountState {
      * The accessor for this mount.
      */
     accessor?: pulumi.Input<string>;
+    /**
+     * Set of managed key registry entry names that the mount in question is allowed to access
+     */
+    allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
      */
@@ -228,6 +247,13 @@ export interface MountState {
      * Maximum possible lease duration for tokens and secrets in seconds
      */
     maxLeaseTtlSeconds?: pulumi.Input<number>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Specifies mount type specific options that are passed to the backend
      */
@@ -251,6 +277,10 @@ export interface MountState {
  */
 export interface MountArgs {
     /**
+     * Set of managed key registry entry names that the mount in question is allowed to access
+     */
+    allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
      */
     auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
@@ -278,6 +308,13 @@ export interface MountArgs {
      * Maximum possible lease duration for tokens and secrets in seconds
      */
     maxLeaseTtlSeconds?: pulumi.Input<number>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Specifies mount type specific options that are passed to the backend
      */

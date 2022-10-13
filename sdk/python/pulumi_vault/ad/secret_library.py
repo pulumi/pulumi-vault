@@ -19,6 +19,7 @@ class SecretLibraryArgs:
                  disable_check_in_enforcement: Optional[pulumi.Input[bool]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a SecretLibrary resource.
@@ -30,6 +31,10 @@ class SecretLibraryArgs:
                max_ttl if not provided.
         :param pulumi.Input[str] name: The name to identify this set of service accounts.
                Must be unique within the backend.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[int] ttl: The password time-to-live in seconds. Defaults to the configuration
                ttl if not provided.
         """
@@ -41,6 +46,8 @@ class SecretLibraryArgs:
             pulumi.set(__self__, "max_ttl", max_ttl)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if ttl is not None:
             pulumi.set(__self__, "ttl", ttl)
 
@@ -109,6 +116,21 @@ class SecretLibraryArgs:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[int]]:
         """
         The password time-to-live in seconds. Defaults to the configuration
@@ -128,6 +150,7 @@ class _SecretLibraryState:
                  disable_check_in_enforcement: Optional[pulumi.Input[bool]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  service_account_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ttl: Optional[pulumi.Input[int]] = None):
         """
@@ -139,6 +162,10 @@ class _SecretLibraryState:
                max_ttl if not provided.
         :param pulumi.Input[str] name: The name to identify this set of service accounts.
                Must be unique within the backend.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] service_account_names: Specifies the slice of service accounts mapped to this set.
         :param pulumi.Input[int] ttl: The password time-to-live in seconds. Defaults to the configuration
                ttl if not provided.
@@ -151,6 +178,8 @@ class _SecretLibraryState:
             pulumi.set(__self__, "max_ttl", max_ttl)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if service_account_names is not None:
             pulumi.set(__self__, "service_account_names", service_account_names)
         if ttl is not None:
@@ -208,6 +237,21 @@ class _SecretLibraryState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="serviceAccountNames")
     def service_account_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -242,6 +286,7 @@ class SecretLibrary(pulumi.CustomResource):
                  disable_check_in_enforcement: Optional[pulumi.Input[bool]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  service_account_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ttl: Optional[pulumi.Input[int]] = None,
                  __props__=None):
@@ -287,6 +332,10 @@ class SecretLibrary(pulumi.CustomResource):
                max_ttl if not provided.
         :param pulumi.Input[str] name: The name to identify this set of service accounts.
                Must be unique within the backend.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] service_account_names: Specifies the slice of service accounts mapped to this set.
         :param pulumi.Input[int] ttl: The password time-to-live in seconds. Defaults to the configuration
                ttl if not provided.
@@ -349,6 +398,7 @@ class SecretLibrary(pulumi.CustomResource):
                  disable_check_in_enforcement: Optional[pulumi.Input[bool]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  service_account_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ttl: Optional[pulumi.Input[int]] = None,
                  __props__=None):
@@ -366,6 +416,7 @@ class SecretLibrary(pulumi.CustomResource):
             __props__.__dict__["disable_check_in_enforcement"] = disable_check_in_enforcement
             __props__.__dict__["max_ttl"] = max_ttl
             __props__.__dict__["name"] = name
+            __props__.__dict__["namespace"] = namespace
             if service_account_names is None and not opts.urn:
                 raise TypeError("Missing required property 'service_account_names'")
             __props__.__dict__["service_account_names"] = service_account_names
@@ -384,6 +435,7 @@ class SecretLibrary(pulumi.CustomResource):
             disable_check_in_enforcement: Optional[pulumi.Input[bool]] = None,
             max_ttl: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             service_account_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             ttl: Optional[pulumi.Input[int]] = None) -> 'SecretLibrary':
         """
@@ -400,6 +452,10 @@ class SecretLibrary(pulumi.CustomResource):
                max_ttl if not provided.
         :param pulumi.Input[str] name: The name to identify this set of service accounts.
                Must be unique within the backend.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] service_account_names: Specifies the slice of service accounts mapped to this set.
         :param pulumi.Input[int] ttl: The password time-to-live in seconds. Defaults to the configuration
                ttl if not provided.
@@ -412,6 +468,7 @@ class SecretLibrary(pulumi.CustomResource):
         __props__.__dict__["disable_check_in_enforcement"] = disable_check_in_enforcement
         __props__.__dict__["max_ttl"] = max_ttl
         __props__.__dict__["name"] = name
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["service_account_names"] = service_account_names
         __props__.__dict__["ttl"] = ttl
         return SecretLibrary(resource_name, opts=opts, __props__=__props__)
@@ -450,6 +507,17 @@ class SecretLibrary(pulumi.CustomResource):
         Must be unique within the backend.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="serviceAccountNames")

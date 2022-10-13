@@ -17,75 +17,45 @@ public final class GetAccessCredentialsResult {
      * @return The AWS Access Key ID returned by Vault.
      * 
      */
-    private final String accessKey;
-    private final String backend;
+    private String accessKey;
+    private String backend;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
+    private String id;
     /**
      * @return The duration of the secret lease, in seconds relative
      * to the time the data was requested. Once this time has passed any plan
      * generated with this data may fail to apply.
      * 
      */
-    private final Integer leaseDuration;
+    private Integer leaseDuration;
     /**
      * @return The lease identifier assigned by Vault.
      * 
      */
-    private final String leaseId;
-    private final Boolean leaseRenewable;
-    private final String leaseStartTime;
-    private final @Nullable String region;
-    private final String role;
-    private final @Nullable String roleArn;
+    private String leaseId;
+    private Boolean leaseRenewable;
+    private String leaseStartTime;
+    private @Nullable String namespace;
+    private @Nullable String region;
+    private String role;
+    private @Nullable String roleArn;
     /**
      * @return The AWS Secret Key returned by Vault.
      * 
      */
-    private final String secretKey;
+    private String secretKey;
     /**
      * @return The STS token returned by Vault, if any.
      * 
      */
-    private final String securityToken;
-    private final @Nullable String ttl;
-    private final @Nullable String type;
+    private String securityToken;
+    private @Nullable String ttl;
+    private @Nullable String type;
 
-    @CustomType.Constructor
-    private GetAccessCredentialsResult(
-        @CustomType.Parameter("accessKey") String accessKey,
-        @CustomType.Parameter("backend") String backend,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("leaseDuration") Integer leaseDuration,
-        @CustomType.Parameter("leaseId") String leaseId,
-        @CustomType.Parameter("leaseRenewable") Boolean leaseRenewable,
-        @CustomType.Parameter("leaseStartTime") String leaseStartTime,
-        @CustomType.Parameter("region") @Nullable String region,
-        @CustomType.Parameter("role") String role,
-        @CustomType.Parameter("roleArn") @Nullable String roleArn,
-        @CustomType.Parameter("secretKey") String secretKey,
-        @CustomType.Parameter("securityToken") String securityToken,
-        @CustomType.Parameter("ttl") @Nullable String ttl,
-        @CustomType.Parameter("type") @Nullable String type) {
-        this.accessKey = accessKey;
-        this.backend = backend;
-        this.id = id;
-        this.leaseDuration = leaseDuration;
-        this.leaseId = leaseId;
-        this.leaseRenewable = leaseRenewable;
-        this.leaseStartTime = leaseStartTime;
-        this.region = region;
-        this.role = role;
-        this.roleArn = roleArn;
-        this.secretKey = secretKey;
-        this.securityToken = securityToken;
-        this.ttl = ttl;
-        this.type = type;
-    }
-
+    private GetAccessCredentialsResult() {}
     /**
      * @return The AWS Access Key ID returned by Vault.
      * 
@@ -125,6 +95,9 @@ public final class GetAccessCredentialsResult {
     public String leaseStartTime() {
         return this.leaseStartTime;
     }
+    public Optional<String> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
     public Optional<String> region() {
         return Optional.ofNullable(this.region);
     }
@@ -162,7 +135,7 @@ public final class GetAccessCredentialsResult {
     public static Builder builder(GetAccessCredentialsResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String accessKey;
         private String backend;
@@ -171,6 +144,7 @@ public final class GetAccessCredentialsResult {
         private String leaseId;
         private Boolean leaseRenewable;
         private String leaseStartTime;
+        private @Nullable String namespace;
         private @Nullable String region;
         private String role;
         private @Nullable String roleArn;
@@ -178,11 +152,7 @@ public final class GetAccessCredentialsResult {
         private String securityToken;
         private @Nullable String ttl;
         private @Nullable String type;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetAccessCredentialsResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.accessKey = defaults.accessKey;
@@ -192,6 +162,7 @@ public final class GetAccessCredentialsResult {
     	      this.leaseId = defaults.leaseId;
     	      this.leaseRenewable = defaults.leaseRenewable;
     	      this.leaseStartTime = defaults.leaseStartTime;
+    	      this.namespace = defaults.namespace;
     	      this.region = defaults.region;
     	      this.role = defaults.role;
     	      this.roleArn = defaults.roleArn;
@@ -201,63 +172,99 @@ public final class GetAccessCredentialsResult {
     	      this.type = defaults.type;
         }
 
+        @CustomType.Setter
         public Builder accessKey(String accessKey) {
             this.accessKey = Objects.requireNonNull(accessKey);
             return this;
         }
+        @CustomType.Setter
         public Builder backend(String backend) {
             this.backend = Objects.requireNonNull(backend);
             return this;
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder leaseDuration(Integer leaseDuration) {
             this.leaseDuration = Objects.requireNonNull(leaseDuration);
             return this;
         }
+        @CustomType.Setter
         public Builder leaseId(String leaseId) {
             this.leaseId = Objects.requireNonNull(leaseId);
             return this;
         }
+        @CustomType.Setter
         public Builder leaseRenewable(Boolean leaseRenewable) {
             this.leaseRenewable = Objects.requireNonNull(leaseRenewable);
             return this;
         }
+        @CustomType.Setter
         public Builder leaseStartTime(String leaseStartTime) {
             this.leaseStartTime = Objects.requireNonNull(leaseStartTime);
             return this;
         }
+        @CustomType.Setter
+        public Builder namespace(@Nullable String namespace) {
+            this.namespace = namespace;
+            return this;
+        }
+        @CustomType.Setter
         public Builder region(@Nullable String region) {
             this.region = region;
             return this;
         }
+        @CustomType.Setter
         public Builder role(String role) {
             this.role = Objects.requireNonNull(role);
             return this;
         }
+        @CustomType.Setter
         public Builder roleArn(@Nullable String roleArn) {
             this.roleArn = roleArn;
             return this;
         }
+        @CustomType.Setter
         public Builder secretKey(String secretKey) {
             this.secretKey = Objects.requireNonNull(secretKey);
             return this;
         }
+        @CustomType.Setter
         public Builder securityToken(String securityToken) {
             this.securityToken = Objects.requireNonNull(securityToken);
             return this;
         }
+        @CustomType.Setter
         public Builder ttl(@Nullable String ttl) {
             this.ttl = ttl;
             return this;
         }
+        @CustomType.Setter
         public Builder type(@Nullable String type) {
             this.type = type;
             return this;
-        }        public GetAccessCredentialsResult build() {
-            return new GetAccessCredentialsResult(accessKey, backend, id, leaseDuration, leaseId, leaseRenewable, leaseStartTime, region, role, roleArn, secretKey, securityToken, ttl, type);
+        }
+        public GetAccessCredentialsResult build() {
+            final var o = new GetAccessCredentialsResult();
+            o.accessKey = accessKey;
+            o.backend = backend;
+            o.id = id;
+            o.leaseDuration = leaseDuration;
+            o.leaseId = leaseId;
+            o.leaseRenewable = leaseRenewable;
+            o.leaseStartTime = leaseStartTime;
+            o.namespace = namespace;
+            o.region = region;
+            o.role = role;
+            o.roleArn = roleArn;
+            o.secretKey = secretKey;
+            o.securityToken = securityToken;
+            o.ttl = ttl;
+            o.type = type;
+            return o;
         }
     }
 }

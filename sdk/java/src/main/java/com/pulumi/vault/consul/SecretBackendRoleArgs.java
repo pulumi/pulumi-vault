@@ -35,7 +35,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
 
     /**
      * The Consul namespace that the token will be created in.
-     * Applicable for Vault 1.10+ and Consul 1.7+&#34;,
+     * Applicable for Vault 1.10+ and Consul 1.7+&#34;.
      * 
      */
     @Import(name="consulNamespace")
@@ -43,7 +43,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
 
     /**
      * @return The Consul namespace that the token will be created in.
-     * Applicable for Vault 1.10+ and Consul 1.7+&#34;,
+     * Applicable for Vault 1.10+ and Consul 1.7+&#34;.
      * 
      */
     public Optional<Output<String>> consulNamespace() {
@@ -51,7 +51,22 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Set of Consul roles to attach to the token.
+     * &lt;sup&gt;&lt;a href=&#34;#note-about-required-arguments&#34;&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; The list of Consul ACL policies to associate with these roles.
+     * 
+     */
+    @Import(name="consulPolicies")
+    private @Nullable Output<List<String>> consulPolicies;
+
+    /**
+     * @return &lt;sup&gt;&lt;a href=&#34;#note-about-required-arguments&#34;&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; The list of Consul ACL policies to associate with these roles.
+     * 
+     */
+    public Optional<Output<List<String>>> consulPolicies() {
+        return Optional.ofNullable(this.consulPolicies);
+    }
+
+    /**
+     * &lt;sup&gt;&lt;a href=&#34;#note-about-required-arguments&#34;&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; Set of Consul roles to attach to the token.
      * Applicable for Vault 1.10+ with Consul 1.5+.
      * 
      */
@@ -59,7 +74,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
     private @Nullable Output<List<String>> consulRoles;
 
     /**
-     * @return Set of Consul roles to attach to the token.
+     * @return &lt;sup&gt;&lt;a href=&#34;#note-about-required-arguments&#34;&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; Set of Consul roles to attach to the token.
      * Applicable for Vault 1.10+ with Consul 1.5+.
      * 
      */
@@ -113,8 +128,46 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable Output<String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
+
+    /**
+     * &lt;sup&gt;&lt;a href=&#34;#note-about-required-arguments&#34;&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; Set of Consul node
+     * identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.8+.
+     * 
+     */
+    @Import(name="nodeIdentities")
+    private @Nullable Output<List<String>> nodeIdentities;
+
+    /**
+     * @return &lt;sup&gt;&lt;a href=&#34;#note-about-required-arguments&#34;&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; Set of Consul node
+     * identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.8+.
+     * 
+     */
+    public Optional<Output<List<String>>> nodeIdentities() {
+        return Optional.ofNullable(this.nodeIdentities);
+    }
+
+    /**
      * The admin partition that the token will be created in.
-     * Applicable for Vault 1.10+ and Consul 1.11+&#34;,
+     * Applicable for Vault 1.10+ and Consul 1.11+&#34;.
      * 
      */
     @Import(name="partition")
@@ -122,7 +175,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
 
     /**
      * @return The admin partition that the token will be created in.
-     * Applicable for Vault 1.10+ and Consul 1.11+&#34;,
+     * Applicable for Vault 1.10+ and Consul 1.11+&#34;.
      * 
      */
     public Optional<Output<String>> partition() {
@@ -131,6 +184,8 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
 
     /**
      * The list of Consul ACL policies to associate with these roles.
+     * **NOTE:** The new parameter `consul_policies` should be used in favor of this. This parameter,
+     * `policies`, remains supported for legacy users, but Vault has deprecated this field.
      * 
      */
     @Import(name="policies")
@@ -138,6 +193,8 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
 
     /**
      * @return The list of Consul ACL policies to associate with these roles.
+     * **NOTE:** The new parameter `consul_policies` should be used in favor of this. This parameter,
+     * `policies`, remains supported for legacy users, but Vault has deprecated this field.
      * 
      */
     public Optional<Output<List<String>>> policies() {
@@ -145,16 +202,43 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Specifies the type of token to create when using this role. Valid values are &#34;client&#34; or &#34;management&#34;.
+     * &lt;sup&gt;&lt;a href=&#34;#note-about-required-arguments&#34;&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; Set of Consul
+     * service identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.5+.
      * 
      */
+    @Import(name="serviceIdentities")
+    private @Nullable Output<List<String>> serviceIdentities;
+
+    /**
+     * @return &lt;sup&gt;&lt;a href=&#34;#note-about-required-arguments&#34;&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; Set of Consul
+     * service identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.5+.
+     * 
+     */
+    public Optional<Output<List<String>>> serviceIdentities() {
+        return Optional.ofNullable(this.serviceIdentities);
+    }
+
+    /**
+     * Specifies the type of token to create when using this role. Valid values are &#34;client&#34; or &#34;management&#34;.
+     * *Deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.*
+     * 
+     * @deprecated
+     * Consul 1.11 and later removed the legacy ACL system which supported this field.
+     * 
+     */
+    @Deprecated /* Consul 1.11 and later removed the legacy ACL system which supported this field. */
     @Import(name="tokenType")
     private @Nullable Output<String> tokenType;
 
     /**
      * @return Specifies the type of token to create when using this role. Valid values are &#34;client&#34; or &#34;management&#34;.
+     * *Deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.*
+     * 
+     * @deprecated
+     * Consul 1.11 and later removed the legacy ACL system which supported this field.
      * 
      */
+    @Deprecated /* Consul 1.11 and later removed the legacy ACL system which supported this field. */
     public Optional<Output<String>> tokenType() {
         return Optional.ofNullable(this.tokenType);
     }
@@ -179,12 +263,16 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
     private SecretBackendRoleArgs(SecretBackendRoleArgs $) {
         this.backend = $.backend;
         this.consulNamespace = $.consulNamespace;
+        this.consulPolicies = $.consulPolicies;
         this.consulRoles = $.consulRoles;
         this.local = $.local;
         this.maxTtl = $.maxTtl;
         this.name = $.name;
+        this.namespace = $.namespace;
+        this.nodeIdentities = $.nodeIdentities;
         this.partition = $.partition;
         this.policies = $.policies;
+        this.serviceIdentities = $.serviceIdentities;
         this.tokenType = $.tokenType;
         this.ttl = $.ttl;
     }
@@ -230,7 +318,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
 
         /**
          * @param consulNamespace The Consul namespace that the token will be created in.
-         * Applicable for Vault 1.10+ and Consul 1.7+&#34;,
+         * Applicable for Vault 1.10+ and Consul 1.7+&#34;.
          * 
          * @return builder
          * 
@@ -242,7 +330,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
 
         /**
          * @param consulNamespace The Consul namespace that the token will be created in.
-         * Applicable for Vault 1.10+ and Consul 1.7+&#34;,
+         * Applicable for Vault 1.10+ and Consul 1.7+&#34;.
          * 
          * @return builder
          * 
@@ -252,7 +340,38 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param consulRoles Set of Consul roles to attach to the token.
+         * @param consulPolicies &lt;sup&gt;&lt;a href=&#34;#note-about-required-arguments&#34;&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; The list of Consul ACL policies to associate with these roles.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder consulPolicies(@Nullable Output<List<String>> consulPolicies) {
+            $.consulPolicies = consulPolicies;
+            return this;
+        }
+
+        /**
+         * @param consulPolicies &lt;sup&gt;&lt;a href=&#34;#note-about-required-arguments&#34;&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; The list of Consul ACL policies to associate with these roles.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder consulPolicies(List<String> consulPolicies) {
+            return consulPolicies(Output.of(consulPolicies));
+        }
+
+        /**
+         * @param consulPolicies &lt;sup&gt;&lt;a href=&#34;#note-about-required-arguments&#34;&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; The list of Consul ACL policies to associate with these roles.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder consulPolicies(String... consulPolicies) {
+            return consulPolicies(List.of(consulPolicies));
+        }
+
+        /**
+         * @param consulRoles &lt;sup&gt;&lt;a href=&#34;#note-about-required-arguments&#34;&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; Set of Consul roles to attach to the token.
          * Applicable for Vault 1.10+ with Consul 1.5+.
          * 
          * @return builder
@@ -264,7 +383,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param consulRoles Set of Consul roles to attach to the token.
+         * @param consulRoles &lt;sup&gt;&lt;a href=&#34;#note-about-required-arguments&#34;&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; Set of Consul roles to attach to the token.
          * Applicable for Vault 1.10+ with Consul 1.5+.
          * 
          * @return builder
@@ -275,7 +394,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param consulRoles Set of Consul roles to attach to the token.
+         * @param consulRoles &lt;sup&gt;&lt;a href=&#34;#note-about-required-arguments&#34;&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; Set of Consul roles to attach to the token.
          * Applicable for Vault 1.10+ with Consul 1.5+.
          * 
          * @return builder
@@ -349,8 +468,69 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable Output<String> namespace) {
+            $.namespace = namespace;
+            return this;
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(String namespace) {
+            return namespace(Output.of(namespace));
+        }
+
+        /**
+         * @param nodeIdentities &lt;sup&gt;&lt;a href=&#34;#note-about-required-arguments&#34;&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; Set of Consul node
+         * identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.8+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder nodeIdentities(@Nullable Output<List<String>> nodeIdentities) {
+            $.nodeIdentities = nodeIdentities;
+            return this;
+        }
+
+        /**
+         * @param nodeIdentities &lt;sup&gt;&lt;a href=&#34;#note-about-required-arguments&#34;&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; Set of Consul node
+         * identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.8+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder nodeIdentities(List<String> nodeIdentities) {
+            return nodeIdentities(Output.of(nodeIdentities));
+        }
+
+        /**
+         * @param nodeIdentities &lt;sup&gt;&lt;a href=&#34;#note-about-required-arguments&#34;&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; Set of Consul node
+         * identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.8+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder nodeIdentities(String... nodeIdentities) {
+            return nodeIdentities(List.of(nodeIdentities));
+        }
+
+        /**
          * @param partition The admin partition that the token will be created in.
-         * Applicable for Vault 1.10+ and Consul 1.11+&#34;,
+         * Applicable for Vault 1.10+ and Consul 1.11+&#34;.
          * 
          * @return builder
          * 
@@ -362,7 +542,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
 
         /**
          * @param partition The admin partition that the token will be created in.
-         * Applicable for Vault 1.10+ and Consul 1.11+&#34;,
+         * Applicable for Vault 1.10+ and Consul 1.11+&#34;.
          * 
          * @return builder
          * 
@@ -373,6 +553,8 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
 
         /**
          * @param policies The list of Consul ACL policies to associate with these roles.
+         * **NOTE:** The new parameter `consul_policies` should be used in favor of this. This parameter,
+         * `policies`, remains supported for legacy users, but Vault has deprecated this field.
          * 
          * @return builder
          * 
@@ -384,6 +566,8 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
 
         /**
          * @param policies The list of Consul ACL policies to associate with these roles.
+         * **NOTE:** The new parameter `consul_policies` should be used in favor of this. This parameter,
+         * `policies`, remains supported for legacy users, but Vault has deprecated this field.
          * 
          * @return builder
          * 
@@ -394,6 +578,8 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
 
         /**
          * @param policies The list of Consul ACL policies to associate with these roles.
+         * **NOTE:** The new parameter `consul_policies` should be used in favor of this. This parameter,
+         * `policies`, remains supported for legacy users, but Vault has deprecated this field.
          * 
          * @return builder
          * 
@@ -403,11 +589,50 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param tokenType Specifies the type of token to create when using this role. Valid values are &#34;client&#34; or &#34;management&#34;.
+         * @param serviceIdentities &lt;sup&gt;&lt;a href=&#34;#note-about-required-arguments&#34;&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; Set of Consul
+         * service identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.5+.
          * 
          * @return builder
          * 
          */
+        public Builder serviceIdentities(@Nullable Output<List<String>> serviceIdentities) {
+            $.serviceIdentities = serviceIdentities;
+            return this;
+        }
+
+        /**
+         * @param serviceIdentities &lt;sup&gt;&lt;a href=&#34;#note-about-required-arguments&#34;&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; Set of Consul
+         * service identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.5+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serviceIdentities(List<String> serviceIdentities) {
+            return serviceIdentities(Output.of(serviceIdentities));
+        }
+
+        /**
+         * @param serviceIdentities &lt;sup&gt;&lt;a href=&#34;#note-about-required-arguments&#34;&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; Set of Consul
+         * service identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.5+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serviceIdentities(String... serviceIdentities) {
+            return serviceIdentities(List.of(serviceIdentities));
+        }
+
+        /**
+         * @param tokenType Specifies the type of token to create when using this role. Valid values are &#34;client&#34; or &#34;management&#34;.
+         * *Deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.*
+         * 
+         * @return builder
+         * 
+         * @deprecated
+         * Consul 1.11 and later removed the legacy ACL system which supported this field.
+         * 
+         */
+        @Deprecated /* Consul 1.11 and later removed the legacy ACL system which supported this field. */
         public Builder tokenType(@Nullable Output<String> tokenType) {
             $.tokenType = tokenType;
             return this;
@@ -415,10 +640,15 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
 
         /**
          * @param tokenType Specifies the type of token to create when using this role. Valid values are &#34;client&#34; or &#34;management&#34;.
+         * *Deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.*
          * 
          * @return builder
          * 
+         * @deprecated
+         * Consul 1.11 and later removed the legacy ACL system which supported this field.
+         * 
          */
+        @Deprecated /* Consul 1.11 and later removed the legacy ACL system which supported this field. */
         public Builder tokenType(String tokenType) {
             return tokenType(Output.of(tokenType));
         }

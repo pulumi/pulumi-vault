@@ -83,6 +83,11 @@ type BackendRole struct {
 	// Specifies the maximum TTL for service principals generated using this role. Accepts time
 	// suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
 	MaxTtl pulumi.StringPtrOutput `pulumi:"maxTtl"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Name of the Azure role
 	Role pulumi.StringOutput `pulumi:"role"`
 	// Specifies the default TTL for service principals generated using this role.
@@ -136,6 +141,11 @@ type backendRoleState struct {
 	// Specifies the maximum TTL for service principals generated using this role. Accepts time
 	// suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
 	MaxTtl *string `pulumi:"maxTtl"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Name of the Azure role
 	Role *string `pulumi:"role"`
 	// Specifies the default TTL for service principals generated using this role.
@@ -158,6 +168,11 @@ type BackendRoleState struct {
 	// Specifies the maximum TTL for service principals generated using this role. Accepts time
 	// suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
 	MaxTtl pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Name of the Azure role
 	Role pulumi.StringPtrInput
 	// Specifies the default TTL for service principals generated using this role.
@@ -184,6 +199,11 @@ type backendRoleArgs struct {
 	// Specifies the maximum TTL for service principals generated using this role. Accepts time
 	// suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
 	MaxTtl *string `pulumi:"maxTtl"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Name of the Azure role
 	Role string `pulumi:"role"`
 	// Specifies the default TTL for service principals generated using this role.
@@ -207,6 +227,11 @@ type BackendRoleArgs struct {
 	// Specifies the maximum TTL for service principals generated using this role. Accepts time
 	// suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
 	MaxTtl pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Name of the Azure role
 	Role pulumi.StringInput
 	// Specifies the default TTL for service principals generated using this role.
@@ -331,6 +356,14 @@ func (o BackendRoleOutput) Description() pulumi.StringPtrOutput {
 // suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
 func (o BackendRoleOutput) MaxTtl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BackendRole) pulumi.StringPtrOutput { return v.MaxTtl }).(pulumi.StringPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o BackendRoleOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackendRole) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Name of the Azure role

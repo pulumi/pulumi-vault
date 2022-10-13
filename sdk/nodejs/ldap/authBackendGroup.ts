@@ -75,6 +75,13 @@ export class AuthBackendGroup extends pulumi.CustomResource {
      */
     public readonly groupname!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * Policies which should be granted to members of the group
      */
     public readonly policies!: pulumi.Output<string[]>;
@@ -94,6 +101,7 @@ export class AuthBackendGroup extends pulumi.CustomResource {
             const state = argsOrState as AuthBackendGroupState | undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["groupname"] = state ? state.groupname : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["policies"] = state ? state.policies : undefined;
         } else {
             const args = argsOrState as AuthBackendGroupArgs | undefined;
@@ -102,6 +110,7 @@ export class AuthBackendGroup extends pulumi.CustomResource {
             }
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["groupname"] = args ? args.groupname : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["policies"] = args ? args.policies : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -122,6 +131,13 @@ export interface AuthBackendGroupState {
      */
     groupname?: pulumi.Input<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
+    /**
      * Policies which should be granted to members of the group
      */
     policies?: pulumi.Input<pulumi.Input<string>[]>;
@@ -139,6 +155,13 @@ export interface AuthBackendGroupArgs {
      * The LDAP groupname
      */
     groupname: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Policies which should be granted to members of the group
      */

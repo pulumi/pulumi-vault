@@ -65,6 +65,17 @@ type SecretBackendIntermediateCertRequest struct {
 	KeyType pulumi.StringPtrOutput `pulumi:"keyType"`
 	// The locality
 	Locality pulumi.StringPtrOutput `pulumi:"locality"`
+	// The ID of the previously configured managed key. This field is
+	// required if `type` is `kms` and it conflicts with `managedKeyName`
+	ManagedKeyId pulumi.StringPtrOutput `pulumi:"managedKeyId"`
+	// The name of the previously configured managed key. This field is
+	// required if `type` is `kms`  and it conflicts with `managedKeyId`
+	ManagedKeyName pulumi.StringPtrOutput `pulumi:"managedKeyName"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The organization
 	Organization pulumi.StringPtrOutput `pulumi:"organization"`
 	// List of other SANs
@@ -84,6 +95,7 @@ type SecretBackendIntermediateCertRequest struct {
 	// The street address
 	StreetAddress pulumi.StringPtrOutput `pulumi:"streetAddress"`
 	// Type of intermediate to create. Must be either \"exported\" or \"internal\"
+	// or \"kms\"
 	Type pulumi.StringOutput `pulumi:"type"`
 	// List of alternative URIs
 	UriSans pulumi.StringArrayOutput `pulumi:"uriSans"`
@@ -105,6 +117,10 @@ func NewSecretBackendIntermediateCertRequest(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"privateKey",
+	})
+	opts = append(opts, secrets)
 	var resource SecretBackendIntermediateCertRequest
 	err := ctx.RegisterResource("vault:pkiSecret/secretBackendIntermediateCertRequest:SecretBackendIntermediateCertRequest", name, args, &resource, opts...)
 	if err != nil {
@@ -149,6 +165,17 @@ type secretBackendIntermediateCertRequestState struct {
 	KeyType *string `pulumi:"keyType"`
 	// The locality
 	Locality *string `pulumi:"locality"`
+	// The ID of the previously configured managed key. This field is
+	// required if `type` is `kms` and it conflicts with `managedKeyName`
+	ManagedKeyId *string `pulumi:"managedKeyId"`
+	// The name of the previously configured managed key. This field is
+	// required if `type` is `kms`  and it conflicts with `managedKeyId`
+	ManagedKeyName *string `pulumi:"managedKeyName"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The organization
 	Organization *string `pulumi:"organization"`
 	// List of other SANs
@@ -168,6 +195,7 @@ type secretBackendIntermediateCertRequestState struct {
 	// The street address
 	StreetAddress *string `pulumi:"streetAddress"`
 	// Type of intermediate to create. Must be either \"exported\" or \"internal\"
+	// or \"kms\"
 	Type *string `pulumi:"type"`
 	// List of alternative URIs
 	UriSans []string `pulumi:"uriSans"`
@@ -196,6 +224,17 @@ type SecretBackendIntermediateCertRequestState struct {
 	KeyType pulumi.StringPtrInput
 	// The locality
 	Locality pulumi.StringPtrInput
+	// The ID of the previously configured managed key. This field is
+	// required if `type` is `kms` and it conflicts with `managedKeyName`
+	ManagedKeyId pulumi.StringPtrInput
+	// The name of the previously configured managed key. This field is
+	// required if `type` is `kms`  and it conflicts with `managedKeyId`
+	ManagedKeyName pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The organization
 	Organization pulumi.StringPtrInput
 	// List of other SANs
@@ -215,6 +254,7 @@ type SecretBackendIntermediateCertRequestState struct {
 	// The street address
 	StreetAddress pulumi.StringPtrInput
 	// Type of intermediate to create. Must be either \"exported\" or \"internal\"
+	// or \"kms\"
 	Type pulumi.StringPtrInput
 	// List of alternative URIs
 	UriSans pulumi.StringArrayInput
@@ -245,6 +285,17 @@ type secretBackendIntermediateCertRequestArgs struct {
 	KeyType *string `pulumi:"keyType"`
 	// The locality
 	Locality *string `pulumi:"locality"`
+	// The ID of the previously configured managed key. This field is
+	// required if `type` is `kms` and it conflicts with `managedKeyName`
+	ManagedKeyId *string `pulumi:"managedKeyId"`
+	// The name of the previously configured managed key. This field is
+	// required if `type` is `kms`  and it conflicts with `managedKeyId`
+	ManagedKeyName *string `pulumi:"managedKeyName"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The organization
 	Organization *string `pulumi:"organization"`
 	// List of other SANs
@@ -260,6 +311,7 @@ type secretBackendIntermediateCertRequestArgs struct {
 	// The street address
 	StreetAddress *string `pulumi:"streetAddress"`
 	// Type of intermediate to create. Must be either \"exported\" or \"internal\"
+	// or \"kms\"
 	Type string `pulumi:"type"`
 	// List of alternative URIs
 	UriSans []string `pulumi:"uriSans"`
@@ -287,6 +339,17 @@ type SecretBackendIntermediateCertRequestArgs struct {
 	KeyType pulumi.StringPtrInput
 	// The locality
 	Locality pulumi.StringPtrInput
+	// The ID of the previously configured managed key. This field is
+	// required if `type` is `kms` and it conflicts with `managedKeyName`
+	ManagedKeyId pulumi.StringPtrInput
+	// The name of the previously configured managed key. This field is
+	// required if `type` is `kms`  and it conflicts with `managedKeyId`
+	ManagedKeyName pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The organization
 	Organization pulumi.StringPtrInput
 	// List of other SANs
@@ -302,6 +365,7 @@ type SecretBackendIntermediateCertRequestArgs struct {
 	// The street address
 	StreetAddress pulumi.StringPtrInput
 	// Type of intermediate to create. Must be either \"exported\" or \"internal\"
+	// or \"kms\"
 	Type pulumi.StringInput
 	// List of alternative URIs
 	UriSans pulumi.StringArrayInput
@@ -449,6 +513,26 @@ func (o SecretBackendIntermediateCertRequestOutput) Locality() pulumi.StringPtrO
 	return o.ApplyT(func(v *SecretBackendIntermediateCertRequest) pulumi.StringPtrOutput { return v.Locality }).(pulumi.StringPtrOutput)
 }
 
+// The ID of the previously configured managed key. This field is
+// required if `type` is `kms` and it conflicts with `managedKeyName`
+func (o SecretBackendIntermediateCertRequestOutput) ManagedKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendIntermediateCertRequest) pulumi.StringPtrOutput { return v.ManagedKeyId }).(pulumi.StringPtrOutput)
+}
+
+// The name of the previously configured managed key. This field is
+// required if `type` is `kms`  and it conflicts with `managedKeyId`
+func (o SecretBackendIntermediateCertRequestOutput) ManagedKeyName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendIntermediateCertRequest) pulumi.StringPtrOutput { return v.ManagedKeyName }).(pulumi.StringPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o SecretBackendIntermediateCertRequestOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendIntermediateCertRequest) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
 // The organization
 func (o SecretBackendIntermediateCertRequestOutput) Organization() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendIntermediateCertRequest) pulumi.StringPtrOutput { return v.Organization }).(pulumi.StringPtrOutput)
@@ -495,6 +579,7 @@ func (o SecretBackendIntermediateCertRequestOutput) StreetAddress() pulumi.Strin
 }
 
 // Type of intermediate to create. Must be either \"exported\" or \"internal\"
+// or \"kms\"
 func (o SecretBackendIntermediateCertRequestOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendIntermediateCertRequest) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

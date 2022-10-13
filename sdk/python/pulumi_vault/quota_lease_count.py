@@ -16,12 +16,17 @@ class QuotaLeaseCountArgs:
     def __init__(__self__, *,
                  max_leases: pulumi.Input[int],
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a QuotaLeaseCount resource.
         :param pulumi.Input[int] max_leases: The maximum number of leases to be allowed by the quota
                rule. The `max_leases` must be positive.
         :param pulumi.Input[str] name: Name of the rate limit quota
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured namespace.
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: Path of the mount or namespace to apply the quota. A blank path configures a
                global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
                `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
@@ -32,6 +37,8 @@ class QuotaLeaseCountArgs:
         pulumi.set(__self__, "max_leases", max_leases)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if path is not None:
             pulumi.set(__self__, "path", path)
 
@@ -62,6 +69,21 @@ class QuotaLeaseCountArgs:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured namespace.
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
         """
         Path of the mount or namespace to apply the quota. A blank path configures a
@@ -83,12 +105,17 @@ class _QuotaLeaseCountState:
     def __init__(__self__, *,
                  max_leases: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering QuotaLeaseCount resources.
         :param pulumi.Input[int] max_leases: The maximum number of leases to be allowed by the quota
                rule. The `max_leases` must be positive.
         :param pulumi.Input[str] name: Name of the rate limit quota
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured namespace.
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: Path of the mount or namespace to apply the quota. A blank path configures a
                global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
                `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
@@ -100,6 +127,8 @@ class _QuotaLeaseCountState:
             pulumi.set(__self__, "max_leases", max_leases)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if path is not None:
             pulumi.set(__self__, "path", path)
 
@@ -130,6 +159,21 @@ class _QuotaLeaseCountState:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured namespace.
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
         """
         Path of the mount or namespace to apply the quota. A blank path configures a
@@ -153,6 +197,7 @@ class QuotaLeaseCount(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  max_leases: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -189,6 +234,10 @@ class QuotaLeaseCount(pulumi.CustomResource):
         :param pulumi.Input[int] max_leases: The maximum number of leases to be allowed by the quota
                rule. The `max_leases` must be positive.
         :param pulumi.Input[str] name: Name of the rate limit quota
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured namespace.
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: Path of the mount or namespace to apply the quota. A blank path configures a
                global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
                `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
@@ -248,6 +297,7 @@ class QuotaLeaseCount(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  max_leases: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -262,6 +312,7 @@ class QuotaLeaseCount(pulumi.CustomResource):
                 raise TypeError("Missing required property 'max_leases'")
             __props__.__dict__["max_leases"] = max_leases
             __props__.__dict__["name"] = name
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["path"] = path
         super(QuotaLeaseCount, __self__).__init__(
             'vault:index/quotaLeaseCount:QuotaLeaseCount',
@@ -275,6 +326,7 @@ class QuotaLeaseCount(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             max_leases: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None) -> 'QuotaLeaseCount':
         """
         Get an existing QuotaLeaseCount resource's state with the given name, id, and optional extra
@@ -286,6 +338,10 @@ class QuotaLeaseCount(pulumi.CustomResource):
         :param pulumi.Input[int] max_leases: The maximum number of leases to be allowed by the quota
                rule. The `max_leases` must be positive.
         :param pulumi.Input[str] name: Name of the rate limit quota
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured namespace.
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: Path of the mount or namespace to apply the quota. A blank path configures a
                global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
                `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
@@ -299,6 +355,7 @@ class QuotaLeaseCount(pulumi.CustomResource):
 
         __props__.__dict__["max_leases"] = max_leases
         __props__.__dict__["name"] = name
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["path"] = path
         return QuotaLeaseCount(resource_name, opts=opts, __props__=__props__)
 
@@ -318,6 +375,17 @@ class QuotaLeaseCount(pulumi.CustomResource):
         Name of the rate limit quota
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured namespace.
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

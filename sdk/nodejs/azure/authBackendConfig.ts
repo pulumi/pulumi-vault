@@ -79,6 +79,13 @@ export class AuthBackendConfig extends pulumi.CustomResource {
      */
     public readonly environment!: pulumi.Output<string | undefined>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * The configured URL for the application registered in
      * Azure Active Directory.
      */
@@ -106,6 +113,7 @@ export class AuthBackendConfig extends pulumi.CustomResource {
             resourceInputs["clientId"] = state ? state.clientId : undefined;
             resourceInputs["clientSecret"] = state ? state.clientSecret : undefined;
             resourceInputs["environment"] = state ? state.environment : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["resource"] = state ? state.resource : undefined;
             resourceInputs["tenantId"] = state ? state.tenantId : undefined;
         } else {
@@ -117,13 +125,16 @@ export class AuthBackendConfig extends pulumi.CustomResource {
                 throw new Error("Missing required property 'tenantId'");
             }
             resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["clientId"] = args ? args.clientId : undefined;
-            resourceInputs["clientSecret"] = args ? args.clientSecret : undefined;
+            resourceInputs["clientId"] = args?.clientId ? pulumi.secret(args.clientId) : undefined;
+            resourceInputs["clientSecret"] = args?.clientSecret ? pulumi.secret(args.clientSecret) : undefined;
             resourceInputs["environment"] = args ? args.environment : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["resource"] = args ? args.resource : undefined;
-            resourceInputs["tenantId"] = args ? args.tenantId : undefined;
+            resourceInputs["tenantId"] = args?.tenantId ? pulumi.secret(args.tenantId) : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["clientId", "clientSecret", "tenantId"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(AuthBackendConfig.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -153,6 +164,13 @@ export interface AuthBackendConfigState {
      * AzureGermanCloud.  Defaults to `AzurePublicCloud`.
      */
     environment?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The configured URL for the application registered in
      * Azure Active Directory.
@@ -190,6 +208,13 @@ export interface AuthBackendConfigArgs {
      * AzureGermanCloud.  Defaults to `AzurePublicCloud`.
      */
     environment?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The configured URL for the application registered in
      * Azure Active Directory.

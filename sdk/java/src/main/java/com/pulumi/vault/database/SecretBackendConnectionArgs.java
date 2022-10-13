@@ -19,6 +19,7 @@ import com.pulumi.vault.database.inputs.SecretBackendConnectionMysqlLegacyArgs;
 import com.pulumi.vault.database.inputs.SecretBackendConnectionMysqlRdsArgs;
 import com.pulumi.vault.database.inputs.SecretBackendConnectionOracleArgs;
 import com.pulumi.vault.database.inputs.SecretBackendConnectionPostgresqlArgs;
+import com.pulumi.vault.database.inputs.SecretBackendConnectionRedisElasticacheArgs;
 import com.pulumi.vault.database.inputs.SecretBackendConnectionRedshiftArgs;
 import com.pulumi.vault.database.inputs.SecretBackendConnectionSnowflakeArgs;
 import java.lang.Boolean;
@@ -278,6 +279,27 @@ public final class SecretBackendConnectionArgs extends com.pulumi.resources.Reso
     }
 
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured namespace.
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable Output<String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured namespace.
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
+
+    /**
      * A nested block containing configuration options for Oracle connections.
      * 
      */
@@ -320,6 +342,21 @@ public final class SecretBackendConnectionArgs extends com.pulumi.resources.Reso
      */
     public Optional<Output<SecretBackendConnectionPostgresqlArgs>> postgresql() {
         return Optional.ofNullable(this.postgresql);
+    }
+
+    /**
+     * A nested block containing configuration options for Redis ElastiCache connections.
+     * 
+     */
+    @Import(name="redisElasticache")
+    private @Nullable Output<SecretBackendConnectionRedisElasticacheArgs> redisElasticache;
+
+    /**
+     * @return A nested block containing configuration options for Redis ElastiCache connections.
+     * 
+     */
+    public Optional<Output<SecretBackendConnectionRedisElasticacheArgs>> redisElasticache() {
+        return Optional.ofNullable(this.redisElasticache);
     }
 
     /**
@@ -403,9 +440,11 @@ public final class SecretBackendConnectionArgs extends com.pulumi.resources.Reso
         this.mysqlLegacy = $.mysqlLegacy;
         this.mysqlRds = $.mysqlRds;
         this.name = $.name;
+        this.namespace = $.namespace;
         this.oracle = $.oracle;
         this.pluginName = $.pluginName;
         this.postgresql = $.postgresql;
+        this.redisElasticache = $.redisElasticache;
         this.redshift = $.redshift;
         this.rootRotationStatements = $.rootRotationStatements;
         this.snowflake = $.snowflake;
@@ -780,6 +819,33 @@ public final class SecretBackendConnectionArgs extends com.pulumi.resources.Reso
         }
 
         /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured namespace.
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable Output<String> namespace) {
+            $.namespace = namespace;
+            return this;
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured namespace.
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(String namespace) {
+            return namespace(Output.of(namespace));
+        }
+
+        /**
          * @param oracle A nested block containing configuration options for Oracle connections.
          * 
          * @return builder
@@ -840,6 +906,27 @@ public final class SecretBackendConnectionArgs extends com.pulumi.resources.Reso
          */
         public Builder postgresql(SecretBackendConnectionPostgresqlArgs postgresql) {
             return postgresql(Output.of(postgresql));
+        }
+
+        /**
+         * @param redisElasticache A nested block containing configuration options for Redis ElastiCache connections.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder redisElasticache(@Nullable Output<SecretBackendConnectionRedisElasticacheArgs> redisElasticache) {
+            $.redisElasticache = redisElasticache;
+            return this;
+        }
+
+        /**
+         * @param redisElasticache A nested block containing configuration options for Redis ElastiCache connections.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder redisElasticache(SecretBackendConnectionRedisElasticacheArgs redisElasticache) {
+            return redisElasticache(Output.of(redisElasticache));
         }
 
         /**

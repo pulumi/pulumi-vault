@@ -89,6 +89,13 @@ export class AuthBackendLogin extends pulumi.CustomResource {
      */
     public /*out*/ readonly metadata!: pulumi.Output<{[key: string]: string}>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * A list of policies applied to the token.
      */
     public /*out*/ readonly policies!: pulumi.Output<string[]>;
@@ -125,6 +132,7 @@ export class AuthBackendLogin extends pulumi.CustomResource {
             resourceInputs["leaseDuration"] = state ? state.leaseDuration : undefined;
             resourceInputs["leaseStarted"] = state ? state.leaseStarted : undefined;
             resourceInputs["metadata"] = state ? state.metadata : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["policies"] = state ? state.policies : undefined;
             resourceInputs["renewable"] = state ? state.renewable : undefined;
             resourceInputs["roleId"] = state ? state.roleId : undefined;
@@ -135,6 +143,7 @@ export class AuthBackendLogin extends pulumi.CustomResource {
                 throw new Error("Missing required property 'roleId'");
             }
             resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["roleId"] = args ? args.roleId : undefined;
             resourceInputs["secretId"] = args ? args.secretId : undefined;
             resourceInputs["accessor"] = undefined /*out*/;
@@ -179,6 +188,13 @@ export interface AuthBackendLoginState {
      */
     metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
+    /**
      * A list of policies applied to the token.
      */
     policies?: pulumi.Input<pulumi.Input<string>[]>;
@@ -205,6 +221,13 @@ export interface AuthBackendLoginArgs {
      * The unique path of the Vault backend to log in with.
      */
     backend?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The ID of the role to log in with.
      */

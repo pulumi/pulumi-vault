@@ -52,7 +52,9 @@ const (
 	jwtMod            = "Jwt"
 	kmipMod           = "Kmip"
 	kubernetesMod     = "Kubernetes"
+	kvMod             = "kv"
 	ldapMod           = "Ldap"
+	managedMod        = "Managed"
 	oktaMod           = "Okta"
 	pkiSecretMod      = "PkiSecret"
 	rabbitMqMod       = "RabbitMQ"
@@ -159,7 +161,10 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_mfa_pingid":             {Tok: makeResource(mainMod, "MfaPingid")},
 			"vault_mfa_totp":               {Tok: makeResource(mainMod, "MfaTotp")},
 			"vault_mount":                  {Tok: makeResource(mainMod, "Mount")},
-			"vault_namespace":              {Tok: makeResource(mainMod, "Namespace")},
+			"vault_namespace": {Tok: makeResource(mainMod, "Namespace"),
+				Fields: map[string]*tfbridge.SchemaInfo{"namespace": {
+					CSharpName: "TargetNamespace", // error CS0542: 'Namespace': member names cannot be the same as their enclosing type
+				}}},
 			"vault_policy": {
 				Tok: makeResource(mainMod, "Policy"),
 				Fields: map[string]*tfbridge.SchemaInfo{
@@ -288,6 +293,11 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "database_secret_backend_role.md",
 				},
 			},
+			"vault_identity_mfa_duo":                    {Tok: makeResource(identityMod, "MfaDuo")},
+			"vault_identity_mfa_login_enforcement":      {Tok: makeResource(identityMod, "MfaLoginEnforcement")},
+			"vault_identity_mfa_okta":                   {Tok: makeResource(identityMod, "MfaOkta")},
+			"vault_identity_mfa_pingid":                 {Tok: makeResource(identityMod, "MfaPingID")},
+			"vault_identity_mfa_totp":                   {Tok: makeResource(identityMod, "MfaTOTP")},
 			"vault_identity_oidc":                       {Tok: makeResource(identityMod, "Oidc")},
 			"vault_identity_oidc_key":                   {Tok: makeResource(identityMod, "OidcKey")},
 			"vault_identity_oidc_key_allowed_client_id": {Tok: makeResource(identityMod, "OidcKeyAllowedClientID")},
@@ -326,11 +336,25 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "kubernetes_auth_backend_role.html.md",
 				},
 			},
+			"vault_kubernetes_secret_backend": {
+				Tok: makeResource(kubernetesMod, "SecretBackend"),
+			},
+			"vault_kubernetes_secret_backend_role": {
+				Tok: makeResource(kubernetesMod, "SecretBackendRole"),
+			},
+
+			// KV
+			"vault_kv_secret":            {Tok: makeResource(kvMod, "Secret")},
+			"vault_kv_secret_backend_v2": {Tok: makeResource(kvMod, "SecretBackendV2")},
+			"vault_kv_secret_v2":         {Tok: makeResource(kvMod, "SecretV2")},
 
 			// LDAP
 			"vault_ldap_auth_backend":       {Tok: makeResource(ldapMod, "AuthBackend")},
 			"vault_ldap_auth_backend_user":  {Tok: makeResource(ldapMod, "AuthBackendUser")},
 			"vault_ldap_auth_backend_group": {Tok: makeResource(ldapMod, "AuthBackendGroup")},
+
+			// Managed keys
+			"vault_managed_keys": {Tok: makeResource(managedMod, "Keys")},
 
 			// Okta
 			"vault_okta_auth_backend":       {Tok: makeResource(oktaMod, "AuthBackend")},
@@ -460,6 +484,14 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "kubernetes_auth_backend_role.md",
 				},
 			},
+			"vault_kubernetes_service_account_token": {Tok: makeDataSource(kubernetesMod, "getServiceAccountToken")},
+
+			// KV
+			"vault_kv_secret":            {Tok: makeDataSource(kvMod, "getSecret")},
+			"vault_kv_secret_subkeys_v2": {Tok: makeDataSource(kvMod, "getSecretSubKeysV2")},
+			"vault_kv_secret_v2":         {Tok: makeDataSource(kvMod, "getSecretV2")},
+			"vault_kv_secrets_list":      {Tok: makeDataSource(kvMod, "getSecretsList")},
+			"vault_kv_secrets_list_v2":   {Tok: makeDataSource(kvMod, "getSecretsV2List")},
 
 			// Transform
 			"vault_transform_encode": {Tok: makeDataSource(transformMod, "getEncode")},

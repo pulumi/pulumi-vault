@@ -8,6 +8,8 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetOidcOpenidConfigResult {
@@ -15,103 +17,73 @@ public final class GetOidcOpenidConfigResult {
      * @return The Authorization Endpoint for the provider.
      * 
      */
-    private final String authorizationEndpoint;
+    private String authorizationEndpoint;
     /**
      * @return The grant types supported by the provider.
      * 
      */
-    private final List<String> grantTypesSupporteds;
+    private List<String> grantTypesSupporteds;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
+    private String id;
     /**
      * @return The signing algorithms supported by
      * the provider.
      * 
      */
-    private final List<String> idTokenSigningAlgValuesSupporteds;
+    private List<String> idTokenSigningAlgValuesSupporteds;
     /**
      * @return The URL of the issuer for the provider.
      * 
      */
-    private final String issuer;
+    private String issuer;
     /**
      * @return The well known keys URI for the provider.
      * 
      */
-    private final String jwksUri;
-    private final String name;
+    private String jwksUri;
+    private String name;
+    private @Nullable String namespace;
     /**
      * @return Specifies whether Request URI Parameter is
      * supported by the provider.
      * 
      */
-    private final Boolean requestUriParameterSupported;
+    private Boolean requestUriParameterSupported;
     /**
      * @return The response types supported by the provider.
      * 
      */
-    private final List<String> responseTypesSupporteds;
+    private List<String> responseTypesSupporteds;
     /**
      * @return The scopes supported by the provider.
      * 
      */
-    private final List<String> scopesSupporteds;
+    private List<String> scopesSupporteds;
     /**
      * @return The subject types supported by the provider.
      * 
      */
-    private final List<String> subjectTypesSupporteds;
+    private List<String> subjectTypesSupporteds;
     /**
      * @return The Token Endpoint for the provider.
      * 
      */
-    private final String tokenEndpoint;
+    private String tokenEndpoint;
     /**
      * @return The token endpoint auth methods supported by the provider.
      * 
      */
-    private final List<String> tokenEndpointAuthMethodsSupporteds;
+    private List<String> tokenEndpointAuthMethodsSupporteds;
     /**
      * @return The User Info Endpoint for the provider
      * 
      */
-    private final String userinfoEndpoint;
+    private String userinfoEndpoint;
 
-    @CustomType.Constructor
-    private GetOidcOpenidConfigResult(
-        @CustomType.Parameter("authorizationEndpoint") String authorizationEndpoint,
-        @CustomType.Parameter("grantTypesSupporteds") List<String> grantTypesSupporteds,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("idTokenSigningAlgValuesSupporteds") List<String> idTokenSigningAlgValuesSupporteds,
-        @CustomType.Parameter("issuer") String issuer,
-        @CustomType.Parameter("jwksUri") String jwksUri,
-        @CustomType.Parameter("name") String name,
-        @CustomType.Parameter("requestUriParameterSupported") Boolean requestUriParameterSupported,
-        @CustomType.Parameter("responseTypesSupporteds") List<String> responseTypesSupporteds,
-        @CustomType.Parameter("scopesSupporteds") List<String> scopesSupporteds,
-        @CustomType.Parameter("subjectTypesSupporteds") List<String> subjectTypesSupporteds,
-        @CustomType.Parameter("tokenEndpoint") String tokenEndpoint,
-        @CustomType.Parameter("tokenEndpointAuthMethodsSupporteds") List<String> tokenEndpointAuthMethodsSupporteds,
-        @CustomType.Parameter("userinfoEndpoint") String userinfoEndpoint) {
-        this.authorizationEndpoint = authorizationEndpoint;
-        this.grantTypesSupporteds = grantTypesSupporteds;
-        this.id = id;
-        this.idTokenSigningAlgValuesSupporteds = idTokenSigningAlgValuesSupporteds;
-        this.issuer = issuer;
-        this.jwksUri = jwksUri;
-        this.name = name;
-        this.requestUriParameterSupported = requestUriParameterSupported;
-        this.responseTypesSupporteds = responseTypesSupporteds;
-        this.scopesSupporteds = scopesSupporteds;
-        this.subjectTypesSupporteds = subjectTypesSupporteds;
-        this.tokenEndpoint = tokenEndpoint;
-        this.tokenEndpointAuthMethodsSupporteds = tokenEndpointAuthMethodsSupporteds;
-        this.userinfoEndpoint = userinfoEndpoint;
-    }
-
+    private GetOidcOpenidConfigResult() {}
     /**
      * @return The Authorization Endpoint for the provider.
      * 
@@ -157,6 +129,9 @@ public final class GetOidcOpenidConfigResult {
     }
     public String name() {
         return this.name;
+    }
+    public Optional<String> namespace() {
+        return Optional.ofNullable(this.namespace);
     }
     /**
      * @return Specifies whether Request URI Parameter is
@@ -216,7 +191,7 @@ public final class GetOidcOpenidConfigResult {
     public static Builder builder(GetOidcOpenidConfigResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String authorizationEndpoint;
         private List<String> grantTypesSupporteds;
@@ -225,6 +200,7 @@ public final class GetOidcOpenidConfigResult {
         private String issuer;
         private String jwksUri;
         private String name;
+        private @Nullable String namespace;
         private Boolean requestUriParameterSupported;
         private List<String> responseTypesSupporteds;
         private List<String> scopesSupporteds;
@@ -232,11 +208,7 @@ public final class GetOidcOpenidConfigResult {
         private String tokenEndpoint;
         private List<String> tokenEndpointAuthMethodsSupporteds;
         private String userinfoEndpoint;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetOidcOpenidConfigResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.authorizationEndpoint = defaults.authorizationEndpoint;
@@ -246,6 +218,7 @@ public final class GetOidcOpenidConfigResult {
     	      this.issuer = defaults.issuer;
     	      this.jwksUri = defaults.jwksUri;
     	      this.name = defaults.name;
+    	      this.namespace = defaults.namespace;
     	      this.requestUriParameterSupported = defaults.requestUriParameterSupported;
     	      this.responseTypesSupporteds = defaults.responseTypesSupporteds;
     	      this.scopesSupporteds = defaults.scopesSupporteds;
@@ -255,10 +228,12 @@ public final class GetOidcOpenidConfigResult {
     	      this.userinfoEndpoint = defaults.userinfoEndpoint;
         }
 
+        @CustomType.Setter
         public Builder authorizationEndpoint(String authorizationEndpoint) {
             this.authorizationEndpoint = Objects.requireNonNull(authorizationEndpoint);
             return this;
         }
+        @CustomType.Setter
         public Builder grantTypesSupporteds(List<String> grantTypesSupporteds) {
             this.grantTypesSupporteds = Objects.requireNonNull(grantTypesSupporteds);
             return this;
@@ -266,10 +241,12 @@ public final class GetOidcOpenidConfigResult {
         public Builder grantTypesSupporteds(String... grantTypesSupporteds) {
             return grantTypesSupporteds(List.of(grantTypesSupporteds));
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder idTokenSigningAlgValuesSupporteds(List<String> idTokenSigningAlgValuesSupporteds) {
             this.idTokenSigningAlgValuesSupporteds = Objects.requireNonNull(idTokenSigningAlgValuesSupporteds);
             return this;
@@ -277,22 +254,32 @@ public final class GetOidcOpenidConfigResult {
         public Builder idTokenSigningAlgValuesSupporteds(String... idTokenSigningAlgValuesSupporteds) {
             return idTokenSigningAlgValuesSupporteds(List.of(idTokenSigningAlgValuesSupporteds));
         }
+        @CustomType.Setter
         public Builder issuer(String issuer) {
             this.issuer = Objects.requireNonNull(issuer);
             return this;
         }
+        @CustomType.Setter
         public Builder jwksUri(String jwksUri) {
             this.jwksUri = Objects.requireNonNull(jwksUri);
             return this;
         }
+        @CustomType.Setter
         public Builder name(String name) {
             this.name = Objects.requireNonNull(name);
             return this;
         }
+        @CustomType.Setter
+        public Builder namespace(@Nullable String namespace) {
+            this.namespace = namespace;
+            return this;
+        }
+        @CustomType.Setter
         public Builder requestUriParameterSupported(Boolean requestUriParameterSupported) {
             this.requestUriParameterSupported = Objects.requireNonNull(requestUriParameterSupported);
             return this;
         }
+        @CustomType.Setter
         public Builder responseTypesSupporteds(List<String> responseTypesSupporteds) {
             this.responseTypesSupporteds = Objects.requireNonNull(responseTypesSupporteds);
             return this;
@@ -300,6 +287,7 @@ public final class GetOidcOpenidConfigResult {
         public Builder responseTypesSupporteds(String... responseTypesSupporteds) {
             return responseTypesSupporteds(List.of(responseTypesSupporteds));
         }
+        @CustomType.Setter
         public Builder scopesSupporteds(List<String> scopesSupporteds) {
             this.scopesSupporteds = Objects.requireNonNull(scopesSupporteds);
             return this;
@@ -307,6 +295,7 @@ public final class GetOidcOpenidConfigResult {
         public Builder scopesSupporteds(String... scopesSupporteds) {
             return scopesSupporteds(List.of(scopesSupporteds));
         }
+        @CustomType.Setter
         public Builder subjectTypesSupporteds(List<String> subjectTypesSupporteds) {
             this.subjectTypesSupporteds = Objects.requireNonNull(subjectTypesSupporteds);
             return this;
@@ -314,10 +303,12 @@ public final class GetOidcOpenidConfigResult {
         public Builder subjectTypesSupporteds(String... subjectTypesSupporteds) {
             return subjectTypesSupporteds(List.of(subjectTypesSupporteds));
         }
+        @CustomType.Setter
         public Builder tokenEndpoint(String tokenEndpoint) {
             this.tokenEndpoint = Objects.requireNonNull(tokenEndpoint);
             return this;
         }
+        @CustomType.Setter
         public Builder tokenEndpointAuthMethodsSupporteds(List<String> tokenEndpointAuthMethodsSupporteds) {
             this.tokenEndpointAuthMethodsSupporteds = Objects.requireNonNull(tokenEndpointAuthMethodsSupporteds);
             return this;
@@ -325,11 +316,29 @@ public final class GetOidcOpenidConfigResult {
         public Builder tokenEndpointAuthMethodsSupporteds(String... tokenEndpointAuthMethodsSupporteds) {
             return tokenEndpointAuthMethodsSupporteds(List.of(tokenEndpointAuthMethodsSupporteds));
         }
+        @CustomType.Setter
         public Builder userinfoEndpoint(String userinfoEndpoint) {
             this.userinfoEndpoint = Objects.requireNonNull(userinfoEndpoint);
             return this;
-        }        public GetOidcOpenidConfigResult build() {
-            return new GetOidcOpenidConfigResult(authorizationEndpoint, grantTypesSupporteds, id, idTokenSigningAlgValuesSupporteds, issuer, jwksUri, name, requestUriParameterSupported, responseTypesSupporteds, scopesSupporteds, subjectTypesSupporteds, tokenEndpoint, tokenEndpointAuthMethodsSupporteds, userinfoEndpoint);
+        }
+        public GetOidcOpenidConfigResult build() {
+            final var o = new GetOidcOpenidConfigResult();
+            o.authorizationEndpoint = authorizationEndpoint;
+            o.grantTypesSupporteds = grantTypesSupporteds;
+            o.id = id;
+            o.idTokenSigningAlgValuesSupporteds = idTokenSigningAlgValuesSupporteds;
+            o.issuer = issuer;
+            o.jwksUri = jwksUri;
+            o.name = name;
+            o.namespace = namespace;
+            o.requestUriParameterSupported = requestUriParameterSupported;
+            o.responseTypesSupporteds = responseTypesSupporteds;
+            o.scopesSupporteds = scopesSupporteds;
+            o.subjectTypesSupporteds = subjectTypesSupporteds;
+            o.tokenEndpoint = tokenEndpoint;
+            o.tokenEndpointAuthMethodsSupporteds = tokenEndpointAuthMethodsSupporteds;
+            o.userinfoEndpoint = userinfoEndpoint;
+            return o;
         }
     }
 }

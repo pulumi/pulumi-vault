@@ -134,6 +134,13 @@ export class Group extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * A list of policies to apply to the group.
      */
     public readonly policies!: pulumi.Output<string[] | undefined>;
@@ -161,6 +168,7 @@ export class Group extends pulumi.CustomResource {
             resourceInputs["memberGroupIds"] = state ? state.memberGroupIds : undefined;
             resourceInputs["metadata"] = state ? state.metadata : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["policies"] = state ? state.policies : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
         } else {
@@ -171,6 +179,7 @@ export class Group extends pulumi.CustomResource {
             resourceInputs["memberGroupIds"] = args ? args.memberGroupIds : undefined;
             resourceInputs["metadata"] = args ? args.metadata : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["policies"] = args ? args.policies : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
         }
@@ -207,6 +216,13 @@ export interface GroupState {
      * Name of the identity group to create.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * A list of policies to apply to the group.
      */
@@ -245,6 +261,13 @@ export interface GroupArgs {
      * Name of the identity group to create.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * A list of policies to apply to the group.
      */

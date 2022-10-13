@@ -37,7 +37,7 @@ namespace Pulumi.Vault.Identity
         /// Use of this resource requires the `create` capability on `/identity/lookup/entity`.
         /// </summary>
         public static Task<GetEntityResult> InvokeAsync(GetEntityArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetEntityResult>("vault:identity/getEntity:getEntity", args ?? new GetEntityArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetEntityResult>("vault:identity/getEntity:getEntity", args ?? new GetEntityArgs(), options.WithDefaults());
 
         /// <summary>
         /// {{% examples %}}
@@ -65,7 +65,7 @@ namespace Pulumi.Vault.Identity
         /// Use of this resource requires the `create` capability on `/identity/lookup/entity`.
         /// </summary>
         public static Output<GetEntityResult> Invoke(GetEntityInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetEntityResult>("vault:identity/getEntity:getEntity", args ?? new GetEntityInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetEntityResult>("vault:identity/getEntity:getEntity", args ?? new GetEntityInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -102,6 +102,15 @@ namespace Pulumi.Vault.Identity
         /// </summary>
         [Input("entityName")]
         public string? EntityName { get; set; }
+
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public string? Namespace { get; set; }
 
         public GetEntityArgs()
         {
@@ -142,6 +151,15 @@ namespace Pulumi.Vault.Identity
         /// </summary>
         [Input("entityName")]
         public Input<string>? EntityName { get; set; }
+
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         public GetEntityInvokeArgs()
         {
@@ -203,6 +221,7 @@ namespace Pulumi.Vault.Identity
         /// Arbitrary metadata
         /// </summary>
         public readonly ImmutableDictionary<string, object> Metadata;
+        public readonly string? Namespace;
         /// <summary>
         /// Namespace of which the entity is part of
         /// </summary>
@@ -246,6 +265,8 @@ namespace Pulumi.Vault.Identity
 
             ImmutableDictionary<string, object> metadata,
 
+            string? @namespace,
+
             string namespaceId,
 
             ImmutableArray<string> policies)
@@ -266,6 +287,7 @@ namespace Pulumi.Vault.Identity
             LastUpdateTime = lastUpdateTime;
             MergedEntityIds = mergedEntityIds;
             Metadata = metadata;
+            Namespace = @namespace;
             NamespaceId = namespaceId;
             Policies = policies;
         }

@@ -102,6 +102,13 @@ export class SecretBackendIntermediateSetSigned extends pulumi.CustomResource {
      * issue and sign operations.
      */
     public readonly certificate!: pulumi.Output<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
 
     /**
      * Create a SecretBackendIntermediateSetSigned resource with the given unique name, arguments, and options.
@@ -118,6 +125,7 @@ export class SecretBackendIntermediateSetSigned extends pulumi.CustomResource {
             const state = argsOrState as SecretBackendIntermediateSetSignedState | undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["certificate"] = state ? state.certificate : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
         } else {
             const args = argsOrState as SecretBackendIntermediateSetSignedArgs | undefined;
             if ((!args || args.backend === undefined) && !opts.urn) {
@@ -128,6 +136,7 @@ export class SecretBackendIntermediateSetSigned extends pulumi.CustomResource {
             }
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["certificate"] = args ? args.certificate : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretBackendIntermediateSetSigned.__pulumiType, name, resourceInputs, opts);
@@ -148,6 +157,13 @@ export interface SecretBackendIntermediateSetSignedState {
      * issue and sign operations.
      */
     certificate?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
 }
 
 /**
@@ -164,4 +180,11 @@ export interface SecretBackendIntermediateSetSignedArgs {
      * issue and sign operations.
      */
     certificate: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
 }

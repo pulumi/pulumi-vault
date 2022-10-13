@@ -6,6 +6,8 @@ package com.pulumi.vault.identity.outputs;
 import com.pulumi.core.annotations.CustomType;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetOidcClientCredsResult {
@@ -13,31 +15,21 @@ public final class GetOidcClientCredsResult {
      * @return The Client ID returned by Vault.
      * 
      */
-    private final String clientId;
+    private String clientId;
     /**
      * @return The Client Secret Key returned by Vault.
      * 
      */
-    private final String clientSecret;
+    private String clientSecret;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
-    private final String name;
+    private String id;
+    private String name;
+    private @Nullable String namespace;
 
-    @CustomType.Constructor
-    private GetOidcClientCredsResult(
-        @CustomType.Parameter("clientId") String clientId,
-        @CustomType.Parameter("clientSecret") String clientSecret,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("name") String name) {
-        this.clientId = clientId;
-        this.clientSecret = clientSecret;
-        this.id = id;
-        this.name = name;
-    }
-
+    private GetOidcClientCredsResult() {}
     /**
      * @return The Client ID returned by Vault.
      * 
@@ -62,6 +54,9 @@ public final class GetOidcClientCredsResult {
     public String name() {
         return this.name;
     }
+    public Optional<String> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -70,42 +65,56 @@ public final class GetOidcClientCredsResult {
     public static Builder builder(GetOidcClientCredsResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String clientId;
         private String clientSecret;
         private String id;
         private String name;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        private @Nullable String namespace;
+        public Builder() {}
         public Builder(GetOidcClientCredsResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.clientId = defaults.clientId;
     	      this.clientSecret = defaults.clientSecret;
     	      this.id = defaults.id;
     	      this.name = defaults.name;
+    	      this.namespace = defaults.namespace;
         }
 
+        @CustomType.Setter
         public Builder clientId(String clientId) {
             this.clientId = Objects.requireNonNull(clientId);
             return this;
         }
+        @CustomType.Setter
         public Builder clientSecret(String clientSecret) {
             this.clientSecret = Objects.requireNonNull(clientSecret);
             return this;
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder name(String name) {
             this.name = Objects.requireNonNull(name);
             return this;
-        }        public GetOidcClientCredsResult build() {
-            return new GetOidcClientCredsResult(clientId, clientSecret, id, name);
+        }
+        @CustomType.Setter
+        public Builder namespace(@Nullable String namespace) {
+            this.namespace = namespace;
+            return this;
+        }
+        public GetOidcClientCredsResult build() {
+            final var o = new GetOidcClientCredsResult();
+            o.clientId = clientId;
+            o.clientSecret = clientSecret;
+            o.id = id;
+            o.name = name;
+            o.namespace = namespace;
+            return o;
         }
     }
 }

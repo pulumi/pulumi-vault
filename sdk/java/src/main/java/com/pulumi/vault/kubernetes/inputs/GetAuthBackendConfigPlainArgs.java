@@ -93,6 +93,27 @@ public final class GetAuthBackendConfigPlainArgs extends com.pulumi.resources.In
     }
 
     /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured namespace.
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable String namespace;
+
+    /**
+     * @return The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured namespace.
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<String> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
+
+    /**
      * Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
      * 
      */
@@ -116,6 +137,7 @@ public final class GetAuthBackendConfigPlainArgs extends com.pulumi.resources.In
         this.issuer = $.issuer;
         this.kubernetesCaCert = $.kubernetesCaCert;
         this.kubernetesHost = $.kubernetesHost;
+        this.namespace = $.namespace;
         this.pemKeys = $.pemKeys;
     }
 
@@ -189,6 +211,20 @@ public final class GetAuthBackendConfigPlainArgs extends com.pulumi.resources.In
          */
         public Builder kubernetesHost(@Nullable String kubernetesHost) {
             $.kubernetesHost = kubernetesHost;
+            return this;
+        }
+
+        /**
+         * @param namespace The namespace of the target resource.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured namespace.
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable String namespace) {
+            $.namespace = namespace;
             return this;
         }
 

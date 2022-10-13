@@ -24,6 +24,7 @@ __all__ = [
     'SecretBackendConnectionMysqlRdsArgs',
     'SecretBackendConnectionOracleArgs',
     'SecretBackendConnectionPostgresqlArgs',
+    'SecretBackendConnectionRedisElasticacheArgs',
     'SecretBackendConnectionRedshiftArgs',
     'SecretBackendConnectionSnowflakeArgs',
     'SecretsMountCassandraArgs',
@@ -40,6 +41,7 @@ __all__ = [
     'SecretsMountMysqlRdArgs',
     'SecretsMountOracleArgs',
     'SecretsMountPostgresqlArgs',
+    'SecretsMountRedisElasticachArgs',
     'SecretsMountRedshiftArgs',
     'SecretsMountSnowflakeArgs',
 ]
@@ -523,6 +525,7 @@ class SecretBackendConnectionElasticsearchArgs:
 class SecretBackendConnectionHanaArgs:
     def __init__(__self__, *,
                  connection_url: Optional[pulumi.Input[str]] = None,
+                 disable_escaping: Optional[pulumi.Input[bool]] = None,
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
                  max_open_connections: Optional[pulumi.Input[int]] = None,
@@ -533,6 +536,7 @@ class SecretBackendConnectionHanaArgs:
                the [Vault
                docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
                for an example.
+        :param pulumi.Input[bool] disable_escaping: Disable special character escaping in username and password.
         :param pulumi.Input[int] max_connection_lifetime: The maximum amount of time a connection may be reused.
         :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
                the database.
@@ -543,6 +547,8 @@ class SecretBackendConnectionHanaArgs:
         """
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
+        if disable_escaping is not None:
+            pulumi.set(__self__, "disable_escaping", disable_escaping)
         if max_connection_lifetime is not None:
             pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
         if max_idle_connections is not None:
@@ -568,6 +574,18 @@ class SecretBackendConnectionHanaArgs:
     @connection_url.setter
     def connection_url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "connection_url", value)
+
+    @property
+    @pulumi.getter(name="disableEscaping")
+    def disable_escaping(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disable special character escaping in username and password.
+        """
+        return pulumi.get(self, "disable_escaping")
+
+    @disable_escaping.setter
+    def disable_escaping(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_escaping", value)
 
     @property
     @pulumi.getter(name="maxConnectionLifetime")
@@ -1833,6 +1851,7 @@ class SecretBackendConnectionOracleArgs:
 class SecretBackendConnectionPostgresqlArgs:
     def __init__(__self__, *,
                  connection_url: Optional[pulumi.Input[str]] = None,
+                 disable_escaping: Optional[pulumi.Input[bool]] = None,
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
                  max_open_connections: Optional[pulumi.Input[int]] = None,
@@ -1844,6 +1863,7 @@ class SecretBackendConnectionPostgresqlArgs:
                the [Vault
                docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
                for an example.
+        :param pulumi.Input[bool] disable_escaping: Disable special character escaping in username and password.
         :param pulumi.Input[int] max_connection_lifetime: The maximum amount of time a connection may be reused.
         :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
                the database.
@@ -1855,6 +1875,8 @@ class SecretBackendConnectionPostgresqlArgs:
         """
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
+        if disable_escaping is not None:
+            pulumi.set(__self__, "disable_escaping", disable_escaping)
         if max_connection_lifetime is not None:
             pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
         if max_idle_connections is not None:
@@ -1882,6 +1904,18 @@ class SecretBackendConnectionPostgresqlArgs:
     @connection_url.setter
     def connection_url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "connection_url", value)
+
+    @property
+    @pulumi.getter(name="disableEscaping")
+    def disable_escaping(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disable special character escaping in username and password.
+        """
+        return pulumi.get(self, "disable_escaping")
+
+    @disable_escaping.setter
+    def disable_escaping(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_escaping", value)
 
     @property
     @pulumi.getter(name="maxConnectionLifetime")
@@ -1959,9 +1993,82 @@ class SecretBackendConnectionPostgresqlArgs:
 
 
 @pulumi.input_type
+class SecretBackendConnectionRedisElasticacheArgs:
+    def __init__(__self__, *,
+                 url: pulumi.Input[str],
+                 password: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] url: The URL for Elasticsearch's API. https requires certificate
+               by trusted CA if used.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL.
+        :param pulumi.Input[str] region: The region where the ElastiCache cluster is hosted. If omitted Vault tries to infer from the environment instead.
+        :param pulumi.Input[str] username: The root credential username used in the connection URL.
+        """
+        pulumi.set(__self__, "url", url)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def url(self) -> pulumi.Input[str]:
+        """
+        The URL for Elasticsearch's API. https requires certificate
+        by trusted CA if used.
+        """
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: pulumi.Input[str]):
+        pulumi.set(self, "url", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The root credential password used in the connection URL.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        The region where the ElastiCache cluster is hosted. If omitted Vault tries to infer from the environment instead.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        The root credential username used in the connection URL.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
+
+
+@pulumi.input_type
 class SecretBackendConnectionRedshiftArgs:
     def __init__(__self__, *,
                  connection_url: Optional[pulumi.Input[str]] = None,
+                 disable_escaping: Optional[pulumi.Input[bool]] = None,
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
                  max_open_connections: Optional[pulumi.Input[int]] = None,
@@ -1973,6 +2080,7 @@ class SecretBackendConnectionRedshiftArgs:
                the [Vault
                docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
                for an example.
+        :param pulumi.Input[bool] disable_escaping: Disable special character escaping in username and password.
         :param pulumi.Input[int] max_connection_lifetime: The maximum amount of time a connection may be reused.
         :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
                the database.
@@ -1984,6 +2092,8 @@ class SecretBackendConnectionRedshiftArgs:
         """
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
+        if disable_escaping is not None:
+            pulumi.set(__self__, "disable_escaping", disable_escaping)
         if max_connection_lifetime is not None:
             pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
         if max_idle_connections is not None:
@@ -2011,6 +2121,18 @@ class SecretBackendConnectionRedshiftArgs:
     @connection_url.setter
     def connection_url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "connection_url", value)
+
+    @property
+    @pulumi.getter(name="disableEscaping")
+    def disable_escaping(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disable special character escaping in username and password.
+        """
+        return pulumi.get(self, "disable_escaping")
+
+    @disable_escaping.setter
+    def disable_escaping(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_escaping", value)
 
     @property
     @pulumi.getter(name="maxConnectionLifetime")
@@ -2736,8 +2858,7 @@ class SecretsMountElasticsearchArgs:
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
         :param pulumi.Input[str] password: The password to be used in the connection.
-        :param pulumi.Input[str] url: The URL for Elasticsearch's API. https requires certificate
-               by trusted CA if used.
+        :param pulumi.Input[str] url: The configuration endpoint for the ElastiCache cluster to connect to.
         :param pulumi.Input[str] username: The username to be used in the connection (the account admin level).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
@@ -2808,8 +2929,7 @@ class SecretsMountElasticsearchArgs:
     @pulumi.getter
     def url(self) -> pulumi.Input[str]:
         """
-        The URL for Elasticsearch's API. https requires certificate
-        by trusted CA if used.
+        The configuration endpoint for the ElastiCache cluster to connect to.
         """
         return pulumi.get(self, "url")
 
@@ -2983,6 +3103,7 @@ class SecretsMountHanaArgs:
                  allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  connection_url: Optional[pulumi.Input[str]] = None,
                  data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 disable_escaping: Optional[pulumi.Input[bool]] = None,
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
                  max_open_connections: Optional[pulumi.Input[int]] = None,
@@ -2997,6 +3118,7 @@ class SecretsMountHanaArgs:
         :param pulumi.Input[str] connection_url: A URL containing connection information.  
                See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[bool] disable_escaping: Disable special character escaping in username and password.
         :param pulumi.Input[int] max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
         :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
@@ -3017,6 +3139,8 @@ class SecretsMountHanaArgs:
             pulumi.set(__self__, "connection_url", connection_url)
         if data is not None:
             pulumi.set(__self__, "data", data)
+        if disable_escaping is not None:
+            pulumi.set(__self__, "disable_escaping", disable_escaping)
         if max_connection_lifetime is not None:
             pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
         if max_idle_connections is not None:
@@ -3080,6 +3204,18 @@ class SecretsMountHanaArgs:
     @data.setter
     def data(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
         pulumi.set(self, "data", value)
+
+    @property
+    @pulumi.getter(name="disableEscaping")
+    def disable_escaping(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disable special character escaping in username and password.
+        """
+        return pulumi.get(self, "disable_escaping")
+
+    @disable_escaping.setter
+    def disable_escaping(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_escaping", value)
 
     @property
     @pulumi.getter(name="maxConnectionLifetime")
@@ -5225,6 +5361,7 @@ class SecretsMountPostgresqlArgs:
                  allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  connection_url: Optional[pulumi.Input[str]] = None,
                  data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 disable_escaping: Optional[pulumi.Input[bool]] = None,
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
                  max_open_connections: Optional[pulumi.Input[int]] = None,
@@ -5240,6 +5377,7 @@ class SecretsMountPostgresqlArgs:
         :param pulumi.Input[str] connection_url: A URL containing connection information.  
                See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[bool] disable_escaping: Disable special character escaping in username and password.
         :param pulumi.Input[int] max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
         :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
@@ -5261,6 +5399,8 @@ class SecretsMountPostgresqlArgs:
             pulumi.set(__self__, "connection_url", connection_url)
         if data is not None:
             pulumi.set(__self__, "data", data)
+        if disable_escaping is not None:
+            pulumi.set(__self__, "disable_escaping", disable_escaping)
         if max_connection_lifetime is not None:
             pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
         if max_idle_connections is not None:
@@ -5326,6 +5466,18 @@ class SecretsMountPostgresqlArgs:
     @data.setter
     def data(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
         pulumi.set(self, "data", value)
+
+    @property
+    @pulumi.getter(name="disableEscaping")
+    def disable_escaping(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disable special character escaping in username and password.
+        """
+        return pulumi.get(self, "disable_escaping")
+
+    @disable_escaping.setter
+    def disable_escaping(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_escaping", value)
 
     @property
     @pulumi.getter(name="maxConnectionLifetime")
@@ -5441,12 +5593,180 @@ class SecretsMountPostgresqlArgs:
 
 
 @pulumi.input_type
+class SecretsMountRedisElasticachArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 url: pulumi.Input[str],
+                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
+                 plugin_name: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
+                 root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 username: Optional[pulumi.Input[str]] = None,
+                 verify_connection: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] url: The configuration endpoint for the ElastiCache cluster to connect to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
+               connection.
+        :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[str] password: The password to be used in the connection.
+        :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
+        :param pulumi.Input[str] region: The AWS region where the ElastiCache cluster is hosted.
+               If omitted the plugin tries to infer the region from the environment.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[str] username: The username to be used in the connection (the account admin level).
+        :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
+               initial configuration or not.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "url", url)
+        if allowed_roles is not None:
+            pulumi.set(__self__, "allowed_roles", allowed_roles)
+        if data is not None:
+            pulumi.set(__self__, "data", data)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if plugin_name is not None:
+            pulumi.set(__self__, "plugin_name", plugin_name)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if root_rotation_statements is not None:
+            pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+        if verify_connection is not None:
+            pulumi.set(__self__, "verify_connection", verify_connection)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def url(self) -> pulumi.Input[str]:
+        """
+        The configuration endpoint for the ElastiCache cluster to connect to.
+        """
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: pulumi.Input[str]):
+        pulumi.set(self, "url", value)
+
+    @property
+    @pulumi.getter(name="allowedRoles")
+    def allowed_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        return pulumi.get(self, "allowed_roles")
+
+    @allowed_roles.setter
+    def allowed_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allowed_roles", value)
+
+    @property
+    @pulumi.getter
+    def data(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        return pulumi.get(self, "data")
+
+    @data.setter
+    def data(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "data", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The password to be used in the connection.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter(name="pluginName")
+    def plugin_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the name of the plugin to use.
+        """
+        return pulumi.get(self, "plugin_name")
+
+    @plugin_name.setter
+    def plugin_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "plugin_name", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        The AWS region where the ElastiCache cluster is hosted.
+        If omitted the plugin tries to infer the region from the environment.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter(name="rootRotationStatements")
+    def root_rotation_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        return pulumi.get(self, "root_rotation_statements")
+
+    @root_rotation_statements.setter
+    def root_rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "root_rotation_statements", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        The username to be used in the connection (the account admin level).
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
+
+    @property
+    @pulumi.getter(name="verifyConnection")
+    def verify_connection(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+        return pulumi.get(self, "verify_connection")
+
+    @verify_connection.setter
+    def verify_connection(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "verify_connection", value)
+
+
+@pulumi.input_type
 class SecretsMountRedshiftArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
                  allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  connection_url: Optional[pulumi.Input[str]] = None,
                  data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 disable_escaping: Optional[pulumi.Input[bool]] = None,
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
                  max_open_connections: Optional[pulumi.Input[int]] = None,
@@ -5462,6 +5782,7 @@ class SecretsMountRedshiftArgs:
         :param pulumi.Input[str] connection_url: A URL containing connection information.  
                See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[bool] disable_escaping: Disable special character escaping in username and password.
         :param pulumi.Input[int] max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
         :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
@@ -5483,6 +5804,8 @@ class SecretsMountRedshiftArgs:
             pulumi.set(__self__, "connection_url", connection_url)
         if data is not None:
             pulumi.set(__self__, "data", data)
+        if disable_escaping is not None:
+            pulumi.set(__self__, "disable_escaping", disable_escaping)
         if max_connection_lifetime is not None:
             pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
         if max_idle_connections is not None:
@@ -5548,6 +5871,18 @@ class SecretsMountRedshiftArgs:
     @data.setter
     def data(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
         pulumi.set(self, "data", value)
+
+    @property
+    @pulumi.getter(name="disableEscaping")
+    def disable_escaping(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disable special character escaping in username and password.
+        """
+        return pulumi.get(self, "disable_escaping")
+
+    @disable_escaping.setter
+    def disable_escaping(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_escaping", value)
 
     @property
     @pulumi.getter(name="maxConnectionLifetime")

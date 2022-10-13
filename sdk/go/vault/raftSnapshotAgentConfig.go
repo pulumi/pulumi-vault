@@ -40,6 +40,82 @@ import (
 //	}
 //
 // ```
+// ### AWS S3
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws"
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			cfg := config.New(ctx, "")
+//			awsAccessKeyId := cfg.RequireObject("awsAccessKeyId")
+//			awsSecretAccessKey := cfg.RequireObject("awsSecretAccessKey")
+//			current, err := aws.GetRegion(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vault.NewRaftSnapshotAgentConfig(ctx, "s3Backups", &vault.RaftSnapshotAgentConfigArgs{
+//				IntervalSeconds:    pulumi.Int(86400),
+//				Retain:             pulumi.Int(7),
+//				PathPrefix:         pulumi.String("/path/in/bucket"),
+//				StorageType:        pulumi.String("aws-s3"),
+//				AwsS3Bucket:        pulumi.String("my-bucket"),
+//				AwsS3Region:        pulumi.String(current.Name),
+//				AwsAccessKeyId:     pulumi.Any(awsAccessKeyId),
+//				AwsSecretAccessKey: pulumi.Any(awsSecretAccessKey),
+//				AwsS3EnableKms:     pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ### Azure BLOB
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			cfg := config.New(ctx, "")
+//			azureAccountName := cfg.RequireObject("azureAccountName")
+//			azureAccountKey := cfg.RequireObject("azureAccountKey")
+//			_, err := vault.NewRaftSnapshotAgentConfig(ctx, "azureBackups", &vault.RaftSnapshotAgentConfigArgs{
+//				IntervalSeconds:    pulumi.Int(86400),
+//				Retain:             pulumi.Int(7),
+//				PathPrefix:         pulumi.String("/"),
+//				StorageType:        pulumi.String("azure-blob"),
+//				AzureContainerName: pulumi.String("vault-blob"),
+//				AzureAccountName:   pulumi.Any(azureAccountName),
+//				AzureAccountKey:    pulumi.Any(azureAccountKey),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // ## Import
 //
@@ -115,6 +191,11 @@ type RaftSnapshotAgentConfig struct {
 	LocalMaxSpace pulumi.IntPtrOutput `pulumi:"localMaxSpace"`
 	// `<required>` – Name of the configuration to modify.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// `<required>` - For `storageType = "local"`, the directory to
 	// write the snapshots in. For cloud storage types, the bucket prefix to use.
 	// Types `azure-s3` and `google-gcs` require a trailing `/` (slash).
@@ -230,6 +311,11 @@ type raftSnapshotAgentConfigState struct {
 	LocalMaxSpace *int `pulumi:"localMaxSpace"`
 	// `<required>` – Name of the configuration to modify.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// `<required>` - For `storageType = "local"`, the directory to
 	// write the snapshots in. For cloud storage types, the bucket prefix to use.
 	// Types `azure-s3` and `google-gcs` require a trailing `/` (slash).
@@ -308,6 +394,11 @@ type RaftSnapshotAgentConfigState struct {
 	LocalMaxSpace pulumi.IntPtrInput
 	// `<required>` – Name of the configuration to modify.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// `<required>` - For `storageType = "local"`, the directory to
 	// write the snapshots in. For cloud storage types, the bucket prefix to use.
 	// Types `azure-s3` and `google-gcs` require a trailing `/` (slash).
@@ -390,6 +481,11 @@ type raftSnapshotAgentConfigArgs struct {
 	LocalMaxSpace *int `pulumi:"localMaxSpace"`
 	// `<required>` – Name of the configuration to modify.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// `<required>` - For `storageType = "local"`, the directory to
 	// write the snapshots in. For cloud storage types, the bucket prefix to use.
 	// Types `azure-s3` and `google-gcs` require a trailing `/` (slash).
@@ -469,6 +565,11 @@ type RaftSnapshotAgentConfigArgs struct {
 	LocalMaxSpace pulumi.IntPtrInput
 	// `<required>` – Name of the configuration to modify.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// `<required>` - For `storageType = "local"`, the directory to
 	// write the snapshots in. For cloud storage types, the bucket prefix to use.
 	// Types `azure-s3` and `google-gcs` require a trailing `/` (slash).
@@ -703,6 +804,14 @@ func (o RaftSnapshotAgentConfigOutput) LocalMaxSpace() pulumi.IntPtrOutput {
 // `<required>` – Name of the configuration to modify.
 func (o RaftSnapshotAgentConfigOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o RaftSnapshotAgentConfigOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // `<required>` - For `storageType = "local"`, the directory to

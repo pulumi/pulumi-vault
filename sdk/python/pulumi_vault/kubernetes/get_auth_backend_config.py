@@ -21,7 +21,7 @@ class GetAuthBackendConfigResult:
     """
     A collection of values returned by getAuthBackendConfig.
     """
-    def __init__(__self__, backend=None, disable_iss_validation=None, disable_local_ca_jwt=None, id=None, issuer=None, kubernetes_ca_cert=None, kubernetes_host=None, pem_keys=None):
+    def __init__(__self__, backend=None, disable_iss_validation=None, disable_local_ca_jwt=None, id=None, issuer=None, kubernetes_ca_cert=None, kubernetes_host=None, namespace=None, pem_keys=None):
         if backend and not isinstance(backend, str):
             raise TypeError("Expected argument 'backend' to be a str")
         pulumi.set(__self__, "backend", backend)
@@ -43,6 +43,9 @@ class GetAuthBackendConfigResult:
         if kubernetes_host and not isinstance(kubernetes_host, str):
             raise TypeError("Expected argument 'kubernetes_host' to be a str")
         pulumi.set(__self__, "kubernetes_host", kubernetes_host)
+        if namespace and not isinstance(namespace, str):
+            raise TypeError("Expected argument 'namespace' to be a str")
+        pulumi.set(__self__, "namespace", namespace)
         if pem_keys and not isinstance(pem_keys, list):
             raise TypeError("Expected argument 'pem_keys' to be a list")
         pulumi.set(__self__, "pem_keys", pem_keys)
@@ -95,6 +98,11 @@ class GetAuthBackendConfigResult:
         return pulumi.get(self, "kubernetes_host")
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[str]:
+        return pulumi.get(self, "namespace")
+
+    @property
     @pulumi.getter(name="pemKeys")
     def pem_keys(self) -> Sequence[str]:
         """
@@ -116,6 +124,7 @@ class AwaitableGetAuthBackendConfigResult(GetAuthBackendConfigResult):
             issuer=self.issuer,
             kubernetes_ca_cert=self.kubernetes_ca_cert,
             kubernetes_host=self.kubernetes_host,
+            namespace=self.namespace,
             pem_keys=self.pem_keys)
 
 
@@ -125,6 +134,7 @@ def get_auth_backend_config(backend: Optional[str] = None,
                             issuer: Optional[str] = None,
                             kubernetes_ca_cert: Optional[str] = None,
                             kubernetes_host: Optional[str] = None,
+                            namespace: Optional[str] = None,
                             pem_keys: Optional[Sequence[str]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAuthBackendConfigResult:
     """
@@ -138,6 +148,10 @@ def get_auth_backend_config(backend: Optional[str] = None,
     :param str issuer: Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
     :param str kubernetes_ca_cert: PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
     :param str kubernetes_host: Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured namespace.
+           *Available only for Vault Enterprise*.
     :param Sequence[str] pem_keys: Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
     """
     __args__ = dict()
@@ -147,6 +161,7 @@ def get_auth_backend_config(backend: Optional[str] = None,
     __args__['issuer'] = issuer
     __args__['kubernetesCaCert'] = kubernetes_ca_cert
     __args__['kubernetesHost'] = kubernetes_host
+    __args__['namespace'] = namespace
     __args__['pemKeys'] = pem_keys
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig', __args__, opts=opts, typ=GetAuthBackendConfigResult).value
@@ -159,6 +174,7 @@ def get_auth_backend_config(backend: Optional[str] = None,
         issuer=__ret__.issuer,
         kubernetes_ca_cert=__ret__.kubernetes_ca_cert,
         kubernetes_host=__ret__.kubernetes_host,
+        namespace=__ret__.namespace,
         pem_keys=__ret__.pem_keys)
 
 
@@ -169,6 +185,7 @@ def get_auth_backend_config_output(backend: Optional[pulumi.Input[Optional[str]]
                                    issuer: Optional[pulumi.Input[Optional[str]]] = None,
                                    kubernetes_ca_cert: Optional[pulumi.Input[Optional[str]]] = None,
                                    kubernetes_host: Optional[pulumi.Input[Optional[str]]] = None,
+                                   namespace: Optional[pulumi.Input[Optional[str]]] = None,
                                    pem_keys: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAuthBackendConfigResult]:
     """
@@ -182,6 +199,10 @@ def get_auth_backend_config_output(backend: Optional[pulumi.Input[Optional[str]]
     :param str issuer: Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
     :param str kubernetes_ca_cert: PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
     :param str kubernetes_host: Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured namespace.
+           *Available only for Vault Enterprise*.
     :param Sequence[str] pem_keys: Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
     """
     ...

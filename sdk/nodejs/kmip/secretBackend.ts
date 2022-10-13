@@ -83,9 +83,21 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    public readonly disableRemount!: pulumi.Output<boolean | undefined>;
+    /**
      * Addresses the KMIP server should listen on (`host:port`).
      */
     public readonly listenAddrs!: pulumi.Output<string[]>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `kmip`.
@@ -129,7 +141,9 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["defaultTlsClientKeyType"] = state ? state.defaultTlsClientKeyType : undefined;
             resourceInputs["defaultTlsClientTtl"] = state ? state.defaultTlsClientTtl : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
             resourceInputs["listenAddrs"] = state ? state.listenAddrs : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
             resourceInputs["serverHostnames"] = state ? state.serverHostnames : undefined;
             resourceInputs["serverIps"] = state ? state.serverIps : undefined;
@@ -145,7 +159,9 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["defaultTlsClientKeyType"] = args ? args.defaultTlsClientKeyType : undefined;
             resourceInputs["defaultTlsClientTtl"] = args ? args.defaultTlsClientTtl : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
             resourceInputs["listenAddrs"] = args ? args.listenAddrs : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["serverHostnames"] = args ? args.serverHostnames : undefined;
             resourceInputs["serverIps"] = args ? args.serverIps : undefined;
@@ -179,9 +195,21 @@ export interface SecretBackendState {
      */
     description?: pulumi.Input<string>;
     /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    disableRemount?: pulumi.Input<boolean>;
+    /**
      * Addresses the KMIP server should listen on (`host:port`).
      */
     listenAddrs?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `kmip`.
@@ -230,9 +258,21 @@ export interface SecretBackendArgs {
      */
     description?: pulumi.Input<string>;
     /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    disableRemount?: pulumi.Input<boolean>;
+    /**
      * Addresses the KMIP server should listen on (`host:port`).
      */
     listenAddrs?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `kmip`.

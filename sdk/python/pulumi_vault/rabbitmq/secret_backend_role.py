@@ -18,6 +18,7 @@ class SecretBackendRoleArgs:
     def __init__(__self__, *,
                  backend: pulumi.Input[str],
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[str]] = None,
                  vhost_topics: Optional[pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleVhostTopicArgs']]]] = None,
                  vhosts: Optional[pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleVhostArgs']]]] = None):
@@ -27,6 +28,10 @@ class SecretBackendRoleArgs:
                with no leading or trailing `/`s.
         :param pulumi.Input[str] name: The name to identify this role within the backend.
                Must be unique within the backend.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] tags: Specifies a comma-separated RabbitMQ management tags.
         :param pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleVhostTopicArgs']]] vhost_topics: Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
         :param pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleVhostArgs']]] vhosts: Specifies a map of virtual hosts to permissions.
@@ -34,6 +39,8 @@ class SecretBackendRoleArgs:
         pulumi.set(__self__, "backend", backend)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if vhost_topics is not None:
@@ -66,6 +73,21 @@ class SecretBackendRoleArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -109,6 +131,7 @@ class _SecretBackendRoleState:
     def __init__(__self__, *,
                  backend: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[str]] = None,
                  vhost_topics: Optional[pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleVhostTopicArgs']]]] = None,
                  vhosts: Optional[pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleVhostArgs']]]] = None):
@@ -118,6 +141,10 @@ class _SecretBackendRoleState:
                with no leading or trailing `/`s.
         :param pulumi.Input[str] name: The name to identify this role within the backend.
                Must be unique within the backend.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] tags: Specifies a comma-separated RabbitMQ management tags.
         :param pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleVhostTopicArgs']]] vhost_topics: Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
         :param pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleVhostArgs']]] vhosts: Specifies a map of virtual hosts to permissions.
@@ -126,6 +153,8 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "backend", backend)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if vhost_topics is not None:
@@ -158,6 +187,21 @@ class _SecretBackendRoleState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -203,6 +247,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[str]] = None,
                  vhost_topics: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleVhostTopicArgs']]]]] = None,
                  vhosts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleVhostArgs']]]]] = None,
@@ -251,6 +296,10 @@ class SecretBackendRole(pulumi.CustomResource):
                with no leading or trailing `/`s.
         :param pulumi.Input[str] name: The name to identify this role within the backend.
                Must be unique within the backend.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] tags: Specifies a comma-separated RabbitMQ management tags.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleVhostTopicArgs']]]] vhost_topics: Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleVhostArgs']]]] vhosts: Specifies a map of virtual hosts to permissions.
@@ -316,6 +365,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[str]] = None,
                  vhost_topics: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleVhostTopicArgs']]]]] = None,
                  vhosts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleVhostArgs']]]]] = None,
@@ -332,6 +382,7 @@ class SecretBackendRole(pulumi.CustomResource):
                 raise TypeError("Missing required property 'backend'")
             __props__.__dict__["backend"] = backend
             __props__.__dict__["name"] = name
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["tags"] = tags
             __props__.__dict__["vhost_topics"] = vhost_topics
             __props__.__dict__["vhosts"] = vhosts
@@ -347,6 +398,7 @@ class SecretBackendRole(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[str]] = None,
             vhost_topics: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleVhostTopicArgs']]]]] = None,
             vhosts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleVhostArgs']]]]] = None) -> 'SecretBackendRole':
@@ -361,6 +413,10 @@ class SecretBackendRole(pulumi.CustomResource):
                with no leading or trailing `/`s.
         :param pulumi.Input[str] name: The name to identify this role within the backend.
                Must be unique within the backend.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] tags: Specifies a comma-separated RabbitMQ management tags.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleVhostTopicArgs']]]] vhost_topics: Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleVhostArgs']]]] vhosts: Specifies a map of virtual hosts to permissions.
@@ -371,6 +427,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
         __props__.__dict__["backend"] = backend
         __props__.__dict__["name"] = name
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["tags"] = tags
         __props__.__dict__["vhost_topics"] = vhost_topics
         __props__.__dict__["vhosts"] = vhosts
@@ -393,6 +450,17 @@ class SecretBackendRole(pulumi.CustomResource):
         Must be unique within the backend.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

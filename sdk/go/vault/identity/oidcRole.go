@@ -118,6 +118,11 @@ type OidcRole struct {
 	Key pulumi.StringOutput `pulumi:"key"`
 	// Name of the OIDC Role to create.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The template string to use for generating tokens. This may be in
 	// string-ified JSON or base64 format. See the
 	// [documentation](https://www.vaultproject.io/docs/secrets/identity/index.html#token-contents-and-templates)
@@ -167,6 +172,11 @@ type oidcRoleState struct {
 	Key *string `pulumi:"key"`
 	// Name of the OIDC Role to create.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The template string to use for generating tokens. This may be in
 	// string-ified JSON or base64 format. See the
 	// [documentation](https://www.vaultproject.io/docs/secrets/identity/index.html#token-contents-and-templates)
@@ -185,6 +195,11 @@ type OidcRoleState struct {
 	Key pulumi.StringPtrInput
 	// Name of the OIDC Role to create.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The template string to use for generating tokens. This may be in
 	// string-ified JSON or base64 format. See the
 	// [documentation](https://www.vaultproject.io/docs/secrets/identity/index.html#token-contents-and-templates)
@@ -207,6 +222,11 @@ type oidcRoleArgs struct {
 	Key string `pulumi:"key"`
 	// Name of the OIDC Role to create.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The template string to use for generating tokens. This may be in
 	// string-ified JSON or base64 format. See the
 	// [documentation](https://www.vaultproject.io/docs/secrets/identity/index.html#token-contents-and-templates)
@@ -226,6 +246,11 @@ type OidcRoleArgs struct {
 	Key pulumi.StringInput
 	// Name of the OIDC Role to create.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The template string to use for generating tokens. This may be in
 	// string-ified JSON or base64 format. See the
 	// [documentation](https://www.vaultproject.io/docs/secrets/identity/index.html#token-contents-and-templates)
@@ -337,6 +362,14 @@ func (o OidcRoleOutput) Key() pulumi.StringOutput {
 // Name of the OIDC Role to create.
 func (o OidcRoleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *OidcRole) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o OidcRoleOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OidcRole) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The template string to use for generating tokens. This may be in

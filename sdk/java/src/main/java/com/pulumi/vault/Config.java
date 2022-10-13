@@ -5,8 +5,18 @@ package com.pulumi.vault;
 
 import com.pulumi.core.TypeShape;
 import com.pulumi.core.internal.Codegen;
-import com.pulumi.vault.config.inputs.AuthLogins;
-import com.pulumi.vault.config.inputs.ClientAuths;
+import com.pulumi.vault.config.inputs.AuthLogin;
+import com.pulumi.vault.config.inputs.AuthLoginAws;
+import com.pulumi.vault.config.inputs.AuthLoginAzure;
+import com.pulumi.vault.config.inputs.AuthLoginCert;
+import com.pulumi.vault.config.inputs.AuthLoginGcp;
+import com.pulumi.vault.config.inputs.AuthLoginJwt;
+import com.pulumi.vault.config.inputs.AuthLoginKerberos;
+import com.pulumi.vault.config.inputs.AuthLoginOci;
+import com.pulumi.vault.config.inputs.AuthLoginOidc;
+import com.pulumi.vault.config.inputs.AuthLoginRadius;
+import com.pulumi.vault.config.inputs.AuthLoginUserpass;
+import com.pulumi.vault.config.inputs.ClientAuth;
 import com.pulumi.vault.config.inputs.Headers;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -35,8 +45,78 @@ public final class Config {
  * Login to vault with an existing auth method using auth/&lt;mount&gt;/login
  * 
  */
-    public Optional<List<AuthLogins>> authLogins() {
-        return Codegen.objectProp("authLogins", TypeShape.<List<AuthLogins>>builder(List.class).addParameter(AuthLogins.class).build()).config(config).get();
+    public Optional<AuthLogin> authLogin() {
+        return Codegen.objectProp("authLogin", AuthLogin.class).config(config).get();
+    }
+/**
+ * Login to vault using the AWS method
+ * 
+ */
+    public Optional<AuthLoginAws> authLoginAws() {
+        return Codegen.objectProp("authLoginAws", AuthLoginAws.class).config(config).get();
+    }
+/**
+ * Login to vault using the azure method
+ * 
+ */
+    public Optional<AuthLoginAzure> authLoginAzure() {
+        return Codegen.objectProp("authLoginAzure", AuthLoginAzure.class).config(config).get();
+    }
+/**
+ * Login to vault using the cert method
+ * 
+ */
+    public Optional<AuthLoginCert> authLoginCert() {
+        return Codegen.objectProp("authLoginCert", AuthLoginCert.class).config(config).get();
+    }
+/**
+ * Login to vault using the gcp method
+ * 
+ */
+    public Optional<AuthLoginGcp> authLoginGcp() {
+        return Codegen.objectProp("authLoginGcp", AuthLoginGcp.class).config(config).get();
+    }
+/**
+ * Login to vault using the jwt method
+ * 
+ */
+    public Optional<AuthLoginJwt> authLoginJwt() {
+        return Codegen.objectProp("authLoginJwt", AuthLoginJwt.class).config(config).get();
+    }
+/**
+ * Login to vault using the kerberos method
+ * 
+ */
+    public Optional<AuthLoginKerberos> authLoginKerberos() {
+        return Codegen.objectProp("authLoginKerberos", AuthLoginKerberos.class).config(config).get();
+    }
+/**
+ * Login to vault using the OCI method
+ * 
+ */
+    public Optional<AuthLoginOci> authLoginOci() {
+        return Codegen.objectProp("authLoginOci", AuthLoginOci.class).config(config).get();
+    }
+/**
+ * Login to vault using the oidc method
+ * 
+ */
+    public Optional<AuthLoginOidc> authLoginOidc() {
+        return Codegen.objectProp("authLoginOidc", AuthLoginOidc.class).config(config).get();
+    }
+/**
+ * Login to vault using the radius method
+ * 
+ */
+    public Optional<AuthLoginRadius> authLoginRadius() {
+        return Codegen.objectProp("authLoginRadius", AuthLoginRadius.class).config(config).get();
+    }
+/**
+ * Login to vault using the userpass method
+ * 
+ */
+    public Optional<AuthLoginUserpass> authLoginUserpass() {
+        return Codegen.objectProp("authLoginUserpass", AuthLoginUserpass.class).config(config).get();
     }
 /**
  * Path to directory containing CA certificate files to validate the server&#39;s certificate.
@@ -56,8 +136,8 @@ public final class Config {
  * Client authentication credentials.
  * 
  */
-    public Optional<List<ClientAuths>> clientAuths() {
-        return Codegen.objectProp("clientAuths", TypeShape.<List<ClientAuths>>builder(List.class).addParameter(ClientAuths.class).build()).config(config).get();
+    public Optional<ClientAuth> clientAuth() {
+        return Codegen.objectProp("clientAuth", ClientAuth.class).config(config).get();
     }
 /**
  * The headers to send with each Vault request.

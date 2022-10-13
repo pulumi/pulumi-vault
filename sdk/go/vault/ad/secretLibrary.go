@@ -78,6 +78,11 @@ type SecretLibrary struct {
 	// The name to identify this set of service accounts.
 	// Must be unique within the backend.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Specifies the slice of service accounts mapped to this set.
 	ServiceAccountNames pulumi.StringArrayOutput `pulumi:"serviceAccountNames"`
 	// The password time-to-live in seconds. Defaults to the configuration
@@ -131,6 +136,11 @@ type secretLibraryState struct {
 	// The name to identify this set of service accounts.
 	// Must be unique within the backend.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Specifies the slice of service accounts mapped to this set.
 	ServiceAccountNames []string `pulumi:"serviceAccountNames"`
 	// The password time-to-live in seconds. Defaults to the configuration
@@ -150,6 +160,11 @@ type SecretLibraryState struct {
 	// The name to identify this set of service accounts.
 	// Must be unique within the backend.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Specifies the slice of service accounts mapped to this set.
 	ServiceAccountNames pulumi.StringArrayInput
 	// The password time-to-live in seconds. Defaults to the configuration
@@ -173,6 +188,11 @@ type secretLibraryArgs struct {
 	// The name to identify this set of service accounts.
 	// Must be unique within the backend.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Specifies the slice of service accounts mapped to this set.
 	ServiceAccountNames []string `pulumi:"serviceAccountNames"`
 	// The password time-to-live in seconds. Defaults to the configuration
@@ -193,6 +213,11 @@ type SecretLibraryArgs struct {
 	// The name to identify this set of service accounts.
 	// Must be unique within the backend.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Specifies the slice of service accounts mapped to this set.
 	ServiceAccountNames pulumi.StringArrayInput
 	// The password time-to-live in seconds. Defaults to the configuration
@@ -308,6 +333,14 @@ func (o SecretLibraryOutput) MaxTtl() pulumi.IntOutput {
 // Must be unique within the backend.
 func (o SecretLibraryOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretLibrary) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o SecretLibraryOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretLibrary) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Specifies the slice of service accounts mapped to this set.

@@ -68,10 +68,22 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    public readonly disableRemount!: pulumi.Output<boolean | undefined>;
+    /**
      * The maximum TTL that can be requested
      * for credentials issued by this backend.
      */
     public readonly maxLeaseTtlSeconds!: pulumi.Output<number>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
     /**
      * Specifies the RabbitMQ management administrator password.
      */
@@ -115,7 +127,9 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["connectionUri"] = state ? state.connectionUri : undefined;
             resourceInputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
             resourceInputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
             resourceInputs["passwordPolicy"] = state ? state.passwordPolicy : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
@@ -136,15 +150,19 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["connectionUri"] = args ? args.connectionUri : undefined;
             resourceInputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
             resourceInputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
-            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["passwordPolicy"] = args ? args.passwordPolicy : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
-            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["username"] = args?.username ? pulumi.secret(args.username) : undefined;
             resourceInputs["usernameTemplate"] = args ? args.usernameTemplate : undefined;
             resourceInputs["verifyConnection"] = args ? args.verifyConnection : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["password", "username"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SecretBackend.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -167,10 +185,22 @@ export interface SecretBackendState {
      */
     description?: pulumi.Input<string>;
     /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    disableRemount?: pulumi.Input<boolean>;
+    /**
      * The maximum TTL that can be requested
      * for credentials issued by this backend.
      */
     maxLeaseTtlSeconds?: pulumi.Input<number>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Specifies the RabbitMQ management administrator password.
      */
@@ -217,10 +247,22 @@ export interface SecretBackendArgs {
      */
     description?: pulumi.Input<string>;
     /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    disableRemount?: pulumi.Input<boolean>;
+    /**
      * The maximum TTL that can be requested
      * for credentials issued by this backend.
      */
     maxLeaseTtlSeconds?: pulumi.Input<number>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Specifies the RabbitMQ management administrator password.
      */

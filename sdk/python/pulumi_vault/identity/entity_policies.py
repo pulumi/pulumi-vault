@@ -16,17 +16,24 @@ class EntityPoliciesArgs:
     def __init__(__self__, *,
                  entity_id: pulumi.Input[str],
                  policies: pulumi.Input[Sequence[pulumi.Input[str]]],
-                 exclusive: Optional[pulumi.Input[bool]] = None):
+                 exclusive: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a EntityPolicies resource.
         :param pulumi.Input[str] entity_id: Entity ID to assign policies to.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to assign to the entity
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         pulumi.set(__self__, "entity_id", entity_id)
         pulumi.set(__self__, "policies", policies)
         if exclusive is not None:
             pulumi.set(__self__, "exclusive", exclusive)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter(name="entityId")
@@ -64,6 +71,21 @@ class EntityPoliciesArgs:
     def exclusive(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "exclusive", value)
 
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
 
 @pulumi.input_type
 class _EntityPoliciesState:
@@ -71,12 +93,17 @@ class _EntityPoliciesState:
                  entity_id: Optional[pulumi.Input[str]] = None,
                  entity_name: Optional[pulumi.Input[str]] = None,
                  exclusive: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering EntityPolicies resources.
         :param pulumi.Input[str] entity_id: Entity ID to assign policies to.
         :param pulumi.Input[str] entity_name: The name of the entity that are assigned the policies.
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to assign to the entity
         """
         if entity_id is not None:
@@ -85,6 +112,8 @@ class _EntityPoliciesState:
             pulumi.set(__self__, "entity_name", entity_name)
         if exclusive is not None:
             pulumi.set(__self__, "exclusive", exclusive)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if policies is not None:
             pulumi.set(__self__, "policies", policies)
 
@@ -126,6 +155,21 @@ class _EntityPoliciesState:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         List of policies to assign to the entity
@@ -144,6 +188,7 @@ class EntityPolicies(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  entity_id: Optional[pulumi.Input[str]] = None,
                  exclusive: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
@@ -189,6 +234,10 @@ class EntityPolicies(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] entity_id: Entity ID to assign policies to.
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to assign to the entity
         """
         ...
@@ -253,6 +302,7 @@ class EntityPolicies(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  entity_id: Optional[pulumi.Input[str]] = None,
                  exclusive: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -267,6 +317,7 @@ class EntityPolicies(pulumi.CustomResource):
                 raise TypeError("Missing required property 'entity_id'")
             __props__.__dict__["entity_id"] = entity_id
             __props__.__dict__["exclusive"] = exclusive
+            __props__.__dict__["namespace"] = namespace
             if policies is None and not opts.urn:
                 raise TypeError("Missing required property 'policies'")
             __props__.__dict__["policies"] = policies
@@ -284,6 +335,7 @@ class EntityPolicies(pulumi.CustomResource):
             entity_id: Optional[pulumi.Input[str]] = None,
             entity_name: Optional[pulumi.Input[str]] = None,
             exclusive: Optional[pulumi.Input[bool]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'EntityPolicies':
         """
         Get an existing EntityPolicies resource's state with the given name, id, and optional extra
@@ -295,6 +347,10 @@ class EntityPolicies(pulumi.CustomResource):
         :param pulumi.Input[str] entity_id: Entity ID to assign policies to.
         :param pulumi.Input[str] entity_name: The name of the entity that are assigned the policies.
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to assign to the entity
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -304,6 +360,7 @@ class EntityPolicies(pulumi.CustomResource):
         __props__.__dict__["entity_id"] = entity_id
         __props__.__dict__["entity_name"] = entity_name
         __props__.__dict__["exclusive"] = exclusive
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["policies"] = policies
         return EntityPolicies(resource_name, opts=opts, __props__=__props__)
 
@@ -330,6 +387,17 @@ class EntityPolicies(pulumi.CustomResource):
         Defaults to `true`.
         """
         return pulumi.get(self, "exclusive")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

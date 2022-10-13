@@ -131,6 +131,15 @@ namespace Pulumi.Vault.Generic
         public Output<bool?> IgnoreAbsentFields { get; private set; } = null!;
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
         /// The full logical path at which to write the given
         /// data. Consult each backend's documentation to see which endpoints
         /// support the `PUT` methods and to determine whether they also support
@@ -180,6 +189,10 @@ namespace Pulumi.Vault.Generic
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "dataJson",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -203,12 +216,22 @@ namespace Pulumi.Vault.Generic
 
     public sealed class EndpointArgs : global::Pulumi.ResourceArgs
     {
+        [Input("dataJson", required: true)]
+        private Input<string>? _dataJson;
+
         /// <summary>
         /// String containing a JSON-encoded object that will be
         /// written to the given path as the secret data.
         /// </summary>
-        [Input("dataJson", required: true)]
-        public Input<string> DataJson { get; set; } = null!;
+        public Input<string>? DataJson
+        {
+            get => _dataJson;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _dataJson = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Don't attempt to delete the path from Vault if true
@@ -231,6 +254,15 @@ namespace Pulumi.Vault.Generic
         /// </summary>
         [Input("ignoreAbsentFields")]
         public Input<bool>? IgnoreAbsentFields { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// The full logical path at which to write the given
@@ -261,12 +293,22 @@ namespace Pulumi.Vault.Generic
 
     public sealed class EndpointState : global::Pulumi.ResourceArgs
     {
+        [Input("dataJson")]
+        private Input<string>? _dataJson;
+
         /// <summary>
         /// String containing a JSON-encoded object that will be
         /// written to the given path as the secret data.
         /// </summary>
-        [Input("dataJson")]
-        public Input<string>? DataJson { get; set; }
+        public Input<string>? DataJson
+        {
+            get => _dataJson;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _dataJson = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Don't attempt to delete the path from Vault if true
@@ -289,6 +331,15 @@ namespace Pulumi.Vault.Generic
         /// </summary>
         [Input("ignoreAbsentFields")]
         public Input<bool>? IgnoreAbsentFields { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// The full logical path at which to write the given

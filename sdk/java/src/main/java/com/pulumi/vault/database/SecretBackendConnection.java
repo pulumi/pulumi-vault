@@ -24,6 +24,7 @@ import com.pulumi.vault.database.outputs.SecretBackendConnectionMysqlLegacy;
 import com.pulumi.vault.database.outputs.SecretBackendConnectionMysqlRds;
 import com.pulumi.vault.database.outputs.SecretBackendConnectionOracle;
 import com.pulumi.vault.database.outputs.SecretBackendConnectionPostgresql;
+import com.pulumi.vault.database.outputs.SecretBackendConnectionRedisElasticache;
 import com.pulumi.vault.database.outputs.SecretBackendConnectionRedshift;
 import com.pulumi.vault.database.outputs.SecretBackendConnectionSnowflake;
 import java.lang.Boolean;
@@ -317,6 +318,26 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
         return this.name;
     }
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured namespace.
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="namespace", type=String.class, parameters={})
+    private Output</* @Nullable */ String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured namespace.
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> namespace() {
+        return Codegen.optional(this.namespace);
+    }
+    /**
      * A nested block containing configuration options for Oracle connections.
      * 
      */
@@ -357,6 +378,20 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      */
     public Output<Optional<SecretBackendConnectionPostgresql>> postgresql() {
         return Codegen.optional(this.postgresql);
+    }
+    /**
+     * A nested block containing configuration options for Redis ElastiCache connections.
+     * 
+     */
+    @Export(name="redisElasticache", type=SecretBackendConnectionRedisElasticache.class, parameters={})
+    private Output</* @Nullable */ SecretBackendConnectionRedisElasticache> redisElasticache;
+
+    /**
+     * @return A nested block containing configuration options for Redis ElastiCache connections.
+     * 
+     */
+    public Output<Optional<SecretBackendConnectionRedisElasticache>> redisElasticache() {
+        return Codegen.optional(this.redisElasticache);
     }
     /**
      * Connection parameters for the redshift-database-plugin plugin.

@@ -47,10 +47,32 @@ namespace Pulumi.Vault
     public partial class QuotaRateLimit : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// If set, when a client reaches a rate limit threshold, the client will
+        /// be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
+        /// </summary>
+        [Output("blockInterval")]
+        public Output<int?> BlockInterval { get; private set; } = null!;
+
+        /// <summary>
+        /// The duration in seconds to enforce rate limiting for.
+        /// </summary>
+        [Output("interval")]
+        public Output<int> Interval { get; private set; } = null!;
+
+        /// <summary>
         /// Name of the rate limit quota
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured namespace.
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
         /// Path of the mount or namespace to apply the quota. A blank path configures a
@@ -117,10 +139,32 @@ namespace Pulumi.Vault
     public sealed class QuotaRateLimitArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// If set, when a client reaches a rate limit threshold, the client will
+        /// be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
+        /// </summary>
+        [Input("blockInterval")]
+        public Input<int>? BlockInterval { get; set; }
+
+        /// <summary>
+        /// The duration in seconds to enforce rate limiting for.
+        /// </summary>
+        [Input("interval")]
+        public Input<int>? Interval { get; set; }
+
+        /// <summary>
         /// Name of the rate limit quota
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured namespace.
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// Path of the mount or namespace to apply the quota. A blank path configures a
@@ -149,10 +193,32 @@ namespace Pulumi.Vault
     public sealed class QuotaRateLimitState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// If set, when a client reaches a rate limit threshold, the client will
+        /// be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
+        /// </summary>
+        [Input("blockInterval")]
+        public Input<int>? BlockInterval { get; set; }
+
+        /// <summary>
+        /// The duration in seconds to enforce rate limiting for.
+        /// </summary>
+        [Input("interval")]
+        public Input<int>? Interval { get; set; }
+
+        /// <summary>
         /// Name of the rate limit quota
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured namespace.
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// Path of the mount or namespace to apply the quota. A blank path configures a

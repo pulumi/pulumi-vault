@@ -61,6 +61,11 @@ type SecretCreds struct {
 	// The lease associated with the token. Only user tokens will have a
 	// Vault lease associated with them.
 	LeaseId pulumi.StringOutput `pulumi:"leaseId"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The organization associated with the token provided.
 	Organization pulumi.StringOutput `pulumi:"organization"`
 	// Name of the role.
@@ -88,6 +93,11 @@ func NewSecretCreds(ctx *pulumi.Context,
 	if args.Role == nil {
 		return nil, errors.New("invalid value for required argument 'Role'")
 	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"leaseId",
+		"token",
+	})
+	opts = append(opts, secrets)
 	var resource SecretCreds
 	err := ctx.RegisterResource("vault:terraformcloud/secretCreds:SecretCreds", name, args, &resource, opts...)
 	if err != nil {
@@ -115,6 +125,11 @@ type secretCredsState struct {
 	// The lease associated with the token. Only user tokens will have a
 	// Vault lease associated with them.
 	LeaseId *string `pulumi:"leaseId"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The organization associated with the token provided.
 	Organization *string `pulumi:"organization"`
 	// Name of the role.
@@ -135,6 +150,11 @@ type SecretCredsState struct {
 	// The lease associated with the token. Only user tokens will have a
 	// Vault lease associated with them.
 	LeaseId pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The organization associated with the token provided.
 	Organization pulumi.StringPtrInput
 	// Name of the role.
@@ -156,6 +176,11 @@ func (SecretCredsState) ElementType() reflect.Type {
 type secretCredsArgs struct {
 	// Terraform Cloud secret backend to generate tokens from
 	Backend string `pulumi:"backend"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Name of the role.
 	Role string `pulumi:"role"`
 }
@@ -164,6 +189,11 @@ type secretCredsArgs struct {
 type SecretCredsArgs struct {
 	// Terraform Cloud secret backend to generate tokens from
 	Backend pulumi.StringInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Name of the role.
 	Role pulumi.StringInput
 }
@@ -264,6 +294,14 @@ func (o SecretCredsOutput) Backend() pulumi.StringOutput {
 // Vault lease associated with them.
 func (o SecretCredsOutput) LeaseId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretCreds) pulumi.StringOutput { return v.LeaseId }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o SecretCredsOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretCreds) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The organization associated with the token provided.

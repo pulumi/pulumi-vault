@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -92,6 +93,13 @@ export class BackendRole extends pulumi.CustomResource {
      */
     public readonly maxTtl!: pulumi.Output<string | undefined>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * Name of the Azure role
      */
     public readonly role!: pulumi.Output<string>;
@@ -120,6 +128,7 @@ export class BackendRole extends pulumi.CustomResource {
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["role"] = state ? state.role : undefined;
             resourceInputs["ttl"] = state ? state.ttl : undefined;
         } else {
@@ -133,6 +142,7 @@ export class BackendRole extends pulumi.CustomResource {
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["role"] = args ? args.role : undefined;
             resourceInputs["ttl"] = args ? args.ttl : undefined;
         }
@@ -171,6 +181,13 @@ export interface BackendRoleState {
      * suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
      */
     maxTtl?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Name of the Azure role
      */
@@ -212,6 +229,13 @@ export interface BackendRoleArgs {
      * suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
      */
     maxTtl?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Name of the Azure role
      */

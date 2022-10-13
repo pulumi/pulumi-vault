@@ -12,11 +12,21 @@ namespace Pulumi.Vault.Database.Inputs
 
     public sealed class SecretBackendConnectionMongodbatlasGetArgs : global::Pulumi.ResourceArgs
     {
+        [Input("privateKey", required: true)]
+        private Input<string>? _privateKey;
+
         /// <summary>
         /// The Private Programmatic API Key used to connect with MongoDB Atlas API.
         /// </summary>
-        [Input("privateKey", required: true)]
-        public Input<string> PrivateKey { get; set; } = null!;
+        public Input<string>? PrivateKey
+        {
+            get => _privateKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The Project ID the Database User should be created within.

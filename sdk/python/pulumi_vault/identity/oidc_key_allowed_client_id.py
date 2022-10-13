@@ -15,14 +15,21 @@ __all__ = ['OidcKeyAllowedClientIDArgs', 'OidcKeyAllowedClientID']
 class OidcKeyAllowedClientIDArgs:
     def __init__(__self__, *,
                  allowed_client_id: pulumi.Input[str],
-                 key_name: pulumi.Input[str]):
+                 key_name: pulumi.Input[str],
+                 namespace: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a OidcKeyAllowedClientID resource.
         :param pulumi.Input[str] allowed_client_id: Client ID to allow usage with the OIDC named key
         :param pulumi.Input[str] key_name: Name of the OIDC Key allow the Client ID.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         pulumi.set(__self__, "allowed_client_id", allowed_client_id)
         pulumi.set(__self__, "key_name", key_name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter(name="allowedClientId")
@@ -48,21 +55,43 @@ class OidcKeyAllowedClientIDArgs:
     def key_name(self, value: pulumi.Input[str]):
         pulumi.set(self, "key_name", value)
 
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
 
 @pulumi.input_type
 class _OidcKeyAllowedClientIDState:
     def __init__(__self__, *,
                  allowed_client_id: Optional[pulumi.Input[str]] = None,
-                 key_name: Optional[pulumi.Input[str]] = None):
+                 key_name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering OidcKeyAllowedClientID resources.
         :param pulumi.Input[str] allowed_client_id: Client ID to allow usage with the OIDC named key
         :param pulumi.Input[str] key_name: Name of the OIDC Key allow the Client ID.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         if allowed_client_id is not None:
             pulumi.set(__self__, "allowed_client_id", allowed_client_id)
         if key_name is not None:
             pulumi.set(__self__, "key_name", key_name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter(name="allowedClientId")
@@ -88,6 +117,21 @@ class _OidcKeyAllowedClientIDState:
     def key_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "key_name", value)
 
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
 
 class OidcKeyAllowedClientID(pulumi.CustomResource):
     @overload
@@ -96,6 +140,7 @@ class OidcKeyAllowedClientID(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allowed_client_id: Optional[pulumi.Input[str]] = None,
                  key_name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         ## Example Usage
@@ -115,6 +160,10 @@ class OidcKeyAllowedClientID(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] allowed_client_id: Client ID to allow usage with the OIDC named key
         :param pulumi.Input[str] key_name: Name of the OIDC Key allow the Client ID.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         ...
     @overload
@@ -153,6 +202,7 @@ class OidcKeyAllowedClientID(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allowed_client_id: Optional[pulumi.Input[str]] = None,
                  key_name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -168,6 +218,7 @@ class OidcKeyAllowedClientID(pulumi.CustomResource):
             if key_name is None and not opts.urn:
                 raise TypeError("Missing required property 'key_name'")
             __props__.__dict__["key_name"] = key_name
+            __props__.__dict__["namespace"] = namespace
         super(OidcKeyAllowedClientID, __self__).__init__(
             'vault:identity/oidcKeyAllowedClientID:OidcKeyAllowedClientID',
             resource_name,
@@ -179,7 +230,8 @@ class OidcKeyAllowedClientID(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             allowed_client_id: Optional[pulumi.Input[str]] = None,
-            key_name: Optional[pulumi.Input[str]] = None) -> 'OidcKeyAllowedClientID':
+            key_name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None) -> 'OidcKeyAllowedClientID':
         """
         Get an existing OidcKeyAllowedClientID resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -189,6 +241,10 @@ class OidcKeyAllowedClientID(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] allowed_client_id: Client ID to allow usage with the OIDC named key
         :param pulumi.Input[str] key_name: Name of the OIDC Key allow the Client ID.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -196,6 +252,7 @@ class OidcKeyAllowedClientID(pulumi.CustomResource):
 
         __props__.__dict__["allowed_client_id"] = allowed_client_id
         __props__.__dict__["key_name"] = key_name
+        __props__.__dict__["namespace"] = namespace
         return OidcKeyAllowedClientID(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -213,4 +270,15 @@ class OidcKeyAllowedClientID(pulumi.CustomResource):
         Name of the OIDC Key allow the Client ID.
         """
         return pulumi.get(self, "key_name")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 

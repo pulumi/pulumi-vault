@@ -17,6 +17,7 @@ class SecretRoleArgs:
                  backend: pulumi.Input[str],
                  role: pulumi.Input[str],
                  service_account_name: pulumi.Input[str],
+                 namespace: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a SecretRole resource.
@@ -26,12 +27,18 @@ class SecretRoleArgs:
                Must be unique within the backend.
         :param pulumi.Input[str] service_account_name: Specifies the name of the Active Directory service
                account mapped to this role.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[int] ttl: The password time-to-live in seconds. Defaults to the configuration
                ttl if not provided.
         """
         pulumi.set(__self__, "backend", backend)
         pulumi.set(__self__, "role", role)
         pulumi.set(__self__, "service_account_name", service_account_name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if ttl is not None:
             pulumi.set(__self__, "ttl", ttl)
 
@@ -76,6 +83,21 @@ class SecretRoleArgs:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[int]]:
         """
         The password time-to-live in seconds. Defaults to the configuration
@@ -93,6 +115,7 @@ class _SecretRoleState:
     def __init__(__self__, *,
                  backend: Optional[pulumi.Input[str]] = None,
                  last_vault_rotation: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  password_last_set: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  service_account_name: Optional[pulumi.Input[str]] = None,
@@ -102,6 +125,10 @@ class _SecretRoleState:
         :param pulumi.Input[str] backend: The path the AD secret backend is mounted at,
                with no leading or trailing `/`s.
         :param pulumi.Input[str] last_vault_rotation: Timestamp of the last password rotation by Vault.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] password_last_set: Timestamp of the last password set by Vault.
         :param pulumi.Input[str] role: The name to identify this role within the backend.
                Must be unique within the backend.
@@ -114,6 +141,8 @@ class _SecretRoleState:
             pulumi.set(__self__, "backend", backend)
         if last_vault_rotation is not None:
             pulumi.set(__self__, "last_vault_rotation", last_vault_rotation)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if password_last_set is not None:
             pulumi.set(__self__, "password_last_set", password_last_set)
         if role is not None:
@@ -147,6 +176,21 @@ class _SecretRoleState:
     @last_vault_rotation.setter
     def last_vault_rotation(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "last_vault_rotation", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter(name="passwordLastSet")
@@ -206,6 +250,7 @@ class SecretRole(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  service_account_name: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None,
@@ -243,6 +288,10 @@ class SecretRole(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The path the AD secret backend is mounted at,
                with no leading or trailing `/`s.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role: The name to identify this role within the backend.
                Must be unique within the backend.
         :param pulumi.Input[str] service_account_name: Specifies the name of the Active Directory service
@@ -301,6 +350,7 @@ class SecretRole(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  service_account_name: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None,
@@ -316,6 +366,7 @@ class SecretRole(pulumi.CustomResource):
             if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
             __props__.__dict__["backend"] = backend
+            __props__.__dict__["namespace"] = namespace
             if role is None and not opts.urn:
                 raise TypeError("Missing required property 'role'")
             __props__.__dict__["role"] = role
@@ -337,6 +388,7 @@ class SecretRole(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
             last_vault_rotation: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             password_last_set: Optional[pulumi.Input[str]] = None,
             role: Optional[pulumi.Input[str]] = None,
             service_account_name: Optional[pulumi.Input[str]] = None,
@@ -351,6 +403,10 @@ class SecretRole(pulumi.CustomResource):
         :param pulumi.Input[str] backend: The path the AD secret backend is mounted at,
                with no leading or trailing `/`s.
         :param pulumi.Input[str] last_vault_rotation: Timestamp of the last password rotation by Vault.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] password_last_set: Timestamp of the last password set by Vault.
         :param pulumi.Input[str] role: The name to identify this role within the backend.
                Must be unique within the backend.
@@ -365,6 +421,7 @@ class SecretRole(pulumi.CustomResource):
 
         __props__.__dict__["backend"] = backend
         __props__.__dict__["last_vault_rotation"] = last_vault_rotation
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["password_last_set"] = password_last_set
         __props__.__dict__["role"] = role
         __props__.__dict__["service_account_name"] = service_account_name
@@ -387,6 +444,17 @@ class SecretRole(pulumi.CustomResource):
         Timestamp of the last password rotation by Vault.
         """
         return pulumi.get(self, "last_vault_rotation")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="passwordLastSet")

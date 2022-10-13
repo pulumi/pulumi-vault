@@ -11,121 +11,85 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetEntityResult {
-    private final String aliasId;
-    private final String aliasMountAccessor;
-    private final String aliasName;
+    private String aliasId;
+    private String aliasMountAccessor;
+    private String aliasName;
     /**
      * @return A list of entity alias. Structure is documented below.
      * 
      */
-    private final List<GetEntityAlias> aliases;
+    private List<GetEntityAlias> aliases;
     /**
      * @return Creation time of the Alias
      * 
      */
-    private final String creationTime;
+    private String creationTime;
     /**
      * @return A string containing the full data payload retrieved from
      * Vault, serialized in JSON format.
      * 
      */
-    private final String dataJson;
+    private String dataJson;
     /**
      * @return List of Group IDs of which the entity is directly a member of
      * 
      */
-    private final List<String> directGroupIds;
+    private List<String> directGroupIds;
     /**
      * @return Whether the entity is disabled
      * 
      */
-    private final Boolean disabled;
-    private final String entityId;
-    private final String entityName;
+    private Boolean disabled;
+    private String entityId;
+    private String entityName;
     /**
      * @return List of all Group IDs of which the entity is a member of
      * 
      */
-    private final List<String> groupIds;
+    private List<String> groupIds;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
+    private String id;
     /**
      * @return List of all Group IDs of which the entity is a member of transitively
      * 
      */
-    private final List<String> inheritedGroupIds;
+    private List<String> inheritedGroupIds;
     /**
      * @return Last update time of the alias
      * 
      */
-    private final String lastUpdateTime;
+    private String lastUpdateTime;
     /**
      * @return Other entity IDs which is merged with this entity
      * 
      */
-    private final List<String> mergedEntityIds;
+    private List<String> mergedEntityIds;
     /**
      * @return Arbitrary metadata
      * 
      */
-    private final Map<String,Object> metadata;
+    private Map<String,Object> metadata;
+    private @Nullable String namespace;
     /**
      * @return Namespace of which the entity is part of
      * 
      */
-    private final String namespaceId;
+    private String namespaceId;
     /**
      * @return List of policies attached to the entity
      * 
      */
-    private final List<String> policies;
+    private List<String> policies;
 
-    @CustomType.Constructor
-    private GetEntityResult(
-        @CustomType.Parameter("aliasId") String aliasId,
-        @CustomType.Parameter("aliasMountAccessor") String aliasMountAccessor,
-        @CustomType.Parameter("aliasName") String aliasName,
-        @CustomType.Parameter("aliases") List<GetEntityAlias> aliases,
-        @CustomType.Parameter("creationTime") String creationTime,
-        @CustomType.Parameter("dataJson") String dataJson,
-        @CustomType.Parameter("directGroupIds") List<String> directGroupIds,
-        @CustomType.Parameter("disabled") Boolean disabled,
-        @CustomType.Parameter("entityId") String entityId,
-        @CustomType.Parameter("entityName") String entityName,
-        @CustomType.Parameter("groupIds") List<String> groupIds,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("inheritedGroupIds") List<String> inheritedGroupIds,
-        @CustomType.Parameter("lastUpdateTime") String lastUpdateTime,
-        @CustomType.Parameter("mergedEntityIds") List<String> mergedEntityIds,
-        @CustomType.Parameter("metadata") Map<String,Object> metadata,
-        @CustomType.Parameter("namespaceId") String namespaceId,
-        @CustomType.Parameter("policies") List<String> policies) {
-        this.aliasId = aliasId;
-        this.aliasMountAccessor = aliasMountAccessor;
-        this.aliasName = aliasName;
-        this.aliases = aliases;
-        this.creationTime = creationTime;
-        this.dataJson = dataJson;
-        this.directGroupIds = directGroupIds;
-        this.disabled = disabled;
-        this.entityId = entityId;
-        this.entityName = entityName;
-        this.groupIds = groupIds;
-        this.id = id;
-        this.inheritedGroupIds = inheritedGroupIds;
-        this.lastUpdateTime = lastUpdateTime;
-        this.mergedEntityIds = mergedEntityIds;
-        this.metadata = metadata;
-        this.namespaceId = namespaceId;
-        this.policies = policies;
-    }
-
+    private GetEntityResult() {}
     public String aliasId() {
         return this.aliasId;
     }
@@ -219,6 +183,9 @@ public final class GetEntityResult {
     public Map<String,Object> metadata() {
         return this.metadata;
     }
+    public Optional<String> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
     /**
      * @return Namespace of which the entity is part of
      * 
@@ -241,7 +208,7 @@ public final class GetEntityResult {
     public static Builder builder(GetEntityResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String aliasId;
         private String aliasMountAccessor;
@@ -259,13 +226,10 @@ public final class GetEntityResult {
         private String lastUpdateTime;
         private List<String> mergedEntityIds;
         private Map<String,Object> metadata;
+        private @Nullable String namespace;
         private String namespaceId;
         private List<String> policies;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetEntityResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.aliasId = defaults.aliasId;
@@ -284,22 +248,27 @@ public final class GetEntityResult {
     	      this.lastUpdateTime = defaults.lastUpdateTime;
     	      this.mergedEntityIds = defaults.mergedEntityIds;
     	      this.metadata = defaults.metadata;
+    	      this.namespace = defaults.namespace;
     	      this.namespaceId = defaults.namespaceId;
     	      this.policies = defaults.policies;
         }
 
+        @CustomType.Setter
         public Builder aliasId(String aliasId) {
             this.aliasId = Objects.requireNonNull(aliasId);
             return this;
         }
+        @CustomType.Setter
         public Builder aliasMountAccessor(String aliasMountAccessor) {
             this.aliasMountAccessor = Objects.requireNonNull(aliasMountAccessor);
             return this;
         }
+        @CustomType.Setter
         public Builder aliasName(String aliasName) {
             this.aliasName = Objects.requireNonNull(aliasName);
             return this;
         }
+        @CustomType.Setter
         public Builder aliases(List<GetEntityAlias> aliases) {
             this.aliases = Objects.requireNonNull(aliases);
             return this;
@@ -307,14 +276,17 @@ public final class GetEntityResult {
         public Builder aliases(GetEntityAlias... aliases) {
             return aliases(List.of(aliases));
         }
+        @CustomType.Setter
         public Builder creationTime(String creationTime) {
             this.creationTime = Objects.requireNonNull(creationTime);
             return this;
         }
+        @CustomType.Setter
         public Builder dataJson(String dataJson) {
             this.dataJson = Objects.requireNonNull(dataJson);
             return this;
         }
+        @CustomType.Setter
         public Builder directGroupIds(List<String> directGroupIds) {
             this.directGroupIds = Objects.requireNonNull(directGroupIds);
             return this;
@@ -322,18 +294,22 @@ public final class GetEntityResult {
         public Builder directGroupIds(String... directGroupIds) {
             return directGroupIds(List.of(directGroupIds));
         }
+        @CustomType.Setter
         public Builder disabled(Boolean disabled) {
             this.disabled = Objects.requireNonNull(disabled);
             return this;
         }
+        @CustomType.Setter
         public Builder entityId(String entityId) {
             this.entityId = Objects.requireNonNull(entityId);
             return this;
         }
+        @CustomType.Setter
         public Builder entityName(String entityName) {
             this.entityName = Objects.requireNonNull(entityName);
             return this;
         }
+        @CustomType.Setter
         public Builder groupIds(List<String> groupIds) {
             this.groupIds = Objects.requireNonNull(groupIds);
             return this;
@@ -341,10 +317,12 @@ public final class GetEntityResult {
         public Builder groupIds(String... groupIds) {
             return groupIds(List.of(groupIds));
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder inheritedGroupIds(List<String> inheritedGroupIds) {
             this.inheritedGroupIds = Objects.requireNonNull(inheritedGroupIds);
             return this;
@@ -352,10 +330,12 @@ public final class GetEntityResult {
         public Builder inheritedGroupIds(String... inheritedGroupIds) {
             return inheritedGroupIds(List.of(inheritedGroupIds));
         }
+        @CustomType.Setter
         public Builder lastUpdateTime(String lastUpdateTime) {
             this.lastUpdateTime = Objects.requireNonNull(lastUpdateTime);
             return this;
         }
+        @CustomType.Setter
         public Builder mergedEntityIds(List<String> mergedEntityIds) {
             this.mergedEntityIds = Objects.requireNonNull(mergedEntityIds);
             return this;
@@ -363,22 +343,51 @@ public final class GetEntityResult {
         public Builder mergedEntityIds(String... mergedEntityIds) {
             return mergedEntityIds(List.of(mergedEntityIds));
         }
+        @CustomType.Setter
         public Builder metadata(Map<String,Object> metadata) {
             this.metadata = Objects.requireNonNull(metadata);
             return this;
         }
+        @CustomType.Setter
+        public Builder namespace(@Nullable String namespace) {
+            this.namespace = namespace;
+            return this;
+        }
+        @CustomType.Setter
         public Builder namespaceId(String namespaceId) {
             this.namespaceId = Objects.requireNonNull(namespaceId);
             return this;
         }
+        @CustomType.Setter
         public Builder policies(List<String> policies) {
             this.policies = Objects.requireNonNull(policies);
             return this;
         }
         public Builder policies(String... policies) {
             return policies(List.of(policies));
-        }        public GetEntityResult build() {
-            return new GetEntityResult(aliasId, aliasMountAccessor, aliasName, aliases, creationTime, dataJson, directGroupIds, disabled, entityId, entityName, groupIds, id, inheritedGroupIds, lastUpdateTime, mergedEntityIds, metadata, namespaceId, policies);
+        }
+        public GetEntityResult build() {
+            final var o = new GetEntityResult();
+            o.aliasId = aliasId;
+            o.aliasMountAccessor = aliasMountAccessor;
+            o.aliasName = aliasName;
+            o.aliases = aliases;
+            o.creationTime = creationTime;
+            o.dataJson = dataJson;
+            o.directGroupIds = directGroupIds;
+            o.disabled = disabled;
+            o.entityId = entityId;
+            o.entityName = entityName;
+            o.groupIds = groupIds;
+            o.id = id;
+            o.inheritedGroupIds = inheritedGroupIds;
+            o.lastUpdateTime = lastUpdateTime;
+            o.mergedEntityIds = mergedEntityIds;
+            o.metadata = metadata;
+            o.namespace = namespace;
+            o.namespaceId = namespaceId;
+            o.policies = policies;
+            return o;
         }
     }
 }

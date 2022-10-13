@@ -30,7 +30,7 @@ namespace Pulumi.Vault
             }
         }
 
-        private static readonly Pulumi.Config __config = new Pulumi.Config("vault");
+        private static readonly global::Pulumi.Config __config = new global::Pulumi.Config("vault");
 
         private static readonly __Value<string?> _addAddressToEnv = new __Value<string?>(() => __config.Get("addAddressToEnv"));
         /// <summary>
@@ -52,14 +52,114 @@ namespace Pulumi.Vault
             set => _address.Set(value);
         }
 
-        private static readonly __Value<ImmutableArray<Pulumi.Vault.Config.Types.AuthLogins>> _authLogins = new __Value<ImmutableArray<Pulumi.Vault.Config.Types.AuthLogins>>(() => __config.GetObject<ImmutableArray<Pulumi.Vault.Config.Types.AuthLogins>>("authLogins"));
+        private static readonly __Value<Pulumi.Vault.Config.Types.AuthLogin?> _authLogin = new __Value<Pulumi.Vault.Config.Types.AuthLogin?>(() => __config.GetObject<Pulumi.Vault.Config.Types.AuthLogin>("authLogin"));
         /// <summary>
         /// Login to vault with an existing auth method using auth/&lt;mount&gt;/login
         /// </summary>
-        public static ImmutableArray<Pulumi.Vault.Config.Types.AuthLogins> AuthLogins
+        public static Pulumi.Vault.Config.Types.AuthLogin? AuthLogin
         {
-            get => _authLogins.Get();
-            set => _authLogins.Set(value);
+            get => _authLogin.Get();
+            set => _authLogin.Set(value);
+        }
+
+        private static readonly __Value<Pulumi.Vault.Config.Types.AuthLoginAws?> _authLoginAws = new __Value<Pulumi.Vault.Config.Types.AuthLoginAws?>(() => __config.GetObject<Pulumi.Vault.Config.Types.AuthLoginAws>("authLoginAws"));
+        /// <summary>
+        /// Login to vault using the AWS method
+        /// </summary>
+        public static Pulumi.Vault.Config.Types.AuthLoginAws? AuthLoginAws
+        {
+            get => _authLoginAws.Get();
+            set => _authLoginAws.Set(value);
+        }
+
+        private static readonly __Value<Pulumi.Vault.Config.Types.AuthLoginAzure?> _authLoginAzure = new __Value<Pulumi.Vault.Config.Types.AuthLoginAzure?>(() => __config.GetObject<Pulumi.Vault.Config.Types.AuthLoginAzure>("authLoginAzure"));
+        /// <summary>
+        /// Login to vault using the azure method
+        /// </summary>
+        public static Pulumi.Vault.Config.Types.AuthLoginAzure? AuthLoginAzure
+        {
+            get => _authLoginAzure.Get();
+            set => _authLoginAzure.Set(value);
+        }
+
+        private static readonly __Value<Pulumi.Vault.Config.Types.AuthLoginCert?> _authLoginCert = new __Value<Pulumi.Vault.Config.Types.AuthLoginCert?>(() => __config.GetObject<Pulumi.Vault.Config.Types.AuthLoginCert>("authLoginCert"));
+        /// <summary>
+        /// Login to vault using the cert method
+        /// </summary>
+        public static Pulumi.Vault.Config.Types.AuthLoginCert? AuthLoginCert
+        {
+            get => _authLoginCert.Get();
+            set => _authLoginCert.Set(value);
+        }
+
+        private static readonly __Value<Pulumi.Vault.Config.Types.AuthLoginGcp?> _authLoginGcp = new __Value<Pulumi.Vault.Config.Types.AuthLoginGcp?>(() => __config.GetObject<Pulumi.Vault.Config.Types.AuthLoginGcp>("authLoginGcp"));
+        /// <summary>
+        /// Login to vault using the gcp method
+        /// </summary>
+        public static Pulumi.Vault.Config.Types.AuthLoginGcp? AuthLoginGcp
+        {
+            get => _authLoginGcp.Get();
+            set => _authLoginGcp.Set(value);
+        }
+
+        private static readonly __Value<Pulumi.Vault.Config.Types.AuthLoginJwt?> _authLoginJwt = new __Value<Pulumi.Vault.Config.Types.AuthLoginJwt?>(() => __config.GetObject<Pulumi.Vault.Config.Types.AuthLoginJwt>("authLoginJwt"));
+        /// <summary>
+        /// Login to vault using the jwt method
+        /// </summary>
+        public static Pulumi.Vault.Config.Types.AuthLoginJwt? AuthLoginJwt
+        {
+            get => _authLoginJwt.Get();
+            set => _authLoginJwt.Set(value);
+        }
+
+        private static readonly __Value<Pulumi.Vault.Config.Types.AuthLoginKerberos?> _authLoginKerberos = new __Value<Pulumi.Vault.Config.Types.AuthLoginKerberos?>(() => __config.GetObject<Pulumi.Vault.Config.Types.AuthLoginKerberos>("authLoginKerberos"));
+        /// <summary>
+        /// Login to vault using the kerberos method
+        /// </summary>
+        public static Pulumi.Vault.Config.Types.AuthLoginKerberos? AuthLoginKerberos
+        {
+            get => _authLoginKerberos.Get();
+            set => _authLoginKerberos.Set(value);
+        }
+
+        private static readonly __Value<Pulumi.Vault.Config.Types.AuthLoginOci?> _authLoginOci = new __Value<Pulumi.Vault.Config.Types.AuthLoginOci?>(() => __config.GetObject<Pulumi.Vault.Config.Types.AuthLoginOci>("authLoginOci"));
+        /// <summary>
+        /// Login to vault using the OCI method
+        /// </summary>
+        public static Pulumi.Vault.Config.Types.AuthLoginOci? AuthLoginOci
+        {
+            get => _authLoginOci.Get();
+            set => _authLoginOci.Set(value);
+        }
+
+        private static readonly __Value<Pulumi.Vault.Config.Types.AuthLoginOidc?> _authLoginOidc = new __Value<Pulumi.Vault.Config.Types.AuthLoginOidc?>(() => __config.GetObject<Pulumi.Vault.Config.Types.AuthLoginOidc>("authLoginOidc"));
+        /// <summary>
+        /// Login to vault using the oidc method
+        /// </summary>
+        public static Pulumi.Vault.Config.Types.AuthLoginOidc? AuthLoginOidc
+        {
+            get => _authLoginOidc.Get();
+            set => _authLoginOidc.Set(value);
+        }
+
+        private static readonly __Value<Pulumi.Vault.Config.Types.AuthLoginRadius?> _authLoginRadius = new __Value<Pulumi.Vault.Config.Types.AuthLoginRadius?>(() => __config.GetObject<Pulumi.Vault.Config.Types.AuthLoginRadius>("authLoginRadius"));
+        /// <summary>
+        /// Login to vault using the radius method
+        /// </summary>
+        public static Pulumi.Vault.Config.Types.AuthLoginRadius? AuthLoginRadius
+        {
+            get => _authLoginRadius.Get();
+            set => _authLoginRadius.Set(value);
+        }
+
+        private static readonly __Value<Pulumi.Vault.Config.Types.AuthLoginUserpass?> _authLoginUserpass = new __Value<Pulumi.Vault.Config.Types.AuthLoginUserpass?>(() => __config.GetObject<Pulumi.Vault.Config.Types.AuthLoginUserpass>("authLoginUserpass"));
+        /// <summary>
+        /// Login to vault using the userpass method
+        /// </summary>
+        public static Pulumi.Vault.Config.Types.AuthLoginUserpass? AuthLoginUserpass
+        {
+            get => _authLoginUserpass.Get();
+            set => _authLoginUserpass.Set(value);
         }
 
         private static readonly __Value<string?> _caCertDir = new __Value<string?>(() => __config.Get("caCertDir"));
@@ -82,14 +182,14 @@ namespace Pulumi.Vault
             set => _caCertFile.Set(value);
         }
 
-        private static readonly __Value<ImmutableArray<Pulumi.Vault.Config.Types.ClientAuths>> _clientAuths = new __Value<ImmutableArray<Pulumi.Vault.Config.Types.ClientAuths>>(() => __config.GetObject<ImmutableArray<Pulumi.Vault.Config.Types.ClientAuths>>("clientAuths"));
+        private static readonly __Value<Pulumi.Vault.Config.Types.ClientAuth?> _clientAuth = new __Value<Pulumi.Vault.Config.Types.ClientAuth?>(() => __config.GetObject<Pulumi.Vault.Config.Types.ClientAuth>("clientAuth"));
         /// <summary>
         /// Client authentication credentials.
         /// </summary>
-        public static ImmutableArray<Pulumi.Vault.Config.Types.ClientAuths> ClientAuths
+        public static Pulumi.Vault.Config.Types.ClientAuth? ClientAuth
         {
-            get => _clientAuths.Get();
-            set => _clientAuths.Set(value);
+            get => _clientAuth.Get();
+            set => _clientAuth.Set(value);
         }
 
         private static readonly __Value<ImmutableArray<Pulumi.Vault.Config.Types.Headers>> _headers = new __Value<ImmutableArray<Pulumi.Vault.Config.Types.Headers>>(() => __config.GetObject<ImmutableArray<Pulumi.Vault.Config.Types.Headers>>("headers"));
@@ -195,7 +295,7 @@ namespace Pulumi.Vault
         public static class Types
         {
 
-             public class AuthLogins
+             public class AuthLogin
              {
                 public string? Method { get; set; } = null!;
                 public string? Namespace { get; set; } = null!;
@@ -203,7 +303,116 @@ namespace Pulumi.Vault
                 public string Path { get; set; }
             }
 
-             public class ClientAuths
+             public class AuthLoginAws
+             {
+                public string? AwsAccessKeyId { get; set; } = null!;
+                public string? AwsIamEndpoint { get; set; } = null!;
+                public string? AwsProfile { get; set; } = null!;
+                public string? AwsRegion { get; set; } = null!;
+                public string? AwsRoleArn { get; set; } = null!;
+                public string? AwsRoleSessionName { get; set; } = null!;
+                public string? AwsSecretAccessKey { get; set; } = null!;
+                public string? AwsSessionToken { get; set; } = null!;
+                public string? AwsSharedCredentialsFile { get; set; } = null!;
+                public string? AwsStsEndpoint { get; set; } = null!;
+                public string? AwsWebIdentityTokenFile { get; set; } = null!;
+                public string? HeaderValue { get; set; } = null!;
+                public string? Mount { get; set; } = null!;
+                public string? Namespace { get; set; } = null!;
+                public string Role { get; set; }
+            }
+
+             public class AuthLoginAzure
+             {
+                public string? ClientId { get; set; } = null!;
+                public string? Jwt { get; set; } = null!;
+                public string? Mount { get; set; } = null!;
+                public string? Namespace { get; set; } = null!;
+                public string ResourceGroupName { get; set; }
+                public string Role { get; set; }
+                public string? Scope { get; set; } = null!;
+                public string SubscriptionId { get; set; }
+                public string? TenantId { get; set; } = null!;
+                public string? VmName { get; set; } = null!;
+                public string? VmssName { get; set; } = null!;
+            }
+
+             public class AuthLoginCert
+             {
+                public string CertFile { get; set; }
+                public string KeyFile { get; set; }
+                public string? Mount { get; set; } = null!;
+                public string? Name { get; set; } = null!;
+                public string? Namespace { get; set; } = null!;
+            }
+
+             public class AuthLoginGcp
+             {
+                public string? Credentials { get; set; } = null!;
+                public string? Jwt { get; set; } = null!;
+                public string? Mount { get; set; } = null!;
+                public string? Namespace { get; set; } = null!;
+                public string Role { get; set; }
+                public string? ServiceAccount { get; set; } = null!;
+            }
+
+             public class AuthLoginJwt
+             {
+                public string Jwt { get; set; }
+                public string? Mount { get; set; } = null!;
+                public string? Namespace { get; set; } = null!;
+                public string Role { get; set; }
+            }
+
+             public class AuthLoginKerberos
+             {
+                public bool? DisableFastNegotiation { get; set; }
+                public string? KeytabPath { get; set; } = null!;
+                public string? Krb5confPath { get; set; } = null!;
+                public string? Mount { get; set; } = null!;
+                public string? Namespace { get; set; } = null!;
+                public string? Realm { get; set; } = null!;
+                public bool? RemoveInstanceName { get; set; }
+                public string? Service { get; set; } = null!;
+                public string? Token { get; set; } = null!;
+                public string? Username { get; set; } = null!;
+            }
+
+             public class AuthLoginOci
+             {
+                public string AuthType { get; set; }
+                public string? Mount { get; set; } = null!;
+                public string? Namespace { get; set; } = null!;
+                public string Role { get; set; }
+            }
+
+             public class AuthLoginOidc
+             {
+                public string? CallbackAddress { get; set; } = null!;
+                public string? CallbackListenerAddress { get; set; } = null!;
+                public string? Mount { get; set; } = null!;
+                public string? Namespace { get; set; } = null!;
+                public string Role { get; set; }
+            }
+
+             public class AuthLoginRadius
+             {
+                public string? Mount { get; set; } = null!;
+                public string? Namespace { get; set; } = null!;
+                public string Password { get; set; }
+                public string Username { get; set; }
+            }
+
+             public class AuthLoginUserpass
+             {
+                public string? Mount { get; set; } = null!;
+                public string? Namespace { get; set; } = null!;
+                public string? Password { get; set; } = null!;
+                public string? PasswordFile { get; set; } = null!;
+                public string Username { get; set; }
+            }
+
+             public class ClientAuth
              {
                 public string CertFile { get; set; }
                 public string KeyFile { get; set; }

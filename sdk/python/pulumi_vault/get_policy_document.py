@@ -23,13 +23,16 @@ class GetPolicyDocumentResult:
     """
     A collection of values returned by getPolicyDocument.
     """
-    def __init__(__self__, hcl=None, id=None, rules=None):
+    def __init__(__self__, hcl=None, id=None, namespace=None, rules=None):
         if hcl and not isinstance(hcl, str):
             raise TypeError("Expected argument 'hcl' to be a str")
         pulumi.set(__self__, "hcl", hcl)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if namespace and not isinstance(namespace, str):
+            raise TypeError("Expected argument 'namespace' to be a str")
+        pulumi.set(__self__, "namespace", namespace)
         if rules and not isinstance(rules, list):
             raise TypeError("Expected argument 'rules' to be a list")
         pulumi.set(__self__, "rules", rules)
@@ -52,6 +55,11 @@ class GetPolicyDocumentResult:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[str]:
+        return pulumi.get(self, "namespace")
+
+    @property
+    @pulumi.getter
     def rules(self) -> Sequence['outputs.GetPolicyDocumentRuleResult']:
         return pulumi.get(self, "rules")
 
@@ -64,10 +72,12 @@ class AwaitableGetPolicyDocumentResult(GetPolicyDocumentResult):
         return GetPolicyDocumentResult(
             hcl=self.hcl,
             id=self.id,
+            namespace=self.namespace,
             rules=self.rules)
 
 
-def get_policy_document(rules: Optional[Sequence[pulumi.InputType['GetPolicyDocumentRuleArgs']]] = None,
+def get_policy_document(namespace: Optional[str] = None,
+                        rules: Optional[Sequence[pulumi.InputType['GetPolicyDocumentRuleArgs']]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPolicyDocumentResult:
     """
     This is a data source which can be used to construct a HCL representation of an Vault policy document, for use with resources which expect policy documents, such as the `Policy` resource.
@@ -93,6 +103,7 @@ def get_policy_document(rules: Optional[Sequence[pulumi.InputType['GetPolicyDocu
     ```
     """
     __args__ = dict()
+    __args__['namespace'] = namespace
     __args__['rules'] = rules
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('vault:index/getPolicyDocument:getPolicyDocument', __args__, opts=opts, typ=GetPolicyDocumentResult).value
@@ -100,11 +111,13 @@ def get_policy_document(rules: Optional[Sequence[pulumi.InputType['GetPolicyDocu
     return AwaitableGetPolicyDocumentResult(
         hcl=__ret__.hcl,
         id=__ret__.id,
+        namespace=__ret__.namespace,
         rules=__ret__.rules)
 
 
 @_utilities.lift_output_func(get_policy_document)
-def get_policy_document_output(rules: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetPolicyDocumentRuleArgs']]]]] = None,
+def get_policy_document_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
+                               rules: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetPolicyDocumentRuleArgs']]]]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPolicyDocumentResult]:
     """
     This is a data source which can be used to construct a HCL representation of an Vault policy document, for use with resources which expect policy documents, such as the `Policy` resource.

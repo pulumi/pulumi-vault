@@ -16,6 +16,7 @@ class AuthBackendRoletagBlacklistArgs:
     def __init__(__self__, *,
                  backend: pulumi.Input[str],
                  disable_periodic_tidy: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  safety_buffer: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a AuthBackendRoletagBlacklist resource.
@@ -23,6 +24,10 @@ class AuthBackendRoletagBlacklistArgs:
                mounted at.
         :param pulumi.Input[bool] disable_periodic_tidy: If set to true, disables the periodic
                tidying of the roletag blacklist entries. Defaults to false.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[int] safety_buffer: The amount of extra time that must have passed
                beyond the roletag expiration, before it is removed from the backend storage.
                Defaults to 259,200 seconds, or 72 hours.
@@ -30,6 +35,8 @@ class AuthBackendRoletagBlacklistArgs:
         pulumi.set(__self__, "backend", backend)
         if disable_periodic_tidy is not None:
             pulumi.set(__self__, "disable_periodic_tidy", disable_periodic_tidy)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if safety_buffer is not None:
             pulumi.set(__self__, "safety_buffer", safety_buffer)
 
@@ -60,6 +67,21 @@ class AuthBackendRoletagBlacklistArgs:
         pulumi.set(self, "disable_periodic_tidy", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="safetyBuffer")
     def safety_buffer(self) -> Optional[pulumi.Input[int]]:
         """
@@ -79,6 +101,7 @@ class _AuthBackendRoletagBlacklistState:
     def __init__(__self__, *,
                  backend: Optional[pulumi.Input[str]] = None,
                  disable_periodic_tidy: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  safety_buffer: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering AuthBackendRoletagBlacklist resources.
@@ -86,6 +109,10 @@ class _AuthBackendRoletagBlacklistState:
                mounted at.
         :param pulumi.Input[bool] disable_periodic_tidy: If set to true, disables the periodic
                tidying of the roletag blacklist entries. Defaults to false.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[int] safety_buffer: The amount of extra time that must have passed
                beyond the roletag expiration, before it is removed from the backend storage.
                Defaults to 259,200 seconds, or 72 hours.
@@ -94,6 +121,8 @@ class _AuthBackendRoletagBlacklistState:
             pulumi.set(__self__, "backend", backend)
         if disable_periodic_tidy is not None:
             pulumi.set(__self__, "disable_periodic_tidy", disable_periodic_tidy)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if safety_buffer is not None:
             pulumi.set(__self__, "safety_buffer", safety_buffer)
 
@@ -124,6 +153,21 @@ class _AuthBackendRoletagBlacklistState:
         pulumi.set(self, "disable_periodic_tidy", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="safetyBuffer")
     def safety_buffer(self) -> Optional[pulumi.Input[int]]:
         """
@@ -145,6 +189,7 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  disable_periodic_tidy: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  safety_buffer: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
@@ -168,6 +213,10 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
                mounted at.
         :param pulumi.Input[bool] disable_periodic_tidy: If set to true, disables the periodic
                tidying of the roletag blacklist entries. Defaults to false.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[int] safety_buffer: The amount of extra time that must have passed
                beyond the roletag expiration, before it is removed from the backend storage.
                Defaults to 259,200 seconds, or 72 hours.
@@ -210,6 +259,7 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  disable_periodic_tidy: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  safety_buffer: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -224,6 +274,7 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
                 raise TypeError("Missing required property 'backend'")
             __props__.__dict__["backend"] = backend
             __props__.__dict__["disable_periodic_tidy"] = disable_periodic_tidy
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["safety_buffer"] = safety_buffer
         super(AuthBackendRoletagBlacklist, __self__).__init__(
             'vault:aws/authBackendRoletagBlacklist:AuthBackendRoletagBlacklist',
@@ -237,6 +288,7 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
             disable_periodic_tidy: Optional[pulumi.Input[bool]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             safety_buffer: Optional[pulumi.Input[int]] = None) -> 'AuthBackendRoletagBlacklist':
         """
         Get an existing AuthBackendRoletagBlacklist resource's state with the given name, id, and optional extra
@@ -249,6 +301,10 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
                mounted at.
         :param pulumi.Input[bool] disable_periodic_tidy: If set to true, disables the periodic
                tidying of the roletag blacklist entries. Defaults to false.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[int] safety_buffer: The amount of extra time that must have passed
                beyond the roletag expiration, before it is removed from the backend storage.
                Defaults to 259,200 seconds, or 72 hours.
@@ -259,6 +315,7 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
 
         __props__.__dict__["backend"] = backend
         __props__.__dict__["disable_periodic_tidy"] = disable_periodic_tidy
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["safety_buffer"] = safety_buffer
         return AuthBackendRoletagBlacklist(resource_name, opts=opts, __props__=__props__)
 
@@ -279,6 +336,17 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
         tidying of the roletag blacklist entries. Defaults to false.
         """
         return pulumi.get(self, "disable_periodic_tidy")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="safetyBuffer")

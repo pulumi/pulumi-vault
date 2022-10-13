@@ -233,6 +233,38 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.locality);
     }
     /**
+     * The ID of the previously configured managed key. This field is
+     * required if `type` is `kms` and it conflicts with `managed_key_name`
+     * 
+     */
+    @Export(name="managedKeyId", type=String.class, parameters={})
+    private Output<String> managedKeyId;
+
+    /**
+     * @return The ID of the previously configured managed key. This field is
+     * required if `type` is `kms` and it conflicts with `managed_key_name`
+     * 
+     */
+    public Output<String> managedKeyId() {
+        return this.managedKeyId;
+    }
+    /**
+     * The name of the previously configured managed key. This field is
+     * required if `type` is `kms`  and it conflicts with `managed_key_id`
+     * 
+     */
+    @Export(name="managedKeyName", type=String.class, parameters={})
+    private Output<String> managedKeyName;
+
+    /**
+     * @return The name of the previously configured managed key. This field is
+     * required if `type` is `kms`  and it conflicts with `managed_key_id`
+     * 
+     */
+    public Output<String> managedKeyName() {
+        return this.managedKeyName;
+    }
+    /**
      * The maximum path length to encode in the generated certificate
      * 
      */
@@ -245,6 +277,26 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Integer>> maxPathLength() {
         return Codegen.optional(this.maxPathLength);
+    }
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="namespace", type=String.class, parameters={})
+    private Output</* @Nullable */ String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> namespace() {
+        return Codegen.optional(this.namespace);
     }
     /**
      * The organization
@@ -405,14 +457,16 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.ttl);
     }
     /**
-     * Type of intermediate to create. Must be either \&#34;exported\&#34; or \&#34;internal\&#34;
+     * Type of intermediate to create. Must be either \&#34;exported\&#34;, \&#34;internal\&#34;
+     * or \&#34;kms\&#34;
      * 
      */
     @Export(name="type", type=String.class, parameters={})
     private Output<String> type;
 
     /**
-     * @return Type of intermediate to create. Must be either \&#34;exported\&#34; or \&#34;internal\&#34;
+     * @return Type of intermediate to create. Must be either \&#34;exported\&#34;, \&#34;internal\&#34;
+     * or \&#34;kms\&#34;
      * 
      */
     public Output<String> type() {

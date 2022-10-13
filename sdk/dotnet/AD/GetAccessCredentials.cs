@@ -12,10 +12,10 @@ namespace Pulumi.Vault.AD
     public static class GetAccessCredentials
     {
         public static Task<GetAccessCredentialsResult> InvokeAsync(GetAccessCredentialsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAccessCredentialsResult>("vault:ad/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetAccessCredentialsResult>("vault:ad/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsArgs(), options.WithDefaults());
 
         public static Output<GetAccessCredentialsResult> Invoke(GetAccessCredentialsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetAccessCredentialsResult>("vault:ad/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetAccessCredentialsResult>("vault:ad/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -27,6 +27,15 @@ namespace Pulumi.Vault.AD
         /// </summary>
         [Input("backend", required: true)]
         public string Backend { get; set; } = null!;
+
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public string? Namespace { get; set; }
 
         /// <summary>
         /// The name of the AD secret backend role to read
@@ -49,6 +58,15 @@ namespace Pulumi.Vault.AD
         /// </summary>
         [Input("backend", required: true)]
         public Input<string> Backend { get; set; } = null!;
+
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// The name of the AD secret backend role to read
@@ -80,6 +98,7 @@ namespace Pulumi.Vault.AD
         /// The current set password on the Active Directory service account, provided because AD is eventually consistent.
         /// </summary>
         public readonly string LastPassword;
+        public readonly string? Namespace;
         public readonly string Role;
         /// <summary>
         /// The Active Directory service account username.
@@ -96,6 +115,8 @@ namespace Pulumi.Vault.AD
 
             string lastPassword,
 
+            string? @namespace,
+
             string role,
 
             string username)
@@ -104,6 +125,7 @@ namespace Pulumi.Vault.AD
             CurrentPassword = currentPassword;
             Id = id;
             LastPassword = lastPassword;
+            Namespace = @namespace;
             Role = role;
             Username = username;
         }

@@ -13,11 +13,13 @@ import com.pulumi.vault.consul.inputs.SecretBackendState;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
  * ## Example Usage
+ * ### Creating a standard backend resource:
  * ```java
  * package generated_program;
  * 
@@ -44,6 +46,38 @@ import javax.annotation.Nullable;
  *             .description(&#34;Manages the Consul backend&#34;)
  *             .path(&#34;consul&#34;)
  *             .token(&#34;4240861b-ce3d-8530-115a-521ff070dd29&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * ### Creating a backend resource to bootstrap a new Consul instance:
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.consul.SecretBackend;
+ * import com.pulumi.vault.consul.SecretBackendArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test = new SecretBackend(&#34;test&#34;, SecretBackendArgs.builder()        
+ *             .address(&#34;127.0.0.1:8500&#34;)
+ *             .bootstrap(true)
+ *             .description(&#34;Bootstrap the Consul backend&#34;)
+ *             .path(&#34;consul&#34;)
  *             .build());
  * 
  *     }
@@ -76,6 +110,20 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return this.address;
     }
     /**
+     * Denotes that the resource is used to bootstrap the Consul ACL system.
+     * 
+     */
+    @Export(name="bootstrap", type=Boolean.class, parameters={})
+    private Output</* @Nullable */ Boolean> bootstrap;
+
+    /**
+     * @return Denotes that the resource is used to bootstrap the Consul ACL system.
+     * 
+     */
+    public Output<Optional<Boolean>> bootstrap() {
+        return Codegen.optional(this.bootstrap);
+    }
+    /**
      * CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
      * 
      */
@@ -90,28 +138,32 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.caCert);
     }
     /**
-     * Client certificate used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.
+     * Client certificate used for Consul&#39;s TLS communication, must be x509 PEM encoded and if
+     * this is set you need to also set client_key.
      * 
      */
     @Export(name="clientCert", type=String.class, parameters={})
     private Output</* @Nullable */ String> clientCert;
 
     /**
-     * @return Client certificate used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.
+     * @return Client certificate used for Consul&#39;s TLS communication, must be x509 PEM encoded and if
+     * this is set you need to also set client_key.
      * 
      */
     public Output<Optional<String>> clientCert() {
         return Codegen.optional(this.clientCert);
     }
     /**
-     * Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+     * Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set
+     * you need to also set client_cert.
      * 
      */
     @Export(name="clientKey", type=String.class, parameters={})
     private Output</* @Nullable */ String> clientKey;
 
     /**
-     * @return Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+     * @return Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set
+     * you need to also set client_cert.
      * 
      */
     public Output<Optional<String>> clientKey() {
@@ -146,6 +198,22 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.description);
     }
     /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     * 
+     */
+    @Export(name="disableRemount", type=Boolean.class, parameters={})
+    private Output</* @Nullable */ Boolean> disableRemount;
+
+    /**
+     * @return If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     * 
+     */
+    public Output<Optional<Boolean>> disableRemount() {
+        return Codegen.optional(this.disableRemount);
+    }
+    /**
      * Specifies if the secret backend is local only.
      * 
      */
@@ -176,14 +244,36 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.maxLeaseTtlSeconds);
     }
     /**
-     * The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `consul`.
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="namespace", type=String.class, parameters={})
+    private Output</* @Nullable */ String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> namespace() {
+        return Codegen.optional(this.namespace);
+    }
+    /**
+     * The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults
+     * to `consul`.
      * 
      */
     @Export(name="path", type=String.class, parameters={})
     private Output</* @Nullable */ String> path;
 
     /**
-     * @return The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `consul`.
+     * @return The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults
+     * to `consul`.
      * 
      */
     public Output<Optional<String>> path() {
@@ -204,18 +294,20 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.scheme);
     }
     /**
-     * The Consul management token this backend should use to issue new tokens.
+     * The Consul management token this backend should use to issue new tokens. This field is required
+     * when `bootstrap` is false.
      * 
      */
     @Export(name="token", type=String.class, parameters={})
-    private Output<String> token;
+    private Output</* @Nullable */ String> token;
 
     /**
-     * @return The Consul management token this backend should use to issue new tokens.
+     * @return The Consul management token this backend should use to issue new tokens. This field is required
+     * when `bootstrap` is false.
      * 
      */
-    public Output<String> token() {
-        return this.token;
+    public Output<Optional<String>> token() {
+        return Codegen.optional(this.token);
     }
 
     /**
@@ -250,6 +342,11 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "clientCert",
+                "clientKey",
+                "token"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

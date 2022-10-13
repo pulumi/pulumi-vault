@@ -12,6 +12,16 @@ from . import _utilities
 __all__ = [
     'AuthBackendTuneArgs',
     'ProviderAuthLoginArgs',
+    'ProviderAuthLoginAwsArgs',
+    'ProviderAuthLoginAzureArgs',
+    'ProviderAuthLoginCertArgs',
+    'ProviderAuthLoginGcpArgs',
+    'ProviderAuthLoginJwtArgs',
+    'ProviderAuthLoginKerberosArgs',
+    'ProviderAuthLoginOciArgs',
+    'ProviderAuthLoginOidcArgs',
+    'ProviderAuthLoginRadiusArgs',
+    'ProviderAuthLoginUserpassArgs',
     'ProviderClientAuthArgs',
     'ProviderHeaderArgs',
     'GetPolicyDocumentRuleArgs',
@@ -224,6 +234,869 @@ class ProviderAuthLoginArgs:
     @parameters.setter
     def parameters(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "parameters", value)
+
+
+@pulumi.input_type
+class ProviderAuthLoginAwsArgs:
+    def __init__(__self__, *,
+                 role: pulumi.Input[str],
+                 aws_access_key_id: Optional[pulumi.Input[str]] = None,
+                 aws_iam_endpoint: Optional[pulumi.Input[str]] = None,
+                 aws_profile: Optional[pulumi.Input[str]] = None,
+                 aws_region: Optional[pulumi.Input[str]] = None,
+                 aws_role_arn: Optional[pulumi.Input[str]] = None,
+                 aws_role_session_name: Optional[pulumi.Input[str]] = None,
+                 aws_secret_access_key: Optional[pulumi.Input[str]] = None,
+                 aws_session_token: Optional[pulumi.Input[str]] = None,
+                 aws_shared_credentials_file: Optional[pulumi.Input[str]] = None,
+                 aws_sts_endpoint: Optional[pulumi.Input[str]] = None,
+                 aws_web_identity_token_file: Optional[pulumi.Input[str]] = None,
+                 header_value: Optional[pulumi.Input[str]] = None,
+                 mount: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "role", role)
+        if aws_access_key_id is not None:
+            pulumi.set(__self__, "aws_access_key_id", aws_access_key_id)
+        if aws_iam_endpoint is not None:
+            pulumi.set(__self__, "aws_iam_endpoint", aws_iam_endpoint)
+        if aws_profile is not None:
+            pulumi.set(__self__, "aws_profile", aws_profile)
+        if aws_region is not None:
+            pulumi.set(__self__, "aws_region", aws_region)
+        if aws_role_arn is not None:
+            pulumi.set(__self__, "aws_role_arn", aws_role_arn)
+        if aws_role_session_name is not None:
+            pulumi.set(__self__, "aws_role_session_name", aws_role_session_name)
+        if aws_secret_access_key is not None:
+            pulumi.set(__self__, "aws_secret_access_key", aws_secret_access_key)
+        if aws_session_token is not None:
+            pulumi.set(__self__, "aws_session_token", aws_session_token)
+        if aws_shared_credentials_file is not None:
+            pulumi.set(__self__, "aws_shared_credentials_file", aws_shared_credentials_file)
+        if aws_sts_endpoint is not None:
+            pulumi.set(__self__, "aws_sts_endpoint", aws_sts_endpoint)
+        if aws_web_identity_token_file is not None:
+            pulumi.set(__self__, "aws_web_identity_token_file", aws_web_identity_token_file)
+        if header_value is not None:
+            pulumi.set(__self__, "header_value", header_value)
+        if mount is not None:
+            pulumi.set(__self__, "mount", mount)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter(name="awsAccessKeyId")
+    def aws_access_key_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "aws_access_key_id")
+
+    @aws_access_key_id.setter
+    def aws_access_key_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "aws_access_key_id", value)
+
+    @property
+    @pulumi.getter(name="awsIamEndpoint")
+    def aws_iam_endpoint(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "aws_iam_endpoint")
+
+    @aws_iam_endpoint.setter
+    def aws_iam_endpoint(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "aws_iam_endpoint", value)
+
+    @property
+    @pulumi.getter(name="awsProfile")
+    def aws_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "aws_profile")
+
+    @aws_profile.setter
+    def aws_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "aws_profile", value)
+
+    @property
+    @pulumi.getter(name="awsRegion")
+    def aws_region(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "aws_region")
+
+    @aws_region.setter
+    def aws_region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "aws_region", value)
+
+    @property
+    @pulumi.getter(name="awsRoleArn")
+    def aws_role_arn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "aws_role_arn")
+
+    @aws_role_arn.setter
+    def aws_role_arn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "aws_role_arn", value)
+
+    @property
+    @pulumi.getter(name="awsRoleSessionName")
+    def aws_role_session_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "aws_role_session_name")
+
+    @aws_role_session_name.setter
+    def aws_role_session_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "aws_role_session_name", value)
+
+    @property
+    @pulumi.getter(name="awsSecretAccessKey")
+    def aws_secret_access_key(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "aws_secret_access_key")
+
+    @aws_secret_access_key.setter
+    def aws_secret_access_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "aws_secret_access_key", value)
+
+    @property
+    @pulumi.getter(name="awsSessionToken")
+    def aws_session_token(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "aws_session_token")
+
+    @aws_session_token.setter
+    def aws_session_token(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "aws_session_token", value)
+
+    @property
+    @pulumi.getter(name="awsSharedCredentialsFile")
+    def aws_shared_credentials_file(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "aws_shared_credentials_file")
+
+    @aws_shared_credentials_file.setter
+    def aws_shared_credentials_file(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "aws_shared_credentials_file", value)
+
+    @property
+    @pulumi.getter(name="awsStsEndpoint")
+    def aws_sts_endpoint(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "aws_sts_endpoint")
+
+    @aws_sts_endpoint.setter
+    def aws_sts_endpoint(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "aws_sts_endpoint", value)
+
+    @property
+    @pulumi.getter(name="awsWebIdentityTokenFile")
+    def aws_web_identity_token_file(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "aws_web_identity_token_file")
+
+    @aws_web_identity_token_file.setter
+    def aws_web_identity_token_file(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "aws_web_identity_token_file", value)
+
+    @property
+    @pulumi.getter(name="headerValue")
+    def header_value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "header_value")
+
+    @header_value.setter
+    def header_value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "header_value", value)
+
+    @property
+    @pulumi.getter
+    def mount(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "mount")
+
+    @mount.setter
+    def mount(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mount", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+
+@pulumi.input_type
+class ProviderAuthLoginAzureArgs:
+    def __init__(__self__, *,
+                 resource_group_name: pulumi.Input[str],
+                 role: pulumi.Input[str],
+                 subscription_id: pulumi.Input[str],
+                 client_id: Optional[pulumi.Input[str]] = None,
+                 jwt: Optional[pulumi.Input[str]] = None,
+                 mount: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
+                 scope: Optional[pulumi.Input[str]] = None,
+                 tenant_id: Optional[pulumi.Input[str]] = None,
+                 vm_name: Optional[pulumi.Input[str]] = None,
+                 vmss_name: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "resource_group_name", resource_group_name)
+        pulumi.set(__self__, "role", role)
+        pulumi.set(__self__, "subscription_id", subscription_id)
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if jwt is not None:
+            pulumi.set(__self__, "jwt", jwt)
+        if mount is not None:
+            pulumi.set(__self__, "mount", mount)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
+        if scope is not None:
+            pulumi.set(__self__, "scope", scope)
+        if tenant_id is not None:
+            pulumi.set(__self__, "tenant_id", tenant_id)
+        if vm_name is not None:
+            pulumi.set(__self__, "vm_name", vm_name)
+        if vmss_name is not None:
+            pulumi.set(__self__, "vmss_name", vmss_name)
+
+    @property
+    @pulumi.getter(name="resourceGroupName")
+    def resource_group_name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "resource_group_name")
+
+    @resource_group_name.setter
+    def resource_group_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "resource_group_name", value)
+
+    @property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter(name="subscriptionId")
+    def subscription_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "subscription_id")
+
+    @subscription_id.setter
+    def subscription_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "subscription_id", value)
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "client_id")
+
+    @client_id.setter
+    def client_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_id", value)
+
+    @property
+    @pulumi.getter
+    def jwt(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "jwt")
+
+    @jwt.setter
+    def jwt(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "jwt", value)
+
+    @property
+    @pulumi.getter
+    def mount(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "mount")
+
+    @mount.setter
+    def mount(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mount", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
+    def scope(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "scope")
+
+    @scope.setter
+    def scope(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "scope", value)
+
+    @property
+    @pulumi.getter(name="tenantId")
+    def tenant_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "tenant_id")
+
+    @tenant_id.setter
+    def tenant_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tenant_id", value)
+
+    @property
+    @pulumi.getter(name="vmName")
+    def vm_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "vm_name")
+
+    @vm_name.setter
+    def vm_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vm_name", value)
+
+    @property
+    @pulumi.getter(name="vmssName")
+    def vmss_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "vmss_name")
+
+    @vmss_name.setter
+    def vmss_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vmss_name", value)
+
+
+@pulumi.input_type
+class ProviderAuthLoginCertArgs:
+    def __init__(__self__, *,
+                 cert_file: pulumi.Input[str],
+                 key_file: pulumi.Input[str],
+                 mount: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "cert_file", cert_file)
+        pulumi.set(__self__, "key_file", key_file)
+        if mount is not None:
+            pulumi.set(__self__, "mount", mount)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter(name="certFile")
+    def cert_file(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "cert_file")
+
+    @cert_file.setter
+    def cert_file(self, value: pulumi.Input[str]):
+        pulumi.set(self, "cert_file", value)
+
+    @property
+    @pulumi.getter(name="keyFile")
+    def key_file(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "key_file")
+
+    @key_file.setter
+    def key_file(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key_file", value)
+
+    @property
+    @pulumi.getter
+    def mount(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "mount")
+
+    @mount.setter
+    def mount(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mount", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+
+@pulumi.input_type
+class ProviderAuthLoginGcpArgs:
+    def __init__(__self__, *,
+                 role: pulumi.Input[str],
+                 credentials: Optional[pulumi.Input[str]] = None,
+                 jwt: Optional[pulumi.Input[str]] = None,
+                 mount: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
+                 service_account: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "role", role)
+        if credentials is not None:
+            pulumi.set(__self__, "credentials", credentials)
+        if jwt is not None:
+            pulumi.set(__self__, "jwt", jwt)
+        if mount is not None:
+            pulumi.set(__self__, "mount", mount)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
+        if service_account is not None:
+            pulumi.set(__self__, "service_account", service_account)
+
+    @property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter
+    def credentials(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "credentials")
+
+    @credentials.setter
+    def credentials(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "credentials", value)
+
+    @property
+    @pulumi.getter
+    def jwt(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "jwt")
+
+    @jwt.setter
+    def jwt(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "jwt", value)
+
+    @property
+    @pulumi.getter
+    def mount(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "mount")
+
+    @mount.setter
+    def mount(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mount", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter(name="serviceAccount")
+    def service_account(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "service_account")
+
+    @service_account.setter
+    def service_account(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_account", value)
+
+
+@pulumi.input_type
+class ProviderAuthLoginJwtArgs:
+    def __init__(__self__, *,
+                 jwt: pulumi.Input[str],
+                 role: pulumi.Input[str],
+                 mount: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "jwt", jwt)
+        pulumi.set(__self__, "role", role)
+        if mount is not None:
+            pulumi.set(__self__, "mount", mount)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def jwt(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "jwt")
+
+    @jwt.setter
+    def jwt(self, value: pulumi.Input[str]):
+        pulumi.set(self, "jwt", value)
+
+    @property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter
+    def mount(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "mount")
+
+    @mount.setter
+    def mount(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mount", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+
+@pulumi.input_type
+class ProviderAuthLoginKerberosArgs:
+    def __init__(__self__, *,
+                 disable_fast_negotiation: Optional[pulumi.Input[bool]] = None,
+                 keytab_path: Optional[pulumi.Input[str]] = None,
+                 krb5conf_path: Optional[pulumi.Input[str]] = None,
+                 mount: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
+                 realm: Optional[pulumi.Input[str]] = None,
+                 remove_instance_name: Optional[pulumi.Input[bool]] = None,
+                 service: Optional[pulumi.Input[str]] = None,
+                 token: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None):
+        if disable_fast_negotiation is not None:
+            pulumi.set(__self__, "disable_fast_negotiation", disable_fast_negotiation)
+        if keytab_path is not None:
+            pulumi.set(__self__, "keytab_path", keytab_path)
+        if krb5conf_path is not None:
+            pulumi.set(__self__, "krb5conf_path", krb5conf_path)
+        if mount is not None:
+            pulumi.set(__self__, "mount", mount)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
+        if realm is not None:
+            pulumi.set(__self__, "realm", realm)
+        if remove_instance_name is not None:
+            pulumi.set(__self__, "remove_instance_name", remove_instance_name)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
+        if token is not None:
+            pulumi.set(__self__, "token", token)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter(name="disableFastNegotiation")
+    def disable_fast_negotiation(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "disable_fast_negotiation")
+
+    @disable_fast_negotiation.setter
+    def disable_fast_negotiation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_fast_negotiation", value)
+
+    @property
+    @pulumi.getter(name="keytabPath")
+    def keytab_path(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "keytab_path")
+
+    @keytab_path.setter
+    def keytab_path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "keytab_path", value)
+
+    @property
+    @pulumi.getter(name="krb5confPath")
+    def krb5conf_path(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "krb5conf_path")
+
+    @krb5conf_path.setter
+    def krb5conf_path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "krb5conf_path", value)
+
+    @property
+    @pulumi.getter
+    def mount(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "mount")
+
+    @mount.setter
+    def mount(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mount", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
+    def realm(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "realm")
+
+    @realm.setter
+    def realm(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "realm", value)
+
+    @property
+    @pulumi.getter(name="removeInstanceName")
+    def remove_instance_name(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "remove_instance_name")
+
+    @remove_instance_name.setter
+    def remove_instance_name(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "remove_instance_name", value)
+
+    @property
+    @pulumi.getter
+    def service(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "service")
+
+    @service.setter
+    def service(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service", value)
+
+    @property
+    @pulumi.getter
+    def token(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "token")
+
+    @token.setter
+    def token(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "token", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
+
+
+@pulumi.input_type
+class ProviderAuthLoginOciArgs:
+    def __init__(__self__, *,
+                 auth_type: pulumi.Input[str],
+                 role: pulumi.Input[str],
+                 mount: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "auth_type", auth_type)
+        pulumi.set(__self__, "role", role)
+        if mount is not None:
+            pulumi.set(__self__, "mount", mount)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "auth_type")
+
+    @auth_type.setter
+    def auth_type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "auth_type", value)
+
+    @property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter
+    def mount(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "mount")
+
+    @mount.setter
+    def mount(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mount", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+
+@pulumi.input_type
+class ProviderAuthLoginOidcArgs:
+    def __init__(__self__, *,
+                 role: pulumi.Input[str],
+                 callback_address: Optional[pulumi.Input[str]] = None,
+                 callback_listener_address: Optional[pulumi.Input[str]] = None,
+                 mount: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "role", role)
+        if callback_address is not None:
+            pulumi.set(__self__, "callback_address", callback_address)
+        if callback_listener_address is not None:
+            pulumi.set(__self__, "callback_listener_address", callback_listener_address)
+        if mount is not None:
+            pulumi.set(__self__, "mount", mount)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter(name="callbackAddress")
+    def callback_address(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "callback_address")
+
+    @callback_address.setter
+    def callback_address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "callback_address", value)
+
+    @property
+    @pulumi.getter(name="callbackListenerAddress")
+    def callback_listener_address(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "callback_listener_address")
+
+    @callback_listener_address.setter
+    def callback_listener_address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "callback_listener_address", value)
+
+    @property
+    @pulumi.getter
+    def mount(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "mount")
+
+    @mount.setter
+    def mount(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mount", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+
+@pulumi.input_type
+class ProviderAuthLoginRadiusArgs:
+    def __init__(__self__, *,
+                 password: pulumi.Input[str],
+                 username: pulumi.Input[str],
+                 mount: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "username", username)
+        if mount is not None:
+            pulumi.set(__self__, "mount", mount)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def password(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: pulumi.Input[str]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: pulumi.Input[str]):
+        pulumi.set(self, "username", value)
+
+    @property
+    @pulumi.getter
+    def mount(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "mount")
+
+    @mount.setter
+    def mount(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mount", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+
+@pulumi.input_type
+class ProviderAuthLoginUserpassArgs:
+    def __init__(__self__, *,
+                 username: pulumi.Input[str],
+                 mount: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
+                 password_file: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "username", username)
+        if mount is not None:
+            pulumi.set(__self__, "mount", mount)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if password_file is not None:
+            pulumi.set(__self__, "password_file", password_file)
+
+    @property
+    @pulumi.getter
+    def username(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: pulumi.Input[str]):
+        pulumi.set(self, "username", value)
+
+    @property
+    @pulumi.getter
+    def mount(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "mount")
+
+    @mount.setter
+    def mount(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mount", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter(name="passwordFile")
+    def password_file(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "password_file")
+
+    @password_file.setter
+    def password_file(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password_file", value)
 
 
 @pulumi.input_type

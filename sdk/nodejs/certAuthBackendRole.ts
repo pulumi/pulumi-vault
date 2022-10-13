@@ -76,9 +76,14 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
      */
     public readonly allowedNames!: pulumi.Output<string[]>;
     /**
-     * Allowed organization units for authenticated client certificates
+     * @deprecated Use allowed_organizational_units
      */
     public readonly allowedOrganizationUnits!: pulumi.Output<string[]>;
+    /**
+     * Allowed organization units for authenticated client certificates.
+     * *In previous provider releases this field was incorrectly named `allowedOrganizationUnits`, please update accordingly*
+     */
+    public readonly allowedOrganizationalUnits!: pulumi.Output<string[] | undefined>;
     /**
      * Allowed URIs for authenticated client certificates
      */
@@ -99,6 +104,13 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
      * Name of the role
      */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
     /**
      * TLS extensions required on client certificates
      */
@@ -175,11 +187,13 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
             resourceInputs["allowedEmailSans"] = state ? state.allowedEmailSans : undefined;
             resourceInputs["allowedNames"] = state ? state.allowedNames : undefined;
             resourceInputs["allowedOrganizationUnits"] = state ? state.allowedOrganizationUnits : undefined;
+            resourceInputs["allowedOrganizationalUnits"] = state ? state.allowedOrganizationalUnits : undefined;
             resourceInputs["allowedUriSans"] = state ? state.allowedUriSans : undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["certificate"] = state ? state.certificate : undefined;
             resourceInputs["displayName"] = state ? state.displayName : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["requiredExtensions"] = state ? state.requiredExtensions : undefined;
             resourceInputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
             resourceInputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
@@ -200,11 +214,13 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
             resourceInputs["allowedEmailSans"] = args ? args.allowedEmailSans : undefined;
             resourceInputs["allowedNames"] = args ? args.allowedNames : undefined;
             resourceInputs["allowedOrganizationUnits"] = args ? args.allowedOrganizationUnits : undefined;
+            resourceInputs["allowedOrganizationalUnits"] = args ? args.allowedOrganizationalUnits : undefined;
             resourceInputs["allowedUriSans"] = args ? args.allowedUriSans : undefined;
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["certificate"] = args ? args.certificate : undefined;
             resourceInputs["displayName"] = args ? args.displayName : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["requiredExtensions"] = args ? args.requiredExtensions : undefined;
             resourceInputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
             resourceInputs["tokenExplicitMaxTtl"] = args ? args.tokenExplicitMaxTtl : undefined;
@@ -242,9 +258,14 @@ export interface CertAuthBackendRoleState {
      */
     allowedNames?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Allowed organization units for authenticated client certificates
+     * @deprecated Use allowed_organizational_units
      */
     allowedOrganizationUnits?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Allowed organization units for authenticated client certificates.
+     * *In previous provider releases this field was incorrectly named `allowedOrganizationUnits`, please update accordingly*
+     */
+    allowedOrganizationalUnits?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Allowed URIs for authenticated client certificates
      */
@@ -265,6 +286,13 @@ export interface CertAuthBackendRoleState {
      * Name of the role
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * TLS extensions required on client certificates
      */
@@ -345,9 +373,14 @@ export interface CertAuthBackendRoleArgs {
      */
     allowedNames?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Allowed organization units for authenticated client certificates
+     * @deprecated Use allowed_organizational_units
      */
     allowedOrganizationUnits?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Allowed organization units for authenticated client certificates.
+     * *In previous provider releases this field was incorrectly named `allowedOrganizationUnits`, please update accordingly*
+     */
+    allowedOrganizationalUnits?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Allowed URIs for authenticated client certificates
      */
@@ -368,6 +401,13 @@ export interface CertAuthBackendRoleArgs {
      * Name of the role
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * TLS extensions required on client certificates
      */

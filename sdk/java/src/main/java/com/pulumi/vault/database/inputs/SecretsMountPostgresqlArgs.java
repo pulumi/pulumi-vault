@@ -70,6 +70,21 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
     }
 
     /**
+     * Disable special character escaping in username and password.
+     * 
+     */
+    @Import(name="disableEscaping")
+    private @Nullable Output<Boolean> disableEscaping;
+
+    /**
+     * @return Disable special character escaping in username and password.
+     * 
+     */
+    public Optional<Output<Boolean>> disableEscaping() {
+        return Optional.ofNullable(this.disableEscaping);
+    }
+
+    /**
      * The maximum number of seconds to keep
      * a connection alive for.
      * 
@@ -225,6 +240,7 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
         this.allowedRoles = $.allowedRoles;
         this.connectionUrl = $.connectionUrl;
         this.data = $.data;
+        this.disableEscaping = $.disableEscaping;
         this.maxConnectionLifetime = $.maxConnectionLifetime;
         this.maxIdleConnections = $.maxIdleConnections;
         this.maxOpenConnections = $.maxOpenConnections;
@@ -331,6 +347,27 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
          */
         public Builder data(Map<String,Object> data) {
             return data(Output.of(data));
+        }
+
+        /**
+         * @param disableEscaping Disable special character escaping in username and password.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableEscaping(@Nullable Output<Boolean> disableEscaping) {
+            $.disableEscaping = disableEscaping;
+            return this;
+        }
+
+        /**
+         * @param disableEscaping Disable special character escaping in username and password.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableEscaping(Boolean disableEscaping) {
+            return disableEscaping(Output.of(disableEscaping));
         }
 
         /**

@@ -9,3 +9,6 @@ from .auth_backend_config import *
 from .auth_backend_role import *
 from .get_auth_backend_config import *
 from .get_auth_backend_role import *
+from .get_service_account_token import *
+from .secret_backend import *
+from .secret_backend_role import *

@@ -67,6 +67,11 @@ type GetAccessCredentialsArgs struct {
 	// the number of seconds after which to give up validating credentials. Defaults
 	// to 300.
 	MaxCredValidationSeconds *int `pulumi:"maxCredValidationSeconds"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// If 'validate_creds' is true,
 	// the number of seconds to wait between each test of generated credentials.
 	// Defaults to 1.
@@ -112,6 +117,7 @@ type GetAccessCredentialsResult struct {
 	LeaseRenewable           bool    `pulumi:"leaseRenewable"`
 	LeaseStartTime           string  `pulumi:"leaseStartTime"`
 	MaxCredValidationSeconds *int    `pulumi:"maxCredValidationSeconds"`
+	Namespace                *string `pulumi:"namespace"`
 	NumSecondsBetweenTests   *int    `pulumi:"numSecondsBetweenTests"`
 	NumSequentialSuccesses   *int    `pulumi:"numSequentialSuccesses"`
 	Role                     string  `pulumi:"role"`
@@ -147,6 +153,11 @@ type GetAccessCredentialsOutputArgs struct {
 	// the number of seconds after which to give up validating credentials. Defaults
 	// to 300.
 	MaxCredValidationSeconds pulumi.IntPtrInput `pulumi:"maxCredValidationSeconds"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 	// If 'validate_creds' is true,
 	// the number of seconds to wait between each test of generated credentials.
 	// Defaults to 1.
@@ -237,6 +248,10 @@ func (o GetAccessCredentialsResultOutput) LeaseStartTime() pulumi.StringOutput {
 
 func (o GetAccessCredentialsResultOutput) MaxCredValidationSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GetAccessCredentialsResult) *int { return v.MaxCredValidationSeconds }).(pulumi.IntPtrOutput)
+}
+
+func (o GetAccessCredentialsResultOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 func (o GetAccessCredentialsResultOutput) NumSecondsBetweenTests() pulumi.IntPtrOutput {

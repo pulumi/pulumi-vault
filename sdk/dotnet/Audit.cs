@@ -80,6 +80,15 @@ namespace Pulumi.Vault
         public Output<bool?> Local { get; private set; } = null!;
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
         /// Configuration options to pass to the audit device itself.
         /// </summary>
         [Output("options")]
@@ -155,6 +164,15 @@ namespace Pulumi.Vault
         [Input("local")]
         public Input<bool>? Local { get; set; }
 
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
         [Input("options", required: true)]
         private InputMap<string>? _options;
 
@@ -198,6 +216,15 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("local")]
         public Input<bool>? Local { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         [Input("options")]
         private InputMap<string>? _options;

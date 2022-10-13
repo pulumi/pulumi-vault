@@ -49,6 +49,15 @@ namespace Pulumi.Vault.Transit
         public Output<string> Backend { get; private set; } = null!;
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
         /// The number of cache entries. 0 means unlimited.
         /// </summary>
         [Output("size")]
@@ -107,6 +116,15 @@ namespace Pulumi.Vault.Transit
         public Input<string> Backend { get; set; } = null!;
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
         /// The number of cache entries. 0 means unlimited.
         /// </summary>
         [Input("size", required: true)]
@@ -125,6 +143,15 @@ namespace Pulumi.Vault.Transit
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// The number of cache entries. 0 means unlimited.

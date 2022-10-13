@@ -72,6 +72,11 @@ type AuthBackendRole struct {
 	// Whether or not to require `secretId` to be
 	// presented when logging in using this AppRole. Defaults to `true`.
 	BindSecretId pulumi.BoolPtrOutput `pulumi:"bindSecretId"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The RoleID of this role. If not specified, one will be
 	// auto-generated.
 	RoleId pulumi.StringOutput `pulumi:"roleId"`
@@ -162,6 +167,11 @@ type authBackendRoleState struct {
 	// Whether or not to require `secretId` to be
 	// presented when logging in using this AppRole. Defaults to `true`.
 	BindSecretId *bool `pulumi:"bindSecretId"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The RoleID of this role. If not specified, one will be
 	// auto-generated.
 	RoleId *string `pulumi:"roleId"`
@@ -221,6 +231,11 @@ type AuthBackendRoleState struct {
 	// Whether or not to require `secretId` to be
 	// presented when logging in using this AppRole. Defaults to `true`.
 	BindSecretId pulumi.BoolPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The RoleID of this role. If not specified, one will be
 	// auto-generated.
 	RoleId pulumi.StringPtrInput
@@ -284,6 +299,11 @@ type authBackendRoleArgs struct {
 	// Whether or not to require `secretId` to be
 	// presented when logging in using this AppRole. Defaults to `true`.
 	BindSecretId *bool `pulumi:"bindSecretId"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The RoleID of this role. If not specified, one will be
 	// auto-generated.
 	RoleId *string `pulumi:"roleId"`
@@ -344,6 +364,11 @@ type AuthBackendRoleArgs struct {
 	// Whether or not to require `secretId` to be
 	// presented when logging in using this AppRole. Defaults to `true`.
 	BindSecretId pulumi.BoolPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The RoleID of this role. If not specified, one will be
 	// auto-generated.
 	RoleId pulumi.StringPtrInput
@@ -493,6 +518,14 @@ func (o AuthBackendRoleOutput) Backend() pulumi.StringPtrOutput {
 // presented when logging in using this AppRole. Defaults to `true`.
 func (o AuthBackendRoleOutput) BindSecretId() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AuthBackendRole) pulumi.BoolPtrOutput { return v.BindSecretId }).(pulumi.BoolPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o AuthBackendRoleOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The RoleID of this role. If not specified, one will be

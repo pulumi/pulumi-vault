@@ -85,6 +85,11 @@ type AuthBackendRole struct {
 	BoundServiceAccountNames pulumi.StringArrayOutput `pulumi:"boundServiceAccountNames"`
 	// List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to "*".
 	BoundServiceAccountNamespaces pulumi.StringArrayOutput `pulumi:"boundServiceAccountNamespaces"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Name of the role.
 	RoleName pulumi.StringOutput `pulumi:"roleName"`
 	// List of CIDR blocks; if set, specifies blocks of IP
@@ -172,6 +177,11 @@ type authBackendRoleState struct {
 	BoundServiceAccountNames []string `pulumi:"boundServiceAccountNames"`
 	// List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to "*".
 	BoundServiceAccountNamespaces []string `pulumi:"boundServiceAccountNamespaces"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Name of the role.
 	RoleName *string `pulumi:"roleName"`
 	// List of CIDR blocks; if set, specifies blocks of IP
@@ -222,6 +232,11 @@ type AuthBackendRoleState struct {
 	BoundServiceAccountNames pulumi.StringArrayInput
 	// List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to "*".
 	BoundServiceAccountNamespaces pulumi.StringArrayInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Name of the role.
 	RoleName pulumi.StringPtrInput
 	// List of CIDR blocks; if set, specifies blocks of IP
@@ -276,6 +291,11 @@ type authBackendRoleArgs struct {
 	BoundServiceAccountNames []string `pulumi:"boundServiceAccountNames"`
 	// List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to "*".
 	BoundServiceAccountNamespaces []string `pulumi:"boundServiceAccountNamespaces"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Name of the role.
 	RoleName string `pulumi:"roleName"`
 	// List of CIDR blocks; if set, specifies blocks of IP
@@ -327,6 +347,11 @@ type AuthBackendRoleArgs struct {
 	BoundServiceAccountNames pulumi.StringArrayInput
 	// List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to "*".
 	BoundServiceAccountNamespaces pulumi.StringArrayInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Name of the role.
 	RoleName pulumi.StringInput
 	// List of CIDR blocks; if set, specifies blocks of IP
@@ -476,6 +501,14 @@ func (o AuthBackendRoleOutput) BoundServiceAccountNames() pulumi.StringArrayOutp
 // List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to "*".
 func (o AuthBackendRoleOutput) BoundServiceAccountNamespaces() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringArrayOutput { return v.BoundServiceAccountNamespaces }).(pulumi.StringArrayOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o AuthBackendRoleOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Name of the role.

@@ -76,6 +76,15 @@ namespace Pulumi.Vault.PkiSecret
         public Output<ImmutableArray<string>> IssuingCertificates { get; private set; } = null!;
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies the URL values for the OCSP Servers field.
         /// </summary>
         [Output("ocspServers")]
@@ -157,6 +166,15 @@ namespace Pulumi.Vault.PkiSecret
             set => _issuingCertificates = value;
         }
 
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
         [Input("ocspServers")]
         private InputList<string>? _ocspServers;
 
@@ -206,6 +224,15 @@ namespace Pulumi.Vault.PkiSecret
             get => _issuingCertificates ?? (_issuingCertificates = new InputList<string>());
             set => _issuingCertificates = value;
         }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         [Input("ocspServers")]
         private InputList<string>? _ocspServers;

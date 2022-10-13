@@ -97,12 +97,19 @@ type SecretBackendConnection struct {
 	MysqlRds SecretBackendConnectionMysqlRdsPtrOutput `pulumi:"mysqlRds"`
 	// A unique name to give the database connection.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// A nested block containing configuration options for Oracle connections.
 	Oracle SecretBackendConnectionOraclePtrOutput `pulumi:"oracle"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringOutput `pulumi:"pluginName"`
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql SecretBackendConnectionPostgresqlPtrOutput `pulumi:"postgresql"`
+	// A nested block containing configuration options for Redis ElastiCache connections.
+	RedisElasticache SecretBackendConnectionRedisElasticachePtrOutput `pulumi:"redisElasticache"`
 	// Connection parameters for the redshift-database-plugin plugin.
 	Redshift SecretBackendConnectionRedshiftPtrOutput `pulumi:"redshift"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -179,12 +186,19 @@ type secretBackendConnectionState struct {
 	MysqlRds *SecretBackendConnectionMysqlRds `pulumi:"mysqlRds"`
 	// A unique name to give the database connection.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// A nested block containing configuration options for Oracle connections.
 	Oracle *SecretBackendConnectionOracle `pulumi:"oracle"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql *SecretBackendConnectionPostgresql `pulumi:"postgresql"`
+	// A nested block containing configuration options for Redis ElastiCache connections.
+	RedisElasticache *SecretBackendConnectionRedisElasticache `pulumi:"redisElasticache"`
 	// Connection parameters for the redshift-database-plugin plugin.
 	Redshift *SecretBackendConnectionRedshift `pulumi:"redshift"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -230,12 +244,19 @@ type SecretBackendConnectionState struct {
 	MysqlRds SecretBackendConnectionMysqlRdsPtrInput
 	// A unique name to give the database connection.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// A nested block containing configuration options for Oracle connections.
 	Oracle SecretBackendConnectionOraclePtrInput
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql SecretBackendConnectionPostgresqlPtrInput
+	// A nested block containing configuration options for Redis ElastiCache connections.
+	RedisElasticache SecretBackendConnectionRedisElasticachePtrInput
 	// Connection parameters for the redshift-database-plugin plugin.
 	Redshift SecretBackendConnectionRedshiftPtrInput
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -285,12 +306,19 @@ type secretBackendConnectionArgs struct {
 	MysqlRds *SecretBackendConnectionMysqlRds `pulumi:"mysqlRds"`
 	// A unique name to give the database connection.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// A nested block containing configuration options for Oracle connections.
 	Oracle *SecretBackendConnectionOracle `pulumi:"oracle"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql *SecretBackendConnectionPostgresql `pulumi:"postgresql"`
+	// A nested block containing configuration options for Redis ElastiCache connections.
+	RedisElasticache *SecretBackendConnectionRedisElasticache `pulumi:"redisElasticache"`
 	// Connection parameters for the redshift-database-plugin plugin.
 	Redshift *SecretBackendConnectionRedshift `pulumi:"redshift"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -337,12 +365,19 @@ type SecretBackendConnectionArgs struct {
 	MysqlRds SecretBackendConnectionMysqlRdsPtrInput
 	// A unique name to give the database connection.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// A nested block containing configuration options for Oracle connections.
 	Oracle SecretBackendConnectionOraclePtrInput
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql SecretBackendConnectionPostgresqlPtrInput
+	// A nested block containing configuration options for Redis ElastiCache connections.
+	RedisElasticache SecretBackendConnectionRedisElasticachePtrInput
 	// Connection parameters for the redshift-database-plugin plugin.
 	Redshift SecretBackendConnectionRedshiftPtrInput
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -522,6 +557,14 @@ func (o SecretBackendConnectionOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendConnection) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured namespace.
+// *Available only for Vault Enterprise*.
+func (o SecretBackendConnectionOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
 // A nested block containing configuration options for Oracle connections.
 func (o SecretBackendConnectionOutput) Oracle() SecretBackendConnectionOraclePtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnection) SecretBackendConnectionOraclePtrOutput { return v.Oracle }).(SecretBackendConnectionOraclePtrOutput)
@@ -535,6 +578,13 @@ func (o SecretBackendConnectionOutput) PluginName() pulumi.StringOutput {
 // A nested block containing configuration options for PostgreSQL connections.
 func (o SecretBackendConnectionOutput) Postgresql() SecretBackendConnectionPostgresqlPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnection) SecretBackendConnectionPostgresqlPtrOutput { return v.Postgresql }).(SecretBackendConnectionPostgresqlPtrOutput)
+}
+
+// A nested block containing configuration options for Redis ElastiCache connections.
+func (o SecretBackendConnectionOutput) RedisElasticache() SecretBackendConnectionRedisElasticachePtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) SecretBackendConnectionRedisElasticachePtrOutput {
+		return v.RedisElasticache
+	}).(SecretBackendConnectionRedisElasticachePtrOutput)
 }
 
 // Connection parameters for the redshift-database-plugin plugin.

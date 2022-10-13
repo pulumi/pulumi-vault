@@ -15,8 +15,8 @@ namespace Pulumi.Vault.Azure.Inputs
         [Input("roleId")]
         public Input<string>? RoleId { get; set; }
 
-        [Input("roleName", required: true)]
-        public Input<string> RoleName { get; set; } = null!;
+        [Input("roleName")]
+        public Input<string>? RoleName { get; set; }
 
         [Input("scope", required: true)]
         public Input<string> Scope { get; set; } = null!;

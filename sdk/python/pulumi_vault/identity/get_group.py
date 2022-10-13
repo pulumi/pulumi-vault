@@ -21,7 +21,7 @@ class GetGroupResult:
     """
     A collection of values returned by getGroup.
     """
-    def __init__(__self__, alias_canonical_id=None, alias_creation_time=None, alias_id=None, alias_last_update_time=None, alias_merged_from_canonical_ids=None, alias_metadata=None, alias_mount_accessor=None, alias_mount_path=None, alias_mount_type=None, alias_name=None, creation_time=None, data_json=None, group_id=None, group_name=None, id=None, last_update_time=None, member_entity_ids=None, member_group_ids=None, metadata=None, modify_index=None, namespace_id=None, parent_group_ids=None, policies=None, type=None):
+    def __init__(__self__, alias_canonical_id=None, alias_creation_time=None, alias_id=None, alias_last_update_time=None, alias_merged_from_canonical_ids=None, alias_metadata=None, alias_mount_accessor=None, alias_mount_path=None, alias_mount_type=None, alias_name=None, creation_time=None, data_json=None, group_id=None, group_name=None, id=None, last_update_time=None, member_entity_ids=None, member_group_ids=None, metadata=None, modify_index=None, namespace=None, namespace_id=None, parent_group_ids=None, policies=None, type=None):
         if alias_canonical_id and not isinstance(alias_canonical_id, str):
             raise TypeError("Expected argument 'alias_canonical_id' to be a str")
         pulumi.set(__self__, "alias_canonical_id", alias_canonical_id)
@@ -82,6 +82,9 @@ class GetGroupResult:
         if modify_index and not isinstance(modify_index, int):
             raise TypeError("Expected argument 'modify_index' to be a int")
         pulumi.set(__self__, "modify_index", modify_index)
+        if namespace and not isinstance(namespace, str):
+            raise TypeError("Expected argument 'namespace' to be a str")
+        pulumi.set(__self__, "namespace", namespace)
         if namespace_id and not isinstance(namespace_id, str):
             raise TypeError("Expected argument 'namespace_id' to be a str")
         pulumi.set(__self__, "namespace_id", namespace_id)
@@ -242,6 +245,11 @@ class GetGroupResult:
         return pulumi.get(self, "modify_index")
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[str]:
+        return pulumi.get(self, "namespace")
+
+    @property
     @pulumi.getter(name="namespaceId")
     def namespace_id(self) -> str:
         """
@@ -300,6 +308,7 @@ class AwaitableGetGroupResult(GetGroupResult):
             member_group_ids=self.member_group_ids,
             metadata=self.metadata,
             modify_index=self.modify_index,
+            namespace=self.namespace,
             namespace_id=self.namespace_id,
             parent_group_ids=self.parent_group_ids,
             policies=self.policies,
@@ -311,6 +320,7 @@ def get_group(alias_id: Optional[str] = None,
               alias_name: Optional[str] = None,
               group_id: Optional[str] = None,
               group_name: Optional[str] = None,
+              namespace: Optional[str] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGroupResult:
     """
     ## Example Usage
@@ -333,6 +343,10 @@ def get_group(alias_id: Optional[str] = None,
            `alias_mount_accessor`.
     :param str group_id: ID of the group.
     :param str group_name: Name of the group.
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           *Available only for Vault Enterprise*.
     """
     __args__ = dict()
     __args__['aliasId'] = alias_id
@@ -340,6 +354,7 @@ def get_group(alias_id: Optional[str] = None,
     __args__['aliasName'] = alias_name
     __args__['groupId'] = group_id
     __args__['groupName'] = group_name
+    __args__['namespace'] = namespace
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('vault:identity/getGroup:getGroup', __args__, opts=opts, typ=GetGroupResult).value
 
@@ -364,6 +379,7 @@ def get_group(alias_id: Optional[str] = None,
         member_group_ids=__ret__.member_group_ids,
         metadata=__ret__.metadata,
         modify_index=__ret__.modify_index,
+        namespace=__ret__.namespace,
         namespace_id=__ret__.namespace_id,
         parent_group_ids=__ret__.parent_group_ids,
         policies=__ret__.policies,
@@ -376,6 +392,7 @@ def get_group_output(alias_id: Optional[pulumi.Input[Optional[str]]] = None,
                      alias_name: Optional[pulumi.Input[Optional[str]]] = None,
                      group_id: Optional[pulumi.Input[Optional[str]]] = None,
                      group_name: Optional[pulumi.Input[Optional[str]]] = None,
+                     namespace: Optional[pulumi.Input[Optional[str]]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGroupResult]:
     """
     ## Example Usage
@@ -398,5 +415,9 @@ def get_group_output(alias_id: Optional[pulumi.Input[Optional[str]]] = None,
            `alias_mount_accessor`.
     :param str group_id: ID of the group.
     :param str group_name: Name of the group.
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           *Available only for Vault Enterprise*.
     """
     ...

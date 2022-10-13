@@ -49,6 +49,27 @@ public final class QuotaLeaseCountArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured namespace.
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable Output<String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured namespace.
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
+
+    /**
      * Path of the mount or namespace to apply the quota. A blank path configures a
      * global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
      * `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
@@ -78,6 +99,7 @@ public final class QuotaLeaseCountArgs extends com.pulumi.resources.ResourceArgs
     private QuotaLeaseCountArgs(QuotaLeaseCountArgs $) {
         this.maxLeases = $.maxLeases;
         this.name = $.name;
+        this.namespace = $.namespace;
         this.path = $.path;
     }
 
@@ -141,6 +163,33 @@ public final class QuotaLeaseCountArgs extends com.pulumi.resources.ResourceArgs
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured namespace.
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable Output<String> namespace) {
+            $.namespace = namespace;
+            return this;
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured namespace.
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(String namespace) {
+            return namespace(Output.of(namespace));
         }
 
         /**

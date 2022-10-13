@@ -33,6 +33,21 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Denotes that the resource is used to bootstrap the Consul ACL system.
+     * 
+     */
+    @Import(name="bootstrap")
+    private @Nullable Output<Boolean> bootstrap;
+
+    /**
+     * @return Denotes that the resource is used to bootstrap the Consul ACL system.
+     * 
+     */
+    public Optional<Output<Boolean>> bootstrap() {
+        return Optional.ofNullable(this.bootstrap);
+    }
+
+    /**
      * CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
      * 
      */
@@ -48,14 +63,16 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Client certificate used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.
+     * Client certificate used for Consul&#39;s TLS communication, must be x509 PEM encoded and if
+     * this is set you need to also set client_key.
      * 
      */
     @Import(name="clientCert")
     private @Nullable Output<String> clientCert;
 
     /**
-     * @return Client certificate used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.
+     * @return Client certificate used for Consul&#39;s TLS communication, must be x509 PEM encoded and if
+     * this is set you need to also set client_key.
      * 
      */
     public Optional<Output<String>> clientCert() {
@@ -63,14 +80,16 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+     * Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set
+     * you need to also set client_cert.
      * 
      */
     @Import(name="clientKey")
     private @Nullable Output<String> clientKey;
 
     /**
-     * @return Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+     * @return Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set
+     * you need to also set client_cert.
      * 
      */
     public Optional<Output<String>> clientKey() {
@@ -108,6 +127,23 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     * 
+     */
+    @Import(name="disableRemount")
+    private @Nullable Output<Boolean> disableRemount;
+
+    /**
+     * @return If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     * 
+     */
+    public Optional<Output<Boolean>> disableRemount() {
+        return Optional.ofNullable(this.disableRemount);
+    }
+
+    /**
      * Specifies if the secret backend is local only.
      * 
      */
@@ -140,14 +176,37 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `consul`.
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable Output<String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
+
+    /**
+     * The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults
+     * to `consul`.
      * 
      */
     @Import(name="path")
     private @Nullable Output<String> path;
 
     /**
-     * @return The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `consul`.
+     * @return The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults
+     * to `consul`.
      * 
      */
     public Optional<Output<String>> path() {
@@ -170,31 +229,36 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The Consul management token this backend should use to issue new tokens.
+     * The Consul management token this backend should use to issue new tokens. This field is required
+     * when `bootstrap` is false.
      * 
      */
-    @Import(name="token", required=true)
-    private Output<String> token;
+    @Import(name="token")
+    private @Nullable Output<String> token;
 
     /**
-     * @return The Consul management token this backend should use to issue new tokens.
+     * @return The Consul management token this backend should use to issue new tokens. This field is required
+     * when `bootstrap` is false.
      * 
      */
-    public Output<String> token() {
-        return this.token;
+    public Optional<Output<String>> token() {
+        return Optional.ofNullable(this.token);
     }
 
     private SecretBackendArgs() {}
 
     private SecretBackendArgs(SecretBackendArgs $) {
         this.address = $.address;
+        this.bootstrap = $.bootstrap;
         this.caCert = $.caCert;
         this.clientCert = $.clientCert;
         this.clientKey = $.clientKey;
         this.defaultLeaseTtlSeconds = $.defaultLeaseTtlSeconds;
         this.description = $.description;
+        this.disableRemount = $.disableRemount;
         this.local = $.local;
         this.maxLeaseTtlSeconds = $.maxLeaseTtlSeconds;
+        this.namespace = $.namespace;
         this.path = $.path;
         this.scheme = $.scheme;
         this.token = $.token;
@@ -240,6 +304,27 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param bootstrap Denotes that the resource is used to bootstrap the Consul ACL system.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder bootstrap(@Nullable Output<Boolean> bootstrap) {
+            $.bootstrap = bootstrap;
+            return this;
+        }
+
+        /**
+         * @param bootstrap Denotes that the resource is used to bootstrap the Consul ACL system.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder bootstrap(Boolean bootstrap) {
+            return bootstrap(Output.of(bootstrap));
+        }
+
+        /**
          * @param caCert CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
          * 
          * @return builder
@@ -261,7 +346,8 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clientCert Client certificate used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.
+         * @param clientCert Client certificate used for Consul&#39;s TLS communication, must be x509 PEM encoded and if
+         * this is set you need to also set client_key.
          * 
          * @return builder
          * 
@@ -272,7 +358,8 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clientCert Client certificate used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.
+         * @param clientCert Client certificate used for Consul&#39;s TLS communication, must be x509 PEM encoded and if
+         * this is set you need to also set client_key.
          * 
          * @return builder
          * 
@@ -282,7 +369,8 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clientKey Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+         * @param clientKey Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set
+         * you need to also set client_cert.
          * 
          * @return builder
          * 
@@ -293,7 +381,8 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clientKey Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+         * @param clientKey Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set
+         * you need to also set client_cert.
          * 
          * @return builder
          * 
@@ -345,6 +434,29 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param disableRemount If set, opts out of mount migration on path updates.
+         * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableRemount(@Nullable Output<Boolean> disableRemount) {
+            $.disableRemount = disableRemount;
+            return this;
+        }
+
+        /**
+         * @param disableRemount If set, opts out of mount migration on path updates.
+         * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableRemount(Boolean disableRemount) {
+            return disableRemount(Output.of(disableRemount));
+        }
+
+        /**
          * @param local Specifies if the secret backend is local only.
          * 
          * @return builder
@@ -389,7 +501,35 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param path The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `consul`.
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable Output<String> namespace) {
+            $.namespace = namespace;
+            return this;
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(String namespace) {
+            return namespace(Output.of(namespace));
+        }
+
+        /**
+         * @param path The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults
+         * to `consul`.
          * 
          * @return builder
          * 
@@ -400,7 +540,8 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param path The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `consul`.
+         * @param path The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults
+         * to `consul`.
          * 
          * @return builder
          * 
@@ -431,18 +572,20 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param token The Consul management token this backend should use to issue new tokens.
+         * @param token The Consul management token this backend should use to issue new tokens. This field is required
+         * when `bootstrap` is false.
          * 
          * @return builder
          * 
          */
-        public Builder token(Output<String> token) {
+        public Builder token(@Nullable Output<String> token) {
             $.token = token;
             return this;
         }
 
         /**
-         * @param token The Consul management token this backend should use to issue new tokens.
+         * @param token The Consul management token this backend should use to issue new tokens. This field is required
+         * when `bootstrap` is false.
          * 
          * @return builder
          * 
@@ -453,7 +596,6 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
 
         public SecretBackendArgs build() {
             $.address = Objects.requireNonNull($.address, "expected parameter 'address' to be non-null");
-            $.token = Objects.requireNonNull($.token, "expected parameter 'token' to be non-null");
             return $;
         }
     }

@@ -70,6 +70,13 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly backend!: pulumi.Output<string | undefined>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured namespace.
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * Name of the role. Must correspond with the name of
      * the role reflected in the arn.
      */
@@ -143,6 +150,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
             const state = argsOrState as AuthBackendRoleState | undefined;
             resourceInputs["arn"] = state ? state.arn : undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["role"] = state ? state.role : undefined;
             resourceInputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
             resourceInputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
@@ -163,6 +171,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
             }
             resourceInputs["arn"] = args ? args.arn : undefined;
             resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["role"] = args ? args.role : undefined;
             resourceInputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
             resourceInputs["tokenExplicitMaxTtl"] = args ? args.tokenExplicitMaxTtl : undefined;
@@ -192,6 +201,13 @@ export interface AuthBackendRoleState {
      * Defaults to `alicloud`
      */
     backend?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured namespace.
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Name of the role. Must correspond with the name of
      * the role reflected in the arn.
@@ -265,6 +281,13 @@ export interface AuthBackendRoleArgs {
      * Defaults to `alicloud`
      */
     backend?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured namespace.
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Name of the role. Must correspond with the name of
      * the role reflected in the arn.

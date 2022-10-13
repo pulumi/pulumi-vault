@@ -67,6 +67,11 @@ type Team struct {
 	// Path where the github auth backend is mounted. Defaults to `github`
 	// if not specified.
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// An array of strings specifying the policies to be set on tokens
 	// issued using this role.
 	Policies pulumi.StringArrayOutput `pulumi:"policies"`
@@ -109,6 +114,11 @@ type teamState struct {
 	// Path where the github auth backend is mounted. Defaults to `github`
 	// if not specified.
 	Backend *string `pulumi:"backend"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// An array of strings specifying the policies to be set on tokens
 	// issued using this role.
 	Policies []string `pulumi:"policies"`
@@ -120,6 +130,11 @@ type TeamState struct {
 	// Path where the github auth backend is mounted. Defaults to `github`
 	// if not specified.
 	Backend pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// An array of strings specifying the policies to be set on tokens
 	// issued using this role.
 	Policies pulumi.StringArrayInput
@@ -135,6 +150,11 @@ type teamArgs struct {
 	// Path where the github auth backend is mounted. Defaults to `github`
 	// if not specified.
 	Backend *string `pulumi:"backend"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// An array of strings specifying the policies to be set on tokens
 	// issued using this role.
 	Policies []string `pulumi:"policies"`
@@ -147,6 +167,11 @@ type TeamArgs struct {
 	// Path where the github auth backend is mounted. Defaults to `github`
 	// if not specified.
 	Backend pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// An array of strings specifying the policies to be set on tokens
 	// issued using this role.
 	Policies pulumi.StringArrayInput
@@ -245,6 +270,14 @@ func (o TeamOutput) ToTeamOutputWithContext(ctx context.Context) TeamOutput {
 // if not specified.
 func (o TeamOutput) Backend() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Team) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o TeamOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Team) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // An array of strings specifying the policies to be set on tokens

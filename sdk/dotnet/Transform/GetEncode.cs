@@ -17,7 +17,7 @@ namespace Pulumi.Vault.Transform
         /// It encodes the provided value using a named role.
         /// </summary>
         public static Task<GetEncodeResult> InvokeAsync(GetEncodeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetEncodeResult>("vault:transform/getEncode:getEncode", args ?? new GetEncodeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetEncodeResult>("vault:transform/getEncode:getEncode", args ?? new GetEncodeArgs(), options.WithDefaults());
 
         /// <summary>
         /// This data source supports the "/transform/encode/{role_name}" Vault endpoint.
@@ -25,7 +25,7 @@ namespace Pulumi.Vault.Transform
         /// It encodes the provided value using a named role.
         /// </summary>
         public static Output<GetEncodeResult> Invoke(GetEncodeInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetEncodeResult>("vault:transform/getEncode:getEncode", args ?? new GetEncodeInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetEncodeResult>("vault:transform/getEncode:getEncode", args ?? new GetEncodeInvokeArgs(), options.WithDefaults());
     }
 
 

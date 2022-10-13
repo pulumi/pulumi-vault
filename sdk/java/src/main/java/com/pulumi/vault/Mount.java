@@ -171,6 +171,20 @@ public class Mount extends com.pulumi.resources.CustomResource {
         return this.accessor;
     }
     /**
+     * Set of managed key registry entry names that the mount in question is allowed to access
+     * 
+     */
+    @Export(name="allowedManagedKeys", type=List.class, parameters={String.class})
+    private Output</* @Nullable */ List<String>> allowedManagedKeys;
+
+    /**
+     * @return Set of managed key registry entry names that the mount in question is allowed to access
+     * 
+     */
+    public Output<Optional<List<String>>> allowedManagedKeys() {
+        return Codegen.optional(this.allowedManagedKeys);
+    }
+    /**
      * Specifies the list of keys that will not be HMAC&#39;d by audit devices in the request data object.
      * 
      */
@@ -267,6 +281,26 @@ public class Mount extends com.pulumi.resources.CustomResource {
      */
     public Output<Integer> maxLeaseTtlSeconds() {
         return this.maxLeaseTtlSeconds;
+    }
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="namespace", type=String.class, parameters={})
+    private Output</* @Nullable */ String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> namespace() {
+        return Codegen.optional(this.namespace);
     }
     /**
      * Specifies mount type specific options that are passed to the backend

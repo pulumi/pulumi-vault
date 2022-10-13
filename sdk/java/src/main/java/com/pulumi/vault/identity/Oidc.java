@@ -11,6 +11,7 @@ import com.pulumi.vault.Utilities;
 import com.pulumi.vault.identity.OidcArgs;
 import com.pulumi.vault.identity.inputs.OidcState;
 import java.lang.String;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -73,6 +74,26 @@ public class Oidc extends com.pulumi.resources.CustomResource {
      */
     public Output<String> issuer() {
         return this.issuer;
+    }
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="namespace", type=String.class, parameters={})
+    private Output</* @Nullable */ String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> namespace() {
+        return Codegen.optional(this.namespace);
     }
 
     /**

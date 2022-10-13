@@ -105,9 +105,26 @@ export class SecretBackendRootCert extends pulumi.CustomResource {
      */
     public readonly locality!: pulumi.Output<string | undefined>;
     /**
+     * The ID of the previously configured managed key. This field is
+     * required if `type` is `kms` and it conflicts with `managedKeyName`
+     */
+    public readonly managedKeyId!: pulumi.Output<string>;
+    /**
+     * The name of the previously configured managed key. This field is
+     * required if `type` is `kms`  and it conflicts with `managedKeyId`
+     */
+    public readonly managedKeyName!: pulumi.Output<string>;
+    /**
      * The maximum path length to encode in the generated certificate
      */
     public readonly maxPathLength!: pulumi.Output<number | undefined>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
     /**
      * The organization
      */
@@ -155,7 +172,8 @@ export class SecretBackendRootCert extends pulumi.CustomResource {
      */
     public readonly ttl!: pulumi.Output<string | undefined>;
     /**
-     * Type of intermediate to create. Must be either \"exported\" or \"internal\"
+     * Type of intermediate to create. Must be either \"exported\", \"internal\"
+     * or \"kms\"
      */
     public readonly type!: pulumi.Output<string>;
     /**
@@ -188,7 +206,10 @@ export class SecretBackendRootCert extends pulumi.CustomResource {
             resourceInputs["keyBits"] = state ? state.keyBits : undefined;
             resourceInputs["keyType"] = state ? state.keyType : undefined;
             resourceInputs["locality"] = state ? state.locality : undefined;
+            resourceInputs["managedKeyId"] = state ? state.managedKeyId : undefined;
+            resourceInputs["managedKeyName"] = state ? state.managedKeyName : undefined;
             resourceInputs["maxPathLength"] = state ? state.maxPathLength : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["organization"] = state ? state.organization : undefined;
             resourceInputs["otherSans"] = state ? state.otherSans : undefined;
             resourceInputs["ou"] = state ? state.ou : undefined;
@@ -223,7 +244,10 @@ export class SecretBackendRootCert extends pulumi.CustomResource {
             resourceInputs["keyBits"] = args ? args.keyBits : undefined;
             resourceInputs["keyType"] = args ? args.keyType : undefined;
             resourceInputs["locality"] = args ? args.locality : undefined;
+            resourceInputs["managedKeyId"] = args ? args.managedKeyId : undefined;
+            resourceInputs["managedKeyName"] = args ? args.managedKeyName : undefined;
             resourceInputs["maxPathLength"] = args ? args.maxPathLength : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["organization"] = args ? args.organization : undefined;
             resourceInputs["otherSans"] = args ? args.otherSans : undefined;
             resourceInputs["ou"] = args ? args.ou : undefined;
@@ -298,9 +322,26 @@ export interface SecretBackendRootCertState {
      */
     locality?: pulumi.Input<string>;
     /**
+     * The ID of the previously configured managed key. This field is
+     * required if `type` is `kms` and it conflicts with `managedKeyName`
+     */
+    managedKeyId?: pulumi.Input<string>;
+    /**
+     * The name of the previously configured managed key. This field is
+     * required if `type` is `kms`  and it conflicts with `managedKeyId`
+     */
+    managedKeyName?: pulumi.Input<string>;
+    /**
      * The maximum path length to encode in the generated certificate
      */
     maxPathLength?: pulumi.Input<number>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The organization
      */
@@ -348,7 +389,8 @@ export interface SecretBackendRootCertState {
      */
     ttl?: pulumi.Input<string>;
     /**
-     * Type of intermediate to create. Must be either \"exported\" or \"internal\"
+     * Type of intermediate to create. Must be either \"exported\", \"internal\"
+     * or \"kms\"
      */
     type?: pulumi.Input<string>;
     /**
@@ -402,9 +444,26 @@ export interface SecretBackendRootCertArgs {
      */
     locality?: pulumi.Input<string>;
     /**
+     * The ID of the previously configured managed key. This field is
+     * required if `type` is `kms` and it conflicts with `managedKeyName`
+     */
+    managedKeyId?: pulumi.Input<string>;
+    /**
+     * The name of the previously configured managed key. This field is
+     * required if `type` is `kms`  and it conflicts with `managedKeyId`
+     */
+    managedKeyName?: pulumi.Input<string>;
+    /**
      * The maximum path length to encode in the generated certificate
      */
     maxPathLength?: pulumi.Input<number>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The organization
      */
@@ -442,7 +501,8 @@ export interface SecretBackendRootCertArgs {
      */
     ttl?: pulumi.Input<string>;
     /**
-     * Type of intermediate to create. Must be either \"exported\" or \"internal\"
+     * Type of intermediate to create. Must be either \"exported\", \"internal\"
+     * or \"kms\"
      */
     type: pulumi.Input<string>;
     /**

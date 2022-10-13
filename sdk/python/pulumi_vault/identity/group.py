@@ -20,6 +20,7 @@ class GroupArgs:
                  member_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
@@ -30,6 +31,10 @@ class GroupArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] member_group_ids: A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: A Map of additional metadata to associate with the group.
         :param pulumi.Input[str] name: Name of the identity group to create.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: A list of policies to apply to the group.
         :param pulumi.Input[str] type: Type of the group, internal or external. Defaults to `internal`.
         """
@@ -45,6 +50,8 @@ class GroupArgs:
             pulumi.set(__self__, "metadata", metadata)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if policies is not None:
             pulumi.set(__self__, "policies", policies)
         if type is not None:
@@ -121,6 +128,21 @@ class GroupArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -156,6 +178,7 @@ class _GroupState:
                  member_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
@@ -166,6 +189,10 @@ class _GroupState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] member_group_ids: A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: A Map of additional metadata to associate with the group.
         :param pulumi.Input[str] name: Name of the identity group to create.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: A list of policies to apply to the group.
         :param pulumi.Input[str] type: Type of the group, internal or external. Defaults to `internal`.
         """
@@ -181,6 +208,8 @@ class _GroupState:
             pulumi.set(__self__, "metadata", metadata)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if policies is not None:
             pulumi.set(__self__, "policies", policies)
         if type is not None:
@@ -257,6 +286,21 @@ class _GroupState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -294,6 +338,7 @@ class Group(pulumi.CustomResource):
                  member_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -378,6 +423,10 @@ class Group(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] member_group_ids: A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: A Map of additional metadata to associate with the group.
         :param pulumi.Input[str] name: Name of the identity group to create.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: A list of policies to apply to the group.
         :param pulumi.Input[str] type: Type of the group, internal or external. Defaults to `internal`.
         """
@@ -481,6 +530,7 @@ class Group(pulumi.CustomResource):
                  member_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -498,6 +548,7 @@ class Group(pulumi.CustomResource):
             __props__.__dict__["member_group_ids"] = member_group_ids
             __props__.__dict__["metadata"] = metadata
             __props__.__dict__["name"] = name
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["policies"] = policies
             __props__.__dict__["type"] = type
         super(Group, __self__).__init__(
@@ -516,6 +567,7 @@ class Group(pulumi.CustomResource):
             member_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'Group':
         """
@@ -531,6 +583,10 @@ class Group(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] member_group_ids: A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: A Map of additional metadata to associate with the group.
         :param pulumi.Input[str] name: Name of the identity group to create.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: A list of policies to apply to the group.
         :param pulumi.Input[str] type: Type of the group, internal or external. Defaults to `internal`.
         """
@@ -544,6 +600,7 @@ class Group(pulumi.CustomResource):
         __props__.__dict__["member_group_ids"] = member_group_ids
         __props__.__dict__["metadata"] = metadata
         __props__.__dict__["name"] = name
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["policies"] = policies
         __props__.__dict__["type"] = type
         return Group(resource_name, opts=opts, __props__=__props__)
@@ -595,6 +652,17 @@ class Group(pulumi.CustomResource):
         Name of the identity group to create.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

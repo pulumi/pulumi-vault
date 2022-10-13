@@ -56,7 +56,7 @@ namespace Pulumi.Vault
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetPolicyDocumentResult> InvokeAsync(GetPolicyDocumentArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetPolicyDocumentResult>("vault:index/getPolicyDocument:getPolicyDocument", args ?? new GetPolicyDocumentArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetPolicyDocumentResult>("vault:index/getPolicyDocument:getPolicyDocument", args ?? new GetPolicyDocumentArgs(), options.WithDefaults());
 
         /// <summary>
         /// This is a data source which can be used to construct a HCL representation of an Vault policy document, for use with resources which expect policy documents, such as the `vault.Policy` resource.
@@ -103,12 +103,15 @@ namespace Pulumi.Vault
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetPolicyDocumentResult> Invoke(GetPolicyDocumentInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetPolicyDocumentResult>("vault:index/getPolicyDocument:getPolicyDocument", args ?? new GetPolicyDocumentInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetPolicyDocumentResult>("vault:index/getPolicyDocument:getPolicyDocument", args ?? new GetPolicyDocumentInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class GetPolicyDocumentArgs : global::Pulumi.InvokeArgs
     {
+        [Input("namespace")]
+        public string? Namespace { get; set; }
+
         [Input("rules")]
         private List<Inputs.GetPolicyDocumentRuleArgs>? _rules;
         public List<Inputs.GetPolicyDocumentRuleArgs> Rules
@@ -125,6 +128,9 @@ namespace Pulumi.Vault
 
     public sealed class GetPolicyDocumentInvokeArgs : global::Pulumi.InvokeArgs
     {
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
         [Input("rules")]
         private InputList<Inputs.GetPolicyDocumentRuleInputArgs>? _rules;
         public InputList<Inputs.GetPolicyDocumentRuleInputArgs> Rules
@@ -151,6 +157,7 @@ namespace Pulumi.Vault
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly string? Namespace;
         public readonly ImmutableArray<Outputs.GetPolicyDocumentRuleResult> Rules;
 
         [OutputConstructor]
@@ -159,10 +166,13 @@ namespace Pulumi.Vault
 
             string id,
 
+            string? @namespace,
+
             ImmutableArray<Outputs.GetPolicyDocumentRuleResult> rules)
         {
             Hcl = hcl;
             Id = id;
+            Namespace = @namespace;
             Rules = rules;
         }
     }

@@ -25,11 +25,21 @@ namespace Pulumi.Vault.Database.Inputs
             set => _allowedRoles = value;
         }
 
+        [Input("base64Pem")]
+        private Input<string>? _base64Pem;
+
         /// <summary>
         /// Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
         /// </summary>
-        [Input("base64Pem")]
-        public Input<string>? Base64Pem { get; set; }
+        public Input<string>? Base64Pem
+        {
+            get => _base64Pem;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _base64Pem = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.
@@ -71,11 +81,21 @@ namespace Pulumi.Vault.Database.Inputs
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        [Input("password", required: true)]
+        private Input<string>? _password;
+
         /// <summary>
         /// The password to be used in the connection.
         /// </summary>
-        [Input("password", required: true)]
-        public Input<string> Password { get; set; } = null!;
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Specifies the name of the plugin to use.

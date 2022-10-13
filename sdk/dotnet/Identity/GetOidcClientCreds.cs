@@ -46,7 +46,7 @@ namespace Pulumi.Vault.Identity
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetOidcClientCredsResult> InvokeAsync(GetOidcClientCredsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetOidcClientCredsResult>("vault:identity/getOidcClientCreds:getOidcClientCreds", args ?? new GetOidcClientCredsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetOidcClientCredsResult>("vault:identity/getOidcClientCreds:getOidcClientCreds", args ?? new GetOidcClientCredsArgs(), options.WithDefaults());
 
         /// <summary>
         /// {{% examples %}}
@@ -83,7 +83,7 @@ namespace Pulumi.Vault.Identity
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetOidcClientCredsResult> Invoke(GetOidcClientCredsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetOidcClientCredsResult>("vault:identity/getOidcClientCreds:getOidcClientCreds", args ?? new GetOidcClientCredsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetOidcClientCredsResult>("vault:identity/getOidcClientCreds:getOidcClientCreds", args ?? new GetOidcClientCredsInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -94,6 +94,15 @@ namespace Pulumi.Vault.Identity
         /// </summary>
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
+
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public string? Namespace { get; set; }
 
         public GetOidcClientCredsArgs()
         {
@@ -108,6 +117,15 @@ namespace Pulumi.Vault.Identity
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
+
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         public GetOidcClientCredsInvokeArgs()
         {
@@ -132,6 +150,7 @@ namespace Pulumi.Vault.Identity
         /// </summary>
         public readonly string Id;
         public readonly string Name;
+        public readonly string? Namespace;
 
         [OutputConstructor]
         private GetOidcClientCredsResult(
@@ -141,12 +160,15 @@ namespace Pulumi.Vault.Identity
 
             string id,
 
-            string name)
+            string name,
+
+            string? @namespace)
         {
             ClientId = clientId;
             ClientSecret = clientSecret;
             Id = id;
             Name = name;
+            Namespace = @namespace;
         }
     }
 }

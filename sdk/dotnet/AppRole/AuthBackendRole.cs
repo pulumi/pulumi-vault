@@ -69,6 +69,15 @@ namespace Pulumi.Vault.AppRole
         public Output<bool?> BindSecretId { get; private set; } = null!;
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
         /// The RoleID of this role. If not specified, one will be
         /// auto-generated.
         /// </summary>
@@ -235,6 +244,15 @@ namespace Pulumi.Vault.AppRole
         public Input<bool>? BindSecretId { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
         /// The RoleID of this role. If not specified, one will be
         /// auto-generated.
         /// </summary>
@@ -379,6 +397,15 @@ namespace Pulumi.Vault.AppRole
         /// </summary>
         [Input("bindSecretId")]
         public Input<bool>? BindSecretId { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// The RoleID of this role. If not specified, one will be

@@ -10,27 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault
 {
     /// <summary>
-    /// Provides a resource to manage [Namespaces](https://www.vaultproject.io/docs/enterprise/namespaces/index.html).
-    /// 
-    /// **Note** this feature is available only with Vault Enterprise.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var ns1 = new Vault.Namespace("ns1", new()
-    ///     {
-    ///         Path = "ns1",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// Namespaces can be imported using its `name` as accessor id
@@ -55,7 +34,7 @@ namespace Pulumi.Vault
     ///  $ pulumi import vault:index/namespace:Namespace example2 example2
     /// ```
     /// 
-    ///  $ terraform state show vault_namespace.example2 # vault_namespace.example2 resource "vault_namespace" "example2" {
+    ///  $ terraform state show vault_namespace.example2 vault_namespace.example2 resource "vault_namespace" "example2" {
     /// 
     ///  id
     /// 
@@ -71,7 +50,16 @@ namespace Pulumi.Vault
     public partial class Namespace : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// ID of the namepsace.
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> TargetNamespace { get; private set; } = null!;
+
+        /// <summary>
+        /// Namespace ID.
         /// </summary>
         [Output("namespaceId")]
         public Output<string> NamespaceId { get; private set; } = null!;
@@ -81,6 +69,12 @@ namespace Pulumi.Vault
         /// </summary>
         [Output("path")]
         public Output<string> Path { get; private set; } = null!;
+
+        /// <summary>
+        /// The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+        /// </summary>
+        [Output("pathFq")]
+        public Output<string> PathFq { get; private set; } = null!;
 
 
         /// <summary>
@@ -129,6 +123,15 @@ namespace Pulumi.Vault
     public sealed class NamespaceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? TargetNamespace { get; set; }
+
+        /// <summary>
         /// The path of the namespace. Must not have a trailing `/`
         /// </summary>
         [Input("path", required: true)]
@@ -143,7 +146,16 @@ namespace Pulumi.Vault
     public sealed class NamespaceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// ID of the namepsace.
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? TargetNamespace { get; set; }
+
+        /// <summary>
+        /// Namespace ID.
         /// </summary>
         [Input("namespaceId")]
         public Input<string>? NamespaceId { get; set; }
@@ -153,6 +165,12 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
+
+        /// <summary>
+        /// The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+        /// </summary>
+        [Input("pathFq")]
+        public Input<string>? PathFq { get; set; }
 
         public NamespaceState()
         {

@@ -77,6 +77,15 @@ namespace Pulumi.Vault.Azure
         public Output<string?> Environment { get; private set; } = null!;
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
         /// The configured URL for the application registered in
         /// Azure Active Directory.
         /// </summary>
@@ -113,6 +122,12 @@ namespace Pulumi.Vault.Azure
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "clientId",
+                    "clientSecret",
+                    "tenantId",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -143,19 +158,39 @@ namespace Pulumi.Vault.Azure
         [Input("backend")]
         public Input<string>? Backend { get; set; }
 
+        [Input("clientId")]
+        private Input<string>? _clientId;
+
         /// <summary>
         /// The client id for credentials to query the Azure APIs.
         /// Currently read permissions to query compute resources are required.
         /// </summary>
-        [Input("clientId")]
-        public Input<string>? ClientId { get; set; }
+        public Input<string>? ClientId
+        {
+            get => _clientId;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientId = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("clientSecret")]
+        private Input<string>? _clientSecret;
 
         /// <summary>
         /// The client secret for credentials to query the
         /// Azure APIs.
         /// </summary>
-        [Input("clientSecret")]
-        public Input<string>? ClientSecret { get; set; }
+        public Input<string>? ClientSecret
+        {
+            get => _clientSecret;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The Azure cloud environment. Valid values:
@@ -166,18 +201,37 @@ namespace Pulumi.Vault.Azure
         public Input<string>? Environment { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
         /// The configured URL for the application registered in
         /// Azure Active Directory.
         /// </summary>
         [Input("resource", required: true)]
         public Input<string> Resource { get; set; } = null!;
 
+        [Input("tenantId", required: true)]
+        private Input<string>? _tenantId;
+
         /// <summary>
         /// The tenant id for the Azure Active Directory
         /// organization.
         /// </summary>
-        [Input("tenantId", required: true)]
-        public Input<string> TenantId { get; set; } = null!;
+        public Input<string>? TenantId
+        {
+            get => _tenantId;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _tenantId = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public AuthBackendConfigArgs()
         {
@@ -194,19 +248,39 @@ namespace Pulumi.Vault.Azure
         [Input("backend")]
         public Input<string>? Backend { get; set; }
 
+        [Input("clientId")]
+        private Input<string>? _clientId;
+
         /// <summary>
         /// The client id for credentials to query the Azure APIs.
         /// Currently read permissions to query compute resources are required.
         /// </summary>
-        [Input("clientId")]
-        public Input<string>? ClientId { get; set; }
+        public Input<string>? ClientId
+        {
+            get => _clientId;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientId = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("clientSecret")]
+        private Input<string>? _clientSecret;
 
         /// <summary>
         /// The client secret for credentials to query the
         /// Azure APIs.
         /// </summary>
-        [Input("clientSecret")]
-        public Input<string>? ClientSecret { get; set; }
+        public Input<string>? ClientSecret
+        {
+            get => _clientSecret;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The Azure cloud environment. Valid values:
@@ -217,18 +291,37 @@ namespace Pulumi.Vault.Azure
         public Input<string>? Environment { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
         /// The configured URL for the application registered in
         /// Azure Active Directory.
         /// </summary>
         [Input("resource")]
         public Input<string>? Resource { get; set; }
 
+        [Input("tenantId")]
+        private Input<string>? _tenantId;
+
         /// <summary>
         /// The tenant id for the Azure Active Directory
         /// organization.
         /// </summary>
-        [Input("tenantId")]
-        public Input<string>? TenantId { get; set; }
+        public Input<string>? TenantId
+        {
+            get => _tenantId;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _tenantId = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public AuthBackendConfigState()
         {

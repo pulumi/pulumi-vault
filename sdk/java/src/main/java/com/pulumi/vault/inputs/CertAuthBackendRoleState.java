@@ -79,18 +79,39 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Allowed organization units for authenticated client certificates
+     * @deprecated
+     * Use allowed_organizational_units
      * 
      */
+    @Deprecated /* Use allowed_organizational_units */
     @Import(name="allowedOrganizationUnits")
     private @Nullable Output<List<String>> allowedOrganizationUnits;
 
     /**
-     * @return Allowed organization units for authenticated client certificates
+     * @deprecated
+     * Use allowed_organizational_units
      * 
      */
+    @Deprecated /* Use allowed_organizational_units */
     public Optional<Output<List<String>>> allowedOrganizationUnits() {
         return Optional.ofNullable(this.allowedOrganizationUnits);
+    }
+
+    /**
+     * Allowed organization units for authenticated client certificates.
+     * *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
+     * 
+     */
+    @Import(name="allowedOrganizationalUnits")
+    private @Nullable Output<List<String>> allowedOrganizationalUnits;
+
+    /**
+     * @return Allowed organization units for authenticated client certificates.
+     * *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
+     * 
+     */
+    public Optional<Output<List<String>>> allowedOrganizationalUnits() {
+        return Optional.ofNullable(this.allowedOrganizationalUnits);
     }
 
     /**
@@ -166,6 +187,27 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
      */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
+    }
+
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable Output<String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> namespace() {
+        return Optional.ofNullable(this.namespace);
     }
 
     /**
@@ -360,11 +402,13 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
         this.allowedEmailSans = $.allowedEmailSans;
         this.allowedNames = $.allowedNames;
         this.allowedOrganizationUnits = $.allowedOrganizationUnits;
+        this.allowedOrganizationalUnits = $.allowedOrganizationalUnits;
         this.allowedUriSans = $.allowedUriSans;
         this.backend = $.backend;
         this.certificate = $.certificate;
         this.displayName = $.displayName;
         this.name = $.name;
+        this.namespace = $.namespace;
         this.requiredExtensions = $.requiredExtensions;
         this.tokenBoundCidrs = $.tokenBoundCidrs;
         this.tokenExplicitMaxTtl = $.tokenExplicitMaxTtl;
@@ -520,34 +564,74 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param allowedOrganizationUnits Allowed organization units for authenticated client certificates
-         * 
          * @return builder
          * 
+         * @deprecated
+         * Use allowed_organizational_units
+         * 
          */
+        @Deprecated /* Use allowed_organizational_units */
         public Builder allowedOrganizationUnits(@Nullable Output<List<String>> allowedOrganizationUnits) {
             $.allowedOrganizationUnits = allowedOrganizationUnits;
             return this;
         }
 
         /**
-         * @param allowedOrganizationUnits Allowed organization units for authenticated client certificates
-         * 
          * @return builder
          * 
+         * @deprecated
+         * Use allowed_organizational_units
+         * 
          */
+        @Deprecated /* Use allowed_organizational_units */
         public Builder allowedOrganizationUnits(List<String> allowedOrganizationUnits) {
             return allowedOrganizationUnits(Output.of(allowedOrganizationUnits));
         }
 
         /**
-         * @param allowedOrganizationUnits Allowed organization units for authenticated client certificates
+         * @return builder
+         * 
+         * @deprecated
+         * Use allowed_organizational_units
+         * 
+         */
+        @Deprecated /* Use allowed_organizational_units */
+        public Builder allowedOrganizationUnits(String... allowedOrganizationUnits) {
+            return allowedOrganizationUnits(List.of(allowedOrganizationUnits));
+        }
+
+        /**
+         * @param allowedOrganizationalUnits Allowed organization units for authenticated client certificates.
+         * *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
          * 
          * @return builder
          * 
          */
-        public Builder allowedOrganizationUnits(String... allowedOrganizationUnits) {
-            return allowedOrganizationUnits(List.of(allowedOrganizationUnits));
+        public Builder allowedOrganizationalUnits(@Nullable Output<List<String>> allowedOrganizationalUnits) {
+            $.allowedOrganizationalUnits = allowedOrganizationalUnits;
+            return this;
+        }
+
+        /**
+         * @param allowedOrganizationalUnits Allowed organization units for authenticated client certificates.
+         * *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedOrganizationalUnits(List<String> allowedOrganizationalUnits) {
+            return allowedOrganizationalUnits(Output.of(allowedOrganizationalUnits));
+        }
+
+        /**
+         * @param allowedOrganizationalUnits Allowed organization units for authenticated client certificates.
+         * *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedOrganizationalUnits(String... allowedOrganizationalUnits) {
+            return allowedOrganizationalUnits(List.of(allowedOrganizationalUnits));
         }
 
         /**
@@ -663,6 +747,33 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable Output<String> namespace) {
+            $.namespace = namespace;
+            return this;
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(String namespace) {
+            return namespace(Output.of(namespace));
         }
 
         /**

@@ -18,10 +18,20 @@ class ProviderArgs:
                  address: pulumi.Input[str],
                  token: pulumi.Input[str],
                  add_address_to_env: Optional[pulumi.Input[str]] = None,
-                 auth_logins: Optional[pulumi.Input[Sequence[pulumi.Input['ProviderAuthLoginArgs']]]] = None,
+                 auth_login: Optional[pulumi.Input['ProviderAuthLoginArgs']] = None,
+                 auth_login_aws: Optional[pulumi.Input['ProviderAuthLoginAwsArgs']] = None,
+                 auth_login_azure: Optional[pulumi.Input['ProviderAuthLoginAzureArgs']] = None,
+                 auth_login_cert: Optional[pulumi.Input['ProviderAuthLoginCertArgs']] = None,
+                 auth_login_gcp: Optional[pulumi.Input['ProviderAuthLoginGcpArgs']] = None,
+                 auth_login_jwt: Optional[pulumi.Input['ProviderAuthLoginJwtArgs']] = None,
+                 auth_login_kerberos: Optional[pulumi.Input['ProviderAuthLoginKerberosArgs']] = None,
+                 auth_login_oci: Optional[pulumi.Input['ProviderAuthLoginOciArgs']] = None,
+                 auth_login_oidc: Optional[pulumi.Input['ProviderAuthLoginOidcArgs']] = None,
+                 auth_login_radius: Optional[pulumi.Input['ProviderAuthLoginRadiusArgs']] = None,
+                 auth_login_userpass: Optional[pulumi.Input['ProviderAuthLoginUserpassArgs']] = None,
                  ca_cert_dir: Optional[pulumi.Input[str]] = None,
                  ca_cert_file: Optional[pulumi.Input[str]] = None,
-                 client_auths: Optional[pulumi.Input[Sequence[pulumi.Input['ProviderClientAuthArgs']]]] = None,
+                 client_auth: Optional[pulumi.Input['ProviderClientAuthArgs']] = None,
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input['ProviderHeaderArgs']]]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  max_retries: Optional[pulumi.Input[int]] = None,
@@ -36,10 +46,20 @@ class ProviderArgs:
         :param pulumi.Input[str] address: URL of the root of the target Vault server.
         :param pulumi.Input[str] token: Token to use to authenticate to Vault.
         :param pulumi.Input[str] add_address_to_env: If true, adds the value of the `address` argument to the Terraform process environment.
-        :param pulumi.Input[Sequence[pulumi.Input['ProviderAuthLoginArgs']]] auth_logins: Login to vault with an existing auth method using auth/<mount>/login
+        :param pulumi.Input['ProviderAuthLoginArgs'] auth_login: Login to vault with an existing auth method using auth/<mount>/login
+        :param pulumi.Input['ProviderAuthLoginAwsArgs'] auth_login_aws: Login to vault using the AWS method
+        :param pulumi.Input['ProviderAuthLoginAzureArgs'] auth_login_azure: Login to vault using the azure method
+        :param pulumi.Input['ProviderAuthLoginCertArgs'] auth_login_cert: Login to vault using the cert method
+        :param pulumi.Input['ProviderAuthLoginGcpArgs'] auth_login_gcp: Login to vault using the gcp method
+        :param pulumi.Input['ProviderAuthLoginJwtArgs'] auth_login_jwt: Login to vault using the jwt method
+        :param pulumi.Input['ProviderAuthLoginKerberosArgs'] auth_login_kerberos: Login to vault using the kerberos method
+        :param pulumi.Input['ProviderAuthLoginOciArgs'] auth_login_oci: Login to vault using the OCI method
+        :param pulumi.Input['ProviderAuthLoginOidcArgs'] auth_login_oidc: Login to vault using the oidc method
+        :param pulumi.Input['ProviderAuthLoginRadiusArgs'] auth_login_radius: Login to vault using the radius method
+        :param pulumi.Input['ProviderAuthLoginUserpassArgs'] auth_login_userpass: Login to vault using the userpass method
         :param pulumi.Input[str] ca_cert_dir: Path to directory containing CA certificate files to validate the server's certificate.
         :param pulumi.Input[str] ca_cert_file: Path to a CA certificate file to validate the server's certificate.
-        :param pulumi.Input[Sequence[pulumi.Input['ProviderClientAuthArgs']]] client_auths: Client authentication credentials.
+        :param pulumi.Input['ProviderClientAuthArgs'] client_auth: Client authentication credentials.
         :param pulumi.Input[Sequence[pulumi.Input['ProviderHeaderArgs']]] headers: The headers to send with each Vault request.
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum TTL for secret leases requested by this provider.
         :param pulumi.Input[int] max_retries: Maximum number of retries when a 5xx error code is encountered.
@@ -54,14 +74,34 @@ class ProviderArgs:
         pulumi.set(__self__, "token", token)
         if add_address_to_env is not None:
             pulumi.set(__self__, "add_address_to_env", add_address_to_env)
-        if auth_logins is not None:
-            pulumi.set(__self__, "auth_logins", auth_logins)
+        if auth_login is not None:
+            pulumi.set(__self__, "auth_login", auth_login)
+        if auth_login_aws is not None:
+            pulumi.set(__self__, "auth_login_aws", auth_login_aws)
+        if auth_login_azure is not None:
+            pulumi.set(__self__, "auth_login_azure", auth_login_azure)
+        if auth_login_cert is not None:
+            pulumi.set(__self__, "auth_login_cert", auth_login_cert)
+        if auth_login_gcp is not None:
+            pulumi.set(__self__, "auth_login_gcp", auth_login_gcp)
+        if auth_login_jwt is not None:
+            pulumi.set(__self__, "auth_login_jwt", auth_login_jwt)
+        if auth_login_kerberos is not None:
+            pulumi.set(__self__, "auth_login_kerberos", auth_login_kerberos)
+        if auth_login_oci is not None:
+            pulumi.set(__self__, "auth_login_oci", auth_login_oci)
+        if auth_login_oidc is not None:
+            pulumi.set(__self__, "auth_login_oidc", auth_login_oidc)
+        if auth_login_radius is not None:
+            pulumi.set(__self__, "auth_login_radius", auth_login_radius)
+        if auth_login_userpass is not None:
+            pulumi.set(__self__, "auth_login_userpass", auth_login_userpass)
         if ca_cert_dir is not None:
             pulumi.set(__self__, "ca_cert_dir", ca_cert_dir)
         if ca_cert_file is not None:
             pulumi.set(__self__, "ca_cert_file", ca_cert_file)
-        if client_auths is not None:
-            pulumi.set(__self__, "client_auths", client_auths)
+        if client_auth is not None:
+            pulumi.set(__self__, "client_auth", client_auth)
         if headers is not None:
             pulumi.set(__self__, "headers", headers)
         if max_lease_ttl_seconds is None:
@@ -124,16 +164,136 @@ class ProviderArgs:
         pulumi.set(self, "add_address_to_env", value)
 
     @property
-    @pulumi.getter(name="authLogins")
-    def auth_logins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProviderAuthLoginArgs']]]]:
+    @pulumi.getter(name="authLogin")
+    def auth_login(self) -> Optional[pulumi.Input['ProviderAuthLoginArgs']]:
         """
         Login to vault with an existing auth method using auth/<mount>/login
         """
-        return pulumi.get(self, "auth_logins")
+        return pulumi.get(self, "auth_login")
 
-    @auth_logins.setter
-    def auth_logins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProviderAuthLoginArgs']]]]):
-        pulumi.set(self, "auth_logins", value)
+    @auth_login.setter
+    def auth_login(self, value: Optional[pulumi.Input['ProviderAuthLoginArgs']]):
+        pulumi.set(self, "auth_login", value)
+
+    @property
+    @pulumi.getter(name="authLoginAws")
+    def auth_login_aws(self) -> Optional[pulumi.Input['ProviderAuthLoginAwsArgs']]:
+        """
+        Login to vault using the AWS method
+        """
+        return pulumi.get(self, "auth_login_aws")
+
+    @auth_login_aws.setter
+    def auth_login_aws(self, value: Optional[pulumi.Input['ProviderAuthLoginAwsArgs']]):
+        pulumi.set(self, "auth_login_aws", value)
+
+    @property
+    @pulumi.getter(name="authLoginAzure")
+    def auth_login_azure(self) -> Optional[pulumi.Input['ProviderAuthLoginAzureArgs']]:
+        """
+        Login to vault using the azure method
+        """
+        return pulumi.get(self, "auth_login_azure")
+
+    @auth_login_azure.setter
+    def auth_login_azure(self, value: Optional[pulumi.Input['ProviderAuthLoginAzureArgs']]):
+        pulumi.set(self, "auth_login_azure", value)
+
+    @property
+    @pulumi.getter(name="authLoginCert")
+    def auth_login_cert(self) -> Optional[pulumi.Input['ProviderAuthLoginCertArgs']]:
+        """
+        Login to vault using the cert method
+        """
+        return pulumi.get(self, "auth_login_cert")
+
+    @auth_login_cert.setter
+    def auth_login_cert(self, value: Optional[pulumi.Input['ProviderAuthLoginCertArgs']]):
+        pulumi.set(self, "auth_login_cert", value)
+
+    @property
+    @pulumi.getter(name="authLoginGcp")
+    def auth_login_gcp(self) -> Optional[pulumi.Input['ProviderAuthLoginGcpArgs']]:
+        """
+        Login to vault using the gcp method
+        """
+        return pulumi.get(self, "auth_login_gcp")
+
+    @auth_login_gcp.setter
+    def auth_login_gcp(self, value: Optional[pulumi.Input['ProviderAuthLoginGcpArgs']]):
+        pulumi.set(self, "auth_login_gcp", value)
+
+    @property
+    @pulumi.getter(name="authLoginJwt")
+    def auth_login_jwt(self) -> Optional[pulumi.Input['ProviderAuthLoginJwtArgs']]:
+        """
+        Login to vault using the jwt method
+        """
+        return pulumi.get(self, "auth_login_jwt")
+
+    @auth_login_jwt.setter
+    def auth_login_jwt(self, value: Optional[pulumi.Input['ProviderAuthLoginJwtArgs']]):
+        pulumi.set(self, "auth_login_jwt", value)
+
+    @property
+    @pulumi.getter(name="authLoginKerberos")
+    def auth_login_kerberos(self) -> Optional[pulumi.Input['ProviderAuthLoginKerberosArgs']]:
+        """
+        Login to vault using the kerberos method
+        """
+        return pulumi.get(self, "auth_login_kerberos")
+
+    @auth_login_kerberos.setter
+    def auth_login_kerberos(self, value: Optional[pulumi.Input['ProviderAuthLoginKerberosArgs']]):
+        pulumi.set(self, "auth_login_kerberos", value)
+
+    @property
+    @pulumi.getter(name="authLoginOci")
+    def auth_login_oci(self) -> Optional[pulumi.Input['ProviderAuthLoginOciArgs']]:
+        """
+        Login to vault using the OCI method
+        """
+        return pulumi.get(self, "auth_login_oci")
+
+    @auth_login_oci.setter
+    def auth_login_oci(self, value: Optional[pulumi.Input['ProviderAuthLoginOciArgs']]):
+        pulumi.set(self, "auth_login_oci", value)
+
+    @property
+    @pulumi.getter(name="authLoginOidc")
+    def auth_login_oidc(self) -> Optional[pulumi.Input['ProviderAuthLoginOidcArgs']]:
+        """
+        Login to vault using the oidc method
+        """
+        return pulumi.get(self, "auth_login_oidc")
+
+    @auth_login_oidc.setter
+    def auth_login_oidc(self, value: Optional[pulumi.Input['ProviderAuthLoginOidcArgs']]):
+        pulumi.set(self, "auth_login_oidc", value)
+
+    @property
+    @pulumi.getter(name="authLoginRadius")
+    def auth_login_radius(self) -> Optional[pulumi.Input['ProviderAuthLoginRadiusArgs']]:
+        """
+        Login to vault using the radius method
+        """
+        return pulumi.get(self, "auth_login_radius")
+
+    @auth_login_radius.setter
+    def auth_login_radius(self, value: Optional[pulumi.Input['ProviderAuthLoginRadiusArgs']]):
+        pulumi.set(self, "auth_login_radius", value)
+
+    @property
+    @pulumi.getter(name="authLoginUserpass")
+    def auth_login_userpass(self) -> Optional[pulumi.Input['ProviderAuthLoginUserpassArgs']]:
+        """
+        Login to vault using the userpass method
+        """
+        return pulumi.get(self, "auth_login_userpass")
+
+    @auth_login_userpass.setter
+    def auth_login_userpass(self, value: Optional[pulumi.Input['ProviderAuthLoginUserpassArgs']]):
+        pulumi.set(self, "auth_login_userpass", value)
 
     @property
     @pulumi.getter(name="caCertDir")
@@ -160,16 +320,16 @@ class ProviderArgs:
         pulumi.set(self, "ca_cert_file", value)
 
     @property
-    @pulumi.getter(name="clientAuths")
-    def client_auths(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProviderClientAuthArgs']]]]:
+    @pulumi.getter(name="clientAuth")
+    def client_auth(self) -> Optional[pulumi.Input['ProviderClientAuthArgs']]:
         """
         Client authentication credentials.
         """
-        return pulumi.get(self, "client_auths")
+        return pulumi.get(self, "client_auth")
 
-    @client_auths.setter
-    def client_auths(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProviderClientAuthArgs']]]]):
-        pulumi.set(self, "client_auths", value)
+    @client_auth.setter
+    def client_auth(self, value: Optional[pulumi.Input['ProviderClientAuthArgs']]):
+        pulumi.set(self, "client_auth", value)
 
     @property
     @pulumi.getter
@@ -287,10 +447,20 @@ class Provider(pulumi.ProviderResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  add_address_to_env: Optional[pulumi.Input[str]] = None,
                  address: Optional[pulumi.Input[str]] = None,
-                 auth_logins: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProviderAuthLoginArgs']]]]] = None,
+                 auth_login: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginArgs']]] = None,
+                 auth_login_aws: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginAwsArgs']]] = None,
+                 auth_login_azure: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginAzureArgs']]] = None,
+                 auth_login_cert: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginCertArgs']]] = None,
+                 auth_login_gcp: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginGcpArgs']]] = None,
+                 auth_login_jwt: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginJwtArgs']]] = None,
+                 auth_login_kerberos: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginKerberosArgs']]] = None,
+                 auth_login_oci: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginOciArgs']]] = None,
+                 auth_login_oidc: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginOidcArgs']]] = None,
+                 auth_login_radius: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginRadiusArgs']]] = None,
+                 auth_login_userpass: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginUserpassArgs']]] = None,
                  ca_cert_dir: Optional[pulumi.Input[str]] = None,
                  ca_cert_file: Optional[pulumi.Input[str]] = None,
-                 client_auths: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProviderClientAuthArgs']]]]] = None,
+                 client_auth: Optional[pulumi.Input[pulumi.InputType['ProviderClientAuthArgs']]] = None,
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProviderHeaderArgs']]]]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  max_retries: Optional[pulumi.Input[int]] = None,
@@ -312,10 +482,20 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] add_address_to_env: If true, adds the value of the `address` argument to the Terraform process environment.
         :param pulumi.Input[str] address: URL of the root of the target Vault server.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProviderAuthLoginArgs']]]] auth_logins: Login to vault with an existing auth method using auth/<mount>/login
+        :param pulumi.Input[pulumi.InputType['ProviderAuthLoginArgs']] auth_login: Login to vault with an existing auth method using auth/<mount>/login
+        :param pulumi.Input[pulumi.InputType['ProviderAuthLoginAwsArgs']] auth_login_aws: Login to vault using the AWS method
+        :param pulumi.Input[pulumi.InputType['ProviderAuthLoginAzureArgs']] auth_login_azure: Login to vault using the azure method
+        :param pulumi.Input[pulumi.InputType['ProviderAuthLoginCertArgs']] auth_login_cert: Login to vault using the cert method
+        :param pulumi.Input[pulumi.InputType['ProviderAuthLoginGcpArgs']] auth_login_gcp: Login to vault using the gcp method
+        :param pulumi.Input[pulumi.InputType['ProviderAuthLoginJwtArgs']] auth_login_jwt: Login to vault using the jwt method
+        :param pulumi.Input[pulumi.InputType['ProviderAuthLoginKerberosArgs']] auth_login_kerberos: Login to vault using the kerberos method
+        :param pulumi.Input[pulumi.InputType['ProviderAuthLoginOciArgs']] auth_login_oci: Login to vault using the OCI method
+        :param pulumi.Input[pulumi.InputType['ProviderAuthLoginOidcArgs']] auth_login_oidc: Login to vault using the oidc method
+        :param pulumi.Input[pulumi.InputType['ProviderAuthLoginRadiusArgs']] auth_login_radius: Login to vault using the radius method
+        :param pulumi.Input[pulumi.InputType['ProviderAuthLoginUserpassArgs']] auth_login_userpass: Login to vault using the userpass method
         :param pulumi.Input[str] ca_cert_dir: Path to directory containing CA certificate files to validate the server's certificate.
         :param pulumi.Input[str] ca_cert_file: Path to a CA certificate file to validate the server's certificate.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProviderClientAuthArgs']]]] client_auths: Client authentication credentials.
+        :param pulumi.Input[pulumi.InputType['ProviderClientAuthArgs']] client_auth: Client authentication credentials.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProviderHeaderArgs']]]] headers: The headers to send with each Vault request.
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum TTL for secret leases requested by this provider.
         :param pulumi.Input[int] max_retries: Maximum number of retries when a 5xx error code is encountered.
@@ -356,10 +536,20 @@ class Provider(pulumi.ProviderResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  add_address_to_env: Optional[pulumi.Input[str]] = None,
                  address: Optional[pulumi.Input[str]] = None,
-                 auth_logins: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProviderAuthLoginArgs']]]]] = None,
+                 auth_login: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginArgs']]] = None,
+                 auth_login_aws: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginAwsArgs']]] = None,
+                 auth_login_azure: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginAzureArgs']]] = None,
+                 auth_login_cert: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginCertArgs']]] = None,
+                 auth_login_gcp: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginGcpArgs']]] = None,
+                 auth_login_jwt: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginJwtArgs']]] = None,
+                 auth_login_kerberos: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginKerberosArgs']]] = None,
+                 auth_login_oci: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginOciArgs']]] = None,
+                 auth_login_oidc: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginOidcArgs']]] = None,
+                 auth_login_radius: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginRadiusArgs']]] = None,
+                 auth_login_userpass: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginUserpassArgs']]] = None,
                  ca_cert_dir: Optional[pulumi.Input[str]] = None,
                  ca_cert_file: Optional[pulumi.Input[str]] = None,
-                 client_auths: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProviderClientAuthArgs']]]]] = None,
+                 client_auth: Optional[pulumi.Input[pulumi.InputType['ProviderClientAuthArgs']]] = None,
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProviderHeaderArgs']]]]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  max_retries: Optional[pulumi.Input[int]] = None,
@@ -383,11 +573,21 @@ class Provider(pulumi.ProviderResource):
             if address is None and not opts.urn:
                 raise TypeError("Missing required property 'address'")
             __props__.__dict__["address"] = address
-            __props__.__dict__["auth_logins"] = pulumi.Output.from_input(auth_logins).apply(pulumi.runtime.to_json) if auth_logins is not None else None
+            __props__.__dict__["auth_login"] = pulumi.Output.from_input(auth_login).apply(pulumi.runtime.to_json) if auth_login is not None else None
+            __props__.__dict__["auth_login_aws"] = pulumi.Output.from_input(auth_login_aws).apply(pulumi.runtime.to_json) if auth_login_aws is not None else None
+            __props__.__dict__["auth_login_azure"] = pulumi.Output.from_input(auth_login_azure).apply(pulumi.runtime.to_json) if auth_login_azure is not None else None
+            __props__.__dict__["auth_login_cert"] = pulumi.Output.from_input(auth_login_cert).apply(pulumi.runtime.to_json) if auth_login_cert is not None else None
+            __props__.__dict__["auth_login_gcp"] = pulumi.Output.from_input(auth_login_gcp).apply(pulumi.runtime.to_json) if auth_login_gcp is not None else None
+            __props__.__dict__["auth_login_jwt"] = pulumi.Output.from_input(auth_login_jwt).apply(pulumi.runtime.to_json) if auth_login_jwt is not None else None
+            __props__.__dict__["auth_login_kerberos"] = pulumi.Output.from_input(auth_login_kerberos).apply(pulumi.runtime.to_json) if auth_login_kerberos is not None else None
+            __props__.__dict__["auth_login_oci"] = pulumi.Output.from_input(auth_login_oci).apply(pulumi.runtime.to_json) if auth_login_oci is not None else None
+            __props__.__dict__["auth_login_oidc"] = pulumi.Output.from_input(auth_login_oidc).apply(pulumi.runtime.to_json) if auth_login_oidc is not None else None
+            __props__.__dict__["auth_login_radius"] = pulumi.Output.from_input(auth_login_radius).apply(pulumi.runtime.to_json) if auth_login_radius is not None else None
+            __props__.__dict__["auth_login_userpass"] = pulumi.Output.from_input(auth_login_userpass).apply(pulumi.runtime.to_json) if auth_login_userpass is not None else None
             __props__.__dict__["ca_cert_dir"] = ca_cert_dir
             __props__.__dict__["ca_cert_file"] = ca_cert_file
-            __props__.__dict__["client_auths"] = pulumi.Output.from_input(client_auths).apply(pulumi.runtime.to_json) if client_auths is not None else None
-            __props__.__dict__["headers"] = pulumi.Output.from_input(headers).apply(pulumi.runtime.to_json) if headers is not None else None
+            __props__.__dict__["client_auth"] = pulumi.Output.from_input(client_auth).apply(pulumi.runtime.to_json) if client_auth is not None else None
+            __props__.__dict__["headers"] = None if pulumi.Output.from_input(headers).apply(pulumi.runtime.to_json) if headers is not None else None is None else pulumi.Output.secret(pulumi.Output.from_input(headers).apply(pulumi.runtime.to_json) if headers is not None else None)
             if max_lease_ttl_seconds is None:
                 max_lease_ttl_seconds = (_utilities.get_env_int('TERRAFORM_VAULT_MAX_TTL') or 1200)
             __props__.__dict__["max_lease_ttl_seconds"] = pulumi.Output.from_input(max_lease_ttl_seconds).apply(pulumi.runtime.to_json) if max_lease_ttl_seconds is not None else None

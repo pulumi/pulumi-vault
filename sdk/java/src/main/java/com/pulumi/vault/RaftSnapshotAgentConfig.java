@@ -51,6 +51,88 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * ### AWS S3
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.aws.AwsFunctions;
+ * import com.pulumi.aws.inputs.GetRegionArgs;
+ * import com.pulumi.vault.RaftSnapshotAgentConfig;
+ * import com.pulumi.vault.RaftSnapshotAgentConfigArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var config = ctx.config();
+ *         final var awsAccessKeyId = config.get(&#34;awsAccessKeyId&#34;);
+ *         final var awsSecretAccessKey = config.get(&#34;awsSecretAccessKey&#34;);
+ *         final var current = AwsFunctions.getRegion();
+ * 
+ *         var s3Backups = new RaftSnapshotAgentConfig(&#34;s3Backups&#34;, RaftSnapshotAgentConfigArgs.builder()        
+ *             .intervalSeconds(86400)
+ *             .retain(7)
+ *             .pathPrefix(&#34;/path/in/bucket&#34;)
+ *             .storageType(&#34;aws-s3&#34;)
+ *             .awsS3Bucket(&#34;my-bucket&#34;)
+ *             .awsS3Region(current.applyValue(getRegionResult -&gt; getRegionResult.name()))
+ *             .awsAccessKeyId(awsAccessKeyId)
+ *             .awsSecretAccessKey(awsSecretAccessKey)
+ *             .awsS3EnableKms(true)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * ### Azure BLOB
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.RaftSnapshotAgentConfig;
+ * import com.pulumi.vault.RaftSnapshotAgentConfigArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var config = ctx.config();
+ *         final var azureAccountName = config.get(&#34;azureAccountName&#34;);
+ *         final var azureAccountKey = config.get(&#34;azureAccountKey&#34;);
+ *         var azureBackups = new RaftSnapshotAgentConfig(&#34;azureBackups&#34;, RaftSnapshotAgentConfigArgs.builder()        
+ *             .intervalSeconds(86400)
+ *             .retain(7)
+ *             .pathPrefix(&#34;/&#34;)
+ *             .storageType(&#34;azure-blob&#34;)
+ *             .azureContainerName(&#34;vault-blob&#34;)
+ *             .azureAccountName(azureAccountName)
+ *             .azureAccountKey(azureAccountKey)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
  * 
  * ## Import
  * 
@@ -426,6 +508,26 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
      */
     public Output<String> name() {
         return this.name;
+    }
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="namespace", type=String.class, parameters={})
+    private Output</* @Nullable */ String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> namespace() {
+        return Codegen.optional(this.namespace);
     }
     /**
      * `&lt;required&gt;` - For `storage_type = &#34;local&#34;`, the directory to

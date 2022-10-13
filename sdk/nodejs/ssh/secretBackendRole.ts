@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -161,6 +162,13 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * Specifies the Time To Live value.
      */
     public readonly ttl!: pulumi.Output<string>;
@@ -200,6 +208,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["keyType"] = state ? state.keyType : undefined;
             resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["ttl"] = state ? state.ttl : undefined;
         } else {
             const args = argsOrState as SecretBackendRoleArgs | undefined;
@@ -231,6 +240,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["keyType"] = args ? args.keyType : undefined;
             resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["ttl"] = args ? args.ttl : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -337,6 +347,13 @@ export interface SecretBackendRoleState {
      */
     name?: pulumi.Input<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
+    /**
      * Specifies the Time To Live value.
      */
     ttl?: pulumi.Input<string>;
@@ -440,6 +457,13 @@ export interface SecretBackendRoleArgs {
      * Specifies the name of the role to create.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Specifies the Time To Live value.
      */

@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 declare var exports: any;
@@ -33,10 +34,120 @@ Object.defineProperty(exports, "address", {
 /**
  * Login to vault with an existing auth method using auth/<mount>/login
  */
-export declare const authLogins: outputs.config.AuthLogins[] | undefined;
-Object.defineProperty(exports, "authLogins", {
+export declare const authLogin: outputs.config.AuthLogin | undefined;
+Object.defineProperty(exports, "authLogin", {
     get() {
-        return __config.getObject<outputs.config.AuthLogins[]>("authLogins");
+        return __config.getObject<outputs.config.AuthLogin>("authLogin");
+    },
+    enumerable: true,
+});
+
+/**
+ * Login to vault using the AWS method
+ */
+export declare const authLoginAws: outputs.config.AuthLoginAws | undefined;
+Object.defineProperty(exports, "authLoginAws", {
+    get() {
+        return __config.getObject<outputs.config.AuthLoginAws>("authLoginAws");
+    },
+    enumerable: true,
+});
+
+/**
+ * Login to vault using the azure method
+ */
+export declare const authLoginAzure: outputs.config.AuthLoginAzure | undefined;
+Object.defineProperty(exports, "authLoginAzure", {
+    get() {
+        return __config.getObject<outputs.config.AuthLoginAzure>("authLoginAzure");
+    },
+    enumerable: true,
+});
+
+/**
+ * Login to vault using the cert method
+ */
+export declare const authLoginCert: outputs.config.AuthLoginCert | undefined;
+Object.defineProperty(exports, "authLoginCert", {
+    get() {
+        return __config.getObject<outputs.config.AuthLoginCert>("authLoginCert");
+    },
+    enumerable: true,
+});
+
+/**
+ * Login to vault using the gcp method
+ */
+export declare const authLoginGcp: outputs.config.AuthLoginGcp | undefined;
+Object.defineProperty(exports, "authLoginGcp", {
+    get() {
+        return __config.getObject<outputs.config.AuthLoginGcp>("authLoginGcp");
+    },
+    enumerable: true,
+});
+
+/**
+ * Login to vault using the jwt method
+ */
+export declare const authLoginJwt: outputs.config.AuthLoginJwt | undefined;
+Object.defineProperty(exports, "authLoginJwt", {
+    get() {
+        return __config.getObject<outputs.config.AuthLoginJwt>("authLoginJwt");
+    },
+    enumerable: true,
+});
+
+/**
+ * Login to vault using the kerberos method
+ */
+export declare const authLoginKerberos: outputs.config.AuthLoginKerberos | undefined;
+Object.defineProperty(exports, "authLoginKerberos", {
+    get() {
+        return __config.getObject<outputs.config.AuthLoginKerberos>("authLoginKerberos");
+    },
+    enumerable: true,
+});
+
+/**
+ * Login to vault using the OCI method
+ */
+export declare const authLoginOci: outputs.config.AuthLoginOci | undefined;
+Object.defineProperty(exports, "authLoginOci", {
+    get() {
+        return __config.getObject<outputs.config.AuthLoginOci>("authLoginOci");
+    },
+    enumerable: true,
+});
+
+/**
+ * Login to vault using the oidc method
+ */
+export declare const authLoginOidc: outputs.config.AuthLoginOidc | undefined;
+Object.defineProperty(exports, "authLoginOidc", {
+    get() {
+        return __config.getObject<outputs.config.AuthLoginOidc>("authLoginOidc");
+    },
+    enumerable: true,
+});
+
+/**
+ * Login to vault using the radius method
+ */
+export declare const authLoginRadius: outputs.config.AuthLoginRadius | undefined;
+Object.defineProperty(exports, "authLoginRadius", {
+    get() {
+        return __config.getObject<outputs.config.AuthLoginRadius>("authLoginRadius");
+    },
+    enumerable: true,
+});
+
+/**
+ * Login to vault using the userpass method
+ */
+export declare const authLoginUserpass: outputs.config.AuthLoginUserpass | undefined;
+Object.defineProperty(exports, "authLoginUserpass", {
+    get() {
+        return __config.getObject<outputs.config.AuthLoginUserpass>("authLoginUserpass");
     },
     enumerable: true,
 });
@@ -66,10 +177,10 @@ Object.defineProperty(exports, "caCertFile", {
 /**
  * Client authentication credentials.
  */
-export declare const clientAuths: outputs.config.ClientAuths[] | undefined;
-Object.defineProperty(exports, "clientAuths", {
+export declare const clientAuth: outputs.config.ClientAuth | undefined;
+Object.defineProperty(exports, "clientAuth", {
     get() {
-        return __config.getObject<outputs.config.ClientAuths[]>("clientAuths");
+        return __config.getObject<outputs.config.ClientAuth>("clientAuth");
     },
     enumerable: true,
 });

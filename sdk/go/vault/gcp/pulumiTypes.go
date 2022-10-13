@@ -10,6 +10,200 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+type AuthBackendCustomEndpoint struct {
+	// Replaces the service endpoint used in API requests to `https://www.googleapis.com`.
+	Api *string `pulumi:"api"`
+	// Replaces the service endpoint used in API requests to `https://compute.googleapis.com`.
+	Compute *string `pulumi:"compute"`
+	// Replaces the service endpoint used in API requests to `https://cloudresourcemanager.googleapis.com`.
+	Crm *string `pulumi:"crm"`
+	// Replaces the service endpoint used in API requests to `https://iam.googleapis.com`.
+	Iam *string `pulumi:"iam"`
+}
+
+// AuthBackendCustomEndpointInput is an input type that accepts AuthBackendCustomEndpointArgs and AuthBackendCustomEndpointOutput values.
+// You can construct a concrete instance of `AuthBackendCustomEndpointInput` via:
+//
+//	AuthBackendCustomEndpointArgs{...}
+type AuthBackendCustomEndpointInput interface {
+	pulumi.Input
+
+	ToAuthBackendCustomEndpointOutput() AuthBackendCustomEndpointOutput
+	ToAuthBackendCustomEndpointOutputWithContext(context.Context) AuthBackendCustomEndpointOutput
+}
+
+type AuthBackendCustomEndpointArgs struct {
+	// Replaces the service endpoint used in API requests to `https://www.googleapis.com`.
+	Api pulumi.StringPtrInput `pulumi:"api"`
+	// Replaces the service endpoint used in API requests to `https://compute.googleapis.com`.
+	Compute pulumi.StringPtrInput `pulumi:"compute"`
+	// Replaces the service endpoint used in API requests to `https://cloudresourcemanager.googleapis.com`.
+	Crm pulumi.StringPtrInput `pulumi:"crm"`
+	// Replaces the service endpoint used in API requests to `https://iam.googleapis.com`.
+	Iam pulumi.StringPtrInput `pulumi:"iam"`
+}
+
+func (AuthBackendCustomEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendCustomEndpoint)(nil)).Elem()
+}
+
+func (i AuthBackendCustomEndpointArgs) ToAuthBackendCustomEndpointOutput() AuthBackendCustomEndpointOutput {
+	return i.ToAuthBackendCustomEndpointOutputWithContext(context.Background())
+}
+
+func (i AuthBackendCustomEndpointArgs) ToAuthBackendCustomEndpointOutputWithContext(ctx context.Context) AuthBackendCustomEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendCustomEndpointOutput)
+}
+
+func (i AuthBackendCustomEndpointArgs) ToAuthBackendCustomEndpointPtrOutput() AuthBackendCustomEndpointPtrOutput {
+	return i.ToAuthBackendCustomEndpointPtrOutputWithContext(context.Background())
+}
+
+func (i AuthBackendCustomEndpointArgs) ToAuthBackendCustomEndpointPtrOutputWithContext(ctx context.Context) AuthBackendCustomEndpointPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendCustomEndpointOutput).ToAuthBackendCustomEndpointPtrOutputWithContext(ctx)
+}
+
+// AuthBackendCustomEndpointPtrInput is an input type that accepts AuthBackendCustomEndpointArgs, AuthBackendCustomEndpointPtr and AuthBackendCustomEndpointPtrOutput values.
+// You can construct a concrete instance of `AuthBackendCustomEndpointPtrInput` via:
+//
+//	        AuthBackendCustomEndpointArgs{...}
+//
+//	or:
+//
+//	        nil
+type AuthBackendCustomEndpointPtrInput interface {
+	pulumi.Input
+
+	ToAuthBackendCustomEndpointPtrOutput() AuthBackendCustomEndpointPtrOutput
+	ToAuthBackendCustomEndpointPtrOutputWithContext(context.Context) AuthBackendCustomEndpointPtrOutput
+}
+
+type authBackendCustomEndpointPtrType AuthBackendCustomEndpointArgs
+
+func AuthBackendCustomEndpointPtr(v *AuthBackendCustomEndpointArgs) AuthBackendCustomEndpointPtrInput {
+	return (*authBackendCustomEndpointPtrType)(v)
+}
+
+func (*authBackendCustomEndpointPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AuthBackendCustomEndpoint)(nil)).Elem()
+}
+
+func (i *authBackendCustomEndpointPtrType) ToAuthBackendCustomEndpointPtrOutput() AuthBackendCustomEndpointPtrOutput {
+	return i.ToAuthBackendCustomEndpointPtrOutputWithContext(context.Background())
+}
+
+func (i *authBackendCustomEndpointPtrType) ToAuthBackendCustomEndpointPtrOutputWithContext(ctx context.Context) AuthBackendCustomEndpointPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendCustomEndpointPtrOutput)
+}
+
+type AuthBackendCustomEndpointOutput struct{ *pulumi.OutputState }
+
+func (AuthBackendCustomEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendCustomEndpoint)(nil)).Elem()
+}
+
+func (o AuthBackendCustomEndpointOutput) ToAuthBackendCustomEndpointOutput() AuthBackendCustomEndpointOutput {
+	return o
+}
+
+func (o AuthBackendCustomEndpointOutput) ToAuthBackendCustomEndpointOutputWithContext(ctx context.Context) AuthBackendCustomEndpointOutput {
+	return o
+}
+
+func (o AuthBackendCustomEndpointOutput) ToAuthBackendCustomEndpointPtrOutput() AuthBackendCustomEndpointPtrOutput {
+	return o.ToAuthBackendCustomEndpointPtrOutputWithContext(context.Background())
+}
+
+func (o AuthBackendCustomEndpointOutput) ToAuthBackendCustomEndpointPtrOutputWithContext(ctx context.Context) AuthBackendCustomEndpointPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AuthBackendCustomEndpoint) *AuthBackendCustomEndpoint {
+		return &v
+	}).(AuthBackendCustomEndpointPtrOutput)
+}
+
+// Replaces the service endpoint used in API requests to `https://www.googleapis.com`.
+func (o AuthBackendCustomEndpointOutput) Api() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthBackendCustomEndpoint) *string { return v.Api }).(pulumi.StringPtrOutput)
+}
+
+// Replaces the service endpoint used in API requests to `https://compute.googleapis.com`.
+func (o AuthBackendCustomEndpointOutput) Compute() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthBackendCustomEndpoint) *string { return v.Compute }).(pulumi.StringPtrOutput)
+}
+
+// Replaces the service endpoint used in API requests to `https://cloudresourcemanager.googleapis.com`.
+func (o AuthBackendCustomEndpointOutput) Crm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthBackendCustomEndpoint) *string { return v.Crm }).(pulumi.StringPtrOutput)
+}
+
+// Replaces the service endpoint used in API requests to `https://iam.googleapis.com`.
+func (o AuthBackendCustomEndpointOutput) Iam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthBackendCustomEndpoint) *string { return v.Iam }).(pulumi.StringPtrOutput)
+}
+
+type AuthBackendCustomEndpointPtrOutput struct{ *pulumi.OutputState }
+
+func (AuthBackendCustomEndpointPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AuthBackendCustomEndpoint)(nil)).Elem()
+}
+
+func (o AuthBackendCustomEndpointPtrOutput) ToAuthBackendCustomEndpointPtrOutput() AuthBackendCustomEndpointPtrOutput {
+	return o
+}
+
+func (o AuthBackendCustomEndpointPtrOutput) ToAuthBackendCustomEndpointPtrOutputWithContext(ctx context.Context) AuthBackendCustomEndpointPtrOutput {
+	return o
+}
+
+func (o AuthBackendCustomEndpointPtrOutput) Elem() AuthBackendCustomEndpointOutput {
+	return o.ApplyT(func(v *AuthBackendCustomEndpoint) AuthBackendCustomEndpoint {
+		if v != nil {
+			return *v
+		}
+		var ret AuthBackendCustomEndpoint
+		return ret
+	}).(AuthBackendCustomEndpointOutput)
+}
+
+// Replaces the service endpoint used in API requests to `https://www.googleapis.com`.
+func (o AuthBackendCustomEndpointPtrOutput) Api() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendCustomEndpoint) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Api
+	}).(pulumi.StringPtrOutput)
+}
+
+// Replaces the service endpoint used in API requests to `https://compute.googleapis.com`.
+func (o AuthBackendCustomEndpointPtrOutput) Compute() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendCustomEndpoint) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Compute
+	}).(pulumi.StringPtrOutput)
+}
+
+// Replaces the service endpoint used in API requests to `https://cloudresourcemanager.googleapis.com`.
+func (o AuthBackendCustomEndpointPtrOutput) Crm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendCustomEndpoint) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Crm
+	}).(pulumi.StringPtrOutput)
+}
+
+// Replaces the service endpoint used in API requests to `https://iam.googleapis.com`.
+func (o AuthBackendCustomEndpointPtrOutput) Iam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendCustomEndpoint) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Iam
+	}).(pulumi.StringPtrOutput)
+}
+
 type SecretRolesetBinding struct {
 	// Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings).
 	Resource string `pulumi:"resource"`
@@ -223,10 +417,14 @@ func (o SecretStaticAccountBindingArrayOutput) Index(i pulumi.IntInput) SecretSt
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendCustomEndpointInput)(nil)).Elem(), AuthBackendCustomEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendCustomEndpointPtrInput)(nil)).Elem(), AuthBackendCustomEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretRolesetBindingInput)(nil)).Elem(), SecretRolesetBindingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretRolesetBindingArrayInput)(nil)).Elem(), SecretRolesetBindingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretStaticAccountBindingInput)(nil)).Elem(), SecretStaticAccountBindingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretStaticAccountBindingArrayInput)(nil)).Elem(), SecretStaticAccountBindingArray{})
+	pulumi.RegisterOutputType(AuthBackendCustomEndpointOutput{})
+	pulumi.RegisterOutputType(AuthBackendCustomEndpointPtrOutput{})
 	pulumi.RegisterOutputType(SecretRolesetBindingOutput{})
 	pulumi.RegisterOutputType(SecretRolesetBindingArrayOutput{})
 	pulumi.RegisterOutputType(SecretStaticAccountBindingOutput{})

@@ -64,6 +64,11 @@ type SecretScope struct {
 
 	// Boolean field to force deletion even if there are managed objects in the scope.
 	Force pulumi.BoolPtrOutput `pulumi:"force"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `kmip`.
 	Path pulumi.StringOutput `pulumi:"path"`
@@ -108,6 +113,11 @@ func GetSecretScope(ctx *pulumi.Context,
 type secretScopeState struct {
 	// Boolean field to force deletion even if there are managed objects in the scope.
 	Force *bool `pulumi:"force"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `kmip`.
 	Path *string `pulumi:"path"`
@@ -118,6 +128,11 @@ type secretScopeState struct {
 type SecretScopeState struct {
 	// Boolean field to force deletion even if there are managed objects in the scope.
 	Force pulumi.BoolPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `kmip`.
 	Path pulumi.StringPtrInput
@@ -132,6 +147,11 @@ func (SecretScopeState) ElementType() reflect.Type {
 type secretScopeArgs struct {
 	// Boolean field to force deletion even if there are managed objects in the scope.
 	Force *bool `pulumi:"force"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `kmip`.
 	Path string `pulumi:"path"`
@@ -143,6 +163,11 @@ type secretScopeArgs struct {
 type SecretScopeArgs struct {
 	// Boolean field to force deletion even if there are managed objects in the scope.
 	Force pulumi.BoolPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `kmip`.
 	Path pulumi.StringInput
@@ -240,6 +265,14 @@ func (o SecretScopeOutput) ToSecretScopeOutputWithContext(ctx context.Context) S
 // Boolean field to force deletion even if there are managed objects in the scope.
 func (o SecretScopeOutput) Force() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretScope) pulumi.BoolPtrOutput { return v.Force }).(pulumi.BoolPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o SecretScopeOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretScope) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The unique path this backend should be mounted at. Must

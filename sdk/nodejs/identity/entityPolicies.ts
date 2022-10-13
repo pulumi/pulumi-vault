@@ -87,6 +87,13 @@ export class EntityPolicies extends pulumi.CustomResource {
      */
     public readonly exclusive!: pulumi.Output<boolean | undefined>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * List of policies to assign to the entity
      */
     public readonly policies!: pulumi.Output<string[]>;
@@ -107,6 +114,7 @@ export class EntityPolicies extends pulumi.CustomResource {
             resourceInputs["entityId"] = state ? state.entityId : undefined;
             resourceInputs["entityName"] = state ? state.entityName : undefined;
             resourceInputs["exclusive"] = state ? state.exclusive : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["policies"] = state ? state.policies : undefined;
         } else {
             const args = argsOrState as EntityPoliciesArgs | undefined;
@@ -118,6 +126,7 @@ export class EntityPolicies extends pulumi.CustomResource {
             }
             resourceInputs["entityId"] = args ? args.entityId : undefined;
             resourceInputs["exclusive"] = args ? args.exclusive : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["policies"] = args ? args.policies : undefined;
             resourceInputs["entityName"] = undefined /*out*/;
         }
@@ -143,6 +152,13 @@ export interface EntityPoliciesState {
      */
     exclusive?: pulumi.Input<boolean>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
+    /**
      * List of policies to assign to the entity
      */
     policies?: pulumi.Input<pulumi.Input<string>[]>;
@@ -160,6 +176,13 @@ export interface EntityPoliciesArgs {
      * Defaults to `true`.
      */
     exclusive?: pulumi.Input<boolean>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * List of policies to assign to the entity
      */

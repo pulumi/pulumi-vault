@@ -108,6 +108,13 @@ use "data.vault_identity_group.*.group_name", "vault_identity_group.*.group_name
      * List of member entities that belong to the group
      */
     public readonly memberEntityIds!: pulumi.Output<string[] | undefined>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
 
     /**
      * Create a GroupMemberEntityIds resource with the given unique name, arguments, and options.
@@ -126,6 +133,7 @@ use "data.vault_identity_group.*.group_name", "vault_identity_group.*.group_name
             resourceInputs["groupId"] = state ? state.groupId : undefined;
             resourceInputs["groupName"] = state ? state.groupName : undefined;
             resourceInputs["memberEntityIds"] = state ? state.memberEntityIds : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
         } else {
             const args = argsOrState as GroupMemberEntityIdsArgs | undefined;
             if ((!args || args.groupId === undefined) && !opts.urn) {
@@ -134,6 +142,7 @@ use "data.vault_identity_group.*.group_name", "vault_identity_group.*.group_name
             resourceInputs["exclusive"] = args ? args.exclusive : undefined;
             resourceInputs["groupId"] = args ? args.groupId : undefined;
             resourceInputs["memberEntityIds"] = args ? args.memberEntityIds : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["groupName"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -166,6 +175,13 @@ use "data.vault_identity_group.*.group_name", "vault_identity_group.*.group_name
      * List of member entities that belong to the group
      */
     memberEntityIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
 }
 
 /**
@@ -184,4 +200,11 @@ export interface GroupMemberEntityIdsArgs {
      * List of member entities that belong to the group
      */
     memberEntityIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
 }

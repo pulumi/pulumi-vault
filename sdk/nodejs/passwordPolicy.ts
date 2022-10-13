@@ -65,6 +65,13 @@ export class PasswordPolicy extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * String containing a password policy.
      */
     public readonly policy!: pulumi.Output<string>;
@@ -83,6 +90,7 @@ export class PasswordPolicy extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as PasswordPolicyState | undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["policy"] = state ? state.policy : undefined;
         } else {
             const args = argsOrState as PasswordPolicyArgs | undefined;
@@ -90,6 +98,7 @@ export class PasswordPolicy extends pulumi.CustomResource {
                 throw new Error("Missing required property 'policy'");
             }
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["policy"] = args ? args.policy : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -106,6 +115,13 @@ export interface PasswordPolicyState {
      */
     name?: pulumi.Input<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
+    /**
      * String containing a password policy.
      */
     policy?: pulumi.Input<string>;
@@ -119,6 +135,13 @@ export interface PasswordPolicyArgs {
      * The name of the password policy.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * String containing a password policy.
      */

@@ -314,6 +314,42 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.groupsClaim);
     }
     /**
+     * Specifies the allowable elapsed time in seconds since the last time
+     * the user was actively authenticated with the OIDC provider.
+     * 
+     */
+    @Export(name="maxAge", type=Integer.class, parameters={})
+    private Output</* @Nullable */ Integer> maxAge;
+
+    /**
+     * @return Specifies the allowable elapsed time in seconds since the last time
+     * the user was actively authenticated with the OIDC provider.
+     * 
+     */
+    public Output<Optional<Integer>> maxAge() {
+        return Codegen.optional(this.maxAge);
+    }
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="namespace", type=String.class, parameters={})
+    private Output</* @Nullable */ String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> namespace() {
+        return Codegen.optional(this.namespace);
+    }
+    /**
      * The amount of leeway to add to not before (`nbf`) claims to account for
      * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with &#34;jwt&#34; roles.
@@ -552,6 +588,26 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      */
     public Output<String> userClaim() {
         return this.userClaim;
+    }
+    /**
+     * Specifies if the `user_claim` value uses
+     * [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+     * syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
+     * Requires Vault 1.11+.
+     * 
+     */
+    @Export(name="userClaimJsonPointer", type=Boolean.class, parameters={})
+    private Output</* @Nullable */ Boolean> userClaimJsonPointer;
+
+    /**
+     * @return Specifies if the `user_claim` value uses
+     * [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+     * syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
+     * Requires Vault 1.11+.
+     * 
+     */
+    public Output<Optional<Boolean>> userClaimJsonPointer() {
+        return Codegen.optional(this.userClaimJsonPointer);
     }
     /**
      * Log received OIDC tokens and claims when debug-level

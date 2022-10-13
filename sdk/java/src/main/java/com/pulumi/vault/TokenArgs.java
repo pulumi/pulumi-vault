@@ -9,6 +9,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -46,6 +47,42 @@ public final class TokenArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> explicitMaxTtl() {
         return Optional.ofNullable(this.explicitMaxTtl);
+    }
+
+    /**
+     * Metadata to be set on this token
+     * 
+     */
+    @Import(name="metadata")
+    private @Nullable Output<Map<String,String>> metadata;
+
+    /**
+     * @return Metadata to be set on this token
+     * 
+     */
+    public Optional<Output<Map<String,String>>> metadata() {
+        return Optional.ofNullable(this.metadata);
+    }
+
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable Output<String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> namespace() {
+        return Optional.ofNullable(this.namespace);
     }
 
     /**
@@ -218,6 +255,8 @@ public final class TokenArgs extends com.pulumi.resources.ResourceArgs {
     private TokenArgs(TokenArgs $) {
         this.displayName = $.displayName;
         this.explicitMaxTtl = $.explicitMaxTtl;
+        this.metadata = $.metadata;
+        this.namespace = $.namespace;
         this.noDefaultPolicy = $.noDefaultPolicy;
         this.noParent = $.noParent;
         this.numUses = $.numUses;
@@ -289,6 +328,54 @@ public final class TokenArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder explicitMaxTtl(String explicitMaxTtl) {
             return explicitMaxTtl(Output.of(explicitMaxTtl));
+        }
+
+        /**
+         * @param metadata Metadata to be set on this token
+         * 
+         * @return builder
+         * 
+         */
+        public Builder metadata(@Nullable Output<Map<String,String>> metadata) {
+            $.metadata = metadata;
+            return this;
+        }
+
+        /**
+         * @param metadata Metadata to be set on this token
+         * 
+         * @return builder
+         * 
+         */
+        public Builder metadata(Map<String,String> metadata) {
+            return metadata(Output.of(metadata));
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable Output<String> namespace) {
+            $.namespace = namespace;
+            return this;
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(String namespace) {
+            return namespace(Output.of(namespace));
         }
 
         /**

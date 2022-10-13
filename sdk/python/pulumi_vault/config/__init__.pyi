@@ -20,9 +20,59 @@ address: Optional[str]
 URL of the root of the target Vault server.
 """
 
-authLogins: Optional[str]
+authLogin: Optional[str]
 """
 Login to vault with an existing auth method using auth/<mount>/login
+"""
+
+authLoginAws: Optional[str]
+"""
+Login to vault using the AWS method
+"""
+
+authLoginAzure: Optional[str]
+"""
+Login to vault using the azure method
+"""
+
+authLoginCert: Optional[str]
+"""
+Login to vault using the cert method
+"""
+
+authLoginGcp: Optional[str]
+"""
+Login to vault using the gcp method
+"""
+
+authLoginJwt: Optional[str]
+"""
+Login to vault using the jwt method
+"""
+
+authLoginKerberos: Optional[str]
+"""
+Login to vault using the kerberos method
+"""
+
+authLoginOci: Optional[str]
+"""
+Login to vault using the OCI method
+"""
+
+authLoginOidc: Optional[str]
+"""
+Login to vault using the oidc method
+"""
+
+authLoginRadius: Optional[str]
+"""
+Login to vault using the radius method
+"""
+
+authLoginUserpass: Optional[str]
+"""
+Login to vault using the userpass method
 """
 
 caCertDir: Optional[str]
@@ -35,7 +85,7 @@ caCertFile: Optional[str]
 Path to a CA certificate file to validate the server's certificate.
 """
 
-clientAuths: Optional[str]
+clientAuth: Optional[str]
 """
 Client authentication credentials.
 """

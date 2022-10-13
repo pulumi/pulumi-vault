@@ -53,12 +53,17 @@ import javax.annotation.Nullable;
  * 
  *         var example = new SecretBackendRole(&#34;example&#34;, SecretBackendRoleArgs.builder()        
  *             .backend(test.path())
- *             .policies(&#34;example-policy&#34;)
+ *             .consulPolicies(&#34;example-policy&#34;)
  *             .build());
  * 
  *     }
  * }
  * ```
+ * ## Note About Required Arguments
+ * 
+ * *At least one* of the four arguments `consul_policies`, `consul_roles`, `service_identities`, or
+ * `node_identities` is required for a token. If desired, any combination of the four arguments up-to and
+ * including all four, is valid.
  * 
  * ## Import
  * 
@@ -87,7 +92,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     }
     /**
      * The Consul namespace that the token will be created in.
-     * Applicable for Vault 1.10+ and Consul 1.7+&#34;,
+     * Applicable for Vault 1.10+ and Consul 1.7+&#34;.
      * 
      */
     @Export(name="consulNamespace", type=String.class, parameters={})
@@ -95,14 +100,28 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The Consul namespace that the token will be created in.
-     * Applicable for Vault 1.10+ and Consul 1.7+&#34;,
+     * Applicable for Vault 1.10+ and Consul 1.7+&#34;.
      * 
      */
     public Output<String> consulNamespace() {
         return this.consulNamespace;
     }
     /**
-     * Set of Consul roles to attach to the token.
+     * &lt;sup&gt;&lt;a href=&#34;#note-about-required-arguments&#34;&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; The list of Consul ACL policies to associate with these roles.
+     * 
+     */
+    @Export(name="consulPolicies", type=List.class, parameters={String.class})
+    private Output</* @Nullable */ List<String>> consulPolicies;
+
+    /**
+     * @return &lt;sup&gt;&lt;a href=&#34;#note-about-required-arguments&#34;&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; The list of Consul ACL policies to associate with these roles.
+     * 
+     */
+    public Output<Optional<List<String>>> consulPolicies() {
+        return Codegen.optional(this.consulPolicies);
+    }
+    /**
+     * &lt;sup&gt;&lt;a href=&#34;#note-about-required-arguments&#34;&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; Set of Consul roles to attach to the token.
      * Applicable for Vault 1.10+ with Consul 1.5+.
      * 
      */
@@ -110,7 +129,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ List<String>> consulRoles;
 
     /**
-     * @return Set of Consul roles to attach to the token.
+     * @return &lt;sup&gt;&lt;a href=&#34;#note-about-required-arguments&#34;&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; Set of Consul roles to attach to the token.
      * Applicable for Vault 1.10+ with Consul 1.5+.
      * 
      */
@@ -160,8 +179,44 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="namespace", type=String.class, parameters={})
+    private Output</* @Nullable */ String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> namespace() {
+        return Codegen.optional(this.namespace);
+    }
+    /**
+     * &lt;sup&gt;&lt;a href=&#34;#note-about-required-arguments&#34;&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; Set of Consul node
+     * identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.8+.
+     * 
+     */
+    @Export(name="nodeIdentities", type=List.class, parameters={String.class})
+    private Output</* @Nullable */ List<String>> nodeIdentities;
+
+    /**
+     * @return &lt;sup&gt;&lt;a href=&#34;#note-about-required-arguments&#34;&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; Set of Consul node
+     * identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.8+.
+     * 
+     */
+    public Output<Optional<List<String>>> nodeIdentities() {
+        return Codegen.optional(this.nodeIdentities);
+    }
+    /**
      * The admin partition that the token will be created in.
-     * Applicable for Vault 1.10+ and Consul 1.11+&#34;,
+     * Applicable for Vault 1.10+ and Consul 1.11+&#34;.
      * 
      */
     @Export(name="partition", type=String.class, parameters={})
@@ -169,7 +224,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The admin partition that the token will be created in.
-     * Applicable for Vault 1.10+ and Consul 1.11+&#34;,
+     * Applicable for Vault 1.10+ and Consul 1.11+&#34;.
      * 
      */
     public Output<String> partition() {
@@ -177,6 +232,8 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     }
     /**
      * The list of Consul ACL policies to associate with these roles.
+     * **NOTE:** The new parameter `consul_policies` should be used in favor of this. This parameter,
+     * `policies`, remains supported for legacy users, but Vault has deprecated this field.
      * 
      */
     @Export(name="policies", type=List.class, parameters={String.class})
@@ -184,20 +241,44 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The list of Consul ACL policies to associate with these roles.
+     * **NOTE:** The new parameter `consul_policies` should be used in favor of this. This parameter,
+     * `policies`, remains supported for legacy users, but Vault has deprecated this field.
      * 
      */
     public Output<Optional<List<String>>> policies() {
         return Codegen.optional(this.policies);
     }
     /**
-     * Specifies the type of token to create when using this role. Valid values are &#34;client&#34; or &#34;management&#34;.
+     * &lt;sup&gt;&lt;a href=&#34;#note-about-required-arguments&#34;&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; Set of Consul
+     * service identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.5+.
      * 
      */
+    @Export(name="serviceIdentities", type=List.class, parameters={String.class})
+    private Output</* @Nullable */ List<String>> serviceIdentities;
+
+    /**
+     * @return &lt;sup&gt;&lt;a href=&#34;#note-about-required-arguments&#34;&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; Set of Consul
+     * service identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.5+.
+     * 
+     */
+    public Output<Optional<List<String>>> serviceIdentities() {
+        return Codegen.optional(this.serviceIdentities);
+    }
+    /**
+     * Specifies the type of token to create when using this role. Valid values are &#34;client&#34; or &#34;management&#34;.
+     * *Deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.*
+     * 
+     * @deprecated
+     * Consul 1.11 and later removed the legacy ACL system which supported this field.
+     * 
+     */
+    @Deprecated /* Consul 1.11 and later removed the legacy ACL system which supported this field. */
     @Export(name="tokenType", type=String.class, parameters={})
     private Output</* @Nullable */ String> tokenType;
 
     /**
      * @return Specifies the type of token to create when using this role. Valid values are &#34;client&#34; or &#34;management&#34;.
+     * *Deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.*
      * 
      */
     public Output<Optional<String>> tokenType() {

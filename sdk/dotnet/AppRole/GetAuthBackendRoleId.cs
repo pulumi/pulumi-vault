@@ -41,7 +41,7 @@ namespace Pulumi.Vault.AppRole
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetAuthBackendRoleIdResult> InvokeAsync(GetAuthBackendRoleIdArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendRoleIdResult>("vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId", args ?? new GetAuthBackendRoleIdArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendRoleIdResult>("vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId", args ?? new GetAuthBackendRoleIdArgs(), options.WithDefaults());
 
         /// <summary>
         /// Reads the Role ID of an AppRole from a Vault server.
@@ -73,7 +73,7 @@ namespace Pulumi.Vault.AppRole
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetAuthBackendRoleIdResult> Invoke(GetAuthBackendRoleIdInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetAuthBackendRoleIdResult>("vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId", args ?? new GetAuthBackendRoleIdInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetAuthBackendRoleIdResult>("vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId", args ?? new GetAuthBackendRoleIdInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -85,6 +85,15 @@ namespace Pulumi.Vault.AppRole
         /// </summary>
         [Input("backend")]
         public string? Backend { get; set; }
+
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured namespace.
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public string? Namespace { get; set; }
 
         /// <summary>
         /// The name of the role to retrieve the Role ID for.
@@ -108,6 +117,15 @@ namespace Pulumi.Vault.AppRole
         public Input<string>? Backend { get; set; }
 
         /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured namespace.
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
         /// The name of the role to retrieve the Role ID for.
         /// </summary>
         [Input("roleName", required: true)]
@@ -128,6 +146,7 @@ namespace Pulumi.Vault.AppRole
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly string? Namespace;
         /// <summary>
         /// The RoleID of the role.
         /// </summary>
@@ -140,12 +159,15 @@ namespace Pulumi.Vault.AppRole
 
             string id,
 
+            string? @namespace,
+
             string roleId,
 
             string roleName)
         {
             Backend = backend;
             Id = id;
+            Namespace = @namespace;
             RoleId = roleId;
             RoleName = roleName;
         }

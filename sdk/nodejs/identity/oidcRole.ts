@@ -92,6 +92,13 @@ export class OidcRole extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * The template string to use for generating tokens. This may be in
      * string-ified JSON or base64 format. See the
      * [documentation](https://www.vaultproject.io/docs/secrets/identity/index.html#token-contents-and-templates)
@@ -119,6 +126,7 @@ export class OidcRole extends pulumi.CustomResource {
             resourceInputs["clientId"] = state ? state.clientId : undefined;
             resourceInputs["key"] = state ? state.key : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["template"] = state ? state.template : undefined;
             resourceInputs["ttl"] = state ? state.ttl : undefined;
         } else {
@@ -129,6 +137,7 @@ export class OidcRole extends pulumi.CustomResource {
             resourceInputs["clientId"] = args ? args.clientId : undefined;
             resourceInputs["key"] = args ? args.key : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["template"] = args ? args.template : undefined;
             resourceInputs["ttl"] = args ? args.ttl : undefined;
         }
@@ -155,6 +164,13 @@ export interface OidcRoleState {
      * Name of the OIDC Role to create.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The template string to use for generating tokens. This may be in
      * string-ified JSON or base64 format. See the
@@ -186,6 +202,13 @@ export interface OidcRoleArgs {
      * Name of the OIDC Role to create.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The template string to use for generating tokens. This may be in
      * string-ified JSON or base64 format. See the

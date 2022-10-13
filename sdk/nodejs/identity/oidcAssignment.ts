@@ -23,8 +23,8 @@ import * as utilities from "../utilities";
  * });
  * const test = new vault.identity.Entity("test", {policies: ["test"]});
  * const _default = new vault.identity.OidcAssignment("default", {
- *     entityIds: [test.name],
- *     groupIds: [internal.name],
+ *     entityIds: [test.id],
+ *     groupIds: [internal.id],
  * });
  * ```
  *
@@ -76,6 +76,13 @@ export class OidcAssignment extends pulumi.CustomResource {
      * The name of the assignment.
      */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
 
     /**
      * Create a OidcAssignment resource with the given unique name, arguments, and options.
@@ -93,11 +100,13 @@ export class OidcAssignment extends pulumi.CustomResource {
             resourceInputs["entityIds"] = state ? state.entityIds : undefined;
             resourceInputs["groupIds"] = state ? state.groupIds : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
         } else {
             const args = argsOrState as OidcAssignmentArgs | undefined;
             resourceInputs["entityIds"] = args ? args.entityIds : undefined;
             resourceInputs["groupIds"] = args ? args.groupIds : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(OidcAssignment.__pulumiType, name, resourceInputs, opts);
@@ -120,6 +129,13 @@ export interface OidcAssignmentState {
      * The name of the assignment.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
 }
 
 /**
@@ -138,4 +154,11 @@ export interface OidcAssignmentArgs {
      * The name of the assignment.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
 }

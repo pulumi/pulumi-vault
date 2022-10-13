@@ -22,11 +22,11 @@ public final class BackendRoleAzureRoleArgs extends com.pulumi.resources.Resourc
         return Optional.ofNullable(this.roleId);
     }
 
-    @Import(name="roleName", required=true)
-    private Output<String> roleName;
+    @Import(name="roleName")
+    private @Nullable Output<String> roleName;
 
-    public Output<String> roleName() {
-        return this.roleName;
+    public Optional<Output<String>> roleName() {
+        return Optional.ofNullable(this.roleName);
     }
 
     @Import(name="scope", required=true)
@@ -71,7 +71,7 @@ public final class BackendRoleAzureRoleArgs extends com.pulumi.resources.Resourc
             return roleId(Output.of(roleId));
         }
 
-        public Builder roleName(Output<String> roleName) {
+        public Builder roleName(@Nullable Output<String> roleName) {
             $.roleName = roleName;
             return this;
         }
@@ -90,7 +90,6 @@ public final class BackendRoleAzureRoleArgs extends com.pulumi.resources.Resourc
         }
 
         public BackendRoleAzureRoleArgs build() {
-            $.roleName = Objects.requireNonNull($.roleName, "expected parameter 'roleName' to be non-null");
             $.scope = Objects.requireNonNull($.scope, "expected parameter 'scope' to be non-null");
             return $;
         }

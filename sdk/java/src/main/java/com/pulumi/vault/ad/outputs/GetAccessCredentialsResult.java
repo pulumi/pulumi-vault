@@ -6,48 +6,36 @@ package com.pulumi.vault.ad.outputs;
 import com.pulumi.core.annotations.CustomType;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetAccessCredentialsResult {
-    private final String backend;
+    private String backend;
     /**
      * @return The current set password on the Active Directory service account.
      * 
      */
-    private final String currentPassword;
+    private String currentPassword;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
+    private String id;
     /**
      * @return The current set password on the Active Directory service account, provided because AD is eventually consistent.
      * 
      */
-    private final String lastPassword;
-    private final String role;
+    private String lastPassword;
+    private @Nullable String namespace;
+    private String role;
     /**
      * @return The Active Directory service account username.
      * 
      */
-    private final String username;
+    private String username;
 
-    @CustomType.Constructor
-    private GetAccessCredentialsResult(
-        @CustomType.Parameter("backend") String backend,
-        @CustomType.Parameter("currentPassword") String currentPassword,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("lastPassword") String lastPassword,
-        @CustomType.Parameter("role") String role,
-        @CustomType.Parameter("username") String username) {
-        this.backend = backend;
-        this.currentPassword = currentPassword;
-        this.id = id;
-        this.lastPassword = lastPassword;
-        this.role = role;
-        this.username = username;
-    }
-
+    private GetAccessCredentialsResult() {}
     public String backend() {
         return this.backend;
     }
@@ -72,6 +60,9 @@ public final class GetAccessCredentialsResult {
     public String lastPassword() {
         return this.lastPassword;
     }
+    public Optional<String> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
     public String role() {
         return this.role;
     }
@@ -90,54 +81,72 @@ public final class GetAccessCredentialsResult {
     public static Builder builder(GetAccessCredentialsResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String backend;
         private String currentPassword;
         private String id;
         private String lastPassword;
+        private @Nullable String namespace;
         private String role;
         private String username;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetAccessCredentialsResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.backend = defaults.backend;
     	      this.currentPassword = defaults.currentPassword;
     	      this.id = defaults.id;
     	      this.lastPassword = defaults.lastPassword;
+    	      this.namespace = defaults.namespace;
     	      this.role = defaults.role;
     	      this.username = defaults.username;
         }
 
+        @CustomType.Setter
         public Builder backend(String backend) {
             this.backend = Objects.requireNonNull(backend);
             return this;
         }
+        @CustomType.Setter
         public Builder currentPassword(String currentPassword) {
             this.currentPassword = Objects.requireNonNull(currentPassword);
             return this;
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder lastPassword(String lastPassword) {
             this.lastPassword = Objects.requireNonNull(lastPassword);
             return this;
         }
+        @CustomType.Setter
+        public Builder namespace(@Nullable String namespace) {
+            this.namespace = namespace;
+            return this;
+        }
+        @CustomType.Setter
         public Builder role(String role) {
             this.role = Objects.requireNonNull(role);
             return this;
         }
+        @CustomType.Setter
         public Builder username(String username) {
             this.username = Objects.requireNonNull(username);
             return this;
-        }        public GetAccessCredentialsResult build() {
-            return new GetAccessCredentialsResult(backend, currentPassword, id, lastPassword, role, username);
+        }
+        public GetAccessCredentialsResult build() {
+            final var o = new GetAccessCredentialsResult();
+            o.backend = backend;
+            o.currentPassword = currentPassword;
+            o.id = id;
+            o.lastPassword = lastPassword;
+            o.namespace = namespace;
+            o.role = role;
+            o.username = username;
+            return o;
         }
     }
 }

@@ -22,6 +22,12 @@ namespace Pulumi.Vault.Database.Inputs
         public Input<string>? ConnectionUrl { get; set; }
 
         /// <summary>
+        /// Disable special character escaping in username and password.
+        /// </summary>
+        [Input("disableEscaping")]
+        public Input<bool>? DisableEscaping { get; set; }
+
+        /// <summary>
         /// The maximum amount of time a connection may be reused.
         /// </summary>
         [Input("maxConnectionLifetime")]
@@ -41,11 +47,21 @@ namespace Pulumi.Vault.Database.Inputs
         [Input("maxOpenConnections")]
         public Input<int>? MaxOpenConnections { get; set; }
 
+        [Input("password")]
+        private Input<string>? _password;
+
         /// <summary>
         /// The root credential password used in the connection URL.
         /// </summary>
-        [Input("password")]
-        public Input<string>? Password { get; set; }
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The root credential username used in the connection URL.

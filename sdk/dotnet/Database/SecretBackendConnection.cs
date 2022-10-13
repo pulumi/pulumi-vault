@@ -151,6 +151,15 @@ namespace Pulumi.Vault.Database
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured namespace.
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
         /// A nested block containing configuration options for Oracle connections.
         /// </summary>
         [Output("oracle")]
@@ -167,6 +176,12 @@ namespace Pulumi.Vault.Database
         /// </summary>
         [Output("postgresql")]
         public Output<Outputs.SecretBackendConnectionPostgresql?> Postgresql { get; private set; } = null!;
+
+        /// <summary>
+        /// A nested block containing configuration options for Redis ElastiCache connections.
+        /// </summary>
+        [Output("redisElasticache")]
+        public Output<Outputs.SecretBackendConnectionRedisElasticache?> RedisElasticache { get; private set; } = null!;
 
         /// <summary>
         /// Connection parameters for the redshift-database-plugin plugin.
@@ -349,6 +364,15 @@ namespace Pulumi.Vault.Database
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured namespace.
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
         /// A nested block containing configuration options for Oracle connections.
         /// </summary>
         [Input("oracle")]
@@ -365,6 +389,12 @@ namespace Pulumi.Vault.Database
         /// </summary>
         [Input("postgresql")]
         public Input<Inputs.SecretBackendConnectionPostgresqlArgs>? Postgresql { get; set; }
+
+        /// <summary>
+        /// A nested block containing configuration options for Redis ElastiCache connections.
+        /// </summary>
+        [Input("redisElasticache")]
+        public Input<Inputs.SecretBackendConnectionRedisElasticacheArgs>? RedisElasticache { get; set; }
 
         /// <summary>
         /// Connection parameters for the redshift-database-plugin plugin.
@@ -515,6 +545,15 @@ namespace Pulumi.Vault.Database
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured namespace.
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
         /// A nested block containing configuration options for Oracle connections.
         /// </summary>
         [Input("oracle")]
@@ -531,6 +570,12 @@ namespace Pulumi.Vault.Database
         /// </summary>
         [Input("postgresql")]
         public Input<Inputs.SecretBackendConnectionPostgresqlGetArgs>? Postgresql { get; set; }
+
+        /// <summary>
+        /// A nested block containing configuration options for Redis ElastiCache connections.
+        /// </summary>
+        [Input("redisElasticache")]
+        public Input<Inputs.SecretBackendConnectionRedisElasticacheGetArgs>? RedisElasticache { get; set; }
 
         /// <summary>
         /// Connection parameters for the redshift-database-plugin plugin.

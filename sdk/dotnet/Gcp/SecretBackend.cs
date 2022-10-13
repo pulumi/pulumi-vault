@@ -51,6 +51,13 @@ namespace Pulumi.Vault.Gcp
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Output("disableRemount")]
+        public Output<bool?> DisableRemount { get; private set; } = null!;
+
+        /// <summary>
         /// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         /// </summary>
         [Output("local")]
@@ -62,6 +69,15 @@ namespace Pulumi.Vault.Gcp
         /// </summary>
         [Output("maxLeaseTtlSeconds")]
         public Output<int?> MaxLeaseTtlSeconds { get; private set; } = null!;
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
@@ -93,6 +109,10 @@ namespace Pulumi.Vault.Gcp
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "credentials",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -116,11 +136,21 @@ namespace Pulumi.Vault.Gcp
 
     public sealed class SecretBackendArgs : global::Pulumi.ResourceArgs
     {
+        [Input("credentials")]
+        private Input<string>? _credentials;
+
         /// <summary>
         /// The GCP service account credentials in JSON format.
         /// </summary>
-        [Input("credentials")]
-        public Input<string>? Credentials { get; set; }
+        public Input<string>? Credentials
+        {
+            get => _credentials;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _credentials = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The default TTL for credentials
@@ -136,6 +166,13 @@ namespace Pulumi.Vault.Gcp
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Input("disableRemount")]
+        public Input<bool>? DisableRemount { get; set; }
+
+        /// <summary>
         /// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         /// </summary>
         [Input("local")]
@@ -147,6 +184,15 @@ namespace Pulumi.Vault.Gcp
         /// </summary>
         [Input("maxLeaseTtlSeconds")]
         public Input<int>? MaxLeaseTtlSeconds { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
@@ -163,11 +209,21 @@ namespace Pulumi.Vault.Gcp
 
     public sealed class SecretBackendState : global::Pulumi.ResourceArgs
     {
+        [Input("credentials")]
+        private Input<string>? _credentials;
+
         /// <summary>
         /// The GCP service account credentials in JSON format.
         /// </summary>
-        [Input("credentials")]
-        public Input<string>? Credentials { get; set; }
+        public Input<string>? Credentials
+        {
+            get => _credentials;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _credentials = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The default TTL for credentials
@@ -183,6 +239,13 @@ namespace Pulumi.Vault.Gcp
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Input("disableRemount")]
+        public Input<bool>? DisableRemount { get; set; }
+
+        /// <summary>
         /// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         /// </summary>
         [Input("local")]
@@ -194,6 +257,15 @@ namespace Pulumi.Vault.Gcp
         /// </summary>
         [Input("maxLeaseTtlSeconds")]
         public Input<int>? MaxLeaseTtlSeconds { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must

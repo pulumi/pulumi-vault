@@ -19,6 +19,7 @@ import com.pulumi.vault.database.inputs.SecretsMountMysqlLegacyArgs;
 import com.pulumi.vault.database.inputs.SecretsMountMysqlRdArgs;
 import com.pulumi.vault.database.inputs.SecretsMountOracleArgs;
 import com.pulumi.vault.database.inputs.SecretsMountPostgresqlArgs;
+import com.pulumi.vault.database.inputs.SecretsMountRedisElasticachArgs;
 import com.pulumi.vault.database.inputs.SecretsMountRedshiftArgs;
 import com.pulumi.vault.database.inputs.SecretsMountSnowflakeArgs;
 import java.lang.Boolean;
@@ -49,6 +50,21 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> accessor() {
         return Optional.ofNullable(this.accessor);
+    }
+
+    /**
+     * Set of managed key registry entry names that the mount in question is allowed to access
+     * 
+     */
+    @Import(name="allowedManagedKeys")
+    private @Nullable Output<List<String>> allowedManagedKeys;
+
+    /**
+     * @return Set of managed key registry entry names that the mount in question is allowed to access
+     * 
+     */
+    public Optional<Output<List<String>>> allowedManagedKeys() {
+        return Optional.ofNullable(this.allowedManagedKeys);
     }
 
     /**
@@ -376,6 +392,21 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Target namespace. (requires Enterprise)
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable Output<String> namespace;
+
+    /**
+     * @return Target namespace. (requires Enterprise)
+     * 
+     */
+    public Optional<Output<String>> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
+
+    /**
      * Specifies mount type specific options that are passed to the backend
      * 
      */
@@ -440,6 +471,23 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * A nested block containing configuration options for InfluxDB connections.\
+     * *See Configuration Options for more info*
+     * 
+     */
+    @Import(name="redisElasticaches")
+    private @Nullable Output<List<SecretsMountRedisElasticachArgs>> redisElasticaches;
+
+    /**
+     * @return A nested block containing configuration options for InfluxDB connections.\
+     * *See Configuration Options for more info*
+     * 
+     */
+    public Optional<Output<List<SecretsMountRedisElasticachArgs>>> redisElasticaches() {
+        return Optional.ofNullable(this.redisElasticaches);
+    }
+
+    /**
      * A nested block containing configuration options for AWS Redshift connections.\
      * *See Configuration Options for more info*
      * 
@@ -492,6 +540,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
 
     private SecretsMountState(SecretsMountState $) {
         this.accessor = $.accessor;
+        this.allowedManagedKeys = $.allowedManagedKeys;
         this.auditNonHmacRequestKeys = $.auditNonHmacRequestKeys;
         this.auditNonHmacResponseKeys = $.auditNonHmacResponseKeys;
         this.cassandras = $.cassandras;
@@ -512,10 +561,12 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         this.mysqlLegacies = $.mysqlLegacies;
         this.mysqlRds = $.mysqlRds;
         this.mysqls = $.mysqls;
+        this.namespace = $.namespace;
         this.options = $.options;
         this.oracles = $.oracles;
         this.path = $.path;
         this.postgresqls = $.postgresqls;
+        this.redisElasticaches = $.redisElasticaches;
         this.redshifts = $.redshifts;
         this.sealWrap = $.sealWrap;
         this.snowflakes = $.snowflakes;
@@ -558,6 +609,37 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder accessor(String accessor) {
             return accessor(Output.of(accessor));
+        }
+
+        /**
+         * @param allowedManagedKeys Set of managed key registry entry names that the mount in question is allowed to access
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedManagedKeys(@Nullable Output<List<String>> allowedManagedKeys) {
+            $.allowedManagedKeys = allowedManagedKeys;
+            return this;
+        }
+
+        /**
+         * @param allowedManagedKeys Set of managed key registry entry names that the mount in question is allowed to access
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedManagedKeys(List<String> allowedManagedKeys) {
+            return allowedManagedKeys(Output.of(allowedManagedKeys));
+        }
+
+        /**
+         * @param allowedManagedKeys Set of managed key registry entry names that the mount in question is allowed to access
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedManagedKeys(String... allowedManagedKeys) {
+            return allowedManagedKeys(List.of(allowedManagedKeys));
         }
 
         /**
@@ -1157,6 +1239,27 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param namespace Target namespace. (requires Enterprise)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable Output<String> namespace) {
+            $.namespace = namespace;
+            return this;
+        }
+
+        /**
+         * @param namespace Target namespace. (requires Enterprise)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(String namespace) {
+            return namespace(Output.of(namespace));
+        }
+
+        /**
          * @param options Specifies mount type specific options that are passed to the backend
          * 
          * @return builder
@@ -1264,6 +1367,40 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder postgresqls(SecretsMountPostgresqlArgs... postgresqls) {
             return postgresqls(List.of(postgresqls));
+        }
+
+        /**
+         * @param redisElasticaches A nested block containing configuration options for InfluxDB connections.\
+         * *See Configuration Options for more info*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder redisElasticaches(@Nullable Output<List<SecretsMountRedisElasticachArgs>> redisElasticaches) {
+            $.redisElasticaches = redisElasticaches;
+            return this;
+        }
+
+        /**
+         * @param redisElasticaches A nested block containing configuration options for InfluxDB connections.\
+         * *See Configuration Options for more info*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder redisElasticaches(List<SecretsMountRedisElasticachArgs> redisElasticaches) {
+            return redisElasticaches(Output.of(redisElasticaches));
+        }
+
+        /**
+         * @param redisElasticaches A nested block containing configuration options for InfluxDB connections.\
+         * *See Configuration Options for more info*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder redisElasticaches(SecretsMountRedisElasticachArgs... redisElasticaches) {
+            return redisElasticaches(List.of(redisElasticaches));
         }
 
         /**

@@ -21,7 +21,7 @@ class GetSecretResult:
     """
     A collection of values returned by getSecret.
     """
-    def __init__(__self__, data=None, data_json=None, id=None, lease_duration=None, lease_id=None, lease_renewable=None, lease_start_time=None, path=None, version=None, with_lease_start_time=None):
+    def __init__(__self__, data=None, data_json=None, id=None, lease_duration=None, lease_id=None, lease_renewable=None, lease_start_time=None, namespace=None, path=None, version=None, with_lease_start_time=None):
         if data and not isinstance(data, dict):
             raise TypeError("Expected argument 'data' to be a dict")
         pulumi.set(__self__, "data", data)
@@ -43,6 +43,9 @@ class GetSecretResult:
         if lease_start_time and not isinstance(lease_start_time, str):
             raise TypeError("Expected argument 'lease_start_time' to be a str")
         pulumi.set(__self__, "lease_start_time", lease_start_time)
+        if namespace and not isinstance(namespace, str):
+            raise TypeError("Expected argument 'namespace' to be a str")
+        pulumi.set(__self__, "namespace", namespace)
         if path and not isinstance(path, str):
             raise TypeError("Expected argument 'path' to be a str")
         pulumi.set(__self__, "path", path)
@@ -111,6 +114,11 @@ class GetSecretResult:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[str]:
+        return pulumi.get(self, "namespace")
+
+    @property
+    @pulumi.getter
     def path(self) -> str:
         return pulumi.get(self, "path")
 
@@ -138,12 +146,14 @@ class AwaitableGetSecretResult(GetSecretResult):
             lease_id=self.lease_id,
             lease_renewable=self.lease_renewable,
             lease_start_time=self.lease_start_time,
+            namespace=self.namespace,
             path=self.path,
             version=self.version,
             with_lease_start_time=self.with_lease_start_time)
 
 
-def get_secret(path: Optional[str] = None,
+def get_secret(namespace: Optional[str] = None,
+               path: Optional[str] = None,
                version: Optional[int] = None,
                with_lease_start_time: Optional[bool] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretResult:
@@ -162,6 +172,10 @@ def get_secret(path: Optional[str] = None,
     Use of this resource requires the `read` capability on the given path.
 
 
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           *Available only for Vault Enterprise*.
     :param str path: The full logical path from which to request data.
            To read data from the "generic" secret backend mounted in Vault by
            default, this should be prefixed with `secret/`. Reading from other backends
@@ -172,6 +186,7 @@ def get_secret(path: Optional[str] = None,
            to read.
     """
     __args__ = dict()
+    __args__['namespace'] = namespace
     __args__['path'] = path
     __args__['version'] = version
     __args__['withLeaseStartTime'] = with_lease_start_time
@@ -186,13 +201,15 @@ def get_secret(path: Optional[str] = None,
         lease_id=__ret__.lease_id,
         lease_renewable=__ret__.lease_renewable,
         lease_start_time=__ret__.lease_start_time,
+        namespace=__ret__.namespace,
         path=__ret__.path,
         version=__ret__.version,
         with_lease_start_time=__ret__.with_lease_start_time)
 
 
 @_utilities.lift_output_func(get_secret)
-def get_secret_output(path: Optional[pulumi.Input[str]] = None,
+def get_secret_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
+                      path: Optional[pulumi.Input[str]] = None,
                       version: Optional[pulumi.Input[Optional[int]]] = None,
                       with_lease_start_time: Optional[pulumi.Input[Optional[bool]]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSecretResult]:
@@ -211,6 +228,10 @@ def get_secret_output(path: Optional[pulumi.Input[str]] = None,
     Use of this resource requires the `read` capability on the given path.
 
 
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           *Available only for Vault Enterprise*.
     :param str path: The full logical path from which to request data.
            To read data from the "generic" secret backend mounted in Vault by
            default, this should be prefixed with `secret/`. Reading from other backends

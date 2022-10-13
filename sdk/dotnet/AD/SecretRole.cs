@@ -65,6 +65,15 @@ namespace Pulumi.Vault.AD
         public Output<string> LastVaultRotation { get; private set; } = null!;
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
         /// Timestamp of the last password set by Vault.
         /// </summary>
         [Output("passwordLastSet")]
@@ -145,6 +154,15 @@ namespace Pulumi.Vault.AD
         public Input<string> Backend { get; set; } = null!;
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
         /// The name to identify this role within the backend.
         /// Must be unique within the backend.
         /// </summary>
@@ -185,6 +203,15 @@ namespace Pulumi.Vault.AD
         /// </summary>
         [Input("lastVaultRotation")]
         public Input<string>? LastVaultRotation { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// Timestamp of the last password set by Vault.

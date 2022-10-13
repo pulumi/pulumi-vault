@@ -25,6 +25,7 @@ class SecretBackendKeyArgs:
                  min_decryption_version: Optional[pulumi.Input[int]] = None,
                  min_encryption_version: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SecretBackendKey resource.
@@ -42,6 +43,10 @@ class SecretBackendKeyArgs:
         :param pulumi.Input[int] min_decryption_version: Minimum key version to use for decryption.
         :param pulumi.Input[int] min_encryption_version: Minimum key version to use for encryption
         :param pulumi.Input[str] name: The name to identify this key within the backend. Must be unique within the backend.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] type: Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`. 
                * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
         """
@@ -69,6 +74,8 @@ class SecretBackendKeyArgs:
             pulumi.set(__self__, "min_encryption_version", min_encryption_version)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if type is not None:
             pulumi.set(__self__, "type", type)
 
@@ -209,6 +216,21 @@ class SecretBackendKeyArgs:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`. 
@@ -238,6 +260,7 @@ class _SecretBackendKeyState:
                  min_decryption_version: Optional[pulumi.Input[int]] = None,
                  min_encryption_version: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  supports_decryption: Optional[pulumi.Input[bool]] = None,
                  supports_derivation: Optional[pulumi.Input[bool]] = None,
                  supports_encryption: Optional[pulumi.Input[bool]] = None,
@@ -264,6 +287,10 @@ class _SecretBackendKeyState:
         :param pulumi.Input[int] min_decryption_version: Minimum key version to use for decryption.
         :param pulumi.Input[int] min_encryption_version: Minimum key version to use for encryption
         :param pulumi.Input[str] name: The name to identify this key within the backend. Must be unique within the backend.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] supports_decryption: Whether or not the key supports decryption, based on key type.
         :param pulumi.Input[bool] supports_derivation: Whether or not the key supports derivation, based on key type.
         :param pulumi.Input[bool] supports_encryption: Whether or not the key supports encryption, based on key type.
@@ -302,6 +329,8 @@ class _SecretBackendKeyState:
             pulumi.set(__self__, "min_encryption_version", min_encryption_version)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if supports_decryption is not None:
             pulumi.set(__self__, "supports_decryption", supports_decryption)
         if supports_derivation is not None:
@@ -487,6 +516,21 @@ class _SecretBackendKeyState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="supportsDecryption")
     def supports_decryption(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -564,6 +608,7 @@ class SecretBackendKey(pulumi.CustomResource):
                  min_decryption_version: Optional[pulumi.Input[int]] = None,
                  min_encryption_version: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -611,6 +656,10 @@ class SecretBackendKey(pulumi.CustomResource):
         :param pulumi.Input[int] min_decryption_version: Minimum key version to use for decryption.
         :param pulumi.Input[int] min_encryption_version: Minimum key version to use for encryption
         :param pulumi.Input[str] name: The name to identify this key within the backend. Must be unique within the backend.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] type: Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`. 
                * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
         """
@@ -675,6 +724,7 @@ class SecretBackendKey(pulumi.CustomResource):
                  min_decryption_version: Optional[pulumi.Input[int]] = None,
                  min_encryption_version: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -701,6 +751,7 @@ class SecretBackendKey(pulumi.CustomResource):
             __props__.__dict__["min_decryption_version"] = min_decryption_version
             __props__.__dict__["min_encryption_version"] = min_encryption_version
             __props__.__dict__["name"] = name
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["type"] = type
             __props__.__dict__["keys"] = None
             __props__.__dict__["latest_version"] = None
@@ -733,6 +784,7 @@ class SecretBackendKey(pulumi.CustomResource):
             min_decryption_version: Optional[pulumi.Input[int]] = None,
             min_encryption_version: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             supports_decryption: Optional[pulumi.Input[bool]] = None,
             supports_derivation: Optional[pulumi.Input[bool]] = None,
             supports_encryption: Optional[pulumi.Input[bool]] = None,
@@ -764,6 +816,10 @@ class SecretBackendKey(pulumi.CustomResource):
         :param pulumi.Input[int] min_decryption_version: Minimum key version to use for decryption.
         :param pulumi.Input[int] min_encryption_version: Minimum key version to use for encryption
         :param pulumi.Input[str] name: The name to identify this key within the backend. Must be unique within the backend.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] supports_decryption: Whether or not the key supports decryption, based on key type.
         :param pulumi.Input[bool] supports_derivation: Whether or not the key supports derivation, based on key type.
         :param pulumi.Input[bool] supports_encryption: Whether or not the key supports encryption, based on key type.
@@ -789,6 +845,7 @@ class SecretBackendKey(pulumi.CustomResource):
         __props__.__dict__["min_decryption_version"] = min_decryption_version
         __props__.__dict__["min_encryption_version"] = min_encryption_version
         __props__.__dict__["name"] = name
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["supports_decryption"] = supports_decryption
         __props__.__dict__["supports_derivation"] = supports_derivation
         __props__.__dict__["supports_encryption"] = supports_encryption
@@ -912,6 +969,17 @@ class SecretBackendKey(pulumi.CustomResource):
         The name to identify this key within the backend. Must be unique within the backend.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="supportsDecryption")

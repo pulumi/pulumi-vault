@@ -12,8 +12,11 @@ import com.pulumi.vault.kubernetes.inputs.GetAuthBackendConfigArgs;
 import com.pulumi.vault.kubernetes.inputs.GetAuthBackendConfigPlainArgs;
 import com.pulumi.vault.kubernetes.inputs.GetAuthBackendRoleArgs;
 import com.pulumi.vault.kubernetes.inputs.GetAuthBackendRolePlainArgs;
+import com.pulumi.vault.kubernetes.inputs.GetServiceAccountTokenArgs;
+import com.pulumi.vault.kubernetes.inputs.GetServiceAccountTokenPlainArgs;
 import com.pulumi.vault.kubernetes.outputs.GetAuthBackendConfigResult;
 import com.pulumi.vault.kubernetes.outputs.GetAuthBackendRoleResult;
+import com.pulumi.vault.kubernetes.outputs.GetServiceAccountTokenResult;
 import java.util.concurrent.CompletableFuture;
 
 public final class KubernetesFunctions {
@@ -106,5 +109,17 @@ public final class KubernetesFunctions {
      */
     public static CompletableFuture<GetAuthBackendRoleResult> getAuthBackendRolePlain(GetAuthBackendRolePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", TypeShape.of(GetAuthBackendRoleResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetServiceAccountTokenResult> getServiceAccountToken(GetServiceAccountTokenArgs args) {
+        return getServiceAccountToken(args, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetServiceAccountTokenResult> getServiceAccountTokenPlain(GetServiceAccountTokenPlainArgs args) {
+        return getServiceAccountTokenPlain(args, InvokeOptions.Empty);
+    }
+    public static Output<GetServiceAccountTokenResult> getServiceAccountToken(GetServiceAccountTokenArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:kubernetes/getServiceAccountToken:getServiceAccountToken", TypeShape.of(GetServiceAccountTokenResult.class), args, Utilities.withVersion(options));
+    }
+    public static CompletableFuture<GetServiceAccountTokenResult> getServiceAccountTokenPlain(GetServiceAccountTokenPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("vault:kubernetes/getServiceAccountToken:getServiceAccountToken", TypeShape.of(GetServiceAccountTokenResult.class), args, Utilities.withVersion(options));
     }
 }

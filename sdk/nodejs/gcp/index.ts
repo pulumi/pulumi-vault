@@ -5,19 +5,36 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./authBackend";
-export * from "./authBackendRole";
-export * from "./getAuthBackendRole";
-export * from "./secretBackend";
-export * from "./secretRoleset";
-export * from "./secretStaticAccount";
+export { AuthBackendArgs, AuthBackendState } from "./authBackend";
+export type AuthBackend = import("./authBackend").AuthBackend;
+export const AuthBackend: typeof import("./authBackend").AuthBackend = null as any;
 
-// Import resources to register:
-import { AuthBackend } from "./authBackend";
-import { AuthBackendRole } from "./authBackendRole";
-import { SecretBackend } from "./secretBackend";
-import { SecretRoleset } from "./secretRoleset";
-import { SecretStaticAccount } from "./secretStaticAccount";
+export { AuthBackendRoleArgs, AuthBackendRoleState } from "./authBackendRole";
+export type AuthBackendRole = import("./authBackendRole").AuthBackendRole;
+export const AuthBackendRole: typeof import("./authBackendRole").AuthBackendRole = null as any;
+
+export { GetAuthBackendRoleArgs, GetAuthBackendRoleResult, GetAuthBackendRoleOutputArgs } from "./getAuthBackendRole";
+export const getAuthBackendRole: typeof import("./getAuthBackendRole").getAuthBackendRole = null as any;
+export const getAuthBackendRoleOutput: typeof import("./getAuthBackendRole").getAuthBackendRoleOutput = null as any;
+
+export { SecretBackendArgs, SecretBackendState } from "./secretBackend";
+export type SecretBackend = import("./secretBackend").SecretBackend;
+export const SecretBackend: typeof import("./secretBackend").SecretBackend = null as any;
+
+export { SecretRolesetArgs, SecretRolesetState } from "./secretRoleset";
+export type SecretRoleset = import("./secretRoleset").SecretRoleset;
+export const SecretRoleset: typeof import("./secretRoleset").SecretRoleset = null as any;
+
+export { SecretStaticAccountArgs, SecretStaticAccountState } from "./secretStaticAccount";
+export type SecretStaticAccount = import("./secretStaticAccount").SecretStaticAccount;
+export const SecretStaticAccount: typeof import("./secretStaticAccount").SecretStaticAccount = null as any;
+
+utilities.lazyLoad(exports, ["AuthBackend"], () => require("./authBackend"));
+utilities.lazyLoad(exports, ["AuthBackendRole"], () => require("./authBackendRole"));
+utilities.lazyLoad(exports, ["getAuthBackendRole","getAuthBackendRoleOutput"], () => require("./getAuthBackendRole"));
+utilities.lazyLoad(exports, ["SecretBackend"], () => require("./secretBackend"));
+utilities.lazyLoad(exports, ["SecretRoleset"], () => require("./secretRoleset"));
+utilities.lazyLoad(exports, ["SecretStaticAccount"], () => require("./secretStaticAccount"));
 
 const _module = {
     version: utilities.getVersion(),

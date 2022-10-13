@@ -16,18 +16,25 @@ class SecretBackendCrlConfigArgs:
     def __init__(__self__, *,
                  backend: pulumi.Input[str],
                  disable: Optional[pulumi.Input[bool]] = None,
-                 expiry: Optional[pulumi.Input[str]] = None):
+                 expiry: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SecretBackendCrlConfig resource.
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] disable: Disables or enables CRL building.
         :param pulumi.Input[str] expiry: Specifies the time until expiration.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         pulumi.set(__self__, "backend", backend)
         if disable is not None:
             pulumi.set(__self__, "disable", disable)
         if expiry is not None:
             pulumi.set(__self__, "expiry", expiry)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter
@@ -65,18 +72,38 @@ class SecretBackendCrlConfigArgs:
     def expiry(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "expiry", value)
 
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
 
 @pulumi.input_type
 class _SecretBackendCrlConfigState:
     def __init__(__self__, *,
                  backend: Optional[pulumi.Input[str]] = None,
                  disable: Optional[pulumi.Input[bool]] = None,
-                 expiry: Optional[pulumi.Input[str]] = None):
+                 expiry: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendCrlConfig resources.
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] disable: Disables or enables CRL building.
         :param pulumi.Input[str] expiry: Specifies the time until expiration.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
@@ -84,6 +111,8 @@ class _SecretBackendCrlConfigState:
             pulumi.set(__self__, "disable", disable)
         if expiry is not None:
             pulumi.set(__self__, "expiry", expiry)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter
@@ -121,6 +150,21 @@ class _SecretBackendCrlConfigState:
     def expiry(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "expiry", value)
 
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
 
 class SecretBackendCrlConfig(pulumi.CustomResource):
     @overload
@@ -130,6 +174,7 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
                  backend: Optional[pulumi.Input[str]] = None,
                  disable: Optional[pulumi.Input[bool]] = None,
                  expiry: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Allows setting the duration for which the generated CRL should be marked valid. If the CRL is disabled, it will return a signed but zero-length CRL for any request. If enabled, it will re-build the CRL.
@@ -156,6 +201,10 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] disable: Disables or enables CRL building.
         :param pulumi.Input[str] expiry: Specifies the time until expiration.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         ...
     @overload
@@ -201,6 +250,7 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
                  backend: Optional[pulumi.Input[str]] = None,
                  disable: Optional[pulumi.Input[bool]] = None,
                  expiry: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -215,6 +265,7 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
             __props__.__dict__["backend"] = backend
             __props__.__dict__["disable"] = disable
             __props__.__dict__["expiry"] = expiry
+            __props__.__dict__["namespace"] = namespace
         super(SecretBackendCrlConfig, __self__).__init__(
             'vault:pkiSecret/secretBackendCrlConfig:SecretBackendCrlConfig',
             resource_name,
@@ -227,7 +278,8 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
             disable: Optional[pulumi.Input[bool]] = None,
-            expiry: Optional[pulumi.Input[str]] = None) -> 'SecretBackendCrlConfig':
+            expiry: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None) -> 'SecretBackendCrlConfig':
         """
         Get an existing SecretBackendCrlConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -238,6 +290,10 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] disable: Disables or enables CRL building.
         :param pulumi.Input[str] expiry: Specifies the time until expiration.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -246,6 +302,7 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
         __props__.__dict__["backend"] = backend
         __props__.__dict__["disable"] = disable
         __props__.__dict__["expiry"] = expiry
+        __props__.__dict__["namespace"] = namespace
         return SecretBackendCrlConfig(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -271,4 +328,15 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
         Specifies the time until expiration.
         """
         return pulumi.get(self, "expiry")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 

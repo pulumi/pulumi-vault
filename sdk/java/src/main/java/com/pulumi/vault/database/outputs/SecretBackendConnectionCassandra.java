@@ -19,80 +19,57 @@ public final class SecretBackendConnectionCassandra {
      * timeout.
      * 
      */
-    private final @Nullable Integer connectTimeout;
+    private @Nullable Integer connectTimeout;
     /**
      * @return A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
      * 
      */
-    private final @Nullable List<String> hosts;
+    private @Nullable List<String> hosts;
     /**
      * @return Whether to skip verification of the server
      * certificate when using TLS.
      * 
      */
-    private final @Nullable Boolean insecureTls;
+    private @Nullable Boolean insecureTls;
     /**
      * @return The root credential password used in the connection URL.
      * 
      */
-    private final @Nullable String password;
+    private @Nullable String password;
     /**
      * @return Concatenated PEM blocks configuring the certificate
      * chain.
      * 
      */
-    private final @Nullable String pemBundle;
+    private @Nullable String pemBundle;
     /**
      * @return A JSON structure configuring the certificate chain.
      * 
      */
-    private final @Nullable String pemJson;
+    private @Nullable String pemJson;
     /**
      * @return The default port to connect to if no port is specified as
      * part of the host.
      * 
      */
-    private final @Nullable Integer port;
+    private @Nullable Integer port;
     /**
      * @return The CQL protocol version to use.
      * 
      */
-    private final @Nullable Integer protocolVersion;
+    private @Nullable Integer protocolVersion;
     /**
      * @return Whether to use TLS when connecting to Cassandra.
      * 
      */
-    private final @Nullable Boolean tls;
+    private @Nullable Boolean tls;
     /**
      * @return The root credential username used in the connection URL.
      * 
      */
-    private final @Nullable String username;
+    private @Nullable String username;
 
-    @CustomType.Constructor
-    private SecretBackendConnectionCassandra(
-        @CustomType.Parameter("connectTimeout") @Nullable Integer connectTimeout,
-        @CustomType.Parameter("hosts") @Nullable List<String> hosts,
-        @CustomType.Parameter("insecureTls") @Nullable Boolean insecureTls,
-        @CustomType.Parameter("password") @Nullable String password,
-        @CustomType.Parameter("pemBundle") @Nullable String pemBundle,
-        @CustomType.Parameter("pemJson") @Nullable String pemJson,
-        @CustomType.Parameter("port") @Nullable Integer port,
-        @CustomType.Parameter("protocolVersion") @Nullable Integer protocolVersion,
-        @CustomType.Parameter("tls") @Nullable Boolean tls,
-        @CustomType.Parameter("username") @Nullable String username) {
-        this.connectTimeout = connectTimeout;
-        this.hosts = hosts;
-        this.insecureTls = insecureTls;
-        this.password = password;
-        this.pemBundle = pemBundle;
-        this.pemJson = pemJson;
-        this.port = port;
-        this.protocolVersion = protocolVersion;
-        this.tls = tls;
-        this.username = username;
-    }
-
+    private SecretBackendConnectionCassandra() {}
     /**
      * @return The number of seconds to use as a connection
      * timeout.
@@ -175,7 +152,7 @@ public final class SecretBackendConnectionCassandra {
     public static Builder builder(SecretBackendConnectionCassandra defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable Integer connectTimeout;
         private @Nullable List<String> hosts;
@@ -187,11 +164,7 @@ public final class SecretBackendConnectionCassandra {
         private @Nullable Integer protocolVersion;
         private @Nullable Boolean tls;
         private @Nullable String username;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(SecretBackendConnectionCassandra defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.connectTimeout = defaults.connectTimeout;
@@ -206,10 +179,12 @@ public final class SecretBackendConnectionCassandra {
     	      this.username = defaults.username;
         }
 
+        @CustomType.Setter
         public Builder connectTimeout(@Nullable Integer connectTimeout) {
             this.connectTimeout = connectTimeout;
             return this;
         }
+        @CustomType.Setter
         public Builder hosts(@Nullable List<String> hosts) {
             this.hosts = hosts;
             return this;
@@ -217,39 +192,59 @@ public final class SecretBackendConnectionCassandra {
         public Builder hosts(String... hosts) {
             return hosts(List.of(hosts));
         }
+        @CustomType.Setter
         public Builder insecureTls(@Nullable Boolean insecureTls) {
             this.insecureTls = insecureTls;
             return this;
         }
+        @CustomType.Setter
         public Builder password(@Nullable String password) {
             this.password = password;
             return this;
         }
+        @CustomType.Setter
         public Builder pemBundle(@Nullable String pemBundle) {
             this.pemBundle = pemBundle;
             return this;
         }
+        @CustomType.Setter
         public Builder pemJson(@Nullable String pemJson) {
             this.pemJson = pemJson;
             return this;
         }
+        @CustomType.Setter
         public Builder port(@Nullable Integer port) {
             this.port = port;
             return this;
         }
+        @CustomType.Setter
         public Builder protocolVersion(@Nullable Integer protocolVersion) {
             this.protocolVersion = protocolVersion;
             return this;
         }
+        @CustomType.Setter
         public Builder tls(@Nullable Boolean tls) {
             this.tls = tls;
             return this;
         }
+        @CustomType.Setter
         public Builder username(@Nullable String username) {
             this.username = username;
             return this;
-        }        public SecretBackendConnectionCassandra build() {
-            return new SecretBackendConnectionCassandra(connectTimeout, hosts, insecureTls, password, pemBundle, pemJson, port, protocolVersion, tls, username);
+        }
+        public SecretBackendConnectionCassandra build() {
+            final var o = new SecretBackendConnectionCassandra();
+            o.connectTimeout = connectTimeout;
+            o.hosts = hosts;
+            o.insecureTls = insecureTls;
+            o.password = password;
+            o.pemBundle = pemBundle;
+            o.pemJson = pemJson;
+            o.port = port;
+            o.protocolVersion = protocolVersion;
+            o.tls = tls;
+            o.username = username;
+            return o;
         }
     }
 }

@@ -15,16 +15,23 @@ __all__ = ['SecretBackendIntermediateSetSignedArgs', 'SecretBackendIntermediateS
 class SecretBackendIntermediateSetSignedArgs:
     def __init__(__self__, *,
                  backend: pulumi.Input[str],
-                 certificate: pulumi.Input[str]):
+                 certificate: pulumi.Input[str],
+                 namespace: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SecretBackendIntermediateSetSigned resource.
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[str] certificate: Specifies the PEM encoded certificate. May optionally append additional
                CA certificates to populate the whole chain, which will then enable returning the full chain from
                issue and sign operations.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         pulumi.set(__self__, "backend", backend)
         pulumi.set(__self__, "certificate", certificate)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter
@@ -52,23 +59,45 @@ class SecretBackendIntermediateSetSignedArgs:
     def certificate(self, value: pulumi.Input[str]):
         pulumi.set(self, "certificate", value)
 
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
 
 @pulumi.input_type
 class _SecretBackendIntermediateSetSignedState:
     def __init__(__self__, *,
                  backend: Optional[pulumi.Input[str]] = None,
-                 certificate: Optional[pulumi.Input[str]] = None):
+                 certificate: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendIntermediateSetSigned resources.
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[str] certificate: Specifies the PEM encoded certificate. May optionally append additional
                CA certificates to populate the whole chain, which will then enable returning the full chain from
                issue and sign operations.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
         if certificate is not None:
             pulumi.set(__self__, "certificate", certificate)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter
@@ -96,6 +125,21 @@ class _SecretBackendIntermediateSetSignedState:
     def certificate(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "certificate", value)
 
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
 
 class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
     @overload
@@ -104,6 +148,7 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         ## Example Usage
@@ -165,6 +210,10 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
         :param pulumi.Input[str] certificate: Specifies the PEM encoded certificate. May optionally append additional
                CA certificates to populate the whole chain, which will then enable returning the full chain from
                issue and sign operations.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         ...
     @overload
@@ -243,6 +292,7 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -258,6 +308,7 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
             if certificate is None and not opts.urn:
                 raise TypeError("Missing required property 'certificate'")
             __props__.__dict__["certificate"] = certificate
+            __props__.__dict__["namespace"] = namespace
         super(SecretBackendIntermediateSetSigned, __self__).__init__(
             'vault:pkiSecret/secretBackendIntermediateSetSigned:SecretBackendIntermediateSetSigned',
             resource_name,
@@ -269,7 +320,8 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
-            certificate: Optional[pulumi.Input[str]] = None) -> 'SecretBackendIntermediateSetSigned':
+            certificate: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None) -> 'SecretBackendIntermediateSetSigned':
         """
         Get an existing SecretBackendIntermediateSetSigned resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -281,6 +333,10 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
         :param pulumi.Input[str] certificate: Specifies the PEM encoded certificate. May optionally append additional
                CA certificates to populate the whole chain, which will then enable returning the full chain from
                issue and sign operations.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -288,6 +344,7 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
 
         __props__.__dict__["backend"] = backend
         __props__.__dict__["certificate"] = certificate
+        __props__.__dict__["namespace"] = namespace
         return SecretBackendIntermediateSetSigned(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -307,4 +364,15 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
         issue and sign operations.
         """
         return pulumi.get(self, "certificate")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 

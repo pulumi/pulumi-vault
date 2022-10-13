@@ -9,6 +9,8 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetOidcPublicKeysResult {
@@ -16,25 +18,17 @@ public final class GetOidcPublicKeysResult {
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
+    private String id;
     /**
      * @return The public portion of keys for an OIDC provider.
      * Clients can use them to validate the authenticity of an identity token.
      * 
      */
-    private final List<Map<String,Object>> keys;
-    private final String name;
+    private List<Map<String,Object>> keys;
+    private String name;
+    private @Nullable String namespace;
 
-    @CustomType.Constructor
-    private GetOidcPublicKeysResult(
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("keys") List<Map<String,Object>> keys,
-        @CustomType.Parameter("name") String name) {
-        this.id = id;
-        this.keys = keys;
-        this.name = name;
-    }
-
+    private GetOidcPublicKeysResult() {}
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -53,6 +47,9 @@ public final class GetOidcPublicKeysResult {
     public String name() {
         return this.name;
     }
+    public Optional<String> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -61,36 +58,48 @@ public final class GetOidcPublicKeysResult {
     public static Builder builder(GetOidcPublicKeysResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String id;
         private List<Map<String,Object>> keys;
         private String name;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        private @Nullable String namespace;
+        public Builder() {}
         public Builder(GetOidcPublicKeysResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.id = defaults.id;
     	      this.keys = defaults.keys;
     	      this.name = defaults.name;
+    	      this.namespace = defaults.namespace;
         }
 
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder keys(List<Map<String,Object>> keys) {
             this.keys = Objects.requireNonNull(keys);
             return this;
         }
+        @CustomType.Setter
         public Builder name(String name) {
             this.name = Objects.requireNonNull(name);
             return this;
-        }        public GetOidcPublicKeysResult build() {
-            return new GetOidcPublicKeysResult(id, keys, name);
+        }
+        @CustomType.Setter
+        public Builder namespace(@Nullable String namespace) {
+            this.namespace = namespace;
+            return this;
+        }
+        public GetOidcPublicKeysResult build() {
+            final var o = new GetOidcPublicKeysResult();
+            o.id = id;
+            o.keys = keys;
+            o.name = name;
+            o.namespace = namespace;
+            return o;
         }
     }
 }

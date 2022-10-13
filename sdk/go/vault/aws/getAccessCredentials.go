@@ -23,8 +23,13 @@ func GetAccessCredentials(ctx *pulumi.Context, args *GetAccessCredentialsArgs, o
 type GetAccessCredentialsArgs struct {
 	// The path to the AWS secret backend to
 	// read credentials from, with no leading or trailing `/`s.
-	Backend string  `pulumi:"backend"`
-	Region  *string `pulumi:"region"`
+	Backend string `pulumi:"backend"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
+	Region    *string `pulumi:"region"`
 	// The name of the AWS secret backend role to read
 	// credentials from, with no leading or trailing `/`s.
 	Role string `pulumi:"role"`
@@ -58,6 +63,7 @@ type GetAccessCredentialsResult struct {
 	LeaseId        string  `pulumi:"leaseId"`
 	LeaseRenewable bool    `pulumi:"leaseRenewable"`
 	LeaseStartTime string  `pulumi:"leaseStartTime"`
+	Namespace      *string `pulumi:"namespace"`
 	Region         *string `pulumi:"region"`
 	Role           string  `pulumi:"role"`
 	RoleArn        *string `pulumi:"roleArn"`
@@ -86,8 +92,13 @@ func GetAccessCredentialsOutput(ctx *pulumi.Context, args GetAccessCredentialsOu
 type GetAccessCredentialsOutputArgs struct {
 	// The path to the AWS secret backend to
 	// read credentials from, with no leading or trailing `/`s.
-	Backend pulumi.StringInput    `pulumi:"backend"`
-	Region  pulumi.StringPtrInput `pulumi:"region"`
+	Backend pulumi.StringInput `pulumi:"backend"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
+	Region    pulumi.StringPtrInput `pulumi:"region"`
 	// The name of the AWS secret backend role to read
 	// credentials from, with no leading or trailing `/`s.
 	Role pulumi.StringInput `pulumi:"role"`
@@ -157,6 +168,10 @@ func (o GetAccessCredentialsResultOutput) LeaseRenewable() pulumi.BoolOutput {
 
 func (o GetAccessCredentialsResultOutput) LeaseStartTime() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccessCredentialsResult) string { return v.LeaseStartTime }).(pulumi.StringOutput)
+}
+
+func (o GetAccessCredentialsResultOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 func (o GetAccessCredentialsResultOutput) Region() pulumi.StringPtrOutput {

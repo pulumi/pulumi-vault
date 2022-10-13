@@ -83,6 +83,11 @@ type AuthBackendLogin struct {
 	LeaseStarted pulumi.StringOutput `pulumi:"leaseStarted"`
 	// The metadata associated with the token.
 	Metadata pulumi.StringMapOutput `pulumi:"metadata"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// A list of policies applied to the token.
 	Policies pulumi.StringArrayOutput `pulumi:"policies"`
 	// Whether the token is renewable or not.
@@ -138,6 +143,11 @@ type authBackendLoginState struct {
 	LeaseStarted *string `pulumi:"leaseStarted"`
 	// The metadata associated with the token.
 	Metadata map[string]string `pulumi:"metadata"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// A list of policies applied to the token.
 	Policies []string `pulumi:"policies"`
 	// Whether the token is renewable or not.
@@ -162,6 +172,11 @@ type AuthBackendLoginState struct {
 	LeaseStarted pulumi.StringPtrInput
 	// The metadata associated with the token.
 	Metadata pulumi.StringMapInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// A list of policies applied to the token.
 	Policies pulumi.StringArrayInput
 	// Whether the token is renewable or not.
@@ -180,6 +195,11 @@ func (AuthBackendLoginState) ElementType() reflect.Type {
 type authBackendLoginArgs struct {
 	// The unique path of the Vault backend to log in with.
 	Backend *string `pulumi:"backend"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The ID of the role to log in with.
 	RoleId string `pulumi:"roleId"`
 	// The secret ID of the role to log in with. Required
@@ -191,6 +211,11 @@ type authBackendLoginArgs struct {
 type AuthBackendLoginArgs struct {
 	// The unique path of the Vault backend to log in with.
 	Backend pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The ID of the role to log in with.
 	RoleId pulumi.StringInput
 	// The secret ID of the role to log in with. Required
@@ -313,6 +338,14 @@ func (o AuthBackendLoginOutput) LeaseStarted() pulumi.StringOutput {
 // The metadata associated with the token.
 func (o AuthBackendLoginOutput) Metadata() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *AuthBackendLogin) pulumi.StringMapOutput { return v.Metadata }).(pulumi.StringMapOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o AuthBackendLoginOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // A list of policies applied to the token.

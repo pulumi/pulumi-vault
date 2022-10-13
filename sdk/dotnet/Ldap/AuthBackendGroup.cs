@@ -70,6 +70,15 @@ namespace Pulumi.Vault.Ldap
         public Output<string> Groupname { get; private set; } = null!;
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
         /// Policies which should be granted to members of the group
         /// </summary>
         [Output("policies")]
@@ -133,6 +142,15 @@ namespace Pulumi.Vault.Ldap
         [Input("groupname", required: true)]
         public Input<string> Groupname { get; set; } = null!;
 
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
         [Input("policies")]
         private InputList<string>? _policies;
 
@@ -164,6 +182,15 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Input("groupname")]
         public Input<string>? Groupname { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         [Input("policies")]
         private InputList<string>? _policies;

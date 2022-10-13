@@ -45,22 +45,14 @@ class BackendRoleAzureGroupArgs:
 @pulumi.input_type
 class BackendRoleAzureRoleArgs:
     def __init__(__self__, *,
-                 role_name: pulumi.Input[str],
                  scope: pulumi.Input[str],
-                 role_id: Optional[pulumi.Input[str]] = None):
-        pulumi.set(__self__, "role_name", role_name)
+                 role_id: Optional[pulumi.Input[str]] = None,
+                 role_name: Optional[pulumi.Input[str]] = None):
         pulumi.set(__self__, "scope", scope)
         if role_id is not None:
             pulumi.set(__self__, "role_id", role_id)
-
-    @property
-    @pulumi.getter(name="roleName")
-    def role_name(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "role_name")
-
-    @role_name.setter
-    def role_name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "role_name", value)
+        if role_name is not None:
+            pulumi.set(__self__, "role_name", role_name)
 
     @property
     @pulumi.getter
@@ -79,5 +71,14 @@ class BackendRoleAzureRoleArgs:
     @role_id.setter
     def role_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "role_id", value)
+
+    @property
+    @pulumi.getter(name="roleName")
+    def role_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "role_name")
+
+    @role_name.setter
+    def role_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role_name", value)
 
 

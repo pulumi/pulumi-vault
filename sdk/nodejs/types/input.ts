@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 
 export interface AuthBackendTune {
     /**
@@ -170,6 +171,105 @@ export interface ProviderAuthLogin {
     path: pulumi.Input<string>;
 }
 
+export interface ProviderAuthLoginAws {
+    awsAccessKeyId?: pulumi.Input<string>;
+    awsIamEndpoint?: pulumi.Input<string>;
+    awsProfile?: pulumi.Input<string>;
+    awsRegion?: pulumi.Input<string>;
+    awsRoleArn?: pulumi.Input<string>;
+    awsRoleSessionName?: pulumi.Input<string>;
+    awsSecretAccessKey?: pulumi.Input<string>;
+    awsSessionToken?: pulumi.Input<string>;
+    awsSharedCredentialsFile?: pulumi.Input<string>;
+    awsStsEndpoint?: pulumi.Input<string>;
+    awsWebIdentityTokenFile?: pulumi.Input<string>;
+    headerValue?: pulumi.Input<string>;
+    mount?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string>;
+    role: pulumi.Input<string>;
+}
+
+export interface ProviderAuthLoginAzure {
+    clientId?: pulumi.Input<string>;
+    jwt?: pulumi.Input<string>;
+    mount?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string>;
+    resourceGroupName: pulumi.Input<string>;
+    role: pulumi.Input<string>;
+    scope?: pulumi.Input<string>;
+    subscriptionId: pulumi.Input<string>;
+    tenantId?: pulumi.Input<string>;
+    vmName?: pulumi.Input<string>;
+    vmssName?: pulumi.Input<string>;
+}
+
+export interface ProviderAuthLoginCert {
+    certFile: pulumi.Input<string>;
+    keyFile: pulumi.Input<string>;
+    mount?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string>;
+}
+
+export interface ProviderAuthLoginGcp {
+    credentials?: pulumi.Input<string>;
+    jwt?: pulumi.Input<string>;
+    mount?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string>;
+    role: pulumi.Input<string>;
+    serviceAccount?: pulumi.Input<string>;
+}
+
+export interface ProviderAuthLoginJwt {
+    jwt: pulumi.Input<string>;
+    mount?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string>;
+    role: pulumi.Input<string>;
+}
+
+export interface ProviderAuthLoginKerberos {
+    disableFastNegotiation?: pulumi.Input<boolean>;
+    keytabPath?: pulumi.Input<string>;
+    krb5confPath?: pulumi.Input<string>;
+    mount?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string>;
+    realm?: pulumi.Input<string>;
+    removeInstanceName?: pulumi.Input<boolean>;
+    service?: pulumi.Input<string>;
+    token?: pulumi.Input<string>;
+    username?: pulumi.Input<string>;
+}
+
+export interface ProviderAuthLoginOci {
+    authType: pulumi.Input<string>;
+    mount?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string>;
+    role: pulumi.Input<string>;
+}
+
+export interface ProviderAuthLoginOidc {
+    callbackAddress?: pulumi.Input<string>;
+    callbackListenerAddress?: pulumi.Input<string>;
+    mount?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string>;
+    role: pulumi.Input<string>;
+}
+
+export interface ProviderAuthLoginRadius {
+    mount?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string>;
+    password: pulumi.Input<string>;
+    username: pulumi.Input<string>;
+}
+
+export interface ProviderAuthLoginUserpass {
+    mount?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    passwordFile?: pulumi.Input<string>;
+    username: pulumi.Input<string>;
+}
+
 export interface ProviderClientAuth {
     certFile: pulumi.Input<string>;
     keyFile: pulumi.Input<string>;
@@ -179,7 +279,6 @@ export interface ProviderHeader {
     name: pulumi.Input<string>;
     value: pulumi.Input<string>;
 }
-
 export namespace azure {
     export interface BackendRoleAzureGroup {
         groupName: pulumi.Input<string>;
@@ -188,7 +287,7 @@ export namespace azure {
 
     export interface BackendRoleAzureRole {
         roleId?: pulumi.Input<string>;
-        roleName: pulumi.Input<string>;
+        roleName?: pulumi.Input<string>;
         scope: pulumi.Input<string>;
     }
 }
@@ -332,6 +431,10 @@ export namespace database {
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
+        /**
+         * Disable special character escaping in username and password.
+         */
+        disableEscaping?: pulumi.Input<boolean>;
         /**
          * The maximum amount of time a connection may be reused.
          */
@@ -698,6 +801,10 @@ export namespace database {
          */
         connectionUrl?: pulumi.Input<string>;
         /**
+         * Disable special character escaping in username and password.
+         */
+        disableEscaping?: pulumi.Input<boolean>;
+        /**
          * The maximum amount of time a connection may be reused.
          */
         maxConnectionLifetime?: pulumi.Input<number>;
@@ -725,6 +832,26 @@ export namespace database {
         usernameTemplate?: pulumi.Input<string>;
     }
 
+    export interface SecretBackendConnectionRedisElasticache {
+        /**
+         * The root credential password used in the connection URL.
+         */
+        password?: pulumi.Input<string>;
+        /**
+         * The region where the ElastiCache cluster is hosted. If omitted Vault tries to infer from the environment instead.
+         */
+        region?: pulumi.Input<string>;
+        /**
+         * The URL for Elasticsearch's API. https requires certificate
+         * by trusted CA if used.
+         */
+        url: pulumi.Input<string>;
+        /**
+         * The root credential username used in the connection URL.
+         */
+        username?: pulumi.Input<string>;
+    }
+
     export interface SecretBackendConnectionRedshift {
         /**
          * Specifies the Redshift DSN. See
@@ -733,6 +860,10 @@ export namespace database {
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
+        /**
+         * Disable special character escaping in username and password.
+         */
+        disableEscaping?: pulumi.Input<boolean>;
         /**
          * The maximum amount of time a connection may be reused.
          */
@@ -974,8 +1105,7 @@ export namespace database {
          */
         tlsServerName?: pulumi.Input<string>;
         /**
-         * The URL for Elasticsearch's API. https requires certificate
-         * by trusted CA if used.
+         * The configuration endpoint for the ElastiCache cluster to connect to.
          */
         url: pulumi.Input<string>;
         /**
@@ -1008,6 +1138,10 @@ export namespace database {
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          */
         data?: pulumi.Input<{[key: string]: any}>;
+        /**
+         * Disable special character escaping in username and password.
+         */
+        disableEscaping?: pulumi.Input<boolean>;
         /**
          * The maximum number of seconds to keep
          * a connection alive for.
@@ -1595,6 +1729,10 @@ export namespace database {
          */
         data?: pulumi.Input<{[key: string]: any}>;
         /**
+         * Disable special character escaping in username and password.
+         */
+        disableEscaping?: pulumi.Input<boolean>;
+        /**
          * The maximum number of seconds to keep
          * a connection alive for.
          */
@@ -1637,6 +1775,49 @@ export namespace database {
         verifyConnection?: pulumi.Input<boolean>;
     }
 
+    export interface SecretsMountRedisElasticach {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: any}>;
+        name: pulumi.Input<string>;
+        /**
+         * The password to be used in the connection.
+         */
+        password?: pulumi.Input<string>;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName?: pulumi.Input<string>;
+        /**
+         * The AWS region where the ElastiCache cluster is hosted.
+         * If omitted the plugin tries to infer the region from the environment.
+         */
+        region?: pulumi.Input<string>;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The configuration endpoint for the ElastiCache cluster to connect to.
+         */
+        url: pulumi.Input<string>;
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username?: pulumi.Input<string>;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: pulumi.Input<boolean>;
+    }
+
     export interface SecretsMountRedshift {
         /**
          * A list of roles that are allowed to use this
@@ -1652,6 +1833,10 @@ export namespace database {
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          */
         data?: pulumi.Input<{[key: string]: any}>;
+        /**
+         * Disable special character escaping in username and password.
+         */
+        disableEscaping?: pulumi.Input<boolean>;
         /**
          * The maximum number of seconds to keep
          * a connection alive for.
@@ -1755,6 +1940,25 @@ export namespace database {
 }
 
 export namespace gcp {
+    export interface AuthBackendCustomEndpoint {
+        /**
+         * Replaces the service endpoint used in API requests to `https://www.googleapis.com`.
+         */
+        api?: pulumi.Input<string>;
+        /**
+         * Replaces the service endpoint used in API requests to `https://compute.googleapis.com`.
+         */
+        compute?: pulumi.Input<string>;
+        /**
+         * Replaces the service endpoint used in API requests to `https://cloudresourcemanager.googleapis.com`.
+         */
+        crm?: pulumi.Input<string>;
+        /**
+         * Replaces the service endpoint used in API requests to `https://iam.googleapis.com`.
+         */
+        iam?: pulumi.Input<string>;
+    }
+
     export interface SecretRolesetBinding {
         /**
          * Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings).
@@ -1875,6 +2079,218 @@ export namespace jwt {
     }
 }
 
+export namespace managed {
+    export interface KeysAw {
+        /**
+         * The AWS access key to use.
+         */
+        accessKey: pulumi.Input<string>;
+        /**
+         * If no existing key can be found in 
+         * the referenced backend, instructs Vault to generate a key within the backend.
+         */
+        allowGenerateKey?: pulumi.Input<boolean>;
+        /**
+         * Controls the ability for Vault to replace through
+         * generation or importing a key into the configured backend even
+         * if a key is present, if set to `false` those operations are forbidden
+         * if a key exists.
+         */
+        allowReplaceKey?: pulumi.Input<boolean>;
+        /**
+         * Controls the ability for Vault to import a key to the
+         * configured backend, if `false`, those operations will be forbidden.
+         */
+        allowStoreKey?: pulumi.Input<boolean>;
+        /**
+         * If `true`, allows usage from any mount point within the
+         * namespace.
+         */
+        anyMount?: pulumi.Input<boolean>;
+        /**
+         * Supplies the curve value when using the `CKM_ECDSA` mechanism.
+         * Required if `allowGenerateKey` is `true`.
+         */
+        curve?: pulumi.Input<string>;
+        /**
+         * Used to specify a custom AWS endpoint.
+         */
+        endpoint?: pulumi.Input<string>;
+        /**
+         * Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
+         * `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
+         * `allowGenerateKey` is `true`.
+         */
+        keyBits: pulumi.Input<string>;
+        /**
+         * The type of key to use.
+         */
+        keyType: pulumi.Input<string>;
+        /**
+         * An identifier for the key.
+         */
+        kmsKey: pulumi.Input<string>;
+        /**
+         * A unique lowercase name that serves as identifying the key.
+         */
+        name: pulumi.Input<string>;
+        /**
+         * The AWS region where the keys are stored (or will be stored).
+         */
+        region?: pulumi.Input<string>;
+        /**
+         * The AWS access key to use.
+         */
+        secretKey: pulumi.Input<string>;
+        uuid?: pulumi.Input<string>;
+    }
+
+    export interface KeysAzure {
+        /**
+         * If no existing key can be found in 
+         * the referenced backend, instructs Vault to generate a key within the backend.
+         */
+        allowGenerateKey?: pulumi.Input<boolean>;
+        /**
+         * Controls the ability for Vault to replace through
+         * generation or importing a key into the configured backend even
+         * if a key is present, if set to `false` those operations are forbidden
+         * if a key exists.
+         */
+        allowReplaceKey?: pulumi.Input<boolean>;
+        /**
+         * Controls the ability for Vault to import a key to the
+         * configured backend, if `false`, those operations will be forbidden.
+         */
+        allowStoreKey?: pulumi.Input<boolean>;
+        /**
+         * If `true`, allows usage from any mount point within the
+         * namespace.
+         */
+        anyMount?: pulumi.Input<boolean>;
+        /**
+         * The client id for credentials to query the Azure APIs.
+         */
+        clientId: pulumi.Input<string>;
+        /**
+         * The client secret for credentials to query the Azure APIs.
+         */
+        clientSecret: pulumi.Input<string>;
+        /**
+         * The Azure Cloud environment API endpoints to use.
+         */
+        environment?: pulumi.Input<string>;
+        /**
+         * Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
+         * `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
+         * `allowGenerateKey` is `true`.
+         */
+        keyBits?: pulumi.Input<string>;
+        /**
+         * The Key Vault key to use for encryption and decryption.
+         */
+        keyName: pulumi.Input<string>;
+        /**
+         * The type of key to use.
+         */
+        keyType: pulumi.Input<string>;
+        /**
+         * A unique lowercase name that serves as identifying the key.
+         */
+        name: pulumi.Input<string>;
+        /**
+         * The Azure Key Vault resource's DNS Suffix to connect to.
+         */
+        resource?: pulumi.Input<string>;
+        /**
+         * The tenant id for the Azure Active Directory organization.
+         */
+        tenantId: pulumi.Input<string>;
+        uuid?: pulumi.Input<string>;
+        /**
+         * The Key Vault vault to use for encryption and decryption.
+         */
+        vaultName: pulumi.Input<string>;
+    }
+
+    export interface KeysPkc {
+        /**
+         * If no existing key can be found in 
+         * the referenced backend, instructs Vault to generate a key within the backend.
+         */
+        allowGenerateKey?: pulumi.Input<boolean>;
+        /**
+         * Controls the ability for Vault to replace through
+         * generation or importing a key into the configured backend even
+         * if a key is present, if set to `false` those operations are forbidden
+         * if a key exists.
+         */
+        allowReplaceKey?: pulumi.Input<boolean>;
+        /**
+         * Controls the ability for Vault to import a key to the
+         * configured backend, if `false`, those operations will be forbidden.
+         */
+        allowStoreKey?: pulumi.Input<boolean>;
+        /**
+         * If `true`, allows usage from any mount point within the
+         * namespace.
+         */
+        anyMount?: pulumi.Input<boolean>;
+        /**
+         * Supplies the curve value when using the `CKM_ECDSA` mechanism.
+         * Required if `allowGenerateKey` is `true`.
+         */
+        curve?: pulumi.Input<string>;
+        /**
+         * Force all operations to open up a read-write session to
+         * the HSM.
+         */
+        forceRwSession?: pulumi.Input<string>;
+        /**
+         * Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
+         * `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
+         * `allowGenerateKey` is `true`.
+         */
+        keyBits?: pulumi.Input<string>;
+        /**
+         * The id of a PKCS#11 key to use.
+         */
+        keyId: pulumi.Input<string>;
+        /**
+         * The label of the key to use.
+         */
+        keyLabel: pulumi.Input<string>;
+        /**
+         * The name of the kmsLibrary stanza to use from Vault's config
+         * to lookup the local library path.
+         */
+        library: pulumi.Input<string>;
+        /**
+         * The encryption/decryption mechanism to use, specified as a
+         * hexadecimal (prefixed by 0x) string.
+         */
+        mechanism: pulumi.Input<string>;
+        /**
+         * A unique lowercase name that serves as identifying the key.
+         */
+        name: pulumi.Input<string>;
+        /**
+         * The PIN for login.
+         */
+        pin: pulumi.Input<string>;
+        /**
+         * The slot number to use, specified as a string in a decimal format
+         * (e.g. `2305843009213693953`).
+         */
+        slot?: pulumi.Input<string>;
+        /**
+         * The slot token label to use.
+         */
+        tokenLabel?: pulumi.Input<string>;
+        uuid?: pulumi.Input<string>;
+    }
+}
+
 export namespace okta {
     export interface AuthBackendGroup {
         /**
@@ -1901,6 +2317,9 @@ export namespace okta {
          */
         username: pulumi.Input<string>;
     }
+}
+
+export namespace pkiSecret {
 }
 
 export namespace rabbitMq {

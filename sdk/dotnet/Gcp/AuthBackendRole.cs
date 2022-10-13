@@ -81,6 +81,15 @@ namespace Pulumi.Vault.Gcp
         public Output<string> MaxJwtExp { get; private set; } = null!;
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
         /// Name of the GCP role
         /// </summary>
         [Output("role")]
@@ -303,6 +312,15 @@ namespace Pulumi.Vault.Gcp
         public Input<string>? MaxJwtExp { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
         /// Name of the GCP role
         /// </summary>
         [Input("role", required: true)]
@@ -497,6 +515,15 @@ namespace Pulumi.Vault.Gcp
         /// </summary>
         [Input("maxJwtExp")]
         public Input<string>? MaxJwtExp { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// Name of the GCP role

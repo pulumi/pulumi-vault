@@ -5,15 +5,26 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./authBackendLogin";
-export * from "./authBackendRole";
-export * from "./authBackendRoleSecretID";
-export * from "./getAuthBackendRoleId";
+export { AuthBackendLoginArgs, AuthBackendLoginState } from "./authBackendLogin";
+export type AuthBackendLogin = import("./authBackendLogin").AuthBackendLogin;
+export const AuthBackendLogin: typeof import("./authBackendLogin").AuthBackendLogin = null as any;
 
-// Import resources to register:
-import { AuthBackendLogin } from "./authBackendLogin";
-import { AuthBackendRole } from "./authBackendRole";
-import { AuthBackendRoleSecretID } from "./authBackendRoleSecretID";
+export { AuthBackendRoleArgs, AuthBackendRoleState } from "./authBackendRole";
+export type AuthBackendRole = import("./authBackendRole").AuthBackendRole;
+export const AuthBackendRole: typeof import("./authBackendRole").AuthBackendRole = null as any;
+
+export { AuthBackendRoleSecretIDArgs, AuthBackendRoleSecretIDState } from "./authBackendRoleSecretID";
+export type AuthBackendRoleSecretID = import("./authBackendRoleSecretID").AuthBackendRoleSecretID;
+export const AuthBackendRoleSecretID: typeof import("./authBackendRoleSecretID").AuthBackendRoleSecretID = null as any;
+
+export { GetAuthBackendRoleIdArgs, GetAuthBackendRoleIdResult, GetAuthBackendRoleIdOutputArgs } from "./getAuthBackendRoleId";
+export const getAuthBackendRoleId: typeof import("./getAuthBackendRoleId").getAuthBackendRoleId = null as any;
+export const getAuthBackendRoleIdOutput: typeof import("./getAuthBackendRoleId").getAuthBackendRoleIdOutput = null as any;
+
+utilities.lazyLoad(exports, ["AuthBackendLogin"], () => require("./authBackendLogin"));
+utilities.lazyLoad(exports, ["AuthBackendRole"], () => require("./authBackendRole"));
+utilities.lazyLoad(exports, ["AuthBackendRoleSecretID"], () => require("./authBackendRoleSecretID"));
+utilities.lazyLoad(exports, ["getAuthBackendRoleId","getAuthBackendRoleIdOutput"], () => require("./getAuthBackendRoleId"));
 
 const _module = {
     version: utilities.getVersion(),

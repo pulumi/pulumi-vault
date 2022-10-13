@@ -61,6 +61,11 @@ type Entity struct {
 	Metadata pulumi.StringMapOutput `pulumi:"metadata"`
 	// Name of the identity entity to create.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// A list of policies to apply to the entity.
 	Policies pulumi.StringArrayOutput `pulumi:"policies"`
 }
@@ -102,6 +107,11 @@ type entityState struct {
 	Metadata map[string]string `pulumi:"metadata"`
 	// Name of the identity entity to create.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// A list of policies to apply to the entity.
 	Policies []string `pulumi:"policies"`
 }
@@ -115,6 +125,11 @@ type EntityState struct {
 	Metadata pulumi.StringMapInput
 	// Name of the identity entity to create.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// A list of policies to apply to the entity.
 	Policies pulumi.StringArrayInput
 }
@@ -132,6 +147,11 @@ type entityArgs struct {
 	Metadata map[string]string `pulumi:"metadata"`
 	// Name of the identity entity to create.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// A list of policies to apply to the entity.
 	Policies []string `pulumi:"policies"`
 }
@@ -146,6 +166,11 @@ type EntityArgs struct {
 	Metadata pulumi.StringMapInput
 	// Name of the identity entity to create.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// A list of policies to apply to the entity.
 	Policies pulumi.StringArrayInput
 }
@@ -255,6 +280,14 @@ func (o EntityOutput) Metadata() pulumi.StringMapOutput {
 // Name of the identity entity to create.
 func (o EntityOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Entity) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o EntityOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Entity) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // A list of policies to apply to the entity.

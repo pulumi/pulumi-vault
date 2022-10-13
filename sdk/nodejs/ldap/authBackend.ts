@@ -88,6 +88,11 @@ export class AuthBackend extends pulumi.CustomResource {
      * Description for the LDAP auth backend mount
      */
     public readonly description!: pulumi.Output<string>;
+    /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    public readonly disableRemount!: pulumi.Output<boolean | undefined>;
     public readonly discoverdn!: pulumi.Output<boolean>;
     /**
      * LDAP attribute to follow on objects returned by groupfilter
@@ -109,6 +114,13 @@ export class AuthBackend extends pulumi.CustomResource {
      * Specifies if the auth method is local only.
      */
     public readonly local!: pulumi.Output<boolean | undefined>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
     /**
      * Path to mount the LDAP auth backend under
      */
@@ -202,6 +214,10 @@ export class AuthBackend extends pulumi.CustomResource {
      * LDAP user search filter
      */
     public readonly userfilter!: pulumi.Output<string>;
+    /**
+     * Force the auth method to use the username passed by the user as the alias name.
+     */
+    public readonly usernameAsAlias!: pulumi.Output<boolean>;
 
     /**
      * Create a AuthBackend resource with the given unique name, arguments, and options.
@@ -225,12 +241,14 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["clientTlsKey"] = state ? state.clientTlsKey : undefined;
             resourceInputs["denyNullBind"] = state ? state.denyNullBind : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
             resourceInputs["discoverdn"] = state ? state.discoverdn : undefined;
             resourceInputs["groupattr"] = state ? state.groupattr : undefined;
             resourceInputs["groupdn"] = state ? state.groupdn : undefined;
             resourceInputs["groupfilter"] = state ? state.groupfilter : undefined;
             resourceInputs["insecureTls"] = state ? state.insecureTls : undefined;
             resourceInputs["local"] = state ? state.local : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
             resourceInputs["starttls"] = state ? state.starttls : undefined;
             resourceInputs["tlsMaxVersion"] = state ? state.tlsMaxVersion : undefined;
@@ -250,25 +268,28 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["userattr"] = state ? state.userattr : undefined;
             resourceInputs["userdn"] = state ? state.userdn : undefined;
             resourceInputs["userfilter"] = state ? state.userfilter : undefined;
+            resourceInputs["usernameAsAlias"] = state ? state.usernameAsAlias : undefined;
         } else {
             const args = argsOrState as AuthBackendArgs | undefined;
             if ((!args || args.url === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'url'");
             }
             resourceInputs["binddn"] = args ? args.binddn : undefined;
-            resourceInputs["bindpass"] = args ? args.bindpass : undefined;
+            resourceInputs["bindpass"] = args?.bindpass ? pulumi.secret(args.bindpass) : undefined;
             resourceInputs["caseSensitiveNames"] = args ? args.caseSensitiveNames : undefined;
             resourceInputs["certificate"] = args ? args.certificate : undefined;
             resourceInputs["clientTlsCert"] = args ? args.clientTlsCert : undefined;
-            resourceInputs["clientTlsKey"] = args ? args.clientTlsKey : undefined;
+            resourceInputs["clientTlsKey"] = args?.clientTlsKey ? pulumi.secret(args.clientTlsKey) : undefined;
             resourceInputs["denyNullBind"] = args ? args.denyNullBind : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
             resourceInputs["discoverdn"] = args ? args.discoverdn : undefined;
             resourceInputs["groupattr"] = args ? args.groupattr : undefined;
             resourceInputs["groupdn"] = args ? args.groupdn : undefined;
             resourceInputs["groupfilter"] = args ? args.groupfilter : undefined;
             resourceInputs["insecureTls"] = args ? args.insecureTls : undefined;
             resourceInputs["local"] = args ? args.local : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["starttls"] = args ? args.starttls : undefined;
             resourceInputs["tlsMaxVersion"] = args ? args.tlsMaxVersion : undefined;
@@ -288,9 +309,12 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["userattr"] = args ? args.userattr : undefined;
             resourceInputs["userdn"] = args ? args.userdn : undefined;
             resourceInputs["userfilter"] = args ? args.userfilter : undefined;
+            resourceInputs["usernameAsAlias"] = args ? args.usernameAsAlias : undefined;
             resourceInputs["accessor"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["bindpass", "clientTlsKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(AuthBackend.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -326,6 +350,11 @@ export interface AuthBackendState {
      * Description for the LDAP auth backend mount
      */
     description?: pulumi.Input<string>;
+    /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    disableRemount?: pulumi.Input<boolean>;
     discoverdn?: pulumi.Input<boolean>;
     /**
      * LDAP attribute to follow on objects returned by groupfilter
@@ -347,6 +376,13 @@ export interface AuthBackendState {
      * Specifies if the auth method is local only.
      */
     local?: pulumi.Input<boolean>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Path to mount the LDAP auth backend under
      */
@@ -440,6 +476,10 @@ export interface AuthBackendState {
      * LDAP user search filter
      */
     userfilter?: pulumi.Input<string>;
+    /**
+     * Force the auth method to use the username passed by the user as the alias name.
+     */
+    usernameAsAlias?: pulumi.Input<boolean>;
 }
 
 /**
@@ -469,6 +509,11 @@ export interface AuthBackendArgs {
      * Description for the LDAP auth backend mount
      */
     description?: pulumi.Input<string>;
+    /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    disableRemount?: pulumi.Input<boolean>;
     discoverdn?: pulumi.Input<boolean>;
     /**
      * LDAP attribute to follow on objects returned by groupfilter
@@ -490,6 +535,13 @@ export interface AuthBackendArgs {
      * Specifies if the auth method is local only.
      */
     local?: pulumi.Input<boolean>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Path to mount the LDAP auth backend under
      */
@@ -583,4 +635,8 @@ export interface AuthBackendArgs {
      * LDAP user search filter
      */
     userfilter?: pulumi.Input<string>;
+    /**
+     * Force the auth method to use the username passed by the user as the alias name.
+     */
+    usernameAsAlias?: pulumi.Input<boolean>;
 }

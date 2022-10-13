@@ -16,6 +16,8 @@ class TokenArgs:
     def __init__(__self__, *,
                  display_name: Optional[pulumi.Input[str]] = None,
                  explicit_max_ttl: Optional[pulumi.Input[str]] = None,
+                 metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  no_default_policy: Optional[pulumi.Input[bool]] = None,
                  no_parent: Optional[pulumi.Input[bool]] = None,
                  num_uses: Optional[pulumi.Input[int]] = None,
@@ -31,6 +33,11 @@ class TokenArgs:
         The set of arguments for constructing a Token resource.
         :param pulumi.Input[str] display_name: String containing the token display name
         :param pulumi.Input[str] explicit_max_ttl: The explicit max TTL of this token
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Metadata to be set on this token
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] no_default_policy: Flag to not attach the default policy to this token
         :param pulumi.Input[bool] no_parent: Flag to create a token without parent
         :param pulumi.Input[int] num_uses: The number of allowed uses of this token
@@ -47,6 +54,10 @@ class TokenArgs:
             pulumi.set(__self__, "display_name", display_name)
         if explicit_max_ttl is not None:
             pulumi.set(__self__, "explicit_max_ttl", explicit_max_ttl)
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if no_default_policy is not None:
             pulumi.set(__self__, "no_default_policy", no_default_policy)
         if no_parent is not None:
@@ -93,6 +104,33 @@ class TokenArgs:
     @explicit_max_ttl.setter
     def explicit_max_ttl(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "explicit_max_ttl", value)
+
+    @property
+    @pulumi.getter
+    def metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Metadata to be set on this token
+        """
+        return pulumi.get(self, "metadata")
+
+    @metadata.setter
+    def metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "metadata", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter(name="noDefaultPolicy")
@@ -235,6 +273,8 @@ class _TokenState:
                  explicit_max_ttl: Optional[pulumi.Input[str]] = None,
                  lease_duration: Optional[pulumi.Input[int]] = None,
                  lease_started: Optional[pulumi.Input[str]] = None,
+                 metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  no_default_policy: Optional[pulumi.Input[bool]] = None,
                  no_parent: Optional[pulumi.Input[bool]] = None,
                  num_uses: Optional[pulumi.Input[int]] = None,
@@ -255,6 +295,11 @@ class _TokenState:
         :param pulumi.Input[str] explicit_max_ttl: The explicit max TTL of this token
         :param pulumi.Input[int] lease_duration: String containing the token lease duration if present in state file
         :param pulumi.Input[str] lease_started: String containing the token lease started time if present in state file
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Metadata to be set on this token
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] no_default_policy: Flag to not attach the default policy to this token
         :param pulumi.Input[bool] no_parent: Flag to create a token without parent
         :param pulumi.Input[int] num_uses: The number of allowed uses of this token
@@ -279,6 +324,10 @@ class _TokenState:
             pulumi.set(__self__, "lease_duration", lease_duration)
         if lease_started is not None:
             pulumi.set(__self__, "lease_started", lease_started)
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if no_default_policy is not None:
             pulumi.set(__self__, "no_default_policy", no_default_policy)
         if no_parent is not None:
@@ -365,6 +414,33 @@ class _TokenState:
     @lease_started.setter
     def lease_started(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "lease_started", value)
+
+    @property
+    @pulumi.getter
+    def metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Metadata to be set on this token
+        """
+        return pulumi.get(self, "metadata")
+
+    @metadata.setter
+    def metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "metadata", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter(name="noDefaultPolicy")
@@ -530,6 +606,8 @@ class Token(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  explicit_max_ttl: Optional[pulumi.Input[str]] = None,
+                 metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  no_default_policy: Optional[pulumi.Input[bool]] = None,
                  no_parent: Optional[pulumi.Input[bool]] = None,
                  num_uses: Optional[pulumi.Input[int]] = None,
@@ -550,6 +628,9 @@ class Token(pulumi.CustomResource):
         import pulumi_vault as vault
 
         example = vault.Token("example",
+            metadata={
+                "purpose": "service-account",
+            },
             policies=[
                 "policy1",
                 "policy2",
@@ -573,6 +654,11 @@ class Token(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] display_name: String containing the token display name
         :param pulumi.Input[str] explicit_max_ttl: The explicit max TTL of this token
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Metadata to be set on this token
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] no_default_policy: Flag to not attach the default policy to this token
         :param pulumi.Input[bool] no_parent: Flag to create a token without parent
         :param pulumi.Input[int] num_uses: The number of allowed uses of this token
@@ -599,6 +685,9 @@ class Token(pulumi.CustomResource):
         import pulumi_vault as vault
 
         example = vault.Token("example",
+            metadata={
+                "purpose": "service-account",
+            },
             policies=[
                 "policy1",
                 "policy2",
@@ -635,6 +724,8 @@ class Token(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  explicit_max_ttl: Optional[pulumi.Input[str]] = None,
+                 metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  no_default_policy: Optional[pulumi.Input[bool]] = None,
                  no_parent: Optional[pulumi.Input[bool]] = None,
                  num_uses: Optional[pulumi.Input[int]] = None,
@@ -657,6 +748,8 @@ class Token(pulumi.CustomResource):
 
             __props__.__dict__["display_name"] = display_name
             __props__.__dict__["explicit_max_ttl"] = explicit_max_ttl
+            __props__.__dict__["metadata"] = metadata
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["no_default_policy"] = no_default_policy
             __props__.__dict__["no_parent"] = no_parent
             __props__.__dict__["num_uses"] = num_uses
@@ -673,6 +766,8 @@ class Token(pulumi.CustomResource):
             __props__.__dict__["lease_started"] = None
             __props__.__dict__["wrapped_token"] = None
             __props__.__dict__["wrapping_accessor"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientToken", "wrappedToken", "wrappingAccessor"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Token, __self__).__init__(
             'vault:index/token:Token',
             resource_name,
@@ -688,6 +783,8 @@ class Token(pulumi.CustomResource):
             explicit_max_ttl: Optional[pulumi.Input[str]] = None,
             lease_duration: Optional[pulumi.Input[int]] = None,
             lease_started: Optional[pulumi.Input[str]] = None,
+            metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             no_default_policy: Optional[pulumi.Input[bool]] = None,
             no_parent: Optional[pulumi.Input[bool]] = None,
             num_uses: Optional[pulumi.Input[int]] = None,
@@ -713,6 +810,11 @@ class Token(pulumi.CustomResource):
         :param pulumi.Input[str] explicit_max_ttl: The explicit max TTL of this token
         :param pulumi.Input[int] lease_duration: String containing the token lease duration if present in state file
         :param pulumi.Input[str] lease_started: String containing the token lease started time if present in state file
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Metadata to be set on this token
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] no_default_policy: Flag to not attach the default policy to this token
         :param pulumi.Input[bool] no_parent: Flag to create a token without parent
         :param pulumi.Input[int] num_uses: The number of allowed uses of this token
@@ -736,6 +838,8 @@ class Token(pulumi.CustomResource):
         __props__.__dict__["explicit_max_ttl"] = explicit_max_ttl
         __props__.__dict__["lease_duration"] = lease_duration
         __props__.__dict__["lease_started"] = lease_started
+        __props__.__dict__["metadata"] = metadata
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["no_default_policy"] = no_default_policy
         __props__.__dict__["no_parent"] = no_parent
         __props__.__dict__["num_uses"] = num_uses
@@ -790,6 +894,25 @@ class Token(pulumi.CustomResource):
         String containing the token lease started time if present in state file
         """
         return pulumi.get(self, "lease_started")
+
+    @property
+    @pulumi.getter
+    def metadata(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        Metadata to be set on this token
+        """
+        return pulumi.get(self, "metadata")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="noDefaultPolicy")

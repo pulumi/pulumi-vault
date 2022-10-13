@@ -59,6 +59,15 @@ namespace Pulumi.Vault.TerraformCloud
         public Output<string> LeaseId { get; private set; } = null!;
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
         /// The organization associated with the token provided.
         /// </summary>
         [Output("organization")]
@@ -113,6 +122,11 @@ namespace Pulumi.Vault.TerraformCloud
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "leaseId",
+                    "token",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -143,6 +157,15 @@ namespace Pulumi.Vault.TerraformCloud
         public Input<string> Backend { get; set; } = null!;
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
         /// Name of the role.
         /// </summary>
         [Input("role", required: true)]
@@ -162,12 +185,31 @@ namespace Pulumi.Vault.TerraformCloud
         [Input("backend")]
         public Input<string>? Backend { get; set; }
 
+        [Input("leaseId")]
+        private Input<string>? _leaseId;
+
         /// <summary>
         /// The lease associated with the token. Only user tokens will have a 
         /// Vault lease associated with them.
         /// </summary>
-        [Input("leaseId")]
-        public Input<string>? LeaseId { get; set; }
+        public Input<string>? LeaseId
+        {
+            get => _leaseId;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _leaseId = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// The organization associated with the token provided.
@@ -187,12 +229,22 @@ namespace Pulumi.Vault.TerraformCloud
         [Input("teamId")]
         public Input<string>? TeamId { get; set; }
 
+        [Input("token")]
+        private Input<string>? _token;
+
         /// <summary>
         /// The actual token that was generated and can be used with API calls
         /// to identify the user of the call.
         /// </summary>
-        [Input("token")]
-        public Input<string>? Token { get; set; }
+        public Input<string>? Token
+        {
+            get => _token;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The public identifier for a specific token. It can be used 

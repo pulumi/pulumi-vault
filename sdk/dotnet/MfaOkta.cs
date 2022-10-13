@@ -78,6 +78,15 @@ namespace Pulumi.Vault
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
         /// `(string: &lt;required&gt;)` - Name of the organization to be used in the Okta API.
         /// </summary>
         [Output("orgName")]
@@ -125,6 +134,10 @@ namespace Pulumi.Vault
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "apiToken",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -148,11 +161,21 @@ namespace Pulumi.Vault
 
     public sealed class MfaOktaArgs : global::Pulumi.ResourceArgs
     {
+        [Input("apiToken", required: true)]
+        private Input<string>? _apiToken;
+
         /// <summary>
         /// `(string: &lt;required&gt;)` - Okta API key.
         /// </summary>
-        [Input("apiToken", required: true)]
-        public Input<string> ApiToken { get; set; } = null!;
+        public Input<string>? ApiToken
+        {
+            get => _apiToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _apiToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`, 
@@ -173,6 +196,15 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// `(string: &lt;required&gt;)` - Name of the organization to be used in the Okta API.
@@ -207,11 +239,21 @@ namespace Pulumi.Vault
 
     public sealed class MfaOktaState : global::Pulumi.ResourceArgs
     {
+        [Input("apiToken")]
+        private Input<string>? _apiToken;
+
         /// <summary>
         /// `(string: &lt;required&gt;)` - Okta API key.
         /// </summary>
-        [Input("apiToken")]
-        public Input<string>? ApiToken { get; set; }
+        public Input<string>? ApiToken
+        {
+            get => _apiToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _apiToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`, 
@@ -232,6 +274,15 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// `(string: &lt;required&gt;)` - Name of the organization to be used in the Okta API.

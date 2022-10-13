@@ -20,6 +20,7 @@ class AuthBackendRoleTagArgs:
                  disallow_reauthentication: Optional[pulumi.Input[bool]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  max_ttl: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a AuthBackendRoleTag resource.
@@ -31,6 +32,10 @@ class AuthBackendRoleTagArgs:
         :param pulumi.Input[bool] disallow_reauthentication: If set, only allows a single token to be granted per instance ID.
         :param pulumi.Input[str] instance_id: Instance ID for which this tag is intended for. If set, the created tag can only be used by the instance with the given ID.
         :param pulumi.Input[str] max_ttl: The maximum TTL of the tokens issued using this role.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: The policies to be associated with the tag. Must be a subset of the policies associated with the role.
         """
         pulumi.set(__self__, "role", role)
@@ -44,6 +49,8 @@ class AuthBackendRoleTagArgs:
             pulumi.set(__self__, "instance_id", instance_id)
         if max_ttl is not None:
             pulumi.set(__self__, "max_ttl", max_ttl)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if policies is not None:
             pulumi.set(__self__, "policies", policies)
 
@@ -123,6 +130,21 @@ class AuthBackendRoleTagArgs:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The policies to be associated with the tag. Must be a subset of the policies associated with the role.
@@ -142,6 +164,7 @@ class _AuthBackendRoleTagState:
                  disallow_reauthentication: Optional[pulumi.Input[bool]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  max_ttl: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  tag_key: Optional[pulumi.Input[str]] = None,
@@ -154,6 +177,10 @@ class _AuthBackendRoleTagState:
         :param pulumi.Input[bool] disallow_reauthentication: If set, only allows a single token to be granted per instance ID.
         :param pulumi.Input[str] instance_id: Instance ID for which this tag is intended for. If set, the created tag can only be used by the instance with the given ID.
         :param pulumi.Input[str] max_ttl: The maximum TTL of the tokens issued using this role.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: The policies to be associated with the tag. Must be a subset of the policies associated with the role.
         :param pulumi.Input[str] role: The name of the AWS auth backend role to read
                role tags from, with no leading or trailing `/`s.
@@ -170,6 +197,8 @@ class _AuthBackendRoleTagState:
             pulumi.set(__self__, "instance_id", instance_id)
         if max_ttl is not None:
             pulumi.set(__self__, "max_ttl", max_ttl)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if policies is not None:
             pulumi.set(__self__, "policies", policies)
         if role is not None:
@@ -242,6 +271,21 @@ class _AuthBackendRoleTagState:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The policies to be associated with the tag. Must be a subset of the policies associated with the role.
@@ -300,6 +344,7 @@ class AuthBackendRoleTag(pulumi.CustomResource):
                  disallow_reauthentication: Optional[pulumi.Input[bool]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  max_ttl: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -314,6 +359,10 @@ class AuthBackendRoleTag(pulumi.CustomResource):
         :param pulumi.Input[bool] disallow_reauthentication: If set, only allows a single token to be granted per instance ID.
         :param pulumi.Input[str] instance_id: Instance ID for which this tag is intended for. If set, the created tag can only be used by the instance with the given ID.
         :param pulumi.Input[str] max_ttl: The maximum TTL of the tokens issued using this role.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: The policies to be associated with the tag. Must be a subset of the policies associated with the role.
         :param pulumi.Input[str] role: The name of the AWS auth backend role to read
                role tags from, with no leading or trailing `/`s.
@@ -347,6 +396,7 @@ class AuthBackendRoleTag(pulumi.CustomResource):
                  disallow_reauthentication: Optional[pulumi.Input[bool]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  max_ttl: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -363,6 +413,7 @@ class AuthBackendRoleTag(pulumi.CustomResource):
             __props__.__dict__["disallow_reauthentication"] = disallow_reauthentication
             __props__.__dict__["instance_id"] = instance_id
             __props__.__dict__["max_ttl"] = max_ttl
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["policies"] = policies
             if role is None and not opts.urn:
                 raise TypeError("Missing required property 'role'")
@@ -384,6 +435,7 @@ class AuthBackendRoleTag(pulumi.CustomResource):
             disallow_reauthentication: Optional[pulumi.Input[bool]] = None,
             instance_id: Optional[pulumi.Input[str]] = None,
             max_ttl: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             role: Optional[pulumi.Input[str]] = None,
             tag_key: Optional[pulumi.Input[str]] = None,
@@ -401,6 +453,10 @@ class AuthBackendRoleTag(pulumi.CustomResource):
         :param pulumi.Input[bool] disallow_reauthentication: If set, only allows a single token to be granted per instance ID.
         :param pulumi.Input[str] instance_id: Instance ID for which this tag is intended for. If set, the created tag can only be used by the instance with the given ID.
         :param pulumi.Input[str] max_ttl: The maximum TTL of the tokens issued using this role.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: The policies to be associated with the tag. Must be a subset of the policies associated with the role.
         :param pulumi.Input[str] role: The name of the AWS auth backend role to read
                role tags from, with no leading or trailing `/`s.
@@ -416,6 +472,7 @@ class AuthBackendRoleTag(pulumi.CustomResource):
         __props__.__dict__["disallow_reauthentication"] = disallow_reauthentication
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["max_ttl"] = max_ttl
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["policies"] = policies
         __props__.__dict__["role"] = role
         __props__.__dict__["tag_key"] = tag_key
@@ -462,6 +519,17 @@ class AuthBackendRoleTag(pulumi.CustomResource):
         The maximum TTL of the tokens issued using this role.
         """
         return pulumi.get(self, "max_ttl")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

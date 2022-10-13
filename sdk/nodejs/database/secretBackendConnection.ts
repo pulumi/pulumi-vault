@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -130,6 +131,13 @@ export class SecretBackendConnection extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured namespace.
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * A nested block containing configuration options for Oracle connections.
      */
     public readonly oracle!: pulumi.Output<outputs.database.SecretBackendConnectionOracle | undefined>;
@@ -141,6 +149,10 @@ export class SecretBackendConnection extends pulumi.CustomResource {
      * A nested block containing configuration options for PostgreSQL connections.
      */
     public readonly postgresql!: pulumi.Output<outputs.database.SecretBackendConnectionPostgresql | undefined>;
+    /**
+     * A nested block containing configuration options for Redis ElastiCache connections.
+     */
+    public readonly redisElasticache!: pulumi.Output<outputs.database.SecretBackendConnectionRedisElasticache | undefined>;
     /**
      * Connection parameters for the redshift-database-plugin plugin.
      */
@@ -188,9 +200,11 @@ export class SecretBackendConnection extends pulumi.CustomResource {
             resourceInputs["mysqlLegacy"] = state ? state.mysqlLegacy : undefined;
             resourceInputs["mysqlRds"] = state ? state.mysqlRds : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["oracle"] = state ? state.oracle : undefined;
             resourceInputs["pluginName"] = state ? state.pluginName : undefined;
             resourceInputs["postgresql"] = state ? state.postgresql : undefined;
+            resourceInputs["redisElasticache"] = state ? state.redisElasticache : undefined;
             resourceInputs["redshift"] = state ? state.redshift : undefined;
             resourceInputs["rootRotationStatements"] = state ? state.rootRotationStatements : undefined;
             resourceInputs["snowflake"] = state ? state.snowflake : undefined;
@@ -216,9 +230,11 @@ export class SecretBackendConnection extends pulumi.CustomResource {
             resourceInputs["mysqlLegacy"] = args ? args.mysqlLegacy : undefined;
             resourceInputs["mysqlRds"] = args ? args.mysqlRds : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["oracle"] = args ? args.oracle : undefined;
             resourceInputs["pluginName"] = args ? args.pluginName : undefined;
             resourceInputs["postgresql"] = args ? args.postgresql : undefined;
+            resourceInputs["redisElasticache"] = args ? args.redisElasticache : undefined;
             resourceInputs["redshift"] = args ? args.redshift : undefined;
             resourceInputs["rootRotationStatements"] = args ? args.rootRotationStatements : undefined;
             resourceInputs["snowflake"] = args ? args.snowflake : undefined;
@@ -299,6 +315,13 @@ export interface SecretBackendConnectionState {
      */
     name?: pulumi.Input<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured namespace.
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
+    /**
      * A nested block containing configuration options for Oracle connections.
      */
     oracle?: pulumi.Input<inputs.database.SecretBackendConnectionOracle>;
@@ -310,6 +333,10 @@ export interface SecretBackendConnectionState {
      * A nested block containing configuration options for PostgreSQL connections.
      */
     postgresql?: pulumi.Input<inputs.database.SecretBackendConnectionPostgresql>;
+    /**
+     * A nested block containing configuration options for Redis ElastiCache connections.
+     */
+    redisElasticache?: pulumi.Input<inputs.database.SecretBackendConnectionRedisElasticache>;
     /**
      * Connection parameters for the redshift-database-plugin plugin.
      */
@@ -399,6 +426,13 @@ export interface SecretBackendConnectionArgs {
      */
     name?: pulumi.Input<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured namespace.
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
+    /**
      * A nested block containing configuration options for Oracle connections.
      */
     oracle?: pulumi.Input<inputs.database.SecretBackendConnectionOracle>;
@@ -410,6 +444,10 @@ export interface SecretBackendConnectionArgs {
      * A nested block containing configuration options for PostgreSQL connections.
      */
     postgresql?: pulumi.Input<inputs.database.SecretBackendConnectionPostgresql>;
+    /**
+     * A nested block containing configuration options for Redis ElastiCache connections.
+     */
+    redisElasticache?: pulumi.Input<inputs.database.SecretBackendConnectionRedisElasticache>;
     /**
      * Connection parameters for the redshift-database-plugin plugin.
      */

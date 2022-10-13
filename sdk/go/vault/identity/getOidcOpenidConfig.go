@@ -76,6 +76,11 @@ func GetOidcOpenidConfig(ctx *pulumi.Context, args *GetOidcOpenidConfigArgs, opt
 type GetOidcOpenidConfigArgs struct {
 	// The name of the OIDC Provider in Vault.
 	Name string `pulumi:"name"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 }
 
 // A collection of values returned by getOidcOpenidConfig.
@@ -92,8 +97,9 @@ type GetOidcOpenidConfigResult struct {
 	// The URL of the issuer for the provider.
 	Issuer string `pulumi:"issuer"`
 	// The well known keys URI for the provider.
-	JwksUri string `pulumi:"jwksUri"`
-	Name    string `pulumi:"name"`
+	JwksUri   string  `pulumi:"jwksUri"`
+	Name      string  `pulumi:"name"`
+	Namespace *string `pulumi:"namespace"`
 	// Specifies whether Request URI Parameter is
 	// supported by the provider.
 	RequestUriParameterSupported bool `pulumi:"requestUriParameterSupported"`
@@ -128,6 +134,11 @@ func GetOidcOpenidConfigOutput(ctx *pulumi.Context, args GetOidcOpenidConfigOutp
 type GetOidcOpenidConfigOutputArgs struct {
 	// The name of the OIDC Provider in Vault.
 	Name pulumi.StringInput `pulumi:"name"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 }
 
 func (GetOidcOpenidConfigOutputArgs) ElementType() reflect.Type {
@@ -182,6 +193,10 @@ func (o GetOidcOpenidConfigResultOutput) JwksUri() pulumi.StringOutput {
 
 func (o GetOidcOpenidConfigResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOidcOpenidConfigResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetOidcOpenidConfigResultOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetOidcOpenidConfigResult) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Specifies whether Request URI Parameter is

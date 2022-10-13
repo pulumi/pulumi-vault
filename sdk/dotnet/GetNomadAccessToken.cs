@@ -56,7 +56,7 @@ namespace Pulumi.Vault
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetNomadAccessTokenResult> InvokeAsync(GetNomadAccessTokenArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetNomadAccessTokenResult>("vault:index/getNomadAccessToken:getNomadAccessToken", args ?? new GetNomadAccessTokenArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetNomadAccessTokenResult>("vault:index/getNomadAccessToken:getNomadAccessToken", args ?? new GetNomadAccessTokenArgs(), options.WithDefaults());
 
         /// <summary>
         /// {{% examples %}}
@@ -103,7 +103,7 @@ namespace Pulumi.Vault
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetNomadAccessTokenResult> Invoke(GetNomadAccessTokenInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetNomadAccessTokenResult>("vault:index/getNomadAccessToken:getNomadAccessToken", args ?? new GetNomadAccessTokenInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetNomadAccessTokenResult>("vault:index/getNomadAccessToken:getNomadAccessToken", args ?? new GetNomadAccessTokenInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -115,6 +115,15 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("backend", required: true)]
         public string Backend { get; set; } = null!;
+
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public string? Namespace { get; set; }
 
         /// <summary>
         /// The name of the Nomad secret backend role to generate
@@ -137,6 +146,15 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("backend", required: true)]
         public Input<string> Backend { get; set; } = null!;
+
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// The name of the Nomad secret backend role to generate
@@ -165,6 +183,7 @@ namespace Pulumi.Vault
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly string? Namespace;
         public readonly string Role;
         /// <summary>
         /// The token to be used when making requests to Nomad and should be kept private.
@@ -179,6 +198,8 @@ namespace Pulumi.Vault
 
             string id,
 
+            string? @namespace,
+
             string role,
 
             string secretId)
@@ -186,6 +207,7 @@ namespace Pulumi.Vault
             AccessorId = accessorId;
             Backend = backend;
             Id = id;
+            Namespace = @namespace;
             Role = role;
             SecretId = secretId;
         }

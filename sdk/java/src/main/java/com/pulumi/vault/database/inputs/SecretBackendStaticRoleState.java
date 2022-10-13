@@ -63,6 +63,27 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
     }
 
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured namespace.
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable Output<String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured namespace.
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
+
+    /**
      * The amount of time Vault should wait before rotating the password, in seconds.
      * 
      */
@@ -113,6 +134,7 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
         this.backend = $.backend;
         this.dbName = $.dbName;
         this.name = $.name;
+        this.namespace = $.namespace;
         this.rotationPeriod = $.rotationPeriod;
         this.rotationStatements = $.rotationStatements;
         this.username = $.username;
@@ -197,6 +219,33 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured namespace.
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable Output<String> namespace) {
+            $.namespace = namespace;
+            return this;
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured namespace.
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(String namespace) {
+            return namespace(Output.of(namespace));
         }
 
         /**

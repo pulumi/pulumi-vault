@@ -21,92 +21,70 @@ public final class SecretsMountHana {
      * connection.
      * 
      */
-    private final @Nullable List<String> allowedRoles;
+    private @Nullable List<String> allowedRoles;
     /**
      * @return A URL containing connection information.\
      * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
      * 
      */
-    private final @Nullable String connectionUrl;
+    private @Nullable String connectionUrl;
     /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
      */
-    private final @Nullable Map<String,Object> data;
+    private @Nullable Map<String,Object> data;
+    /**
+     * @return Disable special character escaping in username and password.
+     * 
+     */
+    private @Nullable Boolean disableEscaping;
     /**
      * @return The maximum number of seconds to keep
      * a connection alive for.
      * 
      */
-    private final @Nullable Integer maxConnectionLifetime;
+    private @Nullable Integer maxConnectionLifetime;
     /**
      * @return The maximum number of idle connections to
      * maintain.
      * 
      */
-    private final @Nullable Integer maxIdleConnections;
+    private @Nullable Integer maxIdleConnections;
     /**
      * @return The maximum number of open connections to
      * use.
      * 
      */
-    private final @Nullable Integer maxOpenConnections;
-    private final String name;
+    private @Nullable Integer maxOpenConnections;
+    private String name;
     /**
      * @return The password to be used in the connection.
      * 
      */
-    private final @Nullable String password;
+    private @Nullable String password;
     /**
      * @return Specifies the name of the plugin to use.
      * 
      */
-    private final @Nullable String pluginName;
+    private @Nullable String pluginName;
     /**
      * @return A list of database statements to be executed to rotate the root user&#39;s credentials.
      * 
      */
-    private final @Nullable List<String> rootRotationStatements;
+    private @Nullable List<String> rootRotationStatements;
     /**
      * @return The username to be used in the connection (the account admin level).
      * 
      */
-    private final @Nullable String username;
+    private @Nullable String username;
     /**
      * @return Whether the connection should be verified on
      * initial configuration or not.
      * 
      */
-    private final @Nullable Boolean verifyConnection;
+    private @Nullable Boolean verifyConnection;
 
-    @CustomType.Constructor
-    private SecretsMountHana(
-        @CustomType.Parameter("allowedRoles") @Nullable List<String> allowedRoles,
-        @CustomType.Parameter("connectionUrl") @Nullable String connectionUrl,
-        @CustomType.Parameter("data") @Nullable Map<String,Object> data,
-        @CustomType.Parameter("maxConnectionLifetime") @Nullable Integer maxConnectionLifetime,
-        @CustomType.Parameter("maxIdleConnections") @Nullable Integer maxIdleConnections,
-        @CustomType.Parameter("maxOpenConnections") @Nullable Integer maxOpenConnections,
-        @CustomType.Parameter("name") String name,
-        @CustomType.Parameter("password") @Nullable String password,
-        @CustomType.Parameter("pluginName") @Nullable String pluginName,
-        @CustomType.Parameter("rootRotationStatements") @Nullable List<String> rootRotationStatements,
-        @CustomType.Parameter("username") @Nullable String username,
-        @CustomType.Parameter("verifyConnection") @Nullable Boolean verifyConnection) {
-        this.allowedRoles = allowedRoles;
-        this.connectionUrl = connectionUrl;
-        this.data = data;
-        this.maxConnectionLifetime = maxConnectionLifetime;
-        this.maxIdleConnections = maxIdleConnections;
-        this.maxOpenConnections = maxOpenConnections;
-        this.name = name;
-        this.password = password;
-        this.pluginName = pluginName;
-        this.rootRotationStatements = rootRotationStatements;
-        this.username = username;
-        this.verifyConnection = verifyConnection;
-    }
-
+    private SecretsMountHana() {}
     /**
      * @return A list of roles that are allowed to use this
      * connection.
@@ -129,6 +107,13 @@ public final class SecretsMountHana {
      */
     public Map<String,Object> data() {
         return this.data == null ? Map.of() : this.data;
+    }
+    /**
+     * @return Disable special character escaping in username and password.
+     * 
+     */
+    public Optional<Boolean> disableEscaping() {
+        return Optional.ofNullable(this.disableEscaping);
     }
     /**
      * @return The maximum number of seconds to keep
@@ -201,11 +186,12 @@ public final class SecretsMountHana {
     public static Builder builder(SecretsMountHana defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable List<String> allowedRoles;
         private @Nullable String connectionUrl;
         private @Nullable Map<String,Object> data;
+        private @Nullable Boolean disableEscaping;
         private @Nullable Integer maxConnectionLifetime;
         private @Nullable Integer maxIdleConnections;
         private @Nullable Integer maxOpenConnections;
@@ -215,16 +201,13 @@ public final class SecretsMountHana {
         private @Nullable List<String> rootRotationStatements;
         private @Nullable String username;
         private @Nullable Boolean verifyConnection;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(SecretsMountHana defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.allowedRoles = defaults.allowedRoles;
     	      this.connectionUrl = defaults.connectionUrl;
     	      this.data = defaults.data;
+    	      this.disableEscaping = defaults.disableEscaping;
     	      this.maxConnectionLifetime = defaults.maxConnectionLifetime;
     	      this.maxIdleConnections = defaults.maxIdleConnections;
     	      this.maxOpenConnections = defaults.maxOpenConnections;
@@ -236,6 +219,7 @@ public final class SecretsMountHana {
     	      this.verifyConnection = defaults.verifyConnection;
         }
 
+        @CustomType.Setter
         public Builder allowedRoles(@Nullable List<String> allowedRoles) {
             this.allowedRoles = allowedRoles;
             return this;
@@ -243,38 +227,52 @@ public final class SecretsMountHana {
         public Builder allowedRoles(String... allowedRoles) {
             return allowedRoles(List.of(allowedRoles));
         }
+        @CustomType.Setter
         public Builder connectionUrl(@Nullable String connectionUrl) {
             this.connectionUrl = connectionUrl;
             return this;
         }
+        @CustomType.Setter
         public Builder data(@Nullable Map<String,Object> data) {
             this.data = data;
             return this;
         }
+        @CustomType.Setter
+        public Builder disableEscaping(@Nullable Boolean disableEscaping) {
+            this.disableEscaping = disableEscaping;
+            return this;
+        }
+        @CustomType.Setter
         public Builder maxConnectionLifetime(@Nullable Integer maxConnectionLifetime) {
             this.maxConnectionLifetime = maxConnectionLifetime;
             return this;
         }
+        @CustomType.Setter
         public Builder maxIdleConnections(@Nullable Integer maxIdleConnections) {
             this.maxIdleConnections = maxIdleConnections;
             return this;
         }
+        @CustomType.Setter
         public Builder maxOpenConnections(@Nullable Integer maxOpenConnections) {
             this.maxOpenConnections = maxOpenConnections;
             return this;
         }
+        @CustomType.Setter
         public Builder name(String name) {
             this.name = Objects.requireNonNull(name);
             return this;
         }
+        @CustomType.Setter
         public Builder password(@Nullable String password) {
             this.password = password;
             return this;
         }
+        @CustomType.Setter
         public Builder pluginName(@Nullable String pluginName) {
             this.pluginName = pluginName;
             return this;
         }
+        @CustomType.Setter
         public Builder rootRotationStatements(@Nullable List<String> rootRotationStatements) {
             this.rootRotationStatements = rootRotationStatements;
             return this;
@@ -282,15 +280,32 @@ public final class SecretsMountHana {
         public Builder rootRotationStatements(String... rootRotationStatements) {
             return rootRotationStatements(List.of(rootRotationStatements));
         }
+        @CustomType.Setter
         public Builder username(@Nullable String username) {
             this.username = username;
             return this;
         }
+        @CustomType.Setter
         public Builder verifyConnection(@Nullable Boolean verifyConnection) {
             this.verifyConnection = verifyConnection;
             return this;
-        }        public SecretsMountHana build() {
-            return new SecretsMountHana(allowedRoles, connectionUrl, data, maxConnectionLifetime, maxIdleConnections, maxOpenConnections, name, password, pluginName, rootRotationStatements, username, verifyConnection);
+        }
+        public SecretsMountHana build() {
+            final var o = new SecretsMountHana();
+            o.allowedRoles = allowedRoles;
+            o.connectionUrl = connectionUrl;
+            o.data = data;
+            o.disableEscaping = disableEscaping;
+            o.maxConnectionLifetime = maxConnectionLifetime;
+            o.maxIdleConnections = maxIdleConnections;
+            o.maxOpenConnections = maxOpenConnections;
+            o.name = name;
+            o.password = password;
+            o.pluginName = pluginName;
+            o.rootRotationStatements = rootRotationStatements;
+            o.username = username;
+            o.verifyConnection = verifyConnection;
+            return o;
         }
     }
 }

@@ -74,6 +74,27 @@ public final class GetAccessCredentialsPlainArgs extends com.pulumi.resources.In
     }
 
     /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable String namespace;
+
+    /**
+     * @return The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<String> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
+
+    /**
      * If &#39;validate_creds&#39; is true,
      * the number of seconds to wait between each test of generated credentials.
      * Defaults to 1.
@@ -193,6 +214,7 @@ public final class GetAccessCredentialsPlainArgs extends com.pulumi.resources.In
         this.backend = $.backend;
         this.environment = $.environment;
         this.maxCredValidationSeconds = $.maxCredValidationSeconds;
+        this.namespace = $.namespace;
         this.numSecondsBetweenTests = $.numSecondsBetweenTests;
         this.numSequentialSuccesses = $.numSequentialSuccesses;
         this.role = $.role;
@@ -255,6 +277,20 @@ public final class GetAccessCredentialsPlainArgs extends com.pulumi.resources.In
          */
         public Builder maxCredValidationSeconds(@Nullable Integer maxCredValidationSeconds) {
             $.maxCredValidationSeconds = maxCredValidationSeconds;
+            return this;
+        }
+
+        /**
+         * @param namespace The namespace of the target resource.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable String namespace) {
+            $.namespace = namespace;
             return this;
         }
 

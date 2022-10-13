@@ -17,7 +17,7 @@ namespace Pulumi.Vault.Kubernetes
         /// information.
         /// </summary>
         public static Task<GetAuthBackendRoleResult> InvokeAsync(GetAuthBackendRoleArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendRoleResult>("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", args ?? new GetAuthBackendRoleArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendRoleResult>("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", args ?? new GetAuthBackendRoleArgs(), options.WithDefaults());
 
         /// <summary>
         /// Reads the Role of an Kubernetes from a Vault server. See the [Vault
@@ -25,7 +25,7 @@ namespace Pulumi.Vault.Kubernetes
         /// information.
         /// </summary>
         public static Output<GetAuthBackendRoleResult> Invoke(GetAuthBackendRoleInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetAuthBackendRoleResult>("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", args ?? new GetAuthBackendRoleInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetAuthBackendRoleResult>("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", args ?? new GetAuthBackendRoleInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -43,6 +43,15 @@ namespace Pulumi.Vault.Kubernetes
         /// </summary>
         [Input("backend")]
         public string? Backend { get; set; }
+
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured namespace.
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public string? Namespace { get; set; }
 
         /// <summary>
         /// The name of the role to retrieve the Role attributes for.
@@ -154,6 +163,15 @@ namespace Pulumi.Vault.Kubernetes
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
+
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured namespace.
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// The name of the role to retrieve the Role attributes for.
@@ -276,6 +294,7 @@ namespace Pulumi.Vault.Kubernetes
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly string? Namespace;
         public readonly string RoleName;
         /// <summary>
         /// List of CIDR blocks; if set, specifies blocks of IP
@@ -346,6 +365,8 @@ namespace Pulumi.Vault.Kubernetes
 
             string id,
 
+            string? @namespace,
+
             string roleName,
 
             ImmutableArray<string> tokenBoundCidrs,
@@ -372,6 +393,7 @@ namespace Pulumi.Vault.Kubernetes
             BoundServiceAccountNames = boundServiceAccountNames;
             BoundServiceAccountNamespaces = boundServiceAccountNamespaces;
             Id = id;
+            Namespace = @namespace;
             RoleName = roleName;
             TokenBoundCidrs = tokenBoundCidrs;
             TokenExplicitMaxTtl = tokenExplicitMaxTtl;

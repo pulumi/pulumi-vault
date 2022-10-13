@@ -14,6 +14,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -41,6 +42,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var example = new Token(&#34;example&#34;, TokenArgs.builder()        
+ *             .metadata(Map.of(&#34;purpose&#34;, &#34;service-account&#34;))
  *             .policies(            
  *                 &#34;policy1&#34;,
  *                 &#34;policy2&#34;)
@@ -135,6 +137,40 @@ public class Token extends com.pulumi.resources.CustomResource {
      */
     public Output<String> leaseStarted() {
         return this.leaseStarted;
+    }
+    /**
+     * Metadata to be set on this token
+     * 
+     */
+    @Export(name="metadata", type=Map.class, parameters={String.class, String.class})
+    private Output</* @Nullable */ Map<String,String>> metadata;
+
+    /**
+     * @return Metadata to be set on this token
+     * 
+     */
+    public Output<Optional<Map<String,String>>> metadata() {
+        return Codegen.optional(this.metadata);
+    }
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="namespace", type=String.class, parameters={})
+    private Output</* @Nullable */ String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> namespace() {
+        return Codegen.optional(this.namespace);
     }
     /**
      * Flag to not attach the default policy to this token
@@ -351,6 +387,11 @@ public class Token extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "clientToken",
+                "wrappedToken",
+                "wrappingAccessor"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

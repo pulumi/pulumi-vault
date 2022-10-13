@@ -20,6 +20,7 @@ class AuthBackendConfigArgs:
                  disable_local_ca_jwt: Optional[pulumi.Input[bool]] = None,
                  issuer: Optional[pulumi.Input[str]] = None,
                  kubernetes_ca_cert: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  pem_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_reviewer_jwt: Optional[pulumi.Input[str]] = None):
         """
@@ -30,6 +31,10 @@ class AuthBackendConfigArgs:
         :param pulumi.Input[bool] disable_local_ca_jwt: Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
         :param pulumi.Input[str] issuer: JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
         :param pulumi.Input[str] kubernetes_ca_cert: PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured namespace.
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] pem_keys: List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
         :param pulumi.Input[str] token_reviewer_jwt: A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
         """
@@ -44,6 +49,8 @@ class AuthBackendConfigArgs:
             pulumi.set(__self__, "issuer", issuer)
         if kubernetes_ca_cert is not None:
             pulumi.set(__self__, "kubernetes_ca_cert", kubernetes_ca_cert)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if pem_keys is not None:
             pulumi.set(__self__, "pem_keys", pem_keys)
         if token_reviewer_jwt is not None:
@@ -122,6 +129,21 @@ class AuthBackendConfigArgs:
         pulumi.set(self, "kubernetes_ca_cert", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured namespace.
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="pemKeys")
     def pem_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -155,6 +177,7 @@ class _AuthBackendConfigState:
                  issuer: Optional[pulumi.Input[str]] = None,
                  kubernetes_ca_cert: Optional[pulumi.Input[str]] = None,
                  kubernetes_host: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  pem_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_reviewer_jwt: Optional[pulumi.Input[str]] = None):
         """
@@ -165,6 +188,10 @@ class _AuthBackendConfigState:
         :param pulumi.Input[str] issuer: JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
         :param pulumi.Input[str] kubernetes_ca_cert: PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
         :param pulumi.Input[str] kubernetes_host: Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured namespace.
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] pem_keys: List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
         :param pulumi.Input[str] token_reviewer_jwt: A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
         """
@@ -180,6 +207,8 @@ class _AuthBackendConfigState:
             pulumi.set(__self__, "kubernetes_ca_cert", kubernetes_ca_cert)
         if kubernetes_host is not None:
             pulumi.set(__self__, "kubernetes_host", kubernetes_host)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if pem_keys is not None:
             pulumi.set(__self__, "pem_keys", pem_keys)
         if token_reviewer_jwt is not None:
@@ -258,6 +287,21 @@ class _AuthBackendConfigState:
         pulumi.set(self, "kubernetes_host", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured namespace.
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="pemKeys")
     def pem_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -293,6 +337,7 @@ class AuthBackendConfig(pulumi.CustomResource):
                  issuer: Optional[pulumi.Input[str]] = None,
                  kubernetes_ca_cert: Optional[pulumi.Input[str]] = None,
                  kubernetes_host: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  pem_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_reviewer_jwt: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -335,6 +380,10 @@ class AuthBackendConfig(pulumi.CustomResource):
         :param pulumi.Input[str] issuer: JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
         :param pulumi.Input[str] kubernetes_ca_cert: PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
         :param pulumi.Input[str] kubernetes_host: Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured namespace.
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] pem_keys: List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
         :param pulumi.Input[str] token_reviewer_jwt: A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
         """
@@ -396,6 +445,7 @@ class AuthBackendConfig(pulumi.CustomResource):
                  issuer: Optional[pulumi.Input[str]] = None,
                  kubernetes_ca_cert: Optional[pulumi.Input[str]] = None,
                  kubernetes_host: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  pem_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_reviewer_jwt: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -415,8 +465,11 @@ class AuthBackendConfig(pulumi.CustomResource):
             if kubernetes_host is None and not opts.urn:
                 raise TypeError("Missing required property 'kubernetes_host'")
             __props__.__dict__["kubernetes_host"] = kubernetes_host
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["pem_keys"] = pem_keys
-            __props__.__dict__["token_reviewer_jwt"] = token_reviewer_jwt
+            __props__.__dict__["token_reviewer_jwt"] = None if token_reviewer_jwt is None else pulumi.Output.secret(token_reviewer_jwt)
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["tokenReviewerJwt"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(AuthBackendConfig, __self__).__init__(
             'vault:kubernetes/authBackendConfig:AuthBackendConfig',
             resource_name,
@@ -433,6 +486,7 @@ class AuthBackendConfig(pulumi.CustomResource):
             issuer: Optional[pulumi.Input[str]] = None,
             kubernetes_ca_cert: Optional[pulumi.Input[str]] = None,
             kubernetes_host: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             pem_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             token_reviewer_jwt: Optional[pulumi.Input[str]] = None) -> 'AuthBackendConfig':
         """
@@ -448,6 +502,10 @@ class AuthBackendConfig(pulumi.CustomResource):
         :param pulumi.Input[str] issuer: JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
         :param pulumi.Input[str] kubernetes_ca_cert: PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
         :param pulumi.Input[str] kubernetes_host: Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured namespace.
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] pem_keys: List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
         :param pulumi.Input[str] token_reviewer_jwt: A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
         """
@@ -461,6 +519,7 @@ class AuthBackendConfig(pulumi.CustomResource):
         __props__.__dict__["issuer"] = issuer
         __props__.__dict__["kubernetes_ca_cert"] = kubernetes_ca_cert
         __props__.__dict__["kubernetes_host"] = kubernetes_host
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["pem_keys"] = pem_keys
         __props__.__dict__["token_reviewer_jwt"] = token_reviewer_jwt
         return AuthBackendConfig(resource_name, opts=opts, __props__=__props__)
@@ -512,6 +571,17 @@ class AuthBackendConfig(pulumi.CustomResource):
         Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
         """
         return pulumi.get(self, "kubernetes_host")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured namespace.
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="pemKeys")

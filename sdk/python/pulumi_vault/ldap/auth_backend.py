@@ -23,12 +23,14 @@ class AuthBackendArgs:
                  client_tls_key: Optional[pulumi.Input[str]] = None,
                  deny_null_bind: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  discoverdn: Optional[pulumi.Input[bool]] = None,
                  groupattr: Optional[pulumi.Input[str]] = None,
                  groupdn: Optional[pulumi.Input[str]] = None,
                  groupfilter: Optional[pulumi.Input[str]] = None,
                  insecure_tls: Optional[pulumi.Input[bool]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  starttls: Optional[pulumi.Input[bool]] = None,
                  tls_max_version: Optional[pulumi.Input[str]] = None,
@@ -46,7 +48,8 @@ class AuthBackendArgs:
                  use_token_groups: Optional[pulumi.Input[bool]] = None,
                  userattr: Optional[pulumi.Input[str]] = None,
                  userdn: Optional[pulumi.Input[str]] = None,
-                 userfilter: Optional[pulumi.Input[str]] = None):
+                 userfilter: Optional[pulumi.Input[str]] = None,
+                 username_as_alias: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a AuthBackend resource.
         :param pulumi.Input[str] url: The URL of the LDAP server
@@ -55,11 +58,17 @@ class AuthBackendArgs:
         :param pulumi.Input[bool] case_sensitive_names: Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
         :param pulumi.Input[str] certificate: Trusted CA to validate TLS certificate
         :param pulumi.Input[str] description: Description for the LDAP auth backend mount
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[str] groupattr: LDAP attribute to follow on objects returned by groupfilter
         :param pulumi.Input[str] groupdn: Base DN under which to perform group search
         :param pulumi.Input[str] groupfilter: Go template used to construct group membership query
         :param pulumi.Input[bool] insecure_tls: Control whether or TLS certificates must be validated
         :param pulumi.Input[bool] local: Specifies if the auth method is local only.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: Path to mount the LDAP auth backend under
         :param pulumi.Input[bool] starttls: Control use of TLS when conecting to LDAP
         :param pulumi.Input[str] tls_max_version: Maximum acceptable version of TLS
@@ -95,6 +104,7 @@ class AuthBackendArgs:
         :param pulumi.Input[str] userattr: Attribute on user object matching username passed in
         :param pulumi.Input[str] userdn: Base DN under which to perform user search
         :param pulumi.Input[str] userfilter: LDAP user search filter
+        :param pulumi.Input[bool] username_as_alias: Force the auth method to use the username passed by the user as the alias name.
         """
         pulumi.set(__self__, "url", url)
         if binddn is not None:
@@ -113,6 +123,8 @@ class AuthBackendArgs:
             pulumi.set(__self__, "deny_null_bind", deny_null_bind)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if disable_remount is not None:
+            pulumi.set(__self__, "disable_remount", disable_remount)
         if discoverdn is not None:
             pulumi.set(__self__, "discoverdn", discoverdn)
         if groupattr is not None:
@@ -125,6 +137,8 @@ class AuthBackendArgs:
             pulumi.set(__self__, "insecure_tls", insecure_tls)
         if local is not None:
             pulumi.set(__self__, "local", local)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if path is not None:
             pulumi.set(__self__, "path", path)
         if starttls is not None:
@@ -161,6 +175,8 @@ class AuthBackendArgs:
             pulumi.set(__self__, "userdn", userdn)
         if userfilter is not None:
             pulumi.set(__self__, "userfilter", userfilter)
+        if username_as_alias is not None:
+            pulumi.set(__self__, "username_as_alias", username_as_alias)
 
     @property
     @pulumi.getter
@@ -262,6 +278,19 @@ class AuthBackendArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="disableRemount")
+    def disable_remount(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, opts out of mount migration on path updates.
+        See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        """
+        return pulumi.get(self, "disable_remount")
+
+    @disable_remount.setter
+    def disable_remount(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_remount", value)
+
+    @property
     @pulumi.getter
     def discoverdn(self) -> Optional[pulumi.Input[bool]]:
         return pulumi.get(self, "discoverdn")
@@ -329,6 +358,21 @@ class AuthBackendArgs:
     @local.setter
     def local(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "local", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -563,6 +607,18 @@ class AuthBackendArgs:
     def userfilter(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "userfilter", value)
 
+    @property
+    @pulumi.getter(name="usernameAsAlias")
+    def username_as_alias(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Force the auth method to use the username passed by the user as the alias name.
+        """
+        return pulumi.get(self, "username_as_alias")
+
+    @username_as_alias.setter
+    def username_as_alias(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "username_as_alias", value)
+
 
 @pulumi.input_type
 class _AuthBackendState:
@@ -576,12 +632,14 @@ class _AuthBackendState:
                  client_tls_key: Optional[pulumi.Input[str]] = None,
                  deny_null_bind: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  discoverdn: Optional[pulumi.Input[bool]] = None,
                  groupattr: Optional[pulumi.Input[str]] = None,
                  groupdn: Optional[pulumi.Input[str]] = None,
                  groupfilter: Optional[pulumi.Input[str]] = None,
                  insecure_tls: Optional[pulumi.Input[bool]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  starttls: Optional[pulumi.Input[bool]] = None,
                  tls_max_version: Optional[pulumi.Input[str]] = None,
@@ -600,7 +658,8 @@ class _AuthBackendState:
                  use_token_groups: Optional[pulumi.Input[bool]] = None,
                  userattr: Optional[pulumi.Input[str]] = None,
                  userdn: Optional[pulumi.Input[str]] = None,
-                 userfilter: Optional[pulumi.Input[str]] = None):
+                 userfilter: Optional[pulumi.Input[str]] = None,
+                 username_as_alias: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering AuthBackend resources.
         :param pulumi.Input[str] accessor: The accessor for this auth mount.
@@ -609,11 +668,17 @@ class _AuthBackendState:
         :param pulumi.Input[bool] case_sensitive_names: Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
         :param pulumi.Input[str] certificate: Trusted CA to validate TLS certificate
         :param pulumi.Input[str] description: Description for the LDAP auth backend mount
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[str] groupattr: LDAP attribute to follow on objects returned by groupfilter
         :param pulumi.Input[str] groupdn: Base DN under which to perform group search
         :param pulumi.Input[str] groupfilter: Go template used to construct group membership query
         :param pulumi.Input[bool] insecure_tls: Control whether or TLS certificates must be validated
         :param pulumi.Input[bool] local: Specifies if the auth method is local only.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: Path to mount the LDAP auth backend under
         :param pulumi.Input[bool] starttls: Control use of TLS when conecting to LDAP
         :param pulumi.Input[str] tls_max_version: Maximum acceptable version of TLS
@@ -650,6 +715,7 @@ class _AuthBackendState:
         :param pulumi.Input[str] userattr: Attribute on user object matching username passed in
         :param pulumi.Input[str] userdn: Base DN under which to perform user search
         :param pulumi.Input[str] userfilter: LDAP user search filter
+        :param pulumi.Input[bool] username_as_alias: Force the auth method to use the username passed by the user as the alias name.
         """
         if accessor is not None:
             pulumi.set(__self__, "accessor", accessor)
@@ -669,6 +735,8 @@ class _AuthBackendState:
             pulumi.set(__self__, "deny_null_bind", deny_null_bind)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if disable_remount is not None:
+            pulumi.set(__self__, "disable_remount", disable_remount)
         if discoverdn is not None:
             pulumi.set(__self__, "discoverdn", discoverdn)
         if groupattr is not None:
@@ -681,6 +749,8 @@ class _AuthBackendState:
             pulumi.set(__self__, "insecure_tls", insecure_tls)
         if local is not None:
             pulumi.set(__self__, "local", local)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if path is not None:
             pulumi.set(__self__, "path", path)
         if starttls is not None:
@@ -719,6 +789,8 @@ class _AuthBackendState:
             pulumi.set(__self__, "userdn", userdn)
         if userfilter is not None:
             pulumi.set(__self__, "userfilter", userfilter)
+        if username_as_alias is not None:
+            pulumi.set(__self__, "username_as_alias", username_as_alias)
 
     @property
     @pulumi.getter
@@ -820,6 +892,19 @@ class _AuthBackendState:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="disableRemount")
+    def disable_remount(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, opts out of mount migration on path updates.
+        See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        """
+        return pulumi.get(self, "disable_remount")
+
+    @disable_remount.setter
+    def disable_remount(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_remount", value)
+
+    @property
     @pulumi.getter
     def discoverdn(self) -> Optional[pulumi.Input[bool]]:
         return pulumi.get(self, "discoverdn")
@@ -887,6 +972,21 @@ class _AuthBackendState:
     @local.setter
     def local(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "local", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -1133,6 +1233,18 @@ class _AuthBackendState:
     def userfilter(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "userfilter", value)
 
+    @property
+    @pulumi.getter(name="usernameAsAlias")
+    def username_as_alias(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Force the auth method to use the username passed by the user as the alias name.
+        """
+        return pulumi.get(self, "username_as_alias")
+
+    @username_as_alias.setter
+    def username_as_alias(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "username_as_alias", value)
+
 
 class AuthBackend(pulumi.CustomResource):
     @overload
@@ -1147,12 +1259,14 @@ class AuthBackend(pulumi.CustomResource):
                  client_tls_key: Optional[pulumi.Input[str]] = None,
                  deny_null_bind: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  discoverdn: Optional[pulumi.Input[bool]] = None,
                  groupattr: Optional[pulumi.Input[str]] = None,
                  groupdn: Optional[pulumi.Input[str]] = None,
                  groupfilter: Optional[pulumi.Input[str]] = None,
                  insecure_tls: Optional[pulumi.Input[bool]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  starttls: Optional[pulumi.Input[bool]] = None,
                  tls_max_version: Optional[pulumi.Input[str]] = None,
@@ -1172,6 +1286,7 @@ class AuthBackend(pulumi.CustomResource):
                  userattr: Optional[pulumi.Input[str]] = None,
                  userdn: Optional[pulumi.Input[str]] = None,
                  userfilter: Optional[pulumi.Input[str]] = None,
+                 username_as_alias: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
         Provides a resource for managing an [LDAP auth backend within Vault](https://www.vaultproject.io/docs/auth/ldap.html).
@@ -1208,11 +1323,17 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[bool] case_sensitive_names: Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
         :param pulumi.Input[str] certificate: Trusted CA to validate TLS certificate
         :param pulumi.Input[str] description: Description for the LDAP auth backend mount
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[str] groupattr: LDAP attribute to follow on objects returned by groupfilter
         :param pulumi.Input[str] groupdn: Base DN under which to perform group search
         :param pulumi.Input[str] groupfilter: Go template used to construct group membership query
         :param pulumi.Input[bool] insecure_tls: Control whether or TLS certificates must be validated
         :param pulumi.Input[bool] local: Specifies if the auth method is local only.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: Path to mount the LDAP auth backend under
         :param pulumi.Input[bool] starttls: Control use of TLS when conecting to LDAP
         :param pulumi.Input[str] tls_max_version: Maximum acceptable version of TLS
@@ -1249,6 +1370,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] userattr: Attribute on user object matching username passed in
         :param pulumi.Input[str] userdn: Base DN under which to perform user search
         :param pulumi.Input[str] userfilter: LDAP user search filter
+        :param pulumi.Input[bool] username_as_alias: Force the auth method to use the username passed by the user as the alias name.
         """
         ...
     @overload
@@ -1307,12 +1429,14 @@ class AuthBackend(pulumi.CustomResource):
                  client_tls_key: Optional[pulumi.Input[str]] = None,
                  deny_null_bind: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  discoverdn: Optional[pulumi.Input[bool]] = None,
                  groupattr: Optional[pulumi.Input[str]] = None,
                  groupdn: Optional[pulumi.Input[str]] = None,
                  groupfilter: Optional[pulumi.Input[str]] = None,
                  insecure_tls: Optional[pulumi.Input[bool]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  starttls: Optional[pulumi.Input[bool]] = None,
                  tls_max_version: Optional[pulumi.Input[str]] = None,
@@ -1332,6 +1456,7 @@ class AuthBackend(pulumi.CustomResource):
                  userattr: Optional[pulumi.Input[str]] = None,
                  userdn: Optional[pulumi.Input[str]] = None,
                  userfilter: Optional[pulumi.Input[str]] = None,
+                 username_as_alias: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1342,19 +1467,21 @@ class AuthBackend(pulumi.CustomResource):
             __props__ = AuthBackendArgs.__new__(AuthBackendArgs)
 
             __props__.__dict__["binddn"] = binddn
-            __props__.__dict__["bindpass"] = bindpass
+            __props__.__dict__["bindpass"] = None if bindpass is None else pulumi.Output.secret(bindpass)
             __props__.__dict__["case_sensitive_names"] = case_sensitive_names
             __props__.__dict__["certificate"] = certificate
             __props__.__dict__["client_tls_cert"] = client_tls_cert
-            __props__.__dict__["client_tls_key"] = client_tls_key
+            __props__.__dict__["client_tls_key"] = None if client_tls_key is None else pulumi.Output.secret(client_tls_key)
             __props__.__dict__["deny_null_bind"] = deny_null_bind
             __props__.__dict__["description"] = description
+            __props__.__dict__["disable_remount"] = disable_remount
             __props__.__dict__["discoverdn"] = discoverdn
             __props__.__dict__["groupattr"] = groupattr
             __props__.__dict__["groupdn"] = groupdn
             __props__.__dict__["groupfilter"] = groupfilter
             __props__.__dict__["insecure_tls"] = insecure_tls
             __props__.__dict__["local"] = local
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["path"] = path
             __props__.__dict__["starttls"] = starttls
             __props__.__dict__["tls_max_version"] = tls_max_version
@@ -1376,7 +1503,10 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["userattr"] = userattr
             __props__.__dict__["userdn"] = userdn
             __props__.__dict__["userfilter"] = userfilter
+            __props__.__dict__["username_as_alias"] = username_as_alias
             __props__.__dict__["accessor"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["bindpass", "clientTlsKey"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(AuthBackend, __self__).__init__(
             'vault:ldap/authBackend:AuthBackend',
             resource_name,
@@ -1396,12 +1526,14 @@ class AuthBackend(pulumi.CustomResource):
             client_tls_key: Optional[pulumi.Input[str]] = None,
             deny_null_bind: Optional[pulumi.Input[bool]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            disable_remount: Optional[pulumi.Input[bool]] = None,
             discoverdn: Optional[pulumi.Input[bool]] = None,
             groupattr: Optional[pulumi.Input[str]] = None,
             groupdn: Optional[pulumi.Input[str]] = None,
             groupfilter: Optional[pulumi.Input[str]] = None,
             insecure_tls: Optional[pulumi.Input[bool]] = None,
             local: Optional[pulumi.Input[bool]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
             starttls: Optional[pulumi.Input[bool]] = None,
             tls_max_version: Optional[pulumi.Input[str]] = None,
@@ -1420,7 +1552,8 @@ class AuthBackend(pulumi.CustomResource):
             use_token_groups: Optional[pulumi.Input[bool]] = None,
             userattr: Optional[pulumi.Input[str]] = None,
             userdn: Optional[pulumi.Input[str]] = None,
-            userfilter: Optional[pulumi.Input[str]] = None) -> 'AuthBackend':
+            userfilter: Optional[pulumi.Input[str]] = None,
+            username_as_alias: Optional[pulumi.Input[bool]] = None) -> 'AuthBackend':
         """
         Get an existing AuthBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1434,11 +1567,17 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[bool] case_sensitive_names: Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
         :param pulumi.Input[str] certificate: Trusted CA to validate TLS certificate
         :param pulumi.Input[str] description: Description for the LDAP auth backend mount
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[str] groupattr: LDAP attribute to follow on objects returned by groupfilter
         :param pulumi.Input[str] groupdn: Base DN under which to perform group search
         :param pulumi.Input[str] groupfilter: Go template used to construct group membership query
         :param pulumi.Input[bool] insecure_tls: Control whether or TLS certificates must be validated
         :param pulumi.Input[bool] local: Specifies if the auth method is local only.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: Path to mount the LDAP auth backend under
         :param pulumi.Input[bool] starttls: Control use of TLS when conecting to LDAP
         :param pulumi.Input[str] tls_max_version: Maximum acceptable version of TLS
@@ -1475,6 +1614,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] userattr: Attribute on user object matching username passed in
         :param pulumi.Input[str] userdn: Base DN under which to perform user search
         :param pulumi.Input[str] userfilter: LDAP user search filter
+        :param pulumi.Input[bool] username_as_alias: Force the auth method to use the username passed by the user as the alias name.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1489,12 +1629,14 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["client_tls_key"] = client_tls_key
         __props__.__dict__["deny_null_bind"] = deny_null_bind
         __props__.__dict__["description"] = description
+        __props__.__dict__["disable_remount"] = disable_remount
         __props__.__dict__["discoverdn"] = discoverdn
         __props__.__dict__["groupattr"] = groupattr
         __props__.__dict__["groupdn"] = groupdn
         __props__.__dict__["groupfilter"] = groupfilter
         __props__.__dict__["insecure_tls"] = insecure_tls
         __props__.__dict__["local"] = local
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["path"] = path
         __props__.__dict__["starttls"] = starttls
         __props__.__dict__["tls_max_version"] = tls_max_version
@@ -1514,6 +1656,7 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["userattr"] = userattr
         __props__.__dict__["userdn"] = userdn
         __props__.__dict__["userfilter"] = userfilter
+        __props__.__dict__["username_as_alias"] = username_as_alias
         return AuthBackend(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -1580,6 +1723,15 @@ class AuthBackend(pulumi.CustomResource):
         return pulumi.get(self, "description")
 
     @property
+    @pulumi.getter(name="disableRemount")
+    def disable_remount(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If set, opts out of mount migration on path updates.
+        See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        """
+        return pulumi.get(self, "disable_remount")
+
+    @property
     @pulumi.getter
     def discoverdn(self) -> pulumi.Output[bool]:
         return pulumi.get(self, "discoverdn")
@@ -1623,6 +1775,17 @@ class AuthBackend(pulumi.CustomResource):
         Specifies if the auth method is local only.
         """
         return pulumi.get(self, "local")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter
@@ -1792,4 +1955,12 @@ class AuthBackend(pulumi.CustomResource):
         LDAP user search filter
         """
         return pulumi.get(self, "userfilter")
+
+    @property
+    @pulumi.getter(name="usernameAsAlias")
+    def username_as_alias(self) -> pulumi.Output[bool]:
+        """
+        Force the auth method to use the username passed by the user as the alias name.
+        """
+        return pulumi.get(self, "username_as_alias")
 

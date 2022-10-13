@@ -100,6 +100,13 @@ export class SecretBackendCert extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * List of other SANs
      */
     public readonly otherSans!: pulumi.Output<string[] | undefined>;
@@ -115,6 +122,10 @@ export class SecretBackendCert extends pulumi.CustomResource {
      * The private key type
      */
     public /*out*/ readonly privateKeyType!: pulumi.Output<string>;
+    /**
+     * `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
+     */
+    public /*out*/ readonly renewPending!: pulumi.Output<boolean>;
     /**
      * If set to `true`, the certificate will be revoked on resource destruction.
      */
@@ -158,10 +169,12 @@ export class SecretBackendCert extends pulumi.CustomResource {
             resourceInputs["issuingCa"] = state ? state.issuingCa : undefined;
             resourceInputs["minSecondsRemaining"] = state ? state.minSecondsRemaining : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["otherSans"] = state ? state.otherSans : undefined;
             resourceInputs["privateKey"] = state ? state.privateKey : undefined;
             resourceInputs["privateKeyFormat"] = state ? state.privateKeyFormat : undefined;
             resourceInputs["privateKeyType"] = state ? state.privateKeyType : undefined;
+            resourceInputs["renewPending"] = state ? state.renewPending : undefined;
             resourceInputs["revoke"] = state ? state.revoke : undefined;
             resourceInputs["serialNumber"] = state ? state.serialNumber : undefined;
             resourceInputs["ttl"] = state ? state.ttl : undefined;
@@ -183,6 +196,7 @@ export class SecretBackendCert extends pulumi.CustomResource {
             resourceInputs["ipSans"] = args ? args.ipSans : undefined;
             resourceInputs["minSecondsRemaining"] = args ? args.minSecondsRemaining : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["otherSans"] = args ? args.otherSans : undefined;
             resourceInputs["privateKeyFormat"] = args ? args.privateKeyFormat : undefined;
             resourceInputs["revoke"] = args ? args.revoke : undefined;
@@ -194,9 +208,12 @@ export class SecretBackendCert extends pulumi.CustomResource {
             resourceInputs["issuingCa"] = undefined /*out*/;
             resourceInputs["privateKey"] = undefined /*out*/;
             resourceInputs["privateKeyType"] = undefined /*out*/;
+            resourceInputs["renewPending"] = undefined /*out*/;
             resourceInputs["serialNumber"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["privateKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SecretBackendCert.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -258,6 +275,13 @@ export interface SecretBackendCertState {
      */
     name?: pulumi.Input<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
+    /**
      * List of other SANs
      */
     otherSans?: pulumi.Input<pulumi.Input<string>[]>;
@@ -273,6 +297,10 @@ export interface SecretBackendCertState {
      * The private key type
      */
     privateKeyType?: pulumi.Input<string>;
+    /**
+     * `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
+     */
+    renewPending?: pulumi.Input<boolean>;
     /**
      * If set to `true`, the certificate will be revoked on resource destruction.
      */
@@ -331,6 +359,13 @@ export interface SecretBackendCertArgs {
      * Name of the role to create the certificate against
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * List of other SANs
      */

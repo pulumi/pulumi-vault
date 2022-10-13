@@ -18,7 +18,7 @@ public final class SecretBackendRoleAllowedUserKeyConfig {
      * must be set to a single element list.
      * 
      */
-    private final List<Integer> lengths;
+    private List<Integer> lengths;
     /**
      * @return The SSH public key type.\
      * *Supported key types are:*
@@ -26,16 +26,9 @@ public final class SecretBackendRoleAllowedUserKeyConfig {
      * `ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`
      * 
      */
-    private final String type;
+    private String type;
 
-    @CustomType.Constructor
-    private SecretBackendRoleAllowedUserKeyConfig(
-        @CustomType.Parameter("lengths") List<Integer> lengths,
-        @CustomType.Parameter("type") String type) {
-        this.lengths = lengths;
-        this.type = type;
-    }
-
+    private SecretBackendRoleAllowedUserKeyConfig() {}
     /**
      * @return A list of allowed key lengths as integers.
      * For key types that do not support setting the length a value of `[0]` should be used.
@@ -64,21 +57,18 @@ public final class SecretBackendRoleAllowedUserKeyConfig {
     public static Builder builder(SecretBackendRoleAllowedUserKeyConfig defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private List<Integer> lengths;
         private String type;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(SecretBackendRoleAllowedUserKeyConfig defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.lengths = defaults.lengths;
     	      this.type = defaults.type;
         }
 
+        @CustomType.Setter
         public Builder lengths(List<Integer> lengths) {
             this.lengths = Objects.requireNonNull(lengths);
             return this;
@@ -86,11 +76,16 @@ public final class SecretBackendRoleAllowedUserKeyConfig {
         public Builder lengths(Integer... lengths) {
             return lengths(List.of(lengths));
         }
+        @CustomType.Setter
         public Builder type(String type) {
             this.type = Objects.requireNonNull(type);
             return this;
-        }        public SecretBackendRoleAllowedUserKeyConfig build() {
-            return new SecretBackendRoleAllowedUserKeyConfig(lengths, type);
+        }
+        public SecretBackendRoleAllowedUserKeyConfig build() {
+            final var o = new SecretBackendRoleAllowedUserKeyConfig();
+            o.lengths = lengths;
+            o.type = type;
+            return o;
         }
     }
 }

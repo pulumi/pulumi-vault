@@ -30,6 +30,7 @@ class AuthBackendRoleArgs:
                  disallow_reauthentication: Optional[pulumi.Input[bool]] = None,
                  inferred_aws_region: Optional[pulumi.Input[str]] = None,
                  inferred_entity_type: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  resolve_aws_unique_ids: Optional[pulumi.Input[bool]] = None,
                  role_tag: Optional[pulumi.Input[str]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -97,6 +98,10 @@ class AuthBackendRoleArgs:
                inferencing. The only valid value is `ec2_instance`, which instructs Vault to
                infer that the role comes from an EC2 instance in an IAM instance profile.
                This only applies when `auth_type` is set to `iam`.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] resolve_aws_unique_ids: Only valid when
                `auth_type` is `iam`. If set to `true`, the `bound_iam_principal_arns` are
                resolved to [AWS Unique
@@ -170,6 +175,8 @@ class AuthBackendRoleArgs:
             pulumi.set(__self__, "inferred_aws_region", inferred_aws_region)
         if inferred_entity_type is not None:
             pulumi.set(__self__, "inferred_entity_type", inferred_entity_type)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if resolve_aws_unique_ids is not None:
             pulumi.set(__self__, "resolve_aws_unique_ids", resolve_aws_unique_ids)
         if role_tag is not None:
@@ -424,6 +431,21 @@ class AuthBackendRoleArgs:
         pulumi.set(self, "inferred_entity_type", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="resolveAwsUniqueIds")
     def resolve_aws_unique_ids(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -604,6 +626,7 @@ class _AuthBackendRoleState:
                  disallow_reauthentication: Optional[pulumi.Input[bool]] = None,
                  inferred_aws_region: Optional[pulumi.Input[str]] = None,
                  inferred_entity_type: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  resolve_aws_unique_ids: Optional[pulumi.Input[bool]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  role_id: Optional[pulumi.Input[str]] = None,
@@ -672,6 +695,10 @@ class _AuthBackendRoleState:
                inferencing. The only valid value is `ec2_instance`, which instructs Vault to
                infer that the role comes from an EC2 instance in an IAM instance profile.
                This only applies when `auth_type` is set to `iam`.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] resolve_aws_unique_ids: Only valid when
                `auth_type` is `iam`. If set to `true`, the `bound_iam_principal_arns` are
                resolved to [AWS Unique
@@ -746,6 +773,8 @@ class _AuthBackendRoleState:
             pulumi.set(__self__, "inferred_aws_region", inferred_aws_region)
         if inferred_entity_type is not None:
             pulumi.set(__self__, "inferred_entity_type", inferred_entity_type)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if resolve_aws_unique_ids is not None:
             pulumi.set(__self__, "resolve_aws_unique_ids", resolve_aws_unique_ids)
         if role is not None:
@@ -992,6 +1021,21 @@ class _AuthBackendRoleState:
         pulumi.set(self, "inferred_entity_type", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="resolveAwsUniqueIds")
     def resolve_aws_unique_ids(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -1198,6 +1242,7 @@ class AuthBackendRole(pulumi.CustomResource):
                  disallow_reauthentication: Optional[pulumi.Input[bool]] = None,
                  inferred_aws_region: Optional[pulumi.Input[str]] = None,
                  inferred_entity_type: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  resolve_aws_unique_ids: Optional[pulumi.Input[bool]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  role_tag: Optional[pulumi.Input[str]] = None,
@@ -1309,6 +1354,10 @@ class AuthBackendRole(pulumi.CustomResource):
                inferencing. The only valid value is `ec2_instance`, which instructs Vault to
                infer that the role comes from an EC2 instance in an IAM instance profile.
                This only applies when `auth_type` is set to `iam`.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] resolve_aws_unique_ids: Only valid when
                `auth_type` is `iam`. If set to `true`, the `bound_iam_principal_arns` are
                resolved to [AWS Unique
@@ -1431,6 +1480,7 @@ class AuthBackendRole(pulumi.CustomResource):
                  disallow_reauthentication: Optional[pulumi.Input[bool]] = None,
                  inferred_aws_region: Optional[pulumi.Input[str]] = None,
                  inferred_entity_type: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  resolve_aws_unique_ids: Optional[pulumi.Input[bool]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  role_tag: Optional[pulumi.Input[str]] = None,
@@ -1467,6 +1517,7 @@ class AuthBackendRole(pulumi.CustomResource):
             __props__.__dict__["disallow_reauthentication"] = disallow_reauthentication
             __props__.__dict__["inferred_aws_region"] = inferred_aws_region
             __props__.__dict__["inferred_entity_type"] = inferred_entity_type
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["resolve_aws_unique_ids"] = resolve_aws_unique_ids
             if role is None and not opts.urn:
                 raise TypeError("Missing required property 'role'")
@@ -1507,6 +1558,7 @@ class AuthBackendRole(pulumi.CustomResource):
             disallow_reauthentication: Optional[pulumi.Input[bool]] = None,
             inferred_aws_region: Optional[pulumi.Input[str]] = None,
             inferred_entity_type: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             resolve_aws_unique_ids: Optional[pulumi.Input[bool]] = None,
             role: Optional[pulumi.Input[str]] = None,
             role_id: Optional[pulumi.Input[str]] = None,
@@ -1580,6 +1632,10 @@ class AuthBackendRole(pulumi.CustomResource):
                inferencing. The only valid value is `ec2_instance`, which instructs Vault to
                infer that the role comes from an EC2 instance in an IAM instance profile.
                This only applies when `auth_type` is set to `iam`.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] resolve_aws_unique_ids: Only valid when
                `auth_type` is `iam`. If set to `true`, the `bound_iam_principal_arns` are
                resolved to [AWS Unique
@@ -1643,6 +1699,7 @@ class AuthBackendRole(pulumi.CustomResource):
         __props__.__dict__["disallow_reauthentication"] = disallow_reauthentication
         __props__.__dict__["inferred_aws_region"] = inferred_aws_region
         __props__.__dict__["inferred_entity_type"] = inferred_entity_type
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["resolve_aws_unique_ids"] = resolve_aws_unique_ids
         __props__.__dict__["role"] = role
         __props__.__dict__["role_id"] = role_id
@@ -1815,6 +1872,17 @@ class AuthBackendRole(pulumi.CustomResource):
         This only applies when `auth_type` is set to `iam`.
         """
         return pulumi.get(self, "inferred_entity_type")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="resolveAwsUniqueIds")

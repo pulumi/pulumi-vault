@@ -58,10 +58,10 @@ class BackendRoleAzureRole(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "roleName":
-            suggest = "role_name"
-        elif key == "roleId":
+        if key == "roleId":
             suggest = "role_id"
+        elif key == "roleName":
+            suggest = "role_name"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in BackendRoleAzureRole. Access the value via the '{suggest}' property getter instead.")
@@ -75,18 +75,14 @@ class BackendRoleAzureRole(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 role_name: str,
                  scope: str,
-                 role_id: Optional[str] = None):
-        pulumi.set(__self__, "role_name", role_name)
+                 role_id: Optional[str] = None,
+                 role_name: Optional[str] = None):
         pulumi.set(__self__, "scope", scope)
         if role_id is not None:
             pulumi.set(__self__, "role_id", role_id)
-
-    @property
-    @pulumi.getter(name="roleName")
-    def role_name(self) -> str:
-        return pulumi.get(self, "role_name")
+        if role_name is not None:
+            pulumi.set(__self__, "role_name", role_name)
 
     @property
     @pulumi.getter
@@ -97,5 +93,10 @@ class BackendRoleAzureRole(dict):
     @pulumi.getter(name="roleId")
     def role_id(self) -> Optional[str]:
         return pulumi.get(self, "role_id")
+
+    @property
+    @pulumi.getter(name="roleName")
+    def role_name(self) -> Optional[str]:
+        return pulumi.get(self, "role_name")
 
 

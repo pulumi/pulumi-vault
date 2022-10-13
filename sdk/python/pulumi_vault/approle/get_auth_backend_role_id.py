@@ -21,13 +21,16 @@ class GetAuthBackendRoleIdResult:
     """
     A collection of values returned by getAuthBackendRoleId.
     """
-    def __init__(__self__, backend=None, id=None, role_id=None, role_name=None):
+    def __init__(__self__, backend=None, id=None, namespace=None, role_id=None, role_name=None):
         if backend and not isinstance(backend, str):
             raise TypeError("Expected argument 'backend' to be a str")
         pulumi.set(__self__, "backend", backend)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if namespace and not isinstance(namespace, str):
+            raise TypeError("Expected argument 'namespace' to be a str")
+        pulumi.set(__self__, "namespace", namespace)
         if role_id and not isinstance(role_id, str):
             raise TypeError("Expected argument 'role_id' to be a str")
         pulumi.set(__self__, "role_id", role_id)
@@ -47,6 +50,11 @@ class GetAuthBackendRoleIdResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[str]:
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="roleId")
@@ -70,11 +78,13 @@ class AwaitableGetAuthBackendRoleIdResult(GetAuthBackendRoleIdResult):
         return GetAuthBackendRoleIdResult(
             backend=self.backend,
             id=self.id,
+            namespace=self.namespace,
             role_id=self.role_id,
             role_name=self.role_name)
 
 
 def get_auth_backend_role_id(backend: Optional[str] = None,
+                             namespace: Optional[str] = None,
                              role_name: Optional[str] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAuthBackendRoleIdResult:
     """
@@ -94,10 +104,15 @@ def get_auth_backend_role_id(backend: Optional[str] = None,
 
     :param str backend: The unique name for the AppRole backend the role to
            retrieve a RoleID for resides in. Defaults to "approle".
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured namespace.
+           *Available only for Vault Enterprise*.
     :param str role_name: The name of the role to retrieve the Role ID for.
     """
     __args__ = dict()
     __args__['backend'] = backend
+    __args__['namespace'] = namespace
     __args__['roleName'] = role_name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId', __args__, opts=opts, typ=GetAuthBackendRoleIdResult).value
@@ -105,12 +120,14 @@ def get_auth_backend_role_id(backend: Optional[str] = None,
     return AwaitableGetAuthBackendRoleIdResult(
         backend=__ret__.backend,
         id=__ret__.id,
+        namespace=__ret__.namespace,
         role_id=__ret__.role_id,
         role_name=__ret__.role_name)
 
 
 @_utilities.lift_output_func(get_auth_backend_role_id)
 def get_auth_backend_role_id_output(backend: Optional[pulumi.Input[Optional[str]]] = None,
+                                    namespace: Optional[pulumi.Input[Optional[str]]] = None,
                                     role_name: Optional[pulumi.Input[str]] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAuthBackendRoleIdResult]:
     """
@@ -130,6 +147,10 @@ def get_auth_backend_role_id_output(backend: Optional[pulumi.Input[Optional[str]
 
     :param str backend: The unique name for the AppRole backend the role to
            retrieve a RoleID for resides in. Defaults to "approle".
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured namespace.
+           *Available only for Vault Enterprise*.
     :param str role_name: The name of the role to retrieve the Role ID for.
     """
     ...

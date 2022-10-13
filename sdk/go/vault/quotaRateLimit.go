@@ -57,8 +57,18 @@ import (
 type QuotaRateLimit struct {
 	pulumi.CustomResourceState
 
+	// If set, when a client reaches a rate limit threshold, the client will
+	// be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
+	BlockInterval pulumi.IntPtrOutput `pulumi:"blockInterval"`
+	// The duration in seconds to enforce rate limiting for.
+	Interval pulumi.IntOutput `pulumi:"interval"`
 	// Name of the rate limit quota
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Path of the mount or namespace to apply the quota. A blank path configures a
 	// global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
 	// `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
@@ -103,8 +113,18 @@ func GetQuotaRateLimit(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering QuotaRateLimit resources.
 type quotaRateLimitState struct {
+	// If set, when a client reaches a rate limit threshold, the client will
+	// be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
+	BlockInterval *int `pulumi:"blockInterval"`
+	// The duration in seconds to enforce rate limiting for.
+	Interval *int `pulumi:"interval"`
 	// Name of the rate limit quota
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Path of the mount or namespace to apply the quota. A blank path configures a
 	// global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
 	// `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
@@ -118,8 +138,18 @@ type quotaRateLimitState struct {
 }
 
 type QuotaRateLimitState struct {
+	// If set, when a client reaches a rate limit threshold, the client will
+	// be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
+	BlockInterval pulumi.IntPtrInput
+	// The duration in seconds to enforce rate limiting for.
+	Interval pulumi.IntPtrInput
 	// Name of the rate limit quota
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Path of the mount or namespace to apply the quota. A blank path configures a
 	// global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
 	// `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
@@ -137,8 +167,18 @@ func (QuotaRateLimitState) ElementType() reflect.Type {
 }
 
 type quotaRateLimitArgs struct {
+	// If set, when a client reaches a rate limit threshold, the client will
+	// be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
+	BlockInterval *int `pulumi:"blockInterval"`
+	// The duration in seconds to enforce rate limiting for.
+	Interval *int `pulumi:"interval"`
 	// Name of the rate limit quota
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Path of the mount or namespace to apply the quota. A blank path configures a
 	// global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
 	// `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
@@ -153,8 +193,18 @@ type quotaRateLimitArgs struct {
 
 // The set of arguments for constructing a QuotaRateLimit resource.
 type QuotaRateLimitArgs struct {
+	// If set, when a client reaches a rate limit threshold, the client will
+	// be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
+	BlockInterval pulumi.IntPtrInput
+	// The duration in seconds to enforce rate limiting for.
+	Interval pulumi.IntPtrInput
 	// Name of the rate limit quota
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Path of the mount or namespace to apply the quota. A blank path configures a
 	// global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
 	// `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
@@ -254,9 +304,28 @@ func (o QuotaRateLimitOutput) ToQuotaRateLimitOutputWithContext(ctx context.Cont
 	return o
 }
 
+// If set, when a client reaches a rate limit threshold, the client will
+// be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
+func (o QuotaRateLimitOutput) BlockInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *QuotaRateLimit) pulumi.IntPtrOutput { return v.BlockInterval }).(pulumi.IntPtrOutput)
+}
+
+// The duration in seconds to enforce rate limiting for.
+func (o QuotaRateLimitOutput) Interval() pulumi.IntOutput {
+	return o.ApplyT(func(v *QuotaRateLimit) pulumi.IntOutput { return v.Interval }).(pulumi.IntOutput)
+}
+
 // Name of the rate limit quota
 func (o QuotaRateLimitOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *QuotaRateLimit) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured namespace.
+// *Available only for Vault Enterprise*.
+func (o QuotaRateLimitOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *QuotaRateLimit) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Path of the mount or namespace to apply the quota. A blank path configures a

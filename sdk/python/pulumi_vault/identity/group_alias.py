@@ -16,16 +16,23 @@ class GroupAliasArgs:
     def __init__(__self__, *,
                  canonical_id: pulumi.Input[str],
                  mount_accessor: pulumi.Input[str],
-                 name: pulumi.Input[str]):
+                 name: pulumi.Input[str],
+                 namespace: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a GroupAlias resource.
         :param pulumi.Input[str] canonical_id: ID of the group to which this is an alias.
         :param pulumi.Input[str] mount_accessor: Mount accessor of the authentication backend to which this alias belongs to.
         :param pulumi.Input[str] name: Name of the group alias to create.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         pulumi.set(__self__, "canonical_id", canonical_id)
         pulumi.set(__self__, "mount_accessor", mount_accessor)
         pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter(name="canonicalId")
@@ -63,18 +70,38 @@ class GroupAliasArgs:
     def name(self, value: pulumi.Input[str]):
         pulumi.set(self, "name", value)
 
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
 
 @pulumi.input_type
 class _GroupAliasState:
     def __init__(__self__, *,
                  canonical_id: Optional[pulumi.Input[str]] = None,
                  mount_accessor: Optional[pulumi.Input[str]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
+                 name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering GroupAlias resources.
         :param pulumi.Input[str] canonical_id: ID of the group to which this is an alias.
         :param pulumi.Input[str] mount_accessor: Mount accessor of the authentication backend to which this alias belongs to.
         :param pulumi.Input[str] name: Name of the group alias to create.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         if canonical_id is not None:
             pulumi.set(__self__, "canonical_id", canonical_id)
@@ -82,6 +109,8 @@ class _GroupAliasState:
             pulumi.set(__self__, "mount_accessor", mount_accessor)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter(name="canonicalId")
@@ -119,6 +148,21 @@ class _GroupAliasState:
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
 
 class GroupAlias(pulumi.CustomResource):
     @overload
@@ -128,6 +172,7 @@ class GroupAlias(pulumi.CustomResource):
                  canonical_id: Optional[pulumi.Input[str]] = None,
                  mount_accessor: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Creates an Identity Group Alias for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
@@ -171,6 +216,10 @@ class GroupAlias(pulumi.CustomResource):
         :param pulumi.Input[str] canonical_id: ID of the group to which this is an alias.
         :param pulumi.Input[str] mount_accessor: Mount accessor of the authentication backend to which this alias belongs to.
         :param pulumi.Input[str] name: Name of the group alias to create.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         ...
     @overload
@@ -233,6 +282,7 @@ class GroupAlias(pulumi.CustomResource):
                  canonical_id: Optional[pulumi.Input[str]] = None,
                  mount_accessor: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -251,6 +301,7 @@ class GroupAlias(pulumi.CustomResource):
             if name is None and not opts.urn:
                 raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
+            __props__.__dict__["namespace"] = namespace
         super(GroupAlias, __self__).__init__(
             'vault:identity/groupAlias:GroupAlias',
             resource_name,
@@ -263,7 +314,8 @@ class GroupAlias(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             canonical_id: Optional[pulumi.Input[str]] = None,
             mount_accessor: Optional[pulumi.Input[str]] = None,
-            name: Optional[pulumi.Input[str]] = None) -> 'GroupAlias':
+            name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None) -> 'GroupAlias':
         """
         Get an existing GroupAlias resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -274,6 +326,10 @@ class GroupAlias(pulumi.CustomResource):
         :param pulumi.Input[str] canonical_id: ID of the group to which this is an alias.
         :param pulumi.Input[str] mount_accessor: Mount accessor of the authentication backend to which this alias belongs to.
         :param pulumi.Input[str] name: Name of the group alias to create.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -282,6 +338,7 @@ class GroupAlias(pulumi.CustomResource):
         __props__.__dict__["canonical_id"] = canonical_id
         __props__.__dict__["mount_accessor"] = mount_accessor
         __props__.__dict__["name"] = name
+        __props__.__dict__["namespace"] = namespace
         return GroupAlias(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -307,4 +364,15 @@ class GroupAlias(pulumi.CustomResource):
         Name of the group alias to create.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 

@@ -19,11 +19,13 @@ class AuthBackendArgs:
                  bound_issuer: Optional[pulumi.Input[str]] = None,
                  default_role: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  jwks_ca_pem: Optional[pulumi.Input[str]] = None,
                  jwks_url: Optional[pulumi.Input[str]] = None,
                  jwt_supported_algs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  jwt_validation_pubkeys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  namespace_in_state: Optional[pulumi.Input[bool]] = None,
                  oidc_client_id: Optional[pulumi.Input[str]] = None,
                  oidc_client_secret: Optional[pulumi.Input[str]] = None,
@@ -40,11 +42,17 @@ class AuthBackendArgs:
         :param pulumi.Input[str] bound_issuer: The value against which to match the iss claim in a JWT
         :param pulumi.Input[str] default_role: The default role to use if none is provided during login
         :param pulumi.Input[str] description: The description of the auth backend
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[str] jwks_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
         :param pulumi.Input[str] jwks_url: JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".
         :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_supported_algs: A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
         :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_validation_pubkeys: A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
         :param pulumi.Input[bool] local: Specifies if the auth method is local only.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] namespace_in_state: Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
         :param pulumi.Input[str] oidc_client_id: Client ID used for OIDC backends
         :param pulumi.Input[str] oidc_client_secret: Client Secret used for OIDC backends
@@ -62,6 +70,8 @@ class AuthBackendArgs:
             pulumi.set(__self__, "default_role", default_role)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if disable_remount is not None:
+            pulumi.set(__self__, "disable_remount", disable_remount)
         if jwks_ca_pem is not None:
             pulumi.set(__self__, "jwks_ca_pem", jwks_ca_pem)
         if jwks_url is not None:
@@ -72,6 +82,8 @@ class AuthBackendArgs:
             pulumi.set(__self__, "jwt_validation_pubkeys", jwt_validation_pubkeys)
         if local is not None:
             pulumi.set(__self__, "local", local)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if namespace_in_state is not None:
             pulumi.set(__self__, "namespace_in_state", namespace_in_state)
         if oidc_client_id is not None:
@@ -132,6 +144,19 @@ class AuthBackendArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="disableRemount")
+    def disable_remount(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, opts out of mount migration on path updates.
+        See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        """
+        return pulumi.get(self, "disable_remount")
+
+    @disable_remount.setter
+    def disable_remount(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_remount", value)
+
+    @property
     @pulumi.getter(name="jwksCaPem")
     def jwks_ca_pem(self) -> Optional[pulumi.Input[str]]:
         """
@@ -190,6 +215,21 @@ class AuthBackendArgs:
     @local.setter
     def local(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "local", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter(name="namespaceInState")
@@ -328,11 +368,13 @@ class _AuthBackendState:
                  bound_issuer: Optional[pulumi.Input[str]] = None,
                  default_role: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  jwks_ca_pem: Optional[pulumi.Input[str]] = None,
                  jwks_url: Optional[pulumi.Input[str]] = None,
                  jwt_supported_algs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  jwt_validation_pubkeys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  namespace_in_state: Optional[pulumi.Input[bool]] = None,
                  oidc_client_id: Optional[pulumi.Input[str]] = None,
                  oidc_client_secret: Optional[pulumi.Input[str]] = None,
@@ -350,11 +392,17 @@ class _AuthBackendState:
         :param pulumi.Input[str] bound_issuer: The value against which to match the iss claim in a JWT
         :param pulumi.Input[str] default_role: The default role to use if none is provided during login
         :param pulumi.Input[str] description: The description of the auth backend
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[str] jwks_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
         :param pulumi.Input[str] jwks_url: JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".
         :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_supported_algs: A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
         :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_validation_pubkeys: A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
         :param pulumi.Input[bool] local: Specifies if the auth method is local only.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] namespace_in_state: Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
         :param pulumi.Input[str] oidc_client_id: Client ID used for OIDC backends
         :param pulumi.Input[str] oidc_client_secret: Client Secret used for OIDC backends
@@ -374,6 +422,8 @@ class _AuthBackendState:
             pulumi.set(__self__, "default_role", default_role)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if disable_remount is not None:
+            pulumi.set(__self__, "disable_remount", disable_remount)
         if jwks_ca_pem is not None:
             pulumi.set(__self__, "jwks_ca_pem", jwks_ca_pem)
         if jwks_url is not None:
@@ -384,6 +434,8 @@ class _AuthBackendState:
             pulumi.set(__self__, "jwt_validation_pubkeys", jwt_validation_pubkeys)
         if local is not None:
             pulumi.set(__self__, "local", local)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if namespace_in_state is not None:
             pulumi.set(__self__, "namespace_in_state", namespace_in_state)
         if oidc_client_id is not None:
@@ -456,6 +508,19 @@ class _AuthBackendState:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="disableRemount")
+    def disable_remount(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, opts out of mount migration on path updates.
+        See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        """
+        return pulumi.get(self, "disable_remount")
+
+    @disable_remount.setter
+    def disable_remount(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_remount", value)
+
+    @property
     @pulumi.getter(name="jwksCaPem")
     def jwks_ca_pem(self) -> Optional[pulumi.Input[str]]:
         """
@@ -514,6 +579,21 @@ class _AuthBackendState:
     @local.setter
     def local(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "local", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter(name="namespaceInState")
@@ -653,11 +733,13 @@ class AuthBackend(pulumi.CustomResource):
                  bound_issuer: Optional[pulumi.Input[str]] = None,
                  default_role: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  jwks_ca_pem: Optional[pulumi.Input[str]] = None,
                  jwks_url: Optional[pulumi.Input[str]] = None,
                  jwt_supported_algs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  jwt_validation_pubkeys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  namespace_in_state: Optional[pulumi.Input[bool]] = None,
                  oidc_client_id: Optional[pulumi.Input[str]] = None,
                  oidc_client_secret: Optional[pulumi.Input[str]] = None,
@@ -746,11 +828,17 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] bound_issuer: The value against which to match the iss claim in a JWT
         :param pulumi.Input[str] default_role: The default role to use if none is provided during login
         :param pulumi.Input[str] description: The description of the auth backend
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[str] jwks_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
         :param pulumi.Input[str] jwks_url: JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".
         :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_supported_algs: A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
         :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_validation_pubkeys: A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
         :param pulumi.Input[bool] local: Specifies if the auth method is local only.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] namespace_in_state: Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
         :param pulumi.Input[str] oidc_client_id: Client ID used for OIDC backends
         :param pulumi.Input[str] oidc_client_secret: Client Secret used for OIDC backends
@@ -857,11 +945,13 @@ class AuthBackend(pulumi.CustomResource):
                  bound_issuer: Optional[pulumi.Input[str]] = None,
                  default_role: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  jwks_ca_pem: Optional[pulumi.Input[str]] = None,
                  jwks_url: Optional[pulumi.Input[str]] = None,
                  jwt_supported_algs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  jwt_validation_pubkeys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  namespace_in_state: Optional[pulumi.Input[bool]] = None,
                  oidc_client_id: Optional[pulumi.Input[str]] = None,
                  oidc_client_secret: Optional[pulumi.Input[str]] = None,
@@ -885,14 +975,16 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["bound_issuer"] = bound_issuer
             __props__.__dict__["default_role"] = default_role
             __props__.__dict__["description"] = description
+            __props__.__dict__["disable_remount"] = disable_remount
             __props__.__dict__["jwks_ca_pem"] = jwks_ca_pem
             __props__.__dict__["jwks_url"] = jwks_url
             __props__.__dict__["jwt_supported_algs"] = jwt_supported_algs
             __props__.__dict__["jwt_validation_pubkeys"] = jwt_validation_pubkeys
             __props__.__dict__["local"] = local
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["namespace_in_state"] = namespace_in_state
             __props__.__dict__["oidc_client_id"] = oidc_client_id
-            __props__.__dict__["oidc_client_secret"] = oidc_client_secret
+            __props__.__dict__["oidc_client_secret"] = None if oidc_client_secret is None else pulumi.Output.secret(oidc_client_secret)
             __props__.__dict__["oidc_discovery_ca_pem"] = oidc_discovery_ca_pem
             __props__.__dict__["oidc_discovery_url"] = oidc_discovery_url
             __props__.__dict__["oidc_response_mode"] = oidc_response_mode
@@ -902,6 +994,8 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["tune"] = tune
             __props__.__dict__["type"] = type
             __props__.__dict__["accessor"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["oidcClientSecret"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(AuthBackend, __self__).__init__(
             'vault:jwt/authBackend:AuthBackend',
             resource_name,
@@ -916,11 +1010,13 @@ class AuthBackend(pulumi.CustomResource):
             bound_issuer: Optional[pulumi.Input[str]] = None,
             default_role: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            disable_remount: Optional[pulumi.Input[bool]] = None,
             jwks_ca_pem: Optional[pulumi.Input[str]] = None,
             jwks_url: Optional[pulumi.Input[str]] = None,
             jwt_supported_algs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             jwt_validation_pubkeys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             local: Optional[pulumi.Input[bool]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             namespace_in_state: Optional[pulumi.Input[bool]] = None,
             oidc_client_id: Optional[pulumi.Input[str]] = None,
             oidc_client_secret: Optional[pulumi.Input[str]] = None,
@@ -943,11 +1039,17 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] bound_issuer: The value against which to match the iss claim in a JWT
         :param pulumi.Input[str] default_role: The default role to use if none is provided during login
         :param pulumi.Input[str] description: The description of the auth backend
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[str] jwks_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
         :param pulumi.Input[str] jwks_url: JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".
         :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_supported_algs: A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
         :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_validation_pubkeys: A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
         :param pulumi.Input[bool] local: Specifies if the auth method is local only.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] namespace_in_state: Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
         :param pulumi.Input[str] oidc_client_id: Client ID used for OIDC backends
         :param pulumi.Input[str] oidc_client_secret: Client Secret used for OIDC backends
@@ -967,11 +1069,13 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["bound_issuer"] = bound_issuer
         __props__.__dict__["default_role"] = default_role
         __props__.__dict__["description"] = description
+        __props__.__dict__["disable_remount"] = disable_remount
         __props__.__dict__["jwks_ca_pem"] = jwks_ca_pem
         __props__.__dict__["jwks_url"] = jwks_url
         __props__.__dict__["jwt_supported_algs"] = jwt_supported_algs
         __props__.__dict__["jwt_validation_pubkeys"] = jwt_validation_pubkeys
         __props__.__dict__["local"] = local
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["namespace_in_state"] = namespace_in_state
         __props__.__dict__["oidc_client_id"] = oidc_client_id
         __props__.__dict__["oidc_client_secret"] = oidc_client_secret
@@ -1018,6 +1122,15 @@ class AuthBackend(pulumi.CustomResource):
         return pulumi.get(self, "description")
 
     @property
+    @pulumi.getter(name="disableRemount")
+    def disable_remount(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If set, opts out of mount migration on path updates.
+        See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        """
+        return pulumi.get(self, "disable_remount")
+
+    @property
     @pulumi.getter(name="jwksCaPem")
     def jwks_ca_pem(self) -> pulumi.Output[Optional[str]]:
         """
@@ -1056,6 +1169,17 @@ class AuthBackend(pulumi.CustomResource):
         Specifies if the auth method is local only.
         """
         return pulumi.get(self, "local")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="namespaceInState")

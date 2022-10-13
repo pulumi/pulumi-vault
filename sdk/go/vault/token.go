@@ -25,6 +25,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := vault.NewToken(ctx, "example", &vault.TokenArgs{
+//				Metadata: pulumi.StringMap{
+//					"purpose": pulumi.String("service-account"),
+//				},
 //				Policies: pulumi.StringArray{
 //					pulumi.String("policy1"),
 //					pulumi.String("policy2"),
@@ -66,6 +69,13 @@ type Token struct {
 	LeaseDuration pulumi.IntOutput `pulumi:"leaseDuration"`
 	// String containing the token lease started time if present in state file
 	LeaseStarted pulumi.StringOutput `pulumi:"leaseStarted"`
+	// Metadata to be set on this token
+	Metadata pulumi.StringMapOutput `pulumi:"metadata"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Flag to not attach the default policy to this token
 	NoDefaultPolicy pulumi.BoolPtrOutput `pulumi:"noDefaultPolicy"`
 	// Flag to create a token without parent
@@ -101,6 +111,12 @@ func NewToken(ctx *pulumi.Context,
 		args = &TokenArgs{}
 	}
 
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"clientToken",
+		"wrappedToken",
+		"wrappingAccessor",
+	})
+	opts = append(opts, secrets)
 	var resource Token
 	err := ctx.RegisterResource("vault:index/token:Token", name, args, &resource, opts...)
 	if err != nil {
@@ -133,6 +149,13 @@ type tokenState struct {
 	LeaseDuration *int `pulumi:"leaseDuration"`
 	// String containing the token lease started time if present in state file
 	LeaseStarted *string `pulumi:"leaseStarted"`
+	// Metadata to be set on this token
+	Metadata map[string]string `pulumi:"metadata"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Flag to not attach the default policy to this token
 	NoDefaultPolicy *bool `pulumi:"noDefaultPolicy"`
 	// Flag to create a token without parent
@@ -172,6 +195,13 @@ type TokenState struct {
 	LeaseDuration pulumi.IntPtrInput
 	// String containing the token lease started time if present in state file
 	LeaseStarted pulumi.StringPtrInput
+	// Metadata to be set on this token
+	Metadata pulumi.StringMapInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Flag to not attach the default policy to this token
 	NoDefaultPolicy pulumi.BoolPtrInput
 	// Flag to create a token without parent
@@ -209,6 +239,13 @@ type tokenArgs struct {
 	DisplayName *string `pulumi:"displayName"`
 	// The explicit max TTL of this token
 	ExplicitMaxTtl *string `pulumi:"explicitMaxTtl"`
+	// Metadata to be set on this token
+	Metadata map[string]string `pulumi:"metadata"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Flag to not attach the default policy to this token
 	NoDefaultPolicy *bool `pulumi:"noDefaultPolicy"`
 	// Flag to create a token without parent
@@ -239,6 +276,13 @@ type TokenArgs struct {
 	DisplayName pulumi.StringPtrInput
 	// The explicit max TTL of this token
 	ExplicitMaxTtl pulumi.StringPtrInput
+	// Metadata to be set on this token
+	Metadata pulumi.StringMapInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Flag to not attach the default policy to this token
 	NoDefaultPolicy pulumi.BoolPtrInput
 	// Flag to create a token without parent
@@ -373,6 +417,19 @@ func (o TokenOutput) LeaseDuration() pulumi.IntOutput {
 // String containing the token lease started time if present in state file
 func (o TokenOutput) LeaseStarted() pulumi.StringOutput {
 	return o.ApplyT(func(v *Token) pulumi.StringOutput { return v.LeaseStarted }).(pulumi.StringOutput)
+}
+
+// Metadata to be set on this token
+func (o TokenOutput) Metadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Token) pulumi.StringMapOutput { return v.Metadata }).(pulumi.StringMapOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o TokenOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Token) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Flag to not attach the default policy to this token

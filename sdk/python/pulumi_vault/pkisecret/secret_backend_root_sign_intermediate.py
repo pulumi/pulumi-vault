@@ -24,6 +24,7 @@ class SecretBackendRootSignIntermediateArgs:
                  ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  locality: Optional[pulumi.Input[str]] = None,
                  max_path_length: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ou: Optional[pulumi.Input[str]] = None,
@@ -47,6 +48,10 @@ class SecretBackendRootSignIntermediateArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
         :param pulumi.Input[str] locality: The locality
         :param pulumi.Input[int] max_path_length: The maximum path length to encode in the generated certificate
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] ou: The organization unit
@@ -76,6 +81,8 @@ class SecretBackendRootSignIntermediateArgs:
             pulumi.set(__self__, "locality", locality)
         if max_path_length is not None:
             pulumi.set(__self__, "max_path_length", max_path_length)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if organization is not None:
             pulumi.set(__self__, "organization", organization)
         if other_sans is not None:
@@ -218,6 +225,21 @@ class SecretBackendRootSignIntermediateArgs:
     @max_path_length.setter
     def max_path_length(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_path_length", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -369,6 +391,7 @@ class _SecretBackendRootSignIntermediateState:
                  issuing_ca: Optional[pulumi.Input[str]] = None,
                  locality: Optional[pulumi.Input[str]] = None,
                  max_path_length: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ou: Optional[pulumi.Input[str]] = None,
@@ -399,6 +422,10 @@ class _SecretBackendRootSignIntermediateState:
         :param pulumi.Input[str] issuing_ca: The issuing CA certificate in the `format` specified.
         :param pulumi.Input[str] locality: The locality
         :param pulumi.Input[int] max_path_length: The maximum path length to encode in the generated certificate
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] ou: The organization unit
@@ -441,6 +468,8 @@ class _SecretBackendRootSignIntermediateState:
             pulumi.set(__self__, "locality", locality)
         if max_path_length is not None:
             pulumi.set(__self__, "max_path_length", max_path_length)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if organization is not None:
             pulumi.set(__self__, "organization", organization)
         if other_sans is not None:
@@ -642,6 +671,21 @@ class _SecretBackendRootSignIntermediateState:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def organization(self) -> Optional[pulumi.Input[str]]:
         """
         The organization
@@ -812,6 +856,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
                  ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  locality: Optional[pulumi.Input[str]] = None,
                  max_path_length: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ou: Optional[pulumi.Input[str]] = None,
@@ -858,6 +903,10 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
         :param pulumi.Input[str] locality: The locality
         :param pulumi.Input[int] max_path_length: The maximum path length to encode in the generated certificate
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] ou: The organization unit
@@ -923,6 +972,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
                  ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  locality: Optional[pulumi.Input[str]] = None,
                  max_path_length: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ou: Optional[pulumi.Input[str]] = None,
@@ -959,6 +1009,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
             __props__.__dict__["ip_sans"] = ip_sans
             __props__.__dict__["locality"] = locality
             __props__.__dict__["max_path_length"] = max_path_length
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["organization"] = organization
             __props__.__dict__["other_sans"] = other_sans
             __props__.__dict__["ou"] = ou
@@ -1000,6 +1051,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
             issuing_ca: Optional[pulumi.Input[str]] = None,
             locality: Optional[pulumi.Input[str]] = None,
             max_path_length: Optional[pulumi.Input[int]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             organization: Optional[pulumi.Input[str]] = None,
             other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             ou: Optional[pulumi.Input[str]] = None,
@@ -1035,6 +1087,10 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         :param pulumi.Input[str] issuing_ca: The issuing CA certificate in the `format` specified.
         :param pulumi.Input[str] locality: The locality
         :param pulumi.Input[int] max_path_length: The maximum path length to encode in the generated certificate
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] ou: The organization unit
@@ -1067,6 +1123,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         __props__.__dict__["issuing_ca"] = issuing_ca
         __props__.__dict__["locality"] = locality
         __props__.__dict__["max_path_length"] = max_path_length
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["organization"] = organization
         __props__.__dict__["other_sans"] = other_sans
         __props__.__dict__["ou"] = ou
@@ -1194,6 +1251,17 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         The maximum path length to encode in the generated certificate
         """
         return pulumi.get(self, "max_path_length")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

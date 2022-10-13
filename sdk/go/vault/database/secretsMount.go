@@ -101,6 +101,8 @@ type SecretsMount struct {
 
 	// Accessor of the mount
 	Accessor pulumi.StringOutput `pulumi:"accessor"`
+	// Set of managed key registry entry names that the mount in question is allowed to access
+	AllowedManagedKeys pulumi.StringArrayOutput `pulumi:"allowedManagedKeys"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys pulumi.StringArrayOutput `pulumi:"auditNonHmacRequestKeys"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
@@ -153,6 +155,8 @@ type SecretsMount struct {
 	// A nested block containing configuration options for MySQL connections.\
 	// *See Configuration Options for more info*
 	Mysqls SecretsMountMysqlArrayOutput `pulumi:"mysqls"`
+	// Target namespace. (requires Enterprise)
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Specifies mount type specific options that are passed to the backend
 	Options pulumi.MapOutput `pulumi:"options"`
 	// A nested block containing configuration options for Oracle connections.\
@@ -163,6 +167,9 @@ type SecretsMount struct {
 	// A nested block containing configuration options for PostgreSQL connections.\
 	// *See Configuration Options for more info*
 	Postgresqls SecretsMountPostgresqlArrayOutput `pulumi:"postgresqls"`
+	// A nested block containing configuration options for InfluxDB connections.\
+	// *See Configuration Options for more info*
+	RedisElasticaches SecretsMountRedisElasticachArrayOutput `pulumi:"redisElasticaches"`
 	// A nested block containing configuration options for AWS Redshift connections.\
 	// *See Configuration Options for more info*
 	Redshifts SecretsMountRedshiftArrayOutput `pulumi:"redshifts"`
@@ -207,6 +214,8 @@ func GetSecretsMount(ctx *pulumi.Context,
 type secretsMountState struct {
 	// Accessor of the mount
 	Accessor *string `pulumi:"accessor"`
+	// Set of managed key registry entry names that the mount in question is allowed to access
+	AllowedManagedKeys []string `pulumi:"allowedManagedKeys"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys []string `pulumi:"auditNonHmacRequestKeys"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
@@ -259,6 +268,8 @@ type secretsMountState struct {
 	// A nested block containing configuration options for MySQL connections.\
 	// *See Configuration Options for more info*
 	Mysqls []SecretsMountMysql `pulumi:"mysqls"`
+	// Target namespace. (requires Enterprise)
+	Namespace *string `pulumi:"namespace"`
 	// Specifies mount type specific options that are passed to the backend
 	Options map[string]interface{} `pulumi:"options"`
 	// A nested block containing configuration options for Oracle connections.\
@@ -269,6 +280,9 @@ type secretsMountState struct {
 	// A nested block containing configuration options for PostgreSQL connections.\
 	// *See Configuration Options for more info*
 	Postgresqls []SecretsMountPostgresql `pulumi:"postgresqls"`
+	// A nested block containing configuration options for InfluxDB connections.\
+	// *See Configuration Options for more info*
+	RedisElasticaches []SecretsMountRedisElasticach `pulumi:"redisElasticaches"`
 	// A nested block containing configuration options for AWS Redshift connections.\
 	// *See Configuration Options for more info*
 	Redshifts []SecretsMountRedshift `pulumi:"redshifts"`
@@ -282,6 +296,8 @@ type secretsMountState struct {
 type SecretsMountState struct {
 	// Accessor of the mount
 	Accessor pulumi.StringPtrInput
+	// Set of managed key registry entry names that the mount in question is allowed to access
+	AllowedManagedKeys pulumi.StringArrayInput
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys pulumi.StringArrayInput
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
@@ -334,6 +350,8 @@ type SecretsMountState struct {
 	// A nested block containing configuration options for MySQL connections.\
 	// *See Configuration Options for more info*
 	Mysqls SecretsMountMysqlArrayInput
+	// Target namespace. (requires Enterprise)
+	Namespace pulumi.StringPtrInput
 	// Specifies mount type specific options that are passed to the backend
 	Options pulumi.MapInput
 	// A nested block containing configuration options for Oracle connections.\
@@ -344,6 +362,9 @@ type SecretsMountState struct {
 	// A nested block containing configuration options for PostgreSQL connections.\
 	// *See Configuration Options for more info*
 	Postgresqls SecretsMountPostgresqlArrayInput
+	// A nested block containing configuration options for InfluxDB connections.\
+	// *See Configuration Options for more info*
+	RedisElasticaches SecretsMountRedisElasticachArrayInput
 	// A nested block containing configuration options for AWS Redshift connections.\
 	// *See Configuration Options for more info*
 	Redshifts SecretsMountRedshiftArrayInput
@@ -359,6 +380,8 @@ func (SecretsMountState) ElementType() reflect.Type {
 }
 
 type secretsMountArgs struct {
+	// Set of managed key registry entry names that the mount in question is allowed to access
+	AllowedManagedKeys []string `pulumi:"allowedManagedKeys"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys []string `pulumi:"auditNonHmacRequestKeys"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
@@ -409,6 +432,8 @@ type secretsMountArgs struct {
 	// A nested block containing configuration options for MySQL connections.\
 	// *See Configuration Options for more info*
 	Mysqls []SecretsMountMysql `pulumi:"mysqls"`
+	// Target namespace. (requires Enterprise)
+	Namespace *string `pulumi:"namespace"`
 	// Specifies mount type specific options that are passed to the backend
 	Options map[string]interface{} `pulumi:"options"`
 	// A nested block containing configuration options for Oracle connections.\
@@ -419,6 +444,9 @@ type secretsMountArgs struct {
 	// A nested block containing configuration options for PostgreSQL connections.\
 	// *See Configuration Options for more info*
 	Postgresqls []SecretsMountPostgresql `pulumi:"postgresqls"`
+	// A nested block containing configuration options for InfluxDB connections.\
+	// *See Configuration Options for more info*
+	RedisElasticaches []SecretsMountRedisElasticach `pulumi:"redisElasticaches"`
 	// A nested block containing configuration options for AWS Redshift connections.\
 	// *See Configuration Options for more info*
 	Redshifts []SecretsMountRedshift `pulumi:"redshifts"`
@@ -431,6 +459,8 @@ type secretsMountArgs struct {
 
 // The set of arguments for constructing a SecretsMount resource.
 type SecretsMountArgs struct {
+	// Set of managed key registry entry names that the mount in question is allowed to access
+	AllowedManagedKeys pulumi.StringArrayInput
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys pulumi.StringArrayInput
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
@@ -481,6 +511,8 @@ type SecretsMountArgs struct {
 	// A nested block containing configuration options for MySQL connections.\
 	// *See Configuration Options for more info*
 	Mysqls SecretsMountMysqlArrayInput
+	// Target namespace. (requires Enterprise)
+	Namespace pulumi.StringPtrInput
 	// Specifies mount type specific options that are passed to the backend
 	Options pulumi.MapInput
 	// A nested block containing configuration options for Oracle connections.\
@@ -491,6 +523,9 @@ type SecretsMountArgs struct {
 	// A nested block containing configuration options for PostgreSQL connections.\
 	// *See Configuration Options for more info*
 	Postgresqls SecretsMountPostgresqlArrayInput
+	// A nested block containing configuration options for InfluxDB connections.\
+	// *See Configuration Options for more info*
+	RedisElasticaches SecretsMountRedisElasticachArrayInput
 	// A nested block containing configuration options for AWS Redshift connections.\
 	// *See Configuration Options for more info*
 	Redshifts SecretsMountRedshiftArrayInput
@@ -591,6 +626,11 @@ func (o SecretsMountOutput) ToSecretsMountOutputWithContext(ctx context.Context)
 // Accessor of the mount
 func (o SecretsMountOutput) Accessor() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretsMount) pulumi.StringOutput { return v.Accessor }).(pulumi.StringOutput)
+}
+
+// Set of managed key registry entry names that the mount in question is allowed to access
+func (o SecretsMountOutput) AllowedManagedKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretsMount) pulumi.StringArrayOutput { return v.AllowedManagedKeys }).(pulumi.StringArrayOutput)
 }
 
 // Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
@@ -705,6 +745,11 @@ func (o SecretsMountOutput) Mysqls() SecretsMountMysqlArrayOutput {
 	return o.ApplyT(func(v *SecretsMount) SecretsMountMysqlArrayOutput { return v.Mysqls }).(SecretsMountMysqlArrayOutput)
 }
 
+// Target namespace. (requires Enterprise)
+func (o SecretsMountOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretsMount) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
 // Specifies mount type specific options that are passed to the backend
 func (o SecretsMountOutput) Options() pulumi.MapOutput {
 	return o.ApplyT(func(v *SecretsMount) pulumi.MapOutput { return v.Options }).(pulumi.MapOutput)
@@ -725,6 +770,12 @@ func (o SecretsMountOutput) Path() pulumi.StringOutput {
 // *See Configuration Options for more info*
 func (o SecretsMountOutput) Postgresqls() SecretsMountPostgresqlArrayOutput {
 	return o.ApplyT(func(v *SecretsMount) SecretsMountPostgresqlArrayOutput { return v.Postgresqls }).(SecretsMountPostgresqlArrayOutput)
+}
+
+// A nested block containing configuration options for InfluxDB connections.\
+// *See Configuration Options for more info*
+func (o SecretsMountOutput) RedisElasticaches() SecretsMountRedisElasticachArrayOutput {
+	return o.ApplyT(func(v *SecretsMount) SecretsMountRedisElasticachArrayOutput { return v.RedisElasticaches }).(SecretsMountRedisElasticachArrayOutput)
 }
 
 // A nested block containing configuration options for AWS Redshift connections.\

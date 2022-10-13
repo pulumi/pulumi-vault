@@ -52,6 +52,11 @@ func LookupAuthBackendRole(ctx *pulumi.Context, args *LookupAuthBackendRoleArgs,
 type LookupAuthBackendRoleArgs struct {
 	// The unique name for the GCP backend from which to fetch the role. Defaults to "gcp".
 	Backend *string `pulumi:"backend"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The name of the role to retrieve the Role ID for.
 	RoleName string `pulumi:"roleName"`
 	// List of CIDR blocks; if set, specifies blocks of IP
@@ -108,7 +113,8 @@ type LookupAuthBackendRoleResult struct {
 	// GCP zones bound to the role. Returned when `type` is `gce`.
 	BoundZones []string `pulumi:"boundZones"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
+	Id        string  `pulumi:"id"`
+	Namespace *string `pulumi:"namespace"`
 	// The RoleID of the GCP role.
 	RoleId   string `pulumi:"roleId"`
 	RoleName string `pulumi:"roleName"`
@@ -169,6 +175,11 @@ func LookupAuthBackendRoleOutput(ctx *pulumi.Context, args LookupAuthBackendRole
 type LookupAuthBackendRoleOutputArgs struct {
 	// The unique name for the GCP backend from which to fetch the role. Defaults to "gcp".
 	Backend pulumi.StringPtrInput `pulumi:"backend"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 	// The name of the role to retrieve the Role ID for.
 	RoleName pulumi.StringInput `pulumi:"roleName"`
 	// List of CIDR blocks; if set, specifies blocks of IP
@@ -265,6 +276,10 @@ func (o LookupAuthBackendRoleResultOutput) BoundZones() pulumi.StringArrayOutput
 // The provider-assigned unique ID for this managed resource.
 func (o LookupAuthBackendRoleResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAuthBackendRoleResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupAuthBackendRoleResultOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupAuthBackendRoleResult) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The RoleID of the GCP role.

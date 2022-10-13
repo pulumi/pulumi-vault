@@ -68,6 +68,11 @@ type SecretBackendCert struct {
 	MinSecondsRemaining pulumi.IntPtrOutput `pulumi:"minSecondsRemaining"`
 	// Name of the role to create the certificate against
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// List of other SANs
 	OtherSans pulumi.StringArrayOutput `pulumi:"otherSans"`
 	// The private key
@@ -76,6 +81,8 @@ type SecretBackendCert struct {
 	PrivateKeyFormat pulumi.StringPtrOutput `pulumi:"privateKeyFormat"`
 	// The private key type
 	PrivateKeyType pulumi.StringOutput `pulumi:"privateKeyType"`
+	// `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
+	RenewPending pulumi.BoolOutput `pulumi:"renewPending"`
 	// If set to `true`, the certificate will be revoked on resource destruction.
 	Revoke pulumi.BoolPtrOutput `pulumi:"revoke"`
 	// The serial number
@@ -99,6 +106,10 @@ func NewSecretBackendCert(ctx *pulumi.Context,
 	if args.CommonName == nil {
 		return nil, errors.New("invalid value for required argument 'CommonName'")
 	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"privateKey",
+	})
+	opts = append(opts, secrets)
 	var resource SecretBackendCert
 	err := ctx.RegisterResource("vault:pkiSecret/secretBackendCert:SecretBackendCert", name, args, &resource, opts...)
 	if err != nil {
@@ -147,6 +158,11 @@ type secretBackendCertState struct {
 	MinSecondsRemaining *int `pulumi:"minSecondsRemaining"`
 	// Name of the role to create the certificate against
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// List of other SANs
 	OtherSans []string `pulumi:"otherSans"`
 	// The private key
@@ -155,6 +171,8 @@ type secretBackendCertState struct {
 	PrivateKeyFormat *string `pulumi:"privateKeyFormat"`
 	// The private key type
 	PrivateKeyType *string `pulumi:"privateKeyType"`
+	// `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
+	RenewPending *bool `pulumi:"renewPending"`
 	// If set to `true`, the certificate will be revoked on resource destruction.
 	Revoke *bool `pulumi:"revoke"`
 	// The serial number
@@ -192,6 +210,11 @@ type SecretBackendCertState struct {
 	MinSecondsRemaining pulumi.IntPtrInput
 	// Name of the role to create the certificate against
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// List of other SANs
 	OtherSans pulumi.StringArrayInput
 	// The private key
@@ -200,6 +223,8 @@ type SecretBackendCertState struct {
 	PrivateKeyFormat pulumi.StringPtrInput
 	// The private key type
 	PrivateKeyType pulumi.StringPtrInput
+	// `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
+	RenewPending pulumi.BoolPtrInput
 	// If set to `true`, the certificate will be revoked on resource destruction.
 	Revoke pulumi.BoolPtrInput
 	// The serial number
@@ -233,6 +258,11 @@ type secretBackendCertArgs struct {
 	MinSecondsRemaining *int `pulumi:"minSecondsRemaining"`
 	// Name of the role to create the certificate against
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// List of other SANs
 	OtherSans []string `pulumi:"otherSans"`
 	// The private key format
@@ -265,6 +295,11 @@ type SecretBackendCertArgs struct {
 	MinSecondsRemaining pulumi.IntPtrInput
 	// Name of the role to create the certificate against
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// List of other SANs
 	OtherSans pulumi.StringArrayInput
 	// The private key format
@@ -429,6 +464,14 @@ func (o SecretBackendCertOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o SecretBackendCertOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
 // List of other SANs
 func (o SecretBackendCertOutput) OtherSans() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringArrayOutput { return v.OtherSans }).(pulumi.StringArrayOutput)
@@ -447,6 +490,11 @@ func (o SecretBackendCertOutput) PrivateKeyFormat() pulumi.StringPtrOutput {
 // The private key type
 func (o SecretBackendCertOutput) PrivateKeyType() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringOutput { return v.PrivateKeyType }).(pulumi.StringOutput)
+}
+
+// `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
+func (o SecretBackendCertOutput) RenewPending() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.BoolOutput { return v.RenewPending }).(pulumi.BoolOutput)
 }
 
 // If set to `true`, the certificate will be revoked on resource destruction.

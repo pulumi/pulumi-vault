@@ -85,6 +85,11 @@ type SecretBackendStaticRole struct {
 	DbName pulumi.StringOutput `pulumi:"dbName"`
 	// A unique name to give the static role.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The amount of time Vault should wait before rotating the password, in seconds.
 	RotationPeriod pulumi.IntOutput `pulumi:"rotationPeriod"`
 	// Database statements to execute to rotate the password for the configured database user.
@@ -140,6 +145,11 @@ type secretBackendStaticRoleState struct {
 	DbName *string `pulumi:"dbName"`
 	// A unique name to give the static role.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The amount of time Vault should wait before rotating the password, in seconds.
 	RotationPeriod *int `pulumi:"rotationPeriod"`
 	// Database statements to execute to rotate the password for the configured database user.
@@ -155,6 +165,11 @@ type SecretBackendStaticRoleState struct {
 	DbName pulumi.StringPtrInput
 	// A unique name to give the static role.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The amount of time Vault should wait before rotating the password, in seconds.
 	RotationPeriod pulumi.IntPtrInput
 	// Database statements to execute to rotate the password for the configured database user.
@@ -174,6 +189,11 @@ type secretBackendStaticRoleArgs struct {
 	DbName string `pulumi:"dbName"`
 	// A unique name to give the static role.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The amount of time Vault should wait before rotating the password, in seconds.
 	RotationPeriod int `pulumi:"rotationPeriod"`
 	// Database statements to execute to rotate the password for the configured database user.
@@ -190,6 +210,11 @@ type SecretBackendStaticRoleArgs struct {
 	DbName pulumi.StringInput
 	// A unique name to give the static role.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The amount of time Vault should wait before rotating the password, in seconds.
 	RotationPeriod pulumi.IntInput
 	// Database statements to execute to rotate the password for the configured database user.
@@ -298,6 +323,14 @@ func (o SecretBackendStaticRoleOutput) DbName() pulumi.StringOutput {
 // A unique name to give the static role.
 func (o SecretBackendStaticRoleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendStaticRole) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured namespace.
+// *Available only for Vault Enterprise*.
+func (o SecretBackendStaticRoleOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendStaticRole) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The amount of time Vault should wait before rotating the password, in seconds.

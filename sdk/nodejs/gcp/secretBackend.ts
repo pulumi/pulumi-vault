@@ -57,6 +57,11 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    public readonly disableRemount!: pulumi.Output<boolean | undefined>;
+    /**
      * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
      */
     public readonly local!: pulumi.Output<boolean | undefined>;
@@ -65,6 +70,13 @@ export class SecretBackend extends pulumi.CustomResource {
      * for credentials issued by this backend. Defaults to '0'.
      */
     public readonly maxLeaseTtlSeconds!: pulumi.Output<number | undefined>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `gcp`.
@@ -87,19 +99,25 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["credentials"] = state ? state.credentials : undefined;
             resourceInputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
             resourceInputs["local"] = state ? state.local : undefined;
             resourceInputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
-            resourceInputs["credentials"] = args ? args.credentials : undefined;
+            resourceInputs["credentials"] = args?.credentials ? pulumi.secret(args.credentials) : undefined;
             resourceInputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
             resourceInputs["local"] = args ? args.local : undefined;
             resourceInputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["credentials"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SecretBackend.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -122,6 +140,11 @@ export interface SecretBackendState {
      */
     description?: pulumi.Input<string>;
     /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    disableRemount?: pulumi.Input<boolean>;
+    /**
      * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
      */
     local?: pulumi.Input<boolean>;
@@ -130,6 +153,13 @@ export interface SecretBackendState {
      * for credentials issued by this backend. Defaults to '0'.
      */
     maxLeaseTtlSeconds?: pulumi.Input<number>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `gcp`.
@@ -155,6 +185,11 @@ export interface SecretBackendArgs {
      */
     description?: pulumi.Input<string>;
     /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    disableRemount?: pulumi.Input<boolean>;
+    /**
      * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
      */
     local?: pulumi.Input<boolean>;
@@ -163,6 +198,13 @@ export interface SecretBackendArgs {
      * for credentials issued by this backend. Defaults to '0'.
      */
     maxLeaseTtlSeconds?: pulumi.Input<number>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `gcp`.

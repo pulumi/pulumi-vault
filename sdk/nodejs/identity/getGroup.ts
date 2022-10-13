@@ -32,6 +32,7 @@ export function getGroup(args?: GetGroupArgs, opts?: pulumi.InvokeOptions): Prom
         "aliasName": args.aliasName,
         "groupId": args.groupId,
         "groupName": args.groupName,
+        "namespace": args.namespace,
     }, opts);
 }
 
@@ -61,6 +62,13 @@ export interface GetGroupArgs {
      * Name of the group.
      */
     groupName?: string;
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: string;
 }
 
 /**
@@ -133,6 +141,7 @@ export interface GetGroupResult {
      * Modify index of the group
      */
     readonly modifyIndex: number;
+    readonly namespace?: string;
     /**
      * Namespace of which the group is part of
      */
@@ -181,4 +190,11 @@ export interface GetGroupOutputArgs {
      * Name of the group.
      */
     groupName?: pulumi.Input<string>;
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
 }

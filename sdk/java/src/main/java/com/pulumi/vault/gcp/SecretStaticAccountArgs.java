@@ -48,6 +48,27 @@ public final class SecretStaticAccountArgs extends com.pulumi.resources.Resource
     }
 
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable Output<String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
+
+    /**
      * Type of secret generated for this static account. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
      * 
      */
@@ -112,6 +133,7 @@ public final class SecretStaticAccountArgs extends com.pulumi.resources.Resource
     private SecretStaticAccountArgs(SecretStaticAccountArgs $) {
         this.backend = $.backend;
         this.bindings = $.bindings;
+        this.namespace = $.namespace;
         this.secretType = $.secretType;
         this.serviceAccountEmail = $.serviceAccountEmail;
         this.staticAccount = $.staticAccount;
@@ -186,6 +208,33 @@ public final class SecretStaticAccountArgs extends com.pulumi.resources.Resource
          */
         public Builder bindings(SecretStaticAccountBindingArgs... bindings) {
             return bindings(List.of(bindings));
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable Output<String> namespace) {
+            $.namespace = namespace;
+            return this;
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(String namespace) {
+            return namespace(Output.of(namespace));
         }
 
         /**

@@ -73,6 +73,11 @@ type AuthBackendClient struct {
 	// `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
 	// that are used in the IAM auth method.
 	IamServerIdHeaderValue pulumi.StringPtrOutput `pulumi:"iamServerIdHeaderValue"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The AWS secret key that Vault should use for the
 	// auth backend.
 	SecretKey pulumi.StringPtrOutput `pulumi:"secretKey"`
@@ -91,6 +96,17 @@ func NewAuthBackendClient(ctx *pulumi.Context,
 		args = &AuthBackendClientArgs{}
 	}
 
+	if args.AccessKey != nil {
+		args.AccessKey = pulumi.ToSecret(args.AccessKey).(pulumi.StringPtrOutput)
+	}
+	if args.SecretKey != nil {
+		args.SecretKey = pulumi.ToSecret(args.SecretKey).(pulumi.StringPtrOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"accessKey",
+		"secretKey",
+	})
+	opts = append(opts, secrets)
 	var resource AuthBackendClient
 	err := ctx.RegisterResource("vault:aws/authBackendClient:AuthBackendClient", name, args, &resource, opts...)
 	if err != nil {
@@ -129,6 +145,11 @@ type authBackendClientState struct {
 	// `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
 	// that are used in the IAM auth method.
 	IamServerIdHeaderValue *string `pulumi:"iamServerIdHeaderValue"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The AWS secret key that Vault should use for the
 	// auth backend.
 	SecretKey *string `pulumi:"secretKey"`
@@ -157,6 +178,11 @@ type AuthBackendClientState struct {
 	// `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
 	// that are used in the IAM auth method.
 	IamServerIdHeaderValue pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The AWS secret key that Vault should use for the
 	// auth backend.
 	SecretKey pulumi.StringPtrInput
@@ -189,6 +215,11 @@ type authBackendClientArgs struct {
 	// `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
 	// that are used in the IAM auth method.
 	IamServerIdHeaderValue *string `pulumi:"iamServerIdHeaderValue"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The AWS secret key that Vault should use for the
 	// auth backend.
 	SecretKey *string `pulumi:"secretKey"`
@@ -218,6 +249,11 @@ type AuthBackendClientArgs struct {
 	// `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
 	// that are used in the IAM auth method.
 	IamServerIdHeaderValue pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The AWS secret key that Vault should use for the
 	// auth backend.
 	SecretKey pulumi.StringPtrInput
@@ -345,6 +381,14 @@ func (o AuthBackendClientOutput) IamEndpoint() pulumi.StringPtrOutput {
 // that are used in the IAM auth method.
 func (o AuthBackendClientOutput) IamServerIdHeaderValue() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendClient) pulumi.StringPtrOutput { return v.IamServerIdHeaderValue }).(pulumi.StringPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o AuthBackendClientOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendClient) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The AWS secret key that Vault should use for the

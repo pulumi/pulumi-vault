@@ -112,7 +112,7 @@ func (o BackendRoleAzureGroupArrayOutput) Index(i pulumi.IntInput) BackendRoleAz
 
 type BackendRoleAzureRole struct {
 	RoleId   *string `pulumi:"roleId"`
-	RoleName string  `pulumi:"roleName"`
+	RoleName *string `pulumi:"roleName"`
 	Scope    string  `pulumi:"scope"`
 }
 
@@ -129,7 +129,7 @@ type BackendRoleAzureRoleInput interface {
 
 type BackendRoleAzureRoleArgs struct {
 	RoleId   pulumi.StringPtrInput `pulumi:"roleId"`
-	RoleName pulumi.StringInput    `pulumi:"roleName"`
+	RoleName pulumi.StringPtrInput `pulumi:"roleName"`
 	Scope    pulumi.StringInput    `pulumi:"scope"`
 }
 
@@ -188,8 +188,8 @@ func (o BackendRoleAzureRoleOutput) RoleId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BackendRoleAzureRole) *string { return v.RoleId }).(pulumi.StringPtrOutput)
 }
 
-func (o BackendRoleAzureRoleOutput) RoleName() pulumi.StringOutput {
-	return o.ApplyT(func(v BackendRoleAzureRole) string { return v.RoleName }).(pulumi.StringOutput)
+func (o BackendRoleAzureRoleOutput) RoleName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackendRoleAzureRole) *string { return v.RoleName }).(pulumi.StringPtrOutput)
 }
 
 func (o BackendRoleAzureRoleOutput) Scope() pulumi.StringOutput {

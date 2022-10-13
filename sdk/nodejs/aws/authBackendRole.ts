@@ -175,6 +175,13 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly inferredEntityType!: pulumi.Output<string | undefined>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * Only valid when
      * `authType` is `iam`. If set to `true`, the `boundIamPrincipalArns` are
      * resolved to [AWS Unique
@@ -285,6 +292,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
             resourceInputs["disallowReauthentication"] = state ? state.disallowReauthentication : undefined;
             resourceInputs["inferredAwsRegion"] = state ? state.inferredAwsRegion : undefined;
             resourceInputs["inferredEntityType"] = state ? state.inferredEntityType : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["resolveAwsUniqueIds"] = state ? state.resolveAwsUniqueIds : undefined;
             resourceInputs["role"] = state ? state.role : undefined;
             resourceInputs["roleId"] = state ? state.roleId : undefined;
@@ -318,6 +326,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
             resourceInputs["disallowReauthentication"] = args ? args.disallowReauthentication : undefined;
             resourceInputs["inferredAwsRegion"] = args ? args.inferredAwsRegion : undefined;
             resourceInputs["inferredEntityType"] = args ? args.inferredEntityType : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["resolveAwsUniqueIds"] = args ? args.resolveAwsUniqueIds : undefined;
             resourceInputs["role"] = args ? args.role : undefined;
             resourceInputs["roleTag"] = args ? args.roleTag : undefined;
@@ -439,6 +448,13 @@ export interface AuthBackendRoleState {
      * This only applies when `authType` is set to `iam`.
      */
     inferredEntityType?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Only valid when
      * `authType` is `iam`. If set to `true`, the `boundIamPrincipalArns` are
@@ -625,6 +641,13 @@ export interface AuthBackendRoleArgs {
      * This only applies when `authType` is set to `iam`.
      */
     inferredEntityType?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Only valid when
      * `authType` is `iam`. If set to `true`, the `boundIamPrincipalArns` are

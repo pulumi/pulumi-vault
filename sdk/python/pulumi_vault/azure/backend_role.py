@@ -23,6 +23,7 @@ class BackendRoleArgs:
                  backend: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  max_ttl: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a BackendRole resource.
@@ -35,6 +36,10 @@ class BackendRoleArgs:
         :param pulumi.Input[str] description: Human-friendly description of the mount for the backend.
         :param pulumi.Input[str] max_ttl: Specifies the maximum TTL for service principals generated using this role. Accepts time
                suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] ttl: Specifies the default TTL for service principals generated using this role.
                Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
         """
@@ -51,6 +56,8 @@ class BackendRoleArgs:
             pulumi.set(__self__, "description", description)
         if max_ttl is not None:
             pulumi.set(__self__, "max_ttl", max_ttl)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if ttl is not None:
             pulumi.set(__self__, "ttl", ttl)
 
@@ -142,6 +149,21 @@ class BackendRoleArgs:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the default TTL for service principals generated using this role.
@@ -163,6 +185,7 @@ class _BackendRoleState:
                  backend: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  max_ttl: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None):
         """
@@ -175,6 +198,10 @@ class _BackendRoleState:
         :param pulumi.Input[str] description: Human-friendly description of the mount for the backend.
         :param pulumi.Input[str] max_ttl: Specifies the maximum TTL for service principals generated using this role. Accepts time
                suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role: Name of the Azure role
         :param pulumi.Input[str] ttl: Specifies the default TTL for service principals generated using this role.
                Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
@@ -191,6 +218,8 @@ class _BackendRoleState:
             pulumi.set(__self__, "description", description)
         if max_ttl is not None:
             pulumi.set(__self__, "max_ttl", max_ttl)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if role is not None:
             pulumi.set(__self__, "role", role)
         if ttl is not None:
@@ -272,6 +301,21 @@ class _BackendRoleState:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def role(self) -> Optional[pulumi.Input[str]]:
         """
         Name of the Azure role
@@ -307,6 +351,7 @@ class BackendRole(pulumi.CustomResource):
                  backend: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  max_ttl: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -349,6 +394,10 @@ class BackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] description: Human-friendly description of the mount for the backend.
         :param pulumi.Input[str] max_ttl: Specifies the maximum TTL for service principals generated using this role. Accepts time
                suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role: Name of the Azure role
         :param pulumi.Input[str] ttl: Specifies the default TTL for service principals generated using this role.
                Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
@@ -409,6 +458,7 @@ class BackendRole(pulumi.CustomResource):
                  backend: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  max_ttl: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -426,6 +476,7 @@ class BackendRole(pulumi.CustomResource):
             __props__.__dict__["backend"] = backend
             __props__.__dict__["description"] = description
             __props__.__dict__["max_ttl"] = max_ttl
+            __props__.__dict__["namespace"] = namespace
             if role is None and not opts.urn:
                 raise TypeError("Missing required property 'role'")
             __props__.__dict__["role"] = role
@@ -446,6 +497,7 @@ class BackendRole(pulumi.CustomResource):
             backend: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             max_ttl: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             role: Optional[pulumi.Input[str]] = None,
             ttl: Optional[pulumi.Input[str]] = None) -> 'BackendRole':
         """
@@ -463,6 +515,10 @@ class BackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] description: Human-friendly description of the mount for the backend.
         :param pulumi.Input[str] max_ttl: Specifies the maximum TTL for service principals generated using this role. Accepts time
                suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role: Name of the Azure role
         :param pulumi.Input[str] ttl: Specifies the default TTL for service principals generated using this role.
                Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
@@ -477,6 +533,7 @@ class BackendRole(pulumi.CustomResource):
         __props__.__dict__["backend"] = backend
         __props__.__dict__["description"] = description
         __props__.__dict__["max_ttl"] = max_ttl
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["role"] = role
         __props__.__dict__["ttl"] = ttl
         return BackendRole(resource_name, opts=opts, __props__=__props__)
@@ -530,6 +587,17 @@ class BackendRole(pulumi.CustomResource):
         suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
         """
         return pulumi.get(self, "max_ttl")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

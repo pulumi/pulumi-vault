@@ -43,7 +43,7 @@ namespace Pulumi.Vault.Azure
         /// are required to be set for: `subscription_id`, `tenant_id`, `environment`.
         /// </summary>
         public static Task<GetAccessCredentialsResult> InvokeAsync(GetAccessCredentialsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAccessCredentialsResult>("vault:azure/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetAccessCredentialsResult>("vault:azure/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsArgs(), options.WithDefaults());
 
         /// <summary>
         /// {{% examples %}}
@@ -77,7 +77,7 @@ namespace Pulumi.Vault.Azure
         /// are required to be set for: `subscription_id`, `tenant_id`, `environment`.
         /// </summary>
         public static Output<GetAccessCredentialsResult> Invoke(GetAccessCredentialsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetAccessCredentialsResult>("vault:azure/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetAccessCredentialsResult>("vault:azure/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -106,6 +106,15 @@ namespace Pulumi.Vault.Azure
         /// </summary>
         [Input("maxCredValidationSeconds")]
         public int? MaxCredValidationSeconds { get; set; }
+
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public string? Namespace { get; set; }
 
         /// <summary>
         /// If 'validate_creds' is true, 
@@ -186,6 +195,15 @@ namespace Pulumi.Vault.Azure
         /// </summary>
         [Input("maxCredValidationSeconds")]
         public Input<int>? MaxCredValidationSeconds { get; set; }
+
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// If 'validate_creds' is true, 
@@ -272,6 +290,7 @@ namespace Pulumi.Vault.Azure
         public readonly bool LeaseRenewable;
         public readonly string LeaseStartTime;
         public readonly int? MaxCredValidationSeconds;
+        public readonly string? Namespace;
         public readonly int? NumSecondsBetweenTests;
         public readonly int? NumSequentialSuccesses;
         public readonly string Role;
@@ -301,6 +320,8 @@ namespace Pulumi.Vault.Azure
 
             int? maxCredValidationSeconds,
 
+            string? @namespace,
+
             int? numSecondsBetweenTests,
 
             int? numSequentialSuccesses,
@@ -323,6 +344,7 @@ namespace Pulumi.Vault.Azure
             LeaseRenewable = leaseRenewable;
             LeaseStartTime = leaseStartTime;
             MaxCredValidationSeconds = maxCredValidationSeconds;
+            Namespace = @namespace;
             NumSecondsBetweenTests = numSecondsBetweenTests;
             NumSequentialSuccesses = numSequentialSuccesses;
             Role = role;

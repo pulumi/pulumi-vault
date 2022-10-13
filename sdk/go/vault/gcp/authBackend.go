@@ -38,6 +38,12 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := gcp.NewAuthBackend(ctx, "gcp", &gcp.AuthBackendArgs{
 //				Credentials: readFileOrPanic("vault-gcp-credentials.json"),
+//				CustomEndpoint: &gcp.AuthBackendCustomEndpointArgs{
+//					Api:     pulumi.String("www.googleapis.com"),
+//					Iam:     pulumi.String("iam.googleapis.com"),
+//					Crm:     pulumi.String("cloudresourcemanager.googleapis.com"),
+//					Compute: pulumi.String("compute.googleapis.com"),
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -66,10 +72,24 @@ type AuthBackend struct {
 	ClientId pulumi.StringOutput `pulumi:"clientId"`
 	// A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
 	Credentials pulumi.StringPtrOutput `pulumi:"credentials"`
+	// Specifies overrides to
+	// [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint)
+	// used when making API requests. This allows specific requests made during authentication
+	// to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
+	// environments. Requires Vault 1.11+.
+	CustomEndpoint AuthBackendCustomEndpointPtrOutput `pulumi:"customEndpoint"`
 	// A description of the auth method.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The path to mount the auth method — this defaults to 'gcp'.
 	Path pulumi.StringPtrOutput `pulumi:"path"`
 	// The ID of the private key from the credentials
@@ -85,6 +105,13 @@ func NewAuthBackend(ctx *pulumi.Context,
 		args = &AuthBackendArgs{}
 	}
 
+	if args.Credentials != nil {
+		args.Credentials = pulumi.ToSecret(args.Credentials).(pulumi.StringPtrOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"credentials",
+	})
+	opts = append(opts, secrets)
 	var resource AuthBackend
 	err := ctx.RegisterResource("vault:gcp/authBackend:AuthBackend", name, args, &resource, opts...)
 	if err != nil {
@@ -113,10 +140,24 @@ type authBackendState struct {
 	ClientId *string `pulumi:"clientId"`
 	// A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
 	Credentials *string `pulumi:"credentials"`
+	// Specifies overrides to
+	// [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint)
+	// used when making API requests. This allows specific requests made during authentication
+	// to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
+	// environments. Requires Vault 1.11+.
+	CustomEndpoint *AuthBackendCustomEndpoint `pulumi:"customEndpoint"`
 	// A description of the auth method.
 	Description *string `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount *bool `pulumi:"disableRemount"`
 	// Specifies if the auth method is local only.
 	Local *bool `pulumi:"local"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The path to mount the auth method — this defaults to 'gcp'.
 	Path *string `pulumi:"path"`
 	// The ID of the private key from the credentials
@@ -132,10 +173,24 @@ type AuthBackendState struct {
 	ClientId pulumi.StringPtrInput
 	// A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
 	Credentials pulumi.StringPtrInput
+	// Specifies overrides to
+	// [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint)
+	// used when making API requests. This allows specific requests made during authentication
+	// to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
+	// environments. Requires Vault 1.11+.
+	CustomEndpoint AuthBackendCustomEndpointPtrInput
 	// A description of the auth method.
 	Description pulumi.StringPtrInput
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrInput
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The path to mount the auth method — this defaults to 'gcp'.
 	Path pulumi.StringPtrInput
 	// The ID of the private key from the credentials
@@ -155,10 +210,24 @@ type authBackendArgs struct {
 	ClientId *string `pulumi:"clientId"`
 	// A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
 	Credentials *string `pulumi:"credentials"`
+	// Specifies overrides to
+	// [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint)
+	// used when making API requests. This allows specific requests made during authentication
+	// to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
+	// environments. Requires Vault 1.11+.
+	CustomEndpoint *AuthBackendCustomEndpoint `pulumi:"customEndpoint"`
 	// A description of the auth method.
 	Description *string `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount *bool `pulumi:"disableRemount"`
 	// Specifies if the auth method is local only.
 	Local *bool `pulumi:"local"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The path to mount the auth method — this defaults to 'gcp'.
 	Path *string `pulumi:"path"`
 	// The ID of the private key from the credentials
@@ -175,10 +244,24 @@ type AuthBackendArgs struct {
 	ClientId pulumi.StringPtrInput
 	// A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
 	Credentials pulumi.StringPtrInput
+	// Specifies overrides to
+	// [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint)
+	// used when making API requests. This allows specific requests made during authentication
+	// to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
+	// environments. Requires Vault 1.11+.
+	CustomEndpoint AuthBackendCustomEndpointPtrInput
 	// A description of the auth method.
 	Description pulumi.StringPtrInput
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrInput
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The path to mount the auth method — this defaults to 'gcp'.
 	Path pulumi.StringPtrInput
 	// The ID of the private key from the credentials
@@ -289,14 +372,37 @@ func (o AuthBackendOutput) Credentials() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Credentials }).(pulumi.StringPtrOutput)
 }
 
+// Specifies overrides to
+// [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint)
+// used when making API requests. This allows specific requests made during authentication
+// to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
+// environments. Requires Vault 1.11+.
+func (o AuthBackendOutput) CustomEndpoint() AuthBackendCustomEndpointPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) AuthBackendCustomEndpointPtrOutput { return v.CustomEndpoint }).(AuthBackendCustomEndpointPtrOutput)
+}
+
 // A description of the auth method.
 func (o AuthBackendOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// If set, opts out of mount migration on path updates.
+// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+func (o AuthBackendOutput) DisableRemount() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.BoolPtrOutput { return v.DisableRemount }).(pulumi.BoolPtrOutput)
+}
+
 // Specifies if the auth method is local only.
 func (o AuthBackendOutput) Local() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.BoolPtrOutput { return v.Local }).(pulumi.BoolPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o AuthBackendOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The path to mount the auth method — this defaults to 'gcp'.

@@ -11,50 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource supports the "/transform/transformation/{name}" Vault endpoint.
-//
-// It creates or updates a transformation with the given name. If a transformation with the name does not exist,
-// it will be created. If the transformation exists, it will be updated with the new attributes.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/transform"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mountTransform, err := vault.NewMount(ctx, "mountTransform", &vault.MountArgs{
-//				Path: pulumi.String("transform"),
-//				Type: pulumi.String("transform"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = transform.NewTransformation(ctx, "test", &transform.TransformationArgs{
-//				Path:        mountTransform.Path,
-//				Type:        pulumi.String("fpe"),
-//				Template:    pulumi.String("ccn"),
-//				TweakSource: pulumi.String("internal"),
-//				AllowedRoles: pulumi.StringArray{
-//					pulumi.String("payments"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 type Transformation struct {
 	pulumi.CustomResourceState
 

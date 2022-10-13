@@ -19,6 +19,8 @@ class AuthBackendArgs:
                  organization: pulumi.Input[str],
                  base_url: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[int]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -38,6 +40,12 @@ class AuthBackendArgs:
                are running GitHub Enterprise or an API-compatible authentication server.
         :param pulumi.Input[str] description: Specifies the description of the mount.
                This overrides the current stored value, if any.
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[int] organization_id: The ID of the organization users must be part of.
                Vault will attempt to fetch and set this value if it is not provided. (Vault 1.10+)
         :param pulumi.Input[str] path: Path where the auth backend is mounted. Defaults to `auth/github`
@@ -72,6 +80,10 @@ class AuthBackendArgs:
             pulumi.set(__self__, "base_url", base_url)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if disable_remount is not None:
+            pulumi.set(__self__, "disable_remount", disable_remount)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if organization_id is not None:
             pulumi.set(__self__, "organization_id", organization_id)
         if path is not None:
@@ -134,6 +146,34 @@ class AuthBackendArgs:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="disableRemount")
+    def disable_remount(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, opts out of mount migration on path updates.
+        See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        """
+        return pulumi.get(self, "disable_remount")
+
+    @disable_remount.setter
+    def disable_remount(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_remount", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter(name="organizationId")
@@ -302,6 +342,8 @@ class _AuthBackendState:
                  accessor: Optional[pulumi.Input[str]] = None,
                  base_url: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[int]] = None,
                  path: Optional[pulumi.Input[str]] = None,
@@ -322,6 +364,12 @@ class _AuthBackendState:
                are running GitHub Enterprise or an API-compatible authentication server.
         :param pulumi.Input[str] description: Specifies the description of the mount.
                This overrides the current stored value, if any.
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: The organization configured users must be part of.
         :param pulumi.Input[int] organization_id: The ID of the organization users must be part of.
                Vault will attempt to fetch and set this value if it is not provided. (Vault 1.10+)
@@ -358,6 +406,10 @@ class _AuthBackendState:
             pulumi.set(__self__, "base_url", base_url)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if disable_remount is not None:
+            pulumi.set(__self__, "disable_remount", disable_remount)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if organization is not None:
             pulumi.set(__self__, "organization", organization)
         if organization_id is not None:
@@ -422,6 +474,34 @@ class _AuthBackendState:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="disableRemount")
+    def disable_remount(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, opts out of mount migration on path updates.
+        See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        """
+        return pulumi.get(self, "disable_remount")
+
+    @disable_remount.setter
+    def disable_remount(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_remount", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -603,6 +683,8 @@ class AuthBackend(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  base_url: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[int]] = None,
                  path: Optional[pulumi.Input[str]] = None,
@@ -645,6 +727,12 @@ class AuthBackend(pulumi.CustomResource):
                are running GitHub Enterprise or an API-compatible authentication server.
         :param pulumi.Input[str] description: Specifies the description of the mount.
                This overrides the current stored value, if any.
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: The organization configured users must be part of.
         :param pulumi.Input[int] organization_id: The ID of the organization users must be part of.
                Vault will attempt to fetch and set this value if it is not provided. (Vault 1.10+)
@@ -720,6 +808,8 @@ class AuthBackend(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  base_url: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[int]] = None,
                  path: Optional[pulumi.Input[str]] = None,
@@ -744,6 +834,8 @@ class AuthBackend(pulumi.CustomResource):
 
             __props__.__dict__["base_url"] = base_url
             __props__.__dict__["description"] = description
+            __props__.__dict__["disable_remount"] = disable_remount
+            __props__.__dict__["namespace"] = namespace
             if organization is None and not opts.urn:
                 raise TypeError("Missing required property 'organization'")
             __props__.__dict__["organization"] = organization
@@ -773,6 +865,8 @@ class AuthBackend(pulumi.CustomResource):
             accessor: Optional[pulumi.Input[str]] = None,
             base_url: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            disable_remount: Optional[pulumi.Input[bool]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             organization: Optional[pulumi.Input[str]] = None,
             organization_id: Optional[pulumi.Input[int]] = None,
             path: Optional[pulumi.Input[str]] = None,
@@ -798,6 +892,12 @@ class AuthBackend(pulumi.CustomResource):
                are running GitHub Enterprise or an API-compatible authentication server.
         :param pulumi.Input[str] description: Specifies the description of the mount.
                This overrides the current stored value, if any.
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: The organization configured users must be part of.
         :param pulumi.Input[int] organization_id: The ID of the organization users must be part of.
                Vault will attempt to fetch and set this value if it is not provided. (Vault 1.10+)
@@ -835,6 +935,8 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["accessor"] = accessor
         __props__.__dict__["base_url"] = base_url
         __props__.__dict__["description"] = description
+        __props__.__dict__["disable_remount"] = disable_remount
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["organization"] = organization
         __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["path"] = path
@@ -875,6 +977,26 @@ class AuthBackend(pulumi.CustomResource):
         This overrides the current stored value, if any.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="disableRemount")
+    def disable_remount(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If set, opts out of mount migration on path updates.
+        See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        """
+        return pulumi.get(self, "disable_remount")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

@@ -60,9 +60,17 @@ type SecretBackend struct {
 	DefaultLeaseTtlSeconds pulumi.IntPtrOutput `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend.
 	MaxLeaseTtlSeconds pulumi.IntPtrOutput `pulumi:"maxLeaseTtlSeconds"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Specifies the Terraform Cloud access token to use.
 	Token pulumi.StringPtrOutput `pulumi:"token"`
 }
@@ -74,6 +82,13 @@ func NewSecretBackend(ctx *pulumi.Context,
 		args = &SecretBackendArgs{}
 	}
 
+	if args.Token != nil {
+		args.Token = pulumi.ToSecret(args.Token).(pulumi.StringPtrOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"token",
+	})
+	opts = append(opts, secrets)
 	var resource SecretBackend
 	err := ctx.RegisterResource("vault:terraformcloud/secretBackend:SecretBackend", name, args, &resource, opts...)
 	if err != nil {
@@ -106,9 +121,17 @@ type secretBackendState struct {
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
 	Description *string `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount *bool `pulumi:"disableRemount"`
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend.
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Specifies the Terraform Cloud access token to use.
 	Token *string `pulumi:"token"`
 }
@@ -124,9 +147,17 @@ type SecretBackendState struct {
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// A human-friendly description for this backend.
 	Description pulumi.StringPtrInput
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrInput
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend.
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Specifies the Terraform Cloud access token to use.
 	Token pulumi.StringPtrInput
 }
@@ -146,9 +177,17 @@ type secretBackendArgs struct {
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
 	Description *string `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount *bool `pulumi:"disableRemount"`
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend.
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Specifies the Terraform Cloud access token to use.
 	Token *string `pulumi:"token"`
 }
@@ -165,9 +204,17 @@ type SecretBackendArgs struct {
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// A human-friendly description for this backend.
 	Description pulumi.StringPtrInput
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrInput
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend.
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Specifies the Terraform Cloud access token to use.
 	Token pulumi.StringPtrInput
 }
@@ -284,10 +331,24 @@ func (o SecretBackendOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// If set, opts out of mount migration on path updates.
+// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+func (o SecretBackendOutput) DisableRemount() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.DisableRemount }).(pulumi.BoolPtrOutput)
+}
+
 // The maximum TTL that can be requested
 // for credentials issued by this backend.
 func (o SecretBackendOutput) MaxLeaseTtlSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.MaxLeaseTtlSeconds }).(pulumi.IntPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured namespace.
+// *Available only for Vault Enterprise*.
+func (o SecretBackendOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Specifies the Terraform Cloud access token to use.

@@ -123,6 +123,11 @@ type SecretBackendRole struct {
 	MaxTtl pulumi.StringOutput `pulumi:"maxTtl"`
 	// The name to identify this role within the backend. Must be unique within the backend.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Flag to not store certificates in the storage backend
 	NoStore pulumi.BoolPtrOutput `pulumi:"noStore"`
 	// Specifies the duration by which to backdate the NotBefore property.
@@ -131,7 +136,7 @@ type SecretBackendRole struct {
 	OrganizationUnit pulumi.StringArrayOutput `pulumi:"organizationUnit"`
 	// The organization of generated certificates
 	Organizations pulumi.StringArrayOutput `pulumi:"organizations"`
-	// Specify the list of allowed policies IODs
+	// Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policyIdentifier` blocks instead
 	PolicyIdentifiers pulumi.StringArrayOutput `pulumi:"policyIdentifiers"`
 	// The postal code of generated certificates
 	PostalCodes pulumi.StringArrayOutput `pulumi:"postalCodes"`
@@ -236,6 +241,11 @@ type secretBackendRoleState struct {
 	MaxTtl *string `pulumi:"maxTtl"`
 	// The name to identify this role within the backend. Must be unique within the backend.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Flag to not store certificates in the storage backend
 	NoStore *bool `pulumi:"noStore"`
 	// Specifies the duration by which to backdate the NotBefore property.
@@ -244,7 +254,7 @@ type secretBackendRoleState struct {
 	OrganizationUnit []string `pulumi:"organizationUnit"`
 	// The organization of generated certificates
 	Organizations []string `pulumi:"organizations"`
-	// Specify the list of allowed policies IODs
+	// Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policyIdentifier` blocks instead
 	PolicyIdentifiers []string `pulumi:"policyIdentifiers"`
 	// The postal code of generated certificates
 	PostalCodes []string `pulumi:"postalCodes"`
@@ -318,6 +328,11 @@ type SecretBackendRoleState struct {
 	MaxTtl pulumi.StringPtrInput
 	// The name to identify this role within the backend. Must be unique within the backend.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Flag to not store certificates in the storage backend
 	NoStore pulumi.BoolPtrInput
 	// Specifies the duration by which to backdate the NotBefore property.
@@ -326,7 +341,7 @@ type SecretBackendRoleState struct {
 	OrganizationUnit pulumi.StringArrayInput
 	// The organization of generated certificates
 	Organizations pulumi.StringArrayInput
-	// Specify the list of allowed policies IODs
+	// Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policyIdentifier` blocks instead
 	PolicyIdentifiers pulumi.StringArrayInput
 	// The postal code of generated certificates
 	PostalCodes pulumi.StringArrayInput
@@ -404,6 +419,11 @@ type secretBackendRoleArgs struct {
 	MaxTtl *string `pulumi:"maxTtl"`
 	// The name to identify this role within the backend. Must be unique within the backend.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Flag to not store certificates in the storage backend
 	NoStore *bool `pulumi:"noStore"`
 	// Specifies the duration by which to backdate the NotBefore property.
@@ -412,7 +432,7 @@ type secretBackendRoleArgs struct {
 	OrganizationUnit []string `pulumi:"organizationUnit"`
 	// The organization of generated certificates
 	Organizations []string `pulumi:"organizations"`
-	// Specify the list of allowed policies IODs
+	// Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policyIdentifier` blocks instead
 	PolicyIdentifiers []string `pulumi:"policyIdentifiers"`
 	// The postal code of generated certificates
 	PostalCodes []string `pulumi:"postalCodes"`
@@ -487,6 +507,11 @@ type SecretBackendRoleArgs struct {
 	MaxTtl pulumi.StringPtrInput
 	// The name to identify this role within the backend. Must be unique within the backend.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Flag to not store certificates in the storage backend
 	NoStore pulumi.BoolPtrInput
 	// Specifies the duration by which to backdate the NotBefore property.
@@ -495,7 +520,7 @@ type SecretBackendRoleArgs struct {
 	OrganizationUnit pulumi.StringArrayInput
 	// The organization of generated certificates
 	Organizations pulumi.StringArrayInput
-	// Specify the list of allowed policies IODs
+	// Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policyIdentifier` blocks instead
 	PolicyIdentifiers pulumi.StringArrayInput
 	// The postal code of generated certificates
 	PostalCodes pulumi.StringArrayInput
@@ -733,6 +758,14 @@ func (o SecretBackendRoleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o SecretBackendRoleOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
 // Flag to not store certificates in the storage backend
 func (o SecretBackendRoleOutput) NoStore() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.NoStore }).(pulumi.BoolPtrOutput)
@@ -753,7 +786,7 @@ func (o SecretBackendRoleOutput) Organizations() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.Organizations }).(pulumi.StringArrayOutput)
 }
 
-// Specify the list of allowed policies IODs
+// Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policyIdentifier` blocks instead
 func (o SecretBackendRoleOutput) PolicyIdentifiers() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.PolicyIdentifiers }).(pulumi.StringArrayOutput)
 }

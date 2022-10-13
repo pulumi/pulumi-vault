@@ -76,6 +76,15 @@ namespace Pulumi.Vault
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
         /// `(string)` - Push information for Duo.
         /// </summary>
         [Output("pushInfo")]
@@ -120,6 +129,11 @@ namespace Pulumi.Vault
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "integrationKey",
+                    "secretKey",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -149,11 +163,21 @@ namespace Pulumi.Vault
         [Input("apiHostname", required: true)]
         public Input<string> ApiHostname { get; set; } = null!;
 
+        [Input("integrationKey", required: true)]
+        private Input<string>? _integrationKey;
+
         /// <summary>
         /// `(string: &lt;required&gt;)` - Integration key for Duo.
         /// </summary>
-        [Input("integrationKey", required: true)]
-        public Input<string> IntegrationKey { get; set; } = null!;
+        public Input<string>? IntegrationKey
+        {
+            get => _integrationKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _integrationKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// `(string: &lt;required&gt;)` - The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
@@ -168,16 +192,35 @@ namespace Pulumi.Vault
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
         /// `(string)` - Push information for Duo.
         /// </summary>
         [Input("pushInfo")]
         public Input<string>? PushInfo { get; set; }
 
+        [Input("secretKey", required: true)]
+        private Input<string>? _secretKey;
+
         /// <summary>
         /// `(string: &lt;required&gt;)` - Secret key for Duo.
         /// </summary>
-        [Input("secretKey", required: true)]
-        public Input<string> SecretKey { get; set; } = null!;
+        public Input<string>? SecretKey
+        {
+            get => _secretKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// `(string)` - A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
@@ -203,11 +246,21 @@ namespace Pulumi.Vault
         [Input("apiHostname")]
         public Input<string>? ApiHostname { get; set; }
 
+        [Input("integrationKey")]
+        private Input<string>? _integrationKey;
+
         /// <summary>
         /// `(string: &lt;required&gt;)` - Integration key for Duo.
         /// </summary>
-        [Input("integrationKey")]
-        public Input<string>? IntegrationKey { get; set; }
+        public Input<string>? IntegrationKey
+        {
+            get => _integrationKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _integrationKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// `(string: &lt;required&gt;)` - The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
@@ -222,16 +275,35 @@ namespace Pulumi.Vault
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
         /// `(string)` - Push information for Duo.
         /// </summary>
         [Input("pushInfo")]
         public Input<string>? PushInfo { get; set; }
 
+        [Input("secretKey")]
+        private Input<string>? _secretKey;
+
         /// <summary>
         /// `(string: &lt;required&gt;)` - Secret key for Duo.
         /// </summary>
-        [Input("secretKey")]
-        public Input<string>? SecretKey { get; set; }
+        public Input<string>? SecretKey
+        {
+            get => _secretKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// `(string)` - A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. If blank, the Alias's Name field will be used as-is. Currently-supported mappings:

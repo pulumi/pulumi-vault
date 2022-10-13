@@ -12,6 +12,7 @@ import com.pulumi.vault.ssh.SecretBackendCaArgs;
 import com.pulumi.vault.ssh.inputs.SecretBackendCaState;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -55,6 +56,14 @@ import javax.annotation.Nullable;
  * }
  * ```
  * 
+ * ## Import
+ * 
+ * SSH secret backend CAs can be imported using the `path`, e.g.
+ * 
+ * ```sh
+ *  $ pulumi import vault:ssh/secretBackendCa:SecretBackendCa foo ssh
+ * ```
+ * 
  */
 @ResourceType(type="vault:ssh/secretBackendCa:SecretBackendCa")
 public class SecretBackendCa extends com.pulumi.resources.CustomResource {
@@ -85,6 +94,26 @@ public class SecretBackendCa extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Boolean>> generateSigningKey() {
         return Codegen.optional(this.generateSigningKey);
+    }
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="namespace", type=String.class, parameters={})
+    private Output</* @Nullable */ String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> namespace() {
+        return Codegen.optional(this.namespace);
     }
     /**
      * The private key part the SSH CA key pair; required if generate_signing_key is false.
@@ -147,6 +176,9 @@ public class SecretBackendCa extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "privateKey"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

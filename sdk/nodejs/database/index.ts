@@ -5,16 +5,26 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./secretBackendConnection";
-export * from "./secretBackendRole";
-export * from "./secretBackendStaticRole";
-export * from "./secretsMount";
+export { SecretBackendConnectionArgs, SecretBackendConnectionState } from "./secretBackendConnection";
+export type SecretBackendConnection = import("./secretBackendConnection").SecretBackendConnection;
+export const SecretBackendConnection: typeof import("./secretBackendConnection").SecretBackendConnection = null as any;
 
-// Import resources to register:
-import { SecretBackendConnection } from "./secretBackendConnection";
-import { SecretBackendRole } from "./secretBackendRole";
-import { SecretBackendStaticRole } from "./secretBackendStaticRole";
-import { SecretsMount } from "./secretsMount";
+export { SecretBackendRoleArgs, SecretBackendRoleState } from "./secretBackendRole";
+export type SecretBackendRole = import("./secretBackendRole").SecretBackendRole;
+export const SecretBackendRole: typeof import("./secretBackendRole").SecretBackendRole = null as any;
+
+export { SecretBackendStaticRoleArgs, SecretBackendStaticRoleState } from "./secretBackendStaticRole";
+export type SecretBackendStaticRole = import("./secretBackendStaticRole").SecretBackendStaticRole;
+export const SecretBackendStaticRole: typeof import("./secretBackendStaticRole").SecretBackendStaticRole = null as any;
+
+export { SecretsMountArgs, SecretsMountState } from "./secretsMount";
+export type SecretsMount = import("./secretsMount").SecretsMount;
+export const SecretsMount: typeof import("./secretsMount").SecretsMount = null as any;
+
+utilities.lazyLoad(exports, ["SecretBackendConnection"], () => require("./secretBackendConnection"));
+utilities.lazyLoad(exports, ["SecretBackendRole"], () => require("./secretBackendRole"));
+utilities.lazyLoad(exports, ["SecretBackendStaticRole"], () => require("./secretBackendStaticRole"));
+utilities.lazyLoad(exports, ["SecretsMount"], () => require("./secretsMount"));
 
 const _module = {
     version: utilities.getVersion(),

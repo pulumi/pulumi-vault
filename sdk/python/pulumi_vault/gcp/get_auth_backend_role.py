@@ -21,7 +21,7 @@ class GetAuthBackendRoleResult:
     """
     A collection of values returned by getAuthBackendRole.
     """
-    def __init__(__self__, backend=None, bound_instance_groups=None, bound_labels=None, bound_projects=None, bound_regions=None, bound_service_accounts=None, bound_zones=None, id=None, role_id=None, role_name=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None, type=None):
+    def __init__(__self__, backend=None, bound_instance_groups=None, bound_labels=None, bound_projects=None, bound_regions=None, bound_service_accounts=None, bound_zones=None, id=None, namespace=None, role_id=None, role_name=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None, type=None):
         if backend and not isinstance(backend, str):
             raise TypeError("Expected argument 'backend' to be a str")
         pulumi.set(__self__, "backend", backend)
@@ -46,6 +46,9 @@ class GetAuthBackendRoleResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if namespace and not isinstance(namespace, str):
+            raise TypeError("Expected argument 'namespace' to be a str")
+        pulumi.set(__self__, "namespace", namespace)
         if role_id and not isinstance(role_id, str):
             raise TypeError("Expected argument 'role_id' to be a str")
         pulumi.set(__self__, "role_id", role_id)
@@ -143,6 +146,11 @@ class GetAuthBackendRoleResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[str]:
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="roleId")
@@ -270,6 +278,7 @@ class AwaitableGetAuthBackendRoleResult(GetAuthBackendRoleResult):
             bound_service_accounts=self.bound_service_accounts,
             bound_zones=self.bound_zones,
             id=self.id,
+            namespace=self.namespace,
             role_id=self.role_id,
             role_name=self.role_name,
             token_bound_cidrs=self.token_bound_cidrs,
@@ -285,6 +294,7 @@ class AwaitableGetAuthBackendRoleResult(GetAuthBackendRoleResult):
 
 
 def get_auth_backend_role(backend: Optional[str] = None,
+                          namespace: Optional[str] = None,
                           role_name: Optional[str] = None,
                           token_bound_cidrs: Optional[Sequence[str]] = None,
                           token_explicit_max_ttl: Optional[int] = None,
@@ -312,6 +322,10 @@ def get_auth_backend_role(backend: Optional[str] = None,
 
 
     :param str backend: The unique name for the GCP backend from which to fetch the role. Defaults to "gcp".
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured namespace.
+           *Available only for Vault Enterprise*.
     :param str role_name: The name of the role to retrieve the Role ID for.
     :param Sequence[str] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
            addresses which can authenticate successfully, and ties the resulting token to these blocks
@@ -343,6 +357,7 @@ def get_auth_backend_role(backend: Optional[str] = None,
     """
     __args__ = dict()
     __args__['backend'] = backend
+    __args__['namespace'] = namespace
     __args__['roleName'] = role_name
     __args__['tokenBoundCidrs'] = token_bound_cidrs
     __args__['tokenExplicitMaxTtl'] = token_explicit_max_ttl
@@ -365,6 +380,7 @@ def get_auth_backend_role(backend: Optional[str] = None,
         bound_service_accounts=__ret__.bound_service_accounts,
         bound_zones=__ret__.bound_zones,
         id=__ret__.id,
+        namespace=__ret__.namespace,
         role_id=__ret__.role_id,
         role_name=__ret__.role_name,
         token_bound_cidrs=__ret__.token_bound_cidrs,
@@ -381,6 +397,7 @@ def get_auth_backend_role(backend: Optional[str] = None,
 
 @_utilities.lift_output_func(get_auth_backend_role)
 def get_auth_backend_role_output(backend: Optional[pulumi.Input[Optional[str]]] = None,
+                                 namespace: Optional[pulumi.Input[Optional[str]]] = None,
                                  role_name: Optional[pulumi.Input[str]] = None,
                                  token_bound_cidrs: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                                  token_explicit_max_ttl: Optional[pulumi.Input[Optional[int]]] = None,
@@ -408,6 +425,10 @@ def get_auth_backend_role_output(backend: Optional[pulumi.Input[Optional[str]]] 
 
 
     :param str backend: The unique name for the GCP backend from which to fetch the role. Defaults to "gcp".
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured namespace.
+           *Available only for Vault Enterprise*.
     :param str role_name: The name of the role to retrieve the Role ID for.
     :param Sequence[str] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
            addresses which can authenticate successfully, and ties the resulting token to these blocks

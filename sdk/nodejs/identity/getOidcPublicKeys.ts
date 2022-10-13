@@ -40,6 +40,7 @@ export function getOidcPublicKeys(args: GetOidcPublicKeysArgs, opts?: pulumi.Inv
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("vault:identity/getOidcPublicKeys:getOidcPublicKeys", {
         "name": args.name,
+        "namespace": args.namespace,
     }, opts);
 }
 
@@ -51,6 +52,13 @@ export interface GetOidcPublicKeysArgs {
      * The name of the OIDC Provider in Vault.
      */
     name: string;
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: string;
 }
 
 /**
@@ -67,6 +75,7 @@ export interface GetOidcPublicKeysResult {
      */
     readonly keys: {[key: string]: any}[];
     readonly name: string;
+    readonly namespace?: string;
 }
 
 export function getOidcPublicKeysOutput(args: GetOidcPublicKeysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOidcPublicKeysResult> {
@@ -81,4 +90,11 @@ export interface GetOidcPublicKeysOutputArgs {
      * The name of the OIDC Provider in Vault.
      */
     name: pulumi.Input<string>;
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
 }

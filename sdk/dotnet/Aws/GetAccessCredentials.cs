@@ -12,10 +12,10 @@ namespace Pulumi.Vault.Aws
     public static class GetAccessCredentials
     {
         public static Task<GetAccessCredentialsResult> InvokeAsync(GetAccessCredentialsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAccessCredentialsResult>("vault:aws/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetAccessCredentialsResult>("vault:aws/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsArgs(), options.WithDefaults());
 
         public static Output<GetAccessCredentialsResult> Invoke(GetAccessCredentialsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetAccessCredentialsResult>("vault:aws/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetAccessCredentialsResult>("vault:aws/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -27,6 +27,15 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Input("backend", required: true)]
         public string Backend { get; set; } = null!;
+
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public string? Namespace { get; set; }
 
         [Input("region")]
         public string? Region { get; set; }
@@ -77,6 +86,15 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Input("backend", required: true)]
         public Input<string> Backend { get; set; } = null!;
+
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -144,6 +162,7 @@ namespace Pulumi.Vault.Aws
         public readonly string LeaseId;
         public readonly bool LeaseRenewable;
         public readonly string LeaseStartTime;
+        public readonly string? Namespace;
         public readonly string? Region;
         public readonly string Role;
         public readonly string? RoleArn;
@@ -174,6 +193,8 @@ namespace Pulumi.Vault.Aws
 
             string leaseStartTime,
 
+            string? @namespace,
+
             string? region,
 
             string role,
@@ -195,6 +216,7 @@ namespace Pulumi.Vault.Aws
             LeaseId = leaseId;
             LeaseRenewable = leaseRenewable;
             LeaseStartTime = leaseStartTime;
+            Namespace = @namespace;
             Region = region;
             Role = role;
             RoleArn = roleArn;

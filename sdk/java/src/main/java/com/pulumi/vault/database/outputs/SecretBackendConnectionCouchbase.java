@@ -17,64 +17,45 @@ public final class SecretBackendConnectionCouchbase {
      * @return Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
      * 
      */
-    private final @Nullable String base64Pem;
+    private @Nullable String base64Pem;
     /**
      * @return Required for Couchbase versions prior to 6.5.0. This is only used to verify vault&#39;s connection to the server.
      * 
      */
-    private final @Nullable String bucketName;
+    private @Nullable String bucketName;
     /**
      * @return A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
      * 
      */
-    private final List<String> hosts;
+    private List<String> hosts;
     /**
      * @return Whether to skip verification of the server
      * certificate when using TLS.
      * 
      */
-    private final @Nullable Boolean insecureTls;
+    private @Nullable Boolean insecureTls;
     /**
      * @return The root credential password used in the connection URL.
      * 
      */
-    private final String password;
+    private String password;
     /**
      * @return Whether to use TLS when connecting to Cassandra.
      * 
      */
-    private final @Nullable Boolean tls;
+    private @Nullable Boolean tls;
     /**
      * @return The root credential username used in the connection URL.
      * 
      */
-    private final String username;
+    private String username;
     /**
      * @return - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
      * 
      */
-    private final @Nullable String usernameTemplate;
+    private @Nullable String usernameTemplate;
 
-    @CustomType.Constructor
-    private SecretBackendConnectionCouchbase(
-        @CustomType.Parameter("base64Pem") @Nullable String base64Pem,
-        @CustomType.Parameter("bucketName") @Nullable String bucketName,
-        @CustomType.Parameter("hosts") List<String> hosts,
-        @CustomType.Parameter("insecureTls") @Nullable Boolean insecureTls,
-        @CustomType.Parameter("password") String password,
-        @CustomType.Parameter("tls") @Nullable Boolean tls,
-        @CustomType.Parameter("username") String username,
-        @CustomType.Parameter("usernameTemplate") @Nullable String usernameTemplate) {
-        this.base64Pem = base64Pem;
-        this.bucketName = bucketName;
-        this.hosts = hosts;
-        this.insecureTls = insecureTls;
-        this.password = password;
-        this.tls = tls;
-        this.username = username;
-        this.usernameTemplate = usernameTemplate;
-    }
-
+    private SecretBackendConnectionCouchbase() {}
     /**
      * @return Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
      * 
@@ -140,7 +121,7 @@ public final class SecretBackendConnectionCouchbase {
     public static Builder builder(SecretBackendConnectionCouchbase defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable String base64Pem;
         private @Nullable String bucketName;
@@ -150,11 +131,7 @@ public final class SecretBackendConnectionCouchbase {
         private @Nullable Boolean tls;
         private String username;
         private @Nullable String usernameTemplate;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(SecretBackendConnectionCouchbase defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.base64Pem = defaults.base64Pem;
@@ -167,14 +144,17 @@ public final class SecretBackendConnectionCouchbase {
     	      this.usernameTemplate = defaults.usernameTemplate;
         }
 
+        @CustomType.Setter
         public Builder base64Pem(@Nullable String base64Pem) {
             this.base64Pem = base64Pem;
             return this;
         }
+        @CustomType.Setter
         public Builder bucketName(@Nullable String bucketName) {
             this.bucketName = bucketName;
             return this;
         }
+        @CustomType.Setter
         public Builder hosts(List<String> hosts) {
             this.hosts = Objects.requireNonNull(hosts);
             return this;
@@ -182,27 +162,42 @@ public final class SecretBackendConnectionCouchbase {
         public Builder hosts(String... hosts) {
             return hosts(List.of(hosts));
         }
+        @CustomType.Setter
         public Builder insecureTls(@Nullable Boolean insecureTls) {
             this.insecureTls = insecureTls;
             return this;
         }
+        @CustomType.Setter
         public Builder password(String password) {
             this.password = Objects.requireNonNull(password);
             return this;
         }
+        @CustomType.Setter
         public Builder tls(@Nullable Boolean tls) {
             this.tls = tls;
             return this;
         }
+        @CustomType.Setter
         public Builder username(String username) {
             this.username = Objects.requireNonNull(username);
             return this;
         }
+        @CustomType.Setter
         public Builder usernameTemplate(@Nullable String usernameTemplate) {
             this.usernameTemplate = usernameTemplate;
             return this;
-        }        public SecretBackendConnectionCouchbase build() {
-            return new SecretBackendConnectionCouchbase(base64Pem, bucketName, hosts, insecureTls, password, tls, username, usernameTemplate);
+        }
+        public SecretBackendConnectionCouchbase build() {
+            final var o = new SecretBackendConnectionCouchbase();
+            o.base64Pem = base64Pem;
+            o.bucketName = bucketName;
+            o.hosts = hosts;
+            o.insecureTls = insecureTls;
+            o.password = password;
+            o.tls = tls;
+            o.username = username;
+            o.usernameTemplate = usernameTemplate;
+            return o;
         }
     }
 }

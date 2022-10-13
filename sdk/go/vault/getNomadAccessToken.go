@@ -65,6 +65,11 @@ type GetNomadAccessTokenArgs struct {
 	// The path to the Nomad secret backend to
 	// read credentials from, with no leading or trailing `/`s.
 	Backend string `pulumi:"backend"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The name of the Nomad secret backend role to generate
 	// a token for, with no leading or trailing `/`s.
 	Role string `pulumi:"role"`
@@ -77,8 +82,9 @@ type GetNomadAccessTokenResult struct {
 	AccessorId string `pulumi:"accessorId"`
 	Backend    string `pulumi:"backend"`
 	// The provider-assigned unique ID for this managed resource.
-	Id   string `pulumi:"id"`
-	Role string `pulumi:"role"`
+	Id        string  `pulumi:"id"`
+	Namespace *string `pulumi:"namespace"`
+	Role      string  `pulumi:"role"`
 	// The token to be used when making requests to Nomad and should be kept private.
 	SecretId string `pulumi:"secretId"`
 }
@@ -101,6 +107,11 @@ type GetNomadAccessTokenOutputArgs struct {
 	// The path to the Nomad secret backend to
 	// read credentials from, with no leading or trailing `/`s.
 	Backend pulumi.StringInput `pulumi:"backend"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 	// The name of the Nomad secret backend role to generate
 	// a token for, with no leading or trailing `/`s.
 	Role pulumi.StringInput `pulumi:"role"`
@@ -138,6 +149,10 @@ func (o GetNomadAccessTokenResultOutput) Backend() pulumi.StringOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o GetNomadAccessTokenResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetNomadAccessTokenResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetNomadAccessTokenResultOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetNomadAccessTokenResult) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 func (o GetNomadAccessTokenResultOutput) Role() pulumi.StringOutput {

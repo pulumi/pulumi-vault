@@ -18,6 +18,7 @@ class AuthBackendRoleSecretIDArgs:
                  backend: Optional[pulumi.Input[str]] = None,
                  cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  metadata: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  secret_id: Optional[pulumi.Input[str]] = None,
                  with_wrapped_accessor: Optional[pulumi.Input[bool]] = None,
                  wrapping_ttl: Optional[pulumi.Input[str]] = None):
@@ -29,6 +30,10 @@ class AuthBackendRoleSecretIDArgs:
                perform the login operation using this SecretID.
         :param pulumi.Input[str] metadata: A JSON-encoded string containing metadata in
                key-value pairs to be set on tokens issued with this SecretID.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] secret_id: The SecretID to be created. If set, uses "Push"
                mode.  Defaults to Vault auto-generating SecretIDs.
         :param pulumi.Input[bool] with_wrapped_accessor: Set to `true` to use the wrapped secret-id accessor as the resource ID.
@@ -46,6 +51,8 @@ class AuthBackendRoleSecretIDArgs:
             pulumi.set(__self__, "cidr_lists", cidr_lists)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if secret_id is not None:
             pulumi.set(__self__, "secret_id", secret_id)
         if with_wrapped_accessor is not None:
@@ -104,6 +111,21 @@ class AuthBackendRoleSecretIDArgs:
         pulumi.set(self, "metadata", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="secretId")
     def secret_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -153,6 +175,7 @@ class _AuthBackendRoleSecretIDState:
                  backend: Optional[pulumi.Input[str]] = None,
                  cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  metadata: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  role_name: Optional[pulumi.Input[str]] = None,
                  secret_id: Optional[pulumi.Input[str]] = None,
                  with_wrapped_accessor: Optional[pulumi.Input[bool]] = None,
@@ -167,6 +190,10 @@ class _AuthBackendRoleSecretIDState:
                perform the login operation using this SecretID.
         :param pulumi.Input[str] metadata: A JSON-encoded string containing metadata in
                key-value pairs to be set on tokens issued with this SecretID.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role_name: The name of the role to create the SecretID for.
         :param pulumi.Input[str] secret_id: The SecretID to be created. If set, uses "Push"
                mode.  Defaults to Vault auto-generating SecretIDs.
@@ -189,6 +216,8 @@ class _AuthBackendRoleSecretIDState:
             pulumi.set(__self__, "cidr_lists", cidr_lists)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if role_name is not None:
             pulumi.set(__self__, "role_name", role_name)
         if secret_id is not None:
@@ -251,6 +280,21 @@ class _AuthBackendRoleSecretIDState:
     @metadata.setter
     def metadata(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "metadata", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter(name="roleName")
@@ -340,6 +384,7 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
                  backend: Optional[pulumi.Input[str]] = None,
                  cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  metadata: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  role_name: Optional[pulumi.Input[str]] = None,
                  secret_id: Optional[pulumi.Input[str]] = None,
                  with_wrapped_accessor: Optional[pulumi.Input[bool]] = None,
@@ -381,6 +426,10 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
                perform the login operation using this SecretID.
         :param pulumi.Input[str] metadata: A JSON-encoded string containing metadata in
                key-value pairs to be set on tokens issued with this SecretID.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role_name: The name of the role to create the SecretID for.
         :param pulumi.Input[str] secret_id: The SecretID to be created. If set, uses "Push"
                mode.  Defaults to Vault auto-generating SecretIDs.
@@ -445,6 +494,7 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
                  backend: Optional[pulumi.Input[str]] = None,
                  cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  metadata: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  role_name: Optional[pulumi.Input[str]] = None,
                  secret_id: Optional[pulumi.Input[str]] = None,
                  with_wrapped_accessor: Optional[pulumi.Input[bool]] = None,
@@ -461,15 +511,18 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
             __props__.__dict__["backend"] = backend
             __props__.__dict__["cidr_lists"] = cidr_lists
             __props__.__dict__["metadata"] = metadata
+            __props__.__dict__["namespace"] = namespace
             if role_name is None and not opts.urn:
                 raise TypeError("Missing required property 'role_name'")
             __props__.__dict__["role_name"] = role_name
-            __props__.__dict__["secret_id"] = secret_id
+            __props__.__dict__["secret_id"] = None if secret_id is None else pulumi.Output.secret(secret_id)
             __props__.__dict__["with_wrapped_accessor"] = with_wrapped_accessor
             __props__.__dict__["wrapping_ttl"] = wrapping_ttl
             __props__.__dict__["accessor"] = None
             __props__.__dict__["wrapping_accessor"] = None
             __props__.__dict__["wrapping_token"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["secretId", "wrappingToken"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(AuthBackendRoleSecretID, __self__).__init__(
             'vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID',
             resource_name,
@@ -484,6 +537,7 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
             backend: Optional[pulumi.Input[str]] = None,
             cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             metadata: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             role_name: Optional[pulumi.Input[str]] = None,
             secret_id: Optional[pulumi.Input[str]] = None,
             with_wrapped_accessor: Optional[pulumi.Input[bool]] = None,
@@ -503,6 +557,10 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
                perform the login operation using this SecretID.
         :param pulumi.Input[str] metadata: A JSON-encoded string containing metadata in
                key-value pairs to be set on tokens issued with this SecretID.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role_name: The name of the role to create the SecretID for.
         :param pulumi.Input[str] secret_id: The SecretID to be created. If set, uses "Push"
                mode.  Defaults to Vault auto-generating SecretIDs.
@@ -525,6 +583,7 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
         __props__.__dict__["backend"] = backend
         __props__.__dict__["cidr_lists"] = cidr_lists
         __props__.__dict__["metadata"] = metadata
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["role_name"] = role_name
         __props__.__dict__["secret_id"] = secret_id
         __props__.__dict__["with_wrapped_accessor"] = with_wrapped_accessor
@@ -566,6 +625,17 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
         key-value pairs to be set on tokens issued with this SecretID.
         """
         return pulumi.get(self, "metadata")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="roleName")

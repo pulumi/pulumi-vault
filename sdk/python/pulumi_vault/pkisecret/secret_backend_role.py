@@ -40,6 +40,7 @@ class SecretBackendRoleArgs:
                  localities: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  max_ttl: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  no_store: Optional[pulumi.Input[bool]] = None,
                  not_before_duration: Optional[pulumi.Input[str]] = None,
                  organization_unit: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -82,11 +83,15 @@ class SecretBackendRoleArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] localities: The locality of generated certificates
         :param pulumi.Input[str] max_ttl: The maximum lease TTL, in seconds, for the role.
         :param pulumi.Input[str] name: The name to identify this role within the backend. Must be unique within the backend.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] no_store: Flag to not store certificates in the storage backend
         :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] organization_unit: The organization unit of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] organizations: The organization of generated certificates
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] policy_identifiers: Specify the list of allowed policies IODs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policy_identifiers: Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
         :param pulumi.Input[Sequence[pulumi.Input[str]]] postal_codes: The postal code of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] provinces: The province of generated certificates
         :param pulumi.Input[bool] require_cn: Flag to force CN usage
@@ -147,6 +152,8 @@ class SecretBackendRoleArgs:
             pulumi.set(__self__, "max_ttl", max_ttl)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if no_store is not None:
             pulumi.set(__self__, "no_store", no_store)
         if not_before_duration is not None:
@@ -488,6 +495,21 @@ class SecretBackendRoleArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="noStore")
     def no_store(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -539,7 +561,7 @@ class SecretBackendRoleArgs:
     @pulumi.getter(name="policyIdentifiers")
     def policy_identifiers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Specify the list of allowed policies IODs
+        Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
         """
         return pulumi.get(self, "policy_identifiers")
 
@@ -673,6 +695,7 @@ class _SecretBackendRoleState:
                  localities: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  max_ttl: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  no_store: Optional[pulumi.Input[bool]] = None,
                  not_before_duration: Optional[pulumi.Input[str]] = None,
                  organization_unit: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -715,11 +738,15 @@ class _SecretBackendRoleState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] localities: The locality of generated certificates
         :param pulumi.Input[str] max_ttl: The maximum lease TTL, in seconds, for the role.
         :param pulumi.Input[str] name: The name to identify this role within the backend. Must be unique within the backend.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] no_store: Flag to not store certificates in the storage backend
         :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] organization_unit: The organization unit of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] organizations: The organization of generated certificates
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] policy_identifiers: Specify the list of allowed policies IODs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policy_identifiers: Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
         :param pulumi.Input[Sequence[pulumi.Input[str]]] postal_codes: The postal code of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] provinces: The province of generated certificates
         :param pulumi.Input[bool] require_cn: Flag to force CN usage
@@ -781,6 +808,8 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "max_ttl", max_ttl)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if no_store is not None:
             pulumi.set(__self__, "no_store", no_store)
         if not_before_duration is not None:
@@ -1122,6 +1151,21 @@ class _SecretBackendRoleState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="noStore")
     def no_store(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -1173,7 +1217,7 @@ class _SecretBackendRoleState:
     @pulumi.getter(name="policyIdentifiers")
     def policy_identifiers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Specify the list of allowed policies IODs
+        Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
         """
         return pulumi.get(self, "policy_identifiers")
 
@@ -1309,6 +1353,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  localities: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  max_ttl: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  no_store: Optional[pulumi.Input[bool]] = None,
                  not_before_duration: Optional[pulumi.Input[str]] = None,
                  organization_unit: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -1387,11 +1432,15 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] localities: The locality of generated certificates
         :param pulumi.Input[str] max_ttl: The maximum lease TTL, in seconds, for the role.
         :param pulumi.Input[str] name: The name to identify this role within the backend. Must be unique within the backend.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] no_store: Flag to not store certificates in the storage backend
         :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] organization_unit: The organization unit of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] organizations: The organization of generated certificates
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] policy_identifiers: Specify the list of allowed policies IODs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policy_identifiers: Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
         :param pulumi.Input[Sequence[pulumi.Input[str]]] postal_codes: The postal code of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] provinces: The province of generated certificates
         :param pulumi.Input[bool] require_cn: Flag to force CN usage
@@ -1483,6 +1532,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  localities: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  max_ttl: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  no_store: Optional[pulumi.Input[bool]] = None,
                  not_before_duration: Optional[pulumi.Input[str]] = None,
                  organization_unit: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -1533,6 +1583,7 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__.__dict__["localities"] = localities
             __props__.__dict__["max_ttl"] = max_ttl
             __props__.__dict__["name"] = name
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["no_store"] = no_store
             __props__.__dict__["not_before_duration"] = not_before_duration
             __props__.__dict__["organization_unit"] = organization_unit
@@ -1582,6 +1633,7 @@ class SecretBackendRole(pulumi.CustomResource):
             localities: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             max_ttl: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             no_store: Optional[pulumi.Input[bool]] = None,
             not_before_duration: Optional[pulumi.Input[str]] = None,
             organization_unit: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -1629,11 +1681,15 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] localities: The locality of generated certificates
         :param pulumi.Input[str] max_ttl: The maximum lease TTL, in seconds, for the role.
         :param pulumi.Input[str] name: The name to identify this role within the backend. Must be unique within the backend.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] no_store: Flag to not store certificates in the storage backend
         :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] organization_unit: The organization unit of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] organizations: The organization of generated certificates
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] policy_identifiers: Specify the list of allowed policies IODs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policy_identifiers: Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
         :param pulumi.Input[Sequence[pulumi.Input[str]]] postal_codes: The postal code of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] provinces: The province of generated certificates
         :param pulumi.Input[bool] require_cn: Flag to force CN usage
@@ -1673,6 +1729,7 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["localities"] = localities
         __props__.__dict__["max_ttl"] = max_ttl
         __props__.__dict__["name"] = name
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["no_store"] = no_store
         __props__.__dict__["not_before_duration"] = not_before_duration
         __props__.__dict__["organization_unit"] = organization_unit
@@ -1898,6 +1955,17 @@ class SecretBackendRole(pulumi.CustomResource):
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @property
     @pulumi.getter(name="noStore")
     def no_store(self) -> pulumi.Output[Optional[bool]]:
         """
@@ -1933,7 +2001,7 @@ class SecretBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="policyIdentifiers")
     def policy_identifiers(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        Specify the list of allowed policies IODs
+        Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
         """
         return pulumi.get(self, "policy_identifiers")
 

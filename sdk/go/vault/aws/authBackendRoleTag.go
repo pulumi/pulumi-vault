@@ -26,6 +26,11 @@ type AuthBackendRoleTag struct {
 	InstanceId pulumi.StringPtrOutput `pulumi:"instanceId"`
 	// The maximum TTL of the tokens issued using this role.
 	MaxTtl pulumi.StringPtrOutput `pulumi:"maxTtl"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The policies to be associated with the tag. Must be a subset of the policies associated with the role.
 	Policies pulumi.StringArrayOutput `pulumi:"policies"`
 	// The name of the AWS auth backend role to read
@@ -80,6 +85,11 @@ type authBackendRoleTagState struct {
 	InstanceId *string `pulumi:"instanceId"`
 	// The maximum TTL of the tokens issued using this role.
 	MaxTtl *string `pulumi:"maxTtl"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The policies to be associated with the tag. Must be a subset of the policies associated with the role.
 	Policies []string `pulumi:"policies"`
 	// The name of the AWS auth backend role to read
@@ -103,6 +113,11 @@ type AuthBackendRoleTagState struct {
 	InstanceId pulumi.StringPtrInput
 	// The maximum TTL of the tokens issued using this role.
 	MaxTtl pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The policies to be associated with the tag. Must be a subset of the policies associated with the role.
 	Policies pulumi.StringArrayInput
 	// The name of the AWS auth backend role to read
@@ -130,6 +145,11 @@ type authBackendRoleTagArgs struct {
 	InstanceId *string `pulumi:"instanceId"`
 	// The maximum TTL of the tokens issued using this role.
 	MaxTtl *string `pulumi:"maxTtl"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The policies to be associated with the tag. Must be a subset of the policies associated with the role.
 	Policies []string `pulumi:"policies"`
 	// The name of the AWS auth backend role to read
@@ -150,6 +170,11 @@ type AuthBackendRoleTagArgs struct {
 	InstanceId pulumi.StringPtrInput
 	// The maximum TTL of the tokens issued using this role.
 	MaxTtl pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The policies to be associated with the tag. Must be a subset of the policies associated with the role.
 	Policies pulumi.StringArrayInput
 	// The name of the AWS auth backend role to read
@@ -268,6 +293,14 @@ func (o AuthBackendRoleTagOutput) InstanceId() pulumi.StringPtrOutput {
 // The maximum TTL of the tokens issued using this role.
 func (o AuthBackendRoleTagOutput) MaxTtl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendRoleTag) pulumi.StringPtrOutput { return v.MaxTtl }).(pulumi.StringPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o AuthBackendRoleTagOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRoleTag) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The policies to be associated with the tag. Must be a subset of the policies associated with the role.

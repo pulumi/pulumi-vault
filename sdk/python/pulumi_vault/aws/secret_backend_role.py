@@ -20,6 +20,7 @@ class SecretBackendRoleArgs:
                  iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  max_sts_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  permissions_boundary_arn: Optional[pulumi.Input[str]] = None,
                  policy_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  policy_document: Optional[pulumi.Input[str]] = None,
@@ -48,6 +49,10 @@ class SecretBackendRoleArgs:
                one of `assumed_role` or `federation_token`.
         :param pulumi.Input[str] name: The name to identify this role within the backend.
                Must be unique within the backend.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] permissions_boundary_arn: The ARN of the AWS Permissions 
                Boundary to attach to IAM users created in the role. Valid only when
                `credential_type` is `iam_user`. If not specified, then no permissions boundary
@@ -80,6 +85,8 @@ class SecretBackendRoleArgs:
             pulumi.set(__self__, "max_sts_ttl", max_sts_ttl)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if permissions_boundary_arn is not None:
             pulumi.set(__self__, "permissions_boundary_arn", permissions_boundary_arn)
         if policy_arns is not None:
@@ -179,6 +186,21 @@ class SecretBackendRoleArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="permissionsBoundaryArn")
     def permissions_boundary_arn(self) -> Optional[pulumi.Input[str]]:
         """
@@ -264,6 +286,7 @@ class _SecretBackendRoleState:
                  iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  max_sts_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  permissions_boundary_arn: Optional[pulumi.Input[str]] = None,
                  policy_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  policy_document: Optional[pulumi.Input[str]] = None,
@@ -292,6 +315,10 @@ class _SecretBackendRoleState:
                one of `assumed_role` or `federation_token`.
         :param pulumi.Input[str] name: The name to identify this role within the backend.
                Must be unique within the backend.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] permissions_boundary_arn: The ARN of the AWS Permissions 
                Boundary to attach to IAM users created in the role. Valid only when
                `credential_type` is `iam_user`. If not specified, then no permissions boundary
@@ -326,6 +353,8 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "max_sts_ttl", max_sts_ttl)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if permissions_boundary_arn is not None:
             pulumi.set(__self__, "permissions_boundary_arn", permissions_boundary_arn)
         if policy_arns is not None:
@@ -425,6 +454,21 @@ class _SecretBackendRoleState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="permissionsBoundaryArn")
     def permissions_boundary_arn(self) -> Optional[pulumi.Input[str]]:
         """
@@ -512,6 +556,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  max_sts_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  permissions_boundary_arn: Optional[pulumi.Input[str]] = None,
                  policy_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  policy_document: Optional[pulumi.Input[str]] = None,
@@ -575,6 +620,10 @@ class SecretBackendRole(pulumi.CustomResource):
                one of `assumed_role` or `federation_token`.
         :param pulumi.Input[str] name: The name to identify this role within the backend.
                Must be unique within the backend.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] permissions_boundary_arn: The ARN of the AWS Permissions 
                Boundary to attach to IAM users created in the role. Valid only when
                `credential_type` is `iam_user`. If not specified, then no permissions boundary
@@ -658,6 +707,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  max_sts_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  permissions_boundary_arn: Optional[pulumi.Input[str]] = None,
                  policy_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  policy_document: Optional[pulumi.Input[str]] = None,
@@ -682,6 +732,7 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__.__dict__["iam_groups"] = iam_groups
             __props__.__dict__["max_sts_ttl"] = max_sts_ttl
             __props__.__dict__["name"] = name
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["permissions_boundary_arn"] = permissions_boundary_arn
             __props__.__dict__["policy_arns"] = policy_arns
             __props__.__dict__["policy_document"] = policy_document
@@ -703,6 +754,7 @@ class SecretBackendRole(pulumi.CustomResource):
             iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             max_sts_ttl: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             permissions_boundary_arn: Optional[pulumi.Input[str]] = None,
             policy_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             policy_document: Optional[pulumi.Input[str]] = None,
@@ -736,6 +788,10 @@ class SecretBackendRole(pulumi.CustomResource):
                one of `assumed_role` or `federation_token`.
         :param pulumi.Input[str] name: The name to identify this role within the backend.
                Must be unique within the backend.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] permissions_boundary_arn: The ARN of the AWS Permissions 
                Boundary to attach to IAM users created in the role. Valid only when
                `credential_type` is `iam_user`. If not specified, then no permissions boundary
@@ -768,6 +824,7 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["iam_groups"] = iam_groups
         __props__.__dict__["max_sts_ttl"] = max_sts_ttl
         __props__.__dict__["name"] = name
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["permissions_boundary_arn"] = permissions_boundary_arn
         __props__.__dict__["policy_arns"] = policy_arns
         __props__.__dict__["policy_document"] = policy_document
@@ -837,6 +894,17 @@ class SecretBackendRole(pulumi.CustomResource):
         Must be unique within the backend.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="permissionsBoundaryArn")

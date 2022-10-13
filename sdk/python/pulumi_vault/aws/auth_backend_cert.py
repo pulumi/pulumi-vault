@@ -17,6 +17,7 @@ class AuthBackendCertArgs:
                  aws_public_cert: pulumi.Input[str],
                  cert_name: pulumi.Input[str],
                  backend: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AuthBackendCert resource.
@@ -27,6 +28,10 @@ class AuthBackendCertArgs:
         :param pulumi.Input[str] cert_name: The name of the certificate.
         :param pulumi.Input[str] backend: The path the AWS auth backend being configured was
                mounted at.  Defaults to `aws`.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] type: Either "pkcs7" or "identity", indicating the type of
                document which can be verified using the given certificate. Defaults to
                "pkcs7".
@@ -35,6 +40,8 @@ class AuthBackendCertArgs:
         pulumi.set(__self__, "cert_name", cert_name)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if type is not None:
             pulumi.set(__self__, "type", type)
 
@@ -80,6 +87,21 @@ class AuthBackendCertArgs:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
         Either "pkcs7" or "identity", indicating the type of
@@ -99,6 +121,7 @@ class _AuthBackendCertState:
                  aws_public_cert: Optional[pulumi.Input[str]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  cert_name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendCert resources.
@@ -109,6 +132,10 @@ class _AuthBackendCertState:
         :param pulumi.Input[str] backend: The path the AWS auth backend being configured was
                mounted at.  Defaults to `aws`.
         :param pulumi.Input[str] cert_name: The name of the certificate.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] type: Either "pkcs7" or "identity", indicating the type of
                document which can be verified using the given certificate. Defaults to
                "pkcs7".
@@ -119,6 +146,8 @@ class _AuthBackendCertState:
             pulumi.set(__self__, "backend", backend)
         if cert_name is not None:
             pulumi.set(__self__, "cert_name", cert_name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if type is not None:
             pulumi.set(__self__, "type", type)
 
@@ -164,6 +193,21 @@ class _AuthBackendCertState:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
         Either "pkcs7" or "identity", indicating the type of
@@ -185,6 +229,7 @@ class AuthBackendCert(pulumi.CustomResource):
                  aws_public_cert: Optional[pulumi.Input[str]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  cert_name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -205,6 +250,10 @@ class AuthBackendCert(pulumi.CustomResource):
         :param pulumi.Input[str] backend: The path the AWS auth backend being configured was
                mounted at.  Defaults to `aws`.
         :param pulumi.Input[str] cert_name: The name of the certificate.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] type: Either "pkcs7" or "identity", indicating the type of
                document which can be verified using the given certificate. Defaults to
                "pkcs7".
@@ -242,6 +291,7 @@ class AuthBackendCert(pulumi.CustomResource):
                  aws_public_cert: Optional[pulumi.Input[str]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  cert_name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -259,6 +309,7 @@ class AuthBackendCert(pulumi.CustomResource):
             if cert_name is None and not opts.urn:
                 raise TypeError("Missing required property 'cert_name'")
             __props__.__dict__["cert_name"] = cert_name
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["type"] = type
         super(AuthBackendCert, __self__).__init__(
             'vault:aws/authBackendCert:AuthBackendCert',
@@ -273,6 +324,7 @@ class AuthBackendCert(pulumi.CustomResource):
             aws_public_cert: Optional[pulumi.Input[str]] = None,
             backend: Optional[pulumi.Input[str]] = None,
             cert_name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'AuthBackendCert':
         """
         Get an existing AuthBackendCert resource's state with the given name, id, and optional extra
@@ -288,6 +340,10 @@ class AuthBackendCert(pulumi.CustomResource):
         :param pulumi.Input[str] backend: The path the AWS auth backend being configured was
                mounted at.  Defaults to `aws`.
         :param pulumi.Input[str] cert_name: The name of the certificate.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] type: Either "pkcs7" or "identity", indicating the type of
                document which can be verified using the given certificate. Defaults to
                "pkcs7".
@@ -299,6 +355,7 @@ class AuthBackendCert(pulumi.CustomResource):
         __props__.__dict__["aws_public_cert"] = aws_public_cert
         __props__.__dict__["backend"] = backend
         __props__.__dict__["cert_name"] = cert_name
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["type"] = type
         return AuthBackendCert(resource_name, opts=opts, __props__=__props__)
 
@@ -329,6 +386,17 @@ class AuthBackendCert(pulumi.CustomResource):
         The name of the certificate.
         """
         return pulumi.get(self, "cert_name")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

@@ -20,6 +20,7 @@ class AuthBackendLoginArgs:
                  iam_request_headers: Optional[pulumi.Input[str]] = None,
                  iam_request_url: Optional[pulumi.Input[str]] = None,
                  identity: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  nonce: Optional[pulumi.Input[str]] = None,
                  pkcs7: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None,
@@ -38,6 +39,10 @@ class AuthBackendLoginArgs:
                request.
         :param pulumi.Input[str] identity: The base64-encoded EC2 instance identity document to
                authenticate with. Can be retrieved from the EC2 metadata server.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] nonce: The unique nonce to be used for login requests. Can be
                set to a user-specified value, or will contain the server-generated value
                once a token is issued. EC2 instances can only acquire a single token until
@@ -63,6 +68,8 @@ class AuthBackendLoginArgs:
             pulumi.set(__self__, "iam_request_url", iam_request_url)
         if identity is not None:
             pulumi.set(__self__, "identity", identity)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if nonce is not None:
             pulumi.set(__self__, "nonce", nonce)
         if pkcs7 is not None:
@@ -152,6 +159,21 @@ class AuthBackendLoginArgs:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def nonce(self) -> Optional[pulumi.Input[str]]:
         """
         The unique nonce to be used for login requests. Can be
@@ -222,6 +244,7 @@ class _AuthBackendLoginState:
                  lease_duration: Optional[pulumi.Input[int]] = None,
                  lease_start_time: Optional[pulumi.Input[str]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  nonce: Optional[pulumi.Input[str]] = None,
                  pkcs7: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -250,6 +273,10 @@ class _AuthBackendLoginState:
         :param pulumi.Input[str] lease_start_time: Time at which the lease was read, using the clock of the system where Terraform was running
         :param pulumi.Input[Mapping[str, Any]] metadata: A map of information returned by the Vault server about the
                authentication used to generate this token.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] nonce: The unique nonce to be used for login requests. Can be
                set to a user-specified value, or will contain the server-generated value
                once a token is issued. EC2 instances can only acquire a single token until
@@ -289,6 +316,8 @@ class _AuthBackendLoginState:
             pulumi.set(__self__, "lease_start_time", lease_start_time)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if nonce is not None:
             pulumi.set(__self__, "nonce", nonce)
         if pkcs7 is not None:
@@ -456,6 +485,21 @@ class _AuthBackendLoginState:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def nonce(self) -> Optional[pulumi.Input[str]]:
         """
         The unique nonce to be used for login requests. Can be
@@ -546,6 +590,7 @@ class AuthBackendLogin(pulumi.CustomResource):
                  iam_request_headers: Optional[pulumi.Input[str]] = None,
                  iam_request_url: Optional[pulumi.Input[str]] = None,
                  identity: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  nonce: Optional[pulumi.Input[str]] = None,
                  pkcs7: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None,
@@ -571,6 +616,10 @@ class AuthBackendLogin(pulumi.CustomResource):
                request.
         :param pulumi.Input[str] identity: The base64-encoded EC2 instance identity document to
                authenticate with. Can be retrieved from the EC2 metadata server.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] nonce: The unique nonce to be used for login requests. Can be
                set to a user-specified value, or will contain the server-generated value
                once a token is issued. EC2 instances can only acquire a single token until
@@ -617,6 +666,7 @@ class AuthBackendLogin(pulumi.CustomResource):
                  iam_request_headers: Optional[pulumi.Input[str]] = None,
                  iam_request_url: Optional[pulumi.Input[str]] = None,
                  identity: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  nonce: Optional[pulumi.Input[str]] = None,
                  pkcs7: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None,
@@ -636,6 +686,7 @@ class AuthBackendLogin(pulumi.CustomResource):
             __props__.__dict__["iam_request_headers"] = iam_request_headers
             __props__.__dict__["iam_request_url"] = iam_request_url
             __props__.__dict__["identity"] = identity
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["nonce"] = nonce
             __props__.__dict__["pkcs7"] = pkcs7
             __props__.__dict__["role"] = role
@@ -648,6 +699,8 @@ class AuthBackendLogin(pulumi.CustomResource):
             __props__.__dict__["metadata"] = None
             __props__.__dict__["policies"] = None
             __props__.__dict__["renewable"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientToken"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(AuthBackendLogin, __self__).__init__(
             'vault:aws/authBackendLogin:AuthBackendLogin',
             resource_name,
@@ -670,6 +723,7 @@ class AuthBackendLogin(pulumi.CustomResource):
             lease_duration: Optional[pulumi.Input[int]] = None,
             lease_start_time: Optional[pulumi.Input[str]] = None,
             metadata: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             nonce: Optional[pulumi.Input[str]] = None,
             pkcs7: Optional[pulumi.Input[str]] = None,
             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -703,6 +757,10 @@ class AuthBackendLogin(pulumi.CustomResource):
         :param pulumi.Input[str] lease_start_time: Time at which the lease was read, using the clock of the system where Terraform was running
         :param pulumi.Input[Mapping[str, Any]] metadata: A map of information returned by the Vault server about the
                authentication used to generate this token.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] nonce: The unique nonce to be used for login requests. Can be
                set to a user-specified value, or will contain the server-generated value
                once a token is issued. EC2 instances can only acquire a single token until
@@ -734,6 +792,7 @@ class AuthBackendLogin(pulumi.CustomResource):
         __props__.__dict__["lease_duration"] = lease_duration
         __props__.__dict__["lease_start_time"] = lease_start_time
         __props__.__dict__["metadata"] = metadata
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["nonce"] = nonce
         __props__.__dict__["pkcs7"] = pkcs7
         __props__.__dict__["policies"] = policies
@@ -845,6 +904,17 @@ class AuthBackendLogin(pulumi.CustomResource):
         authentication used to generate this token.
         """
         return pulumi.get(self, "metadata")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

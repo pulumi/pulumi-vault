@@ -21,7 +21,7 @@ class GetAccessCredentialsResult:
     """
     A collection of values returned by getAccessCredentials.
     """
-    def __init__(__self__, access_key=None, backend=None, id=None, lease_duration=None, lease_id=None, lease_renewable=None, lease_start_time=None, region=None, role=None, role_arn=None, secret_key=None, security_token=None, ttl=None, type=None):
+    def __init__(__self__, access_key=None, backend=None, id=None, lease_duration=None, lease_id=None, lease_renewable=None, lease_start_time=None, namespace=None, region=None, role=None, role_arn=None, secret_key=None, security_token=None, ttl=None, type=None):
         if access_key and not isinstance(access_key, str):
             raise TypeError("Expected argument 'access_key' to be a str")
         pulumi.set(__self__, "access_key", access_key)
@@ -43,6 +43,9 @@ class GetAccessCredentialsResult:
         if lease_start_time and not isinstance(lease_start_time, str):
             raise TypeError("Expected argument 'lease_start_time' to be a str")
         pulumi.set(__self__, "lease_start_time", lease_start_time)
+        if namespace and not isinstance(namespace, str):
+            raise TypeError("Expected argument 'namespace' to be a str")
+        pulumi.set(__self__, "namespace", namespace)
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
@@ -116,6 +119,11 @@ class GetAccessCredentialsResult:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[str]:
+        return pulumi.get(self, "namespace")
+
+    @property
+    @pulumi.getter
     def region(self) -> Optional[str]:
         return pulumi.get(self, "region")
 
@@ -169,6 +177,7 @@ class AwaitableGetAccessCredentialsResult(GetAccessCredentialsResult):
             lease_id=self.lease_id,
             lease_renewable=self.lease_renewable,
             lease_start_time=self.lease_start_time,
+            namespace=self.namespace,
             region=self.region,
             role=self.role,
             role_arn=self.role_arn,
@@ -179,6 +188,7 @@ class AwaitableGetAccessCredentialsResult(GetAccessCredentialsResult):
 
 
 def get_access_credentials(backend: Optional[str] = None,
+                           namespace: Optional[str] = None,
                            region: Optional[str] = None,
                            role: Optional[str] = None,
                            role_arn: Optional[str] = None,
@@ -190,6 +200,10 @@ def get_access_credentials(backend: Optional[str] = None,
 
     :param str backend: The path to the AWS secret backend to
            read credentials from, with no leading or trailing `/`s.
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           *Available only for Vault Enterprise*.
     :param str role: The name of the AWS secret backend role to read
            credentials from, with no leading or trailing `/`s.
     :param str role_arn: The specific AWS ARN to use
@@ -205,6 +219,7 @@ def get_access_credentials(backend: Optional[str] = None,
     """
     __args__ = dict()
     __args__['backend'] = backend
+    __args__['namespace'] = namespace
     __args__['region'] = region
     __args__['role'] = role
     __args__['roleArn'] = role_arn
@@ -221,6 +236,7 @@ def get_access_credentials(backend: Optional[str] = None,
         lease_id=__ret__.lease_id,
         lease_renewable=__ret__.lease_renewable,
         lease_start_time=__ret__.lease_start_time,
+        namespace=__ret__.namespace,
         region=__ret__.region,
         role=__ret__.role,
         role_arn=__ret__.role_arn,
@@ -232,6 +248,7 @@ def get_access_credentials(backend: Optional[str] = None,
 
 @_utilities.lift_output_func(get_access_credentials)
 def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
+                                  namespace: Optional[pulumi.Input[Optional[str]]] = None,
                                   region: Optional[pulumi.Input[Optional[str]]] = None,
                                   role: Optional[pulumi.Input[str]] = None,
                                   role_arn: Optional[pulumi.Input[Optional[str]]] = None,
@@ -243,6 +260,10 @@ def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
 
     :param str backend: The path to the AWS secret backend to
            read credentials from, with no leading or trailing `/`s.
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           *Available only for Vault Enterprise*.
     :param str role: The name of the AWS secret backend role to read
            credentials from, with no leading or trailing `/`s.
     :param str role_arn: The specific AWS ARN to use

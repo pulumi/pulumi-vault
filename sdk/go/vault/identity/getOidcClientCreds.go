@@ -57,6 +57,11 @@ func GetOidcClientCreds(ctx *pulumi.Context, args *GetOidcClientCredsArgs, opts 
 type GetOidcClientCredsArgs struct {
 	// The name of the OIDC Client in Vault.
 	Name string `pulumi:"name"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 }
 
 // A collection of values returned by getOidcClientCreds.
@@ -66,8 +71,9 @@ type GetOidcClientCredsResult struct {
 	// The Client Secret Key returned by Vault.
 	ClientSecret string `pulumi:"clientSecret"`
 	// The provider-assigned unique ID for this managed resource.
-	Id   string `pulumi:"id"`
-	Name string `pulumi:"name"`
+	Id        string  `pulumi:"id"`
+	Name      string  `pulumi:"name"`
+	Namespace *string `pulumi:"namespace"`
 }
 
 func GetOidcClientCredsOutput(ctx *pulumi.Context, args GetOidcClientCredsOutputArgs, opts ...pulumi.InvokeOption) GetOidcClientCredsResultOutput {
@@ -87,6 +93,11 @@ func GetOidcClientCredsOutput(ctx *pulumi.Context, args GetOidcClientCredsOutput
 type GetOidcClientCredsOutputArgs struct {
 	// The name of the OIDC Client in Vault.
 	Name pulumi.StringInput `pulumi:"name"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 }
 
 func (GetOidcClientCredsOutputArgs) ElementType() reflect.Type {
@@ -125,6 +136,10 @@ func (o GetOidcClientCredsResultOutput) Id() pulumi.StringOutput {
 
 func (o GetOidcClientCredsResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOidcClientCredsResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetOidcClientCredsResultOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetOidcClientCredsResult) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 func init() {

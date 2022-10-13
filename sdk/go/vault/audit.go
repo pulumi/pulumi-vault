@@ -89,6 +89,11 @@ type Audit struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Configuration options to pass to the audit device itself.
 	Options pulumi.StringMapOutput `pulumi:"options"`
 	// The path to mount the audit device. This defaults to the type.
@@ -136,6 +141,11 @@ type auditState struct {
 	Description *string `pulumi:"description"`
 	// Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
 	Local *bool `pulumi:"local"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Configuration options to pass to the audit device itself.
 	Options map[string]string `pulumi:"options"`
 	// The path to mount the audit device. This defaults to the type.
@@ -149,6 +159,11 @@ type AuditState struct {
 	Description pulumi.StringPtrInput
 	// Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
 	Local pulumi.BoolPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Configuration options to pass to the audit device itself.
 	Options pulumi.StringMapInput
 	// The path to mount the audit device. This defaults to the type.
@@ -166,6 +181,11 @@ type auditArgs struct {
 	Description *string `pulumi:"description"`
 	// Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
 	Local *bool `pulumi:"local"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Configuration options to pass to the audit device itself.
 	Options map[string]string `pulumi:"options"`
 	// The path to mount the audit device. This defaults to the type.
@@ -180,6 +200,11 @@ type AuditArgs struct {
 	Description pulumi.StringPtrInput
 	// Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
 	Local pulumi.BoolPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Configuration options to pass to the audit device itself.
 	Options pulumi.StringMapInput
 	// The path to mount the audit device. This defaults to the type.
@@ -283,6 +308,14 @@ func (o AuditOutput) Description() pulumi.StringPtrOutput {
 // Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
 func (o AuditOutput) Local() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Audit) pulumi.BoolPtrOutput { return v.Local }).(pulumi.BoolPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o AuditOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Audit) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Configuration options to pass to the audit device itself.

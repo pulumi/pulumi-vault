@@ -175,6 +175,13 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * Flag to not store certificates in the storage backend
      */
     public readonly noStore!: pulumi.Output<boolean | undefined>;
@@ -191,7 +198,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly organizations!: pulumi.Output<string[] | undefined>;
     /**
-     * Specify the list of allowed policies IODs
+     * Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policyIdentifier` blocks instead
      */
     public readonly policyIdentifiers!: pulumi.Output<string[] | undefined>;
     /**
@@ -266,6 +273,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["localities"] = state ? state.localities : undefined;
             resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["noStore"] = state ? state.noStore : undefined;
             resourceInputs["notBeforeDuration"] = state ? state.notBeforeDuration : undefined;
             resourceInputs["organizationUnit"] = state ? state.organizationUnit : undefined;
@@ -310,6 +318,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["localities"] = args ? args.localities : undefined;
             resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["noStore"] = args ? args.noStore : undefined;
             resourceInputs["notBeforeDuration"] = args ? args.notBeforeDuration : undefined;
             resourceInputs["organizationUnit"] = args ? args.organizationUnit : undefined;
@@ -439,6 +448,13 @@ export interface SecretBackendRoleState {
      */
     name?: pulumi.Input<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
+    /**
      * Flag to not store certificates in the storage backend
      */
     noStore?: pulumi.Input<boolean>;
@@ -455,7 +471,7 @@ export interface SecretBackendRoleState {
      */
     organizations?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Specify the list of allowed policies IODs
+     * Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policyIdentifier` blocks instead
      */
     policyIdentifiers?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -602,6 +618,13 @@ export interface SecretBackendRoleArgs {
      */
     name?: pulumi.Input<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
+    /**
      * Flag to not store certificates in the storage backend
      */
     noStore?: pulumi.Input<boolean>;
@@ -618,7 +641,7 @@ export interface SecretBackendRoleArgs {
      */
     organizations?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Specify the list of allowed policies IODs
+     * Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policyIdentifier` blocks instead
      */
     policyIdentifiers?: pulumi.Input<pulumi.Input<string>[]>;
     /**

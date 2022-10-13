@@ -74,6 +74,13 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly bindSecretId!: pulumi.Output<boolean | undefined>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * The RoleID of this role. If not specified, one will be
      * auto-generated.
      */
@@ -167,6 +174,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
             const state = argsOrState as AuthBackendRoleState | undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["bindSecretId"] = state ? state.bindSecretId : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["roleId"] = state ? state.roleId : undefined;
             resourceInputs["roleName"] = state ? state.roleName : undefined;
             resourceInputs["secretIdBoundCidrs"] = state ? state.secretIdBoundCidrs : undefined;
@@ -188,6 +196,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
             }
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["bindSecretId"] = args ? args.bindSecretId : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["roleId"] = args ? args.roleId : undefined;
             resourceInputs["roleName"] = args ? args.roleName : undefined;
             resourceInputs["secretIdBoundCidrs"] = args ? args.secretIdBoundCidrs : undefined;
@@ -222,6 +231,13 @@ export interface AuthBackendRoleState {
      * presented when logging in using this AppRole. Defaults to `true`.
      */
     bindSecretId?: pulumi.Input<boolean>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The RoleID of this role. If not specified, one will be
      * auto-generated.
@@ -316,6 +332,13 @@ export interface AuthBackendRoleArgs {
      * presented when logging in using this AppRole. Defaults to `true`.
      */
     bindSecretId?: pulumi.Input<boolean>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The RoleID of this role. If not specified, one will be
      * auto-generated.

@@ -19,6 +19,7 @@ class AuthBackendClientArgs:
                  ec2_endpoint: Optional[pulumi.Input[str]] = None,
                  iam_endpoint: Optional[pulumi.Input[str]] = None,
                  iam_server_id_header_value: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  sts_endpoint: Optional[pulumi.Input[str]] = None,
                  sts_region: Optional[pulumi.Input[str]] = None):
@@ -35,6 +36,10 @@ class AuthBackendClientArgs:
         :param pulumi.Input[str] iam_server_id_header_value: The value to require in the
                `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
                that are used in the IAM auth method.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] secret_key: The AWS secret key that Vault should use for the
                auth backend.
         :param pulumi.Input[str] sts_endpoint: Override the URL Vault uses when making STS API
@@ -52,6 +57,8 @@ class AuthBackendClientArgs:
             pulumi.set(__self__, "iam_endpoint", iam_endpoint)
         if iam_server_id_header_value is not None:
             pulumi.set(__self__, "iam_server_id_header_value", iam_server_id_header_value)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if secret_key is not None:
             pulumi.set(__self__, "secret_key", secret_key)
         if sts_endpoint is not None:
@@ -124,6 +131,21 @@ class AuthBackendClientArgs:
     @iam_server_id_header_value.setter
     def iam_server_id_header_value(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "iam_server_id_header_value", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter(name="secretKey")
@@ -173,6 +195,7 @@ class _AuthBackendClientState:
                  ec2_endpoint: Optional[pulumi.Input[str]] = None,
                  iam_endpoint: Optional[pulumi.Input[str]] = None,
                  iam_server_id_header_value: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  sts_endpoint: Optional[pulumi.Input[str]] = None,
                  sts_region: Optional[pulumi.Input[str]] = None):
@@ -189,6 +212,10 @@ class _AuthBackendClientState:
         :param pulumi.Input[str] iam_server_id_header_value: The value to require in the
                `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
                that are used in the IAM auth method.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] secret_key: The AWS secret key that Vault should use for the
                auth backend.
         :param pulumi.Input[str] sts_endpoint: Override the URL Vault uses when making STS API
@@ -206,6 +233,8 @@ class _AuthBackendClientState:
             pulumi.set(__self__, "iam_endpoint", iam_endpoint)
         if iam_server_id_header_value is not None:
             pulumi.set(__self__, "iam_server_id_header_value", iam_server_id_header_value)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if secret_key is not None:
             pulumi.set(__self__, "secret_key", secret_key)
         if sts_endpoint is not None:
@@ -278,6 +307,21 @@ class _AuthBackendClientState:
     @iam_server_id_header_value.setter
     def iam_server_id_header_value(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "iam_server_id_header_value", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter(name="secretKey")
@@ -329,6 +373,7 @@ class AuthBackendClient(pulumi.CustomResource):
                  ec2_endpoint: Optional[pulumi.Input[str]] = None,
                  iam_endpoint: Optional[pulumi.Input[str]] = None,
                  iam_server_id_header_value: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  sts_endpoint: Optional[pulumi.Input[str]] = None,
                  sts_region: Optional[pulumi.Input[str]] = None,
@@ -368,6 +413,10 @@ class AuthBackendClient(pulumi.CustomResource):
         :param pulumi.Input[str] iam_server_id_header_value: The value to require in the
                `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
                that are used in the IAM auth method.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] secret_key: The AWS secret key that Vault should use for the
                auth backend.
         :param pulumi.Input[str] sts_endpoint: Override the URL Vault uses when making STS API
@@ -423,6 +472,7 @@ class AuthBackendClient(pulumi.CustomResource):
                  ec2_endpoint: Optional[pulumi.Input[str]] = None,
                  iam_endpoint: Optional[pulumi.Input[str]] = None,
                  iam_server_id_header_value: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  sts_endpoint: Optional[pulumi.Input[str]] = None,
                  sts_region: Optional[pulumi.Input[str]] = None,
@@ -435,14 +485,17 @@ class AuthBackendClient(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = AuthBackendClientArgs.__new__(AuthBackendClientArgs)
 
-            __props__.__dict__["access_key"] = access_key
+            __props__.__dict__["access_key"] = None if access_key is None else pulumi.Output.secret(access_key)
             __props__.__dict__["backend"] = backend
             __props__.__dict__["ec2_endpoint"] = ec2_endpoint
             __props__.__dict__["iam_endpoint"] = iam_endpoint
             __props__.__dict__["iam_server_id_header_value"] = iam_server_id_header_value
-            __props__.__dict__["secret_key"] = secret_key
+            __props__.__dict__["namespace"] = namespace
+            __props__.__dict__["secret_key"] = None if secret_key is None else pulumi.Output.secret(secret_key)
             __props__.__dict__["sts_endpoint"] = sts_endpoint
             __props__.__dict__["sts_region"] = sts_region
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["accessKey", "secretKey"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(AuthBackendClient, __self__).__init__(
             'vault:aws/authBackendClient:AuthBackendClient',
             resource_name,
@@ -458,6 +511,7 @@ class AuthBackendClient(pulumi.CustomResource):
             ec2_endpoint: Optional[pulumi.Input[str]] = None,
             iam_endpoint: Optional[pulumi.Input[str]] = None,
             iam_server_id_header_value: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             secret_key: Optional[pulumi.Input[str]] = None,
             sts_endpoint: Optional[pulumi.Input[str]] = None,
             sts_region: Optional[pulumi.Input[str]] = None) -> 'AuthBackendClient':
@@ -479,6 +533,10 @@ class AuthBackendClient(pulumi.CustomResource):
         :param pulumi.Input[str] iam_server_id_header_value: The value to require in the
                `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
                that are used in the IAM auth method.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] secret_key: The AWS secret key that Vault should use for the
                auth backend.
         :param pulumi.Input[str] sts_endpoint: Override the URL Vault uses when making STS API
@@ -495,6 +553,7 @@ class AuthBackendClient(pulumi.CustomResource):
         __props__.__dict__["ec2_endpoint"] = ec2_endpoint
         __props__.__dict__["iam_endpoint"] = iam_endpoint
         __props__.__dict__["iam_server_id_header_value"] = iam_server_id_header_value
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["secret_key"] = secret_key
         __props__.__dict__["sts_endpoint"] = sts_endpoint
         __props__.__dict__["sts_region"] = sts_region
@@ -545,6 +604,17 @@ class AuthBackendClient(pulumi.CustomResource):
         that are used in the IAM auth method.
         """
         return pulumi.get(self, "iam_server_id_header_value")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="secretKey")

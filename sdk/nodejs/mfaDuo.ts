@@ -80,6 +80,13 @@ export class MfaDuo extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * `(string)` - Push information for Duo.
      */
     public readonly pushInfo!: pulumi.Output<string | undefined>;
@@ -113,6 +120,7 @@ export class MfaDuo extends pulumi.CustomResource {
             resourceInputs["integrationKey"] = state ? state.integrationKey : undefined;
             resourceInputs["mountAccessor"] = state ? state.mountAccessor : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["pushInfo"] = state ? state.pushInfo : undefined;
             resourceInputs["secretKey"] = state ? state.secretKey : undefined;
             resourceInputs["usernameFormat"] = state ? state.usernameFormat : undefined;
@@ -131,14 +139,17 @@ export class MfaDuo extends pulumi.CustomResource {
                 throw new Error("Missing required property 'secretKey'");
             }
             resourceInputs["apiHostname"] = args ? args.apiHostname : undefined;
-            resourceInputs["integrationKey"] = args ? args.integrationKey : undefined;
+            resourceInputs["integrationKey"] = args?.integrationKey ? pulumi.secret(args.integrationKey) : undefined;
             resourceInputs["mountAccessor"] = args ? args.mountAccessor : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["pushInfo"] = args ? args.pushInfo : undefined;
-            resourceInputs["secretKey"] = args ? args.secretKey : undefined;
+            resourceInputs["secretKey"] = args?.secretKey ? pulumi.secret(args.secretKey) : undefined;
             resourceInputs["usernameFormat"] = args ? args.usernameFormat : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["integrationKey", "secretKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(MfaDuo.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -163,6 +174,13 @@ export interface MfaDuoState {
      * `(string: <required>)` – Name of the MFA method.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * `(string)` - Push information for Duo.
      */
@@ -201,6 +219,13 @@ export interface MfaDuoArgs {
      * `(string: <required>)` – Name of the MFA method.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * `(string)` - Push information for Duo.
      */

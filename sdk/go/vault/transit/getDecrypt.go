@@ -57,7 +57,8 @@ type GetDecryptArgs struct {
 	// Context for key derivation. This is required if key derivation is enabled for this key.
 	Context *string `pulumi:"context"`
 	// Specifies the name of the transit key to decrypt against.
-	Key string `pulumi:"key"`
+	Key       string  `pulumi:"key"`
+	Namespace *string `pulumi:"namespace"`
 }
 
 // A collection of values returned by getDecrypt.
@@ -66,8 +67,9 @@ type GetDecryptResult struct {
 	Ciphertext string  `pulumi:"ciphertext"`
 	Context    *string `pulumi:"context"`
 	// The provider-assigned unique ID for this managed resource.
-	Id  string `pulumi:"id"`
-	Key string `pulumi:"key"`
+	Id        string  `pulumi:"id"`
+	Key       string  `pulumi:"key"`
+	Namespace *string `pulumi:"namespace"`
 	// Decrypted plaintext returned from Vault
 	Plaintext string `pulumi:"plaintext"`
 }
@@ -94,7 +96,8 @@ type GetDecryptOutputArgs struct {
 	// Context for key derivation. This is required if key derivation is enabled for this key.
 	Context pulumi.StringPtrInput `pulumi:"context"`
 	// Specifies the name of the transit key to decrypt against.
-	Key pulumi.StringInput `pulumi:"key"`
+	Key       pulumi.StringInput    `pulumi:"key"`
+	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 }
 
 func (GetDecryptOutputArgs) ElementType() reflect.Type {
@@ -135,6 +138,10 @@ func (o GetDecryptResultOutput) Id() pulumi.StringOutput {
 
 func (o GetDecryptResultOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDecryptResult) string { return v.Key }).(pulumi.StringOutput)
+}
+
+func (o GetDecryptResultOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetDecryptResult) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Decrypted plaintext returned from Vault

@@ -12,6 +12,7 @@ export function getAccessCredentials(args: GetAccessCredentialsArgs, opts?: pulu
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("vault:ad/getAccessCredentials:getAccessCredentials", {
         "backend": args.backend,
+        "namespace": args.namespace,
         "role": args.role,
     }, opts);
 }
@@ -25,6 +26,13 @@ export interface GetAccessCredentialsArgs {
      * read credentials from, with no leading or trailing `/`s.
      */
     backend: string;
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: string;
     /**
      * The name of the AD secret backend role to read
      * credentials from, with no leading or trailing `/`s.
@@ -49,6 +57,7 @@ export interface GetAccessCredentialsResult {
      * The current set password on the Active Directory service account, provided because AD is eventually consistent.
      */
     readonly lastPassword: string;
+    readonly namespace?: string;
     readonly role: string;
     /**
      * The Active Directory service account username.
@@ -69,6 +78,13 @@ export interface GetAccessCredentialsOutputArgs {
      * read credentials from, with no leading or trailing `/`s.
      */
     backend: pulumi.Input<string>;
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The name of the AD secret backend role to read
      * credentials from, with no leading or trailing `/`s.

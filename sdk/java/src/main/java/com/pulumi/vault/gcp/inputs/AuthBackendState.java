@@ -5,6 +5,7 @@ package com.pulumi.vault.gcp.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.vault.gcp.inputs.AuthBackendCustomEndpointArgs;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -62,6 +63,29 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Specifies overrides to
+     * [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint)
+     * used when making API requests. This allows specific requests made during authentication
+     * to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
+     * environments. Requires Vault 1.11+.
+     * 
+     */
+    @Import(name="customEndpoint")
+    private @Nullable Output<AuthBackendCustomEndpointArgs> customEndpoint;
+
+    /**
+     * @return Specifies overrides to
+     * [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint)
+     * used when making API requests. This allows specific requests made during authentication
+     * to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
+     * environments. Requires Vault 1.11+.
+     * 
+     */
+    public Optional<Output<AuthBackendCustomEndpointArgs>> customEndpoint() {
+        return Optional.ofNullable(this.customEndpoint);
+    }
+
+    /**
      * A description of the auth method.
      * 
      */
@@ -77,6 +101,23 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     * 
+     */
+    @Import(name="disableRemount")
+    private @Nullable Output<Boolean> disableRemount;
+
+    /**
+     * @return If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     * 
+     */
+    public Optional<Output<Boolean>> disableRemount() {
+        return Optional.ofNullable(this.disableRemount);
+    }
+
+    /**
      * Specifies if the auth method is local only.
      * 
      */
@@ -89,6 +130,27 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<Boolean>> local() {
         return Optional.ofNullable(this.local);
+    }
+
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable Output<String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> namespace() {
+        return Optional.ofNullable(this.namespace);
     }
 
     /**
@@ -142,8 +204,11 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         this.clientEmail = $.clientEmail;
         this.clientId = $.clientId;
         this.credentials = $.credentials;
+        this.customEndpoint = $.customEndpoint;
         this.description = $.description;
+        this.disableRemount = $.disableRemount;
         this.local = $.local;
+        this.namespace = $.namespace;
         this.path = $.path;
         this.privateKeyId = $.privateKeyId;
         this.projectId = $.projectId;
@@ -231,6 +296,35 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param customEndpoint Specifies overrides to
+         * [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint)
+         * used when making API requests. This allows specific requests made during authentication
+         * to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
+         * environments. Requires Vault 1.11+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customEndpoint(@Nullable Output<AuthBackendCustomEndpointArgs> customEndpoint) {
+            $.customEndpoint = customEndpoint;
+            return this;
+        }
+
+        /**
+         * @param customEndpoint Specifies overrides to
+         * [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint)
+         * used when making API requests. This allows specific requests made during authentication
+         * to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
+         * environments. Requires Vault 1.11+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customEndpoint(AuthBackendCustomEndpointArgs customEndpoint) {
+            return customEndpoint(Output.of(customEndpoint));
+        }
+
+        /**
          * @param description A description of the auth method.
          * 
          * @return builder
@@ -252,6 +346,29 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param disableRemount If set, opts out of mount migration on path updates.
+         * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableRemount(@Nullable Output<Boolean> disableRemount) {
+            $.disableRemount = disableRemount;
+            return this;
+        }
+
+        /**
+         * @param disableRemount If set, opts out of mount migration on path updates.
+         * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableRemount(Boolean disableRemount) {
+            return disableRemount(Output.of(disableRemount));
+        }
+
+        /**
          * @param local Specifies if the auth method is local only.
          * 
          * @return builder
@@ -270,6 +387,33 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder local(Boolean local) {
             return local(Output.of(local));
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable Output<String> namespace) {
+            $.namespace = namespace;
+            return this;
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(String namespace) {
+            return namespace(Output.of(namespace));
         }
 
         /**

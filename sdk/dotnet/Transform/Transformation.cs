@@ -9,42 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Transform
 {
-    /// <summary>
-    /// This resource supports the "/transform/transformation/{name}" Vault endpoint.
-    /// 
-    /// It creates or updates a transformation with the given name. If a transformation with the name does not exist,
-    /// it will be created. If the transformation exists, it will be updated with the new attributes.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var mountTransform = new Vault.Mount("mountTransform", new()
-    ///     {
-    ///         Path = "transform",
-    ///         Type = "transform",
-    ///     });
-    /// 
-    ///     var test = new Vault.Transform.Transformation("test", new()
-    ///     {
-    ///         Path = mountTransform.Path,
-    ///         Type = "fpe",
-    ///         Template = "ccn",
-    ///         TweakSource = "internal",
-    ///         AllowedRoles = new[]
-    ///         {
-    ///             "payments",
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// </summary>
     [VaultResourceType("vault:transform/transformation:Transformation")]
     public partial class Transformation : global::Pulumi.CustomResource
     {

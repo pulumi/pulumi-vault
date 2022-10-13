@@ -84,6 +84,15 @@ namespace Pulumi.Vault.AppRole
         public Output<string?> Metadata { get; private set; } = null!;
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
         /// The name of the role to create the SecretID for.
         /// </summary>
         [Output("roleName")]
@@ -149,6 +158,11 @@ namespace Pulumi.Vault.AppRole
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "secretId",
+                    "wrappingToken",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -199,17 +213,36 @@ namespace Pulumi.Vault.AppRole
         public Input<string>? Metadata { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
         /// The name of the role to create the SecretID for.
         /// </summary>
         [Input("roleName", required: true)]
         public Input<string> RoleName { get; set; } = null!;
 
+        [Input("secretId")]
+        private Input<string>? _secretId;
+
         /// <summary>
         /// The SecretID to be created. If set, uses "Push"
         /// mode.  Defaults to Vault auto-generating SecretIDs.
         /// </summary>
-        [Input("secretId")]
-        public Input<string>? SecretId { get; set; }
+        public Input<string>? SecretId
+        {
+            get => _secretId;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretId = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Set to `true` to use the wrapped secret-id accessor as the resource ID.
@@ -269,17 +302,36 @@ namespace Pulumi.Vault.AppRole
         public Input<string>? Metadata { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
         /// The name of the role to create the SecretID for.
         /// </summary>
         [Input("roleName")]
         public Input<string>? RoleName { get; set; }
 
+        [Input("secretId")]
+        private Input<string>? _secretId;
+
         /// <summary>
         /// The SecretID to be created. If set, uses "Push"
         /// mode.  Defaults to Vault auto-generating SecretIDs.
         /// </summary>
-        [Input("secretId")]
-        public Input<string>? SecretId { get; set; }
+        public Input<string>? SecretId
+        {
+            get => _secretId;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretId = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Set to `true` to use the wrapped secret-id accessor as the resource ID.
@@ -296,11 +348,21 @@ namespace Pulumi.Vault.AppRole
         [Input("wrappingAccessor")]
         public Input<string>? WrappingAccessor { get; set; }
 
+        [Input("wrappingToken")]
+        private Input<string>? _wrappingToken;
+
         /// <summary>
         /// The token used to retrieve a response-wrapped SecretID.
         /// </summary>
-        [Input("wrappingToken")]
-        public Input<string>? WrappingToken { get; set; }
+        public Input<string>? WrappingToken
+        {
+            get => _wrappingToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _wrappingToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// If set, the SecretID response will be

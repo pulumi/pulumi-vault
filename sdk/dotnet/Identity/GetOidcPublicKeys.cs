@@ -65,7 +65,7 @@ namespace Pulumi.Vault.Identity
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetOidcPublicKeysResult> InvokeAsync(GetOidcPublicKeysArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetOidcPublicKeysResult>("vault:identity/getOidcPublicKeys:getOidcPublicKeys", args ?? new GetOidcPublicKeysArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetOidcPublicKeysResult>("vault:identity/getOidcPublicKeys:getOidcPublicKeys", args ?? new GetOidcPublicKeysArgs(), options.WithDefaults());
 
         /// <summary>
         /// {{% examples %}}
@@ -121,7 +121,7 @@ namespace Pulumi.Vault.Identity
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetOidcPublicKeysResult> Invoke(GetOidcPublicKeysInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetOidcPublicKeysResult>("vault:identity/getOidcPublicKeys:getOidcPublicKeys", args ?? new GetOidcPublicKeysInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetOidcPublicKeysResult>("vault:identity/getOidcPublicKeys:getOidcPublicKeys", args ?? new GetOidcPublicKeysInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -132,6 +132,15 @@ namespace Pulumi.Vault.Identity
         /// </summary>
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
+
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public string? Namespace { get; set; }
 
         public GetOidcPublicKeysArgs()
         {
@@ -146,6 +155,15 @@ namespace Pulumi.Vault.Identity
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
+
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         public GetOidcPublicKeysInvokeArgs()
         {
@@ -167,6 +185,7 @@ namespace Pulumi.Vault.Identity
         /// </summary>
         public readonly ImmutableArray<ImmutableDictionary<string, object>> Keys;
         public readonly string Name;
+        public readonly string? Namespace;
 
         [OutputConstructor]
         private GetOidcPublicKeysResult(
@@ -174,11 +193,14 @@ namespace Pulumi.Vault.Identity
 
             ImmutableArray<ImmutableDictionary<string, object>> keys,
 
-            string name)
+            string name,
+
+            string? @namespace)
         {
             Id = id;
             Keys = keys;
             Name = name;
+            Namespace = @namespace;
         }
     }
 }

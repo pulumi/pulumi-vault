@@ -10,24 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Aws
 {
     /// <summary>
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var aws = new Vault.Aws.SecretBackend("aws", new()
-    ///     {
-    ///         AccessKey = "AKIA.....",
-    ///         SecretKey = "AWS secret key",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// AWS secret backends can be imported using the `path`, e.g.
@@ -60,6 +42,13 @@ namespace Pulumi.Vault.Aws
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Output("disableRemount")]
+        public Output<bool?> DisableRemount { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies a custom HTTP IAM endpoint to use.
         /// </summary>
         [Output("iamEndpoint")]
@@ -71,6 +60,15 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Output("maxLeaseTtlSeconds")]
         public Output<int> MaxLeaseTtlSeconds { get; private set; } = null!;
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
@@ -127,6 +125,11 @@ namespace Pulumi.Vault.Aws
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "accessKey",
+                    "secretKey",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -150,12 +153,22 @@ namespace Pulumi.Vault.Aws
 
     public sealed class SecretBackendArgs : global::Pulumi.ResourceArgs
     {
+        [Input("accessKey")]
+        private Input<string>? _accessKey;
+
         /// <summary>
         /// The AWS Access Key ID this backend should use to
         /// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
         /// </summary>
-        [Input("accessKey")]
-        public Input<string>? AccessKey { get; set; }
+        public Input<string>? AccessKey
+        {
+            get => _accessKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _accessKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The default TTL for credentials
@@ -171,6 +184,13 @@ namespace Pulumi.Vault.Aws
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Input("disableRemount")]
+        public Input<bool>? DisableRemount { get; set; }
+
+        /// <summary>
         /// Specifies a custom HTTP IAM endpoint to use.
         /// </summary>
         [Input("iamEndpoint")]
@@ -182,6 +202,15 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Input("maxLeaseTtlSeconds")]
         public Input<int>? MaxLeaseTtlSeconds { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
@@ -196,12 +225,22 @@ namespace Pulumi.Vault.Aws
         [Input("region")]
         public Input<string>? Region { get; set; }
 
+        [Input("secretKey")]
+        private Input<string>? _secretKey;
+
         /// <summary>
         /// The AWS Secret Key this backend should use to
         /// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
         /// </summary>
-        [Input("secretKey")]
-        public Input<string>? SecretKey { get; set; }
+        public Input<string>? SecretKey
+        {
+            get => _secretKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Specifies a custom HTTP STS endpoint to use.
@@ -223,12 +262,22 @@ namespace Pulumi.Vault.Aws
 
     public sealed class SecretBackendState : global::Pulumi.ResourceArgs
     {
+        [Input("accessKey")]
+        private Input<string>? _accessKey;
+
         /// <summary>
         /// The AWS Access Key ID this backend should use to
         /// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
         /// </summary>
-        [Input("accessKey")]
-        public Input<string>? AccessKey { get; set; }
+        public Input<string>? AccessKey
+        {
+            get => _accessKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _accessKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The default TTL for credentials
@@ -244,6 +293,13 @@ namespace Pulumi.Vault.Aws
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Input("disableRemount")]
+        public Input<bool>? DisableRemount { get; set; }
+
+        /// <summary>
         /// Specifies a custom HTTP IAM endpoint to use.
         /// </summary>
         [Input("iamEndpoint")]
@@ -255,6 +311,15 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Input("maxLeaseTtlSeconds")]
         public Input<int>? MaxLeaseTtlSeconds { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
@@ -269,12 +334,22 @@ namespace Pulumi.Vault.Aws
         [Input("region")]
         public Input<string>? Region { get; set; }
 
+        [Input("secretKey")]
+        private Input<string>? _secretKey;
+
         /// <summary>
         /// The AWS Secret Key this backend should use to
         /// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
         /// </summary>
-        [Input("secretKey")]
-        public Input<string>? SecretKey { get; set; }
+        public Input<string>? SecretKey
+        {
+            get => _secretKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Specifies a custom HTTP STS endpoint to use.

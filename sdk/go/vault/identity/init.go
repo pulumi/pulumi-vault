@@ -35,6 +35,16 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &GroupMemberEntityIds{}
 	case "vault:identity/groupPolicies:GroupPolicies":
 		r = &GroupPolicies{}
+	case "vault:identity/mfaDuo:MfaDuo":
+		r = &MfaDuo{}
+	case "vault:identity/mfaLoginEnforcement:MfaLoginEnforcement":
+		r = &MfaLoginEnforcement{}
+	case "vault:identity/mfaOkta:MfaOkta":
+		r = &MfaOkta{}
+	case "vault:identity/mfaPingID:MfaPingID":
+		r = &MfaPingID{}
+	case "vault:identity/mfaTOTP:MfaTOTP":
+		r = &MfaTOTP{}
 	case "vault:identity/oidc:Oidc":
 		r = &Oidc{}
 	case "vault:identity/oidcAssignment:OidcAssignment":
@@ -97,6 +107,31 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"vault",
 		"identity/groupPolicies",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"identity/mfaDuo",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"identity/mfaLoginEnforcement",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"identity/mfaOkta",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"identity/mfaPingID",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"identity/mfaTOTP",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

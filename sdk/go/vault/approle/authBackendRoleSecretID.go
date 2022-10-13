@@ -83,6 +83,11 @@ type AuthBackendRoleSecretID struct {
 	// A JSON-encoded string containing metadata in
 	// key-value pairs to be set on tokens issued with this SecretID.
 	Metadata pulumi.StringPtrOutput `pulumi:"metadata"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The name of the role to create the SecretID for.
 	RoleName pulumi.StringOutput `pulumi:"roleName"`
 	// The SecretID to be created. If set, uses "Push"
@@ -114,6 +119,14 @@ func NewAuthBackendRoleSecretID(ctx *pulumi.Context,
 	if args.RoleName == nil {
 		return nil, errors.New("invalid value for required argument 'RoleName'")
 	}
+	if args.SecretId != nil {
+		args.SecretId = pulumi.ToSecret(args.SecretId).(pulumi.StringPtrOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"secretId",
+		"wrappingToken",
+	})
+	opts = append(opts, secrets)
 	var resource AuthBackendRoleSecretID
 	err := ctx.RegisterResource("vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID", name, args, &resource, opts...)
 	if err != nil {
@@ -146,6 +159,11 @@ type authBackendRoleSecretIDState struct {
 	// A JSON-encoded string containing metadata in
 	// key-value pairs to be set on tokens issued with this SecretID.
 	Metadata *string `pulumi:"metadata"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The name of the role to create the SecretID for.
 	RoleName *string `pulumi:"roleName"`
 	// The SecretID to be created. If set, uses "Push"
@@ -178,6 +196,11 @@ type AuthBackendRoleSecretIDState struct {
 	// A JSON-encoded string containing metadata in
 	// key-value pairs to be set on tokens issued with this SecretID.
 	Metadata pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The name of the role to create the SecretID for.
 	RoleName pulumi.StringPtrInput
 	// The SecretID to be created. If set, uses "Push"
@@ -212,6 +235,11 @@ type authBackendRoleSecretIDArgs struct {
 	// A JSON-encoded string containing metadata in
 	// key-value pairs to be set on tokens issued with this SecretID.
 	Metadata *string `pulumi:"metadata"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The name of the role to create the SecretID for.
 	RoleName string `pulumi:"roleName"`
 	// The SecretID to be created. If set, uses "Push"
@@ -238,6 +266,11 @@ type AuthBackendRoleSecretIDArgs struct {
 	// A JSON-encoded string containing metadata in
 	// key-value pairs to be set on tokens issued with this SecretID.
 	Metadata pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The name of the role to create the SecretID for.
 	RoleName pulumi.StringInput
 	// The SecretID to be created. If set, uses "Push"
@@ -361,6 +394,14 @@ func (o AuthBackendRoleSecretIDOutput) CidrLists() pulumi.StringArrayOutput {
 // key-value pairs to be set on tokens issued with this SecretID.
 func (o AuthBackendRoleSecretIDOutput) Metadata() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendRoleSecretID) pulumi.StringPtrOutput { return v.Metadata }).(pulumi.StringPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o AuthBackendRoleSecretIDOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRoleSecretID) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The name of the role to create the SecretID for.

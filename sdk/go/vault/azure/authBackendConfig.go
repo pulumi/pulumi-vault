@@ -73,6 +73,11 @@ type AuthBackendConfig struct {
 	// AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
 	// AzureGermanCloud.  Defaults to `AzurePublicCloud`.
 	Environment pulumi.StringPtrOutput `pulumi:"environment"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The configured URL for the application registered in
 	// Azure Active Directory.
 	Resource pulumi.StringOutput `pulumi:"resource"`
@@ -94,6 +99,21 @@ func NewAuthBackendConfig(ctx *pulumi.Context,
 	if args.TenantId == nil {
 		return nil, errors.New("invalid value for required argument 'TenantId'")
 	}
+	if args.ClientId != nil {
+		args.ClientId = pulumi.ToSecret(args.ClientId).(pulumi.StringPtrOutput)
+	}
+	if args.ClientSecret != nil {
+		args.ClientSecret = pulumi.ToSecret(args.ClientSecret).(pulumi.StringPtrOutput)
+	}
+	if args.TenantId != nil {
+		args.TenantId = pulumi.ToSecret(args.TenantId).(pulumi.StringOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"clientId",
+		"clientSecret",
+		"tenantId",
+	})
+	opts = append(opts, secrets)
 	var resource AuthBackendConfig
 	err := ctx.RegisterResource("vault:azure/authBackendConfig:AuthBackendConfig", name, args, &resource, opts...)
 	if err != nil {
@@ -129,6 +149,11 @@ type authBackendConfigState struct {
 	// AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
 	// AzureGermanCloud.  Defaults to `AzurePublicCloud`.
 	Environment *string `pulumi:"environment"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The configured URL for the application registered in
 	// Azure Active Directory.
 	Resource *string `pulumi:"resource"`
@@ -151,6 +176,11 @@ type AuthBackendConfigState struct {
 	// AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
 	// AzureGermanCloud.  Defaults to `AzurePublicCloud`.
 	Environment pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The configured URL for the application registered in
 	// Azure Active Directory.
 	Resource pulumi.StringPtrInput
@@ -177,6 +207,11 @@ type authBackendConfigArgs struct {
 	// AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
 	// AzureGermanCloud.  Defaults to `AzurePublicCloud`.
 	Environment *string `pulumi:"environment"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The configured URL for the application registered in
 	// Azure Active Directory.
 	Resource string `pulumi:"resource"`
@@ -200,6 +235,11 @@ type AuthBackendConfigArgs struct {
 	// AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
 	// AzureGermanCloud.  Defaults to `AzurePublicCloud`.
 	Environment pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The configured URL for the application registered in
 	// Azure Active Directory.
 	Resource pulumi.StringInput
@@ -318,6 +358,14 @@ func (o AuthBackendConfigOutput) ClientSecret() pulumi.StringPtrOutput {
 // AzureGermanCloud.  Defaults to `AzurePublicCloud`.
 func (o AuthBackendConfigOutput) Environment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringPtrOutput { return v.Environment }).(pulumi.StringPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o AuthBackendConfigOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The configured URL for the application registered in

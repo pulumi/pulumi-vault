@@ -82,6 +82,13 @@ export class RaftAutopilot extends pulumi.CustomResource {
      */
     public readonly minQuorum!: pulumi.Output<number | undefined>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * Minimum amount of time a server must be 
      * stable in the 'healthy' state before being added to the cluster.
      */
@@ -105,6 +112,7 @@ export class RaftAutopilot extends pulumi.CustomResource {
             resourceInputs["lastContactThreshold"] = state ? state.lastContactThreshold : undefined;
             resourceInputs["maxTrailingLogs"] = state ? state.maxTrailingLogs : undefined;
             resourceInputs["minQuorum"] = state ? state.minQuorum : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["serverStabilizationTime"] = state ? state.serverStabilizationTime : undefined;
         } else {
             const args = argsOrState as RaftAutopilotArgs | undefined;
@@ -113,6 +121,7 @@ export class RaftAutopilot extends pulumi.CustomResource {
             resourceInputs["lastContactThreshold"] = args ? args.lastContactThreshold : undefined;
             resourceInputs["maxTrailingLogs"] = args ? args.maxTrailingLogs : undefined;
             resourceInputs["minQuorum"] = args ? args.minQuorum : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["serverStabilizationTime"] = args ? args.serverStabilizationTime : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -152,6 +161,13 @@ export interface RaftAutopilotState {
      */
     minQuorum?: pulumi.Input<number>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
+    /**
      * Minimum amount of time a server must be 
      * stable in the 'healthy' state before being added to the cluster.
      */
@@ -189,6 +205,13 @@ export interface RaftAutopilotArgs {
      * voting nodes.
      */
     minQuorum?: pulumi.Input<number>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Minimum amount of time a server must be 
      * stable in the 'healthy' state before being added to the cluster.

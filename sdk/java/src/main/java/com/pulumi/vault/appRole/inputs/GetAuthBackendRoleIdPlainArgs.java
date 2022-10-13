@@ -32,6 +32,27 @@ public final class GetAuthBackendRoleIdPlainArgs extends com.pulumi.resources.In
     }
 
     /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured namespace.
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable String namespace;
+
+    /**
+     * @return The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured namespace.
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<String> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
+
+    /**
      * The name of the role to retrieve the Role ID for.
      * 
      */
@@ -50,6 +71,7 @@ public final class GetAuthBackendRoleIdPlainArgs extends com.pulumi.resources.In
 
     private GetAuthBackendRoleIdPlainArgs(GetAuthBackendRoleIdPlainArgs $) {
         this.backend = $.backend;
+        this.namespace = $.namespace;
         this.roleName = $.roleName;
     }
 
@@ -80,6 +102,20 @@ public final class GetAuthBackendRoleIdPlainArgs extends com.pulumi.resources.In
          */
         public Builder backend(@Nullable String backend) {
             $.backend = backend;
+            return this;
+        }
+
+        /**
+         * @param namespace The namespace of the target resource.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured namespace.
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable String namespace) {
+            $.namespace = namespace;
             return this;
         }
 

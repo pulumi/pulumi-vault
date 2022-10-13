@@ -35,6 +35,11 @@ type LookupAuthBackendConfigArgs struct {
 	KubernetesCaCert *string `pulumi:"kubernetesCaCert"`
 	// Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
 	KubernetesHost *string `pulumi:"kubernetesHost"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
 	PemKeys []string `pulumi:"pemKeys"`
 }
@@ -51,7 +56,8 @@ type LookupAuthBackendConfigResult struct {
 	// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
 	KubernetesCaCert string `pulumi:"kubernetesCaCert"`
 	// Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
-	KubernetesHost string `pulumi:"kubernetesHost"`
+	KubernetesHost string  `pulumi:"kubernetesHost"`
+	Namespace      *string `pulumi:"namespace"`
 	// Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
 	PemKeys []string `pulumi:"pemKeys"`
 }
@@ -82,6 +88,11 @@ type LookupAuthBackendConfigOutputArgs struct {
 	KubernetesCaCert pulumi.StringPtrInput `pulumi:"kubernetesCaCert"`
 	// Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
 	KubernetesHost pulumi.StringPtrInput `pulumi:"kubernetesHost"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 	// Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
 	PemKeys pulumi.StringArrayInput `pulumi:"pemKeys"`
 }
@@ -135,6 +146,10 @@ func (o LookupAuthBackendConfigResultOutput) KubernetesCaCert() pulumi.StringOut
 // Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
 func (o LookupAuthBackendConfigResultOutput) KubernetesHost() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAuthBackendConfigResult) string { return v.KubernetesHost }).(pulumi.StringOutput)
+}
+
+func (o LookupAuthBackendConfigResultOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupAuthBackendConfigResult) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.

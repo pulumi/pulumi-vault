@@ -92,6 +92,13 @@ namespace Pulumi.Vault.Ldap
         [Output("description")]
         public Output<string> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Output("disableRemount")]
+        public Output<bool?> DisableRemount { get; private set; } = null!;
+
         [Output("discoverdn")]
         public Output<bool> Discoverdn { get; private set; } = null!;
 
@@ -124,6 +131,15 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Output("local")]
         public Output<bool?> Local { get; private set; } = null!;
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
         /// Path to mount the LDAP auth backend under
@@ -256,6 +272,12 @@ namespace Pulumi.Vault.Ldap
         [Output("userfilter")]
         public Output<string> Userfilter { get; private set; } = null!;
 
+        /// <summary>
+        /// Force the auth method to use the username passed by the user as the alias name.
+        /// </summary>
+        [Output("usernameAsAlias")]
+        public Output<bool> UsernameAsAlias { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a AuthBackend resource with the given unique name, arguments, and options.
@@ -279,6 +301,11 @@ namespace Pulumi.Vault.Ldap
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "bindpass",
+                    "clientTlsKey",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -308,11 +335,21 @@ namespace Pulumi.Vault.Ldap
         [Input("binddn")]
         public Input<string>? Binddn { get; set; }
 
+        [Input("bindpass")]
+        private Input<string>? _bindpass;
+
         /// <summary>
         /// Password to use with `binddn` when performing user search
         /// </summary>
-        [Input("bindpass")]
-        public Input<string>? Bindpass { get; set; }
+        public Input<string>? Bindpass
+        {
+            get => _bindpass;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _bindpass = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
@@ -330,7 +367,16 @@ namespace Pulumi.Vault.Ldap
         public Input<string>? ClientTlsCert { get; set; }
 
         [Input("clientTlsKey")]
-        public Input<string>? ClientTlsKey { get; set; }
+        private Input<string>? _clientTlsKey;
+        public Input<string>? ClientTlsKey
+        {
+            get => _clientTlsKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientTlsKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("denyNullBind")]
         public Input<bool>? DenyNullBind { get; set; }
@@ -340,6 +386,13 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Input("disableRemount")]
+        public Input<bool>? DisableRemount { get; set; }
 
         [Input("discoverdn")]
         public Input<bool>? Discoverdn { get; set; }
@@ -373,6 +426,15 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Input("local")]
         public Input<bool>? Local { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// Path to mount the LDAP auth backend under
@@ -517,6 +579,12 @@ namespace Pulumi.Vault.Ldap
         [Input("userfilter")]
         public Input<string>? Userfilter { get; set; }
 
+        /// <summary>
+        /// Force the auth method to use the username passed by the user as the alias name.
+        /// </summary>
+        [Input("usernameAsAlias")]
+        public Input<bool>? UsernameAsAlias { get; set; }
+
         public AuthBackendArgs()
         {
         }
@@ -537,11 +605,21 @@ namespace Pulumi.Vault.Ldap
         [Input("binddn")]
         public Input<string>? Binddn { get; set; }
 
+        [Input("bindpass")]
+        private Input<string>? _bindpass;
+
         /// <summary>
         /// Password to use with `binddn` when performing user search
         /// </summary>
-        [Input("bindpass")]
-        public Input<string>? Bindpass { get; set; }
+        public Input<string>? Bindpass
+        {
+            get => _bindpass;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _bindpass = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
@@ -559,7 +637,16 @@ namespace Pulumi.Vault.Ldap
         public Input<string>? ClientTlsCert { get; set; }
 
         [Input("clientTlsKey")]
-        public Input<string>? ClientTlsKey { get; set; }
+        private Input<string>? _clientTlsKey;
+        public Input<string>? ClientTlsKey
+        {
+            get => _clientTlsKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientTlsKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("denyNullBind")]
         public Input<bool>? DenyNullBind { get; set; }
@@ -569,6 +656,13 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Input("disableRemount")]
+        public Input<bool>? DisableRemount { get; set; }
 
         [Input("discoverdn")]
         public Input<bool>? Discoverdn { get; set; }
@@ -602,6 +696,15 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Input("local")]
         public Input<bool>? Local { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// Path to mount the LDAP auth backend under
@@ -745,6 +848,12 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Input("userfilter")]
         public Input<string>? Userfilter { get; set; }
+
+        /// <summary>
+        /// Force the auth method to use the username passed by the user as the alias name.
+        /// </summary>
+        [Input("usernameAsAlias")]
+        public Input<bool>? UsernameAsAlias { get; set; }
 
         public AuthBackendState()
         {

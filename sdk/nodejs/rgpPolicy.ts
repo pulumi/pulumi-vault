@@ -61,6 +61,13 @@ export class RgpPolicy extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * String containing a Sentinel policy
      */
     public readonly policy!: pulumi.Output<string>;
@@ -80,6 +87,7 @@ export class RgpPolicy extends pulumi.CustomResource {
             const state = argsOrState as RgpPolicyState | undefined;
             resourceInputs["enforcementLevel"] = state ? state.enforcementLevel : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["policy"] = state ? state.policy : undefined;
         } else {
             const args = argsOrState as RgpPolicyArgs | undefined;
@@ -91,6 +99,7 @@ export class RgpPolicy extends pulumi.CustomResource {
             }
             resourceInputs["enforcementLevel"] = args ? args.enforcementLevel : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["policy"] = args ? args.policy : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -111,6 +120,13 @@ export interface RgpPolicyState {
      */
     name?: pulumi.Input<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
+    /**
      * String containing a Sentinel policy
      */
     policy?: pulumi.Input<string>;
@@ -128,6 +144,13 @@ export interface RgpPolicyArgs {
      * The name of the policy
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * String containing a Sentinel policy
      */

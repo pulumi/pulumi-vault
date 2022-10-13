@@ -11,36 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a resource to manage [Namespaces](https://www.vaultproject.io/docs/enterprise/namespaces/index.html).
-//
-// **Note** this feature is available only with Vault Enterprise.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vault.NewNamespace(ctx, "ns1", &vault.NamespaceArgs{
-//				Path: pulumi.String("ns1"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // # Namespaces can be imported using its `name` as accessor id
@@ -69,7 +39,7 @@ import (
 //
 // ```
 //
-//	$ terraform state show vault_namespace.example2 # vault_namespace.example2 resource "vault_namespace" "example2" {
+//	$ terraform state show vault_namespace.example2 vault_namespace.example2 resource "vault_namespace" "example2" {
 //
 //	id
 //
@@ -83,10 +53,17 @@ import (
 type Namespace struct {
 	pulumi.CustomResourceState
 
-	// ID of the namepsace.
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
+	// Namespace ID.
 	NamespaceId pulumi.StringOutput `pulumi:"namespaceId"`
 	// The path of the namespace. Must not have a trailing `/`
 	Path pulumi.StringOutput `pulumi:"path"`
+	// The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+	PathFq pulumi.StringOutput `pulumi:"pathFq"`
 }
 
 // NewNamespace registers a new resource with the given unique name, arguments, and options.
@@ -121,17 +98,31 @@ func GetNamespace(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Namespace resources.
 type namespaceState struct {
-	// ID of the namepsace.
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
+	// Namespace ID.
 	NamespaceId *string `pulumi:"namespaceId"`
 	// The path of the namespace. Must not have a trailing `/`
 	Path *string `pulumi:"path"`
+	// The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+	PathFq *string `pulumi:"pathFq"`
 }
 
 type NamespaceState struct {
-	// ID of the namepsace.
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
+	// Namespace ID.
 	NamespaceId pulumi.StringPtrInput
 	// The path of the namespace. Must not have a trailing `/`
 	Path pulumi.StringPtrInput
+	// The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+	PathFq pulumi.StringPtrInput
 }
 
 func (NamespaceState) ElementType() reflect.Type {
@@ -139,12 +130,22 @@ func (NamespaceState) ElementType() reflect.Type {
 }
 
 type namespaceArgs struct {
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The path of the namespace. Must not have a trailing `/`
 	Path string `pulumi:"path"`
 }
 
 // The set of arguments for constructing a Namespace resource.
 type NamespaceArgs struct {
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The path of the namespace. Must not have a trailing `/`
 	Path pulumi.StringInput
 }
@@ -236,7 +237,15 @@ func (o NamespaceOutput) ToNamespaceOutputWithContext(ctx context.Context) Names
 	return o
 }
 
-// ID of the namepsace.
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o NamespaceOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Namespace) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+// Namespace ID.
 func (o NamespaceOutput) NamespaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Namespace) pulumi.StringOutput { return v.NamespaceId }).(pulumi.StringOutput)
 }
@@ -244,6 +253,11 @@ func (o NamespaceOutput) NamespaceId() pulumi.StringOutput {
 // The path of the namespace. Must not have a trailing `/`
 func (o NamespaceOutput) Path() pulumi.StringOutput {
 	return o.ApplyT(func(v *Namespace) pulumi.StringOutput { return v.Path }).(pulumi.StringOutput)
+}
+
+// The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+func (o NamespaceOutput) PathFq() pulumi.StringOutput {
+	return o.ApplyT(func(v *Namespace) pulumi.StringOutput { return v.PathFq }).(pulumi.StringOutput)
 }
 
 type NamespaceArrayOutput struct{ *pulumi.OutputState }

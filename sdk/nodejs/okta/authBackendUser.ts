@@ -69,6 +69,13 @@ export class AuthBackendUser extends pulumi.CustomResource {
      */
     public readonly groups!: pulumi.Output<string[] | undefined>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * The path where the Okta auth backend is mounted
      */
     public readonly path!: pulumi.Output<string>;
@@ -95,6 +102,7 @@ export class AuthBackendUser extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as AuthBackendUserState | undefined;
             resourceInputs["groups"] = state ? state.groups : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
             resourceInputs["policies"] = state ? state.policies : undefined;
             resourceInputs["username"] = state ? state.username : undefined;
@@ -107,6 +115,7 @@ export class AuthBackendUser extends pulumi.CustomResource {
                 throw new Error("Missing required property 'username'");
             }
             resourceInputs["groups"] = args ? args.groups : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["policies"] = args ? args.policies : undefined;
             resourceInputs["username"] = args ? args.username : undefined;
@@ -124,6 +133,13 @@ export interface AuthBackendUserState {
      * List of Okta groups to associate with this user
      */
     groups?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The path where the Okta auth backend is mounted
      */
@@ -146,6 +162,13 @@ export interface AuthBackendUserArgs {
      * List of Okta groups to associate with this user
      */
     groups?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The path where the Okta auth backend is mounted
      */

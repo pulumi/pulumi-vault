@@ -17,6 +17,11 @@ from .group import *
 from .group_alias import *
 from .group_member_entity_ids import *
 from .group_policies import *
+from .mfa_duo import *
+from .mfa_login_enforcement import *
+from .mfa_okta import *
+from .mfa_ping_id import *
+from .mfa_totp import *
 from .oidc import *
 from .oidc_assignment import *
 from .oidc_client import *

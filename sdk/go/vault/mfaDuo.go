@@ -71,6 +71,11 @@ type MfaDuo struct {
 	MountAccessor pulumi.StringOutput `pulumi:"mountAccessor"`
 	// `(string: <required>)` – Name of the MFA method.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// `(string)` - Push information for Duo.
 	PushInfo pulumi.StringPtrOutput `pulumi:"pushInfo"`
 	// `(string: <required>)` - Secret key for Duo.
@@ -102,6 +107,17 @@ func NewMfaDuo(ctx *pulumi.Context,
 	if args.SecretKey == nil {
 		return nil, errors.New("invalid value for required argument 'SecretKey'")
 	}
+	if args.IntegrationKey != nil {
+		args.IntegrationKey = pulumi.ToSecret(args.IntegrationKey).(pulumi.StringOutput)
+	}
+	if args.SecretKey != nil {
+		args.SecretKey = pulumi.ToSecret(args.SecretKey).(pulumi.StringOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"integrationKey",
+		"secretKey",
+	})
+	opts = append(opts, secrets)
 	var resource MfaDuo
 	err := ctx.RegisterResource("vault:index/mfaDuo:MfaDuo", name, args, &resource, opts...)
 	if err != nil {
@@ -132,6 +148,11 @@ type mfaDuoState struct {
 	MountAccessor *string `pulumi:"mountAccessor"`
 	// `(string: <required>)` – Name of the MFA method.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// `(string)` - Push information for Duo.
 	PushInfo *string `pulumi:"pushInfo"`
 	// `(string: <required>)` - Secret key for Duo.
@@ -153,6 +174,11 @@ type MfaDuoState struct {
 	MountAccessor pulumi.StringPtrInput
 	// `(string: <required>)` – Name of the MFA method.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// `(string)` - Push information for Duo.
 	PushInfo pulumi.StringPtrInput
 	// `(string: <required>)` - Secret key for Duo.
@@ -178,6 +204,11 @@ type mfaDuoArgs struct {
 	MountAccessor string `pulumi:"mountAccessor"`
 	// `(string: <required>)` – Name of the MFA method.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// `(string)` - Push information for Duo.
 	PushInfo *string `pulumi:"pushInfo"`
 	// `(string: <required>)` - Secret key for Duo.
@@ -200,6 +231,11 @@ type MfaDuoArgs struct {
 	MountAccessor pulumi.StringInput
 	// `(string: <required>)` – Name of the MFA method.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// `(string)` - Push information for Duo.
 	PushInfo pulumi.StringPtrInput
 	// `(string: <required>)` - Secret key for Duo.
@@ -317,6 +353,14 @@ func (o MfaDuoOutput) MountAccessor() pulumi.StringOutput {
 // `(string: <required>)` – Name of the MFA method.
 func (o MfaDuoOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *MfaDuo) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o MfaDuoOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MfaDuo) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // `(string)` - Push information for Duo.

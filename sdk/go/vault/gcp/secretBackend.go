@@ -55,11 +55,19 @@ type SecretBackend struct {
 	DefaultLeaseTtlSeconds pulumi.IntPtrOutput `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
 	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend. Defaults to '0'.
 	MaxLeaseTtlSeconds pulumi.IntPtrOutput `pulumi:"maxLeaseTtlSeconds"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `gcp`.
 	Path pulumi.StringPtrOutput `pulumi:"path"`
@@ -72,6 +80,13 @@ func NewSecretBackend(ctx *pulumi.Context,
 		args = &SecretBackendArgs{}
 	}
 
+	if args.Credentials != nil {
+		args.Credentials = pulumi.ToSecret(args.Credentials).(pulumi.StringPtrOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"credentials",
+	})
+	opts = append(opts, secrets)
 	var resource SecretBackend
 	err := ctx.RegisterResource("vault:gcp/secretBackend:SecretBackend", name, args, &resource, opts...)
 	if err != nil {
@@ -101,11 +116,19 @@ type secretBackendState struct {
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
 	Description *string `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount *bool `pulumi:"disableRemount"`
 	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
 	Local *bool `pulumi:"local"`
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend. Defaults to '0'.
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `gcp`.
 	Path *string `pulumi:"path"`
@@ -119,11 +142,19 @@ type SecretBackendState struct {
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// A human-friendly description for this backend.
 	Description pulumi.StringPtrInput
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrInput
 	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
 	Local pulumi.BoolPtrInput
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend. Defaults to '0'.
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `gcp`.
 	Path pulumi.StringPtrInput
@@ -141,11 +172,19 @@ type secretBackendArgs struct {
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
 	Description *string `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount *bool `pulumi:"disableRemount"`
 	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
 	Local *bool `pulumi:"local"`
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend. Defaults to '0'.
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `gcp`.
 	Path *string `pulumi:"path"`
@@ -160,11 +199,19 @@ type SecretBackendArgs struct {
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// A human-friendly description for this backend.
 	Description pulumi.StringPtrInput
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrInput
 	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
 	Local pulumi.BoolPtrInput
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend. Defaults to '0'.
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `gcp`.
 	Path pulumi.StringPtrInput
@@ -273,6 +320,12 @@ func (o SecretBackendOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// If set, opts out of mount migration on path updates.
+// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+func (o SecretBackendOutput) DisableRemount() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.DisableRemount }).(pulumi.BoolPtrOutput)
+}
+
 // Boolean flag that can be explicitly set to true to enforce local mount in HA environment
 func (o SecretBackendOutput) Local() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.Local }).(pulumi.BoolPtrOutput)
@@ -282,6 +335,14 @@ func (o SecretBackendOutput) Local() pulumi.BoolPtrOutput {
 // for credentials issued by this backend. Defaults to '0'.
 func (o SecretBackendOutput) MaxLeaseTtlSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.MaxLeaseTtlSeconds }).(pulumi.IntPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o SecretBackendOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The unique path this backend should be mounted at. Must

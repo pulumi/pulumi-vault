@@ -61,6 +61,14 @@ type AuthBackend struct {
 	// Specifies the description of the mount.
 	// This overrides the current stored value, if any.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The organization configured users must be part of.
 	Organization pulumi.StringOutput `pulumi:"organization"`
 	// The ID of the organization users must be part of.
@@ -145,6 +153,14 @@ type authBackendState struct {
 	// Specifies the description of the mount.
 	// This overrides the current stored value, if any.
 	Description *string `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount *bool `pulumi:"disableRemount"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The organization configured users must be part of.
 	Organization *string `pulumi:"organization"`
 	// The ID of the organization users must be part of.
@@ -198,6 +214,14 @@ type AuthBackendState struct {
 	// Specifies the description of the mount.
 	// This overrides the current stored value, if any.
 	Description pulumi.StringPtrInput
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The organization configured users must be part of.
 	Organization pulumi.StringPtrInput
 	// The ID of the organization users must be part of.
@@ -253,6 +277,14 @@ type authBackendArgs struct {
 	// Specifies the description of the mount.
 	// This overrides the current stored value, if any.
 	Description *string `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount *bool `pulumi:"disableRemount"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The organization configured users must be part of.
 	Organization string `pulumi:"organization"`
 	// The ID of the organization users must be part of.
@@ -305,6 +337,14 @@ type AuthBackendArgs struct {
 	// Specifies the description of the mount.
 	// This overrides the current stored value, if any.
 	Description pulumi.StringPtrInput
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The organization configured users must be part of.
 	Organization pulumi.StringInput
 	// The ID of the organization users must be part of.
@@ -451,6 +491,20 @@ func (o AuthBackendOutput) BaseUrl() pulumi.StringPtrOutput {
 // This overrides the current stored value, if any.
 func (o AuthBackendOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// If set, opts out of mount migration on path updates.
+// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+func (o AuthBackendOutput) DisableRemount() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.BoolPtrOutput { return v.DisableRemount }).(pulumi.BoolPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o AuthBackendOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The organization configured users must be part of.

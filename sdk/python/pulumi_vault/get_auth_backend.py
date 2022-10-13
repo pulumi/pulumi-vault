@@ -21,7 +21,7 @@ class GetAuthBackendResult:
     """
     A collection of values returned by getAuthBackend.
     """
-    def __init__(__self__, accessor=None, default_lease_ttl_seconds=None, description=None, id=None, listing_visibility=None, local=None, max_lease_ttl_seconds=None, path=None, type=None):
+    def __init__(__self__, accessor=None, default_lease_ttl_seconds=None, description=None, id=None, listing_visibility=None, local=None, max_lease_ttl_seconds=None, namespace=None, path=None, type=None):
         if accessor and not isinstance(accessor, str):
             raise TypeError("Expected argument 'accessor' to be a str")
         pulumi.set(__self__, "accessor", accessor)
@@ -43,6 +43,9 @@ class GetAuthBackendResult:
         if max_lease_ttl_seconds and not isinstance(max_lease_ttl_seconds, int):
             raise TypeError("Expected argument 'max_lease_ttl_seconds' to be a int")
         pulumi.set(__self__, "max_lease_ttl_seconds", max_lease_ttl_seconds)
+        if namespace and not isinstance(namespace, str):
+            raise TypeError("Expected argument 'namespace' to be a str")
+        pulumi.set(__self__, "namespace", namespace)
         if path and not isinstance(path, str):
             raise TypeError("Expected argument 'path' to be a str")
         pulumi.set(__self__, "path", path)
@@ -54,7 +57,7 @@ class GetAuthBackendResult:
     @pulumi.getter
     def accessor(self) -> str:
         """
-        The accessor for this auth method
+        The accessor for this auth method.
         """
         return pulumi.get(self, "accessor")
 
@@ -108,6 +111,11 @@ class GetAuthBackendResult:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[str]:
+        return pulumi.get(self, "namespace")
+
+    @property
+    @pulumi.getter
     def path(self) -> str:
         return pulumi.get(self, "path")
 
@@ -133,11 +141,13 @@ class AwaitableGetAuthBackendResult(GetAuthBackendResult):
             listing_visibility=self.listing_visibility,
             local=self.local,
             max_lease_ttl_seconds=self.max_lease_ttl_seconds,
+            namespace=self.namespace,
             path=self.path,
             type=self.type)
 
 
-def get_auth_backend(path: Optional[str] = None,
+def get_auth_backend(namespace: Optional[str] = None,
+                     path: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAuthBackendResult:
     """
     ## Example Usage
@@ -150,9 +160,14 @@ def get_auth_backend(path: Optional[str] = None,
     ```
 
 
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           *Available only for Vault Enterprise*.
     :param str path: The auth backend mount point.
     """
     __args__ = dict()
+    __args__['namespace'] = namespace
     __args__['path'] = path
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('vault:index/getAuthBackend:getAuthBackend', __args__, opts=opts, typ=GetAuthBackendResult).value
@@ -165,12 +180,14 @@ def get_auth_backend(path: Optional[str] = None,
         listing_visibility=__ret__.listing_visibility,
         local=__ret__.local,
         max_lease_ttl_seconds=__ret__.max_lease_ttl_seconds,
+        namespace=__ret__.namespace,
         path=__ret__.path,
         type=__ret__.type)
 
 
 @_utilities.lift_output_func(get_auth_backend)
-def get_auth_backend_output(path: Optional[pulumi.Input[str]] = None,
+def get_auth_backend_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
+                            path: Optional[pulumi.Input[str]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAuthBackendResult]:
     """
     ## Example Usage
@@ -183,6 +200,10 @@ def get_auth_backend_output(path: Optional[pulumi.Input[str]] = None,
     ```
 
 
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           *Available only for Vault Enterprise*.
     :param str path: The auth backend mount point.
     """
     ...

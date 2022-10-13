@@ -14,16 +14,23 @@ __all__ = ['OidcArgs', 'Oidc']
 @pulumi.input_type
 class OidcArgs:
     def __init__(__self__, *,
-                 issuer: Optional[pulumi.Input[str]] = None):
+                 issuer: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Oidc resource.
         :param pulumi.Input[str] issuer: Issuer URL to be used in the iss claim of the token. If not set, Vault's
                `api_addr` will be used. The issuer is a case sensitive URL using the https scheme that contains
                scheme, host, and optionally, port number and path components, but no query or fragment
                components.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         if issuer is not None:
             pulumi.set(__self__, "issuer", issuer)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter
@@ -40,20 +47,42 @@ class OidcArgs:
     def issuer(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "issuer", value)
 
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
 
 @pulumi.input_type
 class _OidcState:
     def __init__(__self__, *,
-                 issuer: Optional[pulumi.Input[str]] = None):
+                 issuer: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Oidc resources.
         :param pulumi.Input[str] issuer: Issuer URL to be used in the iss claim of the token. If not set, Vault's
                `api_addr` will be used. The issuer is a case sensitive URL using the https scheme that contains
                scheme, host, and optionally, port number and path components, but no query or fragment
                components.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         if issuer is not None:
             pulumi.set(__self__, "issuer", issuer)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter
@@ -69,6 +98,21 @@ class _OidcState:
     @issuer.setter
     def issuer(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "issuer", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
 
 class Oidc(pulumi.CustomResource):
@@ -77,6 +121,7 @@ class Oidc(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  issuer: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Configure the [Identity Tokens Backend](https://www.vaultproject.io/docs/secrets/identity/index.html#identity-tokens).
@@ -101,6 +146,10 @@ class Oidc(pulumi.CustomResource):
                `api_addr` will be used. The issuer is a case sensitive URL using the https scheme that contains
                scheme, host, and optionally, port number and path components, but no query or fragment
                components.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         ...
     @overload
@@ -141,6 +190,7 @@ class Oidc(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  issuer: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -151,6 +201,7 @@ class Oidc(pulumi.CustomResource):
             __props__ = OidcArgs.__new__(OidcArgs)
 
             __props__.__dict__["issuer"] = issuer
+            __props__.__dict__["namespace"] = namespace
         super(Oidc, __self__).__init__(
             'vault:identity/oidc:Oidc',
             resource_name,
@@ -161,7 +212,8 @@ class Oidc(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            issuer: Optional[pulumi.Input[str]] = None) -> 'Oidc':
+            issuer: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None) -> 'Oidc':
         """
         Get an existing Oidc resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -173,12 +225,17 @@ class Oidc(pulumi.CustomResource):
                `api_addr` will be used. The issuer is a case sensitive URL using the https scheme that contains
                scheme, host, and optionally, port number and path components, but no query or fragment
                components.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _OidcState.__new__(_OidcState)
 
         __props__.__dict__["issuer"] = issuer
+        __props__.__dict__["namespace"] = namespace
         return Oidc(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -191,4 +248,15 @@ class Oidc(pulumi.CustomResource):
         components.
         """
         return pulumi.get(self, "issuer")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 

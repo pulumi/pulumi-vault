@@ -16,18 +16,25 @@ class SecretScopeArgs:
     def __init__(__self__, *,
                  path: pulumi.Input[str],
                  scope: pulumi.Input[str],
-                 force: Optional[pulumi.Input[bool]] = None):
+                 force: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SecretScope resource.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `kmip`.
         :param pulumi.Input[str] scope: Name of the scope.
         :param pulumi.Input[bool] force: Boolean field to force deletion even if there are managed objects in the scope.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         pulumi.set(__self__, "path", path)
         pulumi.set(__self__, "scope", scope)
         if force is not None:
             pulumi.set(__self__, "force", force)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter
@@ -66,22 +73,44 @@ class SecretScopeArgs:
     def force(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "force", value)
 
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
 
 @pulumi.input_type
 class _SecretScopeState:
     def __init__(__self__, *,
                  force: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  scope: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SecretScope resources.
         :param pulumi.Input[bool] force: Boolean field to force deletion even if there are managed objects in the scope.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `kmip`.
         :param pulumi.Input[str] scope: Name of the scope.
         """
         if force is not None:
             pulumi.set(__self__, "force", force)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if path is not None:
             pulumi.set(__self__, "path", path)
         if scope is not None:
@@ -98,6 +127,21 @@ class _SecretScopeState:
     @force.setter
     def force(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "force", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -131,6 +175,7 @@ class SecretScope(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  force: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  scope: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -165,6 +210,10 @@ class SecretScope(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] force: Boolean field to force deletion even if there are managed objects in the scope.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `kmip`.
         :param pulumi.Input[str] scope: Name of the scope.
@@ -219,6 +268,7 @@ class SecretScope(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  force: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  scope: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -231,6 +281,7 @@ class SecretScope(pulumi.CustomResource):
             __props__ = SecretScopeArgs.__new__(SecretScopeArgs)
 
             __props__.__dict__["force"] = force
+            __props__.__dict__["namespace"] = namespace
             if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
             __props__.__dict__["path"] = path
@@ -248,6 +299,7 @@ class SecretScope(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             force: Optional[pulumi.Input[bool]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
             scope: Optional[pulumi.Input[str]] = None) -> 'SecretScope':
         """
@@ -258,6 +310,10 @@ class SecretScope(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] force: Boolean field to force deletion even if there are managed objects in the scope.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `kmip`.
         :param pulumi.Input[str] scope: Name of the scope.
@@ -267,6 +323,7 @@ class SecretScope(pulumi.CustomResource):
         __props__ = _SecretScopeState.__new__(_SecretScopeState)
 
         __props__.__dict__["force"] = force
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["path"] = path
         __props__.__dict__["scope"] = scope
         return SecretScope(resource_name, opts=opts, __props__=__props__)
@@ -278,6 +335,17 @@ class SecretScope(pulumi.CustomResource):
         Boolean field to force deletion even if there are managed objects in the scope.
         """
         return pulumi.get(self, "force")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

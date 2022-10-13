@@ -84,6 +84,11 @@ type SecretBackendRole struct {
 	// The name to identify this role within the backend.
 	// Must be unique within the backend.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Specifies a comma-separated RabbitMQ management tags.
 	Tags pulumi.StringPtrOutput `pulumi:"tags"`
 	// Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
@@ -130,6 +135,11 @@ type secretBackendRoleState struct {
 	// The name to identify this role within the backend.
 	// Must be unique within the backend.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Specifies a comma-separated RabbitMQ management tags.
 	Tags *string `pulumi:"tags"`
 	// Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
@@ -145,6 +155,11 @@ type SecretBackendRoleState struct {
 	// The name to identify this role within the backend.
 	// Must be unique within the backend.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Specifies a comma-separated RabbitMQ management tags.
 	Tags pulumi.StringPtrInput
 	// Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
@@ -164,6 +179,11 @@ type secretBackendRoleArgs struct {
 	// The name to identify this role within the backend.
 	// Must be unique within the backend.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Specifies a comma-separated RabbitMQ management tags.
 	Tags *string `pulumi:"tags"`
 	// Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
@@ -180,6 +200,11 @@ type SecretBackendRoleArgs struct {
 	// The name to identify this role within the backend.
 	// Must be unique within the backend.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Specifies a comma-separated RabbitMQ management tags.
 	Tags pulumi.StringPtrInput
 	// Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
@@ -285,6 +310,14 @@ func (o SecretBackendRoleOutput) Backend() pulumi.StringOutput {
 // Must be unique within the backend.
 func (o SecretBackendRoleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o SecretBackendRoleOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Specifies a comma-separated RabbitMQ management tags.

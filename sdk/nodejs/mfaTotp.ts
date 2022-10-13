@@ -83,6 +83,13 @@ export class MfaTotp extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * `(int)` - The length of time used to generate a counter for the TOTP token calculation.
      */
     public readonly period!: pulumi.Output<number | undefined>;
@@ -114,6 +121,7 @@ export class MfaTotp extends pulumi.CustomResource {
             resourceInputs["issuer"] = state ? state.issuer : undefined;
             resourceInputs["keySize"] = state ? state.keySize : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["period"] = state ? state.period : undefined;
             resourceInputs["qrSize"] = state ? state.qrSize : undefined;
             resourceInputs["skew"] = state ? state.skew : undefined;
@@ -127,6 +135,7 @@ export class MfaTotp extends pulumi.CustomResource {
             resourceInputs["issuer"] = args ? args.issuer : undefined;
             resourceInputs["keySize"] = args ? args.keySize : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["period"] = args ? args.period : undefined;
             resourceInputs["qrSize"] = args ? args.qrSize : undefined;
             resourceInputs["skew"] = args ? args.skew : undefined;
@@ -162,6 +171,13 @@ export interface MfaTotpState {
      * `(string: <required>)` – Name of the MFA method.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * `(int)` - The length of time used to generate a counter for the TOTP token calculation.
      */
@@ -203,6 +219,13 @@ export interface MfaTotpArgs {
      * `(string: <required>)` – Name of the MFA method.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * `(int)` - The length of time used to generate a counter for the TOTP token calculation.
      */

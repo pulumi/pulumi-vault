@@ -14,21 +14,14 @@ public final class AuthBackendGroup {
      * @return Name of the group within the Okta
      * 
      */
-    private final String groupName;
+    private String groupName;
     /**
      * @return List of Vault policies to associate with this user
      * 
      */
-    private final List<String> policies;
+    private List<String> policies;
 
-    @CustomType.Constructor
-    private AuthBackendGroup(
-        @CustomType.Parameter("groupName") String groupName,
-        @CustomType.Parameter("policies") List<String> policies) {
-        this.groupName = groupName;
-        this.policies = policies;
-    }
-
+    private AuthBackendGroup() {}
     /**
      * @return Name of the group within the Okta
      * 
@@ -51,33 +44,35 @@ public final class AuthBackendGroup {
     public static Builder builder(AuthBackendGroup defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String groupName;
         private List<String> policies;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(AuthBackendGroup defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.groupName = defaults.groupName;
     	      this.policies = defaults.policies;
         }
 
+        @CustomType.Setter
         public Builder groupName(String groupName) {
             this.groupName = Objects.requireNonNull(groupName);
             return this;
         }
+        @CustomType.Setter
         public Builder policies(List<String> policies) {
             this.policies = Objects.requireNonNull(policies);
             return this;
         }
         public Builder policies(String... policies) {
             return policies(List.of(policies));
-        }        public AuthBackendGroup build() {
-            return new AuthBackendGroup(groupName, policies);
+        }
+        public AuthBackendGroup build() {
+            final var o = new AuthBackendGroup();
+            o.groupName = groupName;
+            o.policies = policies;
+            return o;
         }
     }
 }

@@ -67,6 +67,13 @@ export class SecretScope extends pulumi.CustomResource {
      */
     public readonly force!: pulumi.Output<boolean | undefined>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `kmip`.
      */
@@ -90,6 +97,7 @@ export class SecretScope extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SecretScopeState | undefined;
             resourceInputs["force"] = state ? state.force : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
             resourceInputs["scope"] = state ? state.scope : undefined;
         } else {
@@ -101,6 +109,7 @@ export class SecretScope extends pulumi.CustomResource {
                 throw new Error("Missing required property 'scope'");
             }
             resourceInputs["force"] = args ? args.force : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["scope"] = args ? args.scope : undefined;
         }
@@ -117,6 +126,13 @@ export interface SecretScopeState {
      * Boolean field to force deletion even if there are managed objects in the scope.
      */
     force?: pulumi.Input<boolean>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `kmip`.
@@ -136,6 +152,13 @@ export interface SecretScopeArgs {
      * Boolean field to force deletion even if there are managed objects in the scope.
      */
     force?: pulumi.Input<boolean>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `kmip`.

@@ -17,18 +17,25 @@ class AuthBackendUserInitArgs:
                  path: pulumi.Input[str],
                  username: pulumi.Input[str],
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a AuthBackendUser resource.
         :param pulumi.Input[str] path: The path where the Okta auth backend is mounted
         :param pulumi.Input[str] username: Name of the user within Okta
         :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: List of Okta groups to associate with this user
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of Vault policies to associate with this user
         """
         pulumi.set(__self__, "path", path)
         pulumi.set(__self__, "username", username)
         if groups is not None:
             pulumi.set(__self__, "groups", groups)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if policies is not None:
             pulumi.set(__self__, "policies", policies)
 
@@ -70,6 +77,21 @@ class AuthBackendUserInitArgs:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         List of Vault policies to associate with this user
@@ -85,18 +107,25 @@ class AuthBackendUserInitArgs:
 class _AuthBackendUserState:
     def __init__(__self__, *,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  username: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendUser resources.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: List of Okta groups to associate with this user
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The path where the Okta auth backend is mounted
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of Vault policies to associate with this user
         :param pulumi.Input[str] username: Name of the user within Okta
         """
         if groups is not None:
             pulumi.set(__self__, "groups", groups)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if path is not None:
             pulumi.set(__self__, "path", path)
         if policies is not None:
@@ -115,6 +144,21 @@ class _AuthBackendUserState:
     @groups.setter
     def groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "groups", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -159,6 +203,7 @@ class AuthBackendUser(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  username: Optional[pulumi.Input[str]] = None,
@@ -196,6 +241,10 @@ class AuthBackendUser(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: List of Okta groups to associate with this user
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The path where the Okta auth backend is mounted
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of Vault policies to associate with this user
         :param pulumi.Input[str] username: Name of the user within Okta
@@ -252,6 +301,7 @@ class AuthBackendUser(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  username: Optional[pulumi.Input[str]] = None,
@@ -265,6 +315,7 @@ class AuthBackendUser(pulumi.CustomResource):
             __props__ = AuthBackendUserInitArgs.__new__(AuthBackendUserInitArgs)
 
             __props__.__dict__["groups"] = groups
+            __props__.__dict__["namespace"] = namespace
             if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
             __props__.__dict__["path"] = path
@@ -283,6 +334,7 @@ class AuthBackendUser(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             username: Optional[pulumi.Input[str]] = None) -> 'AuthBackendUser':
@@ -294,6 +346,10 @@ class AuthBackendUser(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: List of Okta groups to associate with this user
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The path where the Okta auth backend is mounted
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of Vault policies to associate with this user
         :param pulumi.Input[str] username: Name of the user within Okta
@@ -303,6 +359,7 @@ class AuthBackendUser(pulumi.CustomResource):
         __props__ = _AuthBackendUserState.__new__(_AuthBackendUserState)
 
         __props__.__dict__["groups"] = groups
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["path"] = path
         __props__.__dict__["policies"] = policies
         __props__.__dict__["username"] = username
@@ -315,6 +372,17 @@ class AuthBackendUser(pulumi.CustomResource):
         List of Okta groups to associate with this user
         """
         return pulumi.get(self, "groups")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

@@ -65,7 +65,7 @@ namespace Pulumi.Vault.Identity
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetOidcOpenidConfigResult> InvokeAsync(GetOidcOpenidConfigArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetOidcOpenidConfigResult>("vault:identity/getOidcOpenidConfig:getOidcOpenidConfig", args ?? new GetOidcOpenidConfigArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetOidcOpenidConfigResult>("vault:identity/getOidcOpenidConfig:getOidcOpenidConfig", args ?? new GetOidcOpenidConfigArgs(), options.WithDefaults());
 
         /// <summary>
         /// {{% examples %}}
@@ -121,7 +121,7 @@ namespace Pulumi.Vault.Identity
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetOidcOpenidConfigResult> Invoke(GetOidcOpenidConfigInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetOidcOpenidConfigResult>("vault:identity/getOidcOpenidConfig:getOidcOpenidConfig", args ?? new GetOidcOpenidConfigInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetOidcOpenidConfigResult>("vault:identity/getOidcOpenidConfig:getOidcOpenidConfig", args ?? new GetOidcOpenidConfigInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -132,6 +132,15 @@ namespace Pulumi.Vault.Identity
         /// </summary>
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
+
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public string? Namespace { get; set; }
 
         public GetOidcOpenidConfigArgs()
         {
@@ -146,6 +155,15 @@ namespace Pulumi.Vault.Identity
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
+
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         public GetOidcOpenidConfigInvokeArgs()
         {
@@ -183,6 +201,7 @@ namespace Pulumi.Vault.Identity
         /// </summary>
         public readonly string JwksUri;
         public readonly string Name;
+        public readonly string? Namespace;
         /// <summary>
         /// Specifies whether Request URI Parameter is 
         /// supported by the provider.
@@ -229,6 +248,8 @@ namespace Pulumi.Vault.Identity
 
             string name,
 
+            string? @namespace,
+
             bool requestUriParameterSupported,
 
             ImmutableArray<string> responseTypesSupporteds,
@@ -250,6 +271,7 @@ namespace Pulumi.Vault.Identity
             Issuer = issuer;
             JwksUri = jwksUri;
             Name = name;
+            Namespace = @namespace;
             RequestUriParameterSupported = requestUriParameterSupported;
             ResponseTypesSupporteds = responseTypesSupporteds;
             ScopesSupporteds = scopesSupporteds;

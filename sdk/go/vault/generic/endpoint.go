@@ -104,6 +104,11 @@ type Endpoint struct {
 	DisableRead pulumi.BoolPtrOutput `pulumi:"disableRead"`
 	// When reading, disregard fields not present in data_json
 	IgnoreAbsentFields pulumi.BoolPtrOutput `pulumi:"ignoreAbsentFields"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The full logical path at which to write the given
 	// data. Consult each backend's documentation to see which endpoints
 	// support the `PUT` methods and to determine whether they also support
@@ -130,6 +135,13 @@ func NewEndpoint(ctx *pulumi.Context,
 	if args.Path == nil {
 		return nil, errors.New("invalid value for required argument 'Path'")
 	}
+	if args.DataJson != nil {
+		args.DataJson = pulumi.ToSecret(args.DataJson).(pulumi.StringOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"dataJson",
+	})
+	opts = append(opts, secrets)
 	var resource Endpoint
 	err := ctx.RegisterResource("vault:generic/endpoint:Endpoint", name, args, &resource, opts...)
 	if err != nil {
@@ -165,6 +177,11 @@ type endpointState struct {
 	DisableRead *bool `pulumi:"disableRead"`
 	// When reading, disregard fields not present in data_json
 	IgnoreAbsentFields *bool `pulumi:"ignoreAbsentFields"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The full logical path at which to write the given
 	// data. Consult each backend's documentation to see which endpoints
 	// support the `PUT` methods and to determine whether they also support
@@ -192,6 +209,11 @@ type EndpointState struct {
 	DisableRead pulumi.BoolPtrInput
 	// When reading, disregard fields not present in data_json
 	IgnoreAbsentFields pulumi.BoolPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The full logical path at which to write the given
 	// data. Consult each backend's documentation to see which endpoints
 	// support the `PUT` methods and to determine whether they also support
@@ -223,6 +245,11 @@ type endpointArgs struct {
 	DisableRead *bool `pulumi:"disableRead"`
 	// When reading, disregard fields not present in data_json
 	IgnoreAbsentFields *bool `pulumi:"ignoreAbsentFields"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The full logical path at which to write the given
 	// data. Consult each backend's documentation to see which endpoints
 	// support the `PUT` methods and to determine whether they also support
@@ -247,6 +274,11 @@ type EndpointArgs struct {
 	DisableRead pulumi.BoolPtrInput
 	// When reading, disregard fields not present in data_json
 	IgnoreAbsentFields pulumi.BoolPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The full logical path at which to write the given
 	// data. Consult each backend's documentation to see which endpoints
 	// support the `PUT` methods and to determine whether they also support
@@ -366,6 +398,14 @@ func (o EndpointOutput) DisableRead() pulumi.BoolPtrOutput {
 // When reading, disregard fields not present in data_json
 func (o EndpointOutput) IgnoreAbsentFields() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Endpoint) pulumi.BoolPtrOutput { return v.IgnoreAbsentFields }).(pulumi.BoolPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o EndpointOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Endpoint) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The full logical path at which to write the given

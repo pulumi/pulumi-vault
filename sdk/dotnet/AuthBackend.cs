@@ -28,10 +28,17 @@ namespace Pulumi.Vault
         public Output<string> Accessor { get; private set; } = null!;
 
         /// <summary>
-        /// A description of the auth method
+        /// A description of the auth method.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
+
+        /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Output("disableRemount")]
+        public Output<bool?> DisableRemount { get; private set; } = null!;
 
         /// <summary>
         /// Specifies if the auth method is local only.
@@ -40,7 +47,16 @@ namespace Pulumi.Vault
         public Output<bool?> Local { get; private set; } = null!;
 
         /// <summary>
-        /// The path to mount the auth method — this defaults to the name of the type
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
+        /// The path to mount the auth method — this defaults to the name of the type.
         /// </summary>
         [Output("path")]
         public Output<string> Path { get; private set; } = null!;
@@ -52,7 +68,7 @@ namespace Pulumi.Vault
         public Output<Outputs.AuthBackendTune> Tune { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the auth method type
+        /// The name of the auth method type.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -104,10 +120,17 @@ namespace Pulumi.Vault
     public sealed class AuthBackendArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// A description of the auth method
+        /// A description of the auth method.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Input("disableRemount")]
+        public Input<bool>? DisableRemount { get; set; }
 
         /// <summary>
         /// Specifies if the auth method is local only.
@@ -116,7 +139,16 @@ namespace Pulumi.Vault
         public Input<bool>? Local { get; set; }
 
         /// <summary>
-        /// The path to mount the auth method — this defaults to the name of the type
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
+        /// The path to mount the auth method — this defaults to the name of the type.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
@@ -128,7 +160,7 @@ namespace Pulumi.Vault
         public Input<Inputs.AuthBackendTuneArgs>? Tune { get; set; }
 
         /// <summary>
-        /// The name of the auth method type
+        /// The name of the auth method type.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -148,10 +180,17 @@ namespace Pulumi.Vault
         public Input<string>? Accessor { get; set; }
 
         /// <summary>
-        /// A description of the auth method
+        /// A description of the auth method.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Input("disableRemount")]
+        public Input<bool>? DisableRemount { get; set; }
 
         /// <summary>
         /// Specifies if the auth method is local only.
@@ -160,7 +199,16 @@ namespace Pulumi.Vault
         public Input<bool>? Local { get; set; }
 
         /// <summary>
-        /// The path to mount the auth method — this defaults to the name of the type
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
+        /// The path to mount the auth method — this defaults to the name of the type.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
@@ -172,7 +220,7 @@ namespace Pulumi.Vault
         public Input<Inputs.AuthBackendTuneGetArgs>? Tune { get; set; }
 
         /// <summary>
-        /// The name of the auth method type
+        /// The name of the auth method type.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

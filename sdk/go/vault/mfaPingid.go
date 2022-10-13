@@ -76,6 +76,11 @@ type MfaPingid struct {
 	MountAccessor pulumi.StringOutput `pulumi:"mountAccessor"`
 	// `(string: <required>)` – Name of the MFA method.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Namespace ID computed by Vault.
 	NamespaceId pulumi.StringOutput `pulumi:"namespaceId"`
 	// Org Alias computed by Vault.
@@ -143,6 +148,11 @@ type mfaPingidState struct {
 	MountAccessor *string `pulumi:"mountAccessor"`
 	// `(string: <required>)` – Name of the MFA method.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Namespace ID computed by Vault.
 	NamespaceId *string `pulumi:"namespaceId"`
 	// Org Alias computed by Vault.
@@ -176,6 +186,11 @@ type MfaPingidState struct {
 	MountAccessor pulumi.StringPtrInput
 	// `(string: <required>)` – Name of the MFA method.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Namespace ID computed by Vault.
 	NamespaceId pulumi.StringPtrInput
 	// Org Alias computed by Vault.
@@ -207,6 +222,11 @@ type mfaPingidArgs struct {
 	MountAccessor string `pulumi:"mountAccessor"`
 	// `(string: <required>)` – Name of the MFA method.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// `(string: <required>)` - A base64-encoded third-party settings file retrieved
 	// from PingID's configuration page.
 	SettingsFileBase64 string `pulumi:"settingsFileBase64"`
@@ -227,6 +247,11 @@ type MfaPingidArgs struct {
 	MountAccessor pulumi.StringInput
 	// `(string: <required>)` – Name of the MFA method.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// `(string: <required>)` - A base64-encoded third-party settings file retrieved
 	// from PingID's configuration page.
 	SettingsFileBase64 pulumi.StringInput
@@ -351,6 +376,14 @@ func (o MfaPingidOutput) MountAccessor() pulumi.StringOutput {
 // `(string: <required>)` – Name of the MFA method.
 func (o MfaPingidOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *MfaPingid) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o MfaPingidOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MfaPingid) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Namespace ID computed by Vault.

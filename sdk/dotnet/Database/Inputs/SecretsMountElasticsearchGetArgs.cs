@@ -70,11 +70,21 @@ namespace Pulumi.Vault.Database.Inputs
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        [Input("password", required: true)]
+        private Input<string>? _password;
+
         /// <summary>
         /// The password to be used in the connection.
         /// </summary>
-        [Input("password", required: true)]
-        public Input<string> Password { get; set; } = null!;
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Specifies the name of the plugin to use.
@@ -101,8 +111,7 @@ namespace Pulumi.Vault.Database.Inputs
         public Input<string>? TlsServerName { get; set; }
 
         /// <summary>
-        /// The URL for Elasticsearch's API. https requires certificate
-        /// by trusted CA if used.
+        /// The configuration endpoint for the ElastiCache cluster to connect to.
         /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;

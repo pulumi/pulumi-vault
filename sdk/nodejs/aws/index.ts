@@ -5,29 +5,61 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./authBackendCert";
-export * from "./authBackendClient";
-export * from "./authBackendIdentityWhitelist";
-export * from "./authBackendLogin";
-export * from "./authBackendRole";
-export * from "./authBackendRoleTag";
-export * from "./authBackendRoletagBlacklist";
-export * from "./authBackendStsRole";
-export * from "./getAccessCredentials";
-export * from "./secretBackend";
-export * from "./secretBackendRole";
+export { AuthBackendCertArgs, AuthBackendCertState } from "./authBackendCert";
+export type AuthBackendCert = import("./authBackendCert").AuthBackendCert;
+export const AuthBackendCert: typeof import("./authBackendCert").AuthBackendCert = null as any;
 
-// Import resources to register:
-import { AuthBackendCert } from "./authBackendCert";
-import { AuthBackendClient } from "./authBackendClient";
-import { AuthBackendIdentityWhitelist } from "./authBackendIdentityWhitelist";
-import { AuthBackendLogin } from "./authBackendLogin";
-import { AuthBackendRole } from "./authBackendRole";
-import { AuthBackendRoleTag } from "./authBackendRoleTag";
-import { AuthBackendRoletagBlacklist } from "./authBackendRoletagBlacklist";
-import { AuthBackendStsRole } from "./authBackendStsRole";
-import { SecretBackend } from "./secretBackend";
-import { SecretBackendRole } from "./secretBackendRole";
+export { AuthBackendClientArgs, AuthBackendClientState } from "./authBackendClient";
+export type AuthBackendClient = import("./authBackendClient").AuthBackendClient;
+export const AuthBackendClient: typeof import("./authBackendClient").AuthBackendClient = null as any;
+
+export { AuthBackendIdentityWhitelistArgs, AuthBackendIdentityWhitelistState } from "./authBackendIdentityWhitelist";
+export type AuthBackendIdentityWhitelist = import("./authBackendIdentityWhitelist").AuthBackendIdentityWhitelist;
+export const AuthBackendIdentityWhitelist: typeof import("./authBackendIdentityWhitelist").AuthBackendIdentityWhitelist = null as any;
+
+export { AuthBackendLoginArgs, AuthBackendLoginState } from "./authBackendLogin";
+export type AuthBackendLogin = import("./authBackendLogin").AuthBackendLogin;
+export const AuthBackendLogin: typeof import("./authBackendLogin").AuthBackendLogin = null as any;
+
+export { AuthBackendRoleArgs, AuthBackendRoleState } from "./authBackendRole";
+export type AuthBackendRole = import("./authBackendRole").AuthBackendRole;
+export const AuthBackendRole: typeof import("./authBackendRole").AuthBackendRole = null as any;
+
+export { AuthBackendRoleTagArgs, AuthBackendRoleTagState } from "./authBackendRoleTag";
+export type AuthBackendRoleTag = import("./authBackendRoleTag").AuthBackendRoleTag;
+export const AuthBackendRoleTag: typeof import("./authBackendRoleTag").AuthBackendRoleTag = null as any;
+
+export { AuthBackendRoletagBlacklistArgs, AuthBackendRoletagBlacklistState } from "./authBackendRoletagBlacklist";
+export type AuthBackendRoletagBlacklist = import("./authBackendRoletagBlacklist").AuthBackendRoletagBlacklist;
+export const AuthBackendRoletagBlacklist: typeof import("./authBackendRoletagBlacklist").AuthBackendRoletagBlacklist = null as any;
+
+export { AuthBackendStsRoleArgs, AuthBackendStsRoleState } from "./authBackendStsRole";
+export type AuthBackendStsRole = import("./authBackendStsRole").AuthBackendStsRole;
+export const AuthBackendStsRole: typeof import("./authBackendStsRole").AuthBackendStsRole = null as any;
+
+export { GetAccessCredentialsArgs, GetAccessCredentialsResult, GetAccessCredentialsOutputArgs } from "./getAccessCredentials";
+export const getAccessCredentials: typeof import("./getAccessCredentials").getAccessCredentials = null as any;
+export const getAccessCredentialsOutput: typeof import("./getAccessCredentials").getAccessCredentialsOutput = null as any;
+
+export { SecretBackendArgs, SecretBackendState } from "./secretBackend";
+export type SecretBackend = import("./secretBackend").SecretBackend;
+export const SecretBackend: typeof import("./secretBackend").SecretBackend = null as any;
+
+export { SecretBackendRoleArgs, SecretBackendRoleState } from "./secretBackendRole";
+export type SecretBackendRole = import("./secretBackendRole").SecretBackendRole;
+export const SecretBackendRole: typeof import("./secretBackendRole").SecretBackendRole = null as any;
+
+utilities.lazyLoad(exports, ["AuthBackendCert"], () => require("./authBackendCert"));
+utilities.lazyLoad(exports, ["AuthBackendClient"], () => require("./authBackendClient"));
+utilities.lazyLoad(exports, ["AuthBackendIdentityWhitelist"], () => require("./authBackendIdentityWhitelist"));
+utilities.lazyLoad(exports, ["AuthBackendLogin"], () => require("./authBackendLogin"));
+utilities.lazyLoad(exports, ["AuthBackendRole"], () => require("./authBackendRole"));
+utilities.lazyLoad(exports, ["AuthBackendRoleTag"], () => require("./authBackendRoleTag"));
+utilities.lazyLoad(exports, ["AuthBackendRoletagBlacklist"], () => require("./authBackendRoletagBlacklist"));
+utilities.lazyLoad(exports, ["AuthBackendStsRole"], () => require("./authBackendStsRole"));
+utilities.lazyLoad(exports, ["getAccessCredentials","getAccessCredentialsOutput"], () => require("./getAccessCredentials"));
+utilities.lazyLoad(exports, ["SecretBackend"], () => require("./secretBackend"));
+utilities.lazyLoad(exports, ["SecretBackendRole"], () => require("./secretBackendRole"));
 
 const _module = {
     version: utilities.getVersion(),

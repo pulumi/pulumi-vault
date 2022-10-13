@@ -65,6 +65,23 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     * 
+     */
+    @Import(name="disableRemount")
+    private @Nullable Output<Boolean> disableRemount;
+
+    /**
+     * @return If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     * 
+     */
+    public Optional<Output<Boolean>> disableRemount() {
+        return Optional.ofNullable(this.disableRemount);
+    }
+
+    /**
      * The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
      * 
      */
@@ -137,6 +154,27 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<Boolean>> local() {
         return Optional.ofNullable(this.local);
+    }
+
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable Output<String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> namespace() {
+        return Optional.ofNullable(this.namespace);
     }
 
     /**
@@ -302,11 +340,13 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
         this.boundIssuer = $.boundIssuer;
         this.defaultRole = $.defaultRole;
         this.description = $.description;
+        this.disableRemount = $.disableRemount;
         this.jwksCaPem = $.jwksCaPem;
         this.jwksUrl = $.jwksUrl;
         this.jwtSupportedAlgs = $.jwtSupportedAlgs;
         this.jwtValidationPubkeys = $.jwtValidationPubkeys;
         this.local = $.local;
+        this.namespace = $.namespace;
         this.namespaceInState = $.namespaceInState;
         this.oidcClientId = $.oidcClientId;
         this.oidcClientSecret = $.oidcClientSecret;
@@ -399,6 +439,29 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder description(String description) {
             return description(Output.of(description));
+        }
+
+        /**
+         * @param disableRemount If set, opts out of mount migration on path updates.
+         * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableRemount(@Nullable Output<Boolean> disableRemount) {
+            $.disableRemount = disableRemount;
+            return this;
+        }
+
+        /**
+         * @param disableRemount If set, opts out of mount migration on path updates.
+         * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableRemount(Boolean disableRemount) {
+            return disableRemount(Output.of(disableRemount));
         }
 
         /**
@@ -524,6 +587,33 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder local(Boolean local) {
             return local(Output.of(local));
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable Output<String> namespace) {
+            $.namespace = namespace;
+            return this;
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(String namespace) {
+            return namespace(Output.of(namespace));
         }
 
         /**

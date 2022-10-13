@@ -108,6 +108,13 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * The ARN of the AWS Permissions 
      * Boundary to attach to IAM users created in the role. Valid only when
      * `credentialType` is `iamUser`. If not specified, then no permissions boundary
@@ -163,6 +170,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["iamGroups"] = state ? state.iamGroups : undefined;
             resourceInputs["maxStsTtl"] = state ? state.maxStsTtl : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["permissionsBoundaryArn"] = state ? state.permissionsBoundaryArn : undefined;
             resourceInputs["policyArns"] = state ? state.policyArns : undefined;
             resourceInputs["policyDocument"] = state ? state.policyDocument : undefined;
@@ -182,6 +190,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["iamGroups"] = args ? args.iamGroups : undefined;
             resourceInputs["maxStsTtl"] = args ? args.maxStsTtl : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["permissionsBoundaryArn"] = args ? args.permissionsBoundaryArn : undefined;
             resourceInputs["policyArns"] = args ? args.policyArns : undefined;
             resourceInputs["policyDocument"] = args ? args.policyDocument : undefined;
@@ -236,6 +245,13 @@ export interface SecretBackendRoleState {
      * Must be unique within the backend.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The ARN of the AWS Permissions 
      * Boundary to attach to IAM users created in the role. Valid only when
@@ -317,6 +333,13 @@ export interface SecretBackendRoleArgs {
      * Must be unique within the backend.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The ARN of the AWS Permissions 
      * Boundary to attach to IAM users created in the role. Valid only when

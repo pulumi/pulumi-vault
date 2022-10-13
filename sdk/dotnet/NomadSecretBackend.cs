@@ -91,6 +91,13 @@ namespace Pulumi.Vault
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Output("disableRemount")]
+        public Output<bool?> DisableRemount { get; private set; } = null!;
+
+        /// <summary>
         /// Mark the secrets engine as local-only. Local engines are not replicated or removed by
         /// replication.Tolerance duration to use when checking the last rotation time.
         /// </summary>
@@ -116,6 +123,15 @@ namespace Pulumi.Vault
         /// </summary>
         [Output("maxTtl")]
         public Output<int> MaxTtl { get; private set; } = null!;
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
         /// Specifies the Nomad Management token to use.
@@ -152,6 +168,12 @@ namespace Pulumi.Vault
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "clientCert",
+                    "clientKey",
+                    "token",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -196,17 +218,37 @@ namespace Pulumi.Vault
         [Input("caCert")]
         public Input<string>? CaCert { get; set; }
 
+        [Input("clientCert")]
+        private Input<string>? _clientCert;
+
         /// <summary>
         /// Client certificate to provide to the Nomad server, must be x509 PEM encoded.
         /// </summary>
-        [Input("clientCert")]
-        public Input<string>? ClientCert { get; set; }
+        public Input<string>? ClientCert
+        {
+            get => _clientCert;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientCert = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("clientKey")]
+        private Input<string>? _clientKey;
 
         /// <summary>
         /// Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
         /// </summary>
-        [Input("clientKey")]
-        public Input<string>? ClientKey { get; set; }
+        public Input<string>? ClientKey
+        {
+            get => _clientKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Default lease duration for secrets in seconds.
@@ -219,6 +261,13 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Input("disableRemount")]
+        public Input<bool>? DisableRemount { get; set; }
 
         /// <summary>
         /// Mark the secrets engine as local-only. Local engines are not replicated or removed by
@@ -248,10 +297,29 @@ namespace Pulumi.Vault
         public Input<int>? MaxTtl { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        [Input("token")]
+        private Input<string>? _token;
+
+        /// <summary>
         /// Specifies the Nomad Management token to use.
         /// </summary>
-        [Input("token")]
-        public Input<string>? Token { get; set; }
+        public Input<string>? Token
+        {
+            get => _token;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Specifies the ttl of the lease for the generated token.
@@ -288,17 +356,37 @@ namespace Pulumi.Vault
         [Input("caCert")]
         public Input<string>? CaCert { get; set; }
 
+        [Input("clientCert")]
+        private Input<string>? _clientCert;
+
         /// <summary>
         /// Client certificate to provide to the Nomad server, must be x509 PEM encoded.
         /// </summary>
-        [Input("clientCert")]
-        public Input<string>? ClientCert { get; set; }
+        public Input<string>? ClientCert
+        {
+            get => _clientCert;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientCert = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("clientKey")]
+        private Input<string>? _clientKey;
 
         /// <summary>
         /// Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
         /// </summary>
-        [Input("clientKey")]
-        public Input<string>? ClientKey { get; set; }
+        public Input<string>? ClientKey
+        {
+            get => _clientKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Default lease duration for secrets in seconds.
@@ -311,6 +399,13 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Input("disableRemount")]
+        public Input<bool>? DisableRemount { get; set; }
 
         /// <summary>
         /// Mark the secrets engine as local-only. Local engines are not replicated or removed by
@@ -340,10 +435,29 @@ namespace Pulumi.Vault
         public Input<int>? MaxTtl { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        [Input("token")]
+        private Input<string>? _token;
+
+        /// <summary>
         /// Specifies the Nomad Management token to use.
         /// </summary>
-        [Input("token")]
-        public Input<string>? Token { get; set; }
+        public Input<string>? Token
+        {
+            get => _token;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Specifies the ttl of the lease for the generated token.

@@ -6,6 +6,7 @@ package com.pulumi.vault.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Double;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -15,6 +16,38 @@ import javax.annotation.Nullable;
 public final class QuotaRateLimitState extends com.pulumi.resources.ResourceArgs {
 
     public static final QuotaRateLimitState Empty = new QuotaRateLimitState();
+
+    /**
+     * If set, when a client reaches a rate limit threshold, the client will
+     * be prohibited from any further requests until after the &#39;block_interval&#39; in seconds has elapsed.
+     * 
+     */
+    @Import(name="blockInterval")
+    private @Nullable Output<Integer> blockInterval;
+
+    /**
+     * @return If set, when a client reaches a rate limit threshold, the client will
+     * be prohibited from any further requests until after the &#39;block_interval&#39; in seconds has elapsed.
+     * 
+     */
+    public Optional<Output<Integer>> blockInterval() {
+        return Optional.ofNullable(this.blockInterval);
+    }
+
+    /**
+     * The duration in seconds to enforce rate limiting for.
+     * 
+     */
+    @Import(name="interval")
+    private @Nullable Output<Integer> interval;
+
+    /**
+     * @return The duration in seconds to enforce rate limiting for.
+     * 
+     */
+    public Optional<Output<Integer>> interval() {
+        return Optional.ofNullable(this.interval);
+    }
 
     /**
      * Name of the rate limit quota
@@ -29,6 +62,27 @@ public final class QuotaRateLimitState extends com.pulumi.resources.ResourceArgs
      */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
+    }
+
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured namespace.
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable Output<String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured namespace.
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> namespace() {
+        return Optional.ofNullable(this.namespace);
     }
 
     /**
@@ -76,7 +130,10 @@ public final class QuotaRateLimitState extends com.pulumi.resources.ResourceArgs
     private QuotaRateLimitState() {}
 
     private QuotaRateLimitState(QuotaRateLimitState $) {
+        this.blockInterval = $.blockInterval;
+        this.interval = $.interval;
         this.name = $.name;
+        this.namespace = $.namespace;
         this.path = $.path;
         this.rate = $.rate;
     }
@@ -100,6 +157,50 @@ public final class QuotaRateLimitState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
+         * @param blockInterval If set, when a client reaches a rate limit threshold, the client will
+         * be prohibited from any further requests until after the &#39;block_interval&#39; in seconds has elapsed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder blockInterval(@Nullable Output<Integer> blockInterval) {
+            $.blockInterval = blockInterval;
+            return this;
+        }
+
+        /**
+         * @param blockInterval If set, when a client reaches a rate limit threshold, the client will
+         * be prohibited from any further requests until after the &#39;block_interval&#39; in seconds has elapsed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder blockInterval(Integer blockInterval) {
+            return blockInterval(Output.of(blockInterval));
+        }
+
+        /**
+         * @param interval The duration in seconds to enforce rate limiting for.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder interval(@Nullable Output<Integer> interval) {
+            $.interval = interval;
+            return this;
+        }
+
+        /**
+         * @param interval The duration in seconds to enforce rate limiting for.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder interval(Integer interval) {
+            return interval(Output.of(interval));
+        }
+
+        /**
          * @param name Name of the rate limit quota
          * 
          * @return builder
@@ -118,6 +219,33 @@ public final class QuotaRateLimitState extends com.pulumi.resources.ResourceArgs
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured namespace.
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable Output<String> namespace) {
+            $.namespace = namespace;
+            return this;
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured namespace.
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(String namespace) {
+            return namespace(Output.of(namespace));
         }
 
         /**

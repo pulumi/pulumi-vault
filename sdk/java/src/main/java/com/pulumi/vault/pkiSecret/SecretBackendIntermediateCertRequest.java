@@ -211,6 +211,58 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
         return Codegen.optional(this.locality);
     }
     /**
+     * The ID of the previously configured managed key. This field is
+     * required if `type` is `kms` and it conflicts with `managed_key_name`
+     * 
+     */
+    @Export(name="managedKeyId", type=String.class, parameters={})
+    private Output</* @Nullable */ String> managedKeyId;
+
+    /**
+     * @return The ID of the previously configured managed key. This field is
+     * required if `type` is `kms` and it conflicts with `managed_key_name`
+     * 
+     */
+    public Output<Optional<String>> managedKeyId() {
+        return Codegen.optional(this.managedKeyId);
+    }
+    /**
+     * The name of the previously configured managed key. This field is
+     * required if `type` is `kms`  and it conflicts with `managed_key_id`
+     * 
+     */
+    @Export(name="managedKeyName", type=String.class, parameters={})
+    private Output</* @Nullable */ String> managedKeyName;
+
+    /**
+     * @return The name of the previously configured managed key. This field is
+     * required if `type` is `kms`  and it conflicts with `managed_key_id`
+     * 
+     */
+    public Output<Optional<String>> managedKeyName() {
+        return Codegen.optional(this.managedKeyName);
+    }
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="namespace", type=String.class, parameters={})
+    private Output</* @Nullable */ String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> namespace() {
+        return Codegen.optional(this.namespace);
+    }
+    /**
      * The organization
      * 
      */
@@ -338,6 +390,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
     }
     /**
      * Type of intermediate to create. Must be either \&#34;exported\&#34; or \&#34;internal\&#34;
+     * or \&#34;kms\&#34;
      * 
      */
     @Export(name="type", type=String.class, parameters={})
@@ -345,6 +398,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
 
     /**
      * @return Type of intermediate to create. Must be either \&#34;exported\&#34; or \&#34;internal\&#34;
+     * or \&#34;kms\&#34;
      * 
      */
     public Output<String> type() {
@@ -397,6 +451,9 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "privateKey"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

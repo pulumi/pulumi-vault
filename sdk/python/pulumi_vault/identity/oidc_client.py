@@ -20,6 +20,7 @@ class OidcClientArgs:
                  id_token_ttl: Optional[pulumi.Input[int]] = None,
                  key: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a OidcClient resource.
@@ -33,6 +34,10 @@ class OidcClientArgs:
                This cannot be modified after creation. If not provided, the `default`
                key is used.
         :param pulumi.Input[str] name: The name of the client.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] redirect_uris: Redirection URI values used by the client. 
                One of these values must exactly match the `redirect_uri` parameter value
                used in each authentication request.
@@ -49,6 +54,8 @@ class OidcClientArgs:
             pulumi.set(__self__, "key", key)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if redirect_uris is not None:
             pulumi.set(__self__, "redirect_uris", redirect_uris)
 
@@ -129,6 +136,21 @@ class OidcClientArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="redirectUris")
     def redirect_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -154,6 +176,7 @@ class _OidcClientState:
                  id_token_ttl: Optional[pulumi.Input[int]] = None,
                  key: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering OidcClient resources.
@@ -169,6 +192,10 @@ class _OidcClientState:
                This cannot be modified after creation. If not provided, the `default`
                key is used.
         :param pulumi.Input[str] name: The name of the client.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] redirect_uris: Redirection URI values used by the client. 
                One of these values must exactly match the `redirect_uri` parameter value
                used in each authentication request.
@@ -189,6 +216,8 @@ class _OidcClientState:
             pulumi.set(__self__, "key", key)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if redirect_uris is not None:
             pulumi.set(__self__, "redirect_uris", redirect_uris)
 
@@ -293,6 +322,21 @@ class _OidcClientState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="redirectUris")
     def redirect_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -318,6 +362,7 @@ class OidcClient(pulumi.CustomResource):
                  id_token_ttl: Optional[pulumi.Input[int]] = None,
                  key: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
@@ -364,6 +409,10 @@ class OidcClient(pulumi.CustomResource):
                This cannot be modified after creation. If not provided, the `default`
                key is used.
         :param pulumi.Input[str] name: The name of the client.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] redirect_uris: Redirection URI values used by the client. 
                One of these values must exactly match the `redirect_uri` parameter value
                used in each authentication request.
@@ -427,6 +476,7 @@ class OidcClient(pulumi.CustomResource):
                  id_token_ttl: Optional[pulumi.Input[int]] = None,
                  key: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -443,9 +493,12 @@ class OidcClient(pulumi.CustomResource):
             __props__.__dict__["id_token_ttl"] = id_token_ttl
             __props__.__dict__["key"] = key
             __props__.__dict__["name"] = name
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["redirect_uris"] = redirect_uris
             __props__.__dict__["client_id"] = None
             __props__.__dict__["client_secret"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientSecret"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(OidcClient, __self__).__init__(
             'vault:identity/oidcClient:OidcClient',
             resource_name,
@@ -464,6 +517,7 @@ class OidcClient(pulumi.CustomResource):
             id_token_ttl: Optional[pulumi.Input[int]] = None,
             key: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'OidcClient':
         """
         Get an existing OidcClient resource's state with the given name, id, and optional extra
@@ -484,6 +538,10 @@ class OidcClient(pulumi.CustomResource):
                This cannot be modified after creation. If not provided, the `default`
                key is used.
         :param pulumi.Input[str] name: The name of the client.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] redirect_uris: Redirection URI values used by the client. 
                One of these values must exactly match the `redirect_uri` parameter value
                used in each authentication request.
@@ -500,6 +558,7 @@ class OidcClient(pulumi.CustomResource):
         __props__.__dict__["id_token_ttl"] = id_token_ttl
         __props__.__dict__["key"] = key
         __props__.__dict__["name"] = name
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["redirect_uris"] = redirect_uris
         return OidcClient(resource_name, opts=opts, __props__=__props__)
 
@@ -570,6 +629,17 @@ class OidcClient(pulumi.CustomResource):
         The name of the client.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="redirectUris")

@@ -20,117 +20,81 @@ public final class SecretsMountElasticsearch {
      * connection.
      * 
      */
-    private final @Nullable List<String> allowedRoles;
+    private @Nullable List<String> allowedRoles;
     /**
      * @return The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity.
      * 
      */
-    private final @Nullable String caCert;
+    private @Nullable String caCert;
     /**
      * @return The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server&#39;s identity.
      * 
      */
-    private final @Nullable String caPath;
+    private @Nullable String caPath;
     /**
      * @return The path to the certificate for the Elasticsearch client to present for communication.
      * 
      */
-    private final @Nullable String clientCert;
+    private @Nullable String clientCert;
     /**
      * @return The path to the key for the Elasticsearch client to use for communication.
      * 
      */
-    private final @Nullable String clientKey;
+    private @Nullable String clientKey;
     /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
      */
-    private final @Nullable Map<String,Object> data;
+    private @Nullable Map<String,Object> data;
     /**
      * @return Whether to disable certificate verification.
      * 
      */
-    private final @Nullable Boolean insecure;
-    private final String name;
+    private @Nullable Boolean insecure;
+    private String name;
     /**
      * @return The password to be used in the connection.
      * 
      */
-    private final String password;
+    private String password;
     /**
      * @return Specifies the name of the plugin to use.
      * 
      */
-    private final @Nullable String pluginName;
+    private @Nullable String pluginName;
     /**
      * @return A list of database statements to be executed to rotate the root user&#39;s credentials.
      * 
      */
-    private final @Nullable List<String> rootRotationStatements;
+    private @Nullable List<String> rootRotationStatements;
     /**
      * @return This, if set, is used to set the SNI host when connecting via TLS.
      * 
      */
-    private final @Nullable String tlsServerName;
+    private @Nullable String tlsServerName;
     /**
-     * @return The URL for Elasticsearch&#39;s API. https requires certificate
-     * by trusted CA if used.
+     * @return The configuration endpoint for the ElastiCache cluster to connect to.
      * 
      */
-    private final String url;
+    private String url;
     /**
      * @return The username to be used in the connection (the account admin level).
      * 
      */
-    private final String username;
+    private String username;
     /**
      * @return - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
      * 
      */
-    private final @Nullable String usernameTemplate;
+    private @Nullable String usernameTemplate;
     /**
      * @return Whether the connection should be verified on
      * initial configuration or not.
      * 
      */
-    private final @Nullable Boolean verifyConnection;
+    private @Nullable Boolean verifyConnection;
 
-    @CustomType.Constructor
-    private SecretsMountElasticsearch(
-        @CustomType.Parameter("allowedRoles") @Nullable List<String> allowedRoles,
-        @CustomType.Parameter("caCert") @Nullable String caCert,
-        @CustomType.Parameter("caPath") @Nullable String caPath,
-        @CustomType.Parameter("clientCert") @Nullable String clientCert,
-        @CustomType.Parameter("clientKey") @Nullable String clientKey,
-        @CustomType.Parameter("data") @Nullable Map<String,Object> data,
-        @CustomType.Parameter("insecure") @Nullable Boolean insecure,
-        @CustomType.Parameter("name") String name,
-        @CustomType.Parameter("password") String password,
-        @CustomType.Parameter("pluginName") @Nullable String pluginName,
-        @CustomType.Parameter("rootRotationStatements") @Nullable List<String> rootRotationStatements,
-        @CustomType.Parameter("tlsServerName") @Nullable String tlsServerName,
-        @CustomType.Parameter("url") String url,
-        @CustomType.Parameter("username") String username,
-        @CustomType.Parameter("usernameTemplate") @Nullable String usernameTemplate,
-        @CustomType.Parameter("verifyConnection") @Nullable Boolean verifyConnection) {
-        this.allowedRoles = allowedRoles;
-        this.caCert = caCert;
-        this.caPath = caPath;
-        this.clientCert = clientCert;
-        this.clientKey = clientKey;
-        this.data = data;
-        this.insecure = insecure;
-        this.name = name;
-        this.password = password;
-        this.pluginName = pluginName;
-        this.rootRotationStatements = rootRotationStatements;
-        this.tlsServerName = tlsServerName;
-        this.url = url;
-        this.username = username;
-        this.usernameTemplate = usernameTemplate;
-        this.verifyConnection = verifyConnection;
-    }
-
+    private SecretsMountElasticsearch() {}
     /**
      * @return A list of roles that are allowed to use this
      * connection.
@@ -213,8 +177,7 @@ public final class SecretsMountElasticsearch {
         return Optional.ofNullable(this.tlsServerName);
     }
     /**
-     * @return The URL for Elasticsearch&#39;s API. https requires certificate
-     * by trusted CA if used.
+     * @return The configuration endpoint for the ElastiCache cluster to connect to.
      * 
      */
     public String url() {
@@ -250,7 +213,7 @@ public final class SecretsMountElasticsearch {
     public static Builder builder(SecretsMountElasticsearch defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable List<String> allowedRoles;
         private @Nullable String caCert;
@@ -268,11 +231,7 @@ public final class SecretsMountElasticsearch {
         private String username;
         private @Nullable String usernameTemplate;
         private @Nullable Boolean verifyConnection;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(SecretsMountElasticsearch defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.allowedRoles = defaults.allowedRoles;
@@ -293,6 +252,7 @@ public final class SecretsMountElasticsearch {
     	      this.verifyConnection = defaults.verifyConnection;
         }
 
+        @CustomType.Setter
         public Builder allowedRoles(@Nullable List<String> allowedRoles) {
             this.allowedRoles = allowedRoles;
             return this;
@@ -300,42 +260,52 @@ public final class SecretsMountElasticsearch {
         public Builder allowedRoles(String... allowedRoles) {
             return allowedRoles(List.of(allowedRoles));
         }
+        @CustomType.Setter
         public Builder caCert(@Nullable String caCert) {
             this.caCert = caCert;
             return this;
         }
+        @CustomType.Setter
         public Builder caPath(@Nullable String caPath) {
             this.caPath = caPath;
             return this;
         }
+        @CustomType.Setter
         public Builder clientCert(@Nullable String clientCert) {
             this.clientCert = clientCert;
             return this;
         }
+        @CustomType.Setter
         public Builder clientKey(@Nullable String clientKey) {
             this.clientKey = clientKey;
             return this;
         }
+        @CustomType.Setter
         public Builder data(@Nullable Map<String,Object> data) {
             this.data = data;
             return this;
         }
+        @CustomType.Setter
         public Builder insecure(@Nullable Boolean insecure) {
             this.insecure = insecure;
             return this;
         }
+        @CustomType.Setter
         public Builder name(String name) {
             this.name = Objects.requireNonNull(name);
             return this;
         }
+        @CustomType.Setter
         public Builder password(String password) {
             this.password = Objects.requireNonNull(password);
             return this;
         }
+        @CustomType.Setter
         public Builder pluginName(@Nullable String pluginName) {
             this.pluginName = pluginName;
             return this;
         }
+        @CustomType.Setter
         public Builder rootRotationStatements(@Nullable List<String> rootRotationStatements) {
             this.rootRotationStatements = rootRotationStatements;
             return this;
@@ -343,27 +313,50 @@ public final class SecretsMountElasticsearch {
         public Builder rootRotationStatements(String... rootRotationStatements) {
             return rootRotationStatements(List.of(rootRotationStatements));
         }
+        @CustomType.Setter
         public Builder tlsServerName(@Nullable String tlsServerName) {
             this.tlsServerName = tlsServerName;
             return this;
         }
+        @CustomType.Setter
         public Builder url(String url) {
             this.url = Objects.requireNonNull(url);
             return this;
         }
+        @CustomType.Setter
         public Builder username(String username) {
             this.username = Objects.requireNonNull(username);
             return this;
         }
+        @CustomType.Setter
         public Builder usernameTemplate(@Nullable String usernameTemplate) {
             this.usernameTemplate = usernameTemplate;
             return this;
         }
+        @CustomType.Setter
         public Builder verifyConnection(@Nullable Boolean verifyConnection) {
             this.verifyConnection = verifyConnection;
             return this;
-        }        public SecretsMountElasticsearch build() {
-            return new SecretsMountElasticsearch(allowedRoles, caCert, caPath, clientCert, clientKey, data, insecure, name, password, pluginName, rootRotationStatements, tlsServerName, url, username, usernameTemplate, verifyConnection);
+        }
+        public SecretsMountElasticsearch build() {
+            final var o = new SecretsMountElasticsearch();
+            o.allowedRoles = allowedRoles;
+            o.caCert = caCert;
+            o.caPath = caPath;
+            o.clientCert = clientCert;
+            o.clientKey = clientKey;
+            o.data = data;
+            o.insecure = insecure;
+            o.name = name;
+            o.password = password;
+            o.pluginName = pluginName;
+            o.rootRotationStatements = rootRotationStatements;
+            o.tlsServerName = tlsServerName;
+            o.url = url;
+            o.username = username;
+            o.usernameTemplate = usernameTemplate;
+            o.verifyConnection = verifyConnection;
+            return o;
         }
     }
 }

@@ -17,8 +17,10 @@ class SecretBackendArgs:
                  credentials: Optional[pulumi.Input[str]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SecretBackend resource.
@@ -26,9 +28,15 @@ class SecretBackendArgs:
         :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials
                issued by this backend. Defaults to '0'.
         :param pulumi.Input[str] description: A human-friendly description for this backend.
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend. Defaults to '0'.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `gcp`.
         """
@@ -38,10 +46,14 @@ class SecretBackendArgs:
             pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if disable_remount is not None:
+            pulumi.set(__self__, "disable_remount", disable_remount)
         if local is not None:
             pulumi.set(__self__, "local", local)
         if max_lease_ttl_seconds is not None:
             pulumi.set(__self__, "max_lease_ttl_seconds", max_lease_ttl_seconds)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if path is not None:
             pulumi.set(__self__, "path", path)
 
@@ -83,6 +95,19 @@ class SecretBackendArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="disableRemount")
+    def disable_remount(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, opts out of mount migration on path updates.
+        See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        """
+        return pulumi.get(self, "disable_remount")
+
+    @disable_remount.setter
+    def disable_remount(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_remount", value)
+
+    @property
     @pulumi.getter
     def local(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -106,6 +131,21 @@ class SecretBackendArgs:
     @max_lease_ttl_seconds.setter
     def max_lease_ttl_seconds(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_lease_ttl_seconds", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -127,8 +167,10 @@ class _SecretBackendState:
                  credentials: Optional[pulumi.Input[str]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SecretBackend resources.
@@ -136,9 +178,15 @@ class _SecretBackendState:
         :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials
                issued by this backend. Defaults to '0'.
         :param pulumi.Input[str] description: A human-friendly description for this backend.
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend. Defaults to '0'.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `gcp`.
         """
@@ -148,10 +196,14 @@ class _SecretBackendState:
             pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if disable_remount is not None:
+            pulumi.set(__self__, "disable_remount", disable_remount)
         if local is not None:
             pulumi.set(__self__, "local", local)
         if max_lease_ttl_seconds is not None:
             pulumi.set(__self__, "max_lease_ttl_seconds", max_lease_ttl_seconds)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if path is not None:
             pulumi.set(__self__, "path", path)
 
@@ -193,6 +245,19 @@ class _SecretBackendState:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="disableRemount")
+    def disable_remount(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, opts out of mount migration on path updates.
+        See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        """
+        return pulumi.get(self, "disable_remount")
+
+    @disable_remount.setter
+    def disable_remount(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_remount", value)
+
+    @property
     @pulumi.getter
     def local(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -216,6 +281,21 @@ class _SecretBackendState:
     @max_lease_ttl_seconds.setter
     def max_lease_ttl_seconds(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_lease_ttl_seconds", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -239,8 +319,10 @@ class SecretBackend(pulumi.CustomResource):
                  credentials: Optional[pulumi.Input[str]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -259,9 +341,15 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials
                issued by this backend. Defaults to '0'.
         :param pulumi.Input[str] description: A human-friendly description for this backend.
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend. Defaults to '0'.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `gcp`.
         """
@@ -299,8 +387,10 @@ class SecretBackend(pulumi.CustomResource):
                  credentials: Optional[pulumi.Input[str]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -311,12 +401,16 @@ class SecretBackend(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SecretBackendArgs.__new__(SecretBackendArgs)
 
-            __props__.__dict__["credentials"] = credentials
+            __props__.__dict__["credentials"] = None if credentials is None else pulumi.Output.secret(credentials)
             __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
             __props__.__dict__["description"] = description
+            __props__.__dict__["disable_remount"] = disable_remount
             __props__.__dict__["local"] = local
             __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["path"] = path
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["credentials"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(SecretBackend, __self__).__init__(
             'vault:gcp/secretBackend:SecretBackend',
             resource_name,
@@ -330,8 +424,10 @@ class SecretBackend(pulumi.CustomResource):
             credentials: Optional[pulumi.Input[str]] = None,
             default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            disable_remount: Optional[pulumi.Input[bool]] = None,
             local: Optional[pulumi.Input[bool]] = None,
             max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None) -> 'SecretBackend':
         """
         Get an existing SecretBackend resource's state with the given name, id, and optional extra
@@ -344,9 +440,15 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials
                issued by this backend. Defaults to '0'.
         :param pulumi.Input[str] description: A human-friendly description for this backend.
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend. Defaults to '0'.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `gcp`.
         """
@@ -357,8 +459,10 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["credentials"] = credentials
         __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
         __props__.__dict__["description"] = description
+        __props__.__dict__["disable_remount"] = disable_remount
         __props__.__dict__["local"] = local
         __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["path"] = path
         return SecretBackend(resource_name, opts=opts, __props__=__props__)
 
@@ -388,6 +492,15 @@ class SecretBackend(pulumi.CustomResource):
         return pulumi.get(self, "description")
 
     @property
+    @pulumi.getter(name="disableRemount")
+    def disable_remount(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If set, opts out of mount migration on path updates.
+        See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        """
+        return pulumi.get(self, "disable_remount")
+
+    @property
     @pulumi.getter
     def local(self) -> pulumi.Output[Optional[bool]]:
         """
@@ -403,6 +516,17 @@ class SecretBackend(pulumi.CustomResource):
         for credentials issued by this backend. Defaults to '0'.
         """
         return pulumi.get(self, "max_lease_ttl_seconds")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

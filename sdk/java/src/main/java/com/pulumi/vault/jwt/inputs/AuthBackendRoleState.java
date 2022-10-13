@@ -218,6 +218,44 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
     }
 
     /**
+     * Specifies the allowable elapsed time in seconds since the last time
+     * the user was actively authenticated with the OIDC provider.
+     * 
+     */
+    @Import(name="maxAge")
+    private @Nullable Output<Integer> maxAge;
+
+    /**
+     * @return Specifies the allowable elapsed time in seconds since the last time
+     * the user was actively authenticated with the OIDC provider.
+     * 
+     */
+    public Optional<Output<Integer>> maxAge() {
+        return Optional.ofNullable(this.maxAge);
+    }
+
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable Output<String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
+
+    /**
      * The amount of leeway to add to not before (`nbf`) claims to account for
      * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with &#34;jwt&#34; roles.
@@ -472,6 +510,27 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
     }
 
     /**
+     * Specifies if the `user_claim` value uses
+     * [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+     * syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
+     * Requires Vault 1.11+.
+     * 
+     */
+    @Import(name="userClaimJsonPointer")
+    private @Nullable Output<Boolean> userClaimJsonPointer;
+
+    /**
+     * @return Specifies if the `user_claim` value uses
+     * [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+     * syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
+     * Requires Vault 1.11+.
+     * 
+     */
+    public Optional<Output<Boolean>> userClaimJsonPointer() {
+        return Optional.ofNullable(this.userClaimJsonPointer);
+    }
+
+    /**
      * Log received OIDC tokens and claims when debug-level
      * logging is active. Not recommended in production since sensitive information may be present
      * in OIDC responses.
@@ -504,6 +563,8 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         this.disableBoundClaimsParsing = $.disableBoundClaimsParsing;
         this.expirationLeeway = $.expirationLeeway;
         this.groupsClaim = $.groupsClaim;
+        this.maxAge = $.maxAge;
+        this.namespace = $.namespace;
         this.notBeforeLeeway = $.notBeforeLeeway;
         this.oidcScopes = $.oidcScopes;
         this.roleName = $.roleName;
@@ -518,6 +579,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         this.tokenTtl = $.tokenTtl;
         this.tokenType = $.tokenType;
         this.userClaim = $.userClaim;
+        this.userClaimJsonPointer = $.userClaimJsonPointer;
         this.verboseOidcLogging = $.verboseOidcLogging;
     }
 
@@ -822,6 +884,56 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
          */
         public Builder groupsClaim(String groupsClaim) {
             return groupsClaim(Output.of(groupsClaim));
+        }
+
+        /**
+         * @param maxAge Specifies the allowable elapsed time in seconds since the last time
+         * the user was actively authenticated with the OIDC provider.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxAge(@Nullable Output<Integer> maxAge) {
+            $.maxAge = maxAge;
+            return this;
+        }
+
+        /**
+         * @param maxAge Specifies the allowable elapsed time in seconds since the last time
+         * the user was actively authenticated with the OIDC provider.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxAge(Integer maxAge) {
+            return maxAge(Output.of(maxAge));
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable Output<String> namespace) {
+            $.namespace = namespace;
+            return this;
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(String namespace) {
+            return namespace(Output.of(namespace));
         }
 
         /**
@@ -1194,6 +1306,33 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
          */
         public Builder userClaim(String userClaim) {
             return userClaim(Output.of(userClaim));
+        }
+
+        /**
+         * @param userClaimJsonPointer Specifies if the `user_claim` value uses
+         * [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+         * syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
+         * Requires Vault 1.11+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder userClaimJsonPointer(@Nullable Output<Boolean> userClaimJsonPointer) {
+            $.userClaimJsonPointer = userClaimJsonPointer;
+            return this;
+        }
+
+        /**
+         * @param userClaimJsonPointer Specifies if the `user_claim` value uses
+         * [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+         * syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
+         * Requires Vault 1.11+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder userClaimJsonPointer(Boolean userClaimJsonPointer) {
+            return userClaimJsonPointer(Output.of(userClaimJsonPointer));
         }
 
         /**

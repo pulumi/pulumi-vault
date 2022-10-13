@@ -20,6 +20,7 @@ class SecretRolesetArgs:
                  bindings: pulumi.Input[Sequence[pulumi.Input['SecretRolesetBindingArgs']]],
                  project: pulumi.Input[str],
                  roleset: pulumi.Input[str],
+                 namespace: Optional[pulumi.Input[str]] = None,
                  secret_type: Optional[pulumi.Input[str]] = None,
                  token_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
@@ -28,6 +29,10 @@ class SecretRolesetArgs:
         :param pulumi.Input[Sequence[pulumi.Input['SecretRolesetBindingArgs']]] bindings: Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
         :param pulumi.Input[str] project: Name of the GCP project that this roleset's service account will belong to.
         :param pulumi.Input[str] roleset: Name of the Roleset to create
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] secret_type: Type of secret generated for this role set. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_scopes: List of OAuth scopes to assign to `access_token` secrets generated under this role set (`access_token` role sets only).
         """
@@ -35,6 +40,8 @@ class SecretRolesetArgs:
         pulumi.set(__self__, "bindings", bindings)
         pulumi.set(__self__, "project", project)
         pulumi.set(__self__, "roleset", roleset)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if secret_type is not None:
             pulumi.set(__self__, "secret_type", secret_type)
         if token_scopes is not None:
@@ -89,6 +96,21 @@ class SecretRolesetArgs:
         pulumi.set(self, "roleset", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="secretType")
     def secret_type(self) -> Optional[pulumi.Input[str]]:
         """
@@ -118,6 +140,7 @@ class _SecretRolesetState:
     def __init__(__self__, *,
                  backend: Optional[pulumi.Input[str]] = None,
                  bindings: Optional[pulumi.Input[Sequence[pulumi.Input['SecretRolesetBindingArgs']]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
                  roleset: Optional[pulumi.Input[str]] = None,
                  secret_type: Optional[pulumi.Input[str]] = None,
@@ -127,6 +150,10 @@ class _SecretRolesetState:
         Input properties used for looking up and filtering SecretRoleset resources.
         :param pulumi.Input[str] backend: Path where the GCP Secrets Engine is mounted
         :param pulumi.Input[Sequence[pulumi.Input['SecretRolesetBindingArgs']]] bindings: Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] project: Name of the GCP project that this roleset's service account will belong to.
         :param pulumi.Input[str] roleset: Name of the Roleset to create
         :param pulumi.Input[str] secret_type: Type of secret generated for this role set. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
@@ -137,6 +164,8 @@ class _SecretRolesetState:
             pulumi.set(__self__, "backend", backend)
         if bindings is not None:
             pulumi.set(__self__, "bindings", bindings)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if project is not None:
             pulumi.set(__self__, "project", project)
         if roleset is not None:
@@ -171,6 +200,21 @@ class _SecretRolesetState:
     @bindings.setter
     def bindings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecretRolesetBindingArgs']]]]):
         pulumi.set(self, "bindings", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -240,6 +284,7 @@ class SecretRoleset(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  bindings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretRolesetBindingArgs']]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
                  roleset: Optional[pulumi.Input[str]] = None,
                  secret_type: Optional[pulumi.Input[str]] = None,
@@ -284,6 +329,10 @@ class SecretRoleset(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Path where the GCP Secrets Engine is mounted
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretRolesetBindingArgs']]]] bindings: Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] project: Name of the GCP project that this roleset's service account will belong to.
         :param pulumi.Input[str] roleset: Name of the Roleset to create
         :param pulumi.Input[str] secret_type: Type of secret generated for this role set. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
@@ -347,6 +396,7 @@ class SecretRoleset(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  bindings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretRolesetBindingArgs']]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
                  roleset: Optional[pulumi.Input[str]] = None,
                  secret_type: Optional[pulumi.Input[str]] = None,
@@ -366,6 +416,7 @@ class SecretRoleset(pulumi.CustomResource):
             if bindings is None and not opts.urn:
                 raise TypeError("Missing required property 'bindings'")
             __props__.__dict__["bindings"] = bindings
+            __props__.__dict__["namespace"] = namespace
             if project is None and not opts.urn:
                 raise TypeError("Missing required property 'project'")
             __props__.__dict__["project"] = project
@@ -387,6 +438,7 @@ class SecretRoleset(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
             bindings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretRolesetBindingArgs']]]]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             project: Optional[pulumi.Input[str]] = None,
             roleset: Optional[pulumi.Input[str]] = None,
             secret_type: Optional[pulumi.Input[str]] = None,
@@ -401,6 +453,10 @@ class SecretRoleset(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Path where the GCP Secrets Engine is mounted
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretRolesetBindingArgs']]]] bindings: Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] project: Name of the GCP project that this roleset's service account will belong to.
         :param pulumi.Input[str] roleset: Name of the Roleset to create
         :param pulumi.Input[str] secret_type: Type of secret generated for this role set. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
@@ -413,6 +469,7 @@ class SecretRoleset(pulumi.CustomResource):
 
         __props__.__dict__["backend"] = backend
         __props__.__dict__["bindings"] = bindings
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["project"] = project
         __props__.__dict__["roleset"] = roleset
         __props__.__dict__["secret_type"] = secret_type
@@ -435,6 +492,17 @@ class SecretRoleset(pulumi.CustomResource):
         Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
         """
         return pulumi.get(self, "bindings")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

@@ -89,6 +89,27 @@ public final class EndpointState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable Output<String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
+
+    /**
      * The full logical path at which to write the given
      * data. Consult each backend&#39;s documentation to see which endpoints
      * support the `PUT` methods and to determine whether they also support
@@ -161,6 +182,7 @@ public final class EndpointState extends com.pulumi.resources.ResourceArgs {
         this.disableDelete = $.disableDelete;
         this.disableRead = $.disableRead;
         this.ignoreAbsentFields = $.ignoreAbsentFields;
+        this.namespace = $.namespace;
         this.path = $.path;
         this.writeData = $.writeData;
         this.writeDataJson = $.writeDataJson;
@@ -277,6 +299,33 @@ public final class EndpointState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder ignoreAbsentFields(Boolean ignoreAbsentFields) {
             return ignoreAbsentFields(Output.of(ignoreAbsentFields));
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable Output<String> namespace) {
+            $.namespace = namespace;
+            return this;
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(String namespace) {
+            return namespace(Output.of(namespace));
         }
 
         /**

@@ -16,18 +16,25 @@ class TeamArgs:
     def __init__(__self__, *,
                  team: pulumi.Input[str],
                  backend: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a Team resource.
         :param pulumi.Input[str] team: GitHub team name in "slugified" format.
         :param pulumi.Input[str] backend: Path where the github auth backend is mounted. Defaults to `github`
                if not specified.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: An array of strings specifying the policies to be set on tokens
                issued using this role.
         """
         pulumi.set(__self__, "team", team)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if policies is not None:
             pulumi.set(__self__, "policies", policies)
 
@@ -58,6 +65,21 @@ class TeamArgs:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         An array of strings specifying the policies to be set on tokens
@@ -74,18 +96,25 @@ class TeamArgs:
 class _TeamState:
     def __init__(__self__, *,
                  backend: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  team: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Team resources.
         :param pulumi.Input[str] backend: Path where the github auth backend is mounted. Defaults to `github`
                if not specified.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: An array of strings specifying the policies to be set on tokens
                issued using this role.
         :param pulumi.Input[str] team: GitHub team name in "slugified" format.
         """
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if policies is not None:
             pulumi.set(__self__, "policies", policies)
         if team is not None:
@@ -103,6 +132,21 @@ class _TeamState:
     @backend.setter
     def backend(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -136,6 +180,7 @@ class Team(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  team: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -172,6 +217,10 @@ class Team(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Path where the github auth backend is mounted. Defaults to `github`
                if not specified.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: An array of strings specifying the policies to be set on tokens
                issued using this role.
         :param pulumi.Input[str] team: GitHub team name in "slugified" format.
@@ -227,6 +276,7 @@ class Team(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  team: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -239,6 +289,7 @@ class Team(pulumi.CustomResource):
             __props__ = TeamArgs.__new__(TeamArgs)
 
             __props__.__dict__["backend"] = backend
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["policies"] = policies
             if team is None and not opts.urn:
                 raise TypeError("Missing required property 'team'")
@@ -254,6 +305,7 @@ class Team(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             team: Optional[pulumi.Input[str]] = None) -> 'Team':
         """
@@ -265,6 +317,10 @@ class Team(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Path where the github auth backend is mounted. Defaults to `github`
                if not specified.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: An array of strings specifying the policies to be set on tokens
                issued using this role.
         :param pulumi.Input[str] team: GitHub team name in "slugified" format.
@@ -274,6 +330,7 @@ class Team(pulumi.CustomResource):
         __props__ = _TeamState.__new__(_TeamState)
 
         __props__.__dict__["backend"] = backend
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["policies"] = policies
         __props__.__dict__["team"] = team
         return Team(resource_name, opts=opts, __props__=__props__)
@@ -286,6 +343,17 @@ class Team(pulumi.CustomResource):
         if not specified.
         """
         return pulumi.get(self, "backend")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

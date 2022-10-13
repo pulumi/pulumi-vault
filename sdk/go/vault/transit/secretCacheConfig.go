@@ -55,6 +55,11 @@ type SecretCacheConfig struct {
 
 	// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
 	Backend pulumi.StringOutput `pulumi:"backend"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The number of cache entries. 0 means unlimited.
 	Size pulumi.IntOutput `pulumi:"size"`
 }
@@ -96,6 +101,11 @@ func GetSecretCacheConfig(ctx *pulumi.Context,
 type secretCacheConfigState struct {
 	// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
 	Backend *string `pulumi:"backend"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The number of cache entries. 0 means unlimited.
 	Size *int `pulumi:"size"`
 }
@@ -103,6 +113,11 @@ type secretCacheConfigState struct {
 type SecretCacheConfigState struct {
 	// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
 	Backend pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The number of cache entries. 0 means unlimited.
 	Size pulumi.IntPtrInput
 }
@@ -114,6 +129,11 @@ func (SecretCacheConfigState) ElementType() reflect.Type {
 type secretCacheConfigArgs struct {
 	// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
 	Backend string `pulumi:"backend"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The number of cache entries. 0 means unlimited.
 	Size int `pulumi:"size"`
 }
@@ -122,6 +142,11 @@ type secretCacheConfigArgs struct {
 type SecretCacheConfigArgs struct {
 	// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
 	Backend pulumi.StringInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The number of cache entries. 0 means unlimited.
 	Size pulumi.IntInput
 }
@@ -216,6 +241,14 @@ func (o SecretCacheConfigOutput) ToSecretCacheConfigOutputWithContext(ctx contex
 // The path the transit secret backend is mounted at, with no leading or trailing `/`s.
 func (o SecretCacheConfigOutput) Backend() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretCacheConfig) pulumi.StringOutput { return v.Backend }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o SecretCacheConfigOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretCacheConfig) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The number of cache entries. 0 means unlimited.

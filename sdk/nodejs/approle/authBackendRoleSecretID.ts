@@ -81,6 +81,13 @@ export class AuthBackendRoleSecretID extends pulumi.CustomResource {
      */
     public readonly metadata!: pulumi.Output<string | undefined>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * The name of the role to create the SecretID for.
      */
     public readonly roleName!: pulumi.Output<string>;
@@ -129,6 +136,7 @@ export class AuthBackendRoleSecretID extends pulumi.CustomResource {
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["cidrLists"] = state ? state.cidrLists : undefined;
             resourceInputs["metadata"] = state ? state.metadata : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["roleName"] = state ? state.roleName : undefined;
             resourceInputs["secretId"] = state ? state.secretId : undefined;
             resourceInputs["withWrappedAccessor"] = state ? state.withWrappedAccessor : undefined;
@@ -143,8 +151,9 @@ export class AuthBackendRoleSecretID extends pulumi.CustomResource {
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["cidrLists"] = args ? args.cidrLists : undefined;
             resourceInputs["metadata"] = args ? args.metadata : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["roleName"] = args ? args.roleName : undefined;
-            resourceInputs["secretId"] = args ? args.secretId : undefined;
+            resourceInputs["secretId"] = args?.secretId ? pulumi.secret(args.secretId) : undefined;
             resourceInputs["withWrappedAccessor"] = args ? args.withWrappedAccessor : undefined;
             resourceInputs["wrappingTtl"] = args ? args.wrappingTtl : undefined;
             resourceInputs["accessor"] = undefined /*out*/;
@@ -152,6 +161,8 @@ export class AuthBackendRoleSecretID extends pulumi.CustomResource {
             resourceInputs["wrappingToken"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["secretId", "wrappingToken"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(AuthBackendRoleSecretID.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -178,6 +189,13 @@ export interface AuthBackendRoleSecretIDState {
      * key-value pairs to be set on tokens issued with this SecretID.
      */
     metadata?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The name of the role to create the SecretID for.
      */
@@ -229,6 +247,13 @@ export interface AuthBackendRoleSecretIDArgs {
      * key-value pairs to be set on tokens issued with this SecretID.
      */
     metadata?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The name of the role to create the SecretID for.
      */

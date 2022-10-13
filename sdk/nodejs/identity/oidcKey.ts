@@ -70,6 +70,13 @@ export class OidcKey extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * How often to generate a new signing key in number of seconds
      */
     public readonly rotationPeriod!: pulumi.Output<number | undefined>;
@@ -95,6 +102,7 @@ export class OidcKey extends pulumi.CustomResource {
             resourceInputs["algorithm"] = state ? state.algorithm : undefined;
             resourceInputs["allowedClientIds"] = state ? state.allowedClientIds : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["rotationPeriod"] = state ? state.rotationPeriod : undefined;
             resourceInputs["verificationTtl"] = state ? state.verificationTtl : undefined;
         } else {
@@ -102,6 +110,7 @@ export class OidcKey extends pulumi.CustomResource {
             resourceInputs["algorithm"] = args ? args.algorithm : undefined;
             resourceInputs["allowedClientIds"] = args ? args.allowedClientIds : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["rotationPeriod"] = args ? args.rotationPeriod : undefined;
             resourceInputs["verificationTtl"] = args ? args.verificationTtl : undefined;
         }
@@ -128,6 +137,13 @@ export interface OidcKeyState {
      * Name of the OIDC Key to create.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * How often to generate a new signing key in number of seconds
      */
@@ -157,6 +173,13 @@ export interface OidcKeyArgs {
      * Name of the OIDC Key to create.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * How often to generate a new signing key in number of seconds
      */

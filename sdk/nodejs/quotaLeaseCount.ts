@@ -72,6 +72,13 @@ export class QuotaLeaseCount extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured namespace.
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * Path of the mount or namespace to apply the quota. A blank path configures a
      * global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
      * `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
@@ -96,6 +103,7 @@ export class QuotaLeaseCount extends pulumi.CustomResource {
             const state = argsOrState as QuotaLeaseCountState | undefined;
             resourceInputs["maxLeases"] = state ? state.maxLeases : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
         } else {
             const args = argsOrState as QuotaLeaseCountArgs | undefined;
@@ -104,6 +112,7 @@ export class QuotaLeaseCount extends pulumi.CustomResource {
             }
             resourceInputs["maxLeases"] = args ? args.maxLeases : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -124,6 +133,13 @@ export interface QuotaLeaseCountState {
      * Name of the rate limit quota
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured namespace.
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Path of the mount or namespace to apply the quota. A blank path configures a
      * global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
@@ -148,6 +164,13 @@ export interface QuotaLeaseCountArgs {
      * Name of the rate limit quota
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured namespace.
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Path of the mount or namespace to apply the quota. A blank path configures a
      * global rate limit quota. For example `namespace1/` adds a quota to a full namespace,

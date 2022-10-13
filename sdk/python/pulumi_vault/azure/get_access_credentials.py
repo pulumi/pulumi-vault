@@ -21,7 +21,7 @@ class GetAccessCredentialsResult:
     """
     A collection of values returned by getAccessCredentials.
     """
-    def __init__(__self__, backend=None, client_id=None, client_secret=None, environment=None, id=None, lease_duration=None, lease_id=None, lease_renewable=None, lease_start_time=None, max_cred_validation_seconds=None, num_seconds_between_tests=None, num_sequential_successes=None, role=None, subscription_id=None, tenant_id=None, validate_creds=None):
+    def __init__(__self__, backend=None, client_id=None, client_secret=None, environment=None, id=None, lease_duration=None, lease_id=None, lease_renewable=None, lease_start_time=None, max_cred_validation_seconds=None, namespace=None, num_seconds_between_tests=None, num_sequential_successes=None, role=None, subscription_id=None, tenant_id=None, validate_creds=None):
         if backend and not isinstance(backend, str):
             raise TypeError("Expected argument 'backend' to be a str")
         pulumi.set(__self__, "backend", backend)
@@ -52,6 +52,9 @@ class GetAccessCredentialsResult:
         if max_cred_validation_seconds and not isinstance(max_cred_validation_seconds, int):
             raise TypeError("Expected argument 'max_cred_validation_seconds' to be a int")
         pulumi.set(__self__, "max_cred_validation_seconds", max_cred_validation_seconds)
+        if namespace and not isinstance(namespace, str):
+            raise TypeError("Expected argument 'namespace' to be a str")
+        pulumi.set(__self__, "namespace", namespace)
         if num_seconds_between_tests and not isinstance(num_seconds_between_tests, int):
             raise TypeError("Expected argument 'num_seconds_between_tests' to be a int")
         pulumi.set(__self__, "num_seconds_between_tests", num_seconds_between_tests)
@@ -139,6 +142,11 @@ class GetAccessCredentialsResult:
         return pulumi.get(self, "max_cred_validation_seconds")
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[str]:
+        return pulumi.get(self, "namespace")
+
+    @property
     @pulumi.getter(name="numSecondsBetweenTests")
     def num_seconds_between_tests(self) -> Optional[int]:
         return pulumi.get(self, "num_seconds_between_tests")
@@ -185,6 +193,7 @@ class AwaitableGetAccessCredentialsResult(GetAccessCredentialsResult):
             lease_renewable=self.lease_renewable,
             lease_start_time=self.lease_start_time,
             max_cred_validation_seconds=self.max_cred_validation_seconds,
+            namespace=self.namespace,
             num_seconds_between_tests=self.num_seconds_between_tests,
             num_sequential_successes=self.num_sequential_successes,
             role=self.role,
@@ -196,6 +205,7 @@ class AwaitableGetAccessCredentialsResult(GetAccessCredentialsResult):
 def get_access_credentials(backend: Optional[str] = None,
                            environment: Optional[str] = None,
                            max_cred_validation_seconds: Optional[int] = None,
+                           namespace: Optional[str] = None,
                            num_seconds_between_tests: Optional[int] = None,
                            num_sequential_successes: Optional[int] = None,
                            role: Optional[str] = None,
@@ -232,6 +242,10 @@ def get_access_credentials(backend: Optional[str] = None,
     :param int max_cred_validation_seconds: If 'validate_creds' is true, 
            the number of seconds after which to give up validating credentials. Defaults
            to 300.
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           *Available only for Vault Enterprise*.
     :param int num_seconds_between_tests: If 'validate_creds' is true, 
            the number of seconds to wait between each test of generated credentials.
            Defaults to 1.
@@ -255,6 +269,7 @@ def get_access_credentials(backend: Optional[str] = None,
     __args__['backend'] = backend
     __args__['environment'] = environment
     __args__['maxCredValidationSeconds'] = max_cred_validation_seconds
+    __args__['namespace'] = namespace
     __args__['numSecondsBetweenTests'] = num_seconds_between_tests
     __args__['numSequentialSuccesses'] = num_sequential_successes
     __args__['role'] = role
@@ -275,6 +290,7 @@ def get_access_credentials(backend: Optional[str] = None,
         lease_renewable=__ret__.lease_renewable,
         lease_start_time=__ret__.lease_start_time,
         max_cred_validation_seconds=__ret__.max_cred_validation_seconds,
+        namespace=__ret__.namespace,
         num_seconds_between_tests=__ret__.num_seconds_between_tests,
         num_sequential_successes=__ret__.num_sequential_successes,
         role=__ret__.role,
@@ -287,6 +303,7 @@ def get_access_credentials(backend: Optional[str] = None,
 def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
                                   environment: Optional[pulumi.Input[Optional[str]]] = None,
                                   max_cred_validation_seconds: Optional[pulumi.Input[Optional[int]]] = None,
+                                  namespace: Optional[pulumi.Input[Optional[str]]] = None,
                                   num_seconds_between_tests: Optional[pulumi.Input[Optional[int]]] = None,
                                   num_sequential_successes: Optional[pulumi.Input[Optional[int]]] = None,
                                   role: Optional[pulumi.Input[str]] = None,
@@ -323,6 +340,10 @@ def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
     :param int max_cred_validation_seconds: If 'validate_creds' is true, 
            the number of seconds after which to give up validating credentials. Defaults
            to 300.
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           *Available only for Vault Enterprise*.
     :param int num_seconds_between_tests: If 'validate_creds' is true, 
            the number of seconds to wait between each test of generated credentials.
            Defaults to 1.

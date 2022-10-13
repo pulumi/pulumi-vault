@@ -5,18 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const aws = new vault.aws.SecretBackend("aws", {
- *     accessKey: "AKIA.....",
- *     secretKey: "AWS secret key",
- * });
- * ```
- *
  * ## Import
  *
  * AWS secret backends can be imported using the `path`, e.g.
@@ -68,6 +56,11 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    public readonly disableRemount!: pulumi.Output<boolean | undefined>;
+    /**
      * Specifies a custom HTTP IAM endpoint to use.
      */
     public readonly iamEndpoint!: pulumi.Output<string | undefined>;
@@ -76,6 +69,13 @@ export class SecretBackend extends pulumi.CustomResource {
      * for credentials issued by this backend.
      */
     public readonly maxLeaseTtlSeconds!: pulumi.Output<number>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `aws`.
@@ -115,8 +115,10 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["accessKey"] = state ? state.accessKey : undefined;
             resourceInputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
             resourceInputs["iamEndpoint"] = state ? state.iamEndpoint : undefined;
             resourceInputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["secretKey"] = state ? state.secretKey : undefined;
@@ -124,18 +126,22 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["usernameTemplate"] = state ? state.usernameTemplate : undefined;
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
-            resourceInputs["accessKey"] = args ? args.accessKey : undefined;
+            resourceInputs["accessKey"] = args?.accessKey ? pulumi.secret(args.accessKey) : undefined;
             resourceInputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
             resourceInputs["iamEndpoint"] = args ? args.iamEndpoint : undefined;
             resourceInputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["secretKey"] = args ? args.secretKey : undefined;
+            resourceInputs["secretKey"] = args?.secretKey ? pulumi.secret(args.secretKey) : undefined;
             resourceInputs["stsEndpoint"] = args ? args.stsEndpoint : undefined;
             resourceInputs["usernameTemplate"] = args ? args.usernameTemplate : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["accessKey", "secretKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SecretBackend.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -159,6 +165,11 @@ export interface SecretBackendState {
      */
     description?: pulumi.Input<string>;
     /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    disableRemount?: pulumi.Input<boolean>;
+    /**
      * Specifies a custom HTTP IAM endpoint to use.
      */
     iamEndpoint?: pulumi.Input<string>;
@@ -167,6 +178,13 @@ export interface SecretBackendState {
      * for credentials issued by this backend.
      */
     maxLeaseTtlSeconds?: pulumi.Input<number>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `aws`.
@@ -210,6 +228,11 @@ export interface SecretBackendArgs {
      */
     description?: pulumi.Input<string>;
     /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    disableRemount?: pulumi.Input<boolean>;
+    /**
      * Specifies a custom HTTP IAM endpoint to use.
      */
     iamEndpoint?: pulumi.Input<string>;
@@ -218,6 +241,13 @@ export interface SecretBackendArgs {
      * for credentials issued by this backend.
      */
     maxLeaseTtlSeconds?: pulumi.Input<number>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `aws`.

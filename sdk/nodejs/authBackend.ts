@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -47,15 +48,27 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public /*out*/ readonly accessor!: pulumi.Output<string>;
     /**
-     * A description of the auth method
+     * A description of the auth method.
      */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    public readonly disableRemount!: pulumi.Output<boolean | undefined>;
     /**
      * Specifies if the auth method is local only.
      */
     public readonly local!: pulumi.Output<boolean | undefined>;
     /**
-     * The path to mount the auth method — this defaults to the name of the type
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
+     * The path to mount the auth method — this defaults to the name of the type.
      */
     public readonly path!: pulumi.Output<string>;
     /**
@@ -63,7 +76,7 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public readonly tune!: pulumi.Output<outputs.AuthBackendTune>;
     /**
-     * The name of the auth method type
+     * The name of the auth method type.
      */
     public readonly type!: pulumi.Output<string>;
 
@@ -82,7 +95,9 @@ export class AuthBackend extends pulumi.CustomResource {
             const state = argsOrState as AuthBackendState | undefined;
             resourceInputs["accessor"] = state ? state.accessor : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
             resourceInputs["local"] = state ? state.local : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
             resourceInputs["tune"] = state ? state.tune : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
@@ -92,7 +107,9 @@ export class AuthBackend extends pulumi.CustomResource {
                 throw new Error("Missing required property 'type'");
             }
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
             resourceInputs["local"] = args ? args.local : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["tune"] = args ? args.tune : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
@@ -112,15 +129,27 @@ export interface AuthBackendState {
      */
     accessor?: pulumi.Input<string>;
     /**
-     * A description of the auth method
+     * A description of the auth method.
      */
     description?: pulumi.Input<string>;
+    /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    disableRemount?: pulumi.Input<boolean>;
     /**
      * Specifies if the auth method is local only.
      */
     local?: pulumi.Input<boolean>;
     /**
-     * The path to mount the auth method — this defaults to the name of the type
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
+    /**
+     * The path to mount the auth method — this defaults to the name of the type.
      */
     path?: pulumi.Input<string>;
     /**
@@ -128,7 +157,7 @@ export interface AuthBackendState {
      */
     tune?: pulumi.Input<inputs.AuthBackendTune>;
     /**
-     * The name of the auth method type
+     * The name of the auth method type.
      */
     type?: pulumi.Input<string>;
 }
@@ -138,15 +167,27 @@ export interface AuthBackendState {
  */
 export interface AuthBackendArgs {
     /**
-     * A description of the auth method
+     * A description of the auth method.
      */
     description?: pulumi.Input<string>;
+    /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    disableRemount?: pulumi.Input<boolean>;
     /**
      * Specifies if the auth method is local only.
      */
     local?: pulumi.Input<boolean>;
     /**
-     * The path to mount the auth method — this defaults to the name of the type
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
+    /**
+     * The path to mount the auth method — this defaults to the name of the type.
      */
     path?: pulumi.Input<string>;
     /**
@@ -154,7 +195,7 @@ export interface AuthBackendArgs {
      */
     tune?: pulumi.Input<inputs.AuthBackendTune>;
     /**
-     * The name of the auth method type
+     * The name of the auth method type.
      */
     type: pulumi.Input<string>;
 }

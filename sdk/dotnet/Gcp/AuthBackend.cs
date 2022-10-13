@@ -25,6 +25,13 @@ namespace Pulumi.Vault.Gcp
     ///     var gcp = new Vault.Gcp.AuthBackend("gcp", new()
     ///     {
     ///         Credentials = File.ReadAllText("vault-gcp-credentials.json"),
+    ///         CustomEndpoint = new Vault.Gcp.Inputs.AuthBackendCustomEndpointArgs
+    ///         {
+    ///             Api = "www.googleapis.com",
+    ///             Iam = "iam.googleapis.com",
+    ///             Crm = "cloudresourcemanager.googleapis.com",
+    ///             Compute = "compute.googleapis.com",
+    ///         },
     ///     });
     /// 
     /// });
@@ -60,16 +67,42 @@ namespace Pulumi.Vault.Gcp
         public Output<string?> Credentials { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies overrides to
+        /// [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint)
+        /// used when making API requests. This allows specific requests made during authentication
+        /// to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
+        /// environments. Requires Vault 1.11+.
+        /// </summary>
+        [Output("customEndpoint")]
+        public Output<Outputs.AuthBackendCustomEndpoint?> CustomEndpoint { get; private set; } = null!;
+
+        /// <summary>
         /// A description of the auth method.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Output("disableRemount")]
+        public Output<bool?> DisableRemount { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies if the auth method is local only.
         /// </summary>
         [Output("local")]
         public Output<bool?> Local { get; private set; } = null!;
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
         /// The path to mount the auth method — this defaults to 'gcp'.
@@ -112,6 +145,10 @@ namespace Pulumi.Vault.Gcp
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "credentials",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -147,11 +184,31 @@ namespace Pulumi.Vault.Gcp
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
+        [Input("credentials")]
+        private Input<string>? _credentials;
+
         /// <summary>
         /// A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
         /// </summary>
-        [Input("credentials")]
-        public Input<string>? Credentials { get; set; }
+        public Input<string>? Credentials
+        {
+            get => _credentials;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _credentials = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Specifies overrides to
+        /// [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint)
+        /// used when making API requests. This allows specific requests made during authentication
+        /// to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
+        /// environments. Requires Vault 1.11+.
+        /// </summary>
+        [Input("customEndpoint")]
+        public Input<Inputs.AuthBackendCustomEndpointArgs>? CustomEndpoint { get; set; }
 
         /// <summary>
         /// A description of the auth method.
@@ -160,10 +217,26 @@ namespace Pulumi.Vault.Gcp
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Input("disableRemount")]
+        public Input<bool>? DisableRemount { get; set; }
+
+        /// <summary>
         /// Specifies if the auth method is local only.
         /// </summary>
         [Input("local")]
         public Input<bool>? Local { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// The path to mount the auth method — this defaults to 'gcp'.
@@ -203,11 +276,31 @@ namespace Pulumi.Vault.Gcp
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
+        [Input("credentials")]
+        private Input<string>? _credentials;
+
         /// <summary>
         /// A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
         /// </summary>
-        [Input("credentials")]
-        public Input<string>? Credentials { get; set; }
+        public Input<string>? Credentials
+        {
+            get => _credentials;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _credentials = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Specifies overrides to
+        /// [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint)
+        /// used when making API requests. This allows specific requests made during authentication
+        /// to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
+        /// environments. Requires Vault 1.11+.
+        /// </summary>
+        [Input("customEndpoint")]
+        public Input<Inputs.AuthBackendCustomEndpointGetArgs>? CustomEndpoint { get; set; }
 
         /// <summary>
         /// A description of the auth method.
@@ -216,10 +309,26 @@ namespace Pulumi.Vault.Gcp
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Input("disableRemount")]
+        public Input<bool>? DisableRemount { get; set; }
+
+        /// <summary>
         /// Specifies if the auth method is local only.
         /// </summary>
         [Input("local")]
         public Input<bool>? Local { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// The path to mount the auth method — this defaults to 'gcp'.

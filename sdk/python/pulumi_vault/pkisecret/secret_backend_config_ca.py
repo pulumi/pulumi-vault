@@ -15,14 +15,21 @@ __all__ = ['SecretBackendConfigCaArgs', 'SecretBackendConfigCa']
 class SecretBackendConfigCaArgs:
     def __init__(__self__, *,
                  backend: pulumi.Input[str],
-                 pem_bundle: pulumi.Input[str]):
+                 pem_bundle: pulumi.Input[str],
+                 namespace: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SecretBackendConfigCa resource.
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[str] pem_bundle: The key and certificate PEM bundle
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         pulumi.set(__self__, "backend", backend)
         pulumi.set(__self__, "pem_bundle", pem_bundle)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter
@@ -48,19 +55,41 @@ class SecretBackendConfigCaArgs:
     def pem_bundle(self, value: pulumi.Input[str]):
         pulumi.set(self, "pem_bundle", value)
 
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
 
 @pulumi.input_type
 class _SecretBackendConfigCaState:
     def __init__(__self__, *,
                  backend: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  pem_bundle: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendConfigCa resources.
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] pem_bundle: The key and certificate PEM bundle
         """
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if pem_bundle is not None:
             pulumi.set(__self__, "pem_bundle", pem_bundle)
 
@@ -75,6 +104,21 @@ class _SecretBackendConfigCaState:
     @backend.setter
     def backend(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter(name="pemBundle")
@@ -95,6 +139,7 @@ class SecretBackendConfigCa(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  pem_bundle: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -161,6 +206,10 @@ class SecretBackendConfigCa(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] pem_bundle: The key and certificate PEM bundle
         """
         ...
@@ -246,6 +295,7 @@ class SecretBackendConfigCa(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  pem_bundle: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -259,9 +309,12 @@ class SecretBackendConfigCa(pulumi.CustomResource):
             if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
             __props__.__dict__["backend"] = backend
+            __props__.__dict__["namespace"] = namespace
             if pem_bundle is None and not opts.urn:
                 raise TypeError("Missing required property 'pem_bundle'")
-            __props__.__dict__["pem_bundle"] = pem_bundle
+            __props__.__dict__["pem_bundle"] = None if pem_bundle is None else pulumi.Output.secret(pem_bundle)
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["pemBundle"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(SecretBackendConfigCa, __self__).__init__(
             'vault:pkiSecret/secretBackendConfigCa:SecretBackendConfigCa',
             resource_name,
@@ -273,6 +326,7 @@ class SecretBackendConfigCa(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             pem_bundle: Optional[pulumi.Input[str]] = None) -> 'SecretBackendConfigCa':
         """
         Get an existing SecretBackendConfigCa resource's state with the given name, id, and optional extra
@@ -282,6 +336,10 @@ class SecretBackendConfigCa(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] pem_bundle: The key and certificate PEM bundle
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -289,6 +347,7 @@ class SecretBackendConfigCa(pulumi.CustomResource):
         __props__ = _SecretBackendConfigCaState.__new__(_SecretBackendConfigCaState)
 
         __props__.__dict__["backend"] = backend
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["pem_bundle"] = pem_bundle
         return SecretBackendConfigCa(resource_name, opts=opts, __props__=__props__)
 
@@ -299,6 +358,17 @@ class SecretBackendConfigCa(pulumi.CustomResource):
         The PKI secret backend the resource belongs to.
         """
         return pulumi.get(self, "backend")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="pemBundle")

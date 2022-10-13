@@ -65,6 +65,23 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     * 
+     */
+    @Import(name="disableRemount")
+    private @Nullable Output<Boolean> disableRemount;
+
+    /**
+     * @return If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     * 
+     */
+    public Optional<Output<Boolean>> disableRemount() {
+        return Optional.ofNullable(this.disableRemount);
+    }
+
+    /**
      * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
      * 
      */
@@ -97,6 +114,27 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable Output<String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
+
+    /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `gcp`.
      * 
@@ -119,8 +157,10 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         this.credentials = $.credentials;
         this.defaultLeaseTtlSeconds = $.defaultLeaseTtlSeconds;
         this.description = $.description;
+        this.disableRemount = $.disableRemount;
         this.local = $.local;
         this.maxLeaseTtlSeconds = $.maxLeaseTtlSeconds;
+        this.namespace = $.namespace;
         this.path = $.path;
     }
 
@@ -208,6 +248,29 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param disableRemount If set, opts out of mount migration on path updates.
+         * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableRemount(@Nullable Output<Boolean> disableRemount) {
+            $.disableRemount = disableRemount;
+            return this;
+        }
+
+        /**
+         * @param disableRemount If set, opts out of mount migration on path updates.
+         * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableRemount(Boolean disableRemount) {
+            return disableRemount(Output.of(disableRemount));
+        }
+
+        /**
          * @param local Boolean flag that can be explicitly set to true to enforce local mount in HA environment
          * 
          * @return builder
@@ -249,6 +312,33 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder maxLeaseTtlSeconds(Integer maxLeaseTtlSeconds) {
             return maxLeaseTtlSeconds(Output.of(maxLeaseTtlSeconds));
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable Output<String> namespace) {
+            $.namespace = namespace;
+            return this;
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(String namespace) {
+            return namespace(Output.of(namespace));
         }
 
         /**

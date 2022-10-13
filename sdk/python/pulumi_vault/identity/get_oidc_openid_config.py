@@ -21,7 +21,7 @@ class GetOidcOpenidConfigResult:
     """
     A collection of values returned by getOidcOpenidConfig.
     """
-    def __init__(__self__, authorization_endpoint=None, grant_types_supporteds=None, id=None, id_token_signing_alg_values_supporteds=None, issuer=None, jwks_uri=None, name=None, request_uri_parameter_supported=None, response_types_supporteds=None, scopes_supporteds=None, subject_types_supporteds=None, token_endpoint=None, token_endpoint_auth_methods_supporteds=None, userinfo_endpoint=None):
+    def __init__(__self__, authorization_endpoint=None, grant_types_supporteds=None, id=None, id_token_signing_alg_values_supporteds=None, issuer=None, jwks_uri=None, name=None, namespace=None, request_uri_parameter_supported=None, response_types_supporteds=None, scopes_supporteds=None, subject_types_supporteds=None, token_endpoint=None, token_endpoint_auth_methods_supporteds=None, userinfo_endpoint=None):
         if authorization_endpoint and not isinstance(authorization_endpoint, str):
             raise TypeError("Expected argument 'authorization_endpoint' to be a str")
         pulumi.set(__self__, "authorization_endpoint", authorization_endpoint)
@@ -43,6 +43,9 @@ class GetOidcOpenidConfigResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if namespace and not isinstance(namespace, str):
+            raise TypeError("Expected argument 'namespace' to be a str")
+        pulumi.set(__self__, "namespace", namespace)
         if request_uri_parameter_supported and not isinstance(request_uri_parameter_supported, bool):
             raise TypeError("Expected argument 'request_uri_parameter_supported' to be a bool")
         pulumi.set(__self__, "request_uri_parameter_supported", request_uri_parameter_supported)
@@ -120,6 +123,11 @@ class GetOidcOpenidConfigResult:
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[str]:
+        return pulumi.get(self, "namespace")
+
+    @property
     @pulumi.getter(name="requestUriParameterSupported")
     def request_uri_parameter_supported(self) -> bool:
         """
@@ -190,6 +198,7 @@ class AwaitableGetOidcOpenidConfigResult(GetOidcOpenidConfigResult):
             issuer=self.issuer,
             jwks_uri=self.jwks_uri,
             name=self.name,
+            namespace=self.namespace,
             request_uri_parameter_supported=self.request_uri_parameter_supported,
             response_types_supporteds=self.response_types_supporteds,
             scopes_supporteds=self.scopes_supporteds,
@@ -200,6 +209,7 @@ class AwaitableGetOidcOpenidConfigResult(GetOidcOpenidConfigResult):
 
 
 def get_oidc_openid_config(name: Optional[str] = None,
+                           namespace: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOidcOpenidConfigResult:
     """
     ## Example Usage
@@ -227,9 +237,14 @@ def get_oidc_openid_config(name: Optional[str] = None,
 
 
     :param str name: The name of the OIDC Provider in Vault.
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           *Available only for Vault Enterprise*.
     """
     __args__ = dict()
     __args__['name'] = name
+    __args__['namespace'] = namespace
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('vault:identity/getOidcOpenidConfig:getOidcOpenidConfig', __args__, opts=opts, typ=GetOidcOpenidConfigResult).value
 
@@ -241,6 +256,7 @@ def get_oidc_openid_config(name: Optional[str] = None,
         issuer=__ret__.issuer,
         jwks_uri=__ret__.jwks_uri,
         name=__ret__.name,
+        namespace=__ret__.namespace,
         request_uri_parameter_supported=__ret__.request_uri_parameter_supported,
         response_types_supporteds=__ret__.response_types_supporteds,
         scopes_supporteds=__ret__.scopes_supporteds,
@@ -252,6 +268,7 @@ def get_oidc_openid_config(name: Optional[str] = None,
 
 @_utilities.lift_output_func(get_oidc_openid_config)
 def get_oidc_openid_config_output(name: Optional[pulumi.Input[str]] = None,
+                                  namespace: Optional[pulumi.Input[Optional[str]]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOidcOpenidConfigResult]:
     """
     ## Example Usage
@@ -279,5 +296,9 @@ def get_oidc_openid_config_output(name: Optional[pulumi.Input[str]] = None,
 
 
     :param str name: The name of the OIDC Provider in Vault.
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           *Available only for Vault Enterprise*.
     """
     ...

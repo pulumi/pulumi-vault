@@ -75,6 +75,13 @@ public final class GetEncryptPlainArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.keyVersion);
     }
 
+    @Import(name="namespace")
+    private @Nullable String namespace;
+
+    public Optional<String> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
+
     /**
      * Plaintext to be encoded.
      * 
@@ -97,6 +104,7 @@ public final class GetEncryptPlainArgs extends com.pulumi.resources.InvokeArgs {
         this.context = $.context;
         this.key = $.key;
         this.keyVersion = $.keyVersion;
+        this.namespace = $.namespace;
         this.plaintext = $.plaintext;
     }
 
@@ -159,6 +167,11 @@ public final class GetEncryptPlainArgs extends com.pulumi.resources.InvokeArgs {
          */
         public Builder keyVersion(@Nullable Integer keyVersion) {
             $.keyVersion = keyVersion;
+            return this;
+        }
+
+        public Builder namespace(@Nullable String namespace) {
+            $.namespace = namespace;
             return this;
         }
 

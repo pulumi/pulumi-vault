@@ -69,6 +69,13 @@ export class AuthBackendIdentityWhitelist extends pulumi.CustomResource {
      */
     public readonly disablePeriodicTidy!: pulumi.Output<boolean | undefined>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * The amount of extra time, in minutes, that must
      * have passed beyond the roletag expiration, before it is removed from the
      * backend storage.
@@ -90,11 +97,13 @@ export class AuthBackendIdentityWhitelist extends pulumi.CustomResource {
             const state = argsOrState as AuthBackendIdentityWhitelistState | undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["disablePeriodicTidy"] = state ? state.disablePeriodicTidy : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["safetyBuffer"] = state ? state.safetyBuffer : undefined;
         } else {
             const args = argsOrState as AuthBackendIdentityWhitelistArgs | undefined;
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["disablePeriodicTidy"] = args ? args.disablePeriodicTidy : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["safetyBuffer"] = args ? args.safetyBuffer : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -116,6 +125,13 @@ export interface AuthBackendIdentityWhitelistState {
      */
     disablePeriodicTidy?: pulumi.Input<boolean>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
+    /**
      * The amount of extra time, in minutes, that must
      * have passed beyond the roletag expiration, before it is removed from the
      * backend storage.
@@ -136,6 +152,13 @@ export interface AuthBackendIdentityWhitelistArgs {
      * tidying of the identity-whitelist entries.
      */
     disablePeriodicTidy?: pulumi.Input<boolean>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The amount of extra time, in minutes, that must
      * have passed beyond the roletag expiration, before it is removed from the

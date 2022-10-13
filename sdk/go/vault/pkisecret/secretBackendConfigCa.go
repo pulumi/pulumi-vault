@@ -96,6 +96,11 @@ type SecretBackendConfigCa struct {
 
 	// The PKI secret backend the resource belongs to.
 	Backend pulumi.StringOutput `pulumi:"backend"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The key and certificate PEM bundle
 	PemBundle pulumi.StringOutput `pulumi:"pemBundle"`
 }
@@ -113,6 +118,13 @@ func NewSecretBackendConfigCa(ctx *pulumi.Context,
 	if args.PemBundle == nil {
 		return nil, errors.New("invalid value for required argument 'PemBundle'")
 	}
+	if args.PemBundle != nil {
+		args.PemBundle = pulumi.ToSecret(args.PemBundle).(pulumi.StringOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"pemBundle",
+	})
+	opts = append(opts, secrets)
 	var resource SecretBackendConfigCa
 	err := ctx.RegisterResource("vault:pkiSecret/secretBackendConfigCa:SecretBackendConfigCa", name, args, &resource, opts...)
 	if err != nil {
@@ -137,6 +149,11 @@ func GetSecretBackendConfigCa(ctx *pulumi.Context,
 type secretBackendConfigCaState struct {
 	// The PKI secret backend the resource belongs to.
 	Backend *string `pulumi:"backend"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The key and certificate PEM bundle
 	PemBundle *string `pulumi:"pemBundle"`
 }
@@ -144,6 +161,11 @@ type secretBackendConfigCaState struct {
 type SecretBackendConfigCaState struct {
 	// The PKI secret backend the resource belongs to.
 	Backend pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The key and certificate PEM bundle
 	PemBundle pulumi.StringPtrInput
 }
@@ -155,6 +177,11 @@ func (SecretBackendConfigCaState) ElementType() reflect.Type {
 type secretBackendConfigCaArgs struct {
 	// The PKI secret backend the resource belongs to.
 	Backend string `pulumi:"backend"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The key and certificate PEM bundle
 	PemBundle string `pulumi:"pemBundle"`
 }
@@ -163,6 +190,11 @@ type secretBackendConfigCaArgs struct {
 type SecretBackendConfigCaArgs struct {
 	// The PKI secret backend the resource belongs to.
 	Backend pulumi.StringInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The key and certificate PEM bundle
 	PemBundle pulumi.StringInput
 }
@@ -257,6 +289,14 @@ func (o SecretBackendConfigCaOutput) ToSecretBackendConfigCaOutputWithContext(ct
 // The PKI secret backend the resource belongs to.
 func (o SecretBackendConfigCaOutput) Backend() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendConfigCa) pulumi.StringOutput { return v.Backend }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o SecretBackendConfigCaOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConfigCa) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The key and certificate PEM bundle

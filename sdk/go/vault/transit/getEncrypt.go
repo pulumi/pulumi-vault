@@ -29,7 +29,8 @@ type GetEncryptArgs struct {
 	// Specifies the name of the transit key to encrypt against.
 	Key string `pulumi:"key"`
 	// The version of the key to use for encryption. If not set, uses the latest version. Must be greater than or equal to the key's `minEncryptionVersion`, if set.
-	KeyVersion *int `pulumi:"keyVersion"`
+	KeyVersion *int    `pulumi:"keyVersion"`
+	Namespace  *string `pulumi:"namespace"`
 	// Plaintext to be encoded.
 	Plaintext string `pulumi:"plaintext"`
 }
@@ -41,10 +42,11 @@ type GetEncryptResult struct {
 	Ciphertext string  `pulumi:"ciphertext"`
 	Context    *string `pulumi:"context"`
 	// The provider-assigned unique ID for this managed resource.
-	Id         string `pulumi:"id"`
-	Key        string `pulumi:"key"`
-	KeyVersion *int   `pulumi:"keyVersion"`
-	Plaintext  string `pulumi:"plaintext"`
+	Id         string  `pulumi:"id"`
+	Key        string  `pulumi:"key"`
+	KeyVersion *int    `pulumi:"keyVersion"`
+	Namespace  *string `pulumi:"namespace"`
+	Plaintext  string  `pulumi:"plaintext"`
 }
 
 func GetEncryptOutput(ctx *pulumi.Context, args GetEncryptOutputArgs, opts ...pulumi.InvokeOption) GetEncryptResultOutput {
@@ -69,7 +71,8 @@ type GetEncryptOutputArgs struct {
 	// Specifies the name of the transit key to encrypt against.
 	Key pulumi.StringInput `pulumi:"key"`
 	// The version of the key to use for encryption. If not set, uses the latest version. Must be greater than or equal to the key's `minEncryptionVersion`, if set.
-	KeyVersion pulumi.IntPtrInput `pulumi:"keyVersion"`
+	KeyVersion pulumi.IntPtrInput    `pulumi:"keyVersion"`
+	Namespace  pulumi.StringPtrInput `pulumi:"namespace"`
 	// Plaintext to be encoded.
 	Plaintext pulumi.StringInput `pulumi:"plaintext"`
 }
@@ -117,6 +120,10 @@ func (o GetEncryptResultOutput) Key() pulumi.StringOutput {
 
 func (o GetEncryptResultOutput) KeyVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GetEncryptResult) *int { return v.KeyVersion }).(pulumi.IntPtrOutput)
+}
+
+func (o GetEncryptResultOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetEncryptResult) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 func (o GetEncryptResultOutput) Plaintext() pulumi.StringOutput {

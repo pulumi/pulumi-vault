@@ -82,6 +82,13 @@ export class AuthBackendClient extends pulumi.CustomResource {
      */
     public readonly iamServerIdHeaderValue!: pulumi.Output<string | undefined>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * The AWS secret key that Vault should use for the
      * auth backend.
      */
@@ -115,21 +122,25 @@ export class AuthBackendClient extends pulumi.CustomResource {
             resourceInputs["ec2Endpoint"] = state ? state.ec2Endpoint : undefined;
             resourceInputs["iamEndpoint"] = state ? state.iamEndpoint : undefined;
             resourceInputs["iamServerIdHeaderValue"] = state ? state.iamServerIdHeaderValue : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["secretKey"] = state ? state.secretKey : undefined;
             resourceInputs["stsEndpoint"] = state ? state.stsEndpoint : undefined;
             resourceInputs["stsRegion"] = state ? state.stsRegion : undefined;
         } else {
             const args = argsOrState as AuthBackendClientArgs | undefined;
-            resourceInputs["accessKey"] = args ? args.accessKey : undefined;
+            resourceInputs["accessKey"] = args?.accessKey ? pulumi.secret(args.accessKey) : undefined;
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["ec2Endpoint"] = args ? args.ec2Endpoint : undefined;
             resourceInputs["iamEndpoint"] = args ? args.iamEndpoint : undefined;
             resourceInputs["iamServerIdHeaderValue"] = args ? args.iamServerIdHeaderValue : undefined;
-            resourceInputs["secretKey"] = args ? args.secretKey : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["secretKey"] = args?.secretKey ? pulumi.secret(args.secretKey) : undefined;
             resourceInputs["stsEndpoint"] = args ? args.stsEndpoint : undefined;
             resourceInputs["stsRegion"] = args ? args.stsRegion : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["accessKey", "secretKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(AuthBackendClient.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -164,6 +175,13 @@ export interface AuthBackendClientState {
      * that are used in the IAM auth method.
      */
     iamServerIdHeaderValue?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The AWS secret key that Vault should use for the
      * auth backend.
@@ -211,6 +229,13 @@ export interface AuthBackendClientArgs {
      * that are used in the IAM auth method.
      */
     iamServerIdHeaderValue?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The AWS secret key that Vault should use for the
      * auth backend.

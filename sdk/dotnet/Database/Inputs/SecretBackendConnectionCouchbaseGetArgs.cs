@@ -12,11 +12,21 @@ namespace Pulumi.Vault.Database.Inputs
 
     public sealed class SecretBackendConnectionCouchbaseGetArgs : global::Pulumi.ResourceArgs
     {
+        [Input("base64Pem")]
+        private Input<string>? _base64Pem;
+
         /// <summary>
         /// Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
         /// </summary>
-        [Input("base64Pem")]
-        public Input<string>? Base64Pem { get; set; }
+        public Input<string>? Base64Pem
+        {
+            get => _base64Pem;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _base64Pem = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.
@@ -43,11 +53,21 @@ namespace Pulumi.Vault.Database.Inputs
         [Input("insecureTls")]
         public Input<bool>? InsecureTls { get; set; }
 
+        [Input("password", required: true)]
+        private Input<string>? _password;
+
         /// <summary>
         /// The root credential password used in the connection URL.
         /// </summary>
-        [Input("password", required: true)]
-        public Input<string> Password { get; set; } = null!;
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Whether to use TLS when connecting to Cassandra.

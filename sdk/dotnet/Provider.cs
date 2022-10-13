@@ -106,17 +106,71 @@ namespace Pulumi.Vault
         [Input("address", required: true)]
         public Input<string> Address { get; set; } = null!;
 
-        [Input("authLogins", json: true)]
-        private InputList<Inputs.ProviderAuthLoginArgs>? _authLogins;
-
         /// <summary>
         /// Login to vault with an existing auth method using auth/&lt;mount&gt;/login
         /// </summary>
-        public InputList<Inputs.ProviderAuthLoginArgs> AuthLogins
-        {
-            get => _authLogins ?? (_authLogins = new InputList<Inputs.ProviderAuthLoginArgs>());
-            set => _authLogins = value;
-        }
+        [Input("authLogin", json: true)]
+        public Input<Inputs.ProviderAuthLoginArgs>? AuthLogin { get; set; }
+
+        /// <summary>
+        /// Login to vault using the AWS method
+        /// </summary>
+        [Input("authLoginAws", json: true)]
+        public Input<Inputs.ProviderAuthLoginAwsArgs>? AuthLoginAws { get; set; }
+
+        /// <summary>
+        /// Login to vault using the azure method
+        /// </summary>
+        [Input("authLoginAzure", json: true)]
+        public Input<Inputs.ProviderAuthLoginAzureArgs>? AuthLoginAzure { get; set; }
+
+        /// <summary>
+        /// Login to vault using the cert method
+        /// </summary>
+        [Input("authLoginCert", json: true)]
+        public Input<Inputs.ProviderAuthLoginCertArgs>? AuthLoginCert { get; set; }
+
+        /// <summary>
+        /// Login to vault using the gcp method
+        /// </summary>
+        [Input("authLoginGcp", json: true)]
+        public Input<Inputs.ProviderAuthLoginGcpArgs>? AuthLoginGcp { get; set; }
+
+        /// <summary>
+        /// Login to vault using the jwt method
+        /// </summary>
+        [Input("authLoginJwt", json: true)]
+        public Input<Inputs.ProviderAuthLoginJwtArgs>? AuthLoginJwt { get; set; }
+
+        /// <summary>
+        /// Login to vault using the kerberos method
+        /// </summary>
+        [Input("authLoginKerberos", json: true)]
+        public Input<Inputs.ProviderAuthLoginKerberosArgs>? AuthLoginKerberos { get; set; }
+
+        /// <summary>
+        /// Login to vault using the OCI method
+        /// </summary>
+        [Input("authLoginOci", json: true)]
+        public Input<Inputs.ProviderAuthLoginOciArgs>? AuthLoginOci { get; set; }
+
+        /// <summary>
+        /// Login to vault using the oidc method
+        /// </summary>
+        [Input("authLoginOidc", json: true)]
+        public Input<Inputs.ProviderAuthLoginOidcArgs>? AuthLoginOidc { get; set; }
+
+        /// <summary>
+        /// Login to vault using the radius method
+        /// </summary>
+        [Input("authLoginRadius", json: true)]
+        public Input<Inputs.ProviderAuthLoginRadiusArgs>? AuthLoginRadius { get; set; }
+
+        /// <summary>
+        /// Login to vault using the userpass method
+        /// </summary>
+        [Input("authLoginUserpass", json: true)]
+        public Input<Inputs.ProviderAuthLoginUserpassArgs>? AuthLoginUserpass { get; set; }
 
         /// <summary>
         /// Path to directory containing CA certificate files to validate the server's certificate.
@@ -130,17 +184,11 @@ namespace Pulumi.Vault
         [Input("caCertFile")]
         public Input<string>? CaCertFile { get; set; }
 
-        [Input("clientAuths", json: true)]
-        private InputList<Inputs.ProviderClientAuthArgs>? _clientAuths;
-
         /// <summary>
         /// Client authentication credentials.
         /// </summary>
-        public InputList<Inputs.ProviderClientAuthArgs> ClientAuths
-        {
-            get => _clientAuths ?? (_clientAuths = new InputList<Inputs.ProviderClientAuthArgs>());
-            set => _clientAuths = value;
-        }
+        [Input("clientAuth", json: true)]
+        public Input<Inputs.ProviderClientAuthArgs>? ClientAuth { get; set; }
 
         [Input("headers", json: true)]
         private InputList<Inputs.ProviderHeaderArgs>? _headers;
@@ -151,7 +199,11 @@ namespace Pulumi.Vault
         public InputList<Inputs.ProviderHeaderArgs> Headers
         {
             get => _headers ?? (_headers = new InputList<Inputs.ProviderHeaderArgs>());
-            set => _headers = value;
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableArray.Create<Inputs.ProviderHeaderArgs>());
+                _headers = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
         }
 
         /// <summary>

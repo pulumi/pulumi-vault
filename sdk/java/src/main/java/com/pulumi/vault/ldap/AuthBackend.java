@@ -170,6 +170,22 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
     public Output<String> description() {
         return this.description;
     }
+    /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     * 
+     */
+    @Export(name="disableRemount", type=Boolean.class, parameters={})
+    private Output</* @Nullable */ Boolean> disableRemount;
+
+    /**
+     * @return If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     * 
+     */
+    public Output<Optional<Boolean>> disableRemount() {
+        return Codegen.optional(this.disableRemount);
+    }
     @Export(name="discoverdn", type=Boolean.class, parameters={})
     private Output<Boolean> discoverdn;
 
@@ -245,6 +261,26 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Boolean>> local() {
         return Codegen.optional(this.local);
+    }
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="namespace", type=String.class, parameters={})
+    private Output</* @Nullable */ String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> namespace() {
+        return Codegen.optional(this.namespace);
     }
     /**
      * Path to mount the LDAP auth backend under
@@ -546,6 +582,20 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
     public Output<String> userfilter() {
         return this.userfilter;
     }
+    /**
+     * Force the auth method to use the username passed by the user as the alias name.
+     * 
+     */
+    @Export(name="usernameAsAlias", type=Boolean.class, parameters={})
+    private Output<Boolean> usernameAsAlias;
+
+    /**
+     * @return Force the auth method to use the username passed by the user as the alias name.
+     * 
+     */
+    public Output<Boolean> usernameAsAlias() {
+        return this.usernameAsAlias;
+    }
 
     /**
      *
@@ -579,6 +629,10 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "bindpass",
+                "clientTlsKey"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

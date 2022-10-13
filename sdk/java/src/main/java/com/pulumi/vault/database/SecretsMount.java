@@ -24,6 +24,7 @@ import com.pulumi.vault.database.outputs.SecretsMountMysqlLegacy;
 import com.pulumi.vault.database.outputs.SecretsMountMysqlRd;
 import com.pulumi.vault.database.outputs.SecretsMountOracle;
 import com.pulumi.vault.database.outputs.SecretsMountPostgresql;
+import com.pulumi.vault.database.outputs.SecretsMountRedisElasticach;
 import com.pulumi.vault.database.outputs.SecretsMountRedshift;
 import com.pulumi.vault.database.outputs.SecretsMountSnowflake;
 import java.lang.Boolean;
@@ -126,6 +127,20 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
      */
     public Output<String> accessor() {
         return this.accessor;
+    }
+    /**
+     * Set of managed key registry entry names that the mount in question is allowed to access
+     * 
+     */
+    @Export(name="allowedManagedKeys", type=List.class, parameters={String.class})
+    private Output</* @Nullable */ List<String>> allowedManagedKeys;
+
+    /**
+     * @return Set of managed key registry entry names that the mount in question is allowed to access
+     * 
+     */
+    public Output<Optional<List<String>>> allowedManagedKeys() {
+        return Codegen.optional(this.allowedManagedKeys);
     }
     /**
      * Specifies the list of keys that will not be HMAC&#39;d by audit devices in the request data object.
@@ -432,6 +447,20 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.mysqls);
     }
     /**
+     * Target namespace. (requires Enterprise)
+     * 
+     */
+    @Export(name="namespace", type=String.class, parameters={})
+    private Output</* @Nullable */ String> namespace;
+
+    /**
+     * @return Target namespace. (requires Enterprise)
+     * 
+     */
+    public Output<Optional<String>> namespace() {
+        return Codegen.optional(this.namespace);
+    }
+    /**
      * Specifies mount type specific options that are passed to the backend
      * 
      */
@@ -490,6 +519,22 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<List<SecretsMountPostgresql>>> postgresqls() {
         return Codegen.optional(this.postgresqls);
+    }
+    /**
+     * A nested block containing configuration options for InfluxDB connections.\
+     * *See Configuration Options for more info*
+     * 
+     */
+    @Export(name="redisElasticaches", type=List.class, parameters={SecretsMountRedisElasticach.class})
+    private Output</* @Nullable */ List<SecretsMountRedisElasticach>> redisElasticaches;
+
+    /**
+     * @return A nested block containing configuration options for InfluxDB connections.\
+     * *See Configuration Options for more info*
+     * 
+     */
+    public Output<Optional<List<SecretsMountRedisElasticach>>> redisElasticaches() {
+        return Codegen.optional(this.redisElasticaches);
     }
     /**
      * A nested block containing configuration options for AWS Redshift connections.\

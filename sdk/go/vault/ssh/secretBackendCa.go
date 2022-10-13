@@ -45,6 +45,16 @@ import (
 //	}
 //
 // ```
+//
+// ## Import
+//
+// SSH secret backend CAs can be imported using the `path`, e.g.
+//
+// ```sh
+//
+//	$ pulumi import vault:ssh/secretBackendCa:SecretBackendCa foo ssh
+//
+// ```
 type SecretBackendCa struct {
 	pulumi.CustomResourceState
 
@@ -52,6 +62,11 @@ type SecretBackendCa struct {
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
 	// Whether Vault should generate the signing key pair internally. Defaults to true
 	GenerateSigningKey pulumi.BoolPtrOutput `pulumi:"generateSigningKey"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The private key part the SSH CA key pair; required if generateSigningKey is false.
 	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
 	// The public key part the SSH CA key pair; required if generateSigningKey is false.
@@ -65,6 +80,13 @@ func NewSecretBackendCa(ctx *pulumi.Context,
 		args = &SecretBackendCaArgs{}
 	}
 
+	if args.PrivateKey != nil {
+		args.PrivateKey = pulumi.ToSecret(args.PrivateKey).(pulumi.StringPtrOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"privateKey",
+	})
+	opts = append(opts, secrets)
 	var resource SecretBackendCa
 	err := ctx.RegisterResource("vault:ssh/secretBackendCa:SecretBackendCa", name, args, &resource, opts...)
 	if err != nil {
@@ -91,6 +113,11 @@ type secretBackendCaState struct {
 	Backend *string `pulumi:"backend"`
 	// Whether Vault should generate the signing key pair internally. Defaults to true
 	GenerateSigningKey *bool `pulumi:"generateSigningKey"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The private key part the SSH CA key pair; required if generateSigningKey is false.
 	PrivateKey *string `pulumi:"privateKey"`
 	// The public key part the SSH CA key pair; required if generateSigningKey is false.
@@ -102,6 +129,11 @@ type SecretBackendCaState struct {
 	Backend pulumi.StringPtrInput
 	// Whether Vault should generate the signing key pair internally. Defaults to true
 	GenerateSigningKey pulumi.BoolPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The private key part the SSH CA key pair; required if generateSigningKey is false.
 	PrivateKey pulumi.StringPtrInput
 	// The public key part the SSH CA key pair; required if generateSigningKey is false.
@@ -117,6 +149,11 @@ type secretBackendCaArgs struct {
 	Backend *string `pulumi:"backend"`
 	// Whether Vault should generate the signing key pair internally. Defaults to true
 	GenerateSigningKey *bool `pulumi:"generateSigningKey"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The private key part the SSH CA key pair; required if generateSigningKey is false.
 	PrivateKey *string `pulumi:"privateKey"`
 	// The public key part the SSH CA key pair; required if generateSigningKey is false.
@@ -129,6 +166,11 @@ type SecretBackendCaArgs struct {
 	Backend pulumi.StringPtrInput
 	// Whether Vault should generate the signing key pair internally. Defaults to true
 	GenerateSigningKey pulumi.BoolPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The private key part the SSH CA key pair; required if generateSigningKey is false.
 	PrivateKey pulumi.StringPtrInput
 	// The public key part the SSH CA key pair; required if generateSigningKey is false.
@@ -230,6 +272,14 @@ func (o SecretBackendCaOutput) Backend() pulumi.StringPtrOutput {
 // Whether Vault should generate the signing key pair internally. Defaults to true
 func (o SecretBackendCaOutput) GenerateSigningKey() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendCa) pulumi.BoolPtrOutput { return v.GenerateSigningKey }).(pulumi.BoolPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o SecretBackendCaOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendCa) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The private key part the SSH CA key pair; required if generateSigningKey is false.

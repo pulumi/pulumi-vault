@@ -16,17 +16,24 @@ class RgpPolicyArgs:
     def __init__(__self__, *,
                  enforcement_level: pulumi.Input[str],
                  policy: pulumi.Input[str],
-                 name: Optional[pulumi.Input[str]] = None):
+                 name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a RgpPolicy resource.
         :param pulumi.Input[str] enforcement_level: Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
         :param pulumi.Input[str] policy: String containing a Sentinel policy
         :param pulumi.Input[str] name: The name of the policy
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         pulumi.set(__self__, "enforcement_level", enforcement_level)
         pulumi.set(__self__, "policy", policy)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter(name="enforcementLevel")
@@ -64,23 +71,45 @@ class RgpPolicyArgs:
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
 
 @pulumi.input_type
 class _RgpPolicyState:
     def __init__(__self__, *,
                  enforcement_level: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  policy: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering RgpPolicy resources.
         :param pulumi.Input[str] enforcement_level: Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
         :param pulumi.Input[str] name: The name of the policy
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] policy: String containing a Sentinel policy
         """
         if enforcement_level is not None:
             pulumi.set(__self__, "enforcement_level", enforcement_level)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if policy is not None:
             pulumi.set(__self__, "policy", policy)
 
@@ -110,6 +139,21 @@ class _RgpPolicyState:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def policy(self) -> Optional[pulumi.Input[str]]:
         """
         String containing a Sentinel policy
@@ -128,6 +172,7 @@ class RgpPolicy(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  enforcement_level: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  policy: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -154,6 +199,10 @@ class RgpPolicy(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] enforcement_level: Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
         :param pulumi.Input[str] name: The name of the policy
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] policy: String containing a Sentinel policy
         """
         ...
@@ -199,6 +248,7 @@ class RgpPolicy(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  enforcement_level: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  policy: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -213,6 +263,7 @@ class RgpPolicy(pulumi.CustomResource):
                 raise TypeError("Missing required property 'enforcement_level'")
             __props__.__dict__["enforcement_level"] = enforcement_level
             __props__.__dict__["name"] = name
+            __props__.__dict__["namespace"] = namespace
             if policy is None and not opts.urn:
                 raise TypeError("Missing required property 'policy'")
             __props__.__dict__["policy"] = policy
@@ -228,6 +279,7 @@ class RgpPolicy(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             enforcement_level: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             policy: Optional[pulumi.Input[str]] = None) -> 'RgpPolicy':
         """
         Get an existing RgpPolicy resource's state with the given name, id, and optional extra
@@ -238,6 +290,10 @@ class RgpPolicy(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] enforcement_level: Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
         :param pulumi.Input[str] name: The name of the policy
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] policy: String containing a Sentinel policy
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -246,6 +302,7 @@ class RgpPolicy(pulumi.CustomResource):
 
         __props__.__dict__["enforcement_level"] = enforcement_level
         __props__.__dict__["name"] = name
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["policy"] = policy
         return RgpPolicy(resource_name, opts=opts, __props__=__props__)
 
@@ -264,6 +321,17 @@ class RgpPolicy(pulumi.CustomResource):
         The name of the policy
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

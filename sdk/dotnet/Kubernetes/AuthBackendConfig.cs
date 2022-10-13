@@ -91,6 +91,15 @@ namespace Pulumi.Vault.Kubernetes
         public Output<string> KubernetesHost { get; private set; } = null!;
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured namespace.
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
         /// List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
         /// </summary>
         [Output("pemKeys")]
@@ -125,6 +134,10 @@ namespace Pulumi.Vault.Kubernetes
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "tokenReviewerJwt",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -184,6 +197,15 @@ namespace Pulumi.Vault.Kubernetes
         [Input("kubernetesHost", required: true)]
         public Input<string> KubernetesHost { get; set; } = null!;
 
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured namespace.
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
         [Input("pemKeys")]
         private InputList<string>? _pemKeys;
 
@@ -196,11 +218,21 @@ namespace Pulumi.Vault.Kubernetes
             set => _pemKeys = value;
         }
 
+        [Input("tokenReviewerJwt")]
+        private Input<string>? _tokenReviewerJwt;
+
         /// <summary>
         /// A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
         /// </summary>
-        [Input("tokenReviewerJwt")]
-        public Input<string>? TokenReviewerJwt { get; set; }
+        public Input<string>? TokenReviewerJwt
+        {
+            get => _tokenReviewerJwt;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _tokenReviewerJwt = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public AuthBackendConfigArgs()
         {
@@ -246,6 +278,15 @@ namespace Pulumi.Vault.Kubernetes
         [Input("kubernetesHost")]
         public Input<string>? KubernetesHost { get; set; }
 
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured namespace.
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
         [Input("pemKeys")]
         private InputList<string>? _pemKeys;
 
@@ -258,11 +299,21 @@ namespace Pulumi.Vault.Kubernetes
             set => _pemKeys = value;
         }
 
+        [Input("tokenReviewerJwt")]
+        private Input<string>? _tokenReviewerJwt;
+
         /// <summary>
         /// A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
         /// </summary>
-        [Input("tokenReviewerJwt")]
-        public Input<string>? TokenReviewerJwt { get; set; }
+        public Input<string>? TokenReviewerJwt
+        {
+            get => _tokenReviewerJwt;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _tokenReviewerJwt = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public AuthBackendConfigState()
         {

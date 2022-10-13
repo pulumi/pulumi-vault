@@ -74,6 +74,13 @@ export class NomadSecretRole extends pulumi.CustomResource {
      */
     public readonly global!: pulumi.Output<boolean>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * List of policies attached to the generated token. This setting is only used 
      * when `type` is 'client'.
      */
@@ -104,6 +111,7 @@ export class NomadSecretRole extends pulumi.CustomResource {
             const state = argsOrState as NomadSecretRoleState | undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["global"] = state ? state.global : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["policies"] = state ? state.policies : undefined;
             resourceInputs["role"] = state ? state.role : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
@@ -117,6 +125,7 @@ export class NomadSecretRole extends pulumi.CustomResource {
             }
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["global"] = args ? args.global : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["policies"] = args ? args.policies : undefined;
             resourceInputs["role"] = args ? args.role : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
@@ -140,6 +149,13 @@ export interface NomadSecretRoleState {
      * false.
      */
     global?: pulumi.Input<boolean>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * List of policies attached to the generated token. This setting is only used 
      * when `type` is 'client'.
@@ -171,6 +187,13 @@ export interface NomadSecretRoleArgs {
      * false.
      */
     global?: pulumi.Input<boolean>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * List of policies attached to the generated token. This setting is only used 
      * when `type` is 'client'.

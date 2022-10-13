@@ -47,6 +47,15 @@ namespace Pulumi.Vault.Aws
         public Output<string?> MaxTtl { get; private set; } = null!;
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
         /// The policies to be associated with the tag. Must be a subset of the policies associated with the role.
         /// </summary>
         [Output("policies")]
@@ -148,6 +157,15 @@ namespace Pulumi.Vault.Aws
         [Input("maxTtl")]
         public Input<string>? MaxTtl { get; set; }
 
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
         [Input("policies")]
         private InputList<string>? _policies;
 
@@ -205,6 +223,15 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Input("maxTtl")]
         public Input<string>? MaxTtl { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         [Input("policies")]
         private InputList<string>? _policies;

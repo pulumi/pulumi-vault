@@ -32,7 +32,7 @@ namespace Pulumi.Vault.Consul
     ///     var example = new Vault.Consul.SecretBackendRole("example", new()
     ///     {
     ///         Backend = test.Path,
-    ///         Policies = new[]
+    ///         ConsulPolicies = new[]
     ///         {
     ///             "example-policy",
     ///         },
@@ -40,6 +40,11 @@ namespace Pulumi.Vault.Consul
     /// 
     /// });
     /// ```
+    /// ## Note About Required Arguments
+    /// 
+    /// *At least one* of the four arguments `consul_policies`, `consul_roles`, `service_identities`, or
+    /// `node_identities` is required for a token. If desired, any combination of the four arguments up-to and
+    /// including all four, is valid.
     /// 
     /// ## Import
     /// 
@@ -60,13 +65,19 @@ namespace Pulumi.Vault.Consul
 
         /// <summary>
         /// The Consul namespace that the token will be created in.
-        /// Applicable for Vault 1.10+ and Consul 1.7+",
+        /// Applicable for Vault 1.10+ and Consul 1.7+".
         /// </summary>
         [Output("consulNamespace")]
         public Output<string> ConsulNamespace { get; private set; } = null!;
 
         /// <summary>
-        /// Set of Consul roles to attach to the token.
+        /// &lt;sup&gt;&lt;a href="#note-about-required-arguments"&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; The list of Consul ACL policies to associate with these roles.
+        /// </summary>
+        [Output("consulPolicies")]
+        public Output<ImmutableArray<string>> ConsulPolicies { get; private set; } = null!;
+
+        /// <summary>
+        /// &lt;sup&gt;&lt;a href="#note-about-required-arguments"&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; Set of Consul roles to attach to the token.
         /// Applicable for Vault 1.10+ with Consul 1.5+.
         /// </summary>
         [Output("consulRoles")]
@@ -91,20 +102,46 @@ namespace Pulumi.Vault.Consul
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
+        /// &lt;sup&gt;&lt;a href="#note-about-required-arguments"&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; Set of Consul node
+        /// identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.8+.
+        /// </summary>
+        [Output("nodeIdentities")]
+        public Output<ImmutableArray<string>> NodeIdentities { get; private set; } = null!;
+
+        /// <summary>
         /// The admin partition that the token will be created in.
-        /// Applicable for Vault 1.10+ and Consul 1.11+",
+        /// Applicable for Vault 1.10+ and Consul 1.11+".
         /// </summary>
         [Output("partition")]
         public Output<string> Partition { get; private set; } = null!;
 
         /// <summary>
         /// The list of Consul ACL policies to associate with these roles.
+        /// **NOTE:** The new parameter `consul_policies` should be used in favor of this. This parameter,
+        /// `policies`, remains supported for legacy users, but Vault has deprecated this field.
         /// </summary>
         [Output("policies")]
         public Output<ImmutableArray<string>> Policies { get; private set; } = null!;
 
         /// <summary>
+        /// &lt;sup&gt;&lt;a href="#note-about-required-arguments"&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; Set of Consul
+        /// service identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.5+.
+        /// </summary>
+        [Output("serviceIdentities")]
+        public Output<ImmutableArray<string>> ServiceIdentities { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies the type of token to create when using this role. Valid values are "client" or "management".
+        /// *Deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.*
         /// </summary>
         [Output("tokenType")]
         public Output<string?> TokenType { get; private set; } = null!;
@@ -169,16 +206,28 @@ namespace Pulumi.Vault.Consul
 
         /// <summary>
         /// The Consul namespace that the token will be created in.
-        /// Applicable for Vault 1.10+ and Consul 1.7+",
+        /// Applicable for Vault 1.10+ and Consul 1.7+".
         /// </summary>
         [Input("consulNamespace")]
         public Input<string>? ConsulNamespace { get; set; }
+
+        [Input("consulPolicies")]
+        private InputList<string>? _consulPolicies;
+
+        /// <summary>
+        /// &lt;sup&gt;&lt;a href="#note-about-required-arguments"&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; The list of Consul ACL policies to associate with these roles.
+        /// </summary>
+        public InputList<string> ConsulPolicies
+        {
+            get => _consulPolicies ?? (_consulPolicies = new InputList<string>());
+            set => _consulPolicies = value;
+        }
 
         [Input("consulRoles")]
         private InputList<string>? _consulRoles;
 
         /// <summary>
-        /// Set of Consul roles to attach to the token.
+        /// &lt;sup&gt;&lt;a href="#note-about-required-arguments"&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; Set of Consul roles to attach to the token.
         /// Applicable for Vault 1.10+ with Consul 1.5+.
         /// </summary>
         public InputList<string> ConsulRoles
@@ -206,8 +255,30 @@ namespace Pulumi.Vault.Consul
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        [Input("nodeIdentities")]
+        private InputList<string>? _nodeIdentities;
+
+        /// <summary>
+        /// &lt;sup&gt;&lt;a href="#note-about-required-arguments"&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; Set of Consul node
+        /// identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.8+.
+        /// </summary>
+        public InputList<string> NodeIdentities
+        {
+            get => _nodeIdentities ?? (_nodeIdentities = new InputList<string>());
+            set => _nodeIdentities = value;
+        }
+
+        /// <summary>
         /// The admin partition that the token will be created in.
-        /// Applicable for Vault 1.10+ and Consul 1.11+",
+        /// Applicable for Vault 1.10+ and Consul 1.11+".
         /// </summary>
         [Input("partition")]
         public Input<string>? Partition { get; set; }
@@ -217,6 +288,8 @@ namespace Pulumi.Vault.Consul
 
         /// <summary>
         /// The list of Consul ACL policies to associate with these roles.
+        /// **NOTE:** The new parameter `consul_policies` should be used in favor of this. This parameter,
+        /// `policies`, remains supported for legacy users, but Vault has deprecated this field.
         /// </summary>
         public InputList<string> Policies
         {
@@ -224,8 +297,22 @@ namespace Pulumi.Vault.Consul
             set => _policies = value;
         }
 
+        [Input("serviceIdentities")]
+        private InputList<string>? _serviceIdentities;
+
+        /// <summary>
+        /// &lt;sup&gt;&lt;a href="#note-about-required-arguments"&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; Set of Consul
+        /// service identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.5+.
+        /// </summary>
+        public InputList<string> ServiceIdentities
+        {
+            get => _serviceIdentities ?? (_serviceIdentities = new InputList<string>());
+            set => _serviceIdentities = value;
+        }
+
         /// <summary>
         /// Specifies the type of token to create when using this role. Valid values are "client" or "management".
+        /// *Deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.*
         /// </summary>
         [Input("tokenType")]
         public Input<string>? TokenType { get; set; }
@@ -252,16 +339,28 @@ namespace Pulumi.Vault.Consul
 
         /// <summary>
         /// The Consul namespace that the token will be created in.
-        /// Applicable for Vault 1.10+ and Consul 1.7+",
+        /// Applicable for Vault 1.10+ and Consul 1.7+".
         /// </summary>
         [Input("consulNamespace")]
         public Input<string>? ConsulNamespace { get; set; }
+
+        [Input("consulPolicies")]
+        private InputList<string>? _consulPolicies;
+
+        /// <summary>
+        /// &lt;sup&gt;&lt;a href="#note-about-required-arguments"&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; The list of Consul ACL policies to associate with these roles.
+        /// </summary>
+        public InputList<string> ConsulPolicies
+        {
+            get => _consulPolicies ?? (_consulPolicies = new InputList<string>());
+            set => _consulPolicies = value;
+        }
 
         [Input("consulRoles")]
         private InputList<string>? _consulRoles;
 
         /// <summary>
-        /// Set of Consul roles to attach to the token.
+        /// &lt;sup&gt;&lt;a href="#note-about-required-arguments"&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; Set of Consul roles to attach to the token.
         /// Applicable for Vault 1.10+ with Consul 1.5+.
         /// </summary>
         public InputList<string> ConsulRoles
@@ -289,8 +388,30 @@ namespace Pulumi.Vault.Consul
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        [Input("nodeIdentities")]
+        private InputList<string>? _nodeIdentities;
+
+        /// <summary>
+        /// &lt;sup&gt;&lt;a href="#note-about-required-arguments"&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; Set of Consul node
+        /// identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.8+.
+        /// </summary>
+        public InputList<string> NodeIdentities
+        {
+            get => _nodeIdentities ?? (_nodeIdentities = new InputList<string>());
+            set => _nodeIdentities = value;
+        }
+
+        /// <summary>
         /// The admin partition that the token will be created in.
-        /// Applicable for Vault 1.10+ and Consul 1.11+",
+        /// Applicable for Vault 1.10+ and Consul 1.11+".
         /// </summary>
         [Input("partition")]
         public Input<string>? Partition { get; set; }
@@ -300,6 +421,8 @@ namespace Pulumi.Vault.Consul
 
         /// <summary>
         /// The list of Consul ACL policies to associate with these roles.
+        /// **NOTE:** The new parameter `consul_policies` should be used in favor of this. This parameter,
+        /// `policies`, remains supported for legacy users, but Vault has deprecated this field.
         /// </summary>
         public InputList<string> Policies
         {
@@ -307,8 +430,22 @@ namespace Pulumi.Vault.Consul
             set => _policies = value;
         }
 
+        [Input("serviceIdentities")]
+        private InputList<string>? _serviceIdentities;
+
+        /// <summary>
+        /// &lt;sup&gt;&lt;a href="#note-about-required-arguments"&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; Set of Consul
+        /// service identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.5+.
+        /// </summary>
+        public InputList<string> ServiceIdentities
+        {
+            get => _serviceIdentities ?? (_serviceIdentities = new InputList<string>());
+            set => _serviceIdentities = value;
+        }
+
         /// <summary>
         /// Specifies the type of token to create when using this role. Valid values are "client" or "management".
+        /// *Deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.*
         /// </summary>
         [Input("tokenType")]
         public Input<string>? TokenType { get; set; }

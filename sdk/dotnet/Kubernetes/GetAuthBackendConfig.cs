@@ -17,7 +17,7 @@ namespace Pulumi.Vault.Kubernetes
         /// information.
         /// </summary>
         public static Task<GetAuthBackendConfigResult> InvokeAsync(GetAuthBackendConfigArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendConfigResult>("vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig", args ?? new GetAuthBackendConfigArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendConfigResult>("vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig", args ?? new GetAuthBackendConfigArgs(), options.WithDefaults());
 
         /// <summary>
         /// Reads the Role of an Kubernetes from a Vault server. See the [Vault
@@ -25,7 +25,7 @@ namespace Pulumi.Vault.Kubernetes
         /// information.
         /// </summary>
         public static Output<GetAuthBackendConfigResult> Invoke(GetAuthBackendConfigInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetAuthBackendConfigResult>("vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig", args ?? new GetAuthBackendConfigInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetAuthBackendConfigResult>("vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig", args ?? new GetAuthBackendConfigInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -61,6 +61,15 @@ namespace Pulumi.Vault.Kubernetes
         /// </summary>
         [Input("kubernetesHost")]
         public string? KubernetesHost { get; set; }
+
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured namespace.
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public string? Namespace { get; set; }
 
         [Input("pemKeys")]
         private List<string>? _pemKeys;
@@ -113,6 +122,15 @@ namespace Pulumi.Vault.Kubernetes
         [Input("kubernetesHost")]
         public Input<string>? KubernetesHost { get; set; }
 
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured namespace.
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
         [Input("pemKeys")]
         private InputList<string>? _pemKeys;
 
@@ -154,6 +172,7 @@ namespace Pulumi.Vault.Kubernetes
         /// Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
         /// </summary>
         public readonly string KubernetesHost;
+        public readonly string? Namespace;
         /// <summary>
         /// Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
         /// </summary>
@@ -175,6 +194,8 @@ namespace Pulumi.Vault.Kubernetes
 
             string kubernetesHost,
 
+            string? @namespace,
+
             ImmutableArray<string> pemKeys)
         {
             Backend = backend;
@@ -184,6 +205,7 @@ namespace Pulumi.Vault.Kubernetes
             Issuer = issuer;
             KubernetesCaCert = kubernetesCaCert;
             KubernetesHost = kubernetesHost;
+            Namespace = @namespace;
             PemKeys = pemKeys;
         }
     }

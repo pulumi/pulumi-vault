@@ -20,103 +20,72 @@ public final class SecretsMountCouchbase {
      * connection.
      * 
      */
-    private final @Nullable List<String> allowedRoles;
+    private @Nullable List<String> allowedRoles;
     /**
      * @return Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
      * 
      */
-    private final @Nullable String base64Pem;
+    private @Nullable String base64Pem;
     /**
      * @return Required for Couchbase versions prior to 6.5.0. This is only used to verify vault&#39;s connection to the server.
      * 
      */
-    private final @Nullable String bucketName;
+    private @Nullable String bucketName;
     /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
      */
-    private final @Nullable Map<String,Object> data;
+    private @Nullable Map<String,Object> data;
     /**
      * @return A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
      * 
      */
-    private final List<String> hosts;
+    private List<String> hosts;
     /**
      * @return Whether to skip verification of the server
      * certificate when using TLS.
      * 
      */
-    private final @Nullable Boolean insecureTls;
-    private final String name;
+    private @Nullable Boolean insecureTls;
+    private String name;
     /**
      * @return The password to be used in the connection.
      * 
      */
-    private final String password;
+    private String password;
     /**
      * @return Specifies the name of the plugin to use.
      * 
      */
-    private final @Nullable String pluginName;
+    private @Nullable String pluginName;
     /**
      * @return A list of database statements to be executed to rotate the root user&#39;s credentials.
      * 
      */
-    private final @Nullable List<String> rootRotationStatements;
+    private @Nullable List<String> rootRotationStatements;
     /**
      * @return Whether to use TLS when connecting to Cassandra.
      * 
      */
-    private final @Nullable Boolean tls;
+    private @Nullable Boolean tls;
     /**
      * @return The username to be used in the connection (the account admin level).
      * 
      */
-    private final String username;
+    private String username;
     /**
      * @return - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
      * 
      */
-    private final @Nullable String usernameTemplate;
+    private @Nullable String usernameTemplate;
     /**
      * @return Whether the connection should be verified on
      * initial configuration or not.
      * 
      */
-    private final @Nullable Boolean verifyConnection;
+    private @Nullable Boolean verifyConnection;
 
-    @CustomType.Constructor
-    private SecretsMountCouchbase(
-        @CustomType.Parameter("allowedRoles") @Nullable List<String> allowedRoles,
-        @CustomType.Parameter("base64Pem") @Nullable String base64Pem,
-        @CustomType.Parameter("bucketName") @Nullable String bucketName,
-        @CustomType.Parameter("data") @Nullable Map<String,Object> data,
-        @CustomType.Parameter("hosts") List<String> hosts,
-        @CustomType.Parameter("insecureTls") @Nullable Boolean insecureTls,
-        @CustomType.Parameter("name") String name,
-        @CustomType.Parameter("password") String password,
-        @CustomType.Parameter("pluginName") @Nullable String pluginName,
-        @CustomType.Parameter("rootRotationStatements") @Nullable List<String> rootRotationStatements,
-        @CustomType.Parameter("tls") @Nullable Boolean tls,
-        @CustomType.Parameter("username") String username,
-        @CustomType.Parameter("usernameTemplate") @Nullable String usernameTemplate,
-        @CustomType.Parameter("verifyConnection") @Nullable Boolean verifyConnection) {
-        this.allowedRoles = allowedRoles;
-        this.base64Pem = base64Pem;
-        this.bucketName = bucketName;
-        this.data = data;
-        this.hosts = hosts;
-        this.insecureTls = insecureTls;
-        this.name = name;
-        this.password = password;
-        this.pluginName = pluginName;
-        this.rootRotationStatements = rootRotationStatements;
-        this.tls = tls;
-        this.username = username;
-        this.usernameTemplate = usernameTemplate;
-        this.verifyConnection = verifyConnection;
-    }
-
+    private SecretsMountCouchbase() {}
     /**
      * @return A list of roles that are allowed to use this
      * connection.
@@ -222,7 +191,7 @@ public final class SecretsMountCouchbase {
     public static Builder builder(SecretsMountCouchbase defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable List<String> allowedRoles;
         private @Nullable String base64Pem;
@@ -238,11 +207,7 @@ public final class SecretsMountCouchbase {
         private String username;
         private @Nullable String usernameTemplate;
         private @Nullable Boolean verifyConnection;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(SecretsMountCouchbase defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.allowedRoles = defaults.allowedRoles;
@@ -261,6 +226,7 @@ public final class SecretsMountCouchbase {
     	      this.verifyConnection = defaults.verifyConnection;
         }
 
+        @CustomType.Setter
         public Builder allowedRoles(@Nullable List<String> allowedRoles) {
             this.allowedRoles = allowedRoles;
             return this;
@@ -268,18 +234,22 @@ public final class SecretsMountCouchbase {
         public Builder allowedRoles(String... allowedRoles) {
             return allowedRoles(List.of(allowedRoles));
         }
+        @CustomType.Setter
         public Builder base64Pem(@Nullable String base64Pem) {
             this.base64Pem = base64Pem;
             return this;
         }
+        @CustomType.Setter
         public Builder bucketName(@Nullable String bucketName) {
             this.bucketName = bucketName;
             return this;
         }
+        @CustomType.Setter
         public Builder data(@Nullable Map<String,Object> data) {
             this.data = data;
             return this;
         }
+        @CustomType.Setter
         public Builder hosts(List<String> hosts) {
             this.hosts = Objects.requireNonNull(hosts);
             return this;
@@ -287,22 +257,27 @@ public final class SecretsMountCouchbase {
         public Builder hosts(String... hosts) {
             return hosts(List.of(hosts));
         }
+        @CustomType.Setter
         public Builder insecureTls(@Nullable Boolean insecureTls) {
             this.insecureTls = insecureTls;
             return this;
         }
+        @CustomType.Setter
         public Builder name(String name) {
             this.name = Objects.requireNonNull(name);
             return this;
         }
+        @CustomType.Setter
         public Builder password(String password) {
             this.password = Objects.requireNonNull(password);
             return this;
         }
+        @CustomType.Setter
         public Builder pluginName(@Nullable String pluginName) {
             this.pluginName = pluginName;
             return this;
         }
+        @CustomType.Setter
         public Builder rootRotationStatements(@Nullable List<String> rootRotationStatements) {
             this.rootRotationStatements = rootRotationStatements;
             return this;
@@ -310,23 +285,43 @@ public final class SecretsMountCouchbase {
         public Builder rootRotationStatements(String... rootRotationStatements) {
             return rootRotationStatements(List.of(rootRotationStatements));
         }
+        @CustomType.Setter
         public Builder tls(@Nullable Boolean tls) {
             this.tls = tls;
             return this;
         }
+        @CustomType.Setter
         public Builder username(String username) {
             this.username = Objects.requireNonNull(username);
             return this;
         }
+        @CustomType.Setter
         public Builder usernameTemplate(@Nullable String usernameTemplate) {
             this.usernameTemplate = usernameTemplate;
             return this;
         }
+        @CustomType.Setter
         public Builder verifyConnection(@Nullable Boolean verifyConnection) {
             this.verifyConnection = verifyConnection;
             return this;
-        }        public SecretsMountCouchbase build() {
-            return new SecretsMountCouchbase(allowedRoles, base64Pem, bucketName, data, hosts, insecureTls, name, password, pluginName, rootRotationStatements, tls, username, usernameTemplate, verifyConnection);
+        }
+        public SecretsMountCouchbase build() {
+            final var o = new SecretsMountCouchbase();
+            o.allowedRoles = allowedRoles;
+            o.base64Pem = base64Pem;
+            o.bucketName = bucketName;
+            o.data = data;
+            o.hosts = hosts;
+            o.insecureTls = insecureTls;
+            o.name = name;
+            o.password = password;
+            o.pluginName = pluginName;
+            o.rootRotationStatements = rootRotationStatements;
+            o.tls = tls;
+            o.username = username;
+            o.usernameTemplate = usernameTemplate;
+            o.verifyConnection = verifyConnection;
+            return o;
         }
     }
 }

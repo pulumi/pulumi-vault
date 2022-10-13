@@ -42,11 +42,21 @@ namespace Pulumi.Vault.Database.Inputs
         [Input("insecure")]
         public Input<bool>? Insecure { get; set; }
 
+        [Input("password", required: true)]
+        private Input<string>? _password;
+
         /// <summary>
         /// The root credential password used in the connection URL.
         /// </summary>
-        [Input("password", required: true)]
-        public Input<string> Password { get; set; } = null!;
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// This, if set, is used to set the SNI host when connecting via TLS.

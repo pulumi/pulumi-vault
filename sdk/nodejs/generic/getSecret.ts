@@ -27,6 +27,7 @@ export function getSecret(args: GetSecretArgs, opts?: pulumi.InvokeOptions): Pro
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("vault:generic/getSecret:getSecret", {
+        "namespace": args.namespace,
         "path": args.path,
         "version": args.version,
         "withLeaseStartTime": args.withLeaseStartTime,
@@ -37,6 +38,13 @@ export function getSecret(args: GetSecretArgs, opts?: pulumi.InvokeOptions): Pro
  * A collection of arguments for invoking getSecret.
  */
 export interface GetSecretArgs {
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: string;
     /**
      * The full logical path from which to request data.
      * To read data from the "generic" secret backend mounted in Vault by
@@ -86,6 +94,7 @@ export interface GetSecretResult {
     readonly leaseId: string;
     readonly leaseRenewable: boolean;
     readonly leaseStartTime: string;
+    readonly namespace?: string;
     readonly path: string;
     readonly version?: number;
     readonly withLeaseStartTime?: boolean;
@@ -99,6 +108,13 @@ export function getSecretOutput(args: GetSecretOutputArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getSecret.
  */
 export interface GetSecretOutputArgs {
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The full logical path from which to request data.
      * To read data from the "generic" secret backend mounted in Vault by

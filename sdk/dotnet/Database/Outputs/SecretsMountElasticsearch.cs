@@ -60,8 +60,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string? TlsServerName;
         /// <summary>
-        /// The URL for Elasticsearch's API. https requires certificate
-        /// by trusted CA if used.
+        /// The configuration endpoint for the ElastiCache cluster to connect to.
         /// </summary>
         public readonly string Url;
         /// <summary>

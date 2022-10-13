@@ -21,10 +21,12 @@ class NomadSecretBackendArgs:
                  client_key: Optional[pulumi.Input[str]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  max_token_name_length: Optional[pulumi.Input[int]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None):
         """
@@ -39,6 +41,8 @@ class NomadSecretBackendArgs:
         :param pulumi.Input[str] client_key: Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for secrets in seconds.
         :param pulumi.Input[str] description: Human-friendly description of the mount for the Active Directory backend.
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by
                replication.Tolerance duration to use when checking the last rotation time.
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds.
@@ -46,6 +50,10 @@ class NomadSecretBackendArgs:
                generated with Generate Credential. If omitted, 0 is used and ignored, defaulting to the max value allowed
                by the Nomad version.
         :param pulumi.Input[int] max_ttl: Maximum possible lease duration for secrets in seconds.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] token: Specifies the Nomad Management token to use.
         :param pulumi.Input[int] ttl: Specifies the ttl of the lease for the generated token.
         """
@@ -63,6 +71,8 @@ class NomadSecretBackendArgs:
             pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if disable_remount is not None:
+            pulumi.set(__self__, "disable_remount", disable_remount)
         if local is not None:
             pulumi.set(__self__, "local", local)
         if max_lease_ttl_seconds is not None:
@@ -71,6 +81,8 @@ class NomadSecretBackendArgs:
             pulumi.set(__self__, "max_token_name_length", max_token_name_length)
         if max_ttl is not None:
             pulumi.set(__self__, "max_ttl", max_ttl)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if token is not None:
             pulumi.set(__self__, "token", token)
         if ttl is not None:
@@ -164,6 +176,19 @@ class NomadSecretBackendArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="disableRemount")
+    def disable_remount(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, opts out of mount migration on path updates.
+        See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        """
+        return pulumi.get(self, "disable_remount")
+
+    @disable_remount.setter
+    def disable_remount(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_remount", value)
+
+    @property
     @pulumi.getter
     def local(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -213,6 +238,21 @@ class NomadSecretBackendArgs:
     @max_ttl.setter
     def max_ttl(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_ttl", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -249,10 +289,12 @@ class _NomadSecretBackendState:
                  client_key: Optional[pulumi.Input[str]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  max_token_name_length: Optional[pulumi.Input[int]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None):
         """
@@ -267,6 +309,8 @@ class _NomadSecretBackendState:
         :param pulumi.Input[str] client_key: Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for secrets in seconds.
         :param pulumi.Input[str] description: Human-friendly description of the mount for the Active Directory backend.
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by
                replication.Tolerance duration to use when checking the last rotation time.
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds.
@@ -274,6 +318,10 @@ class _NomadSecretBackendState:
                generated with Generate Credential. If omitted, 0 is used and ignored, defaulting to the max value allowed
                by the Nomad version.
         :param pulumi.Input[int] max_ttl: Maximum possible lease duration for secrets in seconds.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] token: Specifies the Nomad Management token to use.
         :param pulumi.Input[int] ttl: Specifies the ttl of the lease for the generated token.
         """
@@ -291,6 +339,8 @@ class _NomadSecretBackendState:
             pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if disable_remount is not None:
+            pulumi.set(__self__, "disable_remount", disable_remount)
         if local is not None:
             pulumi.set(__self__, "local", local)
         if max_lease_ttl_seconds is not None:
@@ -299,6 +349,8 @@ class _NomadSecretBackendState:
             pulumi.set(__self__, "max_token_name_length", max_token_name_length)
         if max_ttl is not None:
             pulumi.set(__self__, "max_ttl", max_ttl)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if token is not None:
             pulumi.set(__self__, "token", token)
         if ttl is not None:
@@ -392,6 +444,19 @@ class _NomadSecretBackendState:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="disableRemount")
+    def disable_remount(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, opts out of mount migration on path updates.
+        See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        """
+        return pulumi.get(self, "disable_remount")
+
+    @disable_remount.setter
+    def disable_remount(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_remount", value)
+
+    @property
     @pulumi.getter
     def local(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -441,6 +506,21 @@ class _NomadSecretBackendState:
     @max_ttl.setter
     def max_ttl(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_ttl", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -479,10 +559,12 @@ class NomadSecretBackend(pulumi.CustomResource):
                  client_key: Optional[pulumi.Input[str]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  max_token_name_length: Optional[pulumi.Input[int]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None,
                  __props__=None):
@@ -524,6 +606,8 @@ class NomadSecretBackend(pulumi.CustomResource):
         :param pulumi.Input[str] client_key: Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for secrets in seconds.
         :param pulumi.Input[str] description: Human-friendly description of the mount for the Active Directory backend.
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by
                replication.Tolerance duration to use when checking the last rotation time.
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds.
@@ -531,6 +615,10 @@ class NomadSecretBackend(pulumi.CustomResource):
                generated with Generate Credential. If omitted, 0 is used and ignored, defaulting to the max value allowed
                by the Nomad version.
         :param pulumi.Input[int] max_ttl: Maximum possible lease duration for secrets in seconds.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] token: Specifies the Nomad Management token to use.
         :param pulumi.Input[int] ttl: Specifies the ttl of the lease for the generated token.
         """
@@ -588,10 +676,12 @@ class NomadSecretBackend(pulumi.CustomResource):
                  client_key: Optional[pulumi.Input[str]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  max_token_name_length: Optional[pulumi.Input[int]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None,
                  __props__=None):
@@ -606,16 +696,20 @@ class NomadSecretBackend(pulumi.CustomResource):
             __props__.__dict__["address"] = address
             __props__.__dict__["backend"] = backend
             __props__.__dict__["ca_cert"] = ca_cert
-            __props__.__dict__["client_cert"] = client_cert
-            __props__.__dict__["client_key"] = client_key
+            __props__.__dict__["client_cert"] = None if client_cert is None else pulumi.Output.secret(client_cert)
+            __props__.__dict__["client_key"] = None if client_key is None else pulumi.Output.secret(client_key)
             __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
             __props__.__dict__["description"] = description
+            __props__.__dict__["disable_remount"] = disable_remount
             __props__.__dict__["local"] = local
             __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
             __props__.__dict__["max_token_name_length"] = max_token_name_length
             __props__.__dict__["max_ttl"] = max_ttl
-            __props__.__dict__["token"] = token
+            __props__.__dict__["namespace"] = namespace
+            __props__.__dict__["token"] = None if token is None else pulumi.Output.secret(token)
             __props__.__dict__["ttl"] = ttl
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientCert", "clientKey", "token"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(NomadSecretBackend, __self__).__init__(
             'vault:index/nomadSecretBackend:NomadSecretBackend',
             resource_name,
@@ -633,10 +727,12 @@ class NomadSecretBackend(pulumi.CustomResource):
             client_key: Optional[pulumi.Input[str]] = None,
             default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            disable_remount: Optional[pulumi.Input[bool]] = None,
             local: Optional[pulumi.Input[bool]] = None,
             max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             max_token_name_length: Optional[pulumi.Input[int]] = None,
             max_ttl: Optional[pulumi.Input[int]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             token: Optional[pulumi.Input[str]] = None,
             ttl: Optional[pulumi.Input[int]] = None) -> 'NomadSecretBackend':
         """
@@ -656,6 +752,8 @@ class NomadSecretBackend(pulumi.CustomResource):
         :param pulumi.Input[str] client_key: Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for secrets in seconds.
         :param pulumi.Input[str] description: Human-friendly description of the mount for the Active Directory backend.
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by
                replication.Tolerance duration to use when checking the last rotation time.
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds.
@@ -663,6 +761,10 @@ class NomadSecretBackend(pulumi.CustomResource):
                generated with Generate Credential. If omitted, 0 is used and ignored, defaulting to the max value allowed
                by the Nomad version.
         :param pulumi.Input[int] max_ttl: Maximum possible lease duration for secrets in seconds.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] token: Specifies the Nomad Management token to use.
         :param pulumi.Input[int] ttl: Specifies the ttl of the lease for the generated token.
         """
@@ -677,10 +779,12 @@ class NomadSecretBackend(pulumi.CustomResource):
         __props__.__dict__["client_key"] = client_key
         __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
         __props__.__dict__["description"] = description
+        __props__.__dict__["disable_remount"] = disable_remount
         __props__.__dict__["local"] = local
         __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
         __props__.__dict__["max_token_name_length"] = max_token_name_length
         __props__.__dict__["max_ttl"] = max_ttl
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["token"] = token
         __props__.__dict__["ttl"] = ttl
         return NomadSecretBackend(resource_name, opts=opts, __props__=__props__)
@@ -745,6 +849,15 @@ class NomadSecretBackend(pulumi.CustomResource):
         return pulumi.get(self, "description")
 
     @property
+    @pulumi.getter(name="disableRemount")
+    def disable_remount(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If set, opts out of mount migration on path updates.
+        See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        """
+        return pulumi.get(self, "disable_remount")
+
+    @property
     @pulumi.getter
     def local(self) -> pulumi.Output[Optional[bool]]:
         """
@@ -778,6 +891,17 @@ class NomadSecretBackend(pulumi.CustomResource):
         Maximum possible lease duration for secrets in seconds.
         """
         return pulumi.get(self, "max_ttl")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

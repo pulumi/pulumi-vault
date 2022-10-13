@@ -5,30 +5,126 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export * from "./audit";
-export * from "./authBackend";
-export * from "./certAuthBackendRole";
-export * from "./egpPolicy";
-export * from "./getAuthBackend";
-export * from "./getNomadAccessToken";
-export * from "./getPolicyDocument";
-export * from "./mfaDuo";
-export * from "./mfaOkta";
-export * from "./mfaPingid";
-export * from "./mfaTotp";
-export * from "./mount";
-export * from "./namespace";
-export * from "./nomadSecretBackend";
-export * from "./nomadSecretRole";
-export * from "./passwordPolicy";
-export * from "./policy";
-export * from "./provider";
-export * from "./quotaLeaseCount";
-export * from "./quotaRateLimit";
-export * from "./raftAutopilot";
-export * from "./raftSnapshotAgentConfig";
-export * from "./rgpPolicy";
-export * from "./token";
+export { AuditArgs, AuditState } from "./audit";
+export type Audit = import("./audit").Audit;
+export const Audit: typeof import("./audit").Audit = null as any;
+
+export { AuthBackendArgs, AuthBackendState } from "./authBackend";
+export type AuthBackend = import("./authBackend").AuthBackend;
+export const AuthBackend: typeof import("./authBackend").AuthBackend = null as any;
+
+export { CertAuthBackendRoleArgs, CertAuthBackendRoleState } from "./certAuthBackendRole";
+export type CertAuthBackendRole = import("./certAuthBackendRole").CertAuthBackendRole;
+export const CertAuthBackendRole: typeof import("./certAuthBackendRole").CertAuthBackendRole = null as any;
+
+export { EgpPolicyArgs, EgpPolicyState } from "./egpPolicy";
+export type EgpPolicy = import("./egpPolicy").EgpPolicy;
+export const EgpPolicy: typeof import("./egpPolicy").EgpPolicy = null as any;
+
+export { GetAuthBackendArgs, GetAuthBackendResult, GetAuthBackendOutputArgs } from "./getAuthBackend";
+export const getAuthBackend: typeof import("./getAuthBackend").getAuthBackend = null as any;
+export const getAuthBackendOutput: typeof import("./getAuthBackend").getAuthBackendOutput = null as any;
+
+export { GetNomadAccessTokenArgs, GetNomadAccessTokenResult, GetNomadAccessTokenOutputArgs } from "./getNomadAccessToken";
+export const getNomadAccessToken: typeof import("./getNomadAccessToken").getNomadAccessToken = null as any;
+export const getNomadAccessTokenOutput: typeof import("./getNomadAccessToken").getNomadAccessTokenOutput = null as any;
+
+export { GetPolicyDocumentArgs, GetPolicyDocumentResult, GetPolicyDocumentOutputArgs } from "./getPolicyDocument";
+export const getPolicyDocument: typeof import("./getPolicyDocument").getPolicyDocument = null as any;
+export const getPolicyDocumentOutput: typeof import("./getPolicyDocument").getPolicyDocumentOutput = null as any;
+
+export { MfaDuoArgs, MfaDuoState } from "./mfaDuo";
+export type MfaDuo = import("./mfaDuo").MfaDuo;
+export const MfaDuo: typeof import("./mfaDuo").MfaDuo = null as any;
+
+export { MfaOktaArgs, MfaOktaState } from "./mfaOkta";
+export type MfaOkta = import("./mfaOkta").MfaOkta;
+export const MfaOkta: typeof import("./mfaOkta").MfaOkta = null as any;
+
+export { MfaPingidArgs, MfaPingidState } from "./mfaPingid";
+export type MfaPingid = import("./mfaPingid").MfaPingid;
+export const MfaPingid: typeof import("./mfaPingid").MfaPingid = null as any;
+
+export { MfaTotpArgs, MfaTotpState } from "./mfaTotp";
+export type MfaTotp = import("./mfaTotp").MfaTotp;
+export const MfaTotp: typeof import("./mfaTotp").MfaTotp = null as any;
+
+export { MountArgs, MountState } from "./mount";
+export type Mount = import("./mount").Mount;
+export const Mount: typeof import("./mount").Mount = null as any;
+
+export { NamespaceArgs, NamespaceState } from "./namespace";
+export type Namespace = import("./namespace").Namespace;
+export const Namespace: typeof import("./namespace").Namespace = null as any;
+
+export { NomadSecretBackendArgs, NomadSecretBackendState } from "./nomadSecretBackend";
+export type NomadSecretBackend = import("./nomadSecretBackend").NomadSecretBackend;
+export const NomadSecretBackend: typeof import("./nomadSecretBackend").NomadSecretBackend = null as any;
+
+export { NomadSecretRoleArgs, NomadSecretRoleState } from "./nomadSecretRole";
+export type NomadSecretRole = import("./nomadSecretRole").NomadSecretRole;
+export const NomadSecretRole: typeof import("./nomadSecretRole").NomadSecretRole = null as any;
+
+export { PasswordPolicyArgs, PasswordPolicyState } from "./passwordPolicy";
+export type PasswordPolicy = import("./passwordPolicy").PasswordPolicy;
+export const PasswordPolicy: typeof import("./passwordPolicy").PasswordPolicy = null as any;
+
+export { PolicyArgs, PolicyState } from "./policy";
+export type Policy = import("./policy").Policy;
+export const Policy: typeof import("./policy").Policy = null as any;
+
+export { ProviderArgs } from "./provider";
+export type Provider = import("./provider").Provider;
+export const Provider: typeof import("./provider").Provider = null as any;
+
+export { QuotaLeaseCountArgs, QuotaLeaseCountState } from "./quotaLeaseCount";
+export type QuotaLeaseCount = import("./quotaLeaseCount").QuotaLeaseCount;
+export const QuotaLeaseCount: typeof import("./quotaLeaseCount").QuotaLeaseCount = null as any;
+
+export { QuotaRateLimitArgs, QuotaRateLimitState } from "./quotaRateLimit";
+export type QuotaRateLimit = import("./quotaRateLimit").QuotaRateLimit;
+export const QuotaRateLimit: typeof import("./quotaRateLimit").QuotaRateLimit = null as any;
+
+export { RaftAutopilotArgs, RaftAutopilotState } from "./raftAutopilot";
+export type RaftAutopilot = import("./raftAutopilot").RaftAutopilot;
+export const RaftAutopilot: typeof import("./raftAutopilot").RaftAutopilot = null as any;
+
+export { RaftSnapshotAgentConfigArgs, RaftSnapshotAgentConfigState } from "./raftSnapshotAgentConfig";
+export type RaftSnapshotAgentConfig = import("./raftSnapshotAgentConfig").RaftSnapshotAgentConfig;
+export const RaftSnapshotAgentConfig: typeof import("./raftSnapshotAgentConfig").RaftSnapshotAgentConfig = null as any;
+
+export { RgpPolicyArgs, RgpPolicyState } from "./rgpPolicy";
+export type RgpPolicy = import("./rgpPolicy").RgpPolicy;
+export const RgpPolicy: typeof import("./rgpPolicy").RgpPolicy = null as any;
+
+export { TokenArgs, TokenState } from "./token";
+export type Token = import("./token").Token;
+export const Token: typeof import("./token").Token = null as any;
+
+utilities.lazyLoad(exports, ["Audit"], () => require("./audit"));
+utilities.lazyLoad(exports, ["AuthBackend"], () => require("./authBackend"));
+utilities.lazyLoad(exports, ["CertAuthBackendRole"], () => require("./certAuthBackendRole"));
+utilities.lazyLoad(exports, ["EgpPolicy"], () => require("./egpPolicy"));
+utilities.lazyLoad(exports, ["getAuthBackend","getAuthBackendOutput"], () => require("./getAuthBackend"));
+utilities.lazyLoad(exports, ["getNomadAccessToken","getNomadAccessTokenOutput"], () => require("./getNomadAccessToken"));
+utilities.lazyLoad(exports, ["getPolicyDocument","getPolicyDocumentOutput"], () => require("./getPolicyDocument"));
+utilities.lazyLoad(exports, ["MfaDuo"], () => require("./mfaDuo"));
+utilities.lazyLoad(exports, ["MfaOkta"], () => require("./mfaOkta"));
+utilities.lazyLoad(exports, ["MfaPingid"], () => require("./mfaPingid"));
+utilities.lazyLoad(exports, ["MfaTotp"], () => require("./mfaTotp"));
+utilities.lazyLoad(exports, ["Mount"], () => require("./mount"));
+utilities.lazyLoad(exports, ["Namespace"], () => require("./namespace"));
+utilities.lazyLoad(exports, ["NomadSecretBackend"], () => require("./nomadSecretBackend"));
+utilities.lazyLoad(exports, ["NomadSecretRole"], () => require("./nomadSecretRole"));
+utilities.lazyLoad(exports, ["PasswordPolicy"], () => require("./passwordPolicy"));
+utilities.lazyLoad(exports, ["Policy"], () => require("./policy"));
+utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
+utilities.lazyLoad(exports, ["QuotaLeaseCount"], () => require("./quotaLeaseCount"));
+utilities.lazyLoad(exports, ["QuotaRateLimit"], () => require("./quotaRateLimit"));
+utilities.lazyLoad(exports, ["RaftAutopilot"], () => require("./raftAutopilot"));
+utilities.lazyLoad(exports, ["RaftSnapshotAgentConfig"], () => require("./raftSnapshotAgentConfig"));
+utilities.lazyLoad(exports, ["RgpPolicy"], () => require("./rgpPolicy"));
+utilities.lazyLoad(exports, ["Token"], () => require("./token"));
 
 // Export sub-modules:
 import * as ad from "./ad";
@@ -46,7 +142,9 @@ import * as identity from "./identity";
 import * as jwt from "./jwt";
 import * as kmip from "./kmip";
 import * as kubernetes from "./kubernetes";
+import * as kv from "./kv";
 import * as ldap from "./ldap";
+import * as managed from "./managed";
 import * as okta from "./okta";
 import * as pkisecret from "./pkisecret";
 import * as rabbitmq from "./rabbitmq";
@@ -73,7 +171,9 @@ export {
     jwt,
     kmip,
     kubernetes,
+    kv,
     ldap,
+    managed,
     okta,
     pkisecret,
     rabbitmq,
@@ -84,28 +184,6 @@ export {
     transit,
     types,
 };
-
-// Import resources to register:
-import { Audit } from "./audit";
-import { AuthBackend } from "./authBackend";
-import { CertAuthBackendRole } from "./certAuthBackendRole";
-import { EgpPolicy } from "./egpPolicy";
-import { MfaDuo } from "./mfaDuo";
-import { MfaOkta } from "./mfaOkta";
-import { MfaPingid } from "./mfaPingid";
-import { MfaTotp } from "./mfaTotp";
-import { Mount } from "./mount";
-import { Namespace } from "./namespace";
-import { NomadSecretBackend } from "./nomadSecretBackend";
-import { NomadSecretRole } from "./nomadSecretRole";
-import { PasswordPolicy } from "./passwordPolicy";
-import { Policy } from "./policy";
-import { QuotaLeaseCount } from "./quotaLeaseCount";
-import { QuotaRateLimit } from "./quotaRateLimit";
-import { RaftAutopilot } from "./raftAutopilot";
-import { RaftSnapshotAgentConfig } from "./raftSnapshotAgentConfig";
-import { RgpPolicy } from "./rgpPolicy";
-import { Token } from "./token";
 
 const _module = {
     version: utilities.getVersion(),
@@ -176,9 +254,6 @@ pulumi.runtime.registerResourceModule("vault", "index/raftAutopilot", _module)
 pulumi.runtime.registerResourceModule("vault", "index/raftSnapshotAgentConfig", _module)
 pulumi.runtime.registerResourceModule("vault", "index/rgpPolicy", _module)
 pulumi.runtime.registerResourceModule("vault", "index/token", _module)
-
-import { Provider } from "./provider";
-
 pulumi.runtime.registerResourcePackage("vault", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

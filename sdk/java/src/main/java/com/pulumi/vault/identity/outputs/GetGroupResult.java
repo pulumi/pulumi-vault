@@ -10,6 +10,8 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetGroupResult {
@@ -17,156 +19,106 @@ public final class GetGroupResult {
      * @return Canonical ID of the Alias
      * 
      */
-    private final String aliasCanonicalId;
+    private String aliasCanonicalId;
     /**
      * @return Creation time of the Alias
      * 
      */
-    private final String aliasCreationTime;
-    private final String aliasId;
+    private String aliasCreationTime;
+    private String aliasId;
     /**
      * @return Last update time of the alias
      * 
      */
-    private final String aliasLastUpdateTime;
+    private String aliasLastUpdateTime;
     /**
      * @return List of canonical IDs merged with this alias
      * 
      */
-    private final List<String> aliasMergedFromCanonicalIds;
+    private List<String> aliasMergedFromCanonicalIds;
     /**
      * @return Arbitrary metadata
      * 
      */
-    private final Map<String,Object> aliasMetadata;
-    private final String aliasMountAccessor;
+    private Map<String,Object> aliasMetadata;
+    private String aliasMountAccessor;
     /**
      * @return Authentication mount path which this alias belongs to
      * 
      */
-    private final String aliasMountPath;
+    private String aliasMountPath;
     /**
      * @return Authentication mount type which this alias belongs to
      * 
      */
-    private final String aliasMountType;
-    private final String aliasName;
+    private String aliasMountType;
+    private String aliasName;
     /**
      * @return Creation timestamp of the group
      * 
      */
-    private final String creationTime;
+    private String creationTime;
     /**
      * @return A string containing the full data payload retrieved from
      * Vault, serialized in JSON format.
      * 
      */
-    private final String dataJson;
-    private final String groupId;
-    private final String groupName;
+    private String dataJson;
+    private String groupId;
+    private String groupName;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
+    private String id;
     /**
      * @return Last updated time of the group
      * 
      */
-    private final String lastUpdateTime;
+    private String lastUpdateTime;
     /**
      * @return List of Entity IDs which are members of this group
      * 
      */
-    private final List<String> memberEntityIds;
+    private List<String> memberEntityIds;
     /**
      * @return List of Group IDs which are members of this group
      * 
      */
-    private final List<String> memberGroupIds;
+    private List<String> memberGroupIds;
     /**
      * @return Arbitrary metadata
      * 
      */
-    private final Map<String,Object> metadata;
+    private Map<String,Object> metadata;
     /**
      * @return Modify index of the group
      * 
      */
-    private final Integer modifyIndex;
+    private Integer modifyIndex;
+    private @Nullable String namespace;
     /**
      * @return Namespace of which the group is part of
      * 
      */
-    private final String namespaceId;
+    private String namespaceId;
     /**
      * @return List of Group IDs which are parents of this group.
      * 
      */
-    private final List<String> parentGroupIds;
+    private List<String> parentGroupIds;
     /**
      * @return List of policies attached to the group
      * 
      */
-    private final List<String> policies;
+    private List<String> policies;
     /**
      * @return Type of group
      * 
      */
-    private final String type;
+    private String type;
 
-    @CustomType.Constructor
-    private GetGroupResult(
-        @CustomType.Parameter("aliasCanonicalId") String aliasCanonicalId,
-        @CustomType.Parameter("aliasCreationTime") String aliasCreationTime,
-        @CustomType.Parameter("aliasId") String aliasId,
-        @CustomType.Parameter("aliasLastUpdateTime") String aliasLastUpdateTime,
-        @CustomType.Parameter("aliasMergedFromCanonicalIds") List<String> aliasMergedFromCanonicalIds,
-        @CustomType.Parameter("aliasMetadata") Map<String,Object> aliasMetadata,
-        @CustomType.Parameter("aliasMountAccessor") String aliasMountAccessor,
-        @CustomType.Parameter("aliasMountPath") String aliasMountPath,
-        @CustomType.Parameter("aliasMountType") String aliasMountType,
-        @CustomType.Parameter("aliasName") String aliasName,
-        @CustomType.Parameter("creationTime") String creationTime,
-        @CustomType.Parameter("dataJson") String dataJson,
-        @CustomType.Parameter("groupId") String groupId,
-        @CustomType.Parameter("groupName") String groupName,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("lastUpdateTime") String lastUpdateTime,
-        @CustomType.Parameter("memberEntityIds") List<String> memberEntityIds,
-        @CustomType.Parameter("memberGroupIds") List<String> memberGroupIds,
-        @CustomType.Parameter("metadata") Map<String,Object> metadata,
-        @CustomType.Parameter("modifyIndex") Integer modifyIndex,
-        @CustomType.Parameter("namespaceId") String namespaceId,
-        @CustomType.Parameter("parentGroupIds") List<String> parentGroupIds,
-        @CustomType.Parameter("policies") List<String> policies,
-        @CustomType.Parameter("type") String type) {
-        this.aliasCanonicalId = aliasCanonicalId;
-        this.aliasCreationTime = aliasCreationTime;
-        this.aliasId = aliasId;
-        this.aliasLastUpdateTime = aliasLastUpdateTime;
-        this.aliasMergedFromCanonicalIds = aliasMergedFromCanonicalIds;
-        this.aliasMetadata = aliasMetadata;
-        this.aliasMountAccessor = aliasMountAccessor;
-        this.aliasMountPath = aliasMountPath;
-        this.aliasMountType = aliasMountType;
-        this.aliasName = aliasName;
-        this.creationTime = creationTime;
-        this.dataJson = dataJson;
-        this.groupId = groupId;
-        this.groupName = groupName;
-        this.id = id;
-        this.lastUpdateTime = lastUpdateTime;
-        this.memberEntityIds = memberEntityIds;
-        this.memberGroupIds = memberGroupIds;
-        this.metadata = metadata;
-        this.modifyIndex = modifyIndex;
-        this.namespaceId = namespaceId;
-        this.parentGroupIds = parentGroupIds;
-        this.policies = policies;
-        this.type = type;
-    }
-
+    private GetGroupResult() {}
     /**
      * @return Canonical ID of the Alias
      * 
@@ -288,6 +240,9 @@ public final class GetGroupResult {
     public Integer modifyIndex() {
         return this.modifyIndex;
     }
+    public Optional<String> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
     /**
      * @return Namespace of which the group is part of
      * 
@@ -324,7 +279,7 @@ public final class GetGroupResult {
     public static Builder builder(GetGroupResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String aliasCanonicalId;
         private String aliasCreationTime;
@@ -346,15 +301,12 @@ public final class GetGroupResult {
         private List<String> memberGroupIds;
         private Map<String,Object> metadata;
         private Integer modifyIndex;
+        private @Nullable String namespace;
         private String namespaceId;
         private List<String> parentGroupIds;
         private List<String> policies;
         private String type;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetGroupResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.aliasCanonicalId = defaults.aliasCanonicalId;
@@ -377,28 +329,34 @@ public final class GetGroupResult {
     	      this.memberGroupIds = defaults.memberGroupIds;
     	      this.metadata = defaults.metadata;
     	      this.modifyIndex = defaults.modifyIndex;
+    	      this.namespace = defaults.namespace;
     	      this.namespaceId = defaults.namespaceId;
     	      this.parentGroupIds = defaults.parentGroupIds;
     	      this.policies = defaults.policies;
     	      this.type = defaults.type;
         }
 
+        @CustomType.Setter
         public Builder aliasCanonicalId(String aliasCanonicalId) {
             this.aliasCanonicalId = Objects.requireNonNull(aliasCanonicalId);
             return this;
         }
+        @CustomType.Setter
         public Builder aliasCreationTime(String aliasCreationTime) {
             this.aliasCreationTime = Objects.requireNonNull(aliasCreationTime);
             return this;
         }
+        @CustomType.Setter
         public Builder aliasId(String aliasId) {
             this.aliasId = Objects.requireNonNull(aliasId);
             return this;
         }
+        @CustomType.Setter
         public Builder aliasLastUpdateTime(String aliasLastUpdateTime) {
             this.aliasLastUpdateTime = Objects.requireNonNull(aliasLastUpdateTime);
             return this;
         }
+        @CustomType.Setter
         public Builder aliasMergedFromCanonicalIds(List<String> aliasMergedFromCanonicalIds) {
             this.aliasMergedFromCanonicalIds = Objects.requireNonNull(aliasMergedFromCanonicalIds);
             return this;
@@ -406,50 +364,62 @@ public final class GetGroupResult {
         public Builder aliasMergedFromCanonicalIds(String... aliasMergedFromCanonicalIds) {
             return aliasMergedFromCanonicalIds(List.of(aliasMergedFromCanonicalIds));
         }
+        @CustomType.Setter
         public Builder aliasMetadata(Map<String,Object> aliasMetadata) {
             this.aliasMetadata = Objects.requireNonNull(aliasMetadata);
             return this;
         }
+        @CustomType.Setter
         public Builder aliasMountAccessor(String aliasMountAccessor) {
             this.aliasMountAccessor = Objects.requireNonNull(aliasMountAccessor);
             return this;
         }
+        @CustomType.Setter
         public Builder aliasMountPath(String aliasMountPath) {
             this.aliasMountPath = Objects.requireNonNull(aliasMountPath);
             return this;
         }
+        @CustomType.Setter
         public Builder aliasMountType(String aliasMountType) {
             this.aliasMountType = Objects.requireNonNull(aliasMountType);
             return this;
         }
+        @CustomType.Setter
         public Builder aliasName(String aliasName) {
             this.aliasName = Objects.requireNonNull(aliasName);
             return this;
         }
+        @CustomType.Setter
         public Builder creationTime(String creationTime) {
             this.creationTime = Objects.requireNonNull(creationTime);
             return this;
         }
+        @CustomType.Setter
         public Builder dataJson(String dataJson) {
             this.dataJson = Objects.requireNonNull(dataJson);
             return this;
         }
+        @CustomType.Setter
         public Builder groupId(String groupId) {
             this.groupId = Objects.requireNonNull(groupId);
             return this;
         }
+        @CustomType.Setter
         public Builder groupName(String groupName) {
             this.groupName = Objects.requireNonNull(groupName);
             return this;
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder lastUpdateTime(String lastUpdateTime) {
             this.lastUpdateTime = Objects.requireNonNull(lastUpdateTime);
             return this;
         }
+        @CustomType.Setter
         public Builder memberEntityIds(List<String> memberEntityIds) {
             this.memberEntityIds = Objects.requireNonNull(memberEntityIds);
             return this;
@@ -457,6 +427,7 @@ public final class GetGroupResult {
         public Builder memberEntityIds(String... memberEntityIds) {
             return memberEntityIds(List.of(memberEntityIds));
         }
+        @CustomType.Setter
         public Builder memberGroupIds(List<String> memberGroupIds) {
             this.memberGroupIds = Objects.requireNonNull(memberGroupIds);
             return this;
@@ -464,18 +435,27 @@ public final class GetGroupResult {
         public Builder memberGroupIds(String... memberGroupIds) {
             return memberGroupIds(List.of(memberGroupIds));
         }
+        @CustomType.Setter
         public Builder metadata(Map<String,Object> metadata) {
             this.metadata = Objects.requireNonNull(metadata);
             return this;
         }
+        @CustomType.Setter
         public Builder modifyIndex(Integer modifyIndex) {
             this.modifyIndex = Objects.requireNonNull(modifyIndex);
             return this;
         }
+        @CustomType.Setter
+        public Builder namespace(@Nullable String namespace) {
+            this.namespace = namespace;
+            return this;
+        }
+        @CustomType.Setter
         public Builder namespaceId(String namespaceId) {
             this.namespaceId = Objects.requireNonNull(namespaceId);
             return this;
         }
+        @CustomType.Setter
         public Builder parentGroupIds(List<String> parentGroupIds) {
             this.parentGroupIds = Objects.requireNonNull(parentGroupIds);
             return this;
@@ -483,6 +463,7 @@ public final class GetGroupResult {
         public Builder parentGroupIds(String... parentGroupIds) {
             return parentGroupIds(List.of(parentGroupIds));
         }
+        @CustomType.Setter
         public Builder policies(List<String> policies) {
             this.policies = Objects.requireNonNull(policies);
             return this;
@@ -490,11 +471,39 @@ public final class GetGroupResult {
         public Builder policies(String... policies) {
             return policies(List.of(policies));
         }
+        @CustomType.Setter
         public Builder type(String type) {
             this.type = Objects.requireNonNull(type);
             return this;
-        }        public GetGroupResult build() {
-            return new GetGroupResult(aliasCanonicalId, aliasCreationTime, aliasId, aliasLastUpdateTime, aliasMergedFromCanonicalIds, aliasMetadata, aliasMountAccessor, aliasMountPath, aliasMountType, aliasName, creationTime, dataJson, groupId, groupName, id, lastUpdateTime, memberEntityIds, memberGroupIds, metadata, modifyIndex, namespaceId, parentGroupIds, policies, type);
+        }
+        public GetGroupResult build() {
+            final var o = new GetGroupResult();
+            o.aliasCanonicalId = aliasCanonicalId;
+            o.aliasCreationTime = aliasCreationTime;
+            o.aliasId = aliasId;
+            o.aliasLastUpdateTime = aliasLastUpdateTime;
+            o.aliasMergedFromCanonicalIds = aliasMergedFromCanonicalIds;
+            o.aliasMetadata = aliasMetadata;
+            o.aliasMountAccessor = aliasMountAccessor;
+            o.aliasMountPath = aliasMountPath;
+            o.aliasMountType = aliasMountType;
+            o.aliasName = aliasName;
+            o.creationTime = creationTime;
+            o.dataJson = dataJson;
+            o.groupId = groupId;
+            o.groupName = groupName;
+            o.id = id;
+            o.lastUpdateTime = lastUpdateTime;
+            o.memberEntityIds = memberEntityIds;
+            o.memberGroupIds = memberGroupIds;
+            o.metadata = metadata;
+            o.modifyIndex = modifyIndex;
+            o.namespace = namespace;
+            o.namespaceId = namespaceId;
+            o.parentGroupIds = parentGroupIds;
+            o.policies = policies;
+            o.type = type;
+            return o;
         }
     }
 }

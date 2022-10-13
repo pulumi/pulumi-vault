@@ -95,6 +95,13 @@ export class AuthBackendLogin extends pulumi.CustomResource {
      */
     public /*out*/ readonly metadata!: pulumi.Output<{[key: string]: any}>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * The unique nonce to be used for login requests. Can be
      * set to a user-specified value, or will contain the server-generated value
      * once a token is issued. EC2 instances can only acquire a single token until
@@ -152,6 +159,7 @@ export class AuthBackendLogin extends pulumi.CustomResource {
             resourceInputs["leaseDuration"] = state ? state.leaseDuration : undefined;
             resourceInputs["leaseStartTime"] = state ? state.leaseStartTime : undefined;
             resourceInputs["metadata"] = state ? state.metadata : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["nonce"] = state ? state.nonce : undefined;
             resourceInputs["pkcs7"] = state ? state.pkcs7 : undefined;
             resourceInputs["policies"] = state ? state.policies : undefined;
@@ -166,6 +174,7 @@ export class AuthBackendLogin extends pulumi.CustomResource {
             resourceInputs["iamRequestHeaders"] = args ? args.iamRequestHeaders : undefined;
             resourceInputs["iamRequestUrl"] = args ? args.iamRequestUrl : undefined;
             resourceInputs["identity"] = args ? args.identity : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["nonce"] = args ? args.nonce : undefined;
             resourceInputs["pkcs7"] = args ? args.pkcs7 : undefined;
             resourceInputs["role"] = args ? args.role : undefined;
@@ -180,6 +189,8 @@ export class AuthBackendLogin extends pulumi.CustomResource {
             resourceInputs["renewable"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["clientToken"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(AuthBackendLogin.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -244,6 +255,13 @@ export interface AuthBackendLoginState {
      * authentication used to generate this token.
      */
     metadata?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The unique nonce to be used for login requests. Can be
      * set to a user-specified value, or will contain the server-generated value
@@ -312,6 +330,13 @@ export interface AuthBackendLoginArgs {
      * authenticate with. Can be retrieved from the EC2 metadata server.
      */
     identity?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The unique nonce to be used for login requests. Can be
      * set to a user-specified value, or will contain the server-generated value

@@ -18,6 +18,7 @@ class OidcProviderArgs:
                  https_enabled: Optional[pulumi.Input[bool]] = None,
                  issuer_host: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  scopes_supporteds: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a OidcProvider resource.
@@ -26,6 +27,10 @@ class OidcProviderArgs:
         :param pulumi.Input[bool] https_enabled: Set to true if the issuer endpoint uses HTTPS.
         :param pulumi.Input[str] issuer_host: The host for the issuer. Can be either host or host:port.
         :param pulumi.Input[str] name: The name of the provider.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes_supporteds: The scopes available for requesting on the provider.
         """
         if allowed_client_ids is not None:
@@ -36,6 +41,8 @@ class OidcProviderArgs:
             pulumi.set(__self__, "issuer_host", issuer_host)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if scopes_supporteds is not None:
             pulumi.set(__self__, "scopes_supporteds", scopes_supporteds)
 
@@ -89,6 +96,21 @@ class OidcProviderArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="scopesSupporteds")
     def scopes_supporteds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -109,6 +131,7 @@ class _OidcProviderState:
                  issuer: Optional[pulumi.Input[str]] = None,
                  issuer_host: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  scopes_supporteds: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering OidcProvider resources.
@@ -120,6 +143,10 @@ class _OidcProviderState:
                `issuer_host` and `https_enabled` fields.
         :param pulumi.Input[str] issuer_host: The host for the issuer. Can be either host or host:port.
         :param pulumi.Input[str] name: The name of the provider.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes_supporteds: The scopes available for requesting on the provider.
         """
         if allowed_client_ids is not None:
@@ -132,6 +159,8 @@ class _OidcProviderState:
             pulumi.set(__self__, "issuer_host", issuer_host)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if scopes_supporteds is not None:
             pulumi.set(__self__, "scopes_supporteds", scopes_supporteds)
 
@@ -199,6 +228,21 @@ class _OidcProviderState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="scopesSupporteds")
     def scopes_supporteds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -220,6 +264,7 @@ class OidcProvider(pulumi.CustomResource):
                  https_enabled: Optional[pulumi.Input[bool]] = None,
                  issuer_host: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  scopes_supporteds: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
@@ -277,6 +322,10 @@ class OidcProvider(pulumi.CustomResource):
         :param pulumi.Input[bool] https_enabled: Set to true if the issuer endpoint uses HTTPS.
         :param pulumi.Input[str] issuer_host: The host for the issuer. Can be either host or host:port.
         :param pulumi.Input[str] name: The name of the provider.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes_supporteds: The scopes available for requesting on the provider.
         """
         ...
@@ -352,6 +401,7 @@ class OidcProvider(pulumi.CustomResource):
                  https_enabled: Optional[pulumi.Input[bool]] = None,
                  issuer_host: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  scopes_supporteds: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -366,6 +416,7 @@ class OidcProvider(pulumi.CustomResource):
             __props__.__dict__["https_enabled"] = https_enabled
             __props__.__dict__["issuer_host"] = issuer_host
             __props__.__dict__["name"] = name
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["scopes_supporteds"] = scopes_supporteds
             __props__.__dict__["issuer"] = None
         super(OidcProvider, __self__).__init__(
@@ -383,6 +434,7 @@ class OidcProvider(pulumi.CustomResource):
             issuer: Optional[pulumi.Input[str]] = None,
             issuer_host: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             scopes_supporteds: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'OidcProvider':
         """
         Get an existing OidcProvider resource's state with the given name, id, and optional extra
@@ -399,6 +451,10 @@ class OidcProvider(pulumi.CustomResource):
                `issuer_host` and `https_enabled` fields.
         :param pulumi.Input[str] issuer_host: The host for the issuer. Can be either host or host:port.
         :param pulumi.Input[str] name: The name of the provider.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes_supporteds: The scopes available for requesting on the provider.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -410,6 +466,7 @@ class OidcProvider(pulumi.CustomResource):
         __props__.__dict__["issuer"] = issuer
         __props__.__dict__["issuer_host"] = issuer_host
         __props__.__dict__["name"] = name
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["scopes_supporteds"] = scopes_supporteds
         return OidcProvider(resource_name, opts=opts, __props__=__props__)
 
@@ -455,6 +512,17 @@ class OidcProvider(pulumi.CustomResource):
         The name of the provider.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="scopesSupporteds")

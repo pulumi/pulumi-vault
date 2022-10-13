@@ -11,43 +11,10 @@ import com.pulumi.vault.NamespaceArgs;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.inputs.NamespaceState;
 import java.lang.String;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Provides a resource to manage [Namespaces](https://www.vaultproject.io/docs/enterprise/namespaces/index.html).
- * 
- * **Note** this feature is available only with Vault Enterprise.
- * 
- * ## Example Usage
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.vault.Namespace;
- * import com.pulumi.vault.NamespaceArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var ns1 = new Namespace(&#34;ns1&#34;, NamespaceArgs.builder()        
- *             .path(&#34;ns1&#34;)
- *             .build());
- * 
- *     }
- * }
- * ```
- * 
  * ## Import
  * 
  * Namespaces can be imported using its `name` as accessor id
@@ -72,7 +39,7 @@ import javax.annotation.Nullable;
  *  $ pulumi import vault:index/namespace:Namespace example2 example2
  * ```
  * 
- *  $ terraform state show vault_namespace.example2 # vault_namespace.example2 resource &#34;vault_namespace&#34; &#34;example2&#34; {
+ *  $ terraform state show vault_namespace.example2 vault_namespace.example2 resource &#34;vault_namespace&#34; &#34;example2&#34; {
  * 
  *  id
  * 
@@ -88,14 +55,34 @@ import javax.annotation.Nullable;
 @ResourceType(type="vault:index/namespace:Namespace")
 public class Namespace extends com.pulumi.resources.CustomResource {
     /**
-     * ID of the namepsace.
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="namespace", type=String.class, parameters={})
+    private Output</* @Nullable */ String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> namespace() {
+        return Codegen.optional(this.namespace);
+    }
+    /**
+     * Namespace ID.
      * 
      */
     @Export(name="namespaceId", type=String.class, parameters={})
     private Output<String> namespaceId;
 
     /**
-     * @return ID of the namepsace.
+     * @return Namespace ID.
      * 
      */
     public Output<String> namespaceId() {
@@ -114,6 +101,20 @@ public class Namespace extends com.pulumi.resources.CustomResource {
      */
     public Output<String> path() {
         return this.path;
+    }
+    /**
+     * The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+     * 
+     */
+    @Export(name="pathFq", type=String.class, parameters={})
+    private Output<String> pathFq;
+
+    /**
+     * @return The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+     * 
+     */
+    public Output<String> pathFq() {
+        return this.pathFq;
     }
 
     /**

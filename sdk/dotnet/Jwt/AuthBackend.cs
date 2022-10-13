@@ -131,6 +131,13 @@ namespace Pulumi.Vault.Jwt
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Output("disableRemount")]
+        public Output<bool?> DisableRemount { get; private set; } = null!;
+
+        /// <summary>
         /// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
         /// </summary>
         [Output("jwksCaPem")]
@@ -159,6 +166,15 @@ namespace Pulumi.Vault.Jwt
         /// </summary>
         [Output("local")]
         public Output<bool?> Local { get; private set; } = null!;
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
         /// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
@@ -246,6 +262,10 @@ namespace Pulumi.Vault.Jwt
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "oidcClientSecret",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -286,6 +306,13 @@ namespace Pulumi.Vault.Jwt
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Input("disableRemount")]
+        public Input<bool>? DisableRemount { get; set; }
 
         /// <summary>
         /// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
@@ -330,6 +357,15 @@ namespace Pulumi.Vault.Jwt
         public Input<bool>? Local { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
         /// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
         /// </summary>
         [Input("namespaceInState")]
@@ -341,11 +377,21 @@ namespace Pulumi.Vault.Jwt
         [Input("oidcClientId")]
         public Input<string>? OidcClientId { get; set; }
 
+        [Input("oidcClientSecret")]
+        private Input<string>? _oidcClientSecret;
+
         /// <summary>
         /// Client Secret used for OIDC backends
         /// </summary>
-        [Input("oidcClientSecret")]
-        public Input<string>? OidcClientSecret { get; set; }
+        public Input<string>? OidcClientSecret
+        {
+            get => _oidcClientSecret;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _oidcClientSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
@@ -437,6 +483,13 @@ namespace Pulumi.Vault.Jwt
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Input("disableRemount")]
+        public Input<bool>? DisableRemount { get; set; }
+
+        /// <summary>
         /// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
         /// </summary>
         [Input("jwksCaPem")]
@@ -479,6 +532,15 @@ namespace Pulumi.Vault.Jwt
         public Input<bool>? Local { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
         /// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
         /// </summary>
         [Input("namespaceInState")]
@@ -490,11 +552,21 @@ namespace Pulumi.Vault.Jwt
         [Input("oidcClientId")]
         public Input<string>? OidcClientId { get; set; }
 
+        [Input("oidcClientSecret")]
+        private Input<string>? _oidcClientSecret;
+
         /// <summary>
         /// Client Secret used for OIDC backends
         /// </summary>
-        [Input("oidcClientSecret")]
-        public Input<string>? OidcClientSecret { get; set; }
+        public Input<string>? OidcClientSecret
+        {
+            get => _oidcClientSecret;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _oidcClientSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used

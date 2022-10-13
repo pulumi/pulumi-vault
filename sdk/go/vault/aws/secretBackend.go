@@ -10,33 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/aws"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := aws.NewSecretBackend(ctx, "aws", &aws.SecretBackendArgs{
-//				AccessKey: pulumi.String("AKIA....."),
-//				SecretKey: pulumi.String("AWS secret key"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // AWS secret backends can be imported using the `path`, e.g.
@@ -57,11 +30,19 @@ type SecretBackend struct {
 	DefaultLeaseTtlSeconds pulumi.IntOutput `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
 	// Specifies a custom HTTP IAM endpoint to use.
 	IamEndpoint pulumi.StringPtrOutput `pulumi:"iamEndpoint"`
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend.
 	MaxLeaseTtlSeconds pulumi.IntOutput `pulumi:"maxLeaseTtlSeconds"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `aws`.
 	Path pulumi.StringPtrOutput `pulumi:"path"`
@@ -83,6 +64,17 @@ func NewSecretBackend(ctx *pulumi.Context,
 		args = &SecretBackendArgs{}
 	}
 
+	if args.AccessKey != nil {
+		args.AccessKey = pulumi.ToSecret(args.AccessKey).(pulumi.StringPtrOutput)
+	}
+	if args.SecretKey != nil {
+		args.SecretKey = pulumi.ToSecret(args.SecretKey).(pulumi.StringPtrOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"accessKey",
+		"secretKey",
+	})
+	opts = append(opts, secrets)
 	var resource SecretBackend
 	err := ctx.RegisterResource("vault:aws/secretBackend:SecretBackend", name, args, &resource, opts...)
 	if err != nil {
@@ -113,11 +105,19 @@ type secretBackendState struct {
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
 	Description *string `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount *bool `pulumi:"disableRemount"`
 	// Specifies a custom HTTP IAM endpoint to use.
 	IamEndpoint *string `pulumi:"iamEndpoint"`
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend.
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `aws`.
 	Path *string `pulumi:"path"`
@@ -141,11 +141,19 @@ type SecretBackendState struct {
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// A human-friendly description for this backend.
 	Description pulumi.StringPtrInput
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrInput
 	// Specifies a custom HTTP IAM endpoint to use.
 	IamEndpoint pulumi.StringPtrInput
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend.
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `aws`.
 	Path pulumi.StringPtrInput
@@ -173,11 +181,19 @@ type secretBackendArgs struct {
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
 	Description *string `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount *bool `pulumi:"disableRemount"`
 	// Specifies a custom HTTP IAM endpoint to use.
 	IamEndpoint *string `pulumi:"iamEndpoint"`
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend.
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `aws`.
 	Path *string `pulumi:"path"`
@@ -202,11 +218,19 @@ type SecretBackendArgs struct {
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// A human-friendly description for this backend.
 	Description pulumi.StringPtrInput
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrInput
 	// Specifies a custom HTTP IAM endpoint to use.
 	IamEndpoint pulumi.StringPtrInput
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend.
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `aws`.
 	Path pulumi.StringPtrInput
@@ -325,6 +349,12 @@ func (o SecretBackendOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// If set, opts out of mount migration on path updates.
+// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+func (o SecretBackendOutput) DisableRemount() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.DisableRemount }).(pulumi.BoolPtrOutput)
+}
+
 // Specifies a custom HTTP IAM endpoint to use.
 func (o SecretBackendOutput) IamEndpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.IamEndpoint }).(pulumi.StringPtrOutput)
@@ -334,6 +364,14 @@ func (o SecretBackendOutput) IamEndpoint() pulumi.StringPtrOutput {
 // for credentials issued by this backend.
 func (o SecretBackendOutput) MaxLeaseTtlSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.IntOutput { return v.MaxLeaseTtlSeconds }).(pulumi.IntOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o SecretBackendOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The unique path this backend should be mounted at. Must

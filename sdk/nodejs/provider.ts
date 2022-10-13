@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -78,11 +79,21 @@ export class Provider extends pulumi.ProviderResource {
             }
             resourceInputs["addAddressToEnv"] = args ? args.addAddressToEnv : undefined;
             resourceInputs["address"] = args ? args.address : undefined;
-            resourceInputs["authLogins"] = pulumi.output(args ? args.authLogins : undefined).apply(JSON.stringify);
+            resourceInputs["authLogin"] = pulumi.output(args ? args.authLogin : undefined).apply(JSON.stringify);
+            resourceInputs["authLoginAws"] = pulumi.output(args ? args.authLoginAws : undefined).apply(JSON.stringify);
+            resourceInputs["authLoginAzure"] = pulumi.output(args ? args.authLoginAzure : undefined).apply(JSON.stringify);
+            resourceInputs["authLoginCert"] = pulumi.output(args ? args.authLoginCert : undefined).apply(JSON.stringify);
+            resourceInputs["authLoginGcp"] = pulumi.output(args ? args.authLoginGcp : undefined).apply(JSON.stringify);
+            resourceInputs["authLoginJwt"] = pulumi.output(args ? args.authLoginJwt : undefined).apply(JSON.stringify);
+            resourceInputs["authLoginKerberos"] = pulumi.output(args ? args.authLoginKerberos : undefined).apply(JSON.stringify);
+            resourceInputs["authLoginOci"] = pulumi.output(args ? args.authLoginOci : undefined).apply(JSON.stringify);
+            resourceInputs["authLoginOidc"] = pulumi.output(args ? args.authLoginOidc : undefined).apply(JSON.stringify);
+            resourceInputs["authLoginRadius"] = pulumi.output(args ? args.authLoginRadius : undefined).apply(JSON.stringify);
+            resourceInputs["authLoginUserpass"] = pulumi.output(args ? args.authLoginUserpass : undefined).apply(JSON.stringify);
             resourceInputs["caCertDir"] = args ? args.caCertDir : undefined;
             resourceInputs["caCertFile"] = args ? args.caCertFile : undefined;
-            resourceInputs["clientAuths"] = pulumi.output(args ? args.clientAuths : undefined).apply(JSON.stringify);
-            resourceInputs["headers"] = pulumi.output(args ? args.headers : undefined).apply(JSON.stringify);
+            resourceInputs["clientAuth"] = pulumi.output(args ? args.clientAuth : undefined).apply(JSON.stringify);
+            resourceInputs["headers"] = pulumi.output(args?.headers ? pulumi.secret(args.headers) : undefined).apply(JSON.stringify);
             resourceInputs["maxLeaseTtlSeconds"] = pulumi.output((args ? args.maxLeaseTtlSeconds : undefined) ?? (utilities.getEnvNumber("TERRAFORM_VAULT_MAX_TTL") || 1200)).apply(JSON.stringify);
             resourceInputs["maxRetries"] = pulumi.output((args ? args.maxRetries : undefined) ?? (utilities.getEnvNumber("VAULT_MAX_RETRIES") || 2)).apply(JSON.stringify);
             resourceInputs["maxRetriesCcc"] = pulumi.output(args ? args.maxRetriesCcc : undefined).apply(JSON.stringify);
@@ -113,7 +124,47 @@ export interface ProviderArgs {
     /**
      * Login to vault with an existing auth method using auth/<mount>/login
      */
-    authLogins?: pulumi.Input<pulumi.Input<inputs.ProviderAuthLogin>[]>;
+    authLogin?: pulumi.Input<inputs.ProviderAuthLogin>;
+    /**
+     * Login to vault using the AWS method
+     */
+    authLoginAws?: pulumi.Input<inputs.ProviderAuthLoginAws>;
+    /**
+     * Login to vault using the azure method
+     */
+    authLoginAzure?: pulumi.Input<inputs.ProviderAuthLoginAzure>;
+    /**
+     * Login to vault using the cert method
+     */
+    authLoginCert?: pulumi.Input<inputs.ProviderAuthLoginCert>;
+    /**
+     * Login to vault using the gcp method
+     */
+    authLoginGcp?: pulumi.Input<inputs.ProviderAuthLoginGcp>;
+    /**
+     * Login to vault using the jwt method
+     */
+    authLoginJwt?: pulumi.Input<inputs.ProviderAuthLoginJwt>;
+    /**
+     * Login to vault using the kerberos method
+     */
+    authLoginKerberos?: pulumi.Input<inputs.ProviderAuthLoginKerberos>;
+    /**
+     * Login to vault using the OCI method
+     */
+    authLoginOci?: pulumi.Input<inputs.ProviderAuthLoginOci>;
+    /**
+     * Login to vault using the oidc method
+     */
+    authLoginOidc?: pulumi.Input<inputs.ProviderAuthLoginOidc>;
+    /**
+     * Login to vault using the radius method
+     */
+    authLoginRadius?: pulumi.Input<inputs.ProviderAuthLoginRadius>;
+    /**
+     * Login to vault using the userpass method
+     */
+    authLoginUserpass?: pulumi.Input<inputs.ProviderAuthLoginUserpass>;
     /**
      * Path to directory containing CA certificate files to validate the server's certificate.
      */
@@ -125,7 +176,7 @@ export interface ProviderArgs {
     /**
      * Client authentication credentials.
      */
-    clientAuths?: pulumi.Input<pulumi.Input<inputs.ProviderClientAuth>[]>;
+    clientAuth?: pulumi.Input<inputs.ProviderClientAuth>;
     /**
      * The headers to send with each Vault request.
      */

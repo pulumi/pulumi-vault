@@ -24,6 +24,7 @@ class SecretBackendSignArgs:
                  ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  min_seconds_remaining: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
@@ -39,6 +40,10 @@ class SecretBackendSignArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
         :param pulumi.Input[int] min_seconds_remaining: Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
         :param pulumi.Input[str] name: Name of the role to create the certificate against
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
@@ -60,6 +65,8 @@ class SecretBackendSignArgs:
             pulumi.set(__self__, "min_seconds_remaining", min_seconds_remaining)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if other_sans is not None:
             pulumi.set(__self__, "other_sans", other_sans)
         if ttl is not None:
@@ -188,6 +195,21 @@ class SecretBackendSignArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="otherSans")
     def other_sans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -241,7 +263,9 @@ class _SecretBackendSignState:
                  issuing_ca: Optional[pulumi.Input[str]] = None,
                  min_seconds_remaining: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 renew_pending: Optional[pulumi.Input[bool]] = None,
                  serial: Optional[pulumi.Input[str]] = None,
                  serial_number: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
@@ -262,7 +286,12 @@ class _SecretBackendSignState:
         :param pulumi.Input[str] issuing_ca: The issuing CA
         :param pulumi.Input[int] min_seconds_remaining: Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
         :param pulumi.Input[str] name: Name of the role to create the certificate against
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
+        :param pulumi.Input[bool] renew_pending: `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
         :param pulumi.Input[str] serial: The serial number.
         :param pulumi.Input[str] serial_number: The certificate's serial number, hex formatted.
         :param pulumi.Input[str] ttl: Time to live
@@ -296,8 +325,12 @@ class _SecretBackendSignState:
             pulumi.set(__self__, "min_seconds_remaining", min_seconds_remaining)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if other_sans is not None:
             pulumi.set(__self__, "other_sans", other_sans)
+        if renew_pending is not None:
+            pulumi.set(__self__, "renew_pending", renew_pending)
         if serial is not None:
             warnings.warn("""Use serial_number instead""", DeprecationWarning)
             pulumi.log.warn("""serial is deprecated: Use serial_number instead""")
@@ -479,6 +512,21 @@ class _SecretBackendSignState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="otherSans")
     def other_sans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -489,6 +537,18 @@ class _SecretBackendSignState:
     @other_sans.setter
     def other_sans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "other_sans", value)
+
+    @property
+    @pulumi.getter(name="renewPending")
+    def renew_pending(self) -> Optional[pulumi.Input[bool]]:
+        """
+        `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
+        """
+        return pulumi.get(self, "renew_pending")
+
+    @renew_pending.setter
+    def renew_pending(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "renew_pending", value)
 
     @property
     @pulumi.getter
@@ -554,6 +614,7 @@ class SecretBackendSign(pulumi.CustomResource):
                  ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  min_seconds_remaining: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -614,6 +675,10 @@ class SecretBackendSign(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
         :param pulumi.Input[int] min_seconds_remaining: Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
         :param pulumi.Input[str] name: Name of the role to create the certificate against
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
@@ -693,6 +758,7 @@ class SecretBackendSign(pulumi.CustomResource):
                  ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  min_seconds_remaining: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -721,6 +787,7 @@ class SecretBackendSign(pulumi.CustomResource):
             __props__.__dict__["ip_sans"] = ip_sans
             __props__.__dict__["min_seconds_remaining"] = min_seconds_remaining
             __props__.__dict__["name"] = name
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["other_sans"] = other_sans
             __props__.__dict__["ttl"] = ttl
             __props__.__dict__["uri_sans"] = uri_sans
@@ -728,6 +795,7 @@ class SecretBackendSign(pulumi.CustomResource):
             __props__.__dict__["certificate"] = None
             __props__.__dict__["expiration"] = None
             __props__.__dict__["issuing_ca"] = None
+            __props__.__dict__["renew_pending"] = None
             __props__.__dict__["serial"] = None
             __props__.__dict__["serial_number"] = None
         super(SecretBackendSign, __self__).__init__(
@@ -754,7 +822,9 @@ class SecretBackendSign(pulumi.CustomResource):
             issuing_ca: Optional[pulumi.Input[str]] = None,
             min_seconds_remaining: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            renew_pending: Optional[pulumi.Input[bool]] = None,
             serial: Optional[pulumi.Input[str]] = None,
             serial_number: Optional[pulumi.Input[str]] = None,
             ttl: Optional[pulumi.Input[str]] = None,
@@ -780,7 +850,12 @@ class SecretBackendSign(pulumi.CustomResource):
         :param pulumi.Input[str] issuing_ca: The issuing CA
         :param pulumi.Input[int] min_seconds_remaining: Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
         :param pulumi.Input[str] name: Name of the role to create the certificate against
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
+        :param pulumi.Input[bool] renew_pending: `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
         :param pulumi.Input[str] serial: The serial number.
         :param pulumi.Input[str] serial_number: The certificate's serial number, hex formatted.
         :param pulumi.Input[str] ttl: Time to live
@@ -804,7 +879,9 @@ class SecretBackendSign(pulumi.CustomResource):
         __props__.__dict__["issuing_ca"] = issuing_ca
         __props__.__dict__["min_seconds_remaining"] = min_seconds_remaining
         __props__.__dict__["name"] = name
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["other_sans"] = other_sans
+        __props__.__dict__["renew_pending"] = renew_pending
         __props__.__dict__["serial"] = serial
         __props__.__dict__["serial_number"] = serial_number
         __props__.__dict__["ttl"] = ttl
@@ -924,12 +1001,31 @@ class SecretBackendSign(pulumi.CustomResource):
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @property
     @pulumi.getter(name="otherSans")
     def other_sans(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         List of other SANs
         """
         return pulumi.get(self, "other_sans")
+
+    @property
+    @pulumi.getter(name="renewPending")
+    def renew_pending(self) -> pulumi.Output[bool]:
+        """
+        `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
+        """
+        return pulumi.get(self, "renew_pending")
 
     @property
     @pulumi.getter

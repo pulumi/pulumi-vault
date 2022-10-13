@@ -58,9 +58,17 @@ type SecretBackend struct {
 	DefaultLeaseTtlSeconds pulumi.IntOutput `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend.
 	MaxLeaseTtlSeconds pulumi.IntOutput `pulumi:"maxLeaseTtlSeconds"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Specifies the RabbitMQ management administrator password.
 	Password pulumi.StringOutput `pulumi:"password"`
 	// Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
@@ -93,6 +101,17 @@ func NewSecretBackend(ctx *pulumi.Context,
 	if args.Username == nil {
 		return nil, errors.New("invalid value for required argument 'Username'")
 	}
+	if args.Password != nil {
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringOutput)
+	}
+	if args.Username != nil {
+		args.Username = pulumi.ToSecret(args.Username).(pulumi.StringOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"password",
+		"username",
+	})
+	opts = append(opts, secrets)
 	var resource SecretBackend
 	err := ctx.RegisterResource("vault:rabbitMq/secretBackend:SecretBackend", name, args, &resource, opts...)
 	if err != nil {
@@ -122,9 +141,17 @@ type secretBackendState struct {
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
 	Description *string `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount *bool `pulumi:"disableRemount"`
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend.
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Specifies the RabbitMQ management administrator password.
 	Password *string `pulumi:"password"`
 	// Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
@@ -149,9 +176,17 @@ type SecretBackendState struct {
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// A human-friendly description for this backend.
 	Description pulumi.StringPtrInput
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrInput
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend.
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Specifies the RabbitMQ management administrator password.
 	Password pulumi.StringPtrInput
 	// Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
@@ -180,9 +215,17 @@ type secretBackendArgs struct {
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
 	Description *string `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount *bool `pulumi:"disableRemount"`
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend.
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Specifies the RabbitMQ management administrator password.
 	Password string `pulumi:"password"`
 	// Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
@@ -208,9 +251,17 @@ type SecretBackendArgs struct {
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// A human-friendly description for this backend.
 	Description pulumi.StringPtrInput
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrInput
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend.
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Specifies the RabbitMQ management administrator password.
 	Password pulumi.StringInput
 	// Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
@@ -330,10 +381,24 @@ func (o SecretBackendOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// If set, opts out of mount migration on path updates.
+// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+func (o SecretBackendOutput) DisableRemount() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.DisableRemount }).(pulumi.BoolPtrOutput)
+}
+
 // The maximum TTL that can be requested
 // for credentials issued by this backend.
 func (o SecretBackendOutput) MaxLeaseTtlSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.IntOutput { return v.MaxLeaseTtlSeconds }).(pulumi.IntOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o SecretBackendOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Specifies the RabbitMQ management administrator password.

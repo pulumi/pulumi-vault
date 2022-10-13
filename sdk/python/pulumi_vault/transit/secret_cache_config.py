@@ -15,14 +15,21 @@ __all__ = ['SecretCacheConfigArgs', 'SecretCacheConfig']
 class SecretCacheConfigArgs:
     def __init__(__self__, *,
                  backend: pulumi.Input[str],
-                 size: pulumi.Input[int]):
+                 size: pulumi.Input[int],
+                 namespace: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SecretCacheConfig resource.
         :param pulumi.Input[str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[int] size: The number of cache entries. 0 means unlimited.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         pulumi.set(__self__, "backend", backend)
         pulumi.set(__self__, "size", size)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter
@@ -48,19 +55,41 @@ class SecretCacheConfigArgs:
     def size(self, value: pulumi.Input[int]):
         pulumi.set(self, "size", value)
 
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
 
 @pulumi.input_type
 class _SecretCacheConfigState:
     def __init__(__self__, *,
                  backend: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering SecretCacheConfig resources.
         :param pulumi.Input[str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[int] size: The number of cache entries. 0 means unlimited.
         """
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if size is not None:
             pulumi.set(__self__, "size", size)
 
@@ -75,6 +104,21 @@ class _SecretCacheConfigState:
     @backend.setter
     def backend(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -95,6 +139,7 @@ class SecretCacheConfig(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
@@ -120,6 +165,10 @@ class SecretCacheConfig(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[int] size: The number of cache entries. 0 means unlimited.
         """
         ...
@@ -164,6 +213,7 @@ class SecretCacheConfig(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -177,6 +227,7 @@ class SecretCacheConfig(pulumi.CustomResource):
             if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
             __props__.__dict__["backend"] = backend
+            __props__.__dict__["namespace"] = namespace
             if size is None and not opts.urn:
                 raise TypeError("Missing required property 'size'")
             __props__.__dict__["size"] = size
@@ -191,6 +242,7 @@ class SecretCacheConfig(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             size: Optional[pulumi.Input[int]] = None) -> 'SecretCacheConfig':
         """
         Get an existing SecretCacheConfig resource's state with the given name, id, and optional extra
@@ -200,6 +252,10 @@ class SecretCacheConfig(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[int] size: The number of cache entries. 0 means unlimited.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -207,6 +263,7 @@ class SecretCacheConfig(pulumi.CustomResource):
         __props__ = _SecretCacheConfigState.__new__(_SecretCacheConfigState)
 
         __props__.__dict__["backend"] = backend
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["size"] = size
         return SecretCacheConfig(resource_name, opts=opts, __props__=__props__)
 
@@ -217,6 +274,17 @@ class SecretCacheConfig(pulumi.CustomResource):
         The path the transit secret backend is mounted at, with no leading or trailing `/`s.
         """
         return pulumi.get(self, "backend")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

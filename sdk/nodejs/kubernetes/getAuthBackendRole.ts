@@ -18,6 +18,7 @@ export function getAuthBackendRole(args: GetAuthBackendRoleArgs, opts?: pulumi.I
     return pulumi.runtime.invoke("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", {
         "audience": args.audience,
         "backend": args.backend,
+        "namespace": args.namespace,
         "roleName": args.roleName,
         "tokenBoundCidrs": args.tokenBoundCidrs,
         "tokenExplicitMaxTtl": args.tokenExplicitMaxTtl,
@@ -44,6 +45,13 @@ export interface GetAuthBackendRoleArgs {
      * retrieve Role attributes for resides in. Defaults to "kubernetes".
      */
     backend?: string;
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured namespace.
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: string;
     /**
      * The name of the role to retrieve the Role attributes for.
      */
@@ -129,6 +137,7 @@ export interface GetAuthBackendRoleResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly namespace?: string;
     readonly roleName: string;
     /**
      * List of CIDR blocks; if set, specifies blocks of IP
@@ -203,6 +212,13 @@ export interface GetAuthBackendRoleOutputArgs {
      * retrieve Role attributes for resides in. Defaults to "kubernetes".
      */
     backend?: pulumi.Input<string>;
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured namespace.
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The name of the role to retrieve the Role attributes for.
      */

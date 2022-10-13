@@ -6,6 +6,8 @@ package com.pulumi.vault.inputs;
 import com.pulumi.core.annotations.Import;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetNomadAccessTokenPlainArgs extends com.pulumi.resources.InvokeArgs {
@@ -30,6 +32,27 @@ public final class GetNomadAccessTokenPlainArgs extends com.pulumi.resources.Inv
     }
 
     /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable String namespace;
+
+    /**
+     * @return The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<String> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
+
+    /**
      * The name of the Nomad secret backend role to generate
      * a token for, with no leading or trailing `/`s.
      * 
@@ -50,6 +73,7 @@ public final class GetNomadAccessTokenPlainArgs extends com.pulumi.resources.Inv
 
     private GetNomadAccessTokenPlainArgs(GetNomadAccessTokenPlainArgs $) {
         this.backend = $.backend;
+        this.namespace = $.namespace;
         this.role = $.role;
     }
 
@@ -80,6 +104,20 @@ public final class GetNomadAccessTokenPlainArgs extends com.pulumi.resources.Inv
          */
         public Builder backend(String backend) {
             $.backend = backend;
+            return this;
+        }
+
+        /**
+         * @param namespace The namespace of the target resource.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable String namespace) {
+            $.namespace = namespace;
             return this;
         }
 

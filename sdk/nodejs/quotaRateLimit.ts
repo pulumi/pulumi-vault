@@ -61,9 +61,25 @@ export class QuotaRateLimit extends pulumi.CustomResource {
     }
 
     /**
+     * If set, when a client reaches a rate limit threshold, the client will
+     * be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
+     */
+    public readonly blockInterval!: pulumi.Output<number | undefined>;
+    /**
+     * The duration in seconds to enforce rate limiting for.
+     */
+    public readonly interval!: pulumi.Output<number>;
+    /**
      * Name of the rate limit quota
      */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured namespace.
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
     /**
      * Path of the mount or namespace to apply the quota. A blank path configures a
      * global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
@@ -92,7 +108,10 @@ export class QuotaRateLimit extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as QuotaRateLimitState | undefined;
+            resourceInputs["blockInterval"] = state ? state.blockInterval : undefined;
+            resourceInputs["interval"] = state ? state.interval : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
             resourceInputs["rate"] = state ? state.rate : undefined;
         } else {
@@ -100,7 +119,10 @@ export class QuotaRateLimit extends pulumi.CustomResource {
             if ((!args || args.rate === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'rate'");
             }
+            resourceInputs["blockInterval"] = args ? args.blockInterval : undefined;
+            resourceInputs["interval"] = args ? args.interval : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["rate"] = args ? args.rate : undefined;
         }
@@ -114,9 +136,25 @@ export class QuotaRateLimit extends pulumi.CustomResource {
  */
 export interface QuotaRateLimitState {
     /**
+     * If set, when a client reaches a rate limit threshold, the client will
+     * be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
+     */
+    blockInterval?: pulumi.Input<number>;
+    /**
+     * The duration in seconds to enforce rate limiting for.
+     */
+    interval?: pulumi.Input<number>;
+    /**
      * Name of the rate limit quota
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured namespace.
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Path of the mount or namespace to apply the quota. A blank path configures a
      * global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
@@ -138,9 +176,25 @@ export interface QuotaRateLimitState {
  */
 export interface QuotaRateLimitArgs {
     /**
+     * If set, when a client reaches a rate limit threshold, the client will
+     * be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
+     */
+    blockInterval?: pulumi.Input<number>;
+    /**
+     * The duration in seconds to enforce rate limiting for.
+     */
+    interval?: pulumi.Input<number>;
+    /**
      * Name of the rate limit quota
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured namespace.
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Path of the mount or namespace to apply the quota. A blank path configures a
      * global rate limit quota. For example `namespace1/` adds a quota to a full namespace,

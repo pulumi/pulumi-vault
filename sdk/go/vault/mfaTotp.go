@@ -69,6 +69,11 @@ type MfaTotp struct {
 	KeySize pulumi.IntPtrOutput `pulumi:"keySize"`
 	// `(string: <required>)` – Name of the MFA method.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// `(int)` - The length of time used to generate a counter for the TOTP token calculation.
 	Period pulumi.IntPtrOutput `pulumi:"period"`
 	// `(int)` - The pixel size of the generated square QR code.
@@ -122,6 +127,11 @@ type mfaTotpState struct {
 	KeySize *int `pulumi:"keySize"`
 	// `(string: <required>)` – Name of the MFA method.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// `(int)` - The length of time used to generate a counter for the TOTP token calculation.
 	Period *int `pulumi:"period"`
 	// `(int)` - The pixel size of the generated square QR code.
@@ -144,6 +154,11 @@ type MfaTotpState struct {
 	KeySize pulumi.IntPtrInput
 	// `(string: <required>)` – Name of the MFA method.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// `(int)` - The length of time used to generate a counter for the TOTP token calculation.
 	Period pulumi.IntPtrInput
 	// `(int)` - The pixel size of the generated square QR code.
@@ -170,6 +185,11 @@ type mfaTotpArgs struct {
 	KeySize *int `pulumi:"keySize"`
 	// `(string: <required>)` – Name of the MFA method.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// `(int)` - The length of time used to generate a counter for the TOTP token calculation.
 	Period *int `pulumi:"period"`
 	// `(int)` - The pixel size of the generated square QR code.
@@ -193,6 +213,11 @@ type MfaTotpArgs struct {
 	KeySize pulumi.IntPtrInput
 	// `(string: <required>)` – Name of the MFA method.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// `(int)` - The length of time used to generate a counter for the TOTP token calculation.
 	Period pulumi.IntPtrInput
 	// `(int)` - The pixel size of the generated square QR code.
@@ -314,6 +339,14 @@ func (o MfaTotpOutput) KeySize() pulumi.IntPtrOutput {
 // `(string: <required>)` – Name of the MFA method.
 func (o MfaTotpOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *MfaTotp) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o MfaTotpOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MfaTotp) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // `(int)` - The length of time used to generate a counter for the TOTP token calculation.

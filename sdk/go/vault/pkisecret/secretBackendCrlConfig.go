@@ -61,6 +61,11 @@ type SecretBackendCrlConfig struct {
 	Disable pulumi.BoolPtrOutput `pulumi:"disable"`
 	// Specifies the time until expiration.
 	Expiry pulumi.StringPtrOutput `pulumi:"expiry"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 }
 
 // NewSecretBackendCrlConfig registers a new resource with the given unique name, arguments, and options.
@@ -101,6 +106,11 @@ type secretBackendCrlConfigState struct {
 	Disable *bool `pulumi:"disable"`
 	// Specifies the time until expiration.
 	Expiry *string `pulumi:"expiry"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 }
 
 type SecretBackendCrlConfigState struct {
@@ -110,6 +120,11 @@ type SecretBackendCrlConfigState struct {
 	Disable pulumi.BoolPtrInput
 	// Specifies the time until expiration.
 	Expiry pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 }
 
 func (SecretBackendCrlConfigState) ElementType() reflect.Type {
@@ -123,6 +138,11 @@ type secretBackendCrlConfigArgs struct {
 	Disable *bool `pulumi:"disable"`
 	// Specifies the time until expiration.
 	Expiry *string `pulumi:"expiry"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 }
 
 // The set of arguments for constructing a SecretBackendCrlConfig resource.
@@ -133,6 +153,11 @@ type SecretBackendCrlConfigArgs struct {
 	Disable pulumi.BoolPtrInput
 	// Specifies the time until expiration.
 	Expiry pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 }
 
 func (SecretBackendCrlConfigArgs) ElementType() reflect.Type {
@@ -235,6 +260,14 @@ func (o SecretBackendCrlConfigOutput) Disable() pulumi.BoolPtrOutput {
 // Specifies the time until expiration.
 func (o SecretBackendCrlConfigOutput) Expiry() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendCrlConfig) pulumi.StringPtrOutput { return v.Expiry }).(pulumi.StringPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o SecretBackendCrlConfigOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendCrlConfig) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 type SecretBackendCrlConfigArrayOutput struct{ *pulumi.OutputState }

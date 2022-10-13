@@ -17,6 +17,7 @@ class NomadSecretRoleArgs:
                  backend: pulumi.Input[str],
                  role: pulumi.Input[str],
                  global_: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
@@ -27,6 +28,10 @@ class NomadSecretRoleArgs:
                Must be unique within the backend.
         :param pulumi.Input[bool] global_: Specifies if the generated token should be global. Defaults to 
                false.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies attached to the generated token. This setting is only used 
                when `type` is 'client'.
         :param pulumi.Input[str] type: Specifies the type of token to create when using this role. Valid 
@@ -36,6 +41,8 @@ class NomadSecretRoleArgs:
         pulumi.set(__self__, "role", role)
         if global_ is not None:
             pulumi.set(__self__, "global_", global_)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if policies is not None:
             pulumi.set(__self__, "policies", policies)
         if type is not None:
@@ -82,6 +89,21 @@ class NomadSecretRoleArgs:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         List of policies attached to the generated token. This setting is only used 
@@ -112,6 +134,7 @@ class _NomadSecretRoleState:
     def __init__(__self__, *,
                  backend: Optional[pulumi.Input[str]] = None,
                  global_: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
@@ -121,6 +144,10 @@ class _NomadSecretRoleState:
                not begin or end with a `/`. Defaults to `nomad`.
         :param pulumi.Input[bool] global_: Specifies if the generated token should be global. Defaults to 
                false.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies attached to the generated token. This setting is only used 
                when `type` is 'client'.
         :param pulumi.Input[str] role: The name to identify this role within the backend.
@@ -132,6 +159,8 @@ class _NomadSecretRoleState:
             pulumi.set(__self__, "backend", backend)
         if global_ is not None:
             pulumi.set(__self__, "global_", global_)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if policies is not None:
             pulumi.set(__self__, "policies", policies)
         if role is not None:
@@ -164,6 +193,21 @@ class _NomadSecretRoleState:
     @global_.setter
     def global_(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "global_", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -212,6 +256,7 @@ class NomadSecretRole(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  global_: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -251,6 +296,10 @@ class NomadSecretRole(pulumi.CustomResource):
                not begin or end with a `/`. Defaults to `nomad`.
         :param pulumi.Input[bool] global_: Specifies if the generated token should be global. Defaults to 
                false.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies attached to the generated token. This setting is only used 
                when `type` is 'client'.
         :param pulumi.Input[str] role: The name to identify this role within the backend.
@@ -310,6 +359,7 @@ class NomadSecretRole(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  global_: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -326,6 +376,7 @@ class NomadSecretRole(pulumi.CustomResource):
                 raise TypeError("Missing required property 'backend'")
             __props__.__dict__["backend"] = backend
             __props__.__dict__["global_"] = global_
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["policies"] = policies
             if role is None and not opts.urn:
                 raise TypeError("Missing required property 'role'")
@@ -343,6 +394,7 @@ class NomadSecretRole(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
             global_: Optional[pulumi.Input[bool]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             role: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'NomadSecretRole':
@@ -357,6 +409,10 @@ class NomadSecretRole(pulumi.CustomResource):
                not begin or end with a `/`. Defaults to `nomad`.
         :param pulumi.Input[bool] global_: Specifies if the generated token should be global. Defaults to 
                false.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies attached to the generated token. This setting is only used 
                when `type` is 'client'.
         :param pulumi.Input[str] role: The name to identify this role within the backend.
@@ -370,6 +426,7 @@ class NomadSecretRole(pulumi.CustomResource):
 
         __props__.__dict__["backend"] = backend
         __props__.__dict__["global_"] = global_
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["policies"] = policies
         __props__.__dict__["role"] = role
         __props__.__dict__["type"] = type
@@ -392,6 +449,17 @@ class NomadSecretRole(pulumi.CustomResource):
         false.
         """
         return pulumi.get(self, "global_")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

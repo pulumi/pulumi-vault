@@ -78,6 +78,11 @@ type AuthBackendRole struct {
 	DisallowedPolicies pulumi.StringArrayOutput `pulumi:"disallowedPolicies"`
 	// Set of disallowed policies with glob match for given role.
 	DisallowedPoliciesGlobs pulumi.StringArrayOutput `pulumi:"disallowedPoliciesGlobs"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// If true, tokens created against this policy will be orphan tokens.
 	Orphan pulumi.BoolPtrOutput `pulumi:"orphan"`
 	// Tokens created against this role will have the given suffix as part of their path in addition to the role name.
@@ -164,6 +169,11 @@ type authBackendRoleState struct {
 	DisallowedPolicies []string `pulumi:"disallowedPolicies"`
 	// Set of disallowed policies with glob match for given role.
 	DisallowedPoliciesGlobs []string `pulumi:"disallowedPoliciesGlobs"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// If true, tokens created against this policy will be orphan tokens.
 	Orphan *bool `pulumi:"orphan"`
 	// Tokens created against this role will have the given suffix as part of their path in addition to the role name.
@@ -219,6 +229,11 @@ type AuthBackendRoleState struct {
 	DisallowedPolicies pulumi.StringArrayInput
 	// Set of disallowed policies with glob match for given role.
 	DisallowedPoliciesGlobs pulumi.StringArrayInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// If true, tokens created against this policy will be orphan tokens.
 	Orphan pulumi.BoolPtrInput
 	// Tokens created against this role will have the given suffix as part of their path in addition to the role name.
@@ -278,6 +293,11 @@ type authBackendRoleArgs struct {
 	DisallowedPolicies []string `pulumi:"disallowedPolicies"`
 	// Set of disallowed policies with glob match for given role.
 	DisallowedPoliciesGlobs []string `pulumi:"disallowedPoliciesGlobs"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// If true, tokens created against this policy will be orphan tokens.
 	Orphan *bool `pulumi:"orphan"`
 	// Tokens created against this role will have the given suffix as part of their path in addition to the role name.
@@ -334,6 +354,11 @@ type AuthBackendRoleArgs struct {
 	DisallowedPolicies pulumi.StringArrayInput
 	// Set of disallowed policies with glob match for given role.
 	DisallowedPoliciesGlobs pulumi.StringArrayInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// If true, tokens created against this policy will be orphan tokens.
 	Orphan pulumi.BoolPtrInput
 	// Tokens created against this role will have the given suffix as part of their path in addition to the role name.
@@ -488,6 +513,14 @@ func (o AuthBackendRoleOutput) DisallowedPolicies() pulumi.StringArrayOutput {
 // Set of disallowed policies with glob match for given role.
 func (o AuthBackendRoleOutput) DisallowedPoliciesGlobs() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringArrayOutput { return v.DisallowedPoliciesGlobs }).(pulumi.StringArrayOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o AuthBackendRoleOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // If true, tokens created against this policy will be orphan tokens.

@@ -18,80 +18,57 @@ public final class SecretBackendConnectionInfluxdb {
      * timeout.
      * 
      */
-    private final @Nullable Integer connectTimeout;
+    private @Nullable Integer connectTimeout;
     /**
      * @return The host to connect to.
      * 
      */
-    private final String host;
+    private String host;
     /**
      * @return Whether to skip verification of the server
      * certificate when using TLS.
      * 
      */
-    private final @Nullable Boolean insecureTls;
+    private @Nullable Boolean insecureTls;
     /**
      * @return The root credential password used in the connection URL.
      * 
      */
-    private final String password;
+    private String password;
     /**
      * @return Concatenated PEM blocks configuring the certificate
      * chain.
      * 
      */
-    private final @Nullable String pemBundle;
+    private @Nullable String pemBundle;
     /**
      * @return A JSON structure configuring the certificate chain.
      * 
      */
-    private final @Nullable String pemJson;
+    private @Nullable String pemJson;
     /**
      * @return The default port to connect to if no port is specified as
      * part of the host.
      * 
      */
-    private final @Nullable Integer port;
+    private @Nullable Integer port;
     /**
      * @return Whether to use TLS when connecting to Cassandra.
      * 
      */
-    private final @Nullable Boolean tls;
+    private @Nullable Boolean tls;
     /**
      * @return The root credential username used in the connection URL.
      * 
      */
-    private final String username;
+    private String username;
     /**
      * @return - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
      * 
      */
-    private final @Nullable String usernameTemplate;
+    private @Nullable String usernameTemplate;
 
-    @CustomType.Constructor
-    private SecretBackendConnectionInfluxdb(
-        @CustomType.Parameter("connectTimeout") @Nullable Integer connectTimeout,
-        @CustomType.Parameter("host") String host,
-        @CustomType.Parameter("insecureTls") @Nullable Boolean insecureTls,
-        @CustomType.Parameter("password") String password,
-        @CustomType.Parameter("pemBundle") @Nullable String pemBundle,
-        @CustomType.Parameter("pemJson") @Nullable String pemJson,
-        @CustomType.Parameter("port") @Nullable Integer port,
-        @CustomType.Parameter("tls") @Nullable Boolean tls,
-        @CustomType.Parameter("username") String username,
-        @CustomType.Parameter("usernameTemplate") @Nullable String usernameTemplate) {
-        this.connectTimeout = connectTimeout;
-        this.host = host;
-        this.insecureTls = insecureTls;
-        this.password = password;
-        this.pemBundle = pemBundle;
-        this.pemJson = pemJson;
-        this.port = port;
-        this.tls = tls;
-        this.username = username;
-        this.usernameTemplate = usernameTemplate;
-    }
-
+    private SecretBackendConnectionInfluxdb() {}
     /**
      * @return The number of seconds to use as a connection
      * timeout.
@@ -174,7 +151,7 @@ public final class SecretBackendConnectionInfluxdb {
     public static Builder builder(SecretBackendConnectionInfluxdb defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable Integer connectTimeout;
         private String host;
@@ -186,11 +163,7 @@ public final class SecretBackendConnectionInfluxdb {
         private @Nullable Boolean tls;
         private String username;
         private @Nullable String usernameTemplate;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(SecretBackendConnectionInfluxdb defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.connectTimeout = defaults.connectTimeout;
@@ -205,47 +178,69 @@ public final class SecretBackendConnectionInfluxdb {
     	      this.usernameTemplate = defaults.usernameTemplate;
         }
 
+        @CustomType.Setter
         public Builder connectTimeout(@Nullable Integer connectTimeout) {
             this.connectTimeout = connectTimeout;
             return this;
         }
+        @CustomType.Setter
         public Builder host(String host) {
             this.host = Objects.requireNonNull(host);
             return this;
         }
+        @CustomType.Setter
         public Builder insecureTls(@Nullable Boolean insecureTls) {
             this.insecureTls = insecureTls;
             return this;
         }
+        @CustomType.Setter
         public Builder password(String password) {
             this.password = Objects.requireNonNull(password);
             return this;
         }
+        @CustomType.Setter
         public Builder pemBundle(@Nullable String pemBundle) {
             this.pemBundle = pemBundle;
             return this;
         }
+        @CustomType.Setter
         public Builder pemJson(@Nullable String pemJson) {
             this.pemJson = pemJson;
             return this;
         }
+        @CustomType.Setter
         public Builder port(@Nullable Integer port) {
             this.port = port;
             return this;
         }
+        @CustomType.Setter
         public Builder tls(@Nullable Boolean tls) {
             this.tls = tls;
             return this;
         }
+        @CustomType.Setter
         public Builder username(String username) {
             this.username = Objects.requireNonNull(username);
             return this;
         }
+        @CustomType.Setter
         public Builder usernameTemplate(@Nullable String usernameTemplate) {
             this.usernameTemplate = usernameTemplate;
             return this;
-        }        public SecretBackendConnectionInfluxdb build() {
-            return new SecretBackendConnectionInfluxdb(connectTimeout, host, insecureTls, password, pemBundle, pemJson, port, tls, username, usernameTemplate);
+        }
+        public SecretBackendConnectionInfluxdb build() {
+            final var o = new SecretBackendConnectionInfluxdb();
+            o.connectTimeout = connectTimeout;
+            o.host = host;
+            o.insecureTls = insecureTls;
+            o.password = password;
+            o.pemBundle = pemBundle;
+            o.pemJson = pemJson;
+            o.port = port;
+            o.tls = tls;
+            o.username = username;
+            o.usernameTemplate = usernameTemplate;
+            return o;
         }
     }
 }

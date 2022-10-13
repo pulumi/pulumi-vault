@@ -156,6 +156,18 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly groupsClaim!: pulumi.Output<string | undefined>;
     /**
+     * Specifies the allowable elapsed time in seconds since the last time 
+     * the user was actively authenticated with the OIDC provider.
+     */
+    public readonly maxAge!: pulumi.Output<number | undefined>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * The amount of leeway to add to not before (`nbf`) claims to account for
      * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with "jwt" roles.
@@ -234,6 +246,13 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly userClaim!: pulumi.Output<string>;
     /**
+     * Specifies if the `userClaim` value uses
+     * [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+     * syntax for referencing claims. By default, the `userClaim` value will not use JSON pointer.
+     * Requires Vault 1.11+.
+     */
+    public readonly userClaimJsonPointer!: pulumi.Output<boolean | undefined>;
+    /**
      * Log received OIDC tokens and claims when debug-level
      * logging is active. Not recommended in production since sensitive information may be present
      * in OIDC responses.
@@ -264,6 +283,8 @@ export class AuthBackendRole extends pulumi.CustomResource {
             resourceInputs["disableBoundClaimsParsing"] = state ? state.disableBoundClaimsParsing : undefined;
             resourceInputs["expirationLeeway"] = state ? state.expirationLeeway : undefined;
             resourceInputs["groupsClaim"] = state ? state.groupsClaim : undefined;
+            resourceInputs["maxAge"] = state ? state.maxAge : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["notBeforeLeeway"] = state ? state.notBeforeLeeway : undefined;
             resourceInputs["oidcScopes"] = state ? state.oidcScopes : undefined;
             resourceInputs["roleName"] = state ? state.roleName : undefined;
@@ -278,6 +299,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
             resourceInputs["tokenTtl"] = state ? state.tokenTtl : undefined;
             resourceInputs["tokenType"] = state ? state.tokenType : undefined;
             resourceInputs["userClaim"] = state ? state.userClaim : undefined;
+            resourceInputs["userClaimJsonPointer"] = state ? state.userClaimJsonPointer : undefined;
             resourceInputs["verboseOidcLogging"] = state ? state.verboseOidcLogging : undefined;
         } else {
             const args = argsOrState as AuthBackendRoleArgs | undefined;
@@ -298,6 +320,8 @@ export class AuthBackendRole extends pulumi.CustomResource {
             resourceInputs["disableBoundClaimsParsing"] = args ? args.disableBoundClaimsParsing : undefined;
             resourceInputs["expirationLeeway"] = args ? args.expirationLeeway : undefined;
             resourceInputs["groupsClaim"] = args ? args.groupsClaim : undefined;
+            resourceInputs["maxAge"] = args ? args.maxAge : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["notBeforeLeeway"] = args ? args.notBeforeLeeway : undefined;
             resourceInputs["oidcScopes"] = args ? args.oidcScopes : undefined;
             resourceInputs["roleName"] = args ? args.roleName : undefined;
@@ -312,6 +336,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
             resourceInputs["tokenTtl"] = args ? args.tokenTtl : undefined;
             resourceInputs["tokenType"] = args ? args.tokenType : undefined;
             resourceInputs["userClaim"] = args ? args.userClaim : undefined;
+            resourceInputs["userClaimJsonPointer"] = args ? args.userClaimJsonPointer : undefined;
             resourceInputs["verboseOidcLogging"] = args ? args.verboseOidcLogging : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -383,6 +408,18 @@ export interface AuthBackendRoleState {
      * value must be a list of strings.
      */
     groupsClaim?: pulumi.Input<string>;
+    /**
+     * Specifies the allowable elapsed time in seconds since the last time 
+     * the user was actively authenticated with the OIDC provider.
+     */
+    maxAge?: pulumi.Input<number>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The amount of leeway to add to not before (`nbf`) claims to account for
      * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
@@ -462,6 +499,13 @@ export interface AuthBackendRoleState {
      */
     userClaim?: pulumi.Input<string>;
     /**
+     * Specifies if the `userClaim` value uses
+     * [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+     * syntax for referencing claims. By default, the `userClaim` value will not use JSON pointer.
+     * Requires Vault 1.11+.
+     */
+    userClaimJsonPointer?: pulumi.Input<boolean>;
+    /**
      * Log received OIDC tokens and claims when debug-level
      * logging is active. Not recommended in production since sensitive information may be present
      * in OIDC responses.
@@ -533,6 +577,18 @@ export interface AuthBackendRoleArgs {
      * value must be a list of strings.
      */
     groupsClaim?: pulumi.Input<string>;
+    /**
+     * Specifies the allowable elapsed time in seconds since the last time 
+     * the user was actively authenticated with the OIDC provider.
+     */
+    maxAge?: pulumi.Input<number>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The amount of leeway to add to not before (`nbf`) claims to account for
      * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
@@ -611,6 +667,13 @@ export interface AuthBackendRoleArgs {
      * due to a successful login.
      */
     userClaim: pulumi.Input<string>;
+    /**
+     * Specifies if the `userClaim` value uses
+     * [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+     * syntax for referencing claims. By default, the `userClaim` value will not use JSON pointer.
+     * Requires Vault 1.11+.
+     */
+    userClaimJsonPointer?: pulumi.Input<boolean>;
     /**
      * Log received OIDC tokens and claims when debug-level
      * logging is active. Not recommended in production since sensitive information may be present

@@ -104,6 +104,12 @@ namespace Pulumi.Vault
         public Output<string> Accessor { get; private set; } = null!;
 
         /// <summary>
+        /// Set of managed key registry entry names that the mount in question is allowed to access
+        /// </summary>
+        [Output("allowedManagedKeys")]
+        public Output<ImmutableArray<string>> AllowedManagedKeys { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         /// </summary>
         [Output("auditNonHmacRequestKeys")]
@@ -144,6 +150,15 @@ namespace Pulumi.Vault
         /// </summary>
         [Output("maxLeaseTtlSeconds")]
         public Output<int> MaxLeaseTtlSeconds { get; private set; } = null!;
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
         /// Specifies mount type specific options that are passed to the backend
@@ -215,6 +230,18 @@ namespace Pulumi.Vault
 
     public sealed class MountArgs : global::Pulumi.ResourceArgs
     {
+        [Input("allowedManagedKeys")]
+        private InputList<string>? _allowedManagedKeys;
+
+        /// <summary>
+        /// Set of managed key registry entry names that the mount in question is allowed to access
+        /// </summary>
+        public InputList<string> AllowedManagedKeys
+        {
+            get => _allowedManagedKeys ?? (_allowedManagedKeys = new InputList<string>());
+            set => _allowedManagedKeys = value;
+        }
+
         [Input("auditNonHmacRequestKeys")]
         private InputList<string>? _auditNonHmacRequestKeys;
 
@@ -268,6 +295,15 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("maxLeaseTtlSeconds")]
         public Input<int>? MaxLeaseTtlSeconds { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         [Input("options")]
         private InputMap<object>? _options;
@@ -313,6 +349,18 @@ namespace Pulumi.Vault
         [Input("accessor")]
         public Input<string>? Accessor { get; set; }
 
+        [Input("allowedManagedKeys")]
+        private InputList<string>? _allowedManagedKeys;
+
+        /// <summary>
+        /// Set of managed key registry entry names that the mount in question is allowed to access
+        /// </summary>
+        public InputList<string> AllowedManagedKeys
+        {
+            get => _allowedManagedKeys ?? (_allowedManagedKeys = new InputList<string>());
+            set => _allowedManagedKeys = value;
+        }
+
         [Input("auditNonHmacRequestKeys")]
         private InputList<string>? _auditNonHmacRequestKeys;
 
@@ -366,6 +414,15 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("maxLeaseTtlSeconds")]
         public Input<int>? MaxLeaseTtlSeconds { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         [Input("options")]
         private InputMap<object>? _options;

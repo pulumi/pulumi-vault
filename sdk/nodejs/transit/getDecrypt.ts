@@ -31,6 +31,7 @@ export function getDecrypt(args: GetDecryptArgs, opts?: pulumi.InvokeOptions): P
         "ciphertext": args.ciphertext,
         "context": args.context,
         "key": args.key,
+        "namespace": args.namespace,
     }, opts);
 }
 
@@ -54,6 +55,7 @@ export interface GetDecryptArgs {
      * Specifies the name of the transit key to decrypt against.
      */
     key: string;
+    namespace?: string;
 }
 
 /**
@@ -68,6 +70,7 @@ export interface GetDecryptResult {
      */
     readonly id: string;
     readonly key: string;
+    readonly namespace?: string;
     /**
      * Decrypted plaintext returned from Vault
      */
@@ -98,4 +101,5 @@ export interface GetDecryptOutputArgs {
      * Specifies the name of the transit key to decrypt against.
      */
     key: pulumi.Input<string>;
+    namespace?: pulumi.Input<string>;
 }

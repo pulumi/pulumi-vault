@@ -5,10 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./authBackendRole";
+export { AuthBackendRoleArgs, AuthBackendRoleState } from "./authBackendRole";
+export type AuthBackendRole = import("./authBackendRole").AuthBackendRole;
+export const AuthBackendRole: typeof import("./authBackendRole").AuthBackendRole = null as any;
 
-// Import resources to register:
-import { AuthBackendRole } from "./authBackendRole";
+utilities.lazyLoad(exports, ["AuthBackendRole"], () => require("./authBackendRole"));
 
 const _module = {
     version: utilities.getVersion(),

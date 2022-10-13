@@ -87,6 +87,13 @@ export class SecretLibrary extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * Specifies the slice of service accounts mapped to this set.
      */
     public readonly serviceAccountNames!: pulumi.Output<string[]>;
@@ -113,6 +120,7 @@ export class SecretLibrary extends pulumi.CustomResource {
             resourceInputs["disableCheckInEnforcement"] = state ? state.disableCheckInEnforcement : undefined;
             resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["serviceAccountNames"] = state ? state.serviceAccountNames : undefined;
             resourceInputs["ttl"] = state ? state.ttl : undefined;
         } else {
@@ -127,6 +135,7 @@ export class SecretLibrary extends pulumi.CustomResource {
             resourceInputs["disableCheckInEnforcement"] = args ? args.disableCheckInEnforcement : undefined;
             resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["serviceAccountNames"] = args ? args.serviceAccountNames : undefined;
             resourceInputs["ttl"] = args ? args.ttl : undefined;
         }
@@ -158,6 +167,13 @@ export interface SecretLibraryState {
      * Must be unique within the backend.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Specifies the slice of service accounts mapped to this set.
      */
@@ -192,6 +208,13 @@ export interface SecretLibraryArgs {
      * Must be unique within the backend.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Specifies the slice of service accounts mapped to this set.
      */
