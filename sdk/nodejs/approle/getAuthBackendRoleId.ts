@@ -33,6 +33,7 @@ export function getAuthBackendRoleId(args: GetAuthBackendRoleIdArgs, opts?: pulu
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId", {
         "backend": args.backend,
+        "namespace": args.namespace,
         "roleName": args.roleName,
     }, opts);
 }
@@ -46,6 +47,13 @@ export interface GetAuthBackendRoleIdArgs {
      * retrieve a RoleID for resides in. Defaults to "approle".
      */
     backend?: string;
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured namespace.
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: string;
     /**
      * The name of the role to retrieve the Role ID for.
      */
@@ -61,6 +69,7 @@ export interface GetAuthBackendRoleIdResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly namespace?: string;
     /**
      * The RoleID of the role.
      */
@@ -81,6 +90,13 @@ export interface GetAuthBackendRoleIdOutputArgs {
      * retrieve a RoleID for resides in. Defaults to "approle".
      */
     backend?: pulumi.Input<string>;
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured namespace.
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The name of the role to retrieve the Role ID for.
      */

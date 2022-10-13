@@ -17,6 +17,7 @@ class OidcRoleArgs:
                  key: pulumi.Input[str],
                  client_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  template: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None):
         """
@@ -26,6 +27,10 @@ class OidcRoleArgs:
         :param pulumi.Input[str] client_id: The value that will be included in the `aud` field of all the OIDC identity
                tokens issued by this role
         :param pulumi.Input[str] name: Name of the OIDC Role to create.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] template: The template string to use for generating tokens. This may be in
                string-ified JSON or base64 format. See the
                [documentation](https://www.vaultproject.io/docs/secrets/identity/index.html#token-contents-and-templates)
@@ -37,6 +42,8 @@ class OidcRoleArgs:
             pulumi.set(__self__, "client_id", client_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if template is not None:
             pulumi.set(__self__, "template", template)
         if ttl is not None:
@@ -82,6 +89,21 @@ class OidcRoleArgs:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def template(self) -> Optional[pulumi.Input[str]]:
         """
         The template string to use for generating tokens. This may be in
@@ -114,6 +136,7 @@ class _OidcRoleState:
                  client_id: Optional[pulumi.Input[str]] = None,
                  key: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  template: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None):
         """
@@ -123,6 +146,10 @@ class _OidcRoleState:
         :param pulumi.Input[str] key: A configured named key, the key must already exist
                before tokens can be issued.
         :param pulumi.Input[str] name: Name of the OIDC Role to create.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] template: The template string to use for generating tokens. This may be in
                string-ified JSON or base64 format. See the
                [documentation](https://www.vaultproject.io/docs/secrets/identity/index.html#token-contents-and-templates)
@@ -135,6 +162,8 @@ class _OidcRoleState:
             pulumi.set(__self__, "key", key)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if template is not None:
             pulumi.set(__self__, "template", template)
         if ttl is not None:
@@ -180,6 +209,21 @@ class _OidcRoleState:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def template(self) -> Optional[pulumi.Input[str]]:
         """
         The template string to use for generating tokens. This may be in
@@ -214,6 +258,7 @@ class OidcRole(pulumi.CustomResource):
                  client_id: Optional[pulumi.Input[str]] = None,
                  key: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  template: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None,
                  __props__=None):
@@ -269,6 +314,10 @@ class OidcRole(pulumi.CustomResource):
         :param pulumi.Input[str] key: A configured named key, the key must already exist
                before tokens can be issued.
         :param pulumi.Input[str] name: Name of the OIDC Role to create.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] template: The template string to use for generating tokens. This may be in
                string-ified JSON or base64 format. See the
                [documentation](https://www.vaultproject.io/docs/secrets/identity/index.html#token-contents-and-templates)
@@ -344,6 +393,7 @@ class OidcRole(pulumi.CustomResource):
                  client_id: Optional[pulumi.Input[str]] = None,
                  key: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  template: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None,
                  __props__=None):
@@ -360,6 +410,7 @@ class OidcRole(pulumi.CustomResource):
                 raise TypeError("Missing required property 'key'")
             __props__.__dict__["key"] = key
             __props__.__dict__["name"] = name
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["template"] = template
             __props__.__dict__["ttl"] = ttl
         super(OidcRole, __self__).__init__(
@@ -375,6 +426,7 @@ class OidcRole(pulumi.CustomResource):
             client_id: Optional[pulumi.Input[str]] = None,
             key: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             template: Optional[pulumi.Input[str]] = None,
             ttl: Optional[pulumi.Input[int]] = None) -> 'OidcRole':
         """
@@ -389,6 +441,10 @@ class OidcRole(pulumi.CustomResource):
         :param pulumi.Input[str] key: A configured named key, the key must already exist
                before tokens can be issued.
         :param pulumi.Input[str] name: Name of the OIDC Role to create.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] template: The template string to use for generating tokens. This may be in
                string-ified JSON or base64 format. See the
                [documentation](https://www.vaultproject.io/docs/secrets/identity/index.html#token-contents-and-templates)
@@ -402,6 +458,7 @@ class OidcRole(pulumi.CustomResource):
         __props__.__dict__["client_id"] = client_id
         __props__.__dict__["key"] = key
         __props__.__dict__["name"] = name
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["template"] = template
         __props__.__dict__["ttl"] = ttl
         return OidcRole(resource_name, opts=opts, __props__=__props__)
@@ -431,6 +488,17 @@ class OidcRole(pulumi.CustomResource):
         Name of the OIDC Role to create.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

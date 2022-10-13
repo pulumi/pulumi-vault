@@ -50,6 +50,11 @@ func LookupSecret(ctx *pulumi.Context, args *LookupSecretArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getSecret.
 type LookupSecretArgs struct {
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The full logical path from which to request data.
 	// To read data from the "generic" secret backend mounted in Vault by
 	// default, this should be prefixed with `secret/`. Reading from other backends
@@ -80,12 +85,13 @@ type LookupSecretResult struct {
 	// generated with this data may fail to apply.
 	LeaseDuration int `pulumi:"leaseDuration"`
 	// The lease identifier assigned by Vault, if any.
-	LeaseId            string `pulumi:"leaseId"`
-	LeaseRenewable     bool   `pulumi:"leaseRenewable"`
-	LeaseStartTime     string `pulumi:"leaseStartTime"`
-	Path               string `pulumi:"path"`
-	Version            *int   `pulumi:"version"`
-	WithLeaseStartTime *bool  `pulumi:"withLeaseStartTime"`
+	LeaseId            string  `pulumi:"leaseId"`
+	LeaseRenewable     bool    `pulumi:"leaseRenewable"`
+	LeaseStartTime     string  `pulumi:"leaseStartTime"`
+	Namespace          *string `pulumi:"namespace"`
+	Path               string  `pulumi:"path"`
+	Version            *int    `pulumi:"version"`
+	WithLeaseStartTime *bool   `pulumi:"withLeaseStartTime"`
 }
 
 func LookupSecretOutput(ctx *pulumi.Context, args LookupSecretOutputArgs, opts ...pulumi.InvokeOption) LookupSecretResultOutput {
@@ -103,6 +109,11 @@ func LookupSecretOutput(ctx *pulumi.Context, args LookupSecretOutputArgs, opts .
 
 // A collection of arguments for invoking getSecret.
 type LookupSecretOutputArgs struct {
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 	// The full logical path from which to request data.
 	// To read data from the "generic" secret backend mounted in Vault by
 	// default, this should be prefixed with `secret/`. Reading from other backends
@@ -172,6 +183,10 @@ func (o LookupSecretResultOutput) LeaseRenewable() pulumi.BoolOutput {
 
 func (o LookupSecretResultOutput) LeaseStartTime() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSecretResult) string { return v.LeaseStartTime }).(pulumi.StringOutput)
+}
+
+func (o LookupSecretResultOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSecretResult) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupSecretResultOutput) Path() pulumi.StringOutput {

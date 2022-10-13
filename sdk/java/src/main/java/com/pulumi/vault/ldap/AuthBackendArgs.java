@@ -114,6 +114,23 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.description);
     }
 
+    /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     * 
+     */
+    @Import(name="disableRemount")
+    private @Nullable Output<Boolean> disableRemount;
+
+    /**
+     * @return If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     * 
+     */
+    public Optional<Output<Boolean>> disableRemount() {
+        return Optional.ofNullable(this.disableRemount);
+    }
+
     @Import(name="discoverdn")
     private @Nullable Output<Boolean> discoverdn;
 
@@ -194,6 +211,27 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<Boolean>> local() {
         return Optional.ofNullable(this.local);
+    }
+
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable Output<String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> namespace() {
+        return Optional.ofNullable(this.namespace);
     }
 
     /**
@@ -515,6 +553,21 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.userfilter);
     }
 
+    /**
+     * Force the auth method to use the username passed by the user as the alias name.
+     * 
+     */
+    @Import(name="usernameAsAlias")
+    private @Nullable Output<Boolean> usernameAsAlias;
+
+    /**
+     * @return Force the auth method to use the username passed by the user as the alias name.
+     * 
+     */
+    public Optional<Output<Boolean>> usernameAsAlias() {
+        return Optional.ofNullable(this.usernameAsAlias);
+    }
+
     private AuthBackendArgs() {}
 
     private AuthBackendArgs(AuthBackendArgs $) {
@@ -526,12 +579,14 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
         this.clientTlsKey = $.clientTlsKey;
         this.denyNullBind = $.denyNullBind;
         this.description = $.description;
+        this.disableRemount = $.disableRemount;
         this.discoverdn = $.discoverdn;
         this.groupattr = $.groupattr;
         this.groupdn = $.groupdn;
         this.groupfilter = $.groupfilter;
         this.insecureTls = $.insecureTls;
         this.local = $.local;
+        this.namespace = $.namespace;
         this.path = $.path;
         this.starttls = $.starttls;
         this.tlsMaxVersion = $.tlsMaxVersion;
@@ -551,6 +606,7 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
         this.userattr = $.userattr;
         this.userdn = $.userdn;
         this.userfilter = $.userfilter;
+        this.usernameAsAlias = $.usernameAsAlias;
     }
 
     public static Builder builder() {
@@ -703,6 +759,29 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
             return description(Output.of(description));
         }
 
+        /**
+         * @param disableRemount If set, opts out of mount migration on path updates.
+         * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableRemount(@Nullable Output<Boolean> disableRemount) {
+            $.disableRemount = disableRemount;
+            return this;
+        }
+
+        /**
+         * @param disableRemount If set, opts out of mount migration on path updates.
+         * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableRemount(Boolean disableRemount) {
+            return disableRemount(Output.of(disableRemount));
+        }
+
         public Builder discoverdn(@Nullable Output<Boolean> discoverdn) {
             $.discoverdn = discoverdn;
             return this;
@@ -815,6 +894,33 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder local(Boolean local) {
             return local(Output.of(local));
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable Output<String> namespace) {
+            $.namespace = namespace;
+            return this;
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(String namespace) {
+            return namespace(Output.of(namespace));
         }
 
         /**
@@ -1271,6 +1377,27 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder userfilter(String userfilter) {
             return userfilter(Output.of(userfilter));
+        }
+
+        /**
+         * @param usernameAsAlias Force the auth method to use the username passed by the user as the alias name.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder usernameAsAlias(@Nullable Output<Boolean> usernameAsAlias) {
+            $.usernameAsAlias = usernameAsAlias;
+            return this;
+        }
+
+        /**
+         * @param usernameAsAlias Force the auth method to use the username passed by the user as the alias name.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder usernameAsAlias(Boolean usernameAsAlias) {
+            return usernameAsAlias(Output.of(usernameAsAlias));
         }
 
         public AuthBackendArgs build() {

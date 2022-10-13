@@ -53,6 +53,11 @@ type GetAuthBackendRoleIdArgs struct {
 	// The unique name for the AppRole backend the role to
 	// retrieve a RoleID for resides in. Defaults to "approle".
 	Backend *string `pulumi:"backend"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The name of the role to retrieve the Role ID for.
 	RoleName string `pulumi:"roleName"`
 }
@@ -61,7 +66,8 @@ type GetAuthBackendRoleIdArgs struct {
 type GetAuthBackendRoleIdResult struct {
 	Backend *string `pulumi:"backend"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
+	Id        string  `pulumi:"id"`
+	Namespace *string `pulumi:"namespace"`
 	// The RoleID of the role.
 	RoleId   string `pulumi:"roleId"`
 	RoleName string `pulumi:"roleName"`
@@ -85,6 +91,11 @@ type GetAuthBackendRoleIdOutputArgs struct {
 	// The unique name for the AppRole backend the role to
 	// retrieve a RoleID for resides in. Defaults to "approle".
 	Backend pulumi.StringPtrInput `pulumi:"backend"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 	// The name of the role to retrieve the Role ID for.
 	RoleName pulumi.StringInput `pulumi:"roleName"`
 }
@@ -115,6 +126,10 @@ func (o GetAuthBackendRoleIdResultOutput) Backend() pulumi.StringPtrOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o GetAuthBackendRoleIdResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAuthBackendRoleIdResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetAuthBackendRoleIdResultOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAuthBackendRoleIdResult) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The RoleID of the role.

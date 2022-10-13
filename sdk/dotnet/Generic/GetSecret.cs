@@ -38,7 +38,7 @@ namespace Pulumi.Vault.Generic
         /// Use of this resource requires the `read` capability on the given path.
         /// </summary>
         public static Task<GetSecretResult> InvokeAsync(GetSecretArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetSecretResult>("vault:generic/getSecret:getSecret", args ?? new GetSecretArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetSecretResult>("vault:generic/getSecret:getSecret", args ?? new GetSecretArgs(), options.WithDefaults());
 
         /// <summary>
         /// {{% examples %}}
@@ -67,12 +67,21 @@ namespace Pulumi.Vault.Generic
         /// Use of this resource requires the `read` capability on the given path.
         /// </summary>
         public static Output<GetSecretResult> Invoke(GetSecretInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetSecretResult>("vault:generic/getSecret:getSecret", args ?? new GetSecretInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetSecretResult>("vault:generic/getSecret:getSecret", args ?? new GetSecretInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class GetSecretArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public string? Namespace { get; set; }
+
         /// <summary>
         /// The full logical path from which to request data.
         /// To read data from the "generic" secret backend mounted in Vault by
@@ -102,6 +111,15 @@ namespace Pulumi.Vault.Generic
 
     public sealed class GetSecretInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
         /// <summary>
         /// The full logical path from which to request data.
         /// To read data from the "generic" secret backend mounted in Vault by
@@ -161,6 +179,7 @@ namespace Pulumi.Vault.Generic
         public readonly string LeaseId;
         public readonly bool LeaseRenewable;
         public readonly string LeaseStartTime;
+        public readonly string? Namespace;
         public readonly string Path;
         public readonly int? Version;
         public readonly bool? WithLeaseStartTime;
@@ -181,6 +200,8 @@ namespace Pulumi.Vault.Generic
 
             string leaseStartTime,
 
+            string? @namespace,
+
             string path,
 
             int? version,
@@ -194,6 +215,7 @@ namespace Pulumi.Vault.Generic
             LeaseId = leaseId;
             LeaseRenewable = leaseRenewable;
             LeaseStartTime = leaseStartTime;
+            Namespace = @namespace;
             Path = path;
             Version = version;
             WithLeaseStartTime = withLeaseStartTime;

@@ -229,6 +229,27 @@ public final class SecretBackendSignState extends com.pulumi.resources.ResourceA
     }
 
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable Output<String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
+
+    /**
      * List of other SANs
      * 
      */
@@ -241,6 +262,21 @@ public final class SecretBackendSignState extends com.pulumi.resources.ResourceA
      */
     public Optional<Output<List<String>>> otherSans() {
         return Optional.ofNullable(this.otherSans);
+    }
+
+    /**
+     * `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
+     * 
+     */
+    @Import(name="renewPending")
+    private @Nullable Output<Boolean> renewPending;
+
+    /**
+     * @return `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
+     * 
+     */
+    public Optional<Output<Boolean>> renewPending() {
+        return Optional.ofNullable(this.renewPending);
     }
 
     /**
@@ -328,7 +364,9 @@ public final class SecretBackendSignState extends com.pulumi.resources.ResourceA
         this.issuingCa = $.issuingCa;
         this.minSecondsRemaining = $.minSecondsRemaining;
         this.name = $.name;
+        this.namespace = $.namespace;
         this.otherSans = $.otherSans;
+        this.renewPending = $.renewPending;
         this.serial = $.serial;
         this.serialNumber = $.serialNumber;
         this.ttl = $.ttl;
@@ -678,6 +716,33 @@ public final class SecretBackendSignState extends com.pulumi.resources.ResourceA
         }
 
         /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable Output<String> namespace) {
+            $.namespace = namespace;
+            return this;
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(String namespace) {
+            return namespace(Output.of(namespace));
+        }
+
+        /**
          * @param otherSans List of other SANs
          * 
          * @return builder
@@ -706,6 +771,27 @@ public final class SecretBackendSignState extends com.pulumi.resources.ResourceA
          */
         public Builder otherSans(String... otherSans) {
             return otherSans(List.of(otherSans));
+        }
+
+        /**
+         * @param renewPending `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder renewPending(@Nullable Output<Boolean> renewPending) {
+            $.renewPending = renewPending;
+            return this;
+        }
+
+        /**
+         * @param renewPending `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder renewPending(Boolean renewPending) {
+            return renewPending(Output.of(renewPending));
         }
 
         /**

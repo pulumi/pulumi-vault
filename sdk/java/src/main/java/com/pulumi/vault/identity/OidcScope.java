@@ -27,7 +27,6 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.vault.identity.OidcScope;
  * import com.pulumi.vault.identity.OidcScopeArgs;
- * import static com.pulumi.codegen.internal.Serialization.*;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -42,11 +41,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var groups = new OidcScope(&#34;groups&#34;, OidcScopeArgs.builder()        
- *             .template(serializeJson(
- *                 jsonObject(
- *                     jsonProperty(&#34;groups&#34;, &#34;{{identity.entity.groups.names}}&#34;)
- *                 )))
  *             .description(&#34;Vault OIDC Groups Scope&#34;)
+ *             .template(&#34;{\&#34;groups\&#34;:{{identity.entity.groups.names}}}&#34;)
  *             .build());
  * 
  *     }
@@ -91,6 +87,26 @@ public class OidcScope extends com.pulumi.resources.CustomResource {
      */
     public Output<String> name() {
         return this.name;
+    }
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="namespace", type=String.class, parameters={})
+    private Output</* @Nullable */ String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> namespace() {
+        return Codegen.optional(this.namespace);
     }
     /**
      * The template string for the scope. This may be provided as escaped JSON or base64 encoded JSON.

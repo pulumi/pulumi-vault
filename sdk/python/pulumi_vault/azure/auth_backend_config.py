@@ -19,7 +19,8 @@ class AuthBackendConfigArgs:
                  backend: Optional[pulumi.Input[str]] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_secret: Optional[pulumi.Input[str]] = None,
-                 environment: Optional[pulumi.Input[str]] = None):
+                 environment: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AuthBackendConfig resource.
         :param pulumi.Input[str] resource: The configured URL for the application registered in
@@ -35,6 +36,10 @@ class AuthBackendConfigArgs:
         :param pulumi.Input[str] environment: The Azure cloud environment. Valid values:
                AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
                AzureGermanCloud.  Defaults to `AzurePublicCloud`.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         pulumi.set(__self__, "resource", resource)
         pulumi.set(__self__, "tenant_id", tenant_id)
@@ -46,6 +51,8 @@ class AuthBackendConfigArgs:
             pulumi.set(__self__, "client_secret", client_secret)
         if environment is not None:
             pulumi.set(__self__, "environment", environment)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter
@@ -126,6 +133,21 @@ class AuthBackendConfigArgs:
     def environment(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "environment", value)
 
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
 
 @pulumi.input_type
 class _AuthBackendConfigState:
@@ -134,6 +156,7 @@ class _AuthBackendConfigState:
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_secret: Optional[pulumi.Input[str]] = None,
                  environment: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  resource: Optional[pulumi.Input[str]] = None,
                  tenant_id: Optional[pulumi.Input[str]] = None):
         """
@@ -147,6 +170,10 @@ class _AuthBackendConfigState:
         :param pulumi.Input[str] environment: The Azure cloud environment. Valid values:
                AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
                AzureGermanCloud.  Defaults to `AzurePublicCloud`.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] resource: The configured URL for the application registered in
                Azure Active Directory.
         :param pulumi.Input[str] tenant_id: The tenant id for the Azure Active Directory
@@ -160,6 +187,8 @@ class _AuthBackendConfigState:
             pulumi.set(__self__, "client_secret", client_secret)
         if environment is not None:
             pulumi.set(__self__, "environment", environment)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if resource is not None:
             pulumi.set(__self__, "resource", resource)
         if tenant_id is not None:
@@ -220,6 +249,21 @@ class _AuthBackendConfigState:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def resource(self) -> Optional[pulumi.Input[str]]:
         """
         The configured URL for the application registered in
@@ -254,6 +298,7 @@ class AuthBackendConfig(pulumi.CustomResource):
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_secret: Optional[pulumi.Input[str]] = None,
                  environment: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  resource: Optional[pulumi.Input[str]] = None,
                  tenant_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -292,6 +337,10 @@ class AuthBackendConfig(pulumi.CustomResource):
         :param pulumi.Input[str] environment: The Azure cloud environment. Valid values:
                AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
                AzureGermanCloud.  Defaults to `AzurePublicCloud`.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] resource: The configured URL for the application registered in
                Azure Active Directory.
         :param pulumi.Input[str] tenant_id: The tenant id for the Azure Active Directory
@@ -346,6 +395,7 @@ class AuthBackendConfig(pulumi.CustomResource):
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_secret: Optional[pulumi.Input[str]] = None,
                  environment: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  resource: Optional[pulumi.Input[str]] = None,
                  tenant_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -358,15 +408,18 @@ class AuthBackendConfig(pulumi.CustomResource):
             __props__ = AuthBackendConfigArgs.__new__(AuthBackendConfigArgs)
 
             __props__.__dict__["backend"] = backend
-            __props__.__dict__["client_id"] = client_id
-            __props__.__dict__["client_secret"] = client_secret
+            __props__.__dict__["client_id"] = None if client_id is None else pulumi.Output.secret(client_id)
+            __props__.__dict__["client_secret"] = None if client_secret is None else pulumi.Output.secret(client_secret)
             __props__.__dict__["environment"] = environment
+            __props__.__dict__["namespace"] = namespace
             if resource is None and not opts.urn:
                 raise TypeError("Missing required property 'resource'")
             __props__.__dict__["resource"] = resource
             if tenant_id is None and not opts.urn:
                 raise TypeError("Missing required property 'tenant_id'")
-            __props__.__dict__["tenant_id"] = tenant_id
+            __props__.__dict__["tenant_id"] = None if tenant_id is None else pulumi.Output.secret(tenant_id)
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientId", "clientSecret", "tenantId"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(AuthBackendConfig, __self__).__init__(
             'vault:azure/authBackendConfig:AuthBackendConfig',
             resource_name,
@@ -381,6 +434,7 @@ class AuthBackendConfig(pulumi.CustomResource):
             client_id: Optional[pulumi.Input[str]] = None,
             client_secret: Optional[pulumi.Input[str]] = None,
             environment: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             resource: Optional[pulumi.Input[str]] = None,
             tenant_id: Optional[pulumi.Input[str]] = None) -> 'AuthBackendConfig':
         """
@@ -399,6 +453,10 @@ class AuthBackendConfig(pulumi.CustomResource):
         :param pulumi.Input[str] environment: The Azure cloud environment. Valid values:
                AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
                AzureGermanCloud.  Defaults to `AzurePublicCloud`.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] resource: The configured URL for the application registered in
                Azure Active Directory.
         :param pulumi.Input[str] tenant_id: The tenant id for the Azure Active Directory
@@ -412,6 +470,7 @@ class AuthBackendConfig(pulumi.CustomResource):
         __props__.__dict__["client_id"] = client_id
         __props__.__dict__["client_secret"] = client_secret
         __props__.__dict__["environment"] = environment
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["resource"] = resource
         __props__.__dict__["tenant_id"] = tenant_id
         return AuthBackendConfig(resource_name, opts=opts, __props__=__props__)
@@ -452,6 +511,17 @@ class AuthBackendConfig(pulumi.CustomResource):
         AzureGermanCloud.  Defaults to `AzurePublicCloud`.
         """
         return pulumi.get(self, "environment")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

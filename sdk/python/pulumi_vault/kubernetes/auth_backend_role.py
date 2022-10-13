@@ -20,6 +20,7 @@ class AuthBackendRoleArgs:
                  alias_name_source: Optional[pulumi.Input[str]] = None,
                  audience: Optional[pulumi.Input[str]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
                  token_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -38,6 +39,10 @@ class AuthBackendRoleArgs:
                Valid choices are: `serviceaccount_uid`, `serviceaccount_name`. (vault-1.9+)
         :param pulumi.Input[str] audience: Audience claim to verify in the JWT.
         :param pulumi.Input[str] backend: Unique name of the kubernetes backend to configure.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
                addresses which can authenticate successfully, and ties the resulting token to these blocks
                as well.
@@ -73,6 +78,8 @@ class AuthBackendRoleArgs:
             pulumi.set(__self__, "audience", audience)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if token_bound_cidrs is not None:
             pulumi.set(__self__, "token_bound_cidrs", token_bound_cidrs)
         if token_explicit_max_ttl is not None:
@@ -164,6 +171,21 @@ class AuthBackendRoleArgs:
     @backend.setter
     def backend(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter(name="tokenBoundCidrs")
@@ -298,6 +320,7 @@ class _AuthBackendRoleState:
                  backend: Optional[pulumi.Input[str]] = None,
                  bound_service_account_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  bound_service_account_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  role_name: Optional[pulumi.Input[str]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -316,6 +339,10 @@ class _AuthBackendRoleState:
         :param pulumi.Input[str] backend: Unique name of the kubernetes backend to configure.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_service_account_names: List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and bound_service_account_namespaces can not be "*".
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_service_account_namespaces: List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and bound_service_account_names can not be set to "*".
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role_name: Name of the role.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
                addresses which can authenticate successfully, and ties the resulting token to these blocks
@@ -353,6 +380,8 @@ class _AuthBackendRoleState:
             pulumi.set(__self__, "bound_service_account_names", bound_service_account_names)
         if bound_service_account_namespaces is not None:
             pulumi.set(__self__, "bound_service_account_namespaces", bound_service_account_namespaces)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if role_name is not None:
             pulumi.set(__self__, "role_name", role_name)
         if token_bound_cidrs is not None:
@@ -434,6 +463,21 @@ class _AuthBackendRoleState:
     @bound_service_account_namespaces.setter
     def bound_service_account_namespaces(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "bound_service_account_namespaces", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter(name="roleName")
@@ -582,6 +626,7 @@ class AuthBackendRole(pulumi.CustomResource):
                  backend: Optional[pulumi.Input[str]] = None,
                  bound_service_account_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  bound_service_account_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  role_name: Optional[pulumi.Input[str]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -635,6 +680,10 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] backend: Unique name of the kubernetes backend to configure.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_service_account_names: List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and bound_service_account_namespaces can not be "*".
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_service_account_namespaces: List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and bound_service_account_names can not be set to "*".
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role_name: Name of the role.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
                addresses which can authenticate successfully, and ties the resulting token to these blocks
@@ -722,6 +771,7 @@ class AuthBackendRole(pulumi.CustomResource):
                  backend: Optional[pulumi.Input[str]] = None,
                  bound_service_account_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  bound_service_account_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  role_name: Optional[pulumi.Input[str]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -750,6 +800,7 @@ class AuthBackendRole(pulumi.CustomResource):
             if bound_service_account_namespaces is None and not opts.urn:
                 raise TypeError("Missing required property 'bound_service_account_namespaces'")
             __props__.__dict__["bound_service_account_namespaces"] = bound_service_account_namespaces
+            __props__.__dict__["namespace"] = namespace
             if role_name is None and not opts.urn:
                 raise TypeError("Missing required property 'role_name'")
             __props__.__dict__["role_name"] = role_name
@@ -777,6 +828,7 @@ class AuthBackendRole(pulumi.CustomResource):
             backend: Optional[pulumi.Input[str]] = None,
             bound_service_account_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             bound_service_account_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             role_name: Optional[pulumi.Input[str]] = None,
             token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -800,6 +852,10 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] backend: Unique name of the kubernetes backend to configure.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_service_account_names: List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and bound_service_account_namespaces can not be "*".
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_service_account_namespaces: List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and bound_service_account_names can not be set to "*".
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role_name: Name of the role.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
                addresses which can authenticate successfully, and ties the resulting token to these blocks
@@ -836,6 +892,7 @@ class AuthBackendRole(pulumi.CustomResource):
         __props__.__dict__["backend"] = backend
         __props__.__dict__["bound_service_account_names"] = bound_service_account_names
         __props__.__dict__["bound_service_account_namespaces"] = bound_service_account_namespaces
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["role_name"] = role_name
         __props__.__dict__["token_bound_cidrs"] = token_bound_cidrs
         __props__.__dict__["token_explicit_max_ttl"] = token_explicit_max_ttl
@@ -888,6 +945,17 @@ class AuthBackendRole(pulumi.CustomResource):
         List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and bound_service_account_names can not be set to "*".
         """
         return pulumi.get(self, "bound_service_account_namespaces")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="roleName")

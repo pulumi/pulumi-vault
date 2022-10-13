@@ -11,37 +11,23 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetDecryptResult {
-    private final String backend;
-    private final String ciphertext;
-    private final @Nullable String context;
+    private String backend;
+    private String ciphertext;
+    private @Nullable String context;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
-    private final String key;
+    private String id;
+    private String key;
+    private @Nullable String namespace;
     /**
      * @return Decrypted plaintext returned from Vault
      * 
      */
-    private final String plaintext;
+    private String plaintext;
 
-    @CustomType.Constructor
-    private GetDecryptResult(
-        @CustomType.Parameter("backend") String backend,
-        @CustomType.Parameter("ciphertext") String ciphertext,
-        @CustomType.Parameter("context") @Nullable String context,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("key") String key,
-        @CustomType.Parameter("plaintext") String plaintext) {
-        this.backend = backend;
-        this.ciphertext = ciphertext;
-        this.context = context;
-        this.id = id;
-        this.key = key;
-        this.plaintext = plaintext;
-    }
-
+    private GetDecryptResult() {}
     public String backend() {
         return this.backend;
     }
@@ -61,6 +47,9 @@ public final class GetDecryptResult {
     public String key() {
         return this.key;
     }
+    public Optional<String> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
     /**
      * @return Decrypted plaintext returned from Vault
      * 
@@ -76,19 +65,16 @@ public final class GetDecryptResult {
     public static Builder builder(GetDecryptResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String backend;
         private String ciphertext;
         private @Nullable String context;
         private String id;
         private String key;
+        private @Nullable String namespace;
         private String plaintext;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetDecryptResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.backend = defaults.backend;
@@ -96,34 +82,55 @@ public final class GetDecryptResult {
     	      this.context = defaults.context;
     	      this.id = defaults.id;
     	      this.key = defaults.key;
+    	      this.namespace = defaults.namespace;
     	      this.plaintext = defaults.plaintext;
         }
 
+        @CustomType.Setter
         public Builder backend(String backend) {
             this.backend = Objects.requireNonNull(backend);
             return this;
         }
+        @CustomType.Setter
         public Builder ciphertext(String ciphertext) {
             this.ciphertext = Objects.requireNonNull(ciphertext);
             return this;
         }
+        @CustomType.Setter
         public Builder context(@Nullable String context) {
             this.context = context;
             return this;
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder key(String key) {
             this.key = Objects.requireNonNull(key);
             return this;
         }
+        @CustomType.Setter
+        public Builder namespace(@Nullable String namespace) {
+            this.namespace = namespace;
+            return this;
+        }
+        @CustomType.Setter
         public Builder plaintext(String plaintext) {
             this.plaintext = Objects.requireNonNull(plaintext);
             return this;
-        }        public GetDecryptResult build() {
-            return new GetDecryptResult(backend, ciphertext, context, id, key, plaintext);
+        }
+        public GetDecryptResult build() {
+            final var o = new GetDecryptResult();
+            o.backend = backend;
+            o.ciphertext = ciphertext;
+            o.context = context;
+            o.id = id;
+            o.key = key;
+            o.namespace = namespace;
+            o.plaintext = plaintext;
+            return o;
         }
     }
 }

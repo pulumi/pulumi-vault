@@ -62,6 +62,13 @@ export class EgpPolicy extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * List of paths to which the policy will be applied to
      */
     public readonly paths!: pulumi.Output<string[]>;
@@ -85,6 +92,7 @@ export class EgpPolicy extends pulumi.CustomResource {
             const state = argsOrState as EgpPolicyState | undefined;
             resourceInputs["enforcementLevel"] = state ? state.enforcementLevel : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["paths"] = state ? state.paths : undefined;
             resourceInputs["policy"] = state ? state.policy : undefined;
         } else {
@@ -100,6 +108,7 @@ export class EgpPolicy extends pulumi.CustomResource {
             }
             resourceInputs["enforcementLevel"] = args ? args.enforcementLevel : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["paths"] = args ? args.paths : undefined;
             resourceInputs["policy"] = args ? args.policy : undefined;
         }
@@ -120,6 +129,13 @@ export interface EgpPolicyState {
      * The name of the policy
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * List of paths to which the policy will be applied to
      */
@@ -142,6 +158,13 @@ export interface EgpPolicyArgs {
      * The name of the policy
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * List of paths to which the policy will be applied to
      */

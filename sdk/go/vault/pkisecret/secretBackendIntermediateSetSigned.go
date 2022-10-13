@@ -109,6 +109,11 @@ type SecretBackendIntermediateSetSigned struct {
 	// CA certificates to populate the whole chain, which will then enable returning the full chain from
 	// issue and sign operations.
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 }
 
 // NewSecretBackendIntermediateSetSigned registers a new resource with the given unique name, arguments, and options.
@@ -152,6 +157,11 @@ type secretBackendIntermediateSetSignedState struct {
 	// CA certificates to populate the whole chain, which will then enable returning the full chain from
 	// issue and sign operations.
 	Certificate *string `pulumi:"certificate"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 }
 
 type SecretBackendIntermediateSetSignedState struct {
@@ -161,6 +171,11 @@ type SecretBackendIntermediateSetSignedState struct {
 	// CA certificates to populate the whole chain, which will then enable returning the full chain from
 	// issue and sign operations.
 	Certificate pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 }
 
 func (SecretBackendIntermediateSetSignedState) ElementType() reflect.Type {
@@ -174,6 +189,11 @@ type secretBackendIntermediateSetSignedArgs struct {
 	// CA certificates to populate the whole chain, which will then enable returning the full chain from
 	// issue and sign operations.
 	Certificate string `pulumi:"certificate"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 }
 
 // The set of arguments for constructing a SecretBackendIntermediateSetSigned resource.
@@ -184,6 +204,11 @@ type SecretBackendIntermediateSetSignedArgs struct {
 	// CA certificates to populate the whole chain, which will then enable returning the full chain from
 	// issue and sign operations.
 	Certificate pulumi.StringInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 }
 
 func (SecretBackendIntermediateSetSignedArgs) ElementType() reflect.Type {
@@ -283,6 +308,14 @@ func (o SecretBackendIntermediateSetSignedOutput) Backend() pulumi.StringOutput 
 // issue and sign operations.
 func (o SecretBackendIntermediateSetSignedOutput) Certificate() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendIntermediateSetSigned) pulumi.StringOutput { return v.Certificate }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o SecretBackendIntermediateSetSignedOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendIntermediateSetSigned) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 type SecretBackendIntermediateSetSignedArrayOutput struct{ *pulumi.OutputState }

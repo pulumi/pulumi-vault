@@ -21,6 +21,10 @@ namespace Pulumi.Vault
     /// {
     ///     var example = new Vault.Token("example", new()
     ///     {
+    ///         Metadata = 
+    ///         {
+    ///             { "purpose", "service-account" },
+    ///         },
     ///         Policies = new[]
     ///         {
     ///             "policy1",
@@ -76,6 +80,21 @@ namespace Pulumi.Vault
         /// </summary>
         [Output("leaseStarted")]
         public Output<string> LeaseStarted { get; private set; } = null!;
+
+        /// <summary>
+        /// Metadata to be set on this token
+        /// </summary>
+        [Output("metadata")]
+        public Output<ImmutableDictionary<string, string>?> Metadata { get; private set; } = null!;
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
         /// Flag to not attach the default policy to this token
@@ -178,6 +197,12 @@ namespace Pulumi.Vault
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "clientToken",
+                    "wrappedToken",
+                    "wrappingAccessor",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -212,6 +237,27 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("explicitMaxTtl")]
         public Input<string>? ExplicitMaxTtl { get; set; }
+
+        [Input("metadata")]
+        private InputMap<string>? _metadata;
+
+        /// <summary>
+        /// Metadata to be set on this token
+        /// </summary>
+        public InputMap<string> Metadata
+        {
+            get => _metadata ?? (_metadata = new InputMap<string>());
+            set => _metadata = value;
+        }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// Flag to not attach the default policy to this token
@@ -293,11 +339,21 @@ namespace Pulumi.Vault
 
     public sealed class TokenState : global::Pulumi.ResourceArgs
     {
+        [Input("clientToken")]
+        private Input<string>? _clientToken;
+
         /// <summary>
         /// String containing the client token if stored in present file
         /// </summary>
-        [Input("clientToken")]
-        public Input<string>? ClientToken { get; set; }
+        public Input<string>? ClientToken
+        {
+            get => _clientToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// String containing the token display name
@@ -322,6 +378,27 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("leaseStarted")]
         public Input<string>? LeaseStarted { get; set; }
+
+        [Input("metadata")]
+        private InputMap<string>? _metadata;
+
+        /// <summary>
+        /// Metadata to be set on this token
+        /// </summary>
+        public InputMap<string> Metadata
+        {
+            get => _metadata ?? (_metadata = new InputMap<string>());
+            set => _metadata = value;
+        }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// Flag to not attach the default policy to this token
@@ -389,17 +466,37 @@ namespace Pulumi.Vault
         [Input("ttl")]
         public Input<string>? Ttl { get; set; }
 
+        [Input("wrappedToken")]
+        private Input<string>? _wrappedToken;
+
         /// <summary>
         /// The client wrapped token.
         /// </summary>
-        [Input("wrappedToken")]
-        public Input<string>? WrappedToken { get; set; }
+        public Input<string>? WrappedToken
+        {
+            get => _wrappedToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _wrappedToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("wrappingAccessor")]
+        private Input<string>? _wrappingAccessor;
 
         /// <summary>
         /// The client wrapping accessor.
         /// </summary>
-        [Input("wrappingAccessor")]
-        public Input<string>? WrappingAccessor { get; set; }
+        public Input<string>? WrappingAccessor
+        {
+            get => _wrappingAccessor;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _wrappingAccessor = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The TTL period of the wrapped token.

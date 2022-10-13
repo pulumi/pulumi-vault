@@ -20,8 +20,6 @@ import (
 //
 // import (
 //
-//	"encoding/json"
-//
 //	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -29,16 +27,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			tmpJSON0, err := json.Marshal(map[string]interface{}{
-//				"groups": "{{identity.entity.groups.names}}",
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			json0 := string(tmpJSON0)
-//			_, err = identity.NewOidcScope(ctx, "groups", &identity.OidcScopeArgs{
-//				Template:    pulumi.String(json0),
+//			_, err := identity.NewOidcScope(ctx, "groups", &identity.OidcScopeArgs{
 //				Description: pulumi.String("Vault OIDC Groups Scope"),
+//				Template:    pulumi.String("{\"groups\":{{identity.entity.groups.names}}}"),
 //			})
 //			if err != nil {
 //				return err
@@ -65,6 +56,11 @@ type OidcScope struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The name of the scope. The `openid` scope name is reserved.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The template string for the scope. This may be provided as escaped JSON or base64 encoded JSON.
 	Template pulumi.StringPtrOutput `pulumi:"template"`
 }
@@ -102,6 +98,11 @@ type oidcScopeState struct {
 	Description *string `pulumi:"description"`
 	// The name of the scope. The `openid` scope name is reserved.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The template string for the scope. This may be provided as escaped JSON or base64 encoded JSON.
 	Template *string `pulumi:"template"`
 }
@@ -111,6 +112,11 @@ type OidcScopeState struct {
 	Description pulumi.StringPtrInput
 	// The name of the scope. The `openid` scope name is reserved.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The template string for the scope. This may be provided as escaped JSON or base64 encoded JSON.
 	Template pulumi.StringPtrInput
 }
@@ -124,6 +130,11 @@ type oidcScopeArgs struct {
 	Description *string `pulumi:"description"`
 	// The name of the scope. The `openid` scope name is reserved.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The template string for the scope. This may be provided as escaped JSON or base64 encoded JSON.
 	Template *string `pulumi:"template"`
 }
@@ -134,6 +145,11 @@ type OidcScopeArgs struct {
 	Description pulumi.StringPtrInput
 	// The name of the scope. The `openid` scope name is reserved.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The template string for the scope. This may be provided as escaped JSON or base64 encoded JSON.
 	Template pulumi.StringPtrInput
 }
@@ -233,6 +249,14 @@ func (o OidcScopeOutput) Description() pulumi.StringPtrOutput {
 // The name of the scope. The `openid` scope name is reserved.
 func (o OidcScopeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *OidcScope) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o OidcScopeOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OidcScope) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The template string for the scope. This may be provided as escaped JSON or base64 encoded JSON.

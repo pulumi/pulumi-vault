@@ -25,15 +25,23 @@ type AuthBackend struct {
 
 	// The accessor for this auth method
 	Accessor pulumi.StringOutput `pulumi:"accessor"`
-	// A description of the auth method
+	// A description of the auth method.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
-	// The path to mount the auth method — this defaults to the name of the type
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
+	// The path to mount the auth method — this defaults to the name of the type.
 	Path pulumi.StringOutput `pulumi:"path"`
 	// Extra configuration block. Structure is documented below.
 	Tune AuthBackendTuneOutput `pulumi:"tune"`
-	// The name of the auth method type
+	// The name of the auth method type.
 	Type pulumi.StringOutput `pulumi:"type"`
 }
 
@@ -71,30 +79,46 @@ func GetAuthBackend(ctx *pulumi.Context,
 type authBackendState struct {
 	// The accessor for this auth method
 	Accessor *string `pulumi:"accessor"`
-	// A description of the auth method
+	// A description of the auth method.
 	Description *string `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount *bool `pulumi:"disableRemount"`
 	// Specifies if the auth method is local only.
 	Local *bool `pulumi:"local"`
-	// The path to mount the auth method — this defaults to the name of the type
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
+	// The path to mount the auth method — this defaults to the name of the type.
 	Path *string `pulumi:"path"`
 	// Extra configuration block. Structure is documented below.
 	Tune *AuthBackendTune `pulumi:"tune"`
-	// The name of the auth method type
+	// The name of the auth method type.
 	Type *string `pulumi:"type"`
 }
 
 type AuthBackendState struct {
 	// The accessor for this auth method
 	Accessor pulumi.StringPtrInput
-	// A description of the auth method
+	// A description of the auth method.
 	Description pulumi.StringPtrInput
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrInput
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrInput
-	// The path to mount the auth method — this defaults to the name of the type
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
+	// The path to mount the auth method — this defaults to the name of the type.
 	Path pulumi.StringPtrInput
 	// Extra configuration block. Structure is documented below.
 	Tune AuthBackendTunePtrInput
-	// The name of the auth method type
+	// The name of the auth method type.
 	Type pulumi.StringPtrInput
 }
 
@@ -103,29 +127,45 @@ func (AuthBackendState) ElementType() reflect.Type {
 }
 
 type authBackendArgs struct {
-	// A description of the auth method
+	// A description of the auth method.
 	Description *string `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount *bool `pulumi:"disableRemount"`
 	// Specifies if the auth method is local only.
 	Local *bool `pulumi:"local"`
-	// The path to mount the auth method — this defaults to the name of the type
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
+	// The path to mount the auth method — this defaults to the name of the type.
 	Path *string `pulumi:"path"`
 	// Extra configuration block. Structure is documented below.
 	Tune *AuthBackendTune `pulumi:"tune"`
-	// The name of the auth method type
+	// The name of the auth method type.
 	Type string `pulumi:"type"`
 }
 
 // The set of arguments for constructing a AuthBackend resource.
 type AuthBackendArgs struct {
-	// A description of the auth method
+	// A description of the auth method.
 	Description pulumi.StringPtrInput
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrInput
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrInput
-	// The path to mount the auth method — this defaults to the name of the type
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
+	// The path to mount the auth method — this defaults to the name of the type.
 	Path pulumi.StringPtrInput
 	// Extra configuration block. Structure is documented below.
 	Tune AuthBackendTunePtrInput
-	// The name of the auth method type
+	// The name of the auth method type.
 	Type pulumi.StringInput
 }
 
@@ -221,9 +261,15 @@ func (o AuthBackendOutput) Accessor() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Accessor }).(pulumi.StringOutput)
 }
 
-// A description of the auth method
+// A description of the auth method.
 func (o AuthBackendOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// If set, opts out of mount migration on path updates.
+// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+func (o AuthBackendOutput) DisableRemount() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.BoolPtrOutput { return v.DisableRemount }).(pulumi.BoolPtrOutput)
 }
 
 // Specifies if the auth method is local only.
@@ -231,7 +277,15 @@ func (o AuthBackendOutput) Local() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.BoolPtrOutput { return v.Local }).(pulumi.BoolPtrOutput)
 }
 
-// The path to mount the auth method — this defaults to the name of the type
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o AuthBackendOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+// The path to mount the auth method — this defaults to the name of the type.
 func (o AuthBackendOutput) Path() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Path }).(pulumi.StringOutput)
 }
@@ -241,7 +295,7 @@ func (o AuthBackendOutput) Tune() AuthBackendTuneOutput {
 	return o.ApplyT(func(v *AuthBackend) AuthBackendTuneOutput { return v.Tune }).(AuthBackendTuneOutput)
 }
 
-// The name of the auth method type
+// The name of the auth method type.
 func (o AuthBackendOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

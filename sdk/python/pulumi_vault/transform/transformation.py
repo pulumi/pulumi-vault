@@ -297,28 +297,7 @@ class Transformation(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        This resource supports the "/transform/transformation/{name}" Vault endpoint.
-
-        It creates or updates a transformation with the given name. If a transformation with the name does not exist,
-        it will be created. If the transformation exists, it will be updated with the new attributes.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        mount_transform = vault.Mount("mountTransform",
-            path="transform",
-            type="transform")
-        test = vault.transform.Transformation("test",
-            path=mount_transform.path,
-            type="fpe",
-            template="ccn",
-            tweak_source="internal",
-            allowed_roles=["payments"])
-        ```
-
+        Create a Transformation resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: The set of roles allowed to perform this transformation.
@@ -337,28 +316,7 @@ class Transformation(pulumi.CustomResource):
                  args: TransformationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        This resource supports the "/transform/transformation/{name}" Vault endpoint.
-
-        It creates or updates a transformation with the given name. If a transformation with the name does not exist,
-        it will be created. If the transformation exists, it will be updated with the new attributes.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        mount_transform = vault.Mount("mountTransform",
-            path="transform",
-            type="transform")
-        test = vault.transform.Transformation("test",
-            path=mount_transform.path,
-            type="fpe",
-            template="ccn",
-            tweak_source="internal",
-            allowed_roles=["payments"])
-        ```
-
+        Create a Transformation resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param TransformationArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

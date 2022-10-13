@@ -61,6 +61,11 @@ type LookupEntityArgs struct {
 	EntityId *string `pulumi:"entityId"`
 	// Name of the entity.
 	EntityName *string `pulumi:"entityName"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 }
 
 // A collection of values returned by getEntity.
@@ -92,7 +97,8 @@ type LookupEntityResult struct {
 	// Other entity IDs which is merged with this entity
 	MergedEntityIds []string `pulumi:"mergedEntityIds"`
 	// Arbitrary metadata
-	Metadata map[string]interface{} `pulumi:"metadata"`
+	Metadata  map[string]interface{} `pulumi:"metadata"`
+	Namespace *string                `pulumi:"namespace"`
 	// Namespace of which the entity is part of
 	NamespaceId string `pulumi:"namespaceId"`
 	// List of policies attached to the entity
@@ -126,6 +132,11 @@ type LookupEntityOutputArgs struct {
 	EntityId pulumi.StringPtrInput `pulumi:"entityId"`
 	// Name of the entity.
 	EntityName pulumi.StringPtrInput `pulumi:"entityName"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 }
 
 func (LookupEntityOutputArgs) ElementType() reflect.Type {
@@ -221,6 +232,10 @@ func (o LookupEntityResultOutput) MergedEntityIds() pulumi.StringArrayOutput {
 // Arbitrary metadata
 func (o LookupEntityResultOutput) Metadata() pulumi.MapOutput {
 	return o.ApplyT(func(v LookupEntityResult) map[string]interface{} { return v.Metadata }).(pulumi.MapOutput)
+}
+
+func (o LookupEntityResultOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupEntityResult) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Namespace of which the entity is part of

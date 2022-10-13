@@ -80,6 +80,11 @@ type SecretBackendRootSignIntermediate struct {
 	Locality pulumi.StringPtrOutput `pulumi:"locality"`
 	// The maximum path length to encode in the generated certificate
 	MaxPathLength pulumi.IntPtrOutput `pulumi:"maxPathLength"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The organization
 	Organization pulumi.StringPtrOutput `pulumi:"organization"`
 	// List of other SANs
@@ -177,6 +182,11 @@ type secretBackendRootSignIntermediateState struct {
 	Locality *string `pulumi:"locality"`
 	// The maximum path length to encode in the generated certificate
 	MaxPathLength *int `pulumi:"maxPathLength"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The organization
 	Organization *string `pulumi:"organization"`
 	// List of other SANs
@@ -237,6 +247,11 @@ type SecretBackendRootSignIntermediateState struct {
 	Locality pulumi.StringPtrInput
 	// The maximum path length to encode in the generated certificate
 	MaxPathLength pulumi.IntPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The organization
 	Organization pulumi.StringPtrInput
 	// List of other SANs
@@ -292,6 +307,11 @@ type secretBackendRootSignIntermediateArgs struct {
 	Locality *string `pulumi:"locality"`
 	// The maximum path length to encode in the generated certificate
 	MaxPathLength *int `pulumi:"maxPathLength"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The organization
 	Organization *string `pulumi:"organization"`
 	// List of other SANs
@@ -338,6 +358,11 @@ type SecretBackendRootSignIntermediateArgs struct {
 	Locality pulumi.StringPtrInput
 	// The maximum path length to encode in the generated certificate
 	MaxPathLength pulumi.IntPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The organization
 	Organization pulumi.StringPtrInput
 	// List of other SANs
@@ -518,6 +543,14 @@ func (o SecretBackendRootSignIntermediateOutput) Locality() pulumi.StringPtrOutp
 // The maximum path length to encode in the generated certificate
 func (o SecretBackendRootSignIntermediateOutput) MaxPathLength() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.IntPtrOutput { return v.MaxPathLength }).(pulumi.IntPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o SecretBackendRootSignIntermediateOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The organization

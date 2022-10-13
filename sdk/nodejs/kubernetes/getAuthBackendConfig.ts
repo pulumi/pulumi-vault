@@ -23,6 +23,7 @@ export function getAuthBackendConfig(args?: GetAuthBackendConfigArgs, opts?: pul
         "issuer": args.issuer,
         "kubernetesCaCert": args.kubernetesCaCert,
         "kubernetesHost": args.kubernetesHost,
+        "namespace": args.namespace,
         "pemKeys": args.pemKeys,
     }, opts);
 }
@@ -50,6 +51,13 @@ export interface GetAuthBackendConfigArgs {
      * Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
      */
     kubernetesHost?: string;
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured namespace.
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: string;
     /**
      * Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
      */
@@ -79,6 +87,7 @@ export interface GetAuthBackendConfigResult {
      * Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
      */
     readonly kubernetesHost: string;
+    readonly namespace?: string;
     /**
      * Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
      */
@@ -112,6 +121,13 @@ export interface GetAuthBackendConfigOutputArgs {
      * Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
      */
     kubernetesHost?: pulumi.Input<string>;
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured namespace.
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
      */

@@ -41,7 +41,7 @@ namespace Pulumi.Vault.Gcp
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetAuthBackendRoleResult> InvokeAsync(GetAuthBackendRoleArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendRoleResult>("vault:gcp/getAuthBackendRole:getAuthBackendRole", args ?? new GetAuthBackendRoleArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendRoleResult>("vault:gcp/getAuthBackendRole:getAuthBackendRole", args ?? new GetAuthBackendRoleArgs(), options.WithDefaults());
 
         /// <summary>
         /// Reads a GCP auth role from a Vault server.
@@ -73,7 +73,7 @@ namespace Pulumi.Vault.Gcp
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetAuthBackendRoleResult> Invoke(GetAuthBackendRoleInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetAuthBackendRoleResult>("vault:gcp/getAuthBackendRole:getAuthBackendRole", args ?? new GetAuthBackendRoleInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetAuthBackendRoleResult>("vault:gcp/getAuthBackendRole:getAuthBackendRole", args ?? new GetAuthBackendRoleInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -84,6 +84,15 @@ namespace Pulumi.Vault.Gcp
         /// </summary>
         [Input("backend")]
         public string? Backend { get; set; }
+
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured namespace.
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public string? Namespace { get; set; }
 
         /// <summary>
         /// The name of the role to retrieve the Role ID for.
@@ -188,6 +197,15 @@ namespace Pulumi.Vault.Gcp
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
+
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured namespace.
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// The name of the role to retrieve the Role ID for.
@@ -318,6 +336,7 @@ namespace Pulumi.Vault.Gcp
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly string? Namespace;
         /// <summary>
         /// The RoleID of the GCP role.
         /// </summary>
@@ -400,6 +419,8 @@ namespace Pulumi.Vault.Gcp
 
             string id,
 
+            string? @namespace,
+
             string roleId,
 
             string roleName,
@@ -432,6 +453,7 @@ namespace Pulumi.Vault.Gcp
             BoundServiceAccounts = boundServiceAccounts;
             BoundZones = boundZones;
             Id = id;
+            Namespace = @namespace;
             RoleId = roleId;
             RoleName = roleName;
             TokenBoundCidrs = tokenBoundCidrs;

@@ -10,8 +10,10 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.gcp.AuthBackendArgs;
 import com.pulumi.vault.gcp.inputs.AuthBackendState;
+import com.pulumi.vault.gcp.outputs.AuthBackendCustomEndpoint;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -27,6 +29,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.vault.gcp.AuthBackend;
  * import com.pulumi.vault.gcp.AuthBackendArgs;
+ * import com.pulumi.vault.gcp.inputs.AuthBackendCustomEndpointArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -42,6 +45,12 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var gcp = new AuthBackend(&#34;gcp&#34;, AuthBackendArgs.builder()        
  *             .credentials(Files.readString(Paths.get(&#34;vault-gcp-credentials.json&#34;)))
+ *             .customEndpoint(AuthBackendCustomEndpointArgs.builder()
+ *                 .api(&#34;www.googleapis.com&#34;)
+ *                 .iam(&#34;iam.googleapis.com&#34;)
+ *                 .crm(&#34;cloudresourcemanager.googleapis.com&#34;)
+ *                 .compute(&#34;compute.googleapis.com&#34;)
+ *                 .build())
  *             .build());
  * 
  *     }
@@ -102,6 +111,28 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.credentials);
     }
     /**
+     * Specifies overrides to
+     * [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint)
+     * used when making API requests. This allows specific requests made during authentication
+     * to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
+     * environments. Requires Vault 1.11+.
+     * 
+     */
+    @Export(name="customEndpoint", type=AuthBackendCustomEndpoint.class, parameters={})
+    private Output</* @Nullable */ AuthBackendCustomEndpoint> customEndpoint;
+
+    /**
+     * @return Specifies overrides to
+     * [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint)
+     * used when making API requests. This allows specific requests made during authentication
+     * to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
+     * environments. Requires Vault 1.11+.
+     * 
+     */
+    public Output<Optional<AuthBackendCustomEndpoint>> customEndpoint() {
+        return Codegen.optional(this.customEndpoint);
+    }
+    /**
      * A description of the auth method.
      * 
      */
@@ -116,6 +147,22 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.description);
     }
     /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     * 
+     */
+    @Export(name="disableRemount", type=Boolean.class, parameters={})
+    private Output</* @Nullable */ Boolean> disableRemount;
+
+    /**
+     * @return If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     * 
+     */
+    public Output<Optional<Boolean>> disableRemount() {
+        return Codegen.optional(this.disableRemount);
+    }
+    /**
      * Specifies if the auth method is local only.
      * 
      */
@@ -128,6 +175,26 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Boolean>> local() {
         return Codegen.optional(this.local);
+    }
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="namespace", type=String.class, parameters={})
+    private Output</* @Nullable */ String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> namespace() {
+        return Codegen.optional(this.namespace);
     }
     /**
      * The path to mount the auth method — this defaults to &#39;gcp&#39;.
@@ -204,6 +271,9 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "credentials"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

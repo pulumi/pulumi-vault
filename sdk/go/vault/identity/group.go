@@ -152,6 +152,11 @@ type Group struct {
 	Metadata pulumi.StringMapOutput `pulumi:"metadata"`
 	// Name of the identity group to create.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// A list of policies to apply to the group.
 	Policies pulumi.StringArrayOutput `pulumi:"policies"`
 	// Type of the group, internal or external. Defaults to `internal`.
@@ -199,6 +204,11 @@ type groupState struct {
 	Metadata map[string]string `pulumi:"metadata"`
 	// Name of the identity group to create.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// A list of policies to apply to the group.
 	Policies []string `pulumi:"policies"`
 	// Type of the group, internal or external. Defaults to `internal`.
@@ -218,6 +228,11 @@ type GroupState struct {
 	Metadata pulumi.StringMapInput
 	// Name of the identity group to create.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// A list of policies to apply to the group.
 	Policies pulumi.StringArrayInput
 	// Type of the group, internal or external. Defaults to `internal`.
@@ -241,6 +256,11 @@ type groupArgs struct {
 	Metadata map[string]string `pulumi:"metadata"`
 	// Name of the identity group to create.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// A list of policies to apply to the group.
 	Policies []string `pulumi:"policies"`
 	// Type of the group, internal or external. Defaults to `internal`.
@@ -261,6 +281,11 @@ type GroupArgs struct {
 	Metadata pulumi.StringMapInput
 	// Name of the identity group to create.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// A list of policies to apply to the group.
 	Policies pulumi.StringArrayInput
 	// Type of the group, internal or external. Defaults to `internal`.
@@ -382,6 +407,14 @@ func (o GroupOutput) Metadata() pulumi.StringMapOutput {
 // Name of the identity group to create.
 func (o GroupOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Group) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o GroupOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Group) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // A list of policies to apply to the group.

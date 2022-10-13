@@ -65,6 +65,11 @@ type RaftAutopilot struct {
 	// autopilot can prune dead servers. This should at least be 3. Applicable only for
 	// voting nodes.
 	MinQuorum pulumi.IntPtrOutput `pulumi:"minQuorum"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Minimum amount of time a server must be
 	// stable in the 'healthy' state before being added to the cluster.
 	ServerStabilizationTime pulumi.StringPtrOutput `pulumi:"serverStabilizationTime"`
@@ -116,6 +121,11 @@ type raftAutopilotState struct {
 	// autopilot can prune dead servers. This should at least be 3. Applicable only for
 	// voting nodes.
 	MinQuorum *int `pulumi:"minQuorum"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Minimum amount of time a server must be
 	// stable in the 'healthy' state before being added to the cluster.
 	ServerStabilizationTime *string `pulumi:"serverStabilizationTime"`
@@ -139,6 +149,11 @@ type RaftAutopilotState struct {
 	// autopilot can prune dead servers. This should at least be 3. Applicable only for
 	// voting nodes.
 	MinQuorum pulumi.IntPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Minimum amount of time a server must be
 	// stable in the 'healthy' state before being added to the cluster.
 	ServerStabilizationTime pulumi.StringPtrInput
@@ -166,6 +181,11 @@ type raftAutopilotArgs struct {
 	// autopilot can prune dead servers. This should at least be 3. Applicable only for
 	// voting nodes.
 	MinQuorum *int `pulumi:"minQuorum"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Minimum amount of time a server must be
 	// stable in the 'healthy' state before being added to the cluster.
 	ServerStabilizationTime *string `pulumi:"serverStabilizationTime"`
@@ -190,6 +210,11 @@ type RaftAutopilotArgs struct {
 	// autopilot can prune dead servers. This should at least be 3. Applicable only for
 	// voting nodes.
 	MinQuorum pulumi.IntPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Minimum amount of time a server must be
 	// stable in the 'healthy' state before being added to the cluster.
 	ServerStabilizationTime pulumi.StringPtrInput
@@ -312,6 +337,14 @@ func (o RaftAutopilotOutput) MaxTrailingLogs() pulumi.IntPtrOutput {
 // voting nodes.
 func (o RaftAutopilotOutput) MinQuorum() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *RaftAutopilot) pulumi.IntPtrOutput { return v.MinQuorum }).(pulumi.IntPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o RaftAutopilotOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RaftAutopilot) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Minimum amount of time a server must be

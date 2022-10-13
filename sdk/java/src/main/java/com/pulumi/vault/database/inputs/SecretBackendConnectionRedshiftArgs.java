@@ -5,6 +5,7 @@ package com.pulumi.vault.database.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -35,6 +36,21 @@ public final class SecretBackendConnectionRedshiftArgs extends com.pulumi.resour
      */
     public Optional<Output<String>> connectionUrl() {
         return Optional.ofNullable(this.connectionUrl);
+    }
+
+    /**
+     * Disable special character escaping in username and password.
+     * 
+     */
+    @Import(name="disableEscaping")
+    private @Nullable Output<Boolean> disableEscaping;
+
+    /**
+     * @return Disable special character escaping in username and password.
+     * 
+     */
+    public Optional<Output<Boolean>> disableEscaping() {
+        return Optional.ofNullable(this.disableEscaping);
     }
 
     /**
@@ -135,6 +151,7 @@ public final class SecretBackendConnectionRedshiftArgs extends com.pulumi.resour
 
     private SecretBackendConnectionRedshiftArgs(SecretBackendConnectionRedshiftArgs $) {
         this.connectionUrl = $.connectionUrl;
+        this.disableEscaping = $.disableEscaping;
         this.maxConnectionLifetime = $.maxConnectionLifetime;
         this.maxIdleConnections = $.maxIdleConnections;
         this.maxOpenConnections = $.maxOpenConnections;
@@ -186,6 +203,27 @@ public final class SecretBackendConnectionRedshiftArgs extends com.pulumi.resour
          */
         public Builder connectionUrl(String connectionUrl) {
             return connectionUrl(Output.of(connectionUrl));
+        }
+
+        /**
+         * @param disableEscaping Disable special character escaping in username and password.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableEscaping(@Nullable Output<Boolean> disableEscaping) {
+            $.disableEscaping = disableEscaping;
+            return this;
+        }
+
+        /**
+         * @param disableEscaping Disable special character escaping in username and password.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableEscaping(Boolean disableEscaping) {
+            return disableEscaping(Output.of(disableEscaping));
         }
 
         /**

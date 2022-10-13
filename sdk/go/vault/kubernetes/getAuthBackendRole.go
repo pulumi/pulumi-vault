@@ -29,6 +29,11 @@ type LookupAuthBackendRoleArgs struct {
 	// The unique name for the Kubernetes backend the role to
 	// retrieve Role attributes for resides in. Defaults to "kubernetes".
 	Backend *string `pulumi:"backend"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The name of the role to retrieve the Role attributes for.
 	RoleName string `pulumi:"roleName"`
 	// List of CIDR blocks; if set, specifies blocks of IP
@@ -81,8 +86,9 @@ type LookupAuthBackendRoleResult struct {
 	// List of namespaces allowed to access this role. If set to "*" all namespaces are allowed, both this and boundServiceAccountNames can not be set to "*".
 	BoundServiceAccountNamespaces []string `pulumi:"boundServiceAccountNamespaces"`
 	// The provider-assigned unique ID for this managed resource.
-	Id       string `pulumi:"id"`
-	RoleName string `pulumi:"roleName"`
+	Id        string  `pulumi:"id"`
+	Namespace *string `pulumi:"namespace"`
+	RoleName  string  `pulumi:"roleName"`
 	// List of CIDR blocks; if set, specifies blocks of IP
 	// addresses which can authenticate successfully, and ties the resulting token to these blocks
 	// as well.
@@ -141,6 +147,11 @@ type LookupAuthBackendRoleOutputArgs struct {
 	// The unique name for the Kubernetes backend the role to
 	// retrieve Role attributes for resides in. Defaults to "kubernetes".
 	Backend pulumi.StringPtrInput `pulumi:"backend"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 	// The name of the role to retrieve the Role attributes for.
 	RoleName pulumi.StringInput `pulumi:"roleName"`
 	// List of CIDR blocks; if set, specifies blocks of IP
@@ -227,6 +238,10 @@ func (o LookupAuthBackendRoleResultOutput) BoundServiceAccountNamespaces() pulum
 // The provider-assigned unique ID for this managed resource.
 func (o LookupAuthBackendRoleResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAuthBackendRoleResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupAuthBackendRoleResultOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupAuthBackendRoleResult) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupAuthBackendRoleResultOutput) RoleName() pulumi.StringOutput {

@@ -6,6 +6,8 @@ package com.pulumi.vault.identity.inputs;
 import com.pulumi.core.annotations.Import;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetOidcPublicKeysPlainArgs extends com.pulumi.resources.InvokeArgs {
@@ -27,10 +29,32 @@ public final class GetOidcPublicKeysPlainArgs extends com.pulumi.resources.Invok
         return this.name;
     }
 
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable String namespace;
+
+    /**
+     * @return The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<String> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
+
     private GetOidcPublicKeysPlainArgs() {}
 
     private GetOidcPublicKeysPlainArgs(GetOidcPublicKeysPlainArgs $) {
         this.name = $.name;
+        this.namespace = $.namespace;
     }
 
     public static Builder builder() {
@@ -59,6 +83,20 @@ public final class GetOidcPublicKeysPlainArgs extends com.pulumi.resources.Invok
          */
         public Builder name(String name) {
             $.name = name;
+            return this;
+        }
+
+        /**
+         * @param namespace The namespace of the target resource.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable String namespace) {
+            $.namespace = namespace;
             return this;
         }
 

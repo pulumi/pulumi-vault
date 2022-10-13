@@ -99,6 +99,15 @@ namespace Pulumi.Vault.Aws
         public Output<ImmutableDictionary<string, object>> Metadata { get; private set; } = null!;
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
         /// The unique nonce to be used for login requests. Can be
         /// set to a user-specified value, or will contain the server-generated value
         /// once a token is issued. EC2 instances can only acquire a single token until
@@ -165,6 +174,10 @@ namespace Pulumi.Vault.Aws
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "clientToken",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -231,6 +244,15 @@ namespace Pulumi.Vault.Aws
         public Input<string>? Identity { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
         /// The unique nonce to be used for login requests. Can be
         /// set to a user-specified value, or will contain the server-generated value
         /// once a token is issued. EC2 instances can only acquire a single token until
@@ -289,11 +311,21 @@ namespace Pulumi.Vault.Aws
         [Input("backend")]
         public Input<string>? Backend { get; set; }
 
+        [Input("clientToken")]
+        private Input<string>? _clientToken;
+
         /// <summary>
         /// The token returned by Vault.
         /// </summary>
-        [Input("clientToken")]
-        public Input<string>? ClientToken { get; set; }
+        public Input<string>? ClientToken
+        {
+            get => _clientToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The HTTP method used in the signed IAM
@@ -355,6 +387,15 @@ namespace Pulumi.Vault.Aws
             get => _metadata ?? (_metadata = new InputMap<object>());
             set => _metadata = value;
         }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// The unique nonce to be used for login requests. Can be

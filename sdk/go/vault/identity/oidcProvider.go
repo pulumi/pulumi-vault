@@ -124,6 +124,11 @@ type OidcProvider struct {
 	IssuerHost pulumi.StringPtrOutput `pulumi:"issuerHost"`
 	// The name of the provider.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The scopes available for requesting on the provider.
 	ScopesSupporteds pulumi.StringArrayOutput `pulumi:"scopesSupporteds"`
 }
@@ -170,6 +175,11 @@ type oidcProviderState struct {
 	IssuerHost *string `pulumi:"issuerHost"`
 	// The name of the provider.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The scopes available for requesting on the provider.
 	ScopesSupporteds []string `pulumi:"scopesSupporteds"`
 }
@@ -188,6 +198,11 @@ type OidcProviderState struct {
 	IssuerHost pulumi.StringPtrInput
 	// The name of the provider.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The scopes available for requesting on the provider.
 	ScopesSupporteds pulumi.StringArrayInput
 }
@@ -206,6 +221,11 @@ type oidcProviderArgs struct {
 	IssuerHost *string `pulumi:"issuerHost"`
 	// The name of the provider.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The scopes available for requesting on the provider.
 	ScopesSupporteds []string `pulumi:"scopesSupporteds"`
 }
@@ -221,6 +241,11 @@ type OidcProviderArgs struct {
 	IssuerHost pulumi.StringPtrInput
 	// The name of the provider.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The scopes available for requesting on the provider.
 	ScopesSupporteds pulumi.StringArrayInput
 }
@@ -338,6 +363,14 @@ func (o OidcProviderOutput) IssuerHost() pulumi.StringPtrOutput {
 // The name of the provider.
 func (o OidcProviderOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *OidcProvider) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o OidcProviderOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OidcProvider) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The scopes available for requesting on the provider.

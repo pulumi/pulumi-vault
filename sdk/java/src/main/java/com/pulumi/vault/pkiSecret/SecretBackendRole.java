@@ -445,6 +445,26 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="namespace", type=String.class, parameters={})
+    private Output</* @Nullable */ String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> namespace() {
+        return Codegen.optional(this.namespace);
+    }
+    /**
      * Flag to not store certificates in the storage backend
      * 
      */
@@ -501,14 +521,14 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.organizations);
     }
     /**
-     * Specify the list of allowed policies IODs
+     * Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
      * 
      */
     @Export(name="policyIdentifiers", type=List.class, parameters={String.class})
     private Output</* @Nullable */ List<String>> policyIdentifiers;
 
     /**
-     * @return Specify the list of allowed policies IODs
+     * @return Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
      * 
      */
     public Output<Optional<List<String>>> policyIdentifiers() {

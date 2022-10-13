@@ -27,6 +27,8 @@ class AuthBackendRoleArgs:
                  disable_bound_claims_parsing: Optional[pulumi.Input[bool]] = None,
                  expiration_leeway: Optional[pulumi.Input[int]] = None,
                  groups_claim: Optional[pulumi.Input[str]] = None,
+                 max_age: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  not_before_leeway: Optional[pulumi.Input[int]] = None,
                  oidc_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  role_type: Optional[pulumi.Input[str]] = None,
@@ -39,6 +41,7 @@ class AuthBackendRoleArgs:
                  token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_ttl: Optional[pulumi.Input[int]] = None,
                  token_type: Optional[pulumi.Input[str]] = None,
+                 user_claim_json_pointer: Optional[pulumi.Input[bool]] = None,
                  verbose_oidc_logging: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a AuthBackendRole resource.
@@ -73,6 +76,12 @@ class AuthBackendRoleArgs:
                the set of groups to which the user belongs; this will be used as the names
                for the Identity group aliases created due to a successful login. The claim
                value must be a list of strings.
+        :param pulumi.Input[int] max_age: Specifies the allowable elapsed time in seconds since the last time 
+               the user was actively authenticated with the OIDC provider.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[int] not_before_leeway: The amount of leeway to add to not before (`nbf`) claims to account for
                clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
                Only applicable with "jwt" roles.
@@ -105,6 +114,10 @@ class AuthBackendRoleArgs:
                `service` tokens). For token store roles, there are two additional possibilities:
                `default-service` and `default-batch` which specify the type to return unless the client
                requests a different type at generation time.
+        :param pulumi.Input[bool] user_claim_json_pointer: Specifies if the `user_claim` value uses
+               [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+               syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
+               Requires Vault 1.11+.
         :param pulumi.Input[bool] verbose_oidc_logging: Log received OIDC tokens and claims when debug-level
                logging is active. Not recommended in production since sensitive information may be present
                in OIDC responses.
@@ -133,6 +146,10 @@ class AuthBackendRoleArgs:
             pulumi.set(__self__, "expiration_leeway", expiration_leeway)
         if groups_claim is not None:
             pulumi.set(__self__, "groups_claim", groups_claim)
+        if max_age is not None:
+            pulumi.set(__self__, "max_age", max_age)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if not_before_leeway is not None:
             pulumi.set(__self__, "not_before_leeway", not_before_leeway)
         if oidc_scopes is not None:
@@ -157,6 +174,8 @@ class AuthBackendRoleArgs:
             pulumi.set(__self__, "token_ttl", token_ttl)
         if token_type is not None:
             pulumi.set(__self__, "token_type", token_type)
+        if user_claim_json_pointer is not None:
+            pulumi.set(__self__, "user_claim_json_pointer", user_claim_json_pointer)
         if verbose_oidc_logging is not None:
             pulumi.set(__self__, "verbose_oidc_logging", verbose_oidc_logging)
 
@@ -335,6 +354,34 @@ class AuthBackendRoleArgs:
         pulumi.set(self, "groups_claim", value)
 
     @property
+    @pulumi.getter(name="maxAge")
+    def max_age(self) -> Optional[pulumi.Input[int]]:
+        """
+        Specifies the allowable elapsed time in seconds since the last time 
+        the user was actively authenticated with the OIDC provider.
+        """
+        return pulumi.get(self, "max_age")
+
+    @max_age.setter
+    def max_age(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_age", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="notBeforeLeeway")
     def not_before_leeway(self) -> Optional[pulumi.Input[int]]:
         """
@@ -499,6 +546,21 @@ class AuthBackendRoleArgs:
         pulumi.set(self, "token_type", value)
 
     @property
+    @pulumi.getter(name="userClaimJsonPointer")
+    def user_claim_json_pointer(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies if the `user_claim` value uses
+        [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+        syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
+        Requires Vault 1.11+.
+        """
+        return pulumi.get(self, "user_claim_json_pointer")
+
+    @user_claim_json_pointer.setter
+    def user_claim_json_pointer(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "user_claim_json_pointer", value)
+
+    @property
     @pulumi.getter(name="verboseOidcLogging")
     def verbose_oidc_logging(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -527,6 +589,8 @@ class _AuthBackendRoleState:
                  disable_bound_claims_parsing: Optional[pulumi.Input[bool]] = None,
                  expiration_leeway: Optional[pulumi.Input[int]] = None,
                  groups_claim: Optional[pulumi.Input[str]] = None,
+                 max_age: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  not_before_leeway: Optional[pulumi.Input[int]] = None,
                  oidc_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  role_name: Optional[pulumi.Input[str]] = None,
@@ -541,6 +605,7 @@ class _AuthBackendRoleState:
                  token_ttl: Optional[pulumi.Input[int]] = None,
                  token_type: Optional[pulumi.Input[str]] = None,
                  user_claim: Optional[pulumi.Input[str]] = None,
+                 user_claim_json_pointer: Optional[pulumi.Input[bool]] = None,
                  verbose_oidc_logging: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering AuthBackendRole resources.
@@ -571,6 +636,12 @@ class _AuthBackendRoleState:
                the set of groups to which the user belongs; this will be used as the names
                for the Identity group aliases created due to a successful login. The claim
                value must be a list of strings.
+        :param pulumi.Input[int] max_age: Specifies the allowable elapsed time in seconds since the last time 
+               the user was actively authenticated with the OIDC provider.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[int] not_before_leeway: The amount of leeway to add to not before (`nbf`) claims to account for
                clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
                Only applicable with "jwt" roles.
@@ -607,6 +678,10 @@ class _AuthBackendRoleState:
         :param pulumi.Input[str] user_claim: The claim to use to uniquely identify
                the user; this will be used as the name for the Identity entity alias created
                due to a successful login.
+        :param pulumi.Input[bool] user_claim_json_pointer: Specifies if the `user_claim` value uses
+               [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+               syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
+               Requires Vault 1.11+.
         :param pulumi.Input[bool] verbose_oidc_logging: Log received OIDC tokens and claims when debug-level
                logging is active. Not recommended in production since sensitive information may be present
                in OIDC responses.
@@ -633,6 +708,10 @@ class _AuthBackendRoleState:
             pulumi.set(__self__, "expiration_leeway", expiration_leeway)
         if groups_claim is not None:
             pulumi.set(__self__, "groups_claim", groups_claim)
+        if max_age is not None:
+            pulumi.set(__self__, "max_age", max_age)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if not_before_leeway is not None:
             pulumi.set(__self__, "not_before_leeway", not_before_leeway)
         if oidc_scopes is not None:
@@ -661,6 +740,8 @@ class _AuthBackendRoleState:
             pulumi.set(__self__, "token_type", token_type)
         if user_claim is not None:
             pulumi.set(__self__, "user_claim", user_claim)
+        if user_claim_json_pointer is not None:
+            pulumi.set(__self__, "user_claim_json_pointer", user_claim_json_pointer)
         if verbose_oidc_logging is not None:
             pulumi.set(__self__, "verbose_oidc_logging", verbose_oidc_logging)
 
@@ -811,6 +892,34 @@ class _AuthBackendRoleState:
     @groups_claim.setter
     def groups_claim(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "groups_claim", value)
+
+    @property
+    @pulumi.getter(name="maxAge")
+    def max_age(self) -> Optional[pulumi.Input[int]]:
+        """
+        Specifies the allowable elapsed time in seconds since the last time 
+        the user was actively authenticated with the OIDC provider.
+        """
+        return pulumi.get(self, "max_age")
+
+    @max_age.setter
+    def max_age(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_age", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter(name="notBeforeLeeway")
@@ -1003,6 +1112,21 @@ class _AuthBackendRoleState:
         pulumi.set(self, "user_claim", value)
 
     @property
+    @pulumi.getter(name="userClaimJsonPointer")
+    def user_claim_json_pointer(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies if the `user_claim` value uses
+        [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+        syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
+        Requires Vault 1.11+.
+        """
+        return pulumi.get(self, "user_claim_json_pointer")
+
+    @user_claim_json_pointer.setter
+    def user_claim_json_pointer(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "user_claim_json_pointer", value)
+
+    @property
     @pulumi.getter(name="verboseOidcLogging")
     def verbose_oidc_logging(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -1033,6 +1157,8 @@ class AuthBackendRole(pulumi.CustomResource):
                  disable_bound_claims_parsing: Optional[pulumi.Input[bool]] = None,
                  expiration_leeway: Optional[pulumi.Input[int]] = None,
                  groups_claim: Optional[pulumi.Input[str]] = None,
+                 max_age: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  not_before_leeway: Optional[pulumi.Input[int]] = None,
                  oidc_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  role_name: Optional[pulumi.Input[str]] = None,
@@ -1047,6 +1173,7 @@ class AuthBackendRole(pulumi.CustomResource):
                  token_ttl: Optional[pulumi.Input[int]] = None,
                  token_type: Optional[pulumi.Input[str]] = None,
                  user_claim: Optional[pulumi.Input[str]] = None,
+                 user_claim_json_pointer: Optional[pulumi.Input[bool]] = None,
                  verbose_oidc_logging: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
@@ -1138,6 +1265,12 @@ class AuthBackendRole(pulumi.CustomResource):
                the set of groups to which the user belongs; this will be used as the names
                for the Identity group aliases created due to a successful login. The claim
                value must be a list of strings.
+        :param pulumi.Input[int] max_age: Specifies the allowable elapsed time in seconds since the last time 
+               the user was actively authenticated with the OIDC provider.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[int] not_before_leeway: The amount of leeway to add to not before (`nbf`) claims to account for
                clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
                Only applicable with "jwt" roles.
@@ -1174,6 +1307,10 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] user_claim: The claim to use to uniquely identify
                the user; this will be used as the name for the Identity entity alias created
                due to a successful login.
+        :param pulumi.Input[bool] user_claim_json_pointer: Specifies if the `user_claim` value uses
+               [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+               syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
+               Requires Vault 1.11+.
         :param pulumi.Input[bool] verbose_oidc_logging: Log received OIDC tokens and claims when debug-level
                logging is active. Not recommended in production since sensitive information may be present
                in OIDC responses.
@@ -1270,6 +1407,8 @@ class AuthBackendRole(pulumi.CustomResource):
                  disable_bound_claims_parsing: Optional[pulumi.Input[bool]] = None,
                  expiration_leeway: Optional[pulumi.Input[int]] = None,
                  groups_claim: Optional[pulumi.Input[str]] = None,
+                 max_age: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  not_before_leeway: Optional[pulumi.Input[int]] = None,
                  oidc_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  role_name: Optional[pulumi.Input[str]] = None,
@@ -1284,6 +1423,7 @@ class AuthBackendRole(pulumi.CustomResource):
                  token_ttl: Optional[pulumi.Input[int]] = None,
                  token_type: Optional[pulumi.Input[str]] = None,
                  user_claim: Optional[pulumi.Input[str]] = None,
+                 user_claim_json_pointer: Optional[pulumi.Input[bool]] = None,
                  verbose_oidc_logging: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -1305,6 +1445,8 @@ class AuthBackendRole(pulumi.CustomResource):
             __props__.__dict__["disable_bound_claims_parsing"] = disable_bound_claims_parsing
             __props__.__dict__["expiration_leeway"] = expiration_leeway
             __props__.__dict__["groups_claim"] = groups_claim
+            __props__.__dict__["max_age"] = max_age
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["not_before_leeway"] = not_before_leeway
             __props__.__dict__["oidc_scopes"] = oidc_scopes
             if role_name is None and not opts.urn:
@@ -1323,6 +1465,7 @@ class AuthBackendRole(pulumi.CustomResource):
             if user_claim is None and not opts.urn:
                 raise TypeError("Missing required property 'user_claim'")
             __props__.__dict__["user_claim"] = user_claim
+            __props__.__dict__["user_claim_json_pointer"] = user_claim_json_pointer
             __props__.__dict__["verbose_oidc_logging"] = verbose_oidc_logging
         super(AuthBackendRole, __self__).__init__(
             'vault:jwt/authBackendRole:AuthBackendRole',
@@ -1345,6 +1488,8 @@ class AuthBackendRole(pulumi.CustomResource):
             disable_bound_claims_parsing: Optional[pulumi.Input[bool]] = None,
             expiration_leeway: Optional[pulumi.Input[int]] = None,
             groups_claim: Optional[pulumi.Input[str]] = None,
+            max_age: Optional[pulumi.Input[int]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             not_before_leeway: Optional[pulumi.Input[int]] = None,
             oidc_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             role_name: Optional[pulumi.Input[str]] = None,
@@ -1359,6 +1504,7 @@ class AuthBackendRole(pulumi.CustomResource):
             token_ttl: Optional[pulumi.Input[int]] = None,
             token_type: Optional[pulumi.Input[str]] = None,
             user_claim: Optional[pulumi.Input[str]] = None,
+            user_claim_json_pointer: Optional[pulumi.Input[bool]] = None,
             verbose_oidc_logging: Optional[pulumi.Input[bool]] = None) -> 'AuthBackendRole':
         """
         Get an existing AuthBackendRole resource's state with the given name, id, and optional extra
@@ -1394,6 +1540,12 @@ class AuthBackendRole(pulumi.CustomResource):
                the set of groups to which the user belongs; this will be used as the names
                for the Identity group aliases created due to a successful login. The claim
                value must be a list of strings.
+        :param pulumi.Input[int] max_age: Specifies the allowable elapsed time in seconds since the last time 
+               the user was actively authenticated with the OIDC provider.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[int] not_before_leeway: The amount of leeway to add to not before (`nbf`) claims to account for
                clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
                Only applicable with "jwt" roles.
@@ -1430,6 +1582,10 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] user_claim: The claim to use to uniquely identify
                the user; this will be used as the name for the Identity entity alias created
                due to a successful login.
+        :param pulumi.Input[bool] user_claim_json_pointer: Specifies if the `user_claim` value uses
+               [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+               syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
+               Requires Vault 1.11+.
         :param pulumi.Input[bool] verbose_oidc_logging: Log received OIDC tokens and claims when debug-level
                logging is active. Not recommended in production since sensitive information may be present
                in OIDC responses.
@@ -1449,6 +1605,8 @@ class AuthBackendRole(pulumi.CustomResource):
         __props__.__dict__["disable_bound_claims_parsing"] = disable_bound_claims_parsing
         __props__.__dict__["expiration_leeway"] = expiration_leeway
         __props__.__dict__["groups_claim"] = groups_claim
+        __props__.__dict__["max_age"] = max_age
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["not_before_leeway"] = not_before_leeway
         __props__.__dict__["oidc_scopes"] = oidc_scopes
         __props__.__dict__["role_name"] = role_name
@@ -1463,6 +1621,7 @@ class AuthBackendRole(pulumi.CustomResource):
         __props__.__dict__["token_ttl"] = token_ttl
         __props__.__dict__["token_type"] = token_type
         __props__.__dict__["user_claim"] = user_claim
+        __props__.__dict__["user_claim_json_pointer"] = user_claim_json_pointer
         __props__.__dict__["verbose_oidc_logging"] = verbose_oidc_logging
         return AuthBackendRole(resource_name, opts=opts, __props__=__props__)
 
@@ -1569,6 +1728,26 @@ class AuthBackendRole(pulumi.CustomResource):
         value must be a list of strings.
         """
         return pulumi.get(self, "groups_claim")
+
+    @property
+    @pulumi.getter(name="maxAge")
+    def max_age(self) -> pulumi.Output[Optional[int]]:
+        """
+        Specifies the allowable elapsed time in seconds since the last time 
+        the user was actively authenticated with the OIDC provider.
+        """
+        return pulumi.get(self, "max_age")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="notBeforeLeeway")
@@ -1703,6 +1882,17 @@ class AuthBackendRole(pulumi.CustomResource):
         due to a successful login.
         """
         return pulumi.get(self, "user_claim")
+
+    @property
+    @pulumi.getter(name="userClaimJsonPointer")
+    def user_claim_json_pointer(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Specifies if the `user_claim` value uses
+        [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+        syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
+        Requires Vault 1.11+.
+        """
+        return pulumi.get(self, "user_claim_json_pointer")
 
     @property
     @pulumi.getter(name="verboseOidcLogging")

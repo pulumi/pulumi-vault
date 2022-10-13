@@ -14,21 +14,14 @@ public final class GetPolicyDocumentRuleDeniedParameter {
      * @return name of permitted or denied parameter.
      * 
      */
-    private final String key;
+    private String key;
     /**
      * @return list of values what are permitted or denied by policy rule.
      * 
      */
-    private final List<String> values;
+    private List<String> values;
 
-    @CustomType.Constructor
-    private GetPolicyDocumentRuleDeniedParameter(
-        @CustomType.Parameter("key") String key,
-        @CustomType.Parameter("values") List<String> values) {
-        this.key = key;
-        this.values = values;
-    }
-
+    private GetPolicyDocumentRuleDeniedParameter() {}
     /**
      * @return name of permitted or denied parameter.
      * 
@@ -51,33 +44,35 @@ public final class GetPolicyDocumentRuleDeniedParameter {
     public static Builder builder(GetPolicyDocumentRuleDeniedParameter defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String key;
         private List<String> values;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetPolicyDocumentRuleDeniedParameter defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.key = defaults.key;
     	      this.values = defaults.values;
         }
 
+        @CustomType.Setter
         public Builder key(String key) {
             this.key = Objects.requireNonNull(key);
             return this;
         }
+        @CustomType.Setter
         public Builder values(List<String> values) {
             this.values = Objects.requireNonNull(values);
             return this;
         }
         public Builder values(String... values) {
             return values(List.of(values));
-        }        public GetPolicyDocumentRuleDeniedParameter build() {
-            return new GetPolicyDocumentRuleDeniedParameter(key, values);
+        }
+        public GetPolicyDocumentRuleDeniedParameter build() {
+            final var o = new GetPolicyDocumentRuleDeniedParameter();
+            o.key = key;
+            o.values = values;
+            return o;
         }
     }
 }

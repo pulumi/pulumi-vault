@@ -55,6 +55,11 @@ type AuthBackendRoletagBlacklist struct {
 	// If set to true, disables the periodic
 	// tidying of the roletag blacklist entries. Defaults to false.
 	DisablePeriodicTidy pulumi.BoolPtrOutput `pulumi:"disablePeriodicTidy"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The amount of extra time that must have passed
 	// beyond the roletag expiration, before it is removed from the backend storage.
 	// Defaults to 259,200 seconds, or 72 hours.
@@ -99,6 +104,11 @@ type authBackendRoletagBlacklistState struct {
 	// If set to true, disables the periodic
 	// tidying of the roletag blacklist entries. Defaults to false.
 	DisablePeriodicTidy *bool `pulumi:"disablePeriodicTidy"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The amount of extra time that must have passed
 	// beyond the roletag expiration, before it is removed from the backend storage.
 	// Defaults to 259,200 seconds, or 72 hours.
@@ -112,6 +122,11 @@ type AuthBackendRoletagBlacklistState struct {
 	// If set to true, disables the periodic
 	// tidying of the roletag blacklist entries. Defaults to false.
 	DisablePeriodicTidy pulumi.BoolPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The amount of extra time that must have passed
 	// beyond the roletag expiration, before it is removed from the backend storage.
 	// Defaults to 259,200 seconds, or 72 hours.
@@ -129,6 +144,11 @@ type authBackendRoletagBlacklistArgs struct {
 	// If set to true, disables the periodic
 	// tidying of the roletag blacklist entries. Defaults to false.
 	DisablePeriodicTidy *bool `pulumi:"disablePeriodicTidy"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The amount of extra time that must have passed
 	// beyond the roletag expiration, before it is removed from the backend storage.
 	// Defaults to 259,200 seconds, or 72 hours.
@@ -143,6 +163,11 @@ type AuthBackendRoletagBlacklistArgs struct {
 	// If set to true, disables the periodic
 	// tidying of the roletag blacklist entries. Defaults to false.
 	DisablePeriodicTidy pulumi.BoolPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The amount of extra time that must have passed
 	// beyond the roletag expiration, before it is removed from the backend storage.
 	// Defaults to 259,200 seconds, or 72 hours.
@@ -246,6 +271,14 @@ func (o AuthBackendRoletagBlacklistOutput) Backend() pulumi.StringOutput {
 // tidying of the roletag blacklist entries. Defaults to false.
 func (o AuthBackendRoletagBlacklistOutput) DisablePeriodicTidy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AuthBackendRoletagBlacklist) pulumi.BoolPtrOutput { return v.DisablePeriodicTidy }).(pulumi.BoolPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o AuthBackendRoletagBlacklistOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRoletagBlacklist) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The amount of extra time that must have passed

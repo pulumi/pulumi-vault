@@ -82,6 +82,13 @@ export class Audit extends pulumi.CustomResource {
      */
     public readonly local!: pulumi.Output<boolean | undefined>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * Configuration options to pass to the audit device itself.
      */
     public readonly options!: pulumi.Output<{[key: string]: string}>;
@@ -109,6 +116,7 @@ export class Audit extends pulumi.CustomResource {
             const state = argsOrState as AuditState | undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["local"] = state ? state.local : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["options"] = state ? state.options : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
@@ -122,6 +130,7 @@ export class Audit extends pulumi.CustomResource {
             }
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["local"] = args ? args.local : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["options"] = args ? args.options : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
@@ -143,6 +152,13 @@ export interface AuditState {
      * Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
      */
     local?: pulumi.Input<boolean>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Configuration options to pass to the audit device itself.
      */
@@ -169,6 +185,13 @@ export interface AuditArgs {
      * Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
      */
     local?: pulumi.Input<boolean>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Configuration options to pass to the audit device itself.
      */

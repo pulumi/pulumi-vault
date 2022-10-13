@@ -12,7 +12,7 @@ import (
 )
 
 // ## Example Usage
-//
+// ### Creating a standard backend resource:
 // ```go
 // package main
 //
@@ -39,6 +39,33 @@ import (
 //	}
 //
 // ```
+// ### Creating a backend resource to bootstrap a new Consul instance:
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/consul"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := consul.NewSecretBackend(ctx, "test", &consul.SecretBackendArgs{
+//				Address:     pulumi.String("127.0.0.1:8500"),
+//				Bootstrap:   pulumi.Bool(true),
+//				Description: pulumi.String("Bootstrap the Consul backend"),
+//				Path:        pulumi.String("consul"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // ## Import
 //
@@ -54,27 +81,41 @@ type SecretBackend struct {
 
 	// Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
 	Address pulumi.StringOutput `pulumi:"address"`
+	// Denotes that the resource is used to bootstrap the Consul ACL system.
+	Bootstrap pulumi.BoolPtrOutput `pulumi:"bootstrap"`
 	// CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
 	CaCert pulumi.StringPtrOutput `pulumi:"caCert"`
-	// Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.
+	// Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if
+	// this is set you need to also set client_key.
 	ClientCert pulumi.StringPtrOutput `pulumi:"clientCert"`
-	// Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+	// Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set
+	// you need to also set client_cert.
 	ClientKey pulumi.StringPtrOutput `pulumi:"clientKey"`
 	// The default TTL for credentials issued by this backend.
 	DefaultLeaseTtlSeconds pulumi.IntPtrOutput `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
 	// Specifies if the secret backend is local only.
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend.
 	MaxLeaseTtlSeconds pulumi.IntPtrOutput `pulumi:"maxLeaseTtlSeconds"`
-	// The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `consul`.
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
+	// The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults
+	// to `consul`.
 	Path pulumi.StringPtrOutput `pulumi:"path"`
 	// Specifies the URL scheme to use. Defaults to `http`.
 	Scheme pulumi.StringPtrOutput `pulumi:"scheme"`
-	// The Consul management token this backend should use to issue new tokens.
-	Token pulumi.StringOutput `pulumi:"token"`
+	// The Consul management token this backend should use to issue new tokens. This field is required
+	// when `bootstrap` is false.
+	Token pulumi.StringPtrOutput `pulumi:"token"`
 }
 
 // NewSecretBackend registers a new resource with the given unique name, arguments, and options.
@@ -87,9 +128,21 @@ func NewSecretBackend(ctx *pulumi.Context,
 	if args.Address == nil {
 		return nil, errors.New("invalid value for required argument 'Address'")
 	}
-	if args.Token == nil {
-		return nil, errors.New("invalid value for required argument 'Token'")
+	if args.ClientCert != nil {
+		args.ClientCert = pulumi.ToSecret(args.ClientCert).(pulumi.StringPtrOutput)
 	}
+	if args.ClientKey != nil {
+		args.ClientKey = pulumi.ToSecret(args.ClientKey).(pulumi.StringPtrOutput)
+	}
+	if args.Token != nil {
+		args.Token = pulumi.ToSecret(args.Token).(pulumi.StringPtrOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"clientCert",
+		"clientKey",
+		"token",
+	})
+	opts = append(opts, secrets)
 	var resource SecretBackend
 	err := ctx.RegisterResource("vault:consul/secretBackend:SecretBackend", name, args, &resource, opts...)
 	if err != nil {
@@ -114,52 +167,80 @@ func GetSecretBackend(ctx *pulumi.Context,
 type secretBackendState struct {
 	// Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
 	Address *string `pulumi:"address"`
+	// Denotes that the resource is used to bootstrap the Consul ACL system.
+	Bootstrap *bool `pulumi:"bootstrap"`
 	// CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
 	CaCert *string `pulumi:"caCert"`
-	// Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.
+	// Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if
+	// this is set you need to also set client_key.
 	ClientCert *string `pulumi:"clientCert"`
-	// Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+	// Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set
+	// you need to also set client_cert.
 	ClientKey *string `pulumi:"clientKey"`
 	// The default TTL for credentials issued by this backend.
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
 	Description *string `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount *bool `pulumi:"disableRemount"`
 	// Specifies if the secret backend is local only.
 	Local *bool `pulumi:"local"`
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend.
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
-	// The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `consul`.
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
+	// The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults
+	// to `consul`.
 	Path *string `pulumi:"path"`
 	// Specifies the URL scheme to use. Defaults to `http`.
 	Scheme *string `pulumi:"scheme"`
-	// The Consul management token this backend should use to issue new tokens.
+	// The Consul management token this backend should use to issue new tokens. This field is required
+	// when `bootstrap` is false.
 	Token *string `pulumi:"token"`
 }
 
 type SecretBackendState struct {
 	// Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
 	Address pulumi.StringPtrInput
+	// Denotes that the resource is used to bootstrap the Consul ACL system.
+	Bootstrap pulumi.BoolPtrInput
 	// CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
 	CaCert pulumi.StringPtrInput
-	// Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.
+	// Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if
+	// this is set you need to also set client_key.
 	ClientCert pulumi.StringPtrInput
-	// Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+	// Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set
+	// you need to also set client_cert.
 	ClientKey pulumi.StringPtrInput
 	// The default TTL for credentials issued by this backend.
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// A human-friendly description for this backend.
 	Description pulumi.StringPtrInput
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrInput
 	// Specifies if the secret backend is local only.
 	Local pulumi.BoolPtrInput
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend.
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
-	// The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `consul`.
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
+	// The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults
+	// to `consul`.
 	Path pulumi.StringPtrInput
 	// Specifies the URL scheme to use. Defaults to `http`.
 	Scheme pulumi.StringPtrInput
-	// The Consul management token this backend should use to issue new tokens.
+	// The Consul management token this backend should use to issue new tokens. This field is required
+	// when `bootstrap` is false.
 	Token pulumi.StringPtrInput
 }
 
@@ -170,54 +251,82 @@ func (SecretBackendState) ElementType() reflect.Type {
 type secretBackendArgs struct {
 	// Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
 	Address string `pulumi:"address"`
+	// Denotes that the resource is used to bootstrap the Consul ACL system.
+	Bootstrap *bool `pulumi:"bootstrap"`
 	// CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
 	CaCert *string `pulumi:"caCert"`
-	// Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.
+	// Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if
+	// this is set you need to also set client_key.
 	ClientCert *string `pulumi:"clientCert"`
-	// Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+	// Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set
+	// you need to also set client_cert.
 	ClientKey *string `pulumi:"clientKey"`
 	// The default TTL for credentials issued by this backend.
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
 	Description *string `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount *bool `pulumi:"disableRemount"`
 	// Specifies if the secret backend is local only.
 	Local *bool `pulumi:"local"`
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend.
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
-	// The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `consul`.
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
+	// The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults
+	// to `consul`.
 	Path *string `pulumi:"path"`
 	// Specifies the URL scheme to use. Defaults to `http`.
 	Scheme *string `pulumi:"scheme"`
-	// The Consul management token this backend should use to issue new tokens.
-	Token string `pulumi:"token"`
+	// The Consul management token this backend should use to issue new tokens. This field is required
+	// when `bootstrap` is false.
+	Token *string `pulumi:"token"`
 }
 
 // The set of arguments for constructing a SecretBackend resource.
 type SecretBackendArgs struct {
 	// Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
 	Address pulumi.StringInput
+	// Denotes that the resource is used to bootstrap the Consul ACL system.
+	Bootstrap pulumi.BoolPtrInput
 	// CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
 	CaCert pulumi.StringPtrInput
-	// Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.
+	// Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if
+	// this is set you need to also set client_key.
 	ClientCert pulumi.StringPtrInput
-	// Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+	// Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set
+	// you need to also set client_cert.
 	ClientKey pulumi.StringPtrInput
 	// The default TTL for credentials issued by this backend.
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// A human-friendly description for this backend.
 	Description pulumi.StringPtrInput
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrInput
 	// Specifies if the secret backend is local only.
 	Local pulumi.BoolPtrInput
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend.
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
-	// The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `consul`.
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
+	// The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults
+	// to `consul`.
 	Path pulumi.StringPtrInput
 	// Specifies the URL scheme to use. Defaults to `http`.
 	Scheme pulumi.StringPtrInput
-	// The Consul management token this backend should use to issue new tokens.
-	Token pulumi.StringInput
+	// The Consul management token this backend should use to issue new tokens. This field is required
+	// when `bootstrap` is false.
+	Token pulumi.StringPtrInput
 }
 
 func (SecretBackendArgs) ElementType() reflect.Type {
@@ -312,17 +421,24 @@ func (o SecretBackendOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringOutput { return v.Address }).(pulumi.StringOutput)
 }
 
+// Denotes that the resource is used to bootstrap the Consul ACL system.
+func (o SecretBackendOutput) Bootstrap() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.Bootstrap }).(pulumi.BoolPtrOutput)
+}
+
 // CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
 func (o SecretBackendOutput) CaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.CaCert }).(pulumi.StringPtrOutput)
 }
 
-// Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.
+// Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if
+// this is set you need to also set client_key.
 func (o SecretBackendOutput) ClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.ClientCert }).(pulumi.StringPtrOutput)
 }
 
-// Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+// Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set
+// you need to also set client_cert.
 func (o SecretBackendOutput) ClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.ClientKey }).(pulumi.StringPtrOutput)
 }
@@ -337,6 +453,12 @@ func (o SecretBackendOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// If set, opts out of mount migration on path updates.
+// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+func (o SecretBackendOutput) DisableRemount() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.DisableRemount }).(pulumi.BoolPtrOutput)
+}
+
 // Specifies if the secret backend is local only.
 func (o SecretBackendOutput) Local() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.Local }).(pulumi.BoolPtrOutput)
@@ -348,7 +470,16 @@ func (o SecretBackendOutput) MaxLeaseTtlSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.MaxLeaseTtlSeconds }).(pulumi.IntPtrOutput)
 }
 
-// The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `consul`.
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o SecretBackendOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+// The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults
+// to `consul`.
 func (o SecretBackendOutput) Path() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Path }).(pulumi.StringPtrOutput)
 }
@@ -358,9 +489,10 @@ func (o SecretBackendOutput) Scheme() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Scheme }).(pulumi.StringPtrOutput)
 }
 
-// The Consul management token this backend should use to issue new tokens.
-func (o SecretBackendOutput) Token() pulumi.StringOutput {
-	return o.ApplyT(func(v *SecretBackend) pulumi.StringOutput { return v.Token }).(pulumi.StringOutput)
+// The Consul management token this backend should use to issue new tokens. This field is required
+// when `bootstrap` is false.
+func (o SecretBackendOutput) Token() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Token }).(pulumi.StringPtrOutput)
 }
 
 type SecretBackendArrayOutput struct{ *pulumi.OutputState }

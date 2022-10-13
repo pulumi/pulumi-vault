@@ -16,7 +16,8 @@ class AuthBackendStsRoleArgs:
     def __init__(__self__, *,
                  account_id: pulumi.Input[str],
                  sts_role: pulumi.Input[str],
-                 backend: Optional[pulumi.Input[str]] = None):
+                 backend: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AuthBackendStsRole resource.
         :param pulumi.Input[str] account_id: The AWS account ID to configure the STS role for.
@@ -24,11 +25,17 @@ class AuthBackendStsRoleArgs:
                by EC2 instances in the account specified by `account_id`.
         :param pulumi.Input[str] backend: The path the AWS auth backend being configured was
                mounted at.  Defaults to `aws`.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         pulumi.set(__self__, "account_id", account_id)
         pulumi.set(__self__, "sts_role", sts_role)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter(name="accountId")
@@ -68,18 +75,38 @@ class AuthBackendStsRoleArgs:
     def backend(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "backend", value)
 
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
 
 @pulumi.input_type
 class _AuthBackendStsRoleState:
     def __init__(__self__, *,
                  account_id: Optional[pulumi.Input[str]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  sts_role: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendStsRole resources.
         :param pulumi.Input[str] account_id: The AWS account ID to configure the STS role for.
         :param pulumi.Input[str] backend: The path the AWS auth backend being configured was
                mounted at.  Defaults to `aws`.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] sts_role: The STS role to assume when verifying requests made
                by EC2 instances in the account specified by `account_id`.
         """
@@ -87,6 +114,8 @@ class _AuthBackendStsRoleState:
             pulumi.set(__self__, "account_id", account_id)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if sts_role is not None:
             pulumi.set(__self__, "sts_role", sts_role)
 
@@ -116,6 +145,21 @@ class _AuthBackendStsRoleState:
         pulumi.set(self, "backend", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="stsRole")
     def sts_role(self) -> Optional[pulumi.Input[str]]:
         """
@@ -136,6 +180,7 @@ class AuthBackendStsRole(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  account_id: Optional[pulumi.Input[str]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  sts_role: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -165,6 +210,10 @@ class AuthBackendStsRole(pulumi.CustomResource):
         :param pulumi.Input[str] account_id: The AWS account ID to configure the STS role for.
         :param pulumi.Input[str] backend: The path the AWS auth backend being configured was
                mounted at.  Defaults to `aws`.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] sts_role: The STS role to assume when verifying requests made
                by EC2 instances in the account specified by `account_id`.
         """
@@ -213,6 +262,7 @@ class AuthBackendStsRole(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  account_id: Optional[pulumi.Input[str]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  sts_role: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -227,6 +277,7 @@ class AuthBackendStsRole(pulumi.CustomResource):
                 raise TypeError("Missing required property 'account_id'")
             __props__.__dict__["account_id"] = account_id
             __props__.__dict__["backend"] = backend
+            __props__.__dict__["namespace"] = namespace
             if sts_role is None and not opts.urn:
                 raise TypeError("Missing required property 'sts_role'")
             __props__.__dict__["sts_role"] = sts_role
@@ -242,6 +293,7 @@ class AuthBackendStsRole(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             account_id: Optional[pulumi.Input[str]] = None,
             backend: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             sts_role: Optional[pulumi.Input[str]] = None) -> 'AuthBackendStsRole':
         """
         Get an existing AuthBackendStsRole resource's state with the given name, id, and optional extra
@@ -253,6 +305,10 @@ class AuthBackendStsRole(pulumi.CustomResource):
         :param pulumi.Input[str] account_id: The AWS account ID to configure the STS role for.
         :param pulumi.Input[str] backend: The path the AWS auth backend being configured was
                mounted at.  Defaults to `aws`.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] sts_role: The STS role to assume when verifying requests made
                by EC2 instances in the account specified by `account_id`.
         """
@@ -262,6 +318,7 @@ class AuthBackendStsRole(pulumi.CustomResource):
 
         __props__.__dict__["account_id"] = account_id
         __props__.__dict__["backend"] = backend
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["sts_role"] = sts_role
         return AuthBackendStsRole(resource_name, opts=opts, __props__=__props__)
 
@@ -281,6 +338,17 @@ class AuthBackendStsRole(pulumi.CustomResource):
         mounted at.  Defaults to `aws`.
         """
         return pulumi.get(self, "backend")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="stsRole")

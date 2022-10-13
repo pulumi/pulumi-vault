@@ -37,7 +37,7 @@ namespace Pulumi.Vault.Identity
         /// Use of this resource requires the `create` capability on `/identity/lookup/group`.
         /// </summary>
         public static Task<GetGroupResult> InvokeAsync(GetGroupArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetGroupResult>("vault:identity/getGroup:getGroup", args ?? new GetGroupArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetGroupResult>("vault:identity/getGroup:getGroup", args ?? new GetGroupArgs(), options.WithDefaults());
 
         /// <summary>
         /// {{% examples %}}
@@ -65,7 +65,7 @@ namespace Pulumi.Vault.Identity
         /// Use of this resource requires the `create` capability on `/identity/lookup/group`.
         /// </summary>
         public static Output<GetGroupResult> Invoke(GetGroupInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetGroupResult>("vault:identity/getGroup:getGroup", args ?? new GetGroupInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetGroupResult>("vault:identity/getGroup:getGroup", args ?? new GetGroupInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -102,6 +102,15 @@ namespace Pulumi.Vault.Identity
         /// </summary>
         [Input("groupName")]
         public string? GroupName { get; set; }
+
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public string? Namespace { get; set; }
 
         public GetGroupArgs()
         {
@@ -142,6 +151,15 @@ namespace Pulumi.Vault.Identity
         /// </summary>
         [Input("groupName")]
         public Input<string>? GroupName { get; set; }
+
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         public GetGroupInvokeArgs()
         {
@@ -219,6 +237,7 @@ namespace Pulumi.Vault.Identity
         /// Modify index of the group
         /// </summary>
         public readonly int ModifyIndex;
+        public readonly string? Namespace;
         /// <summary>
         /// Namespace of which the group is part of
         /// </summary>
@@ -278,6 +297,8 @@ namespace Pulumi.Vault.Identity
 
             int modifyIndex,
 
+            string? @namespace,
+
             string namespaceId,
 
             ImmutableArray<string> parentGroupIds,
@@ -306,6 +327,7 @@ namespace Pulumi.Vault.Identity
             MemberGroupIds = memberGroupIds;
             Metadata = metadata;
             ModifyIndex = modifyIndex;
+            Namespace = @namespace;
             NamespaceId = namespaceId;
             ParentGroupIds = parentGroupIds;
             Policies = policies;

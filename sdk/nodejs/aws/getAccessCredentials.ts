@@ -12,6 +12,7 @@ export function getAccessCredentials(args: GetAccessCredentialsArgs, opts?: pulu
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("vault:aws/getAccessCredentials:getAccessCredentials", {
         "backend": args.backend,
+        "namespace": args.namespace,
         "region": args.region,
         "role": args.role,
         "roleArn": args.roleArn,
@@ -29,6 +30,13 @@ export interface GetAccessCredentialsArgs {
      * read credentials from, with no leading or trailing `/`s.
      */
     backend: string;
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: string;
     region?: string;
     /**
      * The name of the AWS secret backend role to read
@@ -81,6 +89,7 @@ export interface GetAccessCredentialsResult {
     readonly leaseId: string;
     readonly leaseRenewable: boolean;
     readonly leaseStartTime: string;
+    readonly namespace?: string;
     readonly region?: string;
     readonly role: string;
     readonly roleArn?: string;
@@ -109,6 +118,13 @@ export interface GetAccessCredentialsOutputArgs {
      * read credentials from, with no leading or trailing `/`s.
      */
     backend: pulumi.Input<string>;
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     region?: pulumi.Input<string>;
     /**
      * The name of the AWS secret backend role to read

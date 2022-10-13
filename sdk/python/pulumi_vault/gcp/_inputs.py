@@ -10,9 +10,81 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
+    'AuthBackendCustomEndpointArgs',
     'SecretRolesetBindingArgs',
     'SecretStaticAccountBindingArgs',
 ]
+
+@pulumi.input_type
+class AuthBackendCustomEndpointArgs:
+    def __init__(__self__, *,
+                 api: Optional[pulumi.Input[str]] = None,
+                 compute: Optional[pulumi.Input[str]] = None,
+                 crm: Optional[pulumi.Input[str]] = None,
+                 iam: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] api: Replaces the service endpoint used in API requests to `https://www.googleapis.com`.
+        :param pulumi.Input[str] compute: Replaces the service endpoint used in API requests to `https://compute.googleapis.com`.
+        :param pulumi.Input[str] crm: Replaces the service endpoint used in API requests to `https://cloudresourcemanager.googleapis.com`.
+        :param pulumi.Input[str] iam: Replaces the service endpoint used in API requests to `https://iam.googleapis.com`.
+        """
+        if api is not None:
+            pulumi.set(__self__, "api", api)
+        if compute is not None:
+            pulumi.set(__self__, "compute", compute)
+        if crm is not None:
+            pulumi.set(__self__, "crm", crm)
+        if iam is not None:
+            pulumi.set(__self__, "iam", iam)
+
+    @property
+    @pulumi.getter
+    def api(self) -> Optional[pulumi.Input[str]]:
+        """
+        Replaces the service endpoint used in API requests to `https://www.googleapis.com`.
+        """
+        return pulumi.get(self, "api")
+
+    @api.setter
+    def api(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "api", value)
+
+    @property
+    @pulumi.getter
+    def compute(self) -> Optional[pulumi.Input[str]]:
+        """
+        Replaces the service endpoint used in API requests to `https://compute.googleapis.com`.
+        """
+        return pulumi.get(self, "compute")
+
+    @compute.setter
+    def compute(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "compute", value)
+
+    @property
+    @pulumi.getter
+    def crm(self) -> Optional[pulumi.Input[str]]:
+        """
+        Replaces the service endpoint used in API requests to `https://cloudresourcemanager.googleapis.com`.
+        """
+        return pulumi.get(self, "crm")
+
+    @crm.setter
+    def crm(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "crm", value)
+
+    @property
+    @pulumi.getter
+    def iam(self) -> Optional[pulumi.Input[str]]:
+        """
+        Replaces the service endpoint used in API requests to `https://iam.googleapis.com`.
+        """
+        return pulumi.get(self, "iam")
+
+    @iam.setter
+    def iam(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "iam", value)
+
 
 @pulumi.input_type
 class SecretRolesetBindingArgs:

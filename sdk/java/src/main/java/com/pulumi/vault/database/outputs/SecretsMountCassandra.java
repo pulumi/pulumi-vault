@@ -21,120 +21,85 @@ public final class SecretsMountCassandra {
      * connection.
      * 
      */
-    private final @Nullable List<String> allowedRoles;
+    private @Nullable List<String> allowedRoles;
     /**
      * @return The number of seconds to use as a connection
      * timeout.
      * 
      */
-    private final @Nullable Integer connectTimeout;
+    private @Nullable Integer connectTimeout;
     /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
      */
-    private final @Nullable Map<String,Object> data;
+    private @Nullable Map<String,Object> data;
     /**
      * @return A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
      * 
      */
-    private final @Nullable List<String> hosts;
+    private @Nullable List<String> hosts;
     /**
      * @return Whether to skip verification of the server
      * certificate when using TLS.
      * 
      */
-    private final @Nullable Boolean insecureTls;
-    private final String name;
+    private @Nullable Boolean insecureTls;
+    private String name;
     /**
      * @return The password to be used in the connection.
      * 
      */
-    private final @Nullable String password;
+    private @Nullable String password;
     /**
      * @return Concatenated PEM blocks configuring the certificate
      * chain.
      * 
      */
-    private final @Nullable String pemBundle;
+    private @Nullable String pemBundle;
     /**
      * @return A JSON structure configuring the certificate chain.
      * 
      */
-    private final @Nullable String pemJson;
+    private @Nullable String pemJson;
     /**
      * @return Specifies the name of the plugin to use.
      * 
      */
-    private final @Nullable String pluginName;
+    private @Nullable String pluginName;
     /**
      * @return The default port to connect to if no port is specified as
      * part of the host.
      * 
      */
-    private final @Nullable Integer port;
+    private @Nullable Integer port;
     /**
      * @return The CQL protocol version to use.
      * 
      */
-    private final @Nullable Integer protocolVersion;
+    private @Nullable Integer protocolVersion;
     /**
      * @return A list of database statements to be executed to rotate the root user&#39;s credentials.
      * 
      */
-    private final @Nullable List<String> rootRotationStatements;
+    private @Nullable List<String> rootRotationStatements;
     /**
      * @return Whether to use TLS when connecting to Cassandra.
      * 
      */
-    private final @Nullable Boolean tls;
+    private @Nullable Boolean tls;
     /**
      * @return The username to be used in the connection (the account admin level).
      * 
      */
-    private final @Nullable String username;
+    private @Nullable String username;
     /**
      * @return Whether the connection should be verified on
      * initial configuration or not.
      * 
      */
-    private final @Nullable Boolean verifyConnection;
+    private @Nullable Boolean verifyConnection;
 
-    @CustomType.Constructor
-    private SecretsMountCassandra(
-        @CustomType.Parameter("allowedRoles") @Nullable List<String> allowedRoles,
-        @CustomType.Parameter("connectTimeout") @Nullable Integer connectTimeout,
-        @CustomType.Parameter("data") @Nullable Map<String,Object> data,
-        @CustomType.Parameter("hosts") @Nullable List<String> hosts,
-        @CustomType.Parameter("insecureTls") @Nullable Boolean insecureTls,
-        @CustomType.Parameter("name") String name,
-        @CustomType.Parameter("password") @Nullable String password,
-        @CustomType.Parameter("pemBundle") @Nullable String pemBundle,
-        @CustomType.Parameter("pemJson") @Nullable String pemJson,
-        @CustomType.Parameter("pluginName") @Nullable String pluginName,
-        @CustomType.Parameter("port") @Nullable Integer port,
-        @CustomType.Parameter("protocolVersion") @Nullable Integer protocolVersion,
-        @CustomType.Parameter("rootRotationStatements") @Nullable List<String> rootRotationStatements,
-        @CustomType.Parameter("tls") @Nullable Boolean tls,
-        @CustomType.Parameter("username") @Nullable String username,
-        @CustomType.Parameter("verifyConnection") @Nullable Boolean verifyConnection) {
-        this.allowedRoles = allowedRoles;
-        this.connectTimeout = connectTimeout;
-        this.data = data;
-        this.hosts = hosts;
-        this.insecureTls = insecureTls;
-        this.name = name;
-        this.password = password;
-        this.pemBundle = pemBundle;
-        this.pemJson = pemJson;
-        this.pluginName = pluginName;
-        this.port = port;
-        this.protocolVersion = protocolVersion;
-        this.rootRotationStatements = rootRotationStatements;
-        this.tls = tls;
-        this.username = username;
-        this.verifyConnection = verifyConnection;
-    }
-
+    private SecretsMountCassandra() {}
     /**
      * @return A list of roles that are allowed to use this
      * connection.
@@ -257,7 +222,7 @@ public final class SecretsMountCassandra {
     public static Builder builder(SecretsMountCassandra defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable List<String> allowedRoles;
         private @Nullable Integer connectTimeout;
@@ -275,11 +240,7 @@ public final class SecretsMountCassandra {
         private @Nullable Boolean tls;
         private @Nullable String username;
         private @Nullable Boolean verifyConnection;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(SecretsMountCassandra defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.allowedRoles = defaults.allowedRoles;
@@ -300,6 +261,7 @@ public final class SecretsMountCassandra {
     	      this.verifyConnection = defaults.verifyConnection;
         }
 
+        @CustomType.Setter
         public Builder allowedRoles(@Nullable List<String> allowedRoles) {
             this.allowedRoles = allowedRoles;
             return this;
@@ -307,14 +269,17 @@ public final class SecretsMountCassandra {
         public Builder allowedRoles(String... allowedRoles) {
             return allowedRoles(List.of(allowedRoles));
         }
+        @CustomType.Setter
         public Builder connectTimeout(@Nullable Integer connectTimeout) {
             this.connectTimeout = connectTimeout;
             return this;
         }
+        @CustomType.Setter
         public Builder data(@Nullable Map<String,Object> data) {
             this.data = data;
             return this;
         }
+        @CustomType.Setter
         public Builder hosts(@Nullable List<String> hosts) {
             this.hosts = hosts;
             return this;
@@ -322,38 +287,47 @@ public final class SecretsMountCassandra {
         public Builder hosts(String... hosts) {
             return hosts(List.of(hosts));
         }
+        @CustomType.Setter
         public Builder insecureTls(@Nullable Boolean insecureTls) {
             this.insecureTls = insecureTls;
             return this;
         }
+        @CustomType.Setter
         public Builder name(String name) {
             this.name = Objects.requireNonNull(name);
             return this;
         }
+        @CustomType.Setter
         public Builder password(@Nullable String password) {
             this.password = password;
             return this;
         }
+        @CustomType.Setter
         public Builder pemBundle(@Nullable String pemBundle) {
             this.pemBundle = pemBundle;
             return this;
         }
+        @CustomType.Setter
         public Builder pemJson(@Nullable String pemJson) {
             this.pemJson = pemJson;
             return this;
         }
+        @CustomType.Setter
         public Builder pluginName(@Nullable String pluginName) {
             this.pluginName = pluginName;
             return this;
         }
+        @CustomType.Setter
         public Builder port(@Nullable Integer port) {
             this.port = port;
             return this;
         }
+        @CustomType.Setter
         public Builder protocolVersion(@Nullable Integer protocolVersion) {
             this.protocolVersion = protocolVersion;
             return this;
         }
+        @CustomType.Setter
         public Builder rootRotationStatements(@Nullable List<String> rootRotationStatements) {
             this.rootRotationStatements = rootRotationStatements;
             return this;
@@ -361,19 +335,40 @@ public final class SecretsMountCassandra {
         public Builder rootRotationStatements(String... rootRotationStatements) {
             return rootRotationStatements(List.of(rootRotationStatements));
         }
+        @CustomType.Setter
         public Builder tls(@Nullable Boolean tls) {
             this.tls = tls;
             return this;
         }
+        @CustomType.Setter
         public Builder username(@Nullable String username) {
             this.username = username;
             return this;
         }
+        @CustomType.Setter
         public Builder verifyConnection(@Nullable Boolean verifyConnection) {
             this.verifyConnection = verifyConnection;
             return this;
-        }        public SecretsMountCassandra build() {
-            return new SecretsMountCassandra(allowedRoles, connectTimeout, data, hosts, insecureTls, name, password, pemBundle, pemJson, pluginName, port, protocolVersion, rootRotationStatements, tls, username, verifyConnection);
+        }
+        public SecretsMountCassandra build() {
+            final var o = new SecretsMountCassandra();
+            o.allowedRoles = allowedRoles;
+            o.connectTimeout = connectTimeout;
+            o.data = data;
+            o.hosts = hosts;
+            o.insecureTls = insecureTls;
+            o.name = name;
+            o.password = password;
+            o.pemBundle = pemBundle;
+            o.pemJson = pemJson;
+            o.pluginName = pluginName;
+            o.port = port;
+            o.protocolVersion = protocolVersion;
+            o.rootRotationStatements = rootRotationStatements;
+            o.tls = tls;
+            o.username = username;
+            o.verifyConnection = verifyConnection;
+            return o;
         }
     }
 }

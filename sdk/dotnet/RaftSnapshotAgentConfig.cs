@@ -30,6 +30,60 @@ namespace Pulumi.Vault
     /// 
     /// });
     /// ```
+    /// ### AWS S3
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Aws = Pulumi.Aws;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var config = new Config();
+    ///     var awsAccessKeyId = config.RequireObject&lt;dynamic&gt;("awsAccessKeyId");
+    ///     var awsSecretAccessKey = config.RequireObject&lt;dynamic&gt;("awsSecretAccessKey");
+    ///     var current = Aws.GetRegion.Invoke();
+    /// 
+    ///     var s3Backups = new Vault.RaftSnapshotAgentConfig("s3Backups", new()
+    ///     {
+    ///         IntervalSeconds = 86400,
+    ///         Retain = 7,
+    ///         PathPrefix = "/path/in/bucket",
+    ///         StorageType = "aws-s3",
+    ///         AwsS3Bucket = "my-bucket",
+    ///         AwsS3Region = current.Apply(getRegionResult =&gt; getRegionResult.Name),
+    ///         AwsAccessKeyId = awsAccessKeyId,
+    ///         AwsSecretAccessKey = awsSecretAccessKey,
+    ///         AwsS3EnableKms = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Azure BLOB
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var config = new Config();
+    ///     var azureAccountName = config.RequireObject&lt;dynamic&gt;("azureAccountName");
+    ///     var azureAccountKey = config.RequireObject&lt;dynamic&gt;("azureAccountKey");
+    ///     var azureBackups = new Vault.RaftSnapshotAgentConfig("azureBackups", new()
+    ///     {
+    ///         IntervalSeconds = 86400,
+    ///         Retain = 7,
+    ///         PathPrefix = "/",
+    ///         StorageType = "azure-blob",
+    ///         AzureContainerName = "vault-blob",
+    ///         AzureAccountName = azureAccountName,
+    ///         AzureAccountKey = azureAccountKey,
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// 
     /// ## Import
     /// 
@@ -199,6 +253,15 @@ namespace Pulumi.Vault
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
         /// `&lt;required&gt;` - For `storage_type = "local"`, the directory to
@@ -430,6 +493,15 @@ namespace Pulumi.Vault
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
         /// `&lt;required&gt;` - For `storage_type = "local"`, the directory to
         /// write the snapshots in. For cloud storage types, the bucket prefix to use.
         /// Types `azure-s3` and `google-gcs` require a trailing `/` (slash).
@@ -619,6 +691,15 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// `&lt;required&gt;` - For `storage_type = "local"`, the directory to

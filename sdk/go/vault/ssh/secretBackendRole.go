@@ -121,6 +121,11 @@ type SecretBackendRole struct {
 	MaxTtl pulumi.StringOutput `pulumi:"maxTtl"`
 	// Specifies the name of the role to create.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Specifies the Time To Live value.
 	Ttl pulumi.StringOutput `pulumi:"ttl"`
 }
@@ -210,6 +215,11 @@ type secretBackendRoleState struct {
 	MaxTtl *string `pulumi:"maxTtl"`
 	// Specifies the name of the role to create.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Specifies the Time To Live value.
 	Ttl *string `pulumi:"ttl"`
 }
@@ -265,6 +275,11 @@ type SecretBackendRoleState struct {
 	MaxTtl pulumi.StringPtrInput
 	// Specifies the name of the role to create.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Specifies the Time To Live value.
 	Ttl pulumi.StringPtrInput
 }
@@ -324,6 +339,11 @@ type secretBackendRoleArgs struct {
 	MaxTtl *string `pulumi:"maxTtl"`
 	// Specifies the name of the role to create.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Specifies the Time To Live value.
 	Ttl *string `pulumi:"ttl"`
 }
@@ -380,6 +400,11 @@ type SecretBackendRoleArgs struct {
 	MaxTtl pulumi.StringPtrInput
 	// Specifies the name of the role to create.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Specifies the Time To Live value.
 	Ttl pulumi.StringPtrInput
 }
@@ -587,6 +612,14 @@ func (o SecretBackendRoleOutput) MaxTtl() pulumi.StringOutput {
 // Specifies the name of the role to create.
 func (o SecretBackendRoleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o SecretBackendRoleOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Specifies the Time To Live value.

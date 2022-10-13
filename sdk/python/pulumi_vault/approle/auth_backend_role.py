@@ -17,6 +17,7 @@ class AuthBackendRoleArgs:
                  role_name: pulumi.Input[str],
                  backend: Optional[pulumi.Input[str]] = None,
                  bind_secret_id: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  role_id: Optional[pulumi.Input[str]] = None,
                  secret_id_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  secret_id_num_uses: Optional[pulumi.Input[int]] = None,
@@ -37,6 +38,10 @@ class AuthBackendRoleArgs:
                Defaults to `approle`.
         :param pulumi.Input[bool] bind_secret_id: Whether or not to require `secret_id` to be
                presented when logging in using this AppRole. Defaults to `true`.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role_id: The RoleID of this role. If not specified, one will be
                auto-generated.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] secret_id_bound_cidrs: If set,
@@ -78,6 +83,8 @@ class AuthBackendRoleArgs:
             pulumi.set(__self__, "backend", backend)
         if bind_secret_id is not None:
             pulumi.set(__self__, "bind_secret_id", bind_secret_id)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if role_id is not None:
             pulumi.set(__self__, "role_id", role_id)
         if secret_id_bound_cidrs is not None:
@@ -142,6 +149,21 @@ class AuthBackendRoleArgs:
     @bind_secret_id.setter
     def bind_secret_id(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "bind_secret_id", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter(name="roleId")
@@ -327,6 +349,7 @@ class _AuthBackendRoleState:
     def __init__(__self__, *,
                  backend: Optional[pulumi.Input[str]] = None,
                  bind_secret_id: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  role_id: Optional[pulumi.Input[str]] = None,
                  role_name: Optional[pulumi.Input[str]] = None,
                  secret_id_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -347,6 +370,10 @@ class _AuthBackendRoleState:
                Defaults to `approle`.
         :param pulumi.Input[bool] bind_secret_id: Whether or not to require `secret_id` to be
                presented when logging in using this AppRole. Defaults to `true`.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role_id: The RoleID of this role. If not specified, one will be
                auto-generated.
         :param pulumi.Input[str] role_name: The name of the role.
@@ -388,6 +415,8 @@ class _AuthBackendRoleState:
             pulumi.set(__self__, "backend", backend)
         if bind_secret_id is not None:
             pulumi.set(__self__, "bind_secret_id", bind_secret_id)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if role_id is not None:
             pulumi.set(__self__, "role_id", role_id)
         if role_name is not None:
@@ -442,6 +471,21 @@ class _AuthBackendRoleState:
     @bind_secret_id.setter
     def bind_secret_id(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "bind_secret_id", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter(name="roleId")
@@ -641,6 +685,7 @@ class AuthBackendRole(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  bind_secret_id: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  role_id: Optional[pulumi.Input[str]] = None,
                  role_name: Optional[pulumi.Input[str]] = None,
                  secret_id_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -692,6 +737,10 @@ class AuthBackendRole(pulumi.CustomResource):
                Defaults to `approle`.
         :param pulumi.Input[bool] bind_secret_id: Whether or not to require `secret_id` to be
                presented when logging in using this AppRole. Defaults to `true`.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role_id: The RoleID of this role. If not specified, one will be
                auto-generated.
         :param pulumi.Input[str] role_name: The name of the role.
@@ -782,6 +831,7 @@ class AuthBackendRole(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  bind_secret_id: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  role_id: Optional[pulumi.Input[str]] = None,
                  role_name: Optional[pulumi.Input[str]] = None,
                  secret_id_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -807,6 +857,7 @@ class AuthBackendRole(pulumi.CustomResource):
 
             __props__.__dict__["backend"] = backend
             __props__.__dict__["bind_secret_id"] = bind_secret_id
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["role_id"] = role_id
             if role_name is None and not opts.urn:
                 raise TypeError("Missing required property 'role_name'")
@@ -835,6 +886,7 @@ class AuthBackendRole(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
             bind_secret_id: Optional[pulumi.Input[bool]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             role_id: Optional[pulumi.Input[str]] = None,
             role_name: Optional[pulumi.Input[str]] = None,
             secret_id_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -860,6 +912,10 @@ class AuthBackendRole(pulumi.CustomResource):
                Defaults to `approle`.
         :param pulumi.Input[bool] bind_secret_id: Whether or not to require `secret_id` to be
                presented when logging in using this AppRole. Defaults to `true`.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role_id: The RoleID of this role. If not specified, one will be
                auto-generated.
         :param pulumi.Input[str] role_name: The name of the role.
@@ -903,6 +959,7 @@ class AuthBackendRole(pulumi.CustomResource):
 
         __props__.__dict__["backend"] = backend
         __props__.__dict__["bind_secret_id"] = bind_secret_id
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["role_id"] = role_id
         __props__.__dict__["role_name"] = role_name
         __props__.__dict__["secret_id_bound_cidrs"] = secret_id_bound_cidrs
@@ -936,6 +993,17 @@ class AuthBackendRole(pulumi.CustomResource):
         presented when logging in using this AppRole. Defaults to `true`.
         """
         return pulumi.get(self, "bind_secret_id")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="roleId")

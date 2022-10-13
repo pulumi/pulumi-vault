@@ -34,8 +34,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.vault.AuthBackendArgs;
  * import com.pulumi.vault.appRole.AuthBackendRole;
  * import com.pulumi.vault.appRole.AuthBackendRoleArgs;
- * import com.pulumi.vault.appRole.AuthBackendRoleSecretID;
- * import com.pulumi.vault.appRole.AuthBackendRoleSecretIDArgs;
+ * import com.pulumi.vault.appRole.AuthBackendRoleSecretId;
+ * import com.pulumi.vault.appRole.AuthBackendRoleSecretIdArgs;
  * import com.pulumi.vault.appRole.AuthBackendLogin;
  * import com.pulumi.vault.appRole.AuthBackendLoginArgs;
  * import java.util.List;
@@ -64,7 +64,7 @@ import javax.annotation.Nullable;
  *                 &#34;prod&#34;)
  *             .build());
  * 
- *         var id = new AuthBackendRoleSecretID(&#34;id&#34;, AuthBackendRoleSecretIDArgs.builder()        
+ *         var id = new AuthBackendRoleSecretId(&#34;id&#34;, AuthBackendRoleSecretIdArgs.builder()        
  *             .backend(approle.path())
  *             .roleName(example.roleName())
  *             .build());
@@ -165,6 +165,26 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      */
     public Output<Map<String,String>> metadata() {
         return this.metadata;
+    }
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="namespace", type=String.class, parameters={})
+    private Output</* @Nullable */ String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> namespace() {
+        return Codegen.optional(this.namespace);
     }
     /**
      * A list of policies applied to the token.

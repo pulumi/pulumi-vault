@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -33,6 +34,7 @@ export function getEntity(args?: GetEntityArgs, opts?: pulumi.InvokeOptions): Pr
         "aliasName": args.aliasName,
         "entityId": args.entityId,
         "entityName": args.entityName,
+        "namespace": args.namespace,
     }, opts);
 }
 
@@ -62,6 +64,13 @@ export interface GetEntityArgs {
      * Name of the entity.
      */
     entityName?: string;
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: string;
 }
 
 /**
@@ -118,6 +127,7 @@ export interface GetEntityResult {
      * Arbitrary metadata
      */
     readonly metadata: {[key: string]: any};
+    readonly namespace?: string;
     /**
      * Namespace of which the entity is part of
      */
@@ -158,4 +168,11 @@ export interface GetEntityOutputArgs {
      * Name of the entity.
      */
     entityName?: pulumi.Input<string>;
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
 }

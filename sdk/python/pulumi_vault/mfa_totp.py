@@ -19,6 +19,7 @@ class MfaTotpArgs:
                  digits: Optional[pulumi.Input[int]] = None,
                  key_size: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
                  qr_size: Optional[pulumi.Input[int]] = None,
                  skew: Optional[pulumi.Input[int]] = None):
@@ -31,6 +32,10 @@ class MfaTotpArgs:
                This value can either be 6 or 8.
         :param pulumi.Input[int] key_size: `(int)` - Specifies the size in bytes of the generated key.
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[int] period: `(int)` - The length of time used to generate a counter for the TOTP token calculation.
         :param pulumi.Input[int] qr_size: `(int)` - The pixel size of the generated square QR code.
         :param pulumi.Input[int] skew: `(int)` - The number of delay periods that are allowed when validating a TOTP token.
@@ -45,6 +50,8 @@ class MfaTotpArgs:
             pulumi.set(__self__, "key_size", key_size)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if period is not None:
             pulumi.set(__self__, "period", period)
         if qr_size is not None:
@@ -116,6 +123,21 @@ class MfaTotpArgs:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def period(self) -> Optional[pulumi.Input[int]]:
         """
         `(int)` - The length of time used to generate a counter for the TOTP token calculation.
@@ -160,6 +182,7 @@ class _MfaTotpState:
                  issuer: Optional[pulumi.Input[str]] = None,
                  key_size: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
                  qr_size: Optional[pulumi.Input[int]] = None,
                  skew: Optional[pulumi.Input[int]] = None):
@@ -172,6 +195,10 @@ class _MfaTotpState:
         :param pulumi.Input[str] issuer: `(string: <required>)` - The name of the key's issuing organization.
         :param pulumi.Input[int] key_size: `(int)` - Specifies the size in bytes of the generated key.
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[int] period: `(int)` - The length of time used to generate a counter for the TOTP token calculation.
         :param pulumi.Input[int] qr_size: `(int)` - The pixel size of the generated square QR code.
         :param pulumi.Input[int] skew: `(int)` - The number of delay periods that are allowed when validating a TOTP token.
@@ -187,6 +214,8 @@ class _MfaTotpState:
             pulumi.set(__self__, "key_size", key_size)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if period is not None:
             pulumi.set(__self__, "period", period)
         if qr_size is not None:
@@ -258,6 +287,21 @@ class _MfaTotpState:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def period(self) -> Optional[pulumi.Input[int]]:
         """
         `(int)` - The length of time used to generate a counter for the TOTP token calculation.
@@ -304,6 +348,7 @@ class MfaTotp(pulumi.CustomResource):
                  issuer: Optional[pulumi.Input[str]] = None,
                  key_size: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
                  qr_size: Optional[pulumi.Input[int]] = None,
                  skew: Optional[pulumi.Input[int]] = None,
@@ -344,6 +389,10 @@ class MfaTotp(pulumi.CustomResource):
         :param pulumi.Input[str] issuer: `(string: <required>)` - The name of the key's issuing organization.
         :param pulumi.Input[int] key_size: `(int)` - Specifies the size in bytes of the generated key.
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[int] period: `(int)` - The length of time used to generate a counter for the TOTP token calculation.
         :param pulumi.Input[int] qr_size: `(int)` - The pixel size of the generated square QR code.
         :param pulumi.Input[int] skew: `(int)` - The number of delay periods that are allowed when validating a TOTP token.
@@ -402,6 +451,7 @@ class MfaTotp(pulumi.CustomResource):
                  issuer: Optional[pulumi.Input[str]] = None,
                  key_size: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
                  qr_size: Optional[pulumi.Input[int]] = None,
                  skew: Optional[pulumi.Input[int]] = None,
@@ -421,6 +471,7 @@ class MfaTotp(pulumi.CustomResource):
             __props__.__dict__["issuer"] = issuer
             __props__.__dict__["key_size"] = key_size
             __props__.__dict__["name"] = name
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["period"] = period
             __props__.__dict__["qr_size"] = qr_size
             __props__.__dict__["skew"] = skew
@@ -439,6 +490,7 @@ class MfaTotp(pulumi.CustomResource):
             issuer: Optional[pulumi.Input[str]] = None,
             key_size: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             period: Optional[pulumi.Input[int]] = None,
             qr_size: Optional[pulumi.Input[int]] = None,
             skew: Optional[pulumi.Input[int]] = None) -> 'MfaTotp':
@@ -456,6 +508,10 @@ class MfaTotp(pulumi.CustomResource):
         :param pulumi.Input[str] issuer: `(string: <required>)` - The name of the key's issuing organization.
         :param pulumi.Input[int] key_size: `(int)` - Specifies the size in bytes of the generated key.
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[int] period: `(int)` - The length of time used to generate a counter for the TOTP token calculation.
         :param pulumi.Input[int] qr_size: `(int)` - The pixel size of the generated square QR code.
         :param pulumi.Input[int] skew: `(int)` - The number of delay periods that are allowed when validating a TOTP token.
@@ -470,6 +526,7 @@ class MfaTotp(pulumi.CustomResource):
         __props__.__dict__["issuer"] = issuer
         __props__.__dict__["key_size"] = key_size
         __props__.__dict__["name"] = name
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["period"] = period
         __props__.__dict__["qr_size"] = qr_size
         __props__.__dict__["skew"] = skew
@@ -516,6 +573,17 @@ class MfaTotp(pulumi.CustomResource):
         `(string: <required>)` – Name of the MFA method.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

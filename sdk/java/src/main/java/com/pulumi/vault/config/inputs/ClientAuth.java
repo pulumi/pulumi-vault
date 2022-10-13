@@ -8,18 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 
 @CustomType
-public final class ClientAuths {
-    private final String certFile;
-    private final String keyFile;
+public final class ClientAuth {
+    private String certFile;
+    private String keyFile;
 
-    @CustomType.Constructor
-    private ClientAuths(
-        @CustomType.Parameter("certFile") String certFile,
-        @CustomType.Parameter("keyFile") String keyFile) {
-        this.certFile = certFile;
-        this.keyFile = keyFile;
-    }
-
+    private ClientAuth() {}
     public String certFile() {
         return this.certFile;
     }
@@ -31,33 +24,35 @@ public final class ClientAuths {
         return new Builder();
     }
 
-    public static Builder builder(ClientAuths defaults) {
+    public static Builder builder(ClientAuth defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String certFile;
         private String keyFile;
-
-        public Builder() {
-    	      // Empty
-        }
-
-        public Builder(ClientAuths defaults) {
+        public Builder() {}
+        public Builder(ClientAuth defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.certFile = defaults.certFile;
     	      this.keyFile = defaults.keyFile;
         }
 
+        @CustomType.Setter
         public Builder certFile(String certFile) {
             this.certFile = Objects.requireNonNull(certFile);
             return this;
         }
+        @CustomType.Setter
         public Builder keyFile(String keyFile) {
             this.keyFile = Objects.requireNonNull(keyFile);
             return this;
-        }        public ClientAuths build() {
-            return new ClientAuths(certFile, keyFile);
+        }
+        public ClientAuth build() {
+            final var o = new ClientAuth();
+            o.certFile = certFile;
+            o.keyFile = keyFile;
+            return o;
         }
     }
 }

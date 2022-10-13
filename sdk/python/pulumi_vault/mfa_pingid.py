@@ -17,6 +17,7 @@ class MfaPingidArgs:
                  mount_accessor: pulumi.Input[str],
                  settings_file_base64: pulumi.Input[str],
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  username_format: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a MfaPingid resource.
@@ -25,6 +26,10 @@ class MfaPingidArgs:
         :param pulumi.Input[str] settings_file_base64: `(string: <required>)` - A base64-encoded third-party settings file retrieved
                from PingID's configuration page.
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] username_format: `(string)` - A format string for mapping Identity names to MFA method names. 
                Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
                If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
@@ -37,6 +42,8 @@ class MfaPingidArgs:
         pulumi.set(__self__, "settings_file_base64", settings_file_base64)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if username_format is not None:
             pulumi.set(__self__, "username_format", username_format)
 
@@ -79,6 +86,21 @@ class MfaPingidArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="usernameFormat")
     def username_format(self) -> Optional[pulumi.Input[str]]:
         """
@@ -105,6 +127,7 @@ class _MfaPingidState:
                  idp_url: Optional[pulumi.Input[str]] = None,
                  mount_accessor: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  namespace_id: Optional[pulumi.Input[str]] = None,
                  org_alias: Optional[pulumi.Input[str]] = None,
                  settings_file_base64: Optional[pulumi.Input[str]] = None,
@@ -119,6 +142,10 @@ class _MfaPingidState:
         :param pulumi.Input[str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
                The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] namespace_id: Namespace ID computed by Vault.
         :param pulumi.Input[str] org_alias: Org Alias computed by Vault.
         :param pulumi.Input[str] settings_file_base64: `(string: <required>)` - A base64-encoded third-party settings file retrieved
@@ -143,6 +170,8 @@ class _MfaPingidState:
             pulumi.set(__self__, "mount_accessor", mount_accessor)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if namespace_id is not None:
             pulumi.set(__self__, "namespace_id", namespace_id)
         if org_alias is not None:
@@ -216,6 +245,21 @@ class _MfaPingidState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter(name="namespaceId")
@@ -304,6 +348,7 @@ class MfaPingid(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  mount_accessor: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  settings_file_base64: Optional[pulumi.Input[str]] = None,
                  username_format: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -342,6 +387,10 @@ class MfaPingid(pulumi.CustomResource):
         :param pulumi.Input[str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
                The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] settings_file_base64: `(string: <required>)` - A base64-encoded third-party settings file retrieved
                from PingID's configuration page.
         :param pulumi.Input[str] username_format: `(string)` - A format string for mapping Identity names to MFA method names. 
@@ -405,6 +454,7 @@ class MfaPingid(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  mount_accessor: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  settings_file_base64: Optional[pulumi.Input[str]] = None,
                  username_format: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -420,6 +470,7 @@ class MfaPingid(pulumi.CustomResource):
                 raise TypeError("Missing required property 'mount_accessor'")
             __props__.__dict__["mount_accessor"] = mount_accessor
             __props__.__dict__["name"] = name
+            __props__.__dict__["namespace"] = namespace
             if settings_file_base64 is None and not opts.urn:
                 raise TypeError("Missing required property 'settings_file_base64'")
             __props__.__dict__["settings_file_base64"] = settings_file_base64
@@ -446,6 +497,7 @@ class MfaPingid(pulumi.CustomResource):
             idp_url: Optional[pulumi.Input[str]] = None,
             mount_accessor: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             namespace_id: Optional[pulumi.Input[str]] = None,
             org_alias: Optional[pulumi.Input[str]] = None,
             settings_file_base64: Optional[pulumi.Input[str]] = None,
@@ -465,6 +517,10 @@ class MfaPingid(pulumi.CustomResource):
         :param pulumi.Input[str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
                The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] namespace_id: Namespace ID computed by Vault.
         :param pulumi.Input[str] org_alias: Org Alias computed by Vault.
         :param pulumi.Input[str] settings_file_base64: `(string: <required>)` - A base64-encoded third-party settings file retrieved
@@ -488,6 +544,7 @@ class MfaPingid(pulumi.CustomResource):
         __props__.__dict__["idp_url"] = idp_url
         __props__.__dict__["mount_accessor"] = mount_accessor
         __props__.__dict__["name"] = name
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["namespace_id"] = namespace_id
         __props__.__dict__["org_alias"] = org_alias
         __props__.__dict__["settings_file_base64"] = settings_file_base64
@@ -536,6 +593,17 @@ class MfaPingid(pulumi.CustomResource):
         `(string: <required>)` – Name of the MFA method.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="namespaceId")

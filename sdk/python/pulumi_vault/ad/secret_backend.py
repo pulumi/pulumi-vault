@@ -25,6 +25,7 @@ class SecretBackendArgs:
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  deny_null_bind: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  discoverdn: Optional[pulumi.Input[bool]] = None,
                  formatter: Optional[pulumi.Input[str]] = None,
                  groupattr: Optional[pulumi.Input[str]] = None,
@@ -36,6 +37,7 @@ class SecretBackendArgs:
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  password_policy: Optional[pulumi.Input[str]] = None,
                  request_timeout: Optional[pulumi.Input[int]] = None,
                  starttls: Optional[pulumi.Input[bool]] = None,
@@ -66,6 +68,8 @@ class SecretBackendArgs:
         :param pulumi.Input[bool] deny_null_bind: Denies an unauthenticated LDAP bind request if the user's password is empty;
                defaults to true.
         :param pulumi.Input[str] description: Human-friendly description of the mount for the Active Directory backend.
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[bool] discoverdn: Use anonymous bind to discover the bind Distinguished Name of a user.
         :param pulumi.Input[str] formatter: **Deprecated** use `password_policy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
         :param pulumi.Input[str] groupattr: LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
@@ -78,10 +82,15 @@ class SecretBackendArgs:
         :param pulumi.Input[int] last_rotation_tolerance: The number of seconds after a Vault rotation where, if Active Directory
                shows a later rotation, it should be considered out-of-band
         :param pulumi.Input[int] length: **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
+               *Mutually exclusive with `password_policy` on vault-1.11+*
         :param pulumi.Input[bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by
                replication.Tolerance duration to use when checking the last rotation time.
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds.
         :param pulumi.Input[int] max_ttl: In seconds, the maximum password time-to-live.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] password_policy: Name of the password policy to use to generate passwords.
         :param pulumi.Input[int] request_timeout: Timeout, in seconds, for the connection when making requests against the server
                before returning back an error.
@@ -125,6 +134,8 @@ class SecretBackendArgs:
             pulumi.set(__self__, "deny_null_bind", deny_null_bind)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if disable_remount is not None:
+            pulumi.set(__self__, "disable_remount", disable_remount)
         if discoverdn is not None:
             pulumi.set(__self__, "discoverdn", discoverdn)
         if formatter is not None:
@@ -153,6 +164,8 @@ class SecretBackendArgs:
             pulumi.set(__self__, "max_lease_ttl_seconds", max_lease_ttl_seconds)
         if max_ttl is not None:
             pulumi.set(__self__, "max_ttl", max_ttl)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if password_policy is not None:
             pulumi.set(__self__, "password_policy", password_policy)
         if request_timeout is not None:
@@ -316,6 +329,19 @@ class SecretBackendArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="disableRemount")
+    def disable_remount(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, opts out of mount migration on path updates.
+        See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        """
+        return pulumi.get(self, "disable_remount")
+
+    @disable_remount.setter
+    def disable_remount(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_remount", value)
+
+    @property
     @pulumi.getter
     def discoverdn(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -408,6 +434,7 @@ class SecretBackendArgs:
     def length(self) -> Optional[pulumi.Input[int]]:
         """
         **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
+        *Mutually exclusive with `password_policy` on vault-1.11+*
         """
         return pulumi.get(self, "length")
 
@@ -451,6 +478,21 @@ class SecretBackendArgs:
     @max_ttl.setter
     def max_ttl(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_ttl", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter(name="passwordPolicy")
@@ -621,6 +663,7 @@ class _SecretBackendState:
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  deny_null_bind: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  discoverdn: Optional[pulumi.Input[bool]] = None,
                  formatter: Optional[pulumi.Input[str]] = None,
                  groupattr: Optional[pulumi.Input[str]] = None,
@@ -632,6 +675,7 @@ class _SecretBackendState:
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  password_policy: Optional[pulumi.Input[str]] = None,
                  request_timeout: Optional[pulumi.Input[int]] = None,
                  starttls: Optional[pulumi.Input[bool]] = None,
@@ -662,6 +706,8 @@ class _SecretBackendState:
         :param pulumi.Input[bool] deny_null_bind: Denies an unauthenticated LDAP bind request if the user's password is empty;
                defaults to true.
         :param pulumi.Input[str] description: Human-friendly description of the mount for the Active Directory backend.
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[bool] discoverdn: Use anonymous bind to discover the bind Distinguished Name of a user.
         :param pulumi.Input[str] formatter: **Deprecated** use `password_policy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
         :param pulumi.Input[str] groupattr: LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
@@ -674,10 +720,15 @@ class _SecretBackendState:
         :param pulumi.Input[int] last_rotation_tolerance: The number of seconds after a Vault rotation where, if Active Directory
                shows a later rotation, it should be considered out-of-band
         :param pulumi.Input[int] length: **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
+               *Mutually exclusive with `password_policy` on vault-1.11+*
         :param pulumi.Input[bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by
                replication.Tolerance duration to use when checking the last rotation time.
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds.
         :param pulumi.Input[int] max_ttl: In seconds, the maximum password time-to-live.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] password_policy: Name of the password policy to use to generate passwords.
         :param pulumi.Input[int] request_timeout: Timeout, in seconds, for the connection when making requests against the server
                before returning back an error.
@@ -723,6 +774,8 @@ class _SecretBackendState:
             pulumi.set(__self__, "deny_null_bind", deny_null_bind)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if disable_remount is not None:
+            pulumi.set(__self__, "disable_remount", disable_remount)
         if discoverdn is not None:
             pulumi.set(__self__, "discoverdn", discoverdn)
         if formatter is not None:
@@ -751,6 +804,8 @@ class _SecretBackendState:
             pulumi.set(__self__, "max_lease_ttl_seconds", max_lease_ttl_seconds)
         if max_ttl is not None:
             pulumi.set(__self__, "max_ttl", max_ttl)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if password_policy is not None:
             pulumi.set(__self__, "password_policy", password_policy)
         if request_timeout is not None:
@@ -914,6 +969,19 @@ class _SecretBackendState:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="disableRemount")
+    def disable_remount(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, opts out of mount migration on path updates.
+        See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        """
+        return pulumi.get(self, "disable_remount")
+
+    @disable_remount.setter
+    def disable_remount(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_remount", value)
+
+    @property
     @pulumi.getter
     def discoverdn(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -1006,6 +1074,7 @@ class _SecretBackendState:
     def length(self) -> Optional[pulumi.Input[int]]:
         """
         **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
+        *Mutually exclusive with `password_policy` on vault-1.11+*
         """
         return pulumi.get(self, "length")
 
@@ -1049,6 +1118,21 @@ class _SecretBackendState:
     @max_ttl.setter
     def max_ttl(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_ttl", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter(name="passwordPolicy")
@@ -1221,6 +1305,7 @@ class SecretBackend(pulumi.CustomResource):
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  deny_null_bind: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  discoverdn: Optional[pulumi.Input[bool]] = None,
                  formatter: Optional[pulumi.Input[str]] = None,
                  groupattr: Optional[pulumi.Input[str]] = None,
@@ -1232,6 +1317,7 @@ class SecretBackend(pulumi.CustomResource):
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  password_policy: Optional[pulumi.Input[str]] = None,
                  request_timeout: Optional[pulumi.Input[int]] = None,
                  starttls: Optional[pulumi.Input[bool]] = None,
@@ -1287,6 +1373,8 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[bool] deny_null_bind: Denies an unauthenticated LDAP bind request if the user's password is empty;
                defaults to true.
         :param pulumi.Input[str] description: Human-friendly description of the mount for the Active Directory backend.
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[bool] discoverdn: Use anonymous bind to discover the bind Distinguished Name of a user.
         :param pulumi.Input[str] formatter: **Deprecated** use `password_policy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
         :param pulumi.Input[str] groupattr: LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
@@ -1299,10 +1387,15 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[int] last_rotation_tolerance: The number of seconds after a Vault rotation where, if Active Directory
                shows a later rotation, it should be considered out-of-band
         :param pulumi.Input[int] length: **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
+               *Mutually exclusive with `password_policy` on vault-1.11+*
         :param pulumi.Input[bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by
                replication.Tolerance duration to use when checking the last rotation time.
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds.
         :param pulumi.Input[int] max_ttl: In seconds, the maximum password time-to-live.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] password_policy: Name of the password policy to use to generate passwords.
         :param pulumi.Input[int] request_timeout: Timeout, in seconds, for the connection when making requests against the server
                before returning back an error.
@@ -1382,6 +1475,7 @@ class SecretBackend(pulumi.CustomResource):
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  deny_null_bind: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  discoverdn: Optional[pulumi.Input[bool]] = None,
                  formatter: Optional[pulumi.Input[str]] = None,
                  groupattr: Optional[pulumi.Input[str]] = None,
@@ -1393,6 +1487,7 @@ class SecretBackend(pulumi.CustomResource):
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  password_policy: Optional[pulumi.Input[str]] = None,
                  request_timeout: Optional[pulumi.Input[int]] = None,
                  starttls: Optional[pulumi.Input[bool]] = None,
@@ -1421,14 +1516,15 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["binddn"] = binddn
             if bindpass is None and not opts.urn:
                 raise TypeError("Missing required property 'bindpass'")
-            __props__.__dict__["bindpass"] = bindpass
+            __props__.__dict__["bindpass"] = None if bindpass is None else pulumi.Output.secret(bindpass)
             __props__.__dict__["case_sensitive_names"] = case_sensitive_names
             __props__.__dict__["certificate"] = certificate
-            __props__.__dict__["client_tls_cert"] = client_tls_cert
-            __props__.__dict__["client_tls_key"] = client_tls_key
+            __props__.__dict__["client_tls_cert"] = None if client_tls_cert is None else pulumi.Output.secret(client_tls_cert)
+            __props__.__dict__["client_tls_key"] = None if client_tls_key is None else pulumi.Output.secret(client_tls_key)
             __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
             __props__.__dict__["deny_null_bind"] = deny_null_bind
             __props__.__dict__["description"] = description
+            __props__.__dict__["disable_remount"] = disable_remount
             __props__.__dict__["discoverdn"] = discoverdn
             if formatter is not None and not opts.urn:
                 warnings.warn("""Formatter is deprecated and password_policy should be used with Vault >= 1.5.""", DeprecationWarning)
@@ -1446,6 +1542,7 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["local"] = local
             __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
             __props__.__dict__["max_ttl"] = max_ttl
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["password_policy"] = password_policy
             __props__.__dict__["request_timeout"] = request_timeout
             __props__.__dict__["starttls"] = starttls
@@ -1458,6 +1555,8 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["use_token_groups"] = use_token_groups
             __props__.__dict__["userattr"] = userattr
             __props__.__dict__["userdn"] = userdn
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["bindpass", "clientTlsCert", "clientTlsKey"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(SecretBackend, __self__).__init__(
             'vault:ad/secretBackend:SecretBackend',
             resource_name,
@@ -1479,6 +1578,7 @@ class SecretBackend(pulumi.CustomResource):
             default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             deny_null_bind: Optional[pulumi.Input[bool]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            disable_remount: Optional[pulumi.Input[bool]] = None,
             discoverdn: Optional[pulumi.Input[bool]] = None,
             formatter: Optional[pulumi.Input[str]] = None,
             groupattr: Optional[pulumi.Input[str]] = None,
@@ -1490,6 +1590,7 @@ class SecretBackend(pulumi.CustomResource):
             local: Optional[pulumi.Input[bool]] = None,
             max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             max_ttl: Optional[pulumi.Input[int]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             password_policy: Optional[pulumi.Input[str]] = None,
             request_timeout: Optional[pulumi.Input[int]] = None,
             starttls: Optional[pulumi.Input[bool]] = None,
@@ -1525,6 +1626,8 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[bool] deny_null_bind: Denies an unauthenticated LDAP bind request if the user's password is empty;
                defaults to true.
         :param pulumi.Input[str] description: Human-friendly description of the mount for the Active Directory backend.
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[bool] discoverdn: Use anonymous bind to discover the bind Distinguished Name of a user.
         :param pulumi.Input[str] formatter: **Deprecated** use `password_policy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
         :param pulumi.Input[str] groupattr: LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
@@ -1537,10 +1640,15 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[int] last_rotation_tolerance: The number of seconds after a Vault rotation where, if Active Directory
                shows a later rotation, it should be considered out-of-band
         :param pulumi.Input[int] length: **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
+               *Mutually exclusive with `password_policy` on vault-1.11+*
         :param pulumi.Input[bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by
                replication.Tolerance duration to use when checking the last rotation time.
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds.
         :param pulumi.Input[int] max_ttl: In seconds, the maximum password time-to-live.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] password_policy: Name of the password policy to use to generate passwords.
         :param pulumi.Input[int] request_timeout: Timeout, in seconds, for the connection when making requests against the server
                before returning back an error.
@@ -1579,6 +1687,7 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
         __props__.__dict__["deny_null_bind"] = deny_null_bind
         __props__.__dict__["description"] = description
+        __props__.__dict__["disable_remount"] = disable_remount
         __props__.__dict__["discoverdn"] = discoverdn
         __props__.__dict__["formatter"] = formatter
         __props__.__dict__["groupattr"] = groupattr
@@ -1590,6 +1699,7 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["local"] = local
         __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
         __props__.__dict__["max_ttl"] = max_ttl
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["password_policy"] = password_policy
         __props__.__dict__["request_timeout"] = request_timeout
         __props__.__dict__["starttls"] = starttls
@@ -1698,6 +1808,15 @@ class SecretBackend(pulumi.CustomResource):
         return pulumi.get(self, "description")
 
     @property
+    @pulumi.getter(name="disableRemount")
+    def disable_remount(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If set, opts out of mount migration on path updates.
+        See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        """
+        return pulumi.get(self, "disable_remount")
+
+    @property
     @pulumi.getter
     def discoverdn(self) -> pulumi.Output[Optional[bool]]:
         """
@@ -1762,6 +1881,7 @@ class SecretBackend(pulumi.CustomResource):
     def length(self) -> pulumi.Output[int]:
         """
         **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
+        *Mutually exclusive with `password_policy` on vault-1.11+*
         """
         return pulumi.get(self, "length")
 
@@ -1789,6 +1909,17 @@ class SecretBackend(pulumi.CustomResource):
         In seconds, the maximum password time-to-live.
         """
         return pulumi.get(self, "max_ttl")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="passwordPolicy")

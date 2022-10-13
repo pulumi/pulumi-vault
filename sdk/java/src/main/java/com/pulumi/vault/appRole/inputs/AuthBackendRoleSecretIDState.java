@@ -13,9 +13,9 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 
-public final class AuthBackendRoleSecretIDState extends com.pulumi.resources.ResourceArgs {
+public final class AuthBackendRoleSecretIdState extends com.pulumi.resources.ResourceArgs {
 
-    public static final AuthBackendRoleSecretIDState Empty = new AuthBackendRoleSecretIDState();
+    public static final AuthBackendRoleSecretIdState Empty = new AuthBackendRoleSecretIdState();
 
     /**
      * The unique ID for this SecretID that can be safely logged.
@@ -79,6 +79,27 @@ public final class AuthBackendRoleSecretIDState extends com.pulumi.resources.Res
      */
     public Optional<Output<String>> metadata() {
         return Optional.ofNullable(this.metadata);
+    }
+
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable Output<String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> namespace() {
+        return Optional.ofNullable(this.namespace);
     }
 
     /**
@@ -185,13 +206,14 @@ public final class AuthBackendRoleSecretIDState extends com.pulumi.resources.Res
         return Optional.ofNullable(this.wrappingTtl);
     }
 
-    private AuthBackendRoleSecretIDState() {}
+    private AuthBackendRoleSecretIdState() {}
 
-    private AuthBackendRoleSecretIDState(AuthBackendRoleSecretIDState $) {
+    private AuthBackendRoleSecretIdState(AuthBackendRoleSecretIdState $) {
         this.accessor = $.accessor;
         this.backend = $.backend;
         this.cidrLists = $.cidrLists;
         this.metadata = $.metadata;
+        this.namespace = $.namespace;
         this.roleName = $.roleName;
         this.secretId = $.secretId;
         this.withWrappedAccessor = $.withWrappedAccessor;
@@ -203,19 +225,19 @@ public final class AuthBackendRoleSecretIDState extends com.pulumi.resources.Res
     public static Builder builder() {
         return new Builder();
     }
-    public static Builder builder(AuthBackendRoleSecretIDState defaults) {
+    public static Builder builder(AuthBackendRoleSecretIdState defaults) {
         return new Builder(defaults);
     }
 
     public static final class Builder {
-        private AuthBackendRoleSecretIDState $;
+        private AuthBackendRoleSecretIdState $;
 
         public Builder() {
-            $ = new AuthBackendRoleSecretIDState();
+            $ = new AuthBackendRoleSecretIdState();
         }
 
-        public Builder(AuthBackendRoleSecretIDState defaults) {
-            $ = new AuthBackendRoleSecretIDState(Objects.requireNonNull(defaults));
+        public Builder(AuthBackendRoleSecretIdState defaults) {
+            $ = new AuthBackendRoleSecretIdState(Objects.requireNonNull(defaults));
         }
 
         /**
@@ -315,6 +337,33 @@ public final class AuthBackendRoleSecretIDState extends com.pulumi.resources.Res
          */
         public Builder metadata(String metadata) {
             return metadata(Output.of(metadata));
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable Output<String> namespace) {
+            $.namespace = namespace;
+            return this;
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(String namespace) {
+            return namespace(Output.of(namespace));
         }
 
         /**
@@ -457,7 +506,7 @@ public final class AuthBackendRoleSecretIDState extends com.pulumi.resources.Res
             return wrappingTtl(Output.of(wrappingTtl));
         }
 
-        public AuthBackendRoleSecretIDState build() {
+        public AuthBackendRoleSecretIdState build() {
             return $;
         }
     }

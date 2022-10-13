@@ -16,12 +16,17 @@ class SecretBackendCaArgs:
     def __init__(__self__, *,
                  backend: Optional[pulumi.Input[str]] = None,
                  generate_signing_key: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
                  public_key: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SecretBackendCa resource.
         :param pulumi.Input[str] backend: The path where the SSH secret backend is mounted. Defaults to 'ssh'
         :param pulumi.Input[bool] generate_signing_key: Whether Vault should generate the signing key pair internally. Defaults to true
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] private_key: The private key part the SSH CA key pair; required if generate_signing_key is false.
         :param pulumi.Input[str] public_key: The public key part the SSH CA key pair; required if generate_signing_key is false.
         """
@@ -29,6 +34,8 @@ class SecretBackendCaArgs:
             pulumi.set(__self__, "backend", backend)
         if generate_signing_key is not None:
             pulumi.set(__self__, "generate_signing_key", generate_signing_key)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if private_key is not None:
             pulumi.set(__self__, "private_key", private_key)
         if public_key is not None:
@@ -57,6 +64,21 @@ class SecretBackendCaArgs:
     @generate_signing_key.setter
     def generate_signing_key(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "generate_signing_key", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter(name="privateKey")
@@ -88,12 +110,17 @@ class _SecretBackendCaState:
     def __init__(__self__, *,
                  backend: Optional[pulumi.Input[str]] = None,
                  generate_signing_key: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
                  public_key: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendCa resources.
         :param pulumi.Input[str] backend: The path where the SSH secret backend is mounted. Defaults to 'ssh'
         :param pulumi.Input[bool] generate_signing_key: Whether Vault should generate the signing key pair internally. Defaults to true
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] private_key: The private key part the SSH CA key pair; required if generate_signing_key is false.
         :param pulumi.Input[str] public_key: The public key part the SSH CA key pair; required if generate_signing_key is false.
         """
@@ -101,6 +128,8 @@ class _SecretBackendCaState:
             pulumi.set(__self__, "backend", backend)
         if generate_signing_key is not None:
             pulumi.set(__self__, "generate_signing_key", generate_signing_key)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if private_key is not None:
             pulumi.set(__self__, "private_key", private_key)
         if public_key is not None:
@@ -129,6 +158,21 @@ class _SecretBackendCaState:
     @generate_signing_key.setter
     def generate_signing_key(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "generate_signing_key", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter(name="privateKey")
@@ -162,6 +206,7 @@ class SecretBackendCa(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  generate_signing_key: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
                  public_key: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -179,10 +224,22 @@ class SecretBackendCa(pulumi.CustomResource):
         foo = vault.ssh.SecretBackendCa("foo", backend=example.path)
         ```
 
+        ## Import
+
+        SSH secret backend CAs can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:ssh/secretBackendCa:SecretBackendCa foo ssh
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The path where the SSH secret backend is mounted. Defaults to 'ssh'
         :param pulumi.Input[bool] generate_signing_key: Whether Vault should generate the signing key pair internally. Defaults to true
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] private_key: The private key part the SSH CA key pair; required if generate_signing_key is false.
         :param pulumi.Input[str] public_key: The public key part the SSH CA key pair; required if generate_signing_key is false.
         """
@@ -206,6 +263,14 @@ class SecretBackendCa(pulumi.CustomResource):
         foo = vault.ssh.SecretBackendCa("foo", backend=example.path)
         ```
 
+        ## Import
+
+        SSH secret backend CAs can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:ssh/secretBackendCa:SecretBackendCa foo ssh
+        ```
+
         :param str resource_name: The name of the resource.
         :param SecretBackendCaArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -223,6 +288,7 @@ class SecretBackendCa(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  generate_signing_key: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
                  public_key: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -236,8 +302,11 @@ class SecretBackendCa(pulumi.CustomResource):
 
             __props__.__dict__["backend"] = backend
             __props__.__dict__["generate_signing_key"] = generate_signing_key
-            __props__.__dict__["private_key"] = private_key
+            __props__.__dict__["namespace"] = namespace
+            __props__.__dict__["private_key"] = None if private_key is None else pulumi.Output.secret(private_key)
             __props__.__dict__["public_key"] = public_key
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["privateKey"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(SecretBackendCa, __self__).__init__(
             'vault:ssh/secretBackendCa:SecretBackendCa',
             resource_name,
@@ -250,6 +319,7 @@ class SecretBackendCa(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
             generate_signing_key: Optional[pulumi.Input[bool]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             private_key: Optional[pulumi.Input[str]] = None,
             public_key: Optional[pulumi.Input[str]] = None) -> 'SecretBackendCa':
         """
@@ -261,6 +331,10 @@ class SecretBackendCa(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The path where the SSH secret backend is mounted. Defaults to 'ssh'
         :param pulumi.Input[bool] generate_signing_key: Whether Vault should generate the signing key pair internally. Defaults to true
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] private_key: The private key part the SSH CA key pair; required if generate_signing_key is false.
         :param pulumi.Input[str] public_key: The public key part the SSH CA key pair; required if generate_signing_key is false.
         """
@@ -270,6 +344,7 @@ class SecretBackendCa(pulumi.CustomResource):
 
         __props__.__dict__["backend"] = backend
         __props__.__dict__["generate_signing_key"] = generate_signing_key
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["private_key"] = private_key
         __props__.__dict__["public_key"] = public_key
         return SecretBackendCa(resource_name, opts=opts, __props__=__props__)
@@ -289,6 +364,17 @@ class SecretBackendCa(pulumi.CustomResource):
         Whether Vault should generate the signing key pair internally. Defaults to true
         """
         return pulumi.get(self, "generate_signing_key")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="privateKey")

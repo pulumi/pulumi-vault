@@ -108,6 +108,15 @@ namespace Pulumi.Vault.Aws
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
         /// The ARN of the AWS Permissions 
         /// Boundary to attach to IAM users created in the role. Valid only when
         /// `credential_type` is `iam_user`. If not specified, then no permissions boundary
@@ -257,6 +266,15 @@ namespace Pulumi.Vault.Aws
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
         /// The ARN of the AWS Permissions 
         /// Boundary to attach to IAM users created in the role. Valid only when
         /// `credential_type` is `iam_user`. If not specified, then no permissions boundary
@@ -378,6 +396,15 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// The ARN of the AWS Permissions 

@@ -20,6 +20,7 @@ class AuthBackendRoleArgs:
                  allowed_policies_globs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  disallowed_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  disallowed_policies_globs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  orphan: Optional[pulumi.Input[bool]] = None,
                  path_suffix: Optional[pulumi.Input[str]] = None,
                  renewable: Optional[pulumi.Input[bool]] = None,
@@ -40,6 +41,10 @@ class AuthBackendRoleArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_policies_globs: Set of allowed policies with glob match for given role.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] disallowed_policies: List of disallowed policies for given role.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] disallowed_policies_globs: Set of disallowed policies with glob match for given role.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] orphan: If true, tokens created against this policy will be orphan tokens.
         :param pulumi.Input[str] path_suffix: Tokens created against this role will have the given suffix as part of their path in addition to the role name.
         :param pulumi.Input[bool] renewable: Whether to disable the ability of the token to be renewed past its initial TTL.
@@ -80,6 +85,8 @@ class AuthBackendRoleArgs:
             pulumi.set(__self__, "disallowed_policies", disallowed_policies)
         if disallowed_policies_globs is not None:
             pulumi.set(__self__, "disallowed_policies_globs", disallowed_policies_globs)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if orphan is not None:
             pulumi.set(__self__, "orphan", orphan)
         if path_suffix is not None:
@@ -176,6 +183,21 @@ class AuthBackendRoleArgs:
     @disallowed_policies_globs.setter
     def disallowed_policies_globs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "disallowed_policies_globs", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -346,6 +368,7 @@ class _AuthBackendRoleState:
                  allowed_policies_globs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  disallowed_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  disallowed_policies_globs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  orphan: Optional[pulumi.Input[bool]] = None,
                  path_suffix: Optional[pulumi.Input[str]] = None,
                  renewable: Optional[pulumi.Input[bool]] = None,
@@ -366,6 +389,10 @@ class _AuthBackendRoleState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_policies_globs: Set of allowed policies with glob match for given role.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] disallowed_policies: List of disallowed policies for given role.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] disallowed_policies_globs: Set of disallowed policies with glob match for given role.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] orphan: If true, tokens created against this policy will be orphan tokens.
         :param pulumi.Input[str] path_suffix: Tokens created against this role will have the given suffix as part of their path in addition to the role name.
         :param pulumi.Input[bool] renewable: Whether to disable the ability of the token to be renewed past its initial TTL.
@@ -406,6 +433,8 @@ class _AuthBackendRoleState:
             pulumi.set(__self__, "disallowed_policies", disallowed_policies)
         if disallowed_policies_globs is not None:
             pulumi.set(__self__, "disallowed_policies_globs", disallowed_policies_globs)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if orphan is not None:
             pulumi.set(__self__, "orphan", orphan)
         if path_suffix is not None:
@@ -492,6 +521,21 @@ class _AuthBackendRoleState:
     @disallowed_policies_globs.setter
     def disallowed_policies_globs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "disallowed_policies_globs", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -676,6 +720,7 @@ class AuthBackendRole(pulumi.CustomResource):
                  allowed_policies_globs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  disallowed_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  disallowed_policies_globs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  orphan: Optional[pulumi.Input[bool]] = None,
                  path_suffix: Optional[pulumi.Input[str]] = None,
                  renewable: Optional[pulumi.Input[bool]] = None,
@@ -731,6 +776,10 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_policies_globs: Set of allowed policies with glob match for given role.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] disallowed_policies: List of disallowed policies for given role.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] disallowed_policies_globs: Set of disallowed policies with glob match for given role.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] orphan: If true, tokens created against this policy will be orphan tokens.
         :param pulumi.Input[str] path_suffix: Tokens created against this role will have the given suffix as part of their path in addition to the role name.
         :param pulumi.Input[bool] renewable: Whether to disable the ability of the token to be renewed past its initial TTL.
@@ -821,6 +870,7 @@ class AuthBackendRole(pulumi.CustomResource):
                  allowed_policies_globs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  disallowed_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  disallowed_policies_globs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  orphan: Optional[pulumi.Input[bool]] = None,
                  path_suffix: Optional[pulumi.Input[str]] = None,
                  renewable: Optional[pulumi.Input[bool]] = None,
@@ -848,6 +898,7 @@ class AuthBackendRole(pulumi.CustomResource):
             __props__.__dict__["allowed_policies_globs"] = allowed_policies_globs
             __props__.__dict__["disallowed_policies"] = disallowed_policies
             __props__.__dict__["disallowed_policies_globs"] = disallowed_policies_globs
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["orphan"] = orphan
             __props__.__dict__["path_suffix"] = path_suffix
             __props__.__dict__["renewable"] = renewable
@@ -878,6 +929,7 @@ class AuthBackendRole(pulumi.CustomResource):
             allowed_policies_globs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             disallowed_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             disallowed_policies_globs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             orphan: Optional[pulumi.Input[bool]] = None,
             path_suffix: Optional[pulumi.Input[str]] = None,
             renewable: Optional[pulumi.Input[bool]] = None,
@@ -903,6 +955,10 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_policies_globs: Set of allowed policies with glob match for given role.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] disallowed_policies: List of disallowed policies for given role.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] disallowed_policies_globs: Set of disallowed policies with glob match for given role.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] orphan: If true, tokens created against this policy will be orphan tokens.
         :param pulumi.Input[str] path_suffix: Tokens created against this role will have the given suffix as part of their path in addition to the role name.
         :param pulumi.Input[bool] renewable: Whether to disable the ability of the token to be renewed past its initial TTL.
@@ -942,6 +998,7 @@ class AuthBackendRole(pulumi.CustomResource):
         __props__.__dict__["allowed_policies_globs"] = allowed_policies_globs
         __props__.__dict__["disallowed_policies"] = disallowed_policies
         __props__.__dict__["disallowed_policies_globs"] = disallowed_policies_globs
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["orphan"] = orphan
         __props__.__dict__["path_suffix"] = path_suffix
         __props__.__dict__["renewable"] = renewable
@@ -996,6 +1053,17 @@ class AuthBackendRole(pulumi.CustomResource):
         Set of disallowed policies with glob match for given role.
         """
         return pulumi.get(self, "disallowed_policies_globs")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

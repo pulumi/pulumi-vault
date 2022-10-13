@@ -66,6 +66,13 @@ export class SecretBackendCrlConfig extends pulumi.CustomResource {
      * Specifies the time until expiration.
      */
     public readonly expiry!: pulumi.Output<string | undefined>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
 
     /**
      * Create a SecretBackendCrlConfig resource with the given unique name, arguments, and options.
@@ -83,6 +90,7 @@ export class SecretBackendCrlConfig extends pulumi.CustomResource {
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["disable"] = state ? state.disable : undefined;
             resourceInputs["expiry"] = state ? state.expiry : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
         } else {
             const args = argsOrState as SecretBackendCrlConfigArgs | undefined;
             if ((!args || args.backend === undefined) && !opts.urn) {
@@ -91,6 +99,7 @@ export class SecretBackendCrlConfig extends pulumi.CustomResource {
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["disable"] = args ? args.disable : undefined;
             resourceInputs["expiry"] = args ? args.expiry : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretBackendCrlConfig.__pulumiType, name, resourceInputs, opts);
@@ -113,6 +122,13 @@ export interface SecretBackendCrlConfigState {
      * Specifies the time until expiration.
      */
     expiry?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
 }
 
 /**
@@ -131,4 +147,11 @@ export interface SecretBackendCrlConfigArgs {
      * Specifies the time until expiration.
      */
     expiry?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
 }

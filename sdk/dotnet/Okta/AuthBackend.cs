@@ -91,6 +91,13 @@ namespace Pulumi.Vault.Okta
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Output("disableRemount")]
+        public Output<bool?> DisableRemount { get; private set; } = null!;
+
+        /// <summary>
         /// Associate Okta groups with policies within Vault.
         /// See below for more details.
         /// </summary>
@@ -103,6 +110,15 @@ namespace Pulumi.Vault.Okta
         /// </summary>
         [Output("maxTtl")]
         public Output<string?> MaxTtl { get; private set; } = null!;
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
         /// The Okta organization. This will be the first part of the url `https://XXX.okta.com`
@@ -160,6 +176,10 @@ namespace Pulumi.Vault.Okta
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "token",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -201,6 +221,13 @@ namespace Pulumi.Vault.Okta
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Input("disableRemount")]
+        public Input<bool>? DisableRemount { get; set; }
+
         [Input("groups")]
         private InputList<Inputs.AuthBackendGroupArgs>? _groups;
 
@@ -222,6 +249,15 @@ namespace Pulumi.Vault.Okta
         public Input<string>? MaxTtl { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
         /// The Okta organization. This will be the first part of the url `https://XXX.okta.com`
         /// </summary>
         [Input("organization", required: true)]
@@ -233,12 +269,22 @@ namespace Pulumi.Vault.Okta
         [Input("path")]
         public Input<string>? Path { get; set; }
 
+        [Input("token")]
+        private Input<string>? _token;
+
         /// <summary>
         /// The Okta API token. This is required to query Okta for user group membership.
         /// If this is not supplied only locally configured groups will be enabled.
         /// </summary>
-        [Input("token")]
-        public Input<string>? Token { get; set; }
+        public Input<string>? Token
+        {
+            get => _token;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Duration after which authentication will be expired.
@@ -292,6 +338,13 @@ namespace Pulumi.Vault.Okta
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Input("disableRemount")]
+        public Input<bool>? DisableRemount { get; set; }
+
         [Input("groups")]
         private InputList<Inputs.AuthBackendGroupGetArgs>? _groups;
 
@@ -313,6 +366,15 @@ namespace Pulumi.Vault.Okta
         public Input<string>? MaxTtl { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
         /// The Okta organization. This will be the first part of the url `https://XXX.okta.com`
         /// </summary>
         [Input("organization")]
@@ -324,12 +386,22 @@ namespace Pulumi.Vault.Okta
         [Input("path")]
         public Input<string>? Path { get; set; }
 
+        [Input("token")]
+        private Input<string>? _token;
+
         /// <summary>
         /// The Okta API token. This is required to query Okta for user group membership.
         /// If this is not supplied only locally configured groups will be enabled.
         /// </summary>
-        [Input("token")]
-        public Input<string>? Token { get; set; }
+        public Input<string>? Token
+        {
+            get => _token;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Duration after which authentication will be expired.

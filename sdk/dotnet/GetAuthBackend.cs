@@ -34,7 +34,7 @@ namespace Pulumi.Vault
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetAuthBackendResult> InvokeAsync(GetAuthBackendArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendResult>("vault:index/getAuthBackend:getAuthBackend", args ?? new GetAuthBackendArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendResult>("vault:index/getAuthBackend:getAuthBackend", args ?? new GetAuthBackendArgs(), options.WithDefaults());
 
         /// <summary>
         /// {{% examples %}}
@@ -59,12 +59,21 @@ namespace Pulumi.Vault
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetAuthBackendResult> Invoke(GetAuthBackendInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetAuthBackendResult>("vault:index/getAuthBackend:getAuthBackend", args ?? new GetAuthBackendInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetAuthBackendResult>("vault:index/getAuthBackend:getAuthBackend", args ?? new GetAuthBackendInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class GetAuthBackendArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public string? Namespace { get; set; }
+
         /// <summary>
         /// The auth backend mount point.
         /// </summary>
@@ -79,6 +88,15 @@ namespace Pulumi.Vault
 
     public sealed class GetAuthBackendInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
         /// <summary>
         /// The auth backend mount point.
         /// </summary>
@@ -96,7 +114,7 @@ namespace Pulumi.Vault
     public sealed class GetAuthBackendResult
     {
         /// <summary>
-        /// The accessor for this auth method
+        /// The accessor for this auth method.
         /// </summary>
         public readonly string Accessor;
         /// <summary>
@@ -123,6 +141,7 @@ namespace Pulumi.Vault
         /// The maximum lease duration in seconds.
         /// </summary>
         public readonly int MaxLeaseTtlSeconds;
+        public readonly string? Namespace;
         public readonly string Path;
         /// <summary>
         /// The name of the auth method type.
@@ -145,6 +164,8 @@ namespace Pulumi.Vault
 
             int maxLeaseTtlSeconds,
 
+            string? @namespace,
+
             string path,
 
             string type)
@@ -156,6 +177,7 @@ namespace Pulumi.Vault
             ListingVisibility = listingVisibility;
             Local = local;
             MaxLeaseTtlSeconds = maxLeaseTtlSeconds;
+            Namespace = @namespace;
             Path = path;
             Type = type;
         }

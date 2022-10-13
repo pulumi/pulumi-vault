@@ -17,6 +17,7 @@ class AuthBackendRoleArgs:
                  arn: pulumi.Input[str],
                  role: pulumi.Input[str],
                  backend: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
                  token_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -33,6 +34,10 @@ class AuthBackendRoleArgs:
                the role reflected in the arn.
         :param pulumi.Input[str] backend: Path to the mounted AliCloud auth backend.
                Defaults to `alicloud`
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured namespace.
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
                addresses which can authenticate successfully, and ties the resulting token to these blocks
                as well.
@@ -64,6 +69,8 @@ class AuthBackendRoleArgs:
         pulumi.set(__self__, "role", role)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if token_bound_cidrs is not None:
             pulumi.set(__self__, "token_bound_cidrs", token_bound_cidrs)
         if token_explicit_max_ttl is not None:
@@ -120,6 +127,21 @@ class AuthBackendRoleArgs:
     @backend.setter
     def backend(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured namespace.
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter(name="tokenBoundCidrs")
@@ -252,6 +274,7 @@ class _AuthBackendRoleState:
     def __init__(__self__, *,
                  arn: Optional[pulumi.Input[str]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -267,6 +290,10 @@ class _AuthBackendRoleState:
         :param pulumi.Input[str] arn: The role's arn.
         :param pulumi.Input[str] backend: Path to the mounted AliCloud auth backend.
                Defaults to `alicloud`
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured namespace.
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role: Name of the role. Must correspond with the name of
                the role reflected in the arn.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
@@ -300,6 +327,8 @@ class _AuthBackendRoleState:
             pulumi.set(__self__, "arn", arn)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if role is not None:
             pulumi.set(__self__, "role", role)
         if token_bound_cidrs is not None:
@@ -345,6 +374,21 @@ class _AuthBackendRoleState:
     @backend.setter
     def backend(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured namespace.
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -492,6 +536,7 @@ class AuthBackendRole(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  arn: Optional[pulumi.Input[str]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -534,6 +579,10 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] arn: The role's arn.
         :param pulumi.Input[str] backend: Path to the mounted AliCloud auth backend.
                Defaults to `alicloud`
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured namespace.
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role: Name of the role. Must correspond with the name of
                the role reflected in the arn.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
@@ -612,6 +661,7 @@ class AuthBackendRole(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  arn: Optional[pulumi.Input[str]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -635,6 +685,7 @@ class AuthBackendRole(pulumi.CustomResource):
                 raise TypeError("Missing required property 'arn'")
             __props__.__dict__["arn"] = arn
             __props__.__dict__["backend"] = backend
+            __props__.__dict__["namespace"] = namespace
             if role is None and not opts.urn:
                 raise TypeError("Missing required property 'role'")
             __props__.__dict__["role"] = role
@@ -659,6 +710,7 @@ class AuthBackendRole(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             arn: Optional[pulumi.Input[str]] = None,
             backend: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             role: Optional[pulumi.Input[str]] = None,
             token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -679,6 +731,10 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] arn: The role's arn.
         :param pulumi.Input[str] backend: Path to the mounted AliCloud auth backend.
                Defaults to `alicloud`
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured namespace.
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role: Name of the role. Must correspond with the name of
                the role reflected in the arn.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
@@ -714,6 +770,7 @@ class AuthBackendRole(pulumi.CustomResource):
 
         __props__.__dict__["arn"] = arn
         __props__.__dict__["backend"] = backend
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["role"] = role
         __props__.__dict__["token_bound_cidrs"] = token_bound_cidrs
         __props__.__dict__["token_explicit_max_ttl"] = token_explicit_max_ttl
@@ -742,6 +799,17 @@ class AuthBackendRole(pulumi.CustomResource):
         Defaults to `alicloud`
         """
         return pulumi.get(self, "backend")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured namespace.
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

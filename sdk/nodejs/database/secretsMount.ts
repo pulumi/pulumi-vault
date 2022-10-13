@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -89,6 +90,10 @@ export class SecretsMount extends pulumi.CustomResource {
      * Accessor of the mount
      */
     public /*out*/ readonly accessor!: pulumi.Output<string>;
+    /**
+     * Set of managed key registry entry names that the mount in question is allowed to access
+     */
+    public readonly allowedManagedKeys!: pulumi.Output<string[] | undefined>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
      */
@@ -182,6 +187,10 @@ export class SecretsMount extends pulumi.CustomResource {
      */
     public readonly mysqls!: pulumi.Output<outputs.database.SecretsMountMysql[] | undefined>;
     /**
+     * Target namespace. (requires Enterprise)
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * Specifies mount type specific options that are passed to the backend
      */
     public readonly options!: pulumi.Output<{[key: string]: any} | undefined>;
@@ -199,6 +208,11 @@ export class SecretsMount extends pulumi.CustomResource {
      * *See Configuration Options for more info*
      */
     public readonly postgresqls!: pulumi.Output<outputs.database.SecretsMountPostgresql[] | undefined>;
+    /**
+     * A nested block containing configuration options for InfluxDB connections.  
+     * *See Configuration Options for more info*
+     */
+    public readonly redisElasticaches!: pulumi.Output<outputs.database.SecretsMountRedisElasticach[] | undefined>;
     /**
      * A nested block containing configuration options for AWS Redshift connections.  
      * *See Configuration Options for more info*
@@ -228,6 +242,7 @@ export class SecretsMount extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SecretsMountState | undefined;
             resourceInputs["accessor"] = state ? state.accessor : undefined;
+            resourceInputs["allowedManagedKeys"] = state ? state.allowedManagedKeys : undefined;
             resourceInputs["auditNonHmacRequestKeys"] = state ? state.auditNonHmacRequestKeys : undefined;
             resourceInputs["auditNonHmacResponseKeys"] = state ? state.auditNonHmacResponseKeys : undefined;
             resourceInputs["cassandras"] = state ? state.cassandras : undefined;
@@ -248,10 +263,12 @@ export class SecretsMount extends pulumi.CustomResource {
             resourceInputs["mysqlLegacies"] = state ? state.mysqlLegacies : undefined;
             resourceInputs["mysqlRds"] = state ? state.mysqlRds : undefined;
             resourceInputs["mysqls"] = state ? state.mysqls : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["options"] = state ? state.options : undefined;
             resourceInputs["oracles"] = state ? state.oracles : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
             resourceInputs["postgresqls"] = state ? state.postgresqls : undefined;
+            resourceInputs["redisElasticaches"] = state ? state.redisElasticaches : undefined;
             resourceInputs["redshifts"] = state ? state.redshifts : undefined;
             resourceInputs["sealWrap"] = state ? state.sealWrap : undefined;
             resourceInputs["snowflakes"] = state ? state.snowflakes : undefined;
@@ -260,6 +277,7 @@ export class SecretsMount extends pulumi.CustomResource {
             if ((!args || args.path === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
+            resourceInputs["allowedManagedKeys"] = args ? args.allowedManagedKeys : undefined;
             resourceInputs["auditNonHmacRequestKeys"] = args ? args.auditNonHmacRequestKeys : undefined;
             resourceInputs["auditNonHmacResponseKeys"] = args ? args.auditNonHmacResponseKeys : undefined;
             resourceInputs["cassandras"] = args ? args.cassandras : undefined;
@@ -279,10 +297,12 @@ export class SecretsMount extends pulumi.CustomResource {
             resourceInputs["mysqlLegacies"] = args ? args.mysqlLegacies : undefined;
             resourceInputs["mysqlRds"] = args ? args.mysqlRds : undefined;
             resourceInputs["mysqls"] = args ? args.mysqls : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["options"] = args ? args.options : undefined;
             resourceInputs["oracles"] = args ? args.oracles : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["postgresqls"] = args ? args.postgresqls : undefined;
+            resourceInputs["redisElasticaches"] = args ? args.redisElasticaches : undefined;
             resourceInputs["redshifts"] = args ? args.redshifts : undefined;
             resourceInputs["sealWrap"] = args ? args.sealWrap : undefined;
             resourceInputs["snowflakes"] = args ? args.snowflakes : undefined;
@@ -302,6 +322,10 @@ export interface SecretsMountState {
      * Accessor of the mount
      */
     accessor?: pulumi.Input<string>;
+    /**
+     * Set of managed key registry entry names that the mount in question is allowed to access
+     */
+    allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
      */
@@ -395,6 +419,10 @@ export interface SecretsMountState {
      */
     mysqls?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMysql>[]>;
     /**
+     * Target namespace. (requires Enterprise)
+     */
+    namespace?: pulumi.Input<string>;
+    /**
      * Specifies mount type specific options that are passed to the backend
      */
     options?: pulumi.Input<{[key: string]: any}>;
@@ -412,6 +440,11 @@ export interface SecretsMountState {
      * *See Configuration Options for more info*
      */
     postgresqls?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountPostgresql>[]>;
+    /**
+     * A nested block containing configuration options for InfluxDB connections.  
+     * *See Configuration Options for more info*
+     */
+    redisElasticaches?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountRedisElasticach>[]>;
     /**
      * A nested block containing configuration options for AWS Redshift connections.  
      * *See Configuration Options for more info*
@@ -432,6 +465,10 @@ export interface SecretsMountState {
  * The set of arguments for constructing a SecretsMount resource.
  */
 export interface SecretsMountArgs {
+    /**
+     * Set of managed key registry entry names that the mount in question is allowed to access
+     */
+    allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
      */
@@ -521,6 +558,10 @@ export interface SecretsMountArgs {
      */
     mysqls?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMysql>[]>;
     /**
+     * Target namespace. (requires Enterprise)
+     */
+    namespace?: pulumi.Input<string>;
+    /**
      * Specifies mount type specific options that are passed to the backend
      */
     options?: pulumi.Input<{[key: string]: any}>;
@@ -538,6 +579,11 @@ export interface SecretsMountArgs {
      * *See Configuration Options for more info*
      */
     postgresqls?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountPostgresql>[]>;
+    /**
+     * A nested block containing configuration options for InfluxDB connections.  
+     * *See Configuration Options for more info*
+     */
+    redisElasticaches?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountRedisElasticach>[]>;
     /**
      * A nested block containing configuration options for AWS Redshift connections.  
      * *See Configuration Options for more info*

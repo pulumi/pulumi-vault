@@ -19,6 +19,7 @@ class EndpointArgs:
                  disable_delete: Optional[pulumi.Input[bool]] = None,
                  disable_read: Optional[pulumi.Input[bool]] = None,
                  ignore_absent_fields: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  write_fields: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a Endpoint resource.
@@ -35,6 +36,10 @@ class EndpointArgs:
                detection. You should set this to `true` for endpoints that are
                write-only. Defaults to false.
         :param pulumi.Input[bool] ignore_absent_fields: When reading, disregard fields not present in data_json
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] write_fields: Top-level fields returned by write to persist in state
         """
         pulumi.set(__self__, "data_json", data_json)
@@ -45,6 +50,8 @@ class EndpointArgs:
             pulumi.set(__self__, "disable_read", disable_read)
         if ignore_absent_fields is not None:
             pulumi.set(__self__, "ignore_absent_fields", ignore_absent_fields)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if write_fields is not None:
             pulumi.set(__self__, "write_fields", write_fields)
 
@@ -117,6 +124,21 @@ class EndpointArgs:
         pulumi.set(self, "ignore_absent_fields", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="writeFields")
     def write_fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -136,6 +158,7 @@ class _EndpointState:
                  disable_delete: Optional[pulumi.Input[bool]] = None,
                  disable_read: Optional[pulumi.Input[bool]] = None,
                  ignore_absent_fields: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  write_data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  write_data_json: Optional[pulumi.Input[str]] = None,
@@ -151,6 +174,10 @@ class _EndpointState:
                detection. You should set this to `true` for endpoints that are
                write-only. Defaults to false.
         :param pulumi.Input[bool] ignore_absent_fields: When reading, disregard fields not present in data_json
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The full logical path at which to write the given
                data. Consult each backend's documentation to see which endpoints
                support the `PUT` methods and to determine whether they also support
@@ -167,6 +194,8 @@ class _EndpointState:
             pulumi.set(__self__, "disable_read", disable_read)
         if ignore_absent_fields is not None:
             pulumi.set(__self__, "ignore_absent_fields", ignore_absent_fields)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if path is not None:
             pulumi.set(__self__, "path", path)
         if write_data is not None:
@@ -231,6 +260,21 @@ class _EndpointState:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
         """
         The full logical path at which to write the given
@@ -290,6 +334,7 @@ class Endpoint(pulumi.CustomResource):
                  disable_delete: Optional[pulumi.Input[bool]] = None,
                  disable_read: Optional[pulumi.Input[bool]] = None,
                  ignore_absent_fields: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  write_fields: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
@@ -316,6 +361,10 @@ class Endpoint(pulumi.CustomResource):
                detection. You should set this to `true` for endpoints that are
                write-only. Defaults to false.
         :param pulumi.Input[bool] ignore_absent_fields: When reading, disregard fields not present in data_json
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The full logical path at which to write the given
                data. Consult each backend's documentation to see which endpoints
                support the `PUT` methods and to determine whether they also support
@@ -359,6 +408,7 @@ class Endpoint(pulumi.CustomResource):
                  disable_delete: Optional[pulumi.Input[bool]] = None,
                  disable_read: Optional[pulumi.Input[bool]] = None,
                  ignore_absent_fields: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  write_fields: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
@@ -372,16 +422,19 @@ class Endpoint(pulumi.CustomResource):
 
             if data_json is None and not opts.urn:
                 raise TypeError("Missing required property 'data_json'")
-            __props__.__dict__["data_json"] = data_json
+            __props__.__dict__["data_json"] = None if data_json is None else pulumi.Output.secret(data_json)
             __props__.__dict__["disable_delete"] = disable_delete
             __props__.__dict__["disable_read"] = disable_read
             __props__.__dict__["ignore_absent_fields"] = ignore_absent_fields
+            __props__.__dict__["namespace"] = namespace
             if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
             __props__.__dict__["path"] = path
             __props__.__dict__["write_fields"] = write_fields
             __props__.__dict__["write_data"] = None
             __props__.__dict__["write_data_json"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["dataJson"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Endpoint, __self__).__init__(
             'vault:generic/endpoint:Endpoint',
             resource_name,
@@ -396,6 +449,7 @@ class Endpoint(pulumi.CustomResource):
             disable_delete: Optional[pulumi.Input[bool]] = None,
             disable_read: Optional[pulumi.Input[bool]] = None,
             ignore_absent_fields: Optional[pulumi.Input[bool]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
             write_data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             write_data_json: Optional[pulumi.Input[str]] = None,
@@ -416,6 +470,10 @@ class Endpoint(pulumi.CustomResource):
                detection. You should set this to `true` for endpoints that are
                write-only. Defaults to false.
         :param pulumi.Input[bool] ignore_absent_fields: When reading, disregard fields not present in data_json
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The full logical path at which to write the given
                data. Consult each backend's documentation to see which endpoints
                support the `PUT` methods and to determine whether they also support
@@ -432,6 +490,7 @@ class Endpoint(pulumi.CustomResource):
         __props__.__dict__["disable_delete"] = disable_delete
         __props__.__dict__["disable_read"] = disable_read
         __props__.__dict__["ignore_absent_fields"] = ignore_absent_fields
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["path"] = path
         __props__.__dict__["write_data"] = write_data
         __props__.__dict__["write_data_json"] = write_data_json
@@ -474,6 +533,17 @@ class Endpoint(pulumi.CustomResource):
         When reading, disregard fields not present in data_json
         """
         return pulumi.get(self, "ignore_absent_fields")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

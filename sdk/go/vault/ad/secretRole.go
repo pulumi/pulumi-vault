@@ -68,6 +68,11 @@ type SecretRole struct {
 	Backend pulumi.StringOutput `pulumi:"backend"`
 	// Timestamp of the last password rotation by Vault.
 	LastVaultRotation pulumi.StringOutput `pulumi:"lastVaultRotation"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Timestamp of the last password set by Vault.
 	PasswordLastSet pulumi.StringOutput `pulumi:"passwordLastSet"`
 	// The name to identify this role within the backend.
@@ -124,6 +129,11 @@ type secretRoleState struct {
 	Backend *string `pulumi:"backend"`
 	// Timestamp of the last password rotation by Vault.
 	LastVaultRotation *string `pulumi:"lastVaultRotation"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Timestamp of the last password set by Vault.
 	PasswordLastSet *string `pulumi:"passwordLastSet"`
 	// The name to identify this role within the backend.
@@ -143,6 +153,11 @@ type SecretRoleState struct {
 	Backend pulumi.StringPtrInput
 	// Timestamp of the last password rotation by Vault.
 	LastVaultRotation pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Timestamp of the last password set by Vault.
 	PasswordLastSet pulumi.StringPtrInput
 	// The name to identify this role within the backend.
@@ -164,6 +179,11 @@ type secretRoleArgs struct {
 	// The path the AD secret backend is mounted at,
 	// with no leading or trailing `/`s.
 	Backend string `pulumi:"backend"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The name to identify this role within the backend.
 	// Must be unique within the backend.
 	Role string `pulumi:"role"`
@@ -180,6 +200,11 @@ type SecretRoleArgs struct {
 	// The path the AD secret backend is mounted at,
 	// with no leading or trailing `/`s.
 	Backend pulumi.StringInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The name to identify this role within the backend.
 	// Must be unique within the backend.
 	Role pulumi.StringInput
@@ -287,6 +312,14 @@ func (o SecretRoleOutput) Backend() pulumi.StringOutput {
 // Timestamp of the last password rotation by Vault.
 func (o SecretRoleOutput) LastVaultRotation() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.StringOutput { return v.LastVaultRotation }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o SecretRoleOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Timestamp of the last password set by Vault.

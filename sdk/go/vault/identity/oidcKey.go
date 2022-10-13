@@ -69,6 +69,11 @@ type OidcKey struct {
 	AllowedClientIds pulumi.StringArrayOutput `pulumi:"allowedClientIds"`
 	// Name of the OIDC Key to create.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// How often to generate a new signing key in number of seconds
 	RotationPeriod pulumi.IntPtrOutput `pulumi:"rotationPeriod"`
 	// "Controls how long the public portion of a signing key will be
@@ -113,6 +118,11 @@ type oidcKeyState struct {
 	AllowedClientIds []string `pulumi:"allowedClientIds"`
 	// Name of the OIDC Key to create.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// How often to generate a new signing key in number of seconds
 	RotationPeriod *int `pulumi:"rotationPeriod"`
 	// "Controls how long the public portion of a signing key will be
@@ -129,6 +139,11 @@ type OidcKeyState struct {
 	AllowedClientIds pulumi.StringArrayInput
 	// Name of the OIDC Key to create.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// How often to generate a new signing key in number of seconds
 	RotationPeriod pulumi.IntPtrInput
 	// "Controls how long the public portion of a signing key will be
@@ -149,6 +164,11 @@ type oidcKeyArgs struct {
 	AllowedClientIds []string `pulumi:"allowedClientIds"`
 	// Name of the OIDC Key to create.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// How often to generate a new signing key in number of seconds
 	RotationPeriod *int `pulumi:"rotationPeriod"`
 	// "Controls how long the public portion of a signing key will be
@@ -166,6 +186,11 @@ type OidcKeyArgs struct {
 	AllowedClientIds pulumi.StringArrayInput
 	// Name of the OIDC Key to create.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// How often to generate a new signing key in number of seconds
 	RotationPeriod pulumi.IntPtrInput
 	// "Controls how long the public portion of a signing key will be
@@ -275,6 +300,14 @@ func (o OidcKeyOutput) AllowedClientIds() pulumi.StringArrayOutput {
 // Name of the OIDC Key to create.
 func (o OidcKeyOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *OidcKey) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o OidcKeyOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OidcKey) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // How often to generate a new signing key in number of seconds

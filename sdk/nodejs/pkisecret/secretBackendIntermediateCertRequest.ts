@@ -93,6 +93,23 @@ export class SecretBackendIntermediateCertRequest extends pulumi.CustomResource 
      */
     public readonly locality!: pulumi.Output<string | undefined>;
     /**
+     * The ID of the previously configured managed key. This field is
+     * required if `type` is `kms` and it conflicts with `managedKeyName`
+     */
+    public readonly managedKeyId!: pulumi.Output<string | undefined>;
+    /**
+     * The name of the previously configured managed key. This field is
+     * required if `type` is `kms`  and it conflicts with `managedKeyId`
+     */
+    public readonly managedKeyName!: pulumi.Output<string | undefined>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * The organization
      */
     public readonly organization!: pulumi.Output<string | undefined>;
@@ -130,6 +147,7 @@ export class SecretBackendIntermediateCertRequest extends pulumi.CustomResource 
     public readonly streetAddress!: pulumi.Output<string | undefined>;
     /**
      * Type of intermediate to create. Must be either \"exported\" or \"internal\"
+     * or \"kms\"
      */
     public readonly type!: pulumi.Output<string>;
     /**
@@ -161,6 +179,9 @@ export class SecretBackendIntermediateCertRequest extends pulumi.CustomResource 
             resourceInputs["keyBits"] = state ? state.keyBits : undefined;
             resourceInputs["keyType"] = state ? state.keyType : undefined;
             resourceInputs["locality"] = state ? state.locality : undefined;
+            resourceInputs["managedKeyId"] = state ? state.managedKeyId : undefined;
+            resourceInputs["managedKeyName"] = state ? state.managedKeyName : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["organization"] = state ? state.organization : undefined;
             resourceInputs["otherSans"] = state ? state.otherSans : undefined;
             resourceInputs["ou"] = state ? state.ou : undefined;
@@ -193,6 +214,9 @@ export class SecretBackendIntermediateCertRequest extends pulumi.CustomResource 
             resourceInputs["keyBits"] = args ? args.keyBits : undefined;
             resourceInputs["keyType"] = args ? args.keyType : undefined;
             resourceInputs["locality"] = args ? args.locality : undefined;
+            resourceInputs["managedKeyId"] = args ? args.managedKeyId : undefined;
+            resourceInputs["managedKeyName"] = args ? args.managedKeyName : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["organization"] = args ? args.organization : undefined;
             resourceInputs["otherSans"] = args ? args.otherSans : undefined;
             resourceInputs["ou"] = args ? args.ou : undefined;
@@ -207,6 +231,8 @@ export class SecretBackendIntermediateCertRequest extends pulumi.CustomResource 
             resourceInputs["privateKeyType"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["privateKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SecretBackendIntermediateCertRequest.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -260,6 +286,23 @@ export interface SecretBackendIntermediateCertRequestState {
      */
     locality?: pulumi.Input<string>;
     /**
+     * The ID of the previously configured managed key. This field is
+     * required if `type` is `kms` and it conflicts with `managedKeyName`
+     */
+    managedKeyId?: pulumi.Input<string>;
+    /**
+     * The name of the previously configured managed key. This field is
+     * required if `type` is `kms`  and it conflicts with `managedKeyId`
+     */
+    managedKeyName?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
+    /**
      * The organization
      */
     organization?: pulumi.Input<string>;
@@ -297,6 +340,7 @@ export interface SecretBackendIntermediateCertRequestState {
     streetAddress?: pulumi.Input<string>;
     /**
      * Type of intermediate to create. Must be either \"exported\" or \"internal\"
+     * or \"kms\"
      */
     type?: pulumi.Input<string>;
     /**
@@ -350,6 +394,23 @@ export interface SecretBackendIntermediateCertRequestArgs {
      */
     locality?: pulumi.Input<string>;
     /**
+     * The ID of the previously configured managed key. This field is
+     * required if `type` is `kms` and it conflicts with `managedKeyName`
+     */
+    managedKeyId?: pulumi.Input<string>;
+    /**
+     * The name of the previously configured managed key. This field is
+     * required if `type` is `kms`  and it conflicts with `managedKeyId`
+     */
+    managedKeyName?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
+    /**
      * The organization
      */
     organization?: pulumi.Input<string>;
@@ -379,6 +440,7 @@ export interface SecretBackendIntermediateCertRequestArgs {
     streetAddress?: pulumi.Input<string>;
     /**
      * Type of intermediate to create. Must be either \"exported\" or \"internal\"
+     * or \"kms\"
      */
     type: pulumi.Input<string>;
     /**

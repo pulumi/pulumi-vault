@@ -55,6 +55,15 @@ namespace Pulumi.Vault.Generic
         public Output<bool?> DisableRead { get; private set; } = null!;
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
         /// The full logical path at which to write the given data.
         /// To write data into the "generic" secret backend mounted in Vault by default,
         /// this should be prefixed with `secret/`. Writing to other backends with this
@@ -87,6 +96,11 @@ namespace Pulumi.Vault.Generic
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "data",
+                    "dataJson",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -110,12 +124,22 @@ namespace Pulumi.Vault.Generic
 
     public sealed class SecretArgs : global::Pulumi.ResourceArgs
     {
+        [Input("dataJson", required: true)]
+        private Input<string>? _dataJson;
+
         /// <summary>
         /// String containing a JSON-encoded object that will be
         /// written as the secret data at the given path.
         /// </summary>
-        [Input("dataJson", required: true)]
-        public Input<string> DataJson { get; set; } = null!;
+        public Input<string>? DataJson
+        {
+            get => _dataJson;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _dataJson = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// true/false.  Only applicable for kv-v2 stores.
@@ -133,6 +157,15 @@ namespace Pulumi.Vault.Generic
         /// </summary>
         [Input("disableRead")]
         public Input<bool>? DisableRead { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// The full logical path at which to write the given data.
@@ -164,15 +197,29 @@ namespace Pulumi.Vault.Generic
         public InputMap<object> Data
         {
             get => _data ?? (_data = new InputMap<object>());
-            set => _data = value;
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, object>());
+                _data = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
         }
+
+        [Input("dataJson")]
+        private Input<string>? _dataJson;
 
         /// <summary>
         /// String containing a JSON-encoded object that will be
         /// written as the secret data at the given path.
         /// </summary>
-        [Input("dataJson")]
-        public Input<string>? DataJson { get; set; }
+        public Input<string>? DataJson
+        {
+            get => _dataJson;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _dataJson = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// true/false.  Only applicable for kv-v2 stores.
@@ -190,6 +237,15 @@ namespace Pulumi.Vault.Generic
         /// </summary>
         [Input("disableRead")]
         public Input<bool>? DisableRead { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// The full logical path at which to write the given data.

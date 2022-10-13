@@ -40,7 +40,7 @@ namespace Pulumi.Vault.AppRole
     ///         },
     ///     });
     /// 
-    ///     var id = new Vault.AppRole.AuthBackendRoleSecretID("id", new()
+    ///     var id = new Vault.AppRole.AuthBackendRoleSecretId("id", new()
     ///     {
     ///         Backend = approle.Path,
     ///         RoleName = example.RoleName,
@@ -94,6 +94,15 @@ namespace Pulumi.Vault.AppRole
         /// </summary>
         [Output("metadata")]
         public Output<ImmutableDictionary<string, string>> Metadata { get; private set; } = null!;
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
         /// A list of policies applied to the token.
@@ -173,6 +182,15 @@ namespace Pulumi.Vault.AppRole
         public Input<string>? Backend { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
         /// The ID of the role to log in with.
         /// </summary>
         [Input("roleId", required: true)]
@@ -234,6 +252,15 @@ namespace Pulumi.Vault.AppRole
             get => _metadata ?? (_metadata = new InputMap<string>());
             set => _metadata = value;
         }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         [Input("policies")]
         private InputList<string>? _policies;

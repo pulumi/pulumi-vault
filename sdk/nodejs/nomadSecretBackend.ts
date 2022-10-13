@@ -91,6 +91,11 @@ export class NomadSecretBackend extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    public readonly disableRemount!: pulumi.Output<boolean | undefined>;
+    /**
      * Mark the secrets engine as local-only. Local engines are not replicated or removed by
      * replication.Tolerance duration to use when checking the last rotation time.
      */
@@ -109,6 +114,13 @@ export class NomadSecretBackend extends pulumi.CustomResource {
      * Maximum possible lease duration for secrets in seconds.
      */
     public readonly maxTtl!: pulumi.Output<number>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
     /**
      * Specifies the Nomad Management token to use.
      */
@@ -138,10 +150,12 @@ export class NomadSecretBackend extends pulumi.CustomResource {
             resourceInputs["clientKey"] = state ? state.clientKey : undefined;
             resourceInputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
             resourceInputs["local"] = state ? state.local : undefined;
             resourceInputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
             resourceInputs["maxTokenNameLength"] = state ? state.maxTokenNameLength : undefined;
             resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["token"] = state ? state.token : undefined;
             resourceInputs["ttl"] = state ? state.ttl : undefined;
         } else {
@@ -149,18 +163,22 @@ export class NomadSecretBackend extends pulumi.CustomResource {
             resourceInputs["address"] = args ? args.address : undefined;
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["caCert"] = args ? args.caCert : undefined;
-            resourceInputs["clientCert"] = args ? args.clientCert : undefined;
-            resourceInputs["clientKey"] = args ? args.clientKey : undefined;
+            resourceInputs["clientCert"] = args?.clientCert ? pulumi.secret(args.clientCert) : undefined;
+            resourceInputs["clientKey"] = args?.clientKey ? pulumi.secret(args.clientKey) : undefined;
             resourceInputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
             resourceInputs["local"] = args ? args.local : undefined;
             resourceInputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
             resourceInputs["maxTokenNameLength"] = args ? args.maxTokenNameLength : undefined;
             resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
-            resourceInputs["token"] = args ? args.token : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["token"] = args?.token ? pulumi.secret(args.token) : undefined;
             resourceInputs["ttl"] = args ? args.ttl : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["clientCert", "clientKey", "token"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(NomadSecretBackend.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -201,6 +219,11 @@ export interface NomadSecretBackendState {
      */
     description?: pulumi.Input<string>;
     /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    disableRemount?: pulumi.Input<boolean>;
+    /**
      * Mark the secrets engine as local-only. Local engines are not replicated or removed by
      * replication.Tolerance duration to use when checking the last rotation time.
      */
@@ -219,6 +242,13 @@ export interface NomadSecretBackendState {
      * Maximum possible lease duration for secrets in seconds.
      */
     maxTtl?: pulumi.Input<number>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Specifies the Nomad Management token to use.
      */
@@ -265,6 +295,11 @@ export interface NomadSecretBackendArgs {
      */
     description?: pulumi.Input<string>;
     /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    disableRemount?: pulumi.Input<boolean>;
+    /**
      * Mark the secrets engine as local-only. Local engines are not replicated or removed by
      * replication.Tolerance duration to use when checking the last rotation time.
      */
@@ -283,6 +318,13 @@ export interface NomadSecretBackendArgs {
      * Maximum possible lease duration for secrets in seconds.
      */
     maxTtl?: pulumi.Input<number>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Specifies the Nomad Management token to use.
      */

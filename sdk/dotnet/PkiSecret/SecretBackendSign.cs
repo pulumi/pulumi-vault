@@ -153,10 +153,25 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
         /// List of other SANs
         /// </summary>
         [Output("otherSans")]
         public Output<ImmutableArray<string>> OtherSans { get; private set; } = null!;
+
+        /// <summary>
+        /// `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
+        /// </summary>
+        [Output("renewPending")]
+        public Output<bool> RenewPending { get; private set; } = null!;
 
         /// <summary>
         /// The serial number.
@@ -300,6 +315,15 @@ namespace Pulumi.Vault.PkiSecret
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
         [Input("otherSans")]
         private InputList<string>? _otherSans;
 
@@ -440,6 +464,15 @@ namespace Pulumi.Vault.PkiSecret
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
         [Input("otherSans")]
         private InputList<string>? _otherSans;
 
@@ -451,6 +484,12 @@ namespace Pulumi.Vault.PkiSecret
             get => _otherSans ?? (_otherSans = new InputList<string>());
             set => _otherSans = value;
         }
+
+        /// <summary>
+        /// `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
+        /// </summary>
+        [Input("renewPending")]
+        public Input<bool>? RenewPending { get; set; }
 
         /// <summary>
         /// The serial number.

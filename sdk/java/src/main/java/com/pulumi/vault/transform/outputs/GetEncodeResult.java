@@ -14,42 +14,21 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetEncodeResult {
-    private final @Nullable List<Map<String,Object>> batchInputs;
-    private final List<Map<String,Object>> batchResults;
-    private final String encodedValue;
+    private @Nullable List<Map<String,Object>> batchInputs;
+    private List<Map<String,Object>> batchResults;
+    private String encodedValue;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
-    private final String path;
-    private final String roleName;
-    private final @Nullable String transformation;
-    private final @Nullable String tweak;
-    private final @Nullable String value;
+    private String id;
+    private String path;
+    private String roleName;
+    private @Nullable String transformation;
+    private @Nullable String tweak;
+    private @Nullable String value;
 
-    @CustomType.Constructor
-    private GetEncodeResult(
-        @CustomType.Parameter("batchInputs") @Nullable List<Map<String,Object>> batchInputs,
-        @CustomType.Parameter("batchResults") List<Map<String,Object>> batchResults,
-        @CustomType.Parameter("encodedValue") String encodedValue,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("path") String path,
-        @CustomType.Parameter("roleName") String roleName,
-        @CustomType.Parameter("transformation") @Nullable String transformation,
-        @CustomType.Parameter("tweak") @Nullable String tweak,
-        @CustomType.Parameter("value") @Nullable String value) {
-        this.batchInputs = batchInputs;
-        this.batchResults = batchResults;
-        this.encodedValue = encodedValue;
-        this.id = id;
-        this.path = path;
-        this.roleName = roleName;
-        this.transformation = transformation;
-        this.tweak = tweak;
-        this.value = value;
-    }
-
+    private GetEncodeResult() {}
     public List<Map<String,Object>> batchInputs() {
         return this.batchInputs == null ? List.of() : this.batchInputs;
     }
@@ -89,7 +68,7 @@ public final class GetEncodeResult {
     public static Builder builder(GetEncodeResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable List<Map<String,Object>> batchInputs;
         private List<Map<String,Object>> batchResults;
@@ -100,11 +79,7 @@ public final class GetEncodeResult {
         private @Nullable String transformation;
         private @Nullable String tweak;
         private @Nullable String value;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetEncodeResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.batchInputs = defaults.batchInputs;
@@ -118,43 +93,63 @@ public final class GetEncodeResult {
     	      this.value = defaults.value;
         }
 
+        @CustomType.Setter
         public Builder batchInputs(@Nullable List<Map<String,Object>> batchInputs) {
             this.batchInputs = batchInputs;
             return this;
         }
+        @CustomType.Setter
         public Builder batchResults(List<Map<String,Object>> batchResults) {
             this.batchResults = Objects.requireNonNull(batchResults);
             return this;
         }
+        @CustomType.Setter
         public Builder encodedValue(String encodedValue) {
             this.encodedValue = Objects.requireNonNull(encodedValue);
             return this;
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder path(String path) {
             this.path = Objects.requireNonNull(path);
             return this;
         }
+        @CustomType.Setter
         public Builder roleName(String roleName) {
             this.roleName = Objects.requireNonNull(roleName);
             return this;
         }
+        @CustomType.Setter
         public Builder transformation(@Nullable String transformation) {
             this.transformation = transformation;
             return this;
         }
+        @CustomType.Setter
         public Builder tweak(@Nullable String tweak) {
             this.tweak = tweak;
             return this;
         }
+        @CustomType.Setter
         public Builder value(@Nullable String value) {
             this.value = value;
             return this;
-        }        public GetEncodeResult build() {
-            return new GetEncodeResult(batchInputs, batchResults, encodedValue, id, path, roleName, transformation, tweak, value);
+        }
+        public GetEncodeResult build() {
+            final var o = new GetEncodeResult();
+            o.batchInputs = batchInputs;
+            o.batchResults = batchResults;
+            o.encodedValue = encodedValue;
+            o.id = id;
+            o.path = path;
+            o.roleName = roleName;
+            o.transformation = transformation;
+            o.tweak = tweak;
+            o.value = value;
+            return o;
         }
     }
 }

@@ -18,63 +18,44 @@ public final class GetPolicyDocumentRule {
      * @return Whitelists a list of keys and values that are permitted on the given path. See Parameters below.
      * 
      */
-    private final @Nullable List<GetPolicyDocumentRuleAllowedParameter> allowedParameters;
+    private @Nullable List<GetPolicyDocumentRuleAllowedParameter> allowedParameters;
     /**
      * @return A list of capabilities that this rule apply to `path`. For example, [&#34;read&#34;, &#34;write&#34;].
      * 
      */
-    private final List<String> capabilities;
+    private List<String> capabilities;
     /**
      * @return Blacklists a list of parameter and values. Any values specified here take precedence over `allowed_parameter`. See Parameters below.
      * 
      */
-    private final @Nullable List<GetPolicyDocumentRuleDeniedParameter> deniedParameters;
+    private @Nullable List<GetPolicyDocumentRuleDeniedParameter> deniedParameters;
     /**
      * @return Description of the rule. Will be added as a comment to rendered rule.
      * 
      */
-    private final @Nullable String description;
+    private @Nullable String description;
     /**
      * @return The maximum allowed TTL that clients can specify for a wrapped response.
      * 
      */
-    private final @Nullable String maxWrappingTtl;
+    private @Nullable String maxWrappingTtl;
     /**
      * @return The minimum allowed TTL that clients can specify for a wrapped response.
      * 
      */
-    private final @Nullable String minWrappingTtl;
+    private @Nullable String minWrappingTtl;
     /**
      * @return A path in Vault that this rule applies to.
      * 
      */
-    private final String path;
+    private String path;
     /**
      * @return A list of parameters that must be specified.
      * 
      */
-    private final @Nullable List<String> requiredParameters;
+    private @Nullable List<String> requiredParameters;
 
-    @CustomType.Constructor
-    private GetPolicyDocumentRule(
-        @CustomType.Parameter("allowedParameters") @Nullable List<GetPolicyDocumentRuleAllowedParameter> allowedParameters,
-        @CustomType.Parameter("capabilities") List<String> capabilities,
-        @CustomType.Parameter("deniedParameters") @Nullable List<GetPolicyDocumentRuleDeniedParameter> deniedParameters,
-        @CustomType.Parameter("description") @Nullable String description,
-        @CustomType.Parameter("maxWrappingTtl") @Nullable String maxWrappingTtl,
-        @CustomType.Parameter("minWrappingTtl") @Nullable String minWrappingTtl,
-        @CustomType.Parameter("path") String path,
-        @CustomType.Parameter("requiredParameters") @Nullable List<String> requiredParameters) {
-        this.allowedParameters = allowedParameters;
-        this.capabilities = capabilities;
-        this.deniedParameters = deniedParameters;
-        this.description = description;
-        this.maxWrappingTtl = maxWrappingTtl;
-        this.minWrappingTtl = minWrappingTtl;
-        this.path = path;
-        this.requiredParameters = requiredParameters;
-    }
-
+    private GetPolicyDocumentRule() {}
     /**
      * @return Whitelists a list of keys and values that are permitted on the given path. See Parameters below.
      * 
@@ -139,7 +120,7 @@ public final class GetPolicyDocumentRule {
     public static Builder builder(GetPolicyDocumentRule defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable List<GetPolicyDocumentRuleAllowedParameter> allowedParameters;
         private List<String> capabilities;
@@ -149,11 +130,7 @@ public final class GetPolicyDocumentRule {
         private @Nullable String minWrappingTtl;
         private String path;
         private @Nullable List<String> requiredParameters;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetPolicyDocumentRule defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.allowedParameters = defaults.allowedParameters;
@@ -166,6 +143,7 @@ public final class GetPolicyDocumentRule {
     	      this.requiredParameters = defaults.requiredParameters;
         }
 
+        @CustomType.Setter
         public Builder allowedParameters(@Nullable List<GetPolicyDocumentRuleAllowedParameter> allowedParameters) {
             this.allowedParameters = allowedParameters;
             return this;
@@ -173,6 +151,7 @@ public final class GetPolicyDocumentRule {
         public Builder allowedParameters(GetPolicyDocumentRuleAllowedParameter... allowedParameters) {
             return allowedParameters(List.of(allowedParameters));
         }
+        @CustomType.Setter
         public Builder capabilities(List<String> capabilities) {
             this.capabilities = Objects.requireNonNull(capabilities);
             return this;
@@ -180,6 +159,7 @@ public final class GetPolicyDocumentRule {
         public Builder capabilities(String... capabilities) {
             return capabilities(List.of(capabilities));
         }
+        @CustomType.Setter
         public Builder deniedParameters(@Nullable List<GetPolicyDocumentRuleDeniedParameter> deniedParameters) {
             this.deniedParameters = deniedParameters;
             return this;
@@ -187,30 +167,45 @@ public final class GetPolicyDocumentRule {
         public Builder deniedParameters(GetPolicyDocumentRuleDeniedParameter... deniedParameters) {
             return deniedParameters(List.of(deniedParameters));
         }
+        @CustomType.Setter
         public Builder description(@Nullable String description) {
             this.description = description;
             return this;
         }
+        @CustomType.Setter
         public Builder maxWrappingTtl(@Nullable String maxWrappingTtl) {
             this.maxWrappingTtl = maxWrappingTtl;
             return this;
         }
+        @CustomType.Setter
         public Builder minWrappingTtl(@Nullable String minWrappingTtl) {
             this.minWrappingTtl = minWrappingTtl;
             return this;
         }
+        @CustomType.Setter
         public Builder path(String path) {
             this.path = Objects.requireNonNull(path);
             return this;
         }
+        @CustomType.Setter
         public Builder requiredParameters(@Nullable List<String> requiredParameters) {
             this.requiredParameters = requiredParameters;
             return this;
         }
         public Builder requiredParameters(String... requiredParameters) {
             return requiredParameters(List.of(requiredParameters));
-        }        public GetPolicyDocumentRule build() {
-            return new GetPolicyDocumentRule(allowedParameters, capabilities, deniedParameters, description, maxWrappingTtl, minWrappingTtl, path, requiredParameters);
+        }
+        public GetPolicyDocumentRule build() {
+            final var o = new GetPolicyDocumentRule();
+            o.allowedParameters = allowedParameters;
+            o.capabilities = capabilities;
+            o.deniedParameters = deniedParameters;
+            o.description = description;
+            o.maxWrappingTtl = maxWrappingTtl;
+            o.minWrappingTtl = minWrappingTtl;
+            o.path = path;
+            o.requiredParameters = requiredParameters;
+            return o;
         }
     }
 }

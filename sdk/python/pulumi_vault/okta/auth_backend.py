@@ -20,8 +20,10 @@ class AuthBackendArgs:
                  base_url: Optional[pulumi.Input[str]] = None,
                  bypass_okta_mfa: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendGroupArgs']]]] = None,
                  max_ttl: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
@@ -32,10 +34,16 @@ class AuthBackendArgs:
         :param pulumi.Input[str] base_url: The Okta url. Examples: oktapreview.com, okta.com
         :param pulumi.Input[bool] bypass_okta_mfa: When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
         :param pulumi.Input[str] description: The description of the auth backend
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[Sequence[pulumi.Input['AuthBackendGroupArgs']]] groups: Associate Okta groups with policies within Vault.
                See below for more details.
         :param pulumi.Input[str] max_ttl: Maximum duration after which authentication will be expired
                [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: Path to mount the Okta auth backend
         :param pulumi.Input[str] token: The Okta API token. This is required to query Okta for user group membership.
                If this is not supplied only locally configured groups will be enabled.
@@ -51,10 +59,14 @@ class AuthBackendArgs:
             pulumi.set(__self__, "bypass_okta_mfa", bypass_okta_mfa)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if disable_remount is not None:
+            pulumi.set(__self__, "disable_remount", disable_remount)
         if groups is not None:
             pulumi.set(__self__, "groups", groups)
         if max_ttl is not None:
             pulumi.set(__self__, "max_ttl", max_ttl)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if path is not None:
             pulumi.set(__self__, "path", path)
         if token is not None:
@@ -113,6 +125,19 @@ class AuthBackendArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="disableRemount")
+    def disable_remount(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, opts out of mount migration on path updates.
+        See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        """
+        return pulumi.get(self, "disable_remount")
+
+    @disable_remount.setter
+    def disable_remount(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_remount", value)
+
+    @property
     @pulumi.getter
     def groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendGroupArgs']]]]:
         """
@@ -137,6 +162,21 @@ class AuthBackendArgs:
     @max_ttl.setter
     def max_ttl(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "max_ttl", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -197,8 +237,10 @@ class _AuthBackendState:
                  base_url: Optional[pulumi.Input[str]] = None,
                  bypass_okta_mfa: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendGroupArgs']]]] = None,
                  max_ttl: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
@@ -210,10 +252,16 @@ class _AuthBackendState:
         :param pulumi.Input[str] base_url: The Okta url. Examples: oktapreview.com, okta.com
         :param pulumi.Input[bool] bypass_okta_mfa: When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
         :param pulumi.Input[str] description: The description of the auth backend
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[Sequence[pulumi.Input['AuthBackendGroupArgs']]] groups: Associate Okta groups with policies within Vault.
                See below for more details.
         :param pulumi.Input[str] max_ttl: Maximum duration after which authentication will be expired
                [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: The Okta organization. This will be the first part of the url `https://XXX.okta.com`
         :param pulumi.Input[str] path: Path to mount the Okta auth backend
         :param pulumi.Input[str] token: The Okta API token. This is required to query Okta for user group membership.
@@ -231,10 +279,14 @@ class _AuthBackendState:
             pulumi.set(__self__, "bypass_okta_mfa", bypass_okta_mfa)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if disable_remount is not None:
+            pulumi.set(__self__, "disable_remount", disable_remount)
         if groups is not None:
             pulumi.set(__self__, "groups", groups)
         if max_ttl is not None:
             pulumi.set(__self__, "max_ttl", max_ttl)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if organization is not None:
             pulumi.set(__self__, "organization", organization)
         if path is not None:
@@ -295,6 +347,19 @@ class _AuthBackendState:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="disableRemount")
+    def disable_remount(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, opts out of mount migration on path updates.
+        See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        """
+        return pulumi.get(self, "disable_remount")
+
+    @disable_remount.setter
+    def disable_remount(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_remount", value)
+
+    @property
     @pulumi.getter
     def groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendGroupArgs']]]]:
         """
@@ -319,6 +384,21 @@ class _AuthBackendState:
     @max_ttl.setter
     def max_ttl(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "max_ttl", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -392,8 +472,10 @@ class AuthBackend(pulumi.CustomResource):
                  base_url: Optional[pulumi.Input[str]] = None,
                  bypass_okta_mfa: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthBackendGroupArgs']]]]] = None,
                  max_ttl: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
@@ -440,10 +522,16 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] base_url: The Okta url. Examples: oktapreview.com, okta.com
         :param pulumi.Input[bool] bypass_okta_mfa: When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
         :param pulumi.Input[str] description: The description of the auth backend
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthBackendGroupArgs']]]] groups: Associate Okta groups with policies within Vault.
                See below for more details.
         :param pulumi.Input[str] max_ttl: Maximum duration after which authentication will be expired
                [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: The Okta organization. This will be the first part of the url `https://XXX.okta.com`
         :param pulumi.Input[str] path: Path to mount the Okta auth backend
         :param pulumi.Input[str] token: The Okta API token. This is required to query Okta for user group membership.
@@ -512,8 +600,10 @@ class AuthBackend(pulumi.CustomResource):
                  base_url: Optional[pulumi.Input[str]] = None,
                  bypass_okta_mfa: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthBackendGroupArgs']]]]] = None,
                  max_ttl: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
@@ -531,16 +621,20 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["base_url"] = base_url
             __props__.__dict__["bypass_okta_mfa"] = bypass_okta_mfa
             __props__.__dict__["description"] = description
+            __props__.__dict__["disable_remount"] = disable_remount
             __props__.__dict__["groups"] = groups
             __props__.__dict__["max_ttl"] = max_ttl
+            __props__.__dict__["namespace"] = namespace
             if organization is None and not opts.urn:
                 raise TypeError("Missing required property 'organization'")
             __props__.__dict__["organization"] = organization
             __props__.__dict__["path"] = path
-            __props__.__dict__["token"] = token
+            __props__.__dict__["token"] = None if token is None else pulumi.Output.secret(token)
             __props__.__dict__["ttl"] = ttl
             __props__.__dict__["users"] = users
             __props__.__dict__["accessor"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["token"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(AuthBackend, __self__).__init__(
             'vault:okta/authBackend:AuthBackend',
             resource_name,
@@ -555,8 +649,10 @@ class AuthBackend(pulumi.CustomResource):
             base_url: Optional[pulumi.Input[str]] = None,
             bypass_okta_mfa: Optional[pulumi.Input[bool]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            disable_remount: Optional[pulumi.Input[bool]] = None,
             groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthBackendGroupArgs']]]]] = None,
             max_ttl: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             organization: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
             token: Optional[pulumi.Input[str]] = None,
@@ -573,10 +669,16 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] base_url: The Okta url. Examples: oktapreview.com, okta.com
         :param pulumi.Input[bool] bypass_okta_mfa: When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
         :param pulumi.Input[str] description: The description of the auth backend
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthBackendGroupArgs']]]] groups: Associate Okta groups with policies within Vault.
                See below for more details.
         :param pulumi.Input[str] max_ttl: Maximum duration after which authentication will be expired
                [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: The Okta organization. This will be the first part of the url `https://XXX.okta.com`
         :param pulumi.Input[str] path: Path to mount the Okta auth backend
         :param pulumi.Input[str] token: The Okta API token. This is required to query Okta for user group membership.
@@ -594,8 +696,10 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["base_url"] = base_url
         __props__.__dict__["bypass_okta_mfa"] = bypass_okta_mfa
         __props__.__dict__["description"] = description
+        __props__.__dict__["disable_remount"] = disable_remount
         __props__.__dict__["groups"] = groups
         __props__.__dict__["max_ttl"] = max_ttl
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["organization"] = organization
         __props__.__dict__["path"] = path
         __props__.__dict__["token"] = token
@@ -636,6 +740,15 @@ class AuthBackend(pulumi.CustomResource):
         return pulumi.get(self, "description")
 
     @property
+    @pulumi.getter(name="disableRemount")
+    def disable_remount(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If set, opts out of mount migration on path updates.
+        See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        """
+        return pulumi.get(self, "disable_remount")
+
+    @property
     @pulumi.getter
     def groups(self) -> pulumi.Output[Sequence['outputs.AuthBackendGroup']]:
         """
@@ -652,6 +765,17 @@ class AuthBackend(pulumi.CustomResource):
         [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         """
         return pulumi.get(self, "max_ttl")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

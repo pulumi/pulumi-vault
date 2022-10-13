@@ -21,7 +21,7 @@ class GetEncryptResult:
     """
     A collection of values returned by getEncrypt.
     """
-    def __init__(__self__, backend=None, ciphertext=None, context=None, id=None, key=None, key_version=None, plaintext=None):
+    def __init__(__self__, backend=None, ciphertext=None, context=None, id=None, key=None, key_version=None, namespace=None, plaintext=None):
         if backend and not isinstance(backend, str):
             raise TypeError("Expected argument 'backend' to be a str")
         pulumi.set(__self__, "backend", backend)
@@ -40,6 +40,9 @@ class GetEncryptResult:
         if key_version and not isinstance(key_version, int):
             raise TypeError("Expected argument 'key_version' to be a int")
         pulumi.set(__self__, "key_version", key_version)
+        if namespace and not isinstance(namespace, str):
+            raise TypeError("Expected argument 'namespace' to be a str")
+        pulumi.set(__self__, "namespace", namespace)
         if plaintext and not isinstance(plaintext, str):
             raise TypeError("Expected argument 'plaintext' to be a str")
         pulumi.set(__self__, "plaintext", plaintext)
@@ -82,6 +85,11 @@ class GetEncryptResult:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[str]:
+        return pulumi.get(self, "namespace")
+
+    @property
+    @pulumi.getter
     def plaintext(self) -> str:
         return pulumi.get(self, "plaintext")
 
@@ -98,6 +106,7 @@ class AwaitableGetEncryptResult(GetEncryptResult):
             id=self.id,
             key=self.key,
             key_version=self.key_version,
+            namespace=self.namespace,
             plaintext=self.plaintext)
 
 
@@ -105,6 +114,7 @@ def get_encrypt(backend: Optional[str] = None,
                 context: Optional[str] = None,
                 key: Optional[str] = None,
                 key_version: Optional[int] = None,
+                namespace: Optional[str] = None,
                 plaintext: Optional[str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEncryptResult:
     """
@@ -122,6 +132,7 @@ def get_encrypt(backend: Optional[str] = None,
     __args__['context'] = context
     __args__['key'] = key
     __args__['keyVersion'] = key_version
+    __args__['namespace'] = namespace
     __args__['plaintext'] = plaintext
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('vault:transit/getEncrypt:getEncrypt', __args__, opts=opts, typ=GetEncryptResult).value
@@ -133,6 +144,7 @@ def get_encrypt(backend: Optional[str] = None,
         id=__ret__.id,
         key=__ret__.key,
         key_version=__ret__.key_version,
+        namespace=__ret__.namespace,
         plaintext=__ret__.plaintext)
 
 
@@ -141,6 +153,7 @@ def get_encrypt_output(backend: Optional[pulumi.Input[str]] = None,
                        context: Optional[pulumi.Input[Optional[str]]] = None,
                        key: Optional[pulumi.Input[str]] = None,
                        key_version: Optional[pulumi.Input[Optional[int]]] = None,
+                       namespace: Optional[pulumi.Input[Optional[str]]] = None,
                        plaintext: Optional[pulumi.Input[str]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetEncryptResult]:
     """

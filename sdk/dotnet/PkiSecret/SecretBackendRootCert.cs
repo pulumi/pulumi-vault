@@ -119,10 +119,33 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string?> Locality { get; private set; } = null!;
 
         /// <summary>
+        /// The ID of the previously configured managed key. This field is
+        /// required if `type` is `kms` and it conflicts with `managed_key_name`
+        /// </summary>
+        [Output("managedKeyId")]
+        public Output<string> ManagedKeyId { get; private set; } = null!;
+
+        /// <summary>
+        /// The name of the previously configured managed key. This field is
+        /// required if `type` is `kms`  and it conflicts with `managed_key_id`
+        /// </summary>
+        [Output("managedKeyName")]
+        public Output<string> ManagedKeyName { get; private set; } = null!;
+
+        /// <summary>
         /// The maximum path length to encode in the generated certificate
         /// </summary>
         [Output("maxPathLength")]
         public Output<int?> MaxPathLength { get; private set; } = null!;
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
         /// The organization
@@ -191,7 +214,8 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string?> Ttl { get; private set; } = null!;
 
         /// <summary>
-        /// Type of intermediate to create. Must be either \"exported\" or \"internal\"
+        /// Type of intermediate to create. Must be either \"exported\", \"internal\"
+        /// or \"kms\"
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -321,10 +345,33 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? Locality { get; set; }
 
         /// <summary>
+        /// The ID of the previously configured managed key. This field is
+        /// required if `type` is `kms` and it conflicts with `managed_key_name`
+        /// </summary>
+        [Input("managedKeyId")]
+        public Input<string>? ManagedKeyId { get; set; }
+
+        /// <summary>
+        /// The name of the previously configured managed key. This field is
+        /// required if `type` is `kms`  and it conflicts with `managed_key_id`
+        /// </summary>
+        [Input("managedKeyName")]
+        public Input<string>? ManagedKeyName { get; set; }
+
+        /// <summary>
         /// The maximum path length to encode in the generated certificate
         /// </summary>
         [Input("maxPathLength")]
         public Input<int>? MaxPathLength { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// The organization
@@ -393,7 +440,8 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? Ttl { get; set; }
 
         /// <summary>
-        /// Type of intermediate to create. Must be either \"exported\" or \"internal\"
+        /// Type of intermediate to create. Must be either \"exported\", \"internal\"
+        /// or \"kms\"
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -503,10 +551,33 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? Locality { get; set; }
 
         /// <summary>
+        /// The ID of the previously configured managed key. This field is
+        /// required if `type` is `kms` and it conflicts with `managed_key_name`
+        /// </summary>
+        [Input("managedKeyId")]
+        public Input<string>? ManagedKeyId { get; set; }
+
+        /// <summary>
+        /// The name of the previously configured managed key. This field is
+        /// required if `type` is `kms`  and it conflicts with `managed_key_id`
+        /// </summary>
+        [Input("managedKeyName")]
+        public Input<string>? ManagedKeyName { get; set; }
+
+        /// <summary>
         /// The maximum path length to encode in the generated certificate
         /// </summary>
         [Input("maxPathLength")]
         public Input<int>? MaxPathLength { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// The organization
@@ -587,7 +658,8 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? Ttl { get; set; }
 
         /// <summary>
-        /// Type of intermediate to create. Must be either \"exported\" or \"internal\"
+        /// Type of intermediate to create. Must be either \"exported\", \"internal\"
+        /// or \"kms\"
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

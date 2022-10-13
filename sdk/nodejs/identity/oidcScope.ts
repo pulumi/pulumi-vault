@@ -15,10 +15,8 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const groups = new vault.identity.OidcScope("groups", {
- *     template: JSON.stringify({
- *         groups: "{{identity.entity.groups.names}}",
- *     }),
  *     description: "Vault OIDC Groups Scope",
+ *     template: "{\"groups\":{{identity.entity.groups.names}}}",
  * });
  * ```
  *
@@ -67,6 +65,13 @@ export class OidcScope extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * The template string for the scope. This may be provided as escaped JSON or base64 encoded JSON.
      */
     public readonly template!: pulumi.Output<string | undefined>;
@@ -86,11 +91,13 @@ export class OidcScope extends pulumi.CustomResource {
             const state = argsOrState as OidcScopeState | undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["template"] = state ? state.template : undefined;
         } else {
             const args = argsOrState as OidcScopeArgs | undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["template"] = args ? args.template : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -111,6 +118,13 @@ export interface OidcScopeState {
      */
     name?: pulumi.Input<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
+    /**
      * The template string for the scope. This may be provided as escaped JSON or base64 encoded JSON.
      */
     template?: pulumi.Input<string>;
@@ -128,6 +142,13 @@ export interface OidcScopeArgs {
      * The name of the scope. The `openid` scope name is reserved.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The template string for the scope. This may be provided as escaped JSON or base64 encoded JSON.
      */

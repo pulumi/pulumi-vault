@@ -66,6 +66,11 @@ type AuthBackendRole struct {
 	// Path to the mounted AliCloud auth backend.
 	// Defaults to `alicloud`
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Name of the role. Must correspond with the name of
 	// the role reflected in the arn.
 	Role pulumi.StringOutput `pulumi:"role"`
@@ -146,6 +151,11 @@ type authBackendRoleState struct {
 	// Path to the mounted AliCloud auth backend.
 	// Defaults to `alicloud`
 	Backend *string `pulumi:"backend"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Name of the role. Must correspond with the name of
 	// the role reflected in the arn.
 	Role *string `pulumi:"role"`
@@ -192,6 +202,11 @@ type AuthBackendRoleState struct {
 	// Path to the mounted AliCloud auth backend.
 	// Defaults to `alicloud`
 	Backend pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Name of the role. Must correspond with the name of
 	// the role reflected in the arn.
 	Role pulumi.StringPtrInput
@@ -242,6 +257,11 @@ type authBackendRoleArgs struct {
 	// Path to the mounted AliCloud auth backend.
 	// Defaults to `alicloud`
 	Backend *string `pulumi:"backend"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Name of the role. Must correspond with the name of
 	// the role reflected in the arn.
 	Role string `pulumi:"role"`
@@ -289,6 +309,11 @@ type AuthBackendRoleArgs struct {
 	// Path to the mounted AliCloud auth backend.
 	// Defaults to `alicloud`
 	Backend pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Name of the role. Must correspond with the name of
 	// the role reflected in the arn.
 	Role pulumi.StringInput
@@ -425,6 +450,14 @@ func (o AuthBackendRoleOutput) Arn() pulumi.StringOutput {
 // Defaults to `alicloud`
 func (o AuthBackendRoleOutput) Backend() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured namespace.
+// *Available only for Vault Enterprise*.
+func (o AuthBackendRoleOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Name of the role. Must correspond with the name of

@@ -19,6 +19,7 @@ class SecretBackendStaticRoleArgs:
                  rotation_period: pulumi.Input[int],
                  username: pulumi.Input[str],
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a SecretBackendStaticRole resource.
@@ -27,6 +28,10 @@ class SecretBackendStaticRoleArgs:
         :param pulumi.Input[int] rotation_period: The amount of time Vault should wait before rotating the password, in seconds.
         :param pulumi.Input[str] username: The database username that this static role corresponds to.
         :param pulumi.Input[str] name: A unique name to give the static role.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured namespace.
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] rotation_statements: Database statements to execute to rotate the password for the configured database user.
         """
         pulumi.set(__self__, "backend", backend)
@@ -35,6 +40,8 @@ class SecretBackendStaticRoleArgs:
         pulumi.set(__self__, "username", username)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if rotation_statements is not None:
             pulumi.set(__self__, "rotation_statements", rotation_statements)
 
@@ -99,6 +106,21 @@ class SecretBackendStaticRoleArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured namespace.
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="rotationStatements")
     def rotation_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -117,6 +139,7 @@ class _SecretBackendStaticRoleState:
                  backend: Optional[pulumi.Input[str]] = None,
                  db_name: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  rotation_period: Optional[pulumi.Input[int]] = None,
                  rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  username: Optional[pulumi.Input[str]] = None):
@@ -125,6 +148,10 @@ class _SecretBackendStaticRoleState:
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input[str] db_name: The unique name of the database connection to use for the static role.
         :param pulumi.Input[str] name: A unique name to give the static role.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured namespace.
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[int] rotation_period: The amount of time Vault should wait before rotating the password, in seconds.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] rotation_statements: Database statements to execute to rotate the password for the configured database user.
         :param pulumi.Input[str] username: The database username that this static role corresponds to.
@@ -135,6 +162,8 @@ class _SecretBackendStaticRoleState:
             pulumi.set(__self__, "db_name", db_name)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if rotation_period is not None:
             pulumi.set(__self__, "rotation_period", rotation_period)
         if rotation_statements is not None:
@@ -177,6 +206,21 @@ class _SecretBackendStaticRoleState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured namespace.
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter(name="rotationPeriod")
@@ -223,6 +267,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                  backend: Optional[pulumi.Input[str]] = None,
                  db_name: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  rotation_period: Optional[pulumi.Input[int]] = None,
                  rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  username: Optional[pulumi.Input[str]] = None,
@@ -268,6 +313,10 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input[str] db_name: The unique name of the database connection to use for the static role.
         :param pulumi.Input[str] name: A unique name to give the static role.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured namespace.
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[int] rotation_period: The amount of time Vault should wait before rotating the password, in seconds.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] rotation_statements: Database statements to execute to rotate the password for the configured database user.
         :param pulumi.Input[str] username: The database username that this static role corresponds to.
@@ -332,6 +381,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                  backend: Optional[pulumi.Input[str]] = None,
                  db_name: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  rotation_period: Optional[pulumi.Input[int]] = None,
                  rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  username: Optional[pulumi.Input[str]] = None,
@@ -351,6 +401,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                 raise TypeError("Missing required property 'db_name'")
             __props__.__dict__["db_name"] = db_name
             __props__.__dict__["name"] = name
+            __props__.__dict__["namespace"] = namespace
             if rotation_period is None and not opts.urn:
                 raise TypeError("Missing required property 'rotation_period'")
             __props__.__dict__["rotation_period"] = rotation_period
@@ -371,6 +422,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             backend: Optional[pulumi.Input[str]] = None,
             db_name: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             rotation_period: Optional[pulumi.Input[int]] = None,
             rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             username: Optional[pulumi.Input[str]] = None) -> 'SecretBackendStaticRole':
@@ -384,6 +436,10 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input[str] db_name: The unique name of the database connection to use for the static role.
         :param pulumi.Input[str] name: A unique name to give the static role.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured namespace.
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[int] rotation_period: The amount of time Vault should wait before rotating the password, in seconds.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] rotation_statements: Database statements to execute to rotate the password for the configured database user.
         :param pulumi.Input[str] username: The database username that this static role corresponds to.
@@ -395,6 +451,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         __props__.__dict__["backend"] = backend
         __props__.__dict__["db_name"] = db_name
         __props__.__dict__["name"] = name
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["rotation_period"] = rotation_period
         __props__.__dict__["rotation_statements"] = rotation_statements
         __props__.__dict__["username"] = username
@@ -423,6 +480,17 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         A unique name to give the static role.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured namespace.
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="rotationPeriod")

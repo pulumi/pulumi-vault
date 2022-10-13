@@ -40,6 +40,7 @@ export function getOidcOpenidConfig(args: GetOidcOpenidConfigArgs, opts?: pulumi
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("vault:identity/getOidcOpenidConfig:getOidcOpenidConfig", {
         "name": args.name,
+        "namespace": args.namespace,
     }, opts);
 }
 
@@ -51,6 +52,13 @@ export interface GetOidcOpenidConfigArgs {
      * The name of the OIDC Provider in Vault.
      */
     name: string;
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: string;
 }
 
 /**
@@ -83,6 +91,7 @@ export interface GetOidcOpenidConfigResult {
      */
     readonly jwksUri: string;
     readonly name: string;
+    readonly namespace?: string;
     /**
      * Specifies whether Request URI Parameter is 
      * supported by the provider.
@@ -126,4 +135,11 @@ export interface GetOidcOpenidConfigOutputArgs {
      * The name of the OIDC Provider in Vault.
      */
     name: pulumi.Input<string>;
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
 }

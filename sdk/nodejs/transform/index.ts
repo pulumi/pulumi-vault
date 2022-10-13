@@ -5,18 +5,36 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./alphabet";
-export * from "./getDecode";
-export * from "./getEncode";
-export * from "./role";
-export * from "./template";
-export * from "./transformation";
+export { AlphabetArgs, AlphabetState } from "./alphabet";
+export type Alphabet = import("./alphabet").Alphabet;
+export const Alphabet: typeof import("./alphabet").Alphabet = null as any;
 
-// Import resources to register:
-import { Alphabet } from "./alphabet";
-import { Role } from "./role";
-import { Template } from "./template";
-import { Transformation } from "./transformation";
+export { GetDecodeArgs, GetDecodeResult, GetDecodeOutputArgs } from "./getDecode";
+export const getDecode: typeof import("./getDecode").getDecode = null as any;
+export const getDecodeOutput: typeof import("./getDecode").getDecodeOutput = null as any;
+
+export { GetEncodeArgs, GetEncodeResult, GetEncodeOutputArgs } from "./getEncode";
+export const getEncode: typeof import("./getEncode").getEncode = null as any;
+export const getEncodeOutput: typeof import("./getEncode").getEncodeOutput = null as any;
+
+export { RoleArgs, RoleState } from "./role";
+export type Role = import("./role").Role;
+export const Role: typeof import("./role").Role = null as any;
+
+export { TemplateArgs, TemplateState } from "./template";
+export type Template = import("./template").Template;
+export const Template: typeof import("./template").Template = null as any;
+
+export { TransformationArgs, TransformationState } from "./transformation";
+export type Transformation = import("./transformation").Transformation;
+export const Transformation: typeof import("./transformation").Transformation = null as any;
+
+utilities.lazyLoad(exports, ["Alphabet"], () => require("./alphabet"));
+utilities.lazyLoad(exports, ["getDecode","getDecodeOutput"], () => require("./getDecode"));
+utilities.lazyLoad(exports, ["getEncode","getEncodeOutput"], () => require("./getEncode"));
+utilities.lazyLoad(exports, ["Role"], () => require("./role"));
+utilities.lazyLoad(exports, ["Template"], () => require("./template"));
+utilities.lazyLoad(exports, ["Transformation"], () => require("./transformation"));
 
 const _module = {
     version: utilities.getVersion(),

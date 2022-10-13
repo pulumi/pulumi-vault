@@ -81,6 +81,13 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly maxJwtExp!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * Name of the GCP role
      */
     public readonly role!: pulumi.Output<string>;
@@ -165,6 +172,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
             resourceInputs["boundServiceAccounts"] = state ? state.boundServiceAccounts : undefined;
             resourceInputs["boundZones"] = state ? state.boundZones : undefined;
             resourceInputs["maxJwtExp"] = state ? state.maxJwtExp : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["role"] = state ? state.role : undefined;
             resourceInputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
             resourceInputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
@@ -194,6 +202,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
             resourceInputs["boundServiceAccounts"] = args ? args.boundServiceAccounts : undefined;
             resourceInputs["boundZones"] = args ? args.boundZones : undefined;
             resourceInputs["maxJwtExp"] = args ? args.maxJwtExp : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["role"] = args ? args.role : undefined;
             resourceInputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
             resourceInputs["tokenExplicitMaxTtl"] = args ? args.tokenExplicitMaxTtl : undefined;
@@ -252,6 +261,13 @@ export interface AuthBackendRoleState {
      * The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
      */
     maxJwtExp?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Name of the GCP role
      */
@@ -356,6 +372,13 @@ export interface AuthBackendRoleArgs {
      * The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
      */
     maxJwtExp?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Name of the GCP role
      */

@@ -13,28 +13,19 @@ public final class SecretBackendConnectionMongodbatlas {
      * @return The Private Programmatic API Key used to connect with MongoDB Atlas API.
      * 
      */
-    private final String privateKey;
+    private String privateKey;
     /**
      * @return The Project ID the Database User should be created within.
      * 
      */
-    private final String projectId;
+    private String projectId;
     /**
      * @return The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
      * 
      */
-    private final String publicKey;
+    private String publicKey;
 
-    @CustomType.Constructor
-    private SecretBackendConnectionMongodbatlas(
-        @CustomType.Parameter("privateKey") String privateKey,
-        @CustomType.Parameter("projectId") String projectId,
-        @CustomType.Parameter("publicKey") String publicKey) {
-        this.privateKey = privateKey;
-        this.projectId = projectId;
-        this.publicKey = publicKey;
-    }
-
+    private SecretBackendConnectionMongodbatlas() {}
     /**
      * @return The Private Programmatic API Key used to connect with MongoDB Atlas API.
      * 
@@ -64,16 +55,12 @@ public final class SecretBackendConnectionMongodbatlas {
     public static Builder builder(SecretBackendConnectionMongodbatlas defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String privateKey;
         private String projectId;
         private String publicKey;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(SecretBackendConnectionMongodbatlas defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.privateKey = defaults.privateKey;
@@ -81,19 +68,27 @@ public final class SecretBackendConnectionMongodbatlas {
     	      this.publicKey = defaults.publicKey;
         }
 
+        @CustomType.Setter
         public Builder privateKey(String privateKey) {
             this.privateKey = Objects.requireNonNull(privateKey);
             return this;
         }
+        @CustomType.Setter
         public Builder projectId(String projectId) {
             this.projectId = Objects.requireNonNull(projectId);
             return this;
         }
+        @CustomType.Setter
         public Builder publicKey(String publicKey) {
             this.publicKey = Objects.requireNonNull(publicKey);
             return this;
-        }        public SecretBackendConnectionMongodbatlas build() {
-            return new SecretBackendConnectionMongodbatlas(privateKey, projectId, publicKey);
+        }
+        public SecretBackendConnectionMongodbatlas build() {
+            final var o = new SecretBackendConnectionMongodbatlas();
+            o.privateKey = privateKey;
+            o.projectId = projectId;
+            o.publicKey = publicKey;
+            return o;
         }
     }
 }

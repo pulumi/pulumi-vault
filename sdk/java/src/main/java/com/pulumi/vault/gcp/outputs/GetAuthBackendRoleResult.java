@@ -14,55 +14,56 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetAuthBackendRoleResult {
-    private final @Nullable String backend;
+    private @Nullable String backend;
     /**
      * @return GCP regions bound to the role. Returned when `type` is `gce`.
      * 
      */
-    private final List<String> boundInstanceGroups;
+    private List<String> boundInstanceGroups;
     /**
      * @return GCP labels bound to the role. Returned when `type` is `gce`.
      * 
      */
-    private final List<String> boundLabels;
+    private List<String> boundLabels;
     /**
      * @return GCP projects bound to the role.
      * 
      */
-    private final List<String> boundProjects;
+    private List<String> boundProjects;
     /**
      * @return GCP regions bound to the role. Returned when `type` is `gce`.
      * 
      */
-    private final List<String> boundRegions;
+    private List<String> boundRegions;
     /**
      * @return GCP service accounts bound to the role. Returned when `type` is `iam`.
      * 
      */
-    private final List<String> boundServiceAccounts;
+    private List<String> boundServiceAccounts;
     /**
      * @return GCP zones bound to the role. Returned when `type` is `gce`.
      * 
      */
-    private final List<String> boundZones;
+    private List<String> boundZones;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
+    private String id;
+    private @Nullable String namespace;
     /**
      * @return The RoleID of the GCP role.
      * 
      */
-    private final String roleId;
-    private final String roleName;
+    private String roleId;
+    private String roleName;
     /**
      * @return List of CIDR blocks; if set, specifies blocks of IP
      * addresses which can authenticate successfully, and ties the resulting token to these blocks
      * as well.
      * 
      */
-    private final @Nullable List<String> tokenBoundCidrs;
+    private @Nullable List<String> tokenBoundCidrs;
     /**
      * @return If set, will encode an
      * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
@@ -70,26 +71,26 @@ public final class GetAuthBackendRoleResult {
      * `token_max_ttl` would otherwise allow a renewal.
      * 
      */
-    private final @Nullable Integer tokenExplicitMaxTtl;
+    private @Nullable Integer tokenExplicitMaxTtl;
     /**
      * @return The maximum lifetime for generated tokens in number of seconds.
      * Its current value will be referenced at renewal time.
      * 
      */
-    private final @Nullable Integer tokenMaxTtl;
+    private @Nullable Integer tokenMaxTtl;
     /**
      * @return If set, the default policy will not be set on
      * generated tokens; otherwise it will be added to the policies set in token_policies.
      * 
      */
-    private final @Nullable Boolean tokenNoDefaultPolicy;
+    private @Nullable Boolean tokenNoDefaultPolicy;
     /**
      * @return The
      * [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
      * if any, in number of seconds to set on the token.
      * 
      */
-    private final @Nullable Integer tokenNumUses;
+    private @Nullable Integer tokenNumUses;
     /**
      * @return (Optional) If set, indicates that the
      * token generated using this role should never expire. The token should be renewed within the
@@ -97,19 +98,19 @@ public final class GetAuthBackendRoleResult {
      * value of this field. Specified in seconds.
      * 
      */
-    private final @Nullable Integer tokenPeriod;
+    private @Nullable Integer tokenPeriod;
     /**
      * @return List of policies to encode onto generated tokens. Depending
      * on the auth method, this list may be supplemented by user/group/other values.
      * 
      */
-    private final @Nullable List<String> tokenPolicies;
+    private @Nullable List<String> tokenPolicies;
     /**
      * @return The incremental lifetime for generated tokens in number of seconds.
      * Its current value will be referenced at renewal time.
      * 
      */
-    private final @Nullable Integer tokenTtl;
+    private @Nullable Integer tokenTtl;
     /**
      * @return The type of token that should be generated. Can be `service`,
      * `batch`, or `default` to use the mount&#39;s tuned default (which unless changed will be
@@ -118,57 +119,14 @@ public final class GetAuthBackendRoleResult {
      * requests a different type at generation time.
      * 
      */
-    private final @Nullable String tokenType;
+    private @Nullable String tokenType;
     /**
      * @return Type of GCP role. Expected values are `iam` or `gce`.
      * 
      */
-    private final String type;
+    private String type;
 
-    @CustomType.Constructor
-    private GetAuthBackendRoleResult(
-        @CustomType.Parameter("backend") @Nullable String backend,
-        @CustomType.Parameter("boundInstanceGroups") List<String> boundInstanceGroups,
-        @CustomType.Parameter("boundLabels") List<String> boundLabels,
-        @CustomType.Parameter("boundProjects") List<String> boundProjects,
-        @CustomType.Parameter("boundRegions") List<String> boundRegions,
-        @CustomType.Parameter("boundServiceAccounts") List<String> boundServiceAccounts,
-        @CustomType.Parameter("boundZones") List<String> boundZones,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("roleId") String roleId,
-        @CustomType.Parameter("roleName") String roleName,
-        @CustomType.Parameter("tokenBoundCidrs") @Nullable List<String> tokenBoundCidrs,
-        @CustomType.Parameter("tokenExplicitMaxTtl") @Nullable Integer tokenExplicitMaxTtl,
-        @CustomType.Parameter("tokenMaxTtl") @Nullable Integer tokenMaxTtl,
-        @CustomType.Parameter("tokenNoDefaultPolicy") @Nullable Boolean tokenNoDefaultPolicy,
-        @CustomType.Parameter("tokenNumUses") @Nullable Integer tokenNumUses,
-        @CustomType.Parameter("tokenPeriod") @Nullable Integer tokenPeriod,
-        @CustomType.Parameter("tokenPolicies") @Nullable List<String> tokenPolicies,
-        @CustomType.Parameter("tokenTtl") @Nullable Integer tokenTtl,
-        @CustomType.Parameter("tokenType") @Nullable String tokenType,
-        @CustomType.Parameter("type") String type) {
-        this.backend = backend;
-        this.boundInstanceGroups = boundInstanceGroups;
-        this.boundLabels = boundLabels;
-        this.boundProjects = boundProjects;
-        this.boundRegions = boundRegions;
-        this.boundServiceAccounts = boundServiceAccounts;
-        this.boundZones = boundZones;
-        this.id = id;
-        this.roleId = roleId;
-        this.roleName = roleName;
-        this.tokenBoundCidrs = tokenBoundCidrs;
-        this.tokenExplicitMaxTtl = tokenExplicitMaxTtl;
-        this.tokenMaxTtl = tokenMaxTtl;
-        this.tokenNoDefaultPolicy = tokenNoDefaultPolicy;
-        this.tokenNumUses = tokenNumUses;
-        this.tokenPeriod = tokenPeriod;
-        this.tokenPolicies = tokenPolicies;
-        this.tokenTtl = tokenTtl;
-        this.tokenType = tokenType;
-        this.type = type;
-    }
-
+    private GetAuthBackendRoleResult() {}
     public Optional<String> backend() {
         return Optional.ofNullable(this.backend);
     }
@@ -220,6 +178,9 @@ public final class GetAuthBackendRoleResult {
      */
     public String id() {
         return this.id;
+    }
+    public Optional<String> namespace() {
+        return Optional.ofNullable(this.namespace);
     }
     /**
      * @return The RoleID of the GCP role.
@@ -327,7 +288,7 @@ public final class GetAuthBackendRoleResult {
     public static Builder builder(GetAuthBackendRoleResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable String backend;
         private List<String> boundInstanceGroups;
@@ -337,6 +298,7 @@ public final class GetAuthBackendRoleResult {
         private List<String> boundServiceAccounts;
         private List<String> boundZones;
         private String id;
+        private @Nullable String namespace;
         private String roleId;
         private String roleName;
         private @Nullable List<String> tokenBoundCidrs;
@@ -349,11 +311,7 @@ public final class GetAuthBackendRoleResult {
         private @Nullable Integer tokenTtl;
         private @Nullable String tokenType;
         private String type;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetAuthBackendRoleResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.backend = defaults.backend;
@@ -364,6 +322,7 @@ public final class GetAuthBackendRoleResult {
     	      this.boundServiceAccounts = defaults.boundServiceAccounts;
     	      this.boundZones = defaults.boundZones;
     	      this.id = defaults.id;
+    	      this.namespace = defaults.namespace;
     	      this.roleId = defaults.roleId;
     	      this.roleName = defaults.roleName;
     	      this.tokenBoundCidrs = defaults.tokenBoundCidrs;
@@ -378,10 +337,12 @@ public final class GetAuthBackendRoleResult {
     	      this.type = defaults.type;
         }
 
+        @CustomType.Setter
         public Builder backend(@Nullable String backend) {
             this.backend = backend;
             return this;
         }
+        @CustomType.Setter
         public Builder boundInstanceGroups(List<String> boundInstanceGroups) {
             this.boundInstanceGroups = Objects.requireNonNull(boundInstanceGroups);
             return this;
@@ -389,6 +350,7 @@ public final class GetAuthBackendRoleResult {
         public Builder boundInstanceGroups(String... boundInstanceGroups) {
             return boundInstanceGroups(List.of(boundInstanceGroups));
         }
+        @CustomType.Setter
         public Builder boundLabels(List<String> boundLabels) {
             this.boundLabels = Objects.requireNonNull(boundLabels);
             return this;
@@ -396,6 +358,7 @@ public final class GetAuthBackendRoleResult {
         public Builder boundLabels(String... boundLabels) {
             return boundLabels(List.of(boundLabels));
         }
+        @CustomType.Setter
         public Builder boundProjects(List<String> boundProjects) {
             this.boundProjects = Objects.requireNonNull(boundProjects);
             return this;
@@ -403,6 +366,7 @@ public final class GetAuthBackendRoleResult {
         public Builder boundProjects(String... boundProjects) {
             return boundProjects(List.of(boundProjects));
         }
+        @CustomType.Setter
         public Builder boundRegions(List<String> boundRegions) {
             this.boundRegions = Objects.requireNonNull(boundRegions);
             return this;
@@ -410,6 +374,7 @@ public final class GetAuthBackendRoleResult {
         public Builder boundRegions(String... boundRegions) {
             return boundRegions(List.of(boundRegions));
         }
+        @CustomType.Setter
         public Builder boundServiceAccounts(List<String> boundServiceAccounts) {
             this.boundServiceAccounts = Objects.requireNonNull(boundServiceAccounts);
             return this;
@@ -417,6 +382,7 @@ public final class GetAuthBackendRoleResult {
         public Builder boundServiceAccounts(String... boundServiceAccounts) {
             return boundServiceAccounts(List.of(boundServiceAccounts));
         }
+        @CustomType.Setter
         public Builder boundZones(List<String> boundZones) {
             this.boundZones = Objects.requireNonNull(boundZones);
             return this;
@@ -424,18 +390,27 @@ public final class GetAuthBackendRoleResult {
         public Builder boundZones(String... boundZones) {
             return boundZones(List.of(boundZones));
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
+        public Builder namespace(@Nullable String namespace) {
+            this.namespace = namespace;
+            return this;
+        }
+        @CustomType.Setter
         public Builder roleId(String roleId) {
             this.roleId = Objects.requireNonNull(roleId);
             return this;
         }
+        @CustomType.Setter
         public Builder roleName(String roleName) {
             this.roleName = Objects.requireNonNull(roleName);
             return this;
         }
+        @CustomType.Setter
         public Builder tokenBoundCidrs(@Nullable List<String> tokenBoundCidrs) {
             this.tokenBoundCidrs = tokenBoundCidrs;
             return this;
@@ -443,26 +418,32 @@ public final class GetAuthBackendRoleResult {
         public Builder tokenBoundCidrs(String... tokenBoundCidrs) {
             return tokenBoundCidrs(List.of(tokenBoundCidrs));
         }
+        @CustomType.Setter
         public Builder tokenExplicitMaxTtl(@Nullable Integer tokenExplicitMaxTtl) {
             this.tokenExplicitMaxTtl = tokenExplicitMaxTtl;
             return this;
         }
+        @CustomType.Setter
         public Builder tokenMaxTtl(@Nullable Integer tokenMaxTtl) {
             this.tokenMaxTtl = tokenMaxTtl;
             return this;
         }
+        @CustomType.Setter
         public Builder tokenNoDefaultPolicy(@Nullable Boolean tokenNoDefaultPolicy) {
             this.tokenNoDefaultPolicy = tokenNoDefaultPolicy;
             return this;
         }
+        @CustomType.Setter
         public Builder tokenNumUses(@Nullable Integer tokenNumUses) {
             this.tokenNumUses = tokenNumUses;
             return this;
         }
+        @CustomType.Setter
         public Builder tokenPeriod(@Nullable Integer tokenPeriod) {
             this.tokenPeriod = tokenPeriod;
             return this;
         }
+        @CustomType.Setter
         public Builder tokenPolicies(@Nullable List<String> tokenPolicies) {
             this.tokenPolicies = tokenPolicies;
             return this;
@@ -470,19 +451,45 @@ public final class GetAuthBackendRoleResult {
         public Builder tokenPolicies(String... tokenPolicies) {
             return tokenPolicies(List.of(tokenPolicies));
         }
+        @CustomType.Setter
         public Builder tokenTtl(@Nullable Integer tokenTtl) {
             this.tokenTtl = tokenTtl;
             return this;
         }
+        @CustomType.Setter
         public Builder tokenType(@Nullable String tokenType) {
             this.tokenType = tokenType;
             return this;
         }
+        @CustomType.Setter
         public Builder type(String type) {
             this.type = Objects.requireNonNull(type);
             return this;
-        }        public GetAuthBackendRoleResult build() {
-            return new GetAuthBackendRoleResult(backend, boundInstanceGroups, boundLabels, boundProjects, boundRegions, boundServiceAccounts, boundZones, id, roleId, roleName, tokenBoundCidrs, tokenExplicitMaxTtl, tokenMaxTtl, tokenNoDefaultPolicy, tokenNumUses, tokenPeriod, tokenPolicies, tokenTtl, tokenType, type);
+        }
+        public GetAuthBackendRoleResult build() {
+            final var o = new GetAuthBackendRoleResult();
+            o.backend = backend;
+            o.boundInstanceGroups = boundInstanceGroups;
+            o.boundLabels = boundLabels;
+            o.boundProjects = boundProjects;
+            o.boundRegions = boundRegions;
+            o.boundServiceAccounts = boundServiceAccounts;
+            o.boundZones = boundZones;
+            o.id = id;
+            o.namespace = namespace;
+            o.roleId = roleId;
+            o.roleName = roleName;
+            o.tokenBoundCidrs = tokenBoundCidrs;
+            o.tokenExplicitMaxTtl = tokenExplicitMaxTtl;
+            o.tokenMaxTtl = tokenMaxTtl;
+            o.tokenNoDefaultPolicy = tokenNoDefaultPolicy;
+            o.tokenNumUses = tokenNumUses;
+            o.tokenPeriod = tokenPeriod;
+            o.tokenPolicies = tokenPolicies;
+            o.tokenTtl = tokenTtl;
+            o.tokenType = tokenType;
+            o.type = type;
+            return o;
         }
     }
 }

@@ -135,6 +135,11 @@ type GroupMemberEntityIds struct {
 	GroupName pulumi.StringOutput `pulumi:"groupName"`
 	// List of member entities that belong to the group
 	MemberEntityIds pulumi.StringArrayOutput `pulumi:"memberEntityIds"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 }
 
 // NewGroupMemberEntityIds registers a new resource with the given unique name, arguments, and options.
@@ -182,6 +187,11 @@ type groupMemberEntityIdsState struct {
 	GroupName *string `pulumi:"groupName"`
 	// List of member entities that belong to the group
 	MemberEntityIds []string `pulumi:"memberEntityIds"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 }
 
 type GroupMemberEntityIdsState struct {
@@ -198,6 +208,11 @@ type GroupMemberEntityIdsState struct {
 	GroupName pulumi.StringPtrInput
 	// List of member entities that belong to the group
 	MemberEntityIds pulumi.StringArrayInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 }
 
 func (GroupMemberEntityIdsState) ElementType() reflect.Type {
@@ -211,6 +226,11 @@ type groupMemberEntityIdsArgs struct {
 	GroupId string `pulumi:"groupId"`
 	// List of member entities that belong to the group
 	MemberEntityIds []string `pulumi:"memberEntityIds"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 }
 
 // The set of arguments for constructing a GroupMemberEntityIds resource.
@@ -221,6 +241,11 @@ type GroupMemberEntityIdsArgs struct {
 	GroupId pulumi.StringInput
 	// List of member entities that belong to the group
 	MemberEntityIds pulumi.StringArrayInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 }
 
 func (GroupMemberEntityIdsArgs) ElementType() reflect.Type {
@@ -333,6 +358,14 @@ func (o GroupMemberEntityIdsOutput) GroupName() pulumi.StringOutput {
 // List of member entities that belong to the group
 func (o GroupMemberEntityIdsOutput) MemberEntityIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *GroupMemberEntityIds) pulumi.StringArrayOutput { return v.MemberEntityIds }).(pulumi.StringArrayOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o GroupMemberEntityIdsOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GroupMemberEntityIds) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 type GroupMemberEntityIdsArrayOutput struct{ *pulumi.OutputState }

@@ -12,40 +12,24 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetEncryptResult {
-    private final String backend;
+    private String backend;
     /**
      * @return Encrypted ciphertext returned from Vault
      * 
      */
-    private final String ciphertext;
-    private final @Nullable String context;
+    private String ciphertext;
+    private @Nullable String context;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
-    private final String key;
-    private final @Nullable Integer keyVersion;
-    private final String plaintext;
+    private String id;
+    private String key;
+    private @Nullable Integer keyVersion;
+    private @Nullable String namespace;
+    private String plaintext;
 
-    @CustomType.Constructor
-    private GetEncryptResult(
-        @CustomType.Parameter("backend") String backend,
-        @CustomType.Parameter("ciphertext") String ciphertext,
-        @CustomType.Parameter("context") @Nullable String context,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("key") String key,
-        @CustomType.Parameter("keyVersion") @Nullable Integer keyVersion,
-        @CustomType.Parameter("plaintext") String plaintext) {
-        this.backend = backend;
-        this.ciphertext = ciphertext;
-        this.context = context;
-        this.id = id;
-        this.key = key;
-        this.keyVersion = keyVersion;
-        this.plaintext = plaintext;
-    }
-
+    private GetEncryptResult() {}
     public String backend() {
         return this.backend;
     }
@@ -72,6 +56,9 @@ public final class GetEncryptResult {
     public Optional<Integer> keyVersion() {
         return Optional.ofNullable(this.keyVersion);
     }
+    public Optional<String> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
     public String plaintext() {
         return this.plaintext;
     }
@@ -83,7 +70,7 @@ public final class GetEncryptResult {
     public static Builder builder(GetEncryptResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String backend;
         private String ciphertext;
@@ -91,12 +78,9 @@ public final class GetEncryptResult {
         private String id;
         private String key;
         private @Nullable Integer keyVersion;
+        private @Nullable String namespace;
         private String plaintext;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetEncryptResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.backend = defaults.backend;
@@ -105,38 +89,61 @@ public final class GetEncryptResult {
     	      this.id = defaults.id;
     	      this.key = defaults.key;
     	      this.keyVersion = defaults.keyVersion;
+    	      this.namespace = defaults.namespace;
     	      this.plaintext = defaults.plaintext;
         }
 
+        @CustomType.Setter
         public Builder backend(String backend) {
             this.backend = Objects.requireNonNull(backend);
             return this;
         }
+        @CustomType.Setter
         public Builder ciphertext(String ciphertext) {
             this.ciphertext = Objects.requireNonNull(ciphertext);
             return this;
         }
+        @CustomType.Setter
         public Builder context(@Nullable String context) {
             this.context = context;
             return this;
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder key(String key) {
             this.key = Objects.requireNonNull(key);
             return this;
         }
+        @CustomType.Setter
         public Builder keyVersion(@Nullable Integer keyVersion) {
             this.keyVersion = keyVersion;
             return this;
         }
+        @CustomType.Setter
+        public Builder namespace(@Nullable String namespace) {
+            this.namespace = namespace;
+            return this;
+        }
+        @CustomType.Setter
         public Builder plaintext(String plaintext) {
             this.plaintext = Objects.requireNonNull(plaintext);
             return this;
-        }        public GetEncryptResult build() {
-            return new GetEncryptResult(backend, ciphertext, context, id, key, keyVersion, plaintext);
+        }
+        public GetEncryptResult build() {
+            final var o = new GetEncryptResult();
+            o.backend = backend;
+            o.ciphertext = ciphertext;
+            o.context = context;
+            o.id = id;
+            o.key = key;
+            o.keyVersion = keyVersion;
+            o.namespace = namespace;
+            o.plaintext = plaintext;
+            return o;
         }
     }
 }

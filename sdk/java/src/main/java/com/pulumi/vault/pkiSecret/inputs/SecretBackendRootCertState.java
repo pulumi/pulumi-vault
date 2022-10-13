@@ -199,6 +199,40 @@ public final class SecretBackendRootCertState extends com.pulumi.resources.Resou
     }
 
     /**
+     * The ID of the previously configured managed key. This field is
+     * required if `type` is `kms` and it conflicts with `managed_key_name`
+     * 
+     */
+    @Import(name="managedKeyId")
+    private @Nullable Output<String> managedKeyId;
+
+    /**
+     * @return The ID of the previously configured managed key. This field is
+     * required if `type` is `kms` and it conflicts with `managed_key_name`
+     * 
+     */
+    public Optional<Output<String>> managedKeyId() {
+        return Optional.ofNullable(this.managedKeyId);
+    }
+
+    /**
+     * The name of the previously configured managed key. This field is
+     * required if `type` is `kms`  and it conflicts with `managed_key_id`
+     * 
+     */
+    @Import(name="managedKeyName")
+    private @Nullable Output<String> managedKeyName;
+
+    /**
+     * @return The name of the previously configured managed key. This field is
+     * required if `type` is `kms`  and it conflicts with `managed_key_id`
+     * 
+     */
+    public Optional<Output<String>> managedKeyName() {
+        return Optional.ofNullable(this.managedKeyName);
+    }
+
+    /**
      * The maximum path length to encode in the generated certificate
      * 
      */
@@ -211,6 +245,27 @@ public final class SecretBackendRootCertState extends com.pulumi.resources.Resou
      */
     public Optional<Output<Integer>> maxPathLength() {
         return Optional.ofNullable(this.maxPathLength);
+    }
+
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable Output<String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> namespace() {
+        return Optional.ofNullable(this.namespace);
     }
 
     /**
@@ -387,14 +442,16 @@ public final class SecretBackendRootCertState extends com.pulumi.resources.Resou
     }
 
     /**
-     * Type of intermediate to create. Must be either \&#34;exported\&#34; or \&#34;internal\&#34;
+     * Type of intermediate to create. Must be either \&#34;exported\&#34;, \&#34;internal\&#34;
+     * or \&#34;kms\&#34;
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return Type of intermediate to create. Must be either \&#34;exported\&#34; or \&#34;internal\&#34;
+     * @return Type of intermediate to create. Must be either \&#34;exported\&#34;, \&#34;internal\&#34;
+     * or \&#34;kms\&#34;
      * 
      */
     public Optional<Output<String>> type() {
@@ -431,7 +488,10 @@ public final class SecretBackendRootCertState extends com.pulumi.resources.Resou
         this.keyBits = $.keyBits;
         this.keyType = $.keyType;
         this.locality = $.locality;
+        this.managedKeyId = $.managedKeyId;
+        this.managedKeyName = $.managedKeyName;
         this.maxPathLength = $.maxPathLength;
+        this.namespace = $.namespace;
         this.organization = $.organization;
         this.otherSans = $.otherSans;
         this.ou = $.ou;
@@ -738,6 +798,52 @@ public final class SecretBackendRootCertState extends com.pulumi.resources.Resou
         }
 
         /**
+         * @param managedKeyId The ID of the previously configured managed key. This field is
+         * required if `type` is `kms` and it conflicts with `managed_key_name`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder managedKeyId(@Nullable Output<String> managedKeyId) {
+            $.managedKeyId = managedKeyId;
+            return this;
+        }
+
+        /**
+         * @param managedKeyId The ID of the previously configured managed key. This field is
+         * required if `type` is `kms` and it conflicts with `managed_key_name`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder managedKeyId(String managedKeyId) {
+            return managedKeyId(Output.of(managedKeyId));
+        }
+
+        /**
+         * @param managedKeyName The name of the previously configured managed key. This field is
+         * required if `type` is `kms`  and it conflicts with `managed_key_id`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder managedKeyName(@Nullable Output<String> managedKeyName) {
+            $.managedKeyName = managedKeyName;
+            return this;
+        }
+
+        /**
+         * @param managedKeyName The name of the previously configured managed key. This field is
+         * required if `type` is `kms`  and it conflicts with `managed_key_id`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder managedKeyName(String managedKeyName) {
+            return managedKeyName(Output.of(managedKeyName));
+        }
+
+        /**
          * @param maxPathLength The maximum path length to encode in the generated certificate
          * 
          * @return builder
@@ -756,6 +862,33 @@ public final class SecretBackendRootCertState extends com.pulumi.resources.Resou
          */
         public Builder maxPathLength(Integer maxPathLength) {
             return maxPathLength(Output.of(maxPathLength));
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable Output<String> namespace) {
+            $.namespace = namespace;
+            return this;
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(String namespace) {
+            return namespace(Output.of(namespace));
         }
 
         /**
@@ -1018,7 +1151,8 @@ public final class SecretBackendRootCertState extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param type Type of intermediate to create. Must be either \&#34;exported\&#34; or \&#34;internal\&#34;
+         * @param type Type of intermediate to create. Must be either \&#34;exported\&#34;, \&#34;internal\&#34;
+         * or \&#34;kms\&#34;
          * 
          * @return builder
          * 
@@ -1029,7 +1163,8 @@ public final class SecretBackendRootCertState extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param type Type of intermediate to create. Must be either \&#34;exported\&#34; or \&#34;internal\&#34;
+         * @param type Type of intermediate to create. Must be either \&#34;exported\&#34;, \&#34;internal\&#34;
+         * or \&#34;kms\&#34;
          * 
          * @return builder
          * 

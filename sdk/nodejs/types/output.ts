@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 
 export interface AuthBackendTune {
     /**
@@ -121,14 +122,113 @@ export namespace azure {
 }
 
 export namespace config {
-    export interface AuthLogins {
+    export interface AuthLogin {
         method?: string;
         namespace?: string;
         parameters?: {[key: string]: string};
         path: string;
     }
 
-    export interface ClientAuths {
+    export interface AuthLoginAws {
+        awsAccessKeyId?: string;
+        awsIamEndpoint?: string;
+        awsProfile?: string;
+        awsRegion?: string;
+        awsRoleArn?: string;
+        awsRoleSessionName?: string;
+        awsSecretAccessKey?: string;
+        awsSessionToken?: string;
+        awsSharedCredentialsFile?: string;
+        awsStsEndpoint?: string;
+        awsWebIdentityTokenFile?: string;
+        headerValue?: string;
+        mount?: string;
+        namespace?: string;
+        role: string;
+    }
+
+    export interface AuthLoginAzure {
+        clientId?: string;
+        jwt?: string;
+        mount?: string;
+        namespace?: string;
+        resourceGroupName: string;
+        role: string;
+        scope?: string;
+        subscriptionId: string;
+        tenantId?: string;
+        vmName?: string;
+        vmssName?: string;
+    }
+
+    export interface AuthLoginCert {
+        certFile: string;
+        keyFile: string;
+        mount?: string;
+        name?: string;
+        namespace?: string;
+    }
+
+    export interface AuthLoginGcp {
+        credentials?: string;
+        jwt?: string;
+        mount?: string;
+        namespace?: string;
+        role: string;
+        serviceAccount?: string;
+    }
+
+    export interface AuthLoginJwt {
+        jwt: string;
+        mount?: string;
+        namespace?: string;
+        role: string;
+    }
+
+    export interface AuthLoginKerberos {
+        disableFastNegotiation?: boolean;
+        keytabPath?: string;
+        krb5confPath?: string;
+        mount?: string;
+        namespace?: string;
+        realm?: string;
+        removeInstanceName?: boolean;
+        service?: string;
+        token?: string;
+        username?: string;
+    }
+
+    export interface AuthLoginOci {
+        authType: string;
+        mount?: string;
+        namespace?: string;
+        role: string;
+    }
+
+    export interface AuthLoginOidc {
+        callbackAddress?: string;
+        callbackListenerAddress?: string;
+        mount?: string;
+        namespace?: string;
+        role: string;
+    }
+
+    export interface AuthLoginRadius {
+        mount?: string;
+        namespace?: string;
+        password: string;
+        username: string;
+    }
+
+    export interface AuthLoginUserpass {
+        mount?: string;
+        namespace?: string;
+        password?: string;
+        passwordFile?: string;
+        username: string;
+    }
+
+    export interface ClientAuth {
         certFile: string;
         keyFile: string;
     }
@@ -276,6 +376,10 @@ export namespace database {
          * for an example.
          */
         connectionUrl?: string;
+        /**
+         * Disable special character escaping in username and password.
+         */
+        disableEscaping?: boolean;
         /**
          * The maximum amount of time a connection may be reused.
          */
@@ -642,6 +746,10 @@ export namespace database {
          */
         connectionUrl?: string;
         /**
+         * Disable special character escaping in username and password.
+         */
+        disableEscaping?: boolean;
+        /**
          * The maximum amount of time a connection may be reused.
          */
         maxConnectionLifetime?: number;
@@ -669,6 +777,26 @@ export namespace database {
         usernameTemplate?: string;
     }
 
+    export interface SecretBackendConnectionRedisElasticache {
+        /**
+         * The root credential password used in the connection URL.
+         */
+        password?: string;
+        /**
+         * The region where the ElastiCache cluster is hosted. If omitted Vault tries to infer from the environment instead.
+         */
+        region?: string;
+        /**
+         * The URL for Elasticsearch's API. https requires certificate
+         * by trusted CA if used.
+         */
+        url: string;
+        /**
+         * The root credential username used in the connection URL.
+         */
+        username?: string;
+    }
+
     export interface SecretBackendConnectionRedshift {
         /**
          * Specifies the Redshift DSN. See
@@ -677,6 +805,10 @@ export namespace database {
          * for an example.
          */
         connectionUrl?: string;
+        /**
+         * Disable special character escaping in username and password.
+         */
+        disableEscaping?: boolean;
         /**
          * The maximum amount of time a connection may be reused.
          */
@@ -918,8 +1050,7 @@ export namespace database {
          */
         tlsServerName?: string;
         /**
-         * The URL for Elasticsearch's API. https requires certificate
-         * by trusted CA if used.
+         * The configuration endpoint for the ElastiCache cluster to connect to.
          */
         url: string;
         /**
@@ -952,6 +1083,10 @@ export namespace database {
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          */
         data?: {[key: string]: any};
+        /**
+         * Disable special character escaping in username and password.
+         */
+        disableEscaping?: boolean;
         /**
          * The maximum number of seconds to keep
          * a connection alive for.
@@ -1539,6 +1674,10 @@ export namespace database {
          */
         data?: {[key: string]: any};
         /**
+         * Disable special character escaping in username and password.
+         */
+        disableEscaping?: boolean;
+        /**
          * The maximum number of seconds to keep
          * a connection alive for.
          */
@@ -1581,6 +1720,49 @@ export namespace database {
         verifyConnection?: boolean;
     }
 
+    export interface SecretsMountRedisElasticach {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: string[];
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: any};
+        name: string;
+        /**
+         * The password to be used in the connection.
+         */
+        password?: string;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName: string;
+        /**
+         * The AWS region where the ElastiCache cluster is hosted.
+         * If omitted the plugin tries to infer the region from the environment.
+         */
+        region?: string;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: string[];
+        /**
+         * The configuration endpoint for the ElastiCache cluster to connect to.
+         */
+        url: string;
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username?: string;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: boolean;
+    }
+
     export interface SecretsMountRedshift {
         /**
          * A list of roles that are allowed to use this
@@ -1596,6 +1778,10 @@ export namespace database {
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          */
         data?: {[key: string]: any};
+        /**
+         * Disable special character escaping in username and password.
+         */
+        disableEscaping?: boolean;
         /**
          * The maximum number of seconds to keep
          * a connection alive for.
@@ -1700,6 +1886,25 @@ export namespace database {
 }
 
 export namespace gcp {
+    export interface AuthBackendCustomEndpoint {
+        /**
+         * Replaces the service endpoint used in API requests to `https://www.googleapis.com`.
+         */
+        api?: string;
+        /**
+         * Replaces the service endpoint used in API requests to `https://compute.googleapis.com`.
+         */
+        compute?: string;
+        /**
+         * Replaces the service endpoint used in API requests to `https://cloudresourcemanager.googleapis.com`.
+         */
+        crm?: string;
+        /**
+         * Replaces the service endpoint used in API requests to `https://iam.googleapis.com`.
+         */
+        iam?: string;
+    }
+
     export interface SecretRolesetBinding {
         /**
          * Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings).
@@ -1866,6 +2071,219 @@ export namespace jwt {
 
 }
 
+export namespace managed {
+    export interface KeysAw {
+        /**
+         * The AWS access key to use.
+         */
+        accessKey: string;
+        /**
+         * If no existing key can be found in 
+         * the referenced backend, instructs Vault to generate a key within the backend.
+         */
+        allowGenerateKey: boolean;
+        /**
+         * Controls the ability for Vault to replace through
+         * generation or importing a key into the configured backend even
+         * if a key is present, if set to `false` those operations are forbidden
+         * if a key exists.
+         */
+        allowReplaceKey: boolean;
+        /**
+         * Controls the ability for Vault to import a key to the
+         * configured backend, if `false`, those operations will be forbidden.
+         */
+        allowStoreKey: boolean;
+        /**
+         * If `true`, allows usage from any mount point within the
+         * namespace.
+         */
+        anyMount: boolean;
+        /**
+         * Supplies the curve value when using the `CKM_ECDSA` mechanism.
+         * Required if `allowGenerateKey` is `true`.
+         */
+        curve?: string;
+        /**
+         * Used to specify a custom AWS endpoint.
+         */
+        endpoint?: string;
+        /**
+         * Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
+         * `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
+         * `allowGenerateKey` is `true`.
+         */
+        keyBits: string;
+        /**
+         * The type of key to use.
+         */
+        keyType: string;
+        /**
+         * An identifier for the key.
+         */
+        kmsKey: string;
+        /**
+         * A unique lowercase name that serves as identifying the key.
+         */
+        name: string;
+        /**
+         * The AWS region where the keys are stored (or will be stored).
+         */
+        region: string;
+        /**
+         * The AWS access key to use.
+         */
+        secretKey: string;
+        uuid: string;
+    }
+
+    export interface KeysAzure {
+        /**
+         * If no existing key can be found in 
+         * the referenced backend, instructs Vault to generate a key within the backend.
+         */
+        allowGenerateKey: boolean;
+        /**
+         * Controls the ability for Vault to replace through
+         * generation or importing a key into the configured backend even
+         * if a key is present, if set to `false` those operations are forbidden
+         * if a key exists.
+         */
+        allowReplaceKey: boolean;
+        /**
+         * Controls the ability for Vault to import a key to the
+         * configured backend, if `false`, those operations will be forbidden.
+         */
+        allowStoreKey: boolean;
+        /**
+         * If `true`, allows usage from any mount point within the
+         * namespace.
+         */
+        anyMount: boolean;
+        /**
+         * The client id for credentials to query the Azure APIs.
+         */
+        clientId: string;
+        /**
+         * The client secret for credentials to query the Azure APIs.
+         */
+        clientSecret: string;
+        /**
+         * The Azure Cloud environment API endpoints to use.
+         */
+        environment: string;
+        /**
+         * Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
+         * `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
+         * `allowGenerateKey` is `true`.
+         */
+        keyBits?: string;
+        /**
+         * The Key Vault key to use for encryption and decryption.
+         */
+        keyName: string;
+        /**
+         * The type of key to use.
+         */
+        keyType: string;
+        /**
+         * A unique lowercase name that serves as identifying the key.
+         */
+        name: string;
+        /**
+         * The Azure Key Vault resource's DNS Suffix to connect to.
+         */
+        resource: string;
+        /**
+         * The tenant id for the Azure Active Directory organization.
+         */
+        tenantId: string;
+        uuid: string;
+        /**
+         * The Key Vault vault to use for encryption and decryption.
+         */
+        vaultName: string;
+    }
+
+    export interface KeysPkc {
+        /**
+         * If no existing key can be found in 
+         * the referenced backend, instructs Vault to generate a key within the backend.
+         */
+        allowGenerateKey: boolean;
+        /**
+         * Controls the ability for Vault to replace through
+         * generation or importing a key into the configured backend even
+         * if a key is present, if set to `false` those operations are forbidden
+         * if a key exists.
+         */
+        allowReplaceKey: boolean;
+        /**
+         * Controls the ability for Vault to import a key to the
+         * configured backend, if `false`, those operations will be forbidden.
+         */
+        allowStoreKey: boolean;
+        /**
+         * If `true`, allows usage from any mount point within the
+         * namespace.
+         */
+        anyMount: boolean;
+        /**
+         * Supplies the curve value when using the `CKM_ECDSA` mechanism.
+         * Required if `allowGenerateKey` is `true`.
+         */
+        curve?: string;
+        /**
+         * Force all operations to open up a read-write session to
+         * the HSM.
+         */
+        forceRwSession?: string;
+        /**
+         * Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
+         * `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
+         * `allowGenerateKey` is `true`.
+         */
+        keyBits?: string;
+        /**
+         * The id of a PKCS#11 key to use.
+         */
+        keyId: string;
+        /**
+         * The label of the key to use.
+         */
+        keyLabel: string;
+        /**
+         * The name of the kmsLibrary stanza to use from Vault's config
+         * to lookup the local library path.
+         */
+        library: string;
+        /**
+         * The encryption/decryption mechanism to use, specified as a
+         * hexadecimal (prefixed by 0x) string.
+         */
+        mechanism: string;
+        /**
+         * A unique lowercase name that serves as identifying the key.
+         */
+        name: string;
+        /**
+         * The PIN for login.
+         */
+        pin: string;
+        /**
+         * The slot number to use, specified as a string in a decimal format
+         * (e.g. `2305843009213693953`).
+         */
+        slot?: string;
+        /**
+         * The slot token label to use.
+         */
+        tokenLabel?: string;
+        uuid: string;
+    }
+
+}
+
 export namespace okta {
     export interface AuthBackendGroup {
         /**
@@ -1893,6 +2311,9 @@ export namespace okta {
         username: string;
     }
 
+}
+
+export namespace pkiSecret {
 }
 
 export namespace rabbitMq {

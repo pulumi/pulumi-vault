@@ -75,11 +75,15 @@ namespace Pulumi.Vault
         [Output("allowedNames")]
         public Output<ImmutableArray<string>> AllowedNames { get; private set; } = null!;
 
-        /// <summary>
-        /// Allowed organization units for authenticated client certificates
-        /// </summary>
         [Output("allowedOrganizationUnits")]
         public Output<ImmutableArray<string>> AllowedOrganizationUnits { get; private set; } = null!;
+
+        /// <summary>
+        /// Allowed organization units for authenticated client certificates.
+        /// *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
+        /// </summary>
+        [Output("allowedOrganizationalUnits")]
+        public Output<ImmutableArray<string>> AllowedOrganizationalUnits { get; private set; } = null!;
 
         /// <summary>
         /// Allowed URIs for authenticated client certificates
@@ -110,6 +114,15 @@ namespace Pulumi.Vault
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
         /// TLS extensions required on client certificates
@@ -284,14 +297,24 @@ namespace Pulumi.Vault
 
         [Input("allowedOrganizationUnits")]
         private InputList<string>? _allowedOrganizationUnits;
-
-        /// <summary>
-        /// Allowed organization units for authenticated client certificates
-        /// </summary>
+        [Obsolete(@"Use allowed_organizational_units")]
         public InputList<string> AllowedOrganizationUnits
         {
             get => _allowedOrganizationUnits ?? (_allowedOrganizationUnits = new InputList<string>());
             set => _allowedOrganizationUnits = value;
+        }
+
+        [Input("allowedOrganizationalUnits")]
+        private InputList<string>? _allowedOrganizationalUnits;
+
+        /// <summary>
+        /// Allowed organization units for authenticated client certificates.
+        /// *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
+        /// </summary>
+        public InputList<string> AllowedOrganizationalUnits
+        {
+            get => _allowedOrganizationalUnits ?? (_allowedOrganizationalUnits = new InputList<string>());
+            set => _allowedOrganizationalUnits = value;
         }
 
         [Input("allowedUriSans")]
@@ -329,6 +352,15 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         [Input("requiredExtensions")]
         private InputList<string>? _requiredExtensions;
@@ -483,14 +515,24 @@ namespace Pulumi.Vault
 
         [Input("allowedOrganizationUnits")]
         private InputList<string>? _allowedOrganizationUnits;
-
-        /// <summary>
-        /// Allowed organization units for authenticated client certificates
-        /// </summary>
+        [Obsolete(@"Use allowed_organizational_units")]
         public InputList<string> AllowedOrganizationUnits
         {
             get => _allowedOrganizationUnits ?? (_allowedOrganizationUnits = new InputList<string>());
             set => _allowedOrganizationUnits = value;
+        }
+
+        [Input("allowedOrganizationalUnits")]
+        private InputList<string>? _allowedOrganizationalUnits;
+
+        /// <summary>
+        /// Allowed organization units for authenticated client certificates.
+        /// *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
+        /// </summary>
+        public InputList<string> AllowedOrganizationalUnits
+        {
+            get => _allowedOrganizationalUnits ?? (_allowedOrganizationalUnits = new InputList<string>());
+            set => _allowedOrganizationalUnits = value;
         }
 
         [Input("allowedUriSans")]
@@ -528,6 +570,15 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         [Input("requiredExtensions")]
         private InputList<string>? _requiredExtensions;

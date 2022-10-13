@@ -20,67 +20,46 @@ public final class SecretsMountMongodbatla {
      * connection.
      * 
      */
-    private final @Nullable List<String> allowedRoles;
+    private @Nullable List<String> allowedRoles;
     /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
      */
-    private final @Nullable Map<String,Object> data;
-    private final String name;
+    private @Nullable Map<String,Object> data;
+    private String name;
     /**
      * @return Specifies the name of the plugin to use.
      * 
      */
-    private final @Nullable String pluginName;
+    private @Nullable String pluginName;
     /**
      * @return The Private Programmatic API Key used to connect with MongoDB Atlas API.
      * 
      */
-    private final String privateKey;
+    private String privateKey;
     /**
      * @return The Project ID the Database User should be created within.
      * 
      */
-    private final String projectId;
+    private String projectId;
     /**
      * @return The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
      * 
      */
-    private final String publicKey;
+    private String publicKey;
     /**
      * @return A list of database statements to be executed to rotate the root user&#39;s credentials.
      * 
      */
-    private final @Nullable List<String> rootRotationStatements;
+    private @Nullable List<String> rootRotationStatements;
     /**
      * @return Whether the connection should be verified on
      * initial configuration or not.
      * 
      */
-    private final @Nullable Boolean verifyConnection;
+    private @Nullable Boolean verifyConnection;
 
-    @CustomType.Constructor
-    private SecretsMountMongodbatla(
-        @CustomType.Parameter("allowedRoles") @Nullable List<String> allowedRoles,
-        @CustomType.Parameter("data") @Nullable Map<String,Object> data,
-        @CustomType.Parameter("name") String name,
-        @CustomType.Parameter("pluginName") @Nullable String pluginName,
-        @CustomType.Parameter("privateKey") String privateKey,
-        @CustomType.Parameter("projectId") String projectId,
-        @CustomType.Parameter("publicKey") String publicKey,
-        @CustomType.Parameter("rootRotationStatements") @Nullable List<String> rootRotationStatements,
-        @CustomType.Parameter("verifyConnection") @Nullable Boolean verifyConnection) {
-        this.allowedRoles = allowedRoles;
-        this.data = data;
-        this.name = name;
-        this.pluginName = pluginName;
-        this.privateKey = privateKey;
-        this.projectId = projectId;
-        this.publicKey = publicKey;
-        this.rootRotationStatements = rootRotationStatements;
-        this.verifyConnection = verifyConnection;
-    }
-
+    private SecretsMountMongodbatla() {}
     /**
      * @return A list of roles that are allowed to use this
      * connection.
@@ -150,7 +129,7 @@ public final class SecretsMountMongodbatla {
     public static Builder builder(SecretsMountMongodbatla defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable List<String> allowedRoles;
         private @Nullable Map<String,Object> data;
@@ -161,11 +140,7 @@ public final class SecretsMountMongodbatla {
         private String publicKey;
         private @Nullable List<String> rootRotationStatements;
         private @Nullable Boolean verifyConnection;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(SecretsMountMongodbatla defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.allowedRoles = defaults.allowedRoles;
@@ -179,6 +154,7 @@ public final class SecretsMountMongodbatla {
     	      this.verifyConnection = defaults.verifyConnection;
         }
 
+        @CustomType.Setter
         public Builder allowedRoles(@Nullable List<String> allowedRoles) {
             this.allowedRoles = allowedRoles;
             return this;
@@ -186,30 +162,37 @@ public final class SecretsMountMongodbatla {
         public Builder allowedRoles(String... allowedRoles) {
             return allowedRoles(List.of(allowedRoles));
         }
+        @CustomType.Setter
         public Builder data(@Nullable Map<String,Object> data) {
             this.data = data;
             return this;
         }
+        @CustomType.Setter
         public Builder name(String name) {
             this.name = Objects.requireNonNull(name);
             return this;
         }
+        @CustomType.Setter
         public Builder pluginName(@Nullable String pluginName) {
             this.pluginName = pluginName;
             return this;
         }
+        @CustomType.Setter
         public Builder privateKey(String privateKey) {
             this.privateKey = Objects.requireNonNull(privateKey);
             return this;
         }
+        @CustomType.Setter
         public Builder projectId(String projectId) {
             this.projectId = Objects.requireNonNull(projectId);
             return this;
         }
+        @CustomType.Setter
         public Builder publicKey(String publicKey) {
             this.publicKey = Objects.requireNonNull(publicKey);
             return this;
         }
+        @CustomType.Setter
         public Builder rootRotationStatements(@Nullable List<String> rootRotationStatements) {
             this.rootRotationStatements = rootRotationStatements;
             return this;
@@ -217,11 +200,23 @@ public final class SecretsMountMongodbatla {
         public Builder rootRotationStatements(String... rootRotationStatements) {
             return rootRotationStatements(List.of(rootRotationStatements));
         }
+        @CustomType.Setter
         public Builder verifyConnection(@Nullable Boolean verifyConnection) {
             this.verifyConnection = verifyConnection;
             return this;
-        }        public SecretsMountMongodbatla build() {
-            return new SecretsMountMongodbatla(allowedRoles, data, name, pluginName, privateKey, projectId, publicKey, rootRotationStatements, verifyConnection);
+        }
+        public SecretsMountMongodbatla build() {
+            final var o = new SecretsMountMongodbatla();
+            o.allowedRoles = allowedRoles;
+            o.data = data;
+            o.name = name;
+            o.pluginName = pluginName;
+            o.privateKey = privateKey;
+            o.projectId = projectId;
+            o.publicKey = publicKey;
+            o.rootRotationStatements = rootRotationStatements;
+            o.verifyConnection = verifyConnection;
+            return o;
         }
     }
 }

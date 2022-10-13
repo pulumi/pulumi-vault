@@ -50,6 +50,11 @@ type Oidc struct {
 	// scheme, host, and optionally, port number and path components, but no query or fragment
 	// components.
 	Issuer pulumi.StringOutput `pulumi:"issuer"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 }
 
 // NewOidc registers a new resource with the given unique name, arguments, and options.
@@ -86,6 +91,11 @@ type oidcState struct {
 	// scheme, host, and optionally, port number and path components, but no query or fragment
 	// components.
 	Issuer *string `pulumi:"issuer"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 }
 
 type OidcState struct {
@@ -94,6 +104,11 @@ type OidcState struct {
 	// scheme, host, and optionally, port number and path components, but no query or fragment
 	// components.
 	Issuer pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 }
 
 func (OidcState) ElementType() reflect.Type {
@@ -106,6 +121,11 @@ type oidcArgs struct {
 	// scheme, host, and optionally, port number and path components, but no query or fragment
 	// components.
 	Issuer *string `pulumi:"issuer"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 }
 
 // The set of arguments for constructing a Oidc resource.
@@ -115,6 +135,11 @@ type OidcArgs struct {
 	// scheme, host, and optionally, port number and path components, but no query or fragment
 	// components.
 	Issuer pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 }
 
 func (OidcArgs) ElementType() reflect.Type {
@@ -210,6 +235,14 @@ func (o OidcOutput) ToOidcOutputWithContext(ctx context.Context) OidcOutput {
 // components.
 func (o OidcOutput) Issuer() pulumi.StringOutput {
 	return o.ApplyT(func(v *Oidc) pulumi.StringOutput { return v.Issuer }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o OidcOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Oidc) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 type OidcArrayOutput struct{ *pulumi.OutputState }

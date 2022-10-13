@@ -64,6 +64,11 @@ type SecretRole struct {
 	MaxTtl pulumi.IntPtrOutput `pulumi:"maxTtl"`
 	// The name of an existing role against which to create this Terraform Cloud credential
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Name of the Terraform Cloud or Enterprise organization
 	Organization pulumi.StringPtrOutput `pulumi:"organization"`
 	// ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
@@ -109,6 +114,11 @@ type secretRoleState struct {
 	MaxTtl *int `pulumi:"maxTtl"`
 	// The name of an existing role against which to create this Terraform Cloud credential
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Name of the Terraform Cloud or Enterprise organization
 	Organization *string `pulumi:"organization"`
 	// ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
@@ -126,6 +136,11 @@ type SecretRoleState struct {
 	MaxTtl pulumi.IntPtrInput
 	// The name of an existing role against which to create this Terraform Cloud credential
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Name of the Terraform Cloud or Enterprise organization
 	Organization pulumi.StringPtrInput
 	// ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
@@ -147,6 +162,11 @@ type secretRoleArgs struct {
 	MaxTtl *int `pulumi:"maxTtl"`
 	// The name of an existing role against which to create this Terraform Cloud credential
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Name of the Terraform Cloud or Enterprise organization
 	Organization *string `pulumi:"organization"`
 	// ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
@@ -165,6 +185,11 @@ type SecretRoleArgs struct {
 	MaxTtl pulumi.IntPtrInput
 	// The name of an existing role against which to create this Terraform Cloud credential
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Name of the Terraform Cloud or Enterprise organization
 	Organization pulumi.StringPtrInput
 	// ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
@@ -275,6 +300,14 @@ func (o SecretRoleOutput) MaxTtl() pulumi.IntPtrOutput {
 // The name of an existing role against which to create this Terraform Cloud credential
 func (o SecretRoleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o SecretRoleOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Name of the Terraform Cloud or Enterprise organization

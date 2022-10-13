@@ -411,6 +411,27 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
     }
 
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable Output<String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
+
+    /**
      * Flag to not store certificates in the storage backend
      * 
      */
@@ -471,14 +492,14 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Specify the list of allowed policies IODs
+     * Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
      * 
      */
     @Import(name="policyIdentifiers")
     private @Nullable Output<List<String>> policyIdentifiers;
 
     /**
-     * @return Specify the list of allowed policies IODs
+     * @return Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
      * 
      */
     public Optional<Output<List<String>>> policyIdentifiers() {
@@ -634,6 +655,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         this.localities = $.localities;
         this.maxTtl = $.maxTtl;
         this.name = $.name;
+        this.namespace = $.namespace;
         this.noStore = $.noStore;
         this.notBeforeDuration = $.notBeforeDuration;
         this.organizationUnit = $.organizationUnit;
@@ -1296,6 +1318,33 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         }
 
         /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable Output<String> namespace) {
+            $.namespace = namespace;
+            return this;
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(String namespace) {
+            return namespace(Output.of(namespace));
+        }
+
+        /**
          * @param noStore Flag to not store certificates in the storage backend
          * 
          * @return builder
@@ -1400,7 +1449,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param policyIdentifiers Specify the list of allowed policies IODs
+         * @param policyIdentifiers Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
          * 
          * @return builder
          * 
@@ -1411,7 +1460,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param policyIdentifiers Specify the list of allowed policies IODs
+         * @param policyIdentifiers Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
          * 
          * @return builder
          * 
@@ -1421,7 +1470,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param policyIdentifiers Specify the list of allowed policies IODs
+         * @param policyIdentifiers Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
          * 
          * @return builder
          * 

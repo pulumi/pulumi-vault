@@ -107,6 +107,11 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    public readonly disableRemount!: pulumi.Output<boolean | undefined>;
+    /**
      * Use anonymous bind to discover the bind Distinguished Name of a user.
      */
     public readonly discoverdn!: pulumi.Output<boolean | undefined>;
@@ -142,6 +147,7 @@ export class SecretBackend extends pulumi.CustomResource {
     public readonly lastRotationTolerance!: pulumi.Output<number>;
     /**
      * **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
+     * *Mutually exclusive with `passwordPolicy` on vault-1.11+*
      *
      * @deprecated Length is deprecated and password_policy should be used with Vault >= 1.5.
      */
@@ -159,6 +165,13 @@ export class SecretBackend extends pulumi.CustomResource {
      * In seconds, the maximum password time-to-live.
      */
     public readonly maxTtl!: pulumi.Output<number>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
     /**
      * Name of the password policy to use to generate passwords.
      */
@@ -242,6 +255,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
             resourceInputs["denyNullBind"] = state ? state.denyNullBind : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
             resourceInputs["discoverdn"] = state ? state.discoverdn : undefined;
             resourceInputs["formatter"] = state ? state.formatter : undefined;
             resourceInputs["groupattr"] = state ? state.groupattr : undefined;
@@ -253,6 +267,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["local"] = state ? state.local : undefined;
             resourceInputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
             resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["passwordPolicy"] = state ? state.passwordPolicy : undefined;
             resourceInputs["requestTimeout"] = state ? state.requestTimeout : undefined;
             resourceInputs["starttls"] = state ? state.starttls : undefined;
@@ -276,14 +291,15 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["anonymousGroupSearch"] = args ? args.anonymousGroupSearch : undefined;
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["binddn"] = args ? args.binddn : undefined;
-            resourceInputs["bindpass"] = args ? args.bindpass : undefined;
+            resourceInputs["bindpass"] = args?.bindpass ? pulumi.secret(args.bindpass) : undefined;
             resourceInputs["caseSensitiveNames"] = args ? args.caseSensitiveNames : undefined;
             resourceInputs["certificate"] = args ? args.certificate : undefined;
-            resourceInputs["clientTlsCert"] = args ? args.clientTlsCert : undefined;
-            resourceInputs["clientTlsKey"] = args ? args.clientTlsKey : undefined;
+            resourceInputs["clientTlsCert"] = args?.clientTlsCert ? pulumi.secret(args.clientTlsCert) : undefined;
+            resourceInputs["clientTlsKey"] = args?.clientTlsKey ? pulumi.secret(args.clientTlsKey) : undefined;
             resourceInputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
             resourceInputs["denyNullBind"] = args ? args.denyNullBind : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
             resourceInputs["discoverdn"] = args ? args.discoverdn : undefined;
             resourceInputs["formatter"] = args ? args.formatter : undefined;
             resourceInputs["groupattr"] = args ? args.groupattr : undefined;
@@ -295,6 +311,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["local"] = args ? args.local : undefined;
             resourceInputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
             resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["passwordPolicy"] = args ? args.passwordPolicy : undefined;
             resourceInputs["requestTimeout"] = args ? args.requestTimeout : undefined;
             resourceInputs["starttls"] = args ? args.starttls : undefined;
@@ -309,6 +326,8 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["userdn"] = args ? args.userdn : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["bindpass", "clientTlsCert", "clientTlsKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SecretBackend.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -367,6 +386,11 @@ export interface SecretBackendState {
      */
     description?: pulumi.Input<string>;
     /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    disableRemount?: pulumi.Input<boolean>;
+    /**
      * Use anonymous bind to discover the bind Distinguished Name of a user.
      */
     discoverdn?: pulumi.Input<boolean>;
@@ -402,6 +426,7 @@ export interface SecretBackendState {
     lastRotationTolerance?: pulumi.Input<number>;
     /**
      * **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
+     * *Mutually exclusive with `passwordPolicy` on vault-1.11+*
      *
      * @deprecated Length is deprecated and password_policy should be used with Vault >= 1.5.
      */
@@ -419,6 +444,13 @@ export interface SecretBackendState {
      * In seconds, the maximum password time-to-live.
      */
     maxTtl?: pulumi.Input<number>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Name of the password policy to use to generate passwords.
      */
@@ -533,6 +565,11 @@ export interface SecretBackendArgs {
      */
     description?: pulumi.Input<string>;
     /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    disableRemount?: pulumi.Input<boolean>;
+    /**
      * Use anonymous bind to discover the bind Distinguished Name of a user.
      */
     discoverdn?: pulumi.Input<boolean>;
@@ -568,6 +605,7 @@ export interface SecretBackendArgs {
     lastRotationTolerance?: pulumi.Input<number>;
     /**
      * **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
+     * *Mutually exclusive with `passwordPolicy` on vault-1.11+*
      *
      * @deprecated Length is deprecated and password_policy should be used with Vault >= 1.5.
      */
@@ -585,6 +623,13 @@ export interface SecretBackendArgs {
      * In seconds, the maximum password time-to-live.
      */
     maxTtl?: pulumi.Input<number>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Name of the password policy to use to generate passwords.
      */

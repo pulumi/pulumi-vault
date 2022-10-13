@@ -59,6 +59,13 @@ export class SecretCacheConfig extends pulumi.CustomResource {
      */
     public readonly backend!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * The number of cache entries. 0 means unlimited.
      */
     public readonly size!: pulumi.Output<number>;
@@ -77,6 +84,7 @@ export class SecretCacheConfig extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SecretCacheConfigState | undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["size"] = state ? state.size : undefined;
         } else {
             const args = argsOrState as SecretCacheConfigArgs | undefined;
@@ -87,6 +95,7 @@ export class SecretCacheConfig extends pulumi.CustomResource {
                 throw new Error("Missing required property 'size'");
             }
             resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["size"] = args ? args.size : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -103,6 +112,13 @@ export interface SecretCacheConfigState {
      */
     backend?: pulumi.Input<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
+    /**
      * The number of cache entries. 0 means unlimited.
      */
     size?: pulumi.Input<number>;
@@ -116,6 +132,13 @@ export interface SecretCacheConfigArgs {
      * The path the transit secret backend is mounted at, with no leading or trailing `/`s.
      */
     backend: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The number of cache entries. 0 means unlimited.
      */

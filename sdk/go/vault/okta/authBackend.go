@@ -79,12 +79,20 @@ type AuthBackend struct {
 	BypassOktaMfa pulumi.BoolPtrOutput `pulumi:"bypassOktaMfa"`
 	// The description of the auth backend
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
 	// Associate Okta groups with policies within Vault.
 	// See below for more details.
 	Groups AuthBackendGroupTypeArrayOutput `pulumi:"groups"`
 	// Maximum duration after which authentication will be expired
 	// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
 	MaxTtl pulumi.StringPtrOutput `pulumi:"maxTtl"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The Okta organization. This will be the first part of the url `https://XXX.okta.com`
 	Organization pulumi.StringOutput `pulumi:"organization"`
 	// Path to mount the Okta auth backend
@@ -110,6 +118,13 @@ func NewAuthBackend(ctx *pulumi.Context,
 	if args.Organization == nil {
 		return nil, errors.New("invalid value for required argument 'Organization'")
 	}
+	if args.Token != nil {
+		args.Token = pulumi.ToSecret(args.Token).(pulumi.StringPtrOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"token",
+	})
+	opts = append(opts, secrets)
 	var resource AuthBackend
 	err := ctx.RegisterResource("vault:okta/authBackend:AuthBackend", name, args, &resource, opts...)
 	if err != nil {
@@ -140,12 +155,20 @@ type authBackendState struct {
 	BypassOktaMfa *bool `pulumi:"bypassOktaMfa"`
 	// The description of the auth backend
 	Description *string `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount *bool `pulumi:"disableRemount"`
 	// Associate Okta groups with policies within Vault.
 	// See below for more details.
 	Groups []AuthBackendGroupType `pulumi:"groups"`
 	// Maximum duration after which authentication will be expired
 	// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
 	MaxTtl *string `pulumi:"maxTtl"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The Okta organization. This will be the first part of the url `https://XXX.okta.com`
 	Organization *string `pulumi:"organization"`
 	// Path to mount the Okta auth backend
@@ -170,12 +193,20 @@ type AuthBackendState struct {
 	BypassOktaMfa pulumi.BoolPtrInput
 	// The description of the auth backend
 	Description pulumi.StringPtrInput
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrInput
 	// Associate Okta groups with policies within Vault.
 	// See below for more details.
 	Groups AuthBackendGroupTypeArrayInput
 	// Maximum duration after which authentication will be expired
 	// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
 	MaxTtl pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The Okta organization. This will be the first part of the url `https://XXX.okta.com`
 	Organization pulumi.StringPtrInput
 	// Path to mount the Okta auth backend
@@ -202,12 +233,20 @@ type authBackendArgs struct {
 	BypassOktaMfa *bool `pulumi:"bypassOktaMfa"`
 	// The description of the auth backend
 	Description *string `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount *bool `pulumi:"disableRemount"`
 	// Associate Okta groups with policies within Vault.
 	// See below for more details.
 	Groups []AuthBackendGroupType `pulumi:"groups"`
 	// Maximum duration after which authentication will be expired
 	// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
 	MaxTtl *string `pulumi:"maxTtl"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The Okta organization. This will be the first part of the url `https://XXX.okta.com`
 	Organization string `pulumi:"organization"`
 	// Path to mount the Okta auth backend
@@ -231,12 +270,20 @@ type AuthBackendArgs struct {
 	BypassOktaMfa pulumi.BoolPtrInput
 	// The description of the auth backend
 	Description pulumi.StringPtrInput
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrInput
 	// Associate Okta groups with policies within Vault.
 	// See below for more details.
 	Groups AuthBackendGroupTypeArrayInput
 	// Maximum duration after which authentication will be expired
 	// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
 	MaxTtl pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The Okta organization. This will be the first part of the url `https://XXX.okta.com`
 	Organization pulumi.StringInput
 	// Path to mount the Okta auth backend
@@ -359,6 +406,12 @@ func (o AuthBackendOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// If set, opts out of mount migration on path updates.
+// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+func (o AuthBackendOutput) DisableRemount() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.BoolPtrOutput { return v.DisableRemount }).(pulumi.BoolPtrOutput)
+}
+
 // Associate Okta groups with policies within Vault.
 // See below for more details.
 func (o AuthBackendOutput) Groups() AuthBackendGroupTypeArrayOutput {
@@ -369,6 +422,14 @@ func (o AuthBackendOutput) Groups() AuthBackendGroupTypeArrayOutput {
 // [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
 func (o AuthBackendOutput) MaxTtl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.MaxTtl }).(pulumi.StringPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o AuthBackendOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The Okta organization. This will be the first part of the url `https://XXX.okta.com`

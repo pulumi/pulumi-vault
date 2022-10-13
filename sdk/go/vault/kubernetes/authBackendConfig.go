@@ -77,6 +77,11 @@ type AuthBackendConfig struct {
 	KubernetesCaCert pulumi.StringOutput `pulumi:"kubernetesCaCert"`
 	// Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
 	KubernetesHost pulumi.StringOutput `pulumi:"kubernetesHost"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
 	PemKeys pulumi.StringArrayOutput `pulumi:"pemKeys"`
 	// A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
@@ -93,6 +98,13 @@ func NewAuthBackendConfig(ctx *pulumi.Context,
 	if args.KubernetesHost == nil {
 		return nil, errors.New("invalid value for required argument 'KubernetesHost'")
 	}
+	if args.TokenReviewerJwt != nil {
+		args.TokenReviewerJwt = pulumi.ToSecret(args.TokenReviewerJwt).(pulumi.StringPtrOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"tokenReviewerJwt",
+	})
+	opts = append(opts, secrets)
 	var resource AuthBackendConfig
 	err := ctx.RegisterResource("vault:kubernetes/authBackendConfig:AuthBackendConfig", name, args, &resource, opts...)
 	if err != nil {
@@ -127,6 +139,11 @@ type authBackendConfigState struct {
 	KubernetesCaCert *string `pulumi:"kubernetesCaCert"`
 	// Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
 	KubernetesHost *string `pulumi:"kubernetesHost"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
 	PemKeys []string `pulumi:"pemKeys"`
 	// A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
@@ -146,6 +163,11 @@ type AuthBackendConfigState struct {
 	KubernetesCaCert pulumi.StringPtrInput
 	// Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
 	KubernetesHost pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
 	PemKeys pulumi.StringArrayInput
 	// A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
@@ -169,6 +191,11 @@ type authBackendConfigArgs struct {
 	KubernetesCaCert *string `pulumi:"kubernetesCaCert"`
 	// Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
 	KubernetesHost string `pulumi:"kubernetesHost"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
 	PemKeys []string `pulumi:"pemKeys"`
 	// A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
@@ -189,6 +216,11 @@ type AuthBackendConfigArgs struct {
 	KubernetesCaCert pulumi.StringPtrInput
 	// Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
 	KubernetesHost pulumi.StringInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
 	PemKeys pulumi.StringArrayInput
 	// A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
@@ -310,6 +342,14 @@ func (o AuthBackendConfigOutput) KubernetesCaCert() pulumi.StringOutput {
 // Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
 func (o AuthBackendConfigOutput) KubernetesHost() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringOutput { return v.KubernetesHost }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured namespace.
+// *Available only for Vault Enterprise*.
+func (o AuthBackendConfigOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.

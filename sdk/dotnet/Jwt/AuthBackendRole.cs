@@ -185,6 +185,22 @@ namespace Pulumi.Vault.Jwt
         public Output<string?> GroupsClaim { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies the allowable elapsed time in seconds since the last time 
+        /// the user was actively authenticated with the OIDC provider.
+        /// </summary>
+        [Output("maxAge")]
+        public Output<int?> MaxAge { get; private set; } = null!;
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
         /// The amount of leeway to add to not before (`nbf`) claims to account for
         /// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
         /// Only applicable with "jwt" roles.
@@ -289,6 +305,15 @@ namespace Pulumi.Vault.Jwt
         /// </summary>
         [Output("userClaim")]
         public Output<string> UserClaim { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies if the `user_claim` value uses
+        /// [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+        /// syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
+        /// Requires Vault 1.11+.
+        /// </summary>
+        [Output("userClaimJsonPointer")]
+        public Output<bool?> UserClaimJsonPointer { get; private set; } = null!;
 
         /// <summary>
         /// Log received OIDC tokens and claims when debug-level
@@ -451,6 +476,22 @@ namespace Pulumi.Vault.Jwt
         public Input<string>? GroupsClaim { get; set; }
 
         /// <summary>
+        /// Specifies the allowable elapsed time in seconds since the last time 
+        /// the user was actively authenticated with the OIDC provider.
+        /// </summary>
+        [Input("maxAge")]
+        public Input<int>? MaxAge { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
         /// The amount of leeway to add to not before (`nbf`) claims to account for
         /// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
         /// Only applicable with "jwt" roles.
@@ -575,6 +616,15 @@ namespace Pulumi.Vault.Jwt
         public Input<string> UserClaim { get; set; } = null!;
 
         /// <summary>
+        /// Specifies if the `user_claim` value uses
+        /// [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+        /// syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
+        /// Requires Vault 1.11+.
+        /// </summary>
+        [Input("userClaimJsonPointer")]
+        public Input<bool>? UserClaimJsonPointer { get; set; }
+
+        /// <summary>
         /// Log received OIDC tokens and claims when debug-level
         /// logging is active. Not recommended in production since sensitive information may be present
         /// in OIDC responses.
@@ -695,6 +745,22 @@ namespace Pulumi.Vault.Jwt
         /// </summary>
         [Input("groupsClaim")]
         public Input<string>? GroupsClaim { get; set; }
+
+        /// <summary>
+        /// Specifies the allowable elapsed time in seconds since the last time 
+        /// the user was actively authenticated with the OIDC provider.
+        /// </summary>
+        [Input("maxAge")]
+        public Input<int>? MaxAge { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// The amount of leeway to add to not before (`nbf`) claims to account for
@@ -819,6 +885,15 @@ namespace Pulumi.Vault.Jwt
         /// </summary>
         [Input("userClaim")]
         public Input<string>? UserClaim { get; set; }
+
+        /// <summary>
+        /// Specifies if the `user_claim` value uses
+        /// [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+        /// syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
+        /// Requires Vault 1.11+.
+        /// </summary>
+        [Input("userClaimJsonPointer")]
+        public Input<bool>? UserClaimJsonPointer { get; set; }
 
         /// <summary>
         /// Log received OIDC tokens and claims when debug-level

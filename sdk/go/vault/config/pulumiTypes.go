@@ -10,216 +10,970 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-type AuthLogins struct {
+type AuthLogin struct {
 	Method     *string           `pulumi:"method"`
 	Namespace  *string           `pulumi:"namespace"`
 	Parameters map[string]string `pulumi:"parameters"`
 	Path       string            `pulumi:"path"`
 }
 
-// AuthLoginsInput is an input type that accepts AuthLoginsArgs and AuthLoginsOutput values.
-// You can construct a concrete instance of `AuthLoginsInput` via:
+// AuthLoginInput is an input type that accepts AuthLoginArgs and AuthLoginOutput values.
+// You can construct a concrete instance of `AuthLoginInput` via:
 //
-//	AuthLoginsArgs{...}
-type AuthLoginsInput interface {
+//	AuthLoginArgs{...}
+type AuthLoginInput interface {
 	pulumi.Input
 
-	ToAuthLoginsOutput() AuthLoginsOutput
-	ToAuthLoginsOutputWithContext(context.Context) AuthLoginsOutput
+	ToAuthLoginOutput() AuthLoginOutput
+	ToAuthLoginOutputWithContext(context.Context) AuthLoginOutput
 }
 
-type AuthLoginsArgs struct {
+type AuthLoginArgs struct {
 	Method     pulumi.StringPtrInput `pulumi:"method"`
 	Namespace  pulumi.StringPtrInput `pulumi:"namespace"`
 	Parameters pulumi.StringMapInput `pulumi:"parameters"`
 	Path       pulumi.StringInput    `pulumi:"path"`
 }
 
-func (AuthLoginsArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuthLogins)(nil)).Elem()
+func (AuthLoginArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthLogin)(nil)).Elem()
 }
 
-func (i AuthLoginsArgs) ToAuthLoginsOutput() AuthLoginsOutput {
-	return i.ToAuthLoginsOutputWithContext(context.Background())
+func (i AuthLoginArgs) ToAuthLoginOutput() AuthLoginOutput {
+	return i.ToAuthLoginOutputWithContext(context.Background())
 }
 
-func (i AuthLoginsArgs) ToAuthLoginsOutputWithContext(ctx context.Context) AuthLoginsOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AuthLoginsOutput)
+func (i AuthLoginArgs) ToAuthLoginOutputWithContext(ctx context.Context) AuthLoginOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthLoginOutput)
 }
 
-// AuthLoginsArrayInput is an input type that accepts AuthLoginsArray and AuthLoginsArrayOutput values.
-// You can construct a concrete instance of `AuthLoginsArrayInput` via:
+type AuthLoginOutput struct{ *pulumi.OutputState }
+
+func (AuthLoginOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthLogin)(nil)).Elem()
+}
+
+func (o AuthLoginOutput) ToAuthLoginOutput() AuthLoginOutput {
+	return o
+}
+
+func (o AuthLoginOutput) ToAuthLoginOutputWithContext(ctx context.Context) AuthLoginOutput {
+	return o
+}
+
+func (o AuthLoginOutput) Method() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLogin) *string { return v.Method }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLogin) *string { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginOutput) Parameters() pulumi.StringMapOutput {
+	return o.ApplyT(func(v AuthLogin) map[string]string { return v.Parameters }).(pulumi.StringMapOutput)
+}
+
+func (o AuthLoginOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v AuthLogin) string { return v.Path }).(pulumi.StringOutput)
+}
+
+type AuthLoginAws struct {
+	AwsAccessKeyId           *string `pulumi:"awsAccessKeyId"`
+	AwsIamEndpoint           *string `pulumi:"awsIamEndpoint"`
+	AwsProfile               *string `pulumi:"awsProfile"`
+	AwsRegion                *string `pulumi:"awsRegion"`
+	AwsRoleArn               *string `pulumi:"awsRoleArn"`
+	AwsRoleSessionName       *string `pulumi:"awsRoleSessionName"`
+	AwsSecretAccessKey       *string `pulumi:"awsSecretAccessKey"`
+	AwsSessionToken          *string `pulumi:"awsSessionToken"`
+	AwsSharedCredentialsFile *string `pulumi:"awsSharedCredentialsFile"`
+	AwsStsEndpoint           *string `pulumi:"awsStsEndpoint"`
+	AwsWebIdentityTokenFile  *string `pulumi:"awsWebIdentityTokenFile"`
+	HeaderValue              *string `pulumi:"headerValue"`
+	Mount                    *string `pulumi:"mount"`
+	Namespace                *string `pulumi:"namespace"`
+	Role                     string  `pulumi:"role"`
+}
+
+// AuthLoginAwsInput is an input type that accepts AuthLoginAwsArgs and AuthLoginAwsOutput values.
+// You can construct a concrete instance of `AuthLoginAwsInput` via:
 //
-//	AuthLoginsArray{ AuthLoginsArgs{...} }
-type AuthLoginsArrayInput interface {
+//	AuthLoginAwsArgs{...}
+type AuthLoginAwsInput interface {
 	pulumi.Input
 
-	ToAuthLoginsArrayOutput() AuthLoginsArrayOutput
-	ToAuthLoginsArrayOutputWithContext(context.Context) AuthLoginsArrayOutput
+	ToAuthLoginAwsOutput() AuthLoginAwsOutput
+	ToAuthLoginAwsOutputWithContext(context.Context) AuthLoginAwsOutput
 }
 
-type AuthLoginsArray []AuthLoginsInput
-
-func (AuthLoginsArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]AuthLogins)(nil)).Elem()
+type AuthLoginAwsArgs struct {
+	AwsAccessKeyId           pulumi.StringPtrInput `pulumi:"awsAccessKeyId"`
+	AwsIamEndpoint           pulumi.StringPtrInput `pulumi:"awsIamEndpoint"`
+	AwsProfile               pulumi.StringPtrInput `pulumi:"awsProfile"`
+	AwsRegion                pulumi.StringPtrInput `pulumi:"awsRegion"`
+	AwsRoleArn               pulumi.StringPtrInput `pulumi:"awsRoleArn"`
+	AwsRoleSessionName       pulumi.StringPtrInput `pulumi:"awsRoleSessionName"`
+	AwsSecretAccessKey       pulumi.StringPtrInput `pulumi:"awsSecretAccessKey"`
+	AwsSessionToken          pulumi.StringPtrInput `pulumi:"awsSessionToken"`
+	AwsSharedCredentialsFile pulumi.StringPtrInput `pulumi:"awsSharedCredentialsFile"`
+	AwsStsEndpoint           pulumi.StringPtrInput `pulumi:"awsStsEndpoint"`
+	AwsWebIdentityTokenFile  pulumi.StringPtrInput `pulumi:"awsWebIdentityTokenFile"`
+	HeaderValue              pulumi.StringPtrInput `pulumi:"headerValue"`
+	Mount                    pulumi.StringPtrInput `pulumi:"mount"`
+	Namespace                pulumi.StringPtrInput `pulumi:"namespace"`
+	Role                     pulumi.StringInput    `pulumi:"role"`
 }
 
-func (i AuthLoginsArray) ToAuthLoginsArrayOutput() AuthLoginsArrayOutput {
-	return i.ToAuthLoginsArrayOutputWithContext(context.Background())
+func (AuthLoginAwsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthLoginAws)(nil)).Elem()
 }
 
-func (i AuthLoginsArray) ToAuthLoginsArrayOutputWithContext(ctx context.Context) AuthLoginsArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AuthLoginsArrayOutput)
+func (i AuthLoginAwsArgs) ToAuthLoginAwsOutput() AuthLoginAwsOutput {
+	return i.ToAuthLoginAwsOutputWithContext(context.Background())
 }
 
-type AuthLoginsOutput struct{ *pulumi.OutputState }
-
-func (AuthLoginsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuthLogins)(nil)).Elem()
+func (i AuthLoginAwsArgs) ToAuthLoginAwsOutputWithContext(ctx context.Context) AuthLoginAwsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthLoginAwsOutput)
 }
 
-func (o AuthLoginsOutput) ToAuthLoginsOutput() AuthLoginsOutput {
+type AuthLoginAwsOutput struct{ *pulumi.OutputState }
+
+func (AuthLoginAwsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthLoginAws)(nil)).Elem()
+}
+
+func (o AuthLoginAwsOutput) ToAuthLoginAwsOutput() AuthLoginAwsOutput {
 	return o
 }
 
-func (o AuthLoginsOutput) ToAuthLoginsOutputWithContext(ctx context.Context) AuthLoginsOutput {
+func (o AuthLoginAwsOutput) ToAuthLoginAwsOutputWithContext(ctx context.Context) AuthLoginAwsOutput {
 	return o
 }
 
-func (o AuthLoginsOutput) Method() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AuthLogins) *string { return v.Method }).(pulumi.StringPtrOutput)
+func (o AuthLoginAwsOutput) AwsAccessKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginAws) *string { return v.AwsAccessKeyId }).(pulumi.StringPtrOutput)
 }
 
-func (o AuthLoginsOutput) Namespace() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AuthLogins) *string { return v.Namespace }).(pulumi.StringPtrOutput)
+func (o AuthLoginAwsOutput) AwsIamEndpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginAws) *string { return v.AwsIamEndpoint }).(pulumi.StringPtrOutput)
 }
 
-func (o AuthLoginsOutput) Parameters() pulumi.StringMapOutput {
-	return o.ApplyT(func(v AuthLogins) map[string]string { return v.Parameters }).(pulumi.StringMapOutput)
+func (o AuthLoginAwsOutput) AwsProfile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginAws) *string { return v.AwsProfile }).(pulumi.StringPtrOutput)
 }
 
-func (o AuthLoginsOutput) Path() pulumi.StringOutput {
-	return o.ApplyT(func(v AuthLogins) string { return v.Path }).(pulumi.StringOutput)
+func (o AuthLoginAwsOutput) AwsRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginAws) *string { return v.AwsRegion }).(pulumi.StringPtrOutput)
 }
 
-type AuthLoginsArrayOutput struct{ *pulumi.OutputState }
-
-func (AuthLoginsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]AuthLogins)(nil)).Elem()
+func (o AuthLoginAwsOutput) AwsRoleArn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginAws) *string { return v.AwsRoleArn }).(pulumi.StringPtrOutput)
 }
 
-func (o AuthLoginsArrayOutput) ToAuthLoginsArrayOutput() AuthLoginsArrayOutput {
+func (o AuthLoginAwsOutput) AwsRoleSessionName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginAws) *string { return v.AwsRoleSessionName }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginAwsOutput) AwsSecretAccessKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginAws) *string { return v.AwsSecretAccessKey }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginAwsOutput) AwsSessionToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginAws) *string { return v.AwsSessionToken }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginAwsOutput) AwsSharedCredentialsFile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginAws) *string { return v.AwsSharedCredentialsFile }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginAwsOutput) AwsStsEndpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginAws) *string { return v.AwsStsEndpoint }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginAwsOutput) AwsWebIdentityTokenFile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginAws) *string { return v.AwsWebIdentityTokenFile }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginAwsOutput) HeaderValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginAws) *string { return v.HeaderValue }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginAwsOutput) Mount() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginAws) *string { return v.Mount }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginAwsOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginAws) *string { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginAwsOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v AuthLoginAws) string { return v.Role }).(pulumi.StringOutput)
+}
+
+type AuthLoginAzure struct {
+	ClientId          *string `pulumi:"clientId"`
+	Jwt               *string `pulumi:"jwt"`
+	Mount             *string `pulumi:"mount"`
+	Namespace         *string `pulumi:"namespace"`
+	ResourceGroupName string  `pulumi:"resourceGroupName"`
+	Role              string  `pulumi:"role"`
+	Scope             *string `pulumi:"scope"`
+	SubscriptionId    string  `pulumi:"subscriptionId"`
+	TenantId          *string `pulumi:"tenantId"`
+	VmName            *string `pulumi:"vmName"`
+	VmssName          *string `pulumi:"vmssName"`
+}
+
+// AuthLoginAzureInput is an input type that accepts AuthLoginAzureArgs and AuthLoginAzureOutput values.
+// You can construct a concrete instance of `AuthLoginAzureInput` via:
+//
+//	AuthLoginAzureArgs{...}
+type AuthLoginAzureInput interface {
+	pulumi.Input
+
+	ToAuthLoginAzureOutput() AuthLoginAzureOutput
+	ToAuthLoginAzureOutputWithContext(context.Context) AuthLoginAzureOutput
+}
+
+type AuthLoginAzureArgs struct {
+	ClientId          pulumi.StringPtrInput `pulumi:"clientId"`
+	Jwt               pulumi.StringPtrInput `pulumi:"jwt"`
+	Mount             pulumi.StringPtrInput `pulumi:"mount"`
+	Namespace         pulumi.StringPtrInput `pulumi:"namespace"`
+	ResourceGroupName pulumi.StringInput    `pulumi:"resourceGroupName"`
+	Role              pulumi.StringInput    `pulumi:"role"`
+	Scope             pulumi.StringPtrInput `pulumi:"scope"`
+	SubscriptionId    pulumi.StringInput    `pulumi:"subscriptionId"`
+	TenantId          pulumi.StringPtrInput `pulumi:"tenantId"`
+	VmName            pulumi.StringPtrInput `pulumi:"vmName"`
+	VmssName          pulumi.StringPtrInput `pulumi:"vmssName"`
+}
+
+func (AuthLoginAzureArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthLoginAzure)(nil)).Elem()
+}
+
+func (i AuthLoginAzureArgs) ToAuthLoginAzureOutput() AuthLoginAzureOutput {
+	return i.ToAuthLoginAzureOutputWithContext(context.Background())
+}
+
+func (i AuthLoginAzureArgs) ToAuthLoginAzureOutputWithContext(ctx context.Context) AuthLoginAzureOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthLoginAzureOutput)
+}
+
+type AuthLoginAzureOutput struct{ *pulumi.OutputState }
+
+func (AuthLoginAzureOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthLoginAzure)(nil)).Elem()
+}
+
+func (o AuthLoginAzureOutput) ToAuthLoginAzureOutput() AuthLoginAzureOutput {
 	return o
 }
 
-func (o AuthLoginsArrayOutput) ToAuthLoginsArrayOutputWithContext(ctx context.Context) AuthLoginsArrayOutput {
+func (o AuthLoginAzureOutput) ToAuthLoginAzureOutputWithContext(ctx context.Context) AuthLoginAzureOutput {
 	return o
 }
 
-func (o AuthLoginsArrayOutput) Index(i pulumi.IntInput) AuthLoginsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AuthLogins {
-		return vs[0].([]AuthLogins)[vs[1].(int)]
-	}).(AuthLoginsOutput)
+func (o AuthLoginAzureOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginAzure) *string { return v.ClientId }).(pulumi.StringPtrOutput)
 }
 
-type ClientAuths struct {
+func (o AuthLoginAzureOutput) Jwt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginAzure) *string { return v.Jwt }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginAzureOutput) Mount() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginAzure) *string { return v.Mount }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginAzureOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginAzure) *string { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginAzureOutput) ResourceGroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v AuthLoginAzure) string { return v.ResourceGroupName }).(pulumi.StringOutput)
+}
+
+func (o AuthLoginAzureOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v AuthLoginAzure) string { return v.Role }).(pulumi.StringOutput)
+}
+
+func (o AuthLoginAzureOutput) Scope() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginAzure) *string { return v.Scope }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginAzureOutput) SubscriptionId() pulumi.StringOutput {
+	return o.ApplyT(func(v AuthLoginAzure) string { return v.SubscriptionId }).(pulumi.StringOutput)
+}
+
+func (o AuthLoginAzureOutput) TenantId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginAzure) *string { return v.TenantId }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginAzureOutput) VmName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginAzure) *string { return v.VmName }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginAzureOutput) VmssName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginAzure) *string { return v.VmssName }).(pulumi.StringPtrOutput)
+}
+
+type AuthLoginCert struct {
+	CertFile  string  `pulumi:"certFile"`
+	KeyFile   string  `pulumi:"keyFile"`
+	Mount     *string `pulumi:"mount"`
+	Name      *string `pulumi:"name"`
+	Namespace *string `pulumi:"namespace"`
+}
+
+// AuthLoginCertInput is an input type that accepts AuthLoginCertArgs and AuthLoginCertOutput values.
+// You can construct a concrete instance of `AuthLoginCertInput` via:
+//
+//	AuthLoginCertArgs{...}
+type AuthLoginCertInput interface {
+	pulumi.Input
+
+	ToAuthLoginCertOutput() AuthLoginCertOutput
+	ToAuthLoginCertOutputWithContext(context.Context) AuthLoginCertOutput
+}
+
+type AuthLoginCertArgs struct {
+	CertFile  pulumi.StringInput    `pulumi:"certFile"`
+	KeyFile   pulumi.StringInput    `pulumi:"keyFile"`
+	Mount     pulumi.StringPtrInput `pulumi:"mount"`
+	Name      pulumi.StringPtrInput `pulumi:"name"`
+	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
+}
+
+func (AuthLoginCertArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthLoginCert)(nil)).Elem()
+}
+
+func (i AuthLoginCertArgs) ToAuthLoginCertOutput() AuthLoginCertOutput {
+	return i.ToAuthLoginCertOutputWithContext(context.Background())
+}
+
+func (i AuthLoginCertArgs) ToAuthLoginCertOutputWithContext(ctx context.Context) AuthLoginCertOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthLoginCertOutput)
+}
+
+type AuthLoginCertOutput struct{ *pulumi.OutputState }
+
+func (AuthLoginCertOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthLoginCert)(nil)).Elem()
+}
+
+func (o AuthLoginCertOutput) ToAuthLoginCertOutput() AuthLoginCertOutput {
+	return o
+}
+
+func (o AuthLoginCertOutput) ToAuthLoginCertOutputWithContext(ctx context.Context) AuthLoginCertOutput {
+	return o
+}
+
+func (o AuthLoginCertOutput) CertFile() pulumi.StringOutput {
+	return o.ApplyT(func(v AuthLoginCert) string { return v.CertFile }).(pulumi.StringOutput)
+}
+
+func (o AuthLoginCertOutput) KeyFile() pulumi.StringOutput {
+	return o.ApplyT(func(v AuthLoginCert) string { return v.KeyFile }).(pulumi.StringOutput)
+}
+
+func (o AuthLoginCertOutput) Mount() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginCert) *string { return v.Mount }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginCertOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginCert) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginCertOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginCert) *string { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+type AuthLoginGcp struct {
+	Credentials    *string `pulumi:"credentials"`
+	Jwt            *string `pulumi:"jwt"`
+	Mount          *string `pulumi:"mount"`
+	Namespace      *string `pulumi:"namespace"`
+	Role           string  `pulumi:"role"`
+	ServiceAccount *string `pulumi:"serviceAccount"`
+}
+
+// AuthLoginGcpInput is an input type that accepts AuthLoginGcpArgs and AuthLoginGcpOutput values.
+// You can construct a concrete instance of `AuthLoginGcpInput` via:
+//
+//	AuthLoginGcpArgs{...}
+type AuthLoginGcpInput interface {
+	pulumi.Input
+
+	ToAuthLoginGcpOutput() AuthLoginGcpOutput
+	ToAuthLoginGcpOutputWithContext(context.Context) AuthLoginGcpOutput
+}
+
+type AuthLoginGcpArgs struct {
+	Credentials    pulumi.StringPtrInput `pulumi:"credentials"`
+	Jwt            pulumi.StringPtrInput `pulumi:"jwt"`
+	Mount          pulumi.StringPtrInput `pulumi:"mount"`
+	Namespace      pulumi.StringPtrInput `pulumi:"namespace"`
+	Role           pulumi.StringInput    `pulumi:"role"`
+	ServiceAccount pulumi.StringPtrInput `pulumi:"serviceAccount"`
+}
+
+func (AuthLoginGcpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthLoginGcp)(nil)).Elem()
+}
+
+func (i AuthLoginGcpArgs) ToAuthLoginGcpOutput() AuthLoginGcpOutput {
+	return i.ToAuthLoginGcpOutputWithContext(context.Background())
+}
+
+func (i AuthLoginGcpArgs) ToAuthLoginGcpOutputWithContext(ctx context.Context) AuthLoginGcpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthLoginGcpOutput)
+}
+
+type AuthLoginGcpOutput struct{ *pulumi.OutputState }
+
+func (AuthLoginGcpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthLoginGcp)(nil)).Elem()
+}
+
+func (o AuthLoginGcpOutput) ToAuthLoginGcpOutput() AuthLoginGcpOutput {
+	return o
+}
+
+func (o AuthLoginGcpOutput) ToAuthLoginGcpOutputWithContext(ctx context.Context) AuthLoginGcpOutput {
+	return o
+}
+
+func (o AuthLoginGcpOutput) Credentials() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginGcp) *string { return v.Credentials }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginGcpOutput) Jwt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginGcp) *string { return v.Jwt }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginGcpOutput) Mount() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginGcp) *string { return v.Mount }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginGcpOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginGcp) *string { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginGcpOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v AuthLoginGcp) string { return v.Role }).(pulumi.StringOutput)
+}
+
+func (o AuthLoginGcpOutput) ServiceAccount() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginGcp) *string { return v.ServiceAccount }).(pulumi.StringPtrOutput)
+}
+
+type AuthLoginJwt struct {
+	Jwt       string  `pulumi:"jwt"`
+	Mount     *string `pulumi:"mount"`
+	Namespace *string `pulumi:"namespace"`
+	Role      string  `pulumi:"role"`
+}
+
+// AuthLoginJwtInput is an input type that accepts AuthLoginJwtArgs and AuthLoginJwtOutput values.
+// You can construct a concrete instance of `AuthLoginJwtInput` via:
+//
+//	AuthLoginJwtArgs{...}
+type AuthLoginJwtInput interface {
+	pulumi.Input
+
+	ToAuthLoginJwtOutput() AuthLoginJwtOutput
+	ToAuthLoginJwtOutputWithContext(context.Context) AuthLoginJwtOutput
+}
+
+type AuthLoginJwtArgs struct {
+	Jwt       pulumi.StringInput    `pulumi:"jwt"`
+	Mount     pulumi.StringPtrInput `pulumi:"mount"`
+	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
+	Role      pulumi.StringInput    `pulumi:"role"`
+}
+
+func (AuthLoginJwtArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthLoginJwt)(nil)).Elem()
+}
+
+func (i AuthLoginJwtArgs) ToAuthLoginJwtOutput() AuthLoginJwtOutput {
+	return i.ToAuthLoginJwtOutputWithContext(context.Background())
+}
+
+func (i AuthLoginJwtArgs) ToAuthLoginJwtOutputWithContext(ctx context.Context) AuthLoginJwtOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthLoginJwtOutput)
+}
+
+type AuthLoginJwtOutput struct{ *pulumi.OutputState }
+
+func (AuthLoginJwtOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthLoginJwt)(nil)).Elem()
+}
+
+func (o AuthLoginJwtOutput) ToAuthLoginJwtOutput() AuthLoginJwtOutput {
+	return o
+}
+
+func (o AuthLoginJwtOutput) ToAuthLoginJwtOutputWithContext(ctx context.Context) AuthLoginJwtOutput {
+	return o
+}
+
+func (o AuthLoginJwtOutput) Jwt() pulumi.StringOutput {
+	return o.ApplyT(func(v AuthLoginJwt) string { return v.Jwt }).(pulumi.StringOutput)
+}
+
+func (o AuthLoginJwtOutput) Mount() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginJwt) *string { return v.Mount }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginJwtOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginJwt) *string { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginJwtOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v AuthLoginJwt) string { return v.Role }).(pulumi.StringOutput)
+}
+
+type AuthLoginKerberos struct {
+	DisableFastNegotiation *bool   `pulumi:"disableFastNegotiation"`
+	KeytabPath             *string `pulumi:"keytabPath"`
+	Krb5confPath           *string `pulumi:"krb5confPath"`
+	Mount                  *string `pulumi:"mount"`
+	Namespace              *string `pulumi:"namespace"`
+	Realm                  *string `pulumi:"realm"`
+	RemoveInstanceName     *bool   `pulumi:"removeInstanceName"`
+	Service                *string `pulumi:"service"`
+	Token                  *string `pulumi:"token"`
+	Username               *string `pulumi:"username"`
+}
+
+// AuthLoginKerberosInput is an input type that accepts AuthLoginKerberosArgs and AuthLoginKerberosOutput values.
+// You can construct a concrete instance of `AuthLoginKerberosInput` via:
+//
+//	AuthLoginKerberosArgs{...}
+type AuthLoginKerberosInput interface {
+	pulumi.Input
+
+	ToAuthLoginKerberosOutput() AuthLoginKerberosOutput
+	ToAuthLoginKerberosOutputWithContext(context.Context) AuthLoginKerberosOutput
+}
+
+type AuthLoginKerberosArgs struct {
+	DisableFastNegotiation pulumi.BoolPtrInput   `pulumi:"disableFastNegotiation"`
+	KeytabPath             pulumi.StringPtrInput `pulumi:"keytabPath"`
+	Krb5confPath           pulumi.StringPtrInput `pulumi:"krb5confPath"`
+	Mount                  pulumi.StringPtrInput `pulumi:"mount"`
+	Namespace              pulumi.StringPtrInput `pulumi:"namespace"`
+	Realm                  pulumi.StringPtrInput `pulumi:"realm"`
+	RemoveInstanceName     pulumi.BoolPtrInput   `pulumi:"removeInstanceName"`
+	Service                pulumi.StringPtrInput `pulumi:"service"`
+	Token                  pulumi.StringPtrInput `pulumi:"token"`
+	Username               pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (AuthLoginKerberosArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthLoginKerberos)(nil)).Elem()
+}
+
+func (i AuthLoginKerberosArgs) ToAuthLoginKerberosOutput() AuthLoginKerberosOutput {
+	return i.ToAuthLoginKerberosOutputWithContext(context.Background())
+}
+
+func (i AuthLoginKerberosArgs) ToAuthLoginKerberosOutputWithContext(ctx context.Context) AuthLoginKerberosOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthLoginKerberosOutput)
+}
+
+type AuthLoginKerberosOutput struct{ *pulumi.OutputState }
+
+func (AuthLoginKerberosOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthLoginKerberos)(nil)).Elem()
+}
+
+func (o AuthLoginKerberosOutput) ToAuthLoginKerberosOutput() AuthLoginKerberosOutput {
+	return o
+}
+
+func (o AuthLoginKerberosOutput) ToAuthLoginKerberosOutputWithContext(ctx context.Context) AuthLoginKerberosOutput {
+	return o
+}
+
+func (o AuthLoginKerberosOutput) DisableFastNegotiation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v AuthLoginKerberos) *bool { return v.DisableFastNegotiation }).(pulumi.BoolPtrOutput)
+}
+
+func (o AuthLoginKerberosOutput) KeytabPath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginKerberos) *string { return v.KeytabPath }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginKerberosOutput) Krb5confPath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginKerberos) *string { return v.Krb5confPath }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginKerberosOutput) Mount() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginKerberos) *string { return v.Mount }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginKerberosOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginKerberos) *string { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginKerberosOutput) Realm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginKerberos) *string { return v.Realm }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginKerberosOutput) RemoveInstanceName() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v AuthLoginKerberos) *bool { return v.RemoveInstanceName }).(pulumi.BoolPtrOutput)
+}
+
+func (o AuthLoginKerberosOutput) Service() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginKerberos) *string { return v.Service }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginKerberosOutput) Token() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginKerberos) *string { return v.Token }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginKerberosOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginKerberos) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type AuthLoginOci struct {
+	AuthType  string  `pulumi:"authType"`
+	Mount     *string `pulumi:"mount"`
+	Namespace *string `pulumi:"namespace"`
+	Role      string  `pulumi:"role"`
+}
+
+// AuthLoginOciInput is an input type that accepts AuthLoginOciArgs and AuthLoginOciOutput values.
+// You can construct a concrete instance of `AuthLoginOciInput` via:
+//
+//	AuthLoginOciArgs{...}
+type AuthLoginOciInput interface {
+	pulumi.Input
+
+	ToAuthLoginOciOutput() AuthLoginOciOutput
+	ToAuthLoginOciOutputWithContext(context.Context) AuthLoginOciOutput
+}
+
+type AuthLoginOciArgs struct {
+	AuthType  pulumi.StringInput    `pulumi:"authType"`
+	Mount     pulumi.StringPtrInput `pulumi:"mount"`
+	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
+	Role      pulumi.StringInput    `pulumi:"role"`
+}
+
+func (AuthLoginOciArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthLoginOci)(nil)).Elem()
+}
+
+func (i AuthLoginOciArgs) ToAuthLoginOciOutput() AuthLoginOciOutput {
+	return i.ToAuthLoginOciOutputWithContext(context.Background())
+}
+
+func (i AuthLoginOciArgs) ToAuthLoginOciOutputWithContext(ctx context.Context) AuthLoginOciOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthLoginOciOutput)
+}
+
+type AuthLoginOciOutput struct{ *pulumi.OutputState }
+
+func (AuthLoginOciOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthLoginOci)(nil)).Elem()
+}
+
+func (o AuthLoginOciOutput) ToAuthLoginOciOutput() AuthLoginOciOutput {
+	return o
+}
+
+func (o AuthLoginOciOutput) ToAuthLoginOciOutputWithContext(ctx context.Context) AuthLoginOciOutput {
+	return o
+}
+
+func (o AuthLoginOciOutput) AuthType() pulumi.StringOutput {
+	return o.ApplyT(func(v AuthLoginOci) string { return v.AuthType }).(pulumi.StringOutput)
+}
+
+func (o AuthLoginOciOutput) Mount() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginOci) *string { return v.Mount }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginOciOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginOci) *string { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginOciOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v AuthLoginOci) string { return v.Role }).(pulumi.StringOutput)
+}
+
+type AuthLoginOidc struct {
+	CallbackAddress         *string `pulumi:"callbackAddress"`
+	CallbackListenerAddress *string `pulumi:"callbackListenerAddress"`
+	Mount                   *string `pulumi:"mount"`
+	Namespace               *string `pulumi:"namespace"`
+	Role                    string  `pulumi:"role"`
+}
+
+// AuthLoginOidcInput is an input type that accepts AuthLoginOidcArgs and AuthLoginOidcOutput values.
+// You can construct a concrete instance of `AuthLoginOidcInput` via:
+//
+//	AuthLoginOidcArgs{...}
+type AuthLoginOidcInput interface {
+	pulumi.Input
+
+	ToAuthLoginOidcOutput() AuthLoginOidcOutput
+	ToAuthLoginOidcOutputWithContext(context.Context) AuthLoginOidcOutput
+}
+
+type AuthLoginOidcArgs struct {
+	CallbackAddress         pulumi.StringPtrInput `pulumi:"callbackAddress"`
+	CallbackListenerAddress pulumi.StringPtrInput `pulumi:"callbackListenerAddress"`
+	Mount                   pulumi.StringPtrInput `pulumi:"mount"`
+	Namespace               pulumi.StringPtrInput `pulumi:"namespace"`
+	Role                    pulumi.StringInput    `pulumi:"role"`
+}
+
+func (AuthLoginOidcArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthLoginOidc)(nil)).Elem()
+}
+
+func (i AuthLoginOidcArgs) ToAuthLoginOidcOutput() AuthLoginOidcOutput {
+	return i.ToAuthLoginOidcOutputWithContext(context.Background())
+}
+
+func (i AuthLoginOidcArgs) ToAuthLoginOidcOutputWithContext(ctx context.Context) AuthLoginOidcOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthLoginOidcOutput)
+}
+
+type AuthLoginOidcOutput struct{ *pulumi.OutputState }
+
+func (AuthLoginOidcOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthLoginOidc)(nil)).Elem()
+}
+
+func (o AuthLoginOidcOutput) ToAuthLoginOidcOutput() AuthLoginOidcOutput {
+	return o
+}
+
+func (o AuthLoginOidcOutput) ToAuthLoginOidcOutputWithContext(ctx context.Context) AuthLoginOidcOutput {
+	return o
+}
+
+func (o AuthLoginOidcOutput) CallbackAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginOidc) *string { return v.CallbackAddress }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginOidcOutput) CallbackListenerAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginOidc) *string { return v.CallbackListenerAddress }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginOidcOutput) Mount() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginOidc) *string { return v.Mount }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginOidcOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginOidc) *string { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginOidcOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v AuthLoginOidc) string { return v.Role }).(pulumi.StringOutput)
+}
+
+type AuthLoginRadius struct {
+	Mount     *string `pulumi:"mount"`
+	Namespace *string `pulumi:"namespace"`
+	Password  string  `pulumi:"password"`
+	Username  string  `pulumi:"username"`
+}
+
+// AuthLoginRadiusInput is an input type that accepts AuthLoginRadiusArgs and AuthLoginRadiusOutput values.
+// You can construct a concrete instance of `AuthLoginRadiusInput` via:
+//
+//	AuthLoginRadiusArgs{...}
+type AuthLoginRadiusInput interface {
+	pulumi.Input
+
+	ToAuthLoginRadiusOutput() AuthLoginRadiusOutput
+	ToAuthLoginRadiusOutputWithContext(context.Context) AuthLoginRadiusOutput
+}
+
+type AuthLoginRadiusArgs struct {
+	Mount     pulumi.StringPtrInput `pulumi:"mount"`
+	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
+	Password  pulumi.StringInput    `pulumi:"password"`
+	Username  pulumi.StringInput    `pulumi:"username"`
+}
+
+func (AuthLoginRadiusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthLoginRadius)(nil)).Elem()
+}
+
+func (i AuthLoginRadiusArgs) ToAuthLoginRadiusOutput() AuthLoginRadiusOutput {
+	return i.ToAuthLoginRadiusOutputWithContext(context.Background())
+}
+
+func (i AuthLoginRadiusArgs) ToAuthLoginRadiusOutputWithContext(ctx context.Context) AuthLoginRadiusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthLoginRadiusOutput)
+}
+
+type AuthLoginRadiusOutput struct{ *pulumi.OutputState }
+
+func (AuthLoginRadiusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthLoginRadius)(nil)).Elem()
+}
+
+func (o AuthLoginRadiusOutput) ToAuthLoginRadiusOutput() AuthLoginRadiusOutput {
+	return o
+}
+
+func (o AuthLoginRadiusOutput) ToAuthLoginRadiusOutputWithContext(ctx context.Context) AuthLoginRadiusOutput {
+	return o
+}
+
+func (o AuthLoginRadiusOutput) Mount() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginRadius) *string { return v.Mount }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginRadiusOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginRadius) *string { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginRadiusOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v AuthLoginRadius) string { return v.Password }).(pulumi.StringOutput)
+}
+
+func (o AuthLoginRadiusOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v AuthLoginRadius) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type AuthLoginUserpass struct {
+	Mount        *string `pulumi:"mount"`
+	Namespace    *string `pulumi:"namespace"`
+	Password     *string `pulumi:"password"`
+	PasswordFile *string `pulumi:"passwordFile"`
+	Username     string  `pulumi:"username"`
+}
+
+// AuthLoginUserpassInput is an input type that accepts AuthLoginUserpassArgs and AuthLoginUserpassOutput values.
+// You can construct a concrete instance of `AuthLoginUserpassInput` via:
+//
+//	AuthLoginUserpassArgs{...}
+type AuthLoginUserpassInput interface {
+	pulumi.Input
+
+	ToAuthLoginUserpassOutput() AuthLoginUserpassOutput
+	ToAuthLoginUserpassOutputWithContext(context.Context) AuthLoginUserpassOutput
+}
+
+type AuthLoginUserpassArgs struct {
+	Mount        pulumi.StringPtrInput `pulumi:"mount"`
+	Namespace    pulumi.StringPtrInput `pulumi:"namespace"`
+	Password     pulumi.StringPtrInput `pulumi:"password"`
+	PasswordFile pulumi.StringPtrInput `pulumi:"passwordFile"`
+	Username     pulumi.StringInput    `pulumi:"username"`
+}
+
+func (AuthLoginUserpassArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthLoginUserpass)(nil)).Elem()
+}
+
+func (i AuthLoginUserpassArgs) ToAuthLoginUserpassOutput() AuthLoginUserpassOutput {
+	return i.ToAuthLoginUserpassOutputWithContext(context.Background())
+}
+
+func (i AuthLoginUserpassArgs) ToAuthLoginUserpassOutputWithContext(ctx context.Context) AuthLoginUserpassOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthLoginUserpassOutput)
+}
+
+type AuthLoginUserpassOutput struct{ *pulumi.OutputState }
+
+func (AuthLoginUserpassOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthLoginUserpass)(nil)).Elem()
+}
+
+func (o AuthLoginUserpassOutput) ToAuthLoginUserpassOutput() AuthLoginUserpassOutput {
+	return o
+}
+
+func (o AuthLoginUserpassOutput) ToAuthLoginUserpassOutputWithContext(ctx context.Context) AuthLoginUserpassOutput {
+	return o
+}
+
+func (o AuthLoginUserpassOutput) Mount() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginUserpass) *string { return v.Mount }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginUserpassOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginUserpass) *string { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginUserpassOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginUserpass) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginUserpassOutput) PasswordFile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginUserpass) *string { return v.PasswordFile }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthLoginUserpassOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v AuthLoginUserpass) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type ClientAuth struct {
 	CertFile string `pulumi:"certFile"`
 	KeyFile  string `pulumi:"keyFile"`
 }
 
-// ClientAuthsInput is an input type that accepts ClientAuthsArgs and ClientAuthsOutput values.
-// You can construct a concrete instance of `ClientAuthsInput` via:
+// ClientAuthInput is an input type that accepts ClientAuthArgs and ClientAuthOutput values.
+// You can construct a concrete instance of `ClientAuthInput` via:
 //
-//	ClientAuthsArgs{...}
-type ClientAuthsInput interface {
+//	ClientAuthArgs{...}
+type ClientAuthInput interface {
 	pulumi.Input
 
-	ToClientAuthsOutput() ClientAuthsOutput
-	ToClientAuthsOutputWithContext(context.Context) ClientAuthsOutput
+	ToClientAuthOutput() ClientAuthOutput
+	ToClientAuthOutputWithContext(context.Context) ClientAuthOutput
 }
 
-type ClientAuthsArgs struct {
+type ClientAuthArgs struct {
 	CertFile pulumi.StringInput `pulumi:"certFile"`
 	KeyFile  pulumi.StringInput `pulumi:"keyFile"`
 }
 
-func (ClientAuthsArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientAuths)(nil)).Elem()
+func (ClientAuthArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientAuth)(nil)).Elem()
 }
 
-func (i ClientAuthsArgs) ToClientAuthsOutput() ClientAuthsOutput {
-	return i.ToClientAuthsOutputWithContext(context.Background())
+func (i ClientAuthArgs) ToClientAuthOutput() ClientAuthOutput {
+	return i.ToClientAuthOutputWithContext(context.Background())
 }
 
-func (i ClientAuthsArgs) ToClientAuthsOutputWithContext(ctx context.Context) ClientAuthsOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClientAuthsOutput)
+func (i ClientAuthArgs) ToClientAuthOutputWithContext(ctx context.Context) ClientAuthOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientAuthOutput)
 }
 
-// ClientAuthsArrayInput is an input type that accepts ClientAuthsArray and ClientAuthsArrayOutput values.
-// You can construct a concrete instance of `ClientAuthsArrayInput` via:
-//
-//	ClientAuthsArray{ ClientAuthsArgs{...} }
-type ClientAuthsArrayInput interface {
-	pulumi.Input
+type ClientAuthOutput struct{ *pulumi.OutputState }
 
-	ToClientAuthsArrayOutput() ClientAuthsArrayOutput
-	ToClientAuthsArrayOutputWithContext(context.Context) ClientAuthsArrayOutput
+func (ClientAuthOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientAuth)(nil)).Elem()
 }
 
-type ClientAuthsArray []ClientAuthsInput
-
-func (ClientAuthsArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ClientAuths)(nil)).Elem()
-}
-
-func (i ClientAuthsArray) ToClientAuthsArrayOutput() ClientAuthsArrayOutput {
-	return i.ToClientAuthsArrayOutputWithContext(context.Background())
-}
-
-func (i ClientAuthsArray) ToClientAuthsArrayOutputWithContext(ctx context.Context) ClientAuthsArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClientAuthsArrayOutput)
-}
-
-type ClientAuthsOutput struct{ *pulumi.OutputState }
-
-func (ClientAuthsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClientAuths)(nil)).Elem()
-}
-
-func (o ClientAuthsOutput) ToClientAuthsOutput() ClientAuthsOutput {
+func (o ClientAuthOutput) ToClientAuthOutput() ClientAuthOutput {
 	return o
 }
 
-func (o ClientAuthsOutput) ToClientAuthsOutputWithContext(ctx context.Context) ClientAuthsOutput {
+func (o ClientAuthOutput) ToClientAuthOutputWithContext(ctx context.Context) ClientAuthOutput {
 	return o
 }
 
-func (o ClientAuthsOutput) CertFile() pulumi.StringOutput {
-	return o.ApplyT(func(v ClientAuths) string { return v.CertFile }).(pulumi.StringOutput)
+func (o ClientAuthOutput) CertFile() pulumi.StringOutput {
+	return o.ApplyT(func(v ClientAuth) string { return v.CertFile }).(pulumi.StringOutput)
 }
 
-func (o ClientAuthsOutput) KeyFile() pulumi.StringOutput {
-	return o.ApplyT(func(v ClientAuths) string { return v.KeyFile }).(pulumi.StringOutput)
-}
-
-type ClientAuthsArrayOutput struct{ *pulumi.OutputState }
-
-func (ClientAuthsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ClientAuths)(nil)).Elem()
-}
-
-func (o ClientAuthsArrayOutput) ToClientAuthsArrayOutput() ClientAuthsArrayOutput {
-	return o
-}
-
-func (o ClientAuthsArrayOutput) ToClientAuthsArrayOutputWithContext(ctx context.Context) ClientAuthsArrayOutput {
-	return o
-}
-
-func (o ClientAuthsArrayOutput) Index(i pulumi.IntInput) ClientAuthsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClientAuths {
-		return vs[0].([]ClientAuths)[vs[1].(int)]
-	}).(ClientAuthsOutput)
+func (o ClientAuthOutput) KeyFile() pulumi.StringOutput {
+	return o.ApplyT(func(v ClientAuth) string { return v.KeyFile }).(pulumi.StringOutput)
 }
 
 type Headers struct {
@@ -323,16 +1077,32 @@ func (o HeadersArrayOutput) Index(i pulumi.IntInput) HeadersOutput {
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*AuthLoginsInput)(nil)).Elem(), AuthLoginsArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AuthLoginsArrayInput)(nil)).Elem(), AuthLoginsArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ClientAuthsInput)(nil)).Elem(), ClientAuthsArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ClientAuthsArrayInput)(nil)).Elem(), ClientAuthsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthLoginInput)(nil)).Elem(), AuthLoginArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthLoginAwsInput)(nil)).Elem(), AuthLoginAwsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthLoginAzureInput)(nil)).Elem(), AuthLoginAzureArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthLoginCertInput)(nil)).Elem(), AuthLoginCertArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthLoginGcpInput)(nil)).Elem(), AuthLoginGcpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthLoginJwtInput)(nil)).Elem(), AuthLoginJwtArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthLoginKerberosInput)(nil)).Elem(), AuthLoginKerberosArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthLoginOciInput)(nil)).Elem(), AuthLoginOciArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthLoginOidcInput)(nil)).Elem(), AuthLoginOidcArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthLoginRadiusInput)(nil)).Elem(), AuthLoginRadiusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthLoginUserpassInput)(nil)).Elem(), AuthLoginUserpassArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientAuthInput)(nil)).Elem(), ClientAuthArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*HeadersInput)(nil)).Elem(), HeadersArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*HeadersArrayInput)(nil)).Elem(), HeadersArray{})
-	pulumi.RegisterOutputType(AuthLoginsOutput{})
-	pulumi.RegisterOutputType(AuthLoginsArrayOutput{})
-	pulumi.RegisterOutputType(ClientAuthsOutput{})
-	pulumi.RegisterOutputType(ClientAuthsArrayOutput{})
+	pulumi.RegisterOutputType(AuthLoginOutput{})
+	pulumi.RegisterOutputType(AuthLoginAwsOutput{})
+	pulumi.RegisterOutputType(AuthLoginAzureOutput{})
+	pulumi.RegisterOutputType(AuthLoginCertOutput{})
+	pulumi.RegisterOutputType(AuthLoginGcpOutput{})
+	pulumi.RegisterOutputType(AuthLoginJwtOutput{})
+	pulumi.RegisterOutputType(AuthLoginKerberosOutput{})
+	pulumi.RegisterOutputType(AuthLoginOciOutput{})
+	pulumi.RegisterOutputType(AuthLoginOidcOutput{})
+	pulumi.RegisterOutputType(AuthLoginRadiusOutput{})
+	pulumi.RegisterOutputType(AuthLoginUserpassOutput{})
+	pulumi.RegisterOutputType(ClientAuthOutput{})
 	pulumi.RegisterOutputType(HeadersOutput{})
 	pulumi.RegisterOutputType(HeadersArrayOutput{})
 }

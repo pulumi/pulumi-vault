@@ -17,12 +17,17 @@ class AuthBackendUserArgs:
                  username: pulumi.Input[str],
                  backend: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a AuthBackendUser resource.
         :param pulumi.Input[str] username: The LDAP username
         :param pulumi.Input[str] backend: Path to the authentication backend
         :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: Override LDAP groups which should be granted to user
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: Policies which should be granted to user
         """
         pulumi.set(__self__, "username", username)
@@ -30,6 +35,8 @@ class AuthBackendUserArgs:
             pulumi.set(__self__, "backend", backend)
         if groups is not None:
             pulumi.set(__self__, "groups", groups)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if policies is not None:
             pulumi.set(__self__, "policies", policies)
 
@@ -71,6 +78,21 @@ class AuthBackendUserArgs:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Policies which should be granted to user
@@ -87,12 +109,17 @@ class _AuthBackendUserState:
     def __init__(__self__, *,
                  backend: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  username: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendUser resources.
         :param pulumi.Input[str] backend: Path to the authentication backend
         :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: Override LDAP groups which should be granted to user
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: Policies which should be granted to user
         :param pulumi.Input[str] username: The LDAP username
         """
@@ -100,6 +127,8 @@ class _AuthBackendUserState:
             pulumi.set(__self__, "backend", backend)
         if groups is not None:
             pulumi.set(__self__, "groups", groups)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if policies is not None:
             pulumi.set(__self__, "policies", policies)
         if username is not None:
@@ -128,6 +157,21 @@ class _AuthBackendUserState:
     @groups.setter
     def groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "groups", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -161,6 +205,7 @@ class AuthBackendUser(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -203,6 +248,10 @@ class AuthBackendUser(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Path to the authentication backend
         :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: Override LDAP groups which should be granted to user
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: Policies which should be granted to user
         :param pulumi.Input[str] username: The LDAP username
         """
@@ -264,6 +313,7 @@ class AuthBackendUser(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -277,6 +327,7 @@ class AuthBackendUser(pulumi.CustomResource):
 
             __props__.__dict__["backend"] = backend
             __props__.__dict__["groups"] = groups
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["policies"] = policies
             if username is None and not opts.urn:
                 raise TypeError("Missing required property 'username'")
@@ -293,6 +344,7 @@ class AuthBackendUser(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
             groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             username: Optional[pulumi.Input[str]] = None) -> 'AuthBackendUser':
         """
@@ -304,6 +356,10 @@ class AuthBackendUser(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Path to the authentication backend
         :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: Override LDAP groups which should be granted to user
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: Policies which should be granted to user
         :param pulumi.Input[str] username: The LDAP username
         """
@@ -313,6 +369,7 @@ class AuthBackendUser(pulumi.CustomResource):
 
         __props__.__dict__["backend"] = backend
         __props__.__dict__["groups"] = groups
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["policies"] = policies
         __props__.__dict__["username"] = username
         return AuthBackendUser(resource_name, opts=opts, __props__=__props__)
@@ -332,6 +389,17 @@ class AuthBackendUser(pulumi.CustomResource):
         Override LDAP groups which should be granted to user
         """
         return pulumi.get(self, "groups")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

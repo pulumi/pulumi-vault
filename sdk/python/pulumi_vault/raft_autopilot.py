@@ -19,6 +19,7 @@ class RaftAutopilotArgs:
                  last_contact_threshold: Optional[pulumi.Input[str]] = None,
                  max_trailing_logs: Optional[pulumi.Input[int]] = None,
                  min_quorum: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  server_stabilization_time: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a RaftAutopilot resource.
@@ -34,6 +35,10 @@ class RaftAutopilotArgs:
         :param pulumi.Input[int] min_quorum: Minimum number of servers allowed in a cluster before 
                autopilot can prune dead servers. This should at least be 3. Applicable only for
                voting nodes.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] server_stabilization_time: Minimum amount of time a server must be 
                stable in the 'healthy' state before being added to the cluster.
         """
@@ -47,6 +52,8 @@ class RaftAutopilotArgs:
             pulumi.set(__self__, "max_trailing_logs", max_trailing_logs)
         if min_quorum is not None:
             pulumi.set(__self__, "min_quorum", min_quorum)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if server_stabilization_time is not None:
             pulumi.set(__self__, "server_stabilization_time", server_stabilization_time)
 
@@ -116,6 +123,21 @@ class RaftAutopilotArgs:
     @min_quorum.setter
     def min_quorum(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "min_quorum", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter(name="serverStabilizationTime")
@@ -139,6 +161,7 @@ class _RaftAutopilotState:
                  last_contact_threshold: Optional[pulumi.Input[str]] = None,
                  max_trailing_logs: Optional[pulumi.Input[int]] = None,
                  min_quorum: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  server_stabilization_time: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering RaftAutopilot resources.
@@ -154,6 +177,10 @@ class _RaftAutopilotState:
         :param pulumi.Input[int] min_quorum: Minimum number of servers allowed in a cluster before 
                autopilot can prune dead servers. This should at least be 3. Applicable only for
                voting nodes.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] server_stabilization_time: Minimum amount of time a server must be 
                stable in the 'healthy' state before being added to the cluster.
         """
@@ -167,6 +194,8 @@ class _RaftAutopilotState:
             pulumi.set(__self__, "max_trailing_logs", max_trailing_logs)
         if min_quorum is not None:
             pulumi.set(__self__, "min_quorum", min_quorum)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if server_stabilization_time is not None:
             pulumi.set(__self__, "server_stabilization_time", server_stabilization_time)
 
@@ -236,6 +265,21 @@ class _RaftAutopilotState:
     @min_quorum.setter
     def min_quorum(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "min_quorum", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter(name="serverStabilizationTime")
@@ -261,6 +305,7 @@ class RaftAutopilot(pulumi.CustomResource):
                  last_contact_threshold: Optional[pulumi.Input[str]] = None,
                  max_trailing_logs: Optional[pulumi.Input[int]] = None,
                  min_quorum: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  server_stabilization_time: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -298,6 +343,10 @@ class RaftAutopilot(pulumi.CustomResource):
         :param pulumi.Input[int] min_quorum: Minimum number of servers allowed in a cluster before 
                autopilot can prune dead servers. This should at least be 3. Applicable only for
                voting nodes.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] server_stabilization_time: Minimum amount of time a server must be 
                stable in the 'healthy' state before being added to the cluster.
         """
@@ -348,6 +397,7 @@ class RaftAutopilot(pulumi.CustomResource):
                  last_contact_threshold: Optional[pulumi.Input[str]] = None,
                  max_trailing_logs: Optional[pulumi.Input[int]] = None,
                  min_quorum: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  server_stabilization_time: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -363,6 +413,7 @@ class RaftAutopilot(pulumi.CustomResource):
             __props__.__dict__["last_contact_threshold"] = last_contact_threshold
             __props__.__dict__["max_trailing_logs"] = max_trailing_logs
             __props__.__dict__["min_quorum"] = min_quorum
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["server_stabilization_time"] = server_stabilization_time
         super(RaftAutopilot, __self__).__init__(
             'vault:index/raftAutopilot:RaftAutopilot',
@@ -379,6 +430,7 @@ class RaftAutopilot(pulumi.CustomResource):
             last_contact_threshold: Optional[pulumi.Input[str]] = None,
             max_trailing_logs: Optional[pulumi.Input[int]] = None,
             min_quorum: Optional[pulumi.Input[int]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             server_stabilization_time: Optional[pulumi.Input[str]] = None) -> 'RaftAutopilot':
         """
         Get an existing RaftAutopilot resource's state with the given name, id, and optional extra
@@ -399,6 +451,10 @@ class RaftAutopilot(pulumi.CustomResource):
         :param pulumi.Input[int] min_quorum: Minimum number of servers allowed in a cluster before 
                autopilot can prune dead servers. This should at least be 3. Applicable only for
                voting nodes.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] server_stabilization_time: Minimum amount of time a server must be 
                stable in the 'healthy' state before being added to the cluster.
         """
@@ -411,6 +467,7 @@ class RaftAutopilot(pulumi.CustomResource):
         __props__.__dict__["last_contact_threshold"] = last_contact_threshold
         __props__.__dict__["max_trailing_logs"] = max_trailing_logs
         __props__.__dict__["min_quorum"] = min_quorum
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["server_stabilization_time"] = server_stabilization_time
         return RaftAutopilot(resource_name, opts=opts, __props__=__props__)
 
@@ -460,6 +517,17 @@ class RaftAutopilot(pulumi.CustomResource):
         voting nodes.
         """
         return pulumi.get(self, "min_quorum")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="serverStabilizationTime")

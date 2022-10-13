@@ -11,6 +11,7 @@ import com.pulumi.vault.QuotaRateLimitArgs;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.inputs.QuotaRateLimitState;
 import java.lang.Double;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -66,6 +67,36 @@ import javax.annotation.Nullable;
 @ResourceType(type="vault:index/quotaRateLimit:QuotaRateLimit")
 public class QuotaRateLimit extends com.pulumi.resources.CustomResource {
     /**
+     * If set, when a client reaches a rate limit threshold, the client will
+     * be prohibited from any further requests until after the &#39;block_interval&#39; in seconds has elapsed.
+     * 
+     */
+    @Export(name="blockInterval", type=Integer.class, parameters={})
+    private Output</* @Nullable */ Integer> blockInterval;
+
+    /**
+     * @return If set, when a client reaches a rate limit threshold, the client will
+     * be prohibited from any further requests until after the &#39;block_interval&#39; in seconds has elapsed.
+     * 
+     */
+    public Output<Optional<Integer>> blockInterval() {
+        return Codegen.optional(this.blockInterval);
+    }
+    /**
+     * The duration in seconds to enforce rate limiting for.
+     * 
+     */
+    @Export(name="interval", type=Integer.class, parameters={})
+    private Output<Integer> interval;
+
+    /**
+     * @return The duration in seconds to enforce rate limiting for.
+     * 
+     */
+    public Output<Integer> interval() {
+        return this.interval;
+    }
+    /**
      * Name of the rate limit quota
      * 
      */
@@ -78,6 +109,26 @@ public class QuotaRateLimit extends com.pulumi.resources.CustomResource {
      */
     public Output<String> name() {
         return this.name;
+    }
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured namespace.
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="namespace", type=String.class, parameters={})
+    private Output</* @Nullable */ String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured namespace.
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> namespace() {
+        return Codegen.optional(this.namespace);
     }
     /**
      * Path of the mount or namespace to apply the quota. A blank path configures a

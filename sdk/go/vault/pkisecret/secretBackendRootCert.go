@@ -75,8 +75,19 @@ type SecretBackendRootCert struct {
 	KeyType pulumi.StringPtrOutput `pulumi:"keyType"`
 	// The locality
 	Locality pulumi.StringPtrOutput `pulumi:"locality"`
+	// The ID of the previously configured managed key. This field is
+	// required if `type` is `kms` and it conflicts with `managedKeyName`
+	ManagedKeyId pulumi.StringOutput `pulumi:"managedKeyId"`
+	// The name of the previously configured managed key. This field is
+	// required if `type` is `kms`  and it conflicts with `managedKeyId`
+	ManagedKeyName pulumi.StringOutput `pulumi:"managedKeyName"`
 	// The maximum path length to encode in the generated certificate
 	MaxPathLength pulumi.IntPtrOutput `pulumi:"maxPathLength"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The organization
 	Organization pulumi.StringPtrOutput `pulumi:"organization"`
 	// List of other SANs
@@ -101,7 +112,8 @@ type SecretBackendRootCert struct {
 	StreetAddress pulumi.StringPtrOutput `pulumi:"streetAddress"`
 	// Time to live
 	Ttl pulumi.StringPtrOutput `pulumi:"ttl"`
-	// Type of intermediate to create. Must be either \"exported\" or \"internal\"
+	// Type of intermediate to create. Must be either \"exported\", \"internal\"
+	// or \"kms\"
 	Type pulumi.StringOutput `pulumi:"type"`
 	// List of alternative URIs
 	UriSans pulumi.StringArrayOutput `pulumi:"uriSans"`
@@ -169,8 +181,19 @@ type secretBackendRootCertState struct {
 	KeyType *string `pulumi:"keyType"`
 	// The locality
 	Locality *string `pulumi:"locality"`
+	// The ID of the previously configured managed key. This field is
+	// required if `type` is `kms` and it conflicts with `managedKeyName`
+	ManagedKeyId *string `pulumi:"managedKeyId"`
+	// The name of the previously configured managed key. This field is
+	// required if `type` is `kms`  and it conflicts with `managedKeyId`
+	ManagedKeyName *string `pulumi:"managedKeyName"`
 	// The maximum path length to encode in the generated certificate
 	MaxPathLength *int `pulumi:"maxPathLength"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The organization
 	Organization *string `pulumi:"organization"`
 	// List of other SANs
@@ -195,7 +218,8 @@ type secretBackendRootCertState struct {
 	StreetAddress *string `pulumi:"streetAddress"`
 	// Time to live
 	Ttl *string `pulumi:"ttl"`
-	// Type of intermediate to create. Must be either \"exported\" or \"internal\"
+	// Type of intermediate to create. Must be either \"exported\", \"internal\"
+	// or \"kms\"
 	Type *string `pulumi:"type"`
 	// List of alternative URIs
 	UriSans []string `pulumi:"uriSans"`
@@ -226,8 +250,19 @@ type SecretBackendRootCertState struct {
 	KeyType pulumi.StringPtrInput
 	// The locality
 	Locality pulumi.StringPtrInput
+	// The ID of the previously configured managed key. This field is
+	// required if `type` is `kms` and it conflicts with `managedKeyName`
+	ManagedKeyId pulumi.StringPtrInput
+	// The name of the previously configured managed key. This field is
+	// required if `type` is `kms`  and it conflicts with `managedKeyId`
+	ManagedKeyName pulumi.StringPtrInput
 	// The maximum path length to encode in the generated certificate
 	MaxPathLength pulumi.IntPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The organization
 	Organization pulumi.StringPtrInput
 	// List of other SANs
@@ -252,7 +287,8 @@ type SecretBackendRootCertState struct {
 	StreetAddress pulumi.StringPtrInput
 	// Time to live
 	Ttl pulumi.StringPtrInput
-	// Type of intermediate to create. Must be either \"exported\" or \"internal\"
+	// Type of intermediate to create. Must be either \"exported\", \"internal\"
+	// or \"kms\"
 	Type pulumi.StringPtrInput
 	// List of alternative URIs
 	UriSans pulumi.StringArrayInput
@@ -283,8 +319,19 @@ type secretBackendRootCertArgs struct {
 	KeyType *string `pulumi:"keyType"`
 	// The locality
 	Locality *string `pulumi:"locality"`
+	// The ID of the previously configured managed key. This field is
+	// required if `type` is `kms` and it conflicts with `managedKeyName`
+	ManagedKeyId *string `pulumi:"managedKeyId"`
+	// The name of the previously configured managed key. This field is
+	// required if `type` is `kms`  and it conflicts with `managedKeyId`
+	ManagedKeyName *string `pulumi:"managedKeyName"`
 	// The maximum path length to encode in the generated certificate
 	MaxPathLength *int `pulumi:"maxPathLength"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The organization
 	Organization *string `pulumi:"organization"`
 	// List of other SANs
@@ -303,7 +350,8 @@ type secretBackendRootCertArgs struct {
 	StreetAddress *string `pulumi:"streetAddress"`
 	// Time to live
 	Ttl *string `pulumi:"ttl"`
-	// Type of intermediate to create. Must be either \"exported\" or \"internal\"
+	// Type of intermediate to create. Must be either \"exported\", \"internal\"
+	// or \"kms\"
 	Type string `pulumi:"type"`
 	// List of alternative URIs
 	UriSans []string `pulumi:"uriSans"`
@@ -331,8 +379,19 @@ type SecretBackendRootCertArgs struct {
 	KeyType pulumi.StringPtrInput
 	// The locality
 	Locality pulumi.StringPtrInput
+	// The ID of the previously configured managed key. This field is
+	// required if `type` is `kms` and it conflicts with `managedKeyName`
+	ManagedKeyId pulumi.StringPtrInput
+	// The name of the previously configured managed key. This field is
+	// required if `type` is `kms`  and it conflicts with `managedKeyId`
+	ManagedKeyName pulumi.StringPtrInput
 	// The maximum path length to encode in the generated certificate
 	MaxPathLength pulumi.IntPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The organization
 	Organization pulumi.StringPtrInput
 	// List of other SANs
@@ -351,7 +410,8 @@ type SecretBackendRootCertArgs struct {
 	StreetAddress pulumi.StringPtrInput
 	// Time to live
 	Ttl pulumi.StringPtrInput
-	// Type of intermediate to create. Must be either \"exported\" or \"internal\"
+	// Type of intermediate to create. Must be either \"exported\", \"internal\"
+	// or \"kms\"
 	Type pulumi.StringInput
 	// List of alternative URIs
 	UriSans pulumi.StringArrayInput
@@ -504,9 +564,29 @@ func (o SecretBackendRootCertOutput) Locality() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringPtrOutput { return v.Locality }).(pulumi.StringPtrOutput)
 }
 
+// The ID of the previously configured managed key. This field is
+// required if `type` is `kms` and it conflicts with `managedKeyName`
+func (o SecretBackendRootCertOutput) ManagedKeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringOutput { return v.ManagedKeyId }).(pulumi.StringOutput)
+}
+
+// The name of the previously configured managed key. This field is
+// required if `type` is `kms`  and it conflicts with `managedKeyId`
+func (o SecretBackendRootCertOutput) ManagedKeyName() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringOutput { return v.ManagedKeyName }).(pulumi.StringOutput)
+}
+
 // The maximum path length to encode in the generated certificate
 func (o SecretBackendRootCertOutput) MaxPathLength() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.IntPtrOutput { return v.MaxPathLength }).(pulumi.IntPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o SecretBackendRootCertOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The organization
@@ -566,7 +646,8 @@ func (o SecretBackendRootCertOutput) Ttl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringPtrOutput { return v.Ttl }).(pulumi.StringPtrOutput)
 }
 
-// Type of intermediate to create. Must be either \"exported\" or \"internal\"
+// Type of intermediate to create. Must be either \"exported\", \"internal\"
+// or \"kms\"
 func (o SecretBackendRootCertOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

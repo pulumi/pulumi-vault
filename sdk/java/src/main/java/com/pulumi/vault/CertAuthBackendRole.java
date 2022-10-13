@@ -124,18 +124,32 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
         return this.allowedNames;
     }
     /**
-     * Allowed organization units for authenticated client certificates
+     * @deprecated
+     * Use allowed_organizational_units
      * 
      */
+    @Deprecated /* Use allowed_organizational_units */
     @Export(name="allowedOrganizationUnits", type=List.class, parameters={String.class})
     private Output<List<String>> allowedOrganizationUnits;
 
-    /**
-     * @return Allowed organization units for authenticated client certificates
-     * 
-     */
     public Output<List<String>> allowedOrganizationUnits() {
         return this.allowedOrganizationUnits;
+    }
+    /**
+     * Allowed organization units for authenticated client certificates.
+     * *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
+     * 
+     */
+    @Export(name="allowedOrganizationalUnits", type=List.class, parameters={String.class})
+    private Output</* @Nullable */ List<String>> allowedOrganizationalUnits;
+
+    /**
+     * @return Allowed organization units for authenticated client certificates.
+     * *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
+     * 
+     */
+    public Output<Optional<List<String>>> allowedOrganizationalUnits() {
+        return Codegen.optional(this.allowedOrganizationalUnits);
     }
     /**
      * Allowed URIs for authenticated client certificates
@@ -206,6 +220,26 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
      */
     public Output<String> name() {
         return this.name;
+    }
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="namespace", type=String.class, parameters={})
+    private Output</* @Nullable */ String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> namespace() {
+        return Codegen.optional(this.namespace);
     }
     /**
      * TLS extensions required on client certificates

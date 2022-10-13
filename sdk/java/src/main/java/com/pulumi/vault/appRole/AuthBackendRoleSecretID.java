@@ -8,8 +8,8 @@ import com.pulumi.core.annotations.Export;
 import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
 import com.pulumi.vault.Utilities;
-import com.pulumi.vault.appRole.AuthBackendRoleSecretIDArgs;
-import com.pulumi.vault.appRole.inputs.AuthBackendRoleSecretIDState;
+import com.pulumi.vault.appRole.AuthBackendRoleSecretIdArgs;
+import com.pulumi.vault.appRole.inputs.AuthBackendRoleSecretIdState;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -32,8 +32,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.vault.AuthBackendArgs;
  * import com.pulumi.vault.appRole.AuthBackendRole;
  * import com.pulumi.vault.appRole.AuthBackendRoleArgs;
- * import com.pulumi.vault.appRole.AuthBackendRoleSecretID;
- * import com.pulumi.vault.appRole.AuthBackendRoleSecretIDArgs;
+ * import com.pulumi.vault.appRole.AuthBackendRoleSecretId;
+ * import com.pulumi.vault.appRole.AuthBackendRoleSecretIdArgs;
  * import static com.pulumi.codegen.internal.Serialization.*;
  * import java.util.List;
  * import java.util.ArrayList;
@@ -61,7 +61,7 @@ import javax.annotation.Nullable;
  *                 &#34;prod&#34;)
  *             .build());
  * 
- *         var id = new AuthBackendRoleSecretID(&#34;id&#34;, AuthBackendRoleSecretIDArgs.builder()        
+ *         var id = new AuthBackendRoleSecretId(&#34;id&#34;, AuthBackendRoleSecretIdArgs.builder()        
  *             .backend(approle.path())
  *             .roleName(example.roleName())
  *             .metadata(serializeJson(
@@ -75,8 +75,8 @@ import javax.annotation.Nullable;
  * ```
  * 
  */
-@ResourceType(type="vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID")
-public class AuthBackendRoleSecretID extends com.pulumi.resources.CustomResource {
+@ResourceType(type="vault:appRole/authBackendRoleSecretId:AuthBackendRoleSecretId")
+public class AuthBackendRoleSecretId extends com.pulumi.resources.CustomResource {
     /**
      * The unique ID for this SecretID that can be safely logged.
      * 
@@ -136,6 +136,26 @@ public class AuthBackendRoleSecretID extends com.pulumi.resources.CustomResource
      */
     public Output<Optional<String>> metadata() {
         return Codegen.optional(this.metadata);
+    }
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="namespace", type=String.class, parameters={})
+    private Output</* @Nullable */ String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> namespace() {
+        return Codegen.optional(this.namespace);
     }
     /**
      * The name of the role to create the SecretID for.
@@ -240,15 +260,15 @@ public class AuthBackendRoleSecretID extends com.pulumi.resources.CustomResource
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public AuthBackendRoleSecretID(String name) {
-        this(name, AuthBackendRoleSecretIDArgs.Empty);
+    public AuthBackendRoleSecretId(String name) {
+        this(name, AuthBackendRoleSecretIdArgs.Empty);
     }
     /**
      *
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public AuthBackendRoleSecretID(String name, AuthBackendRoleSecretIDArgs args) {
+    public AuthBackendRoleSecretId(String name, AuthBackendRoleSecretIdArgs args) {
         this(name, args, null);
     }
     /**
@@ -257,17 +277,21 @@ public class AuthBackendRoleSecretID extends com.pulumi.resources.CustomResource
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public AuthBackendRoleSecretID(String name, AuthBackendRoleSecretIDArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID", name, args == null ? AuthBackendRoleSecretIDArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public AuthBackendRoleSecretId(String name, AuthBackendRoleSecretIdArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:appRole/authBackendRoleSecretId:AuthBackendRoleSecretId", name, args == null ? AuthBackendRoleSecretIdArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
     }
 
-    private AuthBackendRoleSecretID(String name, Output<String> id, @Nullable AuthBackendRoleSecretIDState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID", name, state, makeResourceOptions(options, id));
+    private AuthBackendRoleSecretId(String name, Output<String> id, @Nullable AuthBackendRoleSecretIdState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:appRole/authBackendRoleSecretId:AuthBackendRoleSecretId", name, state, makeResourceOptions(options, id));
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "secretId",
+                "wrappingToken"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }
@@ -281,7 +305,7 @@ public class AuthBackendRoleSecretID extends com.pulumi.resources.CustomResource
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static AuthBackendRoleSecretID get(String name, Output<String> id, @Nullable AuthBackendRoleSecretIDState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        return new AuthBackendRoleSecretID(name, id, state, options);
+    public static AuthBackendRoleSecretId get(String name, Output<String> id, @Nullable AuthBackendRoleSecretIdState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        return new AuthBackendRoleSecretId(name, id, state, options);
     }
 }

@@ -62,6 +62,15 @@ namespace Pulumi.Vault
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured namespace.
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
         /// Path of the mount or namespace to apply the quota. A blank path configures a
         /// global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
         /// `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
@@ -132,6 +141,15 @@ namespace Pulumi.Vault
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured namespace.
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
         /// Path of the mount or namespace to apply the quota. A blank path configures a
         /// global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
         /// `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
@@ -162,6 +180,15 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured namespace.
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// Path of the mount or namespace to apply the quota. A blank path configures a

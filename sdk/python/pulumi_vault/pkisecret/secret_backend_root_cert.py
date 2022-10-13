@@ -25,7 +25,10 @@ class SecretBackendRootCertArgs:
                  key_bits: Optional[pulumi.Input[int]] = None,
                  key_type: Optional[pulumi.Input[str]] = None,
                  locality: Optional[pulumi.Input[str]] = None,
+                 managed_key_id: Optional[pulumi.Input[str]] = None,
+                 managed_key_name: Optional[pulumi.Input[str]] = None,
                  max_path_length: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ou: Optional[pulumi.Input[str]] = None,
@@ -40,7 +43,8 @@ class SecretBackendRootCertArgs:
         The set of arguments for constructing a SecretBackendRootCert resource.
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[str] common_name: CN of intermediate to create
-        :param pulumi.Input[str] type: Type of intermediate to create. Must be either \\"exported\\" or \\"internal\\"
+        :param pulumi.Input[str] type: Type of intermediate to create. Must be either \\"exported\\", \\"internal\\"
+               or \\"kms\\"
         :param pulumi.Input[Sequence[pulumi.Input[str]]] alt_names: List of alternative names
         :param pulumi.Input[str] country: The country
         :param pulumi.Input[bool] exclude_cn_from_sans: Flag to exclude CN from SANs
@@ -49,7 +53,15 @@ class SecretBackendRootCertArgs:
         :param pulumi.Input[int] key_bits: The number of bits to use
         :param pulumi.Input[str] key_type: The desired key type
         :param pulumi.Input[str] locality: The locality
+        :param pulumi.Input[str] managed_key_id: The ID of the previously configured managed key. This field is
+               required if `type` is `kms` and it conflicts with `managed_key_name`
+        :param pulumi.Input[str] managed_key_name: The name of the previously configured managed key. This field is
+               required if `type` is `kms`  and it conflicts with `managed_key_id`
         :param pulumi.Input[int] max_path_length: The maximum path length to encode in the generated certificate
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] ou: The organization unit
@@ -80,8 +92,14 @@ class SecretBackendRootCertArgs:
             pulumi.set(__self__, "key_type", key_type)
         if locality is not None:
             pulumi.set(__self__, "locality", locality)
+        if managed_key_id is not None:
+            pulumi.set(__self__, "managed_key_id", managed_key_id)
+        if managed_key_name is not None:
+            pulumi.set(__self__, "managed_key_name", managed_key_name)
         if max_path_length is not None:
             pulumi.set(__self__, "max_path_length", max_path_length)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if organization is not None:
             pulumi.set(__self__, "organization", organization)
         if other_sans is not None:
@@ -131,7 +149,8 @@ class SecretBackendRootCertArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        Type of intermediate to create. Must be either \\"exported\\" or \\"internal\\"
+        Type of intermediate to create. Must be either \\"exported\\", \\"internal\\"
+        or \\"kms\\"
         """
         return pulumi.get(self, "type")
 
@@ -236,6 +255,32 @@ class SecretBackendRootCertArgs:
         pulumi.set(self, "locality", value)
 
     @property
+    @pulumi.getter(name="managedKeyId")
+    def managed_key_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the previously configured managed key. This field is
+        required if `type` is `kms` and it conflicts with `managed_key_name`
+        """
+        return pulumi.get(self, "managed_key_id")
+
+    @managed_key_id.setter
+    def managed_key_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "managed_key_id", value)
+
+    @property
+    @pulumi.getter(name="managedKeyName")
+    def managed_key_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the previously configured managed key. This field is
+        required if `type` is `kms`  and it conflicts with `managed_key_id`
+        """
+        return pulumi.get(self, "managed_key_name")
+
+    @managed_key_name.setter
+    def managed_key_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "managed_key_name", value)
+
+    @property
     @pulumi.getter(name="maxPathLength")
     def max_path_length(self) -> Optional[pulumi.Input[int]]:
         """
@@ -246,6 +291,21 @@ class SecretBackendRootCertArgs:
     @max_path_length.setter
     def max_path_length(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_path_length", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -383,7 +443,10 @@ class _SecretBackendRootCertState:
                  key_bits: Optional[pulumi.Input[int]] = None,
                  key_type: Optional[pulumi.Input[str]] = None,
                  locality: Optional[pulumi.Input[str]] = None,
+                 managed_key_id: Optional[pulumi.Input[str]] = None,
+                 managed_key_name: Optional[pulumi.Input[str]] = None,
                  max_path_length: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ou: Optional[pulumi.Input[str]] = None,
@@ -411,7 +474,15 @@ class _SecretBackendRootCertState:
         :param pulumi.Input[int] key_bits: The number of bits to use
         :param pulumi.Input[str] key_type: The desired key type
         :param pulumi.Input[str] locality: The locality
+        :param pulumi.Input[str] managed_key_id: The ID of the previously configured managed key. This field is
+               required if `type` is `kms` and it conflicts with `managed_key_name`
+        :param pulumi.Input[str] managed_key_name: The name of the previously configured managed key. This field is
+               required if `type` is `kms`  and it conflicts with `managed_key_id`
         :param pulumi.Input[int] max_path_length: The maximum path length to encode in the generated certificate
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] ou: The organization unit
@@ -423,7 +494,8 @@ class _SecretBackendRootCertState:
         :param pulumi.Input[str] serial_number: The certificate's serial number, hex formatted.
         :param pulumi.Input[str] street_address: The street address
         :param pulumi.Input[str] ttl: Time to live
-        :param pulumi.Input[str] type: Type of intermediate to create. Must be either \\"exported\\" or \\"internal\\"
+        :param pulumi.Input[str] type: Type of intermediate to create. Must be either \\"exported\\", \\"internal\\"
+               or \\"kms\\"
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
         """
         if alt_names is not None:
@@ -450,8 +522,14 @@ class _SecretBackendRootCertState:
             pulumi.set(__self__, "key_type", key_type)
         if locality is not None:
             pulumi.set(__self__, "locality", locality)
+        if managed_key_id is not None:
+            pulumi.set(__self__, "managed_key_id", managed_key_id)
+        if managed_key_name is not None:
+            pulumi.set(__self__, "managed_key_name", managed_key_name)
         if max_path_length is not None:
             pulumi.set(__self__, "max_path_length", max_path_length)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if organization is not None:
             pulumi.set(__self__, "organization", organization)
         if other_sans is not None:
@@ -627,6 +705,32 @@ class _SecretBackendRootCertState:
         pulumi.set(self, "locality", value)
 
     @property
+    @pulumi.getter(name="managedKeyId")
+    def managed_key_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the previously configured managed key. This field is
+        required if `type` is `kms` and it conflicts with `managed_key_name`
+        """
+        return pulumi.get(self, "managed_key_id")
+
+    @managed_key_id.setter
+    def managed_key_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "managed_key_id", value)
+
+    @property
+    @pulumi.getter(name="managedKeyName")
+    def managed_key_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the previously configured managed key. This field is
+        required if `type` is `kms`  and it conflicts with `managed_key_id`
+        """
+        return pulumi.get(self, "managed_key_name")
+
+    @managed_key_name.setter
+    def managed_key_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "managed_key_name", value)
+
+    @property
     @pulumi.getter(name="maxPathLength")
     def max_path_length(self) -> Optional[pulumi.Input[int]]:
         """
@@ -637,6 +741,21 @@ class _SecretBackendRootCertState:
     @max_path_length.setter
     def max_path_length(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_path_length", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -774,7 +893,8 @@ class _SecretBackendRootCertState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        Type of intermediate to create. Must be either \\"exported\\" or \\"internal\\"
+        Type of intermediate to create. Must be either \\"exported\\", \\"internal\\"
+        or \\"kms\\"
         """
         return pulumi.get(self, "type")
 
@@ -810,7 +930,10 @@ class SecretBackendRootCert(pulumi.CustomResource):
                  key_bits: Optional[pulumi.Input[int]] = None,
                  key_type: Optional[pulumi.Input[str]] = None,
                  locality: Optional[pulumi.Input[str]] = None,
+                 managed_key_id: Optional[pulumi.Input[str]] = None,
+                 managed_key_name: Optional[pulumi.Input[str]] = None,
                  max_path_length: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ou: Optional[pulumi.Input[str]] = None,
@@ -857,7 +980,15 @@ class SecretBackendRootCert(pulumi.CustomResource):
         :param pulumi.Input[int] key_bits: The number of bits to use
         :param pulumi.Input[str] key_type: The desired key type
         :param pulumi.Input[str] locality: The locality
+        :param pulumi.Input[str] managed_key_id: The ID of the previously configured managed key. This field is
+               required if `type` is `kms` and it conflicts with `managed_key_name`
+        :param pulumi.Input[str] managed_key_name: The name of the previously configured managed key. This field is
+               required if `type` is `kms`  and it conflicts with `managed_key_id`
         :param pulumi.Input[int] max_path_length: The maximum path length to encode in the generated certificate
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] ou: The organization unit
@@ -867,7 +998,8 @@ class SecretBackendRootCert(pulumi.CustomResource):
         :param pulumi.Input[str] province: The province
         :param pulumi.Input[str] street_address: The street address
         :param pulumi.Input[str] ttl: Time to live
-        :param pulumi.Input[str] type: Type of intermediate to create. Must be either \\"exported\\" or \\"internal\\"
+        :param pulumi.Input[str] type: Type of intermediate to create. Must be either \\"exported\\", \\"internal\\"
+               or \\"kms\\"
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
         """
         ...
@@ -923,7 +1055,10 @@ class SecretBackendRootCert(pulumi.CustomResource):
                  key_bits: Optional[pulumi.Input[int]] = None,
                  key_type: Optional[pulumi.Input[str]] = None,
                  locality: Optional[pulumi.Input[str]] = None,
+                 managed_key_id: Optional[pulumi.Input[str]] = None,
+                 managed_key_name: Optional[pulumi.Input[str]] = None,
                  max_path_length: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ou: Optional[pulumi.Input[str]] = None,
@@ -958,7 +1093,10 @@ class SecretBackendRootCert(pulumi.CustomResource):
             __props__.__dict__["key_bits"] = key_bits
             __props__.__dict__["key_type"] = key_type
             __props__.__dict__["locality"] = locality
+            __props__.__dict__["managed_key_id"] = managed_key_id
+            __props__.__dict__["managed_key_name"] = managed_key_name
             __props__.__dict__["max_path_length"] = max_path_length
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["organization"] = organization
             __props__.__dict__["other_sans"] = other_sans
             __props__.__dict__["ou"] = ou
@@ -998,7 +1136,10 @@ class SecretBackendRootCert(pulumi.CustomResource):
             key_bits: Optional[pulumi.Input[int]] = None,
             key_type: Optional[pulumi.Input[str]] = None,
             locality: Optional[pulumi.Input[str]] = None,
+            managed_key_id: Optional[pulumi.Input[str]] = None,
+            managed_key_name: Optional[pulumi.Input[str]] = None,
             max_path_length: Optional[pulumi.Input[int]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             organization: Optional[pulumi.Input[str]] = None,
             other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             ou: Optional[pulumi.Input[str]] = None,
@@ -1031,7 +1172,15 @@ class SecretBackendRootCert(pulumi.CustomResource):
         :param pulumi.Input[int] key_bits: The number of bits to use
         :param pulumi.Input[str] key_type: The desired key type
         :param pulumi.Input[str] locality: The locality
+        :param pulumi.Input[str] managed_key_id: The ID of the previously configured managed key. This field is
+               required if `type` is `kms` and it conflicts with `managed_key_name`
+        :param pulumi.Input[str] managed_key_name: The name of the previously configured managed key. This field is
+               required if `type` is `kms`  and it conflicts with `managed_key_id`
         :param pulumi.Input[int] max_path_length: The maximum path length to encode in the generated certificate
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] ou: The organization unit
@@ -1043,7 +1192,8 @@ class SecretBackendRootCert(pulumi.CustomResource):
         :param pulumi.Input[str] serial_number: The certificate's serial number, hex formatted.
         :param pulumi.Input[str] street_address: The street address
         :param pulumi.Input[str] ttl: Time to live
-        :param pulumi.Input[str] type: Type of intermediate to create. Must be either \\"exported\\" or \\"internal\\"
+        :param pulumi.Input[str] type: Type of intermediate to create. Must be either \\"exported\\", \\"internal\\"
+               or \\"kms\\"
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1062,7 +1212,10 @@ class SecretBackendRootCert(pulumi.CustomResource):
         __props__.__dict__["key_bits"] = key_bits
         __props__.__dict__["key_type"] = key_type
         __props__.__dict__["locality"] = locality
+        __props__.__dict__["managed_key_id"] = managed_key_id
+        __props__.__dict__["managed_key_name"] = managed_key_name
         __props__.__dict__["max_path_length"] = max_path_length
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["organization"] = organization
         __props__.__dict__["other_sans"] = other_sans
         __props__.__dict__["ou"] = ou
@@ -1175,12 +1328,41 @@ class SecretBackendRootCert(pulumi.CustomResource):
         return pulumi.get(self, "locality")
 
     @property
+    @pulumi.getter(name="managedKeyId")
+    def managed_key_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the previously configured managed key. This field is
+        required if `type` is `kms` and it conflicts with `managed_key_name`
+        """
+        return pulumi.get(self, "managed_key_id")
+
+    @property
+    @pulumi.getter(name="managedKeyName")
+    def managed_key_name(self) -> pulumi.Output[str]:
+        """
+        The name of the previously configured managed key. This field is
+        required if `type` is `kms`  and it conflicts with `managed_key_id`
+        """
+        return pulumi.get(self, "managed_key_name")
+
+    @property
     @pulumi.getter(name="maxPathLength")
     def max_path_length(self) -> pulumi.Output[Optional[int]]:
         """
         The maximum path length to encode in the generated certificate
         """
         return pulumi.get(self, "max_path_length")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter
@@ -1274,7 +1456,8 @@ class SecretBackendRootCert(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        Type of intermediate to create. Must be either \\"exported\\" or \\"internal\\"
+        Type of intermediate to create. Must be either \\"exported\\", \\"internal\\"
+        or \\"kms\\"
         """
         return pulumi.get(self, "type")
 

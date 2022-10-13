@@ -26,6 +26,7 @@ class AuthBackendRoleArgs:
                  bound_service_accounts: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  bound_zones: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  max_jwt_exp: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
                  token_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -48,6 +49,10 @@ class AuthBackendRoleArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_service_accounts: GCP Service Accounts allowed to issue tokens under this role. (Note: **Required** if role is `iam`)
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_zones: The list of zones that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a zonal group and the group must belong to this zone.
         :param pulumi.Input[str] max_jwt_exp: The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
                addresses which can authenticate successfully, and ties the resulting token to these blocks
                as well.
@@ -97,6 +102,8 @@ class AuthBackendRoleArgs:
             pulumi.set(__self__, "bound_zones", bound_zones)
         if max_jwt_exp is not None:
             pulumi.set(__self__, "max_jwt_exp", max_jwt_exp)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if token_bound_cidrs is not None:
             pulumi.set(__self__, "token_bound_cidrs", token_bound_cidrs)
         if token_explicit_max_ttl is not None:
@@ -258,6 +265,21 @@ class AuthBackendRoleArgs:
         pulumi.set(self, "max_jwt_exp", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="tokenBoundCidrs")
     def token_bound_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -396,6 +418,7 @@ class _AuthBackendRoleState:
                  bound_service_accounts: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  bound_zones: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  max_jwt_exp: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -418,6 +441,10 @@ class _AuthBackendRoleState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_service_accounts: GCP Service Accounts allowed to issue tokens under this role. (Note: **Required** if role is `iam`)
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_zones: The list of zones that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a zonal group and the group must belong to this zone.
         :param pulumi.Input[str] max_jwt_exp: The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role: Name of the GCP role
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
                addresses which can authenticate successfully, and ties the resulting token to these blocks
@@ -467,6 +494,8 @@ class _AuthBackendRoleState:
             pulumi.set(__self__, "bound_zones", bound_zones)
         if max_jwt_exp is not None:
             pulumi.set(__self__, "max_jwt_exp", max_jwt_exp)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if role is not None:
             pulumi.set(__self__, "role", role)
         if token_bound_cidrs is not None:
@@ -606,6 +635,21 @@ class _AuthBackendRoleState:
     @max_jwt_exp.setter
     def max_jwt_exp(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "max_jwt_exp", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -772,6 +816,7 @@ class AuthBackendRole(pulumi.CustomResource):
                  bound_service_accounts: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  bound_zones: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  max_jwt_exp: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -806,6 +851,10 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_service_accounts: GCP Service Accounts allowed to issue tokens under this role. (Note: **Required** if role is `iam`)
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_zones: The list of zones that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a zonal group and the group must belong to this zone.
         :param pulumi.Input[str] max_jwt_exp: The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role: Name of the GCP role
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
                addresses which can authenticate successfully, and ties the resulting token to these blocks
@@ -877,6 +926,7 @@ class AuthBackendRole(pulumi.CustomResource):
                  bound_service_accounts: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  bound_zones: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  max_jwt_exp: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -907,6 +957,7 @@ class AuthBackendRole(pulumi.CustomResource):
             __props__.__dict__["bound_service_accounts"] = bound_service_accounts
             __props__.__dict__["bound_zones"] = bound_zones
             __props__.__dict__["max_jwt_exp"] = max_jwt_exp
+            __props__.__dict__["namespace"] = namespace
             if role is None and not opts.urn:
                 raise TypeError("Missing required property 'role'")
             __props__.__dict__["role"] = role
@@ -942,6 +993,7 @@ class AuthBackendRole(pulumi.CustomResource):
             bound_service_accounts: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             bound_zones: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             max_jwt_exp: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             role: Optional[pulumi.Input[str]] = None,
             token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -969,6 +1021,10 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_service_accounts: GCP Service Accounts allowed to issue tokens under this role. (Note: **Required** if role is `iam`)
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_zones: The list of zones that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a zonal group and the group must belong to this zone.
         :param pulumi.Input[str] max_jwt_exp: The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role: Name of the GCP role
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
                addresses which can authenticate successfully, and ties the resulting token to these blocks
@@ -1012,6 +1068,7 @@ class AuthBackendRole(pulumi.CustomResource):
         __props__.__dict__["bound_service_accounts"] = bound_service_accounts
         __props__.__dict__["bound_zones"] = bound_zones
         __props__.__dict__["max_jwt_exp"] = max_jwt_exp
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["role"] = role
         __props__.__dict__["token_bound_cidrs"] = token_bound_cidrs
         __props__.__dict__["token_explicit_max_ttl"] = token_explicit_max_ttl
@@ -1101,6 +1158,17 @@ class AuthBackendRole(pulumi.CustomResource):
         The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
         """
         return pulumi.get(self, "max_jwt_exp")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

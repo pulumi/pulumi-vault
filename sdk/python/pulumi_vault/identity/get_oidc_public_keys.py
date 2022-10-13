@@ -21,7 +21,7 @@ class GetOidcPublicKeysResult:
     """
     A collection of values returned by getOidcPublicKeys.
     """
-    def __init__(__self__, id=None, keys=None, name=None):
+    def __init__(__self__, id=None, keys=None, name=None, namespace=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -31,6 +31,9 @@ class GetOidcPublicKeysResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if namespace and not isinstance(namespace, str):
+            raise TypeError("Expected argument 'namespace' to be a str")
+        pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter
@@ -54,6 +57,11 @@ class GetOidcPublicKeysResult:
     def name(self) -> str:
         return pulumi.get(self, "name")
 
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[str]:
+        return pulumi.get(self, "namespace")
+
 
 class AwaitableGetOidcPublicKeysResult(GetOidcPublicKeysResult):
     # pylint: disable=using-constant-test
@@ -63,10 +71,12 @@ class AwaitableGetOidcPublicKeysResult(GetOidcPublicKeysResult):
         return GetOidcPublicKeysResult(
             id=self.id,
             keys=self.keys,
-            name=self.name)
+            name=self.name,
+            namespace=self.namespace)
 
 
 def get_oidc_public_keys(name: Optional[str] = None,
+                         namespace: Optional[str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOidcPublicKeysResult:
     """
     ## Example Usage
@@ -94,20 +104,27 @@ def get_oidc_public_keys(name: Optional[str] = None,
 
 
     :param str name: The name of the OIDC Provider in Vault.
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           *Available only for Vault Enterprise*.
     """
     __args__ = dict()
     __args__['name'] = name
+    __args__['namespace'] = namespace
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('vault:identity/getOidcPublicKeys:getOidcPublicKeys', __args__, opts=opts, typ=GetOidcPublicKeysResult).value
 
     return AwaitableGetOidcPublicKeysResult(
         id=__ret__.id,
         keys=__ret__.keys,
-        name=__ret__.name)
+        name=__ret__.name,
+        namespace=__ret__.namespace)
 
 
 @_utilities.lift_output_func(get_oidc_public_keys)
 def get_oidc_public_keys_output(name: Optional[pulumi.Input[str]] = None,
+                                namespace: Optional[pulumi.Input[Optional[str]]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOidcPublicKeysResult]:
     """
     ## Example Usage
@@ -135,5 +152,9 @@ def get_oidc_public_keys_output(name: Optional[pulumi.Input[str]] = None,
 
 
     :param str name: The name of the OIDC Provider in Vault.
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           *Available only for Vault Enterprise*.
     """
     ...

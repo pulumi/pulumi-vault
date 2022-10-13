@@ -67,6 +67,13 @@ export class Secret extends pulumi.CustomResource {
      */
     public readonly disableRead!: pulumi.Output<boolean | undefined>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * The full logical path at which to write the given data.
      * To write data into the "generic" secret backend mounted in Vault by default,
      * this should be prefixed with `secret/`. Writing to other backends with this
@@ -92,6 +99,7 @@ export class Secret extends pulumi.CustomResource {
             resourceInputs["dataJson"] = state ? state.dataJson : undefined;
             resourceInputs["deleteAllVersions"] = state ? state.deleteAllVersions : undefined;
             resourceInputs["disableRead"] = state ? state.disableRead : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
         } else {
             const args = argsOrState as SecretArgs | undefined;
@@ -101,13 +109,16 @@ export class Secret extends pulumi.CustomResource {
             if ((!args || args.path === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
-            resourceInputs["dataJson"] = args ? args.dataJson : undefined;
+            resourceInputs["dataJson"] = args?.dataJson ? pulumi.secret(args.dataJson) : undefined;
             resourceInputs["deleteAllVersions"] = args ? args.deleteAllVersions : undefined;
             resourceInputs["disableRead"] = args ? args.disableRead : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["data"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["data", "dataJson"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Secret.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -142,6 +153,13 @@ export interface SecretState {
      */
     disableRead?: pulumi.Input<boolean>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
+    /**
      * The full logical path at which to write the given data.
      * To write data into the "generic" secret backend mounted in Vault by default,
      * this should be prefixed with `secret/`. Writing to other backends with this
@@ -173,6 +191,13 @@ export interface SecretArgs {
      * break drift detection. Defaults to false.
      */
     disableRead?: pulumi.Input<boolean>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The full logical path at which to write the given data.
      * To write data into the "generic" secret backend mounted in Vault by default,

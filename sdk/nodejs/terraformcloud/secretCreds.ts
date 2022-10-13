@@ -65,6 +65,13 @@ export class SecretCreds extends pulumi.CustomResource {
      */
     public /*out*/ readonly leaseId!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * The organization associated with the token provided.
      */
     public /*out*/ readonly organization!: pulumi.Output<string>;
@@ -102,6 +109,7 @@ export class SecretCreds extends pulumi.CustomResource {
             const state = argsOrState as SecretCredsState | undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["leaseId"] = state ? state.leaseId : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["organization"] = state ? state.organization : undefined;
             resourceInputs["role"] = state ? state.role : undefined;
             resourceInputs["teamId"] = state ? state.teamId : undefined;
@@ -116,6 +124,7 @@ export class SecretCreds extends pulumi.CustomResource {
                 throw new Error("Missing required property 'role'");
             }
             resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["role"] = args ? args.role : undefined;
             resourceInputs["leaseId"] = undefined /*out*/;
             resourceInputs["organization"] = undefined /*out*/;
@@ -124,6 +133,8 @@ export class SecretCreds extends pulumi.CustomResource {
             resourceInputs["tokenId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["leaseId", "token"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SecretCreds.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -141,6 +152,13 @@ export interface SecretCredsState {
      * Vault lease associated with them.
      */
     leaseId?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The organization associated with the token provided.
      */
@@ -173,6 +191,13 @@ export interface SecretCredsArgs {
      * Terraform Cloud secret backend to generate tokens from
      */
     backend: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Name of the role.
      */

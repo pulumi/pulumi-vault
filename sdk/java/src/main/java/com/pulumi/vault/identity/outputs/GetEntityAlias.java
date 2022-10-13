@@ -16,77 +16,54 @@ public final class GetEntityAlias {
      * @return Canonical ID of the Alias
      * 
      */
-    private final String canonicalId;
+    private String canonicalId;
     /**
      * @return Creation time of the Alias
      * 
      */
-    private final String creationTime;
+    private String creationTime;
     /**
      * @return ID of the alias
      * 
      */
-    private final String id;
+    private String id;
     /**
      * @return Last update time of the alias
      * 
      */
-    private final String lastUpdateTime;
+    private String lastUpdateTime;
     /**
      * @return List of canonical IDs merged with this alias
      * 
      */
-    private final List<String> mergedFromCanonicalIds;
+    private List<String> mergedFromCanonicalIds;
     /**
      * @return Arbitrary metadata
      * 
      */
-    private final Map<String,Object> metadata;
+    private Map<String,Object> metadata;
     /**
      * @return Authentication mount acccessor which this alias belongs to
      * 
      */
-    private final String mountAccessor;
+    private String mountAccessor;
     /**
      * @return Authentication mount path which this alias belongs to
      * 
      */
-    private final String mountPath;
+    private String mountPath;
     /**
      * @return Authentication mount type which this alias belongs to
      * 
      */
-    private final String mountType;
+    private String mountType;
     /**
      * @return Name of the alias
      * 
      */
-    private final String name;
+    private String name;
 
-    @CustomType.Constructor
-    private GetEntityAlias(
-        @CustomType.Parameter("canonicalId") String canonicalId,
-        @CustomType.Parameter("creationTime") String creationTime,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("lastUpdateTime") String lastUpdateTime,
-        @CustomType.Parameter("mergedFromCanonicalIds") List<String> mergedFromCanonicalIds,
-        @CustomType.Parameter("metadata") Map<String,Object> metadata,
-        @CustomType.Parameter("mountAccessor") String mountAccessor,
-        @CustomType.Parameter("mountPath") String mountPath,
-        @CustomType.Parameter("mountType") String mountType,
-        @CustomType.Parameter("name") String name) {
-        this.canonicalId = canonicalId;
-        this.creationTime = creationTime;
-        this.id = id;
-        this.lastUpdateTime = lastUpdateTime;
-        this.mergedFromCanonicalIds = mergedFromCanonicalIds;
-        this.metadata = metadata;
-        this.mountAccessor = mountAccessor;
-        this.mountPath = mountPath;
-        this.mountType = mountType;
-        this.name = name;
-    }
-
+    private GetEntityAlias() {}
     /**
      * @return Canonical ID of the Alias
      * 
@@ -165,7 +142,7 @@ public final class GetEntityAlias {
     public static Builder builder(GetEntityAlias defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String canonicalId;
         private String creationTime;
@@ -177,11 +154,7 @@ public final class GetEntityAlias {
         private String mountPath;
         private String mountType;
         private String name;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetEntityAlias defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.canonicalId = defaults.canonicalId;
@@ -196,22 +169,27 @@ public final class GetEntityAlias {
     	      this.name = defaults.name;
         }
 
+        @CustomType.Setter
         public Builder canonicalId(String canonicalId) {
             this.canonicalId = Objects.requireNonNull(canonicalId);
             return this;
         }
+        @CustomType.Setter
         public Builder creationTime(String creationTime) {
             this.creationTime = Objects.requireNonNull(creationTime);
             return this;
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder lastUpdateTime(String lastUpdateTime) {
             this.lastUpdateTime = Objects.requireNonNull(lastUpdateTime);
             return this;
         }
+        @CustomType.Setter
         public Builder mergedFromCanonicalIds(List<String> mergedFromCanonicalIds) {
             this.mergedFromCanonicalIds = Objects.requireNonNull(mergedFromCanonicalIds);
             return this;
@@ -219,27 +197,44 @@ public final class GetEntityAlias {
         public Builder mergedFromCanonicalIds(String... mergedFromCanonicalIds) {
             return mergedFromCanonicalIds(List.of(mergedFromCanonicalIds));
         }
+        @CustomType.Setter
         public Builder metadata(Map<String,Object> metadata) {
             this.metadata = Objects.requireNonNull(metadata);
             return this;
         }
+        @CustomType.Setter
         public Builder mountAccessor(String mountAccessor) {
             this.mountAccessor = Objects.requireNonNull(mountAccessor);
             return this;
         }
+        @CustomType.Setter
         public Builder mountPath(String mountPath) {
             this.mountPath = Objects.requireNonNull(mountPath);
             return this;
         }
+        @CustomType.Setter
         public Builder mountType(String mountType) {
             this.mountType = Objects.requireNonNull(mountType);
             return this;
         }
+        @CustomType.Setter
         public Builder name(String name) {
             this.name = Objects.requireNonNull(name);
             return this;
-        }        public GetEntityAlias build() {
-            return new GetEntityAlias(canonicalId, creationTime, id, lastUpdateTime, mergedFromCanonicalIds, metadata, mountAccessor, mountPath, mountType, name);
+        }
+        public GetEntityAlias build() {
+            final var o = new GetEntityAlias();
+            o.canonicalId = canonicalId;
+            o.creationTime = creationTime;
+            o.id = id;
+            o.lastUpdateTime = lastUpdateTime;
+            o.mergedFromCanonicalIds = mergedFromCanonicalIds;
+            o.metadata = metadata;
+            o.mountAccessor = mountAccessor;
+            o.mountPath = mountPath;
+            o.mountType = mountType;
+            o.name = name;
+            return o;
         }
     }
 }

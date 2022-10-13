@@ -17,6 +17,7 @@ class SecretRoleArgs:
                  path: pulumi.Input[str],
                  role: pulumi.Input[str],
                  scope: pulumi.Input[str],
+                 namespace: Optional[pulumi.Input[str]] = None,
                  operation_activate: Optional[pulumi.Input[bool]] = None,
                  operation_add_attribute: Optional[pulumi.Input[bool]] = None,
                  operation_all: Optional[pulumi.Input[bool]] = None,
@@ -40,6 +41,10 @@ class SecretRoleArgs:
                not begin or end with a `/`. Defaults to `kmip`.
         :param pulumi.Input[str] role: Name of the role.
         :param pulumi.Input[str] scope: Name of the scope.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] operation_activate: Grant permission to use the KMIP Activate operation.
         :param pulumi.Input[bool] operation_add_attribute: Grant permission to use the KMIP Add Attribute operation.
         :param pulumi.Input[bool] operation_all: Grant all permissions to this role. May not be specified with any other `operation_*` params.
@@ -61,6 +66,8 @@ class SecretRoleArgs:
         pulumi.set(__self__, "path", path)
         pulumi.set(__self__, "role", role)
         pulumi.set(__self__, "scope", scope)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if operation_activate is not None:
             pulumi.set(__self__, "operation_activate", operation_activate)
         if operation_add_attribute is not None:
@@ -132,6 +139,21 @@ class SecretRoleArgs:
     @scope.setter
     def scope(self, value: pulumi.Input[str]):
         pulumi.set(self, "scope", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter(name="operationActivate")
@@ -341,6 +363,7 @@ class SecretRoleArgs:
 @pulumi.input_type
 class _SecretRoleState:
     def __init__(__self__, *,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  operation_activate: Optional[pulumi.Input[bool]] = None,
                  operation_add_attribute: Optional[pulumi.Input[bool]] = None,
                  operation_all: Optional[pulumi.Input[bool]] = None,
@@ -363,6 +386,10 @@ class _SecretRoleState:
                  tls_client_ttl: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering SecretRole resources.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] operation_activate: Grant permission to use the KMIP Activate operation.
         :param pulumi.Input[bool] operation_add_attribute: Grant permission to use the KMIP Add Attribute operation.
         :param pulumi.Input[bool] operation_all: Grant all permissions to this role. May not be specified with any other `operation_*` params.
@@ -385,6 +412,8 @@ class _SecretRoleState:
         :param pulumi.Input[str] tls_client_key_type: Client certificate key type, `rsa` or `ec`.
         :param pulumi.Input[int] tls_client_ttl: Client certificate TTL in seconds.
         """
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if operation_activate is not None:
             pulumi.set(__self__, "operation_activate", operation_activate)
         if operation_add_attribute is not None:
@@ -425,6 +454,21 @@ class _SecretRoleState:
             pulumi.set(__self__, "tls_client_key_type", tls_client_key_type)
         if tls_client_ttl is not None:
             pulumi.set(__self__, "tls_client_ttl", tls_client_ttl)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter(name="operationActivate")
@@ -673,6 +717,7 @@ class SecretRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  operation_activate: Optional[pulumi.Input[bool]] = None,
                  operation_add_attribute: Optional[pulumi.Input[bool]] = None,
                  operation_all: Optional[pulumi.Input[bool]] = None,
@@ -735,6 +780,10 @@ class SecretRole(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] operation_activate: Grant permission to use the KMIP Activate operation.
         :param pulumi.Input[bool] operation_add_attribute: Grant permission to use the KMIP Add Attribute operation.
         :param pulumi.Input[bool] operation_all: Grant all permissions to this role. May not be specified with any other `operation_*` params.
@@ -817,6 +866,7 @@ class SecretRole(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  operation_activate: Optional[pulumi.Input[bool]] = None,
                  operation_add_attribute: Optional[pulumi.Input[bool]] = None,
                  operation_all: Optional[pulumi.Input[bool]] = None,
@@ -846,6 +896,7 @@ class SecretRole(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SecretRoleArgs.__new__(SecretRoleArgs)
 
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["operation_activate"] = operation_activate
             __props__.__dict__["operation_add_attribute"] = operation_add_attribute
             __props__.__dict__["operation_all"] = operation_all
@@ -882,6 +933,7 @@ class SecretRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             operation_activate: Optional[pulumi.Input[bool]] = None,
             operation_add_attribute: Optional[pulumi.Input[bool]] = None,
             operation_all: Optional[pulumi.Input[bool]] = None,
@@ -909,6 +961,10 @@ class SecretRole(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] operation_activate: Grant permission to use the KMIP Activate operation.
         :param pulumi.Input[bool] operation_add_attribute: Grant permission to use the KMIP Add Attribute operation.
         :param pulumi.Input[bool] operation_all: Grant all permissions to this role. May not be specified with any other `operation_*` params.
@@ -935,6 +991,7 @@ class SecretRole(pulumi.CustomResource):
 
         __props__ = _SecretRoleState.__new__(_SecretRoleState)
 
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["operation_activate"] = operation_activate
         __props__.__dict__["operation_add_attribute"] = operation_add_attribute
         __props__.__dict__["operation_all"] = operation_all
@@ -956,6 +1013,17 @@ class SecretRole(pulumi.CustomResource):
         __props__.__dict__["tls_client_key_type"] = tls_client_key_type
         __props__.__dict__["tls_client_ttl"] = tls_client_ttl
         return SecretRole(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="operationActivate")

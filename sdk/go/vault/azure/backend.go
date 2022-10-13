@@ -81,8 +81,16 @@ type Backend struct {
 	ClientSecret pulumi.StringPtrOutput `pulumi:"clientSecret"`
 	// Human-friendly description of the mount for the backend.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
 	// - The Azure environment.
 	Environment pulumi.StringPtrOutput `pulumi:"environment"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// - The unique path this backend should be mounted at. Defaults to `azure`.
 	Path pulumi.StringPtrOutput `pulumi:"path"`
 	// - The subscription id for the Azure Active Directory.
@@ -107,6 +115,25 @@ func NewBackend(ctx *pulumi.Context,
 	if args.TenantId == nil {
 		return nil, errors.New("invalid value for required argument 'TenantId'")
 	}
+	if args.ClientId != nil {
+		args.ClientId = pulumi.ToSecret(args.ClientId).(pulumi.StringPtrOutput)
+	}
+	if args.ClientSecret != nil {
+		args.ClientSecret = pulumi.ToSecret(args.ClientSecret).(pulumi.StringPtrOutput)
+	}
+	if args.SubscriptionId != nil {
+		args.SubscriptionId = pulumi.ToSecret(args.SubscriptionId).(pulumi.StringOutput)
+	}
+	if args.TenantId != nil {
+		args.TenantId = pulumi.ToSecret(args.TenantId).(pulumi.StringOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"clientId",
+		"clientSecret",
+		"subscriptionId",
+		"tenantId",
+	})
+	opts = append(opts, secrets)
 	var resource Backend
 	err := ctx.RegisterResource("vault:azure/backend:Backend", name, args, &resource, opts...)
 	if err != nil {
@@ -135,8 +162,16 @@ type backendState struct {
 	ClientSecret *string `pulumi:"clientSecret"`
 	// Human-friendly description of the mount for the backend.
 	Description *string `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount *bool `pulumi:"disableRemount"`
 	// - The Azure environment.
 	Environment *string `pulumi:"environment"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// - The unique path this backend should be mounted at. Defaults to `azure`.
 	Path *string `pulumi:"path"`
 	// - The subscription id for the Azure Active Directory.
@@ -155,8 +190,16 @@ type BackendState struct {
 	ClientSecret pulumi.StringPtrInput
 	// Human-friendly description of the mount for the backend.
 	Description pulumi.StringPtrInput
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrInput
 	// - The Azure environment.
 	Environment pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// - The unique path this backend should be mounted at. Defaults to `azure`.
 	Path pulumi.StringPtrInput
 	// - The subscription id for the Azure Active Directory.
@@ -179,8 +222,16 @@ type backendArgs struct {
 	ClientSecret *string `pulumi:"clientSecret"`
 	// Human-friendly description of the mount for the backend.
 	Description *string `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount *bool `pulumi:"disableRemount"`
 	// - The Azure environment.
 	Environment *string `pulumi:"environment"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// - The unique path this backend should be mounted at. Defaults to `azure`.
 	Path *string `pulumi:"path"`
 	// - The subscription id for the Azure Active Directory.
@@ -200,8 +251,16 @@ type BackendArgs struct {
 	ClientSecret pulumi.StringPtrInput
 	// Human-friendly description of the mount for the backend.
 	Description pulumi.StringPtrInput
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrInput
 	// - The Azure environment.
 	Environment pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// - The unique path this backend should be mounted at. Defaults to `azure`.
 	Path pulumi.StringPtrInput
 	// - The subscription id for the Azure Active Directory.
@@ -315,9 +374,23 @@ func (o BackendOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Backend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// If set, opts out of mount migration on path updates.
+// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+func (o BackendOutput) DisableRemount() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Backend) pulumi.BoolPtrOutput { return v.DisableRemount }).(pulumi.BoolPtrOutput)
+}
+
 // - The Azure environment.
 func (o BackendOutput) Environment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Backend) pulumi.StringPtrOutput { return v.Environment }).(pulumi.StringPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o BackendOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Backend) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // - The unique path this backend should be mounted at. Defaults to `azure`.

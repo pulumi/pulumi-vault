@@ -21,7 +21,7 @@ class GetNomadAccessTokenResult:
     """
     A collection of values returned by getNomadAccessToken.
     """
-    def __init__(__self__, accessor_id=None, backend=None, id=None, role=None, secret_id=None):
+    def __init__(__self__, accessor_id=None, backend=None, id=None, namespace=None, role=None, secret_id=None):
         if accessor_id and not isinstance(accessor_id, str):
             raise TypeError("Expected argument 'accessor_id' to be a str")
         pulumi.set(__self__, "accessor_id", accessor_id)
@@ -31,6 +31,9 @@ class GetNomadAccessTokenResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if namespace and not isinstance(namespace, str):
+            raise TypeError("Expected argument 'namespace' to be a str")
+        pulumi.set(__self__, "namespace", namespace)
         if role and not isinstance(role, str):
             raise TypeError("Expected argument 'role' to be a str")
         pulumi.set(__self__, "role", role)
@@ -62,6 +65,11 @@ class GetNomadAccessTokenResult:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[str]:
+        return pulumi.get(self, "namespace")
+
+    @property
+    @pulumi.getter
     def role(self) -> str:
         return pulumi.get(self, "role")
 
@@ -83,11 +91,13 @@ class AwaitableGetNomadAccessTokenResult(GetNomadAccessTokenResult):
             accessor_id=self.accessor_id,
             backend=self.backend,
             id=self.id,
+            namespace=self.namespace,
             role=self.role,
             secret_id=self.secret_id)
 
 
 def get_nomad_access_token(backend: Optional[str] = None,
+                           namespace: Optional[str] = None,
                            role: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNomadAccessTokenResult:
     """
@@ -116,11 +126,16 @@ def get_nomad_access_token(backend: Optional[str] = None,
 
     :param str backend: The path to the Nomad secret backend to
            read credentials from, with no leading or trailing `/`s.
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           *Available only for Vault Enterprise*.
     :param str role: The name of the Nomad secret backend role to generate
            a token for, with no leading or trailing `/`s.
     """
     __args__ = dict()
     __args__['backend'] = backend
+    __args__['namespace'] = namespace
     __args__['role'] = role
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('vault:index/getNomadAccessToken:getNomadAccessToken', __args__, opts=opts, typ=GetNomadAccessTokenResult).value
@@ -129,12 +144,14 @@ def get_nomad_access_token(backend: Optional[str] = None,
         accessor_id=__ret__.accessor_id,
         backend=__ret__.backend,
         id=__ret__.id,
+        namespace=__ret__.namespace,
         role=__ret__.role,
         secret_id=__ret__.secret_id)
 
 
 @_utilities.lift_output_func(get_nomad_access_token)
 def get_nomad_access_token_output(backend: Optional[pulumi.Input[str]] = None,
+                                  namespace: Optional[pulumi.Input[Optional[str]]] = None,
                                   role: Optional[pulumi.Input[str]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNomadAccessTokenResult]:
     """
@@ -163,6 +180,10 @@ def get_nomad_access_token_output(backend: Optional[pulumi.Input[str]] = None,
 
     :param str backend: The path to the Nomad secret backend to
            read credentials from, with no leading or trailing `/`s.
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           *Available only for Vault Enterprise*.
     :param str role: The name of the Nomad secret backend role to generate
            a token for, with no leading or trailing `/`s.
     """

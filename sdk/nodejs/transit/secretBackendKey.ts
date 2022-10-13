@@ -126,6 +126,13 @@ export class SecretBackendKey extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * Whether or not the key supports decryption, based on key type.
      */
     public /*out*/ readonly supportsDecryption!: pulumi.Output<boolean>;
@@ -174,6 +181,7 @@ export class SecretBackendKey extends pulumi.CustomResource {
             resourceInputs["minDecryptionVersion"] = state ? state.minDecryptionVersion : undefined;
             resourceInputs["minEncryptionVersion"] = state ? state.minEncryptionVersion : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["supportsDecryption"] = state ? state.supportsDecryption : undefined;
             resourceInputs["supportsDerivation"] = state ? state.supportsDerivation : undefined;
             resourceInputs["supportsEncryption"] = state ? state.supportsEncryption : undefined;
@@ -195,6 +203,7 @@ export class SecretBackendKey extends pulumi.CustomResource {
             resourceInputs["minDecryptionVersion"] = args ? args.minDecryptionVersion : undefined;
             resourceInputs["minEncryptionVersion"] = args ? args.minEncryptionVersion : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["keys"] = undefined /*out*/;
             resourceInputs["latestVersion"] = undefined /*out*/;
@@ -277,6 +286,13 @@ export interface SecretBackendKeyState {
      */
     name?: pulumi.Input<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
+    /**
      * Whether or not the key supports decryption, based on key type.
      */
     supportsDecryption?: pulumi.Input<boolean>;
@@ -352,6 +368,13 @@ export interface SecretBackendKeyArgs {
      * The name to identify this key within the backend. Must be unique within the backend.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`. 
      * * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)

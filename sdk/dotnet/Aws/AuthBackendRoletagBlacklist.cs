@@ -53,6 +53,15 @@ namespace Pulumi.Vault.Aws
         public Output<bool?> DisablePeriodicTidy { get; private set; } = null!;
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
         /// The amount of extra time that must have passed
         /// beyond the roletag expiration, before it is removed from the backend storage.
         /// Defaults to 259,200 seconds, or 72 hours.
@@ -121,6 +130,15 @@ namespace Pulumi.Vault.Aws
         public Input<bool>? DisablePeriodicTidy { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
         /// The amount of extra time that must have passed
         /// beyond the roletag expiration, before it is removed from the backend storage.
         /// Defaults to 259,200 seconds, or 72 hours.
@@ -149,6 +167,15 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Input("disablePeriodicTidy")]
         public Input<bool>? DisablePeriodicTidy { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// The amount of extra time that must have passed

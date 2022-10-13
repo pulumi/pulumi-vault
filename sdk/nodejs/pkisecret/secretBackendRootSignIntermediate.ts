@@ -114,6 +114,13 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
      */
     public readonly maxPathLength!: pulumi.Output<number | undefined>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * The organization
      */
     public readonly organization!: pulumi.Output<string | undefined>;
@@ -195,6 +202,7 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
             resourceInputs["issuingCa"] = state ? state.issuingCa : undefined;
             resourceInputs["locality"] = state ? state.locality : undefined;
             resourceInputs["maxPathLength"] = state ? state.maxPathLength : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["organization"] = state ? state.organization : undefined;
             resourceInputs["otherSans"] = state ? state.otherSans : undefined;
             resourceInputs["ou"] = state ? state.ou : undefined;
@@ -229,6 +237,7 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
             resourceInputs["ipSans"] = args ? args.ipSans : undefined;
             resourceInputs["locality"] = args ? args.locality : undefined;
             resourceInputs["maxPathLength"] = args ? args.maxPathLength : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["organization"] = args ? args.organization : undefined;
             resourceInputs["otherSans"] = args ? args.otherSans : undefined;
             resourceInputs["ou"] = args ? args.ou : undefined;
@@ -313,6 +322,13 @@ export interface SecretBackendRootSignIntermediateState {
      * The maximum path length to encode in the generated certificate
      */
     maxPathLength?: pulumi.Input<number>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The organization
      */
@@ -413,6 +429,13 @@ export interface SecretBackendRootSignIntermediateArgs {
      * The maximum path length to encode in the generated certificate
      */
     maxPathLength?: pulumi.Input<number>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The organization
      */

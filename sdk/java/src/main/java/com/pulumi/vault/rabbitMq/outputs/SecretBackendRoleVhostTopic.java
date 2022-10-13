@@ -12,21 +12,14 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class SecretBackendRoleVhostTopic {
-    private final String host;
+    private String host;
     /**
      * @return Specifies a map of virtual hosts to permissions.
      * 
      */
-    private final @Nullable List<SecretBackendRoleVhostTopicVhost> vhosts;
+    private @Nullable List<SecretBackendRoleVhostTopicVhost> vhosts;
 
-    @CustomType.Constructor
-    private SecretBackendRoleVhostTopic(
-        @CustomType.Parameter("host") String host,
-        @CustomType.Parameter("vhosts") @Nullable List<SecretBackendRoleVhostTopicVhost> vhosts) {
-        this.host = host;
-        this.vhosts = vhosts;
-    }
-
+    private SecretBackendRoleVhostTopic() {}
     public String host() {
         return this.host;
     }
@@ -45,33 +38,35 @@ public final class SecretBackendRoleVhostTopic {
     public static Builder builder(SecretBackendRoleVhostTopic defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String host;
         private @Nullable List<SecretBackendRoleVhostTopicVhost> vhosts;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(SecretBackendRoleVhostTopic defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.host = defaults.host;
     	      this.vhosts = defaults.vhosts;
         }
 
+        @CustomType.Setter
         public Builder host(String host) {
             this.host = Objects.requireNonNull(host);
             return this;
         }
+        @CustomType.Setter
         public Builder vhosts(@Nullable List<SecretBackendRoleVhostTopicVhost> vhosts) {
             this.vhosts = vhosts;
             return this;
         }
         public Builder vhosts(SecretBackendRoleVhostTopicVhost... vhosts) {
             return vhosts(List.of(vhosts));
-        }        public SecretBackendRoleVhostTopic build() {
-            return new SecretBackendRoleVhostTopic(host, vhosts);
+        }
+        public SecretBackendRoleVhostTopic build() {
+            final var o = new SecretBackendRoleVhostTopic();
+            o.host = host;
+            o.vhosts = vhosts;
+            return o;
         }
     }
 }

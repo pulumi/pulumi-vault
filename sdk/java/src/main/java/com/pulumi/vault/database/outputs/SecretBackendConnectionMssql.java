@@ -20,7 +20,7 @@ public final class SecretBackendConnectionMssql {
      * for an example.
      * 
      */
-    private final @Nullable String connectionUrl;
+    private @Nullable String connectionUrl;
     /**
      * @return For Vault v1.9+. Set to true when the target is a
      * Contained Database, e.g. AzureSQL.
@@ -28,67 +28,46 @@ public final class SecretBackendConnectionMssql {
      * docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
      * 
      */
-    private final @Nullable Boolean containedDb;
+    private @Nullable Boolean containedDb;
     /**
      * @return Disable special character escaping in username and password.
      * 
      */
-    private final @Nullable Boolean disableEscaping;
+    private @Nullable Boolean disableEscaping;
     /**
      * @return The maximum amount of time a connection may be reused.
      * 
      */
-    private final @Nullable Integer maxConnectionLifetime;
+    private @Nullable Integer maxConnectionLifetime;
     /**
      * @return The maximum number of idle connections to
      * the database.
      * 
      */
-    private final @Nullable Integer maxIdleConnections;
+    private @Nullable Integer maxIdleConnections;
     /**
      * @return The maximum number of open connections to
      * the database.
      * 
      */
-    private final @Nullable Integer maxOpenConnections;
+    private @Nullable Integer maxOpenConnections;
     /**
      * @return The root credential password used in the connection URL.
      * 
      */
-    private final @Nullable String password;
+    private @Nullable String password;
     /**
      * @return The root credential username used in the connection URL.
      * 
      */
-    private final @Nullable String username;
+    private @Nullable String username;
     /**
      * @return - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
      * 
      */
-    private final @Nullable String usernameTemplate;
+    private @Nullable String usernameTemplate;
 
-    @CustomType.Constructor
-    private SecretBackendConnectionMssql(
-        @CustomType.Parameter("connectionUrl") @Nullable String connectionUrl,
-        @CustomType.Parameter("containedDb") @Nullable Boolean containedDb,
-        @CustomType.Parameter("disableEscaping") @Nullable Boolean disableEscaping,
-        @CustomType.Parameter("maxConnectionLifetime") @Nullable Integer maxConnectionLifetime,
-        @CustomType.Parameter("maxIdleConnections") @Nullable Integer maxIdleConnections,
-        @CustomType.Parameter("maxOpenConnections") @Nullable Integer maxOpenConnections,
-        @CustomType.Parameter("password") @Nullable String password,
-        @CustomType.Parameter("username") @Nullable String username,
-        @CustomType.Parameter("usernameTemplate") @Nullable String usernameTemplate) {
-        this.connectionUrl = connectionUrl;
-        this.containedDb = containedDb;
-        this.disableEscaping = disableEscaping;
-        this.maxConnectionLifetime = maxConnectionLifetime;
-        this.maxIdleConnections = maxIdleConnections;
-        this.maxOpenConnections = maxOpenConnections;
-        this.password = password;
-        this.username = username;
-        this.usernameTemplate = usernameTemplate;
-    }
-
+    private SecretBackendConnectionMssql() {}
     /**
      * @return Specifies the Redshift DSN. See
      * the [Vault
@@ -168,7 +147,7 @@ public final class SecretBackendConnectionMssql {
     public static Builder builder(SecretBackendConnectionMssql defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable String connectionUrl;
         private @Nullable Boolean containedDb;
@@ -179,11 +158,7 @@ public final class SecretBackendConnectionMssql {
         private @Nullable String password;
         private @Nullable String username;
         private @Nullable String usernameTemplate;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(SecretBackendConnectionMssql defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.connectionUrl = defaults.connectionUrl;
@@ -197,43 +172,63 @@ public final class SecretBackendConnectionMssql {
     	      this.usernameTemplate = defaults.usernameTemplate;
         }
 
+        @CustomType.Setter
         public Builder connectionUrl(@Nullable String connectionUrl) {
             this.connectionUrl = connectionUrl;
             return this;
         }
+        @CustomType.Setter
         public Builder containedDb(@Nullable Boolean containedDb) {
             this.containedDb = containedDb;
             return this;
         }
+        @CustomType.Setter
         public Builder disableEscaping(@Nullable Boolean disableEscaping) {
             this.disableEscaping = disableEscaping;
             return this;
         }
+        @CustomType.Setter
         public Builder maxConnectionLifetime(@Nullable Integer maxConnectionLifetime) {
             this.maxConnectionLifetime = maxConnectionLifetime;
             return this;
         }
+        @CustomType.Setter
         public Builder maxIdleConnections(@Nullable Integer maxIdleConnections) {
             this.maxIdleConnections = maxIdleConnections;
             return this;
         }
+        @CustomType.Setter
         public Builder maxOpenConnections(@Nullable Integer maxOpenConnections) {
             this.maxOpenConnections = maxOpenConnections;
             return this;
         }
+        @CustomType.Setter
         public Builder password(@Nullable String password) {
             this.password = password;
             return this;
         }
+        @CustomType.Setter
         public Builder username(@Nullable String username) {
             this.username = username;
             return this;
         }
+        @CustomType.Setter
         public Builder usernameTemplate(@Nullable String usernameTemplate) {
             this.usernameTemplate = usernameTemplate;
             return this;
-        }        public SecretBackendConnectionMssql build() {
-            return new SecretBackendConnectionMssql(connectionUrl, containedDb, disableEscaping, maxConnectionLifetime, maxIdleConnections, maxOpenConnections, password, username, usernameTemplate);
+        }
+        public SecretBackendConnectionMssql build() {
+            final var o = new SecretBackendConnectionMssql();
+            o.connectionUrl = connectionUrl;
+            o.containedDb = containedDb;
+            o.disableEscaping = disableEscaping;
+            o.maxConnectionLifetime = maxConnectionLifetime;
+            o.maxIdleConnections = maxIdleConnections;
+            o.maxOpenConnections = maxOpenConnections;
+            o.password = password;
+            o.username = username;
+            o.usernameTemplate = usernameTemplate;
+            return o;
         }
     }
 }

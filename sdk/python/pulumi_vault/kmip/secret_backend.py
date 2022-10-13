@@ -19,7 +19,9 @@ class SecretBackendArgs:
                  default_tls_client_key_type: Optional[pulumi.Input[str]] = None,
                  default_tls_client_ttl: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  listen_addrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  server_hostnames: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  server_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tls_ca_key_bits: Optional[pulumi.Input[int]] = None,
@@ -33,7 +35,13 @@ class SecretBackendArgs:
         :param pulumi.Input[str] default_tls_client_key_type: Client certificate key type, `rsa` or `ec`.
         :param pulumi.Input[int] default_tls_client_ttl: Client certificate TTL in seconds
         :param pulumi.Input[str] description: A human-friendly description for this backend.
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[Sequence[pulumi.Input[str]]] listen_addrs: Addresses the KMIP server should listen on (`host:port`).
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] server_hostnames: Hostnames to include in the server's TLS certificate as SAN DNS names. The first will be used as the common name (CN).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] server_ips: IPs to include in the server's TLS certificate as SAN IP addresses.
         :param pulumi.Input[int] tls_ca_key_bits: CA key bits, valid values depend on key type.
@@ -49,8 +57,12 @@ class SecretBackendArgs:
             pulumi.set(__self__, "default_tls_client_ttl", default_tls_client_ttl)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if disable_remount is not None:
+            pulumi.set(__self__, "disable_remount", disable_remount)
         if listen_addrs is not None:
             pulumi.set(__self__, "listen_addrs", listen_addrs)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if server_hostnames is not None:
             pulumi.set(__self__, "server_hostnames", server_hostnames)
         if server_ips is not None:
@@ -124,6 +136,19 @@ class SecretBackendArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="disableRemount")
+    def disable_remount(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, opts out of mount migration on path updates.
+        See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        """
+        return pulumi.get(self, "disable_remount")
+
+    @disable_remount.setter
+    def disable_remount(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_remount", value)
+
+    @property
     @pulumi.getter(name="listenAddrs")
     def listen_addrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -134,6 +159,21 @@ class SecretBackendArgs:
     @listen_addrs.setter
     def listen_addrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "listen_addrs", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter(name="serverHostnames")
@@ -203,7 +243,9 @@ class _SecretBackendState:
                  default_tls_client_key_type: Optional[pulumi.Input[str]] = None,
                  default_tls_client_ttl: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  listen_addrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  server_hostnames: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  server_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -216,7 +258,13 @@ class _SecretBackendState:
         :param pulumi.Input[str] default_tls_client_key_type: Client certificate key type, `rsa` or `ec`.
         :param pulumi.Input[int] default_tls_client_ttl: Client certificate TTL in seconds
         :param pulumi.Input[str] description: A human-friendly description for this backend.
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[Sequence[pulumi.Input[str]]] listen_addrs: Addresses the KMIP server should listen on (`host:port`).
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `kmip`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] server_hostnames: Hostnames to include in the server's TLS certificate as SAN DNS names. The first will be used as the common name (CN).
@@ -233,8 +281,12 @@ class _SecretBackendState:
             pulumi.set(__self__, "default_tls_client_ttl", default_tls_client_ttl)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if disable_remount is not None:
+            pulumi.set(__self__, "disable_remount", disable_remount)
         if listen_addrs is not None:
             pulumi.set(__self__, "listen_addrs", listen_addrs)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if path is not None:
             pulumi.set(__self__, "path", path)
         if server_hostnames is not None:
@@ -297,6 +349,19 @@ class _SecretBackendState:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="disableRemount")
+    def disable_remount(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, opts out of mount migration on path updates.
+        See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        """
+        return pulumi.get(self, "disable_remount")
+
+    @disable_remount.setter
+    def disable_remount(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_remount", value)
+
+    @property
     @pulumi.getter(name="listenAddrs")
     def listen_addrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -307,6 +372,21 @@ class _SecretBackendState:
     @listen_addrs.setter
     def listen_addrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "listen_addrs", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -391,7 +471,9 @@ class SecretBackend(pulumi.CustomResource):
                  default_tls_client_key_type: Optional[pulumi.Input[str]] = None,
                  default_tls_client_ttl: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  listen_addrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  server_hostnames: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  server_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -438,7 +520,13 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[str] default_tls_client_key_type: Client certificate key type, `rsa` or `ec`.
         :param pulumi.Input[int] default_tls_client_ttl: Client certificate TTL in seconds
         :param pulumi.Input[str] description: A human-friendly description for this backend.
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[Sequence[pulumi.Input[str]]] listen_addrs: Addresses the KMIP server should listen on (`host:port`).
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `kmip`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] server_hostnames: Hostnames to include in the server's TLS certificate as SAN DNS names. The first will be used as the common name (CN).
@@ -505,7 +593,9 @@ class SecretBackend(pulumi.CustomResource):
                  default_tls_client_key_type: Optional[pulumi.Input[str]] = None,
                  default_tls_client_ttl: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_remount: Optional[pulumi.Input[bool]] = None,
                  listen_addrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  server_hostnames: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  server_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -525,7 +615,9 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["default_tls_client_key_type"] = default_tls_client_key_type
             __props__.__dict__["default_tls_client_ttl"] = default_tls_client_ttl
             __props__.__dict__["description"] = description
+            __props__.__dict__["disable_remount"] = disable_remount
             __props__.__dict__["listen_addrs"] = listen_addrs
+            __props__.__dict__["namespace"] = namespace
             if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
             __props__.__dict__["path"] = path
@@ -548,7 +640,9 @@ class SecretBackend(pulumi.CustomResource):
             default_tls_client_key_type: Optional[pulumi.Input[str]] = None,
             default_tls_client_ttl: Optional[pulumi.Input[int]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            disable_remount: Optional[pulumi.Input[bool]] = None,
             listen_addrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
             server_hostnames: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             server_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -566,7 +660,13 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[str] default_tls_client_key_type: Client certificate key type, `rsa` or `ec`.
         :param pulumi.Input[int] default_tls_client_ttl: Client certificate TTL in seconds
         :param pulumi.Input[str] description: A human-friendly description for this backend.
+        :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
+               See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[Sequence[pulumi.Input[str]]] listen_addrs: Addresses the KMIP server should listen on (`host:port`).
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `kmip`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] server_hostnames: Hostnames to include in the server's TLS certificate as SAN DNS names. The first will be used as the common name (CN).
@@ -583,7 +683,9 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["default_tls_client_key_type"] = default_tls_client_key_type
         __props__.__dict__["default_tls_client_ttl"] = default_tls_client_ttl
         __props__.__dict__["description"] = description
+        __props__.__dict__["disable_remount"] = disable_remount
         __props__.__dict__["listen_addrs"] = listen_addrs
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["path"] = path
         __props__.__dict__["server_hostnames"] = server_hostnames
         __props__.__dict__["server_ips"] = server_ips
@@ -625,12 +727,32 @@ class SecretBackend(pulumi.CustomResource):
         return pulumi.get(self, "description")
 
     @property
+    @pulumi.getter(name="disableRemount")
+    def disable_remount(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If set, opts out of mount migration on path updates.
+        See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        """
+        return pulumi.get(self, "disable_remount")
+
+    @property
     @pulumi.getter(name="listenAddrs")
     def listen_addrs(self) -> pulumi.Output[Sequence[str]]:
         """
         Addresses the KMIP server should listen on (`host:port`).
         """
         return pulumi.get(self, "listen_addrs")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

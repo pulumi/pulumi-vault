@@ -55,6 +55,13 @@ export class OidcKeyAllowedClientID extends pulumi.CustomResource {
      * Name of the OIDC Key allow the Client ID.
      */
     public readonly keyName!: pulumi.Output<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
 
     /**
      * Create a OidcKeyAllowedClientID resource with the given unique name, arguments, and options.
@@ -71,6 +78,7 @@ export class OidcKeyAllowedClientID extends pulumi.CustomResource {
             const state = argsOrState as OidcKeyAllowedClientIDState | undefined;
             resourceInputs["allowedClientId"] = state ? state.allowedClientId : undefined;
             resourceInputs["keyName"] = state ? state.keyName : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
         } else {
             const args = argsOrState as OidcKeyAllowedClientIDArgs | undefined;
             if ((!args || args.allowedClientId === undefined) && !opts.urn) {
@@ -81,6 +89,7 @@ export class OidcKeyAllowedClientID extends pulumi.CustomResource {
             }
             resourceInputs["allowedClientId"] = args ? args.allowedClientId : undefined;
             resourceInputs["keyName"] = args ? args.keyName : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(OidcKeyAllowedClientID.__pulumiType, name, resourceInputs, opts);
@@ -99,6 +108,13 @@ export interface OidcKeyAllowedClientIDState {
      * Name of the OIDC Key allow the Client ID.
      */
     keyName?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
 }
 
 /**
@@ -113,4 +129,11 @@ export interface OidcKeyAllowedClientIDArgs {
      * Name of the OIDC Key allow the Client ID.
      */
     keyName: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
 }

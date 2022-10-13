@@ -92,6 +92,15 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string> Backend { get; private set; } = null!;
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
         /// The key and certificate PEM bundle
         /// </summary>
         [Output("pemBundle")]
@@ -120,6 +129,10 @@ namespace Pulumi.Vault.PkiSecret
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "pemBundle",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -150,10 +163,29 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string> Backend { get; set; } = null!;
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        [Input("pemBundle", required: true)]
+        private Input<string>? _pemBundle;
+
+        /// <summary>
         /// The key and certificate PEM bundle
         /// </summary>
-        [Input("pemBundle", required: true)]
-        public Input<string> PemBundle { get; set; } = null!;
+        public Input<string>? PemBundle
+        {
+            get => _pemBundle;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _pemBundle = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public SecretBackendConfigCaArgs()
         {
@@ -170,10 +202,29 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? Backend { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        [Input("pemBundle")]
+        private Input<string>? _pemBundle;
+
+        /// <summary>
         /// The key and certificate PEM bundle
         /// </summary>
-        [Input("pemBundle")]
-        public Input<string>? PemBundle { get; set; }
+        public Input<string>? PemBundle
+        {
+            get => _pemBundle;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _pemBundle = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public SecretBackendConfigCaState()
         {

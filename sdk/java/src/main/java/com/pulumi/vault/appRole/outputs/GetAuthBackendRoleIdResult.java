@@ -11,31 +11,21 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetAuthBackendRoleIdResult {
-    private final @Nullable String backend;
+    private @Nullable String backend;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
+    private String id;
+    private @Nullable String namespace;
     /**
      * @return The RoleID of the role.
      * 
      */
-    private final String roleId;
-    private final String roleName;
+    private String roleId;
+    private String roleName;
 
-    @CustomType.Constructor
-    private GetAuthBackendRoleIdResult(
-        @CustomType.Parameter("backend") @Nullable String backend,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("roleId") String roleId,
-        @CustomType.Parameter("roleName") String roleName) {
-        this.backend = backend;
-        this.id = id;
-        this.roleId = roleId;
-        this.roleName = roleName;
-    }
-
+    private GetAuthBackendRoleIdResult() {}
     public Optional<String> backend() {
         return Optional.ofNullable(this.backend);
     }
@@ -45,6 +35,9 @@ public final class GetAuthBackendRoleIdResult {
      */
     public String id() {
         return this.id;
+    }
+    public Optional<String> namespace() {
+        return Optional.ofNullable(this.namespace);
     }
     /**
      * @return The RoleID of the role.
@@ -64,42 +57,56 @@ public final class GetAuthBackendRoleIdResult {
     public static Builder builder(GetAuthBackendRoleIdResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable String backend;
         private String id;
+        private @Nullable String namespace;
         private String roleId;
         private String roleName;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetAuthBackendRoleIdResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.backend = defaults.backend;
     	      this.id = defaults.id;
+    	      this.namespace = defaults.namespace;
     	      this.roleId = defaults.roleId;
     	      this.roleName = defaults.roleName;
         }
 
+        @CustomType.Setter
         public Builder backend(@Nullable String backend) {
             this.backend = backend;
             return this;
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
+        public Builder namespace(@Nullable String namespace) {
+            this.namespace = namespace;
+            return this;
+        }
+        @CustomType.Setter
         public Builder roleId(String roleId) {
             this.roleId = Objects.requireNonNull(roleId);
             return this;
         }
+        @CustomType.Setter
         public Builder roleName(String roleName) {
             this.roleName = Objects.requireNonNull(roleName);
             return this;
-        }        public GetAuthBackendRoleIdResult build() {
-            return new GetAuthBackendRoleIdResult(backend, id, roleId, roleName);
+        }
+        public GetAuthBackendRoleIdResult build() {
+            final var o = new GetAuthBackendRoleIdResult();
+            o.backend = backend;
+            o.id = id;
+            o.namespace = namespace;
+            o.roleId = roleId;
+            o.roleName = roleName;
+            return o;
         }
     }
 }

@@ -926,6 +926,8 @@ type SecretBackendConnectionHana struct {
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	// for an example.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
+	// Disable special character escaping in username and password.
+	DisableEscaping *bool `pulumi:"disableEscaping"`
 	// The maximum amount of time a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
 	// The maximum number of idle connections to
@@ -957,6 +959,8 @@ type SecretBackendConnectionHanaArgs struct {
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	// for an example.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
+	// Disable special character escaping in username and password.
+	DisableEscaping pulumi.BoolPtrInput `pulumi:"disableEscaping"`
 	// The maximum amount of time a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
 	// The maximum number of idle connections to
@@ -1056,6 +1060,11 @@ func (o SecretBackendConnectionHanaOutput) ConnectionUrl() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v SecretBackendConnectionHana) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
+// Disable special character escaping in username and password.
+func (o SecretBackendConnectionHanaOutput) DisableEscaping() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionHana) *bool { return v.DisableEscaping }).(pulumi.BoolPtrOutput)
+}
+
 // The maximum amount of time a connection may be reused.
 func (o SecretBackendConnectionHanaOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionHana) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
@@ -1118,6 +1127,16 @@ func (o SecretBackendConnectionHanaPtrOutput) ConnectionUrl() pulumi.StringPtrOu
 		}
 		return v.ConnectionUrl
 	}).(pulumi.StringPtrOutput)
+}
+
+// Disable special character escaping in username and password.
+func (o SecretBackendConnectionHanaPtrOutput) DisableEscaping() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionHana) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DisableEscaping
+	}).(pulumi.BoolPtrOutput)
 }
 
 // The maximum amount of time a connection may be reused.
@@ -3662,6 +3681,8 @@ type SecretBackendConnectionPostgresql struct {
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	// for an example.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
+	// Disable special character escaping in username and password.
+	DisableEscaping *bool `pulumi:"disableEscaping"`
 	// The maximum amount of time a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
 	// The maximum number of idle connections to
@@ -3695,6 +3716,8 @@ type SecretBackendConnectionPostgresqlArgs struct {
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	// for an example.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
+	// Disable special character escaping in username and password.
+	DisableEscaping pulumi.BoolPtrInput `pulumi:"disableEscaping"`
 	// The maximum amount of time a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
 	// The maximum number of idle connections to
@@ -3796,6 +3819,11 @@ func (o SecretBackendConnectionPostgresqlOutput) ConnectionUrl() pulumi.StringPt
 	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
+// Disable special character escaping in username and password.
+func (o SecretBackendConnectionPostgresqlOutput) DisableEscaping() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *bool { return v.DisableEscaping }).(pulumi.BoolPtrOutput)
+}
+
 // The maximum amount of time a connection may be reused.
 func (o SecretBackendConnectionPostgresqlOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
@@ -3865,6 +3893,16 @@ func (o SecretBackendConnectionPostgresqlPtrOutput) ConnectionUrl() pulumi.Strin
 	}).(pulumi.StringPtrOutput)
 }
 
+// Disable special character escaping in username and password.
+func (o SecretBackendConnectionPostgresqlPtrOutput) DisableEscaping() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionPostgresql) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DisableEscaping
+	}).(pulumi.BoolPtrOutput)
+}
+
 // The maximum amount of time a connection may be reused.
 func (o SecretBackendConnectionPostgresqlPtrOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionPostgresql) *int {
@@ -3927,12 +3965,212 @@ func (o SecretBackendConnectionPostgresqlPtrOutput) UsernameTemplate() pulumi.St
 	}).(pulumi.StringPtrOutput)
 }
 
+type SecretBackendConnectionRedisElasticache struct {
+	// The root credential password used in the connection URL.
+	Password *string `pulumi:"password"`
+	// The region where the ElastiCache cluster is hosted. If omitted Vault tries to infer from the environment instead.
+	Region *string `pulumi:"region"`
+	// The URL for Elasticsearch's API. https requires certificate
+	// by trusted CA if used.
+	Url string `pulumi:"url"`
+	// The root credential username used in the connection URL.
+	Username *string `pulumi:"username"`
+}
+
+// SecretBackendConnectionRedisElasticacheInput is an input type that accepts SecretBackendConnectionRedisElasticacheArgs and SecretBackendConnectionRedisElasticacheOutput values.
+// You can construct a concrete instance of `SecretBackendConnectionRedisElasticacheInput` via:
+//
+//	SecretBackendConnectionRedisElasticacheArgs{...}
+type SecretBackendConnectionRedisElasticacheInput interface {
+	pulumi.Input
+
+	ToSecretBackendConnectionRedisElasticacheOutput() SecretBackendConnectionRedisElasticacheOutput
+	ToSecretBackendConnectionRedisElasticacheOutputWithContext(context.Context) SecretBackendConnectionRedisElasticacheOutput
+}
+
+type SecretBackendConnectionRedisElasticacheArgs struct {
+	// The root credential password used in the connection URL.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// The region where the ElastiCache cluster is hosted. If omitted Vault tries to infer from the environment instead.
+	Region pulumi.StringPtrInput `pulumi:"region"`
+	// The URL for Elasticsearch's API. https requires certificate
+	// by trusted CA if used.
+	Url pulumi.StringInput `pulumi:"url"`
+	// The root credential username used in the connection URL.
+	Username pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (SecretBackendConnectionRedisElasticacheArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendConnectionRedisElasticache)(nil)).Elem()
+}
+
+func (i SecretBackendConnectionRedisElasticacheArgs) ToSecretBackendConnectionRedisElasticacheOutput() SecretBackendConnectionRedisElasticacheOutput {
+	return i.ToSecretBackendConnectionRedisElasticacheOutputWithContext(context.Background())
+}
+
+func (i SecretBackendConnectionRedisElasticacheArgs) ToSecretBackendConnectionRedisElasticacheOutputWithContext(ctx context.Context) SecretBackendConnectionRedisElasticacheOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionRedisElasticacheOutput)
+}
+
+func (i SecretBackendConnectionRedisElasticacheArgs) ToSecretBackendConnectionRedisElasticachePtrOutput() SecretBackendConnectionRedisElasticachePtrOutput {
+	return i.ToSecretBackendConnectionRedisElasticachePtrOutputWithContext(context.Background())
+}
+
+func (i SecretBackendConnectionRedisElasticacheArgs) ToSecretBackendConnectionRedisElasticachePtrOutputWithContext(ctx context.Context) SecretBackendConnectionRedisElasticachePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionRedisElasticacheOutput).ToSecretBackendConnectionRedisElasticachePtrOutputWithContext(ctx)
+}
+
+// SecretBackendConnectionRedisElasticachePtrInput is an input type that accepts SecretBackendConnectionRedisElasticacheArgs, SecretBackendConnectionRedisElasticachePtr and SecretBackendConnectionRedisElasticachePtrOutput values.
+// You can construct a concrete instance of `SecretBackendConnectionRedisElasticachePtrInput` via:
+//
+//	        SecretBackendConnectionRedisElasticacheArgs{...}
+//
+//	or:
+//
+//	        nil
+type SecretBackendConnectionRedisElasticachePtrInput interface {
+	pulumi.Input
+
+	ToSecretBackendConnectionRedisElasticachePtrOutput() SecretBackendConnectionRedisElasticachePtrOutput
+	ToSecretBackendConnectionRedisElasticachePtrOutputWithContext(context.Context) SecretBackendConnectionRedisElasticachePtrOutput
+}
+
+type secretBackendConnectionRedisElasticachePtrType SecretBackendConnectionRedisElasticacheArgs
+
+func SecretBackendConnectionRedisElasticachePtr(v *SecretBackendConnectionRedisElasticacheArgs) SecretBackendConnectionRedisElasticachePtrInput {
+	return (*secretBackendConnectionRedisElasticachePtrType)(v)
+}
+
+func (*secretBackendConnectionRedisElasticachePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretBackendConnectionRedisElasticache)(nil)).Elem()
+}
+
+func (i *secretBackendConnectionRedisElasticachePtrType) ToSecretBackendConnectionRedisElasticachePtrOutput() SecretBackendConnectionRedisElasticachePtrOutput {
+	return i.ToSecretBackendConnectionRedisElasticachePtrOutputWithContext(context.Background())
+}
+
+func (i *secretBackendConnectionRedisElasticachePtrType) ToSecretBackendConnectionRedisElasticachePtrOutputWithContext(ctx context.Context) SecretBackendConnectionRedisElasticachePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionRedisElasticachePtrOutput)
+}
+
+type SecretBackendConnectionRedisElasticacheOutput struct{ *pulumi.OutputState }
+
+func (SecretBackendConnectionRedisElasticacheOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendConnectionRedisElasticache)(nil)).Elem()
+}
+
+func (o SecretBackendConnectionRedisElasticacheOutput) ToSecretBackendConnectionRedisElasticacheOutput() SecretBackendConnectionRedisElasticacheOutput {
+	return o
+}
+
+func (o SecretBackendConnectionRedisElasticacheOutput) ToSecretBackendConnectionRedisElasticacheOutputWithContext(ctx context.Context) SecretBackendConnectionRedisElasticacheOutput {
+	return o
+}
+
+func (o SecretBackendConnectionRedisElasticacheOutput) ToSecretBackendConnectionRedisElasticachePtrOutput() SecretBackendConnectionRedisElasticachePtrOutput {
+	return o.ToSecretBackendConnectionRedisElasticachePtrOutputWithContext(context.Background())
+}
+
+func (o SecretBackendConnectionRedisElasticacheOutput) ToSecretBackendConnectionRedisElasticachePtrOutputWithContext(ctx context.Context) SecretBackendConnectionRedisElasticachePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendConnectionRedisElasticache) *SecretBackendConnectionRedisElasticache {
+		return &v
+	}).(SecretBackendConnectionRedisElasticachePtrOutput)
+}
+
+// The root credential password used in the connection URL.
+func (o SecretBackendConnectionRedisElasticacheOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionRedisElasticache) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// The region where the ElastiCache cluster is hosted. If omitted Vault tries to infer from the environment instead.
+func (o SecretBackendConnectionRedisElasticacheOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionRedisElasticache) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// The URL for Elasticsearch's API. https requires certificate
+// by trusted CA if used.
+func (o SecretBackendConnectionRedisElasticacheOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretBackendConnectionRedisElasticache) string { return v.Url }).(pulumi.StringOutput)
+}
+
+// The root credential username used in the connection URL.
+func (o SecretBackendConnectionRedisElasticacheOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionRedisElasticache) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type SecretBackendConnectionRedisElasticachePtrOutput struct{ *pulumi.OutputState }
+
+func (SecretBackendConnectionRedisElasticachePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretBackendConnectionRedisElasticache)(nil)).Elem()
+}
+
+func (o SecretBackendConnectionRedisElasticachePtrOutput) ToSecretBackendConnectionRedisElasticachePtrOutput() SecretBackendConnectionRedisElasticachePtrOutput {
+	return o
+}
+
+func (o SecretBackendConnectionRedisElasticachePtrOutput) ToSecretBackendConnectionRedisElasticachePtrOutputWithContext(ctx context.Context) SecretBackendConnectionRedisElasticachePtrOutput {
+	return o
+}
+
+func (o SecretBackendConnectionRedisElasticachePtrOutput) Elem() SecretBackendConnectionRedisElasticacheOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionRedisElasticache) SecretBackendConnectionRedisElasticache {
+		if v != nil {
+			return *v
+		}
+		var ret SecretBackendConnectionRedisElasticache
+		return ret
+	}).(SecretBackendConnectionRedisElasticacheOutput)
+}
+
+// The root credential password used in the connection URL.
+func (o SecretBackendConnectionRedisElasticachePtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionRedisElasticache) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// The region where the ElastiCache cluster is hosted. If omitted Vault tries to infer from the environment instead.
+func (o SecretBackendConnectionRedisElasticachePtrOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionRedisElasticache) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Region
+	}).(pulumi.StringPtrOutput)
+}
+
+// The URL for Elasticsearch's API. https requires certificate
+// by trusted CA if used.
+func (o SecretBackendConnectionRedisElasticachePtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionRedisElasticache) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
+// The root credential username used in the connection URL.
+func (o SecretBackendConnectionRedisElasticachePtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionRedisElasticache) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
 type SecretBackendConnectionRedshift struct {
 	// Specifies the Redshift DSN. See
 	// the [Vault
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	// for an example.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
+	// Disable special character escaping in username and password.
+	DisableEscaping *bool `pulumi:"disableEscaping"`
 	// The maximum amount of time a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
 	// The maximum number of idle connections to
@@ -3966,6 +4204,8 @@ type SecretBackendConnectionRedshiftArgs struct {
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	// for an example.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
+	// Disable special character escaping in username and password.
+	DisableEscaping pulumi.BoolPtrInput `pulumi:"disableEscaping"`
 	// The maximum amount of time a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
 	// The maximum number of idle connections to
@@ -4067,6 +4307,11 @@ func (o SecretBackendConnectionRedshiftOutput) ConnectionUrl() pulumi.StringPtrO
 	return o.ApplyT(func(v SecretBackendConnectionRedshift) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
+// Disable special character escaping in username and password.
+func (o SecretBackendConnectionRedshiftOutput) DisableEscaping() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionRedshift) *bool { return v.DisableEscaping }).(pulumi.BoolPtrOutput)
+}
+
 // The maximum amount of time a connection may be reused.
 func (o SecretBackendConnectionRedshiftOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionRedshift) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
@@ -4134,6 +4379,16 @@ func (o SecretBackendConnectionRedshiftPtrOutput) ConnectionUrl() pulumi.StringP
 		}
 		return v.ConnectionUrl
 	}).(pulumi.StringPtrOutput)
+}
+
+// Disable special character escaping in username and password.
+func (o SecretBackendConnectionRedshiftPtrOutput) DisableEscaping() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionRedshift) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DisableEscaping
+	}).(pulumi.BoolPtrOutput)
 }
 
 // The maximum amount of time a connection may be reused.
@@ -4961,8 +5216,7 @@ type SecretsMountElasticsearch struct {
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
 	// This, if set, is used to set the SNI host when connecting via TLS.
 	TlsServerName *string `pulumi:"tlsServerName"`
-	// The URL for Elasticsearch's API. https requires certificate
-	// by trusted CA if used.
+	// The configuration endpoint for the ElastiCache cluster to connect to.
 	Url string `pulumi:"url"`
 	// The username to be used in the connection (the account admin level).
 	Username string `pulumi:"username"`
@@ -5009,8 +5263,7 @@ type SecretsMountElasticsearchArgs struct {
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
 	// This, if set, is used to set the SNI host when connecting via TLS.
 	TlsServerName pulumi.StringPtrInput `pulumi:"tlsServerName"`
-	// The URL for Elasticsearch's API. https requires certificate
-	// by trusted CA if used.
+	// The configuration endpoint for the ElastiCache cluster to connect to.
 	Url pulumi.StringInput `pulumi:"url"`
 	// The username to be used in the connection (the account admin level).
 	Username pulumi.StringInput `pulumi:"username"`
@@ -5132,8 +5385,7 @@ func (o SecretsMountElasticsearchOutput) TlsServerName() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v SecretsMountElasticsearch) *string { return v.TlsServerName }).(pulumi.StringPtrOutput)
 }
 
-// The URL for Elasticsearch's API. https requires certificate
-// by trusted CA if used.
+// The configuration endpoint for the ElastiCache cluster to connect to.
 func (o SecretsMountElasticsearchOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountElasticsearch) string { return v.Url }).(pulumi.StringOutput)
 }
@@ -5183,6 +5435,8 @@ type SecretsMountHana struct {
 	ConnectionUrl *string `pulumi:"connectionUrl"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	Data map[string]interface{} `pulumi:"data"`
+	// Disable special character escaping in username and password.
+	DisableEscaping *bool `pulumi:"disableEscaping"`
 	// The maximum number of seconds to keep
 	// a connection alive for.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
@@ -5226,6 +5480,8 @@ type SecretsMountHanaArgs struct {
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	Data pulumi.MapInput `pulumi:"data"`
+	// Disable special character escaping in username and password.
+	DisableEscaping pulumi.BoolPtrInput `pulumi:"disableEscaping"`
 	// The maximum number of seconds to keep
 	// a connection alive for.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
@@ -5315,6 +5571,11 @@ func (o SecretsMountHanaOutput) ConnectionUrl() pulumi.StringPtrOutput {
 // A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 func (o SecretsMountHanaOutput) Data() pulumi.MapOutput {
 	return o.ApplyT(func(v SecretsMountHana) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+}
+
+// Disable special character escaping in username and password.
+func (o SecretsMountHanaOutput) DisableEscaping() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountHana) *bool { return v.DisableEscaping }).(pulumi.BoolPtrOutput)
 }
 
 // The maximum number of seconds to keep
@@ -7395,6 +7656,8 @@ type SecretsMountPostgresql struct {
 	ConnectionUrl *string `pulumi:"connectionUrl"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	Data map[string]interface{} `pulumi:"data"`
+	// Disable special character escaping in username and password.
+	DisableEscaping *bool `pulumi:"disableEscaping"`
 	// The maximum number of seconds to keep
 	// a connection alive for.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
@@ -7440,6 +7703,8 @@ type SecretsMountPostgresqlArgs struct {
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	Data pulumi.MapInput `pulumi:"data"`
+	// Disable special character escaping in username and password.
+	DisableEscaping pulumi.BoolPtrInput `pulumi:"disableEscaping"`
 	// The maximum number of seconds to keep
 	// a connection alive for.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
@@ -7533,6 +7798,11 @@ func (o SecretsMountPostgresqlOutput) Data() pulumi.MapOutput {
 	return o.ApplyT(func(v SecretsMountPostgresql) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
 }
 
+// Disable special character escaping in username and password.
+func (o SecretsMountPostgresqlOutput) DisableEscaping() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountPostgresql) *bool { return v.DisableEscaping }).(pulumi.BoolPtrOutput)
+}
+
 // The maximum number of seconds to keep
 // a connection alive for.
 func (o SecretsMountPostgresqlOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
@@ -7606,6 +7876,190 @@ func (o SecretsMountPostgresqlArrayOutput) Index(i pulumi.IntInput) SecretsMount
 	}).(SecretsMountPostgresqlOutput)
 }
 
+type SecretsMountRedisElasticach struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles []string `pulumi:"allowedRoles"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data map[string]interface{} `pulumi:"data"`
+	Name string                 `pulumi:"name"`
+	// The password to be used in the connection.
+	Password *string `pulumi:"password"`
+	// Specifies the name of the plugin to use.
+	PluginName *string `pulumi:"pluginName"`
+	// The AWS region where the ElastiCache cluster is hosted.
+	// If omitted the plugin tries to infer the region from the environment.
+	Region *string `pulumi:"region"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements []string `pulumi:"rootRotationStatements"`
+	// The configuration endpoint for the ElastiCache cluster to connect to.
+	Url string `pulumi:"url"`
+	// The username to be used in the connection (the account admin level).
+	Username *string `pulumi:"username"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection *bool `pulumi:"verifyConnection"`
+}
+
+// SecretsMountRedisElasticachInput is an input type that accepts SecretsMountRedisElasticachArgs and SecretsMountRedisElasticachOutput values.
+// You can construct a concrete instance of `SecretsMountRedisElasticachInput` via:
+//
+//	SecretsMountRedisElasticachArgs{...}
+type SecretsMountRedisElasticachInput interface {
+	pulumi.Input
+
+	ToSecretsMountRedisElasticachOutput() SecretsMountRedisElasticachOutput
+	ToSecretsMountRedisElasticachOutputWithContext(context.Context) SecretsMountRedisElasticachOutput
+}
+
+type SecretsMountRedisElasticachArgs struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data pulumi.MapInput    `pulumi:"data"`
+	Name pulumi.StringInput `pulumi:"name"`
+	// The password to be used in the connection.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Specifies the name of the plugin to use.
+	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// The AWS region where the ElastiCache cluster is hosted.
+	// If omitted the plugin tries to infer the region from the environment.
+	Region pulumi.StringPtrInput `pulumi:"region"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
+	// The configuration endpoint for the ElastiCache cluster to connect to.
+	Url pulumi.StringInput `pulumi:"url"`
+	// The username to be used in the connection (the account admin level).
+	Username pulumi.StringPtrInput `pulumi:"username"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection pulumi.BoolPtrInput `pulumi:"verifyConnection"`
+}
+
+func (SecretsMountRedisElasticachArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountRedisElasticach)(nil)).Elem()
+}
+
+func (i SecretsMountRedisElasticachArgs) ToSecretsMountRedisElasticachOutput() SecretsMountRedisElasticachOutput {
+	return i.ToSecretsMountRedisElasticachOutputWithContext(context.Background())
+}
+
+func (i SecretsMountRedisElasticachArgs) ToSecretsMountRedisElasticachOutputWithContext(ctx context.Context) SecretsMountRedisElasticachOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountRedisElasticachOutput)
+}
+
+// SecretsMountRedisElasticachArrayInput is an input type that accepts SecretsMountRedisElasticachArray and SecretsMountRedisElasticachArrayOutput values.
+// You can construct a concrete instance of `SecretsMountRedisElasticachArrayInput` via:
+//
+//	SecretsMountRedisElasticachArray{ SecretsMountRedisElasticachArgs{...} }
+type SecretsMountRedisElasticachArrayInput interface {
+	pulumi.Input
+
+	ToSecretsMountRedisElasticachArrayOutput() SecretsMountRedisElasticachArrayOutput
+	ToSecretsMountRedisElasticachArrayOutputWithContext(context.Context) SecretsMountRedisElasticachArrayOutput
+}
+
+type SecretsMountRedisElasticachArray []SecretsMountRedisElasticachInput
+
+func (SecretsMountRedisElasticachArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountRedisElasticach)(nil)).Elem()
+}
+
+func (i SecretsMountRedisElasticachArray) ToSecretsMountRedisElasticachArrayOutput() SecretsMountRedisElasticachArrayOutput {
+	return i.ToSecretsMountRedisElasticachArrayOutputWithContext(context.Background())
+}
+
+func (i SecretsMountRedisElasticachArray) ToSecretsMountRedisElasticachArrayOutputWithContext(ctx context.Context) SecretsMountRedisElasticachArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountRedisElasticachArrayOutput)
+}
+
+type SecretsMountRedisElasticachOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountRedisElasticachOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountRedisElasticach)(nil)).Elem()
+}
+
+func (o SecretsMountRedisElasticachOutput) ToSecretsMountRedisElasticachOutput() SecretsMountRedisElasticachOutput {
+	return o
+}
+
+func (o SecretsMountRedisElasticachOutput) ToSecretsMountRedisElasticachOutputWithContext(ctx context.Context) SecretsMountRedisElasticachOutput {
+	return o
+}
+
+// A list of roles that are allowed to use this
+// connection.
+func (o SecretsMountRedisElasticachOutput) AllowedRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountRedisElasticach) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
+}
+
+// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+func (o SecretsMountRedisElasticachOutput) Data() pulumi.MapOutput {
+	return o.ApplyT(func(v SecretsMountRedisElasticach) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+}
+
+func (o SecretsMountRedisElasticachOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountRedisElasticach) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The password to be used in the connection.
+func (o SecretsMountRedisElasticachOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedisElasticach) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the name of the plugin to use.
+func (o SecretsMountRedisElasticachOutput) PluginName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedisElasticach) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// The AWS region where the ElastiCache cluster is hosted.
+// If omitted the plugin tries to infer the region from the environment.
+func (o SecretsMountRedisElasticachOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedisElasticach) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// A list of database statements to be executed to rotate the root user's credentials.
+func (o SecretsMountRedisElasticachOutput) RootRotationStatements() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountRedisElasticach) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
+}
+
+// The configuration endpoint for the ElastiCache cluster to connect to.
+func (o SecretsMountRedisElasticachOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountRedisElasticach) string { return v.Url }).(pulumi.StringOutput)
+}
+
+// The username to be used in the connection (the account admin level).
+func (o SecretsMountRedisElasticachOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedisElasticach) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+// Whether the connection should be verified on
+// initial configuration or not.
+func (o SecretsMountRedisElasticachOutput) VerifyConnection() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedisElasticach) *bool { return v.VerifyConnection }).(pulumi.BoolPtrOutput)
+}
+
+type SecretsMountRedisElasticachArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountRedisElasticachArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountRedisElasticach)(nil)).Elem()
+}
+
+func (o SecretsMountRedisElasticachArrayOutput) ToSecretsMountRedisElasticachArrayOutput() SecretsMountRedisElasticachArrayOutput {
+	return o
+}
+
+func (o SecretsMountRedisElasticachArrayOutput) ToSecretsMountRedisElasticachArrayOutputWithContext(ctx context.Context) SecretsMountRedisElasticachArrayOutput {
+	return o
+}
+
+func (o SecretsMountRedisElasticachArrayOutput) Index(i pulumi.IntInput) SecretsMountRedisElasticachOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretsMountRedisElasticach {
+		return vs[0].([]SecretsMountRedisElasticach)[vs[1].(int)]
+	}).(SecretsMountRedisElasticachOutput)
+}
+
 type SecretsMountRedshift struct {
 	// A list of roles that are allowed to use this
 	// connection.
@@ -7615,6 +8069,8 @@ type SecretsMountRedshift struct {
 	ConnectionUrl *string `pulumi:"connectionUrl"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	Data map[string]interface{} `pulumi:"data"`
+	// Disable special character escaping in username and password.
+	DisableEscaping *bool `pulumi:"disableEscaping"`
 	// The maximum number of seconds to keep
 	// a connection alive for.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
@@ -7660,6 +8116,8 @@ type SecretsMountRedshiftArgs struct {
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	Data pulumi.MapInput `pulumi:"data"`
+	// Disable special character escaping in username and password.
+	DisableEscaping pulumi.BoolPtrInput `pulumi:"disableEscaping"`
 	// The maximum number of seconds to keep
 	// a connection alive for.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
@@ -7751,6 +8209,11 @@ func (o SecretsMountRedshiftOutput) ConnectionUrl() pulumi.StringPtrOutput {
 // A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 func (o SecretsMountRedshiftOutput) Data() pulumi.MapOutput {
 	return o.ApplyT(func(v SecretsMountRedshift) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+}
+
+// Disable special character escaping in username and password.
+func (o SecretsMountRedshiftOutput) DisableEscaping() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedshift) *bool { return v.DisableEscaping }).(pulumi.BoolPtrOutput)
 }
 
 // The maximum number of seconds to keep
@@ -8075,6 +8538,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionOraclePtrInput)(nil)).Elem(), SecretBackendConnectionOracleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionPostgresqlInput)(nil)).Elem(), SecretBackendConnectionPostgresqlArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionPostgresqlPtrInput)(nil)).Elem(), SecretBackendConnectionPostgresqlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionRedisElasticacheInput)(nil)).Elem(), SecretBackendConnectionRedisElasticacheArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionRedisElasticachePtrInput)(nil)).Elem(), SecretBackendConnectionRedisElasticacheArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionRedshiftInput)(nil)).Elem(), SecretBackendConnectionRedshiftArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionRedshiftPtrInput)(nil)).Elem(), SecretBackendConnectionRedshiftArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionSnowflakeInput)(nil)).Elem(), SecretBackendConnectionSnowflakeArgs{})
@@ -8107,6 +8572,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountOracleArrayInput)(nil)).Elem(), SecretsMountOracleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountPostgresqlInput)(nil)).Elem(), SecretsMountPostgresqlArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountPostgresqlArrayInput)(nil)).Elem(), SecretsMountPostgresqlArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountRedisElasticachInput)(nil)).Elem(), SecretsMountRedisElasticachArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountRedisElasticachArrayInput)(nil)).Elem(), SecretsMountRedisElasticachArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountRedshiftInput)(nil)).Elem(), SecretsMountRedshiftArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountRedshiftArrayInput)(nil)).Elem(), SecretsMountRedshiftArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountSnowflakeInput)(nil)).Elem(), SecretsMountSnowflakeArgs{})
@@ -8139,6 +8606,8 @@ func init() {
 	pulumi.RegisterOutputType(SecretBackendConnectionOraclePtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionPostgresqlOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionPostgresqlPtrOutput{})
+	pulumi.RegisterOutputType(SecretBackendConnectionRedisElasticacheOutput{})
+	pulumi.RegisterOutputType(SecretBackendConnectionRedisElasticachePtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionRedshiftOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionRedshiftPtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionSnowflakeOutput{})
@@ -8171,6 +8640,8 @@ func init() {
 	pulumi.RegisterOutputType(SecretsMountOracleArrayOutput{})
 	pulumi.RegisterOutputType(SecretsMountPostgresqlOutput{})
 	pulumi.RegisterOutputType(SecretsMountPostgresqlArrayOutput{})
+	pulumi.RegisterOutputType(SecretsMountRedisElasticachOutput{})
+	pulumi.RegisterOutputType(SecretsMountRedisElasticachArrayOutput{})
 	pulumi.RegisterOutputType(SecretsMountRedshiftOutput{})
 	pulumi.RegisterOutputType(SecretsMountRedshiftArrayOutput{})
 	pulumi.RegisterOutputType(SecretsMountSnowflakeOutput{})

@@ -19,6 +19,7 @@ class MfaOktaArgs:
                  org_name: pulumi.Input[str],
                  base_url: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  primary_email: Optional[pulumi.Input[bool]] = None,
                  username_format: Optional[pulumi.Input[str]] = None):
         """
@@ -30,6 +31,10 @@ class MfaOktaArgs:
         :param pulumi.Input[str] base_url: `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`, 
                `oktapreview.com`, and `okta-emea.com`.
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] primary_email: `(string: <required>)` - If set to true, the username will only match the 
                primary email for the account.
         :param pulumi.Input[str] username_format: `(string)` - A format string for mapping Identity names to MFA method names. 
@@ -47,6 +52,8 @@ class MfaOktaArgs:
             pulumi.set(__self__, "base_url", base_url)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if primary_email is not None:
             pulumi.set(__self__, "primary_email", primary_email)
         if username_format is not None:
@@ -115,6 +122,21 @@ class MfaOktaArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="primaryEmail")
     def primary_email(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -153,6 +175,7 @@ class _MfaOktaState:
                  base_url: Optional[pulumi.Input[str]] = None,
                  mount_accessor: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  org_name: Optional[pulumi.Input[str]] = None,
                  primary_email: Optional[pulumi.Input[bool]] = None,
                  username_format: Optional[pulumi.Input[str]] = None):
@@ -164,6 +187,10 @@ class _MfaOktaState:
         :param pulumi.Input[str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
                The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] org_name: `(string: <required>)` - Name of the organization to be used in the Okta API.
         :param pulumi.Input[bool] primary_email: `(string: <required>)` - If set to true, the username will only match the 
                primary email for the account.
@@ -183,6 +210,8 @@ class _MfaOktaState:
             pulumi.set(__self__, "mount_accessor", mount_accessor)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if org_name is not None:
             pulumi.set(__self__, "org_name", org_name)
         if primary_email is not None:
@@ -241,6 +270,21 @@ class _MfaOktaState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="orgName")
     def org_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -293,6 +337,7 @@ class MfaOkta(pulumi.CustomResource):
                  base_url: Optional[pulumi.Input[str]] = None,
                  mount_accessor: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  org_name: Optional[pulumi.Input[str]] = None,
                  primary_email: Optional[pulumi.Input[bool]] = None,
                  username_format: Optional[pulumi.Input[str]] = None,
@@ -334,6 +379,10 @@ class MfaOkta(pulumi.CustomResource):
         :param pulumi.Input[str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
                The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] org_name: `(string: <required>)` - Name of the organization to be used in the Okta API.
         :param pulumi.Input[bool] primary_email: `(string: <required>)` - If set to true, the username will only match the 
                primary email for the account.
@@ -399,6 +448,7 @@ class MfaOkta(pulumi.CustomResource):
                  base_url: Optional[pulumi.Input[str]] = None,
                  mount_accessor: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  org_name: Optional[pulumi.Input[str]] = None,
                  primary_email: Optional[pulumi.Input[bool]] = None,
                  username_format: Optional[pulumi.Input[str]] = None,
@@ -413,17 +463,20 @@ class MfaOkta(pulumi.CustomResource):
 
             if api_token is None and not opts.urn:
                 raise TypeError("Missing required property 'api_token'")
-            __props__.__dict__["api_token"] = api_token
+            __props__.__dict__["api_token"] = None if api_token is None else pulumi.Output.secret(api_token)
             __props__.__dict__["base_url"] = base_url
             if mount_accessor is None and not opts.urn:
                 raise TypeError("Missing required property 'mount_accessor'")
             __props__.__dict__["mount_accessor"] = mount_accessor
             __props__.__dict__["name"] = name
+            __props__.__dict__["namespace"] = namespace
             if org_name is None and not opts.urn:
                 raise TypeError("Missing required property 'org_name'")
             __props__.__dict__["org_name"] = org_name
             __props__.__dict__["primary_email"] = primary_email
             __props__.__dict__["username_format"] = username_format
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["apiToken"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(MfaOkta, __self__).__init__(
             'vault:index/mfaOkta:MfaOkta',
             resource_name,
@@ -438,6 +491,7 @@ class MfaOkta(pulumi.CustomResource):
             base_url: Optional[pulumi.Input[str]] = None,
             mount_accessor: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             org_name: Optional[pulumi.Input[str]] = None,
             primary_email: Optional[pulumi.Input[bool]] = None,
             username_format: Optional[pulumi.Input[str]] = None) -> 'MfaOkta':
@@ -454,6 +508,10 @@ class MfaOkta(pulumi.CustomResource):
         :param pulumi.Input[str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
                The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] org_name: `(string: <required>)` - Name of the organization to be used in the Okta API.
         :param pulumi.Input[bool] primary_email: `(string: <required>)` - If set to true, the username will only match the 
                primary email for the account.
@@ -473,6 +531,7 @@ class MfaOkta(pulumi.CustomResource):
         __props__.__dict__["base_url"] = base_url
         __props__.__dict__["mount_accessor"] = mount_accessor
         __props__.__dict__["name"] = name
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["org_name"] = org_name
         __props__.__dict__["primary_email"] = primary_email
         __props__.__dict__["username_format"] = username_format
@@ -511,6 +570,17 @@ class MfaOkta(pulumi.CustomResource):
         `(string: <required>)` – Name of the MFA method.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="orgName")

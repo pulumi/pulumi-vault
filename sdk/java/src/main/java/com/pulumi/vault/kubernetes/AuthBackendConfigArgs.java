@@ -108,6 +108,27 @@ public final class AuthBackendConfigArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured namespace.
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable Output<String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured namespace.
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
+
+    /**
      * List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
      * 
      */
@@ -146,6 +167,7 @@ public final class AuthBackendConfigArgs extends com.pulumi.resources.ResourceAr
         this.issuer = $.issuer;
         this.kubernetesCaCert = $.kubernetesCaCert;
         this.kubernetesHost = $.kubernetesHost;
+        this.namespace = $.namespace;
         this.pemKeys = $.pemKeys;
         this.tokenReviewerJwt = $.tokenReviewerJwt;
     }
@@ -292,6 +314,33 @@ public final class AuthBackendConfigArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder kubernetesHost(String kubernetesHost) {
             return kubernetesHost(Output.of(kubernetesHost));
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured namespace.
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable Output<String> namespace) {
+            $.namespace = namespace;
+            return this;
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured namespace.
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(String namespace) {
+            return namespace(Output.of(namespace));
         }
 
         /**

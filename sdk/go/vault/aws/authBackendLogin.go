@@ -49,6 +49,11 @@ type AuthBackendLogin struct {
 	// A map of information returned by the Vault server about the
 	// authentication used to generate this token.
 	Metadata pulumi.MapOutput `pulumi:"metadata"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The unique nonce to be used for login requests. Can be
 	// set to a user-specified value, or will contain the server-generated value
 	// once a token is issued. EC2 instances can only acquire a single token until
@@ -78,6 +83,10 @@ func NewAuthBackendLogin(ctx *pulumi.Context,
 		args = &AuthBackendLoginArgs{}
 	}
 
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"clientToken",
+	})
+	opts = append(opts, secrets)
 	var resource AuthBackendLogin
 	err := ctx.RegisterResource("vault:aws/authBackendLogin:AuthBackendLogin", name, args, &resource, opts...)
 	if err != nil {
@@ -132,6 +141,11 @@ type authBackendLoginState struct {
 	// A map of information returned by the Vault server about the
 	// authentication used to generate this token.
 	Metadata map[string]interface{} `pulumi:"metadata"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The unique nonce to be used for login requests. Can be
 	// set to a user-specified value, or will contain the server-generated value
 	// once a token is issued. EC2 instances can only acquire a single token until
@@ -187,6 +201,11 @@ type AuthBackendLoginState struct {
 	// A map of information returned by the Vault server about the
 	// authentication used to generate this token.
 	Metadata pulumi.MapInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The unique nonce to be used for login requests. Can be
 	// set to a user-specified value, or will contain the server-generated value
 	// once a token is issued. EC2 instances can only acquire a single token until
@@ -232,6 +251,11 @@ type authBackendLoginArgs struct {
 	// The base64-encoded EC2 instance identity document to
 	// authenticate with. Can be retrieved from the EC2 metadata server.
 	Identity *string `pulumi:"identity"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The unique nonce to be used for login requests. Can be
 	// set to a user-specified value, or will contain the server-generated value
 	// once a token is issued. EC2 instances can only acquire a single token until
@@ -270,6 +294,11 @@ type AuthBackendLoginArgs struct {
 	// The base64-encoded EC2 instance identity document to
 	// authenticate with. Can be retrieved from the EC2 metadata server.
 	Identity pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The unique nonce to be used for login requests. Can be
 	// set to a user-specified value, or will contain the server-generated value
 	// once a token is issued. EC2 instances can only acquire a single token until
@@ -441,6 +470,14 @@ func (o AuthBackendLoginOutput) LeaseStartTime() pulumi.StringOutput {
 // authentication used to generate this token.
 func (o AuthBackendLoginOutput) Metadata() pulumi.MapOutput {
 	return o.ApplyT(func(v *AuthBackendLogin) pulumi.MapOutput { return v.Metadata }).(pulumi.MapOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o AuthBackendLoginOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The unique nonce to be used for login requests. Can be

@@ -57,6 +57,13 @@ export class AuthBackendRoleTag extends pulumi.CustomResource {
      */
     public readonly maxTtl!: pulumi.Output<string | undefined>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * The policies to be associated with the tag. Must be a subset of the policies associated with the role.
      */
     public readonly policies!: pulumi.Output<string[] | undefined>;
@@ -92,6 +99,7 @@ export class AuthBackendRoleTag extends pulumi.CustomResource {
             resourceInputs["disallowReauthentication"] = state ? state.disallowReauthentication : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["policies"] = state ? state.policies : undefined;
             resourceInputs["role"] = state ? state.role : undefined;
             resourceInputs["tagKey"] = state ? state.tagKey : undefined;
@@ -106,6 +114,7 @@ export class AuthBackendRoleTag extends pulumi.CustomResource {
             resourceInputs["disallowReauthentication"] = args ? args.disallowReauthentication : undefined;
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
             resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["policies"] = args ? args.policies : undefined;
             resourceInputs["role"] = args ? args.role : undefined;
             resourceInputs["tagKey"] = undefined /*out*/;
@@ -141,6 +150,13 @@ export interface AuthBackendRoleTagState {
      * The maximum TTL of the tokens issued using this role.
      */
     maxTtl?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The policies to be associated with the tag. Must be a subset of the policies associated with the role.
      */
@@ -185,6 +201,13 @@ export interface AuthBackendRoleTagArgs {
      * The maximum TTL of the tokens issued using this role.
      */
     maxTtl?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The policies to be associated with the tag. Must be a subset of the policies associated with the role.
      */

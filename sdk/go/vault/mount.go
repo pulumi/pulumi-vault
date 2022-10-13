@@ -136,6 +136,8 @@ type Mount struct {
 
 	// The accessor for this mount.
 	Accessor pulumi.StringOutput `pulumi:"accessor"`
+	// Set of managed key registry entry names that the mount in question is allowed to access
+	AllowedManagedKeys pulumi.StringArrayOutput `pulumi:"allowedManagedKeys"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys pulumi.StringArrayOutput `pulumi:"auditNonHmacRequestKeys"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
@@ -150,6 +152,11 @@ type Mount struct {
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
 	// Maximum possible lease duration for tokens and secrets in seconds
 	MaxLeaseTtlSeconds pulumi.IntOutput `pulumi:"maxLeaseTtlSeconds"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Specifies mount type specific options that are passed to the backend
 	Options pulumi.MapOutput `pulumi:"options"`
 	// Where the secret backend will be mounted
@@ -197,6 +204,8 @@ func GetMount(ctx *pulumi.Context,
 type mountState struct {
 	// The accessor for this mount.
 	Accessor *string `pulumi:"accessor"`
+	// Set of managed key registry entry names that the mount in question is allowed to access
+	AllowedManagedKeys []string `pulumi:"allowedManagedKeys"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys []string `pulumi:"auditNonHmacRequestKeys"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
@@ -211,6 +220,11 @@ type mountState struct {
 	Local *bool `pulumi:"local"`
 	// Maximum possible lease duration for tokens and secrets in seconds
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Specifies mount type specific options that are passed to the backend
 	Options map[string]interface{} `pulumi:"options"`
 	// Where the secret backend will be mounted
@@ -224,6 +238,8 @@ type mountState struct {
 type MountState struct {
 	// The accessor for this mount.
 	Accessor pulumi.StringPtrInput
+	// Set of managed key registry entry names that the mount in question is allowed to access
+	AllowedManagedKeys pulumi.StringArrayInput
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys pulumi.StringArrayInput
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
@@ -238,6 +254,11 @@ type MountState struct {
 	Local pulumi.BoolPtrInput
 	// Maximum possible lease duration for tokens and secrets in seconds
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Specifies mount type specific options that are passed to the backend
 	Options pulumi.MapInput
 	// Where the secret backend will be mounted
@@ -253,6 +274,8 @@ func (MountState) ElementType() reflect.Type {
 }
 
 type mountArgs struct {
+	// Set of managed key registry entry names that the mount in question is allowed to access
+	AllowedManagedKeys []string `pulumi:"allowedManagedKeys"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys []string `pulumi:"auditNonHmacRequestKeys"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
@@ -267,6 +290,11 @@ type mountArgs struct {
 	Local *bool `pulumi:"local"`
 	// Maximum possible lease duration for tokens and secrets in seconds
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Specifies mount type specific options that are passed to the backend
 	Options map[string]interface{} `pulumi:"options"`
 	// Where the secret backend will be mounted
@@ -279,6 +307,8 @@ type mountArgs struct {
 
 // The set of arguments for constructing a Mount resource.
 type MountArgs struct {
+	// Set of managed key registry entry names that the mount in question is allowed to access
+	AllowedManagedKeys pulumi.StringArrayInput
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys pulumi.StringArrayInput
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
@@ -293,6 +323,11 @@ type MountArgs struct {
 	Local pulumi.BoolPtrInput
 	// Maximum possible lease duration for tokens and secrets in seconds
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Specifies mount type specific options that are passed to the backend
 	Options pulumi.MapInput
 	// Where the secret backend will be mounted
@@ -395,6 +430,11 @@ func (o MountOutput) Accessor() pulumi.StringOutput {
 	return o.ApplyT(func(v *Mount) pulumi.StringOutput { return v.Accessor }).(pulumi.StringOutput)
 }
 
+// Set of managed key registry entry names that the mount in question is allowed to access
+func (o MountOutput) AllowedManagedKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Mount) pulumi.StringArrayOutput { return v.AllowedManagedKeys }).(pulumi.StringArrayOutput)
+}
+
 // Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 func (o MountOutput) AuditNonHmacRequestKeys() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Mount) pulumi.StringArrayOutput { return v.AuditNonHmacRequestKeys }).(pulumi.StringArrayOutput)
@@ -428,6 +468,14 @@ func (o MountOutput) Local() pulumi.BoolPtrOutput {
 // Maximum possible lease duration for tokens and secrets in seconds
 func (o MountOutput) MaxLeaseTtlSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v *Mount) pulumi.IntOutput { return v.MaxLeaseTtlSeconds }).(pulumi.IntOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o MountOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Mount) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Specifies mount type specific options that are passed to the backend

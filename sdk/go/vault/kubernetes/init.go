@@ -25,6 +25,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AuthBackendConfig{}
 	case "vault:kubernetes/authBackendRole:AuthBackendRole":
 		r = &AuthBackendRole{}
+	case "vault:kubernetes/secretBackend:SecretBackend":
+		r = &SecretBackend{}
+	case "vault:kubernetes/secretBackendRole:SecretBackendRole":
+		r = &SecretBackendRole{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -46,6 +50,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"vault",
 		"kubernetes/authBackendRole",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"kubernetes/secretBackend",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"kubernetes/secretBackendRole",
 		&module{version},
 	)
 }

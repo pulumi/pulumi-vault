@@ -43,18 +43,34 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
         return this.accessor;
     }
     /**
-     * A description of the auth method
+     * A description of the auth method.
      * 
      */
     @Export(name="description", type=String.class, parameters={})
     private Output</* @Nullable */ String> description;
 
     /**
-     * @return A description of the auth method
+     * @return A description of the auth method.
      * 
      */
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
+    }
+    /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     * 
+     */
+    @Export(name="disableRemount", type=Boolean.class, parameters={})
+    private Output</* @Nullable */ Boolean> disableRemount;
+
+    /**
+     * @return If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     * 
+     */
+    public Output<Optional<Boolean>> disableRemount() {
+        return Codegen.optional(this.disableRemount);
     }
     /**
      * Specifies if the auth method is local only.
@@ -71,14 +87,34 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.local);
     }
     /**
-     * The path to mount the auth method — this defaults to the name of the type
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="namespace", type=String.class, parameters={})
+    private Output</* @Nullable */ String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> namespace() {
+        return Codegen.optional(this.namespace);
+    }
+    /**
+     * The path to mount the auth method — this defaults to the name of the type.
      * 
      */
     @Export(name="path", type=String.class, parameters={})
     private Output<String> path;
 
     /**
-     * @return The path to mount the auth method — this defaults to the name of the type
+     * @return The path to mount the auth method — this defaults to the name of the type.
      * 
      */
     public Output<String> path() {
@@ -99,14 +135,14 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
         return this.tune;
     }
     /**
-     * The name of the auth method type
+     * The name of the auth method type.
      * 
      */
     @Export(name="type", type=String.class, parameters={})
     private Output<String> type;
 
     /**
-     * @return The name of the auth method type
+     * @return The name of the auth method type.
      * 
      */
     public Output<String> type() {

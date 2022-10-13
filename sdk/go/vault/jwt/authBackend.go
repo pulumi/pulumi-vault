@@ -142,6 +142,9 @@ type AuthBackend struct {
 	DefaultRole pulumi.StringPtrOutput `pulumi:"defaultRole"`
 	// The description of the auth backend
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
 	// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
 	JwksCaPem pulumi.StringPtrOutput `pulumi:"jwksCaPem"`
 	// JWKS URL to use to authenticate signatures. Cannot be used with "oidcDiscoveryUrl" or "jwtValidationPubkeys".
@@ -152,6 +155,11 @@ type AuthBackend struct {
 	JwtValidationPubkeys pulumi.StringArrayOutput `pulumi:"jwtValidationPubkeys"`
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
 	NamespaceInState pulumi.BoolPtrOutput `pulumi:"namespaceInState"`
 	// Client ID used for OIDC backends
@@ -182,6 +190,13 @@ func NewAuthBackend(ctx *pulumi.Context,
 		args = &AuthBackendArgs{}
 	}
 
+	if args.OidcClientSecret != nil {
+		args.OidcClientSecret = pulumi.ToSecret(args.OidcClientSecret).(pulumi.StringPtrOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"oidcClientSecret",
+	})
+	opts = append(opts, secrets)
 	var resource AuthBackend
 	err := ctx.RegisterResource("vault:jwt/authBackend:AuthBackend", name, args, &resource, opts...)
 	if err != nil {
@@ -212,6 +227,9 @@ type authBackendState struct {
 	DefaultRole *string `pulumi:"defaultRole"`
 	// The description of the auth backend
 	Description *string `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount *bool `pulumi:"disableRemount"`
 	// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
 	JwksCaPem *string `pulumi:"jwksCaPem"`
 	// JWKS URL to use to authenticate signatures. Cannot be used with "oidcDiscoveryUrl" or "jwtValidationPubkeys".
@@ -222,6 +240,11 @@ type authBackendState struct {
 	JwtValidationPubkeys []string `pulumi:"jwtValidationPubkeys"`
 	// Specifies if the auth method is local only.
 	Local *bool `pulumi:"local"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
 	NamespaceInState *bool `pulumi:"namespaceInState"`
 	// Client ID used for OIDC backends
@@ -254,6 +277,9 @@ type AuthBackendState struct {
 	DefaultRole pulumi.StringPtrInput
 	// The description of the auth backend
 	Description pulumi.StringPtrInput
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrInput
 	// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
 	JwksCaPem pulumi.StringPtrInput
 	// JWKS URL to use to authenticate signatures. Cannot be used with "oidcDiscoveryUrl" or "jwtValidationPubkeys".
@@ -264,6 +290,11 @@ type AuthBackendState struct {
 	JwtValidationPubkeys pulumi.StringArrayInput
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
 	NamespaceInState pulumi.BoolPtrInput
 	// Client ID used for OIDC backends
@@ -298,6 +329,9 @@ type authBackendArgs struct {
 	DefaultRole *string `pulumi:"defaultRole"`
 	// The description of the auth backend
 	Description *string `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount *bool `pulumi:"disableRemount"`
 	// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
 	JwksCaPem *string `pulumi:"jwksCaPem"`
 	// JWKS URL to use to authenticate signatures. Cannot be used with "oidcDiscoveryUrl" or "jwtValidationPubkeys".
@@ -308,6 +342,11 @@ type authBackendArgs struct {
 	JwtValidationPubkeys []string `pulumi:"jwtValidationPubkeys"`
 	// Specifies if the auth method is local only.
 	Local *bool `pulumi:"local"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
 	NamespaceInState *bool `pulumi:"namespaceInState"`
 	// Client ID used for OIDC backends
@@ -339,6 +378,9 @@ type AuthBackendArgs struct {
 	DefaultRole pulumi.StringPtrInput
 	// The description of the auth backend
 	Description pulumi.StringPtrInput
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrInput
 	// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
 	JwksCaPem pulumi.StringPtrInput
 	// JWKS URL to use to authenticate signatures. Cannot be used with "oidcDiscoveryUrl" or "jwtValidationPubkeys".
@@ -349,6 +391,11 @@ type AuthBackendArgs struct {
 	JwtValidationPubkeys pulumi.StringArrayInput
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
 	NamespaceInState pulumi.BoolPtrInput
 	// Client ID used for OIDC backends
@@ -479,6 +526,12 @@ func (o AuthBackendOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// If set, opts out of mount migration on path updates.
+// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+func (o AuthBackendOutput) DisableRemount() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.BoolPtrOutput { return v.DisableRemount }).(pulumi.BoolPtrOutput)
+}
+
 // The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
 func (o AuthBackendOutput) JwksCaPem() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.JwksCaPem }).(pulumi.StringPtrOutput)
@@ -502,6 +555,14 @@ func (o AuthBackendOutput) JwtValidationPubkeys() pulumi.StringArrayOutput {
 // Specifies if the auth method is local only.
 func (o AuthBackendOutput) Local() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.BoolPtrOutput { return v.Local }).(pulumi.BoolPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o AuthBackendOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs

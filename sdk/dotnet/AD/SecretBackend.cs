@@ -115,6 +115,13 @@ namespace Pulumi.Vault.AD
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Output("disableRemount")]
+        public Output<bool?> DisableRemount { get; private set; } = null!;
+
+        /// <summary>
         /// Use anonymous bind to discover the bind Distinguished Name of a user.
         /// </summary>
         [Output("discoverdn")]
@@ -162,6 +169,7 @@ namespace Pulumi.Vault.AD
 
         /// <summary>
         /// **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
+        /// *Mutually exclusive with `password_policy` on vault-1.11+*
         /// </summary>
         [Output("length")]
         public Output<int> Length { get; private set; } = null!;
@@ -184,6 +192,15 @@ namespace Pulumi.Vault.AD
         /// </summary>
         [Output("maxTtl")]
         public Output<int> MaxTtl { get; private set; } = null!;
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
         /// Name of the password policy to use to generate passwords.
@@ -290,6 +307,12 @@ namespace Pulumi.Vault.AD
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "bindpass",
+                    "clientTlsCert",
+                    "clientTlsKey",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -333,11 +356,21 @@ namespace Pulumi.Vault.AD
         [Input("binddn", required: true)]
         public Input<string> Binddn { get; set; } = null!;
 
+        [Input("bindpass", required: true)]
+        private Input<string>? _bindpass;
+
         /// <summary>
         /// Password to use along with binddn when performing user search.
         /// </summary>
-        [Input("bindpass", required: true)]
-        public Input<string> Bindpass { get; set; } = null!;
+        public Input<string>? Bindpass
+        {
+            get => _bindpass;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _bindpass = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// If set, user and group names assigned to policies within the
@@ -353,17 +386,37 @@ namespace Pulumi.Vault.AD
         [Input("certificate")]
         public Input<string>? Certificate { get; set; }
 
+        [Input("clientTlsCert")]
+        private Input<string>? _clientTlsCert;
+
         /// <summary>
         /// Client certificate to provide to the LDAP server, must be x509 PEM encoded.
         /// </summary>
-        [Input("clientTlsCert")]
-        public Input<string>? ClientTlsCert { get; set; }
+        public Input<string>? ClientTlsCert
+        {
+            get => _clientTlsCert;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientTlsCert = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("clientTlsKey")]
+        private Input<string>? _clientTlsKey;
 
         /// <summary>
         /// Client certificate key to provide to the LDAP server, must be x509 PEM encoded.
         /// </summary>
-        [Input("clientTlsKey")]
-        public Input<string>? ClientTlsKey { get; set; }
+        public Input<string>? ClientTlsKey
+        {
+            get => _clientTlsKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientTlsKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Default lease duration for secrets in seconds.
@@ -383,6 +436,13 @@ namespace Pulumi.Vault.AD
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Input("disableRemount")]
+        public Input<bool>? DisableRemount { get; set; }
 
         /// <summary>
         /// Use anonymous bind to discover the bind Distinguished Name of a user.
@@ -432,6 +492,7 @@ namespace Pulumi.Vault.AD
 
         /// <summary>
         /// **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
+        /// *Mutually exclusive with `password_policy` on vault-1.11+*
         /// </summary>
         [Input("length")]
         public Input<int>? Length { get; set; }
@@ -454,6 +515,15 @@ namespace Pulumi.Vault.AD
         /// </summary>
         [Input("maxTtl")]
         public Input<int>? MaxTtl { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// Name of the password policy to use to generate passwords.
@@ -565,11 +635,21 @@ namespace Pulumi.Vault.AD
         [Input("binddn")]
         public Input<string>? Binddn { get; set; }
 
+        [Input("bindpass")]
+        private Input<string>? _bindpass;
+
         /// <summary>
         /// Password to use along with binddn when performing user search.
         /// </summary>
-        [Input("bindpass")]
-        public Input<string>? Bindpass { get; set; }
+        public Input<string>? Bindpass
+        {
+            get => _bindpass;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _bindpass = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// If set, user and group names assigned to policies within the
@@ -585,17 +665,37 @@ namespace Pulumi.Vault.AD
         [Input("certificate")]
         public Input<string>? Certificate { get; set; }
 
+        [Input("clientTlsCert")]
+        private Input<string>? _clientTlsCert;
+
         /// <summary>
         /// Client certificate to provide to the LDAP server, must be x509 PEM encoded.
         /// </summary>
-        [Input("clientTlsCert")]
-        public Input<string>? ClientTlsCert { get; set; }
+        public Input<string>? ClientTlsCert
+        {
+            get => _clientTlsCert;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientTlsCert = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("clientTlsKey")]
+        private Input<string>? _clientTlsKey;
 
         /// <summary>
         /// Client certificate key to provide to the LDAP server, must be x509 PEM encoded.
         /// </summary>
-        [Input("clientTlsKey")]
-        public Input<string>? ClientTlsKey { get; set; }
+        public Input<string>? ClientTlsKey
+        {
+            get => _clientTlsKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientTlsKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Default lease duration for secrets in seconds.
@@ -615,6 +715,13 @@ namespace Pulumi.Vault.AD
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Input("disableRemount")]
+        public Input<bool>? DisableRemount { get; set; }
 
         /// <summary>
         /// Use anonymous bind to discover the bind Distinguished Name of a user.
@@ -664,6 +771,7 @@ namespace Pulumi.Vault.AD
 
         /// <summary>
         /// **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
+        /// *Mutually exclusive with `password_policy` on vault-1.11+*
         /// </summary>
         [Input("length")]
         public Input<int>? Length { get; set; }
@@ -686,6 +794,15 @@ namespace Pulumi.Vault.AD
         /// </summary>
         [Input("maxTtl")]
         public Input<int>? MaxTtl { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// Name of the password policy to use to generate passwords.

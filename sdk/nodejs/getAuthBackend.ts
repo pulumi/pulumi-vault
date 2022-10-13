@@ -23,6 +23,7 @@ export function getAuthBackend(args: GetAuthBackendArgs, opts?: pulumi.InvokeOpt
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("vault:index/getAuthBackend:getAuthBackend", {
+        "namespace": args.namespace,
         "path": args.path,
     }, opts);
 }
@@ -31,6 +32,13 @@ export function getAuthBackend(args: GetAuthBackendArgs, opts?: pulumi.InvokeOpt
  * A collection of arguments for invoking getAuthBackend.
  */
 export interface GetAuthBackendArgs {
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: string;
     /**
      * The auth backend mount point.
      */
@@ -42,7 +50,7 @@ export interface GetAuthBackendArgs {
  */
 export interface GetAuthBackendResult {
     /**
-     * The accessor for this auth method
+     * The accessor for this auth method.
      */
     readonly accessor: string;
     /**
@@ -69,6 +77,7 @@ export interface GetAuthBackendResult {
      * The maximum lease duration in seconds.
      */
     readonly maxLeaseTtlSeconds: number;
+    readonly namespace?: string;
     readonly path: string;
     /**
      * The name of the auth method type.
@@ -84,6 +93,13 @@ export function getAuthBackendOutput(args: GetAuthBackendOutputArgs, opts?: pulu
  * A collection of arguments for invoking getAuthBackend.
  */
 export interface GetAuthBackendOutputArgs {
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The auth backend mount point.
      */

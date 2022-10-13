@@ -108,6 +108,13 @@ export class OidcProvider extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * The scopes available for requesting on the provider.
      */
     public readonly scopesSupporteds!: pulumi.Output<string[] | undefined>;
@@ -130,6 +137,7 @@ export class OidcProvider extends pulumi.CustomResource {
             resourceInputs["issuer"] = state ? state.issuer : undefined;
             resourceInputs["issuerHost"] = state ? state.issuerHost : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["scopesSupporteds"] = state ? state.scopesSupporteds : undefined;
         } else {
             const args = argsOrState as OidcProviderArgs | undefined;
@@ -137,6 +145,7 @@ export class OidcProvider extends pulumi.CustomResource {
             resourceInputs["httpsEnabled"] = args ? args.httpsEnabled : undefined;
             resourceInputs["issuerHost"] = args ? args.issuerHost : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["scopesSupporteds"] = args ? args.scopesSupporteds : undefined;
             resourceInputs["issuer"] = undefined /*out*/;
         }
@@ -173,6 +182,13 @@ export interface OidcProviderState {
      */
     name?: pulumi.Input<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
+    /**
      * The scopes available for requesting on the provider.
      */
     scopesSupporteds?: pulumi.Input<pulumi.Input<string>[]>;
@@ -199,6 +215,13 @@ export interface OidcProviderArgs {
      * The name of the provider.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The scopes available for requesting on the provider.
      */

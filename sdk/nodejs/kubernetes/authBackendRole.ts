@@ -89,6 +89,13 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly boundServiceAccountNamespaces!: pulumi.Output<string[]>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * Name of the role.
      */
     public readonly roleName!: pulumi.Output<string>;
@@ -163,6 +170,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["boundServiceAccountNames"] = state ? state.boundServiceAccountNames : undefined;
             resourceInputs["boundServiceAccountNamespaces"] = state ? state.boundServiceAccountNamespaces : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["roleName"] = state ? state.roleName : undefined;
             resourceInputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
             resourceInputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
@@ -189,6 +197,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["boundServiceAccountNames"] = args ? args.boundServiceAccountNames : undefined;
             resourceInputs["boundServiceAccountNamespaces"] = args ? args.boundServiceAccountNamespaces : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["roleName"] = args ? args.roleName : undefined;
             resourceInputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
             resourceInputs["tokenExplicitMaxTtl"] = args ? args.tokenExplicitMaxTtl : undefined;
@@ -230,6 +239,13 @@ export interface AuthBackendRoleState {
      * List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to "*".
      */
     boundServiceAccountNamespaces?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Name of the role.
      */
@@ -313,6 +329,13 @@ export interface AuthBackendRoleArgs {
      * List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to "*".
      */
     boundServiceAccountNamespaces: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Name of the role.
      */

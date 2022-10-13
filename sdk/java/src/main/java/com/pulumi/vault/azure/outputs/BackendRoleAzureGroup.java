@@ -11,17 +11,10 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class BackendRoleAzureGroup {
-    private final String groupName;
-    private final @Nullable String objectId;
+    private String groupName;
+    private @Nullable String objectId;
 
-    @CustomType.Constructor
-    private BackendRoleAzureGroup(
-        @CustomType.Parameter("groupName") String groupName,
-        @CustomType.Parameter("objectId") @Nullable String objectId) {
-        this.groupName = groupName;
-        this.objectId = objectId;
-    }
-
+    private BackendRoleAzureGroup() {}
     public String groupName() {
         return this.groupName;
     }
@@ -36,30 +29,32 @@ public final class BackendRoleAzureGroup {
     public static Builder builder(BackendRoleAzureGroup defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String groupName;
         private @Nullable String objectId;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(BackendRoleAzureGroup defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.groupName = defaults.groupName;
     	      this.objectId = defaults.objectId;
         }
 
+        @CustomType.Setter
         public Builder groupName(String groupName) {
             this.groupName = Objects.requireNonNull(groupName);
             return this;
         }
+        @CustomType.Setter
         public Builder objectId(@Nullable String objectId) {
             this.objectId = objectId;
             return this;
-        }        public BackendRoleAzureGroup build() {
-            return new BackendRoleAzureGroup(groupName, objectId);
+        }
+        public BackendRoleAzureGroup build() {
+            final var o = new BackendRoleAzureGroup();
+            o.groupName = groupName;
+            o.objectId = objectId;
+            return o;
         }
     }
 }

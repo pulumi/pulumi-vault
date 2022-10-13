@@ -56,6 +56,11 @@ type OidcKeyAllowedClientID struct {
 	AllowedClientId pulumi.StringOutput `pulumi:"allowedClientId"`
 	// Name of the OIDC Key allow the Client ID.
 	KeyName pulumi.StringOutput `pulumi:"keyName"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 }
 
 // NewOidcKeyAllowedClientID registers a new resource with the given unique name, arguments, and options.
@@ -97,6 +102,11 @@ type oidcKeyAllowedClientIDState struct {
 	AllowedClientId *string `pulumi:"allowedClientId"`
 	// Name of the OIDC Key allow the Client ID.
 	KeyName *string `pulumi:"keyName"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 }
 
 type OidcKeyAllowedClientIDState struct {
@@ -104,6 +114,11 @@ type OidcKeyAllowedClientIDState struct {
 	AllowedClientId pulumi.StringPtrInput
 	// Name of the OIDC Key allow the Client ID.
 	KeyName pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 }
 
 func (OidcKeyAllowedClientIDState) ElementType() reflect.Type {
@@ -115,6 +130,11 @@ type oidcKeyAllowedClientIDArgs struct {
 	AllowedClientId string `pulumi:"allowedClientId"`
 	// Name of the OIDC Key allow the Client ID.
 	KeyName string `pulumi:"keyName"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 }
 
 // The set of arguments for constructing a OidcKeyAllowedClientID resource.
@@ -123,6 +143,11 @@ type OidcKeyAllowedClientIDArgs struct {
 	AllowedClientId pulumi.StringInput
 	// Name of the OIDC Key allow the Client ID.
 	KeyName pulumi.StringInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 }
 
 func (OidcKeyAllowedClientIDArgs) ElementType() reflect.Type {
@@ -220,6 +245,14 @@ func (o OidcKeyAllowedClientIDOutput) AllowedClientId() pulumi.StringOutput {
 // Name of the OIDC Key allow the Client ID.
 func (o OidcKeyAllowedClientIDOutput) KeyName() pulumi.StringOutput {
 	return o.ApplyT(func(v *OidcKeyAllowedClientID) pulumi.StringOutput { return v.KeyName }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o OidcKeyAllowedClientIDOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OidcKeyAllowedClientID) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 type OidcKeyAllowedClientIDArrayOutput struct{ *pulumi.OutputState }

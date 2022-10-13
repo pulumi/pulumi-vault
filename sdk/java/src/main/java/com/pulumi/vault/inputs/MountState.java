@@ -36,6 +36,21 @@ public final class MountState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Set of managed key registry entry names that the mount in question is allowed to access
+     * 
+     */
+    @Import(name="allowedManagedKeys")
+    private @Nullable Output<List<String>> allowedManagedKeys;
+
+    /**
+     * @return Set of managed key registry entry names that the mount in question is allowed to access
+     * 
+     */
+    public Optional<Output<List<String>>> allowedManagedKeys() {
+        return Optional.ofNullable(this.allowedManagedKeys);
+    }
+
+    /**
      * Specifies the list of keys that will not be HMAC&#39;d by audit devices in the request data object.
      * 
      */
@@ -141,6 +156,27 @@ public final class MountState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable Output<String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
+
+    /**
      * Specifies mount type specific options that are passed to the backend
      * 
      */
@@ -204,6 +240,7 @@ public final class MountState extends com.pulumi.resources.ResourceArgs {
 
     private MountState(MountState $) {
         this.accessor = $.accessor;
+        this.allowedManagedKeys = $.allowedManagedKeys;
         this.auditNonHmacRequestKeys = $.auditNonHmacRequestKeys;
         this.auditNonHmacResponseKeys = $.auditNonHmacResponseKeys;
         this.defaultLeaseTtlSeconds = $.defaultLeaseTtlSeconds;
@@ -211,6 +248,7 @@ public final class MountState extends com.pulumi.resources.ResourceArgs {
         this.externalEntropyAccess = $.externalEntropyAccess;
         this.local = $.local;
         this.maxLeaseTtlSeconds = $.maxLeaseTtlSeconds;
+        this.namespace = $.namespace;
         this.options = $.options;
         this.path = $.path;
         this.sealWrap = $.sealWrap;
@@ -254,6 +292,37 @@ public final class MountState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder accessor(String accessor) {
             return accessor(Output.of(accessor));
+        }
+
+        /**
+         * @param allowedManagedKeys Set of managed key registry entry names that the mount in question is allowed to access
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedManagedKeys(@Nullable Output<List<String>> allowedManagedKeys) {
+            $.allowedManagedKeys = allowedManagedKeys;
+            return this;
+        }
+
+        /**
+         * @param allowedManagedKeys Set of managed key registry entry names that the mount in question is allowed to access
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedManagedKeys(List<String> allowedManagedKeys) {
+            return allowedManagedKeys(Output.of(allowedManagedKeys));
+        }
+
+        /**
+         * @param allowedManagedKeys Set of managed key registry entry names that the mount in question is allowed to access
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedManagedKeys(String... allowedManagedKeys) {
+            return allowedManagedKeys(List.of(allowedManagedKeys));
         }
 
         /**
@@ -421,6 +490,33 @@ public final class MountState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder maxLeaseTtlSeconds(Integer maxLeaseTtlSeconds) {
             return maxLeaseTtlSeconds(Output.of(maxLeaseTtlSeconds));
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable Output<String> namespace) {
+            $.namespace = namespace;
+            return this;
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(String namespace) {
+            return namespace(Output.of(namespace));
         }
 
         /**

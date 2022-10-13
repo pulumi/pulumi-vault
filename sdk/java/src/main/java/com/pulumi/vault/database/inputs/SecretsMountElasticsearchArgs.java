@@ -194,16 +194,14 @@ public final class SecretsMountElasticsearchArgs extends com.pulumi.resources.Re
     }
 
     /**
-     * The URL for Elasticsearch&#39;s API. https requires certificate
-     * by trusted CA if used.
+     * The configuration endpoint for the ElastiCache cluster to connect to.
      * 
      */
     @Import(name="url", required=true)
     private Output<String> url;
 
     /**
-     * @return The URL for Elasticsearch&#39;s API. https requires certificate
-     * by trusted CA if used.
+     * @return The configuration endpoint for the ElastiCache cluster to connect to.
      * 
      */
     public Output<String> url() {
@@ -560,8 +558,7 @@ public final class SecretsMountElasticsearchArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param url The URL for Elasticsearch&#39;s API. https requires certificate
-         * by trusted CA if used.
+         * @param url The configuration endpoint for the ElastiCache cluster to connect to.
          * 
          * @return builder
          * 
@@ -572,8 +569,7 @@ public final class SecretsMountElasticsearchArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param url The URL for Elasticsearch&#39;s API. https requires certificate
-         * by trusted CA if used.
+         * @param url The configuration endpoint for the ElastiCache cluster to connect to.
          * 
          * @return builder
          * 

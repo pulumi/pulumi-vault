@@ -102,6 +102,11 @@ type AuthBackendRole struct {
 	// that can perform the login operation to ones which  matches the value specified by this
 	// field.
 	BoundSubscriptionIds pulumi.StringArrayOutput `pulumi:"boundSubscriptionIds"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The name of the role.
 	Role pulumi.StringOutput `pulumi:"role"`
 	// List of CIDR blocks; if set, specifies blocks of IP
@@ -199,6 +204,11 @@ type authBackendRoleState struct {
 	// that can perform the login operation to ones which  matches the value specified by this
 	// field.
 	BoundSubscriptionIds []string `pulumi:"boundSubscriptionIds"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The name of the role.
 	Role *string `pulumi:"role"`
 	// List of CIDR blocks; if set, specifies blocks of IP
@@ -265,6 +275,11 @@ type AuthBackendRoleState struct {
 	// that can perform the login operation to ones which  matches the value specified by this
 	// field.
 	BoundSubscriptionIds pulumi.StringArrayInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The name of the role.
 	Role pulumi.StringPtrInput
 	// List of CIDR blocks; if set, specifies blocks of IP
@@ -335,6 +350,11 @@ type authBackendRoleArgs struct {
 	// that can perform the login operation to ones which  matches the value specified by this
 	// field.
 	BoundSubscriptionIds []string `pulumi:"boundSubscriptionIds"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The name of the role.
 	Role string `pulumi:"role"`
 	// List of CIDR blocks; if set, specifies blocks of IP
@@ -402,6 +422,11 @@ type AuthBackendRoleArgs struct {
 	// that can perform the login operation to ones which  matches the value specified by this
 	// field.
 	BoundSubscriptionIds pulumi.StringArrayInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The name of the role.
 	Role pulumi.StringInput
 	// List of CIDR blocks; if set, specifies blocks of IP
@@ -573,6 +598,14 @@ func (o AuthBackendRoleOutput) BoundServicePrincipalIds() pulumi.StringArrayOutp
 // field.
 func (o AuthBackendRoleOutput) BoundSubscriptionIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringArrayOutput { return v.BoundSubscriptionIds }).(pulumi.StringArrayOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o AuthBackendRoleOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The name of the role.

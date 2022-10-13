@@ -73,6 +73,13 @@ export class SecretRole extends pulumi.CustomResource {
      */
     public /*out*/ readonly lastVaultRotation!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * Timestamp of the last password set by Vault.
      */
     public /*out*/ readonly passwordLastSet!: pulumi.Output<string>;
@@ -107,6 +114,7 @@ export class SecretRole extends pulumi.CustomResource {
             const state = argsOrState as SecretRoleState | undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["lastVaultRotation"] = state ? state.lastVaultRotation : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["passwordLastSet"] = state ? state.passwordLastSet : undefined;
             resourceInputs["role"] = state ? state.role : undefined;
             resourceInputs["serviceAccountName"] = state ? state.serviceAccountName : undefined;
@@ -123,6 +131,7 @@ export class SecretRole extends pulumi.CustomResource {
                 throw new Error("Missing required property 'serviceAccountName'");
             }
             resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["role"] = args ? args.role : undefined;
             resourceInputs["serviceAccountName"] = args ? args.serviceAccountName : undefined;
             resourceInputs["ttl"] = args ? args.ttl : undefined;
@@ -147,6 +156,13 @@ export interface SecretRoleState {
      * Timestamp of the last password rotation by Vault.
      */
     lastVaultRotation?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Timestamp of the last password set by Vault.
      */
@@ -177,6 +193,13 @@ export interface SecretRoleArgs {
      * with no leading or trailing `/`s.
      */
     backend: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The name to identify this role within the backend.
      * Must be unique within the backend.

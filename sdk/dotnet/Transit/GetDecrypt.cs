@@ -38,7 +38,7 @@ namespace Pulumi.Vault.Transit
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetDecryptResult> InvokeAsync(GetDecryptArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetDecryptResult>("vault:transit/getDecrypt:getDecrypt", args ?? new GetDecryptArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetDecryptResult>("vault:transit/getDecrypt:getDecrypt", args ?? new GetDecryptArgs(), options.WithDefaults());
 
         /// <summary>
         /// This is a data source which can be used to decrypt ciphertext using a Vault Transit key.
@@ -67,7 +67,7 @@ namespace Pulumi.Vault.Transit
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetDecryptResult> Invoke(GetDecryptInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetDecryptResult>("vault:transit/getDecrypt:getDecrypt", args ?? new GetDecryptInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetDecryptResult>("vault:transit/getDecrypt:getDecrypt", args ?? new GetDecryptInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -96,6 +96,9 @@ namespace Pulumi.Vault.Transit
         /// </summary>
         [Input("key", required: true)]
         public string Key { get; set; } = null!;
+
+        [Input("namespace")]
+        public string? Namespace { get; set; }
 
         public GetDecryptArgs()
         {
@@ -129,6 +132,9 @@ namespace Pulumi.Vault.Transit
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
         public GetDecryptInvokeArgs()
         {
         }
@@ -147,6 +153,7 @@ namespace Pulumi.Vault.Transit
         /// </summary>
         public readonly string Id;
         public readonly string Key;
+        public readonly string? Namespace;
         /// <summary>
         /// Decrypted plaintext returned from Vault
         /// </summary>
@@ -164,6 +171,8 @@ namespace Pulumi.Vault.Transit
 
             string key,
 
+            string? @namespace,
+
             string plaintext)
         {
             Backend = backend;
@@ -171,6 +180,7 @@ namespace Pulumi.Vault.Transit
             Context = context;
             Id = id;
             Key = key;
+            Namespace = @namespace;
             Plaintext = plaintext;
         }
     }

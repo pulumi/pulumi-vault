@@ -17,6 +17,7 @@ __all__ = ['SecretsMountArgs', 'SecretsMount']
 class SecretsMountArgs:
     def __init__(__self__, *,
                  path: pulumi.Input[str],
+                 allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  cassandras: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountCassandraArgs']]]] = None,
@@ -36,15 +37,18 @@ class SecretsMountArgs:
                  mysql_legacies: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlLegacyArgs']]]] = None,
                  mysql_rds: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlRdArgs']]]] = None,
                  mysqls: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlArgs']]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  oracles: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountOracleArgs']]]] = None,
                  postgresqls: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountPostgresqlArgs']]]] = None,
+                 redis_elasticaches: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountRedisElasticachArgs']]]] = None,
                  redshifts: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountRedshiftArgs']]]] = None,
                  seal_wrap: Optional[pulumi.Input[bool]] = None,
                  snowflakes: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountSnowflakeArgs']]]] = None):
         """
         The set of arguments for constructing a SecretsMount resource.
         :param pulumi.Input[str] path: Where the secret backend will be mounted
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_managed_keys: Set of managed key registry entry names that the mount in question is allowed to access
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountCassandraArgs']]] cassandras: A nested block containing configuration options for Cassandra connections.  
@@ -76,10 +80,13 @@ class SecretsMountArgs:
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlArgs']]] mysqls: A nested block containing configuration options for MySQL connections.  
                *See Configuration Options for more info*
+        :param pulumi.Input[str] namespace: Target namespace. (requires Enterprise)
         :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountOracleArgs']]] oracles: A nested block containing configuration options for Oracle connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountPostgresqlArgs']]] postgresqls: A nested block containing configuration options for PostgreSQL connections.  
+               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountRedisElasticachArgs']]] redis_elasticaches: A nested block containing configuration options for InfluxDB connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountRedshiftArgs']]] redshifts: A nested block containing configuration options for AWS Redshift connections.  
                *See Configuration Options for more info*
@@ -88,6 +95,8 @@ class SecretsMountArgs:
                *See Configuration Options for more info*
         """
         pulumi.set(__self__, "path", path)
+        if allowed_managed_keys is not None:
+            pulumi.set(__self__, "allowed_managed_keys", allowed_managed_keys)
         if audit_non_hmac_request_keys is not None:
             pulumi.set(__self__, "audit_non_hmac_request_keys", audit_non_hmac_request_keys)
         if audit_non_hmac_response_keys is not None:
@@ -126,12 +135,16 @@ class SecretsMountArgs:
             pulumi.set(__self__, "mysql_rds", mysql_rds)
         if mysqls is not None:
             pulumi.set(__self__, "mysqls", mysqls)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if options is not None:
             pulumi.set(__self__, "options", options)
         if oracles is not None:
             pulumi.set(__self__, "oracles", oracles)
         if postgresqls is not None:
             pulumi.set(__self__, "postgresqls", postgresqls)
+        if redis_elasticaches is not None:
+            pulumi.set(__self__, "redis_elasticaches", redis_elasticaches)
         if redshifts is not None:
             pulumi.set(__self__, "redshifts", redshifts)
         if seal_wrap is not None:
@@ -150,6 +163,18 @@ class SecretsMountArgs:
     @path.setter
     def path(self, value: pulumi.Input[str]):
         pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter(name="allowedManagedKeys")
+    def allowed_managed_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Set of managed key registry entry names that the mount in question is allowed to access
+        """
+        return pulumi.get(self, "allowed_managed_keys")
+
+    @allowed_managed_keys.setter
+    def allowed_managed_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allowed_managed_keys", value)
 
     @property
     @pulumi.getter(name="auditNonHmacRequestKeys")
@@ -393,6 +418,18 @@ class SecretsMountArgs:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        Target namespace. (requires Enterprise)
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def options(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
         """
         Specifies mount type specific options that are passed to the backend
@@ -428,6 +465,19 @@ class SecretsMountArgs:
     @postgresqls.setter
     def postgresqls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountPostgresqlArgs']]]]):
         pulumi.set(self, "postgresqls", value)
+
+    @property
+    @pulumi.getter(name="redisElasticaches")
+    def redis_elasticaches(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountRedisElasticachArgs']]]]:
+        """
+        A nested block containing configuration options for InfluxDB connections.  
+        *See Configuration Options for more info*
+        """
+        return pulumi.get(self, "redis_elasticaches")
+
+    @redis_elasticaches.setter
+    def redis_elasticaches(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountRedisElasticachArgs']]]]):
+        pulumi.set(self, "redis_elasticaches", value)
 
     @property
     @pulumi.getter
@@ -472,6 +522,7 @@ class SecretsMountArgs:
 class _SecretsMountState:
     def __init__(__self__, *,
                  accessor: Optional[pulumi.Input[str]] = None,
+                 allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  cassandras: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountCassandraArgs']]]] = None,
@@ -492,16 +543,19 @@ class _SecretsMountState:
                  mysql_legacies: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlLegacyArgs']]]] = None,
                  mysql_rds: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlRdArgs']]]] = None,
                  mysqls: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlArgs']]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  oracles: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountOracleArgs']]]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  postgresqls: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountPostgresqlArgs']]]] = None,
+                 redis_elasticaches: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountRedisElasticachArgs']]]] = None,
                  redshifts: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountRedshiftArgs']]]] = None,
                  seal_wrap: Optional[pulumi.Input[bool]] = None,
                  snowflakes: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountSnowflakeArgs']]]] = None):
         """
         Input properties used for looking up and filtering SecretsMount resources.
         :param pulumi.Input[str] accessor: Accessor of the mount
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_managed_keys: Set of managed key registry entry names that the mount in question is allowed to access
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountCassandraArgs']]] cassandras: A nested block containing configuration options for Cassandra connections.  
@@ -534,11 +588,14 @@ class _SecretsMountState:
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlArgs']]] mysqls: A nested block containing configuration options for MySQL connections.  
                *See Configuration Options for more info*
+        :param pulumi.Input[str] namespace: Target namespace. (requires Enterprise)
         :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountOracleArgs']]] oracles: A nested block containing configuration options for Oracle connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[str] path: Where the secret backend will be mounted
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountPostgresqlArgs']]] postgresqls: A nested block containing configuration options for PostgreSQL connections.  
+               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountRedisElasticachArgs']]] redis_elasticaches: A nested block containing configuration options for InfluxDB connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountRedshiftArgs']]] redshifts: A nested block containing configuration options for AWS Redshift connections.  
                *See Configuration Options for more info*
@@ -548,6 +605,8 @@ class _SecretsMountState:
         """
         if accessor is not None:
             pulumi.set(__self__, "accessor", accessor)
+        if allowed_managed_keys is not None:
+            pulumi.set(__self__, "allowed_managed_keys", allowed_managed_keys)
         if audit_non_hmac_request_keys is not None:
             pulumi.set(__self__, "audit_non_hmac_request_keys", audit_non_hmac_request_keys)
         if audit_non_hmac_response_keys is not None:
@@ -588,6 +647,8 @@ class _SecretsMountState:
             pulumi.set(__self__, "mysql_rds", mysql_rds)
         if mysqls is not None:
             pulumi.set(__self__, "mysqls", mysqls)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if options is not None:
             pulumi.set(__self__, "options", options)
         if oracles is not None:
@@ -596,6 +657,8 @@ class _SecretsMountState:
             pulumi.set(__self__, "path", path)
         if postgresqls is not None:
             pulumi.set(__self__, "postgresqls", postgresqls)
+        if redis_elasticaches is not None:
+            pulumi.set(__self__, "redis_elasticaches", redis_elasticaches)
         if redshifts is not None:
             pulumi.set(__self__, "redshifts", redshifts)
         if seal_wrap is not None:
@@ -614,6 +677,18 @@ class _SecretsMountState:
     @accessor.setter
     def accessor(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "accessor", value)
+
+    @property
+    @pulumi.getter(name="allowedManagedKeys")
+    def allowed_managed_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Set of managed key registry entry names that the mount in question is allowed to access
+        """
+        return pulumi.get(self, "allowed_managed_keys")
+
+    @allowed_managed_keys.setter
+    def allowed_managed_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allowed_managed_keys", value)
 
     @property
     @pulumi.getter(name="auditNonHmacRequestKeys")
@@ -869,6 +944,18 @@ class _SecretsMountState:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        Target namespace. (requires Enterprise)
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def options(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
         """
         Specifies mount type specific options that are passed to the backend
@@ -918,6 +1005,19 @@ class _SecretsMountState:
         pulumi.set(self, "postgresqls", value)
 
     @property
+    @pulumi.getter(name="redisElasticaches")
+    def redis_elasticaches(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountRedisElasticachArgs']]]]:
+        """
+        A nested block containing configuration options for InfluxDB connections.  
+        *See Configuration Options for more info*
+        """
+        return pulumi.get(self, "redis_elasticaches")
+
+    @redis_elasticaches.setter
+    def redis_elasticaches(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountRedisElasticachArgs']]]]):
+        pulumi.set(self, "redis_elasticaches", value)
+
+    @property
     @pulumi.getter
     def redshifts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountRedshiftArgs']]]]:
         """
@@ -961,6 +1061,7 @@ class SecretsMount(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  cassandras: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountCassandraArgs']]]]] = None,
@@ -980,10 +1081,12 @@ class SecretsMount(pulumi.CustomResource):
                  mysql_legacies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountMysqlLegacyArgs']]]]] = None,
                  mysql_rds: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountMysqlRdArgs']]]]] = None,
                  mysqls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountMysqlArgs']]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  oracles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountOracleArgs']]]]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  postgresqls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountPostgresqlArgs']]]]] = None,
+                 redis_elasticaches: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRedisElasticachArgs']]]]] = None,
                  redshifts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRedshiftArgs']]]]] = None,
                  seal_wrap: Optional[pulumi.Input[bool]] = None,
                  snowflakes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountSnowflakeArgs']]]]] = None,
@@ -1039,6 +1142,7 @@ class SecretsMount(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_managed_keys: Set of managed key registry entry names that the mount in question is allowed to access
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountCassandraArgs']]]] cassandras: A nested block containing configuration options for Cassandra connections.  
@@ -1070,11 +1174,14 @@ class SecretsMount(pulumi.CustomResource):
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountMysqlArgs']]]] mysqls: A nested block containing configuration options for MySQL connections.  
                *See Configuration Options for more info*
+        :param pulumi.Input[str] namespace: Target namespace. (requires Enterprise)
         :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountOracleArgs']]]] oracles: A nested block containing configuration options for Oracle connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[str] path: Where the secret backend will be mounted
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountPostgresqlArgs']]]] postgresqls: A nested block containing configuration options for PostgreSQL connections.  
+               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRedisElasticachArgs']]]] redis_elasticaches: A nested block containing configuration options for InfluxDB connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRedshiftArgs']]]] redshifts: A nested block containing configuration options for AWS Redshift connections.  
                *See Configuration Options for more info*
@@ -1152,6 +1259,7 @@ class SecretsMount(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  cassandras: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountCassandraArgs']]]]] = None,
@@ -1171,10 +1279,12 @@ class SecretsMount(pulumi.CustomResource):
                  mysql_legacies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountMysqlLegacyArgs']]]]] = None,
                  mysql_rds: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountMysqlRdArgs']]]]] = None,
                  mysqls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountMysqlArgs']]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  oracles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountOracleArgs']]]]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  postgresqls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountPostgresqlArgs']]]]] = None,
+                 redis_elasticaches: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRedisElasticachArgs']]]]] = None,
                  redshifts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRedshiftArgs']]]]] = None,
                  seal_wrap: Optional[pulumi.Input[bool]] = None,
                  snowflakes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountSnowflakeArgs']]]]] = None,
@@ -1187,6 +1297,7 @@ class SecretsMount(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SecretsMountArgs.__new__(SecretsMountArgs)
 
+            __props__.__dict__["allowed_managed_keys"] = allowed_managed_keys
             __props__.__dict__["audit_non_hmac_request_keys"] = audit_non_hmac_request_keys
             __props__.__dict__["audit_non_hmac_response_keys"] = audit_non_hmac_response_keys
             __props__.__dict__["cassandras"] = cassandras
@@ -1206,12 +1317,14 @@ class SecretsMount(pulumi.CustomResource):
             __props__.__dict__["mysql_legacies"] = mysql_legacies
             __props__.__dict__["mysql_rds"] = mysql_rds
             __props__.__dict__["mysqls"] = mysqls
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["options"] = options
             __props__.__dict__["oracles"] = oracles
             if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
             __props__.__dict__["path"] = path
             __props__.__dict__["postgresqls"] = postgresqls
+            __props__.__dict__["redis_elasticaches"] = redis_elasticaches
             __props__.__dict__["redshifts"] = redshifts
             __props__.__dict__["seal_wrap"] = seal_wrap
             __props__.__dict__["snowflakes"] = snowflakes
@@ -1228,6 +1341,7 @@ class SecretsMount(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             accessor: Optional[pulumi.Input[str]] = None,
+            allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             cassandras: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountCassandraArgs']]]]] = None,
@@ -1248,10 +1362,12 @@ class SecretsMount(pulumi.CustomResource):
             mysql_legacies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountMysqlLegacyArgs']]]]] = None,
             mysql_rds: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountMysqlRdArgs']]]]] = None,
             mysqls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountMysqlArgs']]]]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             oracles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountOracleArgs']]]]] = None,
             path: Optional[pulumi.Input[str]] = None,
             postgresqls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountPostgresqlArgs']]]]] = None,
+            redis_elasticaches: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRedisElasticachArgs']]]]] = None,
             redshifts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRedshiftArgs']]]]] = None,
             seal_wrap: Optional[pulumi.Input[bool]] = None,
             snowflakes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountSnowflakeArgs']]]]] = None) -> 'SecretsMount':
@@ -1263,6 +1379,7 @@ class SecretsMount(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] accessor: Accessor of the mount
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_managed_keys: Set of managed key registry entry names that the mount in question is allowed to access
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountCassandraArgs']]]] cassandras: A nested block containing configuration options for Cassandra connections.  
@@ -1295,11 +1412,14 @@ class SecretsMount(pulumi.CustomResource):
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountMysqlArgs']]]] mysqls: A nested block containing configuration options for MySQL connections.  
                *See Configuration Options for more info*
+        :param pulumi.Input[str] namespace: Target namespace. (requires Enterprise)
         :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountOracleArgs']]]] oracles: A nested block containing configuration options for Oracle connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[str] path: Where the secret backend will be mounted
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountPostgresqlArgs']]]] postgresqls: A nested block containing configuration options for PostgreSQL connections.  
+               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRedisElasticachArgs']]]] redis_elasticaches: A nested block containing configuration options for InfluxDB connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRedshiftArgs']]]] redshifts: A nested block containing configuration options for AWS Redshift connections.  
                *See Configuration Options for more info*
@@ -1312,6 +1432,7 @@ class SecretsMount(pulumi.CustomResource):
         __props__ = _SecretsMountState.__new__(_SecretsMountState)
 
         __props__.__dict__["accessor"] = accessor
+        __props__.__dict__["allowed_managed_keys"] = allowed_managed_keys
         __props__.__dict__["audit_non_hmac_request_keys"] = audit_non_hmac_request_keys
         __props__.__dict__["audit_non_hmac_response_keys"] = audit_non_hmac_response_keys
         __props__.__dict__["cassandras"] = cassandras
@@ -1332,10 +1453,12 @@ class SecretsMount(pulumi.CustomResource):
         __props__.__dict__["mysql_legacies"] = mysql_legacies
         __props__.__dict__["mysql_rds"] = mysql_rds
         __props__.__dict__["mysqls"] = mysqls
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["options"] = options
         __props__.__dict__["oracles"] = oracles
         __props__.__dict__["path"] = path
         __props__.__dict__["postgresqls"] = postgresqls
+        __props__.__dict__["redis_elasticaches"] = redis_elasticaches
         __props__.__dict__["redshifts"] = redshifts
         __props__.__dict__["seal_wrap"] = seal_wrap
         __props__.__dict__["snowflakes"] = snowflakes
@@ -1348,6 +1471,14 @@ class SecretsMount(pulumi.CustomResource):
         Accessor of the mount
         """
         return pulumi.get(self, "accessor")
+
+    @property
+    @pulumi.getter(name="allowedManagedKeys")
+    def allowed_managed_keys(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        Set of managed key registry entry names that the mount in question is allowed to access
+        """
+        return pulumi.get(self, "allowed_managed_keys")
 
     @property
     @pulumi.getter(name="auditNonHmacRequestKeys")
@@ -1523,6 +1654,14 @@ class SecretsMount(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        Target namespace. (requires Enterprise)
+        """
+        return pulumi.get(self, "namespace")
+
+    @property
+    @pulumi.getter
     def options(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         """
         Specifies mount type specific options that are passed to the backend
@@ -1554,6 +1693,15 @@ class SecretsMount(pulumi.CustomResource):
         *See Configuration Options for more info*
         """
         return pulumi.get(self, "postgresqls")
+
+    @property
+    @pulumi.getter(name="redisElasticaches")
+    def redis_elasticaches(self) -> pulumi.Output[Optional[Sequence['outputs.SecretsMountRedisElasticach']]]:
+        """
+        A nested block containing configuration options for InfluxDB connections.  
+        *See Configuration Options for more info*
+        """
+        return pulumi.get(self, "redis_elasticaches")
 
     @property
     @pulumi.getter

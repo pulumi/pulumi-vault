@@ -33,6 +33,27 @@ public final class GetAuthBackendRolePlainArgs extends com.pulumi.resources.Invo
     }
 
     /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured namespace.
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable String namespace;
+
+    /**
+     * @return The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured namespace.
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<String> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
+
+    /**
      * The name of the role to retrieve the Role ID for.
      * 
      */
@@ -222,6 +243,7 @@ public final class GetAuthBackendRolePlainArgs extends com.pulumi.resources.Invo
 
     private GetAuthBackendRolePlainArgs(GetAuthBackendRolePlainArgs $) {
         this.backend = $.backend;
+        this.namespace = $.namespace;
         this.roleName = $.roleName;
         this.tokenBoundCidrs = $.tokenBoundCidrs;
         this.tokenExplicitMaxTtl = $.tokenExplicitMaxTtl;
@@ -260,6 +282,20 @@ public final class GetAuthBackendRolePlainArgs extends com.pulumi.resources.Invo
          */
         public Builder backend(@Nullable String backend) {
             $.backend = backend;
+            return this;
+        }
+
+        /**
+         * @param namespace The namespace of the target resource.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured namespace.
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable String namespace) {
+            $.namespace = namespace;
             return this;
         }
 

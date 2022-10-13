@@ -12,6 +12,9 @@ import * as utilities from "./utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const example = new vault.Token("example", {
+ *     metadata: {
+ *         purpose: "service-account",
+ *     },
  *     policies: [
  *         "policy1",
  *         "policy2",
@@ -80,6 +83,17 @@ export class Token extends pulumi.CustomResource {
      * String containing the token lease started time if present in state file
      */
     public /*out*/ readonly leaseStarted!: pulumi.Output<string>;
+    /**
+     * Metadata to be set on this token
+     */
+    public readonly metadata!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
     /**
      * Flag to not attach the default policy to this token
      */
@@ -151,6 +165,8 @@ export class Token extends pulumi.CustomResource {
             resourceInputs["explicitMaxTtl"] = state ? state.explicitMaxTtl : undefined;
             resourceInputs["leaseDuration"] = state ? state.leaseDuration : undefined;
             resourceInputs["leaseStarted"] = state ? state.leaseStarted : undefined;
+            resourceInputs["metadata"] = state ? state.metadata : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["noDefaultPolicy"] = state ? state.noDefaultPolicy : undefined;
             resourceInputs["noParent"] = state ? state.noParent : undefined;
             resourceInputs["numUses"] = state ? state.numUses : undefined;
@@ -168,6 +184,8 @@ export class Token extends pulumi.CustomResource {
             const args = argsOrState as TokenArgs | undefined;
             resourceInputs["displayName"] = args ? args.displayName : undefined;
             resourceInputs["explicitMaxTtl"] = args ? args.explicitMaxTtl : undefined;
+            resourceInputs["metadata"] = args ? args.metadata : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["noDefaultPolicy"] = args ? args.noDefaultPolicy : undefined;
             resourceInputs["noParent"] = args ? args.noParent : undefined;
             resourceInputs["numUses"] = args ? args.numUses : undefined;
@@ -186,6 +204,8 @@ export class Token extends pulumi.CustomResource {
             resourceInputs["wrappingAccessor"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["clientToken", "wrappedToken", "wrappingAccessor"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Token.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -214,6 +234,17 @@ export interface TokenState {
      * String containing the token lease started time if present in state file
      */
     leaseStarted?: pulumi.Input<string>;
+    /**
+     * Metadata to be set on this token
+     */
+    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Flag to not attach the default policy to this token
      */
@@ -280,6 +311,17 @@ export interface TokenArgs {
      * The explicit max TTL of this token
      */
     explicitMaxTtl?: pulumi.Input<string>;
+    /**
+     * Metadata to be set on this token
+     */
+    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Flag to not attach the default policy to this token
      */

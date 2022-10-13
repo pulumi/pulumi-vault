@@ -15,13 +15,13 @@ namespace Pulumi.Vault.Transit
         /// This is a data source which can be used to encrypt plaintext using a Vault Transit key.
         /// </summary>
         public static Task<GetEncryptResult> InvokeAsync(GetEncryptArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetEncryptResult>("vault:transit/getEncrypt:getEncrypt", args ?? new GetEncryptArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetEncryptResult>("vault:transit/getEncrypt:getEncrypt", args ?? new GetEncryptArgs(), options.WithDefaults());
 
         /// <summary>
         /// This is a data source which can be used to encrypt plaintext using a Vault Transit key.
         /// </summary>
         public static Output<GetEncryptResult> Invoke(GetEncryptInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetEncryptResult>("vault:transit/getEncrypt:getEncrypt", args ?? new GetEncryptInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetEncryptResult>("vault:transit/getEncrypt:getEncrypt", args ?? new GetEncryptInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -51,11 +51,20 @@ namespace Pulumi.Vault.Transit
         [Input("keyVersion")]
         public int? KeyVersion { get; set; }
 
+        [Input("namespace")]
+        public string? Namespace { get; set; }
+
+        [Input("plaintext", required: true)]
+        private string? _plaintext;
+
         /// <summary>
         /// Plaintext to be encoded.
         /// </summary>
-        [Input("plaintext", required: true)]
-        public string Plaintext { get; set; } = null!;
+        public string? Plaintext
+        {
+            get => _plaintext;
+            set => _plaintext = value;
+        }
 
         public GetEncryptArgs()
         {
@@ -89,11 +98,24 @@ namespace Pulumi.Vault.Transit
         [Input("keyVersion")]
         public Input<int>? KeyVersion { get; set; }
 
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        [Input("plaintext", required: true)]
+        private Input<string>? _plaintext;
+
         /// <summary>
         /// Plaintext to be encoded.
         /// </summary>
-        [Input("plaintext", required: true)]
-        public Input<string> Plaintext { get; set; } = null!;
+        public Input<string>? Plaintext
+        {
+            get => _plaintext;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _plaintext = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public GetEncryptInvokeArgs()
         {
@@ -117,6 +139,7 @@ namespace Pulumi.Vault.Transit
         public readonly string Id;
         public readonly string Key;
         public readonly int? KeyVersion;
+        public readonly string? Namespace;
         public readonly string Plaintext;
 
         [OutputConstructor]
@@ -133,6 +156,8 @@ namespace Pulumi.Vault.Transit
 
             int? keyVersion,
 
+            string? @namespace,
+
             string plaintext)
         {
             Backend = backend;
@@ -141,6 +166,7 @@ namespace Pulumi.Vault.Transit
             Id = id;
             Key = key;
             KeyVersion = keyVersion;
+            Namespace = @namespace;
             Plaintext = plaintext;
         }
     }

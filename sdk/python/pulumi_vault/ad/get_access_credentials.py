@@ -21,7 +21,7 @@ class GetAccessCredentialsResult:
     """
     A collection of values returned by getAccessCredentials.
     """
-    def __init__(__self__, backend=None, current_password=None, id=None, last_password=None, role=None, username=None):
+    def __init__(__self__, backend=None, current_password=None, id=None, last_password=None, namespace=None, role=None, username=None):
         if backend and not isinstance(backend, str):
             raise TypeError("Expected argument 'backend' to be a str")
         pulumi.set(__self__, "backend", backend)
@@ -34,6 +34,9 @@ class GetAccessCredentialsResult:
         if last_password and not isinstance(last_password, str):
             raise TypeError("Expected argument 'last_password' to be a str")
         pulumi.set(__self__, "last_password", last_password)
+        if namespace and not isinstance(namespace, str):
+            raise TypeError("Expected argument 'namespace' to be a str")
+        pulumi.set(__self__, "namespace", namespace)
         if role and not isinstance(role, str):
             raise TypeError("Expected argument 'role' to be a str")
         pulumi.set(__self__, "role", role)
@@ -72,6 +75,11 @@ class GetAccessCredentialsResult:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[str]:
+        return pulumi.get(self, "namespace")
+
+    @property
+    @pulumi.getter
     def role(self) -> str:
         return pulumi.get(self, "role")
 
@@ -94,11 +102,13 @@ class AwaitableGetAccessCredentialsResult(GetAccessCredentialsResult):
             current_password=self.current_password,
             id=self.id,
             last_password=self.last_password,
+            namespace=self.namespace,
             role=self.role,
             username=self.username)
 
 
 def get_access_credentials(backend: Optional[str] = None,
+                           namespace: Optional[str] = None,
                            role: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccessCredentialsResult:
     """
@@ -106,11 +116,16 @@ def get_access_credentials(backend: Optional[str] = None,
 
     :param str backend: The path to the AD secret backend to
            read credentials from, with no leading or trailing `/`s.
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           *Available only for Vault Enterprise*.
     :param str role: The name of the AD secret backend role to read
            credentials from, with no leading or trailing `/`s.
     """
     __args__ = dict()
     __args__['backend'] = backend
+    __args__['namespace'] = namespace
     __args__['role'] = role
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('vault:ad/getAccessCredentials:getAccessCredentials', __args__, opts=opts, typ=GetAccessCredentialsResult).value
@@ -120,12 +135,14 @@ def get_access_credentials(backend: Optional[str] = None,
         current_password=__ret__.current_password,
         id=__ret__.id,
         last_password=__ret__.last_password,
+        namespace=__ret__.namespace,
         role=__ret__.role,
         username=__ret__.username)
 
 
 @_utilities.lift_output_func(get_access_credentials)
 def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
+                                  namespace: Optional[pulumi.Input[Optional[str]]] = None,
                                   role: Optional[pulumi.Input[str]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAccessCredentialsResult]:
     """
@@ -133,6 +150,10 @@ def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
 
     :param str backend: The path to the AD secret backend to
            read credentials from, with no leading or trailing `/`s.
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           *Available only for Vault Enterprise*.
     :param str role: The name of the AD secret backend role to read
            credentials from, with no leading or trailing `/`s.
     """

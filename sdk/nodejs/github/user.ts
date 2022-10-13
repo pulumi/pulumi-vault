@@ -68,6 +68,13 @@ export class User extends pulumi.CustomResource {
      */
     public readonly backend!: pulumi.Output<string | undefined>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * An array of strings specifying the policies to be set on tokens issued
      * using this role.
      */
@@ -91,6 +98,7 @@ export class User extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as UserState | undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["policies"] = state ? state.policies : undefined;
             resourceInputs["user"] = state ? state.user : undefined;
         } else {
@@ -99,6 +107,7 @@ export class User extends pulumi.CustomResource {
                 throw new Error("Missing required property 'user'");
             }
             resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["policies"] = args ? args.policies : undefined;
             resourceInputs["user"] = args ? args.user : undefined;
         }
@@ -116,6 +125,13 @@ export interface UserState {
      * if not specified.
      */
     backend?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * An array of strings specifying the policies to be set on tokens issued
      * using this role.
@@ -136,6 +152,13 @@ export interface UserArgs {
      * if not specified.
      */
     backend?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * An array of strings specifying the policies to be set on tokens issued
      * using this role.

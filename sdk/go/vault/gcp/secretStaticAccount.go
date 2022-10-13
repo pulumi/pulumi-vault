@@ -99,6 +99,11 @@ type SecretStaticAccount struct {
 	Backend pulumi.StringOutput `pulumi:"backend"`
 	// Bindings to create for this static account. This can be specified multiple times for multiple bindings. Structure is documented below.
 	Bindings SecretStaticAccountBindingArrayOutput `pulumi:"bindings"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Type of secret generated for this static account. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
 	SecretType pulumi.StringOutput `pulumi:"secretType"`
 	// Email of the GCP service account to manage.
@@ -153,6 +158,11 @@ type secretStaticAccountState struct {
 	Backend *string `pulumi:"backend"`
 	// Bindings to create for this static account. This can be specified multiple times for multiple bindings. Structure is documented below.
 	Bindings []SecretStaticAccountBinding `pulumi:"bindings"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Type of secret generated for this static account. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
 	SecretType *string `pulumi:"secretType"`
 	// Email of the GCP service account to manage.
@@ -170,6 +180,11 @@ type SecretStaticAccountState struct {
 	Backend pulumi.StringPtrInput
 	// Bindings to create for this static account. This can be specified multiple times for multiple bindings. Structure is documented below.
 	Bindings SecretStaticAccountBindingArrayInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Type of secret generated for this static account. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
 	SecretType pulumi.StringPtrInput
 	// Email of the GCP service account to manage.
@@ -191,6 +206,11 @@ type secretStaticAccountArgs struct {
 	Backend string `pulumi:"backend"`
 	// Bindings to create for this static account. This can be specified multiple times for multiple bindings. Structure is documented below.
 	Bindings []SecretStaticAccountBinding `pulumi:"bindings"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Type of secret generated for this static account. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
 	SecretType *string `pulumi:"secretType"`
 	// Email of the GCP service account to manage.
@@ -207,6 +227,11 @@ type SecretStaticAccountArgs struct {
 	Backend pulumi.StringInput
 	// Bindings to create for this static account. This can be specified multiple times for multiple bindings. Structure is documented below.
 	Bindings SecretStaticAccountBindingArrayInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Type of secret generated for this static account. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
 	SecretType pulumi.StringPtrInput
 	// Email of the GCP service account to manage.
@@ -312,6 +337,14 @@ func (o SecretStaticAccountOutput) Backend() pulumi.StringOutput {
 // Bindings to create for this static account. This can be specified multiple times for multiple bindings. Structure is documented below.
 func (o SecretStaticAccountOutput) Bindings() SecretStaticAccountBindingArrayOutput {
 	return o.ApplyT(func(v *SecretStaticAccount) SecretStaticAccountBindingArrayOutput { return v.Bindings }).(SecretStaticAccountBindingArrayOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o SecretStaticAccountOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretStaticAccount) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Type of secret generated for this static account. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.

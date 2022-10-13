@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -124,6 +125,11 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    public readonly disableRemount!: pulumi.Output<boolean | undefined>;
+    /**
      * The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
      */
     public readonly jwksCaPem!: pulumi.Output<string | undefined>;
@@ -143,6 +149,13 @@ export class AuthBackend extends pulumi.CustomResource {
      * Specifies if the auth method is local only.
      */
     public readonly local!: pulumi.Output<boolean | undefined>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
     /**
      * Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
      */
@@ -202,11 +215,13 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["boundIssuer"] = state ? state.boundIssuer : undefined;
             resourceInputs["defaultRole"] = state ? state.defaultRole : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
             resourceInputs["jwksCaPem"] = state ? state.jwksCaPem : undefined;
             resourceInputs["jwksUrl"] = state ? state.jwksUrl : undefined;
             resourceInputs["jwtSupportedAlgs"] = state ? state.jwtSupportedAlgs : undefined;
             resourceInputs["jwtValidationPubkeys"] = state ? state.jwtValidationPubkeys : undefined;
             resourceInputs["local"] = state ? state.local : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["namespaceInState"] = state ? state.namespaceInState : undefined;
             resourceInputs["oidcClientId"] = state ? state.oidcClientId : undefined;
             resourceInputs["oidcClientSecret"] = state ? state.oidcClientSecret : undefined;
@@ -223,14 +238,16 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["boundIssuer"] = args ? args.boundIssuer : undefined;
             resourceInputs["defaultRole"] = args ? args.defaultRole : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
             resourceInputs["jwksCaPem"] = args ? args.jwksCaPem : undefined;
             resourceInputs["jwksUrl"] = args ? args.jwksUrl : undefined;
             resourceInputs["jwtSupportedAlgs"] = args ? args.jwtSupportedAlgs : undefined;
             resourceInputs["jwtValidationPubkeys"] = args ? args.jwtValidationPubkeys : undefined;
             resourceInputs["local"] = args ? args.local : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["namespaceInState"] = args ? args.namespaceInState : undefined;
             resourceInputs["oidcClientId"] = args ? args.oidcClientId : undefined;
-            resourceInputs["oidcClientSecret"] = args ? args.oidcClientSecret : undefined;
+            resourceInputs["oidcClientSecret"] = args?.oidcClientSecret ? pulumi.secret(args.oidcClientSecret) : undefined;
             resourceInputs["oidcDiscoveryCaPem"] = args ? args.oidcDiscoveryCaPem : undefined;
             resourceInputs["oidcDiscoveryUrl"] = args ? args.oidcDiscoveryUrl : undefined;
             resourceInputs["oidcResponseMode"] = args ? args.oidcResponseMode : undefined;
@@ -242,6 +259,8 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["accessor"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["oidcClientSecret"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(AuthBackend.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -267,6 +286,11 @@ export interface AuthBackendState {
      */
     description?: pulumi.Input<string>;
     /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    disableRemount?: pulumi.Input<boolean>;
+    /**
      * The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
      */
     jwksCaPem?: pulumi.Input<string>;
@@ -286,6 +310,13 @@ export interface AuthBackendState {
      * Specifies if the auth method is local only.
      */
     local?: pulumi.Input<boolean>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
      */
@@ -346,6 +377,11 @@ export interface AuthBackendArgs {
      */
     description?: pulumi.Input<string>;
     /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    disableRemount?: pulumi.Input<boolean>;
+    /**
      * The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
      */
     jwksCaPem?: pulumi.Input<string>;
@@ -365,6 +401,13 @@ export interface AuthBackendArgs {
      * Specifies if the auth method is local only.
      */
     local?: pulumi.Input<boolean>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
      */

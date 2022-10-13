@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -86,6 +87,11 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    public readonly disableRemount!: pulumi.Output<boolean | undefined>;
+    /**
      * Associate Okta groups with policies within Vault.
      * See below for more details.
      */
@@ -95,6 +101,13 @@ export class AuthBackend extends pulumi.CustomResource {
      * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
      */
     public readonly maxTtl!: pulumi.Output<string | undefined>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
     /**
      * The Okta organization. This will be the first part of the url `https://XXX.okta.com`
      */
@@ -136,8 +149,10 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["baseUrl"] = state ? state.baseUrl : undefined;
             resourceInputs["bypassOktaMfa"] = state ? state.bypassOktaMfa : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
             resourceInputs["groups"] = state ? state.groups : undefined;
             resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["organization"] = state ? state.organization : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
             resourceInputs["token"] = state ? state.token : undefined;
@@ -151,16 +166,20 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["baseUrl"] = args ? args.baseUrl : undefined;
             resourceInputs["bypassOktaMfa"] = args ? args.bypassOktaMfa : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
             resourceInputs["groups"] = args ? args.groups : undefined;
             resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["organization"] = args ? args.organization : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
-            resourceInputs["token"] = args ? args.token : undefined;
+            resourceInputs["token"] = args?.token ? pulumi.secret(args.token) : undefined;
             resourceInputs["ttl"] = args ? args.ttl : undefined;
             resourceInputs["users"] = args ? args.users : undefined;
             resourceInputs["accessor"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["token"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(AuthBackend.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -186,6 +205,11 @@ export interface AuthBackendState {
      */
     description?: pulumi.Input<string>;
     /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    disableRemount?: pulumi.Input<boolean>;
+    /**
      * Associate Okta groups with policies within Vault.
      * See below for more details.
      */
@@ -195,6 +219,13 @@ export interface AuthBackendState {
      * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
      */
     maxTtl?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The Okta organization. This will be the first part of the url `https://XXX.okta.com`
      */
@@ -237,6 +268,11 @@ export interface AuthBackendArgs {
      */
     description?: pulumi.Input<string>;
     /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    disableRemount?: pulumi.Input<boolean>;
+    /**
      * Associate Okta groups with policies within Vault.
      * See below for more details.
      */
@@ -246,6 +282,13 @@ export interface AuthBackendArgs {
      * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
      */
     maxTtl?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The Okta organization. This will be the first part of the url `https://XXX.okta.com`
      */

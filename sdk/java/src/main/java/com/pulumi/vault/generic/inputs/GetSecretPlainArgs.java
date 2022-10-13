@@ -17,6 +17,27 @@ public final class GetSecretPlainArgs extends com.pulumi.resources.InvokeArgs {
     public static final GetSecretPlainArgs Empty = new GetSecretPlainArgs();
 
     /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable String namespace;
+
+    /**
+     * @return The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<String> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
+
+    /**
      * The full logical path from which to request data.
      * To read data from the &#34;generic&#34; secret backend mounted in Vault by
      * default, this should be prefixed with `secret/`. Reading from other backends
@@ -68,6 +89,7 @@ public final class GetSecretPlainArgs extends com.pulumi.resources.InvokeArgs {
     private GetSecretPlainArgs() {}
 
     private GetSecretPlainArgs(GetSecretPlainArgs $) {
+        this.namespace = $.namespace;
         this.path = $.path;
         this.version = $.version;
         this.withLeaseStartTime = $.withLeaseStartTime;
@@ -89,6 +111,20 @@ public final class GetSecretPlainArgs extends com.pulumi.resources.InvokeArgs {
 
         public Builder(GetSecretPlainArgs defaults) {
             $ = new GetSecretPlainArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param namespace The namespace of the target resource.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable String namespace) {
+            $.namespace = namespace;
+            return this;
         }
 
         /**

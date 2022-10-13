@@ -47,10 +47,10 @@ import (
 //			}
 //			_, err = identity.NewOidcAssignment(ctx, "default", &identity.OidcAssignmentArgs{
 //				EntityIds: pulumi.StringArray{
-//					test.Name,
+//					test.ID(),
 //				},
 //				GroupIds: pulumi.StringArray{
-//					internal.Name,
+//					internal.ID(),
 //				},
 //			})
 //			if err != nil {
@@ -80,6 +80,11 @@ type OidcAssignment struct {
 	GroupIds pulumi.StringArrayOutput `pulumi:"groupIds"`
 	// The name of the assignment.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 }
 
 // NewOidcAssignment registers a new resource with the given unique name, arguments, and options.
@@ -117,6 +122,11 @@ type oidcAssignmentState struct {
 	GroupIds []string `pulumi:"groupIds"`
 	// The name of the assignment.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 }
 
 type OidcAssignmentState struct {
@@ -126,6 +136,11 @@ type OidcAssignmentState struct {
 	GroupIds pulumi.StringArrayInput
 	// The name of the assignment.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 }
 
 func (OidcAssignmentState) ElementType() reflect.Type {
@@ -139,6 +154,11 @@ type oidcAssignmentArgs struct {
 	GroupIds []string `pulumi:"groupIds"`
 	// The name of the assignment.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 }
 
 // The set of arguments for constructing a OidcAssignment resource.
@@ -149,6 +169,11 @@ type OidcAssignmentArgs struct {
 	GroupIds pulumi.StringArrayInput
 	// The name of the assignment.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 }
 
 func (OidcAssignmentArgs) ElementType() reflect.Type {
@@ -251,6 +276,14 @@ func (o OidcAssignmentOutput) GroupIds() pulumi.StringArrayOutput {
 // The name of the assignment.
 func (o OidcAssignmentOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *OidcAssignment) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o OidcAssignmentOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OidcAssignment) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 type OidcAssignmentArrayOutput struct{ *pulumi.OutputState }

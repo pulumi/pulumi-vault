@@ -14,14 +14,14 @@ namespace Pulumi.Vault.Azure.Outputs
     public sealed class BackendRoleAzureRole
     {
         public readonly string? RoleId;
-        public readonly string RoleName;
+        public readonly string? RoleName;
         public readonly string Scope;
 
         [OutputConstructor]
         private BackendRoleAzureRole(
             string? roleId,
 
-            string roleName,
+            string? roleName,
 
             string scope)
         {

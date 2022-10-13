@@ -17,7 +17,6 @@ namespace Pulumi.Vault.Identity
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
-    /// using System.Text.Json;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -25,11 +24,8 @@ namespace Pulumi.Vault.Identity
     /// {
     ///     var groups = new Vault.Identity.OidcScope("groups", new()
     ///     {
-    ///         Template = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
-    ///         {
-    ///             ["groups"] = "{{identity.entity.groups.names}}",
-    ///         }),
     ///         Description = "Vault OIDC Groups Scope",
+    ///         Template = "{\"groups\":{{identity.entity.groups.names}}}",
     ///     });
     /// 
     /// });
@@ -57,6 +53,15 @@ namespace Pulumi.Vault.Identity
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
         /// The template string for the scope. This may be provided as escaped JSON or base64 encoded JSON.
@@ -123,6 +128,15 @@ namespace Pulumi.Vault.Identity
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
         /// The template string for the scope. This may be provided as escaped JSON or base64 encoded JSON.
         /// </summary>
         [Input("template")]
@@ -147,6 +161,15 @@ namespace Pulumi.Vault.Identity
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// The template string for the scope. This may be provided as escaped JSON or base64 encoded JSON.

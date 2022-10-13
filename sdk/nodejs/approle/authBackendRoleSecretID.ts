@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  *         "prod",
  *     ],
  * });
- * const id = new vault.approle.AuthBackendRoleSecretID("id", {
+ * const id = new vault.approle.AuthBackendRoleSecretId("id", {
  *     backend: approle.path,
  *     roleName: example.roleName,
  *     metadata: JSON.stringify({
@@ -34,9 +34,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  */
-export class AuthBackendRoleSecretID extends pulumi.CustomResource {
+export class AuthBackendRoleSecretId extends pulumi.CustomResource {
     /**
-     * Get an existing AuthBackendRoleSecretID resource's state with the given name, ID, and optional extra
+     * Get an existing AuthBackendRoleSecretId resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -44,22 +44,22 @@ export class AuthBackendRoleSecretID extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AuthBackendRoleSecretIDState, opts?: pulumi.CustomResourceOptions): AuthBackendRoleSecretID {
-        return new AuthBackendRoleSecretID(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AuthBackendRoleSecretIdState, opts?: pulumi.CustomResourceOptions): AuthBackendRoleSecretId {
+        return new AuthBackendRoleSecretId(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID';
+    public static readonly __pulumiType = 'vault:appRole/authBackendRoleSecretId:AuthBackendRoleSecretId';
 
     /**
-     * Returns true if the given object is an instance of AuthBackendRoleSecretID.  This is designed to work even
+     * Returns true if the given object is an instance of AuthBackendRoleSecretId.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is AuthBackendRoleSecretID {
+    public static isInstance(obj: any): obj is AuthBackendRoleSecretId {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === AuthBackendRoleSecretID.__pulumiType;
+        return obj['__pulumiType'] === AuthBackendRoleSecretId.__pulumiType;
     }
 
     /**
@@ -80,6 +80,13 @@ export class AuthBackendRoleSecretID extends pulumi.CustomResource {
      * key-value pairs to be set on tokens issued with this SecretID.
      */
     public readonly metadata!: pulumi.Output<string | undefined>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
     /**
      * The name of the role to create the SecretID for.
      */
@@ -113,22 +120,23 @@ export class AuthBackendRoleSecretID extends pulumi.CustomResource {
     public readonly wrappingTtl!: pulumi.Output<string | undefined>;
 
     /**
-     * Create a AuthBackendRoleSecretID resource with the given unique name, arguments, and options.
+     * Create a AuthBackendRoleSecretId resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: AuthBackendRoleSecretIDArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: AuthBackendRoleSecretIDArgs | AuthBackendRoleSecretIDState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: AuthBackendRoleSecretIdArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: AuthBackendRoleSecretIdArgs | AuthBackendRoleSecretIdState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as AuthBackendRoleSecretIDState | undefined;
+            const state = argsOrState as AuthBackendRoleSecretIdState | undefined;
             resourceInputs["accessor"] = state ? state.accessor : undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["cidrLists"] = state ? state.cidrLists : undefined;
             resourceInputs["metadata"] = state ? state.metadata : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["roleName"] = state ? state.roleName : undefined;
             resourceInputs["secretId"] = state ? state.secretId : undefined;
             resourceInputs["withWrappedAccessor"] = state ? state.withWrappedAccessor : undefined;
@@ -136,15 +144,16 @@ export class AuthBackendRoleSecretID extends pulumi.CustomResource {
             resourceInputs["wrappingToken"] = state ? state.wrappingToken : undefined;
             resourceInputs["wrappingTtl"] = state ? state.wrappingTtl : undefined;
         } else {
-            const args = argsOrState as AuthBackendRoleSecretIDArgs | undefined;
+            const args = argsOrState as AuthBackendRoleSecretIdArgs | undefined;
             if ((!args || args.roleName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'roleName'");
             }
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["cidrLists"] = args ? args.cidrLists : undefined;
             resourceInputs["metadata"] = args ? args.metadata : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["roleName"] = args ? args.roleName : undefined;
-            resourceInputs["secretId"] = args ? args.secretId : undefined;
+            resourceInputs["secretId"] = args?.secretId ? pulumi.secret(args.secretId) : undefined;
             resourceInputs["withWrappedAccessor"] = args ? args.withWrappedAccessor : undefined;
             resourceInputs["wrappingTtl"] = args ? args.wrappingTtl : undefined;
             resourceInputs["accessor"] = undefined /*out*/;
@@ -152,14 +161,16 @@ export class AuthBackendRoleSecretID extends pulumi.CustomResource {
             resourceInputs["wrappingToken"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(AuthBackendRoleSecretID.__pulumiType, name, resourceInputs, opts);
+        const secretOpts = { additionalSecretOutputs: ["secretId", "wrappingToken"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
+        super(AuthBackendRoleSecretId.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering AuthBackendRoleSecretID resources.
+ * Input properties used for looking up and filtering AuthBackendRoleSecretId resources.
  */
-export interface AuthBackendRoleSecretIDState {
+export interface AuthBackendRoleSecretIdState {
     /**
      * The unique ID for this SecretID that can be safely logged.
      */
@@ -178,6 +189,13 @@ export interface AuthBackendRoleSecretIDState {
      * key-value pairs to be set on tokens issued with this SecretID.
      */
     metadata?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The name of the role to create the SecretID for.
      */
@@ -212,9 +230,9 @@ export interface AuthBackendRoleSecretIDState {
 }
 
 /**
- * The set of arguments for constructing a AuthBackendRoleSecretID resource.
+ * The set of arguments for constructing a AuthBackendRoleSecretId resource.
  */
-export interface AuthBackendRoleSecretIDArgs {
+export interface AuthBackendRoleSecretIdArgs {
     /**
      * Unique name of the auth backend to configure.
      */
@@ -229,6 +247,13 @@ export interface AuthBackendRoleSecretIDArgs {
      * key-value pairs to be set on tokens issued with this SecretID.
      */
     metadata?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The name of the role to create the SecretID for.
      */

@@ -90,6 +90,11 @@ type SecretRoleset struct {
 	Backend pulumi.StringOutput `pulumi:"backend"`
 	// Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
 	Bindings SecretRolesetBindingArrayOutput `pulumi:"bindings"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Name of the GCP project that this roleset's service account will belong to.
 	Project pulumi.StringOutput `pulumi:"project"`
 	// Name of the Roleset to create
@@ -147,6 +152,11 @@ type secretRolesetState struct {
 	Backend *string `pulumi:"backend"`
 	// Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
 	Bindings []SecretRolesetBinding `pulumi:"bindings"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Name of the GCP project that this roleset's service account will belong to.
 	Project *string `pulumi:"project"`
 	// Name of the Roleset to create
@@ -164,6 +174,11 @@ type SecretRolesetState struct {
 	Backend pulumi.StringPtrInput
 	// Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
 	Bindings SecretRolesetBindingArrayInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Name of the GCP project that this roleset's service account will belong to.
 	Project pulumi.StringPtrInput
 	// Name of the Roleset to create
@@ -185,6 +200,11 @@ type secretRolesetArgs struct {
 	Backend string `pulumi:"backend"`
 	// Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
 	Bindings []SecretRolesetBinding `pulumi:"bindings"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Name of the GCP project that this roleset's service account will belong to.
 	Project string `pulumi:"project"`
 	// Name of the Roleset to create
@@ -201,6 +221,11 @@ type SecretRolesetArgs struct {
 	Backend pulumi.StringInput
 	// Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
 	Bindings SecretRolesetBindingArrayInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Name of the GCP project that this roleset's service account will belong to.
 	Project pulumi.StringInput
 	// Name of the Roleset to create
@@ -306,6 +331,14 @@ func (o SecretRolesetOutput) Backend() pulumi.StringOutput {
 // Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
 func (o SecretRolesetOutput) Bindings() SecretRolesetBindingArrayOutput {
 	return o.ApplyT(func(v *SecretRoleset) SecretRolesetBindingArrayOutput { return v.Bindings }).(SecretRolesetBindingArrayOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o SecretRolesetOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretRoleset) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Name of the GCP project that this roleset's service account will belong to.

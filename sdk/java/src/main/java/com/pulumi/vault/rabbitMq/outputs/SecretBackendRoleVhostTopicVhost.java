@@ -9,20 +9,11 @@ import java.util.Objects;
 
 @CustomType
 public final class SecretBackendRoleVhostTopicVhost {
-    private final String read;
-    private final String topic;
-    private final String write;
+    private String read;
+    private String topic;
+    private String write;
 
-    @CustomType.Constructor
-    private SecretBackendRoleVhostTopicVhost(
-        @CustomType.Parameter("read") String read,
-        @CustomType.Parameter("topic") String topic,
-        @CustomType.Parameter("write") String write) {
-        this.read = read;
-        this.topic = topic;
-        this.write = write;
-    }
-
+    private SecretBackendRoleVhostTopicVhost() {}
     public String read() {
         return this.read;
     }
@@ -40,16 +31,12 @@ public final class SecretBackendRoleVhostTopicVhost {
     public static Builder builder(SecretBackendRoleVhostTopicVhost defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String read;
         private String topic;
         private String write;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(SecretBackendRoleVhostTopicVhost defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.read = defaults.read;
@@ -57,19 +44,27 @@ public final class SecretBackendRoleVhostTopicVhost {
     	      this.write = defaults.write;
         }
 
+        @CustomType.Setter
         public Builder read(String read) {
             this.read = Objects.requireNonNull(read);
             return this;
         }
+        @CustomType.Setter
         public Builder topic(String topic) {
             this.topic = Objects.requireNonNull(topic);
             return this;
         }
+        @CustomType.Setter
         public Builder write(String write) {
             this.write = Objects.requireNonNull(write);
             return this;
-        }        public SecretBackendRoleVhostTopicVhost build() {
-            return new SecretBackendRoleVhostTopicVhost(read, topic, write);
+        }
+        public SecretBackendRoleVhostTopicVhost build() {
+            final var o = new SecretBackendRoleVhostTopicVhost();
+            o.read = read;
+            o.topic = topic;
+            o.write = write;
+            return o;
         }
     }
 }

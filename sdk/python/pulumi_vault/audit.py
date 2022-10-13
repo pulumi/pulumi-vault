@@ -18,6 +18,7 @@ class AuditArgs:
                  type: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Audit resource.
@@ -25,6 +26,10 @@ class AuditArgs:
         :param pulumi.Input[str] type: Type of the audit device, such as 'file'.
         :param pulumi.Input[str] description: Human-friendly description of the audit device.
         :param pulumi.Input[bool] local: Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The path to mount the audit device. This defaults to the type.
         """
         pulumi.set(__self__, "options", options)
@@ -33,6 +38,8 @@ class AuditArgs:
             pulumi.set(__self__, "description", description)
         if local is not None:
             pulumi.set(__self__, "local", local)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if path is not None:
             pulumi.set(__self__, "path", path)
 
@@ -86,6 +93,21 @@ class AuditArgs:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
         """
         The path to mount the audit device. This defaults to the type.
@@ -102,6 +124,7 @@ class _AuditState:
     def __init__(__self__, *,
                  description: Optional[pulumi.Input[str]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
@@ -109,6 +132,10 @@ class _AuditState:
         Input properties used for looking up and filtering Audit resources.
         :param pulumi.Input[str] description: Human-friendly description of the audit device.
         :param pulumi.Input[bool] local: Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Configuration options to pass to the audit device itself.
         :param pulumi.Input[str] path: The path to mount the audit device. This defaults to the type.
         :param pulumi.Input[str] type: Type of the audit device, such as 'file'.
@@ -117,6 +144,8 @@ class _AuditState:
             pulumi.set(__self__, "description", description)
         if local is not None:
             pulumi.set(__self__, "local", local)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if options is not None:
             pulumi.set(__self__, "options", options)
         if path is not None:
@@ -147,6 +176,21 @@ class _AuditState:
     @local.setter
     def local(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "local", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -192,6 +236,7 @@ class Audit(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -239,6 +284,10 @@ class Audit(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Human-friendly description of the audit device.
         :param pulumi.Input[bool] local: Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Configuration options to pass to the audit device itself.
         :param pulumi.Input[str] path: The path to mount the audit device. This defaults to the type.
         :param pulumi.Input[str] type: Type of the audit device, such as 'file'.
@@ -305,6 +354,7 @@ class Audit(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -319,6 +369,7 @@ class Audit(pulumi.CustomResource):
 
             __props__.__dict__["description"] = description
             __props__.__dict__["local"] = local
+            __props__.__dict__["namespace"] = namespace
             if options is None and not opts.urn:
                 raise TypeError("Missing required property 'options'")
             __props__.__dict__["options"] = options
@@ -338,6 +389,7 @@ class Audit(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             description: Optional[pulumi.Input[str]] = None,
             local: Optional[pulumi.Input[bool]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             path: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'Audit':
@@ -350,6 +402,10 @@ class Audit(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Human-friendly description of the audit device.
         :param pulumi.Input[bool] local: Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Configuration options to pass to the audit device itself.
         :param pulumi.Input[str] path: The path to mount the audit device. This defaults to the type.
         :param pulumi.Input[str] type: Type of the audit device, such as 'file'.
@@ -360,6 +416,7 @@ class Audit(pulumi.CustomResource):
 
         __props__.__dict__["description"] = description
         __props__.__dict__["local"] = local
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["options"] = options
         __props__.__dict__["path"] = path
         __props__.__dict__["type"] = type
@@ -380,6 +437,17 @@ class Audit(pulumi.CustomResource):
         Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
         """
         return pulumi.get(self, "local")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

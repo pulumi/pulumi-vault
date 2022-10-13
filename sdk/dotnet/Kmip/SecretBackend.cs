@@ -78,10 +78,26 @@ namespace Pulumi.Vault.Kmip
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Output("disableRemount")]
+        public Output<bool?> DisableRemount { get; private set; } = null!;
+
+        /// <summary>
         /// Addresses the KMIP server should listen on (`host:port`).
         /// </summary>
         [Output("listenAddrs")]
         public Output<ImmutableArray<string>> ListenAddrs { get; private set; } = null!;
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
@@ -190,6 +206,13 @@ namespace Pulumi.Vault.Kmip
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Input("disableRemount")]
+        public Input<bool>? DisableRemount { get; set; }
+
         [Input("listenAddrs")]
         private InputList<string>? _listenAddrs;
 
@@ -201,6 +224,15 @@ namespace Pulumi.Vault.Kmip
             get => _listenAddrs ?? (_listenAddrs = new InputList<string>());
             set => _listenAddrs = value;
         }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
@@ -283,6 +315,13 @@ namespace Pulumi.Vault.Kmip
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// If set, opts out of mount migration on path updates.
+        /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        /// </summary>
+        [Input("disableRemount")]
+        public Input<bool>? DisableRemount { get; set; }
+
         [Input("listenAddrs")]
         private InputList<string>? _listenAddrs;
 
@@ -294,6 +333,15 @@ namespace Pulumi.Vault.Kmip
             get => _listenAddrs ?? (_listenAddrs = new InputList<string>());
             set => _listenAddrs = value;
         }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must

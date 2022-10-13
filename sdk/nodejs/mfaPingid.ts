@@ -86,6 +86,13 @@ export class MfaPingid extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * Namespace ID computed by Vault.
      */
     public /*out*/ readonly namespaceId!: pulumi.Output<string>;
@@ -135,6 +142,7 @@ export class MfaPingid extends pulumi.CustomResource {
             resourceInputs["idpUrl"] = state ? state.idpUrl : undefined;
             resourceInputs["mountAccessor"] = state ? state.mountAccessor : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["namespaceId"] = state ? state.namespaceId : undefined;
             resourceInputs["orgAlias"] = state ? state.orgAlias : undefined;
             resourceInputs["settingsFileBase64"] = state ? state.settingsFileBase64 : undefined;
@@ -151,6 +159,7 @@ export class MfaPingid extends pulumi.CustomResource {
             }
             resourceInputs["mountAccessor"] = args ? args.mountAccessor : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["settingsFileBase64"] = args ? args.settingsFileBase64 : undefined;
             resourceInputs["usernameFormat"] = args ? args.usernameFormat : undefined;
             resourceInputs["adminUrl"] = undefined /*out*/;
@@ -191,6 +200,13 @@ export interface MfaPingidState {
      * `(string: <required>)` – Name of the MFA method.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Namespace ID computed by Vault.
      */
@@ -237,6 +253,13 @@ export interface MfaPingidArgs {
      * `(string: <required>)` – Name of the MFA method.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * `(string: <required>)` - A base64-encoded third-party settings file retrieved
      * from PingID's configuration page.

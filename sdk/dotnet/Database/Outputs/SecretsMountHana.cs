@@ -28,6 +28,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly ImmutableDictionary<string, object>? Data;
         /// <summary>
+        /// Disable special character escaping in username and password.
+        /// </summary>
+        public readonly bool? DisableEscaping;
+        /// <summary>
         /// The maximum number of seconds to keep
         /// a connection alive for.
         /// </summary>
@@ -73,6 +77,8 @@ namespace Pulumi.Vault.Database.Outputs
 
             ImmutableDictionary<string, object>? data,
 
+            bool? disableEscaping,
+
             int? maxConnectionLifetime,
 
             int? maxIdleConnections,
@@ -94,6 +100,7 @@ namespace Pulumi.Vault.Database.Outputs
             AllowedRoles = allowedRoles;
             ConnectionUrl = connectionUrl;
             Data = data;
+            DisableEscaping = disableEscaping;
             MaxConnectionLifetime = maxConnectionLifetime;
             MaxIdleConnections = maxIdleConnections;
             MaxOpenConnections = maxOpenConnections;

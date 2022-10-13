@@ -159,6 +159,11 @@ type AuthBackendRole struct {
 	// infer that the role comes from an EC2 instance in an IAM instance profile.
 	// This only applies when `authType` is set to `iam`.
 	InferredEntityType pulumi.StringPtrOutput `pulumi:"inferredEntityType"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Only valid when
 	// `authType` is `iam`. If set to `true`, the `boundIamPrincipalArns` are
 	// resolved to [AWS Unique
@@ -317,6 +322,11 @@ type authBackendRoleState struct {
 	// infer that the role comes from an EC2 instance in an IAM instance profile.
 	// This only applies when `authType` is set to `iam`.
 	InferredEntityType *string `pulumi:"inferredEntityType"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Only valid when
 	// `authType` is `iam`. If set to `true`, the `boundIamPrincipalArns` are
 	// resolved to [AWS Unique
@@ -444,6 +454,11 @@ type AuthBackendRoleState struct {
 	// infer that the role comes from an EC2 instance in an IAM instance profile.
 	// This only applies when `authType` is set to `iam`.
 	InferredEntityType pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Only valid when
 	// `authType` is `iam`. If set to `true`, the `boundIamPrincipalArns` are
 	// resolved to [AWS Unique
@@ -575,6 +590,11 @@ type authBackendRoleArgs struct {
 	// infer that the role comes from an EC2 instance in an IAM instance profile.
 	// This only applies when `authType` is set to `iam`.
 	InferredEntityType *string `pulumi:"inferredEntityType"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Only valid when
 	// `authType` is `iam`. If set to `true`, the `boundIamPrincipalArns` are
 	// resolved to [AWS Unique
@@ -701,6 +721,11 @@ type AuthBackendRoleArgs struct {
 	// infer that the role comes from an EC2 instance in an IAM instance profile.
 	// This only applies when `authType` is set to `iam`.
 	InferredEntityType pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Only valid when
 	// `authType` is `iam`. If set to `true`, the `boundIamPrincipalArns` are
 	// resolved to [AWS Unique
@@ -955,6 +980,14 @@ func (o AuthBackendRoleOutput) InferredAwsRegion() pulumi.StringPtrOutput {
 // This only applies when `authType` is set to `iam`.
 func (o AuthBackendRoleOutput) InferredEntityType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringPtrOutput { return v.InferredEntityType }).(pulumi.StringPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o AuthBackendRoleOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Only valid when

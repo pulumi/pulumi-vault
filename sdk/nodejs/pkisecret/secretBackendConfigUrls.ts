@@ -79,6 +79,13 @@ export class SecretBackendConfigUrls extends pulumi.CustomResource {
      */
     public readonly issuingCertificates!: pulumi.Output<string[] | undefined>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * Specifies the URL values for the OCSP Servers field.
      */
     public readonly ocspServers!: pulumi.Output<string[] | undefined>;
@@ -99,6 +106,7 @@ export class SecretBackendConfigUrls extends pulumi.CustomResource {
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["crlDistributionPoints"] = state ? state.crlDistributionPoints : undefined;
             resourceInputs["issuingCertificates"] = state ? state.issuingCertificates : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["ocspServers"] = state ? state.ocspServers : undefined;
         } else {
             const args = argsOrState as SecretBackendConfigUrlsArgs | undefined;
@@ -108,6 +116,7 @@ export class SecretBackendConfigUrls extends pulumi.CustomResource {
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["crlDistributionPoints"] = args ? args.crlDistributionPoints : undefined;
             resourceInputs["issuingCertificates"] = args ? args.issuingCertificates : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["ocspServers"] = args ? args.ocspServers : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -132,6 +141,13 @@ export interface SecretBackendConfigUrlsState {
      */
     issuingCertificates?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
+    /**
      * Specifies the URL values for the OCSP Servers field.
      */
     ocspServers?: pulumi.Input<pulumi.Input<string>[]>;
@@ -153,6 +169,13 @@ export interface SecretBackendConfigUrlsArgs {
      * Specifies the URL values for the Issuing Certificate field.
      */
     issuingCertificates?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Specifies the URL values for the OCSP Servers field.
      */

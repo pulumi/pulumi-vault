@@ -100,6 +100,13 @@ export class SecretBackendConfigCa extends pulumi.CustomResource {
      */
     public readonly backend!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * The key and certificate PEM bundle
      */
     public readonly pemBundle!: pulumi.Output<string>;
@@ -118,6 +125,7 @@ export class SecretBackendConfigCa extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SecretBackendConfigCaState | undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["pemBundle"] = state ? state.pemBundle : undefined;
         } else {
             const args = argsOrState as SecretBackendConfigCaArgs | undefined;
@@ -128,9 +136,12 @@ export class SecretBackendConfigCa extends pulumi.CustomResource {
                 throw new Error("Missing required property 'pemBundle'");
             }
             resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["pemBundle"] = args ? args.pemBundle : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["pemBundle"] = args?.pemBundle ? pulumi.secret(args.pemBundle) : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["pemBundle"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SecretBackendConfigCa.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -143,6 +154,13 @@ export interface SecretBackendConfigCaState {
      * The PKI secret backend the resource belongs to.
      */
     backend?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The key and certificate PEM bundle
      */
@@ -157,6 +175,13 @@ export interface SecretBackendConfigCaArgs {
      * The PKI secret backend the resource belongs to.
      */
     backend: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The key and certificate PEM bundle
      */

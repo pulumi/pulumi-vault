@@ -44,6 +44,15 @@ namespace Pulumi.Vault.Aws
         public Output<string> CertName { get; private set; } = null!;
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
         /// Either "pkcs7" or "identity", indicating the type of
         /// document which can be verified using the given certificate. Defaults to
         /// "pkcs7".
@@ -120,6 +129,15 @@ namespace Pulumi.Vault.Aws
         public Input<string> CertName { get; set; } = null!;
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
         /// Either "pkcs7" or "identity", indicating the type of
         /// document which can be verified using the given certificate. Defaults to
         /// "pkcs7".
@@ -156,6 +174,15 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Input("certName")]
         public Input<string>? CertName { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// Either "pkcs7" or "identity", indicating the type of

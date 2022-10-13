@@ -16,17 +16,24 @@ class AuthBackendLoginArgs:
     def __init__(__self__, *,
                  role_id: pulumi.Input[str],
                  backend: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  secret_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AuthBackendLogin resource.
         :param pulumi.Input[str] role_id: The ID of the role to log in with.
         :param pulumi.Input[str] backend: The unique path of the Vault backend to log in with.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] secret_id: The secret ID of the role to log in with. Required
                unless `bind_secret_id` is set to false on the role.
         """
         pulumi.set(__self__, "role_id", role_id)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if secret_id is not None:
             pulumi.set(__self__, "secret_id", secret_id)
 
@@ -55,6 +62,21 @@ class AuthBackendLoginArgs:
         pulumi.set(self, "backend", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="secretId")
     def secret_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -77,6 +99,7 @@ class _AuthBackendLoginState:
                  lease_duration: Optional[pulumi.Input[int]] = None,
                  lease_started: Optional[pulumi.Input[str]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  renewable: Optional[pulumi.Input[bool]] = None,
                  role_id: Optional[pulumi.Input[str]] = None,
@@ -89,6 +112,10 @@ class _AuthBackendLoginState:
         :param pulumi.Input[int] lease_duration: How long the token is valid for, in seconds.
         :param pulumi.Input[str] lease_started: The date and time the lease started, in RFC 3339 format.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: The metadata associated with the token.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: A list of policies applied to the token.
         :param pulumi.Input[bool] renewable: Whether the token is renewable or not.
         :param pulumi.Input[str] role_id: The ID of the role to log in with.
@@ -107,6 +134,8 @@ class _AuthBackendLoginState:
             pulumi.set(__self__, "lease_started", lease_started)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if policies is not None:
             pulumi.set(__self__, "policies", policies)
         if renewable is not None:
@@ -190,6 +219,21 @@ class _AuthBackendLoginState:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of policies applied to the token.
@@ -244,6 +288,7 @@ class AuthBackendLogin(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  role_id: Optional[pulumi.Input[str]] = None,
                  secret_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -267,7 +312,7 @@ class AuthBackendLogin(pulumi.CustomResource):
                 "dev",
                 "prod",
             ])
-        id = vault.app_role.AuthBackendRoleSecretID("id",
+        id = vault.app_role.AuthBackendRoleSecretId("id",
             backend=approle.path,
             role_name=example.role_name)
         login = vault.app_role.AuthBackendLogin("login",
@@ -279,6 +324,10 @@ class AuthBackendLogin(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The unique path of the Vault backend to log in with.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role_id: The ID of the role to log in with.
         :param pulumi.Input[str] secret_id: The secret ID of the role to log in with. Required
                unless `bind_secret_id` is set to false on the role.
@@ -309,7 +358,7 @@ class AuthBackendLogin(pulumi.CustomResource):
                 "dev",
                 "prod",
             ])
-        id = vault.app_role.AuthBackendRoleSecretID("id",
+        id = vault.app_role.AuthBackendRoleSecretId("id",
             backend=approle.path,
             role_name=example.role_name)
         login = vault.app_role.AuthBackendLogin("login",
@@ -334,6 +383,7 @@ class AuthBackendLogin(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  role_id: Optional[pulumi.Input[str]] = None,
                  secret_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -346,6 +396,7 @@ class AuthBackendLogin(pulumi.CustomResource):
             __props__ = AuthBackendLoginArgs.__new__(AuthBackendLoginArgs)
 
             __props__.__dict__["backend"] = backend
+            __props__.__dict__["namespace"] = namespace
             if role_id is None and not opts.urn:
                 raise TypeError("Missing required property 'role_id'")
             __props__.__dict__["role_id"] = role_id
@@ -373,6 +424,7 @@ class AuthBackendLogin(pulumi.CustomResource):
             lease_duration: Optional[pulumi.Input[int]] = None,
             lease_started: Optional[pulumi.Input[str]] = None,
             metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             renewable: Optional[pulumi.Input[bool]] = None,
             role_id: Optional[pulumi.Input[str]] = None,
@@ -390,6 +442,10 @@ class AuthBackendLogin(pulumi.CustomResource):
         :param pulumi.Input[int] lease_duration: How long the token is valid for, in seconds.
         :param pulumi.Input[str] lease_started: The date and time the lease started, in RFC 3339 format.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: The metadata associated with the token.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: A list of policies applied to the token.
         :param pulumi.Input[bool] renewable: Whether the token is renewable or not.
         :param pulumi.Input[str] role_id: The ID of the role to log in with.
@@ -406,6 +462,7 @@ class AuthBackendLogin(pulumi.CustomResource):
         __props__.__dict__["lease_duration"] = lease_duration
         __props__.__dict__["lease_started"] = lease_started
         __props__.__dict__["metadata"] = metadata
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["policies"] = policies
         __props__.__dict__["renewable"] = renewable
         __props__.__dict__["role_id"] = role_id
@@ -459,6 +516,17 @@ class AuthBackendLogin(pulumi.CustomResource):
         The metadata associated with the token.
         """
         return pulumi.get(self, "metadata")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

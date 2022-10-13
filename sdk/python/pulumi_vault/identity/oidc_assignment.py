@@ -16,12 +16,17 @@ class OidcAssignmentArgs:
     def __init__(__self__, *,
                  entity_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
+                 name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a OidcAssignment resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] entity_ids: A set of Vault entity IDs.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] group_ids: A set of Vault group IDs.
         :param pulumi.Input[str] name: The name of the assignment.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         if entity_ids is not None:
             pulumi.set(__self__, "entity_ids", entity_ids)
@@ -29,6 +34,8 @@ class OidcAssignmentArgs:
             pulumi.set(__self__, "group_ids", group_ids)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter(name="entityIds")
@@ -65,6 +72,21 @@ class OidcAssignmentArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
 
 @pulumi.input_type
@@ -72,12 +94,17 @@ class _OidcAssignmentState:
     def __init__(__self__, *,
                  entity_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
+                 name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering OidcAssignment resources.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] entity_ids: A set of Vault entity IDs.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] group_ids: A set of Vault group IDs.
         :param pulumi.Input[str] name: The name of the assignment.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         if entity_ids is not None:
             pulumi.set(__self__, "entity_ids", entity_ids)
@@ -85,6 +112,8 @@ class _OidcAssignmentState:
             pulumi.set(__self__, "group_ids", group_ids)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter(name="entityIds")
@@ -121,6 +150,21 @@ class _OidcAssignmentState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
 
 class OidcAssignment(pulumi.CustomResource):
@@ -131,6 +175,7 @@ class OidcAssignment(pulumi.CustomResource):
                  entity_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Manages OIDC Assignments in a Vault server. See the [Vault documentation](https://www.vaultproject.io/api-docs/secret/identity/oidc-provider#create-or-update-an-assignment)
@@ -150,8 +195,8 @@ class OidcAssignment(pulumi.CustomResource):
             ])
         test = vault.identity.Entity("test", policies=["test"])
         default = vault.identity.OidcAssignment("default",
-            entity_ids=[test.name],
-            group_ids=[internal.name])
+            entity_ids=[test.id],
+            group_ids=[internal.id])
         ```
 
         ## Import
@@ -167,6 +212,10 @@ class OidcAssignment(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] entity_ids: A set of Vault entity IDs.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] group_ids: A set of Vault group IDs.
         :param pulumi.Input[str] name: The name of the assignment.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         ...
     @overload
@@ -192,8 +241,8 @@ class OidcAssignment(pulumi.CustomResource):
             ])
         test = vault.identity.Entity("test", policies=["test"])
         default = vault.identity.OidcAssignment("default",
-            entity_ids=[test.name],
-            group_ids=[internal.name])
+            entity_ids=[test.id],
+            group_ids=[internal.id])
         ```
 
         ## Import
@@ -222,6 +271,7 @@ class OidcAssignment(pulumi.CustomResource):
                  entity_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -234,6 +284,7 @@ class OidcAssignment(pulumi.CustomResource):
             __props__.__dict__["entity_ids"] = entity_ids
             __props__.__dict__["group_ids"] = group_ids
             __props__.__dict__["name"] = name
+            __props__.__dict__["namespace"] = namespace
         super(OidcAssignment, __self__).__init__(
             'vault:identity/oidcAssignment:OidcAssignment',
             resource_name,
@@ -246,7 +297,8 @@ class OidcAssignment(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             entity_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            name: Optional[pulumi.Input[str]] = None) -> 'OidcAssignment':
+            name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None) -> 'OidcAssignment':
         """
         Get an existing OidcAssignment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -257,6 +309,10 @@ class OidcAssignment(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] entity_ids: A set of Vault entity IDs.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] group_ids: A set of Vault group IDs.
         :param pulumi.Input[str] name: The name of the assignment.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -265,6 +321,7 @@ class OidcAssignment(pulumi.CustomResource):
         __props__.__dict__["entity_ids"] = entity_ids
         __props__.__dict__["group_ids"] = group_ids
         __props__.__dict__["name"] = name
+        __props__.__dict__["namespace"] = namespace
         return OidcAssignment(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -290,4 +347,15 @@ class OidcAssignment(pulumi.CustomResource):
         The name of the assignment.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 

@@ -5,6 +5,7 @@ package com.pulumi.vault.inputs;
 
 import com.pulumi.core.annotations.Import;
 import com.pulumi.vault.inputs.GetPolicyDocumentRule;
+import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -14,6 +15,13 @@ import javax.annotation.Nullable;
 public final class GetPolicyDocumentPlainArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetPolicyDocumentPlainArgs Empty = new GetPolicyDocumentPlainArgs();
+
+    @Import(name="namespace")
+    private @Nullable String namespace;
+
+    public Optional<String> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
 
     @Import(name="rules")
     private @Nullable List<GetPolicyDocumentRule> rules;
@@ -25,6 +33,7 @@ public final class GetPolicyDocumentPlainArgs extends com.pulumi.resources.Invok
     private GetPolicyDocumentPlainArgs() {}
 
     private GetPolicyDocumentPlainArgs(GetPolicyDocumentPlainArgs $) {
+        this.namespace = $.namespace;
         this.rules = $.rules;
     }
 
@@ -44,6 +53,11 @@ public final class GetPolicyDocumentPlainArgs extends com.pulumi.resources.Invok
 
         public Builder(GetPolicyDocumentPlainArgs defaults) {
             $ = new GetPolicyDocumentPlainArgs(Objects.requireNonNull(defaults));
+        }
+
+        public Builder namespace(@Nullable String namespace) {
+            $.namespace = namespace;
+            return this;
         }
 
         public Builder rules(@Nullable List<GetPolicyDocumentRule> rules) {

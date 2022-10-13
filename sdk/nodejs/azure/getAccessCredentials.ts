@@ -35,6 +35,7 @@ export function getAccessCredentials(args: GetAccessCredentialsArgs, opts?: pulu
         "backend": args.backend,
         "environment": args.environment,
         "maxCredValidationSeconds": args.maxCredValidationSeconds,
+        "namespace": args.namespace,
         "numSecondsBetweenTests": args.numSecondsBetweenTests,
         "numSequentialSuccesses": args.numSequentialSuccesses,
         "role": args.role,
@@ -66,6 +67,13 @@ export interface GetAccessCredentialsArgs {
      * to 300.
      */
     maxCredValidationSeconds?: number;
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: string;
     /**
      * If 'validate_creds' is true, 
      * the number of seconds to wait between each test of generated credentials.
@@ -135,6 +143,7 @@ export interface GetAccessCredentialsResult {
     readonly leaseRenewable: boolean;
     readonly leaseStartTime: string;
     readonly maxCredValidationSeconds?: number;
+    readonly namespace?: string;
     readonly numSecondsBetweenTests?: number;
     readonly numSequentialSuccesses?: number;
     readonly role: string;
@@ -169,6 +178,13 @@ export interface GetAccessCredentialsOutputArgs {
      * to 300.
      */
     maxCredValidationSeconds?: pulumi.Input<number>;
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * If 'validate_creds' is true, 
      * the number of seconds to wait between each test of generated credentials.

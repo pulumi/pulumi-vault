@@ -82,6 +82,13 @@ export class MfaOkta extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * `(string: <required>)` - Name of the organization to be used in the Okta API.
      */
     public readonly orgName!: pulumi.Output<string>;
@@ -118,6 +125,7 @@ export class MfaOkta extends pulumi.CustomResource {
             resourceInputs["baseUrl"] = state ? state.baseUrl : undefined;
             resourceInputs["mountAccessor"] = state ? state.mountAccessor : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["orgName"] = state ? state.orgName : undefined;
             resourceInputs["primaryEmail"] = state ? state.primaryEmail : undefined;
             resourceInputs["usernameFormat"] = state ? state.usernameFormat : undefined;
@@ -132,15 +140,18 @@ export class MfaOkta extends pulumi.CustomResource {
             if ((!args || args.orgName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'orgName'");
             }
-            resourceInputs["apiToken"] = args ? args.apiToken : undefined;
+            resourceInputs["apiToken"] = args?.apiToken ? pulumi.secret(args.apiToken) : undefined;
             resourceInputs["baseUrl"] = args ? args.baseUrl : undefined;
             resourceInputs["mountAccessor"] = args ? args.mountAccessor : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["orgName"] = args ? args.orgName : undefined;
             resourceInputs["primaryEmail"] = args ? args.primaryEmail : undefined;
             resourceInputs["usernameFormat"] = args ? args.usernameFormat : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["apiToken"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(MfaOkta.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -167,6 +178,13 @@ export interface MfaOktaState {
      * `(string: <required>)` – Name of the MFA method.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * `(string: <required>)` - Name of the organization to be used in the Okta API.
      */
@@ -210,6 +228,13 @@ export interface MfaOktaArgs {
      * `(string: <required>)` – Name of the MFA method.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * `(string: <required>)` - Name of the organization to be used in the Okta API.
      */

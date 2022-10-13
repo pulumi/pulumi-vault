@@ -88,6 +88,13 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly disallowedPoliciesGlobs!: pulumi.Output<string[] | undefined>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * If true, tokens created against this policy will be orphan tokens.
      */
     public readonly orphan!: pulumi.Output<boolean | undefined>;
@@ -174,6 +181,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
             resourceInputs["allowedPoliciesGlobs"] = state ? state.allowedPoliciesGlobs : undefined;
             resourceInputs["disallowedPolicies"] = state ? state.disallowedPolicies : undefined;
             resourceInputs["disallowedPoliciesGlobs"] = state ? state.disallowedPoliciesGlobs : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["orphan"] = state ? state.orphan : undefined;
             resourceInputs["pathSuffix"] = state ? state.pathSuffix : undefined;
             resourceInputs["renewable"] = state ? state.renewable : undefined;
@@ -197,6 +205,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
             resourceInputs["allowedPoliciesGlobs"] = args ? args.allowedPoliciesGlobs : undefined;
             resourceInputs["disallowedPolicies"] = args ? args.disallowedPolicies : undefined;
             resourceInputs["disallowedPoliciesGlobs"] = args ? args.disallowedPoliciesGlobs : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["orphan"] = args ? args.orphan : undefined;
             resourceInputs["pathSuffix"] = args ? args.pathSuffix : undefined;
             resourceInputs["renewable"] = args ? args.renewable : undefined;
@@ -240,6 +249,13 @@ export interface AuthBackendRoleState {
      * Set of disallowed policies with glob match for given role.
      */
     disallowedPoliciesGlobs?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * If true, tokens created against this policy will be orphan tokens.
      */
@@ -334,6 +350,13 @@ export interface AuthBackendRoleArgs {
      * Set of disallowed policies with glob match for given role.
      */
     disallowedPoliciesGlobs?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * If true, tokens created against this policy will be orphan tokens.
      */

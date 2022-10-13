@@ -21,7 +21,7 @@ class GetAuthBackendRoleResult:
     """
     A collection of values returned by getAuthBackendRole.
     """
-    def __init__(__self__, alias_name_source=None, audience=None, backend=None, bound_service_account_names=None, bound_service_account_namespaces=None, id=None, role_name=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None):
+    def __init__(__self__, alias_name_source=None, audience=None, backend=None, bound_service_account_names=None, bound_service_account_namespaces=None, id=None, namespace=None, role_name=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None):
         if alias_name_source and not isinstance(alias_name_source, str):
             raise TypeError("Expected argument 'alias_name_source' to be a str")
         pulumi.set(__self__, "alias_name_source", alias_name_source)
@@ -40,6 +40,9 @@ class GetAuthBackendRoleResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if namespace and not isinstance(namespace, str):
+            raise TypeError("Expected argument 'namespace' to be a str")
+        pulumi.set(__self__, "namespace", namespace)
         if role_name and not isinstance(role_name, str):
             raise TypeError("Expected argument 'role_name' to be a str")
         pulumi.set(__self__, "role_name", role_name)
@@ -115,6 +118,11 @@ class GetAuthBackendRoleResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[str]:
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="roleName")
@@ -224,6 +232,7 @@ class AwaitableGetAuthBackendRoleResult(GetAuthBackendRoleResult):
             bound_service_account_names=self.bound_service_account_names,
             bound_service_account_namespaces=self.bound_service_account_namespaces,
             id=self.id,
+            namespace=self.namespace,
             role_name=self.role_name,
             token_bound_cidrs=self.token_bound_cidrs,
             token_explicit_max_ttl=self.token_explicit_max_ttl,
@@ -238,6 +247,7 @@ class AwaitableGetAuthBackendRoleResult(GetAuthBackendRoleResult):
 
 def get_auth_backend_role(audience: Optional[str] = None,
                           backend: Optional[str] = None,
+                          namespace: Optional[str] = None,
                           role_name: Optional[str] = None,
                           token_bound_cidrs: Optional[Sequence[str]] = None,
                           token_explicit_max_ttl: Optional[int] = None,
@@ -258,6 +268,10 @@ def get_auth_backend_role(audience: Optional[str] = None,
     :param str audience: Audience claim to verify in the JWT.
     :param str backend: The unique name for the Kubernetes backend the role to
            retrieve Role attributes for resides in. Defaults to "kubernetes".
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured namespace.
+           *Available only for Vault Enterprise*.
     :param str role_name: The name of the role to retrieve the Role attributes for.
     :param Sequence[str] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
            addresses which can authenticate successfully, and ties the resulting token to these blocks
@@ -290,6 +304,7 @@ def get_auth_backend_role(audience: Optional[str] = None,
     __args__ = dict()
     __args__['audience'] = audience
     __args__['backend'] = backend
+    __args__['namespace'] = namespace
     __args__['roleName'] = role_name
     __args__['tokenBoundCidrs'] = token_bound_cidrs
     __args__['tokenExplicitMaxTtl'] = token_explicit_max_ttl
@@ -310,6 +325,7 @@ def get_auth_backend_role(audience: Optional[str] = None,
         bound_service_account_names=__ret__.bound_service_account_names,
         bound_service_account_namespaces=__ret__.bound_service_account_namespaces,
         id=__ret__.id,
+        namespace=__ret__.namespace,
         role_name=__ret__.role_name,
         token_bound_cidrs=__ret__.token_bound_cidrs,
         token_explicit_max_ttl=__ret__.token_explicit_max_ttl,
@@ -325,6 +341,7 @@ def get_auth_backend_role(audience: Optional[str] = None,
 @_utilities.lift_output_func(get_auth_backend_role)
 def get_auth_backend_role_output(audience: Optional[pulumi.Input[Optional[str]]] = None,
                                  backend: Optional[pulumi.Input[Optional[str]]] = None,
+                                 namespace: Optional[pulumi.Input[Optional[str]]] = None,
                                  role_name: Optional[pulumi.Input[str]] = None,
                                  token_bound_cidrs: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                                  token_explicit_max_ttl: Optional[pulumi.Input[Optional[int]]] = None,
@@ -345,6 +362,10 @@ def get_auth_backend_role_output(audience: Optional[pulumi.Input[Optional[str]]]
     :param str audience: Audience claim to verify in the JWT.
     :param str backend: The unique name for the Kubernetes backend the role to
            retrieve Role attributes for resides in. Defaults to "kubernetes".
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured namespace.
+           *Available only for Vault Enterprise*.
     :param str role_name: The name of the role to retrieve the Role attributes for.
     :param Sequence[str] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
            addresses which can authenticate successfully, and ties the resulting token to these blocks

@@ -111,6 +111,13 @@ export class Endpoint extends pulumi.CustomResource {
      */
     public readonly ignoreAbsentFields!: pulumi.Output<boolean | undefined>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * The full logical path at which to write the given
      * data. Consult each backend's documentation to see which endpoints
      * support the `PUT` methods and to determine whether they also support
@@ -147,6 +154,7 @@ export class Endpoint extends pulumi.CustomResource {
             resourceInputs["disableDelete"] = state ? state.disableDelete : undefined;
             resourceInputs["disableRead"] = state ? state.disableRead : undefined;
             resourceInputs["ignoreAbsentFields"] = state ? state.ignoreAbsentFields : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
             resourceInputs["writeData"] = state ? state.writeData : undefined;
             resourceInputs["writeDataJson"] = state ? state.writeDataJson : undefined;
@@ -159,16 +167,19 @@ export class Endpoint extends pulumi.CustomResource {
             if ((!args || args.path === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
-            resourceInputs["dataJson"] = args ? args.dataJson : undefined;
+            resourceInputs["dataJson"] = args?.dataJson ? pulumi.secret(args.dataJson) : undefined;
             resourceInputs["disableDelete"] = args ? args.disableDelete : undefined;
             resourceInputs["disableRead"] = args ? args.disableRead : undefined;
             resourceInputs["ignoreAbsentFields"] = args ? args.ignoreAbsentFields : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["writeFields"] = args ? args.writeFields : undefined;
             resourceInputs["writeData"] = undefined /*out*/;
             resourceInputs["writeDataJson"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["dataJson"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Endpoint.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -198,6 +209,13 @@ export interface EndpointState {
      * When reading, disregard fields not present in data_json
      */
     ignoreAbsentFields?: pulumi.Input<boolean>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The full logical path at which to write the given
      * data. Consult each backend's documentation to see which endpoints
@@ -244,6 +262,13 @@ export interface EndpointArgs {
      * When reading, disregard fields not present in data_json
      */
     ignoreAbsentFields?: pulumi.Input<boolean>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The full logical path at which to write the given
      * data. Consult each backend's documentation to see which endpoints

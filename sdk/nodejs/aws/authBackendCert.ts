@@ -58,6 +58,13 @@ export class AuthBackendCert extends pulumi.CustomResource {
      */
     public readonly certName!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * Either "pkcs7" or "identity", indicating the type of
      * document which can be verified using the given certificate. Defaults to
      * "pkcs7".
@@ -80,6 +87,7 @@ export class AuthBackendCert extends pulumi.CustomResource {
             resourceInputs["awsPublicCert"] = state ? state.awsPublicCert : undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["certName"] = state ? state.certName : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as AuthBackendCertArgs | undefined;
@@ -92,6 +100,7 @@ export class AuthBackendCert extends pulumi.CustomResource {
             resourceInputs["awsPublicCert"] = args ? args.awsPublicCert : undefined;
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["certName"] = args ? args.certName : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -120,6 +129,13 @@ export interface AuthBackendCertState {
      */
     certName?: pulumi.Input<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
+    /**
      * Either "pkcs7" or "identity", indicating the type of
      * document which can be verified using the given certificate. Defaults to
      * "pkcs7".
@@ -147,6 +163,13 @@ export interface AuthBackendCertArgs {
      * The name of the certificate.
      */
     certName: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Either "pkcs7" or "identity", indicating the type of
      * document which can be verified using the given certificate. Defaults to

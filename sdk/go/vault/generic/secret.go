@@ -40,6 +40,11 @@ type Secret struct {
 	// authentication is not able to read the data. Setting this to `true` will
 	// break drift detection. Defaults to false.
 	DisableRead pulumi.BoolPtrOutput `pulumi:"disableRead"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The full logical path at which to write the given data.
 	// To write data into the "generic" secret backend mounted in Vault by default,
 	// this should be prefixed with `secret/`. Writing to other backends with this
@@ -61,6 +66,14 @@ func NewSecret(ctx *pulumi.Context,
 	if args.Path == nil {
 		return nil, errors.New("invalid value for required argument 'Path'")
 	}
+	if args.DataJson != nil {
+		args.DataJson = pulumi.ToSecret(args.DataJson).(pulumi.StringOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"data",
+		"dataJson",
+	})
+	opts = append(opts, secrets)
 	var resource Secret
 	err := ctx.RegisterResource("vault:generic/secret:Secret", name, args, &resource, opts...)
 	if err != nil {
@@ -100,6 +113,11 @@ type secretState struct {
 	// authentication is not able to read the data. Setting this to `true` will
 	// break drift detection. Defaults to false.
 	DisableRead *bool `pulumi:"disableRead"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The full logical path at which to write the given data.
 	// To write data into the "generic" secret backend mounted in Vault by default,
 	// this should be prefixed with `secret/`. Writing to other backends with this
@@ -126,6 +144,11 @@ type SecretState struct {
 	// authentication is not able to read the data. Setting this to `true` will
 	// break drift detection. Defaults to false.
 	DisableRead pulumi.BoolPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The full logical path at which to write the given data.
 	// To write data into the "generic" secret backend mounted in Vault by default,
 	// this should be prefixed with `secret/`. Writing to other backends with this
@@ -151,6 +174,11 @@ type secretArgs struct {
 	// authentication is not able to read the data. Setting this to `true` will
 	// break drift detection. Defaults to false.
 	DisableRead *bool `pulumi:"disableRead"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The full logical path at which to write the given data.
 	// To write data into the "generic" secret backend mounted in Vault by default,
 	// this should be prefixed with `secret/`. Writing to other backends with this
@@ -173,6 +201,11 @@ type SecretArgs struct {
 	// authentication is not able to read the data. Setting this to `true` will
 	// break drift detection. Defaults to false.
 	DisableRead pulumi.BoolPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The full logical path at which to write the given data.
 	// To write data into the "generic" secret backend mounted in Vault by default,
 	// this should be prefixed with `secret/`. Writing to other backends with this
@@ -295,6 +328,14 @@ func (o SecretOutput) DeleteAllVersions() pulumi.BoolPtrOutput {
 // break drift detection. Defaults to false.
 func (o SecretOutput) DisableRead() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Secret) pulumi.BoolPtrOutput { return v.DisableRead }).(pulumi.BoolPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o SecretOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Secret) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The full logical path at which to write the given data.

@@ -24,6 +24,11 @@ type GetAccessCredentialsArgs struct {
 	// The path to the AD secret backend to
 	// read credentials from, with no leading or trailing `/`s.
 	Backend string `pulumi:"backend"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The name of the AD secret backend role to read
 	// credentials from, with no leading or trailing `/`s.
 	Role string `pulumi:"role"`
@@ -37,8 +42,9 @@ type GetAccessCredentialsResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The current set password on the Active Directory service account, provided because AD is eventually consistent.
-	LastPassword string `pulumi:"lastPassword"`
-	Role         string `pulumi:"role"`
+	LastPassword string  `pulumi:"lastPassword"`
+	Namespace    *string `pulumi:"namespace"`
+	Role         string  `pulumi:"role"`
 	// The Active Directory service account username.
 	Username string `pulumi:"username"`
 }
@@ -61,6 +67,11 @@ type GetAccessCredentialsOutputArgs struct {
 	// The path to the AD secret backend to
 	// read credentials from, with no leading or trailing `/`s.
 	Backend pulumi.StringInput `pulumi:"backend"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 	// The name of the AD secret backend role to read
 	// credentials from, with no leading or trailing `/`s.
 	Role pulumi.StringInput `pulumi:"role"`
@@ -102,6 +113,10 @@ func (o GetAccessCredentialsResultOutput) Id() pulumi.StringOutput {
 // The current set password on the Active Directory service account, provided because AD is eventually consistent.
 func (o GetAccessCredentialsResultOutput) LastPassword() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccessCredentialsResult) string { return v.LastPassword }).(pulumi.StringOutput)
+}
+
+func (o GetAccessCredentialsResultOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 func (o GetAccessCredentialsResultOutput) Role() pulumi.StringOutput {

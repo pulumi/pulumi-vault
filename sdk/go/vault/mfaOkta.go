@@ -73,6 +73,11 @@ type MfaOkta struct {
 	MountAccessor pulumi.StringOutput `pulumi:"mountAccessor"`
 	// `(string: <required>)` – Name of the MFA method.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// `(string: <required>)` - Name of the organization to be used in the Okta API.
 	OrgName pulumi.StringOutput `pulumi:"orgName"`
 	// `(string: <required>)` - If set to true, the username will only match the
@@ -104,6 +109,13 @@ func NewMfaOkta(ctx *pulumi.Context,
 	if args.OrgName == nil {
 		return nil, errors.New("invalid value for required argument 'OrgName'")
 	}
+	if args.ApiToken != nil {
+		args.ApiToken = pulumi.ToSecret(args.ApiToken).(pulumi.StringOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"apiToken",
+	})
+	opts = append(opts, secrets)
 	var resource MfaOkta
 	err := ctx.RegisterResource("vault:index/mfaOkta:MfaOkta", name, args, &resource, opts...)
 	if err != nil {
@@ -136,6 +148,11 @@ type mfaOktaState struct {
 	MountAccessor *string `pulumi:"mountAccessor"`
 	// `(string: <required>)` – Name of the MFA method.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// `(string: <required>)` - Name of the organization to be used in the Okta API.
 	OrgName *string `pulumi:"orgName"`
 	// `(string: <required>)` - If set to true, the username will only match the
@@ -162,6 +179,11 @@ type MfaOktaState struct {
 	MountAccessor pulumi.StringPtrInput
 	// `(string: <required>)` – Name of the MFA method.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// `(string: <required>)` - Name of the organization to be used in the Okta API.
 	OrgName pulumi.StringPtrInput
 	// `(string: <required>)` - If set to true, the username will only match the
@@ -192,6 +214,11 @@ type mfaOktaArgs struct {
 	MountAccessor string `pulumi:"mountAccessor"`
 	// `(string: <required>)` – Name of the MFA method.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// `(string: <required>)` - Name of the organization to be used in the Okta API.
 	OrgName string `pulumi:"orgName"`
 	// `(string: <required>)` - If set to true, the username will only match the
@@ -219,6 +246,11 @@ type MfaOktaArgs struct {
 	MountAccessor pulumi.StringInput
 	// `(string: <required>)` – Name of the MFA method.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// `(string: <required>)` - Name of the organization to be used in the Okta API.
 	OrgName pulumi.StringInput
 	// `(string: <required>)` - If set to true, the username will only match the
@@ -341,6 +373,14 @@ func (o MfaOktaOutput) MountAccessor() pulumi.StringOutput {
 // `(string: <required>)` – Name of the MFA method.
 func (o MfaOktaOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *MfaOkta) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o MfaOktaOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MfaOkta) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // `(string: <required>)` - Name of the organization to be used in the Okta API.

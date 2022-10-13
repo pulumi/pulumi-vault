@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -38,6 +39,7 @@ export function getPolicyDocument(args?: GetPolicyDocumentArgs, opts?: pulumi.In
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("vault:index/getPolicyDocument:getPolicyDocument", {
+        "namespace": args.namespace,
         "rules": args.rules,
     }, opts);
 }
@@ -46,6 +48,7 @@ export function getPolicyDocument(args?: GetPolicyDocumentArgs, opts?: pulumi.In
  * A collection of arguments for invoking getPolicyDocument.
  */
 export interface GetPolicyDocumentArgs {
+    namespace?: string;
     rules?: inputs.GetPolicyDocumentRule[];
 }
 
@@ -61,6 +64,7 @@ export interface GetPolicyDocumentResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly namespace?: string;
     readonly rules: outputs.GetPolicyDocumentRule[];
 }
 
@@ -72,5 +76,6 @@ export function getPolicyDocumentOutput(args?: GetPolicyDocumentOutputArgs, opts
  * A collection of arguments for invoking getPolicyDocument.
  */
 export interface GetPolicyDocumentOutputArgs {
+    namespace?: pulumi.Input<string>;
     rules?: pulumi.Input<pulumi.Input<inputs.GetPolicyDocumentRuleArgs>[]>;
 }

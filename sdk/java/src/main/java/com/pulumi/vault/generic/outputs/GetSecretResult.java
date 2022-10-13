@@ -22,60 +22,38 @@ public final class GetSecretResult {
      * serialized as JSON.
      * 
      */
-    private final Map<String,Object> data;
+    private Map<String,Object> data;
     /**
      * @return A string containing the full data payload retrieved from
      * Vault, serialized in JSON format.
      * 
      */
-    private final String dataJson;
+    private String dataJson;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
+    private String id;
     /**
      * @return The duration of the secret lease, in seconds relative
      * to the time the data was requested. Once this time has passed any plan
      * generated with this data may fail to apply.
      * 
      */
-    private final Integer leaseDuration;
+    private Integer leaseDuration;
     /**
      * @return The lease identifier assigned by Vault, if any.
      * 
      */
-    private final String leaseId;
-    private final Boolean leaseRenewable;
-    private final String leaseStartTime;
-    private final String path;
-    private final @Nullable Integer version;
-    private final @Nullable Boolean withLeaseStartTime;
+    private String leaseId;
+    private Boolean leaseRenewable;
+    private String leaseStartTime;
+    private @Nullable String namespace;
+    private String path;
+    private @Nullable Integer version;
+    private @Nullable Boolean withLeaseStartTime;
 
-    @CustomType.Constructor
-    private GetSecretResult(
-        @CustomType.Parameter("data") Map<String,Object> data,
-        @CustomType.Parameter("dataJson") String dataJson,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("leaseDuration") Integer leaseDuration,
-        @CustomType.Parameter("leaseId") String leaseId,
-        @CustomType.Parameter("leaseRenewable") Boolean leaseRenewable,
-        @CustomType.Parameter("leaseStartTime") String leaseStartTime,
-        @CustomType.Parameter("path") String path,
-        @CustomType.Parameter("version") @Nullable Integer version,
-        @CustomType.Parameter("withLeaseStartTime") @Nullable Boolean withLeaseStartTime) {
-        this.data = data;
-        this.dataJson = dataJson;
-        this.id = id;
-        this.leaseDuration = leaseDuration;
-        this.leaseId = leaseId;
-        this.leaseRenewable = leaseRenewable;
-        this.leaseStartTime = leaseStartTime;
-        this.path = path;
-        this.version = version;
-        this.withLeaseStartTime = withLeaseStartTime;
-    }
-
+    private GetSecretResult() {}
     /**
      * @return A mapping whose keys are the top-level data keys returned from
      * Vault and whose values are the corresponding values. This map can only
@@ -123,6 +101,9 @@ public final class GetSecretResult {
     public String leaseStartTime() {
         return this.leaseStartTime;
     }
+    public Optional<String> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
     public String path() {
         return this.path;
     }
@@ -140,7 +121,7 @@ public final class GetSecretResult {
     public static Builder builder(GetSecretResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private Map<String,Object> data;
         private String dataJson;
@@ -149,14 +130,11 @@ public final class GetSecretResult {
         private String leaseId;
         private Boolean leaseRenewable;
         private String leaseStartTime;
+        private @Nullable String namespace;
         private String path;
         private @Nullable Integer version;
         private @Nullable Boolean withLeaseStartTime;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetSecretResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.data = defaults.data;
@@ -166,52 +144,81 @@ public final class GetSecretResult {
     	      this.leaseId = defaults.leaseId;
     	      this.leaseRenewable = defaults.leaseRenewable;
     	      this.leaseStartTime = defaults.leaseStartTime;
+    	      this.namespace = defaults.namespace;
     	      this.path = defaults.path;
     	      this.version = defaults.version;
     	      this.withLeaseStartTime = defaults.withLeaseStartTime;
         }
 
+        @CustomType.Setter
         public Builder data(Map<String,Object> data) {
             this.data = Objects.requireNonNull(data);
             return this;
         }
+        @CustomType.Setter
         public Builder dataJson(String dataJson) {
             this.dataJson = Objects.requireNonNull(dataJson);
             return this;
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder leaseDuration(Integer leaseDuration) {
             this.leaseDuration = Objects.requireNonNull(leaseDuration);
             return this;
         }
+        @CustomType.Setter
         public Builder leaseId(String leaseId) {
             this.leaseId = Objects.requireNonNull(leaseId);
             return this;
         }
+        @CustomType.Setter
         public Builder leaseRenewable(Boolean leaseRenewable) {
             this.leaseRenewable = Objects.requireNonNull(leaseRenewable);
             return this;
         }
+        @CustomType.Setter
         public Builder leaseStartTime(String leaseStartTime) {
             this.leaseStartTime = Objects.requireNonNull(leaseStartTime);
             return this;
         }
+        @CustomType.Setter
+        public Builder namespace(@Nullable String namespace) {
+            this.namespace = namespace;
+            return this;
+        }
+        @CustomType.Setter
         public Builder path(String path) {
             this.path = Objects.requireNonNull(path);
             return this;
         }
+        @CustomType.Setter
         public Builder version(@Nullable Integer version) {
             this.version = version;
             return this;
         }
+        @CustomType.Setter
         public Builder withLeaseStartTime(@Nullable Boolean withLeaseStartTime) {
             this.withLeaseStartTime = withLeaseStartTime;
             return this;
-        }        public GetSecretResult build() {
-            return new GetSecretResult(data, dataJson, id, leaseDuration, leaseId, leaseRenewable, leaseStartTime, path, version, withLeaseStartTime);
+        }
+        public GetSecretResult build() {
+            final var o = new GetSecretResult();
+            o.data = data;
+            o.dataJson = dataJson;
+            o.id = id;
+            o.leaseDuration = leaseDuration;
+            o.leaseId = leaseId;
+            o.leaseRenewable = leaseRenewable;
+            o.leaseStartTime = leaseStartTime;
+            o.namespace = namespace;
+            o.path = path;
+            o.version = version;
+            o.withLeaseStartTime = withLeaseStartTime;
+            return o;
         }
     }
 }

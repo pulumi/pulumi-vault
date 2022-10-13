@@ -76,8 +76,11 @@ type CertAuthBackendRole struct {
 	AllowedEmailSans pulumi.StringArrayOutput `pulumi:"allowedEmailSans"`
 	// Allowed subject names for authenticated client certificates
 	AllowedNames pulumi.StringArrayOutput `pulumi:"allowedNames"`
-	// Allowed organization units for authenticated client certificates
+	// Deprecated: Use allowed_organizational_units
 	AllowedOrganizationUnits pulumi.StringArrayOutput `pulumi:"allowedOrganizationUnits"`
+	// Allowed organization units for authenticated client certificates.
+	// *In previous provider releases this field was incorrectly named `allowedOrganizationUnits`, please update accordingly*
+	AllowedOrganizationalUnits pulumi.StringArrayOutput `pulumi:"allowedOrganizationalUnits"`
 	// Allowed URIs for authenticated client certificates
 	AllowedUriSans pulumi.StringArrayOutput `pulumi:"allowedUriSans"`
 	// Path to the mounted Cert auth backend
@@ -88,6 +91,11 @@ type CertAuthBackendRole struct {
 	DisplayName pulumi.StringOutput `pulumi:"displayName"`
 	// Name of the role
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// TLS extensions required on client certificates
 	RequiredExtensions pulumi.StringArrayOutput `pulumi:"requiredExtensions"`
 	// List of CIDR blocks; if set, specifies blocks of IP
@@ -167,8 +175,11 @@ type certAuthBackendRoleState struct {
 	AllowedEmailSans []string `pulumi:"allowedEmailSans"`
 	// Allowed subject names for authenticated client certificates
 	AllowedNames []string `pulumi:"allowedNames"`
-	// Allowed organization units for authenticated client certificates
+	// Deprecated: Use allowed_organizational_units
 	AllowedOrganizationUnits []string `pulumi:"allowedOrganizationUnits"`
+	// Allowed organization units for authenticated client certificates.
+	// *In previous provider releases this field was incorrectly named `allowedOrganizationUnits`, please update accordingly*
+	AllowedOrganizationalUnits []string `pulumi:"allowedOrganizationalUnits"`
 	// Allowed URIs for authenticated client certificates
 	AllowedUriSans []string `pulumi:"allowedUriSans"`
 	// Path to the mounted Cert auth backend
@@ -179,6 +190,11 @@ type certAuthBackendRoleState struct {
 	DisplayName *string `pulumi:"displayName"`
 	// Name of the role
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// TLS extensions required on client certificates
 	RequiredExtensions []string `pulumi:"requiredExtensions"`
 	// List of CIDR blocks; if set, specifies blocks of IP
@@ -227,8 +243,11 @@ type CertAuthBackendRoleState struct {
 	AllowedEmailSans pulumi.StringArrayInput
 	// Allowed subject names for authenticated client certificates
 	AllowedNames pulumi.StringArrayInput
-	// Allowed organization units for authenticated client certificates
+	// Deprecated: Use allowed_organizational_units
 	AllowedOrganizationUnits pulumi.StringArrayInput
+	// Allowed organization units for authenticated client certificates.
+	// *In previous provider releases this field was incorrectly named `allowedOrganizationUnits`, please update accordingly*
+	AllowedOrganizationalUnits pulumi.StringArrayInput
 	// Allowed URIs for authenticated client certificates
 	AllowedUriSans pulumi.StringArrayInput
 	// Path to the mounted Cert auth backend
@@ -239,6 +258,11 @@ type CertAuthBackendRoleState struct {
 	DisplayName pulumi.StringPtrInput
 	// Name of the role
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// TLS extensions required on client certificates
 	RequiredExtensions pulumi.StringArrayInput
 	// List of CIDR blocks; if set, specifies blocks of IP
@@ -291,8 +315,11 @@ type certAuthBackendRoleArgs struct {
 	AllowedEmailSans []string `pulumi:"allowedEmailSans"`
 	// Allowed subject names for authenticated client certificates
 	AllowedNames []string `pulumi:"allowedNames"`
-	// Allowed organization units for authenticated client certificates
+	// Deprecated: Use allowed_organizational_units
 	AllowedOrganizationUnits []string `pulumi:"allowedOrganizationUnits"`
+	// Allowed organization units for authenticated client certificates.
+	// *In previous provider releases this field was incorrectly named `allowedOrganizationUnits`, please update accordingly*
+	AllowedOrganizationalUnits []string `pulumi:"allowedOrganizationalUnits"`
 	// Allowed URIs for authenticated client certificates
 	AllowedUriSans []string `pulumi:"allowedUriSans"`
 	// Path to the mounted Cert auth backend
@@ -303,6 +330,11 @@ type certAuthBackendRoleArgs struct {
 	DisplayName *string `pulumi:"displayName"`
 	// Name of the role
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// TLS extensions required on client certificates
 	RequiredExtensions []string `pulumi:"requiredExtensions"`
 	// List of CIDR blocks; if set, specifies blocks of IP
@@ -352,8 +384,11 @@ type CertAuthBackendRoleArgs struct {
 	AllowedEmailSans pulumi.StringArrayInput
 	// Allowed subject names for authenticated client certificates
 	AllowedNames pulumi.StringArrayInput
-	// Allowed organization units for authenticated client certificates
+	// Deprecated: Use allowed_organizational_units
 	AllowedOrganizationUnits pulumi.StringArrayInput
+	// Allowed organization units for authenticated client certificates.
+	// *In previous provider releases this field was incorrectly named `allowedOrganizationUnits`, please update accordingly*
+	AllowedOrganizationalUnits pulumi.StringArrayInput
 	// Allowed URIs for authenticated client certificates
 	AllowedUriSans pulumi.StringArrayInput
 	// Path to the mounted Cert auth backend
@@ -364,6 +399,11 @@ type CertAuthBackendRoleArgs struct {
 	DisplayName pulumi.StringPtrInput
 	// Name of the role
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// TLS extensions required on client certificates
 	RequiredExtensions pulumi.StringArrayInput
 	// List of CIDR blocks; if set, specifies blocks of IP
@@ -510,9 +550,15 @@ func (o CertAuthBackendRoleOutput) AllowedNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringArrayOutput { return v.AllowedNames }).(pulumi.StringArrayOutput)
 }
 
-// Allowed organization units for authenticated client certificates
+// Deprecated: Use allowed_organizational_units
 func (o CertAuthBackendRoleOutput) AllowedOrganizationUnits() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringArrayOutput { return v.AllowedOrganizationUnits }).(pulumi.StringArrayOutput)
+}
+
+// Allowed organization units for authenticated client certificates.
+// *In previous provider releases this field was incorrectly named `allowedOrganizationUnits`, please update accordingly*
+func (o CertAuthBackendRoleOutput) AllowedOrganizationalUnits() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringArrayOutput { return v.AllowedOrganizationalUnits }).(pulumi.StringArrayOutput)
 }
 
 // Allowed URIs for authenticated client certificates
@@ -538,6 +584,14 @@ func (o CertAuthBackendRoleOutput) DisplayName() pulumi.StringOutput {
 // Name of the role
 func (o CertAuthBackendRoleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o CertAuthBackendRoleOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // TLS extensions required on client certificates

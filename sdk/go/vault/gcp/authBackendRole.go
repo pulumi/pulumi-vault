@@ -44,6 +44,11 @@ type AuthBackendRole struct {
 	BoundZones pulumi.StringArrayOutput `pulumi:"boundZones"`
 	// The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
 	MaxJwtExp pulumi.StringOutput `pulumi:"maxJwtExp"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Name of the GCP role
 	Role pulumi.StringOutput `pulumi:"role"`
 	// List of CIDR blocks; if set, specifies blocks of IP
@@ -139,6 +144,11 @@ type authBackendRoleState struct {
 	BoundZones []string `pulumi:"boundZones"`
 	// The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
 	MaxJwtExp *string `pulumi:"maxJwtExp"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Name of the GCP role
 	Role *string `pulumi:"role"`
 	// List of CIDR blocks; if set, specifies blocks of IP
@@ -200,6 +210,11 @@ type AuthBackendRoleState struct {
 	BoundZones pulumi.StringArrayInput
 	// The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
 	MaxJwtExp pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Name of the GCP role
 	Role pulumi.StringPtrInput
 	// List of CIDR blocks; if set, specifies blocks of IP
@@ -265,6 +280,11 @@ type authBackendRoleArgs struct {
 	BoundZones []string `pulumi:"boundZones"`
 	// The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
 	MaxJwtExp *string `pulumi:"maxJwtExp"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Name of the GCP role
 	Role string `pulumi:"role"`
 	// List of CIDR blocks; if set, specifies blocks of IP
@@ -327,6 +347,11 @@ type AuthBackendRoleArgs struct {
 	BoundZones pulumi.StringArrayInput
 	// The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
 	MaxJwtExp pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Name of the GCP role
 	Role pulumi.StringInput
 	// List of CIDR blocks; if set, specifies blocks of IP
@@ -502,6 +527,14 @@ func (o AuthBackendRoleOutput) BoundZones() pulumi.StringArrayOutput {
 // The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
 func (o AuthBackendRoleOutput) MaxJwtExp() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringOutput { return v.MaxJwtExp }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o AuthBackendRoleOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Name of the GCP role

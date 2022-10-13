@@ -65,6 +65,13 @@ export class AuthBackendStsRole extends pulumi.CustomResource {
      */
     public readonly backend!: pulumi.Output<string | undefined>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * The STS role to assume when verifying requests made
      * by EC2 instances in the account specified by `accountId`.
      */
@@ -85,6 +92,7 @@ export class AuthBackendStsRole extends pulumi.CustomResource {
             const state = argsOrState as AuthBackendStsRoleState | undefined;
             resourceInputs["accountId"] = state ? state.accountId : undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["stsRole"] = state ? state.stsRole : undefined;
         } else {
             const args = argsOrState as AuthBackendStsRoleArgs | undefined;
@@ -96,6 +104,7 @@ export class AuthBackendStsRole extends pulumi.CustomResource {
             }
             resourceInputs["accountId"] = args ? args.accountId : undefined;
             resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["stsRole"] = args ? args.stsRole : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -117,6 +126,13 @@ export interface AuthBackendStsRoleState {
      */
     backend?: pulumi.Input<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
+    /**
      * The STS role to assume when verifying requests made
      * by EC2 instances in the account specified by `accountId`.
      */
@@ -136,6 +152,13 @@ export interface AuthBackendStsRoleArgs {
      * mounted at.  Defaults to `aws`.
      */
     backend?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The STS role to assume when verifying requests made
      * by EC2 instances in the account specified by `accountId`.

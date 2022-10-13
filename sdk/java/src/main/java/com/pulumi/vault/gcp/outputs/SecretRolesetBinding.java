@@ -14,21 +14,14 @@ public final class SecretRolesetBinding {
      * @return Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings).
      * 
      */
-    private final String resource;
+    private String resource;
     /**
      * @return List of [GCP IAM roles](https://cloud.google.com/iam/docs/understanding-roles) for the resource.
      * 
      */
-    private final List<String> roles;
+    private List<String> roles;
 
-    @CustomType.Constructor
-    private SecretRolesetBinding(
-        @CustomType.Parameter("resource") String resource,
-        @CustomType.Parameter("roles") List<String> roles) {
-        this.resource = resource;
-        this.roles = roles;
-    }
-
+    private SecretRolesetBinding() {}
     /**
      * @return Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings).
      * 
@@ -51,33 +44,35 @@ public final class SecretRolesetBinding {
     public static Builder builder(SecretRolesetBinding defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String resource;
         private List<String> roles;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(SecretRolesetBinding defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.resource = defaults.resource;
     	      this.roles = defaults.roles;
         }
 
+        @CustomType.Setter
         public Builder resource(String resource) {
             this.resource = Objects.requireNonNull(resource);
             return this;
         }
+        @CustomType.Setter
         public Builder roles(List<String> roles) {
             this.roles = Objects.requireNonNull(roles);
             return this;
         }
         public Builder roles(String... roles) {
             return roles(List.of(roles));
-        }        public SecretRolesetBinding build() {
-            return new SecretRolesetBinding(resource, roles);
+        }
+        public SecretRolesetBinding build() {
+            final var o = new SecretRolesetBinding();
+            o.resource = resource;
+            o.roles = roles;
+            return o;
         }
     }
 }

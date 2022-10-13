@@ -41,11 +41,21 @@ namespace Pulumi.Vault.Database.Inputs
         [Input("maxOpenConnections")]
         public Input<int>? MaxOpenConnections { get; set; }
 
+        [Input("password")]
+        private Input<string>? _password;
+
         /// <summary>
         /// The root credential password used in the connection URL.
         /// </summary>
-        [Input("password")]
-        public Input<string>? Password { get; set; }
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
@@ -53,11 +63,21 @@ namespace Pulumi.Vault.Database.Inputs
         [Input("tlsCa")]
         public Input<string>? TlsCa { get; set; }
 
+        [Input("tlsCertificateKey")]
+        private Input<string>? _tlsCertificateKey;
+
         /// <summary>
         /// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
         /// </summary>
-        [Input("tlsCertificateKey")]
-        public Input<string>? TlsCertificateKey { get; set; }
+        public Input<string>? TlsCertificateKey
+        {
+            get => _tlsCertificateKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _tlsCertificateKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The root credential username used in the connection URL.

@@ -16,18 +16,25 @@ class GroupMemberEntityIdsArgs:
     def __init__(__self__, *,
                  group_id: pulumi.Input[str],
                  exclusive: Optional[pulumi.Input[bool]] = None,
-                 member_entity_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+                 member_entity_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a GroupMemberEntityIds resource.
         :param pulumi.Input[str] group_id: Group ID to assign member entities to.
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] member_entity_ids: List of member entities that belong to the group
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         pulumi.set(__self__, "group_id", group_id)
         if exclusive is not None:
             pulumi.set(__self__, "exclusive", exclusive)
         if member_entity_ids is not None:
             pulumi.set(__self__, "member_entity_ids", member_entity_ids)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter(name="groupId")
@@ -65,6 +72,21 @@ class GroupMemberEntityIdsArgs:
     def member_entity_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "member_entity_ids", value)
 
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
 
 @pulumi.input_type
 class _GroupMemberEntityIdsState:
@@ -72,7 +94,8 @@ class _GroupMemberEntityIdsState:
                  exclusive: Optional[pulumi.Input[bool]] = None,
                  group_id: Optional[pulumi.Input[str]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
-                 member_entity_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+                 member_entity_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering GroupMemberEntityIds resources.
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
@@ -81,6 +104,10 @@ class _GroupMemberEntityIdsState:
                *Deprecated: The value for group_name may not always be accurate*
                *use* `data.vault_identity_group.*.group_name`, *or* `vault_identity_group.*.group_name` *instead.*
         :param pulumi.Input[Sequence[pulumi.Input[str]]] member_entity_ids: List of member entities that belong to the group
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         if exclusive is not None:
             pulumi.set(__self__, "exclusive", exclusive)
@@ -95,6 +122,8 @@ use \"data.vault_identity_group.*.group_name\", \"vault_identity_group.*.group_n
             pulumi.set(__self__, "group_name", group_name)
         if member_entity_ids is not None:
             pulumi.set(__self__, "member_entity_ids", member_entity_ids)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter
@@ -146,6 +175,21 @@ use \"data.vault_identity_group.*.group_name\", \"vault_identity_group.*.group_n
     def member_entity_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "member_entity_ids", value)
 
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
 
 class GroupMemberEntityIds(pulumi.CustomResource):
     @overload
@@ -155,6 +199,7 @@ class GroupMemberEntityIds(pulumi.CustomResource):
                  exclusive: Optional[pulumi.Input[bool]] = None,
                  group_id: Optional[pulumi.Input[str]] = None,
                  member_entity_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Manages member entities for an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
@@ -211,6 +256,10 @@ class GroupMemberEntityIds(pulumi.CustomResource):
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
         :param pulumi.Input[str] group_id: Group ID to assign member entities to.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] member_entity_ids: List of member entities that belong to the group
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         ...
     @overload
@@ -286,6 +335,7 @@ class GroupMemberEntityIds(pulumi.CustomResource):
                  exclusive: Optional[pulumi.Input[bool]] = None,
                  group_id: Optional[pulumi.Input[str]] = None,
                  member_entity_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -300,6 +350,7 @@ class GroupMemberEntityIds(pulumi.CustomResource):
                 raise TypeError("Missing required property 'group_id'")
             __props__.__dict__["group_id"] = group_id
             __props__.__dict__["member_entity_ids"] = member_entity_ids
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["group_name"] = None
         super(GroupMemberEntityIds, __self__).__init__(
             'vault:identity/groupMemberEntityIds:GroupMemberEntityIds',
@@ -314,7 +365,8 @@ class GroupMemberEntityIds(pulumi.CustomResource):
             exclusive: Optional[pulumi.Input[bool]] = None,
             group_id: Optional[pulumi.Input[str]] = None,
             group_name: Optional[pulumi.Input[str]] = None,
-            member_entity_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'GroupMemberEntityIds':
+            member_entity_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            namespace: Optional[pulumi.Input[str]] = None) -> 'GroupMemberEntityIds':
         """
         Get an existing GroupMemberEntityIds resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -328,6 +380,10 @@ class GroupMemberEntityIds(pulumi.CustomResource):
                *Deprecated: The value for group_name may not always be accurate*
                *use* `data.vault_identity_group.*.group_name`, *or* `vault_identity_group.*.group_name` *instead.*
         :param pulumi.Input[Sequence[pulumi.Input[str]]] member_entity_ids: List of member entities that belong to the group
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -337,6 +393,7 @@ class GroupMemberEntityIds(pulumi.CustomResource):
         __props__.__dict__["group_id"] = group_id
         __props__.__dict__["group_name"] = group_name
         __props__.__dict__["member_entity_ids"] = member_entity_ids
+        __props__.__dict__["namespace"] = namespace
         return GroupMemberEntityIds(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -372,4 +429,15 @@ class GroupMemberEntityIds(pulumi.CustomResource):
         List of member entities that belong to the group
         """
         return pulumi.get(self, "member_entity_ids")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 

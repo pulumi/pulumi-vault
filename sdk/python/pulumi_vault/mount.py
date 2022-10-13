@@ -16,6 +16,7 @@ class MountArgs:
     def __init__(__self__, *,
                  path: pulumi.Input[str],
                  type: pulumi.Input[str],
+                 allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
@@ -23,12 +24,14 @@ class MountArgs:
                  external_entropy_access: Optional[pulumi.Input[bool]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  seal_wrap: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a Mount resource.
         :param pulumi.Input[str] path: Where the secret backend will be mounted
         :param pulumi.Input[str] type: Type of the backend, such as "aws"
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_managed_keys: Set of managed key registry entry names that the mount in question is allowed to access
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
@@ -36,11 +39,17 @@ class MountArgs:
         :param pulumi.Input[bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[bool] seal_wrap: Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         """
         pulumi.set(__self__, "path", path)
         pulumi.set(__self__, "type", type)
+        if allowed_managed_keys is not None:
+            pulumi.set(__self__, "allowed_managed_keys", allowed_managed_keys)
         if audit_non_hmac_request_keys is not None:
             pulumi.set(__self__, "audit_non_hmac_request_keys", audit_non_hmac_request_keys)
         if audit_non_hmac_response_keys is not None:
@@ -55,6 +64,8 @@ class MountArgs:
             pulumi.set(__self__, "local", local)
         if max_lease_ttl_seconds is not None:
             pulumi.set(__self__, "max_lease_ttl_seconds", max_lease_ttl_seconds)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if options is not None:
             pulumi.set(__self__, "options", options)
         if seal_wrap is not None:
@@ -85,6 +96,18 @@ class MountArgs:
         pulumi.set(self, "type", value)
 
     @property
+    @pulumi.getter(name="allowedManagedKeys")
+    def allowed_managed_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Set of managed key registry entry names that the mount in question is allowed to access
+        """
+        return pulumi.get(self, "allowed_managed_keys")
+
+    @allowed_managed_keys.setter
+    def allowed_managed_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allowed_managed_keys", value)
+
+    @property
     @pulumi.getter(name="auditNonHmacRequestKeys")
     def audit_non_hmac_request_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -167,6 +190,21 @@ class MountArgs:
     @max_lease_ttl_seconds.setter
     def max_lease_ttl_seconds(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_lease_ttl_seconds", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -197,6 +235,7 @@ class MountArgs:
 class _MountState:
     def __init__(__self__, *,
                  accessor: Optional[pulumi.Input[str]] = None,
+                 allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
@@ -204,6 +243,7 @@ class _MountState:
                  external_entropy_access: Optional[pulumi.Input[bool]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  seal_wrap: Optional[pulumi.Input[bool]] = None,
@@ -211,6 +251,7 @@ class _MountState:
         """
         Input properties used for looking up and filtering Mount resources.
         :param pulumi.Input[str] accessor: The accessor for this mount.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_managed_keys: Set of managed key registry entry names that the mount in question is allowed to access
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
@@ -218,6 +259,10 @@ class _MountState:
         :param pulumi.Input[bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[str] path: Where the secret backend will be mounted
         :param pulumi.Input[bool] seal_wrap: Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
@@ -225,6 +270,8 @@ class _MountState:
         """
         if accessor is not None:
             pulumi.set(__self__, "accessor", accessor)
+        if allowed_managed_keys is not None:
+            pulumi.set(__self__, "allowed_managed_keys", allowed_managed_keys)
         if audit_non_hmac_request_keys is not None:
             pulumi.set(__self__, "audit_non_hmac_request_keys", audit_non_hmac_request_keys)
         if audit_non_hmac_response_keys is not None:
@@ -239,6 +286,8 @@ class _MountState:
             pulumi.set(__self__, "local", local)
         if max_lease_ttl_seconds is not None:
             pulumi.set(__self__, "max_lease_ttl_seconds", max_lease_ttl_seconds)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if options is not None:
             pulumi.set(__self__, "options", options)
         if path is not None:
@@ -259,6 +308,18 @@ class _MountState:
     @accessor.setter
     def accessor(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "accessor", value)
+
+    @property
+    @pulumi.getter(name="allowedManagedKeys")
+    def allowed_managed_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Set of managed key registry entry names that the mount in question is allowed to access
+        """
+        return pulumi.get(self, "allowed_managed_keys")
+
+    @allowed_managed_keys.setter
+    def allowed_managed_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allowed_managed_keys", value)
 
     @property
     @pulumi.getter(name="auditNonHmacRequestKeys")
@@ -343,6 +404,21 @@ class _MountState:
     @max_lease_ttl_seconds.setter
     def max_lease_ttl_seconds(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_lease_ttl_seconds", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -398,6 +474,7 @@ class Mount(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
@@ -405,6 +482,7 @@ class Mount(pulumi.CustomResource):
                  external_entropy_access: Optional[pulumi.Input[bool]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  seal_wrap: Optional[pulumi.Input[bool]] = None,
@@ -468,6 +546,7 @@ class Mount(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_managed_keys: Set of managed key registry entry names that the mount in question is allowed to access
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
@@ -475,6 +554,10 @@ class Mount(pulumi.CustomResource):
         :param pulumi.Input[bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[str] path: Where the secret backend will be mounted
         :param pulumi.Input[bool] seal_wrap: Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
@@ -557,6 +640,7 @@ class Mount(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
@@ -564,6 +648,7 @@ class Mount(pulumi.CustomResource):
                  external_entropy_access: Optional[pulumi.Input[bool]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  seal_wrap: Optional[pulumi.Input[bool]] = None,
@@ -577,6 +662,7 @@ class Mount(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = MountArgs.__new__(MountArgs)
 
+            __props__.__dict__["allowed_managed_keys"] = allowed_managed_keys
             __props__.__dict__["audit_non_hmac_request_keys"] = audit_non_hmac_request_keys
             __props__.__dict__["audit_non_hmac_response_keys"] = audit_non_hmac_response_keys
             __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
@@ -584,6 +670,7 @@ class Mount(pulumi.CustomResource):
             __props__.__dict__["external_entropy_access"] = external_entropy_access
             __props__.__dict__["local"] = local
             __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["options"] = options
             if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
@@ -604,6 +691,7 @@ class Mount(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             accessor: Optional[pulumi.Input[str]] = None,
+            allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
@@ -611,6 +699,7 @@ class Mount(pulumi.CustomResource):
             external_entropy_access: Optional[pulumi.Input[bool]] = None,
             local: Optional[pulumi.Input[bool]] = None,
             max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             path: Optional[pulumi.Input[str]] = None,
             seal_wrap: Optional[pulumi.Input[bool]] = None,
@@ -623,6 +712,7 @@ class Mount(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] accessor: The accessor for this mount.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_managed_keys: Set of managed key registry entry names that the mount in question is allowed to access
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
@@ -630,6 +720,10 @@ class Mount(pulumi.CustomResource):
         :param pulumi.Input[bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[str] path: Where the secret backend will be mounted
         :param pulumi.Input[bool] seal_wrap: Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
@@ -640,6 +734,7 @@ class Mount(pulumi.CustomResource):
         __props__ = _MountState.__new__(_MountState)
 
         __props__.__dict__["accessor"] = accessor
+        __props__.__dict__["allowed_managed_keys"] = allowed_managed_keys
         __props__.__dict__["audit_non_hmac_request_keys"] = audit_non_hmac_request_keys
         __props__.__dict__["audit_non_hmac_response_keys"] = audit_non_hmac_response_keys
         __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
@@ -647,6 +742,7 @@ class Mount(pulumi.CustomResource):
         __props__.__dict__["external_entropy_access"] = external_entropy_access
         __props__.__dict__["local"] = local
         __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["options"] = options
         __props__.__dict__["path"] = path
         __props__.__dict__["seal_wrap"] = seal_wrap
@@ -660,6 +756,14 @@ class Mount(pulumi.CustomResource):
         The accessor for this mount.
         """
         return pulumi.get(self, "accessor")
+
+    @property
+    @pulumi.getter(name="allowedManagedKeys")
+    def allowed_managed_keys(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        Set of managed key registry entry names that the mount in question is allowed to access
+        """
+        return pulumi.get(self, "allowed_managed_keys")
 
     @property
     @pulumi.getter(name="auditNonHmacRequestKeys")
@@ -716,6 +820,17 @@ class Mount(pulumi.CustomResource):
         Maximum possible lease duration for tokens and secrets in seconds
         """
         return pulumi.get(self, "max_lease_ttl_seconds")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

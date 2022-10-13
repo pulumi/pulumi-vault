@@ -33,6 +33,11 @@ type AuthBackendCert struct {
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
 	// The name of the certificate.
 	CertName pulumi.StringOutput `pulumi:"certName"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Either "pkcs7" or "identity", indicating the type of
 	// document which can be verified using the given certificate. Defaults to
 	// "pkcs7".
@@ -84,6 +89,11 @@ type authBackendCertState struct {
 	Backend *string `pulumi:"backend"`
 	// The name of the certificate.
 	CertName *string `pulumi:"certName"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Either "pkcs7" or "identity", indicating the type of
 	// document which can be verified using the given certificate. Defaults to
 	// "pkcs7".
@@ -101,6 +111,11 @@ type AuthBackendCertState struct {
 	Backend pulumi.StringPtrInput
 	// The name of the certificate.
 	CertName pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Either "pkcs7" or "identity", indicating the type of
 	// document which can be verified using the given certificate. Defaults to
 	// "pkcs7".
@@ -122,6 +137,11 @@ type authBackendCertArgs struct {
 	Backend *string `pulumi:"backend"`
 	// The name of the certificate.
 	CertName string `pulumi:"certName"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Either "pkcs7" or "identity", indicating the type of
 	// document which can be verified using the given certificate. Defaults to
 	// "pkcs7".
@@ -140,6 +160,11 @@ type AuthBackendCertArgs struct {
 	Backend pulumi.StringPtrInput
 	// The name of the certificate.
 	CertName pulumi.StringInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Either "pkcs7" or "identity", indicating the type of
 	// document which can be verified using the given certificate. Defaults to
 	// "pkcs7".
@@ -250,6 +275,14 @@ func (o AuthBackendCertOutput) Backend() pulumi.StringPtrOutput {
 // The name of the certificate.
 func (o AuthBackendCertOutput) CertName() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthBackendCert) pulumi.StringOutput { return v.CertName }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o AuthBackendCertOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendCert) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Either "pkcs7" or "identity", indicating the type of

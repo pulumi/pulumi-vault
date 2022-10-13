@@ -73,7 +73,10 @@ type AuthBackend struct {
 	DenyNullBind  pulumi.BoolOutput   `pulumi:"denyNullBind"`
 	// Description for the LDAP auth backend mount
 	Description pulumi.StringOutput `pulumi:"description"`
-	Discoverdn  pulumi.BoolOutput   `pulumi:"discoverdn"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
+	Discoverdn     pulumi.BoolOutput    `pulumi:"discoverdn"`
 	// LDAP attribute to follow on objects returned by groupfilter
 	Groupattr pulumi.StringOutput `pulumi:"groupattr"`
 	// Base DN under which to perform group search
@@ -84,6 +87,11 @@ type AuthBackend struct {
 	InsecureTls pulumi.BoolOutput `pulumi:"insecureTls"`
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Path to mount the LDAP auth backend under
 	Path pulumi.StringPtrOutput `pulumi:"path"`
 	// Control use of TLS when conecting to LDAP
@@ -139,6 +147,8 @@ type AuthBackend struct {
 	Userdn pulumi.StringOutput `pulumi:"userdn"`
 	// LDAP user search filter
 	Userfilter pulumi.StringOutput `pulumi:"userfilter"`
+	// Force the auth method to use the username passed by the user as the alias name.
+	UsernameAsAlias pulumi.BoolOutput `pulumi:"usernameAsAlias"`
 }
 
 // NewAuthBackend registers a new resource with the given unique name, arguments, and options.
@@ -151,6 +161,17 @@ func NewAuthBackend(ctx *pulumi.Context,
 	if args.Url == nil {
 		return nil, errors.New("invalid value for required argument 'Url'")
 	}
+	if args.Bindpass != nil {
+		args.Bindpass = pulumi.ToSecret(args.Bindpass).(pulumi.StringPtrOutput)
+	}
+	if args.ClientTlsKey != nil {
+		args.ClientTlsKey = pulumi.ToSecret(args.ClientTlsKey).(pulumi.StringPtrOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"bindpass",
+		"clientTlsKey",
+	})
+	opts = append(opts, secrets)
 	var resource AuthBackend
 	err := ctx.RegisterResource("vault:ldap/authBackend:AuthBackend", name, args, &resource, opts...)
 	if err != nil {
@@ -188,7 +209,10 @@ type authBackendState struct {
 	DenyNullBind  *bool   `pulumi:"denyNullBind"`
 	// Description for the LDAP auth backend mount
 	Description *string `pulumi:"description"`
-	Discoverdn  *bool   `pulumi:"discoverdn"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount *bool `pulumi:"disableRemount"`
+	Discoverdn     *bool `pulumi:"discoverdn"`
 	// LDAP attribute to follow on objects returned by groupfilter
 	Groupattr *string `pulumi:"groupattr"`
 	// Base DN under which to perform group search
@@ -199,6 +223,11 @@ type authBackendState struct {
 	InsecureTls *bool `pulumi:"insecureTls"`
 	// Specifies if the auth method is local only.
 	Local *bool `pulumi:"local"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Path to mount the LDAP auth backend under
 	Path *string `pulumi:"path"`
 	// Control use of TLS when conecting to LDAP
@@ -254,6 +283,8 @@ type authBackendState struct {
 	Userdn *string `pulumi:"userdn"`
 	// LDAP user search filter
 	Userfilter *string `pulumi:"userfilter"`
+	// Force the auth method to use the username passed by the user as the alias name.
+	UsernameAsAlias *bool `pulumi:"usernameAsAlias"`
 }
 
 type AuthBackendState struct {
@@ -272,7 +303,10 @@ type AuthBackendState struct {
 	DenyNullBind  pulumi.BoolPtrInput
 	// Description for the LDAP auth backend mount
 	Description pulumi.StringPtrInput
-	Discoverdn  pulumi.BoolPtrInput
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrInput
+	Discoverdn     pulumi.BoolPtrInput
 	// LDAP attribute to follow on objects returned by groupfilter
 	Groupattr pulumi.StringPtrInput
 	// Base DN under which to perform group search
@@ -283,6 +317,11 @@ type AuthBackendState struct {
 	InsecureTls pulumi.BoolPtrInput
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Path to mount the LDAP auth backend under
 	Path pulumi.StringPtrInput
 	// Control use of TLS when conecting to LDAP
@@ -338,6 +377,8 @@ type AuthBackendState struct {
 	Userdn pulumi.StringPtrInput
 	// LDAP user search filter
 	Userfilter pulumi.StringPtrInput
+	// Force the auth method to use the username passed by the user as the alias name.
+	UsernameAsAlias pulumi.BoolPtrInput
 }
 
 func (AuthBackendState) ElementType() reflect.Type {
@@ -358,7 +399,10 @@ type authBackendArgs struct {
 	DenyNullBind  *bool   `pulumi:"denyNullBind"`
 	// Description for the LDAP auth backend mount
 	Description *string `pulumi:"description"`
-	Discoverdn  *bool   `pulumi:"discoverdn"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount *bool `pulumi:"disableRemount"`
+	Discoverdn     *bool `pulumi:"discoverdn"`
 	// LDAP attribute to follow on objects returned by groupfilter
 	Groupattr *string `pulumi:"groupattr"`
 	// Base DN under which to perform group search
@@ -369,6 +413,11 @@ type authBackendArgs struct {
 	InsecureTls *bool `pulumi:"insecureTls"`
 	// Specifies if the auth method is local only.
 	Local *bool `pulumi:"local"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Path to mount the LDAP auth backend under
 	Path *string `pulumi:"path"`
 	// Control use of TLS when conecting to LDAP
@@ -424,6 +473,8 @@ type authBackendArgs struct {
 	Userdn *string `pulumi:"userdn"`
 	// LDAP user search filter
 	Userfilter *string `pulumi:"userfilter"`
+	// Force the auth method to use the username passed by the user as the alias name.
+	UsernameAsAlias *bool `pulumi:"usernameAsAlias"`
 }
 
 // The set of arguments for constructing a AuthBackend resource.
@@ -441,7 +492,10 @@ type AuthBackendArgs struct {
 	DenyNullBind  pulumi.BoolPtrInput
 	// Description for the LDAP auth backend mount
 	Description pulumi.StringPtrInput
-	Discoverdn  pulumi.BoolPtrInput
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrInput
+	Discoverdn     pulumi.BoolPtrInput
 	// LDAP attribute to follow on objects returned by groupfilter
 	Groupattr pulumi.StringPtrInput
 	// Base DN under which to perform group search
@@ -452,6 +506,11 @@ type AuthBackendArgs struct {
 	InsecureTls pulumi.BoolPtrInput
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Path to mount the LDAP auth backend under
 	Path pulumi.StringPtrInput
 	// Control use of TLS when conecting to LDAP
@@ -507,6 +566,8 @@ type AuthBackendArgs struct {
 	Userdn pulumi.StringPtrInput
 	// LDAP user search filter
 	Userfilter pulumi.StringPtrInput
+	// Force the auth method to use the username passed by the user as the alias name.
+	UsernameAsAlias pulumi.BoolPtrInput
 }
 
 func (AuthBackendArgs) ElementType() reflect.Type {
@@ -638,6 +699,12 @@ func (o AuthBackendOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
+// If set, opts out of mount migration on path updates.
+// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+func (o AuthBackendOutput) DisableRemount() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.BoolPtrOutput { return v.DisableRemount }).(pulumi.BoolPtrOutput)
+}
+
 func (o AuthBackendOutput) Discoverdn() pulumi.BoolOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.BoolOutput { return v.Discoverdn }).(pulumi.BoolOutput)
 }
@@ -665,6 +732,14 @@ func (o AuthBackendOutput) InsecureTls() pulumi.BoolOutput {
 // Specifies if the auth method is local only.
 func (o AuthBackendOutput) Local() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.BoolPtrOutput { return v.Local }).(pulumi.BoolPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o AuthBackendOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Path to mount the LDAP auth backend under
@@ -777,6 +852,11 @@ func (o AuthBackendOutput) Userdn() pulumi.StringOutput {
 // LDAP user search filter
 func (o AuthBackendOutput) Userfilter() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Userfilter }).(pulumi.StringOutput)
+}
+
+// Force the auth method to use the username passed by the user as the alias name.
+func (o AuthBackendOutput) UsernameAsAlias() pulumi.BoolOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.BoolOutput { return v.UsernameAsAlias }).(pulumi.BoolOutput)
 }
 
 type AuthBackendArrayOutput struct{ *pulumi.OutputState }

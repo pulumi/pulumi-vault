@@ -66,6 +66,11 @@ type AuthBackendGroup struct {
 
 	// Name of the group within the Okta
 	GroupName pulumi.StringOutput `pulumi:"groupName"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The path where the Okta auth backend is mounted
 	Path pulumi.StringOutput `pulumi:"path"`
 	// Vault policies to associate with this group
@@ -109,6 +114,11 @@ func GetAuthBackendGroup(ctx *pulumi.Context,
 type authBackendGroupState struct {
 	// Name of the group within the Okta
 	GroupName *string `pulumi:"groupName"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The path where the Okta auth backend is mounted
 	Path *string `pulumi:"path"`
 	// Vault policies to associate with this group
@@ -118,6 +128,11 @@ type authBackendGroupState struct {
 type AuthBackendGroupState struct {
 	// Name of the group within the Okta
 	GroupName pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The path where the Okta auth backend is mounted
 	Path pulumi.StringPtrInput
 	// Vault policies to associate with this group
@@ -131,6 +146,11 @@ func (AuthBackendGroupState) ElementType() reflect.Type {
 type authBackendGroupArgs struct {
 	// Name of the group within the Okta
 	GroupName string `pulumi:"groupName"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The path where the Okta auth backend is mounted
 	Path string `pulumi:"path"`
 	// Vault policies to associate with this group
@@ -141,6 +161,11 @@ type authBackendGroupArgs struct {
 type AuthBackendGroupArgs struct {
 	// Name of the group within the Okta
 	GroupName pulumi.StringInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The path where the Okta auth backend is mounted
 	Path pulumi.StringInput
 	// Vault policies to associate with this group
@@ -237,6 +262,14 @@ func (o AuthBackendGroupOutput) ToAuthBackendGroupOutputWithContext(ctx context.
 // Name of the group within the Okta
 func (o AuthBackendGroupOutput) GroupName() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthBackendGroup) pulumi.StringOutput { return v.GroupName }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o AuthBackendGroupOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendGroup) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The path where the Okta auth backend is mounted

@@ -19,8 +19,58 @@ func GetAddress(ctx *pulumi.Context) string {
 }
 
 // Login to vault with an existing auth method using auth/<mount>/login
-func GetAuthLogins(ctx *pulumi.Context) string {
-	return config.Get(ctx, "vault:authLogins")
+func GetAuthLogin(ctx *pulumi.Context) string {
+	return config.Get(ctx, "vault:authLogin")
+}
+
+// Login to vault using the AWS method
+func GetAuthLoginAws(ctx *pulumi.Context) string {
+	return config.Get(ctx, "vault:authLoginAws")
+}
+
+// Login to vault using the azure method
+func GetAuthLoginAzure(ctx *pulumi.Context) string {
+	return config.Get(ctx, "vault:authLoginAzure")
+}
+
+// Login to vault using the cert method
+func GetAuthLoginCert(ctx *pulumi.Context) string {
+	return config.Get(ctx, "vault:authLoginCert")
+}
+
+// Login to vault using the gcp method
+func GetAuthLoginGcp(ctx *pulumi.Context) string {
+	return config.Get(ctx, "vault:authLoginGcp")
+}
+
+// Login to vault using the jwt method
+func GetAuthLoginJwt(ctx *pulumi.Context) string {
+	return config.Get(ctx, "vault:authLoginJwt")
+}
+
+// Login to vault using the kerberos method
+func GetAuthLoginKerberos(ctx *pulumi.Context) string {
+	return config.Get(ctx, "vault:authLoginKerberos")
+}
+
+// Login to vault using the OCI method
+func GetAuthLoginOci(ctx *pulumi.Context) string {
+	return config.Get(ctx, "vault:authLoginOci")
+}
+
+// Login to vault using the oidc method
+func GetAuthLoginOidc(ctx *pulumi.Context) string {
+	return config.Get(ctx, "vault:authLoginOidc")
+}
+
+// Login to vault using the radius method
+func GetAuthLoginRadius(ctx *pulumi.Context) string {
+	return config.Get(ctx, "vault:authLoginRadius")
+}
+
+// Login to vault using the userpass method
+func GetAuthLoginUserpass(ctx *pulumi.Context) string {
+	return config.Get(ctx, "vault:authLoginUserpass")
 }
 
 // Path to directory containing CA certificate files to validate the server's certificate.
@@ -34,8 +84,8 @@ func GetCaCertFile(ctx *pulumi.Context) string {
 }
 
 // Client authentication credentials.
-func GetClientAuths(ctx *pulumi.Context) string {
-	return config.Get(ctx, "vault:clientAuths")
+func GetClientAuth(ctx *pulumi.Context) string {
+	return config.Get(ctx, "vault:clientAuth")
 }
 
 // The headers to send with each Vault request.

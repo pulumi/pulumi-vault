@@ -5,21 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Provides a resource to manage [Namespaces](https://www.vaultproject.io/docs/enterprise/namespaces/index.html).
- *
- * **Note** this feature is available only with Vault Enterprise.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const ns1 = new vault.Namespace("ns1", {
- *     path: "ns1",
- * });
- * ```
- *
  * ## Import
  *
  * Namespaces can be imported using its `name` as accessor id
@@ -44,7 +29,7 @@ import * as utilities from "./utilities";
  *  $ pulumi import vault:index/namespace:Namespace example2 example2
  * ```
  *
- *  $ terraform state show vault_namespace.example2 # vault_namespace.example2 resource "vault_namespace" "example2" {
+ *  $ terraform state show vault_namespace.example2 vault_namespace.example2 resource "vault_namespace" "example2" {
  *
  *  id
  *
@@ -85,13 +70,24 @@ export class Namespace extends pulumi.CustomResource {
     }
 
     /**
-     * ID of the namepsace.
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
+     * Namespace ID.
      */
     public /*out*/ readonly namespaceId!: pulumi.Output<string>;
     /**
      * The path of the namespace. Must not have a trailing `/`
      */
     public readonly path!: pulumi.Output<string>;
+    /**
+     * The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+     */
+    public /*out*/ readonly pathFq!: pulumi.Output<string>;
 
     /**
      * Create a Namespace resource with the given unique name, arguments, and options.
@@ -106,15 +102,19 @@ export class Namespace extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as NamespaceState | undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["namespaceId"] = state ? state.namespaceId : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["pathFq"] = state ? state.pathFq : undefined;
         } else {
             const args = argsOrState as NamespaceArgs | undefined;
             if ((!args || args.path === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["namespaceId"] = undefined /*out*/;
+            resourceInputs["pathFq"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Namespace.__pulumiType, name, resourceInputs, opts);
@@ -126,19 +126,37 @@ export class Namespace extends pulumi.CustomResource {
  */
 export interface NamespaceState {
     /**
-     * ID of the namepsace.
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
+    /**
+     * Namespace ID.
      */
     namespaceId?: pulumi.Input<string>;
     /**
      * The path of the namespace. Must not have a trailing `/`
      */
     path?: pulumi.Input<string>;
+    /**
+     * The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+     */
+    pathFq?: pulumi.Input<string>;
 }
 
 /**
  * The set of arguments for constructing a Namespace resource.
  */
 export interface NamespaceArgs {
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The path of the namespace. Must not have a trailing `/`
      */

@@ -64,8 +64,12 @@ if typing.TYPE_CHECKING:
     kmip = __kmip
     import pulumi_vault.kubernetes as __kubernetes
     kubernetes = __kubernetes
+    import pulumi_vault.kv as __kv
+    kv = __kv
     import pulumi_vault.ldap as __ldap
     ldap = __ldap
+    import pulumi_vault.managed as __managed
+    managed = __managed
     import pulumi_vault.okta as __okta
     okta = __okta
     import pulumi_vault.pkisecret as __pkisecret
@@ -98,7 +102,9 @@ else:
     jwt = _utilities.lazy_import('pulumi_vault.jwt')
     kmip = _utilities.lazy_import('pulumi_vault.kmip')
     kubernetes = _utilities.lazy_import('pulumi_vault.kubernetes')
+    kv = _utilities.lazy_import('pulumi_vault.kv')
     ldap = _utilities.lazy_import('pulumi_vault.ldap')
+    managed = _utilities.lazy_import('pulumi_vault.managed')
     okta = _utilities.lazy_import('pulumi_vault.okta')
     pkisecret = _utilities.lazy_import('pulumi_vault.pkisecret')
     rabbitmq = _utilities.lazy_import('pulumi_vault.rabbitmq')
@@ -161,10 +167,10 @@ _utilities.register(
  },
  {
   "pkg": "vault",
-  "mod": "appRole/authBackendRoleSecretID",
+  "mod": "appRole/authBackendRoleSecretId",
   "fqn": "pulumi_vault.approle",
   "classes": {
-   "vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID": "AuthBackendRoleSecretID"
+   "vault:appRole/authBackendRoleSecretId:AuthBackendRoleSecretId": "AuthBackendRoleSecretId"
   }
  },
  {
@@ -465,6 +471,46 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "identity/mfaDuo",
+  "fqn": "pulumi_vault.identity",
+  "classes": {
+   "vault:identity/mfaDuo:MfaDuo": "MfaDuo"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "identity/mfaLoginEnforcement",
+  "fqn": "pulumi_vault.identity",
+  "classes": {
+   "vault:identity/mfaLoginEnforcement:MfaLoginEnforcement": "MfaLoginEnforcement"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "identity/mfaOkta",
+  "fqn": "pulumi_vault.identity",
+  "classes": {
+   "vault:identity/mfaOkta:MfaOkta": "MfaOkta"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "identity/mfaPingid",
+  "fqn": "pulumi_vault.identity",
+  "classes": {
+   "vault:identity/mfaPingid:MfaPingid": "MfaPingid"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "identity/mfaTotp",
+  "fqn": "pulumi_vault.identity",
+  "classes": {
+   "vault:identity/mfaTotp:MfaTotp": "MfaTotp"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "identity/oidc",
   "fqn": "pulumi_vault.identity",
   "classes": {
@@ -745,6 +791,46 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "kubernetes/secretBackend",
+  "fqn": "pulumi_vault.kubernetes",
+  "classes": {
+   "vault:kubernetes/secretBackend:SecretBackend": "SecretBackend"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "kubernetes/secretBackendRole",
+  "fqn": "pulumi_vault.kubernetes",
+  "classes": {
+   "vault:kubernetes/secretBackendRole:SecretBackendRole": "SecretBackendRole"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "kv/secret",
+  "fqn": "pulumi_vault.kv",
+  "classes": {
+   "vault:kv/secret:Secret": "Secret"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "kv/secretBackendV2",
+  "fqn": "pulumi_vault.kv",
+  "classes": {
+   "vault:kv/secretBackendV2:SecretBackendV2": "SecretBackendV2"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "kv/secretV2",
+  "fqn": "pulumi_vault.kv",
+  "classes": {
+   "vault:kv/secretV2:SecretV2": "SecretV2"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "ldap/authBackend",
   "fqn": "pulumi_vault.ldap",
   "classes": {
@@ -765,6 +851,14 @@ _utilities.register(
   "fqn": "pulumi_vault.ldap",
   "classes": {
    "vault:ldap/authBackendUser:AuthBackendUser": "AuthBackendUser"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "managed/keys",
+  "fqn": "pulumi_vault.managed",
+  "classes": {
+   "vault:managed/keys:Keys": "Keys"
   }
  },
  {

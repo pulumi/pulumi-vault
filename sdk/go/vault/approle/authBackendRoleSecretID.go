@@ -57,7 +57,7 @@ import (
 //				return err
 //			}
 //			json0 := string(tmpJSON0)
-//			_, err = appRole.NewAuthBackendRoleSecretID(ctx, "id", &appRole.AuthBackendRoleSecretIDArgs{
+//			_, err = appRole.NewAuthBackendRoleSecretId(ctx, "id", &appRole.AuthBackendRoleSecretIdArgs{
 //				Backend:  approle.Path,
 //				RoleName: example.RoleName,
 //				Metadata: pulumi.String(json0),
@@ -70,7 +70,7 @@ import (
 //	}
 //
 // ```
-type AuthBackendRoleSecretID struct {
+type AuthBackendRoleSecretId struct {
 	pulumi.CustomResourceState
 
 	// The unique ID for this SecretID that can be safely logged.
@@ -83,6 +83,11 @@ type AuthBackendRoleSecretID struct {
 	// A JSON-encoded string containing metadata in
 	// key-value pairs to be set on tokens issued with this SecretID.
 	Metadata pulumi.StringPtrOutput `pulumi:"metadata"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The name of the role to create the SecretID for.
 	RoleName pulumi.StringOutput `pulumi:"roleName"`
 	// The SecretID to be created. If set, uses "Push"
@@ -104,9 +109,9 @@ type AuthBackendRoleSecretID struct {
 	WrappingTtl pulumi.StringPtrOutput `pulumi:"wrappingTtl"`
 }
 
-// NewAuthBackendRoleSecretID registers a new resource with the given unique name, arguments, and options.
-func NewAuthBackendRoleSecretID(ctx *pulumi.Context,
-	name string, args *AuthBackendRoleSecretIDArgs, opts ...pulumi.ResourceOption) (*AuthBackendRoleSecretID, error) {
+// NewAuthBackendRoleSecretId registers a new resource with the given unique name, arguments, and options.
+func NewAuthBackendRoleSecretId(ctx *pulumi.Context,
+	name string, args *AuthBackendRoleSecretIdArgs, opts ...pulumi.ResourceOption) (*AuthBackendRoleSecretId, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -114,28 +119,36 @@ func NewAuthBackendRoleSecretID(ctx *pulumi.Context,
 	if args.RoleName == nil {
 		return nil, errors.New("invalid value for required argument 'RoleName'")
 	}
-	var resource AuthBackendRoleSecretID
-	err := ctx.RegisterResource("vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID", name, args, &resource, opts...)
+	if args.SecretId != nil {
+		args.SecretId = pulumi.ToSecret(args.SecretId).(pulumi.StringPtrOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"secretId",
+		"wrappingToken",
+	})
+	opts = append(opts, secrets)
+	var resource AuthBackendRoleSecretId
+	err := ctx.RegisterResource("vault:appRole/authBackendRoleSecretId:AuthBackendRoleSecretId", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// GetAuthBackendRoleSecretID gets an existing AuthBackendRoleSecretID resource's state with the given name, ID, and optional
+// GetAuthBackendRoleSecretId gets an existing AuthBackendRoleSecretId resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetAuthBackendRoleSecretID(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *AuthBackendRoleSecretIDState, opts ...pulumi.ResourceOption) (*AuthBackendRoleSecretID, error) {
-	var resource AuthBackendRoleSecretID
-	err := ctx.ReadResource("vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID", name, id, state, &resource, opts...)
+func GetAuthBackendRoleSecretId(ctx *pulumi.Context,
+	name string, id pulumi.IDInput, state *AuthBackendRoleSecretIdState, opts ...pulumi.ResourceOption) (*AuthBackendRoleSecretId, error) {
+	var resource AuthBackendRoleSecretId
+	err := ctx.ReadResource("vault:appRole/authBackendRoleSecretId:AuthBackendRoleSecretId", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// Input properties used for looking up and filtering AuthBackendRoleSecretID resources.
-type authBackendRoleSecretIDState struct {
+// Input properties used for looking up and filtering AuthBackendRoleSecretId resources.
+type authBackendRoleSecretIdState struct {
 	// The unique ID for this SecretID that can be safely logged.
 	Accessor *string `pulumi:"accessor"`
 	// Unique name of the auth backend to configure.
@@ -146,6 +159,11 @@ type authBackendRoleSecretIDState struct {
 	// A JSON-encoded string containing metadata in
 	// key-value pairs to be set on tokens issued with this SecretID.
 	Metadata *string `pulumi:"metadata"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The name of the role to create the SecretID for.
 	RoleName *string `pulumi:"roleName"`
 	// The SecretID to be created. If set, uses "Push"
@@ -167,7 +185,7 @@ type authBackendRoleSecretIDState struct {
 	WrappingTtl *string `pulumi:"wrappingTtl"`
 }
 
-type AuthBackendRoleSecretIDState struct {
+type AuthBackendRoleSecretIdState struct {
 	// The unique ID for this SecretID that can be safely logged.
 	Accessor pulumi.StringPtrInput
 	// Unique name of the auth backend to configure.
@@ -178,6 +196,11 @@ type AuthBackendRoleSecretIDState struct {
 	// A JSON-encoded string containing metadata in
 	// key-value pairs to be set on tokens issued with this SecretID.
 	Metadata pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The name of the role to create the SecretID for.
 	RoleName pulumi.StringPtrInput
 	// The SecretID to be created. If set, uses "Push"
@@ -199,11 +222,11 @@ type AuthBackendRoleSecretIDState struct {
 	WrappingTtl pulumi.StringPtrInput
 }
 
-func (AuthBackendRoleSecretIDState) ElementType() reflect.Type {
-	return reflect.TypeOf((*authBackendRoleSecretIDState)(nil)).Elem()
+func (AuthBackendRoleSecretIdState) ElementType() reflect.Type {
+	return reflect.TypeOf((*authBackendRoleSecretIdState)(nil)).Elem()
 }
 
-type authBackendRoleSecretIDArgs struct {
+type authBackendRoleSecretIdArgs struct {
 	// Unique name of the auth backend to configure.
 	Backend *string `pulumi:"backend"`
 	// If set, specifies blocks of IP addresses which can
@@ -212,6 +235,11 @@ type authBackendRoleSecretIDArgs struct {
 	// A JSON-encoded string containing metadata in
 	// key-value pairs to be set on tokens issued with this SecretID.
 	Metadata *string `pulumi:"metadata"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The name of the role to create the SecretID for.
 	RoleName string `pulumi:"roleName"`
 	// The SecretID to be created. If set, uses "Push"
@@ -228,8 +256,8 @@ type authBackendRoleSecretIDArgs struct {
 	WrappingTtl *string `pulumi:"wrappingTtl"`
 }
 
-// The set of arguments for constructing a AuthBackendRoleSecretID resource.
-type AuthBackendRoleSecretIDArgs struct {
+// The set of arguments for constructing a AuthBackendRoleSecretId resource.
+type AuthBackendRoleSecretIdArgs struct {
 	// Unique name of the auth backend to configure.
 	Backend pulumi.StringPtrInput
 	// If set, specifies blocks of IP addresses which can
@@ -238,6 +266,11 @@ type AuthBackendRoleSecretIDArgs struct {
 	// A JSON-encoded string containing metadata in
 	// key-value pairs to be set on tokens issued with this SecretID.
 	Metadata pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The name of the role to create the SecretID for.
 	RoleName pulumi.StringInput
 	// The SecretID to be created. If set, uses "Push"
@@ -254,197 +287,205 @@ type AuthBackendRoleSecretIDArgs struct {
 	WrappingTtl pulumi.StringPtrInput
 }
 
-func (AuthBackendRoleSecretIDArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*authBackendRoleSecretIDArgs)(nil)).Elem()
+func (AuthBackendRoleSecretIdArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*authBackendRoleSecretIdArgs)(nil)).Elem()
 }
 
-type AuthBackendRoleSecretIDInput interface {
+type AuthBackendRoleSecretIdInput interface {
 	pulumi.Input
 
-	ToAuthBackendRoleSecretIDOutput() AuthBackendRoleSecretIDOutput
-	ToAuthBackendRoleSecretIDOutputWithContext(ctx context.Context) AuthBackendRoleSecretIDOutput
+	ToAuthBackendRoleSecretIdOutput() AuthBackendRoleSecretIdOutput
+	ToAuthBackendRoleSecretIdOutputWithContext(ctx context.Context) AuthBackendRoleSecretIdOutput
 }
 
-func (*AuthBackendRoleSecretID) ElementType() reflect.Type {
-	return reflect.TypeOf((**AuthBackendRoleSecretID)(nil)).Elem()
+func (*AuthBackendRoleSecretId) ElementType() reflect.Type {
+	return reflect.TypeOf((**AuthBackendRoleSecretId)(nil)).Elem()
 }
 
-func (i *AuthBackendRoleSecretID) ToAuthBackendRoleSecretIDOutput() AuthBackendRoleSecretIDOutput {
-	return i.ToAuthBackendRoleSecretIDOutputWithContext(context.Background())
+func (i *AuthBackendRoleSecretId) ToAuthBackendRoleSecretIdOutput() AuthBackendRoleSecretIdOutput {
+	return i.ToAuthBackendRoleSecretIdOutputWithContext(context.Background())
 }
 
-func (i *AuthBackendRoleSecretID) ToAuthBackendRoleSecretIDOutputWithContext(ctx context.Context) AuthBackendRoleSecretIDOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleSecretIDOutput)
+func (i *AuthBackendRoleSecretId) ToAuthBackendRoleSecretIdOutputWithContext(ctx context.Context) AuthBackendRoleSecretIdOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleSecretIdOutput)
 }
 
-// AuthBackendRoleSecretIDArrayInput is an input type that accepts AuthBackendRoleSecretIDArray and AuthBackendRoleSecretIDArrayOutput values.
-// You can construct a concrete instance of `AuthBackendRoleSecretIDArrayInput` via:
+// AuthBackendRoleSecretIdArrayInput is an input type that accepts AuthBackendRoleSecretIdArray and AuthBackendRoleSecretIdArrayOutput values.
+// You can construct a concrete instance of `AuthBackendRoleSecretIdArrayInput` via:
 //
-//	AuthBackendRoleSecretIDArray{ AuthBackendRoleSecretIDArgs{...} }
-type AuthBackendRoleSecretIDArrayInput interface {
+//	AuthBackendRoleSecretIdArray{ AuthBackendRoleSecretIdArgs{...} }
+type AuthBackendRoleSecretIdArrayInput interface {
 	pulumi.Input
 
-	ToAuthBackendRoleSecretIDArrayOutput() AuthBackendRoleSecretIDArrayOutput
-	ToAuthBackendRoleSecretIDArrayOutputWithContext(context.Context) AuthBackendRoleSecretIDArrayOutput
+	ToAuthBackendRoleSecretIdArrayOutput() AuthBackendRoleSecretIdArrayOutput
+	ToAuthBackendRoleSecretIdArrayOutputWithContext(context.Context) AuthBackendRoleSecretIdArrayOutput
 }
 
-type AuthBackendRoleSecretIDArray []AuthBackendRoleSecretIDInput
+type AuthBackendRoleSecretIdArray []AuthBackendRoleSecretIdInput
 
-func (AuthBackendRoleSecretIDArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*AuthBackendRoleSecretID)(nil)).Elem()
+func (AuthBackendRoleSecretIdArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*AuthBackendRoleSecretId)(nil)).Elem()
 }
 
-func (i AuthBackendRoleSecretIDArray) ToAuthBackendRoleSecretIDArrayOutput() AuthBackendRoleSecretIDArrayOutput {
-	return i.ToAuthBackendRoleSecretIDArrayOutputWithContext(context.Background())
+func (i AuthBackendRoleSecretIdArray) ToAuthBackendRoleSecretIdArrayOutput() AuthBackendRoleSecretIdArrayOutput {
+	return i.ToAuthBackendRoleSecretIdArrayOutputWithContext(context.Background())
 }
 
-func (i AuthBackendRoleSecretIDArray) ToAuthBackendRoleSecretIDArrayOutputWithContext(ctx context.Context) AuthBackendRoleSecretIDArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleSecretIDArrayOutput)
+func (i AuthBackendRoleSecretIdArray) ToAuthBackendRoleSecretIdArrayOutputWithContext(ctx context.Context) AuthBackendRoleSecretIdArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleSecretIdArrayOutput)
 }
 
-// AuthBackendRoleSecretIDMapInput is an input type that accepts AuthBackendRoleSecretIDMap and AuthBackendRoleSecretIDMapOutput values.
-// You can construct a concrete instance of `AuthBackendRoleSecretIDMapInput` via:
+// AuthBackendRoleSecretIdMapInput is an input type that accepts AuthBackendRoleSecretIdMap and AuthBackendRoleSecretIdMapOutput values.
+// You can construct a concrete instance of `AuthBackendRoleSecretIdMapInput` via:
 //
-//	AuthBackendRoleSecretIDMap{ "key": AuthBackendRoleSecretIDArgs{...} }
-type AuthBackendRoleSecretIDMapInput interface {
+//	AuthBackendRoleSecretIdMap{ "key": AuthBackendRoleSecretIdArgs{...} }
+type AuthBackendRoleSecretIdMapInput interface {
 	pulumi.Input
 
-	ToAuthBackendRoleSecretIDMapOutput() AuthBackendRoleSecretIDMapOutput
-	ToAuthBackendRoleSecretIDMapOutputWithContext(context.Context) AuthBackendRoleSecretIDMapOutput
+	ToAuthBackendRoleSecretIdMapOutput() AuthBackendRoleSecretIdMapOutput
+	ToAuthBackendRoleSecretIdMapOutputWithContext(context.Context) AuthBackendRoleSecretIdMapOutput
 }
 
-type AuthBackendRoleSecretIDMap map[string]AuthBackendRoleSecretIDInput
+type AuthBackendRoleSecretIdMap map[string]AuthBackendRoleSecretIdInput
 
-func (AuthBackendRoleSecretIDMap) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*AuthBackendRoleSecretID)(nil)).Elem()
+func (AuthBackendRoleSecretIdMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*AuthBackendRoleSecretId)(nil)).Elem()
 }
 
-func (i AuthBackendRoleSecretIDMap) ToAuthBackendRoleSecretIDMapOutput() AuthBackendRoleSecretIDMapOutput {
-	return i.ToAuthBackendRoleSecretIDMapOutputWithContext(context.Background())
+func (i AuthBackendRoleSecretIdMap) ToAuthBackendRoleSecretIdMapOutput() AuthBackendRoleSecretIdMapOutput {
+	return i.ToAuthBackendRoleSecretIdMapOutputWithContext(context.Background())
 }
 
-func (i AuthBackendRoleSecretIDMap) ToAuthBackendRoleSecretIDMapOutputWithContext(ctx context.Context) AuthBackendRoleSecretIDMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleSecretIDMapOutput)
+func (i AuthBackendRoleSecretIdMap) ToAuthBackendRoleSecretIdMapOutputWithContext(ctx context.Context) AuthBackendRoleSecretIdMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleSecretIdMapOutput)
 }
 
-type AuthBackendRoleSecretIDOutput struct{ *pulumi.OutputState }
+type AuthBackendRoleSecretIdOutput struct{ *pulumi.OutputState }
 
-func (AuthBackendRoleSecretIDOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AuthBackendRoleSecretID)(nil)).Elem()
+func (AuthBackendRoleSecretIdOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AuthBackendRoleSecretId)(nil)).Elem()
 }
 
-func (o AuthBackendRoleSecretIDOutput) ToAuthBackendRoleSecretIDOutput() AuthBackendRoleSecretIDOutput {
+func (o AuthBackendRoleSecretIdOutput) ToAuthBackendRoleSecretIdOutput() AuthBackendRoleSecretIdOutput {
 	return o
 }
 
-func (o AuthBackendRoleSecretIDOutput) ToAuthBackendRoleSecretIDOutputWithContext(ctx context.Context) AuthBackendRoleSecretIDOutput {
+func (o AuthBackendRoleSecretIdOutput) ToAuthBackendRoleSecretIdOutputWithContext(ctx context.Context) AuthBackendRoleSecretIdOutput {
 	return o
 }
 
 // The unique ID for this SecretID that can be safely logged.
-func (o AuthBackendRoleSecretIDOutput) Accessor() pulumi.StringOutput {
-	return o.ApplyT(func(v *AuthBackendRoleSecretID) pulumi.StringOutput { return v.Accessor }).(pulumi.StringOutput)
+func (o AuthBackendRoleSecretIdOutput) Accessor() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendRoleSecretId) pulumi.StringOutput { return v.Accessor }).(pulumi.StringOutput)
 }
 
 // Unique name of the auth backend to configure.
-func (o AuthBackendRoleSecretIDOutput) Backend() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AuthBackendRoleSecretID) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
+func (o AuthBackendRoleSecretIdOutput) Backend() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRoleSecretId) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
 }
 
 // If set, specifies blocks of IP addresses which can
 // perform the login operation using this SecretID.
-func (o AuthBackendRoleSecretIDOutput) CidrLists() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *AuthBackendRoleSecretID) pulumi.StringArrayOutput { return v.CidrLists }).(pulumi.StringArrayOutput)
+func (o AuthBackendRoleSecretIdOutput) CidrLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendRoleSecretId) pulumi.StringArrayOutput { return v.CidrLists }).(pulumi.StringArrayOutput)
 }
 
 // A JSON-encoded string containing metadata in
 // key-value pairs to be set on tokens issued with this SecretID.
-func (o AuthBackendRoleSecretIDOutput) Metadata() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AuthBackendRoleSecretID) pulumi.StringPtrOutput { return v.Metadata }).(pulumi.StringPtrOutput)
+func (o AuthBackendRoleSecretIdOutput) Metadata() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRoleSecretId) pulumi.StringPtrOutput { return v.Metadata }).(pulumi.StringPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o AuthBackendRoleSecretIdOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRoleSecretId) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The name of the role to create the SecretID for.
-func (o AuthBackendRoleSecretIDOutput) RoleName() pulumi.StringOutput {
-	return o.ApplyT(func(v *AuthBackendRoleSecretID) pulumi.StringOutput { return v.RoleName }).(pulumi.StringOutput)
+func (o AuthBackendRoleSecretIdOutput) RoleName() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendRoleSecretId) pulumi.StringOutput { return v.RoleName }).(pulumi.StringOutput)
 }
 
 // The SecretID to be created. If set, uses "Push"
 // mode.  Defaults to Vault auto-generating SecretIDs.
-func (o AuthBackendRoleSecretIDOutput) SecretId() pulumi.StringOutput {
-	return o.ApplyT(func(v *AuthBackendRoleSecretID) pulumi.StringOutput { return v.SecretId }).(pulumi.StringOutput)
+func (o AuthBackendRoleSecretIdOutput) SecretId() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendRoleSecretId) pulumi.StringOutput { return v.SecretId }).(pulumi.StringOutput)
 }
 
 // Set to `true` to use the wrapped secret-id accessor as the resource ID.
 // If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
 // invalidated through unwrapping.
-func (o AuthBackendRoleSecretIDOutput) WithWrappedAccessor() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *AuthBackendRoleSecretID) pulumi.BoolPtrOutput { return v.WithWrappedAccessor }).(pulumi.BoolPtrOutput)
+func (o AuthBackendRoleSecretIdOutput) WithWrappedAccessor() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRoleSecretId) pulumi.BoolPtrOutput { return v.WithWrappedAccessor }).(pulumi.BoolPtrOutput)
 }
 
 // The unique ID for the response-wrapped SecretID that can
 // be safely logged.
-func (o AuthBackendRoleSecretIDOutput) WrappingAccessor() pulumi.StringOutput {
-	return o.ApplyT(func(v *AuthBackendRoleSecretID) pulumi.StringOutput { return v.WrappingAccessor }).(pulumi.StringOutput)
+func (o AuthBackendRoleSecretIdOutput) WrappingAccessor() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendRoleSecretId) pulumi.StringOutput { return v.WrappingAccessor }).(pulumi.StringOutput)
 }
 
 // The token used to retrieve a response-wrapped SecretID.
-func (o AuthBackendRoleSecretIDOutput) WrappingToken() pulumi.StringOutput {
-	return o.ApplyT(func(v *AuthBackendRoleSecretID) pulumi.StringOutput { return v.WrappingToken }).(pulumi.StringOutput)
+func (o AuthBackendRoleSecretIdOutput) WrappingToken() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackendRoleSecretId) pulumi.StringOutput { return v.WrappingToken }).(pulumi.StringOutput)
 }
 
 // If set, the SecretID response will be
 // [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
 // and available for the duration specified. Only a single unwrapping of the
 // token is allowed.
-func (o AuthBackendRoleSecretIDOutput) WrappingTtl() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AuthBackendRoleSecretID) pulumi.StringPtrOutput { return v.WrappingTtl }).(pulumi.StringPtrOutput)
+func (o AuthBackendRoleSecretIdOutput) WrappingTtl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRoleSecretId) pulumi.StringPtrOutput { return v.WrappingTtl }).(pulumi.StringPtrOutput)
 }
 
-type AuthBackendRoleSecretIDArrayOutput struct{ *pulumi.OutputState }
+type AuthBackendRoleSecretIdArrayOutput struct{ *pulumi.OutputState }
 
-func (AuthBackendRoleSecretIDArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*AuthBackendRoleSecretID)(nil)).Elem()
+func (AuthBackendRoleSecretIdArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*AuthBackendRoleSecretId)(nil)).Elem()
 }
 
-func (o AuthBackendRoleSecretIDArrayOutput) ToAuthBackendRoleSecretIDArrayOutput() AuthBackendRoleSecretIDArrayOutput {
+func (o AuthBackendRoleSecretIdArrayOutput) ToAuthBackendRoleSecretIdArrayOutput() AuthBackendRoleSecretIdArrayOutput {
 	return o
 }
 
-func (o AuthBackendRoleSecretIDArrayOutput) ToAuthBackendRoleSecretIDArrayOutputWithContext(ctx context.Context) AuthBackendRoleSecretIDArrayOutput {
+func (o AuthBackendRoleSecretIdArrayOutput) ToAuthBackendRoleSecretIdArrayOutputWithContext(ctx context.Context) AuthBackendRoleSecretIdArrayOutput {
 	return o
 }
 
-func (o AuthBackendRoleSecretIDArrayOutput) Index(i pulumi.IntInput) AuthBackendRoleSecretIDOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AuthBackendRoleSecretID {
-		return vs[0].([]*AuthBackendRoleSecretID)[vs[1].(int)]
-	}).(AuthBackendRoleSecretIDOutput)
+func (o AuthBackendRoleSecretIdArrayOutput) Index(i pulumi.IntInput) AuthBackendRoleSecretIdOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AuthBackendRoleSecretId {
+		return vs[0].([]*AuthBackendRoleSecretId)[vs[1].(int)]
+	}).(AuthBackendRoleSecretIdOutput)
 }
 
-type AuthBackendRoleSecretIDMapOutput struct{ *pulumi.OutputState }
+type AuthBackendRoleSecretIdMapOutput struct{ *pulumi.OutputState }
 
-func (AuthBackendRoleSecretIDMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*AuthBackendRoleSecretID)(nil)).Elem()
+func (AuthBackendRoleSecretIdMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*AuthBackendRoleSecretId)(nil)).Elem()
 }
 
-func (o AuthBackendRoleSecretIDMapOutput) ToAuthBackendRoleSecretIDMapOutput() AuthBackendRoleSecretIDMapOutput {
+func (o AuthBackendRoleSecretIdMapOutput) ToAuthBackendRoleSecretIdMapOutput() AuthBackendRoleSecretIdMapOutput {
 	return o
 }
 
-func (o AuthBackendRoleSecretIDMapOutput) ToAuthBackendRoleSecretIDMapOutputWithContext(ctx context.Context) AuthBackendRoleSecretIDMapOutput {
+func (o AuthBackendRoleSecretIdMapOutput) ToAuthBackendRoleSecretIdMapOutputWithContext(ctx context.Context) AuthBackendRoleSecretIdMapOutput {
 	return o
 }
 
-func (o AuthBackendRoleSecretIDMapOutput) MapIndex(k pulumi.StringInput) AuthBackendRoleSecretIDOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *AuthBackendRoleSecretID {
-		return vs[0].(map[string]*AuthBackendRoleSecretID)[vs[1].(string)]
-	}).(AuthBackendRoleSecretIDOutput)
+func (o AuthBackendRoleSecretIdMapOutput) MapIndex(k pulumi.StringInput) AuthBackendRoleSecretIdOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *AuthBackendRoleSecretId {
+		return vs[0].(map[string]*AuthBackendRoleSecretId)[vs[1].(string)]
+	}).(AuthBackendRoleSecretIdOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendRoleSecretIDInput)(nil)).Elem(), &AuthBackendRoleSecretID{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendRoleSecretIDArrayInput)(nil)).Elem(), AuthBackendRoleSecretIDArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendRoleSecretIDMapInput)(nil)).Elem(), AuthBackendRoleSecretIDMap{})
-	pulumi.RegisterOutputType(AuthBackendRoleSecretIDOutput{})
-	pulumi.RegisterOutputType(AuthBackendRoleSecretIDArrayOutput{})
-	pulumi.RegisterOutputType(AuthBackendRoleSecretIDMapOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendRoleSecretIdInput)(nil)).Elem(), &AuthBackendRoleSecretId{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendRoleSecretIdArrayInput)(nil)).Elem(), AuthBackendRoleSecretIdArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendRoleSecretIdMapInput)(nil)).Elem(), AuthBackendRoleSecretIdMap{})
+	pulumi.RegisterOutputType(AuthBackendRoleSecretIdOutput{})
+	pulumi.RegisterOutputType(AuthBackendRoleSecretIdArrayOutput{})
+	pulumi.RegisterOutputType(AuthBackendRoleSecretIdMapOutput{})
 }

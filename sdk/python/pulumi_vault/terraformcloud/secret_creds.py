@@ -15,14 +15,21 @@ __all__ = ['SecretCredsArgs', 'SecretCreds']
 class SecretCredsArgs:
     def __init__(__self__, *,
                  backend: pulumi.Input[str],
-                 role: pulumi.Input[str]):
+                 role: pulumi.Input[str],
+                 namespace: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SecretCreds resource.
         :param pulumi.Input[str] backend: Terraform Cloud secret backend to generate tokens from
         :param pulumi.Input[str] role: Name of the role.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         pulumi.set(__self__, "backend", backend)
         pulumi.set(__self__, "role", role)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter
@@ -48,12 +55,28 @@ class SecretCredsArgs:
     def role(self, value: pulumi.Input[str]):
         pulumi.set(self, "role", value)
 
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
 
 @pulumi.input_type
 class _SecretCredsState:
     def __init__(__self__, *,
                  backend: Optional[pulumi.Input[str]] = None,
                  lease_id: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  team_id: Optional[pulumi.Input[str]] = None,
@@ -64,6 +87,10 @@ class _SecretCredsState:
         :param pulumi.Input[str] backend: Terraform Cloud secret backend to generate tokens from
         :param pulumi.Input[str] lease_id: The lease associated with the token. Only user tokens will have a 
                Vault lease associated with them.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: The organization associated with the token provided.
         :param pulumi.Input[str] role: Name of the role.
         :param pulumi.Input[str] team_id: The team id associated with the token provided.
@@ -76,6 +103,8 @@ class _SecretCredsState:
             pulumi.set(__self__, "backend", backend)
         if lease_id is not None:
             pulumi.set(__self__, "lease_id", lease_id)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if organization is not None:
             pulumi.set(__self__, "organization", organization)
         if role is not None:
@@ -111,6 +140,21 @@ class _SecretCredsState:
     @lease_id.setter
     def lease_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "lease_id", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -181,6 +225,7 @@ class SecretCreds(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -206,6 +251,10 @@ class SecretCreds(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Terraform Cloud secret backend to generate tokens from
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role: Name of the role.
         """
         ...
@@ -250,6 +299,7 @@ class SecretCreds(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -263,6 +313,7 @@ class SecretCreds(pulumi.CustomResource):
             if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
             __props__.__dict__["backend"] = backend
+            __props__.__dict__["namespace"] = namespace
             if role is None and not opts.urn:
                 raise TypeError("Missing required property 'role'")
             __props__.__dict__["role"] = role
@@ -271,6 +322,8 @@ class SecretCreds(pulumi.CustomResource):
             __props__.__dict__["team_id"] = None
             __props__.__dict__["token"] = None
             __props__.__dict__["token_id"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["leaseId", "token"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(SecretCreds, __self__).__init__(
             'vault:terraformcloud/secretCreds:SecretCreds',
             resource_name,
@@ -283,6 +336,7 @@ class SecretCreds(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
             lease_id: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             organization: Optional[pulumi.Input[str]] = None,
             role: Optional[pulumi.Input[str]] = None,
             team_id: Optional[pulumi.Input[str]] = None,
@@ -298,6 +352,10 @@ class SecretCreds(pulumi.CustomResource):
         :param pulumi.Input[str] backend: Terraform Cloud secret backend to generate tokens from
         :param pulumi.Input[str] lease_id: The lease associated with the token. Only user tokens will have a 
                Vault lease associated with them.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: The organization associated with the token provided.
         :param pulumi.Input[str] role: Name of the role.
         :param pulumi.Input[str] team_id: The team id associated with the token provided.
@@ -312,6 +370,7 @@ class SecretCreds(pulumi.CustomResource):
 
         __props__.__dict__["backend"] = backend
         __props__.__dict__["lease_id"] = lease_id
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["organization"] = organization
         __props__.__dict__["role"] = role
         __props__.__dict__["team_id"] = team_id
@@ -335,6 +394,17 @@ class SecretCreds(pulumi.CustomResource):
         Vault lease associated with them.
         """
         return pulumi.get(self, "lease_id")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

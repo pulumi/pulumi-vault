@@ -97,6 +97,12 @@ namespace Pulumi.Vault.Database
         public Output<string> Accessor { get; private set; } = null!;
 
         /// <summary>
+        /// Set of managed key registry entry names that the mount in question is allowed to access
+        /// </summary>
+        [Output("allowedManagedKeys")]
+        public Output<ImmutableArray<string>> AllowedManagedKeys { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         /// </summary>
         [Output("auditNonHmacRequestKeys")]
@@ -229,6 +235,12 @@ namespace Pulumi.Vault.Database
         public Output<ImmutableArray<Outputs.SecretsMountMysql>> Mysqls { get; private set; } = null!;
 
         /// <summary>
+        /// Target namespace. (requires Enterprise)
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies mount type specific options that are passed to the backend
         /// </summary>
         [Output("options")]
@@ -253,6 +265,13 @@ namespace Pulumi.Vault.Database
         /// </summary>
         [Output("postgresqls")]
         public Output<ImmutableArray<Outputs.SecretsMountPostgresql>> Postgresqls { get; private set; } = null!;
+
+        /// <summary>
+        /// A nested block containing configuration options for InfluxDB connections.  
+        /// *See Configuration Options for more info*
+        /// </summary>
+        [Output("redisElasticaches")]
+        public Output<ImmutableArray<Outputs.SecretsMountRedisElasticach>> RedisElasticaches { get; private set; } = null!;
 
         /// <summary>
         /// A nested block containing configuration options for AWS Redshift connections.  
@@ -320,6 +339,18 @@ namespace Pulumi.Vault.Database
 
     public sealed class SecretsMountArgs : global::Pulumi.ResourceArgs
     {
+        [Input("allowedManagedKeys")]
+        private InputList<string>? _allowedManagedKeys;
+
+        /// <summary>
+        /// Set of managed key registry entry names that the mount in question is allowed to access
+        /// </summary>
+        public InputList<string> AllowedManagedKeys
+        {
+            get => _allowedManagedKeys ?? (_allowedManagedKeys = new InputList<string>());
+            set => _allowedManagedKeys = value;
+        }
+
         [Input("auditNonHmacRequestKeys")]
         private InputList<string>? _auditNonHmacRequestKeys;
 
@@ -530,6 +561,12 @@ namespace Pulumi.Vault.Database
             set => _mysqls = value;
         }
 
+        /// <summary>
+        /// Target namespace. (requires Enterprise)
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
         [Input("options")]
         private InputMap<object>? _options;
 
@@ -572,6 +609,19 @@ namespace Pulumi.Vault.Database
         {
             get => _postgresqls ?? (_postgresqls = new InputList<Inputs.SecretsMountPostgresqlArgs>());
             set => _postgresqls = value;
+        }
+
+        [Input("redisElasticaches")]
+        private InputList<Inputs.SecretsMountRedisElasticachArgs>? _redisElasticaches;
+
+        /// <summary>
+        /// A nested block containing configuration options for InfluxDB connections.  
+        /// *See Configuration Options for more info*
+        /// </summary>
+        public InputList<Inputs.SecretsMountRedisElasticachArgs> RedisElasticaches
+        {
+            get => _redisElasticaches ?? (_redisElasticaches = new InputList<Inputs.SecretsMountRedisElasticachArgs>());
+            set => _redisElasticaches = value;
         }
 
         [Input("redshifts")]
@@ -619,6 +669,18 @@ namespace Pulumi.Vault.Database
         /// </summary>
         [Input("accessor")]
         public Input<string>? Accessor { get; set; }
+
+        [Input("allowedManagedKeys")]
+        private InputList<string>? _allowedManagedKeys;
+
+        /// <summary>
+        /// Set of managed key registry entry names that the mount in question is allowed to access
+        /// </summary>
+        public InputList<string> AllowedManagedKeys
+        {
+            get => _allowedManagedKeys ?? (_allowedManagedKeys = new InputList<string>());
+            set => _allowedManagedKeys = value;
+        }
 
         [Input("auditNonHmacRequestKeys")]
         private InputList<string>? _auditNonHmacRequestKeys;
@@ -836,6 +898,12 @@ namespace Pulumi.Vault.Database
             set => _mysqls = value;
         }
 
+        /// <summary>
+        /// Target namespace. (requires Enterprise)
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
         [Input("options")]
         private InputMap<object>? _options;
 
@@ -878,6 +946,19 @@ namespace Pulumi.Vault.Database
         {
             get => _postgresqls ?? (_postgresqls = new InputList<Inputs.SecretsMountPostgresqlGetArgs>());
             set => _postgresqls = value;
+        }
+
+        [Input("redisElasticaches")]
+        private InputList<Inputs.SecretsMountRedisElasticachGetArgs>? _redisElasticaches;
+
+        /// <summary>
+        /// A nested block containing configuration options for InfluxDB connections.  
+        /// *See Configuration Options for more info*
+        /// </summary>
+        public InputList<Inputs.SecretsMountRedisElasticachGetArgs> RedisElasticaches
+        {
+            get => _redisElasticaches ?? (_redisElasticaches = new InputList<Inputs.SecretsMountRedisElasticachGetArgs>());
+            set => _redisElasticaches = value;
         }
 
         [Input("redshifts")]

@@ -19,58 +19,41 @@ public final class SecretBackendConnectionOracle {
      * for an example.
      * 
      */
-    private final @Nullable String connectionUrl;
+    private @Nullable String connectionUrl;
     /**
      * @return The maximum amount of time a connection may be reused.
      * 
      */
-    private final @Nullable Integer maxConnectionLifetime;
+    private @Nullable Integer maxConnectionLifetime;
     /**
      * @return The maximum number of idle connections to
      * the database.
      * 
      */
-    private final @Nullable Integer maxIdleConnections;
+    private @Nullable Integer maxIdleConnections;
     /**
      * @return The maximum number of open connections to
      * the database.
      * 
      */
-    private final @Nullable Integer maxOpenConnections;
+    private @Nullable Integer maxOpenConnections;
     /**
      * @return The root credential password used in the connection URL.
      * 
      */
-    private final @Nullable String password;
+    private @Nullable String password;
     /**
      * @return The root credential username used in the connection URL.
      * 
      */
-    private final @Nullable String username;
+    private @Nullable String username;
     /**
      * @return - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
      * 
      */
-    private final @Nullable String usernameTemplate;
+    private @Nullable String usernameTemplate;
 
-    @CustomType.Constructor
-    private SecretBackendConnectionOracle(
-        @CustomType.Parameter("connectionUrl") @Nullable String connectionUrl,
-        @CustomType.Parameter("maxConnectionLifetime") @Nullable Integer maxConnectionLifetime,
-        @CustomType.Parameter("maxIdleConnections") @Nullable Integer maxIdleConnections,
-        @CustomType.Parameter("maxOpenConnections") @Nullable Integer maxOpenConnections,
-        @CustomType.Parameter("password") @Nullable String password,
-        @CustomType.Parameter("username") @Nullable String username,
-        @CustomType.Parameter("usernameTemplate") @Nullable String usernameTemplate) {
-        this.connectionUrl = connectionUrl;
-        this.maxConnectionLifetime = maxConnectionLifetime;
-        this.maxIdleConnections = maxIdleConnections;
-        this.maxOpenConnections = maxOpenConnections;
-        this.password = password;
-        this.username = username;
-        this.usernameTemplate = usernameTemplate;
-    }
-
+    private SecretBackendConnectionOracle() {}
     /**
      * @return Specifies the Redshift DSN. See
      * the [Vault
@@ -133,7 +116,7 @@ public final class SecretBackendConnectionOracle {
     public static Builder builder(SecretBackendConnectionOracle defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable String connectionUrl;
         private @Nullable Integer maxConnectionLifetime;
@@ -142,11 +125,7 @@ public final class SecretBackendConnectionOracle {
         private @Nullable String password;
         private @Nullable String username;
         private @Nullable String usernameTemplate;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(SecretBackendConnectionOracle defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.connectionUrl = defaults.connectionUrl;
@@ -158,35 +137,51 @@ public final class SecretBackendConnectionOracle {
     	      this.usernameTemplate = defaults.usernameTemplate;
         }
 
+        @CustomType.Setter
         public Builder connectionUrl(@Nullable String connectionUrl) {
             this.connectionUrl = connectionUrl;
             return this;
         }
+        @CustomType.Setter
         public Builder maxConnectionLifetime(@Nullable Integer maxConnectionLifetime) {
             this.maxConnectionLifetime = maxConnectionLifetime;
             return this;
         }
+        @CustomType.Setter
         public Builder maxIdleConnections(@Nullable Integer maxIdleConnections) {
             this.maxIdleConnections = maxIdleConnections;
             return this;
         }
+        @CustomType.Setter
         public Builder maxOpenConnections(@Nullable Integer maxOpenConnections) {
             this.maxOpenConnections = maxOpenConnections;
             return this;
         }
+        @CustomType.Setter
         public Builder password(@Nullable String password) {
             this.password = password;
             return this;
         }
+        @CustomType.Setter
         public Builder username(@Nullable String username) {
             this.username = username;
             return this;
         }
+        @CustomType.Setter
         public Builder usernameTemplate(@Nullable String usernameTemplate) {
             this.usernameTemplate = usernameTemplate;
             return this;
-        }        public SecretBackendConnectionOracle build() {
-            return new SecretBackendConnectionOracle(connectionUrl, maxConnectionLifetime, maxIdleConnections, maxOpenConnections, password, username, usernameTemplate);
+        }
+        public SecretBackendConnectionOracle build() {
+            final var o = new SecretBackendConnectionOracle();
+            o.connectionUrl = connectionUrl;
+            o.maxConnectionLifetime = maxConnectionLifetime;
+            o.maxIdleConnections = maxIdleConnections;
+            o.maxOpenConnections = maxOpenConnections;
+            o.password = password;
+            o.username = username;
+            o.usernameTemplate = usernameTemplate;
+            return o;
         }
     }
 }

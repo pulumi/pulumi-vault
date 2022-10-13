@@ -77,6 +77,11 @@ import (
 type SecretRole struct {
 	pulumi.CustomResourceState
 
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Grant permission to use the KMIP Activate operation.
 	OperationActivate pulumi.BoolOutput `pulumi:"operationActivate"`
 	// Grant permission to use the KMIP Add Attribute operation.
@@ -158,6 +163,11 @@ func GetSecretRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SecretRole resources.
 type secretRoleState struct {
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Grant permission to use the KMIP Activate operation.
 	OperationActivate *bool `pulumi:"operationActivate"`
 	// Grant permission to use the KMIP Add Attribute operation.
@@ -202,6 +212,11 @@ type secretRoleState struct {
 }
 
 type SecretRoleState struct {
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Grant permission to use the KMIP Activate operation.
 	OperationActivate pulumi.BoolPtrInput
 	// Grant permission to use the KMIP Add Attribute operation.
@@ -250,6 +265,11 @@ func (SecretRoleState) ElementType() reflect.Type {
 }
 
 type secretRoleArgs struct {
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Grant permission to use the KMIP Activate operation.
 	OperationActivate *bool `pulumi:"operationActivate"`
 	// Grant permission to use the KMIP Add Attribute operation.
@@ -295,6 +315,11 @@ type secretRoleArgs struct {
 
 // The set of arguments for constructing a SecretRole resource.
 type SecretRoleArgs struct {
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Grant permission to use the KMIP Activate operation.
 	OperationActivate pulumi.BoolPtrInput
 	// Grant permission to use the KMIP Add Attribute operation.
@@ -423,6 +448,14 @@ func (o SecretRoleOutput) ToSecretRoleOutput() SecretRoleOutput {
 
 func (o SecretRoleOutput) ToSecretRoleOutputWithContext(ctx context.Context) SecretRoleOutput {
 	return o
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o SecretRoleOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Grant permission to use the KMIP Activate operation.

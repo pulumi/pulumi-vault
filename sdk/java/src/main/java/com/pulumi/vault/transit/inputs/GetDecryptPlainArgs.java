@@ -74,6 +74,13 @@ public final class GetDecryptPlainArgs extends com.pulumi.resources.InvokeArgs {
         return this.key;
     }
 
+    @Import(name="namespace")
+    private @Nullable String namespace;
+
+    public Optional<String> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
+
     private GetDecryptPlainArgs() {}
 
     private GetDecryptPlainArgs(GetDecryptPlainArgs $) {
@@ -81,6 +88,7 @@ public final class GetDecryptPlainArgs extends com.pulumi.resources.InvokeArgs {
         this.ciphertext = $.ciphertext;
         this.context = $.context;
         this.key = $.key;
+        this.namespace = $.namespace;
     }
 
     public static Builder builder() {
@@ -142,6 +150,11 @@ public final class GetDecryptPlainArgs extends com.pulumi.resources.InvokeArgs {
          */
         public Builder key(String key) {
             $.key = key;
+            return this;
+        }
+
+        public Builder namespace(@Nullable String namespace) {
+            $.namespace = namespace;
             return this;
         }
 

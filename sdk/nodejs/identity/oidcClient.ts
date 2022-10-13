@@ -103,6 +103,13 @@ export class OidcClient extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * Redirection URI values used by the client. 
      * One of these values must exactly match the `redirectUri` parameter value
      * used in each authentication request.
@@ -130,6 +137,7 @@ export class OidcClient extends pulumi.CustomResource {
             resourceInputs["idTokenTtl"] = state ? state.idTokenTtl : undefined;
             resourceInputs["key"] = state ? state.key : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["redirectUris"] = state ? state.redirectUris : undefined;
         } else {
             const args = argsOrState as OidcClientArgs | undefined;
@@ -139,11 +147,14 @@ export class OidcClient extends pulumi.CustomResource {
             resourceInputs["idTokenTtl"] = args ? args.idTokenTtl : undefined;
             resourceInputs["key"] = args ? args.key : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["redirectUris"] = args ? args.redirectUris : undefined;
             resourceInputs["clientId"] = undefined /*out*/;
             resourceInputs["clientSecret"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["clientSecret"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(OidcClient.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -189,6 +200,13 @@ export interface OidcClientState {
      */
     name?: pulumi.Input<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
+    /**
      * Redirection URI values used by the client. 
      * One of these values must exactly match the `redirectUri` parameter value
      * used in each authentication request.
@@ -228,6 +246,13 @@ export interface OidcClientArgs {
      * The name of the client.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Redirection URI values used by the client. 
      * One of these values must exactly match the `redirectUri` parameter value

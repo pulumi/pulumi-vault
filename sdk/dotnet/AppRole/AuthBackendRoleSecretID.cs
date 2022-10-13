@@ -41,7 +41,7 @@ namespace Pulumi.Vault.AppRole
     ///         },
     ///     });
     /// 
-    ///     var id = new Vault.AppRole.AuthBackendRoleSecretID("id", new()
+    ///     var id = new Vault.AppRole.AuthBackendRoleSecretId("id", new()
     ///     {
     ///         Backend = approle.Path,
     ///         RoleName = example.RoleName,
@@ -54,8 +54,8 @@ namespace Pulumi.Vault.AppRole
     /// });
     /// ```
     /// </summary>
-    [VaultResourceType("vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID")]
-    public partial class AuthBackendRoleSecretID : global::Pulumi.CustomResource
+    [VaultResourceType("vault:appRole/authBackendRoleSecretId:AuthBackendRoleSecretId")]
+    public partial class AuthBackendRoleSecretId : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The unique ID for this SecretID that can be safely logged.
@@ -82,6 +82,15 @@ namespace Pulumi.Vault.AppRole
         /// </summary>
         [Output("metadata")]
         public Output<string?> Metadata { get; private set; } = null!;
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
         /// The name of the role to create the SecretID for.
@@ -128,19 +137,19 @@ namespace Pulumi.Vault.AppRole
 
 
         /// <summary>
-        /// Create a AuthBackendRoleSecretID resource with the given unique name, arguments, and options.
+        /// Create a AuthBackendRoleSecretId resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public AuthBackendRoleSecretID(string name, AuthBackendRoleSecretIDArgs args, CustomResourceOptions? options = null)
-            : base("vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID", name, args ?? new AuthBackendRoleSecretIDArgs(), MakeResourceOptions(options, ""))
+        public AuthBackendRoleSecretId(string name, AuthBackendRoleSecretIdArgs args, CustomResourceOptions? options = null)
+            : base("vault:appRole/authBackendRoleSecretId:AuthBackendRoleSecretId", name, args ?? new AuthBackendRoleSecretIdArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private AuthBackendRoleSecretID(string name, Input<string> id, AuthBackendRoleSecretIDState? state = null, CustomResourceOptions? options = null)
-            : base("vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID", name, state, MakeResourceOptions(options, id))
+        private AuthBackendRoleSecretId(string name, Input<string> id, AuthBackendRoleSecretIdState? state = null, CustomResourceOptions? options = null)
+            : base("vault:appRole/authBackendRoleSecretId:AuthBackendRoleSecretId", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -149,6 +158,11 @@ namespace Pulumi.Vault.AppRole
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "secretId",
+                    "wrappingToken",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -156,7 +170,7 @@ namespace Pulumi.Vault.AppRole
             return merged;
         }
         /// <summary>
-        /// Get an existing AuthBackendRoleSecretID resource's state with the given name, ID, and optional extra
+        /// Get an existing AuthBackendRoleSecretId resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -164,13 +178,13 @@ namespace Pulumi.Vault.AppRole
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static AuthBackendRoleSecretID Get(string name, Input<string> id, AuthBackendRoleSecretIDState? state = null, CustomResourceOptions? options = null)
+        public static AuthBackendRoleSecretId Get(string name, Input<string> id, AuthBackendRoleSecretIdState? state = null, CustomResourceOptions? options = null)
         {
-            return new AuthBackendRoleSecretID(name, id, state, options);
+            return new AuthBackendRoleSecretId(name, id, state, options);
         }
     }
 
-    public sealed class AuthBackendRoleSecretIDArgs : global::Pulumi.ResourceArgs
+    public sealed class AuthBackendRoleSecretIdArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Unique name of the auth backend to configure.
@@ -199,17 +213,36 @@ namespace Pulumi.Vault.AppRole
         public Input<string>? Metadata { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
         /// The name of the role to create the SecretID for.
         /// </summary>
         [Input("roleName", required: true)]
         public Input<string> RoleName { get; set; } = null!;
 
+        [Input("secretId")]
+        private Input<string>? _secretId;
+
         /// <summary>
         /// The SecretID to be created. If set, uses "Push"
         /// mode.  Defaults to Vault auto-generating SecretIDs.
         /// </summary>
-        [Input("secretId")]
-        public Input<string>? SecretId { get; set; }
+        public Input<string>? SecretId
+        {
+            get => _secretId;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretId = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Set to `true` to use the wrapped secret-id accessor as the resource ID.
@@ -228,13 +261,13 @@ namespace Pulumi.Vault.AppRole
         [Input("wrappingTtl")]
         public Input<string>? WrappingTtl { get; set; }
 
-        public AuthBackendRoleSecretIDArgs()
+        public AuthBackendRoleSecretIdArgs()
         {
         }
-        public static new AuthBackendRoleSecretIDArgs Empty => new AuthBackendRoleSecretIDArgs();
+        public static new AuthBackendRoleSecretIdArgs Empty => new AuthBackendRoleSecretIdArgs();
     }
 
-    public sealed class AuthBackendRoleSecretIDState : global::Pulumi.ResourceArgs
+    public sealed class AuthBackendRoleSecretIdState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The unique ID for this SecretID that can be safely logged.
@@ -269,17 +302,36 @@ namespace Pulumi.Vault.AppRole
         public Input<string>? Metadata { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
         /// The name of the role to create the SecretID for.
         /// </summary>
         [Input("roleName")]
         public Input<string>? RoleName { get; set; }
 
+        [Input("secretId")]
+        private Input<string>? _secretId;
+
         /// <summary>
         /// The SecretID to be created. If set, uses "Push"
         /// mode.  Defaults to Vault auto-generating SecretIDs.
         /// </summary>
-        [Input("secretId")]
-        public Input<string>? SecretId { get; set; }
+        public Input<string>? SecretId
+        {
+            get => _secretId;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretId = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Set to `true` to use the wrapped secret-id accessor as the resource ID.
@@ -296,11 +348,21 @@ namespace Pulumi.Vault.AppRole
         [Input("wrappingAccessor")]
         public Input<string>? WrappingAccessor { get; set; }
 
+        [Input("wrappingToken")]
+        private Input<string>? _wrappingToken;
+
         /// <summary>
         /// The token used to retrieve a response-wrapped SecretID.
         /// </summary>
-        [Input("wrappingToken")]
-        public Input<string>? WrappingToken { get; set; }
+        public Input<string>? WrappingToken
+        {
+            get => _wrappingToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _wrappingToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// If set, the SecretID response will be
@@ -311,9 +373,9 @@ namespace Pulumi.Vault.AppRole
         [Input("wrappingTtl")]
         public Input<string>? WrappingTtl { get; set; }
 
-        public AuthBackendRoleSecretIDState()
+        public AuthBackendRoleSecretIdState()
         {
         }
-        public static new AuthBackendRoleSecretIDState Empty => new AuthBackendRoleSecretIDState();
+        public static new AuthBackendRoleSecretIdState Empty => new AuthBackendRoleSecretIdState();
     }
 }

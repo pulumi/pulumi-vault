@@ -113,6 +113,11 @@ type GroupPolicies struct {
 	GroupId pulumi.StringOutput `pulumi:"groupId"`
 	// The name of the group that are assigned the policies.
 	GroupName pulumi.StringOutput `pulumi:"groupName"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// List of policies to assign to the group
 	Policies pulumi.StringArrayOutput `pulumi:"policies"`
 }
@@ -158,6 +163,11 @@ type groupPoliciesState struct {
 	GroupId *string `pulumi:"groupId"`
 	// The name of the group that are assigned the policies.
 	GroupName *string `pulumi:"groupName"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// List of policies to assign to the group
 	Policies []string `pulumi:"policies"`
 }
@@ -169,6 +179,11 @@ type GroupPoliciesState struct {
 	GroupId pulumi.StringPtrInput
 	// The name of the group that are assigned the policies.
 	GroupName pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// List of policies to assign to the group
 	Policies pulumi.StringArrayInput
 }
@@ -182,6 +197,11 @@ type groupPoliciesArgs struct {
 	Exclusive *bool `pulumi:"exclusive"`
 	// Group ID to assign policies to.
 	GroupId string `pulumi:"groupId"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// List of policies to assign to the group
 	Policies []string `pulumi:"policies"`
 }
@@ -192,6 +212,11 @@ type GroupPoliciesArgs struct {
 	Exclusive pulumi.BoolPtrInput
 	// Group ID to assign policies to.
 	GroupId pulumi.StringInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// List of policies to assign to the group
 	Policies pulumi.StringArrayInput
 }
@@ -296,6 +321,14 @@ func (o GroupPoliciesOutput) GroupId() pulumi.StringOutput {
 // The name of the group that are assigned the policies.
 func (o GroupPoliciesOutput) GroupName() pulumi.StringOutput {
 	return o.ApplyT(func(v *GroupPolicies) pulumi.StringOutput { return v.GroupName }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o GroupPoliciesOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GroupPolicies) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // List of policies to assign to the group

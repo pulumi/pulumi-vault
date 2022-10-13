@@ -31,11 +31,81 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get('address')
 
     @property
-    def auth_logins(self) -> Optional[str]:
+    def auth_login(self) -> Optional[str]:
         """
         Login to vault with an existing auth method using auth/<mount>/login
         """
-        return __config__.get('authLogins')
+        return __config__.get('authLogin')
+
+    @property
+    def auth_login_aws(self) -> Optional[str]:
+        """
+        Login to vault using the AWS method
+        """
+        return __config__.get('authLoginAws')
+
+    @property
+    def auth_login_azure(self) -> Optional[str]:
+        """
+        Login to vault using the azure method
+        """
+        return __config__.get('authLoginAzure')
+
+    @property
+    def auth_login_cert(self) -> Optional[str]:
+        """
+        Login to vault using the cert method
+        """
+        return __config__.get('authLoginCert')
+
+    @property
+    def auth_login_gcp(self) -> Optional[str]:
+        """
+        Login to vault using the gcp method
+        """
+        return __config__.get('authLoginGcp')
+
+    @property
+    def auth_login_jwt(self) -> Optional[str]:
+        """
+        Login to vault using the jwt method
+        """
+        return __config__.get('authLoginJwt')
+
+    @property
+    def auth_login_kerberos(self) -> Optional[str]:
+        """
+        Login to vault using the kerberos method
+        """
+        return __config__.get('authLoginKerberos')
+
+    @property
+    def auth_login_oci(self) -> Optional[str]:
+        """
+        Login to vault using the OCI method
+        """
+        return __config__.get('authLoginOci')
+
+    @property
+    def auth_login_oidc(self) -> Optional[str]:
+        """
+        Login to vault using the oidc method
+        """
+        return __config__.get('authLoginOidc')
+
+    @property
+    def auth_login_radius(self) -> Optional[str]:
+        """
+        Login to vault using the radius method
+        """
+        return __config__.get('authLoginRadius')
+
+    @property
+    def auth_login_userpass(self) -> Optional[str]:
+        """
+        Login to vault using the userpass method
+        """
+        return __config__.get('authLoginUserpass')
 
     @property
     def ca_cert_dir(self) -> Optional[str]:
@@ -52,11 +122,11 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get('caCertFile')
 
     @property
-    def client_auths(self) -> Optional[str]:
+    def client_auth(self) -> Optional[str]:
         """
         Client authentication credentials.
         """
-        return __config__.get('clientAuths')
+        return __config__.get('clientAuth')
 
     @property
     def headers(self) -> Optional[str]:

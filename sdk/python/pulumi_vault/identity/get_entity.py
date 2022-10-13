@@ -22,7 +22,7 @@ class GetEntityResult:
     """
     A collection of values returned by getEntity.
     """
-    def __init__(__self__, alias_id=None, alias_mount_accessor=None, alias_name=None, aliases=None, creation_time=None, data_json=None, direct_group_ids=None, disabled=None, entity_id=None, entity_name=None, group_ids=None, id=None, inherited_group_ids=None, last_update_time=None, merged_entity_ids=None, metadata=None, namespace_id=None, policies=None):
+    def __init__(__self__, alias_id=None, alias_mount_accessor=None, alias_name=None, aliases=None, creation_time=None, data_json=None, direct_group_ids=None, disabled=None, entity_id=None, entity_name=None, group_ids=None, id=None, inherited_group_ids=None, last_update_time=None, merged_entity_ids=None, metadata=None, namespace=None, namespace_id=None, policies=None):
         if alias_id and not isinstance(alias_id, str):
             raise TypeError("Expected argument 'alias_id' to be a str")
         pulumi.set(__self__, "alias_id", alias_id)
@@ -71,6 +71,9 @@ class GetEntityResult:
         if metadata and not isinstance(metadata, dict):
             raise TypeError("Expected argument 'metadata' to be a dict")
         pulumi.set(__self__, "metadata", metadata)
+        if namespace and not isinstance(namespace, str):
+            raise TypeError("Expected argument 'namespace' to be a str")
+        pulumi.set(__self__, "namespace", namespace)
         if namespace_id and not isinstance(namespace_id, str):
             raise TypeError("Expected argument 'namespace_id' to be a str")
         pulumi.set(__self__, "namespace_id", namespace_id)
@@ -193,6 +196,11 @@ class GetEntityResult:
         return pulumi.get(self, "metadata")
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[str]:
+        return pulumi.get(self, "namespace")
+
+    @property
     @pulumi.getter(name="namespaceId")
     def namespace_id(self) -> str:
         """
@@ -231,6 +239,7 @@ class AwaitableGetEntityResult(GetEntityResult):
             last_update_time=self.last_update_time,
             merged_entity_ids=self.merged_entity_ids,
             metadata=self.metadata,
+            namespace=self.namespace,
             namespace_id=self.namespace_id,
             policies=self.policies)
 
@@ -240,6 +249,7 @@ def get_entity(alias_id: Optional[str] = None,
                alias_name: Optional[str] = None,
                entity_id: Optional[str] = None,
                entity_name: Optional[str] = None,
+               namespace: Optional[str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEntityResult:
     """
     ## Example Usage
@@ -262,6 +272,10 @@ def get_entity(alias_id: Optional[str] = None,
            `alias_mount_accessor`.
     :param str entity_id: ID of the entity.
     :param str entity_name: Name of the entity.
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           *Available only for Vault Enterprise*.
     """
     __args__ = dict()
     __args__['aliasId'] = alias_id
@@ -269,6 +283,7 @@ def get_entity(alias_id: Optional[str] = None,
     __args__['aliasName'] = alias_name
     __args__['entityId'] = entity_id
     __args__['entityName'] = entity_name
+    __args__['namespace'] = namespace
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('vault:identity/getEntity:getEntity', __args__, opts=opts, typ=GetEntityResult).value
 
@@ -289,6 +304,7 @@ def get_entity(alias_id: Optional[str] = None,
         last_update_time=__ret__.last_update_time,
         merged_entity_ids=__ret__.merged_entity_ids,
         metadata=__ret__.metadata,
+        namespace=__ret__.namespace,
         namespace_id=__ret__.namespace_id,
         policies=__ret__.policies)
 
@@ -299,6 +315,7 @@ def get_entity_output(alias_id: Optional[pulumi.Input[Optional[str]]] = None,
                       alias_name: Optional[pulumi.Input[Optional[str]]] = None,
                       entity_id: Optional[pulumi.Input[Optional[str]]] = None,
                       entity_name: Optional[pulumi.Input[Optional[str]]] = None,
+                      namespace: Optional[pulumi.Input[Optional[str]]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetEntityResult]:
     """
     ## Example Usage
@@ -321,5 +338,9 @@ def get_entity_output(alias_id: Optional[pulumi.Input[Optional[str]]] = None,
            `alias_mount_accessor`.
     :param str entity_id: ID of the entity.
     :param str entity_name: Name of the entity.
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           *Available only for Vault Enterprise*.
     """
     ...

@@ -9,23 +9,12 @@ import java.util.Objects;
 
 @CustomType
 public final class SecretBackendRoleVhost {
-    private final String configure;
-    private final String host;
-    private final String read;
-    private final String write;
+    private String configure;
+    private String host;
+    private String read;
+    private String write;
 
-    @CustomType.Constructor
-    private SecretBackendRoleVhost(
-        @CustomType.Parameter("configure") String configure,
-        @CustomType.Parameter("host") String host,
-        @CustomType.Parameter("read") String read,
-        @CustomType.Parameter("write") String write) {
-        this.configure = configure;
-        this.host = host;
-        this.read = read;
-        this.write = write;
-    }
-
+    private SecretBackendRoleVhost() {}
     public String configure() {
         return this.configure;
     }
@@ -46,17 +35,13 @@ public final class SecretBackendRoleVhost {
     public static Builder builder(SecretBackendRoleVhost defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String configure;
         private String host;
         private String read;
         private String write;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(SecretBackendRoleVhost defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.configure = defaults.configure;
@@ -65,23 +50,33 @@ public final class SecretBackendRoleVhost {
     	      this.write = defaults.write;
         }
 
+        @CustomType.Setter
         public Builder configure(String configure) {
             this.configure = Objects.requireNonNull(configure);
             return this;
         }
+        @CustomType.Setter
         public Builder host(String host) {
             this.host = Objects.requireNonNull(host);
             return this;
         }
+        @CustomType.Setter
         public Builder read(String read) {
             this.read = Objects.requireNonNull(read);
             return this;
         }
+        @CustomType.Setter
         public Builder write(String write) {
             this.write = Objects.requireNonNull(write);
             return this;
-        }        public SecretBackendRoleVhost build() {
-            return new SecretBackendRoleVhost(configure, host, read, write);
+        }
+        public SecretBackendRoleVhost build() {
+            final var o = new SecretBackendRoleVhost();
+            o.configure = configure;
+            o.host = host;
+            o.read = read;
+            o.write = write;
+            return o;
         }
     }
 }

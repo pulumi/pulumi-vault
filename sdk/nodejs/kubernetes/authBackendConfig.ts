@@ -89,6 +89,13 @@ export class AuthBackendConfig extends pulumi.CustomResource {
      */
     public readonly kubernetesHost!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured namespace.
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
      */
     public readonly pemKeys!: pulumi.Output<string[] | undefined>;
@@ -116,6 +123,7 @@ export class AuthBackendConfig extends pulumi.CustomResource {
             resourceInputs["issuer"] = state ? state.issuer : undefined;
             resourceInputs["kubernetesCaCert"] = state ? state.kubernetesCaCert : undefined;
             resourceInputs["kubernetesHost"] = state ? state.kubernetesHost : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["pemKeys"] = state ? state.pemKeys : undefined;
             resourceInputs["tokenReviewerJwt"] = state ? state.tokenReviewerJwt : undefined;
         } else {
@@ -129,10 +137,13 @@ export class AuthBackendConfig extends pulumi.CustomResource {
             resourceInputs["issuer"] = args ? args.issuer : undefined;
             resourceInputs["kubernetesCaCert"] = args ? args.kubernetesCaCert : undefined;
             resourceInputs["kubernetesHost"] = args ? args.kubernetesHost : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["pemKeys"] = args ? args.pemKeys : undefined;
-            resourceInputs["tokenReviewerJwt"] = args ? args.tokenReviewerJwt : undefined;
+            resourceInputs["tokenReviewerJwt"] = args?.tokenReviewerJwt ? pulumi.secret(args.tokenReviewerJwt) : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["tokenReviewerJwt"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(AuthBackendConfig.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -165,6 +176,13 @@ export interface AuthBackendConfigState {
      * Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
      */
     kubernetesHost?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured namespace.
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
      */
@@ -203,6 +221,13 @@ export interface AuthBackendConfigArgs {
      * Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
      */
     kubernetesHost: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured namespace.
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
      */

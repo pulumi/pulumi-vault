@@ -11,24 +11,13 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 @CustomType
-public final class AuthLogins {
-    private final @Nullable String method;
-    private final @Nullable String namespace;
-    private final @Nullable Map<String,String> parameters;
-    private final String path;
+public final class AuthLogin {
+    private @Nullable String method;
+    private @Nullable String namespace;
+    private @Nullable Map<String,String> parameters;
+    private String path;
 
-    @CustomType.Constructor
-    private AuthLogins(
-        @CustomType.Parameter("method") @Nullable String method,
-        @CustomType.Parameter("namespace") @Nullable String namespace,
-        @CustomType.Parameter("parameters") @Nullable Map<String,String> parameters,
-        @CustomType.Parameter("path") String path) {
-        this.method = method;
-        this.namespace = namespace;
-        this.parameters = parameters;
-        this.path = path;
-    }
-
+    private AuthLogin() {}
     public Optional<String> method() {
         return Optional.ofNullable(this.method);
     }
@@ -46,21 +35,17 @@ public final class AuthLogins {
         return new Builder();
     }
 
-    public static Builder builder(AuthLogins defaults) {
+    public static Builder builder(AuthLogin defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable String method;
         private @Nullable String namespace;
         private @Nullable Map<String,String> parameters;
         private String path;
-
-        public Builder() {
-    	      // Empty
-        }
-
-        public Builder(AuthLogins defaults) {
+        public Builder() {}
+        public Builder(AuthLogin defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.method = defaults.method;
     	      this.namespace = defaults.namespace;
@@ -68,23 +53,33 @@ public final class AuthLogins {
     	      this.path = defaults.path;
         }
 
+        @CustomType.Setter
         public Builder method(@Nullable String method) {
             this.method = method;
             return this;
         }
+        @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
             this.namespace = namespace;
             return this;
         }
+        @CustomType.Setter
         public Builder parameters(@Nullable Map<String,String> parameters) {
             this.parameters = parameters;
             return this;
         }
+        @CustomType.Setter
         public Builder path(String path) {
             this.path = Objects.requireNonNull(path);
             return this;
-        }        public AuthLogins build() {
-            return new AuthLogins(method, namespace, parameters, path);
+        }
+        public AuthLogin build() {
+            final var o = new AuthLogin();
+            o.method = method;
+            o.namespace = namespace;
+            o.parameters = parameters;
+            o.path = path;
+            return o;
         }
     }
 }

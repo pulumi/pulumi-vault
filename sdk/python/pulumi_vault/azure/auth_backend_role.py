@@ -22,6 +22,7 @@ class AuthBackendRoleArgs:
                  bound_scale_sets: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  bound_service_principal_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  bound_subscription_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
                  token_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -53,6 +54,10 @@ class AuthBackendRoleArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_subscription_ids: If set, defines a constraint on the subscriptions
                that can perform the login operation to ones which  matches the value specified by this
                field.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
                addresses which can authenticate successfully, and ties the resulting token to these blocks
                as well.
@@ -95,6 +100,8 @@ class AuthBackendRoleArgs:
             pulumi.set(__self__, "bound_service_principal_ids", bound_service_principal_ids)
         if bound_subscription_ids is not None:
             pulumi.set(__self__, "bound_subscription_ids", bound_subscription_ids)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if token_bound_cidrs is not None:
             pulumi.set(__self__, "token_bound_cidrs", token_bound_cidrs)
         if token_explicit_max_ttl is not None:
@@ -221,6 +228,21 @@ class AuthBackendRoleArgs:
     @bound_subscription_ids.setter
     def bound_subscription_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "bound_subscription_ids", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter(name="tokenBoundCidrs")
@@ -358,6 +380,7 @@ class _AuthBackendRoleState:
                  bound_scale_sets: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  bound_service_principal_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  bound_subscription_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -389,6 +412,10 @@ class _AuthBackendRoleState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_subscription_ids: If set, defines a constraint on the subscriptions
                that can perform the login operation to ones which  matches the value specified by this
                field.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role: The name of the role.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
                addresses which can authenticate successfully, and ties the resulting token to these blocks
@@ -431,6 +458,8 @@ class _AuthBackendRoleState:
             pulumi.set(__self__, "bound_service_principal_ids", bound_service_principal_ids)
         if bound_subscription_ids is not None:
             pulumi.set(__self__, "bound_subscription_ids", bound_subscription_ids)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if role is not None:
             pulumi.set(__self__, "role", role)
         if token_bound_cidrs is not None:
@@ -547,6 +576,21 @@ class _AuthBackendRoleState:
     @bound_subscription_ids.setter
     def bound_subscription_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "bound_subscription_ids", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -698,6 +742,7 @@ class AuthBackendRole(pulumi.CustomResource):
                  bound_scale_sets: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  bound_service_principal_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  bound_subscription_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -766,6 +811,10 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_subscription_ids: If set, defines a constraint on the subscriptions
                that can perform the login operation to ones which  matches the value specified by this
                field.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role: The name of the role.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
                addresses which can authenticate successfully, and ties the resulting token to these blocks
@@ -858,6 +907,7 @@ class AuthBackendRole(pulumi.CustomResource):
                  bound_scale_sets: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  bound_service_principal_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  bound_subscription_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -884,6 +934,7 @@ class AuthBackendRole(pulumi.CustomResource):
             __props__.__dict__["bound_scale_sets"] = bound_scale_sets
             __props__.__dict__["bound_service_principal_ids"] = bound_service_principal_ids
             __props__.__dict__["bound_subscription_ids"] = bound_subscription_ids
+            __props__.__dict__["namespace"] = namespace
             if role is None and not opts.urn:
                 raise TypeError("Missing required property 'role'")
             __props__.__dict__["role"] = role
@@ -913,6 +964,7 @@ class AuthBackendRole(pulumi.CustomResource):
             bound_scale_sets: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             bound_service_principal_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             bound_subscription_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             role: Optional[pulumi.Input[str]] = None,
             token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -949,6 +1001,10 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_subscription_ids: If set, defines a constraint on the subscriptions
                that can perform the login operation to ones which  matches the value specified by this
                field.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role: The name of the role.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
                addresses which can authenticate successfully, and ties the resulting token to these blocks
@@ -988,6 +1044,7 @@ class AuthBackendRole(pulumi.CustomResource):
         __props__.__dict__["bound_scale_sets"] = bound_scale_sets
         __props__.__dict__["bound_service_principal_ids"] = bound_service_principal_ids
         __props__.__dict__["bound_subscription_ids"] = bound_subscription_ids
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["role"] = role
         __props__.__dict__["token_bound_cidrs"] = token_bound_cidrs
         __props__.__dict__["token_explicit_max_ttl"] = token_explicit_max_ttl
@@ -1067,6 +1124,17 @@ class AuthBackendRole(pulumi.CustomResource):
         field.
         """
         return pulumi.get(self, "bound_subscription_ids")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

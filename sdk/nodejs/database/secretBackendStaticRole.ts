@@ -84,6 +84,13 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured namespace.
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * The amount of time Vault should wait before rotating the password, in seconds.
      */
     public readonly rotationPeriod!: pulumi.Output<number>;
@@ -112,6 +119,7 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["dbName"] = state ? state.dbName : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["rotationPeriod"] = state ? state.rotationPeriod : undefined;
             resourceInputs["rotationStatements"] = state ? state.rotationStatements : undefined;
             resourceInputs["username"] = state ? state.username : undefined;
@@ -132,6 +140,7 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["dbName"] = args ? args.dbName : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["rotationPeriod"] = args ? args.rotationPeriod : undefined;
             resourceInputs["rotationStatements"] = args ? args.rotationStatements : undefined;
             resourceInputs["username"] = args ? args.username : undefined;
@@ -157,6 +166,13 @@ export interface SecretBackendStaticRoleState {
      * A unique name to give the static role.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured namespace.
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The amount of time Vault should wait before rotating the password, in seconds.
      */
@@ -187,6 +203,13 @@ export interface SecretBackendStaticRoleArgs {
      * A unique name to give the static role.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured namespace.
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The amount of time Vault should wait before rotating the password, in seconds.
      */

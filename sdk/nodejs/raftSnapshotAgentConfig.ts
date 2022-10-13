@@ -20,6 +20,47 @@ import * as utilities from "./utilities";
  *     storageType: "local",
  * });
  * ```
+ * ### AWS S3
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const config = new pulumi.Config();
+ * const awsAccessKeyId = config.requireObject("awsAccessKeyId");
+ * const awsSecretAccessKey = config.requireObject("awsSecretAccessKey");
+ * const current = aws.getRegion({});
+ * const s3Backups = new vault.RaftSnapshotAgentConfig("s3Backups", {
+ *     intervalSeconds: 86400,
+ *     retain: 7,
+ *     pathPrefix: "/path/in/bucket",
+ *     storageType: "aws-s3",
+ *     awsS3Bucket: "my-bucket",
+ *     awsS3Region: current.then(current => current.name),
+ *     awsAccessKeyId: awsAccessKeyId,
+ *     awsSecretAccessKey: awsSecretAccessKey,
+ *     awsS3EnableKms: true,
+ * });
+ * ```
+ * ### Azure BLOB
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const config = new pulumi.Config();
+ * const azureAccountName = config.requireObject("azureAccountName");
+ * const azureAccountKey = config.requireObject("azureAccountKey");
+ * const azureBackups = new vault.RaftSnapshotAgentConfig("azureBackups", {
+ *     intervalSeconds: 86400,
+ *     retain: 7,
+ *     pathPrefix: "/",
+ *     storageType: "azure-blob",
+ *     azureContainerName: "vault-blob",
+ *     azureAccountName: azureAccountName,
+ *     azureAccountKey: azureAccountKey,
+ * });
+ * ```
  *
  * ## Import
  *
@@ -168,6 +209,13 @@ export class RaftSnapshotAgentConfig extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * `<required>` - For `storageType = "local"`, the directory to
      * write the snapshots in. For cloud storage types, the bucket prefix to use.
      * Types `azure-s3` and `google-gcs` require a trailing `/` (slash).
@@ -224,6 +272,7 @@ export class RaftSnapshotAgentConfig extends pulumi.CustomResource {
             resourceInputs["intervalSeconds"] = state ? state.intervalSeconds : undefined;
             resourceInputs["localMaxSpace"] = state ? state.localMaxSpace : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["pathPrefix"] = state ? state.pathPrefix : undefined;
             resourceInputs["retain"] = state ? state.retain : undefined;
             resourceInputs["storageType"] = state ? state.storageType : undefined;
@@ -262,6 +311,7 @@ export class RaftSnapshotAgentConfig extends pulumi.CustomResource {
             resourceInputs["intervalSeconds"] = args ? args.intervalSeconds : undefined;
             resourceInputs["localMaxSpace"] = args ? args.localMaxSpace : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["pathPrefix"] = args ? args.pathPrefix : undefined;
             resourceInputs["retain"] = args ? args.retain : undefined;
             resourceInputs["storageType"] = args ? args.storageType : undefined;
@@ -385,6 +435,13 @@ export interface RaftSnapshotAgentConfigState {
      * `<required>` – Name of the configuration to modify.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * `<required>` - For `storageType = "local"`, the directory to
      * write the snapshots in. For cloud storage types, the bucket prefix to use.
@@ -520,6 +577,13 @@ export interface RaftSnapshotAgentConfigArgs {
      * `<required>` – Name of the configuration to modify.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * `<required>` - For `storageType = "local"`, the directory to
      * write the snapshots in. For cloud storage types, the bucket prefix to use.

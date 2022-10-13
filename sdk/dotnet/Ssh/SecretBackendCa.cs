@@ -34,6 +34,14 @@ namespace Pulumi.Vault.Ssh
     /// 
     /// });
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// SSH secret backend CAs can be imported using the `path`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:ssh/secretBackendCa:SecretBackendCa foo ssh
+    /// ```
     /// </summary>
     [VaultResourceType("vault:ssh/secretBackendCa:SecretBackendCa")]
     public partial class SecretBackendCa : global::Pulumi.CustomResource
@@ -49,6 +57,15 @@ namespace Pulumi.Vault.Ssh
         /// </summary>
         [Output("generateSigningKey")]
         public Output<bool?> GenerateSigningKey { get; private set; } = null!;
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
         /// The private key part the SSH CA key pair; required if generate_signing_key is false.
@@ -85,6 +102,10 @@ namespace Pulumi.Vault.Ssh
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "privateKey",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -121,10 +142,29 @@ namespace Pulumi.Vault.Ssh
         public Input<bool>? GenerateSigningKey { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        [Input("privateKey")]
+        private Input<string>? _privateKey;
+
+        /// <summary>
         /// The private key part the SSH CA key pair; required if generate_signing_key is false.
         /// </summary>
-        [Input("privateKey")]
-        public Input<string>? PrivateKey { get; set; }
+        public Input<string>? PrivateKey
+        {
+            get => _privateKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The public key part the SSH CA key pair; required if generate_signing_key is false.
@@ -153,10 +193,29 @@ namespace Pulumi.Vault.Ssh
         public Input<bool>? GenerateSigningKey { get; set; }
 
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        [Input("privateKey")]
+        private Input<string>? _privateKey;
+
+        /// <summary>
         /// The private key part the SSH CA key pair; required if generate_signing_key is false.
         /// </summary>
-        [Input("privateKey")]
-        public Input<string>? PrivateKey { get; set; }
+        public Input<string>? PrivateKey
+        {
+            get => _privateKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The public key part the SSH CA key pair; required if generate_signing_key is false.

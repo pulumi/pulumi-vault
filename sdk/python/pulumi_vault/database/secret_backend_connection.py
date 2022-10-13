@@ -32,9 +32,11 @@ class SecretBackendConnectionArgs:
                  mysql_legacy: Optional[pulumi.Input['SecretBackendConnectionMysqlLegacyArgs']] = None,
                  mysql_rds: Optional[pulumi.Input['SecretBackendConnectionMysqlRdsArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  oracle: Optional[pulumi.Input['SecretBackendConnectionOracleArgs']] = None,
                  plugin_name: Optional[pulumi.Input[str]] = None,
                  postgresql: Optional[pulumi.Input['SecretBackendConnectionPostgresqlArgs']] = None,
+                 redis_elasticache: Optional[pulumi.Input['SecretBackendConnectionRedisElasticacheArgs']] = None,
                  redshift: Optional[pulumi.Input['SecretBackendConnectionRedshiftArgs']] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  snowflake: Optional[pulumi.Input['SecretBackendConnectionSnowflakeArgs']] = None,
@@ -58,9 +60,14 @@ class SecretBackendConnectionArgs:
         :param pulumi.Input['SecretBackendConnectionMysqlLegacyArgs'] mysql_legacy: A nested block containing configuration options for legacy MySQL connections.
         :param pulumi.Input['SecretBackendConnectionMysqlRdsArgs'] mysql_rds: A nested block containing configuration options for RDS MySQL connections.
         :param pulumi.Input[str] name: A unique name to give the database connection.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured namespace.
+               *Available only for Vault Enterprise*.
         :param pulumi.Input['SecretBackendConnectionOracleArgs'] oracle: A nested block containing configuration options for Oracle connections.
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input['SecretBackendConnectionPostgresqlArgs'] postgresql: A nested block containing configuration options for PostgreSQL connections.
+        :param pulumi.Input['SecretBackendConnectionRedisElasticacheArgs'] redis_elasticache: A nested block containing configuration options for Redis ElastiCache connections.
         :param pulumi.Input['SecretBackendConnectionRedshiftArgs'] redshift: Connection parameters for the redshift-database-plugin plugin.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input['SecretBackendConnectionSnowflakeArgs'] snowflake: A nested block containing configuration options for Snowflake connections.
@@ -98,12 +105,16 @@ class SecretBackendConnectionArgs:
             pulumi.set(__self__, "mysql_rds", mysql_rds)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if oracle is not None:
             pulumi.set(__self__, "oracle", oracle)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
         if postgresql is not None:
             pulumi.set(__self__, "postgresql", postgresql)
+        if redis_elasticache is not None:
+            pulumi.set(__self__, "redis_elasticache", redis_elasticache)
         if redshift is not None:
             pulumi.set(__self__, "redshift", redshift)
         if root_rotation_statements is not None:
@@ -308,6 +319,21 @@ class SecretBackendConnectionArgs:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured namespace.
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def oracle(self) -> Optional[pulumi.Input['SecretBackendConnectionOracleArgs']]:
         """
         A nested block containing configuration options for Oracle connections.
@@ -341,6 +367,18 @@ class SecretBackendConnectionArgs:
     @postgresql.setter
     def postgresql(self, value: Optional[pulumi.Input['SecretBackendConnectionPostgresqlArgs']]):
         pulumi.set(self, "postgresql", value)
+
+    @property
+    @pulumi.getter(name="redisElasticache")
+    def redis_elasticache(self) -> Optional[pulumi.Input['SecretBackendConnectionRedisElasticacheArgs']]:
+        """
+        A nested block containing configuration options for Redis ElastiCache connections.
+        """
+        return pulumi.get(self, "redis_elasticache")
+
+    @redis_elasticache.setter
+    def redis_elasticache(self, value: Optional[pulumi.Input['SecretBackendConnectionRedisElasticacheArgs']]):
+        pulumi.set(self, "redis_elasticache", value)
 
     @property
     @pulumi.getter
@@ -411,9 +449,11 @@ class _SecretBackendConnectionState:
                  mysql_legacy: Optional[pulumi.Input['SecretBackendConnectionMysqlLegacyArgs']] = None,
                  mysql_rds: Optional[pulumi.Input['SecretBackendConnectionMysqlRdsArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  oracle: Optional[pulumi.Input['SecretBackendConnectionOracleArgs']] = None,
                  plugin_name: Optional[pulumi.Input[str]] = None,
                  postgresql: Optional[pulumi.Input['SecretBackendConnectionPostgresqlArgs']] = None,
+                 redis_elasticache: Optional[pulumi.Input['SecretBackendConnectionRedisElasticacheArgs']] = None,
                  redshift: Optional[pulumi.Input['SecretBackendConnectionRedshiftArgs']] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  snowflake: Optional[pulumi.Input['SecretBackendConnectionSnowflakeArgs']] = None,
@@ -437,9 +477,14 @@ class _SecretBackendConnectionState:
         :param pulumi.Input['SecretBackendConnectionMysqlLegacyArgs'] mysql_legacy: A nested block containing configuration options for legacy MySQL connections.
         :param pulumi.Input['SecretBackendConnectionMysqlRdsArgs'] mysql_rds: A nested block containing configuration options for RDS MySQL connections.
         :param pulumi.Input[str] name: A unique name to give the database connection.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured namespace.
+               *Available only for Vault Enterprise*.
         :param pulumi.Input['SecretBackendConnectionOracleArgs'] oracle: A nested block containing configuration options for Oracle connections.
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input['SecretBackendConnectionPostgresqlArgs'] postgresql: A nested block containing configuration options for PostgreSQL connections.
+        :param pulumi.Input['SecretBackendConnectionRedisElasticacheArgs'] redis_elasticache: A nested block containing configuration options for Redis ElastiCache connections.
         :param pulumi.Input['SecretBackendConnectionRedshiftArgs'] redshift: Connection parameters for the redshift-database-plugin plugin.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input['SecretBackendConnectionSnowflakeArgs'] snowflake: A nested block containing configuration options for Snowflake connections.
@@ -478,12 +523,16 @@ class _SecretBackendConnectionState:
             pulumi.set(__self__, "mysql_rds", mysql_rds)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if oracle is not None:
             pulumi.set(__self__, "oracle", oracle)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
         if postgresql is not None:
             pulumi.set(__self__, "postgresql", postgresql)
+        if redis_elasticache is not None:
+            pulumi.set(__self__, "redis_elasticache", redis_elasticache)
         if redshift is not None:
             pulumi.set(__self__, "redshift", redshift)
         if root_rotation_statements is not None:
@@ -688,6 +737,21 @@ class _SecretBackendConnectionState:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured namespace.
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def oracle(self) -> Optional[pulumi.Input['SecretBackendConnectionOracleArgs']]:
         """
         A nested block containing configuration options for Oracle connections.
@@ -721,6 +785,18 @@ class _SecretBackendConnectionState:
     @postgresql.setter
     def postgresql(self, value: Optional[pulumi.Input['SecretBackendConnectionPostgresqlArgs']]):
         pulumi.set(self, "postgresql", value)
+
+    @property
+    @pulumi.getter(name="redisElasticache")
+    def redis_elasticache(self) -> Optional[pulumi.Input['SecretBackendConnectionRedisElasticacheArgs']]:
+        """
+        A nested block containing configuration options for Redis ElastiCache connections.
+        """
+        return pulumi.get(self, "redis_elasticache")
+
+    @redis_elasticache.setter
+    def redis_elasticache(self, value: Optional[pulumi.Input['SecretBackendConnectionRedisElasticacheArgs']]):
+        pulumi.set(self, "redis_elasticache", value)
 
     @property
     @pulumi.getter
@@ -793,9 +869,11 @@ class SecretBackendConnection(pulumi.CustomResource):
                  mysql_legacy: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlLegacyArgs']]] = None,
                  mysql_rds: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlRdsArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  oracle: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']]] = None,
                  plugin_name: Optional[pulumi.Input[str]] = None,
                  postgresql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']]] = None,
+                 redis_elasticache: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionRedisElasticacheArgs']]] = None,
                  redshift: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionRedshiftArgs']]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  snowflake: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionSnowflakeArgs']]] = None,
@@ -849,9 +927,14 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlLegacyArgs']] mysql_legacy: A nested block containing configuration options for legacy MySQL connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlRdsArgs']] mysql_rds: A nested block containing configuration options for RDS MySQL connections.
         :param pulumi.Input[str] name: A unique name to give the database connection.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured namespace.
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']] oracle: A nested block containing configuration options for Oracle connections.
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']] postgresql: A nested block containing configuration options for PostgreSQL connections.
+        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionRedisElasticacheArgs']] redis_elasticache: A nested block containing configuration options for Redis ElastiCache connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionRedshiftArgs']] redshift: Connection parameters for the redshift-database-plugin plugin.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionSnowflakeArgs']] snowflake: A nested block containing configuration options for Snowflake connections.
@@ -924,9 +1007,11 @@ class SecretBackendConnection(pulumi.CustomResource):
                  mysql_legacy: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlLegacyArgs']]] = None,
                  mysql_rds: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlRdsArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  oracle: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']]] = None,
                  plugin_name: Optional[pulumi.Input[str]] = None,
                  postgresql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']]] = None,
+                 redis_elasticache: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionRedisElasticacheArgs']]] = None,
                  redshift: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionRedshiftArgs']]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  snowflake: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionSnowflakeArgs']]] = None,
@@ -958,9 +1043,11 @@ class SecretBackendConnection(pulumi.CustomResource):
             __props__.__dict__["mysql_legacy"] = mysql_legacy
             __props__.__dict__["mysql_rds"] = mysql_rds
             __props__.__dict__["name"] = name
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["oracle"] = oracle
             __props__.__dict__["plugin_name"] = plugin_name
             __props__.__dict__["postgresql"] = postgresql
+            __props__.__dict__["redis_elasticache"] = redis_elasticache
             __props__.__dict__["redshift"] = redshift
             __props__.__dict__["root_rotation_statements"] = root_rotation_statements
             __props__.__dict__["snowflake"] = snowflake
@@ -991,9 +1078,11 @@ class SecretBackendConnection(pulumi.CustomResource):
             mysql_legacy: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlLegacyArgs']]] = None,
             mysql_rds: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlRdsArgs']]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             oracle: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']]] = None,
             plugin_name: Optional[pulumi.Input[str]] = None,
             postgresql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']]] = None,
+            redis_elasticache: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionRedisElasticacheArgs']]] = None,
             redshift: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionRedshiftArgs']]] = None,
             root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             snowflake: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionSnowflakeArgs']]] = None,
@@ -1022,9 +1111,14 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlLegacyArgs']] mysql_legacy: A nested block containing configuration options for legacy MySQL connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlRdsArgs']] mysql_rds: A nested block containing configuration options for RDS MySQL connections.
         :param pulumi.Input[str] name: A unique name to give the database connection.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured namespace.
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']] oracle: A nested block containing configuration options for Oracle connections.
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']] postgresql: A nested block containing configuration options for PostgreSQL connections.
+        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionRedisElasticacheArgs']] redis_elasticache: A nested block containing configuration options for Redis ElastiCache connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionRedshiftArgs']] redshift: Connection parameters for the redshift-database-plugin plugin.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionSnowflakeArgs']] snowflake: A nested block containing configuration options for Snowflake connections.
@@ -1051,9 +1145,11 @@ class SecretBackendConnection(pulumi.CustomResource):
         __props__.__dict__["mysql_legacy"] = mysql_legacy
         __props__.__dict__["mysql_rds"] = mysql_rds
         __props__.__dict__["name"] = name
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["oracle"] = oracle
         __props__.__dict__["plugin_name"] = plugin_name
         __props__.__dict__["postgresql"] = postgresql
+        __props__.__dict__["redis_elasticache"] = redis_elasticache
         __props__.__dict__["redshift"] = redshift
         __props__.__dict__["root_rotation_statements"] = root_rotation_statements
         __props__.__dict__["snowflake"] = snowflake
@@ -1191,6 +1287,17 @@ class SecretBackendConnection(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured namespace.
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @property
+    @pulumi.getter
     def oracle(self) -> pulumi.Output[Optional['outputs.SecretBackendConnectionOracle']]:
         """
         A nested block containing configuration options for Oracle connections.
@@ -1212,6 +1319,14 @@ class SecretBackendConnection(pulumi.CustomResource):
         A nested block containing configuration options for PostgreSQL connections.
         """
         return pulumi.get(self, "postgresql")
+
+    @property
+    @pulumi.getter(name="redisElasticache")
+    def redis_elasticache(self) -> pulumi.Output[Optional['outputs.SecretBackendConnectionRedisElasticache']]:
+        """
+        A nested block containing configuration options for Redis ElastiCache connections.
+        """
+        return pulumi.get(self, "redis_elasticache")
 
     @property
     @pulumi.getter

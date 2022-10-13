@@ -90,6 +90,11 @@ type SecretBackendRole struct {
 	MaxTtl pulumi.IntPtrOutput `pulumi:"maxTtl"`
 	// A unique name to give the role.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The database statements to execute when
 	// renewing a user.
 	RenewStatements pulumi.StringArrayOutput `pulumi:"renewStatements"`
@@ -155,6 +160,11 @@ type secretBackendRoleState struct {
 	MaxTtl *int `pulumi:"maxTtl"`
 	// A unique name to give the role.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The database statements to execute when
 	// renewing a user.
 	RenewStatements []string `pulumi:"renewStatements"`
@@ -183,6 +193,11 @@ type SecretBackendRoleState struct {
 	MaxTtl pulumi.IntPtrInput
 	// A unique name to give the role.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The database statements to execute when
 	// renewing a user.
 	RenewStatements pulumi.StringArrayInput
@@ -215,6 +230,11 @@ type secretBackendRoleArgs struct {
 	MaxTtl *int `pulumi:"maxTtl"`
 	// A unique name to give the role.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The database statements to execute when
 	// renewing a user.
 	RenewStatements []string `pulumi:"renewStatements"`
@@ -244,6 +264,11 @@ type SecretBackendRoleArgs struct {
 	MaxTtl pulumi.IntPtrInput
 	// A unique name to give the role.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured namespace.
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The database statements to execute when
 	// renewing a user.
 	RenewStatements pulumi.StringArrayInput
@@ -374,6 +399,14 @@ func (o SecretBackendRoleOutput) MaxTtl() pulumi.IntPtrOutput {
 // A unique name to give the role.
 func (o SecretBackendRoleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured namespace.
+// *Available only for Vault Enterprise*.
+func (o SecretBackendRoleOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // The database statements to execute when

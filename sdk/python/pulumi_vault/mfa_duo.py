@@ -19,6 +19,7 @@ class MfaDuoArgs:
                  mount_accessor: pulumi.Input[str],
                  secret_key: pulumi.Input[str],
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  push_info: Optional[pulumi.Input[str]] = None,
                  username_format: Optional[pulumi.Input[str]] = None):
         """
@@ -28,6 +29,10 @@ class MfaDuoArgs:
         :param pulumi.Input[str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         :param pulumi.Input[str] secret_key: `(string: <required>)` - Secret key for Duo.
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] push_info: `(string)` - Push information for Duo.
         :param pulumi.Input[str] username_format: `(string)` - A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
                - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
@@ -41,6 +46,8 @@ class MfaDuoArgs:
         pulumi.set(__self__, "secret_key", secret_key)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if push_info is not None:
             pulumi.set(__self__, "push_info", push_info)
         if username_format is not None:
@@ -107,6 +114,21 @@ class MfaDuoArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="pushInfo")
     def push_info(self) -> Optional[pulumi.Input[str]]:
         """
@@ -142,6 +164,7 @@ class _MfaDuoState:
                  integration_key: Optional[pulumi.Input[str]] = None,
                  mount_accessor: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  push_info: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  username_format: Optional[pulumi.Input[str]] = None):
@@ -151,6 +174,10 @@ class _MfaDuoState:
         :param pulumi.Input[str] integration_key: `(string: <required>)` - Integration key for Duo.
         :param pulumi.Input[str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] push_info: `(string)` - Push information for Duo.
         :param pulumi.Input[str] secret_key: `(string: <required>)` - Secret key for Duo.
         :param pulumi.Input[str] username_format: `(string)` - A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
@@ -167,6 +194,8 @@ class _MfaDuoState:
             pulumi.set(__self__, "mount_accessor", mount_accessor)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if push_info is not None:
             pulumi.set(__self__, "push_info", push_info)
         if secret_key is not None:
@@ -223,6 +252,21 @@ class _MfaDuoState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="pushInfo")
     def push_info(self) -> Optional[pulumi.Input[str]]:
         """
@@ -272,6 +316,7 @@ class MfaDuo(pulumi.CustomResource):
                  integration_key: Optional[pulumi.Input[str]] = None,
                  mount_accessor: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  push_info: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  username_format: Optional[pulumi.Input[str]] = None,
@@ -311,6 +356,10 @@ class MfaDuo(pulumi.CustomResource):
         :param pulumi.Input[str] integration_key: `(string: <required>)` - Integration key for Duo.
         :param pulumi.Input[str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] push_info: `(string)` - Push information for Duo.
         :param pulumi.Input[str] secret_key: `(string: <required>)` - Secret key for Duo.
         :param pulumi.Input[str] username_format: `(string)` - A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
@@ -373,6 +422,7 @@ class MfaDuo(pulumi.CustomResource):
                  integration_key: Optional[pulumi.Input[str]] = None,
                  mount_accessor: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  push_info: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  username_format: Optional[pulumi.Input[str]] = None,
@@ -390,16 +440,19 @@ class MfaDuo(pulumi.CustomResource):
             __props__.__dict__["api_hostname"] = api_hostname
             if integration_key is None and not opts.urn:
                 raise TypeError("Missing required property 'integration_key'")
-            __props__.__dict__["integration_key"] = integration_key
+            __props__.__dict__["integration_key"] = None if integration_key is None else pulumi.Output.secret(integration_key)
             if mount_accessor is None and not opts.urn:
                 raise TypeError("Missing required property 'mount_accessor'")
             __props__.__dict__["mount_accessor"] = mount_accessor
             __props__.__dict__["name"] = name
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["push_info"] = push_info
             if secret_key is None and not opts.urn:
                 raise TypeError("Missing required property 'secret_key'")
-            __props__.__dict__["secret_key"] = secret_key
+            __props__.__dict__["secret_key"] = None if secret_key is None else pulumi.Output.secret(secret_key)
             __props__.__dict__["username_format"] = username_format
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["integrationKey", "secretKey"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(MfaDuo, __self__).__init__(
             'vault:index/mfaDuo:MfaDuo',
             resource_name,
@@ -414,6 +467,7 @@ class MfaDuo(pulumi.CustomResource):
             integration_key: Optional[pulumi.Input[str]] = None,
             mount_accessor: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             push_info: Optional[pulumi.Input[str]] = None,
             secret_key: Optional[pulumi.Input[str]] = None,
             username_format: Optional[pulumi.Input[str]] = None) -> 'MfaDuo':
@@ -428,6 +482,10 @@ class MfaDuo(pulumi.CustomResource):
         :param pulumi.Input[str] integration_key: `(string: <required>)` - Integration key for Duo.
         :param pulumi.Input[str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] push_info: `(string)` - Push information for Duo.
         :param pulumi.Input[str] secret_key: `(string: <required>)` - Secret key for Duo.
         :param pulumi.Input[str] username_format: `(string)` - A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
@@ -444,6 +502,7 @@ class MfaDuo(pulumi.CustomResource):
         __props__.__dict__["integration_key"] = integration_key
         __props__.__dict__["mount_accessor"] = mount_accessor
         __props__.__dict__["name"] = name
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["push_info"] = push_info
         __props__.__dict__["secret_key"] = secret_key
         __props__.__dict__["username_format"] = username_format
@@ -480,6 +539,17 @@ class MfaDuo(pulumi.CustomResource):
         `(string: <required>)` – Name of the MFA method.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="pushInfo")

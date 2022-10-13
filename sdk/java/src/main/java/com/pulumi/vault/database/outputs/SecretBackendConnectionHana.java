@@ -4,6 +4,7 @@
 package com.pulumi.vault.database.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -19,51 +20,41 @@ public final class SecretBackendConnectionHana {
      * for an example.
      * 
      */
-    private final @Nullable String connectionUrl;
+    private @Nullable String connectionUrl;
+    /**
+     * @return Disable special character escaping in username and password.
+     * 
+     */
+    private @Nullable Boolean disableEscaping;
     /**
      * @return The maximum amount of time a connection may be reused.
      * 
      */
-    private final @Nullable Integer maxConnectionLifetime;
+    private @Nullable Integer maxConnectionLifetime;
     /**
      * @return The maximum number of idle connections to
      * the database.
      * 
      */
-    private final @Nullable Integer maxIdleConnections;
+    private @Nullable Integer maxIdleConnections;
     /**
      * @return The maximum number of open connections to
      * the database.
      * 
      */
-    private final @Nullable Integer maxOpenConnections;
+    private @Nullable Integer maxOpenConnections;
     /**
      * @return The root credential password used in the connection URL.
      * 
      */
-    private final @Nullable String password;
+    private @Nullable String password;
     /**
      * @return The root credential username used in the connection URL.
      * 
      */
-    private final @Nullable String username;
+    private @Nullable String username;
 
-    @CustomType.Constructor
-    private SecretBackendConnectionHana(
-        @CustomType.Parameter("connectionUrl") @Nullable String connectionUrl,
-        @CustomType.Parameter("maxConnectionLifetime") @Nullable Integer maxConnectionLifetime,
-        @CustomType.Parameter("maxIdleConnections") @Nullable Integer maxIdleConnections,
-        @CustomType.Parameter("maxOpenConnections") @Nullable Integer maxOpenConnections,
-        @CustomType.Parameter("password") @Nullable String password,
-        @CustomType.Parameter("username") @Nullable String username) {
-        this.connectionUrl = connectionUrl;
-        this.maxConnectionLifetime = maxConnectionLifetime;
-        this.maxIdleConnections = maxIdleConnections;
-        this.maxOpenConnections = maxOpenConnections;
-        this.password = password;
-        this.username = username;
-    }
-
+    private SecretBackendConnectionHana() {}
     /**
      * @return Specifies the Redshift DSN. See
      * the [Vault
@@ -73,6 +64,13 @@ public final class SecretBackendConnectionHana {
      */
     public Optional<String> connectionUrl() {
         return Optional.ofNullable(this.connectionUrl);
+    }
+    /**
+     * @return Disable special character escaping in username and password.
+     * 
+     */
+    public Optional<Boolean> disableEscaping() {
+        return Optional.ofNullable(this.disableEscaping);
     }
     /**
      * @return The maximum amount of time a connection may be reused.
@@ -119,22 +117,20 @@ public final class SecretBackendConnectionHana {
     public static Builder builder(SecretBackendConnectionHana defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable String connectionUrl;
+        private @Nullable Boolean disableEscaping;
         private @Nullable Integer maxConnectionLifetime;
         private @Nullable Integer maxIdleConnections;
         private @Nullable Integer maxOpenConnections;
         private @Nullable String password;
         private @Nullable String username;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(SecretBackendConnectionHana defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.connectionUrl = defaults.connectionUrl;
+    	      this.disableEscaping = defaults.disableEscaping;
     	      this.maxConnectionLifetime = defaults.maxConnectionLifetime;
     	      this.maxIdleConnections = defaults.maxIdleConnections;
     	      this.maxOpenConnections = defaults.maxOpenConnections;
@@ -142,31 +138,51 @@ public final class SecretBackendConnectionHana {
     	      this.username = defaults.username;
         }
 
+        @CustomType.Setter
         public Builder connectionUrl(@Nullable String connectionUrl) {
             this.connectionUrl = connectionUrl;
             return this;
         }
+        @CustomType.Setter
+        public Builder disableEscaping(@Nullable Boolean disableEscaping) {
+            this.disableEscaping = disableEscaping;
+            return this;
+        }
+        @CustomType.Setter
         public Builder maxConnectionLifetime(@Nullable Integer maxConnectionLifetime) {
             this.maxConnectionLifetime = maxConnectionLifetime;
             return this;
         }
+        @CustomType.Setter
         public Builder maxIdleConnections(@Nullable Integer maxIdleConnections) {
             this.maxIdleConnections = maxIdleConnections;
             return this;
         }
+        @CustomType.Setter
         public Builder maxOpenConnections(@Nullable Integer maxOpenConnections) {
             this.maxOpenConnections = maxOpenConnections;
             return this;
         }
+        @CustomType.Setter
         public Builder password(@Nullable String password) {
             this.password = password;
             return this;
         }
+        @CustomType.Setter
         public Builder username(@Nullable String username) {
             this.username = username;
             return this;
-        }        public SecretBackendConnectionHana build() {
-            return new SecretBackendConnectionHana(connectionUrl, maxConnectionLifetime, maxIdleConnections, maxOpenConnections, password, username);
+        }
+        public SecretBackendConnectionHana build() {
+            final var o = new SecretBackendConnectionHana();
+            o.connectionUrl = connectionUrl;
+            o.disableEscaping = disableEscaping;
+            o.maxConnectionLifetime = maxConnectionLifetime;
+            o.maxIdleConnections = maxIdleConnections;
+            o.maxOpenConnections = maxOpenConnections;
+            o.password = password;
+            o.username = username;
+            return o;
         }
     }
 }

@@ -157,6 +157,14 @@ type AuthBackendRole struct {
 	// for the Identity group aliases created due to a successful login. The claim
 	// value must be a list of strings.
 	GroupsClaim pulumi.StringPtrOutput `pulumi:"groupsClaim"`
+	// Specifies the allowable elapsed time in seconds since the last time
+	// the user was actively authenticated with the OIDC provider.
+	MaxAge pulumi.IntPtrOutput `pulumi:"maxAge"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The amount of leeway to add to not before (`nbf`) claims to account for
 	// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
 	// Only applicable with "jwt" roles.
@@ -207,6 +215,11 @@ type AuthBackendRole struct {
 	// the user; this will be used as the name for the Identity entity alias created
 	// due to a successful login.
 	UserClaim pulumi.StringOutput `pulumi:"userClaim"`
+	// Specifies if the `userClaim` value uses
+	// [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+	// syntax for referencing claims. By default, the `userClaim` value will not use JSON pointer.
+	// Requires Vault 1.11+.
+	UserClaimJsonPointer pulumi.BoolPtrOutput `pulumi:"userClaimJsonPointer"`
 	// Log received OIDC tokens and claims when debug-level
 	// logging is active. Not recommended in production since sensitive information may be present
 	// in OIDC responses.
@@ -286,6 +299,14 @@ type authBackendRoleState struct {
 	// for the Identity group aliases created due to a successful login. The claim
 	// value must be a list of strings.
 	GroupsClaim *string `pulumi:"groupsClaim"`
+	// Specifies the allowable elapsed time in seconds since the last time
+	// the user was actively authenticated with the OIDC provider.
+	MaxAge *int `pulumi:"maxAge"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The amount of leeway to add to not before (`nbf`) claims to account for
 	// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
 	// Only applicable with "jwt" roles.
@@ -336,6 +357,11 @@ type authBackendRoleState struct {
 	// the user; this will be used as the name for the Identity entity alias created
 	// due to a successful login.
 	UserClaim *string `pulumi:"userClaim"`
+	// Specifies if the `userClaim` value uses
+	// [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+	// syntax for referencing claims. By default, the `userClaim` value will not use JSON pointer.
+	// Requires Vault 1.11+.
+	UserClaimJsonPointer *bool `pulumi:"userClaimJsonPointer"`
 	// Log received OIDC tokens and claims when debug-level
 	// logging is active. Not recommended in production since sensitive information may be present
 	// in OIDC responses.
@@ -381,6 +407,14 @@ type AuthBackendRoleState struct {
 	// for the Identity group aliases created due to a successful login. The claim
 	// value must be a list of strings.
 	GroupsClaim pulumi.StringPtrInput
+	// Specifies the allowable elapsed time in seconds since the last time
+	// the user was actively authenticated with the OIDC provider.
+	MaxAge pulumi.IntPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The amount of leeway to add to not before (`nbf`) claims to account for
 	// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
 	// Only applicable with "jwt" roles.
@@ -431,6 +465,11 @@ type AuthBackendRoleState struct {
 	// the user; this will be used as the name for the Identity entity alias created
 	// due to a successful login.
 	UserClaim pulumi.StringPtrInput
+	// Specifies if the `userClaim` value uses
+	// [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+	// syntax for referencing claims. By default, the `userClaim` value will not use JSON pointer.
+	// Requires Vault 1.11+.
+	UserClaimJsonPointer pulumi.BoolPtrInput
 	// Log received OIDC tokens and claims when debug-level
 	// logging is active. Not recommended in production since sensitive information may be present
 	// in OIDC responses.
@@ -480,6 +519,14 @@ type authBackendRoleArgs struct {
 	// for the Identity group aliases created due to a successful login. The claim
 	// value must be a list of strings.
 	GroupsClaim *string `pulumi:"groupsClaim"`
+	// Specifies the allowable elapsed time in seconds since the last time
+	// the user was actively authenticated with the OIDC provider.
+	MaxAge *int `pulumi:"maxAge"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// The amount of leeway to add to not before (`nbf`) claims to account for
 	// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
 	// Only applicable with "jwt" roles.
@@ -530,6 +577,11 @@ type authBackendRoleArgs struct {
 	// the user; this will be used as the name for the Identity entity alias created
 	// due to a successful login.
 	UserClaim string `pulumi:"userClaim"`
+	// Specifies if the `userClaim` value uses
+	// [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+	// syntax for referencing claims. By default, the `userClaim` value will not use JSON pointer.
+	// Requires Vault 1.11+.
+	UserClaimJsonPointer *bool `pulumi:"userClaimJsonPointer"`
 	// Log received OIDC tokens and claims when debug-level
 	// logging is active. Not recommended in production since sensitive information may be present
 	// in OIDC responses.
@@ -576,6 +628,14 @@ type AuthBackendRoleArgs struct {
 	// for the Identity group aliases created due to a successful login. The claim
 	// value must be a list of strings.
 	GroupsClaim pulumi.StringPtrInput
+	// Specifies the allowable elapsed time in seconds since the last time
+	// the user was actively authenticated with the OIDC provider.
+	MaxAge pulumi.IntPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// The amount of leeway to add to not before (`nbf`) claims to account for
 	// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
 	// Only applicable with "jwt" roles.
@@ -626,6 +686,11 @@ type AuthBackendRoleArgs struct {
 	// the user; this will be used as the name for the Identity entity alias created
 	// due to a successful login.
 	UserClaim pulumi.StringInput
+	// Specifies if the `userClaim` value uses
+	// [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+	// syntax for referencing claims. By default, the `userClaim` value will not use JSON pointer.
+	// Requires Vault 1.11+.
+	UserClaimJsonPointer pulumi.BoolPtrInput
 	// Log received OIDC tokens and claims when debug-level
 	// logging is active. Not recommended in production since sensitive information may be present
 	// in OIDC responses.
@@ -790,6 +855,20 @@ func (o AuthBackendRoleOutput) GroupsClaim() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringPtrOutput { return v.GroupsClaim }).(pulumi.StringPtrOutput)
 }
 
+// Specifies the allowable elapsed time in seconds since the last time
+// the user was actively authenticated with the OIDC provider.
+func (o AuthBackendRoleOutput) MaxAge() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.IntPtrOutput { return v.MaxAge }).(pulumi.IntPtrOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o AuthBackendRoleOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
 // The amount of leeway to add to not before (`nbf`) claims to account for
 // clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
 // Only applicable with "jwt" roles.
@@ -880,6 +959,14 @@ func (o AuthBackendRoleOutput) TokenType() pulumi.StringPtrOutput {
 // due to a successful login.
 func (o AuthBackendRoleOutput) UserClaim() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringOutput { return v.UserClaim }).(pulumi.StringOutput)
+}
+
+// Specifies if the `userClaim` value uses
+// [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+// syntax for referencing claims. By default, the `userClaim` value will not use JSON pointer.
+// Requires Vault 1.11+.
+func (o AuthBackendRoleOutput) UserClaimJsonPointer() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.BoolPtrOutput { return v.UserClaimJsonPointer }).(pulumi.BoolPtrOutput)
 }
 
 // Log received OIDC tokens and claims when debug-level

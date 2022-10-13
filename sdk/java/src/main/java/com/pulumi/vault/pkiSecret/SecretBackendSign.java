@@ -284,6 +284,26 @@ public class SecretBackendSign extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="namespace", type=String.class, parameters={})
+    private Output</* @Nullable */ String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> namespace() {
+        return Codegen.optional(this.namespace);
+    }
+    /**
      * List of other SANs
      * 
      */
@@ -296,6 +316,20 @@ public class SecretBackendSign extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<List<String>>> otherSans() {
         return Codegen.optional(this.otherSans);
+    }
+    /**
+     * `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
+     * 
+     */
+    @Export(name="renewPending", type=Boolean.class, parameters={})
+    private Output<Boolean> renewPending;
+
+    /**
+     * @return `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
+     * 
+     */
+    public Output<Boolean> renewPending() {
+        return this.renewPending;
     }
     /**
      * The serial number.

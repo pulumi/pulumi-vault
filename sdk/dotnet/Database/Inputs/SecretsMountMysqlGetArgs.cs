@@ -68,11 +68,21 @@ namespace Pulumi.Vault.Database.Inputs
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        [Input("password")]
+        private Input<string>? _password;
+
         /// <summary>
         /// The password to be used in the connection.
         /// </summary>
-        [Input("password")]
-        public Input<string>? Password { get; set; }
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Specifies the name of the plugin to use.
@@ -98,11 +108,21 @@ namespace Pulumi.Vault.Database.Inputs
         [Input("tlsCa")]
         public Input<string>? TlsCa { get; set; }
 
+        [Input("tlsCertificateKey")]
+        private Input<string>? _tlsCertificateKey;
+
         /// <summary>
         /// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
         /// </summary>
-        [Input("tlsCertificateKey")]
-        public Input<string>? TlsCertificateKey { get; set; }
+        public Input<string>? TlsCertificateKey
+        {
+            get => _tlsCertificateKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _tlsCertificateKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The username to be used in the connection (the account admin level).

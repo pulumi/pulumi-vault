@@ -81,6 +81,9 @@ type SecretBackend struct {
 	DenyNullBind pulumi.BoolPtrOutput `pulumi:"denyNullBind"`
 	// Human-friendly description of the mount for the Active Directory backend.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
 	// Use anonymous bind to discover the bind Distinguished Name of a user.
 	Discoverdn pulumi.BoolPtrOutput `pulumi:"discoverdn"`
 	// **Deprecated** use `passwordPolicy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
@@ -102,6 +105,7 @@ type SecretBackend struct {
 	// shows a later rotation, it should be considered out-of-band
 	LastRotationTolerance pulumi.IntOutput `pulumi:"lastRotationTolerance"`
 	// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
+	// *Mutually exclusive with `passwordPolicy` on vault-1.11+*
 	//
 	// Deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.
 	Length pulumi.IntOutput `pulumi:"length"`
@@ -112,6 +116,11 @@ type SecretBackend struct {
 	MaxLeaseTtlSeconds pulumi.IntOutput `pulumi:"maxLeaseTtlSeconds"`
 	// In seconds, the maximum password time-to-live.
 	MaxTtl pulumi.IntOutput `pulumi:"maxTtl"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Name of the password policy to use to generate passwords.
 	PasswordPolicy pulumi.StringPtrOutput `pulumi:"passwordPolicy"`
 	// Timeout, in seconds, for the connection when making requests against the server
@@ -161,6 +170,21 @@ func NewSecretBackend(ctx *pulumi.Context,
 	if args.Bindpass == nil {
 		return nil, errors.New("invalid value for required argument 'Bindpass'")
 	}
+	if args.Bindpass != nil {
+		args.Bindpass = pulumi.ToSecret(args.Bindpass).(pulumi.StringOutput)
+	}
+	if args.ClientTlsCert != nil {
+		args.ClientTlsCert = pulumi.ToSecret(args.ClientTlsCert).(pulumi.StringPtrOutput)
+	}
+	if args.ClientTlsKey != nil {
+		args.ClientTlsKey = pulumi.ToSecret(args.ClientTlsKey).(pulumi.StringPtrOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"bindpass",
+		"clientTlsCert",
+		"clientTlsKey",
+	})
+	opts = append(opts, secrets)
 	var resource SecretBackend
 	err := ctx.RegisterResource("vault:ad/secretBackend:SecretBackend", name, args, &resource, opts...)
 	if err != nil {
@@ -210,6 +234,9 @@ type secretBackendState struct {
 	DenyNullBind *bool `pulumi:"denyNullBind"`
 	// Human-friendly description of the mount for the Active Directory backend.
 	Description *string `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount *bool `pulumi:"disableRemount"`
 	// Use anonymous bind to discover the bind Distinguished Name of a user.
 	Discoverdn *bool `pulumi:"discoverdn"`
 	// **Deprecated** use `passwordPolicy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
@@ -231,6 +258,7 @@ type secretBackendState struct {
 	// shows a later rotation, it should be considered out-of-band
 	LastRotationTolerance *int `pulumi:"lastRotationTolerance"`
 	// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
+	// *Mutually exclusive with `passwordPolicy` on vault-1.11+*
 	//
 	// Deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.
 	Length *int `pulumi:"length"`
@@ -241,6 +269,11 @@ type secretBackendState struct {
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
 	// In seconds, the maximum password time-to-live.
 	MaxTtl *int `pulumi:"maxTtl"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Name of the password policy to use to generate passwords.
 	PasswordPolicy *string `pulumi:"passwordPolicy"`
 	// Timeout, in seconds, for the connection when making requests against the server
@@ -305,6 +338,9 @@ type SecretBackendState struct {
 	DenyNullBind pulumi.BoolPtrInput
 	// Human-friendly description of the mount for the Active Directory backend.
 	Description pulumi.StringPtrInput
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrInput
 	// Use anonymous bind to discover the bind Distinguished Name of a user.
 	Discoverdn pulumi.BoolPtrInput
 	// **Deprecated** use `passwordPolicy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
@@ -326,6 +362,7 @@ type SecretBackendState struct {
 	// shows a later rotation, it should be considered out-of-band
 	LastRotationTolerance pulumi.IntPtrInput
 	// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
+	// *Mutually exclusive with `passwordPolicy` on vault-1.11+*
 	//
 	// Deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.
 	Length pulumi.IntPtrInput
@@ -336,6 +373,11 @@ type SecretBackendState struct {
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
 	// In seconds, the maximum password time-to-live.
 	MaxTtl pulumi.IntPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Name of the password policy to use to generate passwords.
 	PasswordPolicy pulumi.StringPtrInput
 	// Timeout, in seconds, for the connection when making requests against the server
@@ -404,6 +446,9 @@ type secretBackendArgs struct {
 	DenyNullBind *bool `pulumi:"denyNullBind"`
 	// Human-friendly description of the mount for the Active Directory backend.
 	Description *string `pulumi:"description"`
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount *bool `pulumi:"disableRemount"`
 	// Use anonymous bind to discover the bind Distinguished Name of a user.
 	Discoverdn *bool `pulumi:"discoverdn"`
 	// **Deprecated** use `passwordPolicy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
@@ -425,6 +470,7 @@ type secretBackendArgs struct {
 	// shows a later rotation, it should be considered out-of-band
 	LastRotationTolerance *int `pulumi:"lastRotationTolerance"`
 	// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
+	// *Mutually exclusive with `passwordPolicy` on vault-1.11+*
 	//
 	// Deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.
 	Length *int `pulumi:"length"`
@@ -435,6 +481,11 @@ type secretBackendArgs struct {
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
 	// In seconds, the maximum password time-to-live.
 	MaxTtl *int `pulumi:"maxTtl"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Name of the password policy to use to generate passwords.
 	PasswordPolicy *string `pulumi:"passwordPolicy"`
 	// Timeout, in seconds, for the connection when making requests against the server
@@ -500,6 +551,9 @@ type SecretBackendArgs struct {
 	DenyNullBind pulumi.BoolPtrInput
 	// Human-friendly description of the mount for the Active Directory backend.
 	Description pulumi.StringPtrInput
+	// If set, opts out of mount migration on path updates.
+	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+	DisableRemount pulumi.BoolPtrInput
 	// Use anonymous bind to discover the bind Distinguished Name of a user.
 	Discoverdn pulumi.BoolPtrInput
 	// **Deprecated** use `passwordPolicy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
@@ -521,6 +575,7 @@ type SecretBackendArgs struct {
 	// shows a later rotation, it should be considered out-of-band
 	LastRotationTolerance pulumi.IntPtrInput
 	// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
+	// *Mutually exclusive with `passwordPolicy` on vault-1.11+*
 	//
 	// Deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.
 	Length pulumi.IntPtrInput
@@ -531,6 +586,11 @@ type SecretBackendArgs struct {
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
 	// In seconds, the maximum password time-to-live.
 	MaxTtl pulumi.IntPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Name of the password policy to use to generate passwords.
 	PasswordPolicy pulumi.StringPtrInput
 	// Timeout, in seconds, for the connection when making requests against the server
@@ -714,6 +774,12 @@ func (o SecretBackendOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// If set, opts out of mount migration on path updates.
+// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+func (o SecretBackendOutput) DisableRemount() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.DisableRemount }).(pulumi.BoolPtrOutput)
+}
+
 // Use anonymous bind to discover the bind Distinguished Name of a user.
 func (o SecretBackendOutput) Discoverdn() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.Discoverdn }).(pulumi.BoolPtrOutput)
@@ -756,6 +822,7 @@ func (o SecretBackendOutput) LastRotationTolerance() pulumi.IntOutput {
 }
 
 // **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
+// *Mutually exclusive with `passwordPolicy` on vault-1.11+*
 //
 // Deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.
 func (o SecretBackendOutput) Length() pulumi.IntOutput {
@@ -776,6 +843,14 @@ func (o SecretBackendOutput) MaxLeaseTtlSeconds() pulumi.IntOutput {
 // In seconds, the maximum password time-to-live.
 func (o SecretBackendOutput) MaxTtl() pulumi.IntOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.IntOutput { return v.MaxTtl }).(pulumi.IntOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o SecretBackendOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Name of the password policy to use to generate passwords.

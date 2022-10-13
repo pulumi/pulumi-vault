@@ -86,6 +86,11 @@ type GroupAlias struct {
 	MountAccessor pulumi.StringOutput `pulumi:"mountAccessor"`
 	// Name of the group alias to create.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 }
 
 // NewGroupAlias registers a new resource with the given unique name, arguments, and options.
@@ -132,6 +137,11 @@ type groupAliasState struct {
 	MountAccessor *string `pulumi:"mountAccessor"`
 	// Name of the group alias to create.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 }
 
 type GroupAliasState struct {
@@ -141,6 +151,11 @@ type GroupAliasState struct {
 	MountAccessor pulumi.StringPtrInput
 	// Name of the group alias to create.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 }
 
 func (GroupAliasState) ElementType() reflect.Type {
@@ -154,6 +169,11 @@ type groupAliasArgs struct {
 	MountAccessor string `pulumi:"mountAccessor"`
 	// Name of the group alias to create.
 	Name string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 }
 
 // The set of arguments for constructing a GroupAlias resource.
@@ -164,6 +184,11 @@ type GroupAliasArgs struct {
 	MountAccessor pulumi.StringInput
 	// Name of the group alias to create.
 	Name pulumi.StringInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 }
 
 func (GroupAliasArgs) ElementType() reflect.Type {
@@ -266,6 +291,14 @@ func (o GroupAliasOutput) MountAccessor() pulumi.StringOutput {
 // Name of the group alias to create.
 func (o GroupAliasOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *GroupAlias) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o GroupAliasOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GroupAlias) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 type GroupAliasArrayOutput struct{ *pulumi.OutputState }

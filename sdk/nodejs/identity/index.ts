@@ -5,43 +5,131 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./entity";
-export * from "./entityAlias";
-export * from "./entityPolicies";
-export * from "./getEntity";
-export * from "./getGroup";
-export * from "./getOidcClientCreds";
-export * from "./getOidcOpenidConfig";
-export * from "./getOidcPublicKeys";
-export * from "./group";
-export * from "./groupAlias";
-export * from "./groupMemberEntityIds";
-export * from "./groupPolicies";
-export * from "./oidc";
-export * from "./oidcAssignment";
-export * from "./oidcClient";
-export * from "./oidcKey";
-export * from "./oidcKeyAllowedClientID";
-export * from "./oidcProvider";
-export * from "./oidcRole";
-export * from "./oidcScope";
+export { EntityArgs, EntityState } from "./entity";
+export type Entity = import("./entity").Entity;
+export const Entity: typeof import("./entity").Entity = null as any;
 
-// Import resources to register:
-import { Entity } from "./entity";
-import { EntityAlias } from "./entityAlias";
-import { EntityPolicies } from "./entityPolicies";
-import { Group } from "./group";
-import { GroupAlias } from "./groupAlias";
-import { GroupMemberEntityIds } from "./groupMemberEntityIds";
-import { GroupPolicies } from "./groupPolicies";
-import { Oidc } from "./oidc";
-import { OidcAssignment } from "./oidcAssignment";
-import { OidcClient } from "./oidcClient";
-import { OidcKey } from "./oidcKey";
-import { OidcKeyAllowedClientID } from "./oidcKeyAllowedClientID";
-import { OidcProvider } from "./oidcProvider";
-import { OidcRole } from "./oidcRole";
-import { OidcScope } from "./oidcScope";
+export { EntityAliasArgs, EntityAliasState } from "./entityAlias";
+export type EntityAlias = import("./entityAlias").EntityAlias;
+export const EntityAlias: typeof import("./entityAlias").EntityAlias = null as any;
+
+export { EntityPoliciesArgs, EntityPoliciesState } from "./entityPolicies";
+export type EntityPolicies = import("./entityPolicies").EntityPolicies;
+export const EntityPolicies: typeof import("./entityPolicies").EntityPolicies = null as any;
+
+export { GetEntityArgs, GetEntityResult, GetEntityOutputArgs } from "./getEntity";
+export const getEntity: typeof import("./getEntity").getEntity = null as any;
+export const getEntityOutput: typeof import("./getEntity").getEntityOutput = null as any;
+
+export { GetGroupArgs, GetGroupResult, GetGroupOutputArgs } from "./getGroup";
+export const getGroup: typeof import("./getGroup").getGroup = null as any;
+export const getGroupOutput: typeof import("./getGroup").getGroupOutput = null as any;
+
+export { GetOidcClientCredsArgs, GetOidcClientCredsResult, GetOidcClientCredsOutputArgs } from "./getOidcClientCreds";
+export const getOidcClientCreds: typeof import("./getOidcClientCreds").getOidcClientCreds = null as any;
+export const getOidcClientCredsOutput: typeof import("./getOidcClientCreds").getOidcClientCredsOutput = null as any;
+
+export { GetOidcOpenidConfigArgs, GetOidcOpenidConfigResult, GetOidcOpenidConfigOutputArgs } from "./getOidcOpenidConfig";
+export const getOidcOpenidConfig: typeof import("./getOidcOpenidConfig").getOidcOpenidConfig = null as any;
+export const getOidcOpenidConfigOutput: typeof import("./getOidcOpenidConfig").getOidcOpenidConfigOutput = null as any;
+
+export { GetOidcPublicKeysArgs, GetOidcPublicKeysResult, GetOidcPublicKeysOutputArgs } from "./getOidcPublicKeys";
+export const getOidcPublicKeys: typeof import("./getOidcPublicKeys").getOidcPublicKeys = null as any;
+export const getOidcPublicKeysOutput: typeof import("./getOidcPublicKeys").getOidcPublicKeysOutput = null as any;
+
+export { GroupArgs, GroupState } from "./group";
+export type Group = import("./group").Group;
+export const Group: typeof import("./group").Group = null as any;
+
+export { GroupAliasArgs, GroupAliasState } from "./groupAlias";
+export type GroupAlias = import("./groupAlias").GroupAlias;
+export const GroupAlias: typeof import("./groupAlias").GroupAlias = null as any;
+
+export { GroupMemberEntityIdsArgs, GroupMemberEntityIdsState } from "./groupMemberEntityIds";
+export type GroupMemberEntityIds = import("./groupMemberEntityIds").GroupMemberEntityIds;
+export const GroupMemberEntityIds: typeof import("./groupMemberEntityIds").GroupMemberEntityIds = null as any;
+
+export { GroupPoliciesArgs, GroupPoliciesState } from "./groupPolicies";
+export type GroupPolicies = import("./groupPolicies").GroupPolicies;
+export const GroupPolicies: typeof import("./groupPolicies").GroupPolicies = null as any;
+
+export { MfaDuoArgs, MfaDuoState } from "./mfaDuo";
+export type MfaDuo = import("./mfaDuo").MfaDuo;
+export const MfaDuo: typeof import("./mfaDuo").MfaDuo = null as any;
+
+export { MfaLoginEnforcementArgs, MfaLoginEnforcementState } from "./mfaLoginEnforcement";
+export type MfaLoginEnforcement = import("./mfaLoginEnforcement").MfaLoginEnforcement;
+export const MfaLoginEnforcement: typeof import("./mfaLoginEnforcement").MfaLoginEnforcement = null as any;
+
+export { MfaOktaArgs, MfaOktaState } from "./mfaOkta";
+export type MfaOkta = import("./mfaOkta").MfaOkta;
+export const MfaOkta: typeof import("./mfaOkta").MfaOkta = null as any;
+
+export { MfaPingidArgs, MfaPingidState } from "./mfaPingid";
+export type MfaPingid = import("./mfaPingid").MfaPingid;
+export const MfaPingid: typeof import("./mfaPingid").MfaPingid = null as any;
+
+export { MfaTotpArgs, MfaTotpState } from "./mfaTotp";
+export type MfaTotp = import("./mfaTotp").MfaTotp;
+export const MfaTotp: typeof import("./mfaTotp").MfaTotp = null as any;
+
+export { OidcArgs, OidcState } from "./oidc";
+export type Oidc = import("./oidc").Oidc;
+export const Oidc: typeof import("./oidc").Oidc = null as any;
+
+export { OidcAssignmentArgs, OidcAssignmentState } from "./oidcAssignment";
+export type OidcAssignment = import("./oidcAssignment").OidcAssignment;
+export const OidcAssignment: typeof import("./oidcAssignment").OidcAssignment = null as any;
+
+export { OidcClientArgs, OidcClientState } from "./oidcClient";
+export type OidcClient = import("./oidcClient").OidcClient;
+export const OidcClient: typeof import("./oidcClient").OidcClient = null as any;
+
+export { OidcKeyArgs, OidcKeyState } from "./oidcKey";
+export type OidcKey = import("./oidcKey").OidcKey;
+export const OidcKey: typeof import("./oidcKey").OidcKey = null as any;
+
+export { OidcKeyAllowedClientIDArgs, OidcKeyAllowedClientIDState } from "./oidcKeyAllowedClientID";
+export type OidcKeyAllowedClientID = import("./oidcKeyAllowedClientID").OidcKeyAllowedClientID;
+export const OidcKeyAllowedClientID: typeof import("./oidcKeyAllowedClientID").OidcKeyAllowedClientID = null as any;
+
+export { OidcProviderArgs, OidcProviderState } from "./oidcProvider";
+export type OidcProvider = import("./oidcProvider").OidcProvider;
+export const OidcProvider: typeof import("./oidcProvider").OidcProvider = null as any;
+
+export { OidcRoleArgs, OidcRoleState } from "./oidcRole";
+export type OidcRole = import("./oidcRole").OidcRole;
+export const OidcRole: typeof import("./oidcRole").OidcRole = null as any;
+
+export { OidcScopeArgs, OidcScopeState } from "./oidcScope";
+export type OidcScope = import("./oidcScope").OidcScope;
+export const OidcScope: typeof import("./oidcScope").OidcScope = null as any;
+
+utilities.lazyLoad(exports, ["Entity"], () => require("./entity"));
+utilities.lazyLoad(exports, ["EntityAlias"], () => require("./entityAlias"));
+utilities.lazyLoad(exports, ["EntityPolicies"], () => require("./entityPolicies"));
+utilities.lazyLoad(exports, ["getEntity","getEntityOutput"], () => require("./getEntity"));
+utilities.lazyLoad(exports, ["getGroup","getGroupOutput"], () => require("./getGroup"));
+utilities.lazyLoad(exports, ["getOidcClientCreds","getOidcClientCredsOutput"], () => require("./getOidcClientCreds"));
+utilities.lazyLoad(exports, ["getOidcOpenidConfig","getOidcOpenidConfigOutput"], () => require("./getOidcOpenidConfig"));
+utilities.lazyLoad(exports, ["getOidcPublicKeys","getOidcPublicKeysOutput"], () => require("./getOidcPublicKeys"));
+utilities.lazyLoad(exports, ["Group"], () => require("./group"));
+utilities.lazyLoad(exports, ["GroupAlias"], () => require("./groupAlias"));
+utilities.lazyLoad(exports, ["GroupMemberEntityIds"], () => require("./groupMemberEntityIds"));
+utilities.lazyLoad(exports, ["GroupPolicies"], () => require("./groupPolicies"));
+utilities.lazyLoad(exports, ["MfaDuo"], () => require("./mfaDuo"));
+utilities.lazyLoad(exports, ["MfaLoginEnforcement"], () => require("./mfaLoginEnforcement"));
+utilities.lazyLoad(exports, ["MfaOkta"], () => require("./mfaOkta"));
+utilities.lazyLoad(exports, ["MfaPingid"], () => require("./mfaPingid"));
+utilities.lazyLoad(exports, ["MfaTotp"], () => require("./mfaTotp"));
+utilities.lazyLoad(exports, ["Oidc"], () => require("./oidc"));
+utilities.lazyLoad(exports, ["OidcAssignment"], () => require("./oidcAssignment"));
+utilities.lazyLoad(exports, ["OidcClient"], () => require("./oidcClient"));
+utilities.lazyLoad(exports, ["OidcKey"], () => require("./oidcKey"));
+utilities.lazyLoad(exports, ["OidcKeyAllowedClientID"], () => require("./oidcKeyAllowedClientID"));
+utilities.lazyLoad(exports, ["OidcProvider"], () => require("./oidcProvider"));
+utilities.lazyLoad(exports, ["OidcRole"], () => require("./oidcRole"));
+utilities.lazyLoad(exports, ["OidcScope"], () => require("./oidcScope"));
 
 const _module = {
     version: utilities.getVersion(),
@@ -61,6 +149,16 @@ const _module = {
                 return new GroupMemberEntityIds(name, <any>undefined, { urn })
             case "vault:identity/groupPolicies:GroupPolicies":
                 return new GroupPolicies(name, <any>undefined, { urn })
+            case "vault:identity/mfaDuo:MfaDuo":
+                return new MfaDuo(name, <any>undefined, { urn })
+            case "vault:identity/mfaLoginEnforcement:MfaLoginEnforcement":
+                return new MfaLoginEnforcement(name, <any>undefined, { urn })
+            case "vault:identity/mfaOkta:MfaOkta":
+                return new MfaOkta(name, <any>undefined, { urn })
+            case "vault:identity/mfaPingid:MfaPingid":
+                return new MfaPingid(name, <any>undefined, { urn })
+            case "vault:identity/mfaTotp:MfaTotp":
+                return new MfaTotp(name, <any>undefined, { urn })
             case "vault:identity/oidc:Oidc":
                 return new Oidc(name, <any>undefined, { urn })
             case "vault:identity/oidcAssignment:OidcAssignment":
@@ -89,6 +187,11 @@ pulumi.runtime.registerResourceModule("vault", "identity/group", _module)
 pulumi.runtime.registerResourceModule("vault", "identity/groupAlias", _module)
 pulumi.runtime.registerResourceModule("vault", "identity/groupMemberEntityIds", _module)
 pulumi.runtime.registerResourceModule("vault", "identity/groupPolicies", _module)
+pulumi.runtime.registerResourceModule("vault", "identity/mfaDuo", _module)
+pulumi.runtime.registerResourceModule("vault", "identity/mfaLoginEnforcement", _module)
+pulumi.runtime.registerResourceModule("vault", "identity/mfaOkta", _module)
+pulumi.runtime.registerResourceModule("vault", "identity/mfaPingid", _module)
+pulumi.runtime.registerResourceModule("vault", "identity/mfaTotp", _module)
 pulumi.runtime.registerResourceModule("vault", "identity/oidc", _module)
 pulumi.runtime.registerResourceModule("vault", "identity/oidcAssignment", _module)
 pulumi.runtime.registerResourceModule("vault", "identity/oidcClient", _module)

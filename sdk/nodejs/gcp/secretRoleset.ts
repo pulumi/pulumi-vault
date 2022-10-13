@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -80,6 +81,13 @@ export class SecretRoleset extends pulumi.CustomResource {
      */
     public readonly bindings!: pulumi.Output<outputs.gcp.SecretRolesetBinding[]>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * Name of the GCP project that this roleset's service account will belong to.
      */
     public readonly project!: pulumi.Output<string>;
@@ -115,6 +123,7 @@ export class SecretRoleset extends pulumi.CustomResource {
             const state = argsOrState as SecretRolesetState | undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["bindings"] = state ? state.bindings : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["project"] = state ? state.project : undefined;
             resourceInputs["roleset"] = state ? state.roleset : undefined;
             resourceInputs["secretType"] = state ? state.secretType : undefined;
@@ -136,6 +145,7 @@ export class SecretRoleset extends pulumi.CustomResource {
             }
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["bindings"] = args ? args.bindings : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["project"] = args ? args.project : undefined;
             resourceInputs["roleset"] = args ? args.roleset : undefined;
             resourceInputs["secretType"] = args ? args.secretType : undefined;
@@ -159,6 +169,13 @@ export interface SecretRolesetState {
      * Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
      */
     bindings?: pulumi.Input<pulumi.Input<inputs.gcp.SecretRolesetBinding>[]>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Name of the GCP project that this roleset's service account will belong to.
      */
@@ -193,6 +210,13 @@ export interface SecretRolesetArgs {
      * Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
      */
     bindings: pulumi.Input<pulumi.Input<inputs.gcp.SecretRolesetBinding>[]>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Name of the GCP project that this roleset's service account will belong to.
      */

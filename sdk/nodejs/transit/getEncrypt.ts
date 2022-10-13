@@ -18,6 +18,7 @@ export function getEncrypt(args: GetEncryptArgs, opts?: pulumi.InvokeOptions): P
         "context": args.context,
         "key": args.key,
         "keyVersion": args.keyVersion,
+        "namespace": args.namespace,
         "plaintext": args.plaintext,
     }, opts);
 }
@@ -42,6 +43,7 @@ export interface GetEncryptArgs {
      * The version of the key to use for encryption. If not set, uses the latest version. Must be greater than or equal to the key's `minEncryptionVersion`, if set.
      */
     keyVersion?: number;
+    namespace?: string;
     /**
      * Plaintext to be encoded.
      */
@@ -64,6 +66,7 @@ export interface GetEncryptResult {
     readonly id: string;
     readonly key: string;
     readonly keyVersion?: number;
+    readonly namespace?: string;
     readonly plaintext: string;
 }
 
@@ -91,6 +94,7 @@ export interface GetEncryptOutputArgs {
      * The version of the key to use for encryption. If not set, uses the latest version. Must be greater than or equal to the key's `minEncryptionVersion`, if set.
      */
     keyVersion?: pulumi.Input<number>;
+    namespace?: pulumi.Input<string>;
     /**
      * Plaintext to be encoded.
      */

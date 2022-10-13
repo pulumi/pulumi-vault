@@ -91,6 +91,11 @@ type OidcClient struct {
 	Key pulumi.StringOutput `pulumi:"key"`
 	// The name of the client.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Redirection URI values used by the client.
 	// One of these values must exactly match the `redirectUri` parameter value
 	// used in each authentication request.
@@ -104,6 +109,10 @@ func NewOidcClient(ctx *pulumi.Context,
 		args = &OidcClientArgs{}
 	}
 
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"clientSecret",
+	})
+	opts = append(opts, secrets)
 	var resource OidcClient
 	err := ctx.RegisterResource("vault:identity/oidcClient:OidcClient", name, args, &resource, opts...)
 	if err != nil {
@@ -146,6 +155,11 @@ type oidcClientState struct {
 	Key *string `pulumi:"key"`
 	// The name of the client.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Redirection URI values used by the client.
 	// One of these values must exactly match the `redirectUri` parameter value
 	// used in each authentication request.
@@ -173,6 +187,11 @@ type OidcClientState struct {
 	Key pulumi.StringPtrInput
 	// The name of the client.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Redirection URI values used by the client.
 	// One of these values must exactly match the `redirectUri` parameter value
 	// used in each authentication request.
@@ -200,6 +219,11 @@ type oidcClientArgs struct {
 	Key *string `pulumi:"key"`
 	// The name of the client.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Redirection URI values used by the client.
 	// One of these values must exactly match the `redirectUri` parameter value
 	// used in each authentication request.
@@ -224,6 +248,11 @@ type OidcClientArgs struct {
 	Key pulumi.StringPtrInput
 	// The name of the client.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Redirection URI values used by the client.
 	// One of these values must exactly match the `redirectUri` parameter value
 	// used in each authentication request.
@@ -359,6 +388,14 @@ func (o OidcClientOutput) Key() pulumi.StringOutput {
 // The name of the client.
 func (o OidcClientOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *OidcClient) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o OidcClientOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OidcClient) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Redirection URI values used by the client.

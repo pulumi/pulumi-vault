@@ -58,6 +58,9 @@ func NewProvider(ctx *pulumi.Context,
 	if isZero(args.SkipTlsVerify) {
 		args.SkipTlsVerify = pulumi.BoolPtr(getEnvOrDefault(false, parseEnvBool, "VAULT_SKIP_VERIFY").(bool))
 	}
+	if args.Headers != nil {
+		args.Headers = pulumi.ToSecret(args.Headers).(ProviderHeaderArrayOutput)
+	}
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:vault", name, args, &resource, opts...)
 	if err != nil {
@@ -72,13 +75,33 @@ type providerArgs struct {
 	// URL of the root of the target Vault server.
 	Address string `pulumi:"address"`
 	// Login to vault with an existing auth method using auth/<mount>/login
-	AuthLogins []ProviderAuthLogin `pulumi:"authLogins"`
+	AuthLogin *ProviderAuthLogin `pulumi:"authLogin"`
+	// Login to vault using the AWS method
+	AuthLoginAws *ProviderAuthLoginAws `pulumi:"authLoginAws"`
+	// Login to vault using the azure method
+	AuthLoginAzure *ProviderAuthLoginAzure `pulumi:"authLoginAzure"`
+	// Login to vault using the cert method
+	AuthLoginCert *ProviderAuthLoginCert `pulumi:"authLoginCert"`
+	// Login to vault using the gcp method
+	AuthLoginGcp *ProviderAuthLoginGcp `pulumi:"authLoginGcp"`
+	// Login to vault using the jwt method
+	AuthLoginJwt *ProviderAuthLoginJwt `pulumi:"authLoginJwt"`
+	// Login to vault using the kerberos method
+	AuthLoginKerberos *ProviderAuthLoginKerberos `pulumi:"authLoginKerberos"`
+	// Login to vault using the OCI method
+	AuthLoginOci *ProviderAuthLoginOci `pulumi:"authLoginOci"`
+	// Login to vault using the oidc method
+	AuthLoginOidc *ProviderAuthLoginOidc `pulumi:"authLoginOidc"`
+	// Login to vault using the radius method
+	AuthLoginRadius *ProviderAuthLoginRadius `pulumi:"authLoginRadius"`
+	// Login to vault using the userpass method
+	AuthLoginUserpass *ProviderAuthLoginUserpass `pulumi:"authLoginUserpass"`
 	// Path to directory containing CA certificate files to validate the server's certificate.
 	CaCertDir *string `pulumi:"caCertDir"`
 	// Path to a CA certificate file to validate the server's certificate.
 	CaCertFile *string `pulumi:"caCertFile"`
 	// Client authentication credentials.
-	ClientAuths []ProviderClientAuth `pulumi:"clientAuths"`
+	ClientAuth *ProviderClientAuth `pulumi:"clientAuth"`
 	// The headers to send with each Vault request.
 	Headers []ProviderHeader `pulumi:"headers"`
 	// Maximum TTL for secret leases requested by this provider.
@@ -108,13 +131,33 @@ type ProviderArgs struct {
 	// URL of the root of the target Vault server.
 	Address pulumi.StringInput
 	// Login to vault with an existing auth method using auth/<mount>/login
-	AuthLogins ProviderAuthLoginArrayInput
+	AuthLogin ProviderAuthLoginPtrInput
+	// Login to vault using the AWS method
+	AuthLoginAws ProviderAuthLoginAwsPtrInput
+	// Login to vault using the azure method
+	AuthLoginAzure ProviderAuthLoginAzurePtrInput
+	// Login to vault using the cert method
+	AuthLoginCert ProviderAuthLoginCertPtrInput
+	// Login to vault using the gcp method
+	AuthLoginGcp ProviderAuthLoginGcpPtrInput
+	// Login to vault using the jwt method
+	AuthLoginJwt ProviderAuthLoginJwtPtrInput
+	// Login to vault using the kerberos method
+	AuthLoginKerberos ProviderAuthLoginKerberosPtrInput
+	// Login to vault using the OCI method
+	AuthLoginOci ProviderAuthLoginOciPtrInput
+	// Login to vault using the oidc method
+	AuthLoginOidc ProviderAuthLoginOidcPtrInput
+	// Login to vault using the radius method
+	AuthLoginRadius ProviderAuthLoginRadiusPtrInput
+	// Login to vault using the userpass method
+	AuthLoginUserpass ProviderAuthLoginUserpassPtrInput
 	// Path to directory containing CA certificate files to validate the server's certificate.
 	CaCertDir pulumi.StringPtrInput
 	// Path to a CA certificate file to validate the server's certificate.
 	CaCertFile pulumi.StringPtrInput
 	// Client authentication credentials.
-	ClientAuths ProviderClientAuthArrayInput
+	ClientAuth ProviderClientAuthPtrInput
 	// The headers to send with each Vault request.
 	Headers ProviderHeaderArrayInput
 	// Maximum TTL for secret leases requested by this provider.

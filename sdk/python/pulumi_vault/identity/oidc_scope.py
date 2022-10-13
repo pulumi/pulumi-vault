@@ -16,17 +16,24 @@ class OidcScopeArgs:
     def __init__(__self__, *,
                  description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  template: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a OidcScope resource.
         :param pulumi.Input[str] description: A description of the scope.
         :param pulumi.Input[str] name: The name of the scope. The `openid` scope name is reserved.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] template: The template string for the scope. This may be provided as escaped JSON or base64 encoded JSON.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if template is not None:
             pulumi.set(__self__, "template", template)
 
@@ -53,6 +60,21 @@ class OidcScopeArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -72,17 +94,24 @@ class _OidcScopeState:
     def __init__(__self__, *,
                  description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  template: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering OidcScope resources.
         :param pulumi.Input[str] description: A description of the scope.
         :param pulumi.Input[str] name: The name of the scope. The `openid` scope name is reserved.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] template: The template string for the scope. This may be provided as escaped JSON or base64 encoded JSON.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if template is not None:
             pulumi.set(__self__, "template", template)
 
@@ -109,6 +138,21 @@ class _OidcScopeState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -130,6 +174,7 @@ class OidcScope(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  template: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -140,14 +185,11 @@ class OidcScope(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import json
         import pulumi_vault as vault
 
         groups = vault.identity.OidcScope("groups",
-            template=json.dumps({
-                "groups": "{{identity.entity.groups.names}}",
-            }),
-            description="Vault OIDC Groups Scope")
+            description="Vault OIDC Groups Scope",
+            template="{\\"groups\\":{{identity.entity.groups.names}}}")
         ```
 
         ## Import
@@ -162,6 +204,10 @@ class OidcScope(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: A description of the scope.
         :param pulumi.Input[str] name: The name of the scope. The `openid` scope name is reserved.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] template: The template string for the scope. This may be provided as escaped JSON or base64 encoded JSON.
         """
         ...
@@ -178,14 +224,11 @@ class OidcScope(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import json
         import pulumi_vault as vault
 
         groups = vault.identity.OidcScope("groups",
-            template=json.dumps({
-                "groups": "{{identity.entity.groups.names}}",
-            }),
-            description="Vault OIDC Groups Scope")
+            description="Vault OIDC Groups Scope",
+            template="{\\"groups\\":{{identity.entity.groups.names}}}")
         ```
 
         ## Import
@@ -213,6 +256,7 @@ class OidcScope(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  template: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -225,6 +269,7 @@ class OidcScope(pulumi.CustomResource):
 
             __props__.__dict__["description"] = description
             __props__.__dict__["name"] = name
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["template"] = template
         super(OidcScope, __self__).__init__(
             'vault:identity/oidcScope:OidcScope',
@@ -238,6 +283,7 @@ class OidcScope(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             description: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             template: Optional[pulumi.Input[str]] = None) -> 'OidcScope':
         """
         Get an existing OidcScope resource's state with the given name, id, and optional extra
@@ -248,6 +294,10 @@ class OidcScope(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: A description of the scope.
         :param pulumi.Input[str] name: The name of the scope. The `openid` scope name is reserved.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] template: The template string for the scope. This may be provided as escaped JSON or base64 encoded JSON.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -256,6 +306,7 @@ class OidcScope(pulumi.CustomResource):
 
         __props__.__dict__["description"] = description
         __props__.__dict__["name"] = name
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["template"] = template
         return OidcScope(resource_name, opts=opts, __props__=__props__)
 
@@ -274,6 +325,17 @@ class OidcScope(pulumi.CustomResource):
         The name of the scope. The `openid` scope name is reserved.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

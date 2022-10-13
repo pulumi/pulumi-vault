@@ -7,6 +7,16 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.core.internal.Codegen;
 import com.pulumi.vault.inputs.ProviderAuthLoginArgs;
+import com.pulumi.vault.inputs.ProviderAuthLoginAwsArgs;
+import com.pulumi.vault.inputs.ProviderAuthLoginAzureArgs;
+import com.pulumi.vault.inputs.ProviderAuthLoginCertArgs;
+import com.pulumi.vault.inputs.ProviderAuthLoginGcpArgs;
+import com.pulumi.vault.inputs.ProviderAuthLoginJwtArgs;
+import com.pulumi.vault.inputs.ProviderAuthLoginKerberosArgs;
+import com.pulumi.vault.inputs.ProviderAuthLoginOciArgs;
+import com.pulumi.vault.inputs.ProviderAuthLoginOidcArgs;
+import com.pulumi.vault.inputs.ProviderAuthLoginRadiusArgs;
+import com.pulumi.vault.inputs.ProviderAuthLoginUserpassArgs;
 import com.pulumi.vault.inputs.ProviderClientAuthArgs;
 import com.pulumi.vault.inputs.ProviderHeaderArgs;
 import java.lang.Boolean;
@@ -56,15 +66,165 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
      * Login to vault with an existing auth method using auth/&lt;mount&gt;/login
      * 
      */
-    @Import(name="authLogins", json=true)
-    private @Nullable Output<List<ProviderAuthLoginArgs>> authLogins;
+    @Import(name="authLogin", json=true)
+    private @Nullable Output<ProviderAuthLoginArgs> authLogin;
 
     /**
      * @return Login to vault with an existing auth method using auth/&lt;mount&gt;/login
      * 
      */
-    public Optional<Output<List<ProviderAuthLoginArgs>>> authLogins() {
-        return Optional.ofNullable(this.authLogins);
+    public Optional<Output<ProviderAuthLoginArgs>> authLogin() {
+        return Optional.ofNullable(this.authLogin);
+    }
+
+    /**
+     * Login to vault using the AWS method
+     * 
+     */
+    @Import(name="authLoginAws", json=true)
+    private @Nullable Output<ProviderAuthLoginAwsArgs> authLoginAws;
+
+    /**
+     * @return Login to vault using the AWS method
+     * 
+     */
+    public Optional<Output<ProviderAuthLoginAwsArgs>> authLoginAws() {
+        return Optional.ofNullable(this.authLoginAws);
+    }
+
+    /**
+     * Login to vault using the azure method
+     * 
+     */
+    @Import(name="authLoginAzure", json=true)
+    private @Nullable Output<ProviderAuthLoginAzureArgs> authLoginAzure;
+
+    /**
+     * @return Login to vault using the azure method
+     * 
+     */
+    public Optional<Output<ProviderAuthLoginAzureArgs>> authLoginAzure() {
+        return Optional.ofNullable(this.authLoginAzure);
+    }
+
+    /**
+     * Login to vault using the cert method
+     * 
+     */
+    @Import(name="authLoginCert", json=true)
+    private @Nullable Output<ProviderAuthLoginCertArgs> authLoginCert;
+
+    /**
+     * @return Login to vault using the cert method
+     * 
+     */
+    public Optional<Output<ProviderAuthLoginCertArgs>> authLoginCert() {
+        return Optional.ofNullable(this.authLoginCert);
+    }
+
+    /**
+     * Login to vault using the gcp method
+     * 
+     */
+    @Import(name="authLoginGcp", json=true)
+    private @Nullable Output<ProviderAuthLoginGcpArgs> authLoginGcp;
+
+    /**
+     * @return Login to vault using the gcp method
+     * 
+     */
+    public Optional<Output<ProviderAuthLoginGcpArgs>> authLoginGcp() {
+        return Optional.ofNullable(this.authLoginGcp);
+    }
+
+    /**
+     * Login to vault using the jwt method
+     * 
+     */
+    @Import(name="authLoginJwt", json=true)
+    private @Nullable Output<ProviderAuthLoginJwtArgs> authLoginJwt;
+
+    /**
+     * @return Login to vault using the jwt method
+     * 
+     */
+    public Optional<Output<ProviderAuthLoginJwtArgs>> authLoginJwt() {
+        return Optional.ofNullable(this.authLoginJwt);
+    }
+
+    /**
+     * Login to vault using the kerberos method
+     * 
+     */
+    @Import(name="authLoginKerberos", json=true)
+    private @Nullable Output<ProviderAuthLoginKerberosArgs> authLoginKerberos;
+
+    /**
+     * @return Login to vault using the kerberos method
+     * 
+     */
+    public Optional<Output<ProviderAuthLoginKerberosArgs>> authLoginKerberos() {
+        return Optional.ofNullable(this.authLoginKerberos);
+    }
+
+    /**
+     * Login to vault using the OCI method
+     * 
+     */
+    @Import(name="authLoginOci", json=true)
+    private @Nullable Output<ProviderAuthLoginOciArgs> authLoginOci;
+
+    /**
+     * @return Login to vault using the OCI method
+     * 
+     */
+    public Optional<Output<ProviderAuthLoginOciArgs>> authLoginOci() {
+        return Optional.ofNullable(this.authLoginOci);
+    }
+
+    /**
+     * Login to vault using the oidc method
+     * 
+     */
+    @Import(name="authLoginOidc", json=true)
+    private @Nullable Output<ProviderAuthLoginOidcArgs> authLoginOidc;
+
+    /**
+     * @return Login to vault using the oidc method
+     * 
+     */
+    public Optional<Output<ProviderAuthLoginOidcArgs>> authLoginOidc() {
+        return Optional.ofNullable(this.authLoginOidc);
+    }
+
+    /**
+     * Login to vault using the radius method
+     * 
+     */
+    @Import(name="authLoginRadius", json=true)
+    private @Nullable Output<ProviderAuthLoginRadiusArgs> authLoginRadius;
+
+    /**
+     * @return Login to vault using the radius method
+     * 
+     */
+    public Optional<Output<ProviderAuthLoginRadiusArgs>> authLoginRadius() {
+        return Optional.ofNullable(this.authLoginRadius);
+    }
+
+    /**
+     * Login to vault using the userpass method
+     * 
+     */
+    @Import(name="authLoginUserpass", json=true)
+    private @Nullable Output<ProviderAuthLoginUserpassArgs> authLoginUserpass;
+
+    /**
+     * @return Login to vault using the userpass method
+     * 
+     */
+    public Optional<Output<ProviderAuthLoginUserpassArgs>> authLoginUserpass() {
+        return Optional.ofNullable(this.authLoginUserpass);
     }
 
     /**
@@ -101,15 +261,15 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
      * Client authentication credentials.
      * 
      */
-    @Import(name="clientAuths", json=true)
-    private @Nullable Output<List<ProviderClientAuthArgs>> clientAuths;
+    @Import(name="clientAuth", json=true)
+    private @Nullable Output<ProviderClientAuthArgs> clientAuth;
 
     /**
      * @return Client authentication credentials.
      * 
      */
-    public Optional<Output<List<ProviderClientAuthArgs>>> clientAuths() {
-        return Optional.ofNullable(this.clientAuths);
+    public Optional<Output<ProviderClientAuthArgs>> clientAuth() {
+        return Optional.ofNullable(this.clientAuth);
     }
 
     /**
@@ -267,10 +427,20 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     private ProviderArgs(ProviderArgs $) {
         this.addAddressToEnv = $.addAddressToEnv;
         this.address = $.address;
-        this.authLogins = $.authLogins;
+        this.authLogin = $.authLogin;
+        this.authLoginAws = $.authLoginAws;
+        this.authLoginAzure = $.authLoginAzure;
+        this.authLoginCert = $.authLoginCert;
+        this.authLoginGcp = $.authLoginGcp;
+        this.authLoginJwt = $.authLoginJwt;
+        this.authLoginKerberos = $.authLoginKerberos;
+        this.authLoginOci = $.authLoginOci;
+        this.authLoginOidc = $.authLoginOidc;
+        this.authLoginRadius = $.authLoginRadius;
+        this.authLoginUserpass = $.authLoginUserpass;
         this.caCertDir = $.caCertDir;
         this.caCertFile = $.caCertFile;
-        this.clientAuths = $.clientAuths;
+        this.clientAuth = $.clientAuth;
         this.headers = $.headers;
         this.maxLeaseTtlSeconds = $.maxLeaseTtlSeconds;
         this.maxRetries = $.maxRetries;
@@ -344,34 +514,234 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param authLogins Login to vault with an existing auth method using auth/&lt;mount&gt;/login
+         * @param authLogin Login to vault with an existing auth method using auth/&lt;mount&gt;/login
          * 
          * @return builder
          * 
          */
-        public Builder authLogins(@Nullable Output<List<ProviderAuthLoginArgs>> authLogins) {
-            $.authLogins = authLogins;
+        public Builder authLogin(@Nullable Output<ProviderAuthLoginArgs> authLogin) {
+            $.authLogin = authLogin;
             return this;
         }
 
         /**
-         * @param authLogins Login to vault with an existing auth method using auth/&lt;mount&gt;/login
+         * @param authLogin Login to vault with an existing auth method using auth/&lt;mount&gt;/login
          * 
          * @return builder
          * 
          */
-        public Builder authLogins(List<ProviderAuthLoginArgs> authLogins) {
-            return authLogins(Output.of(authLogins));
+        public Builder authLogin(ProviderAuthLoginArgs authLogin) {
+            return authLogin(Output.of(authLogin));
         }
 
         /**
-         * @param authLogins Login to vault with an existing auth method using auth/&lt;mount&gt;/login
+         * @param authLoginAws Login to vault using the AWS method
          * 
          * @return builder
          * 
          */
-        public Builder authLogins(ProviderAuthLoginArgs... authLogins) {
-            return authLogins(List.of(authLogins));
+        public Builder authLoginAws(@Nullable Output<ProviderAuthLoginAwsArgs> authLoginAws) {
+            $.authLoginAws = authLoginAws;
+            return this;
+        }
+
+        /**
+         * @param authLoginAws Login to vault using the AWS method
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authLoginAws(ProviderAuthLoginAwsArgs authLoginAws) {
+            return authLoginAws(Output.of(authLoginAws));
+        }
+
+        /**
+         * @param authLoginAzure Login to vault using the azure method
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authLoginAzure(@Nullable Output<ProviderAuthLoginAzureArgs> authLoginAzure) {
+            $.authLoginAzure = authLoginAzure;
+            return this;
+        }
+
+        /**
+         * @param authLoginAzure Login to vault using the azure method
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authLoginAzure(ProviderAuthLoginAzureArgs authLoginAzure) {
+            return authLoginAzure(Output.of(authLoginAzure));
+        }
+
+        /**
+         * @param authLoginCert Login to vault using the cert method
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authLoginCert(@Nullable Output<ProviderAuthLoginCertArgs> authLoginCert) {
+            $.authLoginCert = authLoginCert;
+            return this;
+        }
+
+        /**
+         * @param authLoginCert Login to vault using the cert method
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authLoginCert(ProviderAuthLoginCertArgs authLoginCert) {
+            return authLoginCert(Output.of(authLoginCert));
+        }
+
+        /**
+         * @param authLoginGcp Login to vault using the gcp method
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authLoginGcp(@Nullable Output<ProviderAuthLoginGcpArgs> authLoginGcp) {
+            $.authLoginGcp = authLoginGcp;
+            return this;
+        }
+
+        /**
+         * @param authLoginGcp Login to vault using the gcp method
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authLoginGcp(ProviderAuthLoginGcpArgs authLoginGcp) {
+            return authLoginGcp(Output.of(authLoginGcp));
+        }
+
+        /**
+         * @param authLoginJwt Login to vault using the jwt method
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authLoginJwt(@Nullable Output<ProviderAuthLoginJwtArgs> authLoginJwt) {
+            $.authLoginJwt = authLoginJwt;
+            return this;
+        }
+
+        /**
+         * @param authLoginJwt Login to vault using the jwt method
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authLoginJwt(ProviderAuthLoginJwtArgs authLoginJwt) {
+            return authLoginJwt(Output.of(authLoginJwt));
+        }
+
+        /**
+         * @param authLoginKerberos Login to vault using the kerberos method
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authLoginKerberos(@Nullable Output<ProviderAuthLoginKerberosArgs> authLoginKerberos) {
+            $.authLoginKerberos = authLoginKerberos;
+            return this;
+        }
+
+        /**
+         * @param authLoginKerberos Login to vault using the kerberos method
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authLoginKerberos(ProviderAuthLoginKerberosArgs authLoginKerberos) {
+            return authLoginKerberos(Output.of(authLoginKerberos));
+        }
+
+        /**
+         * @param authLoginOci Login to vault using the OCI method
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authLoginOci(@Nullable Output<ProviderAuthLoginOciArgs> authLoginOci) {
+            $.authLoginOci = authLoginOci;
+            return this;
+        }
+
+        /**
+         * @param authLoginOci Login to vault using the OCI method
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authLoginOci(ProviderAuthLoginOciArgs authLoginOci) {
+            return authLoginOci(Output.of(authLoginOci));
+        }
+
+        /**
+         * @param authLoginOidc Login to vault using the oidc method
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authLoginOidc(@Nullable Output<ProviderAuthLoginOidcArgs> authLoginOidc) {
+            $.authLoginOidc = authLoginOidc;
+            return this;
+        }
+
+        /**
+         * @param authLoginOidc Login to vault using the oidc method
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authLoginOidc(ProviderAuthLoginOidcArgs authLoginOidc) {
+            return authLoginOidc(Output.of(authLoginOidc));
+        }
+
+        /**
+         * @param authLoginRadius Login to vault using the radius method
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authLoginRadius(@Nullable Output<ProviderAuthLoginRadiusArgs> authLoginRadius) {
+            $.authLoginRadius = authLoginRadius;
+            return this;
+        }
+
+        /**
+         * @param authLoginRadius Login to vault using the radius method
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authLoginRadius(ProviderAuthLoginRadiusArgs authLoginRadius) {
+            return authLoginRadius(Output.of(authLoginRadius));
+        }
+
+        /**
+         * @param authLoginUserpass Login to vault using the userpass method
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authLoginUserpass(@Nullable Output<ProviderAuthLoginUserpassArgs> authLoginUserpass) {
+            $.authLoginUserpass = authLoginUserpass;
+            return this;
+        }
+
+        /**
+         * @param authLoginUserpass Login to vault using the userpass method
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authLoginUserpass(ProviderAuthLoginUserpassArgs authLoginUserpass) {
+            return authLoginUserpass(Output.of(authLoginUserpass));
         }
 
         /**
@@ -417,34 +787,24 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clientAuths Client authentication credentials.
+         * @param clientAuth Client authentication credentials.
          * 
          * @return builder
          * 
          */
-        public Builder clientAuths(@Nullable Output<List<ProviderClientAuthArgs>> clientAuths) {
-            $.clientAuths = clientAuths;
+        public Builder clientAuth(@Nullable Output<ProviderClientAuthArgs> clientAuth) {
+            $.clientAuth = clientAuth;
             return this;
         }
 
         /**
-         * @param clientAuths Client authentication credentials.
+         * @param clientAuth Client authentication credentials.
          * 
          * @return builder
          * 
          */
-        public Builder clientAuths(List<ProviderClientAuthArgs> clientAuths) {
-            return clientAuths(Output.of(clientAuths));
-        }
-
-        /**
-         * @param clientAuths Client authentication credentials.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder clientAuths(ProviderClientAuthArgs... clientAuths) {
-            return clientAuths(List.of(clientAuths));
+        public Builder clientAuth(ProviderClientAuthArgs clientAuth) {
+            return clientAuth(Output.of(clientAuth));
         }
 
         /**

@@ -65,6 +65,15 @@ namespace Pulumi.Vault.Kmip
     public partial class SecretRole : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
         /// Grant permission to use the KMIP Activate operation.
         /// </summary>
         [Output("operationActivate")]
@@ -232,6 +241,15 @@ namespace Pulumi.Vault.Kmip
     public sealed class SecretRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
         /// Grant permission to use the KMIP Activate operation.
         /// </summary>
         [Input("operationActivate")]
@@ -360,6 +378,15 @@ namespace Pulumi.Vault.Kmip
 
     public sealed class SecretRoleState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
         /// <summary>
         /// Grant permission to use the KMIP Activate operation.
         /// </summary>

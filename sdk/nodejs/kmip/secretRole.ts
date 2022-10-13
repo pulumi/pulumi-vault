@@ -75,6 +75,13 @@ export class SecretRole extends pulumi.CustomResource {
     }
 
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * Grant permission to use the KMIP Activate operation.
      */
     public readonly operationActivate!: pulumi.Output<boolean>;
@@ -169,6 +176,7 @@ export class SecretRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretRoleState | undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["operationActivate"] = state ? state.operationActivate : undefined;
             resourceInputs["operationAddAttribute"] = state ? state.operationAddAttribute : undefined;
             resourceInputs["operationAll"] = state ? state.operationAll : undefined;
@@ -200,6 +208,7 @@ export class SecretRole extends pulumi.CustomResource {
             if ((!args || args.scope === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'scope'");
             }
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["operationActivate"] = args ? args.operationActivate : undefined;
             resourceInputs["operationAddAttribute"] = args ? args.operationAddAttribute : undefined;
             resourceInputs["operationAll"] = args ? args.operationAll : undefined;
@@ -230,6 +239,13 @@ export class SecretRole extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SecretRole resources.
  */
 export interface SecretRoleState {
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Grant permission to use the KMIP Activate operation.
      */
@@ -317,6 +333,13 @@ export interface SecretRoleState {
  * The set of arguments for constructing a SecretRole resource.
  */
 export interface SecretRoleArgs {
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Grant permission to use the KMIP Activate operation.
      */

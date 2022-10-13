@@ -20,6 +20,7 @@ class SecretBackendRoleArgs:
                  default_ttl: Optional[pulumi.Input[int]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  renew_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  revocation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  rollback_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
@@ -35,6 +36,10 @@ class SecretBackendRoleArgs:
         :param pulumi.Input[int] max_ttl: The maximum number of seconds for leases for this
                role.
         :param pulumi.Input[str] name: A unique name to give the role.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured namespace.
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] renew_statements: The database statements to execute when
                renewing a user.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] revocation_statements: The database statements to execute when
@@ -51,6 +56,8 @@ class SecretBackendRoleArgs:
             pulumi.set(__self__, "max_ttl", max_ttl)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if renew_statements is not None:
             pulumi.set(__self__, "renew_statements", renew_statements)
         if revocation_statements is not None:
@@ -135,6 +142,21 @@ class SecretBackendRoleArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured namespace.
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="renewStatements")
     def renew_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -183,6 +205,7 @@ class _SecretBackendRoleState:
                  default_ttl: Optional[pulumi.Input[int]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  renew_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  revocation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  rollback_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
@@ -198,6 +221,10 @@ class _SecretBackendRoleState:
         :param pulumi.Input[int] max_ttl: The maximum number of seconds for leases for this
                role.
         :param pulumi.Input[str] name: A unique name to give the role.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured namespace.
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] renew_statements: The database statements to execute when
                renewing a user.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] revocation_statements: The database statements to execute when
@@ -217,6 +244,8 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "max_ttl", max_ttl)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if renew_statements is not None:
             pulumi.set(__self__, "renew_statements", renew_statements)
         if revocation_statements is not None:
@@ -301,6 +330,21 @@ class _SecretBackendRoleState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured namespace.
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
     @pulumi.getter(name="renewStatements")
     def renew_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -351,6 +395,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  default_ttl: Optional[pulumi.Input[int]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  renew_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  revocation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  rollback_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -400,6 +445,10 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[int] max_ttl: The maximum number of seconds for leases for this
                role.
         :param pulumi.Input[str] name: A unique name to give the role.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured namespace.
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] renew_statements: The database statements to execute when
                renewing a user.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] revocation_statements: The database statements to execute when
@@ -467,6 +516,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  default_ttl: Optional[pulumi.Input[int]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  renew_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  revocation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  rollback_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -491,6 +541,7 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__.__dict__["default_ttl"] = default_ttl
             __props__.__dict__["max_ttl"] = max_ttl
             __props__.__dict__["name"] = name
+            __props__.__dict__["namespace"] = namespace
             __props__.__dict__["renew_statements"] = renew_statements
             __props__.__dict__["revocation_statements"] = revocation_statements
             __props__.__dict__["rollback_statements"] = rollback_statements
@@ -510,6 +561,7 @@ class SecretBackendRole(pulumi.CustomResource):
             default_ttl: Optional[pulumi.Input[int]] = None,
             max_ttl: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             renew_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             revocation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             rollback_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'SecretBackendRole':
@@ -530,6 +582,10 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[int] max_ttl: The maximum number of seconds for leases for this
                role.
         :param pulumi.Input[str] name: A unique name to give the role.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured namespace.
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] renew_statements: The database statements to execute when
                renewing a user.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] revocation_statements: The database statements to execute when
@@ -547,6 +603,7 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["default_ttl"] = default_ttl
         __props__.__dict__["max_ttl"] = max_ttl
         __props__.__dict__["name"] = name
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["renew_statements"] = renew_statements
         __props__.__dict__["revocation_statements"] = revocation_statements
         __props__.__dict__["rollback_statements"] = rollback_statements
@@ -603,6 +660,17 @@ class SecretBackendRole(pulumi.CustomResource):
         A unique name to give the role.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured namespace.
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="renewStatements")

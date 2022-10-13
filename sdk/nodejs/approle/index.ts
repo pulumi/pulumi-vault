@@ -5,15 +5,26 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./authBackendLogin";
-export * from "./authBackendRole";
-export * from "./authBackendRoleSecretID";
-export * from "./getAuthBackendRoleId";
+export { AuthBackendLoginArgs, AuthBackendLoginState } from "./authBackendLogin";
+export type AuthBackendLogin = import("./authBackendLogin").AuthBackendLogin;
+export const AuthBackendLogin: typeof import("./authBackendLogin").AuthBackendLogin = null as any;
 
-// Import resources to register:
-import { AuthBackendLogin } from "./authBackendLogin";
-import { AuthBackendRole } from "./authBackendRole";
-import { AuthBackendRoleSecretID } from "./authBackendRoleSecretID";
+export { AuthBackendRoleArgs, AuthBackendRoleState } from "./authBackendRole";
+export type AuthBackendRole = import("./authBackendRole").AuthBackendRole;
+export const AuthBackendRole: typeof import("./authBackendRole").AuthBackendRole = null as any;
+
+export { AuthBackendRoleSecretIdArgs, AuthBackendRoleSecretIdState } from "./authBackendRoleSecretId";
+export type AuthBackendRoleSecretId = import("./authBackendRoleSecretId").AuthBackendRoleSecretId;
+export const AuthBackendRoleSecretId: typeof import("./authBackendRoleSecretId").AuthBackendRoleSecretId = null as any;
+
+export { GetAuthBackendRoleIdArgs, GetAuthBackendRoleIdResult, GetAuthBackendRoleIdOutputArgs } from "./getAuthBackendRoleId";
+export const getAuthBackendRoleId: typeof import("./getAuthBackendRoleId").getAuthBackendRoleId = null as any;
+export const getAuthBackendRoleIdOutput: typeof import("./getAuthBackendRoleId").getAuthBackendRoleIdOutput = null as any;
+
+utilities.lazyLoad(exports, ["AuthBackendLogin"], () => require("./authBackendLogin"));
+utilities.lazyLoad(exports, ["AuthBackendRole"], () => require("./authBackendRole"));
+utilities.lazyLoad(exports, ["AuthBackendRoleSecretId"], () => require("./authBackendRoleSecretId"));
+utilities.lazyLoad(exports, ["getAuthBackendRoleId","getAuthBackendRoleIdOutput"], () => require("./getAuthBackendRoleId"));
 
 const _module = {
     version: utilities.getVersion(),
@@ -23,8 +34,8 @@ const _module = {
                 return new AuthBackendLogin(name, <any>undefined, { urn })
             case "vault:appRole/authBackendRole:AuthBackendRole":
                 return new AuthBackendRole(name, <any>undefined, { urn })
-            case "vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID":
-                return new AuthBackendRoleSecretID(name, <any>undefined, { urn })
+            case "vault:appRole/authBackendRoleSecretId:AuthBackendRoleSecretId":
+                return new AuthBackendRoleSecretId(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -32,4 +43,4 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("vault", "appRole/authBackendLogin", _module)
 pulumi.runtime.registerResourceModule("vault", "appRole/authBackendRole", _module)
-pulumi.runtime.registerResourceModule("vault", "appRole/authBackendRoleSecretID", _module)
+pulumi.runtime.registerResourceModule("vault", "appRole/authBackendRoleSecretId", _module)

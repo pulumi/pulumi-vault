@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -71,6 +72,18 @@ export class AuthBackend extends pulumi.CustomResource {
      * This overrides the current stored value, if any.
      */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    public readonly disableRemount!: pulumi.Output<boolean | undefined>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
     /**
      * The organization configured users must be part of.
      */
@@ -156,6 +169,8 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["accessor"] = state ? state.accessor : undefined;
             resourceInputs["baseUrl"] = state ? state.baseUrl : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["organization"] = state ? state.organization : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
@@ -176,6 +191,8 @@ export class AuthBackend extends pulumi.CustomResource {
             }
             resourceInputs["baseUrl"] = args ? args.baseUrl : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["organization"] = args ? args.organization : undefined;
             resourceInputs["organizationId"] = args ? args.organizationId : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
@@ -214,6 +231,18 @@ export interface AuthBackendState {
      * This overrides the current stored value, if any.
      */
     description?: pulumi.Input<string>;
+    /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    disableRemount?: pulumi.Input<boolean>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The organization configured users must be part of.
      */
@@ -298,6 +327,18 @@ export interface AuthBackendArgs {
      * This overrides the current stored value, if any.
      */
     description?: pulumi.Input<string>;
+    /**
+     * If set, opts out of mount migration on path updates.
+     * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+     */
+    disableRemount?: pulumi.Input<boolean>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * The organization configured users must be part of.
      */
