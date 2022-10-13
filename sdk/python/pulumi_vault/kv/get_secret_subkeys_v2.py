@@ -10,16 +10,16 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
-    'GetSecretSubKeysV2Result',
-    'AwaitableGetSecretSubKeysV2Result',
-    'get_secret_sub_keys_v2',
-    'get_secret_sub_keys_v2_output',
+    'GetSecretSubkeysV2Result',
+    'AwaitableGetSecretSubkeysV2Result',
+    'get_secret_subkeys_v2',
+    'get_secret_subkeys_v2_output',
 ]
 
 @pulumi.output_type
-class GetSecretSubKeysV2Result:
+class GetSecretSubkeysV2Result:
     """
-    A collection of values returned by getSecretSubKeysV2.
+    A collection of values returned by getSecretSubkeysV2.
     """
     def __init__(__self__, data=None, data_json=None, depth=None, id=None, mount=None, name=None, namespace=None, path=None, version=None):
         if data and not isinstance(data, dict):
@@ -99,12 +99,12 @@ class GetSecretSubKeysV2Result:
         return pulumi.get(self, "version")
 
 
-class AwaitableGetSecretSubKeysV2Result(GetSecretSubKeysV2Result):
+class AwaitableGetSecretSubkeysV2Result(GetSecretSubkeysV2Result):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetSecretSubKeysV2Result(
+        return GetSecretSubkeysV2Result(
             data=self.data,
             data_json=self.data_json,
             depth=self.depth,
@@ -116,12 +116,12 @@ class AwaitableGetSecretSubKeysV2Result(GetSecretSubKeysV2Result):
             version=self.version)
 
 
-def get_secret_sub_keys_v2(depth: Optional[int] = None,
-                           mount: Optional[str] = None,
-                           name: Optional[str] = None,
-                           namespace: Optional[str] = None,
-                           version: Optional[int] = None,
-                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretSubKeysV2Result:
+def get_secret_subkeys_v2(depth: Optional[int] = None,
+                          mount: Optional[str] = None,
+                          name: Optional[str] = None,
+                          namespace: Optional[str] = None,
+                          version: Optional[int] = None,
+                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretSubkeysV2Result:
     """
     Use this data source to access information about an existing resource.
     """
@@ -132,9 +132,9 @@ def get_secret_sub_keys_v2(depth: Optional[int] = None,
     __args__['namespace'] = namespace
     __args__['version'] = version
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('vault:kv/getSecretSubKeysV2:getSecretSubKeysV2', __args__, opts=opts, typ=GetSecretSubKeysV2Result).value
+    __ret__ = pulumi.runtime.invoke('vault:kv/getSecretSubkeysV2:getSecretSubkeysV2', __args__, opts=opts, typ=GetSecretSubkeysV2Result).value
 
-    return AwaitableGetSecretSubKeysV2Result(
+    return AwaitableGetSecretSubkeysV2Result(
         data=__ret__.data,
         data_json=__ret__.data_json,
         depth=__ret__.depth,
@@ -146,13 +146,13 @@ def get_secret_sub_keys_v2(depth: Optional[int] = None,
         version=__ret__.version)
 
 
-@_utilities.lift_output_func(get_secret_sub_keys_v2)
-def get_secret_sub_keys_v2_output(depth: Optional[pulumi.Input[Optional[int]]] = None,
-                                  mount: Optional[pulumi.Input[str]] = None,
-                                  name: Optional[pulumi.Input[str]] = None,
-                                  namespace: Optional[pulumi.Input[Optional[str]]] = None,
-                                  version: Optional[pulumi.Input[Optional[int]]] = None,
-                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSecretSubKeysV2Result]:
+@_utilities.lift_output_func(get_secret_subkeys_v2)
+def get_secret_subkeys_v2_output(depth: Optional[pulumi.Input[Optional[int]]] = None,
+                                 mount: Optional[pulumi.Input[str]] = None,
+                                 name: Optional[pulumi.Input[str]] = None,
+                                 namespace: Optional[pulumi.Input[Optional[str]]] = None,
+                                 version: Optional[pulumi.Input[Optional[int]]] = None,
+                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSecretSubkeysV2Result]:
     """
     Use this data source to access information about an existing resource.
     """

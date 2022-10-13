@@ -11,7 +11,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 @CustomType
-public final class GetSecretsV2ListResult {
+public final class GetSecretsListV2Result {
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -31,7 +31,7 @@ public final class GetSecretsV2ListResult {
      */
     private String path;
 
-    private GetSecretsV2ListResult() {}
+    private GetSecretsListV2Result() {}
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -67,7 +67,7 @@ public final class GetSecretsV2ListResult {
         return new Builder();
     }
 
-    public static Builder builder(GetSecretsV2ListResult defaults) {
+    public static Builder builder(GetSecretsListV2Result defaults) {
         return new Builder(defaults);
     }
     @CustomType.Builder
@@ -79,7 +79,7 @@ public final class GetSecretsV2ListResult {
         private @Nullable String namespace;
         private String path;
         public Builder() {}
-        public Builder(GetSecretsV2ListResult defaults) {
+        public Builder(GetSecretsListV2Result defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.id = defaults.id;
     	      this.mount = defaults.mount;
@@ -122,8 +122,8 @@ public final class GetSecretsV2ListResult {
             this.path = Objects.requireNonNull(path);
             return this;
         }
-        public GetSecretsV2ListResult build() {
-            final var o = new GetSecretsV2ListResult();
+        public GetSecretsListV2Result build() {
+            final var o = new GetSecretsListV2Result();
             o.id = id;
             o.mount = mount;
             o.name = name;

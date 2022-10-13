@@ -12,9 +12,9 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 
-public final class MfaTOTPArgs extends com.pulumi.resources.ResourceArgs {
+public final class MfaTotpArgs extends com.pulumi.resources.ResourceArgs {
 
-    public static final MfaTOTPArgs Empty = new MfaTOTPArgs();
+    public static final MfaTotpArgs Empty = new MfaTotpArgs();
 
     /**
      * Specifies the hashing algorithm used to generate the TOTP code. Options include SHA1, SHA256, SHA512.
@@ -136,9 +136,9 @@ public final class MfaTOTPArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.skew);
     }
 
-    private MfaTOTPArgs() {}
+    private MfaTotpArgs() {}
 
-    private MfaTOTPArgs(MfaTOTPArgs $) {
+    private MfaTotpArgs(MfaTotpArgs $) {
         this.algorithm = $.algorithm;
         this.digits = $.digits;
         this.issuer = $.issuer;
@@ -152,19 +152,19 @@ public final class MfaTOTPArgs extends com.pulumi.resources.ResourceArgs {
     public static Builder builder() {
         return new Builder();
     }
-    public static Builder builder(MfaTOTPArgs defaults) {
+    public static Builder builder(MfaTotpArgs defaults) {
         return new Builder(defaults);
     }
 
     public static final class Builder {
-        private MfaTOTPArgs $;
+        private MfaTotpArgs $;
 
         public Builder() {
-            $ = new MfaTOTPArgs();
+            $ = new MfaTotpArgs();
         }
 
-        public Builder(MfaTOTPArgs defaults) {
-            $ = new MfaTOTPArgs(Objects.requireNonNull(defaults));
+        public Builder(MfaTotpArgs defaults) {
+            $ = new MfaTotpArgs(Objects.requireNonNull(defaults));
         }
 
         /**
@@ -335,7 +335,7 @@ public final class MfaTOTPArgs extends com.pulumi.resources.ResourceArgs {
             return skew(Output.of(skew));
         }
 
-        public MfaTOTPArgs build() {
+        public MfaTotpArgs build() {
             $.issuer = Objects.requireNonNull($.issuer, "expected parameter 'issuer' to be non-null");
             return $;
         }

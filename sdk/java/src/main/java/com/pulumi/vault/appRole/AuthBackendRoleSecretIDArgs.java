@@ -13,9 +13,9 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 
-public final class AuthBackendRoleSecretIDArgs extends com.pulumi.resources.ResourceArgs {
+public final class AuthBackendRoleSecretIdArgs extends com.pulumi.resources.ResourceArgs {
 
-    public static final AuthBackendRoleSecretIDArgs Empty = new AuthBackendRoleSecretIDArgs();
+    public static final AuthBackendRoleSecretIdArgs Empty = new AuthBackendRoleSecretIdArgs();
 
     /**
      * Unique name of the auth backend to configure.
@@ -159,9 +159,9 @@ public final class AuthBackendRoleSecretIDArgs extends com.pulumi.resources.Reso
         return Optional.ofNullable(this.wrappingTtl);
     }
 
-    private AuthBackendRoleSecretIDArgs() {}
+    private AuthBackendRoleSecretIdArgs() {}
 
-    private AuthBackendRoleSecretIDArgs(AuthBackendRoleSecretIDArgs $) {
+    private AuthBackendRoleSecretIdArgs(AuthBackendRoleSecretIdArgs $) {
         this.backend = $.backend;
         this.cidrLists = $.cidrLists;
         this.metadata = $.metadata;
@@ -175,19 +175,19 @@ public final class AuthBackendRoleSecretIDArgs extends com.pulumi.resources.Reso
     public static Builder builder() {
         return new Builder();
     }
-    public static Builder builder(AuthBackendRoleSecretIDArgs defaults) {
+    public static Builder builder(AuthBackendRoleSecretIdArgs defaults) {
         return new Builder(defaults);
     }
 
     public static final class Builder {
-        private AuthBackendRoleSecretIDArgs $;
+        private AuthBackendRoleSecretIdArgs $;
 
         public Builder() {
-            $ = new AuthBackendRoleSecretIDArgs();
+            $ = new AuthBackendRoleSecretIdArgs();
         }
 
-        public Builder(AuthBackendRoleSecretIDArgs defaults) {
-            $ = new AuthBackendRoleSecretIDArgs(Objects.requireNonNull(defaults));
+        public Builder(AuthBackendRoleSecretIdArgs defaults) {
+            $ = new AuthBackendRoleSecretIdArgs(Objects.requireNonNull(defaults));
         }
 
         /**
@@ -391,7 +391,7 @@ public final class AuthBackendRoleSecretIDArgs extends com.pulumi.resources.Reso
             return wrappingTtl(Output.of(wrappingTtl));
         }
 
-        public AuthBackendRoleSecretIDArgs build() {
+        public AuthBackendRoleSecretIdArgs build() {
             $.roleName = Objects.requireNonNull($.roleName, "expected parameter 'roleName' to be non-null");
             return $;
         }

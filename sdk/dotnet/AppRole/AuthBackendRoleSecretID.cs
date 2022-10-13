@@ -41,7 +41,7 @@ namespace Pulumi.Vault.AppRole
     ///         },
     ///     });
     /// 
-    ///     var id = new Vault.AppRole.AuthBackendRoleSecretID("id", new()
+    ///     var id = new Vault.AppRole.AuthBackendRoleSecretId("id", new()
     ///     {
     ///         Backend = approle.Path,
     ///         RoleName = example.RoleName,
@@ -54,8 +54,8 @@ namespace Pulumi.Vault.AppRole
     /// });
     /// ```
     /// </summary>
-    [VaultResourceType("vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID")]
-    public partial class AuthBackendRoleSecretID : global::Pulumi.CustomResource
+    [VaultResourceType("vault:appRole/authBackendRoleSecretId:AuthBackendRoleSecretId")]
+    public partial class AuthBackendRoleSecretId : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The unique ID for this SecretID that can be safely logged.
@@ -137,19 +137,19 @@ namespace Pulumi.Vault.AppRole
 
 
         /// <summary>
-        /// Create a AuthBackendRoleSecretID resource with the given unique name, arguments, and options.
+        /// Create a AuthBackendRoleSecretId resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public AuthBackendRoleSecretID(string name, AuthBackendRoleSecretIDArgs args, CustomResourceOptions? options = null)
-            : base("vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID", name, args ?? new AuthBackendRoleSecretIDArgs(), MakeResourceOptions(options, ""))
+        public AuthBackendRoleSecretId(string name, AuthBackendRoleSecretIdArgs args, CustomResourceOptions? options = null)
+            : base("vault:appRole/authBackendRoleSecretId:AuthBackendRoleSecretId", name, args ?? new AuthBackendRoleSecretIdArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private AuthBackendRoleSecretID(string name, Input<string> id, AuthBackendRoleSecretIDState? state = null, CustomResourceOptions? options = null)
-            : base("vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID", name, state, MakeResourceOptions(options, id))
+        private AuthBackendRoleSecretId(string name, Input<string> id, AuthBackendRoleSecretIdState? state = null, CustomResourceOptions? options = null)
+            : base("vault:appRole/authBackendRoleSecretId:AuthBackendRoleSecretId", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -170,7 +170,7 @@ namespace Pulumi.Vault.AppRole
             return merged;
         }
         /// <summary>
-        /// Get an existing AuthBackendRoleSecretID resource's state with the given name, ID, and optional extra
+        /// Get an existing AuthBackendRoleSecretId resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -178,13 +178,13 @@ namespace Pulumi.Vault.AppRole
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static AuthBackendRoleSecretID Get(string name, Input<string> id, AuthBackendRoleSecretIDState? state = null, CustomResourceOptions? options = null)
+        public static AuthBackendRoleSecretId Get(string name, Input<string> id, AuthBackendRoleSecretIdState? state = null, CustomResourceOptions? options = null)
         {
-            return new AuthBackendRoleSecretID(name, id, state, options);
+            return new AuthBackendRoleSecretId(name, id, state, options);
         }
     }
 
-    public sealed class AuthBackendRoleSecretIDArgs : global::Pulumi.ResourceArgs
+    public sealed class AuthBackendRoleSecretIdArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Unique name of the auth backend to configure.
@@ -261,13 +261,13 @@ namespace Pulumi.Vault.AppRole
         [Input("wrappingTtl")]
         public Input<string>? WrappingTtl { get; set; }
 
-        public AuthBackendRoleSecretIDArgs()
+        public AuthBackendRoleSecretIdArgs()
         {
         }
-        public static new AuthBackendRoleSecretIDArgs Empty => new AuthBackendRoleSecretIDArgs();
+        public static new AuthBackendRoleSecretIdArgs Empty => new AuthBackendRoleSecretIdArgs();
     }
 
-    public sealed class AuthBackendRoleSecretIDState : global::Pulumi.ResourceArgs
+    public sealed class AuthBackendRoleSecretIdState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The unique ID for this SecretID that can be safely logged.
@@ -373,9 +373,9 @@ namespace Pulumi.Vault.AppRole
         [Input("wrappingTtl")]
         public Input<string>? WrappingTtl { get; set; }
 
-        public AuthBackendRoleSecretIDState()
+        public AuthBackendRoleSecretIdState()
         {
         }
-        public static new AuthBackendRoleSecretIDState Empty => new AuthBackendRoleSecretIDState();
+        public static new AuthBackendRoleSecretIdState Empty => new AuthBackendRoleSecretIdState();
     }
 }

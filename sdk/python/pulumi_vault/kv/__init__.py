@@ -6,10 +6,10 @@ from .. import _utilities
 import typing
 # Export this package's modules as members:
 from .get_secret import *
-from .get_secret_sub_keys_v2 import *
+from .get_secret_subkeys_v2 import *
 from .get_secret_v2 import *
 from .get_secrets_list import *
-from .get_secrets_v2_list import *
+from .get_secrets_list_v2 import *
 from .secret import *
 from .secret_backend_v2 import *
 from .secret_v2 import *

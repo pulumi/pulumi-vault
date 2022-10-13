@@ -65,13 +65,13 @@ export { MfaOktaArgs, MfaOktaState } from "./mfaOkta";
 export type MfaOkta = import("./mfaOkta").MfaOkta;
 export const MfaOkta: typeof import("./mfaOkta").MfaOkta = null as any;
 
-export { MfaPingIDArgs, MfaPingIDState } from "./mfaPingID";
-export type MfaPingID = import("./mfaPingID").MfaPingID;
-export const MfaPingID: typeof import("./mfaPingID").MfaPingID = null as any;
+export { MfaPingidArgs, MfaPingidState } from "./mfaPingid";
+export type MfaPingid = import("./mfaPingid").MfaPingid;
+export const MfaPingid: typeof import("./mfaPingid").MfaPingid = null as any;
 
-export { MfaTOTPArgs, MfaTOTPState } from "./mfaTOTP";
-export type MfaTOTP = import("./mfaTOTP").MfaTOTP;
-export const MfaTOTP: typeof import("./mfaTOTP").MfaTOTP = null as any;
+export { MfaTotpArgs, MfaTotpState } from "./mfaTotp";
+export type MfaTotp = import("./mfaTotp").MfaTotp;
+export const MfaTotp: typeof import("./mfaTotp").MfaTotp = null as any;
 
 export { OidcArgs, OidcState } from "./oidc";
 export type Oidc = import("./oidc").Oidc;
@@ -120,8 +120,8 @@ utilities.lazyLoad(exports, ["GroupPolicies"], () => require("./groupPolicies"))
 utilities.lazyLoad(exports, ["MfaDuo"], () => require("./mfaDuo"));
 utilities.lazyLoad(exports, ["MfaLoginEnforcement"], () => require("./mfaLoginEnforcement"));
 utilities.lazyLoad(exports, ["MfaOkta"], () => require("./mfaOkta"));
-utilities.lazyLoad(exports, ["MfaPingID"], () => require("./mfaPingID"));
-utilities.lazyLoad(exports, ["MfaTOTP"], () => require("./mfaTOTP"));
+utilities.lazyLoad(exports, ["MfaPingid"], () => require("./mfaPingid"));
+utilities.lazyLoad(exports, ["MfaTotp"], () => require("./mfaTotp"));
 utilities.lazyLoad(exports, ["Oidc"], () => require("./oidc"));
 utilities.lazyLoad(exports, ["OidcAssignment"], () => require("./oidcAssignment"));
 utilities.lazyLoad(exports, ["OidcClient"], () => require("./oidcClient"));
@@ -155,10 +155,10 @@ const _module = {
                 return new MfaLoginEnforcement(name, <any>undefined, { urn })
             case "vault:identity/mfaOkta:MfaOkta":
                 return new MfaOkta(name, <any>undefined, { urn })
-            case "vault:identity/mfaPingID:MfaPingID":
-                return new MfaPingID(name, <any>undefined, { urn })
-            case "vault:identity/mfaTOTP:MfaTOTP":
-                return new MfaTOTP(name, <any>undefined, { urn })
+            case "vault:identity/mfaPingid:MfaPingid":
+                return new MfaPingid(name, <any>undefined, { urn })
+            case "vault:identity/mfaTotp:MfaTotp":
+                return new MfaTotp(name, <any>undefined, { urn })
             case "vault:identity/oidc:Oidc":
                 return new Oidc(name, <any>undefined, { urn })
             case "vault:identity/oidcAssignment:OidcAssignment":
@@ -190,8 +190,8 @@ pulumi.runtime.registerResourceModule("vault", "identity/groupPolicies", _module
 pulumi.runtime.registerResourceModule("vault", "identity/mfaDuo", _module)
 pulumi.runtime.registerResourceModule("vault", "identity/mfaLoginEnforcement", _module)
 pulumi.runtime.registerResourceModule("vault", "identity/mfaOkta", _module)
-pulumi.runtime.registerResourceModule("vault", "identity/mfaPingID", _module)
-pulumi.runtime.registerResourceModule("vault", "identity/mfaTOTP", _module)
+pulumi.runtime.registerResourceModule("vault", "identity/mfaPingid", _module)
+pulumi.runtime.registerResourceModule("vault", "identity/mfaTotp", _module)
 pulumi.runtime.registerResourceModule("vault", "identity/oidc", _module)
 pulumi.runtime.registerResourceModule("vault", "identity/oidcAssignment", _module)
 pulumi.runtime.registerResourceModule("vault", "identity/oidcClient", _module)

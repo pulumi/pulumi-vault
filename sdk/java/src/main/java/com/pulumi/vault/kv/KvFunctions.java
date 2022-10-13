@@ -10,19 +10,19 @@ import com.pulumi.deployment.InvokeOptions;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.kv.inputs.GetSecretArgs;
 import com.pulumi.vault.kv.inputs.GetSecretPlainArgs;
-import com.pulumi.vault.kv.inputs.GetSecretSubKeysV2Args;
-import com.pulumi.vault.kv.inputs.GetSecretSubKeysV2PlainArgs;
+import com.pulumi.vault.kv.inputs.GetSecretSubkeysV2Args;
+import com.pulumi.vault.kv.inputs.GetSecretSubkeysV2PlainArgs;
 import com.pulumi.vault.kv.inputs.GetSecretV2Args;
 import com.pulumi.vault.kv.inputs.GetSecretV2PlainArgs;
 import com.pulumi.vault.kv.inputs.GetSecretsListArgs;
 import com.pulumi.vault.kv.inputs.GetSecretsListPlainArgs;
-import com.pulumi.vault.kv.inputs.GetSecretsV2ListArgs;
-import com.pulumi.vault.kv.inputs.GetSecretsV2ListPlainArgs;
+import com.pulumi.vault.kv.inputs.GetSecretsListV2Args;
+import com.pulumi.vault.kv.inputs.GetSecretsListV2PlainArgs;
 import com.pulumi.vault.kv.outputs.GetSecretResult;
-import com.pulumi.vault.kv.outputs.GetSecretSubKeysV2Result;
+import com.pulumi.vault.kv.outputs.GetSecretSubkeysV2Result;
 import com.pulumi.vault.kv.outputs.GetSecretV2Result;
 import com.pulumi.vault.kv.outputs.GetSecretsListResult;
-import com.pulumi.vault.kv.outputs.GetSecretsV2ListResult;
+import com.pulumi.vault.kv.outputs.GetSecretsListV2Result;
 import java.util.concurrent.CompletableFuture;
 
 public final class KvFunctions {
@@ -262,17 +262,17 @@ public final class KvFunctions {
     public static CompletableFuture<GetSecretResult> getSecretPlain(GetSecretPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("vault:kv/getSecret:getSecret", TypeShape.of(GetSecretResult.class), args, Utilities.withVersion(options));
     }
-    public static Output<GetSecretSubKeysV2Result> getSecretSubKeysV2(GetSecretSubKeysV2Args args) {
-        return getSecretSubKeysV2(args, InvokeOptions.Empty);
+    public static Output<GetSecretSubkeysV2Result> getSecretSubkeysV2(GetSecretSubkeysV2Args args) {
+        return getSecretSubkeysV2(args, InvokeOptions.Empty);
     }
-    public static CompletableFuture<GetSecretSubKeysV2Result> getSecretSubKeysV2Plain(GetSecretSubKeysV2PlainArgs args) {
-        return getSecretSubKeysV2Plain(args, InvokeOptions.Empty);
+    public static CompletableFuture<GetSecretSubkeysV2Result> getSecretSubkeysV2Plain(GetSecretSubkeysV2PlainArgs args) {
+        return getSecretSubkeysV2Plain(args, InvokeOptions.Empty);
     }
-    public static Output<GetSecretSubKeysV2Result> getSecretSubKeysV2(GetSecretSubKeysV2Args args, InvokeOptions options) {
-        return Deployment.getInstance().invoke("vault:kv/getSecretSubKeysV2:getSecretSubKeysV2", TypeShape.of(GetSecretSubKeysV2Result.class), args, Utilities.withVersion(options));
+    public static Output<GetSecretSubkeysV2Result> getSecretSubkeysV2(GetSecretSubkeysV2Args args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:kv/getSecretSubkeysV2:getSecretSubkeysV2", TypeShape.of(GetSecretSubkeysV2Result.class), args, Utilities.withVersion(options));
     }
-    public static CompletableFuture<GetSecretSubKeysV2Result> getSecretSubKeysV2Plain(GetSecretSubKeysV2PlainArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invokeAsync("vault:kv/getSecretSubKeysV2:getSecretSubKeysV2", TypeShape.of(GetSecretSubKeysV2Result.class), args, Utilities.withVersion(options));
+    public static CompletableFuture<GetSecretSubkeysV2Result> getSecretSubkeysV2Plain(GetSecretSubkeysV2PlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("vault:kv/getSecretSubkeysV2:getSecretSubkeysV2", TypeShape.of(GetSecretSubkeysV2Result.class), args, Utilities.withVersion(options));
     }
     /**
      * ## Example Usage
@@ -799,7 +799,7 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.SecretV2;
      * import com.pulumi.vault.kv.SecretV2Args;
      * import com.pulumi.vault.kv.KvFunctions;
-     * import com.pulumi.vault.kv.inputs.GetSecretsV2ListArgs;
+     * import com.pulumi.vault.kv.inputs.GetSecretsListV2Args;
      * import static com.pulumi.codegen.internal.Serialization.*;
      * import java.util.List;
      * import java.util.ArrayList;
@@ -845,11 +845,11 @@ public final class KvFunctions {
      *                 )))
      *             .build());
      * 
-     *         final var secrets = KvFunctions.getSecretsV2List(GetSecretsV2ListArgs.builder()
+     *         final var secrets = KvFunctions.getSecretsListV2(GetSecretsListV2Args.builder()
      *             .mount(kvv2.path())
      *             .build());
      * 
-     *         final var nestedSecrets = KvFunctions.getSecretsV2List(GetSecretsV2ListArgs.builder()
+     *         final var nestedSecrets = KvFunctions.getSecretsListV2(GetSecretsListV2Args.builder()
      *             .mount(kvv2.path())
      *             .name(vault_kv_secret_v2.test_2().name())
      *             .build());
@@ -862,8 +862,8 @@ public final class KvFunctions {
      * Use of this resource requires the `read` capability on the given path.
      * 
      */
-    public static Output<GetSecretsV2ListResult> getSecretsV2List(GetSecretsV2ListArgs args) {
-        return getSecretsV2List(args, InvokeOptions.Empty);
+    public static Output<GetSecretsListV2Result> getSecretsListV2(GetSecretsListV2Args args) {
+        return getSecretsListV2(args, InvokeOptions.Empty);
     }
     /**
      * ## Example Usage
@@ -878,7 +878,7 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.SecretV2;
      * import com.pulumi.vault.kv.SecretV2Args;
      * import com.pulumi.vault.kv.KvFunctions;
-     * import com.pulumi.vault.kv.inputs.GetSecretsV2ListArgs;
+     * import com.pulumi.vault.kv.inputs.GetSecretsListV2Args;
      * import static com.pulumi.codegen.internal.Serialization.*;
      * import java.util.List;
      * import java.util.ArrayList;
@@ -924,11 +924,11 @@ public final class KvFunctions {
      *                 )))
      *             .build());
      * 
-     *         final var secrets = KvFunctions.getSecretsV2List(GetSecretsV2ListArgs.builder()
+     *         final var secrets = KvFunctions.getSecretsListV2(GetSecretsListV2Args.builder()
      *             .mount(kvv2.path())
      *             .build());
      * 
-     *         final var nestedSecrets = KvFunctions.getSecretsV2List(GetSecretsV2ListArgs.builder()
+     *         final var nestedSecrets = KvFunctions.getSecretsListV2(GetSecretsListV2Args.builder()
      *             .mount(kvv2.path())
      *             .name(vault_kv_secret_v2.test_2().name())
      *             .build());
@@ -941,8 +941,8 @@ public final class KvFunctions {
      * Use of this resource requires the `read` capability on the given path.
      * 
      */
-    public static CompletableFuture<GetSecretsV2ListResult> getSecretsV2ListPlain(GetSecretsV2ListPlainArgs args) {
-        return getSecretsV2ListPlain(args, InvokeOptions.Empty);
+    public static CompletableFuture<GetSecretsListV2Result> getSecretsListV2Plain(GetSecretsListV2PlainArgs args) {
+        return getSecretsListV2Plain(args, InvokeOptions.Empty);
     }
     /**
      * ## Example Usage
@@ -957,7 +957,7 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.SecretV2;
      * import com.pulumi.vault.kv.SecretV2Args;
      * import com.pulumi.vault.kv.KvFunctions;
-     * import com.pulumi.vault.kv.inputs.GetSecretsV2ListArgs;
+     * import com.pulumi.vault.kv.inputs.GetSecretsListV2Args;
      * import static com.pulumi.codegen.internal.Serialization.*;
      * import java.util.List;
      * import java.util.ArrayList;
@@ -1003,11 +1003,11 @@ public final class KvFunctions {
      *                 )))
      *             .build());
      * 
-     *         final var secrets = KvFunctions.getSecretsV2List(GetSecretsV2ListArgs.builder()
+     *         final var secrets = KvFunctions.getSecretsListV2(GetSecretsListV2Args.builder()
      *             .mount(kvv2.path())
      *             .build());
      * 
-     *         final var nestedSecrets = KvFunctions.getSecretsV2List(GetSecretsV2ListArgs.builder()
+     *         final var nestedSecrets = KvFunctions.getSecretsListV2(GetSecretsListV2Args.builder()
      *             .mount(kvv2.path())
      *             .name(vault_kv_secret_v2.test_2().name())
      *             .build());
@@ -1020,8 +1020,8 @@ public final class KvFunctions {
      * Use of this resource requires the `read` capability on the given path.
      * 
      */
-    public static Output<GetSecretsV2ListResult> getSecretsV2List(GetSecretsV2ListArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invoke("vault:kv/getSecretsV2List:getSecretsV2List", TypeShape.of(GetSecretsV2ListResult.class), args, Utilities.withVersion(options));
+    public static Output<GetSecretsListV2Result> getSecretsListV2(GetSecretsListV2Args args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:kv/getSecretsListV2:getSecretsListV2", TypeShape.of(GetSecretsListV2Result.class), args, Utilities.withVersion(options));
     }
     /**
      * ## Example Usage
@@ -1036,7 +1036,7 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.SecretV2;
      * import com.pulumi.vault.kv.SecretV2Args;
      * import com.pulumi.vault.kv.KvFunctions;
-     * import com.pulumi.vault.kv.inputs.GetSecretsV2ListArgs;
+     * import com.pulumi.vault.kv.inputs.GetSecretsListV2Args;
      * import static com.pulumi.codegen.internal.Serialization.*;
      * import java.util.List;
      * import java.util.ArrayList;
@@ -1082,11 +1082,11 @@ public final class KvFunctions {
      *                 )))
      *             .build());
      * 
-     *         final var secrets = KvFunctions.getSecretsV2List(GetSecretsV2ListArgs.builder()
+     *         final var secrets = KvFunctions.getSecretsListV2(GetSecretsListV2Args.builder()
      *             .mount(kvv2.path())
      *             .build());
      * 
-     *         final var nestedSecrets = KvFunctions.getSecretsV2List(GetSecretsV2ListArgs.builder()
+     *         final var nestedSecrets = KvFunctions.getSecretsListV2(GetSecretsListV2Args.builder()
      *             .mount(kvv2.path())
      *             .name(vault_kv_secret_v2.test_2().name())
      *             .build());
@@ -1099,7 +1099,7 @@ public final class KvFunctions {
      * Use of this resource requires the `read` capability on the given path.
      * 
      */
-    public static CompletableFuture<GetSecretsV2ListResult> getSecretsV2ListPlain(GetSecretsV2ListPlainArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invokeAsync("vault:kv/getSecretsV2List:getSecretsV2List", TypeShape.of(GetSecretsV2ListResult.class), args, Utilities.withVersion(options));
+    public static CompletableFuture<GetSecretsListV2Result> getSecretsListV2Plain(GetSecretsListV2PlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("vault:kv/getSecretsListV2:getSecretsListV2", TypeShape.of(GetSecretsListV2Result.class), args, Utilities.withVersion(options));
     }
 }

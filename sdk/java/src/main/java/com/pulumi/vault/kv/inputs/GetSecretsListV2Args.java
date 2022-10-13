@@ -11,9 +11,9 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 
-public final class GetSecretsV2ListArgs extends com.pulumi.resources.InvokeArgs {
+public final class GetSecretsListV2Args extends com.pulumi.resources.InvokeArgs {
 
-    public static final GetSecretsV2ListArgs Empty = new GetSecretsV2ListArgs();
+    public static final GetSecretsListV2Args Empty = new GetSecretsListV2Args();
 
     /**
      * Path where KV-V2 engine is mounted.
@@ -72,9 +72,9 @@ public final class GetSecretsV2ListArgs extends com.pulumi.resources.InvokeArgs 
         return Optional.ofNullable(this.namespace);
     }
 
-    private GetSecretsV2ListArgs() {}
+    private GetSecretsListV2Args() {}
 
-    private GetSecretsV2ListArgs(GetSecretsV2ListArgs $) {
+    private GetSecretsListV2Args(GetSecretsListV2Args $) {
         this.mount = $.mount;
         this.name = $.name;
         this.namespace = $.namespace;
@@ -83,19 +83,19 @@ public final class GetSecretsV2ListArgs extends com.pulumi.resources.InvokeArgs 
     public static Builder builder() {
         return new Builder();
     }
-    public static Builder builder(GetSecretsV2ListArgs defaults) {
+    public static Builder builder(GetSecretsListV2Args defaults) {
         return new Builder(defaults);
     }
 
     public static final class Builder {
-        private GetSecretsV2ListArgs $;
+        private GetSecretsListV2Args $;
 
         public Builder() {
-            $ = new GetSecretsV2ListArgs();
+            $ = new GetSecretsListV2Args();
         }
 
-        public Builder(GetSecretsV2ListArgs defaults) {
-            $ = new GetSecretsV2ListArgs(Objects.requireNonNull(defaults));
+        public Builder(GetSecretsListV2Args defaults) {
+            $ = new GetSecretsListV2Args(Objects.requireNonNull(defaults));
         }
 
         /**
@@ -173,7 +173,7 @@ public final class GetSecretsV2ListArgs extends com.pulumi.resources.InvokeArgs 
             return namespace(Output.of(namespace));
         }
 
-        public GetSecretsV2ListArgs build() {
+        public GetSecretsListV2Args build() {
             $.mount = Objects.requireNonNull($.mount, "expected parameter 'mount' to be non-null");
             return $;
         }

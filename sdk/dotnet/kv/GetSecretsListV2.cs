@@ -9,7 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.kv
 {
-    public static class GetSecretsV2List
+    public static class GetSecretsListV2
     {
         /// <summary>
         /// {{% examples %}}
@@ -62,12 +62,12 @@ namespace Pulumi.Vault.kv
         ///         }),
         ///     });
         /// 
-        ///     var secrets = Vault.kv.GetSecretsV2List.Invoke(new()
+        ///     var secrets = Vault.kv.GetSecretsListV2.Invoke(new()
         ///     {
         ///         Mount = kvv2.Path,
         ///     });
         /// 
-        ///     var nestedSecrets = Vault.kv.GetSecretsV2List.Invoke(new()
+        ///     var nestedSecrets = Vault.kv.GetSecretsListV2.Invoke(new()
         ///     {
         ///         Mount = kvv2.Path,
         ///         Name = vault_kv_secret_v2.Test_2.Name,
@@ -81,8 +81,8 @@ namespace Pulumi.Vault.kv
         /// 
         /// Use of this resource requires the `read` capability on the given path.
         /// </summary>
-        public static Task<GetSecretsV2ListResult> InvokeAsync(GetSecretsV2ListArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetSecretsV2ListResult>("vault:kv/getSecretsV2List:getSecretsV2List", args ?? new GetSecretsV2ListArgs(), options.WithDefaults());
+        public static Task<GetSecretsListV2Result> InvokeAsync(GetSecretsListV2Args args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetSecretsListV2Result>("vault:kv/getSecretsListV2:getSecretsListV2", args ?? new GetSecretsListV2Args(), options.WithDefaults());
 
         /// <summary>
         /// {{% examples %}}
@@ -135,12 +135,12 @@ namespace Pulumi.Vault.kv
         ///         }),
         ///     });
         /// 
-        ///     var secrets = Vault.kv.GetSecretsV2List.Invoke(new()
+        ///     var secrets = Vault.kv.GetSecretsListV2.Invoke(new()
         ///     {
         ///         Mount = kvv2.Path,
         ///     });
         /// 
-        ///     var nestedSecrets = Vault.kv.GetSecretsV2List.Invoke(new()
+        ///     var nestedSecrets = Vault.kv.GetSecretsListV2.Invoke(new()
         ///     {
         ///         Mount = kvv2.Path,
         ///         Name = vault_kv_secret_v2.Test_2.Name,
@@ -154,12 +154,12 @@ namespace Pulumi.Vault.kv
         /// 
         /// Use of this resource requires the `read` capability on the given path.
         /// </summary>
-        public static Output<GetSecretsV2ListResult> Invoke(GetSecretsV2ListInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetSecretsV2ListResult>("vault:kv/getSecretsV2List:getSecretsV2List", args ?? new GetSecretsV2ListInvokeArgs(), options.WithDefaults());
+        public static Output<GetSecretsListV2Result> Invoke(GetSecretsListV2InvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetSecretsListV2Result>("vault:kv/getSecretsListV2:getSecretsListV2", args ?? new GetSecretsListV2InvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetSecretsV2ListArgs : global::Pulumi.InvokeArgs
+    public sealed class GetSecretsListV2Args : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Path where KV-V2 engine is mounted.
@@ -185,13 +185,13 @@ namespace Pulumi.Vault.kv
         [Input("namespace")]
         public string? Namespace { get; set; }
 
-        public GetSecretsV2ListArgs()
+        public GetSecretsListV2Args()
         {
         }
-        public static new GetSecretsV2ListArgs Empty => new GetSecretsV2ListArgs();
+        public static new GetSecretsListV2Args Empty => new GetSecretsListV2Args();
     }
 
-    public sealed class GetSecretsV2ListInvokeArgs : global::Pulumi.InvokeArgs
+    public sealed class GetSecretsListV2InvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Path where KV-V2 engine is mounted.
@@ -217,15 +217,15 @@ namespace Pulumi.Vault.kv
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
-        public GetSecretsV2ListInvokeArgs()
+        public GetSecretsListV2InvokeArgs()
         {
         }
-        public static new GetSecretsV2ListInvokeArgs Empty => new GetSecretsV2ListInvokeArgs();
+        public static new GetSecretsListV2InvokeArgs Empty => new GetSecretsListV2InvokeArgs();
     }
 
 
     [OutputType]
-    public sealed class GetSecretsV2ListResult
+    public sealed class GetSecretsListV2Result
     {
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -244,7 +244,7 @@ namespace Pulumi.Vault.kv
         public readonly string Path;
 
         [OutputConstructor]
-        private GetSecretsV2ListResult(
+        private GetSecretsListV2Result(
             string id,
 
             string mount,

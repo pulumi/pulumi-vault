@@ -37,10 +37,10 @@ import * as utilities from "../utilities";
  *         password: "test",
  *     }),
  * });
- * const secrets = vault.kv.getSecretsV2ListOutput({
+ * const secrets = vault.kv.getSecretsListV2Output({
  *     mount: kvv2.path,
  * });
- * const nestedSecrets = kvv2.path.apply(path => vault.kv.getSecretsV2ListOutput({
+ * const nestedSecrets = kvv2.path.apply(path => vault.kv.getSecretsListV2Output({
  *     mount: path,
  *     name: vault_kv_secret_v2.test_2.name,
  * }));
@@ -49,13 +49,13 @@ import * as utilities from "../utilities";
  *
  * Use of this resource requires the `read` capability on the given path.
  */
-export function getSecretsV2List(args: GetSecretsV2ListArgs, opts?: pulumi.InvokeOptions): Promise<GetSecretsV2ListResult> {
+export function getSecretsListV2(args: GetSecretsListV2Args, opts?: pulumi.InvokeOptions): Promise<GetSecretsListV2Result> {
     if (!opts) {
         opts = {}
     }
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-    return pulumi.runtime.invoke("vault:kv/getSecretsV2List:getSecretsV2List", {
+    return pulumi.runtime.invoke("vault:kv/getSecretsListV2:getSecretsListV2", {
         "mount": args.mount,
         "name": args.name,
         "namespace": args.namespace,
@@ -63,9 +63,9 @@ export function getSecretsV2List(args: GetSecretsV2ListArgs, opts?: pulumi.Invok
 }
 
 /**
- * A collection of arguments for invoking getSecretsV2List.
+ * A collection of arguments for invoking getSecretsListV2.
  */
-export interface GetSecretsV2ListArgs {
+export interface GetSecretsListV2Args {
     /**
      * Path where KV-V2 engine is mounted.
      */
@@ -87,9 +87,9 @@ export interface GetSecretsV2ListArgs {
 }
 
 /**
- * A collection of values returned by getSecretsV2List.
+ * A collection of values returned by getSecretsListV2.
  */
-export interface GetSecretsV2ListResult {
+export interface GetSecretsListV2Result {
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -107,14 +107,14 @@ export interface GetSecretsV2ListResult {
     readonly path: string;
 }
 
-export function getSecretsV2ListOutput(args: GetSecretsV2ListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretsV2ListResult> {
-    return pulumi.output(args).apply(a => getSecretsV2List(a, opts))
+export function getSecretsListV2Output(args: GetSecretsListV2OutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretsListV2Result> {
+    return pulumi.output(args).apply(a => getSecretsListV2(a, opts))
 }
 
 /**
- * A collection of arguments for invoking getSecretsV2List.
+ * A collection of arguments for invoking getSecretsListV2.
  */
-export interface GetSecretsV2ListOutputArgs {
+export interface GetSecretsListV2OutputArgs {
     /**
      * Path where KV-V2 engine is mounted.
      */

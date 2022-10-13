@@ -17,11 +17,11 @@ namespace Pulumi.Vault.Identity
     /// Resource can be imported using its `uuid` field, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:identity/mfaPingID:MfaPingID example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
+    ///  $ pulumi import vault:identity/mfaPingid:MfaPingid example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
     /// ```
     /// </summary>
-    [VaultResourceType("vault:identity/mfaPingID:MfaPingID")]
-    public partial class MfaPingID : global::Pulumi.CustomResource
+    [VaultResourceType("vault:identity/mfaPingid:MfaPingid")]
+    public partial class MfaPingid : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The admin URL, derived from "settings_file_base64"
@@ -115,19 +115,19 @@ namespace Pulumi.Vault.Identity
 
 
         /// <summary>
-        /// Create a MfaPingID resource with the given unique name, arguments, and options.
+        /// Create a MfaPingid resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public MfaPingID(string name, MfaPingIDArgs args, CustomResourceOptions? options = null)
-            : base("vault:identity/mfaPingID:MfaPingID", name, args ?? new MfaPingIDArgs(), MakeResourceOptions(options, ""))
+        public MfaPingid(string name, MfaPingidArgs args, CustomResourceOptions? options = null)
+            : base("vault:identity/mfaPingid:MfaPingid", name, args ?? new MfaPingidArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private MfaPingID(string name, Input<string> id, MfaPingIDState? state = null, CustomResourceOptions? options = null)
-            : base("vault:identity/mfaPingID:MfaPingID", name, state, MakeResourceOptions(options, id))
+        private MfaPingid(string name, Input<string> id, MfaPingidState? state = null, CustomResourceOptions? options = null)
+            : base("vault:identity/mfaPingid:MfaPingid", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -143,7 +143,7 @@ namespace Pulumi.Vault.Identity
             return merged;
         }
         /// <summary>
-        /// Get an existing MfaPingID resource's state with the given name, ID, and optional extra
+        /// Get an existing MfaPingid resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -151,13 +151,13 @@ namespace Pulumi.Vault.Identity
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static MfaPingID Get(string name, Input<string> id, MfaPingIDState? state = null, CustomResourceOptions? options = null)
+        public static MfaPingid Get(string name, Input<string> id, MfaPingidState? state = null, CustomResourceOptions? options = null)
         {
-            return new MfaPingID(name, id, state, options);
+            return new MfaPingid(name, id, state, options);
         }
     }
 
-    public sealed class MfaPingIDArgs : global::Pulumi.ResourceArgs
+    public sealed class MfaPingidArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Target namespace. (requires Enterprise)
@@ -177,13 +177,13 @@ namespace Pulumi.Vault.Identity
         [Input("usernameFormat")]
         public Input<string>? UsernameFormat { get; set; }
 
-        public MfaPingIDArgs()
+        public MfaPingidArgs()
         {
         }
-        public static new MfaPingIDArgs Empty => new MfaPingIDArgs();
+        public static new MfaPingidArgs Empty => new MfaPingidArgs();
     }
 
-    public sealed class MfaPingIDState : global::Pulumi.ResourceArgs
+    public sealed class MfaPingidState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The admin URL, derived from "settings_file_base64"
@@ -275,9 +275,9 @@ namespace Pulumi.Vault.Identity
         [Input("uuid")]
         public Input<string>? Uuid { get; set; }
 
-        public MfaPingIDState()
+        public MfaPingidState()
         {
         }
-        public static new MfaPingIDState Empty => new MfaPingIDState();
+        public static new MfaPingidState Empty => new MfaPingidState();
     }
 }

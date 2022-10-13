@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  *         "prod",
  *     ],
  * });
- * const id = new vault.approle.AuthBackendRoleSecretID("id", {
+ * const id = new vault.approle.AuthBackendRoleSecretId("id", {
  *     backend: approle.path,
  *     roleName: example.roleName,
  * });

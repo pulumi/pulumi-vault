@@ -13,9 +13,9 @@ export { AuthBackendRoleArgs, AuthBackendRoleState } from "./authBackendRole";
 export type AuthBackendRole = import("./authBackendRole").AuthBackendRole;
 export const AuthBackendRole: typeof import("./authBackendRole").AuthBackendRole = null as any;
 
-export { AuthBackendRoleSecretIDArgs, AuthBackendRoleSecretIDState } from "./authBackendRoleSecretID";
-export type AuthBackendRoleSecretID = import("./authBackendRoleSecretID").AuthBackendRoleSecretID;
-export const AuthBackendRoleSecretID: typeof import("./authBackendRoleSecretID").AuthBackendRoleSecretID = null as any;
+export { AuthBackendRoleSecretIdArgs, AuthBackendRoleSecretIdState } from "./authBackendRoleSecretId";
+export type AuthBackendRoleSecretId = import("./authBackendRoleSecretId").AuthBackendRoleSecretId;
+export const AuthBackendRoleSecretId: typeof import("./authBackendRoleSecretId").AuthBackendRoleSecretId = null as any;
 
 export { GetAuthBackendRoleIdArgs, GetAuthBackendRoleIdResult, GetAuthBackendRoleIdOutputArgs } from "./getAuthBackendRoleId";
 export const getAuthBackendRoleId: typeof import("./getAuthBackendRoleId").getAuthBackendRoleId = null as any;
@@ -23,7 +23,7 @@ export const getAuthBackendRoleIdOutput: typeof import("./getAuthBackendRoleId")
 
 utilities.lazyLoad(exports, ["AuthBackendLogin"], () => require("./authBackendLogin"));
 utilities.lazyLoad(exports, ["AuthBackendRole"], () => require("./authBackendRole"));
-utilities.lazyLoad(exports, ["AuthBackendRoleSecretID"], () => require("./authBackendRoleSecretID"));
+utilities.lazyLoad(exports, ["AuthBackendRoleSecretId"], () => require("./authBackendRoleSecretId"));
 utilities.lazyLoad(exports, ["getAuthBackendRoleId","getAuthBackendRoleIdOutput"], () => require("./getAuthBackendRoleId"));
 
 const _module = {
@@ -34,8 +34,8 @@ const _module = {
                 return new AuthBackendLogin(name, <any>undefined, { urn })
             case "vault:appRole/authBackendRole:AuthBackendRole":
                 return new AuthBackendRole(name, <any>undefined, { urn })
-            case "vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID":
-                return new AuthBackendRoleSecretID(name, <any>undefined, { urn })
+            case "vault:appRole/authBackendRoleSecretId:AuthBackendRoleSecretId":
+                return new AuthBackendRoleSecretId(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -43,4 +43,4 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("vault", "appRole/authBackendLogin", _module)
 pulumi.runtime.registerResourceModule("vault", "appRole/authBackendRole", _module)
-pulumi.runtime.registerResourceModule("vault", "appRole/authBackendRoleSecretID", _module)
+pulumi.runtime.registerResourceModule("vault", "appRole/authBackendRoleSecretId", _module)

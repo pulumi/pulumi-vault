@@ -13,7 +13,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 @CustomType
-public final class GetSecretSubKeysV2Result {
+public final class GetSecretSubkeysV2Result {
     private Map<String,Object> data;
     private String dataJson;
     private @Nullable Integer depth;
@@ -28,7 +28,7 @@ public final class GetSecretSubKeysV2Result {
     private String path;
     private @Nullable Integer version;
 
-    private GetSecretSubKeysV2Result() {}
+    private GetSecretSubkeysV2Result() {}
     public Map<String,Object> data() {
         return this.data;
     }
@@ -65,7 +65,7 @@ public final class GetSecretSubKeysV2Result {
         return new Builder();
     }
 
-    public static Builder builder(GetSecretSubKeysV2Result defaults) {
+    public static Builder builder(GetSecretSubkeysV2Result defaults) {
         return new Builder(defaults);
     }
     @CustomType.Builder
@@ -80,7 +80,7 @@ public final class GetSecretSubKeysV2Result {
         private String path;
         private @Nullable Integer version;
         public Builder() {}
-        public Builder(GetSecretSubKeysV2Result defaults) {
+        public Builder(GetSecretSubkeysV2Result defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.data = defaults.data;
     	      this.dataJson = defaults.dataJson;
@@ -138,8 +138,8 @@ public final class GetSecretSubKeysV2Result {
             this.version = version;
             return this;
         }
-        public GetSecretSubKeysV2Result build() {
-            final var o = new GetSecretSubKeysV2Result();
+        public GetSecretSubkeysV2Result build() {
+            final var o = new GetSecretSubkeysV2Result();
             o.data = data;
             o.dataJson = dataJson;
             o.depth = depth;

@@ -167,10 +167,10 @@ _utilities.register(
  },
  {
   "pkg": "vault",
-  "mod": "appRole/authBackendRoleSecretID",
+  "mod": "appRole/authBackendRoleSecretId",
   "fqn": "pulumi_vault.approle",
   "classes": {
-   "vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID": "AuthBackendRoleSecretID"
+   "vault:appRole/authBackendRoleSecretId:AuthBackendRoleSecretId": "AuthBackendRoleSecretId"
   }
  },
  {
@@ -495,18 +495,18 @@ _utilities.register(
  },
  {
   "pkg": "vault",
-  "mod": "identity/mfaPingID",
+  "mod": "identity/mfaPingid",
   "fqn": "pulumi_vault.identity",
   "classes": {
-   "vault:identity/mfaPingID:MfaPingID": "MfaPingID"
+   "vault:identity/mfaPingid:MfaPingid": "MfaPingid"
   }
  },
  {
   "pkg": "vault",
-  "mod": "identity/mfaTOTP",
+  "mod": "identity/mfaTotp",
   "fqn": "pulumi_vault.identity",
   "classes": {
-   "vault:identity/mfaTOTP:MfaTOTP": "MfaTOTP"
+   "vault:identity/mfaTotp:MfaTotp": "MfaTotp"
   }
  },
  {

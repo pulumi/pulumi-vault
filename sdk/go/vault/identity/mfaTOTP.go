@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := identity.NewMfaTOTP(ctx, "example", &identity.MfaTOTPArgs{
+//			_, err := identity.NewMfaTotp(ctx, "example", &identity.MfaTotpArgs{
 //				Issuer: pulumi.String("issuer1"),
 //			})
 //			if err != nil {
@@ -45,10 +45,10 @@ import (
 //
 // ```sh
 //
-//	$ pulumi import vault:identity/mfaTOTP:MfaTOTP example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
+//	$ pulumi import vault:identity/mfaTotp:MfaTotp example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
 //
 // ```
-type MfaTOTP struct {
+type MfaTotp struct {
 	pulumi.CustomResourceState
 
 	// Specifies the hashing algorithm used to generate the TOTP code. Options include SHA1, SHA256, SHA512.
@@ -85,9 +85,9 @@ type MfaTOTP struct {
 	Uuid pulumi.StringOutput `pulumi:"uuid"`
 }
 
-// NewMfaTOTP registers a new resource with the given unique name, arguments, and options.
-func NewMfaTOTP(ctx *pulumi.Context,
-	name string, args *MfaTOTPArgs, opts ...pulumi.ResourceOption) (*MfaTOTP, error) {
+// NewMfaTotp registers a new resource with the given unique name, arguments, and options.
+func NewMfaTotp(ctx *pulumi.Context,
+	name string, args *MfaTotpArgs, opts ...pulumi.ResourceOption) (*MfaTotp, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -95,28 +95,28 @@ func NewMfaTOTP(ctx *pulumi.Context,
 	if args.Issuer == nil {
 		return nil, errors.New("invalid value for required argument 'Issuer'")
 	}
-	var resource MfaTOTP
-	err := ctx.RegisterResource("vault:identity/mfaTOTP:MfaTOTP", name, args, &resource, opts...)
+	var resource MfaTotp
+	err := ctx.RegisterResource("vault:identity/mfaTotp:MfaTotp", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// GetMfaTOTP gets an existing MfaTOTP resource's state with the given name, ID, and optional
+// GetMfaTotp gets an existing MfaTotp resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetMfaTOTP(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *MfaTOTPState, opts ...pulumi.ResourceOption) (*MfaTOTP, error) {
-	var resource MfaTOTP
-	err := ctx.ReadResource("vault:identity/mfaTOTP:MfaTOTP", name, id, state, &resource, opts...)
+func GetMfaTotp(ctx *pulumi.Context,
+	name string, id pulumi.IDInput, state *MfaTotpState, opts ...pulumi.ResourceOption) (*MfaTotp, error) {
+	var resource MfaTotp
+	err := ctx.ReadResource("vault:identity/mfaTotp:MfaTotp", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// Input properties used for looking up and filtering MfaTOTP resources.
-type mfaTOTPState struct {
+// Input properties used for looking up and filtering MfaTotp resources.
+type mfaTotpState struct {
 	// Specifies the hashing algorithm used to generate the TOTP code. Options include SHA1, SHA256, SHA512.
 	Algorithm *string `pulumi:"algorithm"`
 	// The number of digits in the generated TOTP token. This value can either be 6 or 8
@@ -151,7 +151,7 @@ type mfaTOTPState struct {
 	Uuid *string `pulumi:"uuid"`
 }
 
-type MfaTOTPState struct {
+type MfaTotpState struct {
 	// Specifies the hashing algorithm used to generate the TOTP code. Options include SHA1, SHA256, SHA512.
 	Algorithm pulumi.StringPtrInput
 	// The number of digits in the generated TOTP token. This value can either be 6 or 8
@@ -186,11 +186,11 @@ type MfaTOTPState struct {
 	Uuid pulumi.StringPtrInput
 }
 
-func (MfaTOTPState) ElementType() reflect.Type {
-	return reflect.TypeOf((*mfaTOTPState)(nil)).Elem()
+func (MfaTotpState) ElementType() reflect.Type {
+	return reflect.TypeOf((*mfaTotpState)(nil)).Elem()
 }
 
-type mfaTOTPArgs struct {
+type mfaTotpArgs struct {
 	// Specifies the hashing algorithm used to generate the TOTP code. Options include SHA1, SHA256, SHA512.
 	Algorithm *string `pulumi:"algorithm"`
 	// The number of digits in the generated TOTP token. This value can either be 6 or 8
@@ -209,8 +209,8 @@ type mfaTOTPArgs struct {
 	Skew *int `pulumi:"skew"`
 }
 
-// The set of arguments for constructing a MfaTOTP resource.
-type MfaTOTPArgs struct {
+// The set of arguments for constructing a MfaTotp resource.
+type MfaTotpArgs struct {
 	// Specifies the hashing algorithm used to generate the TOTP code. Options include SHA1, SHA256, SHA512.
 	Algorithm pulumi.StringPtrInput
 	// The number of digits in the generated TOTP token. This value can either be 6 or 8
@@ -229,218 +229,218 @@ type MfaTOTPArgs struct {
 	Skew pulumi.IntPtrInput
 }
 
-func (MfaTOTPArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*mfaTOTPArgs)(nil)).Elem()
+func (MfaTotpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*mfaTotpArgs)(nil)).Elem()
 }
 
-type MfaTOTPInput interface {
+type MfaTotpInput interface {
 	pulumi.Input
 
-	ToMfaTOTPOutput() MfaTOTPOutput
-	ToMfaTOTPOutputWithContext(ctx context.Context) MfaTOTPOutput
+	ToMfaTotpOutput() MfaTotpOutput
+	ToMfaTotpOutputWithContext(ctx context.Context) MfaTotpOutput
 }
 
-func (*MfaTOTP) ElementType() reflect.Type {
-	return reflect.TypeOf((**MfaTOTP)(nil)).Elem()
+func (*MfaTotp) ElementType() reflect.Type {
+	return reflect.TypeOf((**MfaTotp)(nil)).Elem()
 }
 
-func (i *MfaTOTP) ToMfaTOTPOutput() MfaTOTPOutput {
-	return i.ToMfaTOTPOutputWithContext(context.Background())
+func (i *MfaTotp) ToMfaTotpOutput() MfaTotpOutput {
+	return i.ToMfaTotpOutputWithContext(context.Background())
 }
 
-func (i *MfaTOTP) ToMfaTOTPOutputWithContext(ctx context.Context) MfaTOTPOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MfaTOTPOutput)
+func (i *MfaTotp) ToMfaTotpOutputWithContext(ctx context.Context) MfaTotpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MfaTotpOutput)
 }
 
-// MfaTOTPArrayInput is an input type that accepts MfaTOTPArray and MfaTOTPArrayOutput values.
-// You can construct a concrete instance of `MfaTOTPArrayInput` via:
+// MfaTotpArrayInput is an input type that accepts MfaTotpArray and MfaTotpArrayOutput values.
+// You can construct a concrete instance of `MfaTotpArrayInput` via:
 //
-//	MfaTOTPArray{ MfaTOTPArgs{...} }
-type MfaTOTPArrayInput interface {
+//	MfaTotpArray{ MfaTotpArgs{...} }
+type MfaTotpArrayInput interface {
 	pulumi.Input
 
-	ToMfaTOTPArrayOutput() MfaTOTPArrayOutput
-	ToMfaTOTPArrayOutputWithContext(context.Context) MfaTOTPArrayOutput
+	ToMfaTotpArrayOutput() MfaTotpArrayOutput
+	ToMfaTotpArrayOutputWithContext(context.Context) MfaTotpArrayOutput
 }
 
-type MfaTOTPArray []MfaTOTPInput
+type MfaTotpArray []MfaTotpInput
 
-func (MfaTOTPArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*MfaTOTP)(nil)).Elem()
+func (MfaTotpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*MfaTotp)(nil)).Elem()
 }
 
-func (i MfaTOTPArray) ToMfaTOTPArrayOutput() MfaTOTPArrayOutput {
-	return i.ToMfaTOTPArrayOutputWithContext(context.Background())
+func (i MfaTotpArray) ToMfaTotpArrayOutput() MfaTotpArrayOutput {
+	return i.ToMfaTotpArrayOutputWithContext(context.Background())
 }
 
-func (i MfaTOTPArray) ToMfaTOTPArrayOutputWithContext(ctx context.Context) MfaTOTPArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MfaTOTPArrayOutput)
+func (i MfaTotpArray) ToMfaTotpArrayOutputWithContext(ctx context.Context) MfaTotpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MfaTotpArrayOutput)
 }
 
-// MfaTOTPMapInput is an input type that accepts MfaTOTPMap and MfaTOTPMapOutput values.
-// You can construct a concrete instance of `MfaTOTPMapInput` via:
+// MfaTotpMapInput is an input type that accepts MfaTotpMap and MfaTotpMapOutput values.
+// You can construct a concrete instance of `MfaTotpMapInput` via:
 //
-//	MfaTOTPMap{ "key": MfaTOTPArgs{...} }
-type MfaTOTPMapInput interface {
+//	MfaTotpMap{ "key": MfaTotpArgs{...} }
+type MfaTotpMapInput interface {
 	pulumi.Input
 
-	ToMfaTOTPMapOutput() MfaTOTPMapOutput
-	ToMfaTOTPMapOutputWithContext(context.Context) MfaTOTPMapOutput
+	ToMfaTotpMapOutput() MfaTotpMapOutput
+	ToMfaTotpMapOutputWithContext(context.Context) MfaTotpMapOutput
 }
 
-type MfaTOTPMap map[string]MfaTOTPInput
+type MfaTotpMap map[string]MfaTotpInput
 
-func (MfaTOTPMap) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*MfaTOTP)(nil)).Elem()
+func (MfaTotpMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*MfaTotp)(nil)).Elem()
 }
 
-func (i MfaTOTPMap) ToMfaTOTPMapOutput() MfaTOTPMapOutput {
-	return i.ToMfaTOTPMapOutputWithContext(context.Background())
+func (i MfaTotpMap) ToMfaTotpMapOutput() MfaTotpMapOutput {
+	return i.ToMfaTotpMapOutputWithContext(context.Background())
 }
 
-func (i MfaTOTPMap) ToMfaTOTPMapOutputWithContext(ctx context.Context) MfaTOTPMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MfaTOTPMapOutput)
+func (i MfaTotpMap) ToMfaTotpMapOutputWithContext(ctx context.Context) MfaTotpMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MfaTotpMapOutput)
 }
 
-type MfaTOTPOutput struct{ *pulumi.OutputState }
+type MfaTotpOutput struct{ *pulumi.OutputState }
 
-func (MfaTOTPOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**MfaTOTP)(nil)).Elem()
+func (MfaTotpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MfaTotp)(nil)).Elem()
 }
 
-func (o MfaTOTPOutput) ToMfaTOTPOutput() MfaTOTPOutput {
+func (o MfaTotpOutput) ToMfaTotpOutput() MfaTotpOutput {
 	return o
 }
 
-func (o MfaTOTPOutput) ToMfaTOTPOutputWithContext(ctx context.Context) MfaTOTPOutput {
+func (o MfaTotpOutput) ToMfaTotpOutputWithContext(ctx context.Context) MfaTotpOutput {
 	return o
 }
 
 // Specifies the hashing algorithm used to generate the TOTP code. Options include SHA1, SHA256, SHA512.
-func (o MfaTOTPOutput) Algorithm() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *MfaTOTP) pulumi.StringPtrOutput { return v.Algorithm }).(pulumi.StringPtrOutput)
+func (o MfaTotpOutput) Algorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MfaTotp) pulumi.StringPtrOutput { return v.Algorithm }).(pulumi.StringPtrOutput)
 }
 
 // The number of digits in the generated TOTP token. This value can either be 6 or 8
-func (o MfaTOTPOutput) Digits() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *MfaTOTP) pulumi.IntPtrOutput { return v.Digits }).(pulumi.IntPtrOutput)
+func (o MfaTotpOutput) Digits() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *MfaTotp) pulumi.IntPtrOutput { return v.Digits }).(pulumi.IntPtrOutput)
 }
 
 // The name of the key's issuing organization.
-func (o MfaTOTPOutput) Issuer() pulumi.StringOutput {
-	return o.ApplyT(func(v *MfaTOTP) pulumi.StringOutput { return v.Issuer }).(pulumi.StringOutput)
+func (o MfaTotpOutput) Issuer() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaTotp) pulumi.StringOutput { return v.Issuer }).(pulumi.StringOutput)
 }
 
 // Specifies the size in bytes of the generated key.
-func (o MfaTOTPOutput) KeySize() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *MfaTOTP) pulumi.IntPtrOutput { return v.KeySize }).(pulumi.IntPtrOutput)
+func (o MfaTotpOutput) KeySize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *MfaTotp) pulumi.IntPtrOutput { return v.KeySize }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of consecutive failed validation attempts allowed.
-func (o MfaTOTPOutput) MaxValidationAttempts() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *MfaTOTP) pulumi.IntPtrOutput { return v.MaxValidationAttempts }).(pulumi.IntPtrOutput)
+func (o MfaTotpOutput) MaxValidationAttempts() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *MfaTotp) pulumi.IntPtrOutput { return v.MaxValidationAttempts }).(pulumi.IntPtrOutput)
 }
 
 // Method ID.
-func (o MfaTOTPOutput) MethodId() pulumi.StringOutput {
-	return o.ApplyT(func(v *MfaTOTP) pulumi.StringOutput { return v.MethodId }).(pulumi.StringOutput)
+func (o MfaTotpOutput) MethodId() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaTotp) pulumi.StringOutput { return v.MethodId }).(pulumi.StringOutput)
 }
 
 // Mount accessor.
-func (o MfaTOTPOutput) MountAccessor() pulumi.StringOutput {
-	return o.ApplyT(func(v *MfaTOTP) pulumi.StringOutput { return v.MountAccessor }).(pulumi.StringOutput)
+func (o MfaTotpOutput) MountAccessor() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaTotp) pulumi.StringOutput { return v.MountAccessor }).(pulumi.StringOutput)
 }
 
 // Method name.
-func (o MfaTOTPOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v *MfaTOTP) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+func (o MfaTotpOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaTotp) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
 // Target namespace. (requires Enterprise)
-func (o MfaTOTPOutput) Namespace() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *MfaTOTP) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
+func (o MfaTotpOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MfaTotp) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Method's namespace ID.
-func (o MfaTOTPOutput) NamespaceId() pulumi.StringOutput {
-	return o.ApplyT(func(v *MfaTOTP) pulumi.StringOutput { return v.NamespaceId }).(pulumi.StringOutput)
+func (o MfaTotpOutput) NamespaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaTotp) pulumi.StringOutput { return v.NamespaceId }).(pulumi.StringOutput)
 }
 
 // Method's namespace path.
-func (o MfaTOTPOutput) NamespacePath() pulumi.StringOutput {
-	return o.ApplyT(func(v *MfaTOTP) pulumi.StringOutput { return v.NamespacePath }).(pulumi.StringOutput)
+func (o MfaTotpOutput) NamespacePath() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaTotp) pulumi.StringOutput { return v.NamespacePath }).(pulumi.StringOutput)
 }
 
 // The length of time in seconds used to generate a counter for the TOTP token calculation.
-func (o MfaTOTPOutput) Period() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *MfaTOTP) pulumi.IntPtrOutput { return v.Period }).(pulumi.IntPtrOutput)
+func (o MfaTotpOutput) Period() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *MfaTotp) pulumi.IntPtrOutput { return v.Period }).(pulumi.IntPtrOutput)
 }
 
 // The pixel size of the generated square QR code.
-func (o MfaTOTPOutput) QrSize() pulumi.IntOutput {
-	return o.ApplyT(func(v *MfaTOTP) pulumi.IntOutput { return v.QrSize }).(pulumi.IntOutput)
+func (o MfaTotpOutput) QrSize() pulumi.IntOutput {
+	return o.ApplyT(func(v *MfaTotp) pulumi.IntOutput { return v.QrSize }).(pulumi.IntOutput)
 }
 
 // The number of delay periods that are allowed when validating a TOTP token. This value can either be 0 or 1.
-func (o MfaTOTPOutput) Skew() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *MfaTOTP) pulumi.IntPtrOutput { return v.Skew }).(pulumi.IntPtrOutput)
+func (o MfaTotpOutput) Skew() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *MfaTotp) pulumi.IntPtrOutput { return v.Skew }).(pulumi.IntPtrOutput)
 }
 
 // MFA type.
-func (o MfaTOTPOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v *MfaTOTP) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+func (o MfaTotpOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaTotp) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
 // Resource UUID.
-func (o MfaTOTPOutput) Uuid() pulumi.StringOutput {
-	return o.ApplyT(func(v *MfaTOTP) pulumi.StringOutput { return v.Uuid }).(pulumi.StringOutput)
+func (o MfaTotpOutput) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaTotp) pulumi.StringOutput { return v.Uuid }).(pulumi.StringOutput)
 }
 
-type MfaTOTPArrayOutput struct{ *pulumi.OutputState }
+type MfaTotpArrayOutput struct{ *pulumi.OutputState }
 
-func (MfaTOTPArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*MfaTOTP)(nil)).Elem()
+func (MfaTotpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*MfaTotp)(nil)).Elem()
 }
 
-func (o MfaTOTPArrayOutput) ToMfaTOTPArrayOutput() MfaTOTPArrayOutput {
+func (o MfaTotpArrayOutput) ToMfaTotpArrayOutput() MfaTotpArrayOutput {
 	return o
 }
 
-func (o MfaTOTPArrayOutput) ToMfaTOTPArrayOutputWithContext(ctx context.Context) MfaTOTPArrayOutput {
+func (o MfaTotpArrayOutput) ToMfaTotpArrayOutputWithContext(ctx context.Context) MfaTotpArrayOutput {
 	return o
 }
 
-func (o MfaTOTPArrayOutput) Index(i pulumi.IntInput) MfaTOTPOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *MfaTOTP {
-		return vs[0].([]*MfaTOTP)[vs[1].(int)]
-	}).(MfaTOTPOutput)
+func (o MfaTotpArrayOutput) Index(i pulumi.IntInput) MfaTotpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *MfaTotp {
+		return vs[0].([]*MfaTotp)[vs[1].(int)]
+	}).(MfaTotpOutput)
 }
 
-type MfaTOTPMapOutput struct{ *pulumi.OutputState }
+type MfaTotpMapOutput struct{ *pulumi.OutputState }
 
-func (MfaTOTPMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*MfaTOTP)(nil)).Elem()
+func (MfaTotpMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*MfaTotp)(nil)).Elem()
 }
 
-func (o MfaTOTPMapOutput) ToMfaTOTPMapOutput() MfaTOTPMapOutput {
+func (o MfaTotpMapOutput) ToMfaTotpMapOutput() MfaTotpMapOutput {
 	return o
 }
 
-func (o MfaTOTPMapOutput) ToMfaTOTPMapOutputWithContext(ctx context.Context) MfaTOTPMapOutput {
+func (o MfaTotpMapOutput) ToMfaTotpMapOutputWithContext(ctx context.Context) MfaTotpMapOutput {
 	return o
 }
 
-func (o MfaTOTPMapOutput) MapIndex(k pulumi.StringInput) MfaTOTPOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *MfaTOTP {
-		return vs[0].(map[string]*MfaTOTP)[vs[1].(string)]
-	}).(MfaTOTPOutput)
+func (o MfaTotpMapOutput) MapIndex(k pulumi.StringInput) MfaTotpOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *MfaTotp {
+		return vs[0].(map[string]*MfaTotp)[vs[1].(string)]
+	}).(MfaTotpOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*MfaTOTPInput)(nil)).Elem(), &MfaTOTP{})
-	pulumi.RegisterInputType(reflect.TypeOf((*MfaTOTPArrayInput)(nil)).Elem(), MfaTOTPArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*MfaTOTPMapInput)(nil)).Elem(), MfaTOTPMap{})
-	pulumi.RegisterOutputType(MfaTOTPOutput{})
-	pulumi.RegisterOutputType(MfaTOTPArrayOutput{})
-	pulumi.RegisterOutputType(MfaTOTPMapOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MfaTotpInput)(nil)).Elem(), &MfaTotp{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MfaTotpArrayInput)(nil)).Elem(), MfaTotpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MfaTotpMapInput)(nil)).Elem(), MfaTotpMap{})
+	pulumi.RegisterOutputType(MfaTotpOutput{})
+	pulumi.RegisterOutputType(MfaTotpArrayOutput{})
+	pulumi.RegisterOutputType(MfaTotpMapOutput{})
 }

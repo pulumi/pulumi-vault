@@ -8,8 +8,8 @@ import com.pulumi.core.annotations.Export;
 import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
 import com.pulumi.vault.Utilities;
-import com.pulumi.vault.identity.MfaTOTPArgs;
-import com.pulumi.vault.identity.inputs.MfaTOTPState;
+import com.pulumi.vault.identity.MfaTotpArgs;
+import com.pulumi.vault.identity.inputs.MfaTotpState;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Optional;
@@ -25,8 +25,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.vault.identity.MfaTOTP;
- * import com.pulumi.vault.identity.MfaTOTPArgs;
+ * import com.pulumi.vault.identity.MfaTotp;
+ * import com.pulumi.vault.identity.MfaTotpArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -40,7 +40,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new MfaTOTP(&#34;example&#34;, MfaTOTPArgs.builder()        
+ *         var example = new MfaTotp(&#34;example&#34;, MfaTotpArgs.builder()        
  *             .issuer(&#34;issuer1&#34;)
  *             .build());
  * 
@@ -53,12 +53,12 @@ import javax.annotation.Nullable;
  * Resource can be imported using its `uuid` field, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:identity/mfaTOTP:MfaTOTP example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
+ *  $ pulumi import vault:identity/mfaTotp:MfaTotp example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
  * ```
  * 
  */
-@ResourceType(type="vault:identity/mfaTOTP:MfaTOTP")
-public class MfaTOTP extends com.pulumi.resources.CustomResource {
+@ResourceType(type="vault:identity/mfaTotp:MfaTotp")
+public class MfaTotp extends com.pulumi.resources.CustomResource {
     /**
      * Specifies the hashing algorithm used to generate the TOTP code. Options include SHA1, SHA256, SHA512.
      * 
@@ -288,15 +288,15 @@ public class MfaTOTP extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public MfaTOTP(String name) {
-        this(name, MfaTOTPArgs.Empty);
+    public MfaTotp(String name) {
+        this(name, MfaTotpArgs.Empty);
     }
     /**
      *
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public MfaTOTP(String name, MfaTOTPArgs args) {
+    public MfaTotp(String name, MfaTotpArgs args) {
         this(name, args, null);
     }
     /**
@@ -305,12 +305,12 @@ public class MfaTOTP extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public MfaTOTP(String name, MfaTOTPArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:identity/mfaTOTP:MfaTOTP", name, args == null ? MfaTOTPArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public MfaTotp(String name, MfaTotpArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:identity/mfaTotp:MfaTotp", name, args == null ? MfaTotpArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
     }
 
-    private MfaTOTP(String name, Output<String> id, @Nullable MfaTOTPState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:identity/mfaTOTP:MfaTOTP", name, state, makeResourceOptions(options, id));
+    private MfaTotp(String name, Output<String> id, @Nullable MfaTotpState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:identity/mfaTotp:MfaTotp", name, state, makeResourceOptions(options, id));
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
@@ -329,7 +329,7 @@ public class MfaTOTP extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static MfaTOTP get(String name, Output<String> id, @Nullable MfaTOTPState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        return new MfaTOTP(name, id, state, options);
+    public static MfaTotp get(String name, Output<String> id, @Nullable MfaTotpState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        return new MfaTotp(name, id, state, options);
     }
 }

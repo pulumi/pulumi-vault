@@ -34,8 +34,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.vault.AuthBackendArgs;
  * import com.pulumi.vault.appRole.AuthBackendRole;
  * import com.pulumi.vault.appRole.AuthBackendRoleArgs;
- * import com.pulumi.vault.appRole.AuthBackendRoleSecretID;
- * import com.pulumi.vault.appRole.AuthBackendRoleSecretIDArgs;
+ * import com.pulumi.vault.appRole.AuthBackendRoleSecretId;
+ * import com.pulumi.vault.appRole.AuthBackendRoleSecretIdArgs;
  * import com.pulumi.vault.appRole.AuthBackendLogin;
  * import com.pulumi.vault.appRole.AuthBackendLoginArgs;
  * import java.util.List;
@@ -64,7 +64,7 @@ import javax.annotation.Nullable;
  *                 &#34;prod&#34;)
  *             .build());
  * 
- *         var id = new AuthBackendRoleSecretID(&#34;id&#34;, AuthBackendRoleSecretIDArgs.builder()        
+ *         var id = new AuthBackendRoleSecretId(&#34;id&#34;, AuthBackendRoleSecretIdArgs.builder()        
  *             .backend(approle.path())
  *             .roleName(example.roleName())
  *             .build());

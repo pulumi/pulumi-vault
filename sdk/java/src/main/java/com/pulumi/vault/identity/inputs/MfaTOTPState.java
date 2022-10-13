@@ -12,9 +12,9 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 
-public final class MfaTOTPState extends com.pulumi.resources.ResourceArgs {
+public final class MfaTotpState extends com.pulumi.resources.ResourceArgs {
 
-    public static final MfaTOTPState Empty = new MfaTOTPState();
+    public static final MfaTotpState Empty = new MfaTotpState();
 
     /**
      * Specifies the hashing algorithm used to generate the TOTP code. Options include SHA1, SHA256, SHA512.
@@ -256,9 +256,9 @@ public final class MfaTOTPState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.uuid);
     }
 
-    private MfaTOTPState() {}
+    private MfaTotpState() {}
 
-    private MfaTOTPState(MfaTOTPState $) {
+    private MfaTotpState(MfaTotpState $) {
         this.algorithm = $.algorithm;
         this.digits = $.digits;
         this.issuer = $.issuer;
@@ -280,19 +280,19 @@ public final class MfaTOTPState extends com.pulumi.resources.ResourceArgs {
     public static Builder builder() {
         return new Builder();
     }
-    public static Builder builder(MfaTOTPState defaults) {
+    public static Builder builder(MfaTotpState defaults) {
         return new Builder(defaults);
     }
 
     public static final class Builder {
-        private MfaTOTPState $;
+        private MfaTotpState $;
 
         public Builder() {
-            $ = new MfaTOTPState();
+            $ = new MfaTotpState();
         }
 
-        public Builder(MfaTOTPState defaults) {
-            $ = new MfaTOTPState(Objects.requireNonNull(defaults));
+        public Builder(MfaTotpState defaults) {
+            $ = new MfaTotpState(Objects.requireNonNull(defaults));
         }
 
         /**
@@ -631,7 +631,7 @@ public final class MfaTOTPState extends com.pulumi.resources.ResourceArgs {
             return uuid(Output.of(uuid));
         }
 
-        public MfaTOTPState build() {
+        public MfaTotpState build() {
             return $;
         }
     }

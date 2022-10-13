@@ -11,9 +11,9 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 
-public final class GetSecretSubKeysV2PlainArgs extends com.pulumi.resources.InvokeArgs {
+public final class GetSecretSubkeysV2PlainArgs extends com.pulumi.resources.InvokeArgs {
 
-    public static final GetSecretSubKeysV2PlainArgs Empty = new GetSecretSubKeysV2PlainArgs();
+    public static final GetSecretSubkeysV2PlainArgs Empty = new GetSecretSubkeysV2PlainArgs();
 
     @Import(name="depth")
     private @Nullable Integer depth;
@@ -50,9 +50,9 @@ public final class GetSecretSubKeysV2PlainArgs extends com.pulumi.resources.Invo
         return Optional.ofNullable(this.version);
     }
 
-    private GetSecretSubKeysV2PlainArgs() {}
+    private GetSecretSubkeysV2PlainArgs() {}
 
-    private GetSecretSubKeysV2PlainArgs(GetSecretSubKeysV2PlainArgs $) {
+    private GetSecretSubkeysV2PlainArgs(GetSecretSubkeysV2PlainArgs $) {
         this.depth = $.depth;
         this.mount = $.mount;
         this.name = $.name;
@@ -63,19 +63,19 @@ public final class GetSecretSubKeysV2PlainArgs extends com.pulumi.resources.Invo
     public static Builder builder() {
         return new Builder();
     }
-    public static Builder builder(GetSecretSubKeysV2PlainArgs defaults) {
+    public static Builder builder(GetSecretSubkeysV2PlainArgs defaults) {
         return new Builder(defaults);
     }
 
     public static final class Builder {
-        private GetSecretSubKeysV2PlainArgs $;
+        private GetSecretSubkeysV2PlainArgs $;
 
         public Builder() {
-            $ = new GetSecretSubKeysV2PlainArgs();
+            $ = new GetSecretSubkeysV2PlainArgs();
         }
 
-        public Builder(GetSecretSubKeysV2PlainArgs defaults) {
-            $ = new GetSecretSubKeysV2PlainArgs(Objects.requireNonNull(defaults));
+        public Builder(GetSecretSubkeysV2PlainArgs defaults) {
+            $ = new GetSecretSubkeysV2PlainArgs(Objects.requireNonNull(defaults));
         }
 
         public Builder depth(@Nullable Integer depth) {
@@ -103,7 +103,7 @@ public final class GetSecretSubKeysV2PlainArgs extends com.pulumi.resources.Invo
             return this;
         }
 
-        public GetSecretSubKeysV2PlainArgs build() {
+        public GetSecretSubkeysV2PlainArgs build() {
             $.mount = Objects.requireNonNull($.mount, "expected parameter 'mount' to be non-null");
             $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
             return $;

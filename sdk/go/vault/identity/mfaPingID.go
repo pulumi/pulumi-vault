@@ -19,10 +19,10 @@ import (
 //
 // ```sh
 //
-//	$ pulumi import vault:identity/mfaPingID:MfaPingID example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
+//	$ pulumi import vault:identity/mfaPingid:MfaPingid example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
 //
 // ```
-type MfaPingID struct {
+type MfaPingid struct {
 	pulumi.CustomResourceState
 
 	// The admin URL, derived from "settingsFileBase64"
@@ -57,9 +57,9 @@ type MfaPingID struct {
 	Uuid pulumi.StringOutput `pulumi:"uuid"`
 }
 
-// NewMfaPingID registers a new resource with the given unique name, arguments, and options.
-func NewMfaPingID(ctx *pulumi.Context,
-	name string, args *MfaPingIDArgs, opts ...pulumi.ResourceOption) (*MfaPingID, error) {
+// NewMfaPingid registers a new resource with the given unique name, arguments, and options.
+func NewMfaPingid(ctx *pulumi.Context,
+	name string, args *MfaPingidArgs, opts ...pulumi.ResourceOption) (*MfaPingid, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -67,28 +67,28 @@ func NewMfaPingID(ctx *pulumi.Context,
 	if args.SettingsFileBase64 == nil {
 		return nil, errors.New("invalid value for required argument 'SettingsFileBase64'")
 	}
-	var resource MfaPingID
-	err := ctx.RegisterResource("vault:identity/mfaPingID:MfaPingID", name, args, &resource, opts...)
+	var resource MfaPingid
+	err := ctx.RegisterResource("vault:identity/mfaPingid:MfaPingid", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// GetMfaPingID gets an existing MfaPingID resource's state with the given name, ID, and optional
+// GetMfaPingid gets an existing MfaPingid resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetMfaPingID(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *MfaPingIDState, opts ...pulumi.ResourceOption) (*MfaPingID, error) {
-	var resource MfaPingID
-	err := ctx.ReadResource("vault:identity/mfaPingID:MfaPingID", name, id, state, &resource, opts...)
+func GetMfaPingid(ctx *pulumi.Context,
+	name string, id pulumi.IDInput, state *MfaPingidState, opts ...pulumi.ResourceOption) (*MfaPingid, error) {
+	var resource MfaPingid
+	err := ctx.ReadResource("vault:identity/mfaPingid:MfaPingid", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// Input properties used for looking up and filtering MfaPingID resources.
-type mfaPingIDState struct {
+// Input properties used for looking up and filtering MfaPingid resources.
+type mfaPingidState struct {
 	// The admin URL, derived from "settingsFileBase64"
 	AdminUrl *string `pulumi:"adminUrl"`
 	// A unique identifier of the organization, derived from "settingsFileBase64"
@@ -121,7 +121,7 @@ type mfaPingIDState struct {
 	Uuid *string `pulumi:"uuid"`
 }
 
-type MfaPingIDState struct {
+type MfaPingidState struct {
 	// The admin URL, derived from "settingsFileBase64"
 	AdminUrl pulumi.StringPtrInput
 	// A unique identifier of the organization, derived from "settingsFileBase64"
@@ -154,11 +154,11 @@ type MfaPingIDState struct {
 	Uuid pulumi.StringPtrInput
 }
 
-func (MfaPingIDState) ElementType() reflect.Type {
-	return reflect.TypeOf((*mfaPingIDState)(nil)).Elem()
+func (MfaPingidState) ElementType() reflect.Type {
+	return reflect.TypeOf((*mfaPingidState)(nil)).Elem()
 }
 
-type mfaPingIDArgs struct {
+type mfaPingidArgs struct {
 	// Target namespace. (requires Enterprise)
 	Namespace *string `pulumi:"namespace"`
 	// A base64-encoded third-party settings contents as retrieved from PingID's configuration page.
@@ -167,8 +167,8 @@ type mfaPingIDArgs struct {
 	UsernameFormat *string `pulumi:"usernameFormat"`
 }
 
-// The set of arguments for constructing a MfaPingID resource.
-type MfaPingIDArgs struct {
+// The set of arguments for constructing a MfaPingid resource.
+type MfaPingidArgs struct {
 	// Target namespace. (requires Enterprise)
 	Namespace pulumi.StringPtrInput
 	// A base64-encoded third-party settings contents as retrieved from PingID's configuration page.
@@ -177,213 +177,213 @@ type MfaPingIDArgs struct {
 	UsernameFormat pulumi.StringPtrInput
 }
 
-func (MfaPingIDArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*mfaPingIDArgs)(nil)).Elem()
+func (MfaPingidArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*mfaPingidArgs)(nil)).Elem()
 }
 
-type MfaPingIDInput interface {
+type MfaPingidInput interface {
 	pulumi.Input
 
-	ToMfaPingIDOutput() MfaPingIDOutput
-	ToMfaPingIDOutputWithContext(ctx context.Context) MfaPingIDOutput
+	ToMfaPingidOutput() MfaPingidOutput
+	ToMfaPingidOutputWithContext(ctx context.Context) MfaPingidOutput
 }
 
-func (*MfaPingID) ElementType() reflect.Type {
-	return reflect.TypeOf((**MfaPingID)(nil)).Elem()
+func (*MfaPingid) ElementType() reflect.Type {
+	return reflect.TypeOf((**MfaPingid)(nil)).Elem()
 }
 
-func (i *MfaPingID) ToMfaPingIDOutput() MfaPingIDOutput {
-	return i.ToMfaPingIDOutputWithContext(context.Background())
+func (i *MfaPingid) ToMfaPingidOutput() MfaPingidOutput {
+	return i.ToMfaPingidOutputWithContext(context.Background())
 }
 
-func (i *MfaPingID) ToMfaPingIDOutputWithContext(ctx context.Context) MfaPingIDOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MfaPingIDOutput)
+func (i *MfaPingid) ToMfaPingidOutputWithContext(ctx context.Context) MfaPingidOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MfaPingidOutput)
 }
 
-// MfaPingIDArrayInput is an input type that accepts MfaPingIDArray and MfaPingIDArrayOutput values.
-// You can construct a concrete instance of `MfaPingIDArrayInput` via:
+// MfaPingidArrayInput is an input type that accepts MfaPingidArray and MfaPingidArrayOutput values.
+// You can construct a concrete instance of `MfaPingidArrayInput` via:
 //
-//	MfaPingIDArray{ MfaPingIDArgs{...} }
-type MfaPingIDArrayInput interface {
+//	MfaPingidArray{ MfaPingidArgs{...} }
+type MfaPingidArrayInput interface {
 	pulumi.Input
 
-	ToMfaPingIDArrayOutput() MfaPingIDArrayOutput
-	ToMfaPingIDArrayOutputWithContext(context.Context) MfaPingIDArrayOutput
+	ToMfaPingidArrayOutput() MfaPingidArrayOutput
+	ToMfaPingidArrayOutputWithContext(context.Context) MfaPingidArrayOutput
 }
 
-type MfaPingIDArray []MfaPingIDInput
+type MfaPingidArray []MfaPingidInput
 
-func (MfaPingIDArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*MfaPingID)(nil)).Elem()
+func (MfaPingidArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*MfaPingid)(nil)).Elem()
 }
 
-func (i MfaPingIDArray) ToMfaPingIDArrayOutput() MfaPingIDArrayOutput {
-	return i.ToMfaPingIDArrayOutputWithContext(context.Background())
+func (i MfaPingidArray) ToMfaPingidArrayOutput() MfaPingidArrayOutput {
+	return i.ToMfaPingidArrayOutputWithContext(context.Background())
 }
 
-func (i MfaPingIDArray) ToMfaPingIDArrayOutputWithContext(ctx context.Context) MfaPingIDArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MfaPingIDArrayOutput)
+func (i MfaPingidArray) ToMfaPingidArrayOutputWithContext(ctx context.Context) MfaPingidArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MfaPingidArrayOutput)
 }
 
-// MfaPingIDMapInput is an input type that accepts MfaPingIDMap and MfaPingIDMapOutput values.
-// You can construct a concrete instance of `MfaPingIDMapInput` via:
+// MfaPingidMapInput is an input type that accepts MfaPingidMap and MfaPingidMapOutput values.
+// You can construct a concrete instance of `MfaPingidMapInput` via:
 //
-//	MfaPingIDMap{ "key": MfaPingIDArgs{...} }
-type MfaPingIDMapInput interface {
+//	MfaPingidMap{ "key": MfaPingidArgs{...} }
+type MfaPingidMapInput interface {
 	pulumi.Input
 
-	ToMfaPingIDMapOutput() MfaPingIDMapOutput
-	ToMfaPingIDMapOutputWithContext(context.Context) MfaPingIDMapOutput
+	ToMfaPingidMapOutput() MfaPingidMapOutput
+	ToMfaPingidMapOutputWithContext(context.Context) MfaPingidMapOutput
 }
 
-type MfaPingIDMap map[string]MfaPingIDInput
+type MfaPingidMap map[string]MfaPingidInput
 
-func (MfaPingIDMap) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*MfaPingID)(nil)).Elem()
+func (MfaPingidMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*MfaPingid)(nil)).Elem()
 }
 
-func (i MfaPingIDMap) ToMfaPingIDMapOutput() MfaPingIDMapOutput {
-	return i.ToMfaPingIDMapOutputWithContext(context.Background())
+func (i MfaPingidMap) ToMfaPingidMapOutput() MfaPingidMapOutput {
+	return i.ToMfaPingidMapOutputWithContext(context.Background())
 }
 
-func (i MfaPingIDMap) ToMfaPingIDMapOutputWithContext(ctx context.Context) MfaPingIDMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MfaPingIDMapOutput)
+func (i MfaPingidMap) ToMfaPingidMapOutputWithContext(ctx context.Context) MfaPingidMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MfaPingidMapOutput)
 }
 
-type MfaPingIDOutput struct{ *pulumi.OutputState }
+type MfaPingidOutput struct{ *pulumi.OutputState }
 
-func (MfaPingIDOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**MfaPingID)(nil)).Elem()
+func (MfaPingidOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MfaPingid)(nil)).Elem()
 }
 
-func (o MfaPingIDOutput) ToMfaPingIDOutput() MfaPingIDOutput {
+func (o MfaPingidOutput) ToMfaPingidOutput() MfaPingidOutput {
 	return o
 }
 
-func (o MfaPingIDOutput) ToMfaPingIDOutputWithContext(ctx context.Context) MfaPingIDOutput {
+func (o MfaPingidOutput) ToMfaPingidOutputWithContext(ctx context.Context) MfaPingidOutput {
 	return o
 }
 
 // The admin URL, derived from "settingsFileBase64"
-func (o MfaPingIDOutput) AdminUrl() pulumi.StringOutput {
-	return o.ApplyT(func(v *MfaPingID) pulumi.StringOutput { return v.AdminUrl }).(pulumi.StringOutput)
+func (o MfaPingidOutput) AdminUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaPingid) pulumi.StringOutput { return v.AdminUrl }).(pulumi.StringOutput)
 }
 
 // A unique identifier of the organization, derived from "settingsFileBase64"
-func (o MfaPingIDOutput) AuthenticatorUrl() pulumi.StringOutput {
-	return o.ApplyT(func(v *MfaPingID) pulumi.StringOutput { return v.AuthenticatorUrl }).(pulumi.StringOutput)
+func (o MfaPingidOutput) AuthenticatorUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaPingid) pulumi.StringOutput { return v.AuthenticatorUrl }).(pulumi.StringOutput)
 }
 
 // The IDP URL, derived from "settingsFileBase64"
-func (o MfaPingIDOutput) IdpUrl() pulumi.StringOutput {
-	return o.ApplyT(func(v *MfaPingID) pulumi.StringOutput { return v.IdpUrl }).(pulumi.StringOutput)
+func (o MfaPingidOutput) IdpUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaPingid) pulumi.StringOutput { return v.IdpUrl }).(pulumi.StringOutput)
 }
 
 // Method ID.
-func (o MfaPingIDOutput) MethodId() pulumi.StringOutput {
-	return o.ApplyT(func(v *MfaPingID) pulumi.StringOutput { return v.MethodId }).(pulumi.StringOutput)
+func (o MfaPingidOutput) MethodId() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaPingid) pulumi.StringOutput { return v.MethodId }).(pulumi.StringOutput)
 }
 
 // Mount accessor.
-func (o MfaPingIDOutput) MountAccessor() pulumi.StringOutput {
-	return o.ApplyT(func(v *MfaPingID) pulumi.StringOutput { return v.MountAccessor }).(pulumi.StringOutput)
+func (o MfaPingidOutput) MountAccessor() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaPingid) pulumi.StringOutput { return v.MountAccessor }).(pulumi.StringOutput)
 }
 
 // Method name.
-func (o MfaPingIDOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v *MfaPingID) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+func (o MfaPingidOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaPingid) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
 // Target namespace. (requires Enterprise)
-func (o MfaPingIDOutput) Namespace() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *MfaPingID) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
+func (o MfaPingidOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MfaPingid) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Method's namespace ID.
-func (o MfaPingIDOutput) NamespaceId() pulumi.StringOutput {
-	return o.ApplyT(func(v *MfaPingID) pulumi.StringOutput { return v.NamespaceId }).(pulumi.StringOutput)
+func (o MfaPingidOutput) NamespaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaPingid) pulumi.StringOutput { return v.NamespaceId }).(pulumi.StringOutput)
 }
 
 // Method's namespace path.
-func (o MfaPingIDOutput) NamespacePath() pulumi.StringOutput {
-	return o.ApplyT(func(v *MfaPingID) pulumi.StringOutput { return v.NamespacePath }).(pulumi.StringOutput)
+func (o MfaPingidOutput) NamespacePath() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaPingid) pulumi.StringOutput { return v.NamespacePath }).(pulumi.StringOutput)
 }
 
 // The name of the PingID client organization, derived from "settingsFileBase64"
-func (o MfaPingIDOutput) OrgAlias() pulumi.StringOutput {
-	return o.ApplyT(func(v *MfaPingID) pulumi.StringOutput { return v.OrgAlias }).(pulumi.StringOutput)
+func (o MfaPingidOutput) OrgAlias() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaPingid) pulumi.StringOutput { return v.OrgAlias }).(pulumi.StringOutput)
 }
 
 // A base64-encoded third-party settings contents as retrieved from PingID's configuration page.
-func (o MfaPingIDOutput) SettingsFileBase64() pulumi.StringOutput {
-	return o.ApplyT(func(v *MfaPingID) pulumi.StringOutput { return v.SettingsFileBase64 }).(pulumi.StringOutput)
+func (o MfaPingidOutput) SettingsFileBase64() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaPingid) pulumi.StringOutput { return v.SettingsFileBase64 }).(pulumi.StringOutput)
 }
 
 // MFA type.
-func (o MfaPingIDOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v *MfaPingID) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+func (o MfaPingidOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaPingid) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
 // Use signature value, derived from "settingsFileBase64"
-func (o MfaPingIDOutput) UseSignature() pulumi.BoolOutput {
-	return o.ApplyT(func(v *MfaPingID) pulumi.BoolOutput { return v.UseSignature }).(pulumi.BoolOutput)
+func (o MfaPingidOutput) UseSignature() pulumi.BoolOutput {
+	return o.ApplyT(func(v *MfaPingid) pulumi.BoolOutput { return v.UseSignature }).(pulumi.BoolOutput)
 }
 
 // A template string for mapping Identity names to MFA methods.
-func (o MfaPingIDOutput) UsernameFormat() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *MfaPingID) pulumi.StringPtrOutput { return v.UsernameFormat }).(pulumi.StringPtrOutput)
+func (o MfaPingidOutput) UsernameFormat() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MfaPingid) pulumi.StringPtrOutput { return v.UsernameFormat }).(pulumi.StringPtrOutput)
 }
 
 // Resource UUID.
-func (o MfaPingIDOutput) Uuid() pulumi.StringOutput {
-	return o.ApplyT(func(v *MfaPingID) pulumi.StringOutput { return v.Uuid }).(pulumi.StringOutput)
+func (o MfaPingidOutput) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaPingid) pulumi.StringOutput { return v.Uuid }).(pulumi.StringOutput)
 }
 
-type MfaPingIDArrayOutput struct{ *pulumi.OutputState }
+type MfaPingidArrayOutput struct{ *pulumi.OutputState }
 
-func (MfaPingIDArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*MfaPingID)(nil)).Elem()
+func (MfaPingidArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*MfaPingid)(nil)).Elem()
 }
 
-func (o MfaPingIDArrayOutput) ToMfaPingIDArrayOutput() MfaPingIDArrayOutput {
+func (o MfaPingidArrayOutput) ToMfaPingidArrayOutput() MfaPingidArrayOutput {
 	return o
 }
 
-func (o MfaPingIDArrayOutput) ToMfaPingIDArrayOutputWithContext(ctx context.Context) MfaPingIDArrayOutput {
+func (o MfaPingidArrayOutput) ToMfaPingidArrayOutputWithContext(ctx context.Context) MfaPingidArrayOutput {
 	return o
 }
 
-func (o MfaPingIDArrayOutput) Index(i pulumi.IntInput) MfaPingIDOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *MfaPingID {
-		return vs[0].([]*MfaPingID)[vs[1].(int)]
-	}).(MfaPingIDOutput)
+func (o MfaPingidArrayOutput) Index(i pulumi.IntInput) MfaPingidOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *MfaPingid {
+		return vs[0].([]*MfaPingid)[vs[1].(int)]
+	}).(MfaPingidOutput)
 }
 
-type MfaPingIDMapOutput struct{ *pulumi.OutputState }
+type MfaPingidMapOutput struct{ *pulumi.OutputState }
 
-func (MfaPingIDMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*MfaPingID)(nil)).Elem()
+func (MfaPingidMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*MfaPingid)(nil)).Elem()
 }
 
-func (o MfaPingIDMapOutput) ToMfaPingIDMapOutput() MfaPingIDMapOutput {
+func (o MfaPingidMapOutput) ToMfaPingidMapOutput() MfaPingidMapOutput {
 	return o
 }
 
-func (o MfaPingIDMapOutput) ToMfaPingIDMapOutputWithContext(ctx context.Context) MfaPingIDMapOutput {
+func (o MfaPingidMapOutput) ToMfaPingidMapOutputWithContext(ctx context.Context) MfaPingidMapOutput {
 	return o
 }
 
-func (o MfaPingIDMapOutput) MapIndex(k pulumi.StringInput) MfaPingIDOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *MfaPingID {
-		return vs[0].(map[string]*MfaPingID)[vs[1].(string)]
-	}).(MfaPingIDOutput)
+func (o MfaPingidMapOutput) MapIndex(k pulumi.StringInput) MfaPingidOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *MfaPingid {
+		return vs[0].(map[string]*MfaPingid)[vs[1].(string)]
+	}).(MfaPingidOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*MfaPingIDInput)(nil)).Elem(), &MfaPingID{})
-	pulumi.RegisterInputType(reflect.TypeOf((*MfaPingIDArrayInput)(nil)).Elem(), MfaPingIDArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*MfaPingIDMapInput)(nil)).Elem(), MfaPingIDMap{})
-	pulumi.RegisterOutputType(MfaPingIDOutput{})
-	pulumi.RegisterOutputType(MfaPingIDArrayOutput{})
-	pulumi.RegisterOutputType(MfaPingIDMapOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MfaPingidInput)(nil)).Elem(), &MfaPingid{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MfaPingidArrayInput)(nil)).Elem(), MfaPingidArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MfaPingidMapInput)(nil)).Elem(), MfaPingidMap{})
+	pulumi.RegisterOutputType(MfaPingidOutput{})
+	pulumi.RegisterOutputType(MfaPingidArrayOutput{})
+	pulumi.RegisterOutputType(MfaPingidMapOutput{})
 }

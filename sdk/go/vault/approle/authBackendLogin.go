@@ -48,7 +48,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			id, err := appRole.NewAuthBackendRoleSecretID(ctx, "id", &appRole.AuthBackendRoleSecretIDArgs{
+//			id, err := appRole.NewAuthBackendRoleSecretId(ctx, "id", &appRole.AuthBackendRoleSecretIdArgs{
 //				Backend:  approle.Path,
 //				RoleName: example.RoleName,
 //			})

@@ -4,13 +4,13 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-export function getSecretSubKeysV2(args: GetSecretSubKeysV2Args, opts?: pulumi.InvokeOptions): Promise<GetSecretSubKeysV2Result> {
+export function getSecretSubkeysV2(args: GetSecretSubkeysV2Args, opts?: pulumi.InvokeOptions): Promise<GetSecretSubkeysV2Result> {
     if (!opts) {
         opts = {}
     }
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-    return pulumi.runtime.invoke("vault:kv/getSecretSubKeysV2:getSecretSubKeysV2", {
+    return pulumi.runtime.invoke("vault:kv/getSecretSubkeysV2:getSecretSubkeysV2", {
         "depth": args.depth,
         "mount": args.mount,
         "name": args.name,
@@ -20,9 +20,9 @@ export function getSecretSubKeysV2(args: GetSecretSubKeysV2Args, opts?: pulumi.I
 }
 
 /**
- * A collection of arguments for invoking getSecretSubKeysV2.
+ * A collection of arguments for invoking getSecretSubkeysV2.
  */
-export interface GetSecretSubKeysV2Args {
+export interface GetSecretSubkeysV2Args {
     depth?: number;
     mount: string;
     name: string;
@@ -31,9 +31,9 @@ export interface GetSecretSubKeysV2Args {
 }
 
 /**
- * A collection of values returned by getSecretSubKeysV2.
+ * A collection of values returned by getSecretSubkeysV2.
  */
-export interface GetSecretSubKeysV2Result {
+export interface GetSecretSubkeysV2Result {
     readonly data: {[key: string]: any};
     readonly dataJson: string;
     readonly depth?: number;
@@ -48,14 +48,14 @@ export interface GetSecretSubKeysV2Result {
     readonly version?: number;
 }
 
-export function getSecretSubKeysV2Output(args: GetSecretSubKeysV2OutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretSubKeysV2Result> {
-    return pulumi.output(args).apply(a => getSecretSubKeysV2(a, opts))
+export function getSecretSubkeysV2Output(args: GetSecretSubkeysV2OutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretSubkeysV2Result> {
+    return pulumi.output(args).apply(a => getSecretSubkeysV2(a, opts))
 }
 
 /**
- * A collection of arguments for invoking getSecretSubKeysV2.
+ * A collection of arguments for invoking getSecretSubkeysV2.
  */
-export interface GetSecretSubKeysV2OutputArgs {
+export interface GetSecretSubkeysV2OutputArgs {
     depth?: pulumi.Input<number>;
     mount: pulumi.Input<string>;
     name: pulumi.Input<string>;

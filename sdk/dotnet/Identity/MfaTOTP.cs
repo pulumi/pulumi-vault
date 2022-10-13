@@ -21,7 +21,7 @@ namespace Pulumi.Vault.Identity
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Vault.Identity.MfaTOTP("example", new()
+    ///     var example = new Vault.Identity.MfaTotp("example", new()
     ///     {
     ///         Issuer = "issuer1",
     ///     });
@@ -34,11 +34,11 @@ namespace Pulumi.Vault.Identity
     /// Resource can be imported using its `uuid` field, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:identity/mfaTOTP:MfaTOTP example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
+    ///  $ pulumi import vault:identity/mfaTotp:MfaTotp example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
     /// ```
     /// </summary>
-    [VaultResourceType("vault:identity/mfaTOTP:MfaTOTP")]
-    public partial class MfaTOTP : global::Pulumi.CustomResource
+    [VaultResourceType("vault:identity/mfaTotp:MfaTotp")]
+    public partial class MfaTotp : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Specifies the hashing algorithm used to generate the TOTP code. Options include SHA1, SHA256, SHA512.
@@ -138,19 +138,19 @@ namespace Pulumi.Vault.Identity
 
 
         /// <summary>
-        /// Create a MfaTOTP resource with the given unique name, arguments, and options.
+        /// Create a MfaTotp resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public MfaTOTP(string name, MfaTOTPArgs args, CustomResourceOptions? options = null)
-            : base("vault:identity/mfaTOTP:MfaTOTP", name, args ?? new MfaTOTPArgs(), MakeResourceOptions(options, ""))
+        public MfaTotp(string name, MfaTotpArgs args, CustomResourceOptions? options = null)
+            : base("vault:identity/mfaTotp:MfaTotp", name, args ?? new MfaTotpArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private MfaTOTP(string name, Input<string> id, MfaTOTPState? state = null, CustomResourceOptions? options = null)
-            : base("vault:identity/mfaTOTP:MfaTOTP", name, state, MakeResourceOptions(options, id))
+        private MfaTotp(string name, Input<string> id, MfaTotpState? state = null, CustomResourceOptions? options = null)
+            : base("vault:identity/mfaTotp:MfaTotp", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -166,7 +166,7 @@ namespace Pulumi.Vault.Identity
             return merged;
         }
         /// <summary>
-        /// Get an existing MfaTOTP resource's state with the given name, ID, and optional extra
+        /// Get an existing MfaTotp resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -174,13 +174,13 @@ namespace Pulumi.Vault.Identity
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static MfaTOTP Get(string name, Input<string> id, MfaTOTPState? state = null, CustomResourceOptions? options = null)
+        public static MfaTotp Get(string name, Input<string> id, MfaTotpState? state = null, CustomResourceOptions? options = null)
         {
-            return new MfaTOTP(name, id, state, options);
+            return new MfaTotp(name, id, state, options);
         }
     }
 
-    public sealed class MfaTOTPArgs : global::Pulumi.ResourceArgs
+    public sealed class MfaTotpArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Specifies the hashing algorithm used to generate the TOTP code. Options include SHA1, SHA256, SHA512.
@@ -230,13 +230,13 @@ namespace Pulumi.Vault.Identity
         [Input("skew")]
         public Input<int>? Skew { get; set; }
 
-        public MfaTOTPArgs()
+        public MfaTotpArgs()
         {
         }
-        public static new MfaTOTPArgs Empty => new MfaTOTPArgs();
+        public static new MfaTotpArgs Empty => new MfaTotpArgs();
     }
 
-    public sealed class MfaTOTPState : global::Pulumi.ResourceArgs
+    public sealed class MfaTotpState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Specifies the hashing algorithm used to generate the TOTP code. Options include SHA1, SHA256, SHA512.
@@ -334,9 +334,9 @@ namespace Pulumi.Vault.Identity
         [Input("uuid")]
         public Input<string>? Uuid { get; set; }
 
-        public MfaTOTPState()
+        public MfaTotpState()
         {
         }
-        public static new MfaTOTPState Empty => new MfaTOTPState();
+        public static new MfaTotpState Empty => new MfaTotpState();
     }
 }

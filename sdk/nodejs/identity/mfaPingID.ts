@@ -23,12 +23,12 @@ import * as utilities from "../utilities";
  * Resource can be imported using its `uuid` field, e.g.
  *
  * ```sh
- *  $ pulumi import vault:identity/mfaPingID:MfaPingID example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
+ *  $ pulumi import vault:identity/mfaPingid:MfaPingid example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
  * ```
  */
-export class MfaPingID extends pulumi.CustomResource {
+export class MfaPingid extends pulumi.CustomResource {
     /**
-     * Get an existing MfaPingID resource's state with the given name, ID, and optional extra
+     * Get an existing MfaPingid resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -36,22 +36,22 @@ export class MfaPingID extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: MfaPingIDState, opts?: pulumi.CustomResourceOptions): MfaPingID {
-        return new MfaPingID(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: MfaPingidState, opts?: pulumi.CustomResourceOptions): MfaPingid {
+        return new MfaPingid(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'vault:identity/mfaPingID:MfaPingID';
+    public static readonly __pulumiType = 'vault:identity/mfaPingid:MfaPingid';
 
     /**
-     * Returns true if the given object is an instance of MfaPingID.  This is designed to work even
+     * Returns true if the given object is an instance of MfaPingid.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is MfaPingID {
+    public static isInstance(obj: any): obj is MfaPingid {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === MfaPingID.__pulumiType;
+        return obj['__pulumiType'] === MfaPingid.__pulumiType;
     }
 
     /**
@@ -116,18 +116,18 @@ export class MfaPingID extends pulumi.CustomResource {
     public /*out*/ readonly uuid!: pulumi.Output<string>;
 
     /**
-     * Create a MfaPingID resource with the given unique name, arguments, and options.
+     * Create a MfaPingid resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: MfaPingIDArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: MfaPingIDArgs | MfaPingIDState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: MfaPingidArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: MfaPingidArgs | MfaPingidState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as MfaPingIDState | undefined;
+            const state = argsOrState as MfaPingidState | undefined;
             resourceInputs["adminUrl"] = state ? state.adminUrl : undefined;
             resourceInputs["authenticatorUrl"] = state ? state.authenticatorUrl : undefined;
             resourceInputs["idpUrl"] = state ? state.idpUrl : undefined;
@@ -144,7 +144,7 @@ export class MfaPingID extends pulumi.CustomResource {
             resourceInputs["usernameFormat"] = state ? state.usernameFormat : undefined;
             resourceInputs["uuid"] = state ? state.uuid : undefined;
         } else {
-            const args = argsOrState as MfaPingIDArgs | undefined;
+            const args = argsOrState as MfaPingidArgs | undefined;
             if ((!args || args.settingsFileBase64 === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'settingsFileBase64'");
             }
@@ -165,14 +165,14 @@ export class MfaPingID extends pulumi.CustomResource {
             resourceInputs["uuid"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(MfaPingID.__pulumiType, name, resourceInputs, opts);
+        super(MfaPingid.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering MfaPingID resources.
+ * Input properties used for looking up and filtering MfaPingid resources.
  */
-export interface MfaPingIDState {
+export interface MfaPingidState {
     /**
      * The admin URL, derived from "settingsFileBase64"
      */
@@ -236,9 +236,9 @@ export interface MfaPingIDState {
 }
 
 /**
- * The set of arguments for constructing a MfaPingID resource.
+ * The set of arguments for constructing a MfaPingid resource.
  */
-export interface MfaPingIDArgs {
+export interface MfaPingidArgs {
     /**
      * Target namespace. (requires Enterprise)
      */

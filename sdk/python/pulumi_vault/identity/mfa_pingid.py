@@ -9,16 +9,16 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
-__all__ = ['MfaPingIDArgs', 'MfaPingID']
+__all__ = ['MfaPingidArgs', 'MfaPingid']
 
 @pulumi.input_type
-class MfaPingIDArgs:
+class MfaPingidArgs:
     def __init__(__self__, *,
                  settings_file_base64: pulumi.Input[str],
                  namespace: Optional[pulumi.Input[str]] = None,
                  username_format: Optional[pulumi.Input[str]] = None):
         """
-        The set of arguments for constructing a MfaPingID resource.
+        The set of arguments for constructing a MfaPingid resource.
         :param pulumi.Input[str] settings_file_base64: A base64-encoded third-party settings contents as retrieved from PingID's configuration page.
         :param pulumi.Input[str] namespace: Target namespace. (requires Enterprise)
         :param pulumi.Input[str] username_format: A template string for mapping Identity names to MFA methods.
@@ -67,7 +67,7 @@ class MfaPingIDArgs:
 
 
 @pulumi.input_type
-class _MfaPingIDState:
+class _MfaPingidState:
     def __init__(__self__, *,
                  admin_url: Optional[pulumi.Input[str]] = None,
                  authenticator_url: Optional[pulumi.Input[str]] = None,
@@ -85,7 +85,7 @@ class _MfaPingIDState:
                  username_format: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None):
         """
-        Input properties used for looking up and filtering MfaPingID resources.
+        Input properties used for looking up and filtering MfaPingid resources.
         :param pulumi.Input[str] admin_url: The admin URL, derived from "settings_file_base64"
         :param pulumi.Input[str] authenticator_url: A unique identifier of the organization, derived from "settings_file_base64"
         :param pulumi.Input[str] idp_url: The IDP URL, derived from "settings_file_base64"
@@ -314,7 +314,7 @@ class _MfaPingIDState:
         pulumi.set(self, "uuid", value)
 
 
-class MfaPingID(pulumi.CustomResource):
+class MfaPingid(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -331,7 +331,7 @@ class MfaPingID(pulumi.CustomResource):
         Resource can be imported using its `uuid` field, e.g.
 
         ```sh
-         $ pulumi import vault:identity/mfaPingID:MfaPingID example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
+         $ pulumi import vault:identity/mfaPingid:MfaPingid example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
         ```
 
         :param str resource_name: The name of the resource.
@@ -344,7 +344,7 @@ class MfaPingID(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: MfaPingIDArgs,
+                 args: MfaPingidArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Resource for configuring the pingid MFA method.
@@ -354,16 +354,16 @@ class MfaPingID(pulumi.CustomResource):
         Resource can be imported using its `uuid` field, e.g.
 
         ```sh
-         $ pulumi import vault:identity/mfaPingID:MfaPingID example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
+         $ pulumi import vault:identity/mfaPingid:MfaPingid example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
         ```
 
         :param str resource_name: The name of the resource.
-        :param MfaPingIDArgs args: The arguments to use to populate this resource's properties.
+        :param MfaPingidArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(MfaPingIDArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(MfaPingidArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -382,7 +382,7 @@ class MfaPingID(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = MfaPingIDArgs.__new__(MfaPingIDArgs)
+            __props__ = MfaPingidArgs.__new__(MfaPingidArgs)
 
             __props__.__dict__["namespace"] = namespace
             if settings_file_base64 is None and not opts.urn:
@@ -401,8 +401,8 @@ class MfaPingID(pulumi.CustomResource):
             __props__.__dict__["type"] = None
             __props__.__dict__["use_signature"] = None
             __props__.__dict__["uuid"] = None
-        super(MfaPingID, __self__).__init__(
-            'vault:identity/mfaPingID:MfaPingID',
+        super(MfaPingid, __self__).__init__(
+            'vault:identity/mfaPingid:MfaPingid',
             resource_name,
             __props__,
             opts)
@@ -425,9 +425,9 @@ class MfaPingID(pulumi.CustomResource):
             type: Optional[pulumi.Input[str]] = None,
             use_signature: Optional[pulumi.Input[bool]] = None,
             username_format: Optional[pulumi.Input[str]] = None,
-            uuid: Optional[pulumi.Input[str]] = None) -> 'MfaPingID':
+            uuid: Optional[pulumi.Input[str]] = None) -> 'MfaPingid':
         """
-        Get an existing MfaPingID resource's state with the given name, id, and optional extra
+        Get an existing MfaPingid resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -451,7 +451,7 @@ class MfaPingID(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _MfaPingIDState.__new__(_MfaPingIDState)
+        __props__ = _MfaPingidState.__new__(_MfaPingidState)
 
         __props__.__dict__["admin_url"] = admin_url
         __props__.__dict__["authenticator_url"] = authenticator_url
@@ -468,7 +468,7 @@ class MfaPingID(pulumi.CustomResource):
         __props__.__dict__["use_signature"] = use_signature
         __props__.__dict__["username_format"] = username_format
         __props__.__dict__["uuid"] = uuid
-        return MfaPingID(resource_name, opts=opts, __props__=__props__)
+        return MfaPingid(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="adminUrl")

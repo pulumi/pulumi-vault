@@ -12,9 +12,9 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 
-public final class MfaPingIDState extends com.pulumi.resources.ResourceArgs {
+public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
 
-    public static final MfaPingIDState Empty = new MfaPingIDState();
+    public static final MfaPingidState Empty = new MfaPingidState();
 
     /**
      * The admin URL, derived from &#34;settings_file_base64&#34;
@@ -241,9 +241,9 @@ public final class MfaPingIDState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.uuid);
     }
 
-    private MfaPingIDState() {}
+    private MfaPingidState() {}
 
-    private MfaPingIDState(MfaPingIDState $) {
+    private MfaPingidState(MfaPingidState $) {
         this.adminUrl = $.adminUrl;
         this.authenticatorUrl = $.authenticatorUrl;
         this.idpUrl = $.idpUrl;
@@ -264,19 +264,19 @@ public final class MfaPingIDState extends com.pulumi.resources.ResourceArgs {
     public static Builder builder() {
         return new Builder();
     }
-    public static Builder builder(MfaPingIDState defaults) {
+    public static Builder builder(MfaPingidState defaults) {
         return new Builder(defaults);
     }
 
     public static final class Builder {
-        private MfaPingIDState $;
+        private MfaPingidState $;
 
         public Builder() {
-            $ = new MfaPingIDState();
+            $ = new MfaPingidState();
         }
 
-        public Builder(MfaPingIDState defaults) {
-            $ = new MfaPingIDState(Objects.requireNonNull(defaults));
+        public Builder(MfaPingidState defaults) {
+            $ = new MfaPingidState(Objects.requireNonNull(defaults));
         }
 
         /**
@@ -594,7 +594,7 @@ public final class MfaPingIDState extends com.pulumi.resources.ResourceArgs {
             return uuid(Output.of(uuid));
         }
 
-        public MfaPingIDState build() {
+        public MfaPingidState build() {
             return $;
         }
     }

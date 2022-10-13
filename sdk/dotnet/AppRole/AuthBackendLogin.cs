@@ -40,7 +40,7 @@ namespace Pulumi.Vault.AppRole
     ///         },
     ///     });
     /// 
-    ///     var id = new Vault.AppRole.AuthBackendRoleSecretID("id", new()
+    ///     var id = new Vault.AppRole.AuthBackendRoleSecretId("id", new()
     ///     {
     ///         Backend = approle.Path,
     ///         RoleName = example.RoleName,

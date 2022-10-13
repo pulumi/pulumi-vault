@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const example = new vault.identity.MfaTOTP("example", {
+ * const example = new vault.identity.MfaTotp("example", {
  *     issuer: "issuer1",
  * });
  * ```
@@ -23,12 +23,12 @@ import * as utilities from "../utilities";
  * Resource can be imported using its `uuid` field, e.g.
  *
  * ```sh
- *  $ pulumi import vault:identity/mfaTOTP:MfaTOTP example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
+ *  $ pulumi import vault:identity/mfaTotp:MfaTotp example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
  * ```
  */
-export class MfaTOTP extends pulumi.CustomResource {
+export class MfaTotp extends pulumi.CustomResource {
     /**
-     * Get an existing MfaTOTP resource's state with the given name, ID, and optional extra
+     * Get an existing MfaTotp resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -36,22 +36,22 @@ export class MfaTOTP extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: MfaTOTPState, opts?: pulumi.CustomResourceOptions): MfaTOTP {
-        return new MfaTOTP(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: MfaTotpState, opts?: pulumi.CustomResourceOptions): MfaTotp {
+        return new MfaTotp(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'vault:identity/mfaTOTP:MfaTOTP';
+    public static readonly __pulumiType = 'vault:identity/mfaTotp:MfaTotp';
 
     /**
-     * Returns true if the given object is an instance of MfaTOTP.  This is designed to work even
+     * Returns true if the given object is an instance of MfaTotp.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is MfaTOTP {
+    public static isInstance(obj: any): obj is MfaTotp {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === MfaTOTP.__pulumiType;
+        return obj['__pulumiType'] === MfaTotp.__pulumiType;
     }
 
     /**
@@ -120,18 +120,18 @@ export class MfaTOTP extends pulumi.CustomResource {
     public /*out*/ readonly uuid!: pulumi.Output<string>;
 
     /**
-     * Create a MfaTOTP resource with the given unique name, arguments, and options.
+     * Create a MfaTotp resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: MfaTOTPArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: MfaTOTPArgs | MfaTOTPState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: MfaTotpArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: MfaTotpArgs | MfaTotpState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as MfaTOTPState | undefined;
+            const state = argsOrState as MfaTotpState | undefined;
             resourceInputs["algorithm"] = state ? state.algorithm : undefined;
             resourceInputs["digits"] = state ? state.digits : undefined;
             resourceInputs["issuer"] = state ? state.issuer : undefined;
@@ -149,7 +149,7 @@ export class MfaTOTP extends pulumi.CustomResource {
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["uuid"] = state ? state.uuid : undefined;
         } else {
-            const args = argsOrState as MfaTOTPArgs | undefined;
+            const args = argsOrState as MfaTotpArgs | undefined;
             if ((!args || args.issuer === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'issuer'");
             }
@@ -171,14 +171,14 @@ export class MfaTOTP extends pulumi.CustomResource {
             resourceInputs["uuid"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(MfaTOTP.__pulumiType, name, resourceInputs, opts);
+        super(MfaTotp.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering MfaTOTP resources.
+ * Input properties used for looking up and filtering MfaTotp resources.
  */
-export interface MfaTOTPState {
+export interface MfaTotpState {
     /**
      * Specifies the hashing algorithm used to generate the TOTP code. Options include SHA1, SHA256, SHA512.
      */
@@ -246,9 +246,9 @@ export interface MfaTOTPState {
 }
 
 /**
- * The set of arguments for constructing a MfaTOTP resource.
+ * The set of arguments for constructing a MfaTotp resource.
  */
-export interface MfaTOTPArgs {
+export interface MfaTotpArgs {
     /**
      * Specifies the hashing algorithm used to generate the TOTP code. Options include SHA1, SHA256, SHA512.
      */

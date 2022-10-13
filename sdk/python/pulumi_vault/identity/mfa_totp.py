@@ -9,10 +9,10 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
-__all__ = ['MfaTOTPArgs', 'MfaTOTP']
+__all__ = ['MfaTotpArgs', 'MfaTotp']
 
 @pulumi.input_type
-class MfaTOTPArgs:
+class MfaTotpArgs:
     def __init__(__self__, *,
                  issuer: pulumi.Input[str],
                  algorithm: Optional[pulumi.Input[str]] = None,
@@ -23,7 +23,7 @@ class MfaTOTPArgs:
                  period: Optional[pulumi.Input[int]] = None,
                  skew: Optional[pulumi.Input[int]] = None):
         """
-        The set of arguments for constructing a MfaTOTP resource.
+        The set of arguments for constructing a MfaTotp resource.
         :param pulumi.Input[str] issuer: The name of the key's issuing organization.
         :param pulumi.Input[str] algorithm: Specifies the hashing algorithm used to generate the TOTP code. Options include SHA1, SHA256, SHA512.
         :param pulumi.Input[int] digits: The number of digits in the generated TOTP token. This value can either be 6 or 8
@@ -147,7 +147,7 @@ class MfaTOTPArgs:
 
 
 @pulumi.input_type
-class _MfaTOTPState:
+class _MfaTotpState:
     def __init__(__self__, *,
                  algorithm: Optional[pulumi.Input[str]] = None,
                  digits: Optional[pulumi.Input[int]] = None,
@@ -166,7 +166,7 @@ class _MfaTOTPState:
                  type: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None):
         """
-        Input properties used for looking up and filtering MfaTOTP resources.
+        Input properties used for looking up and filtering MfaTotp resources.
         :param pulumi.Input[str] algorithm: Specifies the hashing algorithm used to generate the TOTP code. Options include SHA1, SHA256, SHA512.
         :param pulumi.Input[int] digits: The number of digits in the generated TOTP token. This value can either be 6 or 8
         :param pulumi.Input[str] issuer: The name of the key's issuing organization.
@@ -410,7 +410,7 @@ class _MfaTOTPState:
         pulumi.set(self, "uuid", value)
 
 
-class MfaTOTP(pulumi.CustomResource):
+class MfaTotp(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -433,7 +433,7 @@ class MfaTOTP(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        example = vault.identity.MfaTOTP("example", issuer="issuer1")
+        example = vault.identity.MfaTotp("example", issuer="issuer1")
         ```
 
         ## Import
@@ -441,7 +441,7 @@ class MfaTOTP(pulumi.CustomResource):
         Resource can be imported using its `uuid` field, e.g.
 
         ```sh
-         $ pulumi import vault:identity/mfaTOTP:MfaTOTP example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
+         $ pulumi import vault:identity/mfaTotp:MfaTotp example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
         ```
 
         :param str resource_name: The name of the resource.
@@ -459,7 +459,7 @@ class MfaTOTP(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: MfaTOTPArgs,
+                 args: MfaTotpArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Resource for configuring the totp MFA method.
@@ -470,7 +470,7 @@ class MfaTOTP(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        example = vault.identity.MfaTOTP("example", issuer="issuer1")
+        example = vault.identity.MfaTotp("example", issuer="issuer1")
         ```
 
         ## Import
@@ -478,16 +478,16 @@ class MfaTOTP(pulumi.CustomResource):
         Resource can be imported using its `uuid` field, e.g.
 
         ```sh
-         $ pulumi import vault:identity/mfaTOTP:MfaTOTP example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
+         $ pulumi import vault:identity/mfaTotp:MfaTotp example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
         ```
 
         :param str resource_name: The name of the resource.
-        :param MfaTOTPArgs args: The arguments to use to populate this resource's properties.
+        :param MfaTotpArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(MfaTOTPArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(MfaTotpArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -511,7 +511,7 @@ class MfaTOTP(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = MfaTOTPArgs.__new__(MfaTOTPArgs)
+            __props__ = MfaTotpArgs.__new__(MfaTotpArgs)
 
             __props__.__dict__["algorithm"] = algorithm
             __props__.__dict__["digits"] = digits
@@ -531,8 +531,8 @@ class MfaTOTP(pulumi.CustomResource):
             __props__.__dict__["qr_size"] = None
             __props__.__dict__["type"] = None
             __props__.__dict__["uuid"] = None
-        super(MfaTOTP, __self__).__init__(
-            'vault:identity/mfaTOTP:MfaTOTP',
+        super(MfaTotp, __self__).__init__(
+            'vault:identity/mfaTotp:MfaTotp',
             resource_name,
             __props__,
             opts)
@@ -556,9 +556,9 @@ class MfaTOTP(pulumi.CustomResource):
             qr_size: Optional[pulumi.Input[int]] = None,
             skew: Optional[pulumi.Input[int]] = None,
             type: Optional[pulumi.Input[str]] = None,
-            uuid: Optional[pulumi.Input[str]] = None) -> 'MfaTOTP':
+            uuid: Optional[pulumi.Input[str]] = None) -> 'MfaTotp':
         """
-        Get an existing MfaTOTP resource's state with the given name, id, and optional extra
+        Get an existing MfaTotp resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -583,7 +583,7 @@ class MfaTOTP(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _MfaTOTPState.__new__(_MfaTOTPState)
+        __props__ = _MfaTotpState.__new__(_MfaTotpState)
 
         __props__.__dict__["algorithm"] = algorithm
         __props__.__dict__["digits"] = digits
@@ -601,7 +601,7 @@ class MfaTOTP(pulumi.CustomResource):
         __props__.__dict__["skew"] = skew
         __props__.__dict__["type"] = type
         __props__.__dict__["uuid"] = uuid
-        return MfaTOTP(resource_name, opts=opts, __props__=__props__)
+        return MfaTotp(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter

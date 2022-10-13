@@ -10,17 +10,17 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func GetSecretSubKeysV2(ctx *pulumi.Context, args *GetSecretSubKeysV2Args, opts ...pulumi.InvokeOption) (*GetSecretSubKeysV2Result, error) {
-	var rv GetSecretSubKeysV2Result
-	err := ctx.Invoke("vault:kv/getSecretSubKeysV2:getSecretSubKeysV2", args, &rv, opts...)
+func GetSecretSubkeysV2(ctx *pulumi.Context, args *GetSecretSubkeysV2Args, opts ...pulumi.InvokeOption) (*GetSecretSubkeysV2Result, error) {
+	var rv GetSecretSubkeysV2Result
+	err := ctx.Invoke("vault:kv/getSecretSubkeysV2:getSecretSubkeysV2", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &rv, nil
 }
 
-// A collection of arguments for invoking getSecretSubKeysV2.
-type GetSecretSubKeysV2Args struct {
+// A collection of arguments for invoking getSecretSubkeysV2.
+type GetSecretSubkeysV2Args struct {
 	Depth     *int    `pulumi:"depth"`
 	Mount     string  `pulumi:"mount"`
 	Name      string  `pulumi:"name"`
@@ -28,8 +28,8 @@ type GetSecretSubKeysV2Args struct {
 	Version   *int    `pulumi:"version"`
 }
 
-// A collection of values returned by getSecretSubKeysV2.
-type GetSecretSubKeysV2Result struct {
+// A collection of values returned by getSecretSubkeysV2.
+type GetSecretSubkeysV2Result struct {
 	Data     map[string]interface{} `pulumi:"data"`
 	DataJson string                 `pulumi:"dataJson"`
 	Depth    *int                   `pulumi:"depth"`
@@ -42,21 +42,21 @@ type GetSecretSubKeysV2Result struct {
 	Version   *int    `pulumi:"version"`
 }
 
-func GetSecretSubKeysV2Output(ctx *pulumi.Context, args GetSecretSubKeysV2OutputArgs, opts ...pulumi.InvokeOption) GetSecretSubKeysV2ResultOutput {
+func GetSecretSubkeysV2Output(ctx *pulumi.Context, args GetSecretSubkeysV2OutputArgs, opts ...pulumi.InvokeOption) GetSecretSubkeysV2ResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetSecretSubKeysV2Result, error) {
-			args := v.(GetSecretSubKeysV2Args)
-			r, err := GetSecretSubKeysV2(ctx, &args, opts...)
-			var s GetSecretSubKeysV2Result
+		ApplyT(func(v interface{}) (GetSecretSubkeysV2Result, error) {
+			args := v.(GetSecretSubkeysV2Args)
+			r, err := GetSecretSubkeysV2(ctx, &args, opts...)
+			var s GetSecretSubkeysV2Result
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(GetSecretSubKeysV2ResultOutput)
+		}).(GetSecretSubkeysV2ResultOutput)
 }
 
-// A collection of arguments for invoking getSecretSubKeysV2.
-type GetSecretSubKeysV2OutputArgs struct {
+// A collection of arguments for invoking getSecretSubkeysV2.
+type GetSecretSubkeysV2OutputArgs struct {
 	Depth     pulumi.IntPtrInput    `pulumi:"depth"`
 	Mount     pulumi.StringInput    `pulumi:"mount"`
 	Name      pulumi.StringInput    `pulumi:"name"`
@@ -64,62 +64,62 @@ type GetSecretSubKeysV2OutputArgs struct {
 	Version   pulumi.IntPtrInput    `pulumi:"version"`
 }
 
-func (GetSecretSubKeysV2OutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetSecretSubKeysV2Args)(nil)).Elem()
+func (GetSecretSubkeysV2OutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSecretSubkeysV2Args)(nil)).Elem()
 }
 
-// A collection of values returned by getSecretSubKeysV2.
-type GetSecretSubKeysV2ResultOutput struct{ *pulumi.OutputState }
+// A collection of values returned by getSecretSubkeysV2.
+type GetSecretSubkeysV2ResultOutput struct{ *pulumi.OutputState }
 
-func (GetSecretSubKeysV2ResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetSecretSubKeysV2Result)(nil)).Elem()
+func (GetSecretSubkeysV2ResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSecretSubkeysV2Result)(nil)).Elem()
 }
 
-func (o GetSecretSubKeysV2ResultOutput) ToGetSecretSubKeysV2ResultOutput() GetSecretSubKeysV2ResultOutput {
+func (o GetSecretSubkeysV2ResultOutput) ToGetSecretSubkeysV2ResultOutput() GetSecretSubkeysV2ResultOutput {
 	return o
 }
 
-func (o GetSecretSubKeysV2ResultOutput) ToGetSecretSubKeysV2ResultOutputWithContext(ctx context.Context) GetSecretSubKeysV2ResultOutput {
+func (o GetSecretSubkeysV2ResultOutput) ToGetSecretSubkeysV2ResultOutputWithContext(ctx context.Context) GetSecretSubkeysV2ResultOutput {
 	return o
 }
 
-func (o GetSecretSubKeysV2ResultOutput) Data() pulumi.MapOutput {
-	return o.ApplyT(func(v GetSecretSubKeysV2Result) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+func (o GetSecretSubkeysV2ResultOutput) Data() pulumi.MapOutput {
+	return o.ApplyT(func(v GetSecretSubkeysV2Result) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
 }
 
-func (o GetSecretSubKeysV2ResultOutput) DataJson() pulumi.StringOutput {
-	return o.ApplyT(func(v GetSecretSubKeysV2Result) string { return v.DataJson }).(pulumi.StringOutput)
+func (o GetSecretSubkeysV2ResultOutput) DataJson() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretSubkeysV2Result) string { return v.DataJson }).(pulumi.StringOutput)
 }
 
-func (o GetSecretSubKeysV2ResultOutput) Depth() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v GetSecretSubKeysV2Result) *int { return v.Depth }).(pulumi.IntPtrOutput)
+func (o GetSecretSubkeysV2ResultOutput) Depth() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetSecretSubkeysV2Result) *int { return v.Depth }).(pulumi.IntPtrOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.
-func (o GetSecretSubKeysV2ResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetSecretSubKeysV2Result) string { return v.Id }).(pulumi.StringOutput)
+func (o GetSecretSubkeysV2ResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretSubkeysV2Result) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o GetSecretSubKeysV2ResultOutput) Mount() pulumi.StringOutput {
-	return o.ApplyT(func(v GetSecretSubKeysV2Result) string { return v.Mount }).(pulumi.StringOutput)
+func (o GetSecretSubkeysV2ResultOutput) Mount() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretSubkeysV2Result) string { return v.Mount }).(pulumi.StringOutput)
 }
 
-func (o GetSecretSubKeysV2ResultOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetSecretSubKeysV2Result) string { return v.Name }).(pulumi.StringOutput)
+func (o GetSecretSubkeysV2ResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretSubkeysV2Result) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o GetSecretSubKeysV2ResultOutput) Namespace() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetSecretSubKeysV2Result) *string { return v.Namespace }).(pulumi.StringPtrOutput)
+func (o GetSecretSubkeysV2ResultOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSecretSubkeysV2Result) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
-func (o GetSecretSubKeysV2ResultOutput) Path() pulumi.StringOutput {
-	return o.ApplyT(func(v GetSecretSubKeysV2Result) string { return v.Path }).(pulumi.StringOutput)
+func (o GetSecretSubkeysV2ResultOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretSubkeysV2Result) string { return v.Path }).(pulumi.StringOutput)
 }
 
-func (o GetSecretSubKeysV2ResultOutput) Version() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v GetSecretSubKeysV2Result) *int { return v.Version }).(pulumi.IntPtrOutput)
+func (o GetSecretSubkeysV2ResultOutput) Version() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetSecretSubkeysV2Result) *int { return v.Version }).(pulumi.IntPtrOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetSecretSubKeysV2ResultOutput{})
+	pulumi.RegisterOutputType(GetSecretSubkeysV2ResultOutput{})
 }

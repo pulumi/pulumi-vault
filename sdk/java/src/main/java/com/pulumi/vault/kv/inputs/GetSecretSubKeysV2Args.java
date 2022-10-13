@@ -12,9 +12,9 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 
-public final class GetSecretSubKeysV2Args extends com.pulumi.resources.InvokeArgs {
+public final class GetSecretSubkeysV2Args extends com.pulumi.resources.InvokeArgs {
 
-    public static final GetSecretSubKeysV2Args Empty = new GetSecretSubKeysV2Args();
+    public static final GetSecretSubkeysV2Args Empty = new GetSecretSubkeysV2Args();
 
     @Import(name="depth")
     private @Nullable Output<Integer> depth;
@@ -51,9 +51,9 @@ public final class GetSecretSubKeysV2Args extends com.pulumi.resources.InvokeArg
         return Optional.ofNullable(this.version);
     }
 
-    private GetSecretSubKeysV2Args() {}
+    private GetSecretSubkeysV2Args() {}
 
-    private GetSecretSubKeysV2Args(GetSecretSubKeysV2Args $) {
+    private GetSecretSubkeysV2Args(GetSecretSubkeysV2Args $) {
         this.depth = $.depth;
         this.mount = $.mount;
         this.name = $.name;
@@ -64,19 +64,19 @@ public final class GetSecretSubKeysV2Args extends com.pulumi.resources.InvokeArg
     public static Builder builder() {
         return new Builder();
     }
-    public static Builder builder(GetSecretSubKeysV2Args defaults) {
+    public static Builder builder(GetSecretSubkeysV2Args defaults) {
         return new Builder(defaults);
     }
 
     public static final class Builder {
-        private GetSecretSubKeysV2Args $;
+        private GetSecretSubkeysV2Args $;
 
         public Builder() {
-            $ = new GetSecretSubKeysV2Args();
+            $ = new GetSecretSubkeysV2Args();
         }
 
-        public Builder(GetSecretSubKeysV2Args defaults) {
-            $ = new GetSecretSubKeysV2Args(Objects.requireNonNull(defaults));
+        public Builder(GetSecretSubkeysV2Args defaults) {
+            $ = new GetSecretSubkeysV2Args(Objects.requireNonNull(defaults));
         }
 
         public Builder depth(@Nullable Output<Integer> depth) {
@@ -124,7 +124,7 @@ public final class GetSecretSubKeysV2Args extends com.pulumi.resources.InvokeArg
             return version(Output.of(version));
         }
 
-        public GetSecretSubKeysV2Args build() {
+        public GetSecretSubkeysV2Args build() {
             $.mount = Objects.requireNonNull($.mount, "expected parameter 'mount' to be non-null");
             $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
             return $;

@@ -10,16 +10,16 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
-    'GetSecretsV2ListResult',
-    'AwaitableGetSecretsV2ListResult',
-    'get_secrets_v2_list',
-    'get_secrets_v2_list_output',
+    'GetSecretsListV2Result',
+    'AwaitableGetSecretsListV2Result',
+    'get_secrets_list_v2',
+    'get_secrets_list_v2_output',
 ]
 
 @pulumi.output_type
-class GetSecretsV2ListResult:
+class GetSecretsListV2Result:
     """
-    A collection of values returned by getSecretsV2List.
+    A collection of values returned by getSecretsListV2.
     """
     def __init__(__self__, id=None, mount=None, name=None, names=None, namespace=None, path=None):
         if id and not isinstance(id, str):
@@ -81,12 +81,12 @@ class GetSecretsV2ListResult:
         return pulumi.get(self, "path")
 
 
-class AwaitableGetSecretsV2ListResult(GetSecretsV2ListResult):
+class AwaitableGetSecretsListV2Result(GetSecretsListV2Result):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetSecretsV2ListResult(
+        return GetSecretsListV2Result(
             id=self.id,
             mount=self.mount,
             name=self.name,
@@ -95,10 +95,10 @@ class AwaitableGetSecretsV2ListResult(GetSecretsV2ListResult):
             path=self.path)
 
 
-def get_secrets_v2_list(mount: Optional[str] = None,
+def get_secrets_list_v2(mount: Optional[str] = None,
                         name: Optional[str] = None,
                         namespace: Optional[str] = None,
-                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretsV2ListResult:
+                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretsListV2Result:
     """
     ## Example Usage
 
@@ -129,8 +129,8 @@ def get_secrets_v2_list(mount: Optional[str] = None,
         data_json=json.dumps({
             "password": "test",
         }))
-    secrets = vault.kv.get_secrets_v2_list_output(mount=kvv2.path)
-    nested_secrets = kvv2.path.apply(lambda path: vault.kv.get_secrets_v2_list_output(mount=path,
+    secrets = vault.kv.get_secrets_list_v2_output(mount=kvv2.path)
+    nested_secrets = kvv2.path.apply(lambda path: vault.kv.get_secrets_list_v2_output(mount=path,
         name=vault_kv_secret_v2["test_2"]["name"]))
     ```
     ## Required Vault Capabilities
@@ -153,9 +153,9 @@ def get_secrets_v2_list(mount: Optional[str] = None,
     __args__['name'] = name
     __args__['namespace'] = namespace
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('vault:kv/getSecretsV2List:getSecretsV2List', __args__, opts=opts, typ=GetSecretsV2ListResult).value
+    __ret__ = pulumi.runtime.invoke('vault:kv/getSecretsListV2:getSecretsListV2', __args__, opts=opts, typ=GetSecretsListV2Result).value
 
-    return AwaitableGetSecretsV2ListResult(
+    return AwaitableGetSecretsListV2Result(
         id=__ret__.id,
         mount=__ret__.mount,
         name=__ret__.name,
@@ -164,11 +164,11 @@ def get_secrets_v2_list(mount: Optional[str] = None,
         path=__ret__.path)
 
 
-@_utilities.lift_output_func(get_secrets_v2_list)
-def get_secrets_v2_list_output(mount: Optional[pulumi.Input[str]] = None,
+@_utilities.lift_output_func(get_secrets_list_v2)
+def get_secrets_list_v2_output(mount: Optional[pulumi.Input[str]] = None,
                                name: Optional[pulumi.Input[Optional[str]]] = None,
                                namespace: Optional[pulumi.Input[Optional[str]]] = None,
-                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSecretsV2ListResult]:
+                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSecretsListV2Result]:
     """
     ## Example Usage
 
@@ -199,8 +199,8 @@ def get_secrets_v2_list_output(mount: Optional[pulumi.Input[str]] = None,
         data_json=json.dumps({
             "password": "test",
         }))
-    secrets = vault.kv.get_secrets_v2_list_output(mount=kvv2.path)
-    nested_secrets = kvv2.path.apply(lambda path: vault.kv.get_secrets_v2_list_output(mount=path,
+    secrets = vault.kv.get_secrets_list_v2_output(mount=kvv2.path)
+    nested_secrets = kvv2.path.apply(lambda path: vault.kv.get_secrets_list_v2_output(mount=path,
         name=vault_kv_secret_v2["test_2"]["name"]))
     ```
     ## Required Vault Capabilities

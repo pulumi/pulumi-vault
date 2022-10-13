@@ -10,9 +10,9 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 
-public final class GetSecretsV2ListPlainArgs extends com.pulumi.resources.InvokeArgs {
+public final class GetSecretsListV2PlainArgs extends com.pulumi.resources.InvokeArgs {
 
-    public static final GetSecretsV2ListPlainArgs Empty = new GetSecretsV2ListPlainArgs();
+    public static final GetSecretsListV2PlainArgs Empty = new GetSecretsListV2PlainArgs();
 
     /**
      * Path where KV-V2 engine is mounted.
@@ -71,9 +71,9 @@ public final class GetSecretsV2ListPlainArgs extends com.pulumi.resources.Invoke
         return Optional.ofNullable(this.namespace);
     }
 
-    private GetSecretsV2ListPlainArgs() {}
+    private GetSecretsListV2PlainArgs() {}
 
-    private GetSecretsV2ListPlainArgs(GetSecretsV2ListPlainArgs $) {
+    private GetSecretsListV2PlainArgs(GetSecretsListV2PlainArgs $) {
         this.mount = $.mount;
         this.name = $.name;
         this.namespace = $.namespace;
@@ -82,19 +82,19 @@ public final class GetSecretsV2ListPlainArgs extends com.pulumi.resources.Invoke
     public static Builder builder() {
         return new Builder();
     }
-    public static Builder builder(GetSecretsV2ListPlainArgs defaults) {
+    public static Builder builder(GetSecretsListV2PlainArgs defaults) {
         return new Builder(defaults);
     }
 
     public static final class Builder {
-        private GetSecretsV2ListPlainArgs $;
+        private GetSecretsListV2PlainArgs $;
 
         public Builder() {
-            $ = new GetSecretsV2ListPlainArgs();
+            $ = new GetSecretsListV2PlainArgs();
         }
 
-        public Builder(GetSecretsV2ListPlainArgs defaults) {
-            $ = new GetSecretsV2ListPlainArgs(Objects.requireNonNull(defaults));
+        public Builder(GetSecretsListV2PlainArgs defaults) {
+            $ = new GetSecretsListV2PlainArgs(Objects.requireNonNull(defaults));
         }
 
         /**
@@ -136,7 +136,7 @@ public final class GetSecretsV2ListPlainArgs extends com.pulumi.resources.Invoke
             return this;
         }
 
-        public GetSecretsV2ListPlainArgs build() {
+        public GetSecretsListV2PlainArgs build() {
             $.mount = Objects.requireNonNull($.mount, "expected parameter 'mount' to be non-null");
             return $;
         }

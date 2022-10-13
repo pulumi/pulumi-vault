@@ -9,17 +9,17 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.kv
 {
-    public static class GetSecretSubKeysV2
+    public static class GetSecretSubkeysV2
     {
-        public static Task<GetSecretSubKeysV2Result> InvokeAsync(GetSecretSubKeysV2Args args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetSecretSubKeysV2Result>("vault:kv/getSecretSubKeysV2:getSecretSubKeysV2", args ?? new GetSecretSubKeysV2Args(), options.WithDefaults());
+        public static Task<GetSecretSubkeysV2Result> InvokeAsync(GetSecretSubkeysV2Args args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetSecretSubkeysV2Result>("vault:kv/getSecretSubkeysV2:getSecretSubkeysV2", args ?? new GetSecretSubkeysV2Args(), options.WithDefaults());
 
-        public static Output<GetSecretSubKeysV2Result> Invoke(GetSecretSubKeysV2InvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetSecretSubKeysV2Result>("vault:kv/getSecretSubKeysV2:getSecretSubKeysV2", args ?? new GetSecretSubKeysV2InvokeArgs(), options.WithDefaults());
+        public static Output<GetSecretSubkeysV2Result> Invoke(GetSecretSubkeysV2InvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetSecretSubkeysV2Result>("vault:kv/getSecretSubkeysV2:getSecretSubkeysV2", args ?? new GetSecretSubkeysV2InvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetSecretSubKeysV2Args : global::Pulumi.InvokeArgs
+    public sealed class GetSecretSubkeysV2Args : global::Pulumi.InvokeArgs
     {
         [Input("depth")]
         public int? Depth { get; set; }
@@ -36,13 +36,13 @@ namespace Pulumi.Vault.kv
         [Input("version")]
         public int? Version { get; set; }
 
-        public GetSecretSubKeysV2Args()
+        public GetSecretSubkeysV2Args()
         {
         }
-        public static new GetSecretSubKeysV2Args Empty => new GetSecretSubKeysV2Args();
+        public static new GetSecretSubkeysV2Args Empty => new GetSecretSubkeysV2Args();
     }
 
-    public sealed class GetSecretSubKeysV2InvokeArgs : global::Pulumi.InvokeArgs
+    public sealed class GetSecretSubkeysV2InvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("depth")]
         public Input<int>? Depth { get; set; }
@@ -59,15 +59,15 @@ namespace Pulumi.Vault.kv
         [Input("version")]
         public Input<int>? Version { get; set; }
 
-        public GetSecretSubKeysV2InvokeArgs()
+        public GetSecretSubkeysV2InvokeArgs()
         {
         }
-        public static new GetSecretSubKeysV2InvokeArgs Empty => new GetSecretSubKeysV2InvokeArgs();
+        public static new GetSecretSubkeysV2InvokeArgs Empty => new GetSecretSubkeysV2InvokeArgs();
     }
 
 
     [OutputType]
-    public sealed class GetSecretSubKeysV2Result
+    public sealed class GetSecretSubkeysV2Result
     {
         public readonly ImmutableDictionary<string, object> Data;
         public readonly string DataJson;
@@ -83,7 +83,7 @@ namespace Pulumi.Vault.kv
         public readonly int? Version;
 
         [OutputConstructor]
-        private GetSecretSubKeysV2Result(
+        private GetSecretSubkeysV2Result(
             ImmutableDictionary<string, object> data,
 
             string dataJson,

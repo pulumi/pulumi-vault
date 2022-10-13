@@ -11,9 +11,9 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 
-public final class MfaPingIDArgs extends com.pulumi.resources.ResourceArgs {
+public final class MfaPingidArgs extends com.pulumi.resources.ResourceArgs {
 
-    public static final MfaPingIDArgs Empty = new MfaPingIDArgs();
+    public static final MfaPingidArgs Empty = new MfaPingidArgs();
 
     /**
      * Target namespace. (requires Enterprise)
@@ -60,9 +60,9 @@ public final class MfaPingIDArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.usernameFormat);
     }
 
-    private MfaPingIDArgs() {}
+    private MfaPingidArgs() {}
 
-    private MfaPingIDArgs(MfaPingIDArgs $) {
+    private MfaPingidArgs(MfaPingidArgs $) {
         this.namespace = $.namespace;
         this.settingsFileBase64 = $.settingsFileBase64;
         this.usernameFormat = $.usernameFormat;
@@ -71,19 +71,19 @@ public final class MfaPingIDArgs extends com.pulumi.resources.ResourceArgs {
     public static Builder builder() {
         return new Builder();
     }
-    public static Builder builder(MfaPingIDArgs defaults) {
+    public static Builder builder(MfaPingidArgs defaults) {
         return new Builder(defaults);
     }
 
     public static final class Builder {
-        private MfaPingIDArgs $;
+        private MfaPingidArgs $;
 
         public Builder() {
-            $ = new MfaPingIDArgs();
+            $ = new MfaPingidArgs();
         }
 
-        public Builder(MfaPingIDArgs defaults) {
-            $ = new MfaPingIDArgs(Objects.requireNonNull(defaults));
+        public Builder(MfaPingidArgs defaults) {
+            $ = new MfaPingidArgs(Objects.requireNonNull(defaults));
         }
 
         /**
@@ -149,7 +149,7 @@ public final class MfaPingIDArgs extends com.pulumi.resources.ResourceArgs {
             return usernameFormat(Output.of(usernameFormat));
         }
 
-        public MfaPingIDArgs build() {
+        public MfaPingidArgs build() {
             $.settingsFileBase64 = Objects.requireNonNull($.settingsFileBase64, "expected parameter 'settingsFileBase64' to be non-null");
             return $;
         }

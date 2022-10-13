@@ -197,7 +197,7 @@ func Provider() tfbridge.ProviderInfo {
 			// AppRole
 			"vault_approle_auth_backend_role":           {Tok: makeResource(appRoleMod, "AuthBackendRole")},
 			"vault_approle_auth_backend_login":          {Tok: makeResource(appRoleMod, "AuthBackendLogin")},
-			"vault_approle_auth_backend_role_secret_id": {Tok: makeResource(appRoleMod, "AuthBackendRoleSecretID")},
+			"vault_approle_auth_backend_role_secret_id": {Tok: makeResource(appRoleMod, "AuthBackendRoleSecretId")},
 
 			// AliCloud
 			"vault_alicloud_auth_backend_role": {Tok: makeResource(aliCloudMod, "AuthBackendRole")},
@@ -297,8 +297,8 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_identity_mfa_duo":                    {Tok: makeResource(identityMod, "MfaDuo")},
 			"vault_identity_mfa_login_enforcement":      {Tok: makeResource(identityMod, "MfaLoginEnforcement")},
 			"vault_identity_mfa_okta":                   {Tok: makeResource(identityMod, "MfaOkta")},
-			"vault_identity_mfa_pingid":                 {Tok: makeResource(identityMod, "MfaPingID")},
-			"vault_identity_mfa_totp":                   {Tok: makeResource(identityMod, "MfaTOTP")},
+			"vault_identity_mfa_pingid":                 {Tok: makeResource(identityMod, "MfaPingid")},
+			"vault_identity_mfa_totp":                   {Tok: makeResource(identityMod, "MfaTotp")},
 			"vault_identity_oidc":                       {Tok: makeResource(identityMod, "Oidc")},
 			"vault_identity_oidc_key":                   {Tok: makeResource(identityMod, "OidcKey")},
 			"vault_identity_oidc_key_allowed_client_id": {Tok: makeResource(identityMod, "OidcKeyAllowedClientID")},
@@ -489,10 +489,10 @@ func Provider() tfbridge.ProviderInfo {
 
 			// KV
 			"vault_kv_secret":            {Tok: makeDataSource(kvMod, "getSecret")},
-			"vault_kv_secret_subkeys_v2": {Tok: makeDataSource(kvMod, "getSecretSubKeysV2")},
+			"vault_kv_secret_subkeys_v2": {Tok: makeDataSource(kvMod, "getSecretSubkeysV2")},
 			"vault_kv_secret_v2":         {Tok: makeDataSource(kvMod, "getSecretV2")},
 			"vault_kv_secrets_list":      {Tok: makeDataSource(kvMod, "getSecretsList")},
-			"vault_kv_secrets_list_v2":   {Tok: makeDataSource(kvMod, "getSecretsV2List")},
+			"vault_kv_secrets_list_v2":   {Tok: makeDataSource(kvMod, "getSecretsListV2")},
 
 			// Transform
 			"vault_transform_encode": {Tok: makeDataSource(transformMod, "getEncode")},
