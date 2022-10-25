@@ -15,44 +15,108 @@ public final class GetServiceAccountTokenPlainArgs extends com.pulumi.resources.
 
     public static final GetServiceAccountTokenPlainArgs Empty = new GetServiceAccountTokenPlainArgs();
 
+    /**
+     * The Kubernetes secret backend to generate service account
+     * tokens from.
+     * 
+     */
     @Import(name="backend", required=true)
     private String backend;
 
+    /**
+     * @return The Kubernetes secret backend to generate service account
+     * tokens from.
+     * 
+     */
     public String backend() {
         return this.backend;
     }
 
+    /**
+     * If true, generate a ClusterRoleBinding to grant
+     * permissions across the whole cluster instead of within a namespace.
+     * 
+     */
     @Import(name="clusterRoleBinding")
     private @Nullable Boolean clusterRoleBinding;
 
+    /**
+     * @return If true, generate a ClusterRoleBinding to grant
+     * permissions across the whole cluster instead of within a namespace.
+     * 
+     */
     public Optional<Boolean> clusterRoleBinding() {
         return Optional.ofNullable(this.clusterRoleBinding);
     }
 
+    /**
+     * The name of the Kubernetes namespace in which to
+     * generate the credentials.
+     * 
+     */
     @Import(name="kubernetesNamespace", required=true)
     private String kubernetesNamespace;
 
+    /**
+     * @return The name of the Kubernetes namespace in which to
+     * generate the credentials.
+     * 
+     */
     public String kubernetesNamespace() {
         return this.kubernetesNamespace;
     }
 
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
     @Import(name="namespace")
     private @Nullable String namespace;
 
+    /**
+     * @return The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
     public Optional<String> namespace() {
         return Optional.ofNullable(this.namespace);
     }
 
+    /**
+     * The name of the Kubernetes secret backend role to generate service
+     * account tokens from.
+     * 
+     */
     @Import(name="role", required=true)
     private String role;
 
+    /**
+     * @return The name of the Kubernetes secret backend role to generate service
+     * account tokens from.
+     * 
+     */
     public String role() {
         return this.role;
     }
 
+    /**
+     * The TTL of the generated Kubernetes service account token, specified in
+     * seconds or as a Go duration format string.
+     * 
+     */
     @Import(name="ttl")
     private @Nullable String ttl;
 
+    /**
+     * @return The TTL of the generated Kubernetes service account token, specified in
+     * seconds or as a Go duration format string.
+     * 
+     */
     public Optional<String> ttl() {
         return Optional.ofNullable(this.ttl);
     }
@@ -86,31 +150,75 @@ public final class GetServiceAccountTokenPlainArgs extends com.pulumi.resources.
             $ = new GetServiceAccountTokenPlainArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param backend The Kubernetes secret backend to generate service account
+         * tokens from.
+         * 
+         * @return builder
+         * 
+         */
         public Builder backend(String backend) {
             $.backend = backend;
             return this;
         }
 
+        /**
+         * @param clusterRoleBinding If true, generate a ClusterRoleBinding to grant
+         * permissions across the whole cluster instead of within a namespace.
+         * 
+         * @return builder
+         * 
+         */
         public Builder clusterRoleBinding(@Nullable Boolean clusterRoleBinding) {
             $.clusterRoleBinding = clusterRoleBinding;
             return this;
         }
 
+        /**
+         * @param kubernetesNamespace The name of the Kubernetes namespace in which to
+         * generate the credentials.
+         * 
+         * @return builder
+         * 
+         */
         public Builder kubernetesNamespace(String kubernetesNamespace) {
             $.kubernetesNamespace = kubernetesNamespace;
             return this;
         }
 
+        /**
+         * @param namespace The namespace of the target resource.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
         public Builder namespace(@Nullable String namespace) {
             $.namespace = namespace;
             return this;
         }
 
+        /**
+         * @param role The name of the Kubernetes secret backend role to generate service
+         * account tokens from.
+         * 
+         * @return builder
+         * 
+         */
         public Builder role(String role) {
             $.role = role;
             return this;
         }
 
+        /**
+         * @param ttl The TTL of the generated Kubernetes service account token, specified in
+         * seconds or as a Go duration format string.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ttl(@Nullable String ttl) {
             $.ttl = ttl;
             return this;

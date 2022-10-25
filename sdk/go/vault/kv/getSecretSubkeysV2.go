@@ -10,6 +10,61 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kv"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			kvv2, err := vault.NewMount(ctx, "kvv2", &vault.MountArgs{
+//				Path: pulumi.String("kvv2"),
+//				Type: pulumi.String("kv"),
+//				Options: pulumi.AnyMap{
+//					"version": pulumi.Any("2"),
+//				},
+//				Description: pulumi.String("KV Version 2 secret engine mount"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"zip": "zap",
+//				"foo": "bar",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			awsSecret, err := kv.NewSecretV2(ctx, "awsSecret", &kv.SecretV2Args{
+//				Mount:    kvv2.Path,
+//				DataJson: pulumi.String(json0),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = kv.GetSecretSubkeysV2Output(ctx, kv.GetSecretSubkeysV2OutputArgs{
+//				Mount: kvv2.Path,
+//				Name:  awsSecret.Name,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
+// ## Required Vault Capabilities
+//
+// Use of this resource requires the `read` capability on the given path.
 func GetSecretSubkeysV2(ctx *pulumi.Context, args *GetSecretSubkeysV2Args, opts ...pulumi.InvokeOption) (*GetSecretSubkeysV2Result, error) {
 	var rv GetSecretSubkeysV2Result
 	err := ctx.Invoke("vault:kv/getSecretSubkeysV2:getSecretSubkeysV2", args, &rv, opts...)
@@ -21,25 +76,43 @@ func GetSecretSubkeysV2(ctx *pulumi.Context, args *GetSecretSubkeysV2Args, opts 
 
 // A collection of arguments for invoking getSecretSubkeysV2.
 type GetSecretSubkeysV2Args struct {
-	Depth     *int    `pulumi:"depth"`
-	Mount     string  `pulumi:"mount"`
-	Name      string  `pulumi:"name"`
+	// Specifies the deepest nesting level to provide in the output.
+	// If non-zero, keys that reside at the specified depth value will be
+	// artificially treated as leaves and will thus be `null` even if further
+	// underlying sub-keys exist.
+	Depth *int `pulumi:"depth"`
+	// Path where KV-V2 engine is mounted.
+	Mount string `pulumi:"mount"`
+	// Full name of the secret. For a nested secret
+	// the name is the nested path excluding the mount and data
+	// prefix. For example, for a secret at `kvv2/data/foo/bar/baz`
+	// the name is `foo/bar/baz`.
+	Name string `pulumi:"name"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
-	Version   *int    `pulumi:"version"`
+	// Specifies the version to return. If not
+	// set the latest version is returned.
+	Version *int `pulumi:"version"`
 }
 
 // A collection of values returned by getSecretSubkeysV2.
 type GetSecretSubkeysV2Result struct {
-	Data     map[string]interface{} `pulumi:"data"`
-	DataJson string                 `pulumi:"dataJson"`
-	Depth    *int                   `pulumi:"depth"`
+	// Subkeys for the KV-V2 secret stored as a serialized map of strings.
+	Data map[string]interface{} `pulumi:"data"`
+	// Subkeys for the KV-V2 secret read from Vault.
+	DataJson string `pulumi:"dataJson"`
+	Depth    *int   `pulumi:"depth"`
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	Mount     string  `pulumi:"mount"`
 	Name      string  `pulumi:"name"`
 	Namespace *string `pulumi:"namespace"`
-	Path      string  `pulumi:"path"`
-	Version   *int    `pulumi:"version"`
+	// Full path where the KV-V2 secrets are listed.
+	Path    string `pulumi:"path"`
+	Version *int   `pulumi:"version"`
 }
 
 func GetSecretSubkeysV2Output(ctx *pulumi.Context, args GetSecretSubkeysV2OutputArgs, opts ...pulumi.InvokeOption) GetSecretSubkeysV2ResultOutput {
@@ -57,11 +130,26 @@ func GetSecretSubkeysV2Output(ctx *pulumi.Context, args GetSecretSubkeysV2Output
 
 // A collection of arguments for invoking getSecretSubkeysV2.
 type GetSecretSubkeysV2OutputArgs struct {
-	Depth     pulumi.IntPtrInput    `pulumi:"depth"`
-	Mount     pulumi.StringInput    `pulumi:"mount"`
-	Name      pulumi.StringInput    `pulumi:"name"`
+	// Specifies the deepest nesting level to provide in the output.
+	// If non-zero, keys that reside at the specified depth value will be
+	// artificially treated as leaves and will thus be `null` even if further
+	// underlying sub-keys exist.
+	Depth pulumi.IntPtrInput `pulumi:"depth"`
+	// Path where KV-V2 engine is mounted.
+	Mount pulumi.StringInput `pulumi:"mount"`
+	// Full name of the secret. For a nested secret
+	// the name is the nested path excluding the mount and data
+	// prefix. For example, for a secret at `kvv2/data/foo/bar/baz`
+	// the name is `foo/bar/baz`.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
-	Version   pulumi.IntPtrInput    `pulumi:"version"`
+	// Specifies the version to return. If not
+	// set the latest version is returned.
+	Version pulumi.IntPtrInput `pulumi:"version"`
 }
 
 func (GetSecretSubkeysV2OutputArgs) ElementType() reflect.Type {
@@ -83,10 +171,12 @@ func (o GetSecretSubkeysV2ResultOutput) ToGetSecretSubkeysV2ResultOutputWithCont
 	return o
 }
 
+// Subkeys for the KV-V2 secret stored as a serialized map of strings.
 func (o GetSecretSubkeysV2ResultOutput) Data() pulumi.MapOutput {
 	return o.ApplyT(func(v GetSecretSubkeysV2Result) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
 }
 
+// Subkeys for the KV-V2 secret read from Vault.
 func (o GetSecretSubkeysV2ResultOutput) DataJson() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSecretSubkeysV2Result) string { return v.DataJson }).(pulumi.StringOutput)
 }
@@ -112,6 +202,7 @@ func (o GetSecretSubkeysV2ResultOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetSecretSubkeysV2Result) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
+// Full path where the KV-V2 secrets are listed.
 func (o GetSecretSubkeysV2ResultOutput) Path() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSecretSubkeysV2Result) string { return v.Path }).(pulumi.StringOutput)
 }

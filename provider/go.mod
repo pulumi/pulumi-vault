@@ -3,7 +3,7 @@ module github.com/pulumi/pulumi-vault/provider/v5
 go 1.18
 
 require (
-	github.com/hashicorp/terraform-provider-vault v1.9.1-0.20220225202911-91f40a2aed19
+	github.com/hashicorp/terraform-provider-vault v1.9.1-0.20221006191932-d603953886dd
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.31.0
 	github.com/pulumi/pulumi/sdk/v3 v3.42.0
 )

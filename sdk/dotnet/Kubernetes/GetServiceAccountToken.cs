@@ -11,9 +11,127 @@ namespace Pulumi.Vault.Kubernetes
 {
     public static class GetServiceAccountToken
     {
+        /// <summary>
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.IO;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var config = new Vault.Kubernetes.SecretBackend("config", new()
+        ///     {
+        ///         Path = "kubernetes",
+        ///         Description = "kubernetes secrets engine description",
+        ///         KubernetesHost = "https://127.0.0.1:61233",
+        ///         KubernetesCaCert = File.ReadAllText("/path/to/cert"),
+        ///         ServiceAccountJwt = File.ReadAllText("/path/to/token"),
+        ///         DisableLocalCaJwt = false,
+        ///     });
+        /// 
+        ///     var role = new Vault.Kubernetes.SecretBackendRole("role", new()
+        ///     {
+        ///         Backend = config.Path,
+        ///         AllowedKubernetesNamespaces = new[]
+        ///         {
+        ///             "*",
+        ///         },
+        ///         TokenMaxTtl = 43200,
+        ///         TokenDefaultTtl = 21600,
+        ///         ServiceAccountName = "test-service-account-with-generated-token",
+        ///         ExtraLabels = 
+        ///         {
+        ///             { "id", "abc123" },
+        ///             { "name", "some_name" },
+        ///         },
+        ///         ExtraAnnotations = 
+        ///         {
+        ///             { "env", "development" },
+        ///             { "location", "earth" },
+        ///         },
+        ///     });
+        /// 
+        ///     var token = Vault.Kubernetes.GetServiceAccountToken.Invoke(new()
+        ///     {
+        ///         Backend = config.Path,
+        ///         Role = role.Name,
+        ///         KubernetesNamespace = "test",
+        ///         ClusterRoleBinding = false,
+        ///         Ttl = "1h",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetServiceAccountTokenResult> InvokeAsync(GetServiceAccountTokenArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetServiceAccountTokenResult>("vault:kubernetes/getServiceAccountToken:getServiceAccountToken", args ?? new GetServiceAccountTokenArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.IO;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var config = new Vault.Kubernetes.SecretBackend("config", new()
+        ///     {
+        ///         Path = "kubernetes",
+        ///         Description = "kubernetes secrets engine description",
+        ///         KubernetesHost = "https://127.0.0.1:61233",
+        ///         KubernetesCaCert = File.ReadAllText("/path/to/cert"),
+        ///         ServiceAccountJwt = File.ReadAllText("/path/to/token"),
+        ///         DisableLocalCaJwt = false,
+        ///     });
+        /// 
+        ///     var role = new Vault.Kubernetes.SecretBackendRole("role", new()
+        ///     {
+        ///         Backend = config.Path,
+        ///         AllowedKubernetesNamespaces = new[]
+        ///         {
+        ///             "*",
+        ///         },
+        ///         TokenMaxTtl = 43200,
+        ///         TokenDefaultTtl = 21600,
+        ///         ServiceAccountName = "test-service-account-with-generated-token",
+        ///         ExtraLabels = 
+        ///         {
+        ///             { "id", "abc123" },
+        ///             { "name", "some_name" },
+        ///         },
+        ///         ExtraAnnotations = 
+        ///         {
+        ///             { "env", "development" },
+        ///             { "location", "earth" },
+        ///         },
+        ///     });
+        /// 
+        ///     var token = Vault.Kubernetes.GetServiceAccountToken.Invoke(new()
+        ///     {
+        ///         Backend = config.Path,
+        ///         Role = role.Name,
+        ///         KubernetesNamespace = "test",
+        ///         ClusterRoleBinding = false,
+        ///         Ttl = "1h",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<GetServiceAccountTokenResult> Invoke(GetServiceAccountTokenInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetServiceAccountTokenResult>("vault:kubernetes/getServiceAccountToken:getServiceAccountToken", args ?? new GetServiceAccountTokenInvokeArgs(), options.WithDefaults());
     }
@@ -21,21 +139,47 @@ namespace Pulumi.Vault.Kubernetes
 
     public sealed class GetServiceAccountTokenArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The Kubernetes secret backend to generate service account 
+        /// tokens from.
+        /// </summary>
         [Input("backend", required: true)]
         public string Backend { get; set; } = null!;
 
+        /// <summary>
+        /// If true, generate a ClusterRoleBinding to grant 
+        /// permissions across the whole cluster instead of within a namespace.
+        /// </summary>
         [Input("clusterRoleBinding")]
         public bool? ClusterRoleBinding { get; set; }
 
+        /// <summary>
+        /// The name of the Kubernetes namespace in which to 
+        /// generate the credentials.
+        /// </summary>
         [Input("kubernetesNamespace", required: true)]
         public string KubernetesNamespace { get; set; } = null!;
 
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
         [Input("namespace")]
         public string? Namespace { get; set; }
 
+        /// <summary>
+        /// The name of the Kubernetes secret backend role to generate service 
+        /// account tokens from.
+        /// </summary>
         [Input("role", required: true)]
         public string Role { get; set; } = null!;
 
+        /// <summary>
+        /// The TTL of the generated Kubernetes service account token, specified in 
+        /// seconds or as a Go duration format string.
+        /// </summary>
         [Input("ttl")]
         public string? Ttl { get; set; }
 
@@ -47,21 +191,47 @@ namespace Pulumi.Vault.Kubernetes
 
     public sealed class GetServiceAccountTokenInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The Kubernetes secret backend to generate service account 
+        /// tokens from.
+        /// </summary>
         [Input("backend", required: true)]
         public Input<string> Backend { get; set; } = null!;
 
+        /// <summary>
+        /// If true, generate a ClusterRoleBinding to grant 
+        /// permissions across the whole cluster instead of within a namespace.
+        /// </summary>
         [Input("clusterRoleBinding")]
         public Input<bool>? ClusterRoleBinding { get; set; }
 
+        /// <summary>
+        /// The name of the Kubernetes namespace in which to 
+        /// generate the credentials.
+        /// </summary>
         [Input("kubernetesNamespace", required: true)]
         public Input<string> KubernetesNamespace { get; set; } = null!;
 
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
+        /// <summary>
+        /// The name of the Kubernetes secret backend role to generate service 
+        /// account tokens from.
+        /// </summary>
         [Input("role", required: true)]
         public Input<string> Role { get; set; } = null!;
 
+        /// <summary>
+        /// The TTL of the generated Kubernetes service account token, specified in 
+        /// seconds or as a Go duration format string.
+        /// </summary>
         [Input("ttl")]
         public Input<string>? Ttl { get; set; }
 
@@ -82,13 +252,31 @@ namespace Pulumi.Vault.Kubernetes
         /// </summary>
         public readonly string Id;
         public readonly string KubernetesNamespace;
+        /// <summary>
+        /// The duration of the lease in seconds.
+        /// </summary>
         public readonly int LeaseDuration;
+        /// <summary>
+        /// The lease identifier assigned by Vault.
+        /// </summary>
         public readonly string LeaseId;
+        /// <summary>
+        /// True if the duration of this lease can be extended through renewal.
+        /// </summary>
         public readonly bool LeaseRenewable;
         public readonly string? Namespace;
         public readonly string Role;
+        /// <summary>
+        /// The name of the service account associated with the token.
+        /// </summary>
         public readonly string ServiceAccountName;
+        /// <summary>
+        /// The Kubernetes namespace that the service account resides in.
+        /// </summary>
         public readonly string ServiceAccountNamespace;
+        /// <summary>
+        /// The Kubernetes service account token.
+        /// </summary>
         public readonly string ServiceAccountToken;
         public readonly string? Ttl;
 

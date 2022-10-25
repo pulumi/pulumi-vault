@@ -21,13 +21,37 @@ public final class GetServiceAccountTokenResult {
      */
     private String id;
     private String kubernetesNamespace;
+    /**
+     * @return The duration of the lease in seconds.
+     * 
+     */
     private Integer leaseDuration;
+    /**
+     * @return The lease identifier assigned by Vault.
+     * 
+     */
     private String leaseId;
+    /**
+     * @return True if the duration of this lease can be extended through renewal.
+     * 
+     */
     private Boolean leaseRenewable;
     private @Nullable String namespace;
     private String role;
+    /**
+     * @return The name of the service account associated with the token.
+     * 
+     */
     private String serviceAccountName;
+    /**
+     * @return The Kubernetes namespace that the service account resides in.
+     * 
+     */
     private String serviceAccountNamespace;
+    /**
+     * @return The Kubernetes service account token.
+     * 
+     */
     private String serviceAccountToken;
     private @Nullable String ttl;
 
@@ -48,12 +72,24 @@ public final class GetServiceAccountTokenResult {
     public String kubernetesNamespace() {
         return this.kubernetesNamespace;
     }
+    /**
+     * @return The duration of the lease in seconds.
+     * 
+     */
     public Integer leaseDuration() {
         return this.leaseDuration;
     }
+    /**
+     * @return The lease identifier assigned by Vault.
+     * 
+     */
     public String leaseId() {
         return this.leaseId;
     }
+    /**
+     * @return True if the duration of this lease can be extended through renewal.
+     * 
+     */
     public Boolean leaseRenewable() {
         return this.leaseRenewable;
     }
@@ -63,12 +99,24 @@ public final class GetServiceAccountTokenResult {
     public String role() {
         return this.role;
     }
+    /**
+     * @return The name of the service account associated with the token.
+     * 
+     */
     public String serviceAccountName() {
         return this.serviceAccountName;
     }
+    /**
+     * @return The Kubernetes namespace that the service account resides in.
+     * 
+     */
     public String serviceAccountNamespace() {
         return this.serviceAccountNamespace;
     }
+    /**
+     * @return The Kubernetes service account token.
+     * 
+     */
     public String serviceAccountToken() {
         return this.serviceAccountToken;
     }

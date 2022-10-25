@@ -53,11 +53,17 @@ class GetSecretSubkeysV2Result:
     @property
     @pulumi.getter
     def data(self) -> Mapping[str, Any]:
+        """
+        Subkeys for the KV-V2 secret stored as a serialized map of strings.
+        """
         return pulumi.get(self, "data")
 
     @property
     @pulumi.getter(name="dataJson")
     def data_json(self) -> str:
+        """
+        Subkeys for the KV-V2 secret read from Vault.
+        """
         return pulumi.get(self, "data_json")
 
     @property
@@ -91,6 +97,9 @@ class GetSecretSubkeysV2Result:
     @property
     @pulumi.getter
     def path(self) -> str:
+        """
+        Full path where the KV-V2 secrets are listed.
+        """
         return pulumi.get(self, "path")
 
     @property
@@ -123,7 +132,49 @@ def get_secret_subkeys_v2(depth: Optional[int] = None,
                           version: Optional[int] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretSubkeysV2Result:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import json
+    import pulumi_vault as vault
+
+    kvv2 = vault.Mount("kvv2",
+        path="kvv2",
+        type="kv",
+        options={
+            "version": "2",
+        },
+        description="KV Version 2 secret engine mount")
+    aws_secret = vault.kv.SecretV2("awsSecret",
+        mount=kvv2.path,
+        data_json=json.dumps({
+            "zip": "zap",
+            "foo": "bar",
+        }))
+    test = vault.kv.get_secret_subkeys_v2_output(mount=kvv2.path,
+        name=aws_secret.name)
+    ```
+    ## Required Vault Capabilities
+
+    Use of this resource requires the `read` capability on the given path.
+
+
+    :param int depth: Specifies the deepest nesting level to provide in the output.
+           If non-zero, keys that reside at the specified depth value will be
+           artificially treated as leaves and will thus be `null` even if further
+           underlying sub-keys exist.
+    :param str mount: Path where KV-V2 engine is mounted.
+    :param str name: Full name of the secret. For a nested secret
+           the name is the nested path excluding the mount and data
+           prefix. For example, for a secret at `kvv2/data/foo/bar/baz`
+           the name is `foo/bar/baz`.
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           *Available only for Vault Enterprise*.
+    :param int version: Specifies the version to return. If not 
+           set the latest version is returned.
     """
     __args__ = dict()
     __args__['depth'] = depth
@@ -154,6 +205,48 @@ def get_secret_subkeys_v2_output(depth: Optional[pulumi.Input[Optional[int]]] = 
                                  version: Optional[pulumi.Input[Optional[int]]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSecretSubkeysV2Result]:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import json
+    import pulumi_vault as vault
+
+    kvv2 = vault.Mount("kvv2",
+        path="kvv2",
+        type="kv",
+        options={
+            "version": "2",
+        },
+        description="KV Version 2 secret engine mount")
+    aws_secret = vault.kv.SecretV2("awsSecret",
+        mount=kvv2.path,
+        data_json=json.dumps({
+            "zip": "zap",
+            "foo": "bar",
+        }))
+    test = vault.kv.get_secret_subkeys_v2_output(mount=kvv2.path,
+        name=aws_secret.name)
+    ```
+    ## Required Vault Capabilities
+
+    Use of this resource requires the `read` capability on the given path.
+
+
+    :param int depth: Specifies the deepest nesting level to provide in the output.
+           If non-zero, keys that reside at the specified depth value will be
+           artificially treated as leaves and will thus be `null` even if further
+           underlying sub-keys exist.
+    :param str mount: Path where KV-V2 engine is mounted.
+    :param str name: Full name of the secret. For a nested secret
+           the name is the nested path excluding the mount and data
+           prefix. For example, for a secret at `kvv2/data/foo/bar/baz`
+           the name is `foo/bar/baz`.
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           *Available only for Vault Enterprise*.
+    :param int version: Specifies the version to return. If not 
+           set the latest version is returned.
     """
     ...

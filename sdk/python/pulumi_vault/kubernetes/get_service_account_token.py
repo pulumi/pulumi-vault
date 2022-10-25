@@ -88,16 +88,25 @@ class GetServiceAccountTokenResult:
     @property
     @pulumi.getter(name="leaseDuration")
     def lease_duration(self) -> int:
+        """
+        The duration of the lease in seconds.
+        """
         return pulumi.get(self, "lease_duration")
 
     @property
     @pulumi.getter(name="leaseId")
     def lease_id(self) -> str:
+        """
+        The lease identifier assigned by Vault.
+        """
         return pulumi.get(self, "lease_id")
 
     @property
     @pulumi.getter(name="leaseRenewable")
     def lease_renewable(self) -> bool:
+        """
+        True if the duration of this lease can be extended through renewal.
+        """
         return pulumi.get(self, "lease_renewable")
 
     @property
@@ -113,16 +122,25 @@ class GetServiceAccountTokenResult:
     @property
     @pulumi.getter(name="serviceAccountName")
     def service_account_name(self) -> str:
+        """
+        The name of the service account associated with the token.
+        """
         return pulumi.get(self, "service_account_name")
 
     @property
     @pulumi.getter(name="serviceAccountNamespace")
     def service_account_namespace(self) -> str:
+        """
+        The Kubernetes namespace that the service account resides in.
+        """
         return pulumi.get(self, "service_account_namespace")
 
     @property
     @pulumi.getter(name="serviceAccountToken")
     def service_account_token(self) -> str:
+        """
+        The Kubernetes service account token.
+        """
         return pulumi.get(self, "service_account_token")
 
     @property
@@ -160,7 +178,55 @@ def get_service_account_token(backend: Optional[str] = None,
                               ttl: Optional[str] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServiceAccountTokenResult:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    config = vault.kubernetes.SecretBackend("config",
+        path="kubernetes",
+        description="kubernetes secrets engine description",
+        kubernetes_host="https://127.0.0.1:61233",
+        kubernetes_ca_cert=(lambda path: open(path).read())("/path/to/cert"),
+        service_account_jwt=(lambda path: open(path).read())("/path/to/token"),
+        disable_local_ca_jwt=False)
+    role = vault.kubernetes.SecretBackendRole("role",
+        backend=config.path,
+        allowed_kubernetes_namespaces=["*"],
+        token_max_ttl=43200,
+        token_default_ttl=21600,
+        service_account_name="test-service-account-with-generated-token",
+        extra_labels={
+            "id": "abc123",
+            "name": "some_name",
+        },
+        extra_annotations={
+            "env": "development",
+            "location": "earth",
+        })
+    token = vault.kubernetes.get_service_account_token_output(backend=config.path,
+        role=role.name,
+        kubernetes_namespace="test",
+        cluster_role_binding=False,
+        ttl="1h")
+    ```
+
+
+    :param str backend: The Kubernetes secret backend to generate service account 
+           tokens from.
+    :param bool cluster_role_binding: If true, generate a ClusterRoleBinding to grant 
+           permissions across the whole cluster instead of within a namespace.
+    :param str kubernetes_namespace: The name of the Kubernetes namespace in which to 
+           generate the credentials.
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           *Available only for Vault Enterprise*.
+    :param str role: The name of the Kubernetes secret backend role to generate service 
+           account tokens from.
+    :param str ttl: The TTL of the generated Kubernetes service account token, specified in 
+           seconds or as a Go duration format string.
     """
     __args__ = dict()
     __args__['backend'] = backend
@@ -197,6 +263,54 @@ def get_service_account_token_output(backend: Optional[pulumi.Input[str]] = None
                                      ttl: Optional[pulumi.Input[Optional[str]]] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetServiceAccountTokenResult]:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    config = vault.kubernetes.SecretBackend("config",
+        path="kubernetes",
+        description="kubernetes secrets engine description",
+        kubernetes_host="https://127.0.0.1:61233",
+        kubernetes_ca_cert=(lambda path: open(path).read())("/path/to/cert"),
+        service_account_jwt=(lambda path: open(path).read())("/path/to/token"),
+        disable_local_ca_jwt=False)
+    role = vault.kubernetes.SecretBackendRole("role",
+        backend=config.path,
+        allowed_kubernetes_namespaces=["*"],
+        token_max_ttl=43200,
+        token_default_ttl=21600,
+        service_account_name="test-service-account-with-generated-token",
+        extra_labels={
+            "id": "abc123",
+            "name": "some_name",
+        },
+        extra_annotations={
+            "env": "development",
+            "location": "earth",
+        })
+    token = vault.kubernetes.get_service_account_token_output(backend=config.path,
+        role=role.name,
+        kubernetes_namespace="test",
+        cluster_role_binding=False,
+        ttl="1h")
+    ```
+
+
+    :param str backend: The Kubernetes secret backend to generate service account 
+           tokens from.
+    :param bool cluster_role_binding: If true, generate a ClusterRoleBinding to grant 
+           permissions across the whole cluster instead of within a namespace.
+    :param str kubernetes_namespace: The name of the Kubernetes namespace in which to 
+           generate the credentials.
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           *Available only for Vault Enterprise*.
+    :param str role: The name of the Kubernetes secret backend role to generate service 
+           account tokens from.
+    :param str ttl: The TTL of the generated Kubernetes service account token, specified in 
+           seconds or as a Go duration format string.
     """
     ...
