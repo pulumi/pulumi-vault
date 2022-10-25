@@ -14,7 +14,15 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetSecretSubkeysV2Result {
+    /**
+     * @return Subkeys for the KV-V2 secret stored as a serialized map of strings.
+     * 
+     */
     private Map<String,Object> data;
+    /**
+     * @return Subkeys for the KV-V2 secret read from Vault.
+     * 
+     */
     private String dataJson;
     private @Nullable Integer depth;
     /**
@@ -25,13 +33,25 @@ public final class GetSecretSubkeysV2Result {
     private String mount;
     private String name;
     private @Nullable String namespace;
+    /**
+     * @return Full path where the KV-V2 secrets are listed.
+     * 
+     */
     private String path;
     private @Nullable Integer version;
 
     private GetSecretSubkeysV2Result() {}
+    /**
+     * @return Subkeys for the KV-V2 secret stored as a serialized map of strings.
+     * 
+     */
     public Map<String,Object> data() {
         return this.data;
     }
+    /**
+     * @return Subkeys for the KV-V2 secret read from Vault.
+     * 
+     */
     public String dataJson() {
         return this.dataJson;
     }
@@ -54,6 +74,10 @@ public final class GetSecretSubkeysV2Result {
     public Optional<String> namespace() {
         return Optional.ofNullable(this.namespace);
     }
+    /**
+     * @return Full path where the KV-V2 secrets are listed.
+     * 
+     */
     public String path() {
         return this.path;
     }

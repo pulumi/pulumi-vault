@@ -29968,27 +29968,34 @@
             }
         },
         "vault:kubernetes/getServiceAccountToken:getServiceAccountToken": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fs from \"fs\";\nimport * as vault from \"@pulumi/vault\";\n\nconst config = new vault.kubernetes.SecretBackend(\"config\", {\n    path: \"kubernetes\",\n    description: \"kubernetes secrets engine description\",\n    kubernetesHost: \"https://127.0.0.1:61233\",\n    kubernetesCaCert: fs.readFileSync(\"/path/to/cert\"),\n    serviceAccountJwt: fs.readFileSync(\"/path/to/token\"),\n    disableLocalCaJwt: false,\n});\nconst role = new vault.kubernetes.SecretBackendRole(\"role\", {\n    backend: config.path,\n    allowedKubernetesNamespaces: [\"*\"],\n    tokenMaxTtl: 43200,\n    tokenDefaultTtl: 21600,\n    serviceAccountName: \"test-service-account-with-generated-token\",\n    extraLabels: {\n        id: \"abc123\",\n        name: \"some_name\",\n    },\n    extraAnnotations: {\n        env: \"development\",\n        location: \"earth\",\n    },\n});\nconst token = vault.kubernetes.getServiceAccountTokenOutput({\n    backend: config.path,\n    role: role.name,\n    kubernetesNamespace: \"test\",\n    clusterRoleBinding: false,\n    ttl: \"1h\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nconfig = vault.kubernetes.SecretBackend(\"config\",\n    path=\"kubernetes\",\n    description=\"kubernetes secrets engine description\",\n    kubernetes_host=\"https://127.0.0.1:61233\",\n    kubernetes_ca_cert=(lambda path: open(path).read())(\"/path/to/cert\"),\n    service_account_jwt=(lambda path: open(path).read())(\"/path/to/token\"),\n    disable_local_ca_jwt=False)\nrole = vault.kubernetes.SecretBackendRole(\"role\",\n    backend=config.path,\n    allowed_kubernetes_namespaces=[\"*\"],\n    token_max_ttl=43200,\n    token_default_ttl=21600,\n    service_account_name=\"test-service-account-with-generated-token\",\n    extra_labels={\n        \"id\": \"abc123\",\n        \"name\": \"some_name\",\n    },\n    extra_annotations={\n        \"env\": \"development\",\n        \"location\": \"earth\",\n    })\ntoken = vault.kubernetes.get_service_account_token_output(backend=config.path,\n    role=role.name,\n    kubernetes_namespace=\"test\",\n    cluster_role_binding=False,\n    ttl=\"1h\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.IO;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Vault.Kubernetes.SecretBackend(\"config\", new()\n    {\n        Path = \"kubernetes\",\n        Description = \"kubernetes secrets engine description\",\n        KubernetesHost = \"https://127.0.0.1:61233\",\n        KubernetesCaCert = File.ReadAllText(\"/path/to/cert\"),\n        ServiceAccountJwt = File.ReadAllText(\"/path/to/token\"),\n        DisableLocalCaJwt = false,\n    });\n\n    var role = new Vault.Kubernetes.SecretBackendRole(\"role\", new()\n    {\n        Backend = config.Path,\n        AllowedKubernetesNamespaces = new[]\n        {\n            \"*\",\n        },\n        TokenMaxTtl = 43200,\n        TokenDefaultTtl = 21600,\n        ServiceAccountName = \"test-service-account-with-generated-token\",\n        ExtraLabels = \n        {\n            { \"id\", \"abc123\" },\n            { \"name\", \"some_name\" },\n        },\n        ExtraAnnotations = \n        {\n            { \"env\", \"development\" },\n            { \"location\", \"earth\" },\n        },\n    });\n\n    var token = Vault.Kubernetes.GetServiceAccountToken.Invoke(new()\n    {\n        Backend = config.Path,\n        Role = role.Name,\n        KubernetesNamespace = \"test\",\n        ClusterRoleBinding = false,\n        Ttl = \"1h\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"io/ioutil\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kubernetes\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc readFileOrPanic(path string) pulumi.StringPtrInput {\n\tdata, err := ioutil.ReadFile(path)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\treturn pulumi.String(string(data))\n}\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tconfig, err := kubernetes.NewSecretBackend(ctx, \"config\", \u0026kubernetes.SecretBackendArgs{\n\t\t\tPath:              pulumi.String(\"kubernetes\"),\n\t\t\tDescription:       pulumi.String(\"kubernetes secrets engine description\"),\n\t\t\tKubernetesHost:    pulumi.String(\"https://127.0.0.1:61233\"),\n\t\t\tKubernetesCaCert:  readFileOrPanic(\"/path/to/cert\"),\n\t\t\tServiceAccountJwt: readFileOrPanic(\"/path/to/token\"),\n\t\t\tDisableLocalCaJwt: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\trole, err := kubernetes.NewSecretBackendRole(ctx, \"role\", \u0026kubernetes.SecretBackendRoleArgs{\n\t\t\tBackend: config.Path,\n\t\t\tAllowedKubernetesNamespaces: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"*\"),\n\t\t\t},\n\t\t\tTokenMaxTtl:        pulumi.Int(43200),\n\t\t\tTokenDefaultTtl:    pulumi.Int(21600),\n\t\t\tServiceAccountName: pulumi.String(\"test-service-account-with-generated-token\"),\n\t\t\tExtraLabels: pulumi.StringMap{\n\t\t\t\t\"id\":   pulumi.String(\"abc123\"),\n\t\t\t\t\"name\": pulumi.String(\"some_name\"),\n\t\t\t},\n\t\t\tExtraAnnotations: pulumi.StringMap{\n\t\t\t\t\"env\":      pulumi.String(\"development\"),\n\t\t\t\t\"location\": pulumi.String(\"earth\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = kubernetes.GetServiceAccountTokenOutput(ctx, kubernetes.GetServiceAccountTokenOutputArgs{\n\t\t\tBackend:             config.Path,\n\t\t\tRole:                role.Name,\n\t\t\tKubernetesNamespace: pulumi.String(\"test\"),\n\t\t\tClusterRoleBinding:  pulumi.Bool(false),\n\t\t\tTtl:                 pulumi.String(\"1h\"),\n\t\t}, nil)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.kubernetes.SecretBackend;\nimport com.pulumi.vault.kubernetes.SecretBackendArgs;\nimport com.pulumi.vault.kubernetes.SecretBackendRole;\nimport com.pulumi.vault.kubernetes.SecretBackendRoleArgs;\nimport com.pulumi.vault.kubernetes.KubernetesFunctions;\nimport com.pulumi.vault.kubernetes.inputs.GetServiceAccountTokenArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var config = new SecretBackend(\"config\", SecretBackendArgs.builder()        \n            .path(\"kubernetes\")\n            .description(\"kubernetes secrets engine description\")\n            .kubernetesHost(\"https://127.0.0.1:61233\")\n            .kubernetesCaCert(Files.readString(Paths.get(\"/path/to/cert\")))\n            .serviceAccountJwt(Files.readString(Paths.get(\"/path/to/token\")))\n            .disableLocalCaJwt(false)\n            .build());\n\n        var role = new SecretBackendRole(\"role\", SecretBackendRoleArgs.builder()        \n            .backend(config.path())\n            .allowedKubernetesNamespaces(\"*\")\n            .tokenMaxTtl(43200)\n            .tokenDefaultTtl(21600)\n            .serviceAccountName(\"test-service-account-with-generated-token\")\n            .extraLabels(Map.ofEntries(\n                Map.entry(\"id\", \"abc123\"),\n                Map.entry(\"name\", \"some_name\")\n            ))\n            .extraAnnotations(Map.ofEntries(\n                Map.entry(\"env\", \"development\"),\n                Map.entry(\"location\", \"earth\")\n            ))\n            .build());\n\n        final var token = KubernetesFunctions.getServiceAccountToken(GetServiceAccountTokenArgs.builder()\n            .backend(config.path())\n            .role(role.name())\n            .kubernetesNamespace(\"test\")\n            .clusterRoleBinding(false)\n            .ttl(\"1h\")\n            .build());\n\n    }\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getServiceAccountToken.\n",
                 "properties": {
                     "backend": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The Kubernetes secret backend to generate service account \ntokens from.\n"
                     },
                     "clusterRoleBinding": {
-                        "type": "boolean"
+                        "type": "boolean",
+                        "description": "If true, generate a ClusterRoleBinding to grant \npermissions across the whole cluster instead of within a namespace.\n"
                     },
                     "kubernetesNamespace": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The name of the Kubernetes namespace in which to \ngenerate the credentials.\n"
                     },
                     "namespace": {
                         "type": "string",
+                        "description": "The namespace of the target resource.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
                         "willReplaceOnChanges": true
                     },
                     "role": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The name of the Kubernetes secret backend role to generate service \naccount tokens from.\n"
                     },
                     "ttl": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The TTL of the generated Kubernetes service account token, specified in \nseconds or as a Go duration format string.\n"
                     }
                 },
                 "type": "object",
@@ -30015,13 +30022,16 @@
                         "type": "string"
                     },
                     "leaseDuration": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "The duration of the lease in seconds.\n"
                     },
                     "leaseId": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The lease identifier assigned by Vault.\n"
                     },
                     "leaseRenewable": {
-                        "type": "boolean"
+                        "type": "boolean",
+                        "description": "True if the duration of this lease can be extended through renewal.\n"
                     },
                     "namespace": {
                         "type": "string"
@@ -30030,13 +30040,16 @@
                         "type": "string"
                     },
                     "serviceAccountName": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The name of the service account associated with the token.\n"
                     },
                     "serviceAccountNamespace": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The Kubernetes namespace that the service account resides in.\n"
                     },
                     "serviceAccountToken": {
                         "type": "string",
+                        "description": "The Kubernetes service account token.\n",
                         "secret": true
                     },
                     "ttl": {
@@ -30131,24 +30144,30 @@
             }
         },
         "vault:kv/getSecretSubkeysV2:getSecretSubkeysV2": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst kvv2 = new vault.Mount(\"kvv2\", {\n    path: \"kvv2\",\n    type: \"kv\",\n    options: {\n        version: \"2\",\n    },\n    description: \"KV Version 2 secret engine mount\",\n});\nconst awsSecret = new vault.kv.SecretV2(\"awsSecret\", {\n    mount: kvv2.path,\n    dataJson: JSON.stringify({\n        zip: \"zap\",\n        foo: \"bar\",\n    }),\n});\nconst test = vault.kv.getSecretSubkeysV2Output({\n    mount: kvv2.path,\n    name: awsSecret.name,\n});\n```\n```python\nimport pulumi\nimport json\nimport pulumi_vault as vault\n\nkvv2 = vault.Mount(\"kvv2\",\n    path=\"kvv2\",\n    type=\"kv\",\n    options={\n        \"version\": \"2\",\n    },\n    description=\"KV Version 2 secret engine mount\")\naws_secret = vault.kv.SecretV2(\"awsSecret\",\n    mount=kvv2.path,\n    data_json=json.dumps({\n        \"zip\": \"zap\",\n        \"foo\": \"bar\",\n    }))\ntest = vault.kv.get_secret_subkeys_v2_output(mount=kvv2.path,\n    name=aws_secret.name)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Text.Json;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var kvv2 = new Vault.Mount(\"kvv2\", new()\n    {\n        Path = \"kvv2\",\n        Type = \"kv\",\n        Options = \n        {\n            { \"version\", \"2\" },\n        },\n        Description = \"KV Version 2 secret engine mount\",\n    });\n\n    var awsSecret = new Vault.Kv.SecretV2(\"awsSecret\", new()\n    {\n        Mount = kvv2.Path,\n        DataJson = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n        {\n            [\"zip\"] = \"zap\",\n            [\"foo\"] = \"bar\",\n        }),\n    });\n\n    var test = Vault.kv.GetSecretSubkeysV2.Invoke(new()\n    {\n        Mount = kvv2.Path,\n        Name = awsSecret.Name,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kv\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tkvv2, err := vault.NewMount(ctx, \"kvv2\", \u0026vault.MountArgs{\n\t\t\tPath: pulumi.String(\"kvv2\"),\n\t\t\tType: pulumi.String(\"kv\"),\n\t\t\tOptions: pulumi.AnyMap{\n\t\t\t\t\"version\": pulumi.Any(\"2\"),\n\t\t\t},\n\t\t\tDescription: pulumi.String(\"KV Version 2 secret engine mount\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"zip\": \"zap\",\n\t\t\t\"foo\": \"bar\",\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\tawsSecret, err := kv.NewSecretV2(ctx, \"awsSecret\", \u0026kv.SecretV2Args{\n\t\t\tMount:    kvv2.Path,\n\t\t\tDataJson: pulumi.String(json0),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = kv.GetSecretSubkeysV2Output(ctx, kv.GetSecretSubkeysV2OutputArgs{\n\t\t\tMount: kvv2.Path,\n\t\t\tName:  awsSecret.Name,\n\t\t}, nil)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.kv.SecretV2;\nimport com.pulumi.vault.kv.SecretV2Args;\nimport com.pulumi.vault.kv.KvFunctions;\nimport com.pulumi.vault.kv.inputs.GetSecretSubkeysV2Args;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var kvv2 = new Mount(\"kvv2\", MountArgs.builder()        \n            .path(\"kvv2\")\n            .type(\"kv\")\n            .options(Map.of(\"version\", \"2\"))\n            .description(\"KV Version 2 secret engine mount\")\n            .build());\n\n        var awsSecret = new SecretV2(\"awsSecret\", SecretV2Args.builder()        \n            .mount(kvv2.path())\n            .dataJson(serializeJson(\n                jsonObject(\n                    jsonProperty(\"zip\", \"zap\"),\n                    jsonProperty(\"foo\", \"bar\")\n                )))\n            .build());\n\n        final var test = KvFunctions.getSecretSubkeysV2(GetSecretSubkeysV2Args.builder()\n            .mount(kvv2.path())\n            .name(awsSecret.name())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  kvv2:\n    type: vault:Mount\n    properties:\n      path: kvv2\n      type: kv\n      options:\n        version: 2\n      description: KV Version 2 secret engine mount\n  awsSecret:\n    type: vault:kv:SecretV2\n    properties:\n      mount: ${kvv2.path}\n      dataJson:\n        Fn::ToJSON:\n          zip: zap\n          foo: bar\nvariables:\n  test:\n    Fn::Invoke:\n      Function: vault:kv:getSecretSubkeysV2\n      Arguments:\n        mount: ${kvv2.path}\n        name: ${awsSecret.name}\n```\n{{% /example %}}\n{{% /examples %}}\n## Required Vault Capabilities\n\nUse of this resource requires the `read` capability on the given path.\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getSecretSubkeysV2.\n",
                 "properties": {
                     "depth": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "Specifies the deepest nesting level to provide in the output.\nIf non-zero, keys that reside at the specified depth value will be\nartificially treated as leaves and will thus be `null` even if further\nunderlying sub-keys exist.\n"
                     },
                     "mount": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Path where KV-V2 engine is mounted.\n"
                     },
                     "name": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Full name of the secret. For a nested secret\nthe name is the nested path excluding the mount and data\nprefix. For example, for a secret at `kvv2/data/foo/bar/baz`\nthe name is `foo/bar/baz`.\n"
                     },
                     "namespace": {
                         "type": "string",
+                        "description": "The namespace of the target resource.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
                         "willReplaceOnChanges": true
                     },
                     "version": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "Specifies the version to return. If not \nset the latest version is returned.\n"
                     }
                 },
                 "type": "object",
@@ -30165,10 +30184,12 @@
                         "additionalProperties": {
                             "$ref": "pulumi.json#/Any"
                         },
+                        "description": "Subkeys for the KV-V2 secret stored as a serialized map of strings.\n",
                         "secret": true
                     },
                     "dataJson": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Subkeys for the KV-V2 secret read from Vault.\n"
                     },
                     "depth": {
                         "type": "integer"
@@ -30187,7 +30208,8 @@
                         "type": "string"
                     },
                     "path": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Full path where the KV-V2 secrets are listed.\n"
                     },
                     "version": {
                         "type": "integer"

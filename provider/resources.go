@@ -485,14 +485,24 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "kubernetes_auth_backend_role.md",
 				},
 			},
-			"vault_kubernetes_service_account_token": {Tok: makeDataSource(kubernetesMod, "getServiceAccountToken")},
+			"vault_kubernetes_service_account_token": {
+				Tok: makeDataSource(kubernetesMod, "getServiceAccountToken"),
+				Docs: &tfbridge.DocInfo{
+					Source: "kubernetes_credentials.html.md",
+				},
+			},
 
 			// KV
-			"vault_kv_secret":            {Tok: makeDataSource(kvMod, "getSecret")},
-			"vault_kv_secret_subkeys_v2": {Tok: makeDataSource(kvMod, "getSecretSubkeysV2")},
-			"vault_kv_secret_v2":         {Tok: makeDataSource(kvMod, "getSecretV2")},
-			"vault_kv_secrets_list":      {Tok: makeDataSource(kvMod, "getSecretsList")},
-			"vault_kv_secrets_list_v2":   {Tok: makeDataSource(kvMod, "getSecretsListV2")},
+			"vault_kv_secret": {Tok: makeDataSource(kvMod, "getSecret")},
+			"vault_kv_secret_subkeys_v2": {
+				Tok: makeDataSource(kvMod, "getSecretSubkeysV2"),
+				Docs: &tfbridge.DocInfo{
+					Source: "kv_subkeys_v2.html.md",
+				},
+			},
+			"vault_kv_secret_v2":       {Tok: makeDataSource(kvMod, "getSecretV2")},
+			"vault_kv_secrets_list":    {Tok: makeDataSource(kvMod, "getSecretsList")},
+			"vault_kv_secrets_list_v2": {Tok: makeDataSource(kvMod, "getSecretsListV2")},
 
 			// Transform
 			"vault_transform_encode": {Tok: makeDataSource(transformMod, "getEncode")},
