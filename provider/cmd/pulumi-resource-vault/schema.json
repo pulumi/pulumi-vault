@@ -147,8 +147,7 @@
                 "items": {
                     "$ref": "#/types/vault:config/headers:headers"
                 },
-                "description": "The headers to send with each Vault request.\n",
-                "secret": true
+                "description": "The headers to send with each Vault request.\n"
             },
             "maxLeaseTtlSeconds": {
                 "type": "integer",
@@ -6749,8 +6748,7 @@
                 "items": {
                     "$ref": "#/types/vault:index/ProviderHeader:ProviderHeader"
                 },
-                "description": "The headers to send with each Vault request.\n",
-                "secret": true
+                "description": "The headers to send with each Vault request.\n"
             },
             "maxLeaseTtlSeconds": {
                 "type": "integer",
@@ -6863,8 +6861,7 @@
                 "items": {
                     "$ref": "#/types/vault:index/ProviderHeader:ProviderHeader"
                 },
-                "description": "The headers to send with each Vault request.\n",
-                "secret": true
+                "description": "The headers to send with each Vault request.\n"
             },
             "maxLeaseTtlSeconds": {
                 "type": "integer",
