@@ -115,6 +115,9 @@ func Provider() tfbridge.ProviderInfo {
 	}
 	p := shimv2.NewProvider(generatedProvider.SchemaProvider())
 
+	// Temporarily override the secretness of `headers` field.
+	// https://github.com/pulumi/pulumi/issues/11278
+	overrideSecretFlagForHeaders := false
 	prov := tfbridge.ProviderInfo{
 		P:           p,
 		Name:        "vault",
@@ -147,6 +150,9 @@ func Provider() tfbridge.ProviderInfo {
 					},
 					Value: 2,
 				},
+			},
+			"headers": {
+				Secret: &overrideSecretFlagForHeaders,
 			},
 		},
 		PreConfigureCallback: preConfigureCallback,
