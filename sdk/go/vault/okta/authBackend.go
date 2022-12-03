@@ -20,43 +20,40 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/okta"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/okta"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := okta.NewAuthBackend(ctx, "example", &okta.AuthBackendArgs{
-//				Description: pulumi.String("Demonstration of the Terraform Okta auth backend"),
-//				Groups: okta.AuthBackendGroupTypeArray{
-//					&okta.AuthBackendGroupTypeArgs{
-//						GroupName: pulumi.String("foo"),
-//						Policies: pulumi.StringArray{
-//							pulumi.String("one"),
-//							pulumi.String("two"),
-//						},
-//					},
-//				},
-//				Organization: pulumi.String("example"),
-//				Token:        pulumi.String("something that should be kept secret"),
-//				Users: okta.AuthBackendUserTypeArray{
-//					&okta.AuthBackendUserTypeArgs{
-//						Groups: pulumi.StringArray{
-//							pulumi.String("foo"),
-//						},
-//						Username: pulumi.String("bar"),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := okta.NewAuthBackend(ctx, "example", &okta.AuthBackendArgs{
+// 			Description: pulumi.String("Demonstration of the Terraform Okta auth backend"),
+// 			Groups: okta.AuthBackendGroupTypeArray{
+// 				&okta.AuthBackendGroupTypeArgs{
+// 					GroupName: pulumi.String("foo"),
+// 					Policies: pulumi.StringArray{
+// 						pulumi.String("one"),
+// 						pulumi.String("two"),
+// 					},
+// 				},
+// 			},
+// 			Organization: pulumi.String("example"),
+// 			Token:        pulumi.String("something that should be kept secret"),
+// 			Users: okta.AuthBackendUserTypeArray{
+// 				&okta.AuthBackendUserTypeArgs{
+// 					Groups: pulumi.StringArray{
+// 						pulumi.String("foo"),
+// 					},
+// 					Username: pulumi.String("bar"),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -64,9 +61,7 @@ import (
 // Okta authentication backends can be imported using its `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:okta/authBackend:AuthBackend example okta
-//
+//  $ pulumi import vault:okta/authBackend:AuthBackend example okta
 // ```
 type AuthBackend struct {
 	pulumi.CustomResourceState
@@ -325,7 +320,7 @@ func (i *AuthBackend) ToAuthBackendOutputWithContext(ctx context.Context) AuthBa
 // AuthBackendArrayInput is an input type that accepts AuthBackendArray and AuthBackendArrayOutput values.
 // You can construct a concrete instance of `AuthBackendArrayInput` via:
 //
-//	AuthBackendArray{ AuthBackendArgs{...} }
+//          AuthBackendArray{ AuthBackendArgs{...} }
 type AuthBackendArrayInput interface {
 	pulumi.Input
 
@@ -350,7 +345,7 @@ func (i AuthBackendArray) ToAuthBackendArrayOutputWithContext(ctx context.Contex
 // AuthBackendMapInput is an input type that accepts AuthBackendMap and AuthBackendMapOutput values.
 // You can construct a concrete instance of `AuthBackendMapInput` via:
 //
-//	AuthBackendMap{ "key": AuthBackendArgs{...} }
+//          AuthBackendMap{ "key": AuthBackendArgs{...} }
 type AuthBackendMapInput interface {
 	pulumi.Input
 

@@ -17,37 +17,34 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			key, err := identity.NewOidcKey(ctx, "key", &identity.OidcKeyArgs{
-//				Algorithm: pulumi.String("RS256"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			roleOidcRole, err := identity.NewOidcRole(ctx, "roleOidcRole", &identity.OidcRoleArgs{
-//				Key: key.Name,
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = identity.NewOidcKeyAllowedClientID(ctx, "roleOidcKeyAllowedClientID", &identity.OidcKeyAllowedClientIDArgs{
-//				KeyName:         key.Name,
-//				AllowedClientId: roleOidcRole.ClientId,
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		key, err := identity.NewOidcKey(ctx, "key", &identity.OidcKeyArgs{
+// 			Algorithm: pulumi.String("RS256"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		roleOidcRole, err := identity.NewOidcRole(ctx, "roleOidcRole", &identity.OidcRoleArgs{
+// 			Key: key.Name,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = identity.NewOidcKeyAllowedClientID(ctx, "roleOidcKeyAllowedClientID", &identity.OidcKeyAllowedClientIDArgs{
+// 			KeyName:         key.Name,
+// 			AllowedClientId: roleOidcRole.ClientId,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 type OidcKeyAllowedClientID struct {
 	pulumi.CustomResourceState
@@ -176,7 +173,7 @@ func (i *OidcKeyAllowedClientID) ToOidcKeyAllowedClientIDOutputWithContext(ctx c
 // OidcKeyAllowedClientIDArrayInput is an input type that accepts OidcKeyAllowedClientIDArray and OidcKeyAllowedClientIDArrayOutput values.
 // You can construct a concrete instance of `OidcKeyAllowedClientIDArrayInput` via:
 //
-//	OidcKeyAllowedClientIDArray{ OidcKeyAllowedClientIDArgs{...} }
+//          OidcKeyAllowedClientIDArray{ OidcKeyAllowedClientIDArgs{...} }
 type OidcKeyAllowedClientIDArrayInput interface {
 	pulumi.Input
 
@@ -201,7 +198,7 @@ func (i OidcKeyAllowedClientIDArray) ToOidcKeyAllowedClientIDArrayOutputWithCont
 // OidcKeyAllowedClientIDMapInput is an input type that accepts OidcKeyAllowedClientIDMap and OidcKeyAllowedClientIDMapOutput values.
 // You can construct a concrete instance of `OidcKeyAllowedClientIDMapInput` via:
 //
-//	OidcKeyAllowedClientIDMap{ "key": OidcKeyAllowedClientIDArgs{...} }
+//          OidcKeyAllowedClientIDMap{ "key": OidcKeyAllowedClientIDArgs{...} }
 type OidcKeyAllowedClientIDMapInput interface {
 	pulumi.Input
 

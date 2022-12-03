@@ -17,27 +17,24 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := pkiSecret.NewSecretBackendCert(ctx, "app", &pkiSecret.SecretBackendCertArgs{
-//				Backend:    pulumi.Any(vault_mount.Intermediate.Path),
-//				CommonName: pulumi.String("app.my.domain"),
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				vault_pki_secret_backend_role.Admin,
-//			}))
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := pkiSecret.NewSecretBackendCert(ctx, "app", &pkiSecret.SecretBackendCertArgs{
+// 			Backend:    pulumi.Any(vault_mount.Intermediate.Path),
+// 			CommonName: pulumi.String("app.my.domain"),
+// 		}, pulumi.DependsOn([]pulumi.Resource{
+// 			vault_pki_secret_backend_role.Admin,
+// 		}))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 type SecretBackendCert struct {
 	pulumi.CustomResourceState
@@ -338,7 +335,7 @@ func (i *SecretBackendCert) ToSecretBackendCertOutputWithContext(ctx context.Con
 // SecretBackendCertArrayInput is an input type that accepts SecretBackendCertArray and SecretBackendCertArrayOutput values.
 // You can construct a concrete instance of `SecretBackendCertArrayInput` via:
 //
-//	SecretBackendCertArray{ SecretBackendCertArgs{...} }
+//          SecretBackendCertArray{ SecretBackendCertArgs{...} }
 type SecretBackendCertArrayInput interface {
 	pulumi.Input
 
@@ -363,7 +360,7 @@ func (i SecretBackendCertArray) ToSecretBackendCertArrayOutputWithContext(ctx co
 // SecretBackendCertMapInput is an input type that accepts SecretBackendCertMap and SecretBackendCertMapOutput values.
 // You can construct a concrete instance of `SecretBackendCertMapInput` via:
 //
-//	SecretBackendCertMap{ "key": SecretBackendCertArgs{...} }
+//          SecretBackendCertMap{ "key": SecretBackendCertArgs{...} }
 type SecretBackendCertMapInput interface {
 	pulumi.Input
 

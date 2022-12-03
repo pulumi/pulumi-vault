@@ -19,35 +19,32 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleMfaDuo, err := identity.NewMfaDuo(ctx, "exampleMfaDuo", &identity.MfaDuoArgs{
-//				SecretKey:      pulumi.String("secret-key"),
-//				IntegrationKey: pulumi.String("int-key"),
-//				ApiHostname:    pulumi.String("foo.baz"),
-//				PushInfo:       pulumi.String("push-info"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = identity.NewMfaLoginEnforcement(ctx, "exampleMfaLoginEnforcement", &identity.MfaLoginEnforcementArgs{
-//				MfaMethodIds: pulumi.StringArray{
-//					exampleMfaDuo.MethodId,
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		exampleMfaDuo, err := identity.NewMfaDuo(ctx, "exampleMfaDuo", &identity.MfaDuoArgs{
+// 			SecretKey:      pulumi.String("secret-key"),
+// 			IntegrationKey: pulumi.String("int-key"),
+// 			ApiHostname:    pulumi.String("foo.baz"),
+// 			PushInfo:       pulumi.String("push-info"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = identity.NewMfaLoginEnforcement(ctx, "exampleMfaLoginEnforcement", &identity.MfaLoginEnforcementArgs{
+// 			MfaMethodIds: pulumi.StringArray{
+// 				exampleMfaDuo.MethodId,
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -55,9 +52,7 @@ import (
 // Resource can be imported using its `name` field, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:identity/mfaLoginEnforcement:MfaLoginEnforcement example default
-//
+//  $ pulumi import vault:identity/mfaLoginEnforcement:MfaLoginEnforcement example default
 // ```
 type MfaLoginEnforcement struct {
 	pulumi.CustomResourceState
@@ -226,7 +221,7 @@ func (i *MfaLoginEnforcement) ToMfaLoginEnforcementOutputWithContext(ctx context
 // MfaLoginEnforcementArrayInput is an input type that accepts MfaLoginEnforcementArray and MfaLoginEnforcementArrayOutput values.
 // You can construct a concrete instance of `MfaLoginEnforcementArrayInput` via:
 //
-//	MfaLoginEnforcementArray{ MfaLoginEnforcementArgs{...} }
+//          MfaLoginEnforcementArray{ MfaLoginEnforcementArgs{...} }
 type MfaLoginEnforcementArrayInput interface {
 	pulumi.Input
 
@@ -251,7 +246,7 @@ func (i MfaLoginEnforcementArray) ToMfaLoginEnforcementArrayOutputWithContext(ct
 // MfaLoginEnforcementMapInput is an input type that accepts MfaLoginEnforcementMap and MfaLoginEnforcementMapOutput values.
 // You can construct a concrete instance of `MfaLoginEnforcementMapInput` via:
 //
-//	MfaLoginEnforcementMap{ "key": MfaLoginEnforcementArgs{...} }
+//          MfaLoginEnforcementMap{ "key": MfaLoginEnforcementArgs{...} }
 type MfaLoginEnforcementMapInput interface {
 	pulumi.Input
 

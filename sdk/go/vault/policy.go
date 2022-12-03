@@ -16,9 +16,7 @@ import (
 // Policies can be imported using the `name`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:index/policy:Policy example dev-team
-//
+//  $ pulumi import vault:index/policy:Policy example dev-team
 // ```
 type Policy struct {
 	pulumi.CustomResourceState
@@ -144,7 +142,7 @@ func (i *Policy) ToPolicyOutputWithContext(ctx context.Context) PolicyOutput {
 // PolicyArrayInput is an input type that accepts PolicyArray and PolicyArrayOutput values.
 // You can construct a concrete instance of `PolicyArrayInput` via:
 //
-//	PolicyArray{ PolicyArgs{...} }
+//          PolicyArray{ PolicyArgs{...} }
 type PolicyArrayInput interface {
 	pulumi.Input
 
@@ -169,7 +167,7 @@ func (i PolicyArray) ToPolicyArrayOutputWithContext(ctx context.Context) PolicyA
 // PolicyMapInput is an input type that accepts PolicyMap and PolicyMapOutput values.
 // You can construct a concrete instance of `PolicyMapInput` via:
 //
-//	PolicyMap{ "key": PolicyArgs{...} }
+//          PolicyMap{ "key": PolicyArgs{...} }
 type PolicyMapInput interface {
 	pulumi.Input
 

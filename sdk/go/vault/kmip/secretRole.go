@@ -21,48 +21,45 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kmip"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kmip"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := kmip.NewSecretBackend(ctx, "default", &kmip.SecretBackendArgs{
-//				Path:        pulumi.String("kmip"),
-//				Description: pulumi.String("Vault KMIP backend"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			dev, err := kmip.NewSecretScope(ctx, "dev", &kmip.SecretScopeArgs{
-//				Path:  _default.Path,
-//				Scope: pulumi.String("dev"),
-//				Force: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = kmip.NewSecretRole(ctx, "admin", &kmip.SecretRoleArgs{
-//				Path:                   dev.Path,
-//				Scope:                  dev.Scope,
-//				Role:                   pulumi.String("admin"),
-//				TlsClientKeyType:       pulumi.String("ec"),
-//				TlsClientKeyBits:       pulumi.Int(256),
-//				OperationActivate:      pulumi.Bool(true),
-//				OperationGet:           pulumi.Bool(true),
-//				OperationGetAttributes: pulumi.Bool(true),
-//				OperationCreate:        pulumi.Bool(true),
-//				OperationDestroy:       pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := kmip.NewSecretBackend(ctx, "default", &kmip.SecretBackendArgs{
+// 			Path:        pulumi.String("kmip"),
+// 			Description: pulumi.String("Vault KMIP backend"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		dev, err := kmip.NewSecretScope(ctx, "dev", &kmip.SecretScopeArgs{
+// 			Path:  _default.Path,
+// 			Scope: pulumi.String("dev"),
+// 			Force: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = kmip.NewSecretRole(ctx, "admin", &kmip.SecretRoleArgs{
+// 			Path:                   dev.Path,
+// 			Scope:                  dev.Scope,
+// 			Role:                   pulumi.String("admin"),
+// 			TlsClientKeyType:       pulumi.String("ec"),
+// 			TlsClientKeyBits:       pulumi.Int(256),
+// 			OperationActivate:      pulumi.Bool(true),
+// 			OperationGet:           pulumi.Bool(true),
+// 			OperationGetAttributes: pulumi.Bool(true),
+// 			OperationCreate:        pulumi.Bool(true),
+// 			OperationDestroy:       pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -70,9 +67,7 @@ import (
 // KMIP Secret role can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:kmip/secretRole:SecretRole admin kmip
-//
+//  $ pulumi import vault:kmip/secretRole:SecretRole admin kmip
 // ```
 type SecretRole struct {
 	pulumi.CustomResourceState
@@ -389,7 +384,7 @@ func (i *SecretRole) ToSecretRoleOutputWithContext(ctx context.Context) SecretRo
 // SecretRoleArrayInput is an input type that accepts SecretRoleArray and SecretRoleArrayOutput values.
 // You can construct a concrete instance of `SecretRoleArrayInput` via:
 //
-//	SecretRoleArray{ SecretRoleArgs{...} }
+//          SecretRoleArray{ SecretRoleArgs{...} }
 type SecretRoleArrayInput interface {
 	pulumi.Input
 
@@ -414,7 +409,7 @@ func (i SecretRoleArray) ToSecretRoleArrayOutputWithContext(ctx context.Context)
 // SecretRoleMapInput is an input type that accepts SecretRoleMap and SecretRoleMapOutput values.
 // You can construct a concrete instance of `SecretRoleMapInput` via:
 //
-//	SecretRoleMap{ "key": SecretRoleArgs{...} }
+//          SecretRoleMap{ "key": SecretRoleArgs{...} }
 type SecretRoleMapInput interface {
 	pulumi.Input
 

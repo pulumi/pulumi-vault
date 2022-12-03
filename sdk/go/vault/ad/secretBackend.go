@@ -17,29 +17,26 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ad"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ad"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ad.NewSecretBackend(ctx, "config", &ad.SecretBackendArgs{
-//				Backend:     pulumi.String("ad"),
-//				Binddn:      pulumi.String("CN=Administrator,CN=Users,DC=corp,DC=example,DC=net"),
-//				Bindpass:    pulumi.String("SuperSecretPassw0rd"),
-//				InsecureTls: pulumi.Bool(true),
-//				Url:         pulumi.String("ldaps://ad"),
-//				Userdn:      pulumi.String("CN=Users,DC=corp,DC=example,DC=net"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := ad.NewSecretBackend(ctx, "config", &ad.SecretBackendArgs{
+// 			Backend:     pulumi.String("ad"),
+// 			Binddn:      pulumi.String("CN=Administrator,CN=Users,DC=corp,DC=example,DC=net"),
+// 			Bindpass:    pulumi.String("SuperSecretPassw0rd"),
+// 			InsecureTls: pulumi.Bool(true),
+// 			Url:         pulumi.String("ldaps://ad"),
+// 			Userdn:      pulumi.String("CN=Users,DC=corp,DC=example,DC=net"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -47,9 +44,7 @@ import (
 // AD secret backend can be imported using the `backend`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:ad/secretBackend:SecretBackend ad ad
-//
+//  $ pulumi import vault:ad/secretBackend:SecretBackend ad ad
 // ```
 type SecretBackend struct {
 	pulumi.CustomResourceState
@@ -653,7 +648,7 @@ func (i *SecretBackend) ToSecretBackendOutputWithContext(ctx context.Context) Se
 // SecretBackendArrayInput is an input type that accepts SecretBackendArray and SecretBackendArrayOutput values.
 // You can construct a concrete instance of `SecretBackendArrayInput` via:
 //
-//	SecretBackendArray{ SecretBackendArgs{...} }
+//          SecretBackendArray{ SecretBackendArgs{...} }
 type SecretBackendArrayInput interface {
 	pulumi.Input
 
@@ -678,7 +673,7 @@ func (i SecretBackendArray) ToSecretBackendArrayOutputWithContext(ctx context.Co
 // SecretBackendMapInput is an input type that accepts SecretBackendMap and SecretBackendMapOutput values.
 // You can construct a concrete instance of `SecretBackendMapInput` via:
 //
-//	SecretBackendMap{ "key": SecretBackendArgs{...} }
+//          SecretBackendMap{ "key": SecretBackendArgs{...} }
 type SecretBackendMapInput interface {
 	pulumi.Input
 

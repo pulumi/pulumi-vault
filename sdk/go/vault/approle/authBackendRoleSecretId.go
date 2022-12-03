@@ -21,54 +21,51 @@ import (
 // package main
 //
 // import (
+// 	"encoding/json"
 //
-//	"encoding/json"
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/appRole"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/appRole"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			approle, err := vault.NewAuthBackend(ctx, "approle", &vault.AuthBackendArgs{
-//				Type: pulumi.String("approle"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			example, err := appRole.NewAuthBackendRole(ctx, "example", &appRole.AuthBackendRoleArgs{
-//				Backend:  approle.Path,
-//				RoleName: pulumi.String("test-role"),
-//				TokenPolicies: pulumi.StringArray{
-//					pulumi.String("default"),
-//					pulumi.String("dev"),
-//					pulumi.String("prod"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			tmpJSON0, err := json.Marshal(map[string]interface{}{
-//				"hello": "world",
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			json0 := string(tmpJSON0)
-//			_, err = appRole.NewAuthBackendRoleSecretId(ctx, "id", &appRole.AuthBackendRoleSecretIdArgs{
-//				Backend:  approle.Path,
-//				RoleName: example.RoleName,
-//				Metadata: pulumi.String(json0),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		approle, err := vault.NewAuthBackend(ctx, "approle", &vault.AuthBackendArgs{
+// 			Type: pulumi.String("approle"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		example, err := appRole.NewAuthBackendRole(ctx, "example", &appRole.AuthBackendRoleArgs{
+// 			Backend:  approle.Path,
+// 			RoleName: pulumi.String("test-role"),
+// 			TokenPolicies: pulumi.StringArray{
+// 				pulumi.String("default"),
+// 				pulumi.String("dev"),
+// 				pulumi.String("prod"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		tmpJSON0, err := json.Marshal(map[string]interface{}{
+// 			"hello": "world",
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		json0 := string(tmpJSON0)
+// 		_, err = appRole.NewAuthBackendRoleSecretId(ctx, "id", &appRole.AuthBackendRoleSecretIdArgs{
+// 			Backend:  approle.Path,
+// 			RoleName: example.RoleName,
+// 			Metadata: pulumi.String(json0),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 type AuthBackendRoleSecretId struct {
 	pulumi.CustomResourceState
@@ -313,7 +310,7 @@ func (i *AuthBackendRoleSecretId) ToAuthBackendRoleSecretIdOutputWithContext(ctx
 // AuthBackendRoleSecretIdArrayInput is an input type that accepts AuthBackendRoleSecretIdArray and AuthBackendRoleSecretIdArrayOutput values.
 // You can construct a concrete instance of `AuthBackendRoleSecretIdArrayInput` via:
 //
-//	AuthBackendRoleSecretIdArray{ AuthBackendRoleSecretIdArgs{...} }
+//          AuthBackendRoleSecretIdArray{ AuthBackendRoleSecretIdArgs{...} }
 type AuthBackendRoleSecretIdArrayInput interface {
 	pulumi.Input
 
@@ -338,7 +335,7 @@ func (i AuthBackendRoleSecretIdArray) ToAuthBackendRoleSecretIdArrayOutputWithCo
 // AuthBackendRoleSecretIdMapInput is an input type that accepts AuthBackendRoleSecretIdMap and AuthBackendRoleSecretIdMapOutput values.
 // You can construct a concrete instance of `AuthBackendRoleSecretIdMapInput` via:
 //
-//	AuthBackendRoleSecretIdMap{ "key": AuthBackendRoleSecretIdArgs{...} }
+//          AuthBackendRoleSecretIdMap{ "key": AuthBackendRoleSecretIdArgs{...} }
 type AuthBackendRoleSecretIdMapInput interface {
 	pulumi.Input
 

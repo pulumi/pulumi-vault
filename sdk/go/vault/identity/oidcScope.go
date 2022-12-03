@@ -19,25 +19,22 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := identity.NewOidcScope(ctx, "groups", &identity.OidcScopeArgs{
-//				Description: pulumi.String("Vault OIDC Groups Scope"),
-//				Template:    pulumi.String("{\"groups\":{{identity.entity.groups.names}}}"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := identity.NewOidcScope(ctx, "groups", &identity.OidcScopeArgs{
+// 			Description: pulumi.String("Vault OIDC Groups Scope"),
+// 			Template:    pulumi.String("{\"groups\":{{identity.entity.groups.names}}}"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -45,9 +42,7 @@ import (
 // OIDC Scopes can be imported using the `name`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:identity/oidcScope:OidcScope groups groups
-//
+//  $ pulumi import vault:identity/oidcScope:OidcScope groups groups
 // ```
 type OidcScope struct {
 	pulumi.CustomResourceState
@@ -180,7 +175,7 @@ func (i *OidcScope) ToOidcScopeOutputWithContext(ctx context.Context) OidcScopeO
 // OidcScopeArrayInput is an input type that accepts OidcScopeArray and OidcScopeArrayOutput values.
 // You can construct a concrete instance of `OidcScopeArrayInput` via:
 //
-//	OidcScopeArray{ OidcScopeArgs{...} }
+//          OidcScopeArray{ OidcScopeArgs{...} }
 type OidcScopeArrayInput interface {
 	pulumi.Input
 
@@ -205,7 +200,7 @@ func (i OidcScopeArray) ToOidcScopeArrayOutputWithContext(ctx context.Context) O
 // OidcScopeMapInput is an input type that accepts OidcScopeMap and OidcScopeMapOutput values.
 // You can construct a concrete instance of `OidcScopeMapInput` via:
 //
-//	OidcScopeMap{ "key": OidcScopeArgs{...} }
+//          OidcScopeMap{ "key": OidcScopeArgs{...} }
 type OidcScopeMapInput interface {
 	pulumi.Input
 

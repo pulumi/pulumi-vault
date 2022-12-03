@@ -19,26 +19,23 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := identity.NewMfaOkta(ctx, "example", &identity.MfaOktaArgs{
-//				ApiToken: pulumi.String("token1"),
-//				BaseUrl:  pulumi.String("qux.baz.com"),
-//				OrgName:  pulumi.String("org1"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := identity.NewMfaOkta(ctx, "example", &identity.MfaOktaArgs{
+// 			ApiToken: pulumi.String("token1"),
+// 			BaseUrl:  pulumi.String("qux.baz.com"),
+// 			OrgName:  pulumi.String("org1"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -46,9 +43,7 @@ import (
 // Resource can be imported using its `uuid` field, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:identity/mfaOkta:MfaOkta example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
-//
+//  $ pulumi import vault:identity/mfaOkta:MfaOkta example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
 // ```
 type MfaOkta struct {
 	pulumi.CustomResourceState
@@ -241,7 +236,7 @@ func (i *MfaOkta) ToMfaOktaOutputWithContext(ctx context.Context) MfaOktaOutput 
 // MfaOktaArrayInput is an input type that accepts MfaOktaArray and MfaOktaArrayOutput values.
 // You can construct a concrete instance of `MfaOktaArrayInput` via:
 //
-//	MfaOktaArray{ MfaOktaArgs{...} }
+//          MfaOktaArray{ MfaOktaArgs{...} }
 type MfaOktaArrayInput interface {
 	pulumi.Input
 
@@ -266,7 +261,7 @@ func (i MfaOktaArray) ToMfaOktaArrayOutputWithContext(ctx context.Context) MfaOk
 // MfaOktaMapInput is an input type that accepts MfaOktaMap and MfaOktaMapOutput values.
 // You can construct a concrete instance of `MfaOktaMapInput` via:
 //
-//	MfaOktaMap{ "key": MfaOktaArgs{...} }
+//          MfaOktaMap{ "key": MfaOktaArgs{...} }
 type MfaOktaMapInput interface {
 	pulumi.Input
 

@@ -22,7 +22,7 @@ type SecretBackendRolePolicyIdentifier struct {
 // SecretBackendRolePolicyIdentifierInput is an input type that accepts SecretBackendRolePolicyIdentifierArgs and SecretBackendRolePolicyIdentifierOutput values.
 // You can construct a concrete instance of `SecretBackendRolePolicyIdentifierInput` via:
 //
-//	SecretBackendRolePolicyIdentifierArgs{...}
+//          SecretBackendRolePolicyIdentifierArgs{...}
 type SecretBackendRolePolicyIdentifierInput interface {
 	pulumi.Input
 

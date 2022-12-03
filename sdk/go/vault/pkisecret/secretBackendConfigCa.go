@@ -17,20 +17,17 @@ import (
 // package main
 //
 // import (
+// 	"fmt"
 //
-//	"fmt"
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := pkiSecret.NewSecretBackendConfigCa(ctx, "intermediate", &pkiSecret.SecretBackendConfigCaArgs{
-//				Backend: pulumi.Any(vault_mount.Intermediate.Path),
-//				PemBundle: pulumi.String(fmt.Sprintf(`-----BEGIN RSA PRIVATE KEY-----
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := pkiSecret.NewSecretBackendConfigCa(ctx, "intermediate", &pkiSecret.SecretBackendConfigCaArgs{
+// 			Backend: pulumi.Any(vault_mount.Intermediate.Path),
+// 			PemBundle: pulumi.String(fmt.Sprintf(`-----BEGIN RSA PRIVATE KEY-----
 // MIIEowIBAAKCAQEAwvEHeJCXnFgi88rE1dTX6FHdBPK0wSjedh0ywVnCZxLWbBv/
 // 5PytjTcCPdrfW7g2sfbPwOge/WF3X2KeYSP8SxZA0czmz6QDspeG921JkZWtyp5o
 // ++N0leLTIUAhq339p3O1onAOUO1k4sHfmCwfrDpTn2hcx4URa5Pzzb1fHigusjIH
@@ -79,17 +76,15 @@ import (
 // MUR4qFxeUOW/GJGccMUd
 // -----END CERTIFICATE-----
 // `)),
-//
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				vault_mount.Intermediate,
-//			}))
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// 		}, pulumi.DependsOn([]pulumi.Resource{
+// 			vault_mount.Intermediate,
+// 		}))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 type SecretBackendConfigCa struct {
 	pulumi.CustomResourceState
@@ -225,7 +220,7 @@ func (i *SecretBackendConfigCa) ToSecretBackendConfigCaOutputWithContext(ctx con
 // SecretBackendConfigCaArrayInput is an input type that accepts SecretBackendConfigCaArray and SecretBackendConfigCaArrayOutput values.
 // You can construct a concrete instance of `SecretBackendConfigCaArrayInput` via:
 //
-//	SecretBackendConfigCaArray{ SecretBackendConfigCaArgs{...} }
+//          SecretBackendConfigCaArray{ SecretBackendConfigCaArgs{...} }
 type SecretBackendConfigCaArrayInput interface {
 	pulumi.Input
 
@@ -250,7 +245,7 @@ func (i SecretBackendConfigCaArray) ToSecretBackendConfigCaArrayOutputWithContex
 // SecretBackendConfigCaMapInput is an input type that accepts SecretBackendConfigCaMap and SecretBackendConfigCaMapOutput values.
 // You can construct a concrete instance of `SecretBackendConfigCaMapInput` via:
 //
-//	SecretBackendConfigCaMap{ "key": SecretBackendConfigCaArgs{...} }
+//          SecretBackendConfigCaMap{ "key": SecretBackendConfigCaArgs{...} }
 type SecretBackendConfigCaMapInput interface {
 	pulumi.Input
 

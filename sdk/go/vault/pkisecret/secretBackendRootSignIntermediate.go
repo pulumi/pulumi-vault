@@ -19,31 +19,28 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := pkiSecret.NewSecretBackendRootSignIntermediate(ctx, "root", &pkiSecret.SecretBackendRootSignIntermediateArgs{
-//				Backend:           pulumi.Any(vault_mount.Root.Path),
-//				Csr:               pulumi.Any(vault_pki_secret_backend_intermediate_cert_request.Intermediate.Csr),
-//				CommonName:        pulumi.String("Intermediate CA"),
-//				ExcludeCnFromSans: pulumi.Bool(true),
-//				Ou:                pulumi.String("My OU"),
-//				Organization:      pulumi.String("My organization"),
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				vault_pki_secret_backend_intermediate_cert_request.Intermediate,
-//			}))
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := pkiSecret.NewSecretBackendRootSignIntermediate(ctx, "root", &pkiSecret.SecretBackendRootSignIntermediateArgs{
+// 			Backend:           pulumi.Any(vault_mount.Root.Path),
+// 			Csr:               pulumi.Any(vault_pki_secret_backend_intermediate_cert_request.Intermediate.Csr),
+// 			CommonName:        pulumi.String("Intermediate CA"),
+// 			ExcludeCnFromSans: pulumi.Bool(true),
+// 			Ou:                pulumi.String("My OU"),
+// 			Organization:      pulumi.String("My organization"),
+// 		}, pulumi.DependsOn([]pulumi.Resource{
+// 			vault_pki_secret_backend_intermediate_cert_request.Intermediate,
+// 		}))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 // ## Deprecations
 //
@@ -413,7 +410,7 @@ func (i *SecretBackendRootSignIntermediate) ToSecretBackendRootSignIntermediateO
 // SecretBackendRootSignIntermediateArrayInput is an input type that accepts SecretBackendRootSignIntermediateArray and SecretBackendRootSignIntermediateArrayOutput values.
 // You can construct a concrete instance of `SecretBackendRootSignIntermediateArrayInput` via:
 //
-//	SecretBackendRootSignIntermediateArray{ SecretBackendRootSignIntermediateArgs{...} }
+//          SecretBackendRootSignIntermediateArray{ SecretBackendRootSignIntermediateArgs{...} }
 type SecretBackendRootSignIntermediateArrayInput interface {
 	pulumi.Input
 
@@ -438,7 +435,7 @@ func (i SecretBackendRootSignIntermediateArray) ToSecretBackendRootSignIntermedi
 // SecretBackendRootSignIntermediateMapInput is an input type that accepts SecretBackendRootSignIntermediateMap and SecretBackendRootSignIntermediateMapOutput values.
 // You can construct a concrete instance of `SecretBackendRootSignIntermediateMapInput` via:
 //
-//	SecretBackendRootSignIntermediateMap{ "key": SecretBackendRootSignIntermediateArgs{...} }
+//          SecretBackendRootSignIntermediateMap{ "key": SecretBackendRootSignIntermediateArgs{...} }
 type SecretBackendRootSignIntermediateMapInput interface {
 	pulumi.Input
 

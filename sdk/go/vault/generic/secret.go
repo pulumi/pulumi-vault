@@ -16,9 +16,7 @@ import (
 // Generic secrets can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:generic/secret:Secret example secret/foo
-//
+//  $ pulumi import vault:generic/secret:Secret example secret/foo
 // ```
 type Secret struct {
 	pulumi.CustomResourceState
@@ -240,7 +238,7 @@ func (i *Secret) ToSecretOutputWithContext(ctx context.Context) SecretOutput {
 // SecretArrayInput is an input type that accepts SecretArray and SecretArrayOutput values.
 // You can construct a concrete instance of `SecretArrayInput` via:
 //
-//	SecretArray{ SecretArgs{...} }
+//          SecretArray{ SecretArgs{...} }
 type SecretArrayInput interface {
 	pulumi.Input
 
@@ -265,7 +263,7 @@ func (i SecretArray) ToSecretArrayOutputWithContext(ctx context.Context) SecretA
 // SecretMapInput is an input type that accepts SecretMap and SecretMapOutput values.
 // You can construct a concrete instance of `SecretMapInput` via:
 //
-//	SecretMap{ "key": SecretArgs{...} }
+//          SecretMap{ "key": SecretArgs{...} }
 type SecretMapInput interface {
 	pulumi.Input
 

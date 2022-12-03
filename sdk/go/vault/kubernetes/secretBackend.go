@@ -17,41 +17,38 @@ import (
 // package main
 //
 // import (
+// 	"io/ioutil"
 //
-//	"io/ioutil"
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kubernetes"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kubernetes"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := ioutil.ReadFile(path)
-//		if err != nil {
-//			panic(err.Error())
-//		}
-//		return pulumi.String(string(data))
-//	}
+// func readFileOrPanic(path string) pulumi.StringPtrInput {
+// 	data, err := ioutil.ReadFile(path)
+// 	if err != nil {
+// 		panic(err.Error())
+// 	}
+// 	return pulumi.String(string(data))
+// }
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := kubernetes.NewSecretBackend(ctx, "config", &kubernetes.SecretBackendArgs{
-//				Path:                   pulumi.String("kubernetes"),
-//				Description:            pulumi.String("kubernetes secrets engine description"),
-//				DefaultLeaseTtlSeconds: pulumi.Int(43200),
-//				MaxLeaseTtlSeconds:     pulumi.Int(86400),
-//				KubernetesHost:         pulumi.String("https://127.0.0.1:61233"),
-//				KubernetesCaCert:       readFileOrPanic("/path/to/cert"),
-//				ServiceAccountJwt:      readFileOrPanic("/path/to/token"),
-//				DisableLocalCaJwt:      pulumi.Bool(false),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := kubernetes.NewSecretBackend(ctx, "config", &kubernetes.SecretBackendArgs{
+// 			Path:                   pulumi.String("kubernetes"),
+// 			Description:            pulumi.String("kubernetes secrets engine description"),
+// 			DefaultLeaseTtlSeconds: pulumi.Int(43200),
+// 			MaxLeaseTtlSeconds:     pulumi.Int(86400),
+// 			KubernetesHost:         pulumi.String("https://127.0.0.1:61233"),
+// 			KubernetesCaCert:       readFileOrPanic("/path/to/cert"),
+// 			ServiceAccountJwt:      readFileOrPanic("/path/to/token"),
+// 			DisableLocalCaJwt:      pulumi.Bool(false),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -59,9 +56,7 @@ import (
 // The Kubernetes secret backend can be imported using its `path` e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:kubernetes/secretBackend:SecretBackend config kubernetes
-//
+//  $ pulumi import vault:kubernetes/secretBackend:SecretBackend config kubernetes
 // ```
 type SecretBackend struct {
 	pulumi.CustomResourceState
@@ -370,7 +365,7 @@ func (i *SecretBackend) ToSecretBackendOutputWithContext(ctx context.Context) Se
 // SecretBackendArrayInput is an input type that accepts SecretBackendArray and SecretBackendArrayOutput values.
 // You can construct a concrete instance of `SecretBackendArrayInput` via:
 //
-//	SecretBackendArray{ SecretBackendArgs{...} }
+//          SecretBackendArray{ SecretBackendArgs{...} }
 type SecretBackendArrayInput interface {
 	pulumi.Input
 
@@ -395,7 +390,7 @@ func (i SecretBackendArray) ToSecretBackendArrayOutputWithContext(ctx context.Co
 // SecretBackendMapInput is an input type that accepts SecretBackendMap and SecretBackendMapOutput values.
 // You can construct a concrete instance of `SecretBackendMapInput` via:
 //
-//	SecretBackendMap{ "key": SecretBackendArgs{...} }
+//          SecretBackendMap{ "key": SecretBackendArgs{...} }
 type SecretBackendMapInput interface {
 	pulumi.Input
 

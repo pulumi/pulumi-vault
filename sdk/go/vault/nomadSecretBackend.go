@@ -16,31 +16,28 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vault.NewNomadSecretBackend(ctx, "config", &vault.NomadSecretBackendArgs{
-//				Address:                pulumi.String("https://127.0.0.1:4646"),
-//				Backend:                pulumi.String("nomad"),
-//				DefaultLeaseTtlSeconds: pulumi.Int(3600),
-//				Description:            pulumi.String("test description"),
-//				MaxLeaseTtlSeconds:     pulumi.Int(7200),
-//				MaxTtl:                 pulumi.Int(240),
-//				Token:                  pulumi.String("ae20ceaa-..."),
-//				Ttl:                    pulumi.Int(120),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := vault.NewNomadSecretBackend(ctx, "config", &vault.NomadSecretBackendArgs{
+// 			Address:                pulumi.String("https://127.0.0.1:4646"),
+// 			Backend:                pulumi.String("nomad"),
+// 			DefaultLeaseTtlSeconds: pulumi.Int(3600),
+// 			Description:            pulumi.String("test description"),
+// 			MaxLeaseTtlSeconds:     pulumi.Int(7200),
+// 			MaxTtl:                 pulumi.Int(240),
+// 			Token:                  pulumi.String("ae20ceaa-..."),
+// 			Ttl:                    pulumi.Int(120),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -48,9 +45,7 @@ import (
 // Nomad secret backend can be imported using the `backend`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:index/nomadSecretBackend:NomadSecretBackend nomad nomad
-//
+//  $ pulumi import vault:index/nomadSecretBackend:NomadSecretBackend nomad nomad
 // ```
 type NomadSecretBackend struct {
 	pulumi.CustomResourceState
@@ -343,7 +338,7 @@ func (i *NomadSecretBackend) ToNomadSecretBackendOutputWithContext(ctx context.C
 // NomadSecretBackendArrayInput is an input type that accepts NomadSecretBackendArray and NomadSecretBackendArrayOutput values.
 // You can construct a concrete instance of `NomadSecretBackendArrayInput` via:
 //
-//	NomadSecretBackendArray{ NomadSecretBackendArgs{...} }
+//          NomadSecretBackendArray{ NomadSecretBackendArgs{...} }
 type NomadSecretBackendArrayInput interface {
 	pulumi.Input
 
@@ -368,7 +363,7 @@ func (i NomadSecretBackendArray) ToNomadSecretBackendArrayOutputWithContext(ctx 
 // NomadSecretBackendMapInput is an input type that accepts NomadSecretBackendMap and NomadSecretBackendMapOutput values.
 // You can construct a concrete instance of `NomadSecretBackendMapInput` via:
 //
-//	NomadSecretBackendMap{ "key": NomadSecretBackendArgs{...} }
+//          NomadSecretBackendMap{ "key": NomadSecretBackendArgs{...} }
 type NomadSecretBackendMapInput interface {
 	pulumi.Input
 

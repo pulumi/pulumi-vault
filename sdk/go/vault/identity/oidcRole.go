@@ -22,39 +22,36 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			cfg := config.New(ctx, "")
-//			key := "key"
-//			if param := cfg.Get("key"); param != "" {
-//				key = param
-//			}
-//			role, err := identity.NewOidcRole(ctx, "role", &identity.OidcRoleArgs{
-//				Key: pulumi.String(key),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = identity.NewOidcKey(ctx, "keyOidcKey", &identity.OidcKeyArgs{
-//				Algorithm: pulumi.String("RS256"),
-//				AllowedClientIds: pulumi.StringArray{
-//					role.ClientId,
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		cfg := config.New(ctx, "")
+// 		key := "key"
+// 		if param := cfg.Get("key"); param != "" {
+// 			key = param
+// 		}
+// 		role, err := identity.NewOidcRole(ctx, "role", &identity.OidcRoleArgs{
+// 			Key: pulumi.String(key),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = identity.NewOidcKey(ctx, "keyOidcKey", &identity.OidcKeyArgs{
+// 			Algorithm: pulumi.String("RS256"),
+// 			AllowedClientIds: pulumi.StringArray{
+// 				role.ClientId,
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // If you want to create the key first before creating the role, you can use a separate
@@ -65,47 +62,42 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			key, err := identity.NewOidcKey(ctx, "key", &identity.OidcKeyArgs{
-//				Algorithm: pulumi.String("RS256"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			roleOidcRole, err := identity.NewOidcRole(ctx, "roleOidcRole", &identity.OidcRoleArgs{
-//				Key: key.Name,
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = identity.NewOidcKeyAllowedClientID(ctx, "roleOidcKeyAllowedClientID", &identity.OidcKeyAllowedClientIDArgs{
-//				KeyName:         key.Name,
-//				AllowedClientId: roleOidcRole.ClientId,
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		key, err := identity.NewOidcKey(ctx, "key", &identity.OidcKeyArgs{
+// 			Algorithm: pulumi.String("RS256"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		roleOidcRole, err := identity.NewOidcRole(ctx, "roleOidcRole", &identity.OidcRoleArgs{
+// 			Key: key.Name,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = identity.NewOidcKeyAllowedClientID(ctx, "roleOidcKeyAllowedClientID", &identity.OidcKeyAllowedClientIDArgs{
+// 			KeyName:         key.Name,
+// 			AllowedClientId: roleOidcRole.ClientId,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
 //
-// # The key can be imported with the role name, for example
+// The key can be imported with the role name, for example
 //
 // ```sh
-//
-//	$ pulumi import vault:identity/oidcRole:OidcRole role role
-//
+//  $ pulumi import vault:identity/oidcRole:OidcRole role role
 // ```
 type OidcRole struct {
 	pulumi.CustomResourceState
@@ -286,7 +278,7 @@ func (i *OidcRole) ToOidcRoleOutputWithContext(ctx context.Context) OidcRoleOutp
 // OidcRoleArrayInput is an input type that accepts OidcRoleArray and OidcRoleArrayOutput values.
 // You can construct a concrete instance of `OidcRoleArrayInput` via:
 //
-//	OidcRoleArray{ OidcRoleArgs{...} }
+//          OidcRoleArray{ OidcRoleArgs{...} }
 type OidcRoleArrayInput interface {
 	pulumi.Input
 
@@ -311,7 +303,7 @@ func (i OidcRoleArray) ToOidcRoleArrayOutputWithContext(ctx context.Context) Oid
 // OidcRoleMapInput is an input type that accepts OidcRoleMap and OidcRoleMapOutput values.
 // You can construct a concrete instance of `OidcRoleMapInput` via:
 //
-//	OidcRoleMap{ "key": OidcRoleArgs{...} }
+//          OidcRoleMap{ "key": OidcRoleArgs{...} }
 type OidcRoleMapInput interface {
 	pulumi.Input
 

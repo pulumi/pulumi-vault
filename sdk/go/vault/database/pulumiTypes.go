@@ -40,7 +40,7 @@ type SecretBackendConnectionCassandra struct {
 // SecretBackendConnectionCassandraInput is an input type that accepts SecretBackendConnectionCassandraArgs and SecretBackendConnectionCassandraOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionCassandraInput` via:
 //
-//	SecretBackendConnectionCassandraArgs{...}
+//          SecretBackendConnectionCassandraArgs{...}
 type SecretBackendConnectionCassandraInput interface {
 	pulumi.Input
 
@@ -98,11 +98,11 @@ func (i SecretBackendConnectionCassandraArgs) ToSecretBackendConnectionCassandra
 // SecretBackendConnectionCassandraPtrInput is an input type that accepts SecretBackendConnectionCassandraArgs, SecretBackendConnectionCassandraPtr and SecretBackendConnectionCassandraPtrOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionCassandraPtrInput` via:
 //
-//	        SecretBackendConnectionCassandraArgs{...}
+//          SecretBackendConnectionCassandraArgs{...}
 //
-//	or:
+//  or:
 //
-//	        nil
+//          nil
 type SecretBackendConnectionCassandraPtrInput interface {
 	pulumi.Input
 
@@ -357,7 +357,7 @@ type SecretBackendConnectionCouchbase struct {
 // SecretBackendConnectionCouchbaseInput is an input type that accepts SecretBackendConnectionCouchbaseArgs and SecretBackendConnectionCouchbaseOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionCouchbaseInput` via:
 //
-//	SecretBackendConnectionCouchbaseArgs{...}
+//          SecretBackendConnectionCouchbaseArgs{...}
 type SecretBackendConnectionCouchbaseInput interface {
 	pulumi.Input
 
@@ -408,11 +408,11 @@ func (i SecretBackendConnectionCouchbaseArgs) ToSecretBackendConnectionCouchbase
 // SecretBackendConnectionCouchbasePtrInput is an input type that accepts SecretBackendConnectionCouchbaseArgs, SecretBackendConnectionCouchbasePtr and SecretBackendConnectionCouchbasePtrOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionCouchbasePtrInput` via:
 //
-//	        SecretBackendConnectionCouchbaseArgs{...}
+//          SecretBackendConnectionCouchbaseArgs{...}
 //
-//	or:
+//  or:
 //
-//	        nil
+//          nil
 type SecretBackendConnectionCouchbasePtrInput interface {
 	pulumi.Input
 
@@ -635,7 +635,7 @@ type SecretBackendConnectionElasticsearch struct {
 // SecretBackendConnectionElasticsearchInput is an input type that accepts SecretBackendConnectionElasticsearchArgs and SecretBackendConnectionElasticsearchOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionElasticsearchInput` via:
 //
-//	SecretBackendConnectionElasticsearchArgs{...}
+//          SecretBackendConnectionElasticsearchArgs{...}
 type SecretBackendConnectionElasticsearchInput interface {
 	pulumi.Input
 
@@ -690,11 +690,11 @@ func (i SecretBackendConnectionElasticsearchArgs) ToSecretBackendConnectionElast
 // SecretBackendConnectionElasticsearchPtrInput is an input type that accepts SecretBackendConnectionElasticsearchArgs, SecretBackendConnectionElasticsearchPtr and SecretBackendConnectionElasticsearchPtrOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionElasticsearchPtrInput` via:
 //
-//	        SecretBackendConnectionElasticsearchArgs{...}
+//          SecretBackendConnectionElasticsearchArgs{...}
 //
-//	or:
+//  or:
 //
-//	        nil
+//          nil
 type SecretBackendConnectionElasticsearchPtrInput interface {
 	pulumi.Input
 
@@ -945,7 +945,7 @@ type SecretBackendConnectionHana struct {
 // SecretBackendConnectionHanaInput is an input type that accepts SecretBackendConnectionHanaArgs and SecretBackendConnectionHanaOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionHanaInput` via:
 //
-//	SecretBackendConnectionHanaArgs{...}
+//          SecretBackendConnectionHanaArgs{...}
 type SecretBackendConnectionHanaInput interface {
 	pulumi.Input
 
@@ -998,11 +998,11 @@ func (i SecretBackendConnectionHanaArgs) ToSecretBackendConnectionHanaPtrOutputW
 // SecretBackendConnectionHanaPtrInput is an input type that accepts SecretBackendConnectionHanaArgs, SecretBackendConnectionHanaPtr and SecretBackendConnectionHanaPtrOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionHanaPtrInput` via:
 //
-//	        SecretBackendConnectionHanaArgs{...}
+//          SecretBackendConnectionHanaArgs{...}
 //
-//	or:
+//  or:
 //
-//	        nil
+//          nil
 type SecretBackendConnectionHanaPtrInput interface {
 	pulumi.Input
 
@@ -1221,7 +1221,7 @@ type SecretBackendConnectionInfluxdb struct {
 // SecretBackendConnectionInfluxdbInput is an input type that accepts SecretBackendConnectionInfluxdbArgs and SecretBackendConnectionInfluxdbOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionInfluxdbInput` via:
 //
-//	SecretBackendConnectionInfluxdbArgs{...}
+//          SecretBackendConnectionInfluxdbArgs{...}
 type SecretBackendConnectionInfluxdbInput interface {
 	pulumi.Input
 
@@ -1279,11 +1279,11 @@ func (i SecretBackendConnectionInfluxdbArgs) ToSecretBackendConnectionInfluxdbPt
 // SecretBackendConnectionInfluxdbPtrInput is an input type that accepts SecretBackendConnectionInfluxdbArgs, SecretBackendConnectionInfluxdbPtr and SecretBackendConnectionInfluxdbPtrOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionInfluxdbPtrInput` via:
 //
-//	        SecretBackendConnectionInfluxdbArgs{...}
+//          SecretBackendConnectionInfluxdbArgs{...}
 //
-//	or:
+//  or:
 //
-//	        nil
+//          nil
 type SecretBackendConnectionInfluxdbPtrInput interface {
 	pulumi.Input
 
@@ -1540,7 +1540,7 @@ type SecretBackendConnectionMongodb struct {
 // SecretBackendConnectionMongodbInput is an input type that accepts SecretBackendConnectionMongodbArgs and SecretBackendConnectionMongodbOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionMongodbInput` via:
 //
-//	SecretBackendConnectionMongodbArgs{...}
+//          SecretBackendConnectionMongodbArgs{...}
 type SecretBackendConnectionMongodbInput interface {
 	pulumi.Input
 
@@ -1593,11 +1593,11 @@ func (i SecretBackendConnectionMongodbArgs) ToSecretBackendConnectionMongodbPtrO
 // SecretBackendConnectionMongodbPtrInput is an input type that accepts SecretBackendConnectionMongodbArgs, SecretBackendConnectionMongodbPtr and SecretBackendConnectionMongodbPtrOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionMongodbPtrInput` via:
 //
-//	        SecretBackendConnectionMongodbArgs{...}
+//          SecretBackendConnectionMongodbArgs{...}
 //
-//	or:
+//  or:
 //
-//	        nil
+//          nil
 type SecretBackendConnectionMongodbPtrInput interface {
 	pulumi.Input
 
@@ -1798,7 +1798,7 @@ type SecretBackendConnectionMongodbatlas struct {
 // SecretBackendConnectionMongodbatlasInput is an input type that accepts SecretBackendConnectionMongodbatlasArgs and SecretBackendConnectionMongodbatlasOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionMongodbatlasInput` via:
 //
-//	SecretBackendConnectionMongodbatlasArgs{...}
+//          SecretBackendConnectionMongodbatlasArgs{...}
 type SecretBackendConnectionMongodbatlasInput interface {
 	pulumi.Input
 
@@ -1838,11 +1838,11 @@ func (i SecretBackendConnectionMongodbatlasArgs) ToSecretBackendConnectionMongod
 // SecretBackendConnectionMongodbatlasPtrInput is an input type that accepts SecretBackendConnectionMongodbatlasArgs, SecretBackendConnectionMongodbatlasPtr and SecretBackendConnectionMongodbatlasPtrOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionMongodbatlasPtrInput` via:
 //
-//	        SecretBackendConnectionMongodbatlasArgs{...}
+//          SecretBackendConnectionMongodbatlasArgs{...}
 //
-//	or:
+//  or:
 //
-//	        nil
+//          nil
 type SecretBackendConnectionMongodbatlasPtrInput interface {
 	pulumi.Input
 
@@ -1993,7 +1993,7 @@ type SecretBackendConnectionMssql struct {
 // SecretBackendConnectionMssqlInput is an input type that accepts SecretBackendConnectionMssqlArgs and SecretBackendConnectionMssqlOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionMssqlInput` via:
 //
-//	SecretBackendConnectionMssqlArgs{...}
+//          SecretBackendConnectionMssqlArgs{...}
 type SecretBackendConnectionMssqlInput interface {
 	pulumi.Input
 
@@ -2053,11 +2053,11 @@ func (i SecretBackendConnectionMssqlArgs) ToSecretBackendConnectionMssqlPtrOutpu
 // SecretBackendConnectionMssqlPtrInput is an input type that accepts SecretBackendConnectionMssqlArgs, SecretBackendConnectionMssqlPtr and SecretBackendConnectionMssqlPtrOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionMssqlPtrInput` via:
 //
-//	        SecretBackendConnectionMssqlArgs{...}
+//          SecretBackendConnectionMssqlArgs{...}
 //
-//	or:
+//  or:
 //
-//	        nil
+//          nil
 type SecretBackendConnectionMssqlPtrInput interface {
 	pulumi.Input
 
@@ -2311,7 +2311,7 @@ type SecretBackendConnectionMysql struct {
 // SecretBackendConnectionMysqlInput is an input type that accepts SecretBackendConnectionMysqlArgs and SecretBackendConnectionMysqlOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionMysqlInput` via:
 //
-//	SecretBackendConnectionMysqlArgs{...}
+//          SecretBackendConnectionMysqlArgs{...}
 type SecretBackendConnectionMysqlInput interface {
 	pulumi.Input
 
@@ -2368,11 +2368,11 @@ func (i SecretBackendConnectionMysqlArgs) ToSecretBackendConnectionMysqlPtrOutpu
 // SecretBackendConnectionMysqlPtrInput is an input type that accepts SecretBackendConnectionMysqlArgs, SecretBackendConnectionMysqlPtr and SecretBackendConnectionMysqlPtrOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionMysqlPtrInput` via:
 //
-//	        SecretBackendConnectionMysqlArgs{...}
+//          SecretBackendConnectionMysqlArgs{...}
 //
-//	or:
+//  or:
 //
-//	        nil
+//          nil
 type SecretBackendConnectionMysqlPtrInput interface {
 	pulumi.Input
 
@@ -2616,7 +2616,7 @@ type SecretBackendConnectionMysqlAurora struct {
 // SecretBackendConnectionMysqlAuroraInput is an input type that accepts SecretBackendConnectionMysqlAuroraArgs and SecretBackendConnectionMysqlAuroraOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionMysqlAuroraInput` via:
 //
-//	SecretBackendConnectionMysqlAuroraArgs{...}
+//          SecretBackendConnectionMysqlAuroraArgs{...}
 type SecretBackendConnectionMysqlAuroraInput interface {
 	pulumi.Input
 
@@ -2669,11 +2669,11 @@ func (i SecretBackendConnectionMysqlAuroraArgs) ToSecretBackendConnectionMysqlAu
 // SecretBackendConnectionMysqlAuroraPtrInput is an input type that accepts SecretBackendConnectionMysqlAuroraArgs, SecretBackendConnectionMysqlAuroraPtr and SecretBackendConnectionMysqlAuroraPtrOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionMysqlAuroraPtrInput` via:
 //
-//	        SecretBackendConnectionMysqlAuroraArgs{...}
+//          SecretBackendConnectionMysqlAuroraArgs{...}
 //
-//	or:
+//  or:
 //
-//	        nil
+//          nil
 type SecretBackendConnectionMysqlAuroraPtrInput interface {
 	pulumi.Input
 
@@ -2887,7 +2887,7 @@ type SecretBackendConnectionMysqlLegacy struct {
 // SecretBackendConnectionMysqlLegacyInput is an input type that accepts SecretBackendConnectionMysqlLegacyArgs and SecretBackendConnectionMysqlLegacyOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionMysqlLegacyInput` via:
 //
-//	SecretBackendConnectionMysqlLegacyArgs{...}
+//          SecretBackendConnectionMysqlLegacyArgs{...}
 type SecretBackendConnectionMysqlLegacyInput interface {
 	pulumi.Input
 
@@ -2940,11 +2940,11 @@ func (i SecretBackendConnectionMysqlLegacyArgs) ToSecretBackendConnectionMysqlLe
 // SecretBackendConnectionMysqlLegacyPtrInput is an input type that accepts SecretBackendConnectionMysqlLegacyArgs, SecretBackendConnectionMysqlLegacyPtr and SecretBackendConnectionMysqlLegacyPtrOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionMysqlLegacyPtrInput` via:
 //
-//	        SecretBackendConnectionMysqlLegacyArgs{...}
+//          SecretBackendConnectionMysqlLegacyArgs{...}
 //
-//	or:
+//  or:
 //
-//	        nil
+//          nil
 type SecretBackendConnectionMysqlLegacyPtrInput interface {
 	pulumi.Input
 
@@ -3158,7 +3158,7 @@ type SecretBackendConnectionMysqlRds struct {
 // SecretBackendConnectionMysqlRdsInput is an input type that accepts SecretBackendConnectionMysqlRdsArgs and SecretBackendConnectionMysqlRdsOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionMysqlRdsInput` via:
 //
-//	SecretBackendConnectionMysqlRdsArgs{...}
+//          SecretBackendConnectionMysqlRdsArgs{...}
 type SecretBackendConnectionMysqlRdsInput interface {
 	pulumi.Input
 
@@ -3211,11 +3211,11 @@ func (i SecretBackendConnectionMysqlRdsArgs) ToSecretBackendConnectionMysqlRdsPt
 // SecretBackendConnectionMysqlRdsPtrInput is an input type that accepts SecretBackendConnectionMysqlRdsArgs, SecretBackendConnectionMysqlRdsPtr and SecretBackendConnectionMysqlRdsPtrOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionMysqlRdsPtrInput` via:
 //
-//	        SecretBackendConnectionMysqlRdsArgs{...}
+//          SecretBackendConnectionMysqlRdsArgs{...}
 //
-//	or:
+//  or:
 //
-//	        nil
+//          nil
 type SecretBackendConnectionMysqlRdsPtrInput interface {
 	pulumi.Input
 
@@ -3429,7 +3429,7 @@ type SecretBackendConnectionOracle struct {
 // SecretBackendConnectionOracleInput is an input type that accepts SecretBackendConnectionOracleArgs and SecretBackendConnectionOracleOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionOracleInput` via:
 //
-//	SecretBackendConnectionOracleArgs{...}
+//          SecretBackendConnectionOracleArgs{...}
 type SecretBackendConnectionOracleInput interface {
 	pulumi.Input
 
@@ -3482,11 +3482,11 @@ func (i SecretBackendConnectionOracleArgs) ToSecretBackendConnectionOraclePtrOut
 // SecretBackendConnectionOraclePtrInput is an input type that accepts SecretBackendConnectionOracleArgs, SecretBackendConnectionOraclePtr and SecretBackendConnectionOraclePtrOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionOraclePtrInput` via:
 //
-//	        SecretBackendConnectionOracleArgs{...}
+//          SecretBackendConnectionOracleArgs{...}
 //
-//	or:
+//  or:
 //
-//	        nil
+//          nil
 type SecretBackendConnectionOraclePtrInput interface {
 	pulumi.Input
 
@@ -3702,7 +3702,7 @@ type SecretBackendConnectionPostgresql struct {
 // SecretBackendConnectionPostgresqlInput is an input type that accepts SecretBackendConnectionPostgresqlArgs and SecretBackendConnectionPostgresqlOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionPostgresqlInput` via:
 //
-//	SecretBackendConnectionPostgresqlArgs{...}
+//          SecretBackendConnectionPostgresqlArgs{...}
 type SecretBackendConnectionPostgresqlInput interface {
 	pulumi.Input
 
@@ -3757,11 +3757,11 @@ func (i SecretBackendConnectionPostgresqlArgs) ToSecretBackendConnectionPostgres
 // SecretBackendConnectionPostgresqlPtrInput is an input type that accepts SecretBackendConnectionPostgresqlArgs, SecretBackendConnectionPostgresqlPtr and SecretBackendConnectionPostgresqlPtrOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionPostgresqlPtrInput` via:
 //
-//	        SecretBackendConnectionPostgresqlArgs{...}
+//          SecretBackendConnectionPostgresqlArgs{...}
 //
-//	or:
+//  or:
 //
-//	        nil
+//          nil
 type SecretBackendConnectionPostgresqlPtrInput interface {
 	pulumi.Input
 
@@ -3980,7 +3980,7 @@ type SecretBackendConnectionRedisElasticache struct {
 // SecretBackendConnectionRedisElasticacheInput is an input type that accepts SecretBackendConnectionRedisElasticacheArgs and SecretBackendConnectionRedisElasticacheOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionRedisElasticacheInput` via:
 //
-//	SecretBackendConnectionRedisElasticacheArgs{...}
+//          SecretBackendConnectionRedisElasticacheArgs{...}
 type SecretBackendConnectionRedisElasticacheInput interface {
 	pulumi.Input
 
@@ -4023,11 +4023,11 @@ func (i SecretBackendConnectionRedisElasticacheArgs) ToSecretBackendConnectionRe
 // SecretBackendConnectionRedisElasticachePtrInput is an input type that accepts SecretBackendConnectionRedisElasticacheArgs, SecretBackendConnectionRedisElasticachePtr and SecretBackendConnectionRedisElasticachePtrOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionRedisElasticachePtrInput` via:
 //
-//	        SecretBackendConnectionRedisElasticacheArgs{...}
+//          SecretBackendConnectionRedisElasticacheArgs{...}
 //
-//	or:
+//  or:
 //
-//	        nil
+//          nil
 type SecretBackendConnectionRedisElasticachePtrInput interface {
 	pulumi.Input
 
@@ -4190,7 +4190,7 @@ type SecretBackendConnectionRedshift struct {
 // SecretBackendConnectionRedshiftInput is an input type that accepts SecretBackendConnectionRedshiftArgs and SecretBackendConnectionRedshiftOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionRedshiftInput` via:
 //
-//	SecretBackendConnectionRedshiftArgs{...}
+//          SecretBackendConnectionRedshiftArgs{...}
 type SecretBackendConnectionRedshiftInput interface {
 	pulumi.Input
 
@@ -4245,11 +4245,11 @@ func (i SecretBackendConnectionRedshiftArgs) ToSecretBackendConnectionRedshiftPt
 // SecretBackendConnectionRedshiftPtrInput is an input type that accepts SecretBackendConnectionRedshiftArgs, SecretBackendConnectionRedshiftPtr and SecretBackendConnectionRedshiftPtrOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionRedshiftPtrInput` via:
 //
-//	        SecretBackendConnectionRedshiftArgs{...}
+//          SecretBackendConnectionRedshiftArgs{...}
 //
-//	or:
+//  or:
 //
-//	        nil
+//          nil
 type SecretBackendConnectionRedshiftPtrInput interface {
 	pulumi.Input
 
@@ -4478,7 +4478,7 @@ type SecretBackendConnectionSnowflake struct {
 // SecretBackendConnectionSnowflakeInput is an input type that accepts SecretBackendConnectionSnowflakeArgs and SecretBackendConnectionSnowflakeOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionSnowflakeInput` via:
 //
-//	SecretBackendConnectionSnowflakeArgs{...}
+//          SecretBackendConnectionSnowflakeArgs{...}
 type SecretBackendConnectionSnowflakeInput interface {
 	pulumi.Input
 
@@ -4531,11 +4531,11 @@ func (i SecretBackendConnectionSnowflakeArgs) ToSecretBackendConnectionSnowflake
 // SecretBackendConnectionSnowflakePtrInput is an input type that accepts SecretBackendConnectionSnowflakeArgs, SecretBackendConnectionSnowflakePtr and SecretBackendConnectionSnowflakePtrOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionSnowflakePtrInput` via:
 //
-//	        SecretBackendConnectionSnowflakeArgs{...}
+//          SecretBackendConnectionSnowflakeArgs{...}
 //
-//	or:
+//  or:
 //
-//	        nil
+//          nil
 type SecretBackendConnectionSnowflakePtrInput interface {
 	pulumi.Input
 
@@ -4767,7 +4767,7 @@ type SecretsMountCassandra struct {
 // SecretsMountCassandraInput is an input type that accepts SecretsMountCassandraArgs and SecretsMountCassandraOutput values.
 // You can construct a concrete instance of `SecretsMountCassandraInput` via:
 //
-//	SecretsMountCassandraArgs{...}
+//          SecretsMountCassandraArgs{...}
 type SecretsMountCassandraInput interface {
 	pulumi.Input
 
@@ -4830,7 +4830,7 @@ func (i SecretsMountCassandraArgs) ToSecretsMountCassandraOutputWithContext(ctx 
 // SecretsMountCassandraArrayInput is an input type that accepts SecretsMountCassandraArray and SecretsMountCassandraArrayOutput values.
 // You can construct a concrete instance of `SecretsMountCassandraArrayInput` via:
 //
-//	SecretsMountCassandraArray{ SecretsMountCassandraArgs{...} }
+//          SecretsMountCassandraArray{ SecretsMountCassandraArgs{...} }
 type SecretsMountCassandraArrayInput interface {
 	pulumi.Input
 
@@ -5007,7 +5007,7 @@ type SecretsMountCouchbase struct {
 // SecretsMountCouchbaseInput is an input type that accepts SecretsMountCouchbaseArgs and SecretsMountCouchbaseOutput values.
 // You can construct a concrete instance of `SecretsMountCouchbaseInput` via:
 //
-//	SecretsMountCouchbaseArgs{...}
+//          SecretsMountCouchbaseArgs{...}
 type SecretsMountCouchbaseInput interface {
 	pulumi.Input
 
@@ -5063,7 +5063,7 @@ func (i SecretsMountCouchbaseArgs) ToSecretsMountCouchbaseOutputWithContext(ctx 
 // SecretsMountCouchbaseArrayInput is an input type that accepts SecretsMountCouchbaseArray and SecretsMountCouchbaseArrayOutput values.
 // You can construct a concrete instance of `SecretsMountCouchbaseArrayInput` via:
 //
-//	SecretsMountCouchbaseArray{ SecretsMountCouchbaseArgs{...} }
+//          SecretsMountCouchbaseArray{ SecretsMountCouchbaseArgs{...} }
 type SecretsMountCouchbaseArrayInput interface {
 	pulumi.Input
 
@@ -5230,7 +5230,7 @@ type SecretsMountElasticsearch struct {
 // SecretsMountElasticsearchInput is an input type that accepts SecretsMountElasticsearchArgs and SecretsMountElasticsearchOutput values.
 // You can construct a concrete instance of `SecretsMountElasticsearchInput` via:
 //
-//	SecretsMountElasticsearchArgs{...}
+//          SecretsMountElasticsearchArgs{...}
 type SecretsMountElasticsearchInput interface {
 	pulumi.Input
 
@@ -5289,7 +5289,7 @@ func (i SecretsMountElasticsearchArgs) ToSecretsMountElasticsearchOutputWithCont
 // SecretsMountElasticsearchArrayInput is an input type that accepts SecretsMountElasticsearchArray and SecretsMountElasticsearchArrayOutput values.
 // You can construct a concrete instance of `SecretsMountElasticsearchArrayInput` via:
 //
-//	SecretsMountElasticsearchArray{ SecretsMountElasticsearchArgs{...} }
+//          SecretsMountElasticsearchArray{ SecretsMountElasticsearchArgs{...} }
 type SecretsMountElasticsearchArrayInput interface {
 	pulumi.Input
 
@@ -5463,7 +5463,7 @@ type SecretsMountHana struct {
 // SecretsMountHanaInput is an input type that accepts SecretsMountHanaArgs and SecretsMountHanaOutput values.
 // You can construct a concrete instance of `SecretsMountHanaInput` via:
 //
-//	SecretsMountHanaArgs{...}
+//          SecretsMountHanaArgs{...}
 type SecretsMountHanaInput interface {
 	pulumi.Input
 
@@ -5520,7 +5520,7 @@ func (i SecretsMountHanaArgs) ToSecretsMountHanaOutputWithContext(ctx context.Co
 // SecretsMountHanaArrayInput is an input type that accepts SecretsMountHanaArray and SecretsMountHanaArrayOutput values.
 // You can construct a concrete instance of `SecretsMountHanaArrayInput` via:
 //
-//	SecretsMountHanaArray{ SecretsMountHanaArgs{...} }
+//          SecretsMountHanaArray{ SecretsMountHanaArgs{...} }
 type SecretsMountHanaArrayInput interface {
 	pulumi.Input
 
@@ -5689,7 +5689,7 @@ type SecretsMountInfluxdb struct {
 // SecretsMountInfluxdbInput is an input type that accepts SecretsMountInfluxdbArgs and SecretsMountInfluxdbOutput values.
 // You can construct a concrete instance of `SecretsMountInfluxdbInput` via:
 //
-//	SecretsMountInfluxdbArgs{...}
+//          SecretsMountInfluxdbArgs{...}
 type SecretsMountInfluxdbInput interface {
 	pulumi.Input
 
@@ -5752,7 +5752,7 @@ func (i SecretsMountInfluxdbArgs) ToSecretsMountInfluxdbOutputWithContext(ctx co
 // SecretsMountInfluxdbArrayInput is an input type that accepts SecretsMountInfluxdbArray and SecretsMountInfluxdbArrayOutput values.
 // You can construct a concrete instance of `SecretsMountInfluxdbArrayInput` via:
 //
-//	SecretsMountInfluxdbArray{ SecretsMountInfluxdbArgs{...} }
+//          SecretsMountInfluxdbArray{ SecretsMountInfluxdbArgs{...} }
 type SecretsMountInfluxdbArrayInput interface {
 	pulumi.Input
 
@@ -5930,7 +5930,7 @@ type SecretsMountMongodb struct {
 // SecretsMountMongodbInput is an input type that accepts SecretsMountMongodbArgs and SecretsMountMongodbOutput values.
 // You can construct a concrete instance of `SecretsMountMongodbInput` via:
 //
-//	SecretsMountMongodbArgs{...}
+//          SecretsMountMongodbArgs{...}
 type SecretsMountMongodbInput interface {
 	pulumi.Input
 
@@ -5987,7 +5987,7 @@ func (i SecretsMountMongodbArgs) ToSecretsMountMongodbOutputWithContext(ctx cont
 // SecretsMountMongodbArrayInput is an input type that accepts SecretsMountMongodbArray and SecretsMountMongodbArrayOutput values.
 // You can construct a concrete instance of `SecretsMountMongodbArrayInput` via:
 //
-//	SecretsMountMongodbArray{ SecretsMountMongodbArgs{...} }
+//          SecretsMountMongodbArray{ SecretsMountMongodbArgs{...} }
 type SecretsMountMongodbArrayInput interface {
 	pulumi.Input
 
@@ -6138,7 +6138,7 @@ type SecretsMountMongodbatla struct {
 // SecretsMountMongodbatlaInput is an input type that accepts SecretsMountMongodbatlaArgs and SecretsMountMongodbatlaOutput values.
 // You can construct a concrete instance of `SecretsMountMongodbatlaInput` via:
 //
-//	SecretsMountMongodbatlaArgs{...}
+//          SecretsMountMongodbatlaArgs{...}
 type SecretsMountMongodbatlaInput interface {
 	pulumi.Input
 
@@ -6183,7 +6183,7 @@ func (i SecretsMountMongodbatlaArgs) ToSecretsMountMongodbatlaOutputWithContext(
 // SecretsMountMongodbatlaArrayInput is an input type that accepts SecretsMountMongodbatlaArray and SecretsMountMongodbatlaArrayOutput values.
 // You can construct a concrete instance of `SecretsMountMongodbatlaArrayInput` via:
 //
-//	SecretsMountMongodbatlaArray{ SecretsMountMongodbatlaArgs{...} }
+//          SecretsMountMongodbatlaArray{ SecretsMountMongodbatlaArgs{...} }
 type SecretsMountMongodbatlaArrayInput interface {
 	pulumi.Input
 
@@ -6328,7 +6328,7 @@ type SecretsMountMssql struct {
 // SecretsMountMssqlInput is an input type that accepts SecretsMountMssqlArgs and SecretsMountMssqlOutput values.
 // You can construct a concrete instance of `SecretsMountMssqlInput` via:
 //
-//	SecretsMountMssqlArgs{...}
+//          SecretsMountMssqlArgs{...}
 type SecretsMountMssqlInput interface {
 	pulumi.Input
 
@@ -6391,7 +6391,7 @@ func (i SecretsMountMssqlArgs) ToSecretsMountMssqlOutputWithContext(ctx context.
 // SecretsMountMssqlArrayInput is an input type that accepts SecretsMountMssqlArray and SecretsMountMssqlArrayOutput values.
 // You can construct a concrete instance of `SecretsMountMssqlArrayInput` via:
 //
-//	SecretsMountMssqlArray{ SecretsMountMssqlArgs{...} }
+//          SecretsMountMssqlArray{ SecretsMountMssqlArgs{...} }
 type SecretsMountMssqlArrayInput interface {
 	pulumi.Input
 
@@ -6570,7 +6570,7 @@ type SecretsMountMysql struct {
 // SecretsMountMysqlInput is an input type that accepts SecretsMountMysqlArgs and SecretsMountMysqlOutput values.
 // You can construct a concrete instance of `SecretsMountMysqlInput` via:
 //
-//	SecretsMountMysqlArgs{...}
+//          SecretsMountMysqlArgs{...}
 type SecretsMountMysqlInput interface {
 	pulumi.Input
 
@@ -6631,7 +6631,7 @@ func (i SecretsMountMysqlArgs) ToSecretsMountMysqlOutputWithContext(ctx context.
 // SecretsMountMysqlArrayInput is an input type that accepts SecretsMountMysqlArray and SecretsMountMysqlArrayOutput values.
 // You can construct a concrete instance of `SecretsMountMysqlArrayInput` via:
 //
-//	SecretsMountMysqlArray{ SecretsMountMysqlArgs{...} }
+//          SecretsMountMysqlArray{ SecretsMountMysqlArgs{...} }
 type SecretsMountMysqlArrayInput interface {
 	pulumi.Input
 
@@ -6804,7 +6804,7 @@ type SecretsMountMysqlAurora struct {
 // SecretsMountMysqlAuroraInput is an input type that accepts SecretsMountMysqlAuroraArgs and SecretsMountMysqlAuroraOutput values.
 // You can construct a concrete instance of `SecretsMountMysqlAuroraInput` via:
 //
-//	SecretsMountMysqlAuroraArgs{...}
+//          SecretsMountMysqlAuroraArgs{...}
 type SecretsMountMysqlAuroraInput interface {
 	pulumi.Input
 
@@ -6861,7 +6861,7 @@ func (i SecretsMountMysqlAuroraArgs) ToSecretsMountMysqlAuroraOutputWithContext(
 // SecretsMountMysqlAuroraArrayInput is an input type that accepts SecretsMountMysqlAuroraArray and SecretsMountMysqlAuroraArrayOutput values.
 // You can construct a concrete instance of `SecretsMountMysqlAuroraArrayInput` via:
 //
-//	SecretsMountMysqlAuroraArray{ SecretsMountMysqlAuroraArgs{...} }
+//          SecretsMountMysqlAuroraArray{ SecretsMountMysqlAuroraArgs{...} }
 type SecretsMountMysqlAuroraArrayInput interface {
 	pulumi.Input
 
@@ -7024,7 +7024,7 @@ type SecretsMountMysqlLegacy struct {
 // SecretsMountMysqlLegacyInput is an input type that accepts SecretsMountMysqlLegacyArgs and SecretsMountMysqlLegacyOutput values.
 // You can construct a concrete instance of `SecretsMountMysqlLegacyInput` via:
 //
-//	SecretsMountMysqlLegacyArgs{...}
+//          SecretsMountMysqlLegacyArgs{...}
 type SecretsMountMysqlLegacyInput interface {
 	pulumi.Input
 
@@ -7081,7 +7081,7 @@ func (i SecretsMountMysqlLegacyArgs) ToSecretsMountMysqlLegacyOutputWithContext(
 // SecretsMountMysqlLegacyArrayInput is an input type that accepts SecretsMountMysqlLegacyArray and SecretsMountMysqlLegacyArrayOutput values.
 // You can construct a concrete instance of `SecretsMountMysqlLegacyArrayInput` via:
 //
-//	SecretsMountMysqlLegacyArray{ SecretsMountMysqlLegacyArgs{...} }
+//          SecretsMountMysqlLegacyArray{ SecretsMountMysqlLegacyArgs{...} }
 type SecretsMountMysqlLegacyArrayInput interface {
 	pulumi.Input
 
@@ -7244,7 +7244,7 @@ type SecretsMountMysqlRd struct {
 // SecretsMountMysqlRdInput is an input type that accepts SecretsMountMysqlRdArgs and SecretsMountMysqlRdOutput values.
 // You can construct a concrete instance of `SecretsMountMysqlRdInput` via:
 //
-//	SecretsMountMysqlRdArgs{...}
+//          SecretsMountMysqlRdArgs{...}
 type SecretsMountMysqlRdInput interface {
 	pulumi.Input
 
@@ -7301,7 +7301,7 @@ func (i SecretsMountMysqlRdArgs) ToSecretsMountMysqlRdOutputWithContext(ctx cont
 // SecretsMountMysqlRdArrayInput is an input type that accepts SecretsMountMysqlRdArray and SecretsMountMysqlRdArrayOutput values.
 // You can construct a concrete instance of `SecretsMountMysqlRdArrayInput` via:
 //
-//	SecretsMountMysqlRdArray{ SecretsMountMysqlRdArgs{...} }
+//          SecretsMountMysqlRdArray{ SecretsMountMysqlRdArgs{...} }
 type SecretsMountMysqlRdArrayInput interface {
 	pulumi.Input
 
@@ -7464,7 +7464,7 @@ type SecretsMountOracle struct {
 // SecretsMountOracleInput is an input type that accepts SecretsMountOracleArgs and SecretsMountOracleOutput values.
 // You can construct a concrete instance of `SecretsMountOracleInput` via:
 //
-//	SecretsMountOracleArgs{...}
+//          SecretsMountOracleArgs{...}
 type SecretsMountOracleInput interface {
 	pulumi.Input
 
@@ -7521,7 +7521,7 @@ func (i SecretsMountOracleArgs) ToSecretsMountOracleOutputWithContext(ctx contex
 // SecretsMountOracleArrayInput is an input type that accepts SecretsMountOracleArray and SecretsMountOracleArrayOutput values.
 // You can construct a concrete instance of `SecretsMountOracleArrayInput` via:
 //
-//	SecretsMountOracleArray{ SecretsMountOracleArgs{...} }
+//          SecretsMountOracleArray{ SecretsMountOracleArgs{...} }
 type SecretsMountOracleArrayInput interface {
 	pulumi.Input
 
@@ -7686,7 +7686,7 @@ type SecretsMountPostgresql struct {
 // SecretsMountPostgresqlInput is an input type that accepts SecretsMountPostgresqlArgs and SecretsMountPostgresqlOutput values.
 // You can construct a concrete instance of `SecretsMountPostgresqlInput` via:
 //
-//	SecretsMountPostgresqlArgs{...}
+//          SecretsMountPostgresqlArgs{...}
 type SecretsMountPostgresqlInput interface {
 	pulumi.Input
 
@@ -7745,7 +7745,7 @@ func (i SecretsMountPostgresqlArgs) ToSecretsMountPostgresqlOutputWithContext(ct
 // SecretsMountPostgresqlArrayInput is an input type that accepts SecretsMountPostgresqlArray and SecretsMountPostgresqlArrayOutput values.
 // You can construct a concrete instance of `SecretsMountPostgresqlArrayInput` via:
 //
-//	SecretsMountPostgresqlArray{ SecretsMountPostgresqlArgs{...} }
+//          SecretsMountPostgresqlArray{ SecretsMountPostgresqlArgs{...} }
 type SecretsMountPostgresqlArrayInput interface {
 	pulumi.Input
 
@@ -7904,7 +7904,7 @@ type SecretsMountRedisElasticach struct {
 // SecretsMountRedisElasticachInput is an input type that accepts SecretsMountRedisElasticachArgs and SecretsMountRedisElasticachOutput values.
 // You can construct a concrete instance of `SecretsMountRedisElasticachInput` via:
 //
-//	SecretsMountRedisElasticachArgs{...}
+//          SecretsMountRedisElasticachArgs{...}
 type SecretsMountRedisElasticachInput interface {
 	pulumi.Input
 
@@ -7952,7 +7952,7 @@ func (i SecretsMountRedisElasticachArgs) ToSecretsMountRedisElasticachOutputWith
 // SecretsMountRedisElasticachArrayInput is an input type that accepts SecretsMountRedisElasticachArray and SecretsMountRedisElasticachArrayOutput values.
 // You can construct a concrete instance of `SecretsMountRedisElasticachArrayInput` via:
 //
-//	SecretsMountRedisElasticachArray{ SecretsMountRedisElasticachArgs{...} }
+//          SecretsMountRedisElasticachArray{ SecretsMountRedisElasticachArgs{...} }
 type SecretsMountRedisElasticachArrayInput interface {
 	pulumi.Input
 
@@ -8099,7 +8099,7 @@ type SecretsMountRedshift struct {
 // SecretsMountRedshiftInput is an input type that accepts SecretsMountRedshiftArgs and SecretsMountRedshiftOutput values.
 // You can construct a concrete instance of `SecretsMountRedshiftInput` via:
 //
-//	SecretsMountRedshiftArgs{...}
+//          SecretsMountRedshiftArgs{...}
 type SecretsMountRedshiftInput interface {
 	pulumi.Input
 
@@ -8158,7 +8158,7 @@ func (i SecretsMountRedshiftArgs) ToSecretsMountRedshiftOutputWithContext(ctx co
 // SecretsMountRedshiftArrayInput is an input type that accepts SecretsMountRedshiftArray and SecretsMountRedshiftArrayOutput values.
 // You can construct a concrete instance of `SecretsMountRedshiftArrayInput` via:
 //
-//	SecretsMountRedshiftArray{ SecretsMountRedshiftArgs{...} }
+//          SecretsMountRedshiftArray{ SecretsMountRedshiftArgs{...} }
 type SecretsMountRedshiftArrayInput interface {
 	pulumi.Input
 
@@ -8326,7 +8326,7 @@ type SecretsMountSnowflake struct {
 // SecretsMountSnowflakeInput is an input type that accepts SecretsMountSnowflakeArgs and SecretsMountSnowflakeOutput values.
 // You can construct a concrete instance of `SecretsMountSnowflakeInput` via:
 //
-//	SecretsMountSnowflakeArgs{...}
+//          SecretsMountSnowflakeArgs{...}
 type SecretsMountSnowflakeInput interface {
 	pulumi.Input
 
@@ -8383,7 +8383,7 @@ func (i SecretsMountSnowflakeArgs) ToSecretsMountSnowflakeOutputWithContext(ctx 
 // SecretsMountSnowflakeArrayInput is an input type that accepts SecretsMountSnowflakeArray and SecretsMountSnowflakeArrayOutput values.
 // You can construct a concrete instance of `SecretsMountSnowflakeArrayInput` via:
 //
-//	SecretsMountSnowflakeArray{ SecretsMountSnowflakeArgs{...} }
+//          SecretsMountSnowflakeArray{ SecretsMountSnowflakeArgs{...} }
 type SecretsMountSnowflakeArrayInput interface {
 	pulumi.Input
 

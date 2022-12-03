@@ -343,7 +343,7 @@ func (i *AuthBackendLogin) ToAuthBackendLoginOutputWithContext(ctx context.Conte
 // AuthBackendLoginArrayInput is an input type that accepts AuthBackendLoginArray and AuthBackendLoginArrayOutput values.
 // You can construct a concrete instance of `AuthBackendLoginArrayInput` via:
 //
-//	AuthBackendLoginArray{ AuthBackendLoginArgs{...} }
+//          AuthBackendLoginArray{ AuthBackendLoginArgs{...} }
 type AuthBackendLoginArrayInput interface {
 	pulumi.Input
 
@@ -368,7 +368,7 @@ func (i AuthBackendLoginArray) ToAuthBackendLoginArrayOutputWithContext(ctx cont
 // AuthBackendLoginMapInput is an input type that accepts AuthBackendLoginMap and AuthBackendLoginMapOutput values.
 // You can construct a concrete instance of `AuthBackendLoginMapInput` via:
 //
-//	AuthBackendLoginMap{ "key": AuthBackendLoginArgs{...} }
+//          AuthBackendLoginMap{ "key": AuthBackendLoginArgs{...} }
 type AuthBackendLoginMapInput interface {
 	pulumi.Input
 

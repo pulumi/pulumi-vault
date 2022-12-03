@@ -15,9 +15,7 @@ import (
 // AWS secret backends can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:aws/secretBackend:SecretBackend aws aws
-//
+//  $ pulumi import vault:aws/secretBackend:SecretBackend aws aws
 // ```
 type SecretBackend struct {
 	pulumi.CustomResourceState
@@ -271,7 +269,7 @@ func (i *SecretBackend) ToSecretBackendOutputWithContext(ctx context.Context) Se
 // SecretBackendArrayInput is an input type that accepts SecretBackendArray and SecretBackendArrayOutput values.
 // You can construct a concrete instance of `SecretBackendArrayInput` via:
 //
-//	SecretBackendArray{ SecretBackendArgs{...} }
+//          SecretBackendArray{ SecretBackendArgs{...} }
 type SecretBackendArrayInput interface {
 	pulumi.Input
 
@@ -296,7 +294,7 @@ func (i SecretBackendArray) ToSecretBackendArrayOutputWithContext(ctx context.Co
 // SecretBackendMapInput is an input type that accepts SecretBackendMap and SecretBackendMapOutput values.
 // You can construct a concrete instance of `SecretBackendMapInput` via:
 //
-//	SecretBackendMap{ "key": SecretBackendArgs{...} }
+//          SecretBackendMap{ "key": SecretBackendArgs{...} }
 type SecretBackendMapInput interface {
 	pulumi.Input
 

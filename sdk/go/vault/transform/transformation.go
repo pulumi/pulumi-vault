@@ -170,7 +170,7 @@ func (i *Transformation) ToTransformationOutputWithContext(ctx context.Context) 
 // TransformationArrayInput is an input type that accepts TransformationArray and TransformationArrayOutput values.
 // You can construct a concrete instance of `TransformationArrayInput` via:
 //
-//	TransformationArray{ TransformationArgs{...} }
+//          TransformationArray{ TransformationArgs{...} }
 type TransformationArrayInput interface {
 	pulumi.Input
 
@@ -195,7 +195,7 @@ func (i TransformationArray) ToTransformationArrayOutputWithContext(ctx context.
 // TransformationMapInput is an input type that accepts TransformationMap and TransformationMapOutput values.
 // You can construct a concrete instance of `TransformationMapInput` via:
 //
-//	TransformationMap{ "key": TransformationArgs{...} }
+//          TransformationMap{ "key": TransformationArgs{...} }
 type TransformationMapInput interface {
 	pulumi.Input
 

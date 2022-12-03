@@ -20,39 +20,36 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			internal, err := identity.NewGroup(ctx, "internal", &identity.GroupArgs{
-//				Type:             pulumi.String("internal"),
-//				ExternalPolicies: pulumi.Bool(true),
-//				Metadata: pulumi.StringMap{
-//					"version": pulumi.String("2"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = identity.NewGroupPolicies(ctx, "policies", &identity.GroupPoliciesArgs{
-//				Policies: pulumi.StringArray{
-//					pulumi.String("default"),
-//					pulumi.String("test"),
-//				},
-//				Exclusive: pulumi.Bool(true),
-//				GroupId:   internal.ID(),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		internal, err := identity.NewGroup(ctx, "internal", &identity.GroupArgs{
+// 			Type:             pulumi.String("internal"),
+// 			ExternalPolicies: pulumi.Bool(true),
+// 			Metadata: pulumi.StringMap{
+// 				"version": pulumi.String("2"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = identity.NewGroupPolicies(ctx, "policies", &identity.GroupPoliciesArgs{
+// 			Policies: pulumi.StringArray{
+// 				pulumi.String("default"),
+// 				pulumi.String("test"),
+// 			},
+// 			Exclusive: pulumi.Bool(true),
+// 			GroupId:   internal.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 // ### Non-exclusive Policies
 //
@@ -60,49 +57,46 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			internal, err := identity.NewGroup(ctx, "internal", &identity.GroupArgs{
-//				Type:             pulumi.String("internal"),
-//				ExternalPolicies: pulumi.Bool(true),
-//				Metadata: pulumi.StringMap{
-//					"version": pulumi.String("2"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = identity.NewGroupPolicies(ctx, "default", &identity.GroupPoliciesArgs{
-//				Policies: pulumi.StringArray{
-//					pulumi.String("default"),
-//					pulumi.String("test"),
-//				},
-//				Exclusive: pulumi.Bool(false),
-//				GroupId:   internal.ID(),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = identity.NewGroupPolicies(ctx, "others", &identity.GroupPoliciesArgs{
-//				Policies: pulumi.StringArray{
-//					pulumi.String("others"),
-//				},
-//				Exclusive: pulumi.Bool(false),
-//				GroupId:   internal.ID(),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		internal, err := identity.NewGroup(ctx, "internal", &identity.GroupArgs{
+// 			Type:             pulumi.String("internal"),
+// 			ExternalPolicies: pulumi.Bool(true),
+// 			Metadata: pulumi.StringMap{
+// 				"version": pulumi.String("2"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = identity.NewGroupPolicies(ctx, "default", &identity.GroupPoliciesArgs{
+// 			Policies: pulumi.StringArray{
+// 				pulumi.String("default"),
+// 				pulumi.String("test"),
+// 			},
+// 			Exclusive: pulumi.Bool(false),
+// 			GroupId:   internal.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = identity.NewGroupPolicies(ctx, "others", &identity.GroupPoliciesArgs{
+// 			Policies: pulumi.StringArray{
+// 				pulumi.String("others"),
+// 			},
+// 			Exclusive: pulumi.Bool(false),
+// 			GroupId:   internal.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 type GroupPolicies struct {
 	pulumi.CustomResourceState
@@ -247,7 +241,7 @@ func (i *GroupPolicies) ToGroupPoliciesOutputWithContext(ctx context.Context) Gr
 // GroupPoliciesArrayInput is an input type that accepts GroupPoliciesArray and GroupPoliciesArrayOutput values.
 // You can construct a concrete instance of `GroupPoliciesArrayInput` via:
 //
-//	GroupPoliciesArray{ GroupPoliciesArgs{...} }
+//          GroupPoliciesArray{ GroupPoliciesArgs{...} }
 type GroupPoliciesArrayInput interface {
 	pulumi.Input
 
@@ -272,7 +266,7 @@ func (i GroupPoliciesArray) ToGroupPoliciesArrayOutputWithContext(ctx context.Co
 // GroupPoliciesMapInput is an input type that accepts GroupPoliciesMap and GroupPoliciesMapOutput values.
 // You can construct a concrete instance of `GroupPoliciesMapInput` via:
 //
-//	GroupPoliciesMap{ "key": GroupPoliciesArgs{...} }
+//          GroupPoliciesMap{ "key": GroupPoliciesArgs{...} }
 type GroupPoliciesMapInput interface {
 	pulumi.Input
 

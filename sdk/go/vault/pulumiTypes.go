@@ -42,7 +42,7 @@ type AuthBackendTune struct {
 // AuthBackendTuneInput is an input type that accepts AuthBackendTuneArgs and AuthBackendTuneOutput values.
 // You can construct a concrete instance of `AuthBackendTuneInput` via:
 //
-//	AuthBackendTuneArgs{...}
+//          AuthBackendTuneArgs{...}
 type AuthBackendTuneInput interface {
 	pulumi.Input
 
@@ -102,11 +102,11 @@ func (i AuthBackendTuneArgs) ToAuthBackendTunePtrOutputWithContext(ctx context.C
 // AuthBackendTunePtrInput is an input type that accepts AuthBackendTuneArgs, AuthBackendTunePtr and AuthBackendTunePtrOutput values.
 // You can construct a concrete instance of `AuthBackendTunePtrInput` via:
 //
-//	        AuthBackendTuneArgs{...}
+//          AuthBackendTuneArgs{...}
 //
-//	or:
+//  or:
 //
-//	        nil
+//          nil
 type AuthBackendTunePtrInput interface {
 	pulumi.Input
 
@@ -330,7 +330,7 @@ type ProviderAuthLogin struct {
 // ProviderAuthLoginInput is an input type that accepts ProviderAuthLoginArgs and ProviderAuthLoginOutput values.
 // You can construct a concrete instance of `ProviderAuthLoginInput` via:
 //
-//	ProviderAuthLoginArgs{...}
+//          ProviderAuthLoginArgs{...}
 type ProviderAuthLoginInput interface {
 	pulumi.Input
 
@@ -368,11 +368,11 @@ func (i ProviderAuthLoginArgs) ToProviderAuthLoginPtrOutputWithContext(ctx conte
 // ProviderAuthLoginPtrInput is an input type that accepts ProviderAuthLoginArgs, ProviderAuthLoginPtr and ProviderAuthLoginPtrOutput values.
 // You can construct a concrete instance of `ProviderAuthLoginPtrInput` via:
 //
-//	        ProviderAuthLoginArgs{...}
+//          ProviderAuthLoginArgs{...}
 //
-//	or:
+//  or:
 //
-//	        nil
+//          nil
 type ProviderAuthLoginPtrInput interface {
 	pulumi.Input
 
@@ -519,7 +519,7 @@ type ProviderAuthLoginAws struct {
 // ProviderAuthLoginAwsInput is an input type that accepts ProviderAuthLoginAwsArgs and ProviderAuthLoginAwsOutput values.
 // You can construct a concrete instance of `ProviderAuthLoginAwsInput` via:
 //
-//	ProviderAuthLoginAwsArgs{...}
+//          ProviderAuthLoginAwsArgs{...}
 type ProviderAuthLoginAwsInput interface {
 	pulumi.Input
 
@@ -568,11 +568,11 @@ func (i ProviderAuthLoginAwsArgs) ToProviderAuthLoginAwsPtrOutputWithContext(ctx
 // ProviderAuthLoginAwsPtrInput is an input type that accepts ProviderAuthLoginAwsArgs, ProviderAuthLoginAwsPtr and ProviderAuthLoginAwsPtrOutput values.
 // You can construct a concrete instance of `ProviderAuthLoginAwsPtrInput` via:
 //
-//	        ProviderAuthLoginAwsArgs{...}
+//          ProviderAuthLoginAwsArgs{...}
 //
-//	or:
+//  or:
 //
-//	        nil
+//          nil
 type ProviderAuthLoginAwsPtrInput interface {
 	pulumi.Input
 
@@ -858,7 +858,7 @@ type ProviderAuthLoginAzure struct {
 // ProviderAuthLoginAzureInput is an input type that accepts ProviderAuthLoginAzureArgs and ProviderAuthLoginAzureOutput values.
 // You can construct a concrete instance of `ProviderAuthLoginAzureInput` via:
 //
-//	ProviderAuthLoginAzureArgs{...}
+//          ProviderAuthLoginAzureArgs{...}
 type ProviderAuthLoginAzureInput interface {
 	pulumi.Input
 
@@ -903,11 +903,11 @@ func (i ProviderAuthLoginAzureArgs) ToProviderAuthLoginAzurePtrOutputWithContext
 // ProviderAuthLoginAzurePtrInput is an input type that accepts ProviderAuthLoginAzureArgs, ProviderAuthLoginAzurePtr and ProviderAuthLoginAzurePtrOutput values.
 // You can construct a concrete instance of `ProviderAuthLoginAzurePtrInput` via:
 //
-//	        ProviderAuthLoginAzureArgs{...}
+//          ProviderAuthLoginAzureArgs{...}
 //
-//	or:
+//  or:
 //
-//	        nil
+//          nil
 type ProviderAuthLoginAzurePtrInput interface {
 	pulumi.Input
 
@@ -1135,7 +1135,7 @@ type ProviderAuthLoginCert struct {
 // ProviderAuthLoginCertInput is an input type that accepts ProviderAuthLoginCertArgs and ProviderAuthLoginCertOutput values.
 // You can construct a concrete instance of `ProviderAuthLoginCertInput` via:
 //
-//	ProviderAuthLoginCertArgs{...}
+//          ProviderAuthLoginCertArgs{...}
 type ProviderAuthLoginCertInput interface {
 	pulumi.Input
 
@@ -1174,11 +1174,11 @@ func (i ProviderAuthLoginCertArgs) ToProviderAuthLoginCertPtrOutputWithContext(c
 // ProviderAuthLoginCertPtrInput is an input type that accepts ProviderAuthLoginCertArgs, ProviderAuthLoginCertPtr and ProviderAuthLoginCertPtrOutput values.
 // You can construct a concrete instance of `ProviderAuthLoginCertPtrInput` via:
 //
-//	        ProviderAuthLoginCertArgs{...}
+//          ProviderAuthLoginCertArgs{...}
 //
-//	or:
+//  or:
 //
-//	        nil
+//          nil
 type ProviderAuthLoginCertPtrInput interface {
 	pulumi.Input
 
@@ -1329,7 +1329,7 @@ type ProviderAuthLoginGcp struct {
 // ProviderAuthLoginGcpInput is an input type that accepts ProviderAuthLoginGcpArgs and ProviderAuthLoginGcpOutput values.
 // You can construct a concrete instance of `ProviderAuthLoginGcpInput` via:
 //
-//	ProviderAuthLoginGcpArgs{...}
+//          ProviderAuthLoginGcpArgs{...}
 type ProviderAuthLoginGcpInput interface {
 	pulumi.Input
 
@@ -1369,11 +1369,11 @@ func (i ProviderAuthLoginGcpArgs) ToProviderAuthLoginGcpPtrOutputWithContext(ctx
 // ProviderAuthLoginGcpPtrInput is an input type that accepts ProviderAuthLoginGcpArgs, ProviderAuthLoginGcpPtr and ProviderAuthLoginGcpPtrOutput values.
 // You can construct a concrete instance of `ProviderAuthLoginGcpPtrInput` via:
 //
-//	        ProviderAuthLoginGcpArgs{...}
+//          ProviderAuthLoginGcpArgs{...}
 //
-//	or:
+//  or:
 //
-//	        nil
+//          nil
 type ProviderAuthLoginGcpPtrInput interface {
 	pulumi.Input
 
@@ -1535,7 +1535,7 @@ type ProviderAuthLoginJwt struct {
 // ProviderAuthLoginJwtInput is an input type that accepts ProviderAuthLoginJwtArgs and ProviderAuthLoginJwtOutput values.
 // You can construct a concrete instance of `ProviderAuthLoginJwtInput` via:
 //
-//	ProviderAuthLoginJwtArgs{...}
+//          ProviderAuthLoginJwtArgs{...}
 type ProviderAuthLoginJwtInput interface {
 	pulumi.Input
 
@@ -1573,11 +1573,11 @@ func (i ProviderAuthLoginJwtArgs) ToProviderAuthLoginJwtPtrOutputWithContext(ctx
 // ProviderAuthLoginJwtPtrInput is an input type that accepts ProviderAuthLoginJwtArgs, ProviderAuthLoginJwtPtr and ProviderAuthLoginJwtPtrOutput values.
 // You can construct a concrete instance of `ProviderAuthLoginJwtPtrInput` via:
 //
-//	        ProviderAuthLoginJwtArgs{...}
+//          ProviderAuthLoginJwtArgs{...}
 //
-//	or:
+//  or:
 //
-//	        nil
+//          nil
 type ProviderAuthLoginJwtPtrInput interface {
 	pulumi.Input
 
@@ -1719,7 +1719,7 @@ type ProviderAuthLoginKerberos struct {
 // ProviderAuthLoginKerberosInput is an input type that accepts ProviderAuthLoginKerberosArgs and ProviderAuthLoginKerberosOutput values.
 // You can construct a concrete instance of `ProviderAuthLoginKerberosInput` via:
 //
-//	ProviderAuthLoginKerberosArgs{...}
+//          ProviderAuthLoginKerberosArgs{...}
 type ProviderAuthLoginKerberosInput interface {
 	pulumi.Input
 
@@ -1763,11 +1763,11 @@ func (i ProviderAuthLoginKerberosArgs) ToProviderAuthLoginKerberosPtrOutputWithC
 // ProviderAuthLoginKerberosPtrInput is an input type that accepts ProviderAuthLoginKerberosArgs, ProviderAuthLoginKerberosPtr and ProviderAuthLoginKerberosPtrOutput values.
 // You can construct a concrete instance of `ProviderAuthLoginKerberosPtrInput` via:
 //
-//	        ProviderAuthLoginKerberosArgs{...}
+//          ProviderAuthLoginKerberosArgs{...}
 //
-//	or:
+//  or:
 //
-//	        nil
+//          nil
 type ProviderAuthLoginKerberosPtrInput interface {
 	pulumi.Input
 
@@ -1981,7 +1981,7 @@ type ProviderAuthLoginOci struct {
 // ProviderAuthLoginOciInput is an input type that accepts ProviderAuthLoginOciArgs and ProviderAuthLoginOciOutput values.
 // You can construct a concrete instance of `ProviderAuthLoginOciInput` via:
 //
-//	ProviderAuthLoginOciArgs{...}
+//          ProviderAuthLoginOciArgs{...}
 type ProviderAuthLoginOciInput interface {
 	pulumi.Input
 
@@ -2019,11 +2019,11 @@ func (i ProviderAuthLoginOciArgs) ToProviderAuthLoginOciPtrOutputWithContext(ctx
 // ProviderAuthLoginOciPtrInput is an input type that accepts ProviderAuthLoginOciArgs, ProviderAuthLoginOciPtr and ProviderAuthLoginOciPtrOutput values.
 // You can construct a concrete instance of `ProviderAuthLoginOciPtrInput` via:
 //
-//	        ProviderAuthLoginOciArgs{...}
+//          ProviderAuthLoginOciArgs{...}
 //
-//	or:
+//  or:
 //
-//	        nil
+//          nil
 type ProviderAuthLoginOciPtrInput interface {
 	pulumi.Input
 
@@ -2160,7 +2160,7 @@ type ProviderAuthLoginOidc struct {
 // ProviderAuthLoginOidcInput is an input type that accepts ProviderAuthLoginOidcArgs and ProviderAuthLoginOidcOutput values.
 // You can construct a concrete instance of `ProviderAuthLoginOidcInput` via:
 //
-//	ProviderAuthLoginOidcArgs{...}
+//          ProviderAuthLoginOidcArgs{...}
 type ProviderAuthLoginOidcInput interface {
 	pulumi.Input
 
@@ -2199,11 +2199,11 @@ func (i ProviderAuthLoginOidcArgs) ToProviderAuthLoginOidcPtrOutputWithContext(c
 // ProviderAuthLoginOidcPtrInput is an input type that accepts ProviderAuthLoginOidcArgs, ProviderAuthLoginOidcPtr and ProviderAuthLoginOidcPtrOutput values.
 // You can construct a concrete instance of `ProviderAuthLoginOidcPtrInput` via:
 //
-//	        ProviderAuthLoginOidcArgs{...}
+//          ProviderAuthLoginOidcArgs{...}
 //
-//	or:
+//  or:
 //
-//	        nil
+//          nil
 type ProviderAuthLoginOidcPtrInput interface {
 	pulumi.Input
 
@@ -2352,7 +2352,7 @@ type ProviderAuthLoginRadius struct {
 // ProviderAuthLoginRadiusInput is an input type that accepts ProviderAuthLoginRadiusArgs and ProviderAuthLoginRadiusOutput values.
 // You can construct a concrete instance of `ProviderAuthLoginRadiusInput` via:
 //
-//	ProviderAuthLoginRadiusArgs{...}
+//          ProviderAuthLoginRadiusArgs{...}
 type ProviderAuthLoginRadiusInput interface {
 	pulumi.Input
 
@@ -2390,11 +2390,11 @@ func (i ProviderAuthLoginRadiusArgs) ToProviderAuthLoginRadiusPtrOutputWithConte
 // ProviderAuthLoginRadiusPtrInput is an input type that accepts ProviderAuthLoginRadiusArgs, ProviderAuthLoginRadiusPtr and ProviderAuthLoginRadiusPtrOutput values.
 // You can construct a concrete instance of `ProviderAuthLoginRadiusPtrInput` via:
 //
-//	        ProviderAuthLoginRadiusArgs{...}
+//          ProviderAuthLoginRadiusArgs{...}
 //
-//	or:
+//  or:
 //
-//	        nil
+//          nil
 type ProviderAuthLoginRadiusPtrInput interface {
 	pulumi.Input
 
@@ -2531,7 +2531,7 @@ type ProviderAuthLoginUserpass struct {
 // ProviderAuthLoginUserpassInput is an input type that accepts ProviderAuthLoginUserpassArgs and ProviderAuthLoginUserpassOutput values.
 // You can construct a concrete instance of `ProviderAuthLoginUserpassInput` via:
 //
-//	ProviderAuthLoginUserpassArgs{...}
+//          ProviderAuthLoginUserpassArgs{...}
 type ProviderAuthLoginUserpassInput interface {
 	pulumi.Input
 
@@ -2570,11 +2570,11 @@ func (i ProviderAuthLoginUserpassArgs) ToProviderAuthLoginUserpassPtrOutputWithC
 // ProviderAuthLoginUserpassPtrInput is an input type that accepts ProviderAuthLoginUserpassArgs, ProviderAuthLoginUserpassPtr and ProviderAuthLoginUserpassPtrOutput values.
 // You can construct a concrete instance of `ProviderAuthLoginUserpassPtrInput` via:
 //
-//	        ProviderAuthLoginUserpassArgs{...}
+//          ProviderAuthLoginUserpassArgs{...}
 //
-//	or:
+//  or:
 //
-//	        nil
+//          nil
 type ProviderAuthLoginUserpassPtrInput interface {
 	pulumi.Input
 
@@ -2721,7 +2721,7 @@ type ProviderClientAuth struct {
 // ProviderClientAuthInput is an input type that accepts ProviderClientAuthArgs and ProviderClientAuthOutput values.
 // You can construct a concrete instance of `ProviderClientAuthInput` via:
 //
-//	ProviderClientAuthArgs{...}
+//          ProviderClientAuthArgs{...}
 type ProviderClientAuthInput interface {
 	pulumi.Input
 
@@ -2757,11 +2757,11 @@ func (i ProviderClientAuthArgs) ToProviderClientAuthPtrOutputWithContext(ctx con
 // ProviderClientAuthPtrInput is an input type that accepts ProviderClientAuthArgs, ProviderClientAuthPtr and ProviderClientAuthPtrOutput values.
 // You can construct a concrete instance of `ProviderClientAuthPtrInput` via:
 //
-//	        ProviderClientAuthArgs{...}
+//          ProviderClientAuthArgs{...}
 //
-//	or:
+//  or:
 //
-//	        nil
+//          nil
 type ProviderClientAuthPtrInput interface {
 	pulumi.Input
 
@@ -2869,7 +2869,7 @@ type ProviderHeader struct {
 // ProviderHeaderInput is an input type that accepts ProviderHeaderArgs and ProviderHeaderOutput values.
 // You can construct a concrete instance of `ProviderHeaderInput` via:
 //
-//	ProviderHeaderArgs{...}
+//          ProviderHeaderArgs{...}
 type ProviderHeaderInput interface {
 	pulumi.Input
 
@@ -2897,7 +2897,7 @@ func (i ProviderHeaderArgs) ToProviderHeaderOutputWithContext(ctx context.Contex
 // ProviderHeaderArrayInput is an input type that accepts ProviderHeaderArray and ProviderHeaderArrayOutput values.
 // You can construct a concrete instance of `ProviderHeaderArrayInput` via:
 //
-//	ProviderHeaderArray{ ProviderHeaderArgs{...} }
+//          ProviderHeaderArray{ ProviderHeaderArgs{...} }
 type ProviderHeaderArrayInput interface {
 	pulumi.Input
 
@@ -2983,7 +2983,7 @@ type GetPolicyDocumentRule struct {
 // GetPolicyDocumentRuleInput is an input type that accepts GetPolicyDocumentRuleArgs and GetPolicyDocumentRuleOutput values.
 // You can construct a concrete instance of `GetPolicyDocumentRuleInput` via:
 //
-//	GetPolicyDocumentRuleArgs{...}
+//          GetPolicyDocumentRuleArgs{...}
 type GetPolicyDocumentRuleInput interface {
 	pulumi.Input
 
@@ -3025,7 +3025,7 @@ func (i GetPolicyDocumentRuleArgs) ToGetPolicyDocumentRuleOutputWithContext(ctx 
 // GetPolicyDocumentRuleArrayInput is an input type that accepts GetPolicyDocumentRuleArray and GetPolicyDocumentRuleArrayOutput values.
 // You can construct a concrete instance of `GetPolicyDocumentRuleArrayInput` via:
 //
-//	GetPolicyDocumentRuleArray{ GetPolicyDocumentRuleArgs{...} }
+//          GetPolicyDocumentRuleArray{ GetPolicyDocumentRuleArgs{...} }
 type GetPolicyDocumentRuleArrayInput interface {
 	pulumi.Input
 
@@ -3131,7 +3131,7 @@ type GetPolicyDocumentRuleAllowedParameter struct {
 // GetPolicyDocumentRuleAllowedParameterInput is an input type that accepts GetPolicyDocumentRuleAllowedParameterArgs and GetPolicyDocumentRuleAllowedParameterOutput values.
 // You can construct a concrete instance of `GetPolicyDocumentRuleAllowedParameterInput` via:
 //
-//	GetPolicyDocumentRuleAllowedParameterArgs{...}
+//          GetPolicyDocumentRuleAllowedParameterArgs{...}
 type GetPolicyDocumentRuleAllowedParameterInput interface {
 	pulumi.Input
 
@@ -3161,7 +3161,7 @@ func (i GetPolicyDocumentRuleAllowedParameterArgs) ToGetPolicyDocumentRuleAllowe
 // GetPolicyDocumentRuleAllowedParameterArrayInput is an input type that accepts GetPolicyDocumentRuleAllowedParameterArray and GetPolicyDocumentRuleAllowedParameterArrayOutput values.
 // You can construct a concrete instance of `GetPolicyDocumentRuleAllowedParameterArrayInput` via:
 //
-//	GetPolicyDocumentRuleAllowedParameterArray{ GetPolicyDocumentRuleAllowedParameterArgs{...} }
+//          GetPolicyDocumentRuleAllowedParameterArray{ GetPolicyDocumentRuleAllowedParameterArgs{...} }
 type GetPolicyDocumentRuleAllowedParameterArrayInput interface {
 	pulumi.Input
 
@@ -3237,7 +3237,7 @@ type GetPolicyDocumentRuleDeniedParameter struct {
 // GetPolicyDocumentRuleDeniedParameterInput is an input type that accepts GetPolicyDocumentRuleDeniedParameterArgs and GetPolicyDocumentRuleDeniedParameterOutput values.
 // You can construct a concrete instance of `GetPolicyDocumentRuleDeniedParameterInput` via:
 //
-//	GetPolicyDocumentRuleDeniedParameterArgs{...}
+//          GetPolicyDocumentRuleDeniedParameterArgs{...}
 type GetPolicyDocumentRuleDeniedParameterInput interface {
 	pulumi.Input
 
@@ -3267,7 +3267,7 @@ func (i GetPolicyDocumentRuleDeniedParameterArgs) ToGetPolicyDocumentRuleDeniedP
 // GetPolicyDocumentRuleDeniedParameterArrayInput is an input type that accepts GetPolicyDocumentRuleDeniedParameterArray and GetPolicyDocumentRuleDeniedParameterArrayOutput values.
 // You can construct a concrete instance of `GetPolicyDocumentRuleDeniedParameterArrayInput` via:
 //
-//	GetPolicyDocumentRuleDeniedParameterArray{ GetPolicyDocumentRuleDeniedParameterArgs{...} }
+//          GetPolicyDocumentRuleDeniedParameterArray{ GetPolicyDocumentRuleDeniedParameterArgs{...} }
 type GetPolicyDocumentRuleDeniedParameterArrayInput interface {
 	pulumi.Input
 

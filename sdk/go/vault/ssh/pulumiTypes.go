@@ -26,7 +26,7 @@ type SecretBackendRoleAllowedUserKeyConfig struct {
 // SecretBackendRoleAllowedUserKeyConfigInput is an input type that accepts SecretBackendRoleAllowedUserKeyConfigArgs and SecretBackendRoleAllowedUserKeyConfigOutput values.
 // You can construct a concrete instance of `SecretBackendRoleAllowedUserKeyConfigInput` via:
 //
-//	SecretBackendRoleAllowedUserKeyConfigArgs{...}
+//          SecretBackendRoleAllowedUserKeyConfigArgs{...}
 type SecretBackendRoleAllowedUserKeyConfigInput interface {
 	pulumi.Input
 
@@ -62,7 +62,7 @@ func (i SecretBackendRoleAllowedUserKeyConfigArgs) ToSecretBackendRoleAllowedUse
 // SecretBackendRoleAllowedUserKeyConfigArrayInput is an input type that accepts SecretBackendRoleAllowedUserKeyConfigArray and SecretBackendRoleAllowedUserKeyConfigArrayOutput values.
 // You can construct a concrete instance of `SecretBackendRoleAllowedUserKeyConfigArrayInput` via:
 //
-//	SecretBackendRoleAllowedUserKeyConfigArray{ SecretBackendRoleAllowedUserKeyConfigArgs{...} }
+//          SecretBackendRoleAllowedUserKeyConfigArray{ SecretBackendRoleAllowedUserKeyConfigArgs{...} }
 type SecretBackendRoleAllowedUserKeyConfigArrayInput interface {
 	pulumi.Input
 

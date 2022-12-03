@@ -23,45 +23,42 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/azure"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/azure"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			azure, err := vault.NewAuthBackend(ctx, "azure", &vault.AuthBackendArgs{
-//				Type: pulumi.String("azure"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = azure.NewAuthBackendRole(ctx, "example", &azure.AuthBackendRoleArgs{
-//				Backend: azure.Path,
-//				Role:    pulumi.String("test-role"),
-//				BoundSubscriptionIds: pulumi.StringArray{
-//					pulumi.String("11111111-2222-3333-4444-555555555555"),
-//				},
-//				BoundResourceGroups: pulumi.StringArray{
-//					pulumi.String("123456789012"),
-//				},
-//				TokenTtl:    pulumi.Int(60),
-//				TokenMaxTtl: pulumi.Int(120),
-//				TokenPolicies: pulumi.StringArray{
-//					pulumi.String("default"),
-//					pulumi.String("dev"),
-//					pulumi.String("prod"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		azure, err := vault.NewAuthBackend(ctx, "azure", &vault.AuthBackendArgs{
+// 			Type: pulumi.String("azure"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = azure.NewAuthBackendRole(ctx, "example", &azure.AuthBackendRoleArgs{
+// 			Backend: azure.Path,
+// 			Role:    pulumi.String("test-role"),
+// 			BoundSubscriptionIds: pulumi.StringArray{
+// 				pulumi.String("11111111-2222-3333-4444-555555555555"),
+// 			},
+// 			BoundResourceGroups: pulumi.StringArray{
+// 				pulumi.String("123456789012"),
+// 			},
+// 			TokenTtl:    pulumi.Int(60),
+// 			TokenMaxTtl: pulumi.Int(120),
+// 			TokenPolicies: pulumi.StringArray{
+// 				pulumi.String("default"),
+// 				pulumi.String("dev"),
+// 				pulumi.String("prod"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -69,9 +66,7 @@ import (
 // Azure auth backend roles can be imported using `auth/`, the `backend` path, `/role/`, and the `role` name e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:azure/authBackendRole:AuthBackendRole example auth/azure/role/test-role
-//
+//  $ pulumi import vault:azure/authBackendRole:AuthBackendRole example auth/azure/role/test-role
 // ```
 type AuthBackendRole struct {
 	pulumi.CustomResourceState
@@ -492,7 +487,7 @@ func (i *AuthBackendRole) ToAuthBackendRoleOutputWithContext(ctx context.Context
 // AuthBackendRoleArrayInput is an input type that accepts AuthBackendRoleArray and AuthBackendRoleArrayOutput values.
 // You can construct a concrete instance of `AuthBackendRoleArrayInput` via:
 //
-//	AuthBackendRoleArray{ AuthBackendRoleArgs{...} }
+//          AuthBackendRoleArray{ AuthBackendRoleArgs{...} }
 type AuthBackendRoleArrayInput interface {
 	pulumi.Input
 
@@ -517,7 +512,7 @@ func (i AuthBackendRoleArray) ToAuthBackendRoleArrayOutputWithContext(ctx contex
 // AuthBackendRoleMapInput is an input type that accepts AuthBackendRoleMap and AuthBackendRoleMapOutput values.
 // You can construct a concrete instance of `AuthBackendRoleMapInput` via:
 //
-//	AuthBackendRoleMap{ "key": AuthBackendRoleArgs{...} }
+//          AuthBackendRoleMap{ "key": AuthBackendRoleArgs{...} }
 type AuthBackendRoleMapInput interface {
 	pulumi.Input
 

@@ -39,7 +39,7 @@ def readme():
 
 setup(name='pulumi_vault',
       version=VERSION,
-      description="A Pulumi package for creating and managing vault cloud resources.",
+      description="A Pulumi package for creating and managing HashiCorp Vault cloud resources.",
       long_description=readme(),
       long_description_content_type='text/markdown',
       cmdclass={

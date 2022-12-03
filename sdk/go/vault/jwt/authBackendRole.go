@@ -23,44 +23,41 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/jwt"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/jwt"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			jwt, err := jwt.NewAuthBackend(ctx, "jwt", &jwt.AuthBackendArgs{
-//				Path: pulumi.String("jwt"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = jwt.NewAuthBackendRole(ctx, "example", &jwt.AuthBackendRoleArgs{
-//				Backend:  jwt.Path,
-//				RoleName: pulumi.String("test-role"),
-//				TokenPolicies: pulumi.StringArray{
-//					pulumi.String("default"),
-//					pulumi.String("dev"),
-//					pulumi.String("prod"),
-//				},
-//				BoundAudiences: pulumi.StringArray{
-//					pulumi.String("https://myco.test"),
-//				},
-//				BoundClaims: pulumi.AnyMap{
-//					"color": pulumi.Any("red,green,blue"),
-//				},
-//				UserClaim: pulumi.String("https://vault/user"),
-//				RoleType:  pulumi.String("jwt"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		jwt, err := jwt.NewAuthBackend(ctx, "jwt", &jwt.AuthBackendArgs{
+// 			Path: pulumi.String("jwt"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = jwt.NewAuthBackendRole(ctx, "example", &jwt.AuthBackendRoleArgs{
+// 			Backend:  jwt.Path,
+// 			RoleName: pulumi.String("test-role"),
+// 			TokenPolicies: pulumi.StringArray{
+// 				pulumi.String("default"),
+// 				pulumi.String("dev"),
+// 				pulumi.String("prod"),
+// 			},
+// 			BoundAudiences: pulumi.StringArray{
+// 				pulumi.String("https://myco.test"),
+// 			},
+// 			BoundClaims: pulumi.AnyMap{
+// 				"color": pulumi.Any("red,green,blue"),
+// 			},
+// 			UserClaim: pulumi.String("https://vault/user"),
+// 			RoleType:  pulumi.String("jwt"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // Role for OIDC backend:
@@ -69,42 +66,39 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/jwt"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/jwt"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			oidc, err := jwt.NewAuthBackend(ctx, "oidc", &jwt.AuthBackendArgs{
-//				Path:        pulumi.String("oidc"),
-//				DefaultRole: pulumi.String("test-role"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = jwt.NewAuthBackendRole(ctx, "example", &jwt.AuthBackendRoleArgs{
-//				Backend:  oidc.Path,
-//				RoleName: pulumi.String("test-role"),
-//				TokenPolicies: pulumi.StringArray{
-//					pulumi.String("default"),
-//					pulumi.String("dev"),
-//					pulumi.String("prod"),
-//				},
-//				UserClaim: pulumi.String("https://vault/user"),
-//				RoleType:  pulumi.String("oidc"),
-//				AllowedRedirectUris: pulumi.StringArray{
-//					pulumi.String("http://localhost:8200/ui/vault/auth/oidc/oidc/callback"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		oidc, err := jwt.NewAuthBackend(ctx, "oidc", &jwt.AuthBackendArgs{
+// 			Path:        pulumi.String("oidc"),
+// 			DefaultRole: pulumi.String("test-role"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = jwt.NewAuthBackendRole(ctx, "example", &jwt.AuthBackendRoleArgs{
+// 			Backend:  oidc.Path,
+// 			RoleName: pulumi.String("test-role"),
+// 			TokenPolicies: pulumi.StringArray{
+// 				pulumi.String("default"),
+// 				pulumi.String("dev"),
+// 				pulumi.String("prod"),
+// 			},
+// 			UserClaim: pulumi.String("https://vault/user"),
+// 			RoleType:  pulumi.String("oidc"),
+// 			AllowedRedirectUris: pulumi.StringArray{
+// 				pulumi.String("http://localhost:8200/ui/vault/auth/oidc/oidc/callback"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -112,9 +106,7 @@ import (
 // JWT authentication backend roles can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:jwt/authBackendRole:AuthBackendRole example auth/jwt/role/test-role
-//
+//  $ pulumi import vault:jwt/authBackendRole:AuthBackendRole example auth/jwt/role/test-role
 // ```
 type AuthBackendRole struct {
 	pulumi.CustomResourceState
@@ -723,7 +715,7 @@ func (i *AuthBackendRole) ToAuthBackendRoleOutputWithContext(ctx context.Context
 // AuthBackendRoleArrayInput is an input type that accepts AuthBackendRoleArray and AuthBackendRoleArrayOutput values.
 // You can construct a concrete instance of `AuthBackendRoleArrayInput` via:
 //
-//	AuthBackendRoleArray{ AuthBackendRoleArgs{...} }
+//          AuthBackendRoleArray{ AuthBackendRoleArgs{...} }
 type AuthBackendRoleArrayInput interface {
 	pulumi.Input
 
@@ -748,7 +740,7 @@ func (i AuthBackendRoleArray) ToAuthBackendRoleArrayOutputWithContext(ctx contex
 // AuthBackendRoleMapInput is an input type that accepts AuthBackendRoleMap and AuthBackendRoleMapOutput values.
 // You can construct a concrete instance of `AuthBackendRoleMapInput` via:
 //
-//	AuthBackendRoleMap{ "key": AuthBackendRoleArgs{...} }
+//          AuthBackendRoleMap{ "key": AuthBackendRoleArgs{...} }
 type AuthBackendRoleMapInput interface {
 	pulumi.Input
 

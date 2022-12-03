@@ -16,9 +16,7 @@ import (
 // Auth methods can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:index/authBackend:AuthBackend example github
-//
+//  $ pulumi import vault:index/authBackend:AuthBackend example github
 // ```
 type AuthBackend struct {
 	pulumi.CustomResourceState
@@ -195,7 +193,7 @@ func (i *AuthBackend) ToAuthBackendOutputWithContext(ctx context.Context) AuthBa
 // AuthBackendArrayInput is an input type that accepts AuthBackendArray and AuthBackendArrayOutput values.
 // You can construct a concrete instance of `AuthBackendArrayInput` via:
 //
-//	AuthBackendArray{ AuthBackendArgs{...} }
+//          AuthBackendArray{ AuthBackendArgs{...} }
 type AuthBackendArrayInput interface {
 	pulumi.Input
 
@@ -220,7 +218,7 @@ func (i AuthBackendArray) ToAuthBackendArrayOutputWithContext(ctx context.Contex
 // AuthBackendMapInput is an input type that accepts AuthBackendMap and AuthBackendMapOutput values.
 // You can construct a concrete instance of `AuthBackendMapInput` via:
 //
-//	AuthBackendMap{ "key": AuthBackendArgs{...} }
+//          AuthBackendMap{ "key": AuthBackendArgs{...} }
 type AuthBackendMapInput interface {
 	pulumi.Input
 

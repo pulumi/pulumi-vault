@@ -21,29 +21,26 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vault.NewRaftAutopilot(ctx, "autopilot", &vault.RaftAutopilotArgs{
-//				CleanupDeadServers:             pulumi.Bool(true),
-//				DeadServerLastContactThreshold: pulumi.String("24h0m0s"),
-//				LastContactThreshold:           pulumi.String("10s"),
-//				MaxTrailingLogs:                pulumi.Int(1000),
-//				MinQuorum:                      pulumi.Int(3),
-//				ServerStabilizationTime:        pulumi.String("10s"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := vault.NewRaftAutopilot(ctx, "autopilot", &vault.RaftAutopilotArgs{
+// 			CleanupDeadServers:             pulumi.Bool(true),
+// 			DeadServerLastContactThreshold: pulumi.String("24h0m0s"),
+// 			LastContactThreshold:           pulumi.String("10s"),
+// 			MaxTrailingLogs:                pulumi.Int(1000),
+// 			MinQuorum:                      pulumi.Int(3),
+// 			ServerStabilizationTime:        pulumi.String("10s"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 type RaftAutopilot struct {
 	pulumi.CustomResourceState
@@ -246,7 +243,7 @@ func (i *RaftAutopilot) ToRaftAutopilotOutputWithContext(ctx context.Context) Ra
 // RaftAutopilotArrayInput is an input type that accepts RaftAutopilotArray and RaftAutopilotArrayOutput values.
 // You can construct a concrete instance of `RaftAutopilotArrayInput` via:
 //
-//	RaftAutopilotArray{ RaftAutopilotArgs{...} }
+//          RaftAutopilotArray{ RaftAutopilotArgs{...} }
 type RaftAutopilotArrayInput interface {
 	pulumi.Input
 
@@ -271,7 +268,7 @@ func (i RaftAutopilotArray) ToRaftAutopilotArrayOutputWithContext(ctx context.Co
 // RaftAutopilotMapInput is an input type that accepts RaftAutopilotMap and RaftAutopilotMapOutput values.
 // You can construct a concrete instance of `RaftAutopilotMapInput` via:
 //
-//	RaftAutopilotMap{ "key": RaftAutopilotArgs{...} }
+//          RaftAutopilotMap{ "key": RaftAutopilotArgs{...} }
 type RaftAutopilotMapInput interface {
 	pulumi.Input
 

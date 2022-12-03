@@ -17,47 +17,42 @@ import (
 // package main
 //
 // import (
+// 	"fmt"
 //
-//	"fmt"
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/aws"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/aws"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			aws, err := aws.NewSecretBackend(ctx, "aws", &aws.SecretBackendArgs{
-//				AccessKey: pulumi.String("AKIA....."),
-//				SecretKey: pulumi.String("AWS secret key"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = aws.NewSecretBackendRole(ctx, "role", &aws.SecretBackendRoleArgs{
-//				Backend:        aws.Path,
-//				CredentialType: pulumi.String("iam_user"),
-//				PolicyDocument: pulumi.String(fmt.Sprintf(`{
-//	  "Version": "2012-10-17",
-//	  "Statement": [
-//	    {
-//	      "Effect": "Allow",
-//	      "Action": "iam:*",
-//	      "Resource": "*"
-//	    }
-//	  ]
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		aws, err := aws.NewSecretBackend(ctx, "aws", &aws.SecretBackendArgs{
+// 			AccessKey: pulumi.String("AKIA....."),
+// 			SecretKey: pulumi.String("AWS secret key"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = aws.NewSecretBackendRole(ctx, "role", &aws.SecretBackendRoleArgs{
+// 			Backend:        aws.Path,
+// 			CredentialType: pulumi.String("iam_user"),
+// 			PolicyDocument: pulumi.String(fmt.Sprintf(`{
+//   "Version": "2012-10-17",
+//   "Statement": [
+//     {
+//       "Effect": "Allow",
+//       "Action": "iam:*",
+//       "Resource": "*"
+//     }
+//   ]
+// }
 // `)),
-//
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -65,9 +60,7 @@ import (
 // AWS secret backend roles can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:aws/secretBackendRole:SecretBackendRole role aws/roles/deploy
-//
+//  $ pulumi import vault:aws/secretBackendRole:SecretBackendRole role aws/roles/deploy
 // ```
 type SecretBackendRole struct {
 	pulumi.CustomResourceState
@@ -441,7 +434,7 @@ func (i *SecretBackendRole) ToSecretBackendRoleOutputWithContext(ctx context.Con
 // SecretBackendRoleArrayInput is an input type that accepts SecretBackendRoleArray and SecretBackendRoleArrayOutput values.
 // You can construct a concrete instance of `SecretBackendRoleArrayInput` via:
 //
-//	SecretBackendRoleArray{ SecretBackendRoleArgs{...} }
+//          SecretBackendRoleArray{ SecretBackendRoleArgs{...} }
 type SecretBackendRoleArrayInput interface {
 	pulumi.Input
 
@@ -466,7 +459,7 @@ func (i SecretBackendRoleArray) ToSecretBackendRoleArrayOutputWithContext(ctx co
 // SecretBackendRoleMapInput is an input type that accepts SecretBackendRoleMap and SecretBackendRoleMapOutput values.
 // You can construct a concrete instance of `SecretBackendRoleMapInput` via:
 //
-//	SecretBackendRoleMap{ "key": SecretBackendRoleArgs{...} }
+//          SecretBackendRoleMap{ "key": SecretBackendRoleArgs{...} }
 type SecretBackendRoleMapInput interface {
 	pulumi.Input
 

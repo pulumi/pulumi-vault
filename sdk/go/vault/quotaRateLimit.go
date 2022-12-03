@@ -24,35 +24,30 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vault.NewQuotaRateLimit(ctx, "global", &vault.QuotaRateLimitArgs{
-//				Path: pulumi.String(""),
-//				Rate: pulumi.Float64(100),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := vault.NewQuotaRateLimit(ctx, "global", &vault.QuotaRateLimitArgs{
+// 			Path: pulumi.String(""),
+// 			Rate: pulumi.Float64(100),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
 //
-// # Rate limit quotas can be imported using their names
+// Rate limit quotas can be imported using their names
 //
 // ```sh
-//
-//	$ pulumi import vault:index/quotaRateLimit:QuotaRateLimit global global
-//
+//  $ pulumi import vault:index/quotaRateLimit:QuotaRateLimit global global
 // ```
 type QuotaRateLimit struct {
 	pulumi.CustomResourceState
@@ -243,7 +238,7 @@ func (i *QuotaRateLimit) ToQuotaRateLimitOutputWithContext(ctx context.Context) 
 // QuotaRateLimitArrayInput is an input type that accepts QuotaRateLimitArray and QuotaRateLimitArrayOutput values.
 // You can construct a concrete instance of `QuotaRateLimitArrayInput` via:
 //
-//	QuotaRateLimitArray{ QuotaRateLimitArgs{...} }
+//          QuotaRateLimitArray{ QuotaRateLimitArgs{...} }
 type QuotaRateLimitArrayInput interface {
 	pulumi.Input
 
@@ -268,7 +263,7 @@ func (i QuotaRateLimitArray) ToQuotaRateLimitArrayOutputWithContext(ctx context.
 // QuotaRateLimitMapInput is an input type that accepts QuotaRateLimitMap and QuotaRateLimitMapOutput values.
 // You can construct a concrete instance of `QuotaRateLimitMapInput` via:
 //
-//	QuotaRateLimitMap{ "key": QuotaRateLimitArgs{...} }
+//          QuotaRateLimitMap{ "key": QuotaRateLimitArgs{...} }
 type QuotaRateLimitMapInput interface {
 	pulumi.Input
 

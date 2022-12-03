@@ -42,7 +42,7 @@ type AuthBackendTune struct {
 // AuthBackendTuneInput is an input type that accepts AuthBackendTuneArgs and AuthBackendTuneOutput values.
 // You can construct a concrete instance of `AuthBackendTuneInput` via:
 //
-//	AuthBackendTuneArgs{...}
+//          AuthBackendTuneArgs{...}
 type AuthBackendTuneInput interface {
 	pulumi.Input
 
@@ -102,11 +102,11 @@ func (i AuthBackendTuneArgs) ToAuthBackendTunePtrOutputWithContext(ctx context.C
 // AuthBackendTunePtrInput is an input type that accepts AuthBackendTuneArgs, AuthBackendTunePtr and AuthBackendTunePtrOutput values.
 // You can construct a concrete instance of `AuthBackendTunePtrInput` via:
 //
-//	        AuthBackendTuneArgs{...}
+//          AuthBackendTuneArgs{...}
 //
-//	or:
+//  or:
 //
-//	        nil
+//          nil
 type AuthBackendTunePtrInput interface {
 	pulumi.Input
 

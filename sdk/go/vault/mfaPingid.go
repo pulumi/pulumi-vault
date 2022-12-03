@@ -21,36 +21,33 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			cfg := config.New(ctx, "")
-//			settingsFile := cfg.RequireObject("settingsFile")
-//			userpass, err := vault.NewAuthBackend(ctx, "userpass", &vault.AuthBackendArgs{
-//				Type: pulumi.String("userpass"),
-//				Path: pulumi.String("userpass"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = vault.NewMfaPingid(ctx, "myPingid", &vault.MfaPingidArgs{
-//				MountAccessor:      userpass.Accessor,
-//				UsernameFormat:     pulumi.String("user@example.com"),
-//				SettingsFileBase64: pulumi.Any(settingsFile),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		cfg := config.New(ctx, "")
+// 		settingsFile := cfg.RequireObject("settingsFile")
+// 		userpass, err := vault.NewAuthBackend(ctx, "userpass", &vault.AuthBackendArgs{
+// 			Type: pulumi.String("userpass"),
+// 			Path: pulumi.String("userpass"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = vault.NewMfaPingid(ctx, "myPingid", &vault.MfaPingidArgs{
+// 			MountAccessor:      userpass.Accessor,
+// 			UsernameFormat:     pulumi.String("user@example.com"),
+// 			SettingsFileBase64: pulumi.Any(settingsFile),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -58,9 +55,7 @@ import (
 // Mounts can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:index/mfaPingid:MfaPingid my_pingid my_pingid
-//
+//  $ pulumi import vault:index/mfaPingid:MfaPingid my_pingid my_pingid
 // ```
 type MfaPingid struct {
 	pulumi.CustomResourceState
@@ -291,7 +286,7 @@ func (i *MfaPingid) ToMfaPingidOutputWithContext(ctx context.Context) MfaPingidO
 // MfaPingidArrayInput is an input type that accepts MfaPingidArray and MfaPingidArrayOutput values.
 // You can construct a concrete instance of `MfaPingidArrayInput` via:
 //
-//	MfaPingidArray{ MfaPingidArgs{...} }
+//          MfaPingidArray{ MfaPingidArgs{...} }
 type MfaPingidArrayInput interface {
 	pulumi.Input
 
@@ -316,7 +311,7 @@ func (i MfaPingidArray) ToMfaPingidArrayOutputWithContext(ctx context.Context) M
 // MfaPingidMapInput is an input type that accepts MfaPingidMap and MfaPingidMapOutput values.
 // You can construct a concrete instance of `MfaPingidMapInput` via:
 //
-//	MfaPingidMap{ "key": MfaPingidArgs{...} }
+//          MfaPingidMap{ "key": MfaPingidArgs{...} }
 type MfaPingidMapInput interface {
 	pulumi.Input
 

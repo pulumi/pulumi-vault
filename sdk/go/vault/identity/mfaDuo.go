@@ -19,26 +19,23 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := identity.NewMfaDuo(ctx, "example", &identity.MfaDuoArgs{
-//				ApiHostname:    pulumi.String("api-xxxxxxxx.duosecurity.com"),
-//				IntegrationKey: pulumi.String("secret-int-key"),
-//				SecretKey:      pulumi.String("secret-key"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := identity.NewMfaDuo(ctx, "example", &identity.MfaDuoArgs{
+// 			ApiHostname:    pulumi.String("api-xxxxxxxx.duosecurity.com"),
+// 			IntegrationKey: pulumi.String("secret-int-key"),
+// 			SecretKey:      pulumi.String("secret-key"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -46,9 +43,7 @@ import (
 // Resource can be imported using its `uuid` field, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:identity/mfaDuo:MfaDuo example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
-//
+//  $ pulumi import vault:identity/mfaDuo:MfaDuo example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
 // ```
 type MfaDuo struct {
 	pulumi.CustomResourceState
@@ -258,7 +253,7 @@ func (i *MfaDuo) ToMfaDuoOutputWithContext(ctx context.Context) MfaDuoOutput {
 // MfaDuoArrayInput is an input type that accepts MfaDuoArray and MfaDuoArrayOutput values.
 // You can construct a concrete instance of `MfaDuoArrayInput` via:
 //
-//	MfaDuoArray{ MfaDuoArgs{...} }
+//          MfaDuoArray{ MfaDuoArgs{...} }
 type MfaDuoArrayInput interface {
 	pulumi.Input
 
@@ -283,7 +278,7 @@ func (i MfaDuoArray) ToMfaDuoArrayOutputWithContext(ctx context.Context) MfaDuoA
 // MfaDuoMapInput is an input type that accepts MfaDuoMap and MfaDuoMapOutput values.
 // You can construct a concrete instance of `MfaDuoMapInput` via:
 //
-//	MfaDuoMap{ "key": MfaDuoArgs{...} }
+//          MfaDuoMap{ "key": MfaDuoArgs{...} }
 type MfaDuoMapInput interface {
 	pulumi.Input
 

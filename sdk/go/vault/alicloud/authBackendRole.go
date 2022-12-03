@@ -19,34 +19,31 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/alicloud"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/alicloud"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			alicloudAuthBackend, err := vault.NewAuthBackend(ctx, "alicloudAuthBackend", &vault.AuthBackendArgs{
-//				Type: pulumi.String("alicloud"),
-//				Path: pulumi.String("alicloud"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = alicloud.NewAuthBackendRole(ctx, "alicloudAuthBackendRole", &alicloud.AuthBackendRoleArgs{
-//				Backend: alicloudAuthBackend.Path,
-//				Role:    pulumi.String("example"),
-//				Arn:     pulumi.String("acs:ram:123456:tf:role/foobar"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		alicloudAuthBackend, err := vault.NewAuthBackend(ctx, "alicloudAuthBackend", &vault.AuthBackendArgs{
+// 			Type: pulumi.String("alicloud"),
+// 			Path: pulumi.String("alicloud"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = alicloud.NewAuthBackendRole(ctx, "alicloudAuthBackendRole", &alicloud.AuthBackendRoleArgs{
+// 			Backend: alicloudAuthBackend.Path,
+// 			Role:    pulumi.String("example"),
+// 			Arn:     pulumi.String("acs:ram:123456:tf:role/foobar"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -54,9 +51,7 @@ import (
 // Alicloud authentication roles can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:alicloud/authBackendRole:AuthBackendRole my_role auth/alicloud/role/my_role
-//
+//  $ pulumi import vault:alicloud/authBackendRole:AuthBackendRole my_role auth/alicloud/role/my_role
 // ```
 type AuthBackendRole struct {
 	pulumi.CustomResourceState
@@ -380,7 +375,7 @@ func (i *AuthBackendRole) ToAuthBackendRoleOutputWithContext(ctx context.Context
 // AuthBackendRoleArrayInput is an input type that accepts AuthBackendRoleArray and AuthBackendRoleArrayOutput values.
 // You can construct a concrete instance of `AuthBackendRoleArrayInput` via:
 //
-//	AuthBackendRoleArray{ AuthBackendRoleArgs{...} }
+//          AuthBackendRoleArray{ AuthBackendRoleArgs{...} }
 type AuthBackendRoleArrayInput interface {
 	pulumi.Input
 
@@ -405,7 +400,7 @@ func (i AuthBackendRoleArray) ToAuthBackendRoleArrayOutputWithContext(ctx contex
 // AuthBackendRoleMapInput is an input type that accepts AuthBackendRoleMap and AuthBackendRoleMapOutput values.
 // You can construct a concrete instance of `AuthBackendRoleMapInput` via:
 //
-//	AuthBackendRoleMap{ "key": AuthBackendRoleArgs{...} }
+//          AuthBackendRoleMap{ "key": AuthBackendRoleArgs{...} }
 type AuthBackendRoleMapInput interface {
 	pulumi.Input
 

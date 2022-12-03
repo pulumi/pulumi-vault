@@ -17,74 +17,71 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/database"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/database"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			db, err := database.NewSecretsMount(ctx, "db", &database.SecretsMountArgs{
-//				Path: pulumi.String("db"),
-//				Mssqls: database.SecretsMountMssqlArray{
-//					&database.SecretsMountMssqlArgs{
-//						Name:          pulumi.String("db1"),
-//						Username:      pulumi.String("sa"),
-//						Password:      pulumi.String("super_secret_1"),
-//						ConnectionUrl: pulumi.String("sqlserver://{{username}}:{{password}}@127.0.0.1:1433"),
-//						AllowedRoles: pulumi.StringArray{
-//							pulumi.String("dev1"),
-//						},
-//					},
-//				},
-//				Postgresqls: database.SecretsMountPostgresqlArray{
-//					&database.SecretsMountPostgresqlArgs{
-//						Name:             pulumi.String("db2"),
-//						Username:         pulumi.String("postgres"),
-//						Password:         pulumi.String("super_secret_2"),
-//						ConnectionUrl:    pulumi.String("postgresql://{{username}}:{{password}}@127.0.0.1:5432/postgres"),
-//						VerifyConnection: pulumi.Bool(true),
-//						AllowedRoles: pulumi.StringArray{
-//							pulumi.String("dev2"),
-//						},
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = database.NewSecretBackendRole(ctx, "dev1", &database.SecretBackendRoleArgs{
-//				Backend: db.Path,
-//				DbName: db.Mssqls.ApplyT(func(mssqls []database.SecretsMountMssql) (string, error) {
-//					return mssqls[0].Name, nil
-//				}).(pulumi.StringOutput),
-//				CreationStatements: pulumi.StringArray{
-//					pulumi.String("CREATE LOGIN [{{name}}] WITH PASSWORD = '{{password}}';"),
-//					pulumi.String("CREATE USER [{{name}}] FOR LOGIN [{{name}}];"),
-//					pulumi.String("GRANT SELECT ON SCHEMA::dbo TO [{{name}}];"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = database.NewSecretBackendRole(ctx, "dev2", &database.SecretBackendRoleArgs{
-//				Backend: db.Path,
-//				DbName: db.Postgresqls.ApplyT(func(postgresqls []database.SecretsMountPostgresql) (string, error) {
-//					return postgresqls[0].Name, nil
-//				}).(pulumi.StringOutput),
-//				CreationStatements: pulumi.StringArray{
-//					pulumi.String("CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';"),
-//					pulumi.String("GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"{{name}}\";"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		db, err := database.NewSecretsMount(ctx, "db", &database.SecretsMountArgs{
+// 			Path: pulumi.String("db"),
+// 			Mssqls: database.SecretsMountMssqlArray{
+// 				&database.SecretsMountMssqlArgs{
+// 					Name:          pulumi.String("db1"),
+// 					Username:      pulumi.String("sa"),
+// 					Password:      pulumi.String("super_secret_1"),
+// 					ConnectionUrl: pulumi.String("sqlserver://{{username}}:{{password}}@127.0.0.1:1433"),
+// 					AllowedRoles: pulumi.StringArray{
+// 						pulumi.String("dev1"),
+// 					},
+// 				},
+// 			},
+// 			Postgresqls: database.SecretsMountPostgresqlArray{
+// 				&database.SecretsMountPostgresqlArgs{
+// 					Name:             pulumi.String("db2"),
+// 					Username:         pulumi.String("postgres"),
+// 					Password:         pulumi.String("super_secret_2"),
+// 					ConnectionUrl:    pulumi.String("postgresql://{{username}}:{{password}}@127.0.0.1:5432/postgres"),
+// 					VerifyConnection: pulumi.Bool(true),
+// 					AllowedRoles: pulumi.StringArray{
+// 						pulumi.String("dev2"),
+// 					},
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = database.NewSecretBackendRole(ctx, "dev1", &database.SecretBackendRoleArgs{
+// 			Backend: db.Path,
+// 			DbName: db.Mssqls.ApplyT(func(mssqls []database.SecretsMountMssql) (string, error) {
+// 				return mssqls[0].Name, nil
+// 			}).(pulumi.StringOutput),
+// 			CreationStatements: pulumi.StringArray{
+// 				pulumi.String("CREATE LOGIN [{{name}}] WITH PASSWORD = '{{password}}';"),
+// 				pulumi.String("CREATE USER [{{name}}] FOR LOGIN [{{name}}];"),
+// 				pulumi.String("GRANT SELECT ON SCHEMA::dbo TO [{{name}}];"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = database.NewSecretBackendRole(ctx, "dev2", &database.SecretBackendRoleArgs{
+// 			Backend: db.Path,
+// 			DbName: db.Postgresqls.ApplyT(func(postgresqls []database.SecretsMountPostgresql) (string, error) {
+// 				return postgresqls[0].Name, nil
+// 			}).(pulumi.StringOutput),
+// 			CreationStatements: pulumi.StringArray{
+// 				pulumi.String("CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';"),
+// 				pulumi.String("GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"{{name}}\";"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -92,9 +89,7 @@ import (
 // Database secret backend connections can be imported using the `path` e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:database/secretsMount:SecretsMount db db
-//
+//  $ pulumi import vault:database/secretsMount:SecretsMount db db
 // ```
 type SecretsMount struct {
 	pulumi.CustomResourceState
@@ -562,7 +557,7 @@ func (i *SecretsMount) ToSecretsMountOutputWithContext(ctx context.Context) Secr
 // SecretsMountArrayInput is an input type that accepts SecretsMountArray and SecretsMountArrayOutput values.
 // You can construct a concrete instance of `SecretsMountArrayInput` via:
 //
-//	SecretsMountArray{ SecretsMountArgs{...} }
+//          SecretsMountArray{ SecretsMountArgs{...} }
 type SecretsMountArrayInput interface {
 	pulumi.Input
 
@@ -587,7 +582,7 @@ func (i SecretsMountArray) ToSecretsMountArrayOutputWithContext(ctx context.Cont
 // SecretsMountMapInput is an input type that accepts SecretsMountMap and SecretsMountMapOutput values.
 // You can construct a concrete instance of `SecretsMountMapInput` via:
 //
-//	SecretsMountMap{ "key": SecretsMountArgs{...} }
+//          SecretsMountMap{ "key": SecretsMountArgs{...} }
 type SecretsMountMapInput interface {
 	pulumi.Input
 

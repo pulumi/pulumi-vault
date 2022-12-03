@@ -17,20 +17,17 @@ import (
 // package main
 //
 // import (
+// 	"fmt"
 //
-//	"fmt"
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := pkiSecret.NewSecretBackendSign(ctx, "test", &pkiSecret.SecretBackendSignArgs{
-//				Backend: pulumi.Any(vault_mount.Pki.Path),
-//				Csr: pulumi.String(fmt.Sprintf(`-----BEGIN CERTIFICATE REQUEST-----
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := pkiSecret.NewSecretBackendSign(ctx, "test", &pkiSecret.SecretBackendSignArgs{
+// 			Backend: pulumi.Any(vault_mount.Pki.Path),
+// 			Csr: pulumi.String(fmt.Sprintf(`-----BEGIN CERTIFICATE REQUEST-----
 // MIIEqDCCApACAQAwYzELMAkGA1UEBhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUx
 // ITAfBgNVBAoMGEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZDEcMBoGA1UEAwwTY2Vy
 // dC50ZXN0Lm15LmRvbWFpbjCCAiIwDQYJKoZIhvcNAQEBBQADggIPADCCAgoCggIB
@@ -58,18 +55,16 @@ import (
 // o3DybUeUmknYjl109rdSf+76nuREICHatxXgN3xCMFuBaN4WLO+ksd6Y1Ys=
 // -----END CERTIFICATE REQUEST-----
 // `)),
-//
-//				CommonName: pulumi.String("test.my.domain"),
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				vault_pki_secret_backend_role.Admin,
-//			}))
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// 			CommonName: pulumi.String("test.my.domain"),
+// 		}, pulumi.DependsOn([]pulumi.Resource{
+// 			vault_pki_secret_backend_role.Admin,
+// 		}))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 // ## Deprecations
 //
@@ -362,7 +357,7 @@ func (i *SecretBackendSign) ToSecretBackendSignOutputWithContext(ctx context.Con
 // SecretBackendSignArrayInput is an input type that accepts SecretBackendSignArray and SecretBackendSignArrayOutput values.
 // You can construct a concrete instance of `SecretBackendSignArrayInput` via:
 //
-//	SecretBackendSignArray{ SecretBackendSignArgs{...} }
+//          SecretBackendSignArray{ SecretBackendSignArgs{...} }
 type SecretBackendSignArrayInput interface {
 	pulumi.Input
 
@@ -387,7 +382,7 @@ func (i SecretBackendSignArray) ToSecretBackendSignArrayOutputWithContext(ctx co
 // SecretBackendSignMapInput is an input type that accepts SecretBackendSignMap and SecretBackendSignMapOutput values.
 // You can construct a concrete instance of `SecretBackendSignMapInput` via:
 //
-//	SecretBackendSignMap{ "key": SecretBackendSignArgs{...} }
+//          SecretBackendSignMap{ "key": SecretBackendSignArgs{...} }
 type SecretBackendSignMapInput interface {
 	pulumi.Input
 

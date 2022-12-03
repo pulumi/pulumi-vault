@@ -22,49 +22,46 @@ import (
 // package main
 //
 // import (
+// 	"encoding/json"
 //
-//	"encoding/json"
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kv"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kv"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			kvv2, err := vault.NewMount(ctx, "kvv2", &vault.MountArgs{
-//				Path: pulumi.String("kvv2"),
-//				Type: pulumi.String("kv"),
-//				Options: pulumi.AnyMap{
-//					"version": pulumi.Any("2"),
-//				},
-//				Description: pulumi.String("KV Version 2 secret engine mount"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			tmpJSON0, err := json.Marshal(map[string]interface{}{
-//				"zip": "zap",
-//				"foo": "bar",
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			json0 := string(tmpJSON0)
-//			_, err = kv.NewSecretV2(ctx, "secret", &kv.SecretV2Args{
-//				Mount:             kvv2.Path,
-//				Cas:               pulumi.Int(1),
-//				DeleteAllVersions: pulumi.Bool(true),
-//				DataJson:          pulumi.String(json0),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		kvv2, err := vault.NewMount(ctx, "kvv2", &vault.MountArgs{
+// 			Path: pulumi.String("kvv2"),
+// 			Type: pulumi.String("kv"),
+// 			Options: pulumi.AnyMap{
+// 				"version": pulumi.Any("2"),
+// 			},
+// 			Description: pulumi.String("KV Version 2 secret engine mount"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		tmpJSON0, err := json.Marshal(map[string]interface{}{
+// 			"zip": "zap",
+// 			"foo": "bar",
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		json0 := string(tmpJSON0)
+// 		_, err = kv.NewSecretV2(ctx, "secret", &kv.SecretV2Args{
+// 			Mount:             kvv2.Path,
+// 			Cas:               pulumi.Int(1),
+// 			DeleteAllVersions: pulumi.Bool(true),
+// 			DataJson:          pulumi.String(json0),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 // ## Required Vault Capabilities
 //
@@ -78,9 +75,7 @@ import (
 // KV-V2 secrets can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:kv/secretV2:SecretV2 secret kvv2/data/secret
-//
+//  $ pulumi import vault:kv/secretV2:SecretV2 secret kvv2/data/secret
 // ```
 type SecretV2 struct {
 	pulumi.CustomResourceState
@@ -339,7 +334,7 @@ func (i *SecretV2) ToSecretV2OutputWithContext(ctx context.Context) SecretV2Outp
 // SecretV2ArrayInput is an input type that accepts SecretV2Array and SecretV2ArrayOutput values.
 // You can construct a concrete instance of `SecretV2ArrayInput` via:
 //
-//	SecretV2Array{ SecretV2Args{...} }
+//          SecretV2Array{ SecretV2Args{...} }
 type SecretV2ArrayInput interface {
 	pulumi.Input
 
@@ -364,7 +359,7 @@ func (i SecretV2Array) ToSecretV2ArrayOutputWithContext(ctx context.Context) Sec
 // SecretV2MapInput is an input type that accepts SecretV2Map and SecretV2MapOutput values.
 // You can construct a concrete instance of `SecretV2MapInput` via:
 //
-//	SecretV2Map{ "key": SecretV2Args{...} }
+//          SecretV2Map{ "key": SecretV2Args{...} }
 type SecretV2MapInput interface {
 	pulumi.Input
 

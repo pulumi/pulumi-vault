@@ -17,54 +17,48 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/consul"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/consul"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := consul.NewSecretBackend(ctx, "test", &consul.SecretBackendArgs{
-//				Address:     pulumi.String("127.0.0.1:8500"),
-//				Description: pulumi.String("Manages the Consul backend"),
-//				Path:        pulumi.String("consul"),
-//				Token:       pulumi.String("4240861b-ce3d-8530-115a-521ff070dd29"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := consul.NewSecretBackend(ctx, "test", &consul.SecretBackendArgs{
+// 			Address:     pulumi.String("127.0.0.1:8500"),
+// 			Description: pulumi.String("Manages the Consul backend"),
+// 			Path:        pulumi.String("consul"),
+// 			Token:       pulumi.String("4240861b-ce3d-8530-115a-521ff070dd29"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 // ### Creating a backend resource to bootstrap a new Consul instance:
 // ```go
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/consul"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/consul"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := consul.NewSecretBackend(ctx, "test", &consul.SecretBackendArgs{
-//				Address:     pulumi.String("127.0.0.1:8500"),
-//				Bootstrap:   pulumi.Bool(true),
-//				Description: pulumi.String("Bootstrap the Consul backend"),
-//				Path:        pulumi.String("consul"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := consul.NewSecretBackend(ctx, "test", &consul.SecretBackendArgs{
+// 			Address:     pulumi.String("127.0.0.1:8500"),
+// 			Bootstrap:   pulumi.Bool(true),
+// 			Description: pulumi.String("Bootstrap the Consul backend"),
+// 			Path:        pulumi.String("consul"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -72,9 +66,7 @@ import (
 // Consul secret backends can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:consul/secretBackend:SecretBackend example consul
-//
+//  $ pulumi import vault:consul/secretBackend:SecretBackend example consul
 // ```
 type SecretBackend struct {
 	pulumi.CustomResourceState
@@ -355,7 +347,7 @@ func (i *SecretBackend) ToSecretBackendOutputWithContext(ctx context.Context) Se
 // SecretBackendArrayInput is an input type that accepts SecretBackendArray and SecretBackendArrayOutput values.
 // You can construct a concrete instance of `SecretBackendArrayInput` via:
 //
-//	SecretBackendArray{ SecretBackendArgs{...} }
+//          SecretBackendArray{ SecretBackendArgs{...} }
 type SecretBackendArrayInput interface {
 	pulumi.Input
 
@@ -380,7 +372,7 @@ func (i SecretBackendArray) ToSecretBackendArrayOutputWithContext(ctx context.Co
 // SecretBackendMapInput is an input type that accepts SecretBackendMap and SecretBackendMapOutput values.
 // You can construct a concrete instance of `SecretBackendMapInput` via:
 //
-//	SecretBackendMap{ "key": SecretBackendArgs{...} }
+//          SecretBackendMap{ "key": SecretBackendArgs{...} }
 type SecretBackendMapInput interface {
 	pulumi.Input
 

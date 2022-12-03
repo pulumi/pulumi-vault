@@ -1,7 +1,7 @@
 {
     "name": "@pulumi/vault",
     "version": "${VERSION}",
-    "description": "A Pulumi package for creating and managing vault cloud resources.",
+    "description": "A Pulumi package for creating and managing HashiCorp Vault cloud resources.",
     "keywords": [
         "pulumi",
         "vault"

@@ -19,31 +19,28 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ldap"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ldap"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ldap.NewAuthBackend(ctx, "ldap", &ldap.AuthBackendArgs{
-//				Discoverdn:  pulumi.Bool(false),
-//				Groupdn:     pulumi.String("OU=Groups,DC=example,DC=org"),
-//				Groupfilter: pulumi.String("(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))"),
-//				Path:        pulumi.String("ldap"),
-//				Upndomain:   pulumi.String("EXAMPLE.ORG"),
-//				Url:         pulumi.String("ldaps://dc-01.example.org"),
-//				Userattr:    pulumi.String("sAMAccountName"),
-//				Userdn:      pulumi.String("OU=Users,OU=Accounts,DC=example,DC=org"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := ldap.NewAuthBackend(ctx, "ldap", &ldap.AuthBackendArgs{
+// 			Discoverdn:  pulumi.Bool(false),
+// 			Groupdn:     pulumi.String("OU=Groups,DC=example,DC=org"),
+// 			Groupfilter: pulumi.String("(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))"),
+// 			Path:        pulumi.String("ldap"),
+// 			Upndomain:   pulumi.String("EXAMPLE.ORG"),
+// 			Url:         pulumi.String("ldaps://dc-01.example.org"),
+// 			Userattr:    pulumi.String("sAMAccountName"),
+// 			Userdn:      pulumi.String("OU=Users,OU=Accounts,DC=example,DC=org"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -51,9 +48,7 @@ import (
 // LDAP authentication backends can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:ldap/authBackend:AuthBackend ldap ldap
-//
+//  $ pulumi import vault:ldap/authBackend:AuthBackend ldap ldap
 // ```
 type AuthBackend struct {
 	pulumi.CustomResourceState
@@ -596,7 +591,7 @@ func (i *AuthBackend) ToAuthBackendOutputWithContext(ctx context.Context) AuthBa
 // AuthBackendArrayInput is an input type that accepts AuthBackendArray and AuthBackendArrayOutput values.
 // You can construct a concrete instance of `AuthBackendArrayInput` via:
 //
-//	AuthBackendArray{ AuthBackendArgs{...} }
+//          AuthBackendArray{ AuthBackendArgs{...} }
 type AuthBackendArrayInput interface {
 	pulumi.Input
 
@@ -621,7 +616,7 @@ func (i AuthBackendArray) ToAuthBackendArrayOutputWithContext(ctx context.Contex
 // AuthBackendMapInput is an input type that accepts AuthBackendMap and AuthBackendMapOutput values.
 // You can construct a concrete instance of `AuthBackendMapInput` via:
 //
-//	AuthBackendMap{ "key": AuthBackendArgs{...} }
+//          AuthBackendMap{ "key": AuthBackendArgs{...} }
 type AuthBackendMapInput interface {
 	pulumi.Input
 

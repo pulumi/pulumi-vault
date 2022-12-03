@@ -18,42 +18,39 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			examplePolicyDocument, err := vault.GetPolicyDocument(ctx, &GetPolicyDocumentArgs{
-//				Rules: []GetPolicyDocumentRule{
-//					GetPolicyDocumentRule{
-//						Path: "secret/*",
-//						Capabilities: []string{
-//							"create",
-//							"read",
-//							"update",
-//							"delete",
-//							"list",
-//						},
-//						Description: pulumi.StringRef("allow all on secrets"),
-//					},
-//				},
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = vault.NewPolicy(ctx, "examplePolicy", &vault.PolicyArgs{
-//				Policy: pulumi.String(examplePolicyDocument.Hcl),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		examplePolicyDocument, err := vault.GetPolicyDocument(ctx, &GetPolicyDocumentArgs{
+// 			Rules: []GetPolicyDocumentRule{
+// 				GetPolicyDocumentRule{
+// 					Path: "secret/*",
+// 					Capabilities: []string{
+// 						"create",
+// 						"read",
+// 						"update",
+// 						"delete",
+// 						"list",
+// 					},
+// 					Description: pulumi.StringRef("allow all on secrets"),
+// 				},
+// 			},
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = vault.NewPolicy(ctx, "examplePolicy", &vault.PolicyArgs{
+// 			Policy: pulumi.String(examplePolicyDocument.Hcl),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 func GetPolicyDocument(ctx *pulumi.Context, args *GetPolicyDocumentArgs, opts ...pulumi.InvokeOption) (*GetPolicyDocumentResult, error) {
 	var rv GetPolicyDocumentResult

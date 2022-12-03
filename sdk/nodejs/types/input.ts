@@ -50,41 +50,6 @@ export interface AuthBackendTune {
     tokenType?: pulumi.Input<string>;
 }
 
-export interface GetPolicyDocumentRule {
-    /**
-     * Whitelists a list of keys and values that are permitted on the given path. See Parameters below.
-     */
-    allowedParameters?: inputs.GetPolicyDocumentRuleAllowedParameter[];
-    /**
-     * A list of capabilities that this rule apply to `path`. For example, ["read", "write"].
-     */
-    capabilities: string[];
-    /**
-     * Blacklists a list of parameter and values. Any values specified here take precedence over `allowedParameter`. See Parameters below.
-     */
-    deniedParameters?: inputs.GetPolicyDocumentRuleDeniedParameter[];
-    /**
-     * Description of the rule. Will be added as a comment to rendered rule.
-     */
-    description?: string;
-    /**
-     * The maximum allowed TTL that clients can specify for a wrapped response.
-     */
-    maxWrappingTtl?: string;
-    /**
-     * The minimum allowed TTL that clients can specify for a wrapped response.
-     */
-    minWrappingTtl?: string;
-    /**
-     * A path in Vault that this rule applies to.
-     */
-    path: string;
-    /**
-     * A list of parameters that must be specified.
-     */
-    requiredParameters?: string[];
-}
-
 export interface GetPolicyDocumentRuleArgs {
     /**
      * Whitelists a list of keys and values that are permitted on the given path. See Parameters below.
@@ -120,6 +85,41 @@ export interface GetPolicyDocumentRuleArgs {
     requiredParameters?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
+export interface GetPolicyDocumentRule {
+    /**
+     * Whitelists a list of keys and values that are permitted on the given path. See Parameters below.
+     */
+    allowedParameters?: inputs.GetPolicyDocumentRuleAllowedParameter[];
+    /**
+     * A list of capabilities that this rule apply to `path`. For example, ["read", "write"].
+     */
+    capabilities: string[];
+    /**
+     * Blacklists a list of parameter and values. Any values specified here take precedence over `allowedParameter`. See Parameters below.
+     */
+    deniedParameters?: inputs.GetPolicyDocumentRuleDeniedParameter[];
+    /**
+     * Description of the rule. Will be added as a comment to rendered rule.
+     */
+    description?: string;
+    /**
+     * The maximum allowed TTL that clients can specify for a wrapped response.
+     */
+    maxWrappingTtl?: string;
+    /**
+     * The minimum allowed TTL that clients can specify for a wrapped response.
+     */
+    minWrappingTtl?: string;
+    /**
+     * A path in Vault that this rule applies to.
+     */
+    path: string;
+    /**
+     * A list of parameters that must be specified.
+     */
+    requiredParameters?: string[];
+}
+
 export interface GetPolicyDocumentRuleAllowedParameterArgs {
     /**
      * name of permitted or denied parameter.
@@ -142,17 +142,6 @@ export interface GetPolicyDocumentRuleAllowedParameter {
     values: string[];
 }
 
-export interface GetPolicyDocumentRuleDeniedParameterArgs {
-    /**
-     * name of permitted or denied parameter.
-     */
-    key: pulumi.Input<string>;
-    /**
-     * list of values what are permitted or denied by policy rule.
-     */
-    values: pulumi.Input<pulumi.Input<string>[]>;
-}
-
 export interface GetPolicyDocumentRuleDeniedParameter {
     /**
      * name of permitted or denied parameter.
@@ -162,6 +151,17 @@ export interface GetPolicyDocumentRuleDeniedParameter {
      * list of values what are permitted or denied by policy rule.
      */
     values: string[];
+}
+
+export interface GetPolicyDocumentRuleDeniedParameterArgs {
+    /**
+     * name of permitted or denied parameter.
+     */
+    key: pulumi.Input<string>;
+    /**
+     * list of values what are permitted or denied by policy rule.
+     */
+    values: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface ProviderAuthLogin {

@@ -18,9 +18,7 @@ import (
 // GCP authentication roles can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:gcp/authBackendRole:AuthBackendRole my_role auth/gcp/role/my_role
-//
+//  $ pulumi import vault:gcp/authBackendRole:AuthBackendRole my_role auth/gcp/role/my_role
 // ```
 type AuthBackendRole struct {
 	pulumi.CustomResourceState
@@ -419,7 +417,7 @@ func (i *AuthBackendRole) ToAuthBackendRoleOutputWithContext(ctx context.Context
 // AuthBackendRoleArrayInput is an input type that accepts AuthBackendRoleArray and AuthBackendRoleArrayOutput values.
 // You can construct a concrete instance of `AuthBackendRoleArrayInput` via:
 //
-//	AuthBackendRoleArray{ AuthBackendRoleArgs{...} }
+//          AuthBackendRoleArray{ AuthBackendRoleArgs{...} }
 type AuthBackendRoleArrayInput interface {
 	pulumi.Input
 
@@ -444,7 +442,7 @@ func (i AuthBackendRoleArray) ToAuthBackendRoleArrayOutputWithContext(ctx contex
 // AuthBackendRoleMapInput is an input type that accepts AuthBackendRoleMap and AuthBackendRoleMapOutput values.
 // You can construct a concrete instance of `AuthBackendRoleMapInput` via:
 //
-//	AuthBackendRoleMap{ "key": AuthBackendRoleArgs{...} }
+//          AuthBackendRoleMap{ "key": AuthBackendRoleArgs{...} }
 type AuthBackendRoleMapInput interface {
 	pulumi.Input
 

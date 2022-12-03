@@ -17,38 +17,35 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ad"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ad"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			config, err := ad.NewSecretBackend(ctx, "config", &ad.SecretBackendArgs{
-//				Backend:     pulumi.String("ad"),
-//				Binddn:      pulumi.String("CN=Administrator,CN=Users,DC=corp,DC=example,DC=net"),
-//				Bindpass:    pulumi.String("SuperSecretPassw0rd"),
-//				Url:         pulumi.String("ldaps://ad"),
-//				InsecureTls: pulumi.Bool(true),
-//				Userdn:      pulumi.String("CN=Users,DC=corp,DC=example,DC=net"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = ad.NewSecretRole(ctx, "role", &ad.SecretRoleArgs{
-//				Backend:            config.Backend,
-//				Role:               pulumi.String("bob"),
-//				ServiceAccountName: pulumi.String("Bob"),
-//				Ttl:                pulumi.Int(60),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		config, err := ad.NewSecretBackend(ctx, "config", &ad.SecretBackendArgs{
+// 			Backend:     pulumi.String("ad"),
+// 			Binddn:      pulumi.String("CN=Administrator,CN=Users,DC=corp,DC=example,DC=net"),
+// 			Bindpass:    pulumi.String("SuperSecretPassw0rd"),
+// 			Url:         pulumi.String("ldaps://ad"),
+// 			InsecureTls: pulumi.Bool(true),
+// 			Userdn:      pulumi.String("CN=Users,DC=corp,DC=example,DC=net"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = ad.NewSecretRole(ctx, "role", &ad.SecretRoleArgs{
+// 			Backend:            config.Backend,
+// 			Role:               pulumi.String("bob"),
+// 			ServiceAccountName: pulumi.String("Bob"),
+// 			Ttl:                pulumi.Int(60),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -56,9 +53,7 @@ import (
 // AD secret backend roles can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:ad/secretRole:SecretRole role ad/roles/bob
-//
+//  $ pulumi import vault:ad/secretRole:SecretRole role ad/roles/bob
 // ```
 type SecretRole struct {
 	pulumi.CustomResourceState
@@ -242,7 +237,7 @@ func (i *SecretRole) ToSecretRoleOutputWithContext(ctx context.Context) SecretRo
 // SecretRoleArrayInput is an input type that accepts SecretRoleArray and SecretRoleArrayOutput values.
 // You can construct a concrete instance of `SecretRoleArrayInput` via:
 //
-//	SecretRoleArray{ SecretRoleArgs{...} }
+//          SecretRoleArray{ SecretRoleArgs{...} }
 type SecretRoleArrayInput interface {
 	pulumi.Input
 
@@ -267,7 +262,7 @@ func (i SecretRoleArray) ToSecretRoleArrayOutputWithContext(ctx context.Context)
 // SecretRoleMapInput is an input type that accepts SecretRoleMap and SecretRoleMapOutput values.
 // You can construct a concrete instance of `SecretRoleMapInput` via:
 //
-//	SecretRoleMap{ "key": SecretRoleArgs{...} }
+//          SecretRoleMap{ "key": SecretRoleArgs{...} }
 type SecretRoleMapInput interface {
 	pulumi.Input
 

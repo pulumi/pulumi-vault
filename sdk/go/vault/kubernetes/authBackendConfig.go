@@ -21,36 +21,33 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kubernetes"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kubernetes"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			kubernetes, err := vault.NewAuthBackend(ctx, "kubernetes", &vault.AuthBackendArgs{
-//				Type: pulumi.String("kubernetes"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = kubernetes.NewAuthBackendConfig(ctx, "example", &kubernetes.AuthBackendConfigArgs{
-//				Backend:              kubernetes.Path,
-//				KubernetesHost:       pulumi.String("http://example.com:443"),
-//				KubernetesCaCert:     pulumi.String("-----BEGIN CERTIFICATE-----\nexample\n-----END CERTIFICATE-----"),
-//				TokenReviewerJwt:     pulumi.String("ZXhhbXBsZQo="),
-//				Issuer:               pulumi.String("api"),
-//				DisableIssValidation: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		kubernetes, err := vault.NewAuthBackend(ctx, "kubernetes", &vault.AuthBackendArgs{
+// 			Type: pulumi.String("kubernetes"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = kubernetes.NewAuthBackendConfig(ctx, "example", &kubernetes.AuthBackendConfigArgs{
+// 			Backend:              kubernetes.Path,
+// 			KubernetesHost:       pulumi.String("http://example.com:443"),
+// 			KubernetesCaCert:     pulumi.String("-----BEGIN CERTIFICATE-----\nexample\n-----END CERTIFICATE-----"),
+// 			TokenReviewerJwt:     pulumi.String("ZXhhbXBsZQo="),
+// 			Issuer:               pulumi.String("api"),
+// 			DisableIssValidation: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -58,9 +55,7 @@ import (
 // Kubernetes authentication backend can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:kubernetes/authBackendConfig:AuthBackendConfig config auth/kubernetes/config
-//
+//  $ pulumi import vault:kubernetes/authBackendConfig:AuthBackendConfig config auth/kubernetes/config
 // ```
 type AuthBackendConfig struct {
 	pulumi.CustomResourceState
@@ -253,7 +248,7 @@ func (i *AuthBackendConfig) ToAuthBackendConfigOutputWithContext(ctx context.Con
 // AuthBackendConfigArrayInput is an input type that accepts AuthBackendConfigArray and AuthBackendConfigArrayOutput values.
 // You can construct a concrete instance of `AuthBackendConfigArrayInput` via:
 //
-//	AuthBackendConfigArray{ AuthBackendConfigArgs{...} }
+//          AuthBackendConfigArray{ AuthBackendConfigArgs{...} }
 type AuthBackendConfigArrayInput interface {
 	pulumi.Input
 
@@ -278,7 +273,7 @@ func (i AuthBackendConfigArray) ToAuthBackendConfigArrayOutputWithContext(ctx co
 // AuthBackendConfigMapInput is an input type that accepts AuthBackendConfigMap and AuthBackendConfigMapOutput values.
 // You can construct a concrete instance of `AuthBackendConfigMapInput` via:
 //
-//	AuthBackendConfigMap{ "key": AuthBackendConfigArgs{...} }
+//          AuthBackendConfigMap{ "key": AuthBackendConfigArgs{...} }
 type AuthBackendConfigMapInput interface {
 	pulumi.Input
 

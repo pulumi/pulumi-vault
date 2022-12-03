@@ -20,7 +20,7 @@ type AuthLogin struct {
 // AuthLoginInput is an input type that accepts AuthLoginArgs and AuthLoginOutput values.
 // You can construct a concrete instance of `AuthLoginInput` via:
 //
-//	AuthLoginArgs{...}
+//          AuthLoginArgs{...}
 type AuthLoginInput interface {
 	pulumi.Input
 
@@ -98,7 +98,7 @@ type AuthLoginAws struct {
 // AuthLoginAwsInput is an input type that accepts AuthLoginAwsArgs and AuthLoginAwsOutput values.
 // You can construct a concrete instance of `AuthLoginAwsInput` via:
 //
-//	AuthLoginAwsArgs{...}
+//          AuthLoginAwsArgs{...}
 type AuthLoginAwsInput interface {
 	pulumi.Input
 
@@ -227,7 +227,7 @@ type AuthLoginAzure struct {
 // AuthLoginAzureInput is an input type that accepts AuthLoginAzureArgs and AuthLoginAzureOutput values.
 // You can construct a concrete instance of `AuthLoginAzureInput` via:
 //
-//	AuthLoginAzureArgs{...}
+//          AuthLoginAzureArgs{...}
 type AuthLoginAzureInput interface {
 	pulumi.Input
 
@@ -330,7 +330,7 @@ type AuthLoginCert struct {
 // AuthLoginCertInput is an input type that accepts AuthLoginCertArgs and AuthLoginCertOutput values.
 // You can construct a concrete instance of `AuthLoginCertInput` via:
 //
-//	AuthLoginCertArgs{...}
+//          AuthLoginCertArgs{...}
 type AuthLoginCertInput interface {
 	pulumi.Input
 
@@ -404,7 +404,7 @@ type AuthLoginGcp struct {
 // AuthLoginGcpInput is an input type that accepts AuthLoginGcpArgs and AuthLoginGcpOutput values.
 // You can construct a concrete instance of `AuthLoginGcpInput` via:
 //
-//	AuthLoginGcpArgs{...}
+//          AuthLoginGcpArgs{...}
 type AuthLoginGcpInput interface {
 	pulumi.Input
 
@@ -481,7 +481,7 @@ type AuthLoginJwt struct {
 // AuthLoginJwtInput is an input type that accepts AuthLoginJwtArgs and AuthLoginJwtOutput values.
 // You can construct a concrete instance of `AuthLoginJwtInput` via:
 //
-//	AuthLoginJwtArgs{...}
+//          AuthLoginJwtArgs{...}
 type AuthLoginJwtInput interface {
 	pulumi.Input
 
@@ -554,7 +554,7 @@ type AuthLoginKerberos struct {
 // AuthLoginKerberosInput is an input type that accepts AuthLoginKerberosArgs and AuthLoginKerberosOutput values.
 // You can construct a concrete instance of `AuthLoginKerberosInput` via:
 //
-//	AuthLoginKerberosArgs{...}
+//          AuthLoginKerberosArgs{...}
 type AuthLoginKerberosInput interface {
 	pulumi.Input
 
@@ -651,7 +651,7 @@ type AuthLoginOci struct {
 // AuthLoginOciInput is an input type that accepts AuthLoginOciArgs and AuthLoginOciOutput values.
 // You can construct a concrete instance of `AuthLoginOciInput` via:
 //
-//	AuthLoginOciArgs{...}
+//          AuthLoginOciArgs{...}
 type AuthLoginOciInput interface {
 	pulumi.Input
 
@@ -719,7 +719,7 @@ type AuthLoginOidc struct {
 // AuthLoginOidcInput is an input type that accepts AuthLoginOidcArgs and AuthLoginOidcOutput values.
 // You can construct a concrete instance of `AuthLoginOidcInput` via:
 //
-//	AuthLoginOidcArgs{...}
+//          AuthLoginOidcArgs{...}
 type AuthLoginOidcInput interface {
 	pulumi.Input
 
@@ -791,7 +791,7 @@ type AuthLoginRadius struct {
 // AuthLoginRadiusInput is an input type that accepts AuthLoginRadiusArgs and AuthLoginRadiusOutput values.
 // You can construct a concrete instance of `AuthLoginRadiusInput` via:
 //
-//	AuthLoginRadiusArgs{...}
+//          AuthLoginRadiusArgs{...}
 type AuthLoginRadiusInput interface {
 	pulumi.Input
 
@@ -859,7 +859,7 @@ type AuthLoginUserpass struct {
 // AuthLoginUserpassInput is an input type that accepts AuthLoginUserpassArgs and AuthLoginUserpassOutput values.
 // You can construct a concrete instance of `AuthLoginUserpassInput` via:
 //
-//	AuthLoginUserpassArgs{...}
+//          AuthLoginUserpassArgs{...}
 type AuthLoginUserpassInput interface {
 	pulumi.Input
 
@@ -929,7 +929,7 @@ type ClientAuth struct {
 // ClientAuthInput is an input type that accepts ClientAuthArgs and ClientAuthOutput values.
 // You can construct a concrete instance of `ClientAuthInput` via:
 //
-//	ClientAuthArgs{...}
+//          ClientAuthArgs{...}
 type ClientAuthInput interface {
 	pulumi.Input
 
@@ -984,7 +984,7 @@ type Headers struct {
 // HeadersInput is an input type that accepts HeadersArgs and HeadersOutput values.
 // You can construct a concrete instance of `HeadersInput` via:
 //
-//	HeadersArgs{...}
+//          HeadersArgs{...}
 type HeadersInput interface {
 	pulumi.Input
 
@@ -1012,7 +1012,7 @@ func (i HeadersArgs) ToHeadersOutputWithContext(ctx context.Context) HeadersOutp
 // HeadersArrayInput is an input type that accepts HeadersArray and HeadersArrayOutput values.
 // You can construct a concrete instance of `HeadersArrayInput` via:
 //
-//	HeadersArray{ HeadersArgs{...} }
+//          HeadersArray{ HeadersArgs{...} }
 type HeadersArrayInput interface {
 	pulumi.Input
 

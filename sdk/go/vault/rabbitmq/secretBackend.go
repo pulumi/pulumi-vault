@@ -17,26 +17,23 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/rabbitMq"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/rabbitMq"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := rabbitMq.NewSecretBackend(ctx, "rabbitmq", &rabbitMq.SecretBackendArgs{
-//				ConnectionUri: pulumi.String("https://....."),
-//				Password:      pulumi.String("password"),
-//				Username:      pulumi.String("user"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := rabbitMq.NewSecretBackend(ctx, "rabbitmq", &rabbitMq.SecretBackendArgs{
+// 			ConnectionUri: pulumi.String("https://....."),
+// 			Password:      pulumi.String("password"),
+// 			Username:      pulumi.String("user"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -44,9 +41,7 @@ import (
 // RabbitMQ secret backends can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:rabbitMq/secretBackend:SecretBackend rabbitmq rabbitmq
-//
+//  $ pulumi import vault:rabbitMq/secretBackend:SecretBackend rabbitmq rabbitmq
 // ```
 type SecretBackend struct {
 	pulumi.CustomResourceState
@@ -304,7 +299,7 @@ func (i *SecretBackend) ToSecretBackendOutputWithContext(ctx context.Context) Se
 // SecretBackendArrayInput is an input type that accepts SecretBackendArray and SecretBackendArrayOutput values.
 // You can construct a concrete instance of `SecretBackendArrayInput` via:
 //
-//	SecretBackendArray{ SecretBackendArgs{...} }
+//          SecretBackendArray{ SecretBackendArgs{...} }
 type SecretBackendArrayInput interface {
 	pulumi.Input
 
@@ -329,7 +324,7 @@ func (i SecretBackendArray) ToSecretBackendArrayOutputWithContext(ctx context.Co
 // SecretBackendMapInput is an input type that accepts SecretBackendMap and SecretBackendMapOutput values.
 // You can construct a concrete instance of `SecretBackendMapInput` via:
 //
-//	SecretBackendMap{ "key": SecretBackendArgs{...} }
+//          SecretBackendMap{ "key": SecretBackendArgs{...} }
 type SecretBackendMapInput interface {
 	pulumi.Input
 

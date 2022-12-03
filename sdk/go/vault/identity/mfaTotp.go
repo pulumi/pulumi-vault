@@ -19,24 +19,21 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := identity.NewMfaTotp(ctx, "example", &identity.MfaTotpArgs{
-//				Issuer: pulumi.String("issuer1"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := identity.NewMfaTotp(ctx, "example", &identity.MfaTotpArgs{
+// 			Issuer: pulumi.String("issuer1"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -44,9 +41,7 @@ import (
 // Resource can be imported using its `uuid` field, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:identity/mfaTotp:MfaTotp example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
-//
+//  $ pulumi import vault:identity/mfaTotp:MfaTotp example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
 // ```
 type MfaTotp struct {
 	pulumi.CustomResourceState
@@ -255,7 +250,7 @@ func (i *MfaTotp) ToMfaTotpOutputWithContext(ctx context.Context) MfaTotpOutput 
 // MfaTotpArrayInput is an input type that accepts MfaTotpArray and MfaTotpArrayOutput values.
 // You can construct a concrete instance of `MfaTotpArrayInput` via:
 //
-//	MfaTotpArray{ MfaTotpArgs{...} }
+//          MfaTotpArray{ MfaTotpArgs{...} }
 type MfaTotpArrayInput interface {
 	pulumi.Input
 
@@ -280,7 +275,7 @@ func (i MfaTotpArray) ToMfaTotpArrayOutputWithContext(ctx context.Context) MfaTo
 // MfaTotpMapInput is an input type that accepts MfaTotpMap and MfaTotpMapOutput values.
 // You can construct a concrete instance of `MfaTotpMapInput` via:
 //
-//	MfaTotpMap{ "key": MfaTotpArgs{...} }
+//          MfaTotpMap{ "key": MfaTotpArgs{...} }
 type MfaTotpMapInput interface {
 	pulumi.Input
 

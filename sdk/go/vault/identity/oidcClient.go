@@ -19,44 +19,41 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testOidcAssignment, err := identity.NewOidcAssignment(ctx, "testOidcAssignment", &identity.OidcAssignmentArgs{
-//				EntityIds: pulumi.StringArray{
-//					pulumi.String("ascbascas-2231a-sdfaa"),
-//				},
-//				GroupIds: pulumi.StringArray{
-//					pulumi.String("sajkdsad-32414-sfsada"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = identity.NewOidcClient(ctx, "testOidcClient", &identity.OidcClientArgs{
-//				RedirectUris: pulumi.StringArray{
-//					pulumi.String("http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback"),
-//					pulumi.String("http://127.0.0.1:8251/callback"),
-//					pulumi.String("http://127.0.0.1:8080/callback"),
-//				},
-//				Assignments: pulumi.StringArray{
-//					testOidcAssignment.Name,
-//				},
-//				IdTokenTtl:     pulumi.Int(2400),
-//				AccessTokenTtl: pulumi.Int(7200),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		testOidcAssignment, err := identity.NewOidcAssignment(ctx, "testOidcAssignment", &identity.OidcAssignmentArgs{
+// 			EntityIds: pulumi.StringArray{
+// 				pulumi.String("ascbascas-2231a-sdfaa"),
+// 			},
+// 			GroupIds: pulumi.StringArray{
+// 				pulumi.String("sajkdsad-32414-sfsada"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = identity.NewOidcClient(ctx, "testOidcClient", &identity.OidcClientArgs{
+// 			RedirectUris: pulumi.StringArray{
+// 				pulumi.String("http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback"),
+// 				pulumi.String("http://127.0.0.1:8251/callback"),
+// 				pulumi.String("http://127.0.0.1:8080/callback"),
+// 			},
+// 			Assignments: pulumi.StringArray{
+// 				testOidcAssignment.Name,
+// 			},
+// 			IdTokenTtl:     pulumi.Int(2400),
+// 			AccessTokenTtl: pulumi.Int(7200),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -64,9 +61,7 @@ import (
 // OIDC Clients can be imported using the `name`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:identity/oidcClient:OidcClient test my-app
-//
+//  $ pulumi import vault:identity/oidcClient:OidcClient test my-app
 // ```
 type OidcClient struct {
 	pulumi.CustomResourceState
@@ -285,7 +280,7 @@ func (i *OidcClient) ToOidcClientOutputWithContext(ctx context.Context) OidcClie
 // OidcClientArrayInput is an input type that accepts OidcClientArray and OidcClientArrayOutput values.
 // You can construct a concrete instance of `OidcClientArrayInput` via:
 //
-//	OidcClientArray{ OidcClientArgs{...} }
+//          OidcClientArray{ OidcClientArgs{...} }
 type OidcClientArrayInput interface {
 	pulumi.Input
 
@@ -310,7 +305,7 @@ func (i OidcClientArray) ToOidcClientArrayOutputWithContext(ctx context.Context)
 // OidcClientMapInput is an input type that accepts OidcClientMap and OidcClientMapOutput values.
 // You can construct a concrete instance of `OidcClientMapInput` via:
 //
-//	OidcClientMap{ "key": OidcClientArgs{...} }
+//          OidcClientMap{ "key": OidcClientArgs{...} }
 type OidcClientMapInput interface {
 	pulumi.Input
 

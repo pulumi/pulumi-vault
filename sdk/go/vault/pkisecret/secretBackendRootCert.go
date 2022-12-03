@@ -17,36 +17,33 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := pkiSecret.NewSecretBackendRootCert(ctx, "test", &pkiSecret.SecretBackendRootCertArgs{
-//				Backend:           pulumi.Any(vault_mount.Pki.Path),
-//				Type:              pulumi.String("internal"),
-//				CommonName:        pulumi.String("Root CA"),
-//				Ttl:               pulumi.String("315360000"),
-//				Format:            pulumi.String("pem"),
-//				PrivateKeyFormat:  pulumi.String("der"),
-//				KeyType:           pulumi.String("rsa"),
-//				KeyBits:           pulumi.Int(4096),
-//				ExcludeCnFromSans: pulumi.Bool(true),
-//				Ou:                pulumi.String("My OU"),
-//				Organization:      pulumi.String("My organization"),
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				vault_mount.Pki,
-//			}))
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := pkiSecret.NewSecretBackendRootCert(ctx, "test", &pkiSecret.SecretBackendRootCertArgs{
+// 			Backend:           pulumi.Any(vault_mount.Pki.Path),
+// 			Type:              pulumi.String("internal"),
+// 			CommonName:        pulumi.String("Root CA"),
+// 			Ttl:               pulumi.String("315360000"),
+// 			Format:            pulumi.String("pem"),
+// 			PrivateKeyFormat:  pulumi.String("der"),
+// 			KeyType:           pulumi.String("rsa"),
+// 			KeyBits:           pulumi.Int(4096),
+// 			ExcludeCnFromSans: pulumi.Bool(true),
+// 			Ou:                pulumi.String("My OU"),
+// 			Organization:      pulumi.String("My organization"),
+// 		}, pulumi.DependsOn([]pulumi.Resource{
+// 			vault_mount.Pki,
+// 		}))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 type SecretBackendRootCert struct {
 	pulumi.CustomResourceState
@@ -443,7 +440,7 @@ func (i *SecretBackendRootCert) ToSecretBackendRootCertOutputWithContext(ctx con
 // SecretBackendRootCertArrayInput is an input type that accepts SecretBackendRootCertArray and SecretBackendRootCertArrayOutput values.
 // You can construct a concrete instance of `SecretBackendRootCertArrayInput` via:
 //
-//	SecretBackendRootCertArray{ SecretBackendRootCertArgs{...} }
+//          SecretBackendRootCertArray{ SecretBackendRootCertArgs{...} }
 type SecretBackendRootCertArrayInput interface {
 	pulumi.Input
 
@@ -468,7 +465,7 @@ func (i SecretBackendRootCertArray) ToSecretBackendRootCertArrayOutputWithContex
 // SecretBackendRootCertMapInput is an input type that accepts SecretBackendRootCertMap and SecretBackendRootCertMapOutput values.
 // You can construct a concrete instance of `SecretBackendRootCertMapInput` via:
 //
-//	SecretBackendRootCertMap{ "key": SecretBackendRootCertArgs{...} }
+//          SecretBackendRootCertMap{ "key": SecretBackendRootCertArgs{...} }
 type SecretBackendRootCertMapInput interface {
 	pulumi.Input
 

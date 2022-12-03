@@ -19,42 +19,39 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ldap"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ldap"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			ldap, err := ldap.NewAuthBackend(ctx, "ldap", &ldap.AuthBackendArgs{
-//				Path:        pulumi.String("ldap"),
-//				Url:         pulumi.String("ldaps://dc-01.example.org"),
-//				Userdn:      pulumi.String("OU=Users,OU=Accounts,DC=example,DC=org"),
-//				Userattr:    pulumi.String("sAMAccountName"),
-//				Upndomain:   pulumi.String("EXAMPLE.ORG"),
-//				Discoverdn:  pulumi.Bool(false),
-//				Groupdn:     pulumi.String("OU=Groups,DC=example,DC=org"),
-//				Groupfilter: pulumi.String("(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = ldap.NewAuthBackendUser(ctx, "user", &ldap.AuthBackendUserArgs{
-//				Username: pulumi.String("test-user"),
-//				Policies: pulumi.StringArray{
-//					pulumi.String("dba"),
-//					pulumi.String("sysops"),
-//				},
-//				Backend: ldap.Path,
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		ldap, err := ldap.NewAuthBackend(ctx, "ldap", &ldap.AuthBackendArgs{
+// 			Path:        pulumi.String("ldap"),
+// 			Url:         pulumi.String("ldaps://dc-01.example.org"),
+// 			Userdn:      pulumi.String("OU=Users,OU=Accounts,DC=example,DC=org"),
+// 			Userattr:    pulumi.String("sAMAccountName"),
+// 			Upndomain:   pulumi.String("EXAMPLE.ORG"),
+// 			Discoverdn:  pulumi.Bool(false),
+// 			Groupdn:     pulumi.String("OU=Groups,DC=example,DC=org"),
+// 			Groupfilter: pulumi.String("(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = ldap.NewAuthBackendUser(ctx, "user", &ldap.AuthBackendUserArgs{
+// 			Username: pulumi.String("test-user"),
+// 			Policies: pulumi.StringArray{
+// 				pulumi.String("dba"),
+// 				pulumi.String("sysops"),
+// 			},
+// 			Backend: ldap.Path,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -62,9 +59,7 @@ import (
 // LDAP authentication backend users can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:ldap/authBackendUser:AuthBackendUser foo auth/ldap/users/foo
-//
+//  $ pulumi import vault:ldap/authBackendUser:AuthBackendUser foo auth/ldap/users/foo
 // ```
 type AuthBackendUser struct {
 	pulumi.CustomResourceState
@@ -210,7 +205,7 @@ func (i *AuthBackendUser) ToAuthBackendUserOutputWithContext(ctx context.Context
 // AuthBackendUserArrayInput is an input type that accepts AuthBackendUserArray and AuthBackendUserArrayOutput values.
 // You can construct a concrete instance of `AuthBackendUserArrayInput` via:
 //
-//	AuthBackendUserArray{ AuthBackendUserArgs{...} }
+//          AuthBackendUserArray{ AuthBackendUserArgs{...} }
 type AuthBackendUserArrayInput interface {
 	pulumi.Input
 
@@ -235,7 +230,7 @@ func (i AuthBackendUserArray) ToAuthBackendUserArrayOutputWithContext(ctx contex
 // AuthBackendUserMapInput is an input type that accepts AuthBackendUserMap and AuthBackendUserMapOutput values.
 // You can construct a concrete instance of `AuthBackendUserMapInput` via:
 //
-//	AuthBackendUserMap{ "key": AuthBackendUserArgs{...} }
+//          AuthBackendUserMap{ "key": AuthBackendUserArgs{...} }
 type AuthBackendUserMapInput interface {
 	pulumi.Input
 

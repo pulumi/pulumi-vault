@@ -21,28 +21,25 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vault.NewMfaTotp(ctx, "myTotp", &vault.MfaTotpArgs{
-//				Algorithm: pulumi.String("SHA256"),
-//				Digits:    pulumi.Int(8),
-//				Issuer:    pulumi.String("hashicorp"),
-//				KeySize:   pulumi.Int(20),
-//				Period:    pulumi.Int(60),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := vault.NewMfaTotp(ctx, "myTotp", &vault.MfaTotpArgs{
+// 			Algorithm: pulumi.String("SHA256"),
+// 			Digits:    pulumi.Int(8),
+// 			Issuer:    pulumi.String("hashicorp"),
+// 			KeySize:   pulumi.Int(20),
+// 			Period:    pulumi.Int(60),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -50,9 +47,7 @@ import (
 // Mounts can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:index/mfaTotp:MfaTotp my_totp my_totp
-//
+//  $ pulumi import vault:index/mfaTotp:MfaTotp my_totp my_totp
 // ```
 type MfaTotp struct {
 	pulumi.CustomResourceState
@@ -253,7 +248,7 @@ func (i *MfaTotp) ToMfaTotpOutputWithContext(ctx context.Context) MfaTotpOutput 
 // MfaTotpArrayInput is an input type that accepts MfaTotpArray and MfaTotpArrayOutput values.
 // You can construct a concrete instance of `MfaTotpArrayInput` via:
 //
-//	MfaTotpArray{ MfaTotpArgs{...} }
+//          MfaTotpArray{ MfaTotpArgs{...} }
 type MfaTotpArrayInput interface {
 	pulumi.Input
 
@@ -278,7 +273,7 @@ func (i MfaTotpArray) ToMfaTotpArrayOutputWithContext(ctx context.Context) MfaTo
 // MfaTotpMapInput is an input type that accepts MfaTotpMap and MfaTotpMapOutput values.
 // You can construct a concrete instance of `MfaTotpMapInput` via:
 //
-//	MfaTotpMap{ "key": MfaTotpArgs{...} }
+//          MfaTotpMap{ "key": MfaTotpArgs{...} }
 type MfaTotpMapInput interface {
 	pulumi.Input
 

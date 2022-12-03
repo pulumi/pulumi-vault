@@ -17,66 +17,63 @@ import (
 // package main
 //
 // import (
+// 	"fmt"
 //
-//	"fmt"
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/generic"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/generic"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			userpass, err := vault.NewAuthBackend(ctx, "userpass", &vault.AuthBackendArgs{
-//				Type: pulumi.String("userpass"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			u1, err := generic.NewEndpoint(ctx, "u1", &generic.EndpointArgs{
-//				Path:               pulumi.String("auth/userpass/users/u1"),
-//				IgnoreAbsentFields: pulumi.Bool(true),
-//				DataJson:           pulumi.String(fmt.Sprintf("{\n  \"policies\": [\"p1\"],\n  \"password\": \"changeme\"\n}\n")),
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				userpass,
-//			}))
-//			if err != nil {
-//				return err
-//			}
-//			u1Token, err := generic.NewEndpoint(ctx, "u1Token", &generic.EndpointArgs{
-//				Path:          pulumi.String("auth/userpass/login/u1"),
-//				DisableRead:   pulumi.Bool(true),
-//				DisableDelete: pulumi.Bool(true),
-//				DataJson:      pulumi.String(fmt.Sprintf("{\n  \"password\": \"changeme\"\n}\n")),
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				u1,
-//			}))
-//			if err != nil {
-//				return err
-//			}
-//			u1Entity, err := generic.NewEndpoint(ctx, "u1Entity", &generic.EndpointArgs{
-//				DisableRead:        pulumi.Bool(true),
-//				DisableDelete:      pulumi.Bool(true),
-//				Path:               pulumi.String("identity/lookup/entity"),
-//				IgnoreAbsentFields: pulumi.Bool(true),
-//				WriteFields: pulumi.StringArray{
-//					pulumi.String("id"),
-//				},
-//				DataJson: pulumi.String(fmt.Sprintf("{\n  \"alias_name\": \"u1\",\n  \"alias_mount_accessor\": vault_auth_backend.userpass.accessor\n}\n")),
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				u1Token,
-//			}))
-//			if err != nil {
-//				return err
-//			}
-//			ctx.Export("u1Id", u1Entity.WriteData.ApplyT(func(writeData map[string]string) (string, error) {
-//				return writeData.Id, nil
-//			}).(pulumi.StringOutput))
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		userpass, err := vault.NewAuthBackend(ctx, "userpass", &vault.AuthBackendArgs{
+// 			Type: pulumi.String("userpass"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		u1, err := generic.NewEndpoint(ctx, "u1", &generic.EndpointArgs{
+// 			Path:               pulumi.String("auth/userpass/users/u1"),
+// 			IgnoreAbsentFields: pulumi.Bool(true),
+// 			DataJson:           pulumi.String(fmt.Sprintf("{\n  \"policies\": [\"p1\"],\n  \"password\": \"changeme\"\n}\n")),
+// 		}, pulumi.DependsOn([]pulumi.Resource{
+// 			userpass,
+// 		}))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		u1Token, err := generic.NewEndpoint(ctx, "u1Token", &generic.EndpointArgs{
+// 			Path:          pulumi.String("auth/userpass/login/u1"),
+// 			DisableRead:   pulumi.Bool(true),
+// 			DisableDelete: pulumi.Bool(true),
+// 			DataJson:      pulumi.String(fmt.Sprintf("{\n  \"password\": \"changeme\"\n}\n")),
+// 		}, pulumi.DependsOn([]pulumi.Resource{
+// 			u1,
+// 		}))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		u1Entity, err := generic.NewEndpoint(ctx, "u1Entity", &generic.EndpointArgs{
+// 			DisableRead:        pulumi.Bool(true),
+// 			DisableDelete:      pulumi.Bool(true),
+// 			Path:               pulumi.String("identity/lookup/entity"),
+// 			IgnoreAbsentFields: pulumi.Bool(true),
+// 			WriteFields: pulumi.StringArray{
+// 				pulumi.String("id"),
+// 			},
+// 			DataJson: pulumi.String(fmt.Sprintf("{\n  \"alias_name\": \"u1\",\n  \"alias_mount_accessor\": vault_auth_backend.userpass.accessor\n}\n")),
+// 		}, pulumi.DependsOn([]pulumi.Resource{
+// 			u1Token,
+// 		}))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		ctx.Export("u1Id", u1Entity.WriteData.ApplyT(func(writeData map[string]string) (string, error) {
+// 			return writeData.Id, nil
+// 		}).(pulumi.StringOutput))
+// 		return nil
+// 	})
+// }
 // ```
 // ## Required Vault Capabilities
 //
@@ -314,7 +311,7 @@ func (i *Endpoint) ToEndpointOutputWithContext(ctx context.Context) EndpointOutp
 // EndpointArrayInput is an input type that accepts EndpointArray and EndpointArrayOutput values.
 // You can construct a concrete instance of `EndpointArrayInput` via:
 //
-//	EndpointArray{ EndpointArgs{...} }
+//          EndpointArray{ EndpointArgs{...} }
 type EndpointArrayInput interface {
 	pulumi.Input
 
@@ -339,7 +336,7 @@ func (i EndpointArray) ToEndpointArrayOutputWithContext(ctx context.Context) End
 // EndpointMapInput is an input type that accepts EndpointMap and EndpointMapOutput values.
 // You can construct a concrete instance of `EndpointMapInput` via:
 //
-//	EndpointMap{ "key": EndpointArgs{...} }
+//          EndpointMap{ "key": EndpointArgs{...} }
 type EndpointMapInput interface {
 	pulumi.Input
 

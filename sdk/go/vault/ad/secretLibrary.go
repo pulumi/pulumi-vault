@@ -17,42 +17,39 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ad"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ad"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			config, err := ad.NewSecretBackend(ctx, "config", &ad.SecretBackendArgs{
-//				Backend:     pulumi.String("ad"),
-//				Binddn:      pulumi.String("CN=Administrator,CN=Users,DC=corp,DC=example,DC=net"),
-//				Bindpass:    pulumi.String("SuperSecretPassw0rd"),
-//				Url:         pulumi.String("ldaps://ad"),
-//				InsecureTls: pulumi.Bool(true),
-//				Userdn:      pulumi.String("CN=Users,DC=corp,DC=example,DC=net"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = ad.NewSecretLibrary(ctx, "qa", &ad.SecretLibraryArgs{
-//				Backend: config.Backend,
-//				ServiceAccountNames: pulumi.StringArray{
-//					pulumi.String("Bob"),
-//					pulumi.String("Mary"),
-//				},
-//				Ttl:                       pulumi.Int(60),
-//				DisableCheckInEnforcement: pulumi.Bool(true),
-//				MaxTtl:                    pulumi.Int(120),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		config, err := ad.NewSecretBackend(ctx, "config", &ad.SecretBackendArgs{
+// 			Backend:     pulumi.String("ad"),
+// 			Binddn:      pulumi.String("CN=Administrator,CN=Users,DC=corp,DC=example,DC=net"),
+// 			Bindpass:    pulumi.String("SuperSecretPassw0rd"),
+// 			Url:         pulumi.String("ldaps://ad"),
+// 			InsecureTls: pulumi.Bool(true),
+// 			Userdn:      pulumi.String("CN=Users,DC=corp,DC=example,DC=net"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = ad.NewSecretLibrary(ctx, "qa", &ad.SecretLibraryArgs{
+// 			Backend: config.Backend,
+// 			ServiceAccountNames: pulumi.StringArray{
+// 				pulumi.String("Bob"),
+// 				pulumi.String("Mary"),
+// 			},
+// 			Ttl:                       pulumi.Int(60),
+// 			DisableCheckInEnforcement: pulumi.Bool(true),
+// 			MaxTtl:                    pulumi.Int(120),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -60,9 +57,7 @@ import (
 // AD secret backend libraries can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:ad/secretLibrary:SecretLibrary role ad/library/bob
-//
+//  $ pulumi import vault:ad/secretLibrary:SecretLibrary role ad/library/bob
 // ```
 type SecretLibrary struct {
 	pulumi.CustomResourceState
@@ -251,7 +246,7 @@ func (i *SecretLibrary) ToSecretLibraryOutputWithContext(ctx context.Context) Se
 // SecretLibraryArrayInput is an input type that accepts SecretLibraryArray and SecretLibraryArrayOutput values.
 // You can construct a concrete instance of `SecretLibraryArrayInput` via:
 //
-//	SecretLibraryArray{ SecretLibraryArgs{...} }
+//          SecretLibraryArray{ SecretLibraryArgs{...} }
 type SecretLibraryArrayInput interface {
 	pulumi.Input
 
@@ -276,7 +271,7 @@ func (i SecretLibraryArray) ToSecretLibraryArrayOutputWithContext(ctx context.Co
 // SecretLibraryMapInput is an input type that accepts SecretLibraryMap and SecretLibraryMapOutput values.
 // You can construct a concrete instance of `SecretLibraryMapInput` via:
 //
-//	SecretLibraryMap{ "key": SecretLibraryArgs{...} }
+//          SecretLibraryMap{ "key": SecretLibraryArgs{...} }
 type SecretLibraryMapInput interface {
 	pulumi.Input
 

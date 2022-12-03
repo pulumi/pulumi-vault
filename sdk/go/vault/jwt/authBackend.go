@@ -21,27 +21,24 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/jwt"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/jwt"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := jwt.NewAuthBackend(ctx, "example", &jwt.AuthBackendArgs{
-//				BoundIssuer:      pulumi.String("https://myco.auth0.com/"),
-//				Description:      pulumi.String("Demonstration of the Terraform JWT auth backend"),
-//				OidcDiscoveryUrl: pulumi.String("https://myco.auth0.com/"),
-//				Path:             pulumi.String("jwt"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := jwt.NewAuthBackend(ctx, "example", &jwt.AuthBackendArgs{
+// 			BoundIssuer:      pulumi.String("https://myco.auth0.com/"),
+// 			Description:      pulumi.String("Demonstration of the Terraform JWT auth backend"),
+// 			OidcDiscoveryUrl: pulumi.String("https://myco.auth0.com/"),
+// 			Path:             pulumi.String("jwt"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // Manage OIDC auth backend:
@@ -50,33 +47,30 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/jwt"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/jwt"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := jwt.NewAuthBackend(ctx, "example", &jwt.AuthBackendArgs{
-//				BoundIssuer:      pulumi.String("https://myco.auth0.com/"),
-//				Description:      pulumi.String("Demonstration of the Terraform JWT auth backend"),
-//				OidcClientId:     pulumi.String("1234567890"),
-//				OidcClientSecret: pulumi.String("secret123456"),
-//				OidcDiscoveryUrl: pulumi.String("https://myco.auth0.com/"),
-//				Path:             pulumi.String("oidc"),
-//				Tune: &jwt.AuthBackendTuneArgs{
-//					ListingVisibility: pulumi.String("unauth"),
-//				},
-//				Type: pulumi.String("oidc"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := jwt.NewAuthBackend(ctx, "example", &jwt.AuthBackendArgs{
+// 			BoundIssuer:      pulumi.String("https://myco.auth0.com/"),
+// 			Description:      pulumi.String("Demonstration of the Terraform JWT auth backend"),
+// 			OidcClientId:     pulumi.String("1234567890"),
+// 			OidcClientSecret: pulumi.String("secret123456"),
+// 			OidcDiscoveryUrl: pulumi.String("https://myco.auth0.com/"),
+// 			Path:             pulumi.String("oidc"),
+// 			Tune: &jwt.AuthBackendTuneArgs{
+// 				ListingVisibility: pulumi.String("unauth"),
+// 			},
+// 			Type: pulumi.String("oidc"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // Configuring the auth backend with a `provider_config:
@@ -85,33 +79,30 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/jwt"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/jwt"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := jwt.NewAuthBackend(ctx, "gsuite", &jwt.AuthBackendArgs{
-//				Description:      pulumi.String("OIDC backend"),
-//				OidcDiscoveryUrl: pulumi.String("https://accounts.google.com"),
-//				Path:             pulumi.String("oidc"),
-//				ProviderConfig: pulumi.StringMap{
-//					"fetch_groups":             pulumi.String("true"),
-//					"fetch_user_info":          pulumi.String("true"),
-//					"groups_recurse_max_depth": pulumi.String("1"),
-//					"provider":                 pulumi.String("gsuite"),
-//				},
-//				Type: pulumi.String("oidc"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := jwt.NewAuthBackend(ctx, "gsuite", &jwt.AuthBackendArgs{
+// 			Description:      pulumi.String("OIDC backend"),
+// 			OidcDiscoveryUrl: pulumi.String("https://accounts.google.com"),
+// 			Path:             pulumi.String("oidc"),
+// 			ProviderConfig: pulumi.StringMap{
+// 				"fetch_groups":             pulumi.String("true"),
+// 				"fetch_user_info":          pulumi.String("true"),
+// 				"groups_recurse_max_depth": pulumi.String("1"),
+// 				"provider":                 pulumi.String("gsuite"),
+// 			},
+// 			Type: pulumi.String("oidc"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -119,17 +110,13 @@ import (
 // JWT auth backend can be imported using the `type`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:jwt/authBackend:AuthBackend oidc oidc
-//
+//  $ pulumi import vault:jwt/authBackend:AuthBackend oidc oidc
 // ```
 //
-//	or
+//  or
 //
 // ```sh
-//
-//	$ pulumi import vault:jwt/authBackend:AuthBackend jwt jwt
-//
+//  $ pulumi import vault:jwt/authBackend:AuthBackend jwt jwt
 // ```
 type AuthBackend struct {
 	pulumi.CustomResourceState
@@ -445,7 +432,7 @@ func (i *AuthBackend) ToAuthBackendOutputWithContext(ctx context.Context) AuthBa
 // AuthBackendArrayInput is an input type that accepts AuthBackendArray and AuthBackendArrayOutput values.
 // You can construct a concrete instance of `AuthBackendArrayInput` via:
 //
-//	AuthBackendArray{ AuthBackendArgs{...} }
+//          AuthBackendArray{ AuthBackendArgs{...} }
 type AuthBackendArrayInput interface {
 	pulumi.Input
 
@@ -470,7 +457,7 @@ func (i AuthBackendArray) ToAuthBackendArrayOutputWithContext(ctx context.Contex
 // AuthBackendMapInput is an input type that accepts AuthBackendMap and AuthBackendMapOutput values.
 // You can construct a concrete instance of `AuthBackendMapInput` via:
 //
-//	AuthBackendMap{ "key": AuthBackendArgs{...} }
+//          AuthBackendMap{ "key": AuthBackendArgs{...} }
 type AuthBackendMapInput interface {
 	pulumi.Input
 

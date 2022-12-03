@@ -19,47 +19,44 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			internal, err := identity.NewGroup(ctx, "internal", &identity.GroupArgs{
-//				Type: pulumi.String("internal"),
-//				Policies: pulumi.StringArray{
-//					pulumi.String("dev"),
-//					pulumi.String("test"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			test, err := identity.NewEntity(ctx, "test", &identity.EntityArgs{
-//				Policies: pulumi.StringArray{
-//					pulumi.String("test"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = identity.NewOidcAssignment(ctx, "default", &identity.OidcAssignmentArgs{
-//				EntityIds: pulumi.StringArray{
-//					test.ID(),
-//				},
-//				GroupIds: pulumi.StringArray{
-//					internal.ID(),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		internal, err := identity.NewGroup(ctx, "internal", &identity.GroupArgs{
+// 			Type: pulumi.String("internal"),
+// 			Policies: pulumi.StringArray{
+// 				pulumi.String("dev"),
+// 				pulumi.String("test"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		test, err := identity.NewEntity(ctx, "test", &identity.EntityArgs{
+// 			Policies: pulumi.StringArray{
+// 				pulumi.String("test"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = identity.NewOidcAssignment(ctx, "default", &identity.OidcAssignmentArgs{
+// 			EntityIds: pulumi.StringArray{
+// 				test.ID(),
+// 			},
+// 			GroupIds: pulumi.StringArray{
+// 				internal.ID(),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -67,9 +64,7 @@ import (
 // OIDC Assignments can be imported using the `name`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:identity/oidcAssignment:OidcAssignment default assignment
-//
+//  $ pulumi import vault:identity/oidcAssignment:OidcAssignment default assignment
 // ```
 type OidcAssignment struct {
 	pulumi.CustomResourceState
@@ -202,7 +197,7 @@ func (i *OidcAssignment) ToOidcAssignmentOutputWithContext(ctx context.Context) 
 // OidcAssignmentArrayInput is an input type that accepts OidcAssignmentArray and OidcAssignmentArrayOutput values.
 // You can construct a concrete instance of `OidcAssignmentArrayInput` via:
 //
-//	OidcAssignmentArray{ OidcAssignmentArgs{...} }
+//          OidcAssignmentArray{ OidcAssignmentArgs{...} }
 type OidcAssignmentArrayInput interface {
 	pulumi.Input
 
@@ -227,7 +222,7 @@ func (i OidcAssignmentArray) ToOidcAssignmentArrayOutputWithContext(ctx context.
 // OidcAssignmentMapInput is an input type that accepts OidcAssignmentMap and OidcAssignmentMapOutput values.
 // You can construct a concrete instance of `OidcAssignmentMapInput` via:
 //
-//	OidcAssignmentMap{ "key": OidcAssignmentArgs{...} }
+//          OidcAssignmentMap{ "key": OidcAssignmentArgs{...} }
 type OidcAssignmentMapInput interface {
 	pulumi.Input
 

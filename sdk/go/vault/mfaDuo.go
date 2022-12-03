@@ -21,34 +21,31 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			userpass, err := vault.NewAuthBackend(ctx, "userpass", &vault.AuthBackendArgs{
-//				Type: pulumi.String("userpass"),
-//				Path: pulumi.String("userpass"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = vault.NewMfaDuo(ctx, "myDuo", &vault.MfaDuoArgs{
-//				MountAccessor:  userpass.Accessor,
-//				SecretKey:      pulumi.String("8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz"),
-//				IntegrationKey: pulumi.String("BIACEUEAXI20BNWTEYXT"),
-//				ApiHostname:    pulumi.String("api-2b5c39f5.duosecurity.com"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		userpass, err := vault.NewAuthBackend(ctx, "userpass", &vault.AuthBackendArgs{
+// 			Type: pulumi.String("userpass"),
+// 			Path: pulumi.String("userpass"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = vault.NewMfaDuo(ctx, "myDuo", &vault.MfaDuoArgs{
+// 			MountAccessor:  userpass.Accessor,
+// 			SecretKey:      pulumi.String("8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz"),
+// 			IntegrationKey: pulumi.String("BIACEUEAXI20BNWTEYXT"),
+// 			ApiHostname:    pulumi.String("api-2b5c39f5.duosecurity.com"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -56,9 +53,7 @@ import (
 // Mounts can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:index/mfaDuo:MfaDuo my_duo my_duo
-//
+//  $ pulumi import vault:index/mfaDuo:MfaDuo my_duo my_duo
 // ```
 type MfaDuo struct {
 	pulumi.CustomResourceState
@@ -274,7 +269,7 @@ func (i *MfaDuo) ToMfaDuoOutputWithContext(ctx context.Context) MfaDuoOutput {
 // MfaDuoArrayInput is an input type that accepts MfaDuoArray and MfaDuoArrayOutput values.
 // You can construct a concrete instance of `MfaDuoArrayInput` via:
 //
-//	MfaDuoArray{ MfaDuoArgs{...} }
+//          MfaDuoArray{ MfaDuoArgs{...} }
 type MfaDuoArrayInput interface {
 	pulumi.Input
 
@@ -299,7 +294,7 @@ func (i MfaDuoArray) ToMfaDuoArrayOutputWithContext(ctx context.Context) MfaDuoA
 // MfaDuoMapInput is an input type that accepts MfaDuoMap and MfaDuoMapOutput values.
 // You can construct a concrete instance of `MfaDuoMapInput` via:
 //
-//	MfaDuoMap{ "key": MfaDuoArgs{...} }
+//          MfaDuoMap{ "key": MfaDuoArgs{...} }
 type MfaDuoMapInput interface {
 	pulumi.Input
 

@@ -21,61 +21,54 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			group, err := identity.NewGroup(ctx, "group", &identity.GroupArgs{
-//				Type: pulumi.String("external"),
-//				Policies: pulumi.StringArray{
-//					pulumi.String("test"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			github, err := vault.NewAuthBackend(ctx, "github", &vault.AuthBackendArgs{
-//				Type: pulumi.String("github"),
-//				Path: pulumi.String("github"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = identity.NewGroupAlias(ctx, "group-alias", &identity.GroupAliasArgs{
-//				Name:          pulumi.String("Github_Team_Slug"),
-//				MountAccessor: github.Accessor,
-//				CanonicalId:   group.ID(),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		group, err := identity.NewGroup(ctx, "group", &identity.GroupArgs{
+// 			Type: pulumi.String("external"),
+// 			Policies: pulumi.StringArray{
+// 				pulumi.String("test"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		github, err := vault.NewAuthBackend(ctx, "github", &vault.AuthBackendArgs{
+// 			Type: pulumi.String("github"),
+// 			Path: pulumi.String("github"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = identity.NewGroupAlias(ctx, "group-alias", &identity.GroupAliasArgs{
+// 			Name:          pulumi.String("Github_Team_Slug"),
+// 			MountAccessor: github.Accessor,
+// 			CanonicalId:   group.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
 //
-// # The group alias can be imported with the group alias `id`, for example
+// The group alias can be imported with the group alias `id`, for example
 //
 // ```sh
-//
-//	$ pulumi import vault:identity/groupAlias:GroupAlias group-alias id
-//
+//  $ pulumi import vault:identity/groupAlias:GroupAlias group-alias id
 // ```
 //
-//	Group aliases can also be imported using the UUID of the alias record, e.g.
+//  Group aliases can also be imported using the UUID of the alias record, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:identity/groupAlias:GroupAlias alias_name 63104e20-88e4-11eb-8d04-cf7ac9d60157
-//
+//  $ pulumi import vault:identity/groupAlias:GroupAlias alias_name 63104e20-88e4-11eb-8d04-cf7ac9d60157
 // ```
 type GroupAlias struct {
 	pulumi.CustomResourceState
@@ -217,7 +210,7 @@ func (i *GroupAlias) ToGroupAliasOutputWithContext(ctx context.Context) GroupAli
 // GroupAliasArrayInput is an input type that accepts GroupAliasArray and GroupAliasArrayOutput values.
 // You can construct a concrete instance of `GroupAliasArrayInput` via:
 //
-//	GroupAliasArray{ GroupAliasArgs{...} }
+//          GroupAliasArray{ GroupAliasArgs{...} }
 type GroupAliasArrayInput interface {
 	pulumi.Input
 
@@ -242,7 +235,7 @@ func (i GroupAliasArray) ToGroupAliasArrayOutputWithContext(ctx context.Context)
 // GroupAliasMapInput is an input type that accepts GroupAliasMap and GroupAliasMapOutput values.
 // You can construct a concrete instance of `GroupAliasMapInput` via:
 //
-//	GroupAliasMap{ "key": GroupAliasArgs{...} }
+//          GroupAliasMap{ "key": GroupAliasArgs{...} }
 type GroupAliasMapInput interface {
 	pulumi.Input
 

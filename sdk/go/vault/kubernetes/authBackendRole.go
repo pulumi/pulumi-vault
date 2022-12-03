@@ -21,45 +21,42 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kubernetes"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kubernetes"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			kubernetes, err := vault.NewAuthBackend(ctx, "kubernetes", &vault.AuthBackendArgs{
-//				Type: pulumi.String("kubernetes"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = kubernetes.NewAuthBackendRole(ctx, "example", &kubernetes.AuthBackendRoleArgs{
-//				Backend:  kubernetes.Path,
-//				RoleName: pulumi.String("example-role"),
-//				BoundServiceAccountNames: pulumi.StringArray{
-//					pulumi.String("example"),
-//				},
-//				BoundServiceAccountNamespaces: pulumi.StringArray{
-//					pulumi.String("example"),
-//				},
-//				TokenTtl: pulumi.Int(3600),
-//				TokenPolicies: pulumi.StringArray{
-//					pulumi.String("default"),
-//					pulumi.String("dev"),
-//					pulumi.String("prod"),
-//				},
-//				Audience: pulumi.String("vault"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		kubernetes, err := vault.NewAuthBackend(ctx, "kubernetes", &vault.AuthBackendArgs{
+// 			Type: pulumi.String("kubernetes"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = kubernetes.NewAuthBackendRole(ctx, "example", &kubernetes.AuthBackendRoleArgs{
+// 			Backend:  kubernetes.Path,
+// 			RoleName: pulumi.String("example-role"),
+// 			BoundServiceAccountNames: pulumi.StringArray{
+// 				pulumi.String("example"),
+// 			},
+// 			BoundServiceAccountNamespaces: pulumi.StringArray{
+// 				pulumi.String("example"),
+// 			},
+// 			TokenTtl: pulumi.Int(3600),
+// 			TokenPolicies: pulumi.StringArray{
+// 				pulumi.String("default"),
+// 				pulumi.String("dev"),
+// 				pulumi.String("prod"),
+// 			},
+// 			Audience: pulumi.String("vault"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -67,9 +64,7 @@ import (
 // Kubernetes auth backend role can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:kubernetes/authBackendRole:AuthBackendRole foo auth/kubernetes/role/foo
-//
+//  $ pulumi import vault:kubernetes/authBackendRole:AuthBackendRole foo auth/kubernetes/role/foo
 // ```
 type AuthBackendRole struct {
 	pulumi.CustomResourceState
@@ -416,7 +411,7 @@ func (i *AuthBackendRole) ToAuthBackendRoleOutputWithContext(ctx context.Context
 // AuthBackendRoleArrayInput is an input type that accepts AuthBackendRoleArray and AuthBackendRoleArrayOutput values.
 // You can construct a concrete instance of `AuthBackendRoleArrayInput` via:
 //
-//	AuthBackendRoleArray{ AuthBackendRoleArgs{...} }
+//          AuthBackendRoleArray{ AuthBackendRoleArgs{...} }
 type AuthBackendRoleArrayInput interface {
 	pulumi.Input
 
@@ -441,7 +436,7 @@ func (i AuthBackendRoleArray) ToAuthBackendRoleArrayOutputWithContext(ctx contex
 // AuthBackendRoleMapInput is an input type that accepts AuthBackendRoleMap and AuthBackendRoleMapOutput values.
 // You can construct a concrete instance of `AuthBackendRoleMapInput` via:
 //
-//	AuthBackendRoleMap{ "key": AuthBackendRoleArgs{...} }
+//          AuthBackendRoleMap{ "key": AuthBackendRoleArgs{...} }
 type AuthBackendRoleMapInput interface {
 	pulumi.Input
 

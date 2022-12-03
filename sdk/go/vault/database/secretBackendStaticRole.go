@@ -21,50 +21,47 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/database"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/database"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			db, err := vault.NewMount(ctx, "db", &vault.MountArgs{
-//				Path: pulumi.String("postgres"),
-//				Type: pulumi.String("database"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			postgres, err := database.NewSecretBackendConnection(ctx, "postgres", &database.SecretBackendConnectionArgs{
-//				Backend: db.Path,
-//				AllowedRoles: pulumi.StringArray{
-//					pulumi.String("*"),
-//				},
-//				Postgresql: &database.SecretBackendConnectionPostgresqlArgs{
-//					ConnectionUrl: pulumi.String("postgres://username:password@host:port/database"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = database.NewSecretBackendStaticRole(ctx, "staticRole", &database.SecretBackendStaticRoleArgs{
-//				Backend:        db.Path,
-//				DbName:         postgres.Name,
-//				Username:       pulumi.String("example"),
-//				RotationPeriod: pulumi.Int(3600),
-//				RotationStatements: pulumi.StringArray{
-//					pulumi.String("ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		db, err := vault.NewMount(ctx, "db", &vault.MountArgs{
+// 			Path: pulumi.String("postgres"),
+// 			Type: pulumi.String("database"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		postgres, err := database.NewSecretBackendConnection(ctx, "postgres", &database.SecretBackendConnectionArgs{
+// 			Backend: db.Path,
+// 			AllowedRoles: pulumi.StringArray{
+// 				pulumi.String("*"),
+// 			},
+// 			Postgresql: &database.SecretBackendConnectionPostgresqlArgs{
+// 				ConnectionUrl: pulumi.String("postgres://username:password@host:port/database"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = database.NewSecretBackendStaticRole(ctx, "staticRole", &database.SecretBackendStaticRoleArgs{
+// 			Backend:        db.Path,
+// 			DbName:         postgres.Name,
+// 			Username:       pulumi.String("example"),
+// 			RotationPeriod: pulumi.Int(3600),
+// 			RotationStatements: pulumi.StringArray{
+// 				pulumi.String("ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -72,9 +69,7 @@ import (
 // Database secret backend static roles can be imported using the `backend`, `/static-roles/`, and the `name` e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:database/secretBackendStaticRole:SecretBackendStaticRole example postgres/static-roles/my-role
-//
+//  $ pulumi import vault:database/secretBackendStaticRole:SecretBackendStaticRole example postgres/static-roles/my-role
 // ```
 type SecretBackendStaticRole struct {
 	pulumi.CustomResourceState
@@ -249,7 +244,7 @@ func (i *SecretBackendStaticRole) ToSecretBackendStaticRoleOutputWithContext(ctx
 // SecretBackendStaticRoleArrayInput is an input type that accepts SecretBackendStaticRoleArray and SecretBackendStaticRoleArrayOutput values.
 // You can construct a concrete instance of `SecretBackendStaticRoleArrayInput` via:
 //
-//	SecretBackendStaticRoleArray{ SecretBackendStaticRoleArgs{...} }
+//          SecretBackendStaticRoleArray{ SecretBackendStaticRoleArgs{...} }
 type SecretBackendStaticRoleArrayInput interface {
 	pulumi.Input
 
@@ -274,7 +269,7 @@ func (i SecretBackendStaticRoleArray) ToSecretBackendStaticRoleArrayOutputWithCo
 // SecretBackendStaticRoleMapInput is an input type that accepts SecretBackendStaticRoleMap and SecretBackendStaticRoleMapOutput values.
 // You can construct a concrete instance of `SecretBackendStaticRoleMapInput` via:
 //
-//	SecretBackendStaticRoleMap{ "key": SecretBackendStaticRoleArgs{...} }
+//          SecretBackendStaticRoleMap{ "key": SecretBackendStaticRoleArgs{...} }
 type SecretBackendStaticRoleMapInput interface {
 	pulumi.Input
 

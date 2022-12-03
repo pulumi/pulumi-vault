@@ -21,34 +21,31 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kmip"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kmip"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := kmip.NewSecretBackend(ctx, "default", &kmip.SecretBackendArgs{
-//				DefaultTlsClientKeyBits: pulumi.Int(4096),
-//				DefaultTlsClientKeyType: pulumi.String("rsa"),
-//				DefaultTlsClientTtl:     pulumi.Int(86400),
-//				Description:             pulumi.String("Vault KMIP backend"),
-//				ListenAddrs: pulumi.StringArray{
-//					pulumi.String("127.0.0.1:5696"),
-//					pulumi.String("127.0.0.1:8080"),
-//				},
-//				Path:         pulumi.String("kmip"),
-//				TlsCaKeyBits: pulumi.Int(4096),
-//				TlsCaKeyType: pulumi.String("rsa"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := kmip.NewSecretBackend(ctx, "default", &kmip.SecretBackendArgs{
+// 			DefaultTlsClientKeyBits: pulumi.Int(4096),
+// 			DefaultTlsClientKeyType: pulumi.String("rsa"),
+// 			DefaultTlsClientTtl:     pulumi.Int(86400),
+// 			Description:             pulumi.String("Vault KMIP backend"),
+// 			ListenAddrs: pulumi.StringArray{
+// 				pulumi.String("127.0.0.1:5696"),
+// 				pulumi.String("127.0.0.1:8080"),
+// 			},
+// 			Path:         pulumi.String("kmip"),
+// 			TlsCaKeyBits: pulumi.Int(4096),
+// 			TlsCaKeyType: pulumi.String("rsa"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -56,9 +53,7 @@ import (
 // KMIP Secret backend can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:kmip/secretBackend:SecretBackend default kmip
-//
+//  $ pulumi import vault:kmip/secretBackend:SecretBackend default kmip
 // ```
 type SecretBackend struct {
 	pulumi.CustomResourceState
@@ -294,7 +289,7 @@ func (i *SecretBackend) ToSecretBackendOutputWithContext(ctx context.Context) Se
 // SecretBackendArrayInput is an input type that accepts SecretBackendArray and SecretBackendArrayOutput values.
 // You can construct a concrete instance of `SecretBackendArrayInput` via:
 //
-//	SecretBackendArray{ SecretBackendArgs{...} }
+//          SecretBackendArray{ SecretBackendArgs{...} }
 type SecretBackendArrayInput interface {
 	pulumi.Input
 
@@ -319,7 +314,7 @@ func (i SecretBackendArray) ToSecretBackendArrayOutputWithContext(ctx context.Co
 // SecretBackendMapInput is an input type that accepts SecretBackendMap and SecretBackendMapOutput values.
 // You can construct a concrete instance of `SecretBackendMapInput` via:
 //
-//	SecretBackendMap{ "key": SecretBackendArgs{...} }
+//          SecretBackendMap{ "key": SecretBackendArgs{...} }
 type SecretBackendMapInput interface {
 	pulumi.Input
 

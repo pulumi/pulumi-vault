@@ -17,41 +17,38 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/terraformcloud"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/terraformcloud"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			test, err := terraformcloud.NewSecretBackend(ctx, "test", &terraformcloud.SecretBackendArgs{
-//				Backend:     pulumi.String("terraform"),
-//				Description: pulumi.String("Manages the Terraform Cloud backend"),
-//				Token:       pulumi.String("V0idfhi2iksSDU234ucdbi2nidsi..."),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			example, err := terraformcloud.NewSecretRole(ctx, "example", &terraformcloud.SecretRoleArgs{
-//				Backend:      test.Backend,
-//				Organization: pulumi.String("example-organization-name"),
-//				TeamId:       pulumi.String("team-ieF4isC..."),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = terraformcloud.NewSecretCreds(ctx, "token", &terraformcloud.SecretCredsArgs{
-//				Backend: test.Backend,
-//				Role:    example.Name,
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		test, err := terraformcloud.NewSecretBackend(ctx, "test", &terraformcloud.SecretBackendArgs{
+// 			Backend:     pulumi.String("terraform"),
+// 			Description: pulumi.String("Manages the Terraform Cloud backend"),
+// 			Token:       pulumi.String("V0idfhi2iksSDU234ucdbi2nidsi..."),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		example, err := terraformcloud.NewSecretRole(ctx, "example", &terraformcloud.SecretRoleArgs{
+// 			Backend:      test.Backend,
+// 			Organization: pulumi.String("example-organization-name"),
+// 			TeamId:       pulumi.String("team-ieF4isC..."),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = terraformcloud.NewSecretCreds(ctx, "token", &terraformcloud.SecretCredsArgs{
+// 			Backend: test.Backend,
+// 			Role:    example.Name,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 type SecretCreds struct {
 	pulumi.CustomResourceState
@@ -224,7 +221,7 @@ func (i *SecretCreds) ToSecretCredsOutputWithContext(ctx context.Context) Secret
 // SecretCredsArrayInput is an input type that accepts SecretCredsArray and SecretCredsArrayOutput values.
 // You can construct a concrete instance of `SecretCredsArrayInput` via:
 //
-//	SecretCredsArray{ SecretCredsArgs{...} }
+//          SecretCredsArray{ SecretCredsArgs{...} }
 type SecretCredsArrayInput interface {
 	pulumi.Input
 
@@ -249,7 +246,7 @@ func (i SecretCredsArray) ToSecretCredsArrayOutputWithContext(ctx context.Contex
 // SecretCredsMapInput is an input type that accepts SecretCredsMap and SecretCredsMapOutput values.
 // You can construct a concrete instance of `SecretCredsMapInput` via:
 //
-//	SecretCredsMap{ "key": SecretCredsArgs{...} }
+//          SecretCredsMap{ "key": SecretCredsArgs{...} }
 type SecretCredsMapInput interface {
 	pulumi.Input
 

@@ -16,77 +16,74 @@ import (
 // package main
 //
 // import (
+// 	"encoding/json"
 //
-//	"encoding/json"
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kv"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kv"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			kvv2, err := vault.NewMount(ctx, "kvv2", &vault.MountArgs{
-//				Path: pulumi.String("kvv2"),
-//				Type: pulumi.String("kv"),
-//				Options: pulumi.AnyMap{
-//					"version": pulumi.Any("2"),
-//				},
-//				Description: pulumi.String("KV Version 2 secret engine mount"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			tmpJSON0, err := json.Marshal(map[string]interface{}{
-//				"zip": "zap",
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			json0 := string(tmpJSON0)
-//			_, err = kv.NewSecretV2(ctx, "awsSecret", &kv.SecretV2Args{
-//				Mount:    kvv2.Path,
-//				DataJson: pulumi.String(json0),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			tmpJSON1, err := json.Marshal(map[string]interface{}{
-//				"foo": "bar",
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			json1 := string(tmpJSON1)
-//			_, err = kv.NewSecretV2(ctx, "azureSecret", &kv.SecretV2Args{
-//				Mount:    kvv2.Path,
-//				DataJson: pulumi.String(json1),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			tmpJSON2, err := json.Marshal(map[string]interface{}{
-//				"password": "test",
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			json2 := string(tmpJSON2)
-//			_, err = kv.NewSecretV2(ctx, "nestedSecret", &kv.SecretV2Args{
-//				Mount:    kvv2.Path,
-//				DataJson: pulumi.String(json2),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_ = kv.GetSecretsListV2Output(ctx, kv.GetSecretsListV2OutputArgs{
-//				Mount: kvv2.Path,
-//			}, nil)
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		kvv2, err := vault.NewMount(ctx, "kvv2", &vault.MountArgs{
+// 			Path: pulumi.String("kvv2"),
+// 			Type: pulumi.String("kv"),
+// 			Options: pulumi.AnyMap{
+// 				"version": pulumi.Any("2"),
+// 			},
+// 			Description: pulumi.String("KV Version 2 secret engine mount"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		tmpJSON0, err := json.Marshal(map[string]interface{}{
+// 			"zip": "zap",
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		json0 := string(tmpJSON0)
+// 		_, err = kv.NewSecretV2(ctx, "awsSecret", &kv.SecretV2Args{
+// 			Mount:    kvv2.Path,
+// 			DataJson: pulumi.String(json0),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		tmpJSON1, err := json.Marshal(map[string]interface{}{
+// 			"foo": "bar",
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		json1 := string(tmpJSON1)
+// 		_, err = kv.NewSecretV2(ctx, "azureSecret", &kv.SecretV2Args{
+// 			Mount:    kvv2.Path,
+// 			DataJson: pulumi.String(json1),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		tmpJSON2, err := json.Marshal(map[string]interface{}{
+// 			"password": "test",
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		json2 := string(tmpJSON2)
+// 		_, err = kv.NewSecretV2(ctx, "nestedSecret", &kv.SecretV2Args{
+// 			Mount:    kvv2.Path,
+// 			DataJson: pulumi.String(json2),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_ = kv.GetSecretsListV2Output(ctx, kv.GetSecretsListV2OutputArgs{
+// 			Mount: kvv2.Path,
+// 		}, nil)
+// 		return nil
+// 	})
+// }
 // ```
 // ## Required Vault Capabilities
 //

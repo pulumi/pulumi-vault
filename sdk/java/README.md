@@ -1,1 +1,1 @@
-A Pulumi package for creating and managing vault cloud resources.
+A Pulumi package for creating and managing HashiCorp Vault cloud resources.

@@ -16,35 +16,32 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vault.NewToken(ctx, "example", &vault.TokenArgs{
-//				Metadata: pulumi.StringMap{
-//					"purpose": pulumi.String("service-account"),
-//				},
-//				Policies: pulumi.StringArray{
-//					pulumi.String("policy1"),
-//					pulumi.String("policy2"),
-//				},
-//				RenewIncrement: pulumi.Int(86400),
-//				RenewMinLease:  pulumi.Int(43200),
-//				Renewable:      pulumi.Bool(true),
-//				RoleName:       pulumi.String("app"),
-//				Ttl:            pulumi.String("24h"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := vault.NewToken(ctx, "example", &vault.TokenArgs{
+// 			Metadata: pulumi.StringMap{
+// 				"purpose": pulumi.String("service-account"),
+// 			},
+// 			Policies: pulumi.StringArray{
+// 				pulumi.String("policy1"),
+// 				pulumi.String("policy2"),
+// 			},
+// 			RenewIncrement: pulumi.Int(86400),
+// 			RenewMinLease:  pulumi.Int(43200),
+// 			Renewable:      pulumi.Bool(true),
+// 			RoleName:       pulumi.String("app"),
+// 			Ttl:            pulumi.String("24h"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -52,9 +49,7 @@ import (
 // Tokens can be imported using its `id` as accessor id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:index/token:Token example <accessor_id>
-//
+//  $ pulumi import vault:index/token:Token example <accessor_id>
 // ```
 type Token struct {
 	pulumi.CustomResourceState
@@ -333,7 +328,7 @@ func (i *Token) ToTokenOutputWithContext(ctx context.Context) TokenOutput {
 // TokenArrayInput is an input type that accepts TokenArray and TokenArrayOutput values.
 // You can construct a concrete instance of `TokenArrayInput` via:
 //
-//	TokenArray{ TokenArgs{...} }
+//          TokenArray{ TokenArgs{...} }
 type TokenArrayInput interface {
 	pulumi.Input
 
@@ -358,7 +353,7 @@ func (i TokenArray) ToTokenArrayOutputWithContext(ctx context.Context) TokenArra
 // TokenMapInput is an input type that accepts TokenMap and TokenMapOutput values.
 // You can construct a concrete instance of `TokenMapInput` via:
 //
-//	TokenMap{ "key": TokenArgs{...} }
+//          TokenMap{ "key": TokenArgs{...} }
 type TokenMapInput interface {
 	pulumi.Input
 

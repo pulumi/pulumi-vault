@@ -18,40 +18,37 @@ import (
 // package main
 //
 // import (
+// 	"io/ioutil"
 //
-//	"io/ioutil"
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/gcp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/gcp"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := ioutil.ReadFile(path)
-//		if err != nil {
-//			panic(err.Error())
-//		}
-//		return pulumi.String(string(data))
-//	}
+// func readFileOrPanic(path string) pulumi.StringPtrInput {
+// 	data, err := ioutil.ReadFile(path)
+// 	if err != nil {
+// 		panic(err.Error())
+// 	}
+// 	return pulumi.String(string(data))
+// }
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := gcp.NewAuthBackend(ctx, "gcp", &gcp.AuthBackendArgs{
-//				Credentials: readFileOrPanic("vault-gcp-credentials.json"),
-//				CustomEndpoint: &gcp.AuthBackendCustomEndpointArgs{
-//					Api:     pulumi.String("www.googleapis.com"),
-//					Iam:     pulumi.String("iam.googleapis.com"),
-//					Crm:     pulumi.String("cloudresourcemanager.googleapis.com"),
-//					Compute: pulumi.String("compute.googleapis.com"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := gcp.NewAuthBackend(ctx, "gcp", &gcp.AuthBackendArgs{
+// 			Credentials: readFileOrPanic("vault-gcp-credentials.json"),
+// 			CustomEndpoint: &gcp.AuthBackendCustomEndpointArgs{
+// 				Api:     pulumi.String("www.googleapis.com"),
+// 				Iam:     pulumi.String("iam.googleapis.com"),
+// 				Crm:     pulumi.String("cloudresourcemanager.googleapis.com"),
+// 				Compute: pulumi.String("compute.googleapis.com"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -59,9 +56,7 @@ import (
 // GCP authentication backends can be imported using the backend name, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:gcp/authBackend:AuthBackend gcp gcp
-//
+//  $ pulumi import vault:gcp/authBackend:AuthBackend gcp gcp
 // ```
 type AuthBackend struct {
 	pulumi.CustomResourceState
@@ -296,7 +291,7 @@ func (i *AuthBackend) ToAuthBackendOutputWithContext(ctx context.Context) AuthBa
 // AuthBackendArrayInput is an input type that accepts AuthBackendArray and AuthBackendArrayOutput values.
 // You can construct a concrete instance of `AuthBackendArrayInput` via:
 //
-//	AuthBackendArray{ AuthBackendArgs{...} }
+//          AuthBackendArray{ AuthBackendArgs{...} }
 type AuthBackendArrayInput interface {
 	pulumi.Input
 
@@ -321,7 +316,7 @@ func (i AuthBackendArray) ToAuthBackendArrayOutputWithContext(ctx context.Contex
 // AuthBackendMapInput is an input type that accepts AuthBackendMap and AuthBackendMapOutput values.
 // You can construct a concrete instance of `AuthBackendMapInput` via:
 //
-//	AuthBackendMap{ "key": AuthBackendArgs{...} }
+//          AuthBackendMap{ "key": AuthBackendArgs{...} }
 type AuthBackendMapInput interface {
 	pulumi.Input
 

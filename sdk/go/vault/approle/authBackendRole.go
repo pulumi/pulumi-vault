@@ -21,37 +21,34 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/appRole"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/appRole"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			approle, err := vault.NewAuthBackend(ctx, "approle", &vault.AuthBackendArgs{
-//				Type: pulumi.String("approle"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = appRole.NewAuthBackendRole(ctx, "example", &appRole.AuthBackendRoleArgs{
-//				Backend:  approle.Path,
-//				RoleName: pulumi.String("test-role"),
-//				TokenPolicies: pulumi.StringArray{
-//					pulumi.String("default"),
-//					pulumi.String("dev"),
-//					pulumi.String("prod"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		approle, err := vault.NewAuthBackend(ctx, "approle", &vault.AuthBackendArgs{
+// 			Type: pulumi.String("approle"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = appRole.NewAuthBackendRole(ctx, "example", &appRole.AuthBackendRoleArgs{
+// 			Backend:  approle.Path,
+// 			RoleName: pulumi.String("test-role"),
+// 			TokenPolicies: pulumi.StringArray{
+// 				pulumi.String("default"),
+// 				pulumi.String("dev"),
+// 				pulumi.String("prod"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -59,9 +56,7 @@ import (
 // AppRole authentication backend roles can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:appRole/authBackendRole:AuthBackendRole example auth/approle/role/test-role
-//
+//  $ pulumi import vault:appRole/authBackendRole:AuthBackendRole example auth/approle/role/test-role
 // ```
 type AuthBackendRole struct {
 	pulumi.CustomResourceState
@@ -447,7 +442,7 @@ func (i *AuthBackendRole) ToAuthBackendRoleOutputWithContext(ctx context.Context
 // AuthBackendRoleArrayInput is an input type that accepts AuthBackendRoleArray and AuthBackendRoleArrayOutput values.
 // You can construct a concrete instance of `AuthBackendRoleArrayInput` via:
 //
-//	AuthBackendRoleArray{ AuthBackendRoleArgs{...} }
+//          AuthBackendRoleArray{ AuthBackendRoleArgs{...} }
 type AuthBackendRoleArrayInput interface {
 	pulumi.Input
 
@@ -472,7 +467,7 @@ func (i AuthBackendRoleArray) ToAuthBackendRoleArrayOutputWithContext(ctx contex
 // AuthBackendRoleMapInput is an input type that accepts AuthBackendRoleMap and AuthBackendRoleMapOutput values.
 // You can construct a concrete instance of `AuthBackendRoleMapInput` via:
 //
-//	AuthBackendRoleMap{ "key": AuthBackendRoleArgs{...} }
+//          AuthBackendRoleMap{ "key": AuthBackendRoleArgs{...} }
 type AuthBackendRoleMapInput interface {
 	pulumi.Input
 

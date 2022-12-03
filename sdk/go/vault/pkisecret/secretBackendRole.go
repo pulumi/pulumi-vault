@@ -19,43 +19,40 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			pki, err := vault.NewMount(ctx, "pki", &vault.MountArgs{
-//				Path:                   pulumi.String("pki"),
-//				Type:                   pulumi.String("pki"),
-//				DefaultLeaseTtlSeconds: pulumi.Int(3600),
-//				MaxLeaseTtlSeconds:     pulumi.Int(86400),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = pkiSecret.NewSecretBackendRole(ctx, "role", &pkiSecret.SecretBackendRoleArgs{
-//				Backend:     pki.Path,
-//				Ttl:         pulumi.String("3600"),
-//				AllowIpSans: pulumi.Bool(true),
-//				KeyType:     pulumi.String("rsa"),
-//				KeyBits:     pulumi.Int(4096),
-//				AllowedDomains: pulumi.StringArray{
-//					pulumi.String("example.com"),
-//					pulumi.String("my.domain"),
-//				},
-//				AllowSubdomains: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		pki, err := vault.NewMount(ctx, "pki", &vault.MountArgs{
+// 			Path:                   pulumi.String("pki"),
+// 			Type:                   pulumi.String("pki"),
+// 			DefaultLeaseTtlSeconds: pulumi.Int(3600),
+// 			MaxLeaseTtlSeconds:     pulumi.Int(86400),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = pkiSecret.NewSecretBackendRole(ctx, "role", &pkiSecret.SecretBackendRoleArgs{
+// 			Backend:     pki.Path,
+// 			Ttl:         pulumi.String("3600"),
+// 			AllowIpSans: pulumi.Bool(true),
+// 			KeyType:     pulumi.String("rsa"),
+// 			KeyBits:     pulumi.Int(4096),
+// 			AllowedDomains: pulumi.StringArray{
+// 				pulumi.String("example.com"),
+// 				pulumi.String("my.domain"),
+// 			},
+// 			AllowSubdomains: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -63,9 +60,7 @@ import (
 // PKI secret backend roles can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:pkiSecret/secretBackendRole:SecretBackendRole role pki/roles/my_role
-//
+//  $ pulumi import vault:pkiSecret/secretBackendRole:SecretBackendRole role pki/roles/my_role
 // ```
 type SecretBackendRole struct {
 	pulumi.CustomResourceState
@@ -566,7 +561,7 @@ func (i *SecretBackendRole) ToSecretBackendRoleOutputWithContext(ctx context.Con
 // SecretBackendRoleArrayInput is an input type that accepts SecretBackendRoleArray and SecretBackendRoleArrayOutput values.
 // You can construct a concrete instance of `SecretBackendRoleArrayInput` via:
 //
-//	SecretBackendRoleArray{ SecretBackendRoleArgs{...} }
+//          SecretBackendRoleArray{ SecretBackendRoleArgs{...} }
 type SecretBackendRoleArrayInput interface {
 	pulumi.Input
 
@@ -591,7 +586,7 @@ func (i SecretBackendRoleArray) ToSecretBackendRoleArrayOutputWithContext(ctx co
 // SecretBackendRoleMapInput is an input type that accepts SecretBackendRoleMap and SecretBackendRoleMapOutput values.
 // You can construct a concrete instance of `SecretBackendRoleMapInput` via:
 //
-//	SecretBackendRoleMap{ "key": SecretBackendRoleArgs{...} }
+//          SecretBackendRoleMap{ "key": SecretBackendRoleArgs{...} }
 type SecretBackendRoleMapInput interface {
 	pulumi.Input
 

@@ -21,33 +21,30 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kmip"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kmip"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := kmip.NewSecretBackend(ctx, "default", &kmip.SecretBackendArgs{
-//				Path:        pulumi.String("kmip"),
-//				Description: pulumi.String("Vault KMIP backend"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = kmip.NewSecretScope(ctx, "dev", &kmip.SecretScopeArgs{
-//				Path:  _default.Path,
-//				Scope: pulumi.String("dev"),
-//				Force: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := kmip.NewSecretBackend(ctx, "default", &kmip.SecretBackendArgs{
+// 			Path:        pulumi.String("kmip"),
+// 			Description: pulumi.String("Vault KMIP backend"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = kmip.NewSecretScope(ctx, "dev", &kmip.SecretScopeArgs{
+// 			Path:  _default.Path,
+// 			Scope: pulumi.String("dev"),
+// 			Force: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -55,9 +52,7 @@ import (
 // KMIP Secret scope can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:kmip/secretScope:SecretScope dev kmip
-//
+//  $ pulumi import vault:kmip/secretScope:SecretScope dev kmip
 // ```
 type SecretScope struct {
 	pulumi.CustomResourceState
@@ -201,7 +196,7 @@ func (i *SecretScope) ToSecretScopeOutputWithContext(ctx context.Context) Secret
 // SecretScopeArrayInput is an input type that accepts SecretScopeArray and SecretScopeArrayOutput values.
 // You can construct a concrete instance of `SecretScopeArrayInput` via:
 //
-//	SecretScopeArray{ SecretScopeArgs{...} }
+//          SecretScopeArray{ SecretScopeArgs{...} }
 type SecretScopeArrayInput interface {
 	pulumi.Input
 
@@ -226,7 +221,7 @@ func (i SecretScopeArray) ToSecretScopeArrayOutputWithContext(ctx context.Contex
 // SecretScopeMapInput is an input type that accepts SecretScopeMap and SecretScopeMapOutput values.
 // You can construct a concrete instance of `SecretScopeMapInput` via:
 //
-//	SecretScopeMap{ "key": SecretScopeArgs{...} }
+//          SecretScopeMap{ "key": SecretScopeArgs{...} }
 type SecretScopeMapInput interface {
 	pulumi.Input
 

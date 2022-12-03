@@ -17,28 +17,25 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := pkiSecret.NewSecretBackendIntermediateCertRequest(ctx, "test", &pkiSecret.SecretBackendIntermediateCertRequestArgs{
-//				Backend:    pulumi.Any(vault_mount.Pki.Path),
-//				Type:       pulumi.String("internal"),
-//				CommonName: pulumi.String("app.my.domain"),
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				vault_mount.Pki,
-//			}))
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := pkiSecret.NewSecretBackendIntermediateCertRequest(ctx, "test", &pkiSecret.SecretBackendIntermediateCertRequestArgs{
+// 			Backend:    pulumi.Any(vault_mount.Pki.Path),
+// 			Type:       pulumi.String("internal"),
+// 			CommonName: pulumi.String("app.my.domain"),
+// 		}, pulumi.DependsOn([]pulumi.Resource{
+// 			vault_mount.Pki,
+// 		}))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 type SecretBackendIntermediateCertRequest struct {
 	pulumi.CustomResourceState
@@ -397,7 +394,7 @@ func (i *SecretBackendIntermediateCertRequest) ToSecretBackendIntermediateCertRe
 // SecretBackendIntermediateCertRequestArrayInput is an input type that accepts SecretBackendIntermediateCertRequestArray and SecretBackendIntermediateCertRequestArrayOutput values.
 // You can construct a concrete instance of `SecretBackendIntermediateCertRequestArrayInput` via:
 //
-//	SecretBackendIntermediateCertRequestArray{ SecretBackendIntermediateCertRequestArgs{...} }
+//          SecretBackendIntermediateCertRequestArray{ SecretBackendIntermediateCertRequestArgs{...} }
 type SecretBackendIntermediateCertRequestArrayInput interface {
 	pulumi.Input
 
@@ -422,7 +419,7 @@ func (i SecretBackendIntermediateCertRequestArray) ToSecretBackendIntermediateCe
 // SecretBackendIntermediateCertRequestMapInput is an input type that accepts SecretBackendIntermediateCertRequestMap and SecretBackendIntermediateCertRequestMapOutput values.
 // You can construct a concrete instance of `SecretBackendIntermediateCertRequestMapInput` via:
 //
-//	SecretBackendIntermediateCertRequestMap{ "key": SecretBackendIntermediateCertRequestArgs{...} }
+//          SecretBackendIntermediateCertRequestMap{ "key": SecretBackendIntermediateCertRequestArgs{...} }
 type SecretBackendIntermediateCertRequestMapInput interface {
 	pulumi.Input
 

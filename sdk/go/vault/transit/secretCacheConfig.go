@@ -19,36 +19,33 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/transit"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/transit"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			transit, err := vault.NewMount(ctx, "transit", &vault.MountArgs{
-//				Path:                   pulumi.String("transit"),
-//				Type:                   pulumi.String("transit"),
-//				Description:            pulumi.String("Example description"),
-//				DefaultLeaseTtlSeconds: pulumi.Int(3600),
-//				MaxLeaseTtlSeconds:     pulumi.Int(86400),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = transit.NewSecretCacheConfig(ctx, "cfg", &transit.SecretCacheConfigArgs{
-//				Backend: transit.Path,
-//				Size:    pulumi.Int(500),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		transit, err := vault.NewMount(ctx, "transit", &vault.MountArgs{
+// 			Path:                   pulumi.String("transit"),
+// 			Type:                   pulumi.String("transit"),
+// 			Description:            pulumi.String("Example description"),
+// 			DefaultLeaseTtlSeconds: pulumi.Int(3600),
+// 			MaxLeaseTtlSeconds:     pulumi.Int(86400),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = transit.NewSecretCacheConfig(ctx, "cfg", &transit.SecretCacheConfigArgs{
+// 			Backend: transit.Path,
+// 			Size:    pulumi.Int(500),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 type SecretCacheConfig struct {
 	pulumi.CustomResourceState
@@ -177,7 +174,7 @@ func (i *SecretCacheConfig) ToSecretCacheConfigOutputWithContext(ctx context.Con
 // SecretCacheConfigArrayInput is an input type that accepts SecretCacheConfigArray and SecretCacheConfigArrayOutput values.
 // You can construct a concrete instance of `SecretCacheConfigArrayInput` via:
 //
-//	SecretCacheConfigArray{ SecretCacheConfigArgs{...} }
+//          SecretCacheConfigArray{ SecretCacheConfigArgs{...} }
 type SecretCacheConfigArrayInput interface {
 	pulumi.Input
 
@@ -202,7 +199,7 @@ func (i SecretCacheConfigArray) ToSecretCacheConfigArrayOutputWithContext(ctx co
 // SecretCacheConfigMapInput is an input type that accepts SecretCacheConfigMap and SecretCacheConfigMapOutput values.
 // You can construct a concrete instance of `SecretCacheConfigMapInput` via:
 //
-//	SecretCacheConfigMap{ "key": SecretCacheConfigArgs{...} }
+//          SecretCacheConfigMap{ "key": SecretCacheConfigArgs{...} }
 type SecretCacheConfigMapInput interface {
 	pulumi.Input
 

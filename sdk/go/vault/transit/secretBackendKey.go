@@ -19,35 +19,32 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/transit"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/transit"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			transit, err := vault.NewMount(ctx, "transit", &vault.MountArgs{
-//				Path:                   pulumi.String("transit"),
-//				Type:                   pulumi.String("transit"),
-//				Description:            pulumi.String("Example description"),
-//				DefaultLeaseTtlSeconds: pulumi.Int(3600),
-//				MaxLeaseTtlSeconds:     pulumi.Int(86400),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = transit.NewSecretBackendKey(ctx, "key", &transit.SecretBackendKeyArgs{
-//				Backend: transit.Path,
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		transit, err := vault.NewMount(ctx, "transit", &vault.MountArgs{
+// 			Path:                   pulumi.String("transit"),
+// 			Type:                   pulumi.String("transit"),
+// 			Description:            pulumi.String("Example description"),
+// 			DefaultLeaseTtlSeconds: pulumi.Int(3600),
+// 			MaxLeaseTtlSeconds:     pulumi.Int(86400),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = transit.NewSecretBackendKey(ctx, "key", &transit.SecretBackendKeyArgs{
+// 			Backend: transit.Path,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 // ## Deprecations
 //
@@ -58,9 +55,7 @@ import (
 // Transit secret backend keys can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:transit/secretBackendKey:SecretBackendKey key transit/keys/my_key
-//
+//  $ pulumi import vault:transit/secretBackendKey:SecretBackendKey key transit/keys/my_key
 // ```
 type SecretBackendKey struct {
 	pulumi.CustomResourceState
@@ -364,7 +359,7 @@ func (i *SecretBackendKey) ToSecretBackendKeyOutputWithContext(ctx context.Conte
 // SecretBackendKeyArrayInput is an input type that accepts SecretBackendKeyArray and SecretBackendKeyArrayOutput values.
 // You can construct a concrete instance of `SecretBackendKeyArrayInput` via:
 //
-//	SecretBackendKeyArray{ SecretBackendKeyArgs{...} }
+//          SecretBackendKeyArray{ SecretBackendKeyArgs{...} }
 type SecretBackendKeyArrayInput interface {
 	pulumi.Input
 
@@ -389,7 +384,7 @@ func (i SecretBackendKeyArray) ToSecretBackendKeyArrayOutputWithContext(ctx cont
 // SecretBackendKeyMapInput is an input type that accepts SecretBackendKeyMap and SecretBackendKeyMapOutput values.
 // You can construct a concrete instance of `SecretBackendKeyMapInput` via:
 //
-//	SecretBackendKeyMap{ "key": SecretBackendKeyArgs{...} }
+//          SecretBackendKeyMap{ "key": SecretBackendKeyArgs{...} }
 type SecretBackendKeyMapInput interface {
 	pulumi.Input
 

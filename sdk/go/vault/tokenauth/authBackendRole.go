@@ -21,39 +21,36 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/tokenauth"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/tokenauth"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tokenauth.NewAuthBackendRole(ctx, "example", &tokenauth.AuthBackendRoleArgs{
-//				AllowedEntityAliases: pulumi.StringArray{
-//					pulumi.String("test_entity"),
-//				},
-//				AllowedPolicies: pulumi.StringArray{
-//					pulumi.String("dev"),
-//					pulumi.String("test"),
-//				},
-//				DisallowedPolicies: pulumi.StringArray{
-//					pulumi.String("default"),
-//				},
-//				Orphan:              pulumi.Bool(true),
-//				PathSuffix:          pulumi.String("path-suffix"),
-//				Renewable:           pulumi.Bool(true),
-//				RoleName:            pulumi.String("my-role"),
-//				TokenExplicitMaxTtl: pulumi.Int(115200),
-//				TokenPeriod:         pulumi.Int(86400),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := tokenauth.NewAuthBackendRole(ctx, "example", &tokenauth.AuthBackendRoleArgs{
+// 			AllowedEntityAliases: pulumi.StringArray{
+// 				pulumi.String("test_entity"),
+// 			},
+// 			AllowedPolicies: pulumi.StringArray{
+// 				pulumi.String("dev"),
+// 				pulumi.String("test"),
+// 			},
+// 			DisallowedPolicies: pulumi.StringArray{
+// 				pulumi.String("default"),
+// 			},
+// 			Orphan:              pulumi.Bool(true),
+// 			PathSuffix:          pulumi.String("path-suffix"),
+// 			Renewable:           pulumi.Bool(true),
+// 			RoleName:            pulumi.String("my-role"),
+// 			TokenExplicitMaxTtl: pulumi.Int(115200),
+// 			TokenPeriod:         pulumi.Int(86400),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -61,9 +58,7 @@ import (
 // Token auth backend roles can be imported with `auth/token/roles/` followed by the `role_name`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:tokenauth/authBackendRole:AuthBackendRole example auth/token/roles/my-role
-//
+//  $ pulumi import vault:tokenauth/authBackendRole:AuthBackendRole example auth/token/roles/my-role
 // ```
 type AuthBackendRole struct {
 	pulumi.CustomResourceState
@@ -429,7 +424,7 @@ func (i *AuthBackendRole) ToAuthBackendRoleOutputWithContext(ctx context.Context
 // AuthBackendRoleArrayInput is an input type that accepts AuthBackendRoleArray and AuthBackendRoleArrayOutput values.
 // You can construct a concrete instance of `AuthBackendRoleArrayInput` via:
 //
-//	AuthBackendRoleArray{ AuthBackendRoleArgs{...} }
+//          AuthBackendRoleArray{ AuthBackendRoleArgs{...} }
 type AuthBackendRoleArrayInput interface {
 	pulumi.Input
 
@@ -454,7 +449,7 @@ func (i AuthBackendRoleArray) ToAuthBackendRoleArrayOutputWithContext(ctx contex
 // AuthBackendRoleMapInput is an input type that accepts AuthBackendRoleMap and AuthBackendRoleMapOutput values.
 // You can construct a concrete instance of `AuthBackendRoleMapInput` via:
 //
-//	AuthBackendRoleMap{ "key": AuthBackendRoleArgs{...} }
+//          AuthBackendRoleMap{ "key": AuthBackendRoleArgs{...} }
 type AuthBackendRoleMapInput interface {
 	pulumi.Input
 

@@ -18,29 +18,26 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/azure"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/azure"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := azure.NewBackend(ctx, "azure", &azure.BackendArgs{
-//				ClientId:             pulumi.String("11111111-2222-3333-4444-333333333333"),
-//				ClientSecret:         pulumi.String("12345678901234567890"),
-//				Environment:          pulumi.String("AzurePublicCloud"),
-//				SubscriptionId:       pulumi.String("11111111-2222-3333-4444-111111111111"),
-//				TenantId:             pulumi.String("11111111-2222-3333-4444-222222222222"),
-//				UseMicrosoftGraphApi: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := azure.NewBackend(ctx, "azure", &azure.BackendArgs{
+// 			ClientId:             pulumi.String("11111111-2222-3333-4444-333333333333"),
+// 			ClientSecret:         pulumi.String("12345678901234567890"),
+// 			Environment:          pulumi.String("AzurePublicCloud"),
+// 			SubscriptionId:       pulumi.String("11111111-2222-3333-4444-111111111111"),
+// 			TenantId:             pulumi.String("11111111-2222-3333-4444-222222222222"),
+// 			UseMicrosoftGraphApi: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 // ### *Vault-1.8 And Below*
 //
@@ -48,29 +45,26 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/azure"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/azure"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := azure.NewBackend(ctx, "azure", &azure.BackendArgs{
-//				ClientId:             pulumi.String("11111111-2222-3333-4444-333333333333"),
-//				ClientSecret:         pulumi.String("12345678901234567890"),
-//				Environment:          pulumi.String("AzurePublicCloud"),
-//				SubscriptionId:       pulumi.String("11111111-2222-3333-4444-111111111111"),
-//				TenantId:             pulumi.String("11111111-2222-3333-4444-222222222222"),
-//				UseMicrosoftGraphApi: pulumi.Bool(false),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := azure.NewBackend(ctx, "azure", &azure.BackendArgs{
+// 			ClientId:             pulumi.String("11111111-2222-3333-4444-333333333333"),
+// 			ClientSecret:         pulumi.String("12345678901234567890"),
+// 			Environment:          pulumi.String("AzurePublicCloud"),
+// 			SubscriptionId:       pulumi.String("11111111-2222-3333-4444-111111111111"),
+// 			TenantId:             pulumi.String("11111111-2222-3333-4444-222222222222"),
+// 			UseMicrosoftGraphApi: pulumi.Bool(false),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 type Backend struct {
 	pulumi.CustomResourceState
@@ -298,7 +292,7 @@ func (i *Backend) ToBackendOutputWithContext(ctx context.Context) BackendOutput 
 // BackendArrayInput is an input type that accepts BackendArray and BackendArrayOutput values.
 // You can construct a concrete instance of `BackendArrayInput` via:
 //
-//	BackendArray{ BackendArgs{...} }
+//          BackendArray{ BackendArgs{...} }
 type BackendArrayInput interface {
 	pulumi.Input
 
@@ -323,7 +317,7 @@ func (i BackendArray) ToBackendArrayOutputWithContext(ctx context.Context) Backe
 // BackendMapInput is an input type that accepts BackendMap and BackendMapOutput values.
 // You can construct a concrete instance of `BackendMapInput` via:
 //
-//	BackendMap{ "key": BackendArgs{...} }
+//          BackendMap{ "key": BackendArgs{...} }
 type BackendMapInput interface {
 	pulumi.Input
 
@@ -408,8 +402,8 @@ func (o BackendOutput) TenantId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Backend) pulumi.StringOutput { return v.TenantId }).(pulumi.StringOutput)
 }
 
-//   - Use the Microsoft Graph API introduced in `vault-1.9`.
-//     Should be set to true for `vault-1.10+`
+// - Use the Microsoft Graph API introduced in `vault-1.9`.
+//   Should be set to true for `vault-1.10+`
 func (o BackendOutput) UseMicrosoftGraphApi() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Backend) pulumi.BoolOutput { return v.UseMicrosoftGraphApi }).(pulumi.BoolOutput)
 }

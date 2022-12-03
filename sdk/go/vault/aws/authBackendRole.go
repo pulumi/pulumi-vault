@@ -23,60 +23,57 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/aws"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/aws"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			aws, err := vault.NewAuthBackend(ctx, "aws", &vault.AuthBackendArgs{
-//				Type: pulumi.String("aws"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = aws.NewAuthBackendRole(ctx, "example", &aws.AuthBackendRoleArgs{
-//				Backend:  aws.Path,
-//				Role:     pulumi.String("test-role"),
-//				AuthType: pulumi.String("iam"),
-//				BoundAmiIds: pulumi.StringArray{
-//					pulumi.String("ami-8c1be5f6"),
-//				},
-//				BoundAccountIds: pulumi.StringArray{
-//					pulumi.String("123456789012"),
-//				},
-//				BoundVpcIds: pulumi.StringArray{
-//					pulumi.String("vpc-b61106d4"),
-//				},
-//				BoundSubnetIds: pulumi.StringArray{
-//					pulumi.String("vpc-133128f1"),
-//				},
-//				BoundIamRoleArns: pulumi.StringArray{
-//					pulumi.String("arn:aws:iam::123456789012:role/MyRole"),
-//				},
-//				BoundIamInstanceProfileArns: pulumi.StringArray{
-//					pulumi.String("arn:aws:iam::123456789012:instance-profile/MyProfile"),
-//				},
-//				InferredEntityType: pulumi.String("ec2_instance"),
-//				InferredAwsRegion:  pulumi.String("us-east-1"),
-//				TokenTtl:           pulumi.Int(60),
-//				TokenMaxTtl:        pulumi.Int(120),
-//				TokenPolicies: pulumi.StringArray{
-//					pulumi.String("default"),
-//					pulumi.String("dev"),
-//					pulumi.String("prod"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		aws, err := vault.NewAuthBackend(ctx, "aws", &vault.AuthBackendArgs{
+// 			Type: pulumi.String("aws"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = aws.NewAuthBackendRole(ctx, "example", &aws.AuthBackendRoleArgs{
+// 			Backend:  aws.Path,
+// 			Role:     pulumi.String("test-role"),
+// 			AuthType: pulumi.String("iam"),
+// 			BoundAmiIds: pulumi.StringArray{
+// 				pulumi.String("ami-8c1be5f6"),
+// 			},
+// 			BoundAccountIds: pulumi.StringArray{
+// 				pulumi.String("123456789012"),
+// 			},
+// 			BoundVpcIds: pulumi.StringArray{
+// 				pulumi.String("vpc-b61106d4"),
+// 			},
+// 			BoundSubnetIds: pulumi.StringArray{
+// 				pulumi.String("vpc-133128f1"),
+// 			},
+// 			BoundIamRoleArns: pulumi.StringArray{
+// 				pulumi.String("arn:aws:iam::123456789012:role/MyRole"),
+// 			},
+// 			BoundIamInstanceProfileArns: pulumi.StringArray{
+// 				pulumi.String("arn:aws:iam::123456789012:instance-profile/MyProfile"),
+// 			},
+// 			InferredEntityType: pulumi.String("ec2_instance"),
+// 			InferredAwsRegion:  pulumi.String("us-east-1"),
+// 			TokenTtl:           pulumi.Int(60),
+// 			TokenMaxTtl:        pulumi.Int(120),
+// 			TokenPolicies: pulumi.StringArray{
+// 				pulumi.String("default"),
+// 				pulumi.String("dev"),
+// 				pulumi.String("prod"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -84,9 +81,7 @@ import (
 // AWS auth backend roles can be imported using `auth/`, the `backend` path, `/role/`, and the `role` name e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:aws/authBackendRole:AuthBackendRole example auth/aws/role/test-role
-//
+//  $ pulumi import vault:aws/authBackendRole:AuthBackendRole example auth/aws/role/test-role
 // ```
 type AuthBackendRole struct {
 	pulumi.CustomResourceState
@@ -808,7 +803,7 @@ func (i *AuthBackendRole) ToAuthBackendRoleOutputWithContext(ctx context.Context
 // AuthBackendRoleArrayInput is an input type that accepts AuthBackendRoleArray and AuthBackendRoleArrayOutput values.
 // You can construct a concrete instance of `AuthBackendRoleArrayInput` via:
 //
-//	AuthBackendRoleArray{ AuthBackendRoleArgs{...} }
+//          AuthBackendRoleArray{ AuthBackendRoleArgs{...} }
 type AuthBackendRoleArrayInput interface {
 	pulumi.Input
 
@@ -833,7 +828,7 @@ func (i AuthBackendRoleArray) ToAuthBackendRoleArrayOutputWithContext(ctx contex
 // AuthBackendRoleMapInput is an input type that accepts AuthBackendRoleMap and AuthBackendRoleMapOutput values.
 // You can construct a concrete instance of `AuthBackendRoleMapInput` via:
 //
-//	AuthBackendRoleMap{ "key": AuthBackendRoleArgs{...} }
+//          AuthBackendRoleMap{ "key": AuthBackendRoleArgs{...} }
 type AuthBackendRoleMapInput interface {
 	pulumi.Input
 

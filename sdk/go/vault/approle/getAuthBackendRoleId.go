@@ -18,26 +18,23 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/appRole"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/appRole"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			role, err := appRole.GetAuthBackendRoleId(ctx, &approle.GetAuthBackendRoleIdArgs{
-//				Backend:  pulumi.StringRef("my-approle-backend"),
-//				RoleName: "my-role",
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			ctx.Export("role-id", role.RoleId)
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		role, err := appRole.GetAuthBackendRoleId(ctx, &approle.GetAuthBackendRoleIdArgs{
+// 			Backend:  pulumi.StringRef("my-approle-backend"),
+// 			RoleName: "my-role",
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		ctx.Export("role-id", role.RoleId)
+// 		return nil
+// 	})
+// }
 // ```
 func GetAuthBackendRoleId(ctx *pulumi.Context, args *GetAuthBackendRoleIdArgs, opts ...pulumi.InvokeOption) (*GetAuthBackendRoleIdResult, error) {
 	var rv GetAuthBackendRoleIdResult

@@ -19,59 +19,56 @@ import (
 // package main
 //
 // import (
+// 	"io/ioutil"
 //
-//	"io/ioutil"
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kubernetes"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kubernetes"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := ioutil.ReadFile(path)
-//		if err != nil {
-//			panic(err.Error())
-//		}
-//		return pulumi.String(string(data))
-//	}
+// func readFileOrPanic(path string) pulumi.StringPtrInput {
+// 	data, err := ioutil.ReadFile(path)
+// 	if err != nil {
+// 		panic(err.Error())
+// 	}
+// 	return pulumi.String(string(data))
+// }
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			config, err := kubernetes.NewSecretBackend(ctx, "config", &kubernetes.SecretBackendArgs{
-//				Path:              pulumi.String("kubernetes"),
-//				Description:       pulumi.String("kubernetes secrets engine description"),
-//				KubernetesHost:    pulumi.String("https://127.0.0.1:61233"),
-//				KubernetesCaCert:  readFileOrPanic("/path/to/cert"),
-//				ServiceAccountJwt: readFileOrPanic("/path/to/token"),
-//				DisableLocalCaJwt: pulumi.Bool(false),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = kubernetes.NewSecretBackendRole(ctx, "sa-example", &kubernetes.SecretBackendRoleArgs{
-//				Backend: config.Path,
-//				AllowedKubernetesNamespaces: pulumi.StringArray{
-//					pulumi.String("*"),
-//				},
-//				TokenMaxTtl:        pulumi.Int(43200),
-//				TokenDefaultTtl:    pulumi.Int(21600),
-//				ServiceAccountName: pulumi.String("test-service-account-with-generated-token"),
-//				ExtraLabels: pulumi.StringMap{
-//					"id":   pulumi.String("abc123"),
-//					"name": pulumi.String("some_name"),
-//				},
-//				ExtraAnnotations: pulumi.StringMap{
-//					"env":      pulumi.String("development"),
-//					"location": pulumi.String("earth"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		config, err := kubernetes.NewSecretBackend(ctx, "config", &kubernetes.SecretBackendArgs{
+// 			Path:              pulumi.String("kubernetes"),
+// 			Description:       pulumi.String("kubernetes secrets engine description"),
+// 			KubernetesHost:    pulumi.String("https://127.0.0.1:61233"),
+// 			KubernetesCaCert:  readFileOrPanic("/path/to/cert"),
+// 			ServiceAccountJwt: readFileOrPanic("/path/to/token"),
+// 			DisableLocalCaJwt: pulumi.Bool(false),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = kubernetes.NewSecretBackendRole(ctx, "sa-example", &kubernetes.SecretBackendRoleArgs{
+// 			Backend: config.Path,
+// 			AllowedKubernetesNamespaces: pulumi.StringArray{
+// 				pulumi.String("*"),
+// 			},
+// 			TokenMaxTtl:        pulumi.Int(43200),
+// 			TokenDefaultTtl:    pulumi.Int(21600),
+// 			ServiceAccountName: pulumi.String("test-service-account-with-generated-token"),
+// 			ExtraLabels: pulumi.StringMap{
+// 				"id":   pulumi.String("abc123"),
+// 				"name": pulumi.String("some_name"),
+// 			},
+// 			ExtraAnnotations: pulumi.StringMap{
+// 				"env":      pulumi.String("development"),
+// 				"location": pulumi.String("earth"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // Example using `kubernetesRoleName` mode:
@@ -80,59 +77,56 @@ import (
 // package main
 //
 // import (
+// 	"io/ioutil"
 //
-//	"io/ioutil"
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kubernetes"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kubernetes"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := ioutil.ReadFile(path)
-//		if err != nil {
-//			panic(err.Error())
-//		}
-//		return pulumi.String(string(data))
-//	}
+// func readFileOrPanic(path string) pulumi.StringPtrInput {
+// 	data, err := ioutil.ReadFile(path)
+// 	if err != nil {
+// 		panic(err.Error())
+// 	}
+// 	return pulumi.String(string(data))
+// }
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			config, err := kubernetes.NewSecretBackend(ctx, "config", &kubernetes.SecretBackendArgs{
-//				Path:              pulumi.String("kubernetes"),
-//				Description:       pulumi.String("kubernetes secrets engine description"),
-//				KubernetesHost:    pulumi.String("https://127.0.0.1:61233"),
-//				KubernetesCaCert:  readFileOrPanic("/path/to/cert"),
-//				ServiceAccountJwt: readFileOrPanic("/path/to/token"),
-//				DisableLocalCaJwt: pulumi.Bool(false),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = kubernetes.NewSecretBackendRole(ctx, "name-example", &kubernetes.SecretBackendRoleArgs{
-//				Backend: config.Path,
-//				AllowedKubernetesNamespaces: pulumi.StringArray{
-//					pulumi.String("*"),
-//				},
-//				TokenMaxTtl:        pulumi.Int(43200),
-//				TokenDefaultTtl:    pulumi.Int(21600),
-//				KubernetesRoleName: pulumi.String("vault-k8s-secrets-role"),
-//				ExtraLabels: pulumi.StringMap{
-//					"id":   pulumi.String("abc123"),
-//					"name": pulumi.String("some_name"),
-//				},
-//				ExtraAnnotations: pulumi.StringMap{
-//					"env":      pulumi.String("development"),
-//					"location": pulumi.String("earth"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		config, err := kubernetes.NewSecretBackend(ctx, "config", &kubernetes.SecretBackendArgs{
+// 			Path:              pulumi.String("kubernetes"),
+// 			Description:       pulumi.String("kubernetes secrets engine description"),
+// 			KubernetesHost:    pulumi.String("https://127.0.0.1:61233"),
+// 			KubernetesCaCert:  readFileOrPanic("/path/to/cert"),
+// 			ServiceAccountJwt: readFileOrPanic("/path/to/token"),
+// 			DisableLocalCaJwt: pulumi.Bool(false),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = kubernetes.NewSecretBackendRole(ctx, "name-example", &kubernetes.SecretBackendRoleArgs{
+// 			Backend: config.Path,
+// 			AllowedKubernetesNamespaces: pulumi.StringArray{
+// 				pulumi.String("*"),
+// 			},
+// 			TokenMaxTtl:        pulumi.Int(43200),
+// 			TokenDefaultTtl:    pulumi.Int(21600),
+// 			KubernetesRoleName: pulumi.String("vault-k8s-secrets-role"),
+// 			ExtraLabels: pulumi.StringMap{
+// 				"id":   pulumi.String("abc123"),
+// 				"name": pulumi.String("some_name"),
+// 			},
+// 			ExtraAnnotations: pulumi.StringMap{
+// 				"env":      pulumi.String("development"),
+// 				"location": pulumi.String("earth"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // Example using `generatedRoleRules` mode:
@@ -141,61 +135,58 @@ import (
 // package main
 //
 // import (
+// 	"fmt"
+// 	"io/ioutil"
 //
-//	"fmt"
-//	"io/ioutil"
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kubernetes"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kubernetes"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := ioutil.ReadFile(path)
-//		if err != nil {
-//			panic(err.Error())
-//		}
-//		return pulumi.String(string(data))
-//	}
+// func readFileOrPanic(path string) pulumi.StringPtrInput {
+// 	data, err := ioutil.ReadFile(path)
+// 	if err != nil {
+// 		panic(err.Error())
+// 	}
+// 	return pulumi.String(string(data))
+// }
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			config, err := kubernetes.NewSecretBackend(ctx, "config", &kubernetes.SecretBackendArgs{
-//				Path:              pulumi.String("kubernetes"),
-//				Description:       pulumi.String("kubernetes secrets engine description"),
-//				KubernetesHost:    pulumi.String("https://127.0.0.1:61233"),
-//				KubernetesCaCert:  readFileOrPanic("/path/to/cert"),
-//				ServiceAccountJwt: readFileOrPanic("/path/to/token"),
-//				DisableLocalCaJwt: pulumi.Bool(false),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = kubernetes.NewSecretBackendRole(ctx, "rules-example", &kubernetes.SecretBackendRoleArgs{
-//				Backend: config.Path,
-//				AllowedKubernetesNamespaces: pulumi.StringArray{
-//					pulumi.String("*"),
-//				},
-//				TokenMaxTtl:        pulumi.Int(43200),
-//				TokenDefaultTtl:    pulumi.Int(21600),
-//				KubernetesRoleType: pulumi.String("Role"),
-//				GeneratedRoleRules: pulumi.String(fmt.Sprintf("rules:\n- apiGroups: [\"\"]\n  resources: [\"pods\"]\n  verbs: [\"list\"]\n")),
-//				ExtraLabels: pulumi.StringMap{
-//					"id":   pulumi.String("abc123"),
-//					"name": pulumi.String("some_name"),
-//				},
-//				ExtraAnnotations: pulumi.StringMap{
-//					"env":      pulumi.String("development"),
-//					"location": pulumi.String("earth"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		config, err := kubernetes.NewSecretBackend(ctx, "config", &kubernetes.SecretBackendArgs{
+// 			Path:              pulumi.String("kubernetes"),
+// 			Description:       pulumi.String("kubernetes secrets engine description"),
+// 			KubernetesHost:    pulumi.String("https://127.0.0.1:61233"),
+// 			KubernetesCaCert:  readFileOrPanic("/path/to/cert"),
+// 			ServiceAccountJwt: readFileOrPanic("/path/to/token"),
+// 			DisableLocalCaJwt: pulumi.Bool(false),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = kubernetes.NewSecretBackendRole(ctx, "rules-example", &kubernetes.SecretBackendRoleArgs{
+// 			Backend: config.Path,
+// 			AllowedKubernetesNamespaces: pulumi.StringArray{
+// 				pulumi.String("*"),
+// 			},
+// 			TokenMaxTtl:        pulumi.Int(43200),
+// 			TokenDefaultTtl:    pulumi.Int(21600),
+// 			KubernetesRoleType: pulumi.String("Role"),
+// 			GeneratedRoleRules: pulumi.String(fmt.Sprintf("rules:\n- apiGroups: [\"\"]\n  resources: [\"pods\"]\n  verbs: [\"list\"]\n")),
+// 			ExtraLabels: pulumi.StringMap{
+// 				"id":   pulumi.String("abc123"),
+// 				"name": pulumi.String("some_name"),
+// 			},
+// 			ExtraAnnotations: pulumi.StringMap{
+// 				"env":      pulumi.String("development"),
+// 				"location": pulumi.String("earth"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -203,9 +194,7 @@ import (
 // The Kubernetes secret backend role can be imported using the full path to the role of the form`<backend_path>/roles/<role_name>` e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:kubernetes/secretBackendRole:SecretBackendRole example kubernetes kubernetes/roles/example-role
-//
+//  $ pulumi import vault:kubernetes/secretBackendRole:SecretBackendRole example kubernetes kubernetes/roles/example-role
 // ```
 type SecretBackendRole struct {
 	pulumi.CustomResourceState
@@ -504,7 +493,7 @@ func (i *SecretBackendRole) ToSecretBackendRoleOutputWithContext(ctx context.Con
 // SecretBackendRoleArrayInput is an input type that accepts SecretBackendRoleArray and SecretBackendRoleArrayOutput values.
 // You can construct a concrete instance of `SecretBackendRoleArrayInput` via:
 //
-//	SecretBackendRoleArray{ SecretBackendRoleArgs{...} }
+//          SecretBackendRoleArray{ SecretBackendRoleArgs{...} }
 type SecretBackendRoleArrayInput interface {
 	pulumi.Input
 
@@ -529,7 +518,7 @@ func (i SecretBackendRoleArray) ToSecretBackendRoleArrayOutputWithContext(ctx co
 // SecretBackendRoleMapInput is an input type that accepts SecretBackendRoleMap and SecretBackendRoleMapOutput values.
 // You can construct a concrete instance of `SecretBackendRoleMapInput` via:
 //
-//	SecretBackendRoleMap{ "key": SecretBackendRoleArgs{...} }
+//          SecretBackendRoleMap{ "key": SecretBackendRoleArgs{...} }
 type SecretBackendRoleMapInput interface {
 	pulumi.Input
 

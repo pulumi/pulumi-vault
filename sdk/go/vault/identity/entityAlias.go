@@ -17,25 +17,22 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := identity.NewEntityAlias(ctx, "test", &identity.EntityAliasArgs{
-//				CanonicalId:   pulumi.String("49877D63-07AD-4B85-BDA8-B61626C477E8"),
-//				MountAccessor: pulumi.String("token_1f2bd5"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := identity.NewEntityAlias(ctx, "test", &identity.EntityAliasArgs{
+// 			CanonicalId:   pulumi.String("49877D63-07AD-4B85-BDA8-B61626C477E8"),
+// 			MountAccessor: pulumi.String("token_1f2bd5"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -43,9 +40,7 @@ import (
 // Identity entity alias can be imported using the `id`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:identity/entityAlias:EntityAlias test "3856fb4d-3c91-dcaf-2401-68f446796bfb"
-//
+//  $ pulumi import vault:identity/entityAlias:EntityAlias test "3856fb4d-3c91-dcaf-2401-68f446796bfb"
 // ```
 type EntityAlias struct {
 	pulumi.CustomResourceState
@@ -194,7 +189,7 @@ func (i *EntityAlias) ToEntityAliasOutputWithContext(ctx context.Context) Entity
 // EntityAliasArrayInput is an input type that accepts EntityAliasArray and EntityAliasArrayOutput values.
 // You can construct a concrete instance of `EntityAliasArrayInput` via:
 //
-//	EntityAliasArray{ EntityAliasArgs{...} }
+//          EntityAliasArray{ EntityAliasArgs{...} }
 type EntityAliasArrayInput interface {
 	pulumi.Input
 
@@ -219,7 +214,7 @@ func (i EntityAliasArray) ToEntityAliasArrayOutputWithContext(ctx context.Contex
 // EntityAliasMapInput is an input type that accepts EntityAliasMap and EntityAliasMapOutput values.
 // You can construct a concrete instance of `EntityAliasMapInput` via:
 //
-//	EntityAliasMap{ "key": EntityAliasArgs{...} }
+//          EntityAliasMap{ "key": EntityAliasArgs{...} }
 type EntityAliasMapInput interface {
 	pulumi.Input
 

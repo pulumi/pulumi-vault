@@ -17,39 +17,36 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/database"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/database"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			db, err := vault.NewMount(ctx, "db", &vault.MountArgs{
-//				Path: pulumi.String("postgres"),
-//				Type: pulumi.String("database"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = database.NewSecretBackendConnection(ctx, "postgres", &database.SecretBackendConnectionArgs{
-//				Backend: db.Path,
-//				AllowedRoles: pulumi.StringArray{
-//					pulumi.String("dev"),
-//					pulumi.String("prod"),
-//				},
-//				Postgresql: &database.SecretBackendConnectionPostgresqlArgs{
-//					ConnectionUrl: pulumi.String("postgres://username:password@host:port/database"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		db, err := vault.NewMount(ctx, "db", &vault.MountArgs{
+// 			Path: pulumi.String("postgres"),
+// 			Type: pulumi.String("database"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = database.NewSecretBackendConnection(ctx, "postgres", &database.SecretBackendConnectionArgs{
+// 			Backend: db.Path,
+// 			AllowedRoles: pulumi.StringArray{
+// 				pulumi.String("dev"),
+// 				pulumi.String("prod"),
+// 			},
+// 			Postgresql: &database.SecretBackendConnectionPostgresqlArgs{
+// 				ConnectionUrl: pulumi.String("postgres://username:password@host:port/database"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -57,9 +54,7 @@ import (
 // Database secret backend connections can be imported using the `backend`, `/config/`, and the `name` e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:database/secretBackendConnection:SecretBackendConnection example postgres/config/postgres
-//
+//  $ pulumi import vault:database/secretBackendConnection:SecretBackendConnection example postgres/config/postgres
 // ```
 type SecretBackendConnection struct {
 	pulumi.CustomResourceState
@@ -415,7 +410,7 @@ func (i *SecretBackendConnection) ToSecretBackendConnectionOutputWithContext(ctx
 // SecretBackendConnectionArrayInput is an input type that accepts SecretBackendConnectionArray and SecretBackendConnectionArrayOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionArrayInput` via:
 //
-//	SecretBackendConnectionArray{ SecretBackendConnectionArgs{...} }
+//          SecretBackendConnectionArray{ SecretBackendConnectionArgs{...} }
 type SecretBackendConnectionArrayInput interface {
 	pulumi.Input
 
@@ -440,7 +435,7 @@ func (i SecretBackendConnectionArray) ToSecretBackendConnectionArrayOutputWithCo
 // SecretBackendConnectionMapInput is an input type that accepts SecretBackendConnectionMap and SecretBackendConnectionMapOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionMapInput` via:
 //
-//	SecretBackendConnectionMap{ "key": SecretBackendConnectionArgs{...} }
+//          SecretBackendConnectionMap{ "key": SecretBackendConnectionArgs{...} }
 type SecretBackendConnectionMapInput interface {
 	pulumi.Input
 

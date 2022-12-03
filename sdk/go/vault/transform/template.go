@@ -170,7 +170,7 @@ func (i *Template) ToTemplateOutputWithContext(ctx context.Context) TemplateOutp
 // TemplateArrayInput is an input type that accepts TemplateArray and TemplateArrayOutput values.
 // You can construct a concrete instance of `TemplateArrayInput` via:
 //
-//	TemplateArray{ TemplateArgs{...} }
+//          TemplateArray{ TemplateArgs{...} }
 type TemplateArrayInput interface {
 	pulumi.Input
 
@@ -195,7 +195,7 @@ func (i TemplateArray) ToTemplateArrayOutputWithContext(ctx context.Context) Tem
 // TemplateMapInput is an input type that accepts TemplateMap and TemplateMapOutput values.
 // You can construct a concrete instance of `TemplateMapInput` via:
 //
-//	TemplateMap{ "key": TemplateArgs{...} }
+//          TemplateMap{ "key": TemplateArgs{...} }
 type TemplateMapInput interface {
 	pulumi.Input
 
@@ -236,14 +236,14 @@ func (o TemplateOutput) Alphabet() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Template) pulumi.StringPtrOutput { return v.Alphabet }).(pulumi.StringPtrOutput)
 }
 
-//   - Optional mapping of name to regular expression template, used to customize
-//     the decoded output. (requires Vault Enterprise 1.9+)
+// - Optional mapping of name to regular expression template, used to customize
+//   the decoded output. (requires Vault Enterprise 1.9+)
 func (o TemplateOutput) DecodeFormats() pulumi.MapOutput {
 	return o.ApplyT(func(v *Template) pulumi.MapOutput { return v.DecodeFormats }).(pulumi.MapOutput)
 }
 
-//   - The regular expression template used to format encoded values.
-//     (requires Vault Enterprise 1.9+)
+// - The regular expression template used to format encoded values.
+//   (requires Vault Enterprise 1.9+)
 func (o TemplateOutput) EncodeFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Template) pulumi.StringPtrOutput { return v.EncodeFormat }).(pulumi.StringPtrOutput)
 }

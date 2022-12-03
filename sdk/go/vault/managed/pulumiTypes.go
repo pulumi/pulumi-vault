@@ -52,7 +52,7 @@ type KeysAw struct {
 // KeysAwInput is an input type that accepts KeysAwArgs and KeysAwOutput values.
 // You can construct a concrete instance of `KeysAwInput` via:
 //
-//	KeysAwArgs{...}
+//          KeysAwArgs{...}
 type KeysAwInput interface {
 	pulumi.Input
 
@@ -114,7 +114,7 @@ func (i KeysAwArgs) ToKeysAwOutputWithContext(ctx context.Context) KeysAwOutput 
 // KeysAwArrayInput is an input type that accepts KeysAwArray and KeysAwArrayOutput values.
 // You can construct a concrete instance of `KeysAwArrayInput` via:
 //
-//	KeysAwArray{ KeysAwArgs{...} }
+//          KeysAwArray{ KeysAwArgs{...} }
 type KeysAwArrayInput interface {
 	pulumi.Input
 
@@ -291,7 +291,7 @@ type KeysAzure struct {
 // KeysAzureInput is an input type that accepts KeysAzureArgs and KeysAzureOutput values.
 // You can construct a concrete instance of `KeysAzureInput` via:
 //
-//	KeysAzureArgs{...}
+//          KeysAzureArgs{...}
 type KeysAzureInput interface {
 	pulumi.Input
 
@@ -354,7 +354,7 @@ func (i KeysAzureArgs) ToKeysAzureOutputWithContext(ctx context.Context) KeysAzu
 // KeysAzureArrayInput is an input type that accepts KeysAzureArray and KeysAzureArrayOutput values.
 // You can construct a concrete instance of `KeysAzureArrayInput` via:
 //
-//	KeysAzureArray{ KeysAzureArgs{...} }
+//          KeysAzureArray{ KeysAzureArgs{...} }
 type KeysAzureArrayInput interface {
 	pulumi.Input
 
@@ -542,7 +542,7 @@ type KeysPkc struct {
 // KeysPkcInput is an input type that accepts KeysPkcArgs and KeysPkcOutput values.
 // You can construct a concrete instance of `KeysPkcInput` via:
 //
-//	KeysPkcArgs{...}
+//          KeysPkcArgs{...}
 type KeysPkcInput interface {
 	pulumi.Input
 
@@ -612,7 +612,7 @@ func (i KeysPkcArgs) ToKeysPkcOutputWithContext(ctx context.Context) KeysPkcOutp
 // KeysPkcArrayInput is an input type that accepts KeysPkcArray and KeysPkcArrayOutput values.
 // You can construct a concrete instance of `KeysPkcArrayInput` via:
 //
-//	KeysPkcArray{ KeysPkcArgs{...} }
+//          KeysPkcArray{ KeysPkcArgs{...} }
 type KeysPkcArrayInput interface {
 	pulumi.Input
 

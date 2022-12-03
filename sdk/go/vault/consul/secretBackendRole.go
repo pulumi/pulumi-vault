@@ -18,36 +18,33 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/consul"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/consul"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			test, err := consul.NewSecretBackend(ctx, "test", &consul.SecretBackendArgs{
-//				Path:        pulumi.String("consul"),
-//				Description: pulumi.String("Manages the Consul backend"),
-//				Address:     pulumi.String("127.0.0.1:8500"),
-//				Token:       pulumi.String("4240861b-ce3d-8530-115a-521ff070dd29"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = consul.NewSecretBackendRole(ctx, "example", &consul.SecretBackendRoleArgs{
-//				Backend: test.Path,
-//				ConsulPolicies: pulumi.StringArray{
-//					pulumi.String("example-policy"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		test, err := consul.NewSecretBackend(ctx, "test", &consul.SecretBackendArgs{
+// 			Path:        pulumi.String("consul"),
+// 			Description: pulumi.String("Manages the Consul backend"),
+// 			Address:     pulumi.String("127.0.0.1:8500"),
+// 			Token:       pulumi.String("4240861b-ce3d-8530-115a-521ff070dd29"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = consul.NewSecretBackendRole(ctx, "example", &consul.SecretBackendRoleArgs{
+// 			Backend: test.Path,
+// 			ConsulPolicies: pulumi.StringArray{
+// 				pulumi.String("example-policy"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 // ## Note About Required Arguments
 //
@@ -60,9 +57,7 @@ import (
 // Consul secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:consul/secretBackendRole:SecretBackendRole example consul/roles/my-role
-//
+//  $ pulumi import vault:consul/secretBackendRole:SecretBackendRole example consul/roles/my-role
 // ```
 type SecretBackendRole struct {
 	pulumi.CustomResourceState
@@ -345,7 +340,7 @@ func (i *SecretBackendRole) ToSecretBackendRoleOutputWithContext(ctx context.Con
 // SecretBackendRoleArrayInput is an input type that accepts SecretBackendRoleArray and SecretBackendRoleArrayOutput values.
 // You can construct a concrete instance of `SecretBackendRoleArrayInput` via:
 //
-//	SecretBackendRoleArray{ SecretBackendRoleArgs{...} }
+//          SecretBackendRoleArray{ SecretBackendRoleArgs{...} }
 type SecretBackendRoleArrayInput interface {
 	pulumi.Input
 
@@ -370,7 +365,7 @@ func (i SecretBackendRoleArray) ToSecretBackendRoleArrayOutputWithContext(ctx co
 // SecretBackendRoleMapInput is an input type that accepts SecretBackendRoleMap and SecretBackendRoleMapOutput values.
 // You can construct a concrete instance of `SecretBackendRoleMapInput` via:
 //
-//	SecretBackendRoleMap{ "key": SecretBackendRoleArgs{...} }
+//          SecretBackendRoleMap{ "key": SecretBackendRoleArgs{...} }
 type SecretBackendRoleMapInput interface {
 	pulumi.Input
 

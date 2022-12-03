@@ -23,24 +23,21 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := identity.NewOidc(ctx, "server", &identity.OidcArgs{
-//				Issuer: pulumi.String("https://www.acme.com"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := identity.NewOidc(ctx, "server", &identity.OidcArgs{
+// 			Issuer: pulumi.String("https://www.acme.com"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 type Oidc struct {
 	pulumi.CustomResourceState
@@ -168,7 +165,7 @@ func (i *Oidc) ToOidcOutputWithContext(ctx context.Context) OidcOutput {
 // OidcArrayInput is an input type that accepts OidcArray and OidcArrayOutput values.
 // You can construct a concrete instance of `OidcArrayInput` via:
 //
-//	OidcArray{ OidcArgs{...} }
+//          OidcArray{ OidcArgs{...} }
 type OidcArrayInput interface {
 	pulumi.Input
 
@@ -193,7 +190,7 @@ func (i OidcArray) ToOidcArrayOutputWithContext(ctx context.Context) OidcArrayOu
 // OidcMapInput is an input type that accepts OidcMap and OidcMapOutput values.
 // You can construct a concrete instance of `OidcMapInput` via:
 //
-//	OidcMap{ "key": OidcArgs{...} }
+//          OidcMap{ "key": OidcArgs{...} }
 type OidcMapInput interface {
 	pulumi.Input
 

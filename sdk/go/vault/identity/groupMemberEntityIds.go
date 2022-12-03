@@ -20,42 +20,39 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			internal, err := identity.NewGroup(ctx, "internal", &identity.GroupArgs{
-//				Type:                    pulumi.String("internal"),
-//				ExternalMemberEntityIds: pulumi.Bool(true),
-//				Metadata: pulumi.StringMap{
-//					"version": pulumi.String("2"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			user, err := identity.NewEntity(ctx, "user", nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = identity.NewGroupMemberEntityIds(ctx, "members", &identity.GroupMemberEntityIdsArgs{
-//				Exclusive: pulumi.Bool(true),
-//				MemberEntityIds: pulumi.StringArray{
-//					user.ID(),
-//				},
-//				GroupId: internal.ID(),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		internal, err := identity.NewGroup(ctx, "internal", &identity.GroupArgs{
+// 			Type:                    pulumi.String("internal"),
+// 			ExternalMemberEntityIds: pulumi.Bool(true),
+// 			Metadata: pulumi.StringMap{
+// 				"version": pulumi.String("2"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		user, err := identity.NewEntity(ctx, "user", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = identity.NewGroupMemberEntityIds(ctx, "members", &identity.GroupMemberEntityIdsArgs{
+// 			Exclusive: pulumi.Bool(true),
+// 			MemberEntityIds: pulumi.StringArray{
+// 				user.ID(),
+// 			},
+// 			GroupId: internal.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 // ### Non-exclusive Member Entities
 //
@@ -63,61 +60,58 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			internal, err := identity.NewGroup(ctx, "internal", &identity.GroupArgs{
-//				Type:                    pulumi.String("internal"),
-//				ExternalMemberEntityIds: pulumi.Bool(true),
-//				Metadata: pulumi.StringMap{
-//					"version": pulumi.String("2"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			testUser, err := identity.NewEntity(ctx, "testUser", nil)
-//			if err != nil {
-//				return err
-//			}
-//			secondTestUser, err := identity.NewEntity(ctx, "secondTestUser", nil)
-//			if err != nil {
-//				return err
-//			}
-//			devUser, err := identity.NewEntity(ctx, "devUser", nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = identity.NewGroupMemberEntityIds(ctx, "test", &identity.GroupMemberEntityIdsArgs{
-//				MemberEntityIds: pulumi.StringArray{
-//					testUser.ID(),
-//					secondTestUser.ID(),
-//				},
-//				Exclusive: pulumi.Bool(false),
-//				GroupId:   internal.ID(),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = identity.NewGroupMemberEntityIds(ctx, "others", &identity.GroupMemberEntityIdsArgs{
-//				MemberEntityIds: pulumi.StringArray{
-//					devUser.ID(),
-//				},
-//				Exclusive: pulumi.Bool(false),
-//				GroupId:   internal.ID(),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		internal, err := identity.NewGroup(ctx, "internal", &identity.GroupArgs{
+// 			Type:                    pulumi.String("internal"),
+// 			ExternalMemberEntityIds: pulumi.Bool(true),
+// 			Metadata: pulumi.StringMap{
+// 				"version": pulumi.String("2"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		testUser, err := identity.NewEntity(ctx, "testUser", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		secondTestUser, err := identity.NewEntity(ctx, "secondTestUser", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		devUser, err := identity.NewEntity(ctx, "devUser", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = identity.NewGroupMemberEntityIds(ctx, "test", &identity.GroupMemberEntityIdsArgs{
+// 			MemberEntityIds: pulumi.StringArray{
+// 				testUser.ID(),
+// 				secondTestUser.ID(),
+// 			},
+// 			Exclusive: pulumi.Bool(false),
+// 			GroupId:   internal.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = identity.NewGroupMemberEntityIds(ctx, "others", &identity.GroupMemberEntityIdsArgs{
+// 			MemberEntityIds: pulumi.StringArray{
+// 				devUser.ID(),
+// 			},
+// 			Exclusive: pulumi.Bool(false),
+// 			GroupId:   internal.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 type GroupMemberEntityIds struct {
 	pulumi.CustomResourceState
@@ -274,7 +268,7 @@ func (i *GroupMemberEntityIds) ToGroupMemberEntityIdsOutputWithContext(ctx conte
 // GroupMemberEntityIdsArrayInput is an input type that accepts GroupMemberEntityIdsArray and GroupMemberEntityIdsArrayOutput values.
 // You can construct a concrete instance of `GroupMemberEntityIdsArrayInput` via:
 //
-//	GroupMemberEntityIdsArray{ GroupMemberEntityIdsArgs{...} }
+//          GroupMemberEntityIdsArray{ GroupMemberEntityIdsArgs{...} }
 type GroupMemberEntityIdsArrayInput interface {
 	pulumi.Input
 
@@ -299,7 +293,7 @@ func (i GroupMemberEntityIdsArray) ToGroupMemberEntityIdsArrayOutputWithContext(
 // GroupMemberEntityIdsMapInput is an input type that accepts GroupMemberEntityIdsMap and GroupMemberEntityIdsMapOutput values.
 // You can construct a concrete instance of `GroupMemberEntityIdsMapInput` via:
 //
-//	GroupMemberEntityIdsMap{ "key": GroupMemberEntityIdsArgs{...} }
+//          GroupMemberEntityIdsMap{ "key": GroupMemberEntityIdsArgs{...} }
 type GroupMemberEntityIdsMapInput interface {
 	pulumi.Input
 

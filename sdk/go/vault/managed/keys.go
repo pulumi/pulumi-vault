@@ -15,9 +15,7 @@ import (
 // Mounts can be imported using the `id` of `default`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:managed/keys:Keys keys default
-//
+//  $ pulumi import vault:managed/keys:Keys keys default
 // ```
 type Keys struct {
 	pulumi.CustomResourceState
@@ -150,7 +148,7 @@ func (i *Keys) ToKeysOutputWithContext(ctx context.Context) KeysOutput {
 // KeysArrayInput is an input type that accepts KeysArray and KeysArrayOutput values.
 // You can construct a concrete instance of `KeysArrayInput` via:
 //
-//	KeysArray{ KeysArgs{...} }
+//          KeysArray{ KeysArgs{...} }
 type KeysArrayInput interface {
 	pulumi.Input
 
@@ -175,7 +173,7 @@ func (i KeysArray) ToKeysArrayOutputWithContext(ctx context.Context) KeysArrayOu
 // KeysMapInput is an input type that accepts KeysMap and KeysMapOutput values.
 // You can construct a concrete instance of `KeysMapInput` via:
 //
-//	KeysMap{ "key": KeysArgs{...} }
+//          KeysMap{ "key": KeysArgs{...} }
 type KeysMapInput interface {
 	pulumi.Input
 

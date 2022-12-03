@@ -16,9 +16,7 @@ import (
 // AWS auth backend certificates can be imported using `auth/`, the `backend` path, `/config/certificate/`, and the `cert_name` e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:aws/authBackendCert:AuthBackendCert example auth/aws/config/certificate/my-cert
-//
+//  $ pulumi import vault:aws/authBackendCert:AuthBackendCert example auth/aws/config/certificate/my-cert
 // ```
 type AuthBackendCert struct {
 	pulumi.CustomResourceState
@@ -197,7 +195,7 @@ func (i *AuthBackendCert) ToAuthBackendCertOutputWithContext(ctx context.Context
 // AuthBackendCertArrayInput is an input type that accepts AuthBackendCertArray and AuthBackendCertArrayOutput values.
 // You can construct a concrete instance of `AuthBackendCertArrayInput` via:
 //
-//	AuthBackendCertArray{ AuthBackendCertArgs{...} }
+//          AuthBackendCertArray{ AuthBackendCertArgs{...} }
 type AuthBackendCertArrayInput interface {
 	pulumi.Input
 
@@ -222,7 +220,7 @@ func (i AuthBackendCertArray) ToAuthBackendCertArrayOutputWithContext(ctx contex
 // AuthBackendCertMapInput is an input type that accepts AuthBackendCertMap and AuthBackendCertMapOutput values.
 // You can construct a concrete instance of `AuthBackendCertMapInput` via:
 //
-//	AuthBackendCertMap{ "key": AuthBackendCertArgs{...} }
+//          AuthBackendCertMap{ "key": AuthBackendCertArgs{...} }
 type AuthBackendCertMapInput interface {
 	pulumi.Input
 

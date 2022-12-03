@@ -19,31 +19,28 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ssh"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ssh"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			example, err := vault.NewMount(ctx, "example", &vault.MountArgs{
-//				Type: pulumi.String("ssh"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = ssh.NewSecretBackendCa(ctx, "foo", &ssh.SecretBackendCaArgs{
-//				Backend: example.Path,
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		example, err := vault.NewMount(ctx, "example", &vault.MountArgs{
+// 			Type: pulumi.String("ssh"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = ssh.NewSecretBackendCa(ctx, "foo", &ssh.SecretBackendCaArgs{
+// 			Backend: example.Path,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -51,9 +48,7 @@ import (
 // SSH secret backend CAs can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:ssh/secretBackendCa:SecretBackendCa foo ssh
-//
+//  $ pulumi import vault:ssh/secretBackendCa:SecretBackendCa foo ssh
 // ```
 type SecretBackendCa struct {
 	pulumi.CustomResourceState
@@ -203,7 +198,7 @@ func (i *SecretBackendCa) ToSecretBackendCaOutputWithContext(ctx context.Context
 // SecretBackendCaArrayInput is an input type that accepts SecretBackendCaArray and SecretBackendCaArrayOutput values.
 // You can construct a concrete instance of `SecretBackendCaArrayInput` via:
 //
-//	SecretBackendCaArray{ SecretBackendCaArgs{...} }
+//          SecretBackendCaArray{ SecretBackendCaArgs{...} }
 type SecretBackendCaArrayInput interface {
 	pulumi.Input
 
@@ -228,7 +223,7 @@ func (i SecretBackendCaArray) ToSecretBackendCaArrayOutputWithContext(ctx contex
 // SecretBackendCaMapInput is an input type that accepts SecretBackendCaMap and SecretBackendCaMapOutput values.
 // You can construct a concrete instance of `SecretBackendCaMapInput` via:
 //
-//	SecretBackendCaMap{ "key": SecretBackendCaArgs{...} }
+//          SecretBackendCaMap{ "key": SecretBackendCaArgs{...} }
 type SecretBackendCaMapInput interface {
 	pulumi.Input
 

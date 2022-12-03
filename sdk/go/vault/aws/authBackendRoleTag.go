@@ -208,7 +208,7 @@ func (i *AuthBackendRoleTag) ToAuthBackendRoleTagOutputWithContext(ctx context.C
 // AuthBackendRoleTagArrayInput is an input type that accepts AuthBackendRoleTagArray and AuthBackendRoleTagArrayOutput values.
 // You can construct a concrete instance of `AuthBackendRoleTagArrayInput` via:
 //
-//	AuthBackendRoleTagArray{ AuthBackendRoleTagArgs{...} }
+//          AuthBackendRoleTagArray{ AuthBackendRoleTagArgs{...} }
 type AuthBackendRoleTagArrayInput interface {
 	pulumi.Input
 
@@ -233,7 +233,7 @@ func (i AuthBackendRoleTagArray) ToAuthBackendRoleTagArrayOutputWithContext(ctx 
 // AuthBackendRoleTagMapInput is an input type that accepts AuthBackendRoleTagMap and AuthBackendRoleTagMapOutput values.
 // You can construct a concrete instance of `AuthBackendRoleTagMapInput` via:
 //
-//	AuthBackendRoleTagMap{ "key": AuthBackendRoleTagArgs{...} }
+//          AuthBackendRoleTagMap{ "key": AuthBackendRoleTagArgs{...} }
 type AuthBackendRoleTagMapInput interface {
 	pulumi.Input
 

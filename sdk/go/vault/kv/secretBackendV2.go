@@ -23,39 +23,36 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kv"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kv"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			kvv2, err := vault.NewMount(ctx, "kvv2", &vault.MountArgs{
-//				Path: pulumi.String("kvv2"),
-//				Type: pulumi.String("kv"),
-//				Options: pulumi.AnyMap{
-//					"version": pulumi.Any("2"),
-//				},
-//				Description: pulumi.String("KV Version 2 secret engine mount"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = kv.NewSecretBackendV2(ctx, "config", &kv.SecretBackendV2Args{
-//				Mount:              kvv2.Path,
-//				MaxVersions:        pulumi.Int(5),
-//				DeleteVersionAfter: pulumi.Int(12600),
-//				CasRequired:        pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		kvv2, err := vault.NewMount(ctx, "kvv2", &vault.MountArgs{
+// 			Path: pulumi.String("kvv2"),
+// 			Type: pulumi.String("kv"),
+// 			Options: pulumi.AnyMap{
+// 				"version": pulumi.Any("2"),
+// 			},
+// 			Description: pulumi.String("KV Version 2 secret engine mount"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = kv.NewSecretBackendV2(ctx, "config", &kv.SecretBackendV2Args{
+// 			Mount:              kvv2.Path,
+// 			MaxVersions:        pulumi.Int(5),
+// 			DeleteVersionAfter: pulumi.Int(12600),
+// 			CasRequired:        pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 // ## Required Vault Capabilities
 //
@@ -69,9 +66,7 @@ import (
 // The KV-V2 secret backend can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:kv/secretBackendV2:SecretBackendV2 config kvv2/config
-//
+//  $ pulumi import vault:kv/secretBackendV2:SecretBackendV2 config kvv2/config
 // ```
 type SecretBackendV2 struct {
 	pulumi.CustomResourceState
@@ -227,7 +222,7 @@ func (i *SecretBackendV2) ToSecretBackendV2OutputWithContext(ctx context.Context
 // SecretBackendV2ArrayInput is an input type that accepts SecretBackendV2Array and SecretBackendV2ArrayOutput values.
 // You can construct a concrete instance of `SecretBackendV2ArrayInput` via:
 //
-//	SecretBackendV2Array{ SecretBackendV2Args{...} }
+//          SecretBackendV2Array{ SecretBackendV2Args{...} }
 type SecretBackendV2ArrayInput interface {
 	pulumi.Input
 
@@ -252,7 +247,7 @@ func (i SecretBackendV2Array) ToSecretBackendV2ArrayOutputWithContext(ctx contex
 // SecretBackendV2MapInput is an input type that accepts SecretBackendV2Map and SecretBackendV2MapOutput values.
 // You can construct a concrete instance of `SecretBackendV2MapInput` via:
 //
-//	SecretBackendV2Map{ "key": SecretBackendV2Args{...} }
+//          SecretBackendV2Map{ "key": SecretBackendV2Args{...} }
 type SecretBackendV2MapInput interface {
 	pulumi.Input
 

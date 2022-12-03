@@ -17,35 +17,32 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/azure"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/azure"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleAuthBackend, err := vault.NewAuthBackend(ctx, "exampleAuthBackend", &vault.AuthBackendArgs{
-//				Type: pulumi.String("azure"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = azure.NewAuthBackendConfig(ctx, "exampleAuthBackendConfig", &azure.AuthBackendConfigArgs{
-//				Backend:      exampleAuthBackend.Path,
-//				TenantId:     pulumi.String("11111111-2222-3333-4444-555555555555"),
-//				ClientId:     pulumi.String("11111111-2222-3333-4444-555555555555"),
-//				ClientSecret: pulumi.String("01234567890123456789"),
-//				Resource:     pulumi.String("https://vault.hashicorp.com"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		exampleAuthBackend, err := vault.NewAuthBackend(ctx, "exampleAuthBackend", &vault.AuthBackendArgs{
+// 			Type: pulumi.String("azure"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = azure.NewAuthBackendConfig(ctx, "exampleAuthBackendConfig", &azure.AuthBackendConfigArgs{
+// 			Backend:      exampleAuthBackend.Path,
+// 			TenantId:     pulumi.String("11111111-2222-3333-4444-555555555555"),
+// 			ClientId:     pulumi.String("11111111-2222-3333-4444-555555555555"),
+// 			ClientSecret: pulumi.String("01234567890123456789"),
+// 			Resource:     pulumi.String("https://vault.hashicorp.com"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -53,9 +50,7 @@ import (
 // Azure auth backends can be imported using `auth/`, the `backend` path, and `/config` e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:azure/authBackendConfig:AuthBackendConfig example auth/azure/config
-//
+//  $ pulumi import vault:azure/authBackendConfig:AuthBackendConfig example auth/azure/config
 // ```
 type AuthBackendConfig struct {
 	pulumi.CustomResourceState
@@ -274,7 +269,7 @@ func (i *AuthBackendConfig) ToAuthBackendConfigOutputWithContext(ctx context.Con
 // AuthBackendConfigArrayInput is an input type that accepts AuthBackendConfigArray and AuthBackendConfigArrayOutput values.
 // You can construct a concrete instance of `AuthBackendConfigArrayInput` via:
 //
-//	AuthBackendConfigArray{ AuthBackendConfigArgs{...} }
+//          AuthBackendConfigArray{ AuthBackendConfigArgs{...} }
 type AuthBackendConfigArrayInput interface {
 	pulumi.Input
 
@@ -299,7 +294,7 @@ func (i AuthBackendConfigArray) ToAuthBackendConfigArrayOutputWithContext(ctx co
 // AuthBackendConfigMapInput is an input type that accepts AuthBackendConfigMap and AuthBackendConfigMapOutput values.
 // You can construct a concrete instance of `AuthBackendConfigMapInput` via:
 //
-//	AuthBackendConfigMap{ "key": AuthBackendConfigArgs{...} }
+//          AuthBackendConfigMap{ "key": AuthBackendConfigArgs{...} }
 type AuthBackendConfigMapInput interface {
 	pulumi.Input
 

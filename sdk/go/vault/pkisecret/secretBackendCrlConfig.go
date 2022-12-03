@@ -19,38 +19,35 @@ import (
 // package main
 //
 // import (
+// 	"fmt"
 //
-//	"fmt"
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			pki, err := vault.NewMount(ctx, "pki", &vault.MountArgs{
-//				Path:                   pulumi.String(fmt.Sprintf("%vs", "%")),
-//				Type:                   pulumi.String("pki"),
-//				DefaultLeaseTtlSeconds: pulumi.Int(3600),
-//				MaxLeaseTtlSeconds:     pulumi.Int(86400),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = pkiSecret.NewSecretBackendCrlConfig(ctx, "crlConfig", &pkiSecret.SecretBackendCrlConfigArgs{
-//				Backend: pki.Path,
-//				Expiry:  pulumi.String("72h"),
-//				Disable: pulumi.Bool(false),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		pki, err := vault.NewMount(ctx, "pki", &vault.MountArgs{
+// 			Path:                   pulumi.String(fmt.Sprintf("%vs", "%")),
+// 			Type:                   pulumi.String("pki"),
+// 			DefaultLeaseTtlSeconds: pulumi.Int(3600),
+// 			MaxLeaseTtlSeconds:     pulumi.Int(86400),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = pkiSecret.NewSecretBackendCrlConfig(ctx, "crlConfig", &pkiSecret.SecretBackendCrlConfigArgs{
+// 			Backend: pki.Path,
+// 			Expiry:  pulumi.String("72h"),
+// 			Disable: pulumi.Bool(false),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 type SecretBackendCrlConfig struct {
 	pulumi.CustomResourceState
@@ -186,7 +183,7 @@ func (i *SecretBackendCrlConfig) ToSecretBackendCrlConfigOutputWithContext(ctx c
 // SecretBackendCrlConfigArrayInput is an input type that accepts SecretBackendCrlConfigArray and SecretBackendCrlConfigArrayOutput values.
 // You can construct a concrete instance of `SecretBackendCrlConfigArrayInput` via:
 //
-//	SecretBackendCrlConfigArray{ SecretBackendCrlConfigArgs{...} }
+//          SecretBackendCrlConfigArray{ SecretBackendCrlConfigArgs{...} }
 type SecretBackendCrlConfigArrayInput interface {
 	pulumi.Input
 
@@ -211,7 +208,7 @@ func (i SecretBackendCrlConfigArray) ToSecretBackendCrlConfigArrayOutputWithCont
 // SecretBackendCrlConfigMapInput is an input type that accepts SecretBackendCrlConfigMap and SecretBackendCrlConfigMapOutput values.
 // You can construct a concrete instance of `SecretBackendCrlConfigMapInput` via:
 //
-//	SecretBackendCrlConfigMap{ "key": SecretBackendCrlConfigArgs{...} }
+//          SecretBackendCrlConfigMap{ "key": SecretBackendCrlConfigArgs{...} }
 type SecretBackendCrlConfigMapInput interface {
 	pulumi.Input
 

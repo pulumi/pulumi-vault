@@ -18,9 +18,7 @@ import (
 // Resource can be imported using its `uuid` field, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:identity/mfaPingid:MfaPingid example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
-//
+//  $ pulumi import vault:identity/mfaPingid:MfaPingid example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
 // ```
 type MfaPingid struct {
 	pulumi.CustomResourceState
@@ -203,7 +201,7 @@ func (i *MfaPingid) ToMfaPingidOutputWithContext(ctx context.Context) MfaPingidO
 // MfaPingidArrayInput is an input type that accepts MfaPingidArray and MfaPingidArrayOutput values.
 // You can construct a concrete instance of `MfaPingidArrayInput` via:
 //
-//	MfaPingidArray{ MfaPingidArgs{...} }
+//          MfaPingidArray{ MfaPingidArgs{...} }
 type MfaPingidArrayInput interface {
 	pulumi.Input
 
@@ -228,7 +226,7 @@ func (i MfaPingidArray) ToMfaPingidArrayOutputWithContext(ctx context.Context) M
 // MfaPingidMapInput is an input type that accepts MfaPingidMap and MfaPingidMapOutput values.
 // You can construct a concrete instance of `MfaPingidMapInput` via:
 //
-//	MfaPingidMap{ "key": MfaPingidArgs{...} }
+//          MfaPingidMap{ "key": MfaPingidArgs{...} }
 type MfaPingidMapInput interface {
 	pulumi.Input
 
