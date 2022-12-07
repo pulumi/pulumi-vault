@@ -161,6 +161,8 @@ export class AuthBackendRoleSecretId extends pulumi.CustomResource {
             resourceInputs["wrappingToken"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         const secretOpts = { additionalSecretOutputs: ["secretId", "wrappingToken"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(AuthBackendRoleSecretId.__pulumiType, name, resourceInputs, opts);
