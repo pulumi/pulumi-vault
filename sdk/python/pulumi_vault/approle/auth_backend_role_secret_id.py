@@ -521,6 +521,8 @@ class AuthBackendRoleSecretId(pulumi.CustomResource):
             __props__.__dict__["accessor"] = None
             __props__.__dict__["wrapping_accessor"] = None
             __props__.__dict__["wrapping_token"] = None
+        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID")])
+        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["secretId", "wrappingToken"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(AuthBackendRoleSecretId, __self__).__init__(

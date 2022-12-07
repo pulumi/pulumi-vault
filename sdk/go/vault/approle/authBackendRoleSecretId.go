@@ -119,6 +119,12 @@ func NewAuthBackendRoleSecretId(ctx *pulumi.Context,
 	if args.RoleName == nil {
 		return nil, errors.New("invalid value for required argument 'RoleName'")
 	}
+	aliases := pulumi.Aliases([]pulumi.Alias{
+		{
+			Type: pulumi.String("vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID"),
+		},
+	})
+	opts = append(opts, aliases)
 	if args.SecretId != nil {
 		args.SecretId = pulumi.ToSecret(args.SecretId).(pulumi.StringPtrOutput)
 	}

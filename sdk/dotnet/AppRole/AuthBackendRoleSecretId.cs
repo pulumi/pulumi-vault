@@ -158,6 +158,10 @@ namespace Pulumi.Vault.AppRole
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                Aliases =
+                {
+                    new global::Pulumi.Alias { Type = "vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID"},
+                },
                 AdditionalSecretOutputs =
                 {
                     "secretId",

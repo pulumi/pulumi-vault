@@ -103,6 +103,10 @@ func preConfigureCallback(vars resource.PropertyMap, c shim.ResourceConfig) erro
 	return nil
 }
 
+func stringRef(s string) *string {
+	return &s
+}
+
 // Provider returns additional overlaid schema and metadata associated with the provider.
 func Provider() tfbridge.ProviderInfo {
 	provider := vault.Provider()
@@ -201,9 +205,14 @@ func Provider() tfbridge.ProviderInfo {
 			},
 
 			// AppRole
-			"vault_approle_auth_backend_role":           {Tok: makeResource(appRoleMod, "AuthBackendRole")},
-			"vault_approle_auth_backend_login":          {Tok: makeResource(appRoleMod, "AuthBackendLogin")},
-			"vault_approle_auth_backend_role_secret_id": {Tok: makeResource(appRoleMod, "AuthBackendRoleSecretId")},
+			"vault_approle_auth_backend_role":  {Tok: makeResource(appRoleMod, "AuthBackendRole")},
+			"vault_approle_auth_backend_login": {Tok: makeResource(appRoleMod, "AuthBackendLogin")},
+			"vault_approle_auth_backend_role_secret_id": {
+				Tok: makeResource(appRoleMod, "AuthBackendRoleSecretId"),
+				Aliases: []tfbridge.AliasInfo{
+					{Type: stringRef(makeResource(appRoleMod, "AuthBackendRoleSecretID").String())},
+				},
+			},
 
 			// AliCloud
 			"vault_alicloud_auth_backend_role": {Tok: makeResource(aliCloudMod, "AuthBackendRole")},

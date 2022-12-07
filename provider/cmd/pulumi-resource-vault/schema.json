@@ -8416,7 +8416,12 @@
                     }
                 },
                 "type": "object"
-            }
+            },
+            "aliases": [
+                {
+                    "type": "vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID"
+                }
+            ]
         },
         "vault:aws/authBackendCert:AuthBackendCert": {
             "description": "\n\n## Import\n\nAWS auth backend certificates can be imported using `auth/`, the `backend` path, `/config/certificate/`, and the `cert_name` e.g.\n\n```sh\n $ pulumi import vault:aws/authBackendCert:AuthBackendCert example auth/aws/config/certificate/my-cert\n```\n\n ",
