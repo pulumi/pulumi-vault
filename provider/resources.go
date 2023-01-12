@@ -125,7 +125,8 @@ func Provider() tfbridge.ProviderInfo {
 	prov := tfbridge.ProviderInfo{
 		P:           p,
 		Name:        "vault",
-		Description: "A Pulumi package for creating and managing vault cloud resources.",
+		DisplayName: "HashiCorp Vault",
+		Description: "A Pulumi package for creating and managing HashiCorp Vault cloud resources.",
 		Keywords:    []string{"pulumi", "vault"},
 		License:     "Apache-2.0",
 		Homepage:    "https://pulumi.io",
