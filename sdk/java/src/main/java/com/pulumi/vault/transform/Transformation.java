@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.transform.TransformationArgs;
 import com.pulumi.vault.transform.inputs.TransformationState;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -30,6 +31,24 @@ public class Transformation extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<List<String>>> allowedRoles() {
         return Codegen.optional(this.allowedRoles);
+    }
+    /**
+     * If true, this transform can be deleted.
+     * Otherwise, deletion is blocked while this value remains false. Default: `false`
+     * *Only supported on vault-1.12+*
+     * 
+     */
+    @Export(name="deletionAllowed", type=Boolean.class, parameters={})
+    private Output</* @Nullable */ Boolean> deletionAllowed;
+
+    /**
+     * @return If true, this transform can be deleted.
+     * Otherwise, deletion is blocked while this value remains false. Default: `false`
+     * *Only supported on vault-1.12+*
+     * 
+     */
+    public Output<Optional<Boolean>> deletionAllowed() {
+        return Codegen.optional(this.deletionAllowed);
     }
     /**
      * The character used to replace data when in masking mode

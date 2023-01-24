@@ -125,8 +125,9 @@ type AuthBackendRole struct {
 	// The unique name of the auth backend to configure.
 	// Defaults to `jwt`.
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
-	// (Required for roles of type `jwt`, optional for roles of
-	// type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+	// (For "jwt" roles, at least one of `boundAudiences`, `boundSubject`, `boundClaims`
+	// or `tokenBoundCidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
+	// Any match is sufficient.
 	BoundAudiences pulumi.StringArrayOutput `pulumi:"boundAudiences"`
 	// If set, a map of claims to values to match against.
 	// A claim's value must be a string, which may contain one value or multiple
@@ -267,8 +268,9 @@ type authBackendRoleState struct {
 	// The unique name of the auth backend to configure.
 	// Defaults to `jwt`.
 	Backend *string `pulumi:"backend"`
-	// (Required for roles of type `jwt`, optional for roles of
-	// type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+	// (For "jwt" roles, at least one of `boundAudiences`, `boundSubject`, `boundClaims`
+	// or `tokenBoundCidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
+	// Any match is sufficient.
 	BoundAudiences []string `pulumi:"boundAudiences"`
 	// If set, a map of claims to values to match against.
 	// A claim's value must be a string, which may contain one value or multiple
@@ -375,8 +377,9 @@ type AuthBackendRoleState struct {
 	// The unique name of the auth backend to configure.
 	// Defaults to `jwt`.
 	Backend pulumi.StringPtrInput
-	// (Required for roles of type `jwt`, optional for roles of
-	// type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+	// (For "jwt" roles, at least one of `boundAudiences`, `boundSubject`, `boundClaims`
+	// or `tokenBoundCidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
+	// Any match is sufficient.
 	BoundAudiences pulumi.StringArrayInput
 	// If set, a map of claims to values to match against.
 	// A claim's value must be a string, which may contain one value or multiple
@@ -487,8 +490,9 @@ type authBackendRoleArgs struct {
 	// The unique name of the auth backend to configure.
 	// Defaults to `jwt`.
 	Backend *string `pulumi:"backend"`
-	// (Required for roles of type `jwt`, optional for roles of
-	// type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+	// (For "jwt" roles, at least one of `boundAudiences`, `boundSubject`, `boundClaims`
+	// or `tokenBoundCidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
+	// Any match is sufficient.
 	BoundAudiences []string `pulumi:"boundAudiences"`
 	// If set, a map of claims to values to match against.
 	// A claim's value must be a string, which may contain one value or multiple
@@ -596,8 +600,9 @@ type AuthBackendRoleArgs struct {
 	// The unique name of the auth backend to configure.
 	// Defaults to `jwt`.
 	Backend pulumi.StringPtrInput
-	// (Required for roles of type `jwt`, optional for roles of
-	// type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+	// (For "jwt" roles, at least one of `boundAudiences`, `boundSubject`, `boundClaims`
+	// or `tokenBoundCidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
+	// Any match is sufficient.
 	BoundAudiences pulumi.StringArrayInput
 	// If set, a map of claims to values to match against.
 	// A claim's value must be a string, which may contain one value or multiple
@@ -796,8 +801,9 @@ func (o AuthBackendRoleOutput) Backend() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
 }
 
-// (Required for roles of type `jwt`, optional for roles of
-// type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+// (For "jwt" roles, at least one of `boundAudiences`, `boundSubject`, `boundClaims`
+// or `tokenBoundCidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
+// Any match is sufficient.
 func (o AuthBackendRoleOutput) BoundAudiences() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringArrayOutput { return v.BoundAudiences }).(pulumi.StringArrayOutput)
 }

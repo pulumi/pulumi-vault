@@ -182,6 +182,10 @@
                 "type": "boolean",
                 "description": "Set this to true to prevent the creation of ephemeral child token used by this provider.\n"
             },
+            "skipGetVaultVersion": {
+                "type": "boolean",
+                "description": "Skip the dynamic fetching of the Vault server version.\n"
+            },
             "skipTlsVerify": {
                 "type": "boolean",
                 "description": "Set this to true only if the target Vault server is an insecure development instance.\n",
@@ -202,6 +206,10 @@
             "tokenName": {
                 "type": "string",
                 "description": "Token name to use for creating the Vault child token.\n"
+            },
+            "vaultVersionOverride": {
+                "type": "string",
+                "description": "Override the Vault server version, which is normally determined dynamically from the target Vault server\n"
             }
         },
         "defaults": [
@@ -768,7 +776,7 @@
                 },
                 "tls": {
                     "type": "boolean",
-                    "description": "Whether to use TLS when connecting to Cassandra.\n",
+                    "description": "Whether to use TLS when connecting to Redis.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -841,7 +849,7 @@
                 },
                 "tls": {
                     "type": "boolean",
-                    "description": "Whether to use TLS when connecting to Cassandra.\n",
+                    "description": "Whether to use TLS when connecting to Redis.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1114,7 +1122,7 @@
                 },
                 "tls": {
                     "type": "boolean",
-                    "description": "Whether to use TLS when connecting to Cassandra.\n",
+                    "description": "Whether to use TLS when connecting to Redis.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1783,6 +1791,80 @@
             },
             "type": "object"
         },
+        "vault:database/SecretBackendConnectionRedis:SecretBackendConnectionRedis": {
+            "properties": {
+                "caCert": {
+                    "type": "string",
+                    "description": "The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "host": {
+                    "type": "string",
+                    "description": "The host to connect to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "insecureTls": {
+                    "type": "boolean",
+                    "description": "Whether to skip verification of the server\ncertificate when using TLS.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "password": {
+                    "type": "string",
+                    "description": "The root credential password used in the connection URL.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    },
+                    "secret": true
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The default port to connect to if no port is specified as\npart of the host.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tls": {
+                    "type": "boolean",
+                    "description": "Whether to use TLS when connecting to Redis.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The root credential username used in the connection URL.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "host",
+                "password",
+                "username"
+            ]
+        },
         "vault:database/SecretBackendConnectionRedisElasticache:SecretBackendConnectionRedisElasticache": {
             "properties": {
                 "password": {
@@ -2111,7 +2193,7 @@
                 },
                 "tls": {
                     "type": "boolean",
-                    "description": "Whether to use TLS when connecting to Cassandra.\n",
+                    "description": "Whether to use TLS when connecting to Redis.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2257,7 +2339,7 @@
                 },
                 "tls": {
                     "type": "boolean",
-                    "description": "Whether to use TLS when connecting to Cassandra.\n",
+                    "description": "Whether to use TLS when connecting to Redis.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2327,7 +2409,7 @@
                 },
                 "caCert": {
                     "type": "string",
-                    "description": "The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.\n",
+                    "description": "The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2751,7 +2833,7 @@
                 },
                 "tls": {
                     "type": "boolean",
-                    "description": "Whether to use TLS when connecting to Cassandra.\n",
+                    "description": "Whether to use TLS when connecting to Redis.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -4095,6 +4177,154 @@
                     "requiredOutputs": [
                         "name",
                         "pluginName"
+                    ]
+                }
+            }
+        },
+        "vault:database/SecretsMountRedi:SecretsMountRedi": {
+            "properties": {
+                "allowedRoles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of roles that are allowed to use this\nconnection.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "caCert": {
+                    "type": "string",
+                    "description": "The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "data": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "description": "A map of sensitive data to pass to the endpoint. Useful for templated connection strings.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "host": {
+                    "type": "string",
+                    "description": "The host to connect to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "insecureTls": {
+                    "type": "boolean",
+                    "description": "Whether to skip verification of the server\ncertificate when using TLS.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "password": {
+                    "type": "string",
+                    "description": "The password to be used in the connection.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    },
+                    "secret": true
+                },
+                "pluginName": {
+                    "type": "string",
+                    "description": "Specifies the name of the plugin to use.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The default port to connect to if no port is specified as\npart of the host.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "rootRotationStatements": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of database statements to be executed to rotate the root user's credentials.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tls": {
+                    "type": "boolean",
+                    "description": "Whether to use TLS when connecting to Redis.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The username to be used in the connection (the account admin level).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "verifyConnection": {
+                    "type": "boolean",
+                    "description": "Whether the connection should be verified on\ninitial configuration or not.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "host",
+                "name",
+                "password",
+                "username"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "host",
+                        "name",
+                        "password",
+                        "pluginName",
+                        "username"
                     ]
                 }
             }
@@ -5937,6 +6167,47 @@
             },
             "type": "object"
         },
+        "vault:kv/SecretV2CustomMetadata:SecretV2CustomMetadata": {
+            "properties": {
+                "casRequired": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "data": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "description": "A mapping whose keys are the top-level data keys returned from\nVault and whose values are the corresponding values. This map can only\nrepresent string data, so any non-string values returned from Vault are\nserialized as JSON.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "deleteVersionAfter": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "maxVersions": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
         "vault:managed/KeysAw:KeysAw": {
             "properties": {
                 "accessKey": {
@@ -6771,6 +7042,10 @@
                 "type": "boolean",
                 "description": "Set this to true to prevent the creation of ephemeral child token used by this provider.\n"
             },
+            "skipGetVaultVersion": {
+                "type": "boolean",
+                "description": "Skip the dynamic fetching of the Vault server version.\n"
+            },
             "skipTlsVerify": {
                 "type": "boolean",
                 "description": "Set this to true only if the target Vault server is an insecure development instance.\n"
@@ -6786,6 +7061,10 @@
             "tokenName": {
                 "type": "string",
                 "description": "Token name to use for creating the Vault child token.\n"
+            },
+            "vaultVersionOverride": {
+                "type": "string",
+                "description": "Override the Vault server version, which is normally determined dynamically from the target Vault server\n"
             }
         },
         "required": [
@@ -6896,6 +7175,10 @@
                 "type": "boolean",
                 "description": "Set this to true to prevent the creation of ephemeral child token used by this provider.\n"
             },
+            "skipGetVaultVersion": {
+                "type": "boolean",
+                "description": "Skip the dynamic fetching of the Vault server version.\n"
+            },
             "skipTlsVerify": {
                 "type": "boolean",
                 "description": "Set this to true only if the target Vault server is an insecure development instance.\n",
@@ -6916,6 +7199,10 @@
             "tokenName": {
                 "type": "string",
                 "description": "Token name to use for creating the Vault child token.\n"
+            },
+            "vaultVersionOverride": {
+                "type": "string",
+                "description": "Override the Vault server version, which is normally determined dynamically from the target Vault server\n"
             }
         },
         "requiredInputs": [
@@ -10591,7 +10878,7 @@
                 },
                 "useMicrosoftGraphApi": {
                     "type": "boolean",
-                    "description": "- Use the Microsoft Graph API introduced in `vault-1.9`. \nShould be set to true for `vault-1.10+`\n"
+                    "description": "- Indicates whether the secrets engine should use \nthe Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.\nFor more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)\n"
                 }
             },
             "required": [
@@ -10644,7 +10931,7 @@
                 },
                 "useMicrosoftGraphApi": {
                     "type": "boolean",
-                    "description": "- Use the Microsoft Graph API introduced in `vault-1.9`. \nShould be set to true for `vault-1.10+`\n"
+                    "description": "- Indicates whether the secrets engine should use \nthe Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.\nFor more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)\n"
                 }
             },
             "requiredInputs": [
@@ -10698,7 +10985,7 @@
                     },
                     "useMicrosoftGraphApi": {
                         "type": "boolean",
-                        "description": "- Use the Microsoft Graph API introduced in `vault-1.9`. \nShould be set to true for `vault-1.10+`\n"
+                        "description": "- Indicates whether the secrets engine should use \nthe Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.\nFor more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)\n"
                     }
                 },
                 "type": "object"
@@ -11384,6 +11671,10 @@
                     "$ref": "#/types/vault:database/SecretBackendConnectionPostgresql:SecretBackendConnectionPostgresql",
                     "description": "A nested block containing configuration options for PostgreSQL connections.\n"
                 },
+                "redis": {
+                    "$ref": "#/types/vault:database/SecretBackendConnectionRedis:SecretBackendConnectionRedis",
+                    "description": "A nested block containing configuration options for Redis connections.\n"
+                },
                 "redisElasticache": {
                     "$ref": "#/types/vault:database/SecretBackendConnectionRedisElasticache:SecretBackendConnectionRedisElasticache",
                     "description": "A nested block containing configuration options for Redis ElastiCache connections.\n"
@@ -11502,6 +11793,10 @@
                     "$ref": "#/types/vault:database/SecretBackendConnectionPostgresql:SecretBackendConnectionPostgresql",
                     "description": "A nested block containing configuration options for PostgreSQL connections.\n"
                 },
+                "redis": {
+                    "$ref": "#/types/vault:database/SecretBackendConnectionRedis:SecretBackendConnectionRedis",
+                    "description": "A nested block containing configuration options for Redis connections.\n"
+                },
                 "redisElasticache": {
                     "$ref": "#/types/vault:database/SecretBackendConnectionRedisElasticache:SecretBackendConnectionRedisElasticache",
                     "description": "A nested block containing configuration options for Redis ElastiCache connections.\n"
@@ -11619,6 +11914,10 @@
                     "postgresql": {
                         "$ref": "#/types/vault:database/SecretBackendConnectionPostgresql:SecretBackendConnectionPostgresql",
                         "description": "A nested block containing configuration options for PostgreSQL connections.\n"
+                    },
+                    "redis": {
+                        "$ref": "#/types/vault:database/SecretBackendConnectionRedis:SecretBackendConnectionRedis",
+                        "description": "A nested block containing configuration options for Redis connections.\n"
                     },
                     "redisElasticache": {
                         "$ref": "#/types/vault:database/SecretBackendConnectionRedisElasticache:SecretBackendConnectionRedisElasticache",
@@ -12129,12 +12428,19 @@
                     },
                     "description": "A nested block containing configuration options for PostgreSQL connections.  \n*See Configuration Options for more info*\n"
                 },
+                "redis": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/vault:database/SecretsMountRedi:SecretsMountRedi"
+                    },
+                    "description": "A nested block containing configuration options for Redis connections.  \n*See Configuration Options for more info*\n"
+                },
                 "redisElasticaches": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/vault:database/SecretsMountRedisElasticach:SecretsMountRedisElasticach"
                     },
-                    "description": "A nested block containing configuration options for InfluxDB connections.  \n*See Configuration Options for more info*\n"
+                    "description": "A nested block containing configuration options for Redis ElastiCache connections.  \n*See Configuration Options for more info*\n"
                 },
                 "redshifts": {
                     "type": "array",
@@ -12324,12 +12630,19 @@
                     },
                     "description": "A nested block containing configuration options for PostgreSQL connections.  \n*See Configuration Options for more info*\n"
                 },
+                "redis": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/vault:database/SecretsMountRedi:SecretsMountRedi"
+                    },
+                    "description": "A nested block containing configuration options for Redis connections.  \n*See Configuration Options for more info*\n"
+                },
                 "redisElasticaches": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/vault:database/SecretsMountRedisElasticach:SecretsMountRedisElasticach"
                     },
-                    "description": "A nested block containing configuration options for InfluxDB connections.  \n*See Configuration Options for more info*\n"
+                    "description": "A nested block containing configuration options for Redis ElastiCache connections.  \n*See Configuration Options for more info*\n"
                 },
                 "redshifts": {
                     "type": "array",
@@ -12523,12 +12836,19 @@
                         },
                         "description": "A nested block containing configuration options for PostgreSQL connections.  \n*See Configuration Options for more info*\n"
                     },
+                    "redis": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/vault:database/SecretsMountRedi:SecretsMountRedi"
+                        },
+                        "description": "A nested block containing configuration options for Redis connections.  \n*See Configuration Options for more info*\n"
+                    },
                     "redisElasticaches": {
                         "type": "array",
                         "items": {
                             "$ref": "#/types/vault:database/SecretsMountRedisElasticach:SecretsMountRedisElasticach"
                         },
-                        "description": "A nested block containing configuration options for InfluxDB connections.  \n*See Configuration Options for more info*\n"
+                        "description": "A nested block containing configuration options for Redis ElastiCache connections.  \n*See Configuration Options for more info*\n"
                     },
                     "redshifts": {
                         "type": "array",
@@ -14484,11 +14804,15 @@
             "properties": {
                 "externalMemberEntityIds": {
                     "type": "boolean",
-                    "description": "`false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.\n"
+                    "description": "`false` by default. If set to `true`, this resource will ignore any Entity IDs\nreturned from Vault or specified in the resource. You can use\n`vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a\ndecoupled manner.\n"
+                },
+                "externalMemberGroupIds": {
+                    "type": "boolean",
+                    "description": "`false` by default. If set to `true`, this resource will ignore any Group IDs\nreturned from Vault or specified in the resource. You can use\n`vault.identity.GroupMemberGroupIds` to manage Group IDs for this group in a\ndecoupled manner.\n"
                 },
                 "externalPolicies": {
                     "type": "boolean",
-                    "description": "`false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.\n"
+                    "description": "`false` by default. If set to `true`, this resource will ignore any policies returned from\nVault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage\npolicies for this group in a decoupled manner.\n"
                 },
                 "memberEntityIds": {
                     "type": "array",
@@ -14537,11 +14861,15 @@
             "inputProperties": {
                 "externalMemberEntityIds": {
                     "type": "boolean",
-                    "description": "`false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.\n"
+                    "description": "`false` by default. If set to `true`, this resource will ignore any Entity IDs\nreturned from Vault or specified in the resource. You can use\n`vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a\ndecoupled manner.\n"
+                },
+                "externalMemberGroupIds": {
+                    "type": "boolean",
+                    "description": "`false` by default. If set to `true`, this resource will ignore any Group IDs\nreturned from Vault or specified in the resource. You can use\n`vault.identity.GroupMemberGroupIds` to manage Group IDs for this group in a\ndecoupled manner.\n"
                 },
                 "externalPolicies": {
                     "type": "boolean",
-                    "description": "`false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.\n"
+                    "description": "`false` by default. If set to `true`, this resource will ignore any policies returned from\nVault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage\npolicies for this group in a decoupled manner.\n"
                 },
                 "memberEntityIds": {
                     "type": "array",
@@ -14591,11 +14919,15 @@
                 "properties": {
                     "externalMemberEntityIds": {
                         "type": "boolean",
-                        "description": "`false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.\n"
+                        "description": "`false` by default. If set to `true`, this resource will ignore any Entity IDs\nreturned from Vault or specified in the resource. You can use\n`vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a\ndecoupled manner.\n"
+                    },
+                    "externalMemberGroupIds": {
+                        "type": "boolean",
+                        "description": "`false` by default. If set to `true`, this resource will ignore any Group IDs\nreturned from Vault or specified in the resource. You can use\n`vault.identity.GroupMemberGroupIds` to manage Group IDs for this group in a\ndecoupled manner.\n"
                     },
                     "externalPolicies": {
                         "type": "boolean",
-                        "description": "`false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.\n"
+                        "description": "`false` by default. If set to `true`, this resource will ignore any policies returned from\nVault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage\npolicies for this group in a decoupled manner.\n"
                     },
                     "memberEntityIds": {
                         "type": "array",
@@ -14797,6 +15129,86 @@
                             "type": "string"
                         },
                         "description": "List of member entities that belong to the group\n"
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "vault:identity/groupMemberGroupIds:GroupMemberGroupIds": {
+            "description": "Manages member groups for an Identity Group for Vault. The\n[Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html)\nis the identity management solution for Vault.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Exclusive Member Groups\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst internal = new vault.identity.Group(\"internal\", {\n    type: \"internal\",\n    externalMemberGroupIds: true,\n    metadata: {\n        version: \"2\",\n    },\n});\nconst users = new vault.identity.Group(\"users\", {metadata: {\n    version: \"2\",\n}});\nconst members = new vault.identity.GroupMemberGroupIds(\"members\", {\n    exclusive: true,\n    memberGroupIds: [users.id],\n    groupId: internal.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ninternal = vault.identity.Group(\"internal\",\n    type=\"internal\",\n    external_member_group_ids=True,\n    metadata={\n        \"version\": \"2\",\n    })\nusers = vault.identity.Group(\"users\", metadata={\n    \"version\": \"2\",\n})\nmembers = vault.identity.GroupMemberGroupIds(\"members\",\n    exclusive=True,\n    member_group_ids=[users.id],\n    group_id=internal.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var @internal = new Vault.Identity.Group(\"internal\", new()\n    {\n        Type = \"internal\",\n        ExternalMemberGroupIds = true,\n        Metadata = \n        {\n            { \"version\", \"2\" },\n        },\n    });\n\n    var users = new Vault.Identity.Group(\"users\", new()\n    {\n        Metadata = \n        {\n            { \"version\", \"2\" },\n        },\n    });\n\n    var members = new Vault.Identity.GroupMemberGroupIds(\"members\", new()\n    {\n        Exclusive = true,\n        MemberGroupIds = new[]\n        {\n            users.Id,\n        },\n        GroupId = @internal.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tinternal, err := identity.NewGroup(ctx, \"internal\", \u0026identity.GroupArgs{\n\t\t\tType:                   pulumi.String(\"internal\"),\n\t\t\tExternalMemberGroupIds: pulumi.Bool(true),\n\t\t\tMetadata: pulumi.StringMap{\n\t\t\t\t\"version\": pulumi.String(\"2\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tusers, err := identity.NewGroup(ctx, \"users\", \u0026identity.GroupArgs{\n\t\t\tMetadata: pulumi.StringMap{\n\t\t\t\t\"version\": pulumi.String(\"2\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = identity.NewGroupMemberGroupIds(ctx, \"members\", \u0026identity.GroupMemberGroupIdsArgs{\n\t\t\tExclusive: pulumi.Bool(true),\n\t\t\tMemberGroupIds: pulumi.StringArray{\n\t\t\t\tusers.ID(),\n\t\t\t},\n\t\t\tGroupId: internal.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.identity.Group;\nimport com.pulumi.vault.identity.GroupArgs;\nimport com.pulumi.vault.identity.GroupMemberGroupIds;\nimport com.pulumi.vault.identity.GroupMemberGroupIdsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var internal = new Group(\"internal\", GroupArgs.builder()        \n            .type(\"internal\")\n            .externalMemberGroupIds(true)\n            .metadata(Map.of(\"version\", \"2\"))\n            .build());\n\n        var users = new Group(\"users\", GroupArgs.builder()        \n            .metadata(Map.of(\"version\", \"2\"))\n            .build());\n\n        var members = new GroupMemberGroupIds(\"members\", GroupMemberGroupIdsArgs.builder()        \n            .exclusive(true)\n            .memberGroupIds(users.id())\n            .groupId(internal.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  internal:\n    type: vault:identity:Group\n    properties:\n      type: internal\n      externalMemberGroupIds: true\n      metadata:\n        version: 2\n  users:\n    type: vault:identity:Group\n    properties:\n      metadata:\n        version: 2\n  members:\n    type: vault:identity:GroupMemberGroupIds\n    properties:\n      exclusive: true\n      memberGroupIds:\n        - ${users.id}\n      groupId: ${internal.id}\n```\n{{% /example %}}\n{{% example %}}\n### Non-Exclusive Member Groups\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst internal = new vault.identity.Group(\"internal\", {\n    type: \"internal\",\n    externalMemberGroupIds: true,\n    metadata: {\n        version: \"2\",\n    },\n});\nconst users = new vault.identity.Group(\"users\", {metadata: {\n    version: \"2\",\n}});\nconst members = new vault.identity.GroupMemberGroupIds(\"members\", {\n    exclusive: false,\n    memberGroupIds: [users.id],\n    groupId: internal.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ninternal = vault.identity.Group(\"internal\",\n    type=\"internal\",\n    external_member_group_ids=True,\n    metadata={\n        \"version\": \"2\",\n    })\nusers = vault.identity.Group(\"users\", metadata={\n    \"version\": \"2\",\n})\nmembers = vault.identity.GroupMemberGroupIds(\"members\",\n    exclusive=False,\n    member_group_ids=[users.id],\n    group_id=internal.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var @internal = new Vault.Identity.Group(\"internal\", new()\n    {\n        Type = \"internal\",\n        ExternalMemberGroupIds = true,\n        Metadata = \n        {\n            { \"version\", \"2\" },\n        },\n    });\n\n    var users = new Vault.Identity.Group(\"users\", new()\n    {\n        Metadata = \n        {\n            { \"version\", \"2\" },\n        },\n    });\n\n    var members = new Vault.Identity.GroupMemberGroupIds(\"members\", new()\n    {\n        Exclusive = false,\n        MemberGroupIds = new[]\n        {\n            users.Id,\n        },\n        GroupId = @internal.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tinternal, err := identity.NewGroup(ctx, \"internal\", \u0026identity.GroupArgs{\n\t\t\tType:                   pulumi.String(\"internal\"),\n\t\t\tExternalMemberGroupIds: pulumi.Bool(true),\n\t\t\tMetadata: pulumi.StringMap{\n\t\t\t\t\"version\": pulumi.String(\"2\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tusers, err := identity.NewGroup(ctx, \"users\", \u0026identity.GroupArgs{\n\t\t\tMetadata: pulumi.StringMap{\n\t\t\t\t\"version\": pulumi.String(\"2\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = identity.NewGroupMemberGroupIds(ctx, \"members\", \u0026identity.GroupMemberGroupIdsArgs{\n\t\t\tExclusive: pulumi.Bool(false),\n\t\t\tMemberGroupIds: pulumi.StringArray{\n\t\t\t\tusers.ID(),\n\t\t\t},\n\t\t\tGroupId: internal.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.identity.Group;\nimport com.pulumi.vault.identity.GroupArgs;\nimport com.pulumi.vault.identity.GroupMemberGroupIds;\nimport com.pulumi.vault.identity.GroupMemberGroupIdsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var internal = new Group(\"internal\", GroupArgs.builder()        \n            .type(\"internal\")\n            .externalMemberGroupIds(true)\n            .metadata(Map.of(\"version\", \"2\"))\n            .build());\n\n        var users = new Group(\"users\", GroupArgs.builder()        \n            .metadata(Map.of(\"version\", \"2\"))\n            .build());\n\n        var members = new GroupMemberGroupIds(\"members\", GroupMemberGroupIdsArgs.builder()        \n            .exclusive(false)\n            .memberGroupIds(users.id())\n            .groupId(internal.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  internal:\n    type: vault:identity:Group\n    properties:\n      type: internal\n      externalMemberGroupIds: true\n      metadata:\n        version: 2\n  users:\n    type: vault:identity:Group\n    properties:\n      metadata:\n        version: 2\n  members:\n    type: vault:identity:GroupMemberGroupIds\n    properties:\n      exclusive: false\n      memberGroupIds:\n        - ${users.id}\n      groupId: ${internal.id}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "exclusive": {
+                    "type": "boolean",
+                    "description": "Defaults to `true`.\n"
+                },
+                "groupId": {
+                    "type": "string",
+                    "description": "Group ID to assign member entities to.\n"
+                },
+                "memberGroupIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of member groups that belong to the group\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n"
+                }
+            },
+            "required": [
+                "groupId"
+            ],
+            "inputProperties": {
+                "exclusive": {
+                    "type": "boolean",
+                    "description": "Defaults to `true`.\n"
+                },
+                "groupId": {
+                    "type": "string",
+                    "description": "Group ID to assign member entities to.\n",
+                    "willReplaceOnChanges": true
+                },
+                "memberGroupIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of member groups that belong to the group\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "groupId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering GroupMemberGroupIds resources.\n",
+                "properties": {
+                    "exclusive": {
+                        "type": "boolean",
+                        "description": "Defaults to `true`.\n"
+                    },
+                    "groupId": {
+                        "type": "string",
+                        "description": "Group ID to assign member entities to.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "memberGroupIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of member groups that belong to the group\n"
                     },
                     "namespace": {
                         "type": "string",
@@ -18088,7 +18500,12 @@
                 },
                 "path": {
                     "type": "string",
-                    "description": "The path of the namespace. Must not have a trailing `/`\n"
+                    "description": "The path of the namespace. Must not have a trailing `/`\n",
+                    "willReplaceOnChanges": true
+                },
+                "pathFq": {
+                    "type": "string",
+                    "description": "The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.\n"
                 }
             },
             "requiredInputs": [
@@ -18113,7 +18530,8 @@
                     },
                     "path": {
                         "type": "string",
-                        "description": "The path of the namespace. Must not have a trailing `/`\n"
+                        "description": "The path of the namespace. Must not have a trailing `/`\n",
+                        "willReplaceOnChanges": true
                     },
                     "pathFq": {
                         "type": "string",
@@ -18762,6 +19180,10 @@
                     "type": "string",
                     "description": "Limit the amount of time a \nserver can go without leader contact before being considered failed. This only takes\neffect when `cleanup_dead_servers` is set.\n"
                 },
+                "disableUpgradeMigration": {
+                    "type": "boolean",
+                    "description": "Disables automatically upgrading Vault using autopilot. (Enterprise-only)\n"
+                },
                 "lastContactThreshold": {
                     "type": "string",
                     "description": "Limit the amount of time a server can go \nwithout leader contact before being considered unhealthy.\n"
@@ -18791,6 +19213,10 @@
                 "deadServerLastContactThreshold": {
                     "type": "string",
                     "description": "Limit the amount of time a \nserver can go without leader contact before being considered failed. This only takes\neffect when `cleanup_dead_servers` is set.\n"
+                },
+                "disableUpgradeMigration": {
+                    "type": "boolean",
+                    "description": "Disables automatically upgrading Vault using autopilot. (Enterprise-only)\n"
                 },
                 "lastContactThreshold": {
                     "type": "string",
@@ -18824,6 +19250,10 @@
                     "deadServerLastContactThreshold": {
                         "type": "string",
                         "description": "Limit the amount of time a \nserver can go without leader contact before being considered failed. This only takes\neffect when `cleanup_dead_servers` is set.\n"
+                    },
+                    "disableUpgradeMigration": {
+                        "type": "boolean",
+                        "description": "Disables automatically upgrading Vault using autopilot. (Enterprise-only)\n"
                     },
                     "lastContactThreshold": {
                         "type": "string",
@@ -19919,7 +20349,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "(Required for roles of type `jwt`, optional for roles of\ntype `oidc`) List of `aud` claims to match against. Any match is sufficient.\n"
+                    "description": "(For \"jwt\" roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`\nor `token_bound_cidrs` is required. Optional for \"oidc\" roles.) List of `aud` claims to match against.\nAny match is sufficient.\n"
                 },
                 "boundClaims": {
                     "type": "object",
@@ -20065,7 +20495,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "(Required for roles of type `jwt`, optional for roles of\ntype `oidc`) List of `aud` claims to match against. Any match is sufficient.\n"
+                    "description": "(For \"jwt\" roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`\nor `token_bound_cidrs` is required. Optional for \"oidc\" roles.) List of `aud` claims to match against.\nAny match is sufficient.\n"
                 },
                 "boundClaims": {
                     "type": "object",
@@ -20214,7 +20644,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "(Required for roles of type `jwt`, optional for roles of\ntype `oidc`) List of `aud` claims to match against. Any match is sufficient.\n"
+                        "description": "(For \"jwt\" roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`\nor `token_bound_cidrs` is required. Optional for \"oidc\" roles.) List of `aud` claims to match against.\nAny match is sufficient.\n"
                     },
                     "boundClaims": {
                         "type": "object",
@@ -21894,7 +22324,7 @@
             }
         },
         "vault:kv/secretBackendV2:SecretBackendV2": {
-            "description": "Configures KV-V2 backend level settings that are applied to\nevery key in the key-value store.\n\nFor more information on Vault's KV-V2 secret backend\n[see here](https://www.vaultproject.io/docs/secrets/kv/kv-v2).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst kvv2 = new vault.Mount(\"kvv2\", {\n    path: \"kvv2\",\n    type: \"kv\",\n    options: {\n        version: \"2\",\n    },\n    description: \"KV Version 2 secret engine mount\",\n});\nconst config = new vault.kv.SecretBackendV2(\"config\", {\n    mount: kvv2.path,\n    maxVersions: 5,\n    deleteVersionAfter: 12600,\n    casRequired: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nkvv2 = vault.Mount(\"kvv2\",\n    path=\"kvv2\",\n    type=\"kv\",\n    options={\n        \"version\": \"2\",\n    },\n    description=\"KV Version 2 secret engine mount\")\nconfig = vault.kv.SecretBackendV2(\"config\",\n    mount=kvv2.path,\n    max_versions=5,\n    delete_version_after=12600,\n    cas_required=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var kvv2 = new Vault.Mount(\"kvv2\", new()\n    {\n        Path = \"kvv2\",\n        Type = \"kv\",\n        Options = \n        {\n            { \"version\", \"2\" },\n        },\n        Description = \"KV Version 2 secret engine mount\",\n    });\n\n    var config = new Vault.Kv.SecretBackendV2(\"config\", new()\n    {\n        Mount = kvv2.Path,\n        MaxVersions = 5,\n        DeleteVersionAfter = 12600,\n        CasRequired = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kv\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tkvv2, err := vault.NewMount(ctx, \"kvv2\", \u0026vault.MountArgs{\n\t\t\tPath: pulumi.String(\"kvv2\"),\n\t\t\tType: pulumi.String(\"kv\"),\n\t\t\tOptions: pulumi.AnyMap{\n\t\t\t\t\"version\": pulumi.Any(\"2\"),\n\t\t\t},\n\t\t\tDescription: pulumi.String(\"KV Version 2 secret engine mount\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = kv.NewSecretBackendV2(ctx, \"config\", \u0026kv.SecretBackendV2Args{\n\t\t\tMount:              kvv2.Path,\n\t\t\tMaxVersions:        pulumi.Int(5),\n\t\t\tDeleteVersionAfter: pulumi.Int(12600),\n\t\t\tCasRequired:        pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.kv.SecretBackendV2;\nimport com.pulumi.vault.kv.SecretBackendV2Args;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var kvv2 = new Mount(\"kvv2\", MountArgs.builder()        \n            .path(\"kvv2\")\n            .type(\"kv\")\n            .options(Map.of(\"version\", \"2\"))\n            .description(\"KV Version 2 secret engine mount\")\n            .build());\n\n        var config = new SecretBackendV2(\"config\", SecretBackendV2Args.builder()        \n            .mount(kvv2.path())\n            .maxVersions(5)\n            .deleteVersionAfter(12600)\n            .casRequired(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  kvv2:\n    type: vault:Mount\n    properties:\n      path: kvv2\n      type: kv\n      options:\n        version: 2\n      description: KV Version 2 secret engine mount\n  config:\n    type: vault:kv:SecretBackendV2\n    properties:\n      mount: ${kvv2.path}\n      maxVersions: 5\n      deleteVersionAfter: 12600\n      casRequired: true\n```\n{{% /example %}}\n{{% /examples %}}\n## Required Vault Capabilities\n\nUse of this resource requires the `create` or `update` capability\n(depending on whether the resource already exists) on the given path,\nthe `delete` capability if the resource is removed from configuration,\nand the `read` capability for drift detection (by default).\n\n\n## Import\n\nThe KV-V2 secret backend can be imported using the `path`, e.g.\n\n```sh\n $ pulumi import vault:kv/secretBackendV2:SecretBackendV2 config kvv2/config\n```\n\n ",
+            "description": "Configures KV-V2 backend level settings that are applied to\nevery key in the key-value store.\n\nFor more information on Vault's KV-V2 secret backend\n[see here](https://www.vaultproject.io/docs/secrets/kv/kv-v2).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst kvv2 = new vault.Mount(\"kvv2\", {\n    path: \"kvv2\",\n    type: \"kv\",\n    options: {\n        version: \"2\",\n    },\n    description: \"KV Version 2 secret engine mount\",\n});\nconst example = new vault.kv.SecretBackendV2(\"example\", {\n    mount: kvv2.path,\n    maxVersions: 5,\n    deleteVersionAfter: 12600,\n    casRequired: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nkvv2 = vault.Mount(\"kvv2\",\n    path=\"kvv2\",\n    type=\"kv\",\n    options={\n        \"version\": \"2\",\n    },\n    description=\"KV Version 2 secret engine mount\")\nexample = vault.kv.SecretBackendV2(\"example\",\n    mount=kvv2.path,\n    max_versions=5,\n    delete_version_after=12600,\n    cas_required=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var kvv2 = new Vault.Mount(\"kvv2\", new()\n    {\n        Path = \"kvv2\",\n        Type = \"kv\",\n        Options = \n        {\n            { \"version\", \"2\" },\n        },\n        Description = \"KV Version 2 secret engine mount\",\n    });\n\n    var example = new Vault.Kv.SecretBackendV2(\"example\", new()\n    {\n        Mount = kvv2.Path,\n        MaxVersions = 5,\n        DeleteVersionAfter = 12600,\n        CasRequired = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kv\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tkvv2, err := vault.NewMount(ctx, \"kvv2\", \u0026vault.MountArgs{\n\t\t\tPath: pulumi.String(\"kvv2\"),\n\t\t\tType: pulumi.String(\"kv\"),\n\t\t\tOptions: pulumi.AnyMap{\n\t\t\t\t\"version\": pulumi.Any(\"2\"),\n\t\t\t},\n\t\t\tDescription: pulumi.String(\"KV Version 2 secret engine mount\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = kv.NewSecretBackendV2(ctx, \"example\", \u0026kv.SecretBackendV2Args{\n\t\t\tMount:              kvv2.Path,\n\t\t\tMaxVersions:        pulumi.Int(5),\n\t\t\tDeleteVersionAfter: pulumi.Int(12600),\n\t\t\tCasRequired:        pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.kv.SecretBackendV2;\nimport com.pulumi.vault.kv.SecretBackendV2Args;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var kvv2 = new Mount(\"kvv2\", MountArgs.builder()        \n            .path(\"kvv2\")\n            .type(\"kv\")\n            .options(Map.of(\"version\", \"2\"))\n            .description(\"KV Version 2 secret engine mount\")\n            .build());\n\n        var example = new SecretBackendV2(\"example\", SecretBackendV2Args.builder()        \n            .mount(kvv2.path())\n            .maxVersions(5)\n            .deleteVersionAfter(12600)\n            .casRequired(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  kvv2:\n    type: vault:Mount\n    properties:\n      path: kvv2\n      type: kv\n      options:\n        version: 2\n      description: KV Version 2 secret engine mount\n  example:\n    type: vault:kv:SecretBackendV2\n    properties:\n      mount: ${kvv2.path}\n      maxVersions: 5\n      deleteVersionAfter: 12600\n      casRequired: true\n```\n{{% /example %}}\n{{% /examples %}}\n## Required Vault Capabilities\n\nUse of this resource requires the `create` or `update` capability\n(depending on whether the resource already exists) on the given path,\nthe `delete` capability if the resource is removed from configuration,\nand the `read` capability for drift detection (by default).\n\n\n## Import\n\nThe KV-V2 secret backend can be imported using its unique ID, the `${mount}/config`, e.g.\n\n```sh\n $ pulumi import vault:kv/secretBackendV2:SecretBackendV2 example kvv2/config\n```\n\n ",
             "properties": {
                 "casRequired": {
                     "type": "boolean",
@@ -21979,11 +22409,15 @@
             }
         },
         "vault:kv/secretV2:SecretV2": {
-            "description": "Writes a KV-V2 secret to a given path in Vault.\n\nFor more information on Vault's KV-V2 secret backend\n[see here](https://www.vaultproject.io/docs/secrets/kv/kv-v2).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst kvv2 = new vault.Mount(\"kvv2\", {\n    path: \"kvv2\",\n    type: \"kv\",\n    options: {\n        version: \"2\",\n    },\n    description: \"KV Version 2 secret engine mount\",\n});\nconst secret = new vault.kv.SecretV2(\"secret\", {\n    mount: kvv2.path,\n    cas: 1,\n    deleteAllVersions: true,\n    dataJson: JSON.stringify({\n        zip: \"zap\",\n        foo: \"bar\",\n    }),\n});\n```\n```python\nimport pulumi\nimport json\nimport pulumi_vault as vault\n\nkvv2 = vault.Mount(\"kvv2\",\n    path=\"kvv2\",\n    type=\"kv\",\n    options={\n        \"version\": \"2\",\n    },\n    description=\"KV Version 2 secret engine mount\")\nsecret = vault.kv.SecretV2(\"secret\",\n    mount=kvv2.path,\n    cas=1,\n    delete_all_versions=True,\n    data_json=json.dumps({\n        \"zip\": \"zap\",\n        \"foo\": \"bar\",\n    }))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Text.Json;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var kvv2 = new Vault.Mount(\"kvv2\", new()\n    {\n        Path = \"kvv2\",\n        Type = \"kv\",\n        Options = \n        {\n            { \"version\", \"2\" },\n        },\n        Description = \"KV Version 2 secret engine mount\",\n    });\n\n    var secret = new Vault.Kv.SecretV2(\"secret\", new()\n    {\n        Mount = kvv2.Path,\n        Cas = 1,\n        DeleteAllVersions = true,\n        DataJson = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n        {\n            [\"zip\"] = \"zap\",\n            [\"foo\"] = \"bar\",\n        }),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kv\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tkvv2, err := vault.NewMount(ctx, \"kvv2\", \u0026vault.MountArgs{\n\t\t\tPath: pulumi.String(\"kvv2\"),\n\t\t\tType: pulumi.String(\"kv\"),\n\t\t\tOptions: pulumi.AnyMap{\n\t\t\t\t\"version\": pulumi.Any(\"2\"),\n\t\t\t},\n\t\t\tDescription: pulumi.String(\"KV Version 2 secret engine mount\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"zip\": \"zap\",\n\t\t\t\"foo\": \"bar\",\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\t_, err = kv.NewSecretV2(ctx, \"secret\", \u0026kv.SecretV2Args{\n\t\t\tMount:             kvv2.Path,\n\t\t\tCas:               pulumi.Int(1),\n\t\t\tDeleteAllVersions: pulumi.Bool(true),\n\t\t\tDataJson:          pulumi.String(json0),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.kv.SecretV2;\nimport com.pulumi.vault.kv.SecretV2Args;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var kvv2 = new Mount(\"kvv2\", MountArgs.builder()        \n            .path(\"kvv2\")\n            .type(\"kv\")\n            .options(Map.of(\"version\", \"2\"))\n            .description(\"KV Version 2 secret engine mount\")\n            .build());\n\n        var secret = new SecretV2(\"secret\", SecretV2Args.builder()        \n            .mount(kvv2.path())\n            .cas(1)\n            .deleteAllVersions(true)\n            .dataJson(serializeJson(\n                jsonObject(\n                    jsonProperty(\"zip\", \"zap\"),\n                    jsonProperty(\"foo\", \"bar\")\n                )))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  kvv2:\n    type: vault:Mount\n    properties:\n      path: kvv2\n      type: kv\n      options:\n        version: 2\n      description: KV Version 2 secret engine mount\n  secret:\n    type: vault:kv:SecretV2\n    properties:\n      mount: ${kvv2.path}\n      cas: 1\n      deleteAllVersions: true\n      dataJson:\n        Fn::ToJSON:\n          zip: zap\n          foo: bar\n```\n{{% /example %}}\n{{% /examples %}}\n## Required Vault Capabilities\n\nUse of this resource requires the `create` or `update` capability\n(depending on whether the resource already exists) on the given path,\nthe `delete` capability if the resource is removed from configuration,\nand the `read` capability for drift detection (by default).\n\n\n## Import\n\nKV-V2 secrets can be imported using the `path`, e.g.\n\n```sh\n $ pulumi import vault:kv/secretV2:SecretV2 secret kvv2/data/secret\n```\n\n ",
+            "description": "Writes a KV-V2 secret to a given path in Vault.\n\nFor more information on Vault's KV-V2 secret backend\n[see here](https://www.vaultproject.io/docs/secrets/kv/kv-v2).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst kvv2 = new vault.Mount(\"kvv2\", {\n    path: \"kvv2\",\n    type: \"kv\",\n    options: {\n        version: \"2\",\n    },\n    description: \"KV Version 2 secret engine mount\",\n});\nconst example = new vault.kv.SecretV2(\"example\", {\n    mount: kvv2.path,\n    cas: 1,\n    deleteAllVersions: true,\n    dataJson: JSON.stringify({\n        zip: \"zap\",\n        foo: \"bar\",\n    }),\n    customMetadata: {\n        maxVersions: 5,\n        data: {\n            foo: \"vault@example.com\",\n            bar: \"12345\",\n        },\n    },\n});\n```\n```python\nimport pulumi\nimport json\nimport pulumi_vault as vault\n\nkvv2 = vault.Mount(\"kvv2\",\n    path=\"kvv2\",\n    type=\"kv\",\n    options={\n        \"version\": \"2\",\n    },\n    description=\"KV Version 2 secret engine mount\")\nexample = vault.kv.SecretV2(\"example\",\n    mount=kvv2.path,\n    cas=1,\n    delete_all_versions=True,\n    data_json=json.dumps({\n        \"zip\": \"zap\",\n        \"foo\": \"bar\",\n    }),\n    custom_metadata=vault.kv.SecretV2CustomMetadataArgs(\n        max_versions=5,\n        data={\n            \"foo\": \"vault@example.com\",\n            \"bar\": \"12345\",\n        },\n    ))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Text.Json;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var kvv2 = new Vault.Mount(\"kvv2\", new()\n    {\n        Path = \"kvv2\",\n        Type = \"kv\",\n        Options = \n        {\n            { \"version\", \"2\" },\n        },\n        Description = \"KV Version 2 secret engine mount\",\n    });\n\n    var example = new Vault.Kv.SecretV2(\"example\", new()\n    {\n        Mount = kvv2.Path,\n        Cas = 1,\n        DeleteAllVersions = true,\n        DataJson = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n        {\n            [\"zip\"] = \"zap\",\n            [\"foo\"] = \"bar\",\n        }),\n        CustomMetadata = new Vault.kv.Inputs.SecretV2CustomMetadataArgs\n        {\n            MaxVersions = 5,\n            Data = \n            {\n                { \"foo\", \"vault@example.com\" },\n                { \"bar\", \"12345\" },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kv\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tkvv2, err := vault.NewMount(ctx, \"kvv2\", \u0026vault.MountArgs{\n\t\t\tPath: pulumi.String(\"kvv2\"),\n\t\t\tType: pulumi.String(\"kv\"),\n\t\t\tOptions: pulumi.AnyMap{\n\t\t\t\t\"version\": pulumi.Any(\"2\"),\n\t\t\t},\n\t\t\tDescription: pulumi.String(\"KV Version 2 secret engine mount\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"zip\": \"zap\",\n\t\t\t\"foo\": \"bar\",\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\t_, err = kv.NewSecretV2(ctx, \"example\", \u0026kv.SecretV2Args{\n\t\t\tMount:             kvv2.Path,\n\t\t\tCas:               pulumi.Int(1),\n\t\t\tDeleteAllVersions: pulumi.Bool(true),\n\t\t\tDataJson:          pulumi.String(json0),\n\t\t\tCustomMetadata: \u0026kv.SecretV2CustomMetadataArgs{\n\t\t\t\tMaxVersions: pulumi.Int(5),\n\t\t\t\tData: pulumi.AnyMap{\n\t\t\t\t\t\"foo\": pulumi.Any(\"vault@example.com\"),\n\t\t\t\t\t\"bar\": pulumi.Any(\"12345\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.kv.SecretV2;\nimport com.pulumi.vault.kv.SecretV2Args;\nimport com.pulumi.vault.kv.inputs.SecretV2CustomMetadataArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var kvv2 = new Mount(\"kvv2\", MountArgs.builder()        \n            .path(\"kvv2\")\n            .type(\"kv\")\n            .options(Map.of(\"version\", \"2\"))\n            .description(\"KV Version 2 secret engine mount\")\n            .build());\n\n        var example = new SecretV2(\"example\", SecretV2Args.builder()        \n            .mount(kvv2.path())\n            .cas(1)\n            .deleteAllVersions(true)\n            .dataJson(serializeJson(\n                jsonObject(\n                    jsonProperty(\"zip\", \"zap\"),\n                    jsonProperty(\"foo\", \"bar\")\n                )))\n            .customMetadata(SecretV2CustomMetadataArgs.builder()\n                .maxVersions(5)\n                .data(Map.ofEntries(\n                    Map.entry(\"foo\", \"vault@example.com\"),\n                    Map.entry(\"bar\", \"12345\")\n                ))\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  kvv2:\n    type: vault:Mount\n    properties:\n      path: kvv2\n      type: kv\n      options:\n        version: 2\n      description: KV Version 2 secret engine mount\n  example:\n    type: vault:kv:SecretV2\n    properties:\n      mount: ${kvv2.path}\n      cas: 1\n      deleteAllVersions: true\n      dataJson:\n        Fn::ToJSON:\n          zip: zap\n          foo: bar\n      customMetadata:\n        maxVersions: 5\n        data:\n          foo: vault@example.com\n          bar: 12345\n```\n{{% /example %}}\n{{% /examples %}}\n## Required Vault Capabilities\n\nUse of this resource requires the `create` or `update` capability\n(depending on whether the resource already exists) on the given path,\nthe `delete` capability if the resource is removed from configuration,\nand the `read` capability for drift detection (by default).\n\n### Custom Metadata Configuration Options\n\n* `max_versions` - (Optional) The number of versions to keep per key.\n\n* `cas_required` - (Optional) If true, all keys will require the cas\n  parameter to be set on all write requests.\n\n* `delete_version_after` - (Optional) If set, specifies the length of time before\n  a version is deleted. Accepts duration in integer seconds.\n\n* `data` - (Optional) A string to string map describing the secret.\n\n\n## Import\n\nKV-V2 secrets can be imported using the `path`, e.g.\n\n```sh\n $ pulumi import vault:kv/secretV2:SecretV2 example kvv2/data/secret\n```\n\n ",
             "properties": {
                 "cas": {
                     "type": "integer",
                     "description": "This flag is required if `cas_required` is set to true\non either the secret or the engine's config. In order for a\nwrite operation to be successful, cas must be set to the current version\nof the secret.\n"
+                },
+                "customMetadata": {
+                    "$ref": "#/types/vault:kv/SecretV2CustomMetadata:SecretV2CustomMetadata",
+                    "description": "A nested block that allows configuring metadata for the\nKV secret. Refer to the\nConfiguration Options for more info.\n"
                 },
                 "data": {
                     "type": "object",
@@ -22038,6 +22472,7 @@
                 }
             },
             "required": [
+                "customMetadata",
                 "data",
                 "dataJson",
                 "metadata",
@@ -22049,6 +22484,10 @@
                 "cas": {
                     "type": "integer",
                     "description": "This flag is required if `cas_required` is set to true\non either the secret or the engine's config. In order for a\nwrite operation to be successful, cas must be set to the current version\nof the secret.\n"
+                },
+                "customMetadata": {
+                    "$ref": "#/types/vault:kv/SecretV2CustomMetadata:SecretV2CustomMetadata",
+                    "description": "A nested block that allows configuring metadata for the\nKV secret. Refer to the\nConfiguration Options for more info.\n"
                 },
                 "dataJson": {
                     "type": "string",
@@ -22096,6 +22535,10 @@
                     "cas": {
                         "type": "integer",
                         "description": "This flag is required if `cas_required` is set to true\non either the secret or the engine's config. In order for a\nwrite operation to be successful, cas must be set to the current version\nof the secret.\n"
+                    },
+                    "customMetadata": {
+                        "$ref": "#/types/vault:kv/SecretV2CustomMetadata:SecretV2CustomMetadata",
+                        "description": "A nested block that allows configuring metadata for the\nKV secret. Refer to the\nConfiguration Options for more info.\n"
                     },
                     "data": {
                         "type": "object",
@@ -22973,7 +23416,7 @@
                 },
                 "path": {
                     "type": "string",
-                    "description": "Path to mount the Okta auth backend\n"
+                    "description": "Path to mount the Okta auth backend. Default to path `okta`.\n"
                 },
                 "token": {
                     "type": "string",
@@ -23037,7 +23480,7 @@
                 },
                 "path": {
                     "type": "string",
-                    "description": "Path to mount the Okta auth backend\n"
+                    "description": "Path to mount the Okta auth backend. Default to path `okta`.\n"
                 },
                 "token": {
                     "type": "string",
@@ -23104,7 +23547,7 @@
                     },
                     "path": {
                         "type": "string",
-                        "description": "Path to mount the Okta auth backend\n"
+                        "description": "Path to mount the Okta auth backend. Default to path `okta`.\n"
                     },
                     "token": {
                         "type": "string",
@@ -23826,13 +24269,29 @@
         "vault:pkiSecret/secretBackendCrlConfig:SecretBackendCrlConfig": {
             "description": "Allows setting the duration for which the generated CRL should be marked valid. If the CRL is disabled, it will return a signed but zero-length CRL for any request. If enabled, it will re-build the CRL.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst pki = new vault.Mount(\"pki\", {\n    path: `%s`,\n    type: \"pki\",\n    defaultLeaseTtlSeconds: 3600,\n    maxLeaseTtlSeconds: 86400,\n});\nconst crlConfig = new vault.pkisecret.SecretBackendCrlConfig(\"crlConfig\", {\n    backend: pki.path,\n    expiry: \"72h\",\n    disable: false,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\npki = vault.Mount(\"pki\",\n    path=\"%s\",\n    type=\"pki\",\n    default_lease_ttl_seconds=3600,\n    max_lease_ttl_seconds=86400)\ncrl_config = vault.pki_secret.SecretBackendCrlConfig(\"crlConfig\",\n    backend=pki.path,\n    expiry=\"72h\",\n    disable=False)\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var pki = new Vault.Mount(\"pki\", new()\n    {\n        Path = \"%s\",\n        Type = \"pki\",\n        DefaultLeaseTtlSeconds = 3600,\n        MaxLeaseTtlSeconds = 86400,\n    });\n\n    var crlConfig = new Vault.PkiSecret.SecretBackendCrlConfig(\"crlConfig\", new()\n    {\n        Backend = pki.Path,\n        Expiry = \"72h\",\n        Disable = false,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tpki, err := vault.NewMount(ctx, \"pki\", \u0026vault.MountArgs{\n\t\t\tPath:                   pulumi.String(fmt.Sprintf(\"%vs\", \"%\")),\n\t\t\tType:                   pulumi.String(\"pki\"),\n\t\t\tDefaultLeaseTtlSeconds: pulumi.Int(3600),\n\t\t\tMaxLeaseTtlSeconds:     pulumi.Int(86400),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = pkiSecret.NewSecretBackendCrlConfig(ctx, \"crlConfig\", \u0026pkiSecret.SecretBackendCrlConfigArgs{\n\t\t\tBackend: pki.Path,\n\t\t\tExpiry:  pulumi.String(\"72h\"),\n\t\t\tDisable: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.pkiSecret.SecretBackendCrlConfig;\nimport com.pulumi.vault.pkiSecret.SecretBackendCrlConfigArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var pki = new Mount(\"pki\", MountArgs.builder()        \n            .path(\"%s\")\n            .type(\"pki\")\n            .defaultLeaseTtlSeconds(3600)\n            .maxLeaseTtlSeconds(86400)\n            .build());\n\n        var crlConfig = new SecretBackendCrlConfig(\"crlConfig\", SecretBackendCrlConfigArgs.builder()        \n            .backend(pki.path())\n            .expiry(\"72h\")\n            .disable(false)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  pki:\n    type: vault:Mount\n    properties:\n      path: '%s'\n      type: pki\n      defaultLeaseTtlSeconds: 3600\n      maxLeaseTtlSeconds: 86400\n  crlConfig:\n    type: vault:pkiSecret:SecretBackendCrlConfig\n    properties:\n      backend: ${pki.path}\n      expiry: 72h\n      disable: false\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
+                "autoRebuild": {
+                    "type": "boolean",
+                    "description": "Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**\n"
+                },
+                "autoRebuildGracePeriod": {
+                    "type": "string",
+                    "description": "Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**\n"
+                },
                 "backend": {
                     "type": "string",
                     "description": "The path the PKI secret backend is mounted at, with no leading or trailing `/`s.\n"
                 },
+                "deltaRebuildInterval": {
+                    "type": "string",
+                    "description": "Interval to check for new revocations on, to regenerate the delta CRL.\n"
+                },
                 "disable": {
                     "type": "boolean",
                     "description": "Disables or enables CRL building.\n"
+                },
+                "enableDelta": {
+                    "type": "boolean",
+                    "description": "Enables building of delta CRLs with up-to-date revocation information, \naugmenting the last complete CRL.  **Vault 1.12+**\n"
                 },
                 "expiry": {
                     "type": "string",
@@ -23841,20 +24300,47 @@
                 "namespace": {
                     "type": "string",
                     "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n"
+                },
+                "ocspDisable": {
+                    "type": "boolean",
+                    "description": "Disables the OCSP responder in Vault. **Vault 1.12+**\n"
+                },
+                "ocspExpiry": {
+                    "type": "string",
+                    "description": "The amount of time an OCSP response can be cached for, useful for OCSP stapling \nrefresh durations. **Vault 1.12+**\n"
                 }
             },
             "required": [
-                "backend"
+                "autoRebuildGracePeriod",
+                "backend",
+                "deltaRebuildInterval",
+                "ocspExpiry"
             ],
             "inputProperties": {
+                "autoRebuild": {
+                    "type": "boolean",
+                    "description": "Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**\n"
+                },
+                "autoRebuildGracePeriod": {
+                    "type": "string",
+                    "description": "Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**\n"
+                },
                 "backend": {
                     "type": "string",
                     "description": "The path the PKI secret backend is mounted at, with no leading or trailing `/`s.\n",
                     "willReplaceOnChanges": true
                 },
+                "deltaRebuildInterval": {
+                    "type": "string",
+                    "description": "Interval to check for new revocations on, to regenerate the delta CRL.\n"
+                },
                 "disable": {
                     "type": "boolean",
                     "description": "Disables or enables CRL building.\n"
+                },
+                "enableDelta": {
+                    "type": "boolean",
+                    "description": "Enables building of delta CRLs with up-to-date revocation information, \naugmenting the last complete CRL.  **Vault 1.12+**\n"
                 },
                 "expiry": {
                     "type": "string",
@@ -23864,6 +24350,14 @@
                     "type": "string",
                     "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
                     "willReplaceOnChanges": true
+                },
+                "ocspDisable": {
+                    "type": "boolean",
+                    "description": "Disables the OCSP responder in Vault. **Vault 1.12+**\n"
+                },
+                "ocspExpiry": {
+                    "type": "string",
+                    "description": "The amount of time an OCSP response can be cached for, useful for OCSP stapling \nrefresh durations. **Vault 1.12+**\n"
                 }
             },
             "requiredInputs": [
@@ -23872,14 +24366,30 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering SecretBackendCrlConfig resources.\n",
                 "properties": {
+                    "autoRebuild": {
+                        "type": "boolean",
+                        "description": "Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**\n"
+                    },
+                    "autoRebuildGracePeriod": {
+                        "type": "string",
+                        "description": "Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**\n"
+                    },
                     "backend": {
                         "type": "string",
                         "description": "The path the PKI secret backend is mounted at, with no leading or trailing `/`s.\n",
                         "willReplaceOnChanges": true
                     },
+                    "deltaRebuildInterval": {
+                        "type": "string",
+                        "description": "Interval to check for new revocations on, to regenerate the delta CRL.\n"
+                    },
                     "disable": {
                         "type": "boolean",
                         "description": "Disables or enables CRL building.\n"
+                    },
+                    "enableDelta": {
+                        "type": "boolean",
+                        "description": "Enables building of delta CRLs with up-to-date revocation information, \naugmenting the last complete CRL.  **Vault 1.12+**\n"
                     },
                     "expiry": {
                         "type": "string",
@@ -23889,6 +24399,14 @@
                         "type": "string",
                         "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "ocspDisable": {
+                        "type": "boolean",
+                        "description": "Disables the OCSP responder in Vault. **Vault 1.12+**\n"
+                    },
+                    "ocspExpiry": {
+                        "type": "string",
+                        "description": "The amount of time an OCSP response can be cached for, useful for OCSP stapling \nrefresh durations. **Vault 1.12+**\n"
                     }
                 },
                 "type": "object"
@@ -23897,6 +24415,10 @@
         "vault:pkiSecret/secretBackendIntermediateCertRequest:SecretBackendIntermediateCertRequest": {
             "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst test = new vault.pkisecret.SecretBackendIntermediateCertRequest(\"test\", {\n    backend: vault_mount.pki.path,\n    type: \"internal\",\n    commonName: \"app.my.domain\",\n}, {\n    dependsOn: [vault_mount.pki],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ntest = vault.pki_secret.SecretBackendIntermediateCertRequest(\"test\",\n    backend=vault_mount[\"pki\"][\"path\"],\n    type=\"internal\",\n    common_name=\"app.my.domain\",\n    opts=pulumi.ResourceOptions(depends_on=[vault_mount[\"pki\"]]))\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Vault.PkiSecret.SecretBackendIntermediateCertRequest(\"test\", new()\n    {\n        Backend = vault_mount.Pki.Path,\n        Type = \"internal\",\n        CommonName = \"app.my.domain\",\n    }, new CustomResourceOptions\n    {\n        DependsOn = new[]\n        {\n            vault_mount.Pki,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := pkiSecret.NewSecretBackendIntermediateCertRequest(ctx, \"test\", \u0026pkiSecret.SecretBackendIntermediateCertRequestArgs{\n\t\t\tBackend:    pulumi.Any(vault_mount.Pki.Path),\n\t\t\tType:       pulumi.String(\"internal\"),\n\t\t\tCommonName: pulumi.String(\"app.my.domain\"),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tvault_mount.Pki,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.pkiSecret.SecretBackendIntermediateCertRequest;\nimport com.pulumi.vault.pkiSecret.SecretBackendIntermediateCertRequestArgs;\nimport com.pulumi.resources.CustomResourceOptions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new SecretBackendIntermediateCertRequest(\"test\", SecretBackendIntermediateCertRequestArgs.builder()        \n            .backend(vault_mount.pki().path())\n            .type(\"internal\")\n            .commonName(\"app.my.domain\")\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(vault_mount.pki())\n                .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: vault:pkiSecret:SecretBackendIntermediateCertRequest\n    properties:\n      backend: ${vault_mount.pki.path}\n      type: internal\n      commonName: app.my.domain\n    options:\n      dependson:\n        - ${vault_mount.pki}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
+                "addBasicConstraints": {
+                    "type": "boolean",
+                    "description": "Adds a Basic Constraints extension with 'CA: true'.\nOnly needed as a workaround in some compatibility scenarios with Active Directory\nCertificate Services\n"
+                },
                 "altNames": {
                     "type": "array",
                     "items": {
@@ -24020,6 +24542,11 @@
                 "type"
             ],
             "inputProperties": {
+                "addBasicConstraints": {
+                    "type": "boolean",
+                    "description": "Adds a Basic Constraints extension with 'CA: true'.\nOnly needed as a workaround in some compatibility scenarios with Active Directory\nCertificate Services\n",
+                    "willReplaceOnChanges": true
+                },
                 "altNames": {
                     "type": "array",
                     "items": {
@@ -24151,6 +24678,11 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering SecretBackendIntermediateCertRequest resources.\n",
                 "properties": {
+                    "addBasicConstraints": {
+                        "type": "boolean",
+                        "description": "Adds a Basic Constraints extension with 'CA: true'.\nOnly needed as a workaround in some compatibility scenarios with Active Directory\nCertificate Services\n",
+                        "willReplaceOnChanges": true
+                    },
                     "altNames": {
                         "type": "array",
                         "items": {
@@ -27878,6 +28410,10 @@
                     },
                     "description": "The set of roles allowed to perform this transformation.\n"
                 },
+                "deletionAllowed": {
+                    "type": "boolean",
+                    "description": "If true, this transform can be deleted.\nOtherwise, deletion is blocked while this value remains false. Default: `false`\n*Only supported on vault-1.12+*\n"
+                },
                 "maskingCharacter": {
                     "type": "string",
                     "description": "The character used to replace data when in masking mode\n"
@@ -27922,6 +28458,10 @@
                         "type": "string"
                     },
                     "description": "The set of roles allowed to perform this transformation.\n"
+                },
+                "deletionAllowed": {
+                    "type": "boolean",
+                    "description": "If true, this transform can be deleted.\nOtherwise, deletion is blocked while this value remains false. Default: `false`\n*Only supported on vault-1.12+*\n"
                 },
                 "maskingCharacter": {
                     "type": "string",
@@ -27969,6 +28509,10 @@
                             "type": "string"
                         },
                         "description": "The set of roles allowed to perform this transformation.\n"
+                    },
+                    "deletionAllowed": {
+                        "type": "boolean",
+                        "description": "If true, this transform can be deleted.\nOtherwise, deletion is blocked while this value remains false. Default: `false`\n*Only supported on vault-1.12+*\n"
                     },
                     "maskingCharacter": {
                         "type": "string",
@@ -28503,7 +29047,8 @@
                 "properties": {
                     "accessKey": {
                         "type": "string",
-                        "description": "The AWS Access Key ID returned by Vault.\n"
+                        "description": "The AWS Access Key ID returned by Vault.\n",
+                        "secret": true
                     },
                     "backend": {
                         "type": "string"
@@ -28540,7 +29085,8 @@
                     },
                     "secretKey": {
                         "type": "string",
-                        "description": "The AWS Secret Key returned by Vault.\n"
+                        "description": "The AWS Secret Key returned by Vault.\n",
+                        "secret": true
                     },
                     "securityToken": {
                         "type": "string",
@@ -30230,7 +30776,7 @@
             }
         },
         "vault:kv/getSecretV2:getSecretV2": {
-            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst kvv2 = new vault.Mount(\"kvv2\", {\n    path: \"kvv2\",\n    type: \"kv\",\n    options: {\n        version: \"2\",\n    },\n    description: \"KV Version 2 secret engine mount\",\n});\nconst secret = new vault.kv.SecretV2(\"secret\", {\n    mount: kvv2.path,\n    cas: 1,\n    deleteAllVersions: true,\n    dataJson: JSON.stringify({\n        zip: \"zap\",\n        foo: \"bar\",\n    }),\n});\nconst secretData = kvv2.path.apply(path =\u003e vault.kv.getSecretV2Output({\n    mount: path,\n    name: vault_kv_secret_v2.test.name,\n}));\n```\n```python\nimport pulumi\nimport json\nimport pulumi_vault as vault\n\nkvv2 = vault.Mount(\"kvv2\",\n    path=\"kvv2\",\n    type=\"kv\",\n    options={\n        \"version\": \"2\",\n    },\n    description=\"KV Version 2 secret engine mount\")\nsecret = vault.kv.SecretV2(\"secret\",\n    mount=kvv2.path,\n    cas=1,\n    delete_all_versions=True,\n    data_json=json.dumps({\n        \"zip\": \"zap\",\n        \"foo\": \"bar\",\n    }))\nsecret_data = kvv2.path.apply(lambda path: vault.kv.get_secret_v2_output(mount=path,\n    name=vault_kv_secret_v2[\"test\"][\"name\"]))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Text.Json;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var kvv2 = new Vault.Mount(\"kvv2\", new()\n    {\n        Path = \"kvv2\",\n        Type = \"kv\",\n        Options = \n        {\n            { \"version\", \"2\" },\n        },\n        Description = \"KV Version 2 secret engine mount\",\n    });\n\n    var secret = new Vault.Kv.SecretV2(\"secret\", new()\n    {\n        Mount = kvv2.Path,\n        Cas = 1,\n        DeleteAllVersions = true,\n        DataJson = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n        {\n            [\"zip\"] = \"zap\",\n            [\"foo\"] = \"bar\",\n        }),\n    });\n\n    var secretData = Vault.kv.GetSecretV2.Invoke(new()\n    {\n        Mount = kvv2.Path,\n        Name = vault_kv_secret_v2.Test.Name,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kv\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tkvv2, err := vault.NewMount(ctx, \"kvv2\", \u0026vault.MountArgs{\n\t\t\tPath: pulumi.String(\"kvv2\"),\n\t\t\tType: pulumi.String(\"kv\"),\n\t\t\tOptions: pulumi.AnyMap{\n\t\t\t\t\"version\": pulumi.Any(\"2\"),\n\t\t\t},\n\t\t\tDescription: pulumi.String(\"KV Version 2 secret engine mount\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"zip\": \"zap\",\n\t\t\t\"foo\": \"bar\",\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\t_, err = kv.NewSecretV2(ctx, \"secret\", \u0026kv.SecretV2Args{\n\t\t\tMount:             kvv2.Path,\n\t\t\tCas:               pulumi.Int(1),\n\t\t\tDeleteAllVersions: pulumi.Bool(true),\n\t\t\tDataJson:          pulumi.String(json0),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.kv.SecretV2;\nimport com.pulumi.vault.kv.SecretV2Args;\nimport com.pulumi.vault.kv.KvFunctions;\nimport com.pulumi.vault.kv.inputs.GetSecretV2Args;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var kvv2 = new Mount(\"kvv2\", MountArgs.builder()        \n            .path(\"kvv2\")\n            .type(\"kv\")\n            .options(Map.of(\"version\", \"2\"))\n            .description(\"KV Version 2 secret engine mount\")\n            .build());\n\n        var secret = new SecretV2(\"secret\", SecretV2Args.builder()        \n            .mount(kvv2.path())\n            .cas(1)\n            .deleteAllVersions(true)\n            .dataJson(serializeJson(\n                jsonObject(\n                    jsonProperty(\"zip\", \"zap\"),\n                    jsonProperty(\"foo\", \"bar\")\n                )))\n            .build());\n\n        final var secretData = KvFunctions.getSecretV2(GetSecretV2Args.builder()\n            .mount(kvv2.path())\n            .name(vault_kv_secret_v2.test().name())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  kvv2:\n    type: vault:Mount\n    properties:\n      path: kvv2\n      type: kv\n      options:\n        version: 2\n      description: KV Version 2 secret engine mount\n  secret:\n    type: vault:kv:SecretV2\n    properties:\n      mount: ${kvv2.path}\n      cas: 1\n      deleteAllVersions: true\n      dataJson:\n        Fn::ToJSON:\n          zip: zap\n          foo: bar\nvariables:\n  secretData:\n    Fn::Invoke:\n      Function: vault:kv:getSecretV2\n      Arguments:\n        mount: ${kvv2.path}\n        name: ${vault_kv_secret_v2.test.name}\n```\n{{% /example %}}\n{{% /examples %}}\n## Required Vault Capabilities\n\nUse of this resource requires the `read` capability on the given path.\n",
+            "description": "## Required Vault Capabilities\n\nUse of this resource requires the `read` capability on the given path.\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getSecretV2.\n",
                 "properties": {

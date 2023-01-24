@@ -209,7 +209,12 @@ export class SecretsMount extends pulumi.CustomResource {
      */
     public readonly postgresqls!: pulumi.Output<outputs.database.SecretsMountPostgresql[] | undefined>;
     /**
-     * A nested block containing configuration options for InfluxDB connections.  
+     * A nested block containing configuration options for Redis connections.  
+     * *See Configuration Options for more info*
+     */
+    public readonly redis!: pulumi.Output<outputs.database.SecretsMountRedi[] | undefined>;
+    /**
+     * A nested block containing configuration options for Redis ElastiCache connections.  
      * *See Configuration Options for more info*
      */
     public readonly redisElasticaches!: pulumi.Output<outputs.database.SecretsMountRedisElasticach[] | undefined>;
@@ -268,6 +273,7 @@ export class SecretsMount extends pulumi.CustomResource {
             resourceInputs["oracles"] = state ? state.oracles : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
             resourceInputs["postgresqls"] = state ? state.postgresqls : undefined;
+            resourceInputs["redis"] = state ? state.redis : undefined;
             resourceInputs["redisElasticaches"] = state ? state.redisElasticaches : undefined;
             resourceInputs["redshifts"] = state ? state.redshifts : undefined;
             resourceInputs["sealWrap"] = state ? state.sealWrap : undefined;
@@ -302,6 +308,7 @@ export class SecretsMount extends pulumi.CustomResource {
             resourceInputs["oracles"] = args ? args.oracles : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["postgresqls"] = args ? args.postgresqls : undefined;
+            resourceInputs["redis"] = args ? args.redis : undefined;
             resourceInputs["redisElasticaches"] = args ? args.redisElasticaches : undefined;
             resourceInputs["redshifts"] = args ? args.redshifts : undefined;
             resourceInputs["sealWrap"] = args ? args.sealWrap : undefined;
@@ -441,7 +448,12 @@ export interface SecretsMountState {
      */
     postgresqls?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountPostgresql>[]>;
     /**
-     * A nested block containing configuration options for InfluxDB connections.  
+     * A nested block containing configuration options for Redis connections.  
+     * *See Configuration Options for more info*
+     */
+    redis?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountRedi>[]>;
+    /**
+     * A nested block containing configuration options for Redis ElastiCache connections.  
      * *See Configuration Options for more info*
      */
     redisElasticaches?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountRedisElasticach>[]>;
@@ -580,7 +592,12 @@ export interface SecretsMountArgs {
      */
     postgresqls?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountPostgresql>[]>;
     /**
-     * A nested block containing configuration options for InfluxDB connections.  
+     * A nested block containing configuration options for Redis connections.  
+     * *See Configuration Options for more info*
+     */
+    redis?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountRedi>[]>;
+    /**
+     * A nested block containing configuration options for Redis ElastiCache connections.  
      * *See Configuration Options for more info*
      */
     redisElasticaches?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountRedisElasticach>[]>;

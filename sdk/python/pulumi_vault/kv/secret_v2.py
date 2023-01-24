@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['SecretV2Args', 'SecretV2']
 
@@ -17,6 +19,7 @@ class SecretV2Args:
                  data_json: pulumi.Input[str],
                  mount: pulumi.Input[str],
                  cas: Optional[pulumi.Input[int]] = None,
+                 custom_metadata: Optional[pulumi.Input['SecretV2CustomMetadataArgs']] = None,
                  delete_all_versions: Optional[pulumi.Input[bool]] = None,
                  disable_read: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -31,6 +34,9 @@ class SecretV2Args:
                on either the secret or the engine's config. In order for a
                write operation to be successful, cas must be set to the current version
                of the secret.
+        :param pulumi.Input['SecretV2CustomMetadataArgs'] custom_metadata: A nested block that allows configuring metadata for the
+               KV secret. Refer to the
+               Configuration Options for more info.
         :param pulumi.Input[bool] delete_all_versions: If set to true, permanently deletes all
                versions for the specified key.
         :param pulumi.Input[bool] disable_read: If set to true, disables reading secret from Vault;
@@ -49,6 +55,8 @@ class SecretV2Args:
         pulumi.set(__self__, "mount", mount)
         if cas is not None:
             pulumi.set(__self__, "cas", cas)
+        if custom_metadata is not None:
+            pulumi.set(__self__, "custom_metadata", custom_metadata)
         if delete_all_versions is not None:
             pulumi.set(__self__, "delete_all_versions", delete_all_versions)
         if disable_read is not None:
@@ -99,6 +107,20 @@ class SecretV2Args:
     @cas.setter
     def cas(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "cas", value)
+
+    @property
+    @pulumi.getter(name="customMetadata")
+    def custom_metadata(self) -> Optional[pulumi.Input['SecretV2CustomMetadataArgs']]:
+        """
+        A nested block that allows configuring metadata for the
+        KV secret. Refer to the
+        Configuration Options for more info.
+        """
+        return pulumi.get(self, "custom_metadata")
+
+    @custom_metadata.setter
+    def custom_metadata(self, value: Optional[pulumi.Input['SecretV2CustomMetadataArgs']]):
+        pulumi.set(self, "custom_metadata", value)
 
     @property
     @pulumi.getter(name="deleteAllVersions")
@@ -173,6 +195,7 @@ class SecretV2Args:
 class _SecretV2State:
     def __init__(__self__, *,
                  cas: Optional[pulumi.Input[int]] = None,
+                 custom_metadata: Optional[pulumi.Input['SecretV2CustomMetadataArgs']] = None,
                  data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  data_json: Optional[pulumi.Input[str]] = None,
                  delete_all_versions: Optional[pulumi.Input[bool]] = None,
@@ -189,6 +212,9 @@ class _SecretV2State:
                on either the secret or the engine's config. In order for a
                write operation to be successful, cas must be set to the current version
                of the secret.
+        :param pulumi.Input['SecretV2CustomMetadataArgs'] custom_metadata: A nested block that allows configuring metadata for the
+               KV secret. Refer to the
+               Configuration Options for more info.
         :param pulumi.Input[Mapping[str, Any]] data: A mapping whose keys are the top-level data keys returned from
                Vault and whose values are the corresponding values. This map can only
                represent string data, so any non-string values returned from Vault are
@@ -214,6 +240,8 @@ class _SecretV2State:
         """
         if cas is not None:
             pulumi.set(__self__, "cas", cas)
+        if custom_metadata is not None:
+            pulumi.set(__self__, "custom_metadata", custom_metadata)
         if data is not None:
             pulumi.set(__self__, "data", data)
         if data_json is not None:
@@ -249,6 +277,20 @@ class _SecretV2State:
     @cas.setter
     def cas(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "cas", value)
+
+    @property
+    @pulumi.getter(name="customMetadata")
+    def custom_metadata(self) -> Optional[pulumi.Input['SecretV2CustomMetadataArgs']]:
+        """
+        A nested block that allows configuring metadata for the
+        KV secret. Refer to the
+        Configuration Options for more info.
+        """
+        return pulumi.get(self, "custom_metadata")
+
+    @custom_metadata.setter
+    def custom_metadata(self, value: Optional[pulumi.Input['SecretV2CustomMetadataArgs']]):
+        pulumi.set(self, "custom_metadata", value)
 
     @property
     @pulumi.getter
@@ -389,6 +431,7 @@ class SecretV2(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cas: Optional[pulumi.Input[int]] = None,
+                 custom_metadata: Optional[pulumi.Input[pulumi.InputType['SecretV2CustomMetadataArgs']]] = None,
                  data_json: Optional[pulumi.Input[str]] = None,
                  delete_all_versions: Optional[pulumi.Input[bool]] = None,
                  disable_read: Optional[pulumi.Input[bool]] = None,
@@ -417,14 +460,21 @@ class SecretV2(pulumi.CustomResource):
                 "version": "2",
             },
             description="KV Version 2 secret engine mount")
-        secret = vault.kv.SecretV2("secret",
+        example = vault.kv.SecretV2("example",
             mount=kvv2.path,
             cas=1,
             delete_all_versions=True,
             data_json=json.dumps({
                 "zip": "zap",
                 "foo": "bar",
-            }))
+            }),
+            custom_metadata=vault.kv.SecretV2CustomMetadataArgs(
+                max_versions=5,
+                data={
+                    "foo": "vault@example.com",
+                    "bar": "12345",
+                },
+            ))
         ```
         ## Required Vault Capabilities
 
@@ -433,12 +483,24 @@ class SecretV2(pulumi.CustomResource):
         the `delete` capability if the resource is removed from configuration,
         and the `read` capability for drift detection (by default).
 
+        ### Custom Metadata Configuration Options
+
+        * `max_versions` - (Optional) The number of versions to keep per key.
+
+        * `cas_required` - (Optional) If true, all keys will require the cas
+        parameter to be set on all write requests.
+
+        * `delete_version_after` - (Optional) If set, specifies the length of time before
+        a version is deleted. Accepts duration in integer seconds.
+
+        * `data` - (Optional) A string to string map describing the secret.
+
         ## Import
 
         KV-V2 secrets can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:kv/secretV2:SecretV2 secret kvv2/data/secret
+         $ pulumi import vault:kv/secretV2:SecretV2 example kvv2/data/secret
         ```
 
         :param str resource_name: The name of the resource.
@@ -447,6 +509,9 @@ class SecretV2(pulumi.CustomResource):
                on either the secret or the engine's config. In order for a
                write operation to be successful, cas must be set to the current version
                of the secret.
+        :param pulumi.Input[pulumi.InputType['SecretV2CustomMetadataArgs']] custom_metadata: A nested block that allows configuring metadata for the
+               KV secret. Refer to the
+               Configuration Options for more info.
         :param pulumi.Input[str] data_json: JSON-encoded string that will be
                written as the secret data at the given path.
         :param pulumi.Input[bool] delete_all_versions: If set to true, permanently deletes all
@@ -490,14 +555,21 @@ class SecretV2(pulumi.CustomResource):
                 "version": "2",
             },
             description="KV Version 2 secret engine mount")
-        secret = vault.kv.SecretV2("secret",
+        example = vault.kv.SecretV2("example",
             mount=kvv2.path,
             cas=1,
             delete_all_versions=True,
             data_json=json.dumps({
                 "zip": "zap",
                 "foo": "bar",
-            }))
+            }),
+            custom_metadata=vault.kv.SecretV2CustomMetadataArgs(
+                max_versions=5,
+                data={
+                    "foo": "vault@example.com",
+                    "bar": "12345",
+                },
+            ))
         ```
         ## Required Vault Capabilities
 
@@ -506,12 +578,24 @@ class SecretV2(pulumi.CustomResource):
         the `delete` capability if the resource is removed from configuration,
         and the `read` capability for drift detection (by default).
 
+        ### Custom Metadata Configuration Options
+
+        * `max_versions` - (Optional) The number of versions to keep per key.
+
+        * `cas_required` - (Optional) If true, all keys will require the cas
+        parameter to be set on all write requests.
+
+        * `delete_version_after` - (Optional) If set, specifies the length of time before
+        a version is deleted. Accepts duration in integer seconds.
+
+        * `data` - (Optional) A string to string map describing the secret.
+
         ## Import
 
         KV-V2 secrets can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:kv/secretV2:SecretV2 secret kvv2/data/secret
+         $ pulumi import vault:kv/secretV2:SecretV2 example kvv2/data/secret
         ```
 
         :param str resource_name: The name of the resource.
@@ -530,6 +614,7 @@ class SecretV2(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cas: Optional[pulumi.Input[int]] = None,
+                 custom_metadata: Optional[pulumi.Input[pulumi.InputType['SecretV2CustomMetadataArgs']]] = None,
                  data_json: Optional[pulumi.Input[str]] = None,
                  delete_all_versions: Optional[pulumi.Input[bool]] = None,
                  disable_read: Optional[pulumi.Input[bool]] = None,
@@ -547,6 +632,7 @@ class SecretV2(pulumi.CustomResource):
             __props__ = SecretV2Args.__new__(SecretV2Args)
 
             __props__.__dict__["cas"] = cas
+            __props__.__dict__["custom_metadata"] = custom_metadata
             if data_json is None and not opts.urn:
                 raise TypeError("Missing required property 'data_json'")
             __props__.__dict__["data_json"] = None if data_json is None else pulumi.Output.secret(data_json)
@@ -574,6 +660,7 @@ class SecretV2(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             cas: Optional[pulumi.Input[int]] = None,
+            custom_metadata: Optional[pulumi.Input[pulumi.InputType['SecretV2CustomMetadataArgs']]] = None,
             data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             data_json: Optional[pulumi.Input[str]] = None,
             delete_all_versions: Optional[pulumi.Input[bool]] = None,
@@ -595,6 +682,9 @@ class SecretV2(pulumi.CustomResource):
                on either the secret or the engine's config. In order for a
                write operation to be successful, cas must be set to the current version
                of the secret.
+        :param pulumi.Input[pulumi.InputType['SecretV2CustomMetadataArgs']] custom_metadata: A nested block that allows configuring metadata for the
+               KV secret. Refer to the
+               Configuration Options for more info.
         :param pulumi.Input[Mapping[str, Any]] data: A mapping whose keys are the top-level data keys returned from
                Vault and whose values are the corresponding values. This map can only
                represent string data, so any non-string values returned from Vault are
@@ -623,6 +713,7 @@ class SecretV2(pulumi.CustomResource):
         __props__ = _SecretV2State.__new__(_SecretV2State)
 
         __props__.__dict__["cas"] = cas
+        __props__.__dict__["custom_metadata"] = custom_metadata
         __props__.__dict__["data"] = data
         __props__.__dict__["data_json"] = data_json
         __props__.__dict__["delete_all_versions"] = delete_all_versions
@@ -645,6 +736,16 @@ class SecretV2(pulumi.CustomResource):
         of the secret.
         """
         return pulumi.get(self, "cas")
+
+    @property
+    @pulumi.getter(name="customMetadata")
+    def custom_metadata(self) -> pulumi.Output['outputs.SecretV2CustomMetadata']:
+        """
+        A nested block that allows configuring metadata for the
+        KV secret. Refer to the
+        Configuration Options for more info.
+        """
+        return pulumi.get(self, "custom_metadata")
 
     @property
     @pulumi.getter

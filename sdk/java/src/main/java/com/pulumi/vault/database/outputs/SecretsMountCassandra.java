@@ -83,7 +83,7 @@ public final class SecretsMountCassandra {
      */
     private @Nullable List<String> rootRotationStatements;
     /**
-     * @return Whether to use TLS when connecting to Cassandra.
+     * @return Whether to use TLS when connecting to Redis.
      * 
      */
     private @Nullable Boolean tls;
@@ -193,7 +193,7 @@ public final class SecretsMountCassandra {
         return this.rootRotationStatements == null ? List.of() : this.rootRotationStatements;
     }
     /**
-     * @return Whether to use TLS when connecting to Cassandra.
+     * @return Whether to use TLS when connecting to Redis.
      * 
      */
     public Optional<Boolean> tls() {

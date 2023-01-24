@@ -63,6 +63,34 @@ import javax.annotation.Nullable;
 @ResourceType(type="vault:pkiSecret/secretBackendCrlConfig:SecretBackendCrlConfig")
 public class SecretBackendCrlConfig extends com.pulumi.resources.CustomResource {
     /**
+     * Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
+     * 
+     */
+    @Export(name="autoRebuild", type=Boolean.class, parameters={})
+    private Output</* @Nullable */ Boolean> autoRebuild;
+
+    /**
+     * @return Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
+     * 
+     */
+    public Output<Optional<Boolean>> autoRebuild() {
+        return Codegen.optional(this.autoRebuild);
+    }
+    /**
+     * Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**
+     * 
+     */
+    @Export(name="autoRebuildGracePeriod", type=String.class, parameters={})
+    private Output<String> autoRebuildGracePeriod;
+
+    /**
+     * @return Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**
+     * 
+     */
+    public Output<String> autoRebuildGracePeriod() {
+        return this.autoRebuildGracePeriod;
+    }
+    /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      * 
      */
@@ -77,6 +105,20 @@ public class SecretBackendCrlConfig extends com.pulumi.resources.CustomResource 
         return this.backend;
     }
     /**
+     * Interval to check for new revocations on, to regenerate the delta CRL.
+     * 
+     */
+    @Export(name="deltaRebuildInterval", type=String.class, parameters={})
+    private Output<String> deltaRebuildInterval;
+
+    /**
+     * @return Interval to check for new revocations on, to regenerate the delta CRL.
+     * 
+     */
+    public Output<String> deltaRebuildInterval() {
+        return this.deltaRebuildInterval;
+    }
+    /**
      * Disables or enables CRL building.
      * 
      */
@@ -89,6 +131,22 @@ public class SecretBackendCrlConfig extends com.pulumi.resources.CustomResource 
      */
     public Output<Optional<Boolean>> disable() {
         return Codegen.optional(this.disable);
+    }
+    /**
+     * Enables building of delta CRLs with up-to-date revocation information,
+     * augmenting the last complete CRL.  **Vault 1.12+**
+     * 
+     */
+    @Export(name="enableDelta", type=Boolean.class, parameters={})
+    private Output</* @Nullable */ Boolean> enableDelta;
+
+    /**
+     * @return Enables building of delta CRLs with up-to-date revocation information,
+     * augmenting the last complete CRL.  **Vault 1.12+**
+     * 
+     */
+    public Output<Optional<Boolean>> enableDelta() {
+        return Codegen.optional(this.enableDelta);
     }
     /**
      * Specifies the time until expiration.
@@ -123,6 +181,36 @@ public class SecretBackendCrlConfig extends com.pulumi.resources.CustomResource 
      */
     public Output<Optional<String>> namespace() {
         return Codegen.optional(this.namespace);
+    }
+    /**
+     * Disables the OCSP responder in Vault. **Vault 1.12+**
+     * 
+     */
+    @Export(name="ocspDisable", type=Boolean.class, parameters={})
+    private Output</* @Nullable */ Boolean> ocspDisable;
+
+    /**
+     * @return Disables the OCSP responder in Vault. **Vault 1.12+**
+     * 
+     */
+    public Output<Optional<Boolean>> ocspDisable() {
+        return Codegen.optional(this.ocspDisable);
+    }
+    /**
+     * The amount of time an OCSP response can be cached for, useful for OCSP stapling
+     * refresh durations. **Vault 1.12+**
+     * 
+     */
+    @Export(name="ocspExpiry", type=String.class, parameters={})
+    private Output<String> ocspExpiry;
+
+    /**
+     * @return The amount of time an OCSP response can be cached for, useful for OCSP stapling
+     * refresh durations. **Vault 1.12+**
+     * 
+     */
+    public Output<String> ocspExpiry() {
+        return this.ocspExpiry;
     }
 
     /**

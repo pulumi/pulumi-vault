@@ -49,6 +49,10 @@ export { GroupMemberEntityIdsArgs, GroupMemberEntityIdsState } from "./groupMemb
 export type GroupMemberEntityIds = import("./groupMemberEntityIds").GroupMemberEntityIds;
 export const GroupMemberEntityIds: typeof import("./groupMemberEntityIds").GroupMemberEntityIds = null as any;
 
+export { GroupMemberGroupIdsArgs, GroupMemberGroupIdsState } from "./groupMemberGroupIds";
+export type GroupMemberGroupIds = import("./groupMemberGroupIds").GroupMemberGroupIds;
+export const GroupMemberGroupIds: typeof import("./groupMemberGroupIds").GroupMemberGroupIds = null as any;
+
 export { GroupPoliciesArgs, GroupPoliciesState } from "./groupPolicies";
 export type GroupPolicies = import("./groupPolicies").GroupPolicies;
 export const GroupPolicies: typeof import("./groupPolicies").GroupPolicies = null as any;
@@ -116,6 +120,7 @@ utilities.lazyLoad(exports, ["getOidcPublicKeys","getOidcPublicKeysOutput"], () 
 utilities.lazyLoad(exports, ["Group"], () => require("./group"));
 utilities.lazyLoad(exports, ["GroupAlias"], () => require("./groupAlias"));
 utilities.lazyLoad(exports, ["GroupMemberEntityIds"], () => require("./groupMemberEntityIds"));
+utilities.lazyLoad(exports, ["GroupMemberGroupIds"], () => require("./groupMemberGroupIds"));
 utilities.lazyLoad(exports, ["GroupPolicies"], () => require("./groupPolicies"));
 utilities.lazyLoad(exports, ["MfaDuo"], () => require("./mfaDuo"));
 utilities.lazyLoad(exports, ["MfaLoginEnforcement"], () => require("./mfaLoginEnforcement"));
@@ -147,6 +152,8 @@ const _module = {
                 return new GroupAlias(name, <any>undefined, { urn })
             case "vault:identity/groupMemberEntityIds:GroupMemberEntityIds":
                 return new GroupMemberEntityIds(name, <any>undefined, { urn })
+            case "vault:identity/groupMemberGroupIds:GroupMemberGroupIds":
+                return new GroupMemberGroupIds(name, <any>undefined, { urn })
             case "vault:identity/groupPolicies:GroupPolicies":
                 return new GroupPolicies(name, <any>undefined, { urn })
             case "vault:identity/mfaDuo:MfaDuo":
@@ -186,6 +193,7 @@ pulumi.runtime.registerResourceModule("vault", "identity/entityPolicies", _modul
 pulumi.runtime.registerResourceModule("vault", "identity/group", _module)
 pulumi.runtime.registerResourceModule("vault", "identity/groupAlias", _module)
 pulumi.runtime.registerResourceModule("vault", "identity/groupMemberEntityIds", _module)
+pulumi.runtime.registerResourceModule("vault", "identity/groupMemberGroupIds", _module)
 pulumi.runtime.registerResourceModule("vault", "identity/groupPolicies", _module)
 pulumi.runtime.registerResourceModule("vault", "identity/mfaDuo", _module)
 pulumi.runtime.registerResourceModule("vault", "identity/mfaLoginEnforcement", _module)

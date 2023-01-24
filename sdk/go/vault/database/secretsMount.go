@@ -167,7 +167,10 @@ type SecretsMount struct {
 	// A nested block containing configuration options for PostgreSQL connections.\
 	// *See Configuration Options for more info*
 	Postgresqls SecretsMountPostgresqlArrayOutput `pulumi:"postgresqls"`
-	// A nested block containing configuration options for InfluxDB connections.\
+	// A nested block containing configuration options for Redis connections.\
+	// *See Configuration Options for more info*
+	Redis SecretsMountRediArrayOutput `pulumi:"redis"`
+	// A nested block containing configuration options for Redis ElastiCache connections.\
 	// *See Configuration Options for more info*
 	RedisElasticaches SecretsMountRedisElasticachArrayOutput `pulumi:"redisElasticaches"`
 	// A nested block containing configuration options for AWS Redshift connections.\
@@ -280,7 +283,10 @@ type secretsMountState struct {
 	// A nested block containing configuration options for PostgreSQL connections.\
 	// *See Configuration Options for more info*
 	Postgresqls []SecretsMountPostgresql `pulumi:"postgresqls"`
-	// A nested block containing configuration options for InfluxDB connections.\
+	// A nested block containing configuration options for Redis connections.\
+	// *See Configuration Options for more info*
+	Redis []SecretsMountRedi `pulumi:"redis"`
+	// A nested block containing configuration options for Redis ElastiCache connections.\
 	// *See Configuration Options for more info*
 	RedisElasticaches []SecretsMountRedisElasticach `pulumi:"redisElasticaches"`
 	// A nested block containing configuration options for AWS Redshift connections.\
@@ -362,7 +368,10 @@ type SecretsMountState struct {
 	// A nested block containing configuration options for PostgreSQL connections.\
 	// *See Configuration Options for more info*
 	Postgresqls SecretsMountPostgresqlArrayInput
-	// A nested block containing configuration options for InfluxDB connections.\
+	// A nested block containing configuration options for Redis connections.\
+	// *See Configuration Options for more info*
+	Redis SecretsMountRediArrayInput
+	// A nested block containing configuration options for Redis ElastiCache connections.\
 	// *See Configuration Options for more info*
 	RedisElasticaches SecretsMountRedisElasticachArrayInput
 	// A nested block containing configuration options for AWS Redshift connections.\
@@ -444,7 +453,10 @@ type secretsMountArgs struct {
 	// A nested block containing configuration options for PostgreSQL connections.\
 	// *See Configuration Options for more info*
 	Postgresqls []SecretsMountPostgresql `pulumi:"postgresqls"`
-	// A nested block containing configuration options for InfluxDB connections.\
+	// A nested block containing configuration options for Redis connections.\
+	// *See Configuration Options for more info*
+	Redis []SecretsMountRedi `pulumi:"redis"`
+	// A nested block containing configuration options for Redis ElastiCache connections.\
 	// *See Configuration Options for more info*
 	RedisElasticaches []SecretsMountRedisElasticach `pulumi:"redisElasticaches"`
 	// A nested block containing configuration options for AWS Redshift connections.\
@@ -523,7 +535,10 @@ type SecretsMountArgs struct {
 	// A nested block containing configuration options for PostgreSQL connections.\
 	// *See Configuration Options for more info*
 	Postgresqls SecretsMountPostgresqlArrayInput
-	// A nested block containing configuration options for InfluxDB connections.\
+	// A nested block containing configuration options for Redis connections.\
+	// *See Configuration Options for more info*
+	Redis SecretsMountRediArrayInput
+	// A nested block containing configuration options for Redis ElastiCache connections.\
 	// *See Configuration Options for more info*
 	RedisElasticaches SecretsMountRedisElasticachArrayInput
 	// A nested block containing configuration options for AWS Redshift connections.\
@@ -772,7 +787,13 @@ func (o SecretsMountOutput) Postgresqls() SecretsMountPostgresqlArrayOutput {
 	return o.ApplyT(func(v *SecretsMount) SecretsMountPostgresqlArrayOutput { return v.Postgresqls }).(SecretsMountPostgresqlArrayOutput)
 }
 
-// A nested block containing configuration options for InfluxDB connections.\
+// A nested block containing configuration options for Redis connections.\
+// *See Configuration Options for more info*
+func (o SecretsMountOutput) Redis() SecretsMountRediArrayOutput {
+	return o.ApplyT(func(v *SecretsMount) SecretsMountRediArrayOutput { return v.Redis }).(SecretsMountRediArrayOutput)
+}
+
+// A nested block containing configuration options for Redis ElastiCache connections.\
 // *See Configuration Options for more info*
 func (o SecretsMountOutput) RedisElasticaches() SecretsMountRedisElasticachArrayOutput {
 	return o.ApplyT(func(v *SecretsMount) SecretsMountRedisElasticachArrayOutput { return v.RedisElasticaches }).(SecretsMountRedisElasticachArrayOutput)

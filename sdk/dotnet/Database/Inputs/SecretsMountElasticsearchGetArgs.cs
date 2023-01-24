@@ -26,7 +26,7 @@ namespace Pulumi.Vault.Database.Inputs
         }
 
         /// <summary>
-        /// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+        /// The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
         /// </summary>
         [Input("caCert")]
         public Input<string>? CaCert { get; set; }

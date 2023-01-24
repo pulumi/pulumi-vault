@@ -24,6 +24,7 @@ __all__ = [
     'SecretBackendConnectionMysqlRds',
     'SecretBackendConnectionOracle',
     'SecretBackendConnectionPostgresql',
+    'SecretBackendConnectionRedis',
     'SecretBackendConnectionRedisElasticache',
     'SecretBackendConnectionRedshift',
     'SecretBackendConnectionSnowflake',
@@ -41,6 +42,7 @@ __all__ = [
     'SecretsMountMysqlRd',
     'SecretsMountOracle',
     'SecretsMountPostgresql',
+    'SecretsMountRedi',
     'SecretsMountRedisElasticach',
     'SecretsMountRedshift',
     'SecretsMountSnowflake',
@@ -97,7 +99,7 @@ class SecretBackendConnectionCassandra(dict):
         :param int port: The default port to connect to if no port is specified as
                part of the host.
         :param int protocol_version: The CQL protocol version to use.
-        :param bool tls: Whether to use TLS when connecting to Cassandra.
+        :param bool tls: Whether to use TLS when connecting to Redis.
         :param str username: The root credential username used in the connection URL.
         """
         if connect_timeout is not None:
@@ -193,7 +195,7 @@ class SecretBackendConnectionCassandra(dict):
     @pulumi.getter
     def tls(self) -> Optional[bool]:
         """
-        Whether to use TLS when connecting to Cassandra.
+        Whether to use TLS when connecting to Redis.
         """
         return pulumi.get(self, "tls")
 
@@ -248,7 +250,7 @@ class SecretBackendConnectionCouchbase(dict):
         :param str bucket_name: Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.
         :param bool insecure_tls: Whether to skip verification of the server
                certificate when using TLS.
-        :param bool tls: Whether to use TLS when connecting to Cassandra.
+        :param bool tls: Whether to use TLS when connecting to Redis.
         :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         """
         pulumi.set(__self__, "hosts", hosts)
@@ -318,7 +320,7 @@ class SecretBackendConnectionCouchbase(dict):
     @pulumi.getter
     def tls(self) -> Optional[bool]:
         """
-        Whether to use TLS when connecting to Cassandra.
+        Whether to use TLS when connecting to Redis.
         """
         return pulumi.get(self, "tls")
 
@@ -661,7 +663,7 @@ class SecretBackendConnectionInfluxdb(dict):
         :param str pem_json: A JSON structure configuring the certificate chain.
         :param int port: The default port to connect to if no port is specified as
                part of the host.
-        :param bool tls: Whether to use TLS when connecting to Cassandra.
+        :param bool tls: Whether to use TLS when connecting to Redis.
         :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         """
         pulumi.set(__self__, "host", host)
@@ -754,7 +756,7 @@ class SecretBackendConnectionInfluxdb(dict):
     @pulumi.getter
     def tls(self) -> Optional[bool]:
         """
-        Whether to use TLS when connecting to Cassandra.
+        Whether to use TLS when connecting to Redis.
         """
         return pulumi.get(self, "tls")
 
@@ -1913,6 +1915,117 @@ class SecretBackendConnectionPostgresql(dict):
 
 
 @pulumi.output_type
+class SecretBackendConnectionRedis(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "caCert":
+            suggest = "ca_cert"
+        elif key == "insecureTls":
+            suggest = "insecure_tls"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretBackendConnectionRedis. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretBackendConnectionRedis.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretBackendConnectionRedis.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 host: str,
+                 password: str,
+                 username: str,
+                 ca_cert: Optional[str] = None,
+                 insecure_tls: Optional[bool] = None,
+                 port: Optional[int] = None,
+                 tls: Optional[bool] = None):
+        """
+        :param str host: The host to connect to.
+        :param str password: The root credential password used in the connection URL.
+        :param str username: The root credential username used in the connection URL.
+        :param str ca_cert: The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+        :param bool insecure_tls: Whether to skip verification of the server
+               certificate when using TLS.
+        :param int port: The default port to connect to if no port is specified as
+               part of the host.
+        :param bool tls: Whether to use TLS when connecting to Redis.
+        """
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "username", username)
+        if ca_cert is not None:
+            pulumi.set(__self__, "ca_cert", ca_cert)
+        if insecure_tls is not None:
+            pulumi.set(__self__, "insecure_tls", insecure_tls)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if tls is not None:
+            pulumi.set(__self__, "tls", tls)
+
+    @property
+    @pulumi.getter
+    def host(self) -> str:
+        """
+        The host to connect to.
+        """
+        return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter
+    def password(self) -> str:
+        """
+        The root credential password used in the connection URL.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        """
+        The root credential username used in the connection URL.
+        """
+        return pulumi.get(self, "username")
+
+    @property
+    @pulumi.getter(name="caCert")
+    def ca_cert(self) -> Optional[str]:
+        """
+        The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+        """
+        return pulumi.get(self, "ca_cert")
+
+    @property
+    @pulumi.getter(name="insecureTls")
+    def insecure_tls(self) -> Optional[bool]:
+        """
+        Whether to skip verification of the server
+        certificate when using TLS.
+        """
+        return pulumi.get(self, "insecure_tls")
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[int]:
+        """
+        The default port to connect to if no port is specified as
+        part of the host.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter
+    def tls(self) -> Optional[bool]:
+        """
+        Whether to use TLS when connecting to Redis.
+        """
+        return pulumi.get(self, "tls")
+
+
+@pulumi.output_type
 class SecretBackendConnectionRedisElasticache(dict):
     def __init__(__self__, *,
                  url: str,
@@ -2304,7 +2417,7 @@ class SecretsMountCassandra(dict):
                part of the host.
         :param int protocol_version: The CQL protocol version to use.
         :param Sequence[str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
-        :param bool tls: Whether to use TLS when connecting to Cassandra.
+        :param bool tls: Whether to use TLS when connecting to Redis.
         :param str username: The username to be used in the connection (the account admin level).
         :param bool verify_connection: Whether the connection should be verified on
                initial configuration or not.
@@ -2451,7 +2564,7 @@ class SecretsMountCassandra(dict):
     @pulumi.getter
     def tls(self) -> Optional[bool]:
         """
-        Whether to use TLS when connecting to Cassandra.
+        Whether to use TLS when connecting to Redis.
         """
         return pulumi.get(self, "tls")
 
@@ -2534,7 +2647,7 @@ class SecretsMountCouchbase(dict):
                certificate when using TLS.
         :param str plugin_name: Specifies the name of the plugin to use.
         :param Sequence[str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
-        :param bool tls: Whether to use TLS when connecting to Cassandra.
+        :param bool tls: Whether to use TLS when connecting to Redis.
         :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         :param bool verify_connection: Whether the connection should be verified on
                initial configuration or not.
@@ -2655,7 +2768,7 @@ class SecretsMountCouchbase(dict):
     @pulumi.getter
     def tls(self) -> Optional[bool]:
         """
-        Whether to use TLS when connecting to Cassandra.
+        Whether to use TLS when connecting to Redis.
         """
         return pulumi.get(self, "tls")
 
@@ -2737,7 +2850,7 @@ class SecretsMountElasticsearch(dict):
         :param str username: The username to be used in the connection (the account admin level).
         :param Sequence[str] allowed_roles: A list of roles that are allowed to use this
                connection.
-        :param str ca_cert: The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+        :param str ca_cert: The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
         :param str ca_path: The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
         :param str client_cert: The path to the certificate for the Elasticsearch client to present for communication.
         :param str client_key: The path to the key for the Elasticsearch client to use for communication.
@@ -2821,7 +2934,7 @@ class SecretsMountElasticsearch(dict):
     @pulumi.getter(name="caCert")
     def ca_cert(self) -> Optional[str]:
         """
-        The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+        The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
         """
         return pulumi.get(self, "ca_cert")
 
@@ -3180,7 +3293,7 @@ class SecretsMountInfluxdb(dict):
         :param int port: The default port to connect to if no port is specified as
                part of the host.
         :param Sequence[str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
-        :param bool tls: Whether to use TLS when connecting to Cassandra.
+        :param bool tls: Whether to use TLS when connecting to Redis.
         :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         :param bool verify_connection: Whether the connection should be verified on
                initial configuration or not.
@@ -3324,7 +3437,7 @@ class SecretsMountInfluxdb(dict):
     @pulumi.getter
     def tls(self) -> Optional[bool]:
         """
-        Whether to use TLS when connecting to Cassandra.
+        Whether to use TLS when connecting to Redis.
         """
         return pulumi.get(self, "tls")
 
@@ -5173,6 +5286,196 @@ class SecretsMountPostgresql(dict):
         - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         """
         return pulumi.get(self, "username_template")
+
+    @property
+    @pulumi.getter(name="verifyConnection")
+    def verify_connection(self) -> Optional[bool]:
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+        return pulumi.get(self, "verify_connection")
+
+
+@pulumi.output_type
+class SecretsMountRedi(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allowedRoles":
+            suggest = "allowed_roles"
+        elif key == "caCert":
+            suggest = "ca_cert"
+        elif key == "insecureTls":
+            suggest = "insecure_tls"
+        elif key == "pluginName":
+            suggest = "plugin_name"
+        elif key == "rootRotationStatements":
+            suggest = "root_rotation_statements"
+        elif key == "verifyConnection":
+            suggest = "verify_connection"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretsMountRedi. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretsMountRedi.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretsMountRedi.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 host: str,
+                 name: str,
+                 password: str,
+                 username: str,
+                 allowed_roles: Optional[Sequence[str]] = None,
+                 ca_cert: Optional[str] = None,
+                 data: Optional[Mapping[str, Any]] = None,
+                 insecure_tls: Optional[bool] = None,
+                 plugin_name: Optional[str] = None,
+                 port: Optional[int] = None,
+                 root_rotation_statements: Optional[Sequence[str]] = None,
+                 tls: Optional[bool] = None,
+                 verify_connection: Optional[bool] = None):
+        """
+        :param str host: The host to connect to.
+        :param str password: The password to be used in the connection.
+        :param str username: The username to be used in the connection (the account admin level).
+        :param Sequence[str] allowed_roles: A list of roles that are allowed to use this
+               connection.
+        :param str ca_cert: The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
+        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param bool insecure_tls: Whether to skip verification of the server
+               certificate when using TLS.
+        :param str plugin_name: Specifies the name of the plugin to use.
+        :param int port: The default port to connect to if no port is specified as
+               part of the host.
+        :param Sequence[str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param bool tls: Whether to use TLS when connecting to Redis.
+        :param bool verify_connection: Whether the connection should be verified on
+               initial configuration or not.
+        """
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "username", username)
+        if allowed_roles is not None:
+            pulumi.set(__self__, "allowed_roles", allowed_roles)
+        if ca_cert is not None:
+            pulumi.set(__self__, "ca_cert", ca_cert)
+        if data is not None:
+            pulumi.set(__self__, "data", data)
+        if insecure_tls is not None:
+            pulumi.set(__self__, "insecure_tls", insecure_tls)
+        if plugin_name is not None:
+            pulumi.set(__self__, "plugin_name", plugin_name)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if root_rotation_statements is not None:
+            pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if tls is not None:
+            pulumi.set(__self__, "tls", tls)
+        if verify_connection is not None:
+            pulumi.set(__self__, "verify_connection", verify_connection)
+
+    @property
+    @pulumi.getter
+    def host(self) -> str:
+        """
+        The host to connect to.
+        """
+        return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def password(self) -> str:
+        """
+        The password to be used in the connection.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        """
+        The username to be used in the connection (the account admin level).
+        """
+        return pulumi.get(self, "username")
+
+    @property
+    @pulumi.getter(name="allowedRoles")
+    def allowed_roles(self) -> Optional[Sequence[str]]:
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        return pulumi.get(self, "allowed_roles")
+
+    @property
+    @pulumi.getter(name="caCert")
+    def ca_cert(self) -> Optional[str]:
+        """
+        The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
+        """
+        return pulumi.get(self, "ca_cert")
+
+    @property
+    @pulumi.getter
+    def data(self) -> Optional[Mapping[str, Any]]:
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        return pulumi.get(self, "data")
+
+    @property
+    @pulumi.getter(name="insecureTls")
+    def insecure_tls(self) -> Optional[bool]:
+        """
+        Whether to skip verification of the server
+        certificate when using TLS.
+        """
+        return pulumi.get(self, "insecure_tls")
+
+    @property
+    @pulumi.getter(name="pluginName")
+    def plugin_name(self) -> Optional[str]:
+        """
+        Specifies the name of the plugin to use.
+        """
+        return pulumi.get(self, "plugin_name")
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[int]:
+        """
+        The default port to connect to if no port is specified as
+        part of the host.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="rootRotationStatements")
+    def root_rotation_statements(self) -> Optional[Sequence[str]]:
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        return pulumi.get(self, "root_rotation_statements")
+
+    @property
+    @pulumi.getter
+    def tls(self) -> Optional[bool]:
+        """
+        Whether to use TLS when connecting to Redis.
+        """
+        return pulumi.get(self, "tls")
 
     @property
     @pulumi.getter(name="verifyConnection")

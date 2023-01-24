@@ -137,6 +137,8 @@ type namespaceArgs struct {
 	Namespace *string `pulumi:"namespace"`
 	// The path of the namespace. Must not have a trailing `/`
 	Path string `pulumi:"path"`
+	// The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+	PathFq *string `pulumi:"pathFq"`
 }
 
 // The set of arguments for constructing a Namespace resource.
@@ -148,6 +150,8 @@ type NamespaceArgs struct {
 	Namespace pulumi.StringPtrInput
 	// The path of the namespace. Must not have a trailing `/`
 	Path pulumi.StringInput
+	// The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+	PathFq pulumi.StringPtrInput
 }
 
 func (NamespaceArgs) ElementType() reflect.Type {

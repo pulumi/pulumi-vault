@@ -31,7 +31,7 @@ type SecretBackendConnectionCassandra struct {
 	Port *int `pulumi:"port"`
 	// The CQL protocol version to use.
 	ProtocolVersion *int `pulumi:"protocolVersion"`
-	// Whether to use TLS when connecting to Cassandra.
+	// Whether to use TLS when connecting to Redis.
 	Tls *bool `pulumi:"tls"`
 	// The root credential username used in the connection URL.
 	Username *string `pulumi:"username"`
@@ -69,7 +69,7 @@ type SecretBackendConnectionCassandraArgs struct {
 	Port pulumi.IntPtrInput `pulumi:"port"`
 	// The CQL protocol version to use.
 	ProtocolVersion pulumi.IntPtrInput `pulumi:"protocolVersion"`
-	// Whether to use TLS when connecting to Cassandra.
+	// Whether to use TLS when connecting to Redis.
 	Tls pulumi.BoolPtrInput `pulumi:"tls"`
 	// The root credential username used in the connection URL.
 	Username pulumi.StringPtrInput `pulumi:"username"`
@@ -196,7 +196,7 @@ func (o SecretBackendConnectionCassandraOutput) ProtocolVersion() pulumi.IntPtrO
 	return o.ApplyT(func(v SecretBackendConnectionCassandra) *int { return v.ProtocolVersion }).(pulumi.IntPtrOutput)
 }
 
-// Whether to use TLS when connecting to Cassandra.
+// Whether to use TLS when connecting to Redis.
 func (o SecretBackendConnectionCassandraOutput) Tls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionCassandra) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
 }
@@ -314,7 +314,7 @@ func (o SecretBackendConnectionCassandraPtrOutput) ProtocolVersion() pulumi.IntP
 	}).(pulumi.IntPtrOutput)
 }
 
-// Whether to use TLS when connecting to Cassandra.
+// Whether to use TLS when connecting to Redis.
 func (o SecretBackendConnectionCassandraPtrOutput) Tls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionCassandra) *bool {
 		if v == nil {
@@ -346,7 +346,7 @@ type SecretBackendConnectionCouchbase struct {
 	InsecureTls *bool `pulumi:"insecureTls"`
 	// The root credential password used in the connection URL.
 	Password string `pulumi:"password"`
-	// Whether to use TLS when connecting to Cassandra.
+	// Whether to use TLS when connecting to Redis.
 	Tls *bool `pulumi:"tls"`
 	// The root credential username used in the connection URL.
 	Username string `pulumi:"username"`
@@ -377,7 +377,7 @@ type SecretBackendConnectionCouchbaseArgs struct {
 	InsecureTls pulumi.BoolPtrInput `pulumi:"insecureTls"`
 	// The root credential password used in the connection URL.
 	Password pulumi.StringInput `pulumi:"password"`
-	// Whether to use TLS when connecting to Cassandra.
+	// Whether to use TLS when connecting to Redis.
 	Tls pulumi.BoolPtrInput `pulumi:"tls"`
 	// The root credential username used in the connection URL.
 	Username pulumi.StringInput `pulumi:"username"`
@@ -488,7 +488,7 @@ func (o SecretBackendConnectionCouchbaseOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretBackendConnectionCouchbase) string { return v.Password }).(pulumi.StringOutput)
 }
 
-// Whether to use TLS when connecting to Cassandra.
+// Whether to use TLS when connecting to Redis.
 func (o SecretBackendConnectionCouchbaseOutput) Tls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionCouchbase) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
 }
@@ -578,7 +578,7 @@ func (o SecretBackendConnectionCouchbasePtrOutput) Password() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
-// Whether to use TLS when connecting to Cassandra.
+// Whether to use TLS when connecting to Redis.
 func (o SecretBackendConnectionCouchbasePtrOutput) Tls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionCouchbase) *bool {
 		if v == nil {
@@ -1210,7 +1210,7 @@ type SecretBackendConnectionInfluxdb struct {
 	// The default port to connect to if no port is specified as
 	// part of the host.
 	Port *int `pulumi:"port"`
-	// Whether to use TLS when connecting to Cassandra.
+	// Whether to use TLS when connecting to Redis.
 	Tls *bool `pulumi:"tls"`
 	// The root credential username used in the connection URL.
 	Username string `pulumi:"username"`
@@ -1248,7 +1248,7 @@ type SecretBackendConnectionInfluxdbArgs struct {
 	// The default port to connect to if no port is specified as
 	// part of the host.
 	Port pulumi.IntPtrInput `pulumi:"port"`
-	// Whether to use TLS when connecting to Cassandra.
+	// Whether to use TLS when connecting to Redis.
 	Tls pulumi.BoolPtrInput `pulumi:"tls"`
 	// The root credential username used in the connection URL.
 	Username pulumi.StringInput `pulumi:"username"`
@@ -1372,7 +1372,7 @@ func (o SecretBackendConnectionInfluxdbOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionInfluxdb) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
-// Whether to use TLS when connecting to Cassandra.
+// Whether to use TLS when connecting to Redis.
 func (o SecretBackendConnectionInfluxdbOutput) Tls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionInfluxdb) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
 }
@@ -1485,7 +1485,7 @@ func (o SecretBackendConnectionInfluxdbPtrOutput) Port() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Whether to use TLS when connecting to Cassandra.
+// Whether to use TLS when connecting to Redis.
 func (o SecretBackendConnectionInfluxdbPtrOutput) Tls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionInfluxdb) *bool {
 		if v == nil {
@@ -3965,6 +3965,265 @@ func (o SecretBackendConnectionPostgresqlPtrOutput) UsernameTemplate() pulumi.St
 	}).(pulumi.StringPtrOutput)
 }
 
+type SecretBackendConnectionRedis struct {
+	// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+	CaCert *string `pulumi:"caCert"`
+	// The host to connect to.
+	Host string `pulumi:"host"`
+	// Whether to skip verification of the server
+	// certificate when using TLS.
+	InsecureTls *bool `pulumi:"insecureTls"`
+	// The root credential password used in the connection URL.
+	Password string `pulumi:"password"`
+	// The default port to connect to if no port is specified as
+	// part of the host.
+	Port *int `pulumi:"port"`
+	// Whether to use TLS when connecting to Redis.
+	Tls *bool `pulumi:"tls"`
+	// The root credential username used in the connection URL.
+	Username string `pulumi:"username"`
+}
+
+// SecretBackendConnectionRedisInput is an input type that accepts SecretBackendConnectionRedisArgs and SecretBackendConnectionRedisOutput values.
+// You can construct a concrete instance of `SecretBackendConnectionRedisInput` via:
+//
+//	SecretBackendConnectionRedisArgs{...}
+type SecretBackendConnectionRedisInput interface {
+	pulumi.Input
+
+	ToSecretBackendConnectionRedisOutput() SecretBackendConnectionRedisOutput
+	ToSecretBackendConnectionRedisOutputWithContext(context.Context) SecretBackendConnectionRedisOutput
+}
+
+type SecretBackendConnectionRedisArgs struct {
+	// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+	CaCert pulumi.StringPtrInput `pulumi:"caCert"`
+	// The host to connect to.
+	Host pulumi.StringInput `pulumi:"host"`
+	// Whether to skip verification of the server
+	// certificate when using TLS.
+	InsecureTls pulumi.BoolPtrInput `pulumi:"insecureTls"`
+	// The root credential password used in the connection URL.
+	Password pulumi.StringInput `pulumi:"password"`
+	// The default port to connect to if no port is specified as
+	// part of the host.
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// Whether to use TLS when connecting to Redis.
+	Tls pulumi.BoolPtrInput `pulumi:"tls"`
+	// The root credential username used in the connection URL.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (SecretBackendConnectionRedisArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendConnectionRedis)(nil)).Elem()
+}
+
+func (i SecretBackendConnectionRedisArgs) ToSecretBackendConnectionRedisOutput() SecretBackendConnectionRedisOutput {
+	return i.ToSecretBackendConnectionRedisOutputWithContext(context.Background())
+}
+
+func (i SecretBackendConnectionRedisArgs) ToSecretBackendConnectionRedisOutputWithContext(ctx context.Context) SecretBackendConnectionRedisOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionRedisOutput)
+}
+
+func (i SecretBackendConnectionRedisArgs) ToSecretBackendConnectionRedisPtrOutput() SecretBackendConnectionRedisPtrOutput {
+	return i.ToSecretBackendConnectionRedisPtrOutputWithContext(context.Background())
+}
+
+func (i SecretBackendConnectionRedisArgs) ToSecretBackendConnectionRedisPtrOutputWithContext(ctx context.Context) SecretBackendConnectionRedisPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionRedisOutput).ToSecretBackendConnectionRedisPtrOutputWithContext(ctx)
+}
+
+// SecretBackendConnectionRedisPtrInput is an input type that accepts SecretBackendConnectionRedisArgs, SecretBackendConnectionRedisPtr and SecretBackendConnectionRedisPtrOutput values.
+// You can construct a concrete instance of `SecretBackendConnectionRedisPtrInput` via:
+//
+//	        SecretBackendConnectionRedisArgs{...}
+//
+//	or:
+//
+//	        nil
+type SecretBackendConnectionRedisPtrInput interface {
+	pulumi.Input
+
+	ToSecretBackendConnectionRedisPtrOutput() SecretBackendConnectionRedisPtrOutput
+	ToSecretBackendConnectionRedisPtrOutputWithContext(context.Context) SecretBackendConnectionRedisPtrOutput
+}
+
+type secretBackendConnectionRedisPtrType SecretBackendConnectionRedisArgs
+
+func SecretBackendConnectionRedisPtr(v *SecretBackendConnectionRedisArgs) SecretBackendConnectionRedisPtrInput {
+	return (*secretBackendConnectionRedisPtrType)(v)
+}
+
+func (*secretBackendConnectionRedisPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretBackendConnectionRedis)(nil)).Elem()
+}
+
+func (i *secretBackendConnectionRedisPtrType) ToSecretBackendConnectionRedisPtrOutput() SecretBackendConnectionRedisPtrOutput {
+	return i.ToSecretBackendConnectionRedisPtrOutputWithContext(context.Background())
+}
+
+func (i *secretBackendConnectionRedisPtrType) ToSecretBackendConnectionRedisPtrOutputWithContext(ctx context.Context) SecretBackendConnectionRedisPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionRedisPtrOutput)
+}
+
+type SecretBackendConnectionRedisOutput struct{ *pulumi.OutputState }
+
+func (SecretBackendConnectionRedisOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendConnectionRedis)(nil)).Elem()
+}
+
+func (o SecretBackendConnectionRedisOutput) ToSecretBackendConnectionRedisOutput() SecretBackendConnectionRedisOutput {
+	return o
+}
+
+func (o SecretBackendConnectionRedisOutput) ToSecretBackendConnectionRedisOutputWithContext(ctx context.Context) SecretBackendConnectionRedisOutput {
+	return o
+}
+
+func (o SecretBackendConnectionRedisOutput) ToSecretBackendConnectionRedisPtrOutput() SecretBackendConnectionRedisPtrOutput {
+	return o.ToSecretBackendConnectionRedisPtrOutputWithContext(context.Background())
+}
+
+func (o SecretBackendConnectionRedisOutput) ToSecretBackendConnectionRedisPtrOutputWithContext(ctx context.Context) SecretBackendConnectionRedisPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendConnectionRedis) *SecretBackendConnectionRedis {
+		return &v
+	}).(SecretBackendConnectionRedisPtrOutput)
+}
+
+// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+func (o SecretBackendConnectionRedisOutput) CaCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionRedis) *string { return v.CaCert }).(pulumi.StringPtrOutput)
+}
+
+// The host to connect to.
+func (o SecretBackendConnectionRedisOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretBackendConnectionRedis) string { return v.Host }).(pulumi.StringOutput)
+}
+
+// Whether to skip verification of the server
+// certificate when using TLS.
+func (o SecretBackendConnectionRedisOutput) InsecureTls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionRedis) *bool { return v.InsecureTls }).(pulumi.BoolPtrOutput)
+}
+
+// The root credential password used in the connection URL.
+func (o SecretBackendConnectionRedisOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretBackendConnectionRedis) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// The default port to connect to if no port is specified as
+// part of the host.
+func (o SecretBackendConnectionRedisOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionRedis) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// Whether to use TLS when connecting to Redis.
+func (o SecretBackendConnectionRedisOutput) Tls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionRedis) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
+}
+
+// The root credential username used in the connection URL.
+func (o SecretBackendConnectionRedisOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretBackendConnectionRedis) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type SecretBackendConnectionRedisPtrOutput struct{ *pulumi.OutputState }
+
+func (SecretBackendConnectionRedisPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretBackendConnectionRedis)(nil)).Elem()
+}
+
+func (o SecretBackendConnectionRedisPtrOutput) ToSecretBackendConnectionRedisPtrOutput() SecretBackendConnectionRedisPtrOutput {
+	return o
+}
+
+func (o SecretBackendConnectionRedisPtrOutput) ToSecretBackendConnectionRedisPtrOutputWithContext(ctx context.Context) SecretBackendConnectionRedisPtrOutput {
+	return o
+}
+
+func (o SecretBackendConnectionRedisPtrOutput) Elem() SecretBackendConnectionRedisOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionRedis) SecretBackendConnectionRedis {
+		if v != nil {
+			return *v
+		}
+		var ret SecretBackendConnectionRedis
+		return ret
+	}).(SecretBackendConnectionRedisOutput)
+}
+
+// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+func (o SecretBackendConnectionRedisPtrOutput) CaCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionRedis) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CaCert
+	}).(pulumi.StringPtrOutput)
+}
+
+// The host to connect to.
+func (o SecretBackendConnectionRedisPtrOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionRedis) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Host
+	}).(pulumi.StringPtrOutput)
+}
+
+// Whether to skip verification of the server
+// certificate when using TLS.
+func (o SecretBackendConnectionRedisPtrOutput) InsecureTls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionRedis) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.InsecureTls
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The root credential password used in the connection URL.
+func (o SecretBackendConnectionRedisPtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionRedis) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// The default port to connect to if no port is specified as
+// part of the host.
+func (o SecretBackendConnectionRedisPtrOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionRedis) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Port
+	}).(pulumi.IntPtrOutput)
+}
+
+// Whether to use TLS when connecting to Redis.
+func (o SecretBackendConnectionRedisPtrOutput) Tls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionRedis) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Tls
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The root credential username used in the connection URL.
+func (o SecretBackendConnectionRedisPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionRedis) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
 type SecretBackendConnectionRedisElasticache struct {
 	// The root credential password used in the connection URL.
 	Password *string `pulumi:"password"`
@@ -4755,7 +5014,7 @@ type SecretsMountCassandra struct {
 	ProtocolVersion *int `pulumi:"protocolVersion"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
-	// Whether to use TLS when connecting to Cassandra.
+	// Whether to use TLS when connecting to Redis.
 	Tls *bool `pulumi:"tls"`
 	// The username to be used in the connection (the account admin level).
 	Username *string `pulumi:"username"`
@@ -4806,7 +5065,7 @@ type SecretsMountCassandraArgs struct {
 	ProtocolVersion pulumi.IntPtrInput `pulumi:"protocolVersion"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
-	// Whether to use TLS when connecting to Cassandra.
+	// Whether to use TLS when connecting to Redis.
 	Tls pulumi.BoolPtrInput `pulumi:"tls"`
 	// The username to be used in the connection (the account admin level).
 	Username pulumi.StringPtrInput `pulumi:"username"`
@@ -4935,7 +5194,7 @@ func (o SecretsMountCassandraOutput) RootRotationStatements() pulumi.StringArray
 	return o.ApplyT(func(v SecretsMountCassandra) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
 }
 
-// Whether to use TLS when connecting to Cassandra.
+// Whether to use TLS when connecting to Redis.
 func (o SecretsMountCassandraOutput) Tls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretsMountCassandra) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
 }
@@ -4993,7 +5252,7 @@ type SecretsMountCouchbase struct {
 	PluginName *string `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
-	// Whether to use TLS when connecting to Cassandra.
+	// Whether to use TLS when connecting to Redis.
 	Tls *bool `pulumi:"tls"`
 	// The username to be used in the connection (the account admin level).
 	Username string `pulumi:"username"`
@@ -5037,7 +5296,7 @@ type SecretsMountCouchbaseArgs struct {
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
-	// Whether to use TLS when connecting to Cassandra.
+	// Whether to use TLS when connecting to Redis.
 	Tls pulumi.BoolPtrInput `pulumi:"tls"`
 	// The username to be used in the connection (the account admin level).
 	Username pulumi.StringInput `pulumi:"username"`
@@ -5150,7 +5409,7 @@ func (o SecretsMountCouchbaseOutput) RootRotationStatements() pulumi.StringArray
 	return o.ApplyT(func(v SecretsMountCouchbase) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
 }
 
-// Whether to use TLS when connecting to Cassandra.
+// Whether to use TLS when connecting to Redis.
 func (o SecretsMountCouchbaseOutput) Tls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretsMountCouchbase) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
 }
@@ -5195,7 +5454,7 @@ type SecretsMountElasticsearch struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles []string `pulumi:"allowedRoles"`
-	// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+	// The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
 	CaCert *string `pulumi:"caCert"`
 	// The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
 	CaPath *string `pulumi:"caPath"`
@@ -5242,7 +5501,7 @@ type SecretsMountElasticsearchArgs struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
-	// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+	// The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
 	CaCert pulumi.StringPtrInput `pulumi:"caCert"`
 	// The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
 	CaPath pulumi.StringPtrInput `pulumi:"caPath"`
@@ -5331,7 +5590,7 @@ func (o SecretsMountElasticsearchOutput) AllowedRoles() pulumi.StringArrayOutput
 	return o.ApplyT(func(v SecretsMountElasticsearch) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
 }
 
-// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+// The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
 func (o SecretsMountElasticsearchOutput) CaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountElasticsearch) *string { return v.CaCert }).(pulumi.StringPtrOutput)
 }
@@ -5675,7 +5934,7 @@ type SecretsMountInfluxdb struct {
 	Port *int `pulumi:"port"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
-	// Whether to use TLS when connecting to Cassandra.
+	// Whether to use TLS when connecting to Redis.
 	Tls *bool `pulumi:"tls"`
 	// The username to be used in the connection (the account admin level).
 	Username string `pulumi:"username"`
@@ -5726,7 +5985,7 @@ type SecretsMountInfluxdbArgs struct {
 	Port pulumi.IntPtrInput `pulumi:"port"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
-	// Whether to use TLS when connecting to Cassandra.
+	// Whether to use TLS when connecting to Redis.
 	Tls pulumi.BoolPtrInput `pulumi:"tls"`
 	// The username to be used in the connection (the account admin level).
 	Username pulumi.StringInput `pulumi:"username"`
@@ -5852,7 +6111,7 @@ func (o SecretsMountInfluxdbOutput) RootRotationStatements() pulumi.StringArrayO
 	return o.ApplyT(func(v SecretsMountInfluxdb) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
 }
 
-// Whether to use TLS when connecting to Cassandra.
+// Whether to use TLS when connecting to Redis.
 func (o SecretsMountInfluxdbOutput) Tls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretsMountInfluxdb) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
 }
@@ -7876,6 +8135,220 @@ func (o SecretsMountPostgresqlArrayOutput) Index(i pulumi.IntInput) SecretsMount
 	}).(SecretsMountPostgresqlOutput)
 }
 
+type SecretsMountRedi struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles []string `pulumi:"allowedRoles"`
+	// The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
+	CaCert *string `pulumi:"caCert"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data map[string]interface{} `pulumi:"data"`
+	// The host to connect to.
+	Host string `pulumi:"host"`
+	// Whether to skip verification of the server
+	// certificate when using TLS.
+	InsecureTls *bool  `pulumi:"insecureTls"`
+	Name        string `pulumi:"name"`
+	// The password to be used in the connection.
+	Password string `pulumi:"password"`
+	// Specifies the name of the plugin to use.
+	PluginName *string `pulumi:"pluginName"`
+	// The default port to connect to if no port is specified as
+	// part of the host.
+	Port *int `pulumi:"port"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements []string `pulumi:"rootRotationStatements"`
+	// Whether to use TLS when connecting to Redis.
+	Tls *bool `pulumi:"tls"`
+	// The username to be used in the connection (the account admin level).
+	Username string `pulumi:"username"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection *bool `pulumi:"verifyConnection"`
+}
+
+// SecretsMountRediInput is an input type that accepts SecretsMountRediArgs and SecretsMountRediOutput values.
+// You can construct a concrete instance of `SecretsMountRediInput` via:
+//
+//	SecretsMountRediArgs{...}
+type SecretsMountRediInput interface {
+	pulumi.Input
+
+	ToSecretsMountRediOutput() SecretsMountRediOutput
+	ToSecretsMountRediOutputWithContext(context.Context) SecretsMountRediOutput
+}
+
+type SecretsMountRediArgs struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
+	// The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
+	CaCert pulumi.StringPtrInput `pulumi:"caCert"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data pulumi.MapInput `pulumi:"data"`
+	// The host to connect to.
+	Host pulumi.StringInput `pulumi:"host"`
+	// Whether to skip verification of the server
+	// certificate when using TLS.
+	InsecureTls pulumi.BoolPtrInput `pulumi:"insecureTls"`
+	Name        pulumi.StringInput  `pulumi:"name"`
+	// The password to be used in the connection.
+	Password pulumi.StringInput `pulumi:"password"`
+	// Specifies the name of the plugin to use.
+	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// The default port to connect to if no port is specified as
+	// part of the host.
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
+	// Whether to use TLS when connecting to Redis.
+	Tls pulumi.BoolPtrInput `pulumi:"tls"`
+	// The username to be used in the connection (the account admin level).
+	Username pulumi.StringInput `pulumi:"username"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection pulumi.BoolPtrInput `pulumi:"verifyConnection"`
+}
+
+func (SecretsMountRediArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountRedi)(nil)).Elem()
+}
+
+func (i SecretsMountRediArgs) ToSecretsMountRediOutput() SecretsMountRediOutput {
+	return i.ToSecretsMountRediOutputWithContext(context.Background())
+}
+
+func (i SecretsMountRediArgs) ToSecretsMountRediOutputWithContext(ctx context.Context) SecretsMountRediOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountRediOutput)
+}
+
+// SecretsMountRediArrayInput is an input type that accepts SecretsMountRediArray and SecretsMountRediArrayOutput values.
+// You can construct a concrete instance of `SecretsMountRediArrayInput` via:
+//
+//	SecretsMountRediArray{ SecretsMountRediArgs{...} }
+type SecretsMountRediArrayInput interface {
+	pulumi.Input
+
+	ToSecretsMountRediArrayOutput() SecretsMountRediArrayOutput
+	ToSecretsMountRediArrayOutputWithContext(context.Context) SecretsMountRediArrayOutput
+}
+
+type SecretsMountRediArray []SecretsMountRediInput
+
+func (SecretsMountRediArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountRedi)(nil)).Elem()
+}
+
+func (i SecretsMountRediArray) ToSecretsMountRediArrayOutput() SecretsMountRediArrayOutput {
+	return i.ToSecretsMountRediArrayOutputWithContext(context.Background())
+}
+
+func (i SecretsMountRediArray) ToSecretsMountRediArrayOutputWithContext(ctx context.Context) SecretsMountRediArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountRediArrayOutput)
+}
+
+type SecretsMountRediOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountRediOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountRedi)(nil)).Elem()
+}
+
+func (o SecretsMountRediOutput) ToSecretsMountRediOutput() SecretsMountRediOutput {
+	return o
+}
+
+func (o SecretsMountRediOutput) ToSecretsMountRediOutputWithContext(ctx context.Context) SecretsMountRediOutput {
+	return o
+}
+
+// A list of roles that are allowed to use this
+// connection.
+func (o SecretsMountRediOutput) AllowedRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountRedi) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
+}
+
+// The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
+func (o SecretsMountRediOutput) CaCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedi) *string { return v.CaCert }).(pulumi.StringPtrOutput)
+}
+
+// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+func (o SecretsMountRediOutput) Data() pulumi.MapOutput {
+	return o.ApplyT(func(v SecretsMountRedi) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+}
+
+// The host to connect to.
+func (o SecretsMountRediOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountRedi) string { return v.Host }).(pulumi.StringOutput)
+}
+
+// Whether to skip verification of the server
+// certificate when using TLS.
+func (o SecretsMountRediOutput) InsecureTls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedi) *bool { return v.InsecureTls }).(pulumi.BoolPtrOutput)
+}
+
+func (o SecretsMountRediOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountRedi) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The password to be used in the connection.
+func (o SecretsMountRediOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountRedi) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// Specifies the name of the plugin to use.
+func (o SecretsMountRediOutput) PluginName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedi) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// The default port to connect to if no port is specified as
+// part of the host.
+func (o SecretsMountRediOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedi) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// A list of database statements to be executed to rotate the root user's credentials.
+func (o SecretsMountRediOutput) RootRotationStatements() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountRedi) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
+}
+
+// Whether to use TLS when connecting to Redis.
+func (o SecretsMountRediOutput) Tls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedi) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
+}
+
+// The username to be used in the connection (the account admin level).
+func (o SecretsMountRediOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountRedi) string { return v.Username }).(pulumi.StringOutput)
+}
+
+// Whether the connection should be verified on
+// initial configuration or not.
+func (o SecretsMountRediOutput) VerifyConnection() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedi) *bool { return v.VerifyConnection }).(pulumi.BoolPtrOutput)
+}
+
+type SecretsMountRediArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountRediArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountRedi)(nil)).Elem()
+}
+
+func (o SecretsMountRediArrayOutput) ToSecretsMountRediArrayOutput() SecretsMountRediArrayOutput {
+	return o
+}
+
+func (o SecretsMountRediArrayOutput) ToSecretsMountRediArrayOutputWithContext(ctx context.Context) SecretsMountRediArrayOutput {
+	return o
+}
+
+func (o SecretsMountRediArrayOutput) Index(i pulumi.IntInput) SecretsMountRediOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretsMountRedi {
+		return vs[0].([]SecretsMountRedi)[vs[1].(int)]
+	}).(SecretsMountRediOutput)
+}
+
 type SecretsMountRedisElasticach struct {
 	// A list of roles that are allowed to use this
 	// connection.
@@ -8538,6 +9011,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionOraclePtrInput)(nil)).Elem(), SecretBackendConnectionOracleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionPostgresqlInput)(nil)).Elem(), SecretBackendConnectionPostgresqlArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionPostgresqlPtrInput)(nil)).Elem(), SecretBackendConnectionPostgresqlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionRedisInput)(nil)).Elem(), SecretBackendConnectionRedisArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionRedisPtrInput)(nil)).Elem(), SecretBackendConnectionRedisArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionRedisElasticacheInput)(nil)).Elem(), SecretBackendConnectionRedisElasticacheArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionRedisElasticachePtrInput)(nil)).Elem(), SecretBackendConnectionRedisElasticacheArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionRedshiftInput)(nil)).Elem(), SecretBackendConnectionRedshiftArgs{})
@@ -8572,6 +9047,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountOracleArrayInput)(nil)).Elem(), SecretsMountOracleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountPostgresqlInput)(nil)).Elem(), SecretsMountPostgresqlArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountPostgresqlArrayInput)(nil)).Elem(), SecretsMountPostgresqlArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountRediInput)(nil)).Elem(), SecretsMountRediArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountRediArrayInput)(nil)).Elem(), SecretsMountRediArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountRedisElasticachInput)(nil)).Elem(), SecretsMountRedisElasticachArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountRedisElasticachArrayInput)(nil)).Elem(), SecretsMountRedisElasticachArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountRedshiftInput)(nil)).Elem(), SecretsMountRedshiftArgs{})
@@ -8606,6 +9083,8 @@ func init() {
 	pulumi.RegisterOutputType(SecretBackendConnectionOraclePtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionPostgresqlOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionPostgresqlPtrOutput{})
+	pulumi.RegisterOutputType(SecretBackendConnectionRedisOutput{})
+	pulumi.RegisterOutputType(SecretBackendConnectionRedisPtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionRedisElasticacheOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionRedisElasticachePtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionRedshiftOutput{})
@@ -8640,6 +9119,8 @@ func init() {
 	pulumi.RegisterOutputType(SecretsMountOracleArrayOutput{})
 	pulumi.RegisterOutputType(SecretsMountPostgresqlOutput{})
 	pulumi.RegisterOutputType(SecretsMountPostgresqlArrayOutput{})
+	pulumi.RegisterOutputType(SecretsMountRediOutput{})
+	pulumi.RegisterOutputType(SecretsMountRediArrayOutput{})
 	pulumi.RegisterOutputType(SecretsMountRedisElasticachOutput{})
 	pulumi.RegisterOutputType(SecretsMountRedisElasticachArrayOutput{})
 	pulumi.RegisterOutputType(SecretsMountRedshiftOutput{})

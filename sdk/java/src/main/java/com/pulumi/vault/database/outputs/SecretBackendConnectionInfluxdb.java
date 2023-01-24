@@ -53,7 +53,7 @@ public final class SecretBackendConnectionInfluxdb {
      */
     private @Nullable Integer port;
     /**
-     * @return Whether to use TLS when connecting to Cassandra.
+     * @return Whether to use TLS when connecting to Redis.
      * 
      */
     private @Nullable Boolean tls;
@@ -123,7 +123,7 @@ public final class SecretBackendConnectionInfluxdb {
         return Optional.ofNullable(this.port);
     }
     /**
-     * @return Whether to use TLS when connecting to Cassandra.
+     * @return Whether to use TLS when connecting to Redis.
      * 
      */
     public Optional<Boolean> tls() {

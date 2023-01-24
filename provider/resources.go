@@ -304,6 +304,7 @@ func Provider() tfbridge.ProviderInfo {
 					},
 				},
 			},
+			"vault_identity_group_member_group_ids": {Tok: makeResource(identityMod, "GroupMemberGroupIds")},
 			"vault_identity_group_policies": {
 				Tok: makeResource(identityMod, "GroupPolicies"),
 				Docs: &tfbridge.DocInfo{

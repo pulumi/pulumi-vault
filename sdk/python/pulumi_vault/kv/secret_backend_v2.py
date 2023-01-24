@@ -237,7 +237,7 @@ class SecretBackendV2(pulumi.CustomResource):
                 "version": "2",
             },
             description="KV Version 2 secret engine mount")
-        config = vault.kv.SecretBackendV2("config",
+        example = vault.kv.SecretBackendV2("example",
             mount=kvv2.path,
             max_versions=5,
             delete_version_after=12600,
@@ -252,10 +252,10 @@ class SecretBackendV2(pulumi.CustomResource):
 
         ## Import
 
-        The KV-V2 secret backend can be imported using the `path`, e.g.
+        The KV-V2 secret backend can be imported using its unique ID, the `${mount}/config`, e.g.
 
         ```sh
-         $ pulumi import vault:kv/secretBackendV2:SecretBackendV2 config kvv2/config
+         $ pulumi import vault:kv/secretBackendV2:SecretBackendV2 example kvv2/config
         ```
 
         :param str resource_name: The name of the resource.
@@ -297,7 +297,7 @@ class SecretBackendV2(pulumi.CustomResource):
                 "version": "2",
             },
             description="KV Version 2 secret engine mount")
-        config = vault.kv.SecretBackendV2("config",
+        example = vault.kv.SecretBackendV2("example",
             mount=kvv2.path,
             max_versions=5,
             delete_version_after=12600,
@@ -312,10 +312,10 @@ class SecretBackendV2(pulumi.CustomResource):
 
         ## Import
 
-        The KV-V2 secret backend can be imported using the `path`, e.g.
+        The KV-V2 secret backend can be imported using its unique ID, the `${mount}/config`, e.g.
 
         ```sh
-         $ pulumi import vault:kv/secretBackendV2:SecretBackendV2 config kvv2/config
+         $ pulumi import vault:kv/secretBackendV2:SecretBackendV2 example kvv2/config
         ```
 
         :param str resource_name: The name of the resource.

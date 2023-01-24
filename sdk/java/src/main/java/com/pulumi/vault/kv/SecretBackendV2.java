@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
  *             .description(&#34;KV Version 2 secret engine mount&#34;)
  *             .build());
  * 
- *         var config = new SecretBackendV2(&#34;config&#34;, SecretBackendV2Args.builder()        
+ *         var example = new SecretBackendV2(&#34;example&#34;, SecretBackendV2Args.builder()        
  *             .mount(kvv2.path())
  *             .maxVersions(5)
  *             .deleteVersionAfter(12600)
@@ -73,10 +73,10 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * The KV-V2 secret backend can be imported using the `path`, e.g.
+ * The KV-V2 secret backend can be imported using its unique ID, the `${mount}/config`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:kv/secretBackendV2:SecretBackendV2 config kvv2/config
+ *  $ pulumi import vault:kv/secretBackendV2:SecretBackendV2 example kvv2/config
  * ```
  * 
  */

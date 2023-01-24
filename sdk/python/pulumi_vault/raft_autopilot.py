@@ -16,6 +16,7 @@ class RaftAutopilotArgs:
     def __init__(__self__, *,
                  cleanup_dead_servers: Optional[pulumi.Input[bool]] = None,
                  dead_server_last_contact_threshold: Optional[pulumi.Input[str]] = None,
+                 disable_upgrade_migration: Optional[pulumi.Input[bool]] = None,
                  last_contact_threshold: Optional[pulumi.Input[str]] = None,
                  max_trailing_logs: Optional[pulumi.Input[int]] = None,
                  min_quorum: Optional[pulumi.Input[int]] = None,
@@ -28,6 +29,7 @@ class RaftAutopilotArgs:
         :param pulumi.Input[str] dead_server_last_contact_threshold: Limit the amount of time a 
                server can go without leader contact before being considered failed. This only takes
                effect when `cleanup_dead_servers` is set.
+        :param pulumi.Input[bool] disable_upgrade_migration: Disables automatically upgrading Vault using autopilot. (Enterprise-only)
         :param pulumi.Input[str] last_contact_threshold: Limit the amount of time a server can go 
                without leader contact before being considered unhealthy.
         :param pulumi.Input[int] max_trailing_logs: Maximum number of log entries in the Raft log 
@@ -46,6 +48,8 @@ class RaftAutopilotArgs:
             pulumi.set(__self__, "cleanup_dead_servers", cleanup_dead_servers)
         if dead_server_last_contact_threshold is not None:
             pulumi.set(__self__, "dead_server_last_contact_threshold", dead_server_last_contact_threshold)
+        if disable_upgrade_migration is not None:
+            pulumi.set(__self__, "disable_upgrade_migration", disable_upgrade_migration)
         if last_contact_threshold is not None:
             pulumi.set(__self__, "last_contact_threshold", last_contact_threshold)
         if max_trailing_logs is not None:
@@ -83,6 +87,18 @@ class RaftAutopilotArgs:
     @dead_server_last_contact_threshold.setter
     def dead_server_last_contact_threshold(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dead_server_last_contact_threshold", value)
+
+    @property
+    @pulumi.getter(name="disableUpgradeMigration")
+    def disable_upgrade_migration(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disables automatically upgrading Vault using autopilot. (Enterprise-only)
+        """
+        return pulumi.get(self, "disable_upgrade_migration")
+
+    @disable_upgrade_migration.setter
+    def disable_upgrade_migration(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_upgrade_migration", value)
 
     @property
     @pulumi.getter(name="lastContactThreshold")
@@ -158,6 +174,7 @@ class _RaftAutopilotState:
     def __init__(__self__, *,
                  cleanup_dead_servers: Optional[pulumi.Input[bool]] = None,
                  dead_server_last_contact_threshold: Optional[pulumi.Input[str]] = None,
+                 disable_upgrade_migration: Optional[pulumi.Input[bool]] = None,
                  last_contact_threshold: Optional[pulumi.Input[str]] = None,
                  max_trailing_logs: Optional[pulumi.Input[int]] = None,
                  min_quorum: Optional[pulumi.Input[int]] = None,
@@ -170,6 +187,7 @@ class _RaftAutopilotState:
         :param pulumi.Input[str] dead_server_last_contact_threshold: Limit the amount of time a 
                server can go without leader contact before being considered failed. This only takes
                effect when `cleanup_dead_servers` is set.
+        :param pulumi.Input[bool] disable_upgrade_migration: Disables automatically upgrading Vault using autopilot. (Enterprise-only)
         :param pulumi.Input[str] last_contact_threshold: Limit the amount of time a server can go 
                without leader contact before being considered unhealthy.
         :param pulumi.Input[int] max_trailing_logs: Maximum number of log entries in the Raft log 
@@ -188,6 +206,8 @@ class _RaftAutopilotState:
             pulumi.set(__self__, "cleanup_dead_servers", cleanup_dead_servers)
         if dead_server_last_contact_threshold is not None:
             pulumi.set(__self__, "dead_server_last_contact_threshold", dead_server_last_contact_threshold)
+        if disable_upgrade_migration is not None:
+            pulumi.set(__self__, "disable_upgrade_migration", disable_upgrade_migration)
         if last_contact_threshold is not None:
             pulumi.set(__self__, "last_contact_threshold", last_contact_threshold)
         if max_trailing_logs is not None:
@@ -225,6 +245,18 @@ class _RaftAutopilotState:
     @dead_server_last_contact_threshold.setter
     def dead_server_last_contact_threshold(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dead_server_last_contact_threshold", value)
+
+    @property
+    @pulumi.getter(name="disableUpgradeMigration")
+    def disable_upgrade_migration(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disables automatically upgrading Vault using autopilot. (Enterprise-only)
+        """
+        return pulumi.get(self, "disable_upgrade_migration")
+
+    @disable_upgrade_migration.setter
+    def disable_upgrade_migration(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_upgrade_migration", value)
 
     @property
     @pulumi.getter(name="lastContactThreshold")
@@ -302,6 +334,7 @@ class RaftAutopilot(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cleanup_dead_servers: Optional[pulumi.Input[bool]] = None,
                  dead_server_last_contact_threshold: Optional[pulumi.Input[str]] = None,
+                 disable_upgrade_migration: Optional[pulumi.Input[bool]] = None,
                  last_contact_threshold: Optional[pulumi.Input[str]] = None,
                  max_trailing_logs: Optional[pulumi.Input[int]] = None,
                  min_quorum: Optional[pulumi.Input[int]] = None,
@@ -336,6 +369,7 @@ class RaftAutopilot(pulumi.CustomResource):
         :param pulumi.Input[str] dead_server_last_contact_threshold: Limit the amount of time a 
                server can go without leader contact before being considered failed. This only takes
                effect when `cleanup_dead_servers` is set.
+        :param pulumi.Input[bool] disable_upgrade_migration: Disables automatically upgrading Vault using autopilot. (Enterprise-only)
         :param pulumi.Input[str] last_contact_threshold: Limit the amount of time a server can go 
                without leader contact before being considered unhealthy.
         :param pulumi.Input[int] max_trailing_logs: Maximum number of log entries in the Raft log 
@@ -394,6 +428,7 @@ class RaftAutopilot(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cleanup_dead_servers: Optional[pulumi.Input[bool]] = None,
                  dead_server_last_contact_threshold: Optional[pulumi.Input[str]] = None,
+                 disable_upgrade_migration: Optional[pulumi.Input[bool]] = None,
                  last_contact_threshold: Optional[pulumi.Input[str]] = None,
                  max_trailing_logs: Optional[pulumi.Input[int]] = None,
                  min_quorum: Optional[pulumi.Input[int]] = None,
@@ -410,6 +445,7 @@ class RaftAutopilot(pulumi.CustomResource):
 
             __props__.__dict__["cleanup_dead_servers"] = cleanup_dead_servers
             __props__.__dict__["dead_server_last_contact_threshold"] = dead_server_last_contact_threshold
+            __props__.__dict__["disable_upgrade_migration"] = disable_upgrade_migration
             __props__.__dict__["last_contact_threshold"] = last_contact_threshold
             __props__.__dict__["max_trailing_logs"] = max_trailing_logs
             __props__.__dict__["min_quorum"] = min_quorum
@@ -427,6 +463,7 @@ class RaftAutopilot(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             cleanup_dead_servers: Optional[pulumi.Input[bool]] = None,
             dead_server_last_contact_threshold: Optional[pulumi.Input[str]] = None,
+            disable_upgrade_migration: Optional[pulumi.Input[bool]] = None,
             last_contact_threshold: Optional[pulumi.Input[str]] = None,
             max_trailing_logs: Optional[pulumi.Input[int]] = None,
             min_quorum: Optional[pulumi.Input[int]] = None,
@@ -444,6 +481,7 @@ class RaftAutopilot(pulumi.CustomResource):
         :param pulumi.Input[str] dead_server_last_contact_threshold: Limit the amount of time a 
                server can go without leader contact before being considered failed. This only takes
                effect when `cleanup_dead_servers` is set.
+        :param pulumi.Input[bool] disable_upgrade_migration: Disables automatically upgrading Vault using autopilot. (Enterprise-only)
         :param pulumi.Input[str] last_contact_threshold: Limit the amount of time a server can go 
                without leader contact before being considered unhealthy.
         :param pulumi.Input[int] max_trailing_logs: Maximum number of log entries in the Raft log 
@@ -464,6 +502,7 @@ class RaftAutopilot(pulumi.CustomResource):
 
         __props__.__dict__["cleanup_dead_servers"] = cleanup_dead_servers
         __props__.__dict__["dead_server_last_contact_threshold"] = dead_server_last_contact_threshold
+        __props__.__dict__["disable_upgrade_migration"] = disable_upgrade_migration
         __props__.__dict__["last_contact_threshold"] = last_contact_threshold
         __props__.__dict__["max_trailing_logs"] = max_trailing_logs
         __props__.__dict__["min_quorum"] = min_quorum
@@ -489,6 +528,14 @@ class RaftAutopilot(pulumi.CustomResource):
         effect when `cleanup_dead_servers` is set.
         """
         return pulumi.get(self, "dead_server_last_contact_threshold")
+
+    @property
+    @pulumi.getter(name="disableUpgradeMigration")
+    def disable_upgrade_migration(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Disables automatically upgrading Vault using autopilot. (Enterprise-only)
+        """
+        return pulumi.get(self, "disable_upgrade_migration")
 
     @property
     @pulumi.getter(name="lastContactThreshold")

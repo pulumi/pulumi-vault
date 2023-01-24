@@ -33,6 +33,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &GroupAlias{}
 	case "vault:identity/groupMemberEntityIds:GroupMemberEntityIds":
 		r = &GroupMemberEntityIds{}
+	case "vault:identity/groupMemberGroupIds:GroupMemberGroupIds":
+		r = &GroupMemberGroupIds{}
 	case "vault:identity/groupPolicies:GroupPolicies":
 		r = &GroupPolicies{}
 	case "vault:identity/mfaDuo:MfaDuo":
@@ -102,6 +104,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"vault",
 		"identity/groupMemberEntityIds",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"identity/groupMemberGroupIds",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -178,6 +178,12 @@ namespace Pulumi.Vault.Database
         public Output<Outputs.SecretBackendConnectionPostgresql?> Postgresql { get; private set; } = null!;
 
         /// <summary>
+        /// A nested block containing configuration options for Redis connections.
+        /// </summary>
+        [Output("redis")]
+        public Output<Outputs.SecretBackendConnectionRedis?> Redis { get; private set; } = null!;
+
+        /// <summary>
         /// A nested block containing configuration options for Redis ElastiCache connections.
         /// </summary>
         [Output("redisElasticache")]
@@ -391,6 +397,12 @@ namespace Pulumi.Vault.Database
         public Input<Inputs.SecretBackendConnectionPostgresqlArgs>? Postgresql { get; set; }
 
         /// <summary>
+        /// A nested block containing configuration options for Redis connections.
+        /// </summary>
+        [Input("redis")]
+        public Input<Inputs.SecretBackendConnectionRedisArgs>? Redis { get; set; }
+
+        /// <summary>
         /// A nested block containing configuration options for Redis ElastiCache connections.
         /// </summary>
         [Input("redisElasticache")]
@@ -570,6 +582,12 @@ namespace Pulumi.Vault.Database
         /// </summary>
         [Input("postgresql")]
         public Input<Inputs.SecretBackendConnectionPostgresqlGetArgs>? Postgresql { get; set; }
+
+        /// <summary>
+        /// A nested block containing configuration options for Redis connections.
+        /// </summary>
+        [Input("redis")]
+        public Input<Inputs.SecretBackendConnectionRedisGetArgs>? Redis { get; set; }
 
         /// <summary>
         /// A nested block containing configuration options for Redis ElastiCache connections.

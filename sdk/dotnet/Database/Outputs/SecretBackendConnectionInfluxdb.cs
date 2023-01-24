@@ -46,7 +46,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly int? Port;
         /// <summary>
-        /// Whether to use TLS when connecting to Cassandra.
+        /// Whether to use TLS when connecting to Redis.
         /// </summary>
         public readonly bool? Tls;
         /// <summary>

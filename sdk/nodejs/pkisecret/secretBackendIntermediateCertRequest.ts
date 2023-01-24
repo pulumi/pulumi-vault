@@ -49,6 +49,12 @@ export class SecretBackendIntermediateCertRequest extends pulumi.CustomResource 
     }
 
     /**
+     * Adds a Basic Constraints extension with 'CA: true'.
+     * Only needed as a workaround in some compatibility scenarios with Active Directory
+     * Certificate Services
+     */
+    public readonly addBasicConstraints!: pulumi.Output<boolean | undefined>;
+    /**
      * List of alternative names
      */
     public readonly altNames!: pulumi.Output<string[] | undefined>;
@@ -168,6 +174,7 @@ export class SecretBackendIntermediateCertRequest extends pulumi.CustomResource 
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendIntermediateCertRequestState | undefined;
+            resourceInputs["addBasicConstraints"] = state ? state.addBasicConstraints : undefined;
             resourceInputs["altNames"] = state ? state.altNames : undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["commonName"] = state ? state.commonName : undefined;
@@ -204,6 +211,7 @@ export class SecretBackendIntermediateCertRequest extends pulumi.CustomResource 
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
+            resourceInputs["addBasicConstraints"] = args ? args.addBasicConstraints : undefined;
             resourceInputs["altNames"] = args ? args.altNames : undefined;
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["commonName"] = args ? args.commonName : undefined;
@@ -241,6 +249,12 @@ export class SecretBackendIntermediateCertRequest extends pulumi.CustomResource 
  * Input properties used for looking up and filtering SecretBackendIntermediateCertRequest resources.
  */
 export interface SecretBackendIntermediateCertRequestState {
+    /**
+     * Adds a Basic Constraints extension with 'CA: true'.
+     * Only needed as a workaround in some compatibility scenarios with Active Directory
+     * Certificate Services
+     */
+    addBasicConstraints?: pulumi.Input<boolean>;
     /**
      * List of alternative names
      */
@@ -353,6 +367,12 @@ export interface SecretBackendIntermediateCertRequestState {
  * The set of arguments for constructing a SecretBackendIntermediateCertRequest resource.
  */
 export interface SecretBackendIntermediateCertRequestArgs {
+    /**
+     * Adds a Basic Constraints extension with 'CA: true'.
+     * Only needed as a workaround in some compatibility scenarios with Active Directory
+     * Certificate Services
+     */
+    addBasicConstraints?: pulumi.Input<boolean>;
     /**
      * List of alternative names
      */

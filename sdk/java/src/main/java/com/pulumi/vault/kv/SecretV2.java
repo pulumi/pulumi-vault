@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.kv.SecretV2Args;
 import com.pulumi.vault.kv.inputs.SecretV2State;
+import com.pulumi.vault.kv.outputs.SecretV2CustomMetadata;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Object;
@@ -36,6 +37,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.vault.MountArgs;
  * import com.pulumi.vault.kv.SecretV2;
  * import com.pulumi.vault.kv.SecretV2Args;
+ * import com.pulumi.vault.kv.inputs.SecretV2CustomMetadataArgs;
  * import static com.pulumi.codegen.internal.Serialization.*;
  * import java.util.List;
  * import java.util.ArrayList;
@@ -57,7 +59,7 @@ import javax.annotation.Nullable;
  *             .description(&#34;KV Version 2 secret engine mount&#34;)
  *             .build());
  * 
- *         var secret = new SecretV2(&#34;secret&#34;, SecretV2Args.builder()        
+ *         var example = new SecretV2(&#34;example&#34;, SecretV2Args.builder()        
  *             .mount(kvv2.path())
  *             .cas(1)
  *             .deleteAllVersions(true)
@@ -66,6 +68,13 @@ import javax.annotation.Nullable;
  *                     jsonProperty(&#34;zip&#34;, &#34;zap&#34;),
  *                     jsonProperty(&#34;foo&#34;, &#34;bar&#34;)
  *                 )))
+ *             .customMetadata(SecretV2CustomMetadataArgs.builder()
+ *                 .maxVersions(5)
+ *                 .data(Map.ofEntries(
+ *                     Map.entry(&#34;foo&#34;, &#34;vault@example.com&#34;),
+ *                     Map.entry(&#34;bar&#34;, &#34;12345&#34;)
+ *                 ))
+ *                 .build())
  *             .build());
  * 
  *     }
@@ -78,12 +87,24 @@ import javax.annotation.Nullable;
  * the `delete` capability if the resource is removed from configuration,
  * and the `read` capability for drift detection (by default).
  * 
+ * ### Custom Metadata Configuration Options
+ * 
+ * * `max_versions` - (Optional) The number of versions to keep per key.
+ * 
+ * * `cas_required` - (Optional) If true, all keys will require the cas
+ * parameter to be set on all write requests.
+ * 
+ * * `delete_version_after` - (Optional) If set, specifies the length of time before
+ * a version is deleted. Accepts duration in integer seconds.
+ * 
+ * * `data` - (Optional) A string to string map describing the secret.
+ * 
  * ## Import
  * 
  * KV-V2 secrets can be imported using the `path`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:kv/secretV2:SecretV2 secret kvv2/data/secret
+ *  $ pulumi import vault:kv/secretV2:SecretV2 example kvv2/data/secret
  * ```
  * 
  */
@@ -108,6 +129,24 @@ public class SecretV2 extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Integer>> cas() {
         return Codegen.optional(this.cas);
+    }
+    /**
+     * A nested block that allows configuring metadata for the
+     * KV secret. Refer to the
+     * Configuration Options for more info.
+     * 
+     */
+    @Export(name="customMetadata", type=SecretV2CustomMetadata.class, parameters={})
+    private Output<SecretV2CustomMetadata> customMetadata;
+
+    /**
+     * @return A nested block that allows configuring metadata for the
+     * KV secret. Refer to the
+     * Configuration Options for more info.
+     * 
+     */
+    public Output<SecretV2CustomMetadata> customMetadata() {
+        return this.customMetadata;
     }
     /**
      * A mapping whose keys are the top-level data keys returned from

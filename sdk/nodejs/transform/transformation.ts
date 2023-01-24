@@ -37,6 +37,12 @@ export class Transformation extends pulumi.CustomResource {
      */
     public readonly allowedRoles!: pulumi.Output<string[] | undefined>;
     /**
+     * If true, this transform can be deleted.
+     * Otherwise, deletion is blocked while this value remains false. Default: `false`
+     * *Only supported on vault-1.12+*
+     */
+    public readonly deletionAllowed!: pulumi.Output<boolean | undefined>;
+    /**
      * The character used to replace data when in masking mode
      */
     public readonly maskingCharacter!: pulumi.Output<string | undefined>;
@@ -79,6 +85,7 @@ export class Transformation extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as TransformationState | undefined;
             resourceInputs["allowedRoles"] = state ? state.allowedRoles : undefined;
+            resourceInputs["deletionAllowed"] = state ? state.deletionAllowed : undefined;
             resourceInputs["maskingCharacter"] = state ? state.maskingCharacter : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
@@ -92,6 +99,7 @@ export class Transformation extends pulumi.CustomResource {
                 throw new Error("Missing required property 'path'");
             }
             resourceInputs["allowedRoles"] = args ? args.allowedRoles : undefined;
+            resourceInputs["deletionAllowed"] = args ? args.deletionAllowed : undefined;
             resourceInputs["maskingCharacter"] = args ? args.maskingCharacter : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
@@ -113,6 +121,12 @@ export interface TransformationState {
      * The set of roles allowed to perform this transformation.
      */
     allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * If true, this transform can be deleted.
+     * Otherwise, deletion is blocked while this value remains false. Default: `false`
+     * *Only supported on vault-1.12+*
+     */
+    deletionAllowed?: pulumi.Input<boolean>;
     /**
      * The character used to replace data when in masking mode
      */
@@ -151,6 +165,12 @@ export interface TransformationArgs {
      * The set of roles allowed to perform this transformation.
      */
     allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * If true, this transform can be deleted.
+     * Otherwise, deletion is blocked while this value remains false. Default: `false`
+     * *Only supported on vault-1.12+*
+     */
+    deletionAllowed?: pulumi.Input<boolean>;
     /**
      * The character used to replace data when in masking mode
      */

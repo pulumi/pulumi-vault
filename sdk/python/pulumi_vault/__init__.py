@@ -463,6 +463,14 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "identity/groupMemberGroupIds",
+  "fqn": "pulumi_vault.identity",
+  "classes": {
+   "vault:identity/groupMemberGroupIds:GroupMemberGroupIds": "GroupMemberGroupIds"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "identity/groupPolicies",
   "fqn": "pulumi_vault.identity",
   "classes": {

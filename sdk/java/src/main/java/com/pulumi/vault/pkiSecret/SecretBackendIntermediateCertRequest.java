@@ -57,6 +57,24 @@ import javax.annotation.Nullable;
 @ResourceType(type="vault:pkiSecret/secretBackendIntermediateCertRequest:SecretBackendIntermediateCertRequest")
 public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.CustomResource {
     /**
+     * Adds a Basic Constraints extension with &#39;CA: true&#39;.
+     * Only needed as a workaround in some compatibility scenarios with Active Directory
+     * Certificate Services
+     * 
+     */
+    @Export(name="addBasicConstraints", type=Boolean.class, parameters={})
+    private Output</* @Nullable */ Boolean> addBasicConstraints;
+
+    /**
+     * @return Adds a Basic Constraints extension with &#39;CA: true&#39;.
+     * Only needed as a workaround in some compatibility scenarios with Active Directory
+     * Certificate Services
+     * 
+     */
+    public Output<Optional<Boolean>> addBasicConstraints() {
+        return Codegen.optional(this.addBasicConstraints);
+    }
+    /**
      * List of alternative names
      * 
      */

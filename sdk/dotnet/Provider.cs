@@ -66,6 +66,12 @@ namespace Pulumi.Vault
         [Output("tokenName")]
         public Output<string?> TokenName { get; private set; } = null!;
 
+        /// <summary>
+        /// Override the Vault server version, which is normally determined dynamically from the target Vault server
+        /// </summary>
+        [Output("vaultVersionOverride")]
+        public Output<string?> VaultVersionOverride { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a Provider resource with the given unique name, arguments, and options.
@@ -233,6 +239,12 @@ namespace Pulumi.Vault
         public Input<bool>? SkipChildToken { get; set; }
 
         /// <summary>
+        /// Skip the dynamic fetching of the Vault server version.
+        /// </summary>
+        [Input("skipGetVaultVersion", json: true)]
+        public Input<bool>? SkipGetVaultVersion { get; set; }
+
+        /// <summary>
         /// Set this to true only if the target Vault server is an insecure development instance.
         /// </summary>
         [Input("skipTlsVerify", json: true)]
@@ -255,6 +267,12 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("tokenName")]
         public Input<string>? TokenName { get; set; }
+
+        /// <summary>
+        /// Override the Vault server version, which is normally determined dynamically from the target Vault server
+        /// </summary>
+        [Input("vaultVersionOverride")]
+        public Input<string>? VaultVersionOverride { get; set; }
 
         public ProviderArgs()
         {

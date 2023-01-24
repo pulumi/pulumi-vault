@@ -113,7 +113,7 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public readonly organization!: pulumi.Output<string>;
     /**
-     * Path to mount the Okta auth backend
+     * Path to mount the Okta auth backend. Default to path `okta`.
      */
     public readonly path!: pulumi.Output<string | undefined>;
     /**
@@ -231,7 +231,7 @@ export interface AuthBackendState {
      */
     organization?: pulumi.Input<string>;
     /**
-     * Path to mount the Okta auth backend
+     * Path to mount the Okta auth backend. Default to path `okta`.
      */
     path?: pulumi.Input<string>;
     /**
@@ -294,7 +294,7 @@ export interface AuthBackendArgs {
      */
     organization: pulumi.Input<string>;
     /**
-     * Path to mount the Okta auth backend
+     * Path to mount the Okta auth backend. Default to path `okta`.
      */
     path?: pulumi.Input<string>;
     /**

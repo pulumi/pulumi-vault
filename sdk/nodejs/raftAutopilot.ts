@@ -66,6 +66,10 @@ export class RaftAutopilot extends pulumi.CustomResource {
      */
     public readonly deadServerLastContactThreshold!: pulumi.Output<string | undefined>;
     /**
+     * Disables automatically upgrading Vault using autopilot. (Enterprise-only)
+     */
+    public readonly disableUpgradeMigration!: pulumi.Output<boolean | undefined>;
+    /**
      * Limit the amount of time a server can go 
      * without leader contact before being considered unhealthy.
      */
@@ -109,6 +113,7 @@ export class RaftAutopilot extends pulumi.CustomResource {
             const state = argsOrState as RaftAutopilotState | undefined;
             resourceInputs["cleanupDeadServers"] = state ? state.cleanupDeadServers : undefined;
             resourceInputs["deadServerLastContactThreshold"] = state ? state.deadServerLastContactThreshold : undefined;
+            resourceInputs["disableUpgradeMigration"] = state ? state.disableUpgradeMigration : undefined;
             resourceInputs["lastContactThreshold"] = state ? state.lastContactThreshold : undefined;
             resourceInputs["maxTrailingLogs"] = state ? state.maxTrailingLogs : undefined;
             resourceInputs["minQuorum"] = state ? state.minQuorum : undefined;
@@ -118,6 +123,7 @@ export class RaftAutopilot extends pulumi.CustomResource {
             const args = argsOrState as RaftAutopilotArgs | undefined;
             resourceInputs["cleanupDeadServers"] = args ? args.cleanupDeadServers : undefined;
             resourceInputs["deadServerLastContactThreshold"] = args ? args.deadServerLastContactThreshold : undefined;
+            resourceInputs["disableUpgradeMigration"] = args ? args.disableUpgradeMigration : undefined;
             resourceInputs["lastContactThreshold"] = args ? args.lastContactThreshold : undefined;
             resourceInputs["maxTrailingLogs"] = args ? args.maxTrailingLogs : undefined;
             resourceInputs["minQuorum"] = args ? args.minQuorum : undefined;
@@ -144,6 +150,10 @@ export interface RaftAutopilotState {
      * effect when `cleanupDeadServers` is set.
      */
     deadServerLastContactThreshold?: pulumi.Input<string>;
+    /**
+     * Disables automatically upgrading Vault using autopilot. (Enterprise-only)
+     */
+    disableUpgradeMigration?: pulumi.Input<boolean>;
     /**
      * Limit the amount of time a server can go 
      * without leader contact before being considered unhealthy.
@@ -189,6 +199,10 @@ export interface RaftAutopilotArgs {
      * effect when `cleanupDeadServers` is set.
      */
     deadServerLastContactThreshold?: pulumi.Input<string>;
+    /**
+     * Disables automatically upgrading Vault using autopilot. (Enterprise-only)
+     */
+    disableUpgradeMigration?: pulumi.Input<boolean>;
     /**
      * Limit the amount of time a server can go 
      * without leader contact before being considered unhealthy.

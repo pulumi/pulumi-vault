@@ -17,6 +17,7 @@ class SecretBackendIntermediateCertRequestArgs:
                  backend: pulumi.Input[str],
                  common_name: pulumi.Input[str],
                  type: pulumi.Input[str],
+                 add_basic_constraints: Optional[pulumi.Input[bool]] = None,
                  alt_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  country: Optional[pulumi.Input[str]] = None,
                  exclude_cn_from_sans: Optional[pulumi.Input[bool]] = None,
@@ -42,6 +43,9 @@ class SecretBackendIntermediateCertRequestArgs:
         :param pulumi.Input[str] common_name: CN of intermediate to create
         :param pulumi.Input[str] type: Type of intermediate to create. Must be either \\"exported\\" or \\"internal\\"
                or \\"kms\\"
+        :param pulumi.Input[bool] add_basic_constraints: Adds a Basic Constraints extension with 'CA: true'.
+               Only needed as a workaround in some compatibility scenarios with Active Directory
+               Certificate Services
         :param pulumi.Input[Sequence[pulumi.Input[str]]] alt_names: List of alternative names
         :param pulumi.Input[str] country: The country
         :param pulumi.Input[bool] exclude_cn_from_sans: Flag to exclude CN from SANs
@@ -70,6 +74,8 @@ class SecretBackendIntermediateCertRequestArgs:
         pulumi.set(__self__, "backend", backend)
         pulumi.set(__self__, "common_name", common_name)
         pulumi.set(__self__, "type", type)
+        if add_basic_constraints is not None:
+            pulumi.set(__self__, "add_basic_constraints", add_basic_constraints)
         if alt_names is not None:
             pulumi.set(__self__, "alt_names", alt_names)
         if country is not None:
@@ -145,6 +151,20 @@ class SecretBackendIntermediateCertRequestArgs:
     @type.setter
     def type(self, value: pulumi.Input[str]):
         pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter(name="addBasicConstraints")
+    def add_basic_constraints(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Adds a Basic Constraints extension with 'CA: true'.
+        Only needed as a workaround in some compatibility scenarios with Active Directory
+        Certificate Services
+        """
+        return pulumi.get(self, "add_basic_constraints")
+
+    @add_basic_constraints.setter
+    def add_basic_constraints(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "add_basic_constraints", value)
 
     @property
     @pulumi.getter(name="altNames")
@@ -383,6 +403,7 @@ class SecretBackendIntermediateCertRequestArgs:
 @pulumi.input_type
 class _SecretBackendIntermediateCertRequestState:
     def __init__(__self__, *,
+                 add_basic_constraints: Optional[pulumi.Input[bool]] = None,
                  alt_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  common_name: Optional[pulumi.Input[str]] = None,
@@ -410,6 +431,9 @@ class _SecretBackendIntermediateCertRequestState:
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering SecretBackendIntermediateCertRequest resources.
+        :param pulumi.Input[bool] add_basic_constraints: Adds a Basic Constraints extension with 'CA: true'.
+               Only needed as a workaround in some compatibility scenarios with Active Directory
+               Certificate Services
         :param pulumi.Input[Sequence[pulumi.Input[str]]] alt_names: List of alternative names
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[str] common_name: CN of intermediate to create
@@ -442,6 +466,8 @@ class _SecretBackendIntermediateCertRequestState:
                or \\"kms\\"
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
         """
+        if add_basic_constraints is not None:
+            pulumi.set(__self__, "add_basic_constraints", add_basic_constraints)
         if alt_names is not None:
             pulumi.set(__self__, "alt_names", alt_names)
         if backend is not None:
@@ -492,6 +518,20 @@ class _SecretBackendIntermediateCertRequestState:
             pulumi.set(__self__, "type", type)
         if uri_sans is not None:
             pulumi.set(__self__, "uri_sans", uri_sans)
+
+    @property
+    @pulumi.getter(name="addBasicConstraints")
+    def add_basic_constraints(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Adds a Basic Constraints extension with 'CA: true'.
+        Only needed as a workaround in some compatibility scenarios with Active Directory
+        Certificate Services
+        """
+        return pulumi.get(self, "add_basic_constraints")
+
+    @add_basic_constraints.setter
+    def add_basic_constraints(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "add_basic_constraints", value)
 
     @property
     @pulumi.getter(name="altNames")
@@ -805,6 +845,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 add_basic_constraints: Optional[pulumi.Input[bool]] = None,
                  alt_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  common_name: Optional[pulumi.Input[str]] = None,
@@ -844,6 +885,9 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] add_basic_constraints: Adds a Basic Constraints extension with 'CA: true'.
+               Only needed as a workaround in some compatibility scenarios with Active Directory
+               Certificate Services
         :param pulumi.Input[Sequence[pulumi.Input[str]]] alt_names: List of alternative names
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[str] common_name: CN of intermediate to create
@@ -908,6 +952,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 add_basic_constraints: Optional[pulumi.Input[bool]] = None,
                  alt_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  common_name: Optional[pulumi.Input[str]] = None,
@@ -939,6 +984,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SecretBackendIntermediateCertRequestArgs.__new__(SecretBackendIntermediateCertRequestArgs)
 
+            __props__.__dict__["add_basic_constraints"] = add_basic_constraints
             __props__.__dict__["alt_names"] = alt_names
             if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
@@ -982,6 +1028,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            add_basic_constraints: Optional[pulumi.Input[bool]] = None,
             alt_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             backend: Optional[pulumi.Input[str]] = None,
             common_name: Optional[pulumi.Input[str]] = None,
@@ -1014,6 +1061,9 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] add_basic_constraints: Adds a Basic Constraints extension with 'CA: true'.
+               Only needed as a workaround in some compatibility scenarios with Active Directory
+               Certificate Services
         :param pulumi.Input[Sequence[pulumi.Input[str]]] alt_names: List of alternative names
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[str] common_name: CN of intermediate to create
@@ -1050,6 +1100,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
 
         __props__ = _SecretBackendIntermediateCertRequestState.__new__(_SecretBackendIntermediateCertRequestState)
 
+        __props__.__dict__["add_basic_constraints"] = add_basic_constraints
         __props__.__dict__["alt_names"] = alt_names
         __props__.__dict__["backend"] = backend
         __props__.__dict__["common_name"] = common_name
@@ -1076,6 +1127,16 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         __props__.__dict__["uri_sans"] = uri_sans
         return SecretBackendIntermediateCertRequest(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="addBasicConstraints")
+    def add_basic_constraints(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Adds a Basic Constraints extension with 'CA: true'.
+        Only needed as a workaround in some compatibility scenarios with Active Directory
+        Certificate Services
+        """
+        return pulumi.get(self, "add_basic_constraints")
 
     @property
     @pulumi.getter(name="altNames")

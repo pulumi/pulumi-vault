@@ -137,6 +137,12 @@ namespace Pulumi.Vault
         [Input("path", required: true)]
         public Input<string> Path { get; set; } = null!;
 
+        /// <summary>
+        /// The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+        /// </summary>
+        [Input("pathFq")]
+        public Input<string>? PathFq { get; set; }
+
         public NamespaceArgs()
         {
         }

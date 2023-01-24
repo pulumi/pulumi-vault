@@ -55,13 +55,30 @@ export class SecretBackendCrlConfig extends pulumi.CustomResource {
     }
 
     /**
+     * Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
+     */
+    public readonly autoRebuild!: pulumi.Output<boolean | undefined>;
+    /**
+     * Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**
+     */
+    public readonly autoRebuildGracePeriod!: pulumi.Output<string>;
+    /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      */
     public readonly backend!: pulumi.Output<string>;
     /**
+     * Interval to check for new revocations on, to regenerate the delta CRL.
+     */
+    public readonly deltaRebuildInterval!: pulumi.Output<string>;
+    /**
      * Disables or enables CRL building.
      */
     public readonly disable!: pulumi.Output<boolean | undefined>;
+    /**
+     * Enables building of delta CRLs with up-to-date revocation information, 
+     * augmenting the last complete CRL.  **Vault 1.12+**
+     */
+    public readonly enableDelta!: pulumi.Output<boolean | undefined>;
     /**
      * Specifies the time until expiration.
      */
@@ -73,6 +90,15 @@ export class SecretBackendCrlConfig extends pulumi.CustomResource {
      * *Available only for Vault Enterprise*.
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
+     * Disables the OCSP responder in Vault. **Vault 1.12+**
+     */
+    public readonly ocspDisable!: pulumi.Output<boolean | undefined>;
+    /**
+     * The amount of time an OCSP response can be cached for, useful for OCSP stapling 
+     * refresh durations. **Vault 1.12+**
+     */
+    public readonly ocspExpiry!: pulumi.Output<string>;
 
     /**
      * Create a SecretBackendCrlConfig resource with the given unique name, arguments, and options.
@@ -87,19 +113,31 @@ export class SecretBackendCrlConfig extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendCrlConfigState | undefined;
+            resourceInputs["autoRebuild"] = state ? state.autoRebuild : undefined;
+            resourceInputs["autoRebuildGracePeriod"] = state ? state.autoRebuildGracePeriod : undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["deltaRebuildInterval"] = state ? state.deltaRebuildInterval : undefined;
             resourceInputs["disable"] = state ? state.disable : undefined;
+            resourceInputs["enableDelta"] = state ? state.enableDelta : undefined;
             resourceInputs["expiry"] = state ? state.expiry : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
+            resourceInputs["ocspDisable"] = state ? state.ocspDisable : undefined;
+            resourceInputs["ocspExpiry"] = state ? state.ocspExpiry : undefined;
         } else {
             const args = argsOrState as SecretBackendCrlConfigArgs | undefined;
             if ((!args || args.backend === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
+            resourceInputs["autoRebuild"] = args ? args.autoRebuild : undefined;
+            resourceInputs["autoRebuildGracePeriod"] = args ? args.autoRebuildGracePeriod : undefined;
             resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["deltaRebuildInterval"] = args ? args.deltaRebuildInterval : undefined;
             resourceInputs["disable"] = args ? args.disable : undefined;
+            resourceInputs["enableDelta"] = args ? args.enableDelta : undefined;
             resourceInputs["expiry"] = args ? args.expiry : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["ocspDisable"] = args ? args.ocspDisable : undefined;
+            resourceInputs["ocspExpiry"] = args ? args.ocspExpiry : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretBackendCrlConfig.__pulumiType, name, resourceInputs, opts);
@@ -111,13 +149,30 @@ export class SecretBackendCrlConfig extends pulumi.CustomResource {
  */
 export interface SecretBackendCrlConfigState {
     /**
+     * Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
+     */
+    autoRebuild?: pulumi.Input<boolean>;
+    /**
+     * Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**
+     */
+    autoRebuildGracePeriod?: pulumi.Input<string>;
+    /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      */
     backend?: pulumi.Input<string>;
     /**
+     * Interval to check for new revocations on, to regenerate the delta CRL.
+     */
+    deltaRebuildInterval?: pulumi.Input<string>;
+    /**
      * Disables or enables CRL building.
      */
     disable?: pulumi.Input<boolean>;
+    /**
+     * Enables building of delta CRLs with up-to-date revocation information, 
+     * augmenting the last complete CRL.  **Vault 1.12+**
+     */
+    enableDelta?: pulumi.Input<boolean>;
     /**
      * Specifies the time until expiration.
      */
@@ -129,6 +184,15 @@ export interface SecretBackendCrlConfigState {
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;
+    /**
+     * Disables the OCSP responder in Vault. **Vault 1.12+**
+     */
+    ocspDisable?: pulumi.Input<boolean>;
+    /**
+     * The amount of time an OCSP response can be cached for, useful for OCSP stapling 
+     * refresh durations. **Vault 1.12+**
+     */
+    ocspExpiry?: pulumi.Input<string>;
 }
 
 /**
@@ -136,13 +200,30 @@ export interface SecretBackendCrlConfigState {
  */
 export interface SecretBackendCrlConfigArgs {
     /**
+     * Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
+     */
+    autoRebuild?: pulumi.Input<boolean>;
+    /**
+     * Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**
+     */
+    autoRebuildGracePeriod?: pulumi.Input<string>;
+    /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      */
     backend: pulumi.Input<string>;
     /**
+     * Interval to check for new revocations on, to regenerate the delta CRL.
+     */
+    deltaRebuildInterval?: pulumi.Input<string>;
+    /**
      * Disables or enables CRL building.
      */
     disable?: pulumi.Input<boolean>;
+    /**
+     * Enables building of delta CRLs with up-to-date revocation information, 
+     * augmenting the last complete CRL.  **Vault 1.12+**
+     */
+    enableDelta?: pulumi.Input<boolean>;
     /**
      * Specifies the time until expiration.
      */
@@ -154,4 +235,13 @@ export interface SecretBackendCrlConfigArgs {
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;
+    /**
+     * Disables the OCSP responder in Vault. **Vault 1.12+**
+     */
+    ocspDisable?: pulumi.Input<boolean>;
+    /**
+     * The amount of time an OCSP response can be cached for, useful for OCSP stapling 
+     * refresh durations. **Vault 1.12+**
+     */
+    ocspExpiry?: pulumi.Input<string>;
 }

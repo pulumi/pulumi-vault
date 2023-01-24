@@ -140,9 +140,19 @@ import (
 type Group struct {
 	pulumi.CustomResourceState
 
-	// `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
+	// `false` by default. If set to `true`, this resource will ignore any Entity IDs
+	// returned from Vault or specified in the resource. You can use
+	// `identity.GroupMemberEntityIds` to manage Entity IDs for this group in a
+	// decoupled manner.
 	ExternalMemberEntityIds pulumi.BoolPtrOutput `pulumi:"externalMemberEntityIds"`
-	// `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+	// `false` by default. If set to `true`, this resource will ignore any Group IDs
+	// returned from Vault or specified in the resource. You can use
+	// `identity.GroupMemberGroupIds` to manage Group IDs for this group in a
+	// decoupled manner.
+	ExternalMemberGroupIds pulumi.BoolPtrOutput `pulumi:"externalMemberGroupIds"`
+	// `false` by default. If set to `true`, this resource will ignore any policies returned from
+	// Vault or specified in the resource. You can use `identity.GroupPolicies` to manage
+	// policies for this group in a decoupled manner.
 	ExternalPolicies pulumi.BoolPtrOutput `pulumi:"externalPolicies"`
 	// A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
 	MemberEntityIds pulumi.StringArrayOutput `pulumi:"memberEntityIds"`
@@ -192,9 +202,19 @@ func GetGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Group resources.
 type groupState struct {
-	// `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
+	// `false` by default. If set to `true`, this resource will ignore any Entity IDs
+	// returned from Vault or specified in the resource. You can use
+	// `identity.GroupMemberEntityIds` to manage Entity IDs for this group in a
+	// decoupled manner.
 	ExternalMemberEntityIds *bool `pulumi:"externalMemberEntityIds"`
-	// `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+	// `false` by default. If set to `true`, this resource will ignore any Group IDs
+	// returned from Vault or specified in the resource. You can use
+	// `identity.GroupMemberGroupIds` to manage Group IDs for this group in a
+	// decoupled manner.
+	ExternalMemberGroupIds *bool `pulumi:"externalMemberGroupIds"`
+	// `false` by default. If set to `true`, this resource will ignore any policies returned from
+	// Vault or specified in the resource. You can use `identity.GroupPolicies` to manage
+	// policies for this group in a decoupled manner.
 	ExternalPolicies *bool `pulumi:"externalPolicies"`
 	// A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
 	MemberEntityIds []string `pulumi:"memberEntityIds"`
@@ -216,9 +236,19 @@ type groupState struct {
 }
 
 type GroupState struct {
-	// `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
+	// `false` by default. If set to `true`, this resource will ignore any Entity IDs
+	// returned from Vault or specified in the resource. You can use
+	// `identity.GroupMemberEntityIds` to manage Entity IDs for this group in a
+	// decoupled manner.
 	ExternalMemberEntityIds pulumi.BoolPtrInput
-	// `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+	// `false` by default. If set to `true`, this resource will ignore any Group IDs
+	// returned from Vault or specified in the resource. You can use
+	// `identity.GroupMemberGroupIds` to manage Group IDs for this group in a
+	// decoupled manner.
+	ExternalMemberGroupIds pulumi.BoolPtrInput
+	// `false` by default. If set to `true`, this resource will ignore any policies returned from
+	// Vault or specified in the resource. You can use `identity.GroupPolicies` to manage
+	// policies for this group in a decoupled manner.
 	ExternalPolicies pulumi.BoolPtrInput
 	// A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
 	MemberEntityIds pulumi.StringArrayInput
@@ -244,9 +274,19 @@ func (GroupState) ElementType() reflect.Type {
 }
 
 type groupArgs struct {
-	// `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
+	// `false` by default. If set to `true`, this resource will ignore any Entity IDs
+	// returned from Vault or specified in the resource. You can use
+	// `identity.GroupMemberEntityIds` to manage Entity IDs for this group in a
+	// decoupled manner.
 	ExternalMemberEntityIds *bool `pulumi:"externalMemberEntityIds"`
-	// `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+	// `false` by default. If set to `true`, this resource will ignore any Group IDs
+	// returned from Vault or specified in the resource. You can use
+	// `identity.GroupMemberGroupIds` to manage Group IDs for this group in a
+	// decoupled manner.
+	ExternalMemberGroupIds *bool `pulumi:"externalMemberGroupIds"`
+	// `false` by default. If set to `true`, this resource will ignore any policies returned from
+	// Vault or specified in the resource. You can use `identity.GroupPolicies` to manage
+	// policies for this group in a decoupled manner.
 	ExternalPolicies *bool `pulumi:"externalPolicies"`
 	// A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
 	MemberEntityIds []string `pulumi:"memberEntityIds"`
@@ -269,9 +309,19 @@ type groupArgs struct {
 
 // The set of arguments for constructing a Group resource.
 type GroupArgs struct {
-	// `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
+	// `false` by default. If set to `true`, this resource will ignore any Entity IDs
+	// returned from Vault or specified in the resource. You can use
+	// `identity.GroupMemberEntityIds` to manage Entity IDs for this group in a
+	// decoupled manner.
 	ExternalMemberEntityIds pulumi.BoolPtrInput
-	// `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+	// `false` by default. If set to `true`, this resource will ignore any Group IDs
+	// returned from Vault or specified in the resource. You can use
+	// `identity.GroupMemberGroupIds` to manage Group IDs for this group in a
+	// decoupled manner.
+	ExternalMemberGroupIds pulumi.BoolPtrInput
+	// `false` by default. If set to `true`, this resource will ignore any policies returned from
+	// Vault or specified in the resource. You can use `identity.GroupPolicies` to manage
+	// policies for this group in a decoupled manner.
 	ExternalPolicies pulumi.BoolPtrInput
 	// A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
 	MemberEntityIds pulumi.StringArrayInput
@@ -379,12 +429,25 @@ func (o GroupOutput) ToGroupOutputWithContext(ctx context.Context) GroupOutput {
 	return o
 }
 
-// `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
+// `false` by default. If set to `true`, this resource will ignore any Entity IDs
+// returned from Vault or specified in the resource. You can use
+// `identity.GroupMemberEntityIds` to manage Entity IDs for this group in a
+// decoupled manner.
 func (o GroupOutput) ExternalMemberEntityIds() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Group) pulumi.BoolPtrOutput { return v.ExternalMemberEntityIds }).(pulumi.BoolPtrOutput)
 }
 
-// `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+// `false` by default. If set to `true`, this resource will ignore any Group IDs
+// returned from Vault or specified in the resource. You can use
+// `identity.GroupMemberGroupIds` to manage Group IDs for this group in a
+// decoupled manner.
+func (o GroupOutput) ExternalMemberGroupIds() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Group) pulumi.BoolPtrOutput { return v.ExternalMemberGroupIds }).(pulumi.BoolPtrOutput)
+}
+
+// `false` by default. If set to `true`, this resource will ignore any policies returned from
+// Vault or specified in the resource. You can use `identity.GroupPolicies` to manage
+// policies for this group in a decoupled manner.
 func (o GroupOutput) ExternalPolicies() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Group) pulumi.BoolPtrOutput { return v.ExternalPolicies }).(pulumi.BoolPtrOutput)
 }

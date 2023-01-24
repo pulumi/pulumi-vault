@@ -36,6 +36,7 @@ class SecretBackendConnectionArgs:
                  oracle: Optional[pulumi.Input['SecretBackendConnectionOracleArgs']] = None,
                  plugin_name: Optional[pulumi.Input[str]] = None,
                  postgresql: Optional[pulumi.Input['SecretBackendConnectionPostgresqlArgs']] = None,
+                 redis: Optional[pulumi.Input['SecretBackendConnectionRedisArgs']] = None,
                  redis_elasticache: Optional[pulumi.Input['SecretBackendConnectionRedisElasticacheArgs']] = None,
                  redshift: Optional[pulumi.Input['SecretBackendConnectionRedshiftArgs']] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -67,6 +68,7 @@ class SecretBackendConnectionArgs:
         :param pulumi.Input['SecretBackendConnectionOracleArgs'] oracle: A nested block containing configuration options for Oracle connections.
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input['SecretBackendConnectionPostgresqlArgs'] postgresql: A nested block containing configuration options for PostgreSQL connections.
+        :param pulumi.Input['SecretBackendConnectionRedisArgs'] redis: A nested block containing configuration options for Redis connections.
         :param pulumi.Input['SecretBackendConnectionRedisElasticacheArgs'] redis_elasticache: A nested block containing configuration options for Redis ElastiCache connections.
         :param pulumi.Input['SecretBackendConnectionRedshiftArgs'] redshift: Connection parameters for the redshift-database-plugin plugin.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
@@ -113,6 +115,8 @@ class SecretBackendConnectionArgs:
             pulumi.set(__self__, "plugin_name", plugin_name)
         if postgresql is not None:
             pulumi.set(__self__, "postgresql", postgresql)
+        if redis is not None:
+            pulumi.set(__self__, "redis", redis)
         if redis_elasticache is not None:
             pulumi.set(__self__, "redis_elasticache", redis_elasticache)
         if redshift is not None:
@@ -369,6 +373,18 @@ class SecretBackendConnectionArgs:
         pulumi.set(self, "postgresql", value)
 
     @property
+    @pulumi.getter
+    def redis(self) -> Optional[pulumi.Input['SecretBackendConnectionRedisArgs']]:
+        """
+        A nested block containing configuration options for Redis connections.
+        """
+        return pulumi.get(self, "redis")
+
+    @redis.setter
+    def redis(self, value: Optional[pulumi.Input['SecretBackendConnectionRedisArgs']]):
+        pulumi.set(self, "redis", value)
+
+    @property
     @pulumi.getter(name="redisElasticache")
     def redis_elasticache(self) -> Optional[pulumi.Input['SecretBackendConnectionRedisElasticacheArgs']]:
         """
@@ -453,6 +469,7 @@ class _SecretBackendConnectionState:
                  oracle: Optional[pulumi.Input['SecretBackendConnectionOracleArgs']] = None,
                  plugin_name: Optional[pulumi.Input[str]] = None,
                  postgresql: Optional[pulumi.Input['SecretBackendConnectionPostgresqlArgs']] = None,
+                 redis: Optional[pulumi.Input['SecretBackendConnectionRedisArgs']] = None,
                  redis_elasticache: Optional[pulumi.Input['SecretBackendConnectionRedisElasticacheArgs']] = None,
                  redshift: Optional[pulumi.Input['SecretBackendConnectionRedshiftArgs']] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -484,6 +501,7 @@ class _SecretBackendConnectionState:
         :param pulumi.Input['SecretBackendConnectionOracleArgs'] oracle: A nested block containing configuration options for Oracle connections.
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input['SecretBackendConnectionPostgresqlArgs'] postgresql: A nested block containing configuration options for PostgreSQL connections.
+        :param pulumi.Input['SecretBackendConnectionRedisArgs'] redis: A nested block containing configuration options for Redis connections.
         :param pulumi.Input['SecretBackendConnectionRedisElasticacheArgs'] redis_elasticache: A nested block containing configuration options for Redis ElastiCache connections.
         :param pulumi.Input['SecretBackendConnectionRedshiftArgs'] redshift: Connection parameters for the redshift-database-plugin plugin.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
@@ -531,6 +549,8 @@ class _SecretBackendConnectionState:
             pulumi.set(__self__, "plugin_name", plugin_name)
         if postgresql is not None:
             pulumi.set(__self__, "postgresql", postgresql)
+        if redis is not None:
+            pulumi.set(__self__, "redis", redis)
         if redis_elasticache is not None:
             pulumi.set(__self__, "redis_elasticache", redis_elasticache)
         if redshift is not None:
@@ -787,6 +807,18 @@ class _SecretBackendConnectionState:
         pulumi.set(self, "postgresql", value)
 
     @property
+    @pulumi.getter
+    def redis(self) -> Optional[pulumi.Input['SecretBackendConnectionRedisArgs']]:
+        """
+        A nested block containing configuration options for Redis connections.
+        """
+        return pulumi.get(self, "redis")
+
+    @redis.setter
+    def redis(self, value: Optional[pulumi.Input['SecretBackendConnectionRedisArgs']]):
+        pulumi.set(self, "redis", value)
+
+    @property
     @pulumi.getter(name="redisElasticache")
     def redis_elasticache(self) -> Optional[pulumi.Input['SecretBackendConnectionRedisElasticacheArgs']]:
         """
@@ -873,6 +905,7 @@ class SecretBackendConnection(pulumi.CustomResource):
                  oracle: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']]] = None,
                  plugin_name: Optional[pulumi.Input[str]] = None,
                  postgresql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']]] = None,
+                 redis: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionRedisArgs']]] = None,
                  redis_elasticache: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionRedisElasticacheArgs']]] = None,
                  redshift: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionRedshiftArgs']]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -934,6 +967,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']] oracle: A nested block containing configuration options for Oracle connections.
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']] postgresql: A nested block containing configuration options for PostgreSQL connections.
+        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionRedisArgs']] redis: A nested block containing configuration options for Redis connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionRedisElasticacheArgs']] redis_elasticache: A nested block containing configuration options for Redis ElastiCache connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionRedshiftArgs']] redshift: Connection parameters for the redshift-database-plugin plugin.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
@@ -1011,6 +1045,7 @@ class SecretBackendConnection(pulumi.CustomResource):
                  oracle: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']]] = None,
                  plugin_name: Optional[pulumi.Input[str]] = None,
                  postgresql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']]] = None,
+                 redis: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionRedisArgs']]] = None,
                  redis_elasticache: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionRedisElasticacheArgs']]] = None,
                  redshift: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionRedshiftArgs']]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -1047,6 +1082,7 @@ class SecretBackendConnection(pulumi.CustomResource):
             __props__.__dict__["oracle"] = oracle
             __props__.__dict__["plugin_name"] = plugin_name
             __props__.__dict__["postgresql"] = postgresql
+            __props__.__dict__["redis"] = redis
             __props__.__dict__["redis_elasticache"] = redis_elasticache
             __props__.__dict__["redshift"] = redshift
             __props__.__dict__["root_rotation_statements"] = root_rotation_statements
@@ -1082,6 +1118,7 @@ class SecretBackendConnection(pulumi.CustomResource):
             oracle: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']]] = None,
             plugin_name: Optional[pulumi.Input[str]] = None,
             postgresql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']]] = None,
+            redis: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionRedisArgs']]] = None,
             redis_elasticache: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionRedisElasticacheArgs']]] = None,
             redshift: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionRedshiftArgs']]] = None,
             root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -1118,6 +1155,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']] oracle: A nested block containing configuration options for Oracle connections.
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']] postgresql: A nested block containing configuration options for PostgreSQL connections.
+        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionRedisArgs']] redis: A nested block containing configuration options for Redis connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionRedisElasticacheArgs']] redis_elasticache: A nested block containing configuration options for Redis ElastiCache connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionRedshiftArgs']] redshift: Connection parameters for the redshift-database-plugin plugin.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
@@ -1149,6 +1187,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         __props__.__dict__["oracle"] = oracle
         __props__.__dict__["plugin_name"] = plugin_name
         __props__.__dict__["postgresql"] = postgresql
+        __props__.__dict__["redis"] = redis
         __props__.__dict__["redis_elasticache"] = redis_elasticache
         __props__.__dict__["redshift"] = redshift
         __props__.__dict__["root_rotation_statements"] = root_rotation_statements
@@ -1319,6 +1358,14 @@ class SecretBackendConnection(pulumi.CustomResource):
         A nested block containing configuration options for PostgreSQL connections.
         """
         return pulumi.get(self, "postgresql")
+
+    @property
+    @pulumi.getter
+    def redis(self) -> pulumi.Output[Optional['outputs.SecretBackendConnectionRedis']]:
+        """
+        A nested block containing configuration options for Redis connections.
+        """
+        return pulumi.get(self, "redis")
 
     @property
     @pulumi.getter(name="redisElasticache")

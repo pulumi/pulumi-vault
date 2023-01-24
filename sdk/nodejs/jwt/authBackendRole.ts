@@ -106,8 +106,9 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly backend!: pulumi.Output<string | undefined>;
     /**
-     * (Required for roles of type `jwt`, optional for roles of
-     * type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+     * (For "jwt" roles, at least one of `boundAudiences`, `boundSubject`, `boundClaims`
+     * or `tokenBoundCidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
+     * Any match is sufficient.
      */
     public readonly boundAudiences!: pulumi.Output<string[] | undefined>;
     /**
@@ -359,8 +360,9 @@ export interface AuthBackendRoleState {
      */
     backend?: pulumi.Input<string>;
     /**
-     * (Required for roles of type `jwt`, optional for roles of
-     * type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+     * (For "jwt" roles, at least one of `boundAudiences`, `boundSubject`, `boundClaims`
+     * or `tokenBoundCidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
+     * Any match is sufficient.
      */
     boundAudiences?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -528,8 +530,9 @@ export interface AuthBackendRoleArgs {
      */
     backend?: pulumi.Input<string>;
     /**
-     * (Required for roles of type `jwt`, optional for roles of
-     * type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+     * (For "jwt" roles, at least one of `boundAudiences`, `boundSubject`, `boundClaims`
+     * or `tokenBoundCidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
+     * Any match is sufficient.
      */
     boundAudiences?: pulumi.Input<pulumi.Input<string>[]>;
     /**

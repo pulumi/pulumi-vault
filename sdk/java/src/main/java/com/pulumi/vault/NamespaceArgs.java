@@ -51,11 +51,27 @@ public final class NamespaceArgs extends com.pulumi.resources.ResourceArgs {
         return this.path;
     }
 
+    /**
+     * The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+     * 
+     */
+    @Import(name="pathFq")
+    private @Nullable Output<String> pathFq;
+
+    /**
+     * @return The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+     * 
+     */
+    public Optional<Output<String>> pathFq() {
+        return Optional.ofNullable(this.pathFq);
+    }
+
     private NamespaceArgs() {}
 
     private NamespaceArgs(NamespaceArgs $) {
         this.namespace = $.namespace;
         this.path = $.path;
+        this.pathFq = $.pathFq;
     }
 
     public static Builder builder() {
@@ -122,6 +138,27 @@ public final class NamespaceArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder path(String path) {
             return path(Output.of(path));
+        }
+
+        /**
+         * @param pathFq The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder pathFq(@Nullable Output<String> pathFq) {
+            $.pathFq = pathFq;
+            return this;
+        }
+
+        /**
+         * @param pathFq The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder pathFq(String pathFq) {
+            return pathFq(Output.of(pathFq));
         }
 
         public NamespaceArgs build() {

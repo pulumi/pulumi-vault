@@ -95,6 +95,20 @@ public class RaftAutopilot extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.deadServerLastContactThreshold);
     }
     /**
+     * Disables automatically upgrading Vault using autopilot. (Enterprise-only)
+     * 
+     */
+    @Export(name="disableUpgradeMigration", type=Boolean.class, parameters={})
+    private Output</* @Nullable */ Boolean> disableUpgradeMigration;
+
+    /**
+     * @return Disables automatically upgrading Vault using autopilot. (Enterprise-only)
+     * 
+     */
+    public Output<Optional<Boolean>> disableUpgradeMigration() {
+        return Codegen.optional(this.disableUpgradeMigration);
+    }
+    /**
      * Limit the amount of time a server can go
      * without leader contact before being considered unhealthy.
      * 

@@ -160,16 +160,18 @@ public final class BackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * - Use the Microsoft Graph API introduced in `vault-1.9`.
-     *   Should be set to true for `vault-1.10+`
+     * - Indicates whether the secrets engine should use
+     *   the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
+     *   For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
      * 
      */
     @Import(name="useMicrosoftGraphApi")
     private @Nullable Output<Boolean> useMicrosoftGraphApi;
 
     /**
-     * @return - Use the Microsoft Graph API introduced in `vault-1.9`.
-     * Should be set to true for `vault-1.10+`
+     * @return - Indicates whether the secrets engine should use
+     * the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
+     * For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
      * 
      */
     public Optional<Output<Boolean>> useMicrosoftGraphApi() {
@@ -407,8 +409,9 @@ public final class BackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param useMicrosoftGraphApi - Use the Microsoft Graph API introduced in `vault-1.9`.
-         * Should be set to true for `vault-1.10+`
+         * @param useMicrosoftGraphApi - Indicates whether the secrets engine should use
+         * the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
+         * For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
          * 
          * @return builder
          * 
@@ -419,8 +422,9 @@ public final class BackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param useMicrosoftGraphApi - Use the Microsoft Graph API introduced in `vault-1.9`.
-         * Should be set to true for `vault-1.10+`
+         * @param useMicrosoftGraphApi - Indicates whether the secrets engine should use
+         * the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
+         * For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
          * 
          * @return builder
          * 

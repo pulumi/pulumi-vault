@@ -127,7 +127,7 @@ namespace Pulumi.Vault.Okta
         public Output<string> Organization { get; private set; } = null!;
 
         /// <summary>
-        /// Path to mount the Okta auth backend
+        /// Path to mount the Okta auth backend. Default to path `okta`.
         /// </summary>
         [Output("path")]
         public Output<string?> Path { get; private set; } = null!;
@@ -264,7 +264,7 @@ namespace Pulumi.Vault.Okta
         public Input<string> Organization { get; set; } = null!;
 
         /// <summary>
-        /// Path to mount the Okta auth backend
+        /// Path to mount the Okta auth backend. Default to path `okta`.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
@@ -381,7 +381,7 @@ namespace Pulumi.Vault.Okta
         public Input<string>? Organization { get; set; }
 
         /// <summary>
-        /// Path to mount the Okta auth backend
+        /// Path to mount the Okta auth backend. Default to path `okta`.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }

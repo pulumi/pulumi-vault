@@ -53,8 +53,9 @@ class AuthBackendRoleArgs:
                Required for OIDC roles
         :param pulumi.Input[str] backend: The unique name of the auth backend to configure.
                Defaults to `jwt`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_audiences: (Required for roles of type `jwt`, optional for roles of
-               type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_audiences: (For "jwt" roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
+               or `token_bound_cidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
+               Any match is sufficient.
         :param pulumi.Input[Mapping[str, Any]] bound_claims: If set, a map of claims to values to match against.
                A claim's value must be a string, which may contain one value or multiple
                comma-separated values, e.g. `"red"` or `"red,green,blue"`.
@@ -235,8 +236,9 @@ class AuthBackendRoleArgs:
     @pulumi.getter(name="boundAudiences")
     def bound_audiences(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        (Required for roles of type `jwt`, optional for roles of
-        type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+        (For "jwt" roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
+        or `token_bound_cidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
+        Any match is sufficient.
         """
         return pulumi.get(self, "bound_audiences")
 
@@ -613,8 +615,9 @@ class _AuthBackendRoleState:
                Required for OIDC roles
         :param pulumi.Input[str] backend: The unique name of the auth backend to configure.
                Defaults to `jwt`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_audiences: (Required for roles of type `jwt`, optional for roles of
-               type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_audiences: (For "jwt" roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
+               or `token_bound_cidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
+               Any match is sufficient.
         :param pulumi.Input[Mapping[str, Any]] bound_claims: If set, a map of claims to values to match against.
                A claim's value must be a string, which may contain one value or multiple
                comma-separated values, e.g. `"red"` or `"red,green,blue"`.
@@ -775,8 +778,9 @@ class _AuthBackendRoleState:
     @pulumi.getter(name="boundAudiences")
     def bound_audiences(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        (Required for roles of type `jwt`, optional for roles of
-        type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+        (For "jwt" roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
+        or `token_bound_cidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
+        Any match is sufficient.
         """
         return pulumi.get(self, "bound_audiences")
 
@@ -1242,8 +1246,9 @@ class AuthBackendRole(pulumi.CustomResource):
                Required for OIDC roles
         :param pulumi.Input[str] backend: The unique name of the auth backend to configure.
                Defaults to `jwt`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_audiences: (Required for roles of type `jwt`, optional for roles of
-               type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_audiences: (For "jwt" roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
+               or `token_bound_cidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
+               Any match is sufficient.
         :param pulumi.Input[Mapping[str, Any]] bound_claims: If set, a map of claims to values to match against.
                A claim's value must be a string, which may contain one value or multiple
                comma-separated values, e.g. `"red"` or `"red,green,blue"`.
@@ -1517,8 +1522,9 @@ class AuthBackendRole(pulumi.CustomResource):
                Required for OIDC roles
         :param pulumi.Input[str] backend: The unique name of the auth backend to configure.
                Defaults to `jwt`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_audiences: (Required for roles of type `jwt`, optional for roles of
-               type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_audiences: (For "jwt" roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
+               or `token_bound_cidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
+               Any match is sufficient.
         :param pulumi.Input[Mapping[str, Any]] bound_claims: If set, a map of claims to values to match against.
                A claim's value must be a string, which may contain one value or multiple
                comma-separated values, e.g. `"red"` or `"red,green,blue"`.
@@ -1647,8 +1653,9 @@ class AuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="boundAudiences")
     def bound_audiences(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        (Required for roles of type `jwt`, optional for roles of
-        type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+        (For "jwt" roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
+        or `token_bound_cidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
+        Any match is sufficient.
         """
         return pulumi.get(self, "bound_audiences")
 

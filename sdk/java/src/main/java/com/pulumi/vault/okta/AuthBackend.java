@@ -216,14 +216,14 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
         return this.organization;
     }
     /**
-     * Path to mount the Okta auth backend
+     * Path to mount the Okta auth backend. Default to path `okta`.
      * 
      */
     @Export(name="path", type=String.class, parameters={})
     private Output</* @Nullable */ String> path;
 
     /**
-     * @return Path to mount the Okta auth backend
+     * @return Path to mount the Okta auth backend. Default to path `okta`.
      * 
      */
     public Output<Optional<String>> path() {

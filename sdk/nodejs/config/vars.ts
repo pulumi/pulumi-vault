@@ -252,6 +252,17 @@ Object.defineProperty(exports, "skipChildToken", {
 });
 
 /**
+ * Skip the dynamic fetching of the Vault server version.
+ */
+export declare const skipGetVaultVersion: boolean | undefined;
+Object.defineProperty(exports, "skipGetVaultVersion", {
+    get() {
+        return __config.getObject<boolean>("skipGetVaultVersion");
+    },
+    enumerable: true,
+});
+
+/**
  * Set this to true only if the target Vault server is an insecure development instance.
  */
 export declare const skipTlsVerify: boolean | undefined;
@@ -291,6 +302,17 @@ export declare const tokenName: string | undefined;
 Object.defineProperty(exports, "tokenName", {
     get() {
         return __config.get("tokenName");
+    },
+    enumerable: true,
+});
+
+/**
+ * Override the Vault server version, which is normally determined dynamically from the target Vault server
+ */
+export declare const vaultVersionOverride: string | undefined;
+Object.defineProperty(exports, "vaultVersionOverride", {
+    get() {
+        return __config.get("vaultVersionOverride");
     },
     enumerable: true,
 });

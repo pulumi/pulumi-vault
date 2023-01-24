@@ -152,14 +152,14 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Path to mount the Okta auth backend
+     * Path to mount the Okta auth backend. Default to path `okta`.
      * 
      */
     @Import(name="path")
     private @Nullable Output<String> path;
 
     /**
-     * @return Path to mount the Okta auth backend
+     * @return Path to mount the Okta auth backend. Default to path `okta`.
      * 
      */
     public Optional<Output<String>> path() {
@@ -444,7 +444,7 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param path Path to mount the Okta auth backend
+         * @param path Path to mount the Okta auth backend. Default to path `okta`.
          * 
          * @return builder
          * 
@@ -455,7 +455,7 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param path Path to mount the Okta auth backend
+         * @param path Path to mount the Okta auth backend. Default to path `okta`.
          * 
          * @return builder
          * 

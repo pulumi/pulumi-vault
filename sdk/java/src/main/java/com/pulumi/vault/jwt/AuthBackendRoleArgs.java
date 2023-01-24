@@ -55,16 +55,18 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * (Required for roles of type `jwt`, optional for roles of
-     * type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+     * (For &#34;jwt&#34; roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
+     * or `token_bound_cidrs` is required. Optional for &#34;oidc&#34; roles.) List of `aud` claims to match against.
+     * Any match is sufficient.
      * 
      */
     @Import(name="boundAudiences")
     private @Nullable Output<List<String>> boundAudiences;
 
     /**
-     * @return (Required for roles of type `jwt`, optional for roles of
-     * type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+     * @return (For &#34;jwt&#34; roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
+     * or `token_bound_cidrs` is required. Optional for &#34;oidc&#34; roles.) List of `aud` claims to match against.
+     * Any match is sufficient.
      * 
      */
     public Optional<Output<List<String>>> boundAudiences() {
@@ -659,8 +661,9 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param boundAudiences (Required for roles of type `jwt`, optional for roles of
-         * type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+         * @param boundAudiences (For &#34;jwt&#34; roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
+         * or `token_bound_cidrs` is required. Optional for &#34;oidc&#34; roles.) List of `aud` claims to match against.
+         * Any match is sufficient.
          * 
          * @return builder
          * 
@@ -671,8 +674,9 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param boundAudiences (Required for roles of type `jwt`, optional for roles of
-         * type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+         * @param boundAudiences (For &#34;jwt&#34; roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
+         * or `token_bound_cidrs` is required. Optional for &#34;oidc&#34; roles.) List of `aud` claims to match against.
+         * Any match is sufficient.
          * 
          * @return builder
          * 
@@ -682,8 +686,9 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param boundAudiences (Required for roles of type `jwt`, optional for roles of
-         * type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+         * @param boundAudiences (For &#34;jwt&#34; roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
+         * or `token_bound_cidrs` is required. Optional for &#34;oidc&#34; roles.) List of `aud` claims to match against.
+         * Any match is sufficient.
          * 
          * @return builder
          * 

@@ -267,7 +267,14 @@ namespace Pulumi.Vault.Database
         public Output<ImmutableArray<Outputs.SecretsMountPostgresql>> Postgresqls { get; private set; } = null!;
 
         /// <summary>
-        /// A nested block containing configuration options for InfluxDB connections.  
+        /// A nested block containing configuration options for Redis connections.  
+        /// *See Configuration Options for more info*
+        /// </summary>
+        [Output("redis")]
+        public Output<ImmutableArray<Outputs.SecretsMountRedi>> Redis { get; private set; } = null!;
+
+        /// <summary>
+        /// A nested block containing configuration options for Redis ElastiCache connections.  
         /// *See Configuration Options for more info*
         /// </summary>
         [Output("redisElasticaches")]
@@ -611,11 +618,24 @@ namespace Pulumi.Vault.Database
             set => _postgresqls = value;
         }
 
+        [Input("redis")]
+        private InputList<Inputs.SecretsMountRediArgs>? _redis;
+
+        /// <summary>
+        /// A nested block containing configuration options for Redis connections.  
+        /// *See Configuration Options for more info*
+        /// </summary>
+        public InputList<Inputs.SecretsMountRediArgs> Redis
+        {
+            get => _redis ?? (_redis = new InputList<Inputs.SecretsMountRediArgs>());
+            set => _redis = value;
+        }
+
         [Input("redisElasticaches")]
         private InputList<Inputs.SecretsMountRedisElasticachArgs>? _redisElasticaches;
 
         /// <summary>
-        /// A nested block containing configuration options for InfluxDB connections.  
+        /// A nested block containing configuration options for Redis ElastiCache connections.  
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountRedisElasticachArgs> RedisElasticaches
@@ -948,11 +968,24 @@ namespace Pulumi.Vault.Database
             set => _postgresqls = value;
         }
 
+        [Input("redis")]
+        private InputList<Inputs.SecretsMountRediGetArgs>? _redis;
+
+        /// <summary>
+        /// A nested block containing configuration options for Redis connections.  
+        /// *See Configuration Options for more info*
+        /// </summary>
+        public InputList<Inputs.SecretsMountRediGetArgs> Redis
+        {
+            get => _redis ?? (_redis = new InputList<Inputs.SecretsMountRediGetArgs>());
+            set => _redis = value;
+        }
+
         [Input("redisElasticaches")]
         private InputList<Inputs.SecretsMountRedisElasticachGetArgs>? _redisElasticaches;
 
         /// <summary>
-        /// A nested block containing configuration options for InfluxDB connections.  
+        /// A nested block containing configuration options for Redis ElastiCache connections.  
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountRedisElasticachGetArgs> RedisElasticaches
