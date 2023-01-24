@@ -95,7 +95,7 @@ type AuthBackend struct {
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The Okta organization. This will be the first part of the url `https://XXX.okta.com`
 	Organization pulumi.StringOutput `pulumi:"organization"`
-	// Path to mount the Okta auth backend
+	// Path to mount the Okta auth backend. Default to path `okta`.
 	Path pulumi.StringPtrOutput `pulumi:"path"`
 	// The Okta API token. This is required to query Okta for user group membership.
 	// If this is not supplied only locally configured groups will be enabled.
@@ -171,7 +171,7 @@ type authBackendState struct {
 	Namespace *string `pulumi:"namespace"`
 	// The Okta organization. This will be the first part of the url `https://XXX.okta.com`
 	Organization *string `pulumi:"organization"`
-	// Path to mount the Okta auth backend
+	// Path to mount the Okta auth backend. Default to path `okta`.
 	Path *string `pulumi:"path"`
 	// The Okta API token. This is required to query Okta for user group membership.
 	// If this is not supplied only locally configured groups will be enabled.
@@ -209,7 +209,7 @@ type AuthBackendState struct {
 	Namespace pulumi.StringPtrInput
 	// The Okta organization. This will be the first part of the url `https://XXX.okta.com`
 	Organization pulumi.StringPtrInput
-	// Path to mount the Okta auth backend
+	// Path to mount the Okta auth backend. Default to path `okta`.
 	Path pulumi.StringPtrInput
 	// The Okta API token. This is required to query Okta for user group membership.
 	// If this is not supplied only locally configured groups will be enabled.
@@ -249,7 +249,7 @@ type authBackendArgs struct {
 	Namespace *string `pulumi:"namespace"`
 	// The Okta organization. This will be the first part of the url `https://XXX.okta.com`
 	Organization string `pulumi:"organization"`
-	// Path to mount the Okta auth backend
+	// Path to mount the Okta auth backend. Default to path `okta`.
 	Path *string `pulumi:"path"`
 	// The Okta API token. This is required to query Okta for user group membership.
 	// If this is not supplied only locally configured groups will be enabled.
@@ -286,7 +286,7 @@ type AuthBackendArgs struct {
 	Namespace pulumi.StringPtrInput
 	// The Okta organization. This will be the first part of the url `https://XXX.okta.com`
 	Organization pulumi.StringInput
-	// Path to mount the Okta auth backend
+	// Path to mount the Okta auth backend. Default to path `okta`.
 	Path pulumi.StringPtrInput
 	// The Okta API token. This is required to query Okta for user group membership.
 	// If this is not supplied only locally configured groups will be enabled.
@@ -437,7 +437,7 @@ func (o AuthBackendOutput) Organization() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Organization }).(pulumi.StringOutput)
 }
 
-// Path to mount the Okta auth backend
+// Path to mount the Okta auth backend. Default to path `okta`.
 func (o AuthBackendOutput) Path() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Path }).(pulumi.StringPtrOutput)
 }

@@ -34,6 +34,8 @@ type Provider struct {
 	Token pulumi.StringOutput `pulumi:"token"`
 	// Token name to use for creating the Vault child token.
 	TokenName pulumi.StringPtrOutput `pulumi:"tokenName"`
+	// Override the Vault server version, which is normally determined dynamically from the target Vault server
+	VaultVersionOverride pulumi.StringPtrOutput `pulumi:"vaultVersionOverride"`
 }
 
 // NewProvider registers a new resource with the given unique name, arguments, and options.
@@ -111,6 +113,8 @@ type providerArgs struct {
 	Namespace *string `pulumi:"namespace"`
 	// Set this to true to prevent the creation of ephemeral child token used by this provider.
 	SkipChildToken *bool `pulumi:"skipChildToken"`
+	// Skip the dynamic fetching of the Vault server version.
+	SkipGetVaultVersion *bool `pulumi:"skipGetVaultVersion"`
 	// Set this to true only if the target Vault server is an insecure development instance.
 	SkipTlsVerify *bool `pulumi:"skipTlsVerify"`
 	// Name to use as the SNI host when connecting via TLS.
@@ -119,6 +123,8 @@ type providerArgs struct {
 	Token string `pulumi:"token"`
 	// Token name to use for creating the Vault child token.
 	TokenName *string `pulumi:"tokenName"`
+	// Override the Vault server version, which is normally determined dynamically from the target Vault server
+	VaultVersionOverride *string `pulumi:"vaultVersionOverride"`
 }
 
 // The set of arguments for constructing a Provider resource.
@@ -167,6 +173,8 @@ type ProviderArgs struct {
 	Namespace pulumi.StringPtrInput
 	// Set this to true to prevent the creation of ephemeral child token used by this provider.
 	SkipChildToken pulumi.BoolPtrInput
+	// Skip the dynamic fetching of the Vault server version.
+	SkipGetVaultVersion pulumi.BoolPtrInput
 	// Set this to true only if the target Vault server is an insecure development instance.
 	SkipTlsVerify pulumi.BoolPtrInput
 	// Name to use as the SNI host when connecting via TLS.
@@ -175,6 +183,8 @@ type ProviderArgs struct {
 	Token pulumi.StringInput
 	// Token name to use for creating the Vault child token.
 	TokenName pulumi.StringPtrInput
+	// Override the Vault server version, which is normally determined dynamically from the target Vault server
+	VaultVersionOverride pulumi.StringPtrInput
 }
 
 func (ProviderArgs) ElementType() reflect.Type {
@@ -252,6 +262,11 @@ func (o ProviderOutput) Token() pulumi.StringOutput {
 // Token name to use for creating the Vault child token.
 func (o ProviderOutput) TokenName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.TokenName }).(pulumi.StringPtrOutput)
+}
+
+// Override the Vault server version, which is normally determined dynamically from the target Vault server
+func (o ProviderOutput) VaultVersionOverride() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.VaultVersionOverride }).(pulumi.StringPtrOutput)
 }
 
 func init() {

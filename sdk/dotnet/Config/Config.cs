@@ -252,6 +252,16 @@ namespace Pulumi.Vault
             set => _skipChildToken.Set(value);
         }
 
+        private static readonly __Value<bool?> _skipGetVaultVersion = new __Value<bool?>(() => __config.GetBoolean("skipGetVaultVersion"));
+        /// <summary>
+        /// Skip the dynamic fetching of the Vault server version.
+        /// </summary>
+        public static bool? SkipGetVaultVersion
+        {
+            get => _skipGetVaultVersion.Get();
+            set => _skipGetVaultVersion.Set(value);
+        }
+
         private static readonly __Value<bool?> _skipTlsVerify = new __Value<bool?>(() => __config.GetBoolean("skipTlsVerify") ?? Utilities.GetEnvBoolean("VAULT_SKIP_VERIFY"));
         /// <summary>
         /// Set this to true only if the target Vault server is an insecure development instance.
@@ -290,6 +300,16 @@ namespace Pulumi.Vault
         {
             get => _tokenName.Get();
             set => _tokenName.Set(value);
+        }
+
+        private static readonly __Value<string?> _vaultVersionOverride = new __Value<string?>(() => __config.Get("vaultVersionOverride"));
+        /// <summary>
+        /// Override the Vault server version, which is normally determined dynamically from the target Vault server
+        /// </summary>
+        public static string? VaultVersionOverride
+        {
+            get => _vaultVersionOverride.Get();
+            set => _vaultVersionOverride.Set(value);
         }
 
         public static class Types

@@ -16,6 +16,7 @@ class TransformationArgs:
     def __init__(__self__, *,
                  path: pulumi.Input[str],
                  allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 deletion_allowed: Optional[pulumi.Input[bool]] = None,
                  masking_character: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  template: Optional[pulumi.Input[str]] = None,
@@ -26,6 +27,9 @@ class TransformationArgs:
         The set of arguments for constructing a Transformation resource.
         :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: The set of roles allowed to perform this transformation.
+        :param pulumi.Input[bool] deletion_allowed: If true, this transform can be deleted.
+               Otherwise, deletion is blocked while this value remains false. Default: `false`
+               *Only supported on vault-1.12+*
         :param pulumi.Input[str] masking_character: The character used to replace data when in masking mode
         :param pulumi.Input[str] name: The name of the transformation.
         :param pulumi.Input[str] template: The name of the template to use.
@@ -36,6 +40,8 @@ class TransformationArgs:
         pulumi.set(__self__, "path", path)
         if allowed_roles is not None:
             pulumi.set(__self__, "allowed_roles", allowed_roles)
+        if deletion_allowed is not None:
+            pulumi.set(__self__, "deletion_allowed", deletion_allowed)
         if masking_character is not None:
             pulumi.set(__self__, "masking_character", masking_character)
         if name is not None:
@@ -72,6 +78,20 @@ class TransformationArgs:
     @allowed_roles.setter
     def allowed_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allowed_roles", value)
+
+    @property
+    @pulumi.getter(name="deletionAllowed")
+    def deletion_allowed(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, this transform can be deleted.
+        Otherwise, deletion is blocked while this value remains false. Default: `false`
+        *Only supported on vault-1.12+*
+        """
+        return pulumi.get(self, "deletion_allowed")
+
+    @deletion_allowed.setter
+    def deletion_allowed(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "deletion_allowed", value)
 
     @property
     @pulumi.getter(name="maskingCharacter")
@@ -150,6 +170,7 @@ class TransformationArgs:
 class _TransformationState:
     def __init__(__self__, *,
                  allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 deletion_allowed: Optional[pulumi.Input[bool]] = None,
                  masking_character: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
@@ -160,6 +181,9 @@ class _TransformationState:
         """
         Input properties used for looking up and filtering Transformation resources.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: The set of roles allowed to perform this transformation.
+        :param pulumi.Input[bool] deletion_allowed: If true, this transform can be deleted.
+               Otherwise, deletion is blocked while this value remains false. Default: `false`
+               *Only supported on vault-1.12+*
         :param pulumi.Input[str] masking_character: The character used to replace data when in masking mode
         :param pulumi.Input[str] name: The name of the transformation.
         :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
@@ -170,6 +194,8 @@ class _TransformationState:
         """
         if allowed_roles is not None:
             pulumi.set(__self__, "allowed_roles", allowed_roles)
+        if deletion_allowed is not None:
+            pulumi.set(__self__, "deletion_allowed", deletion_allowed)
         if masking_character is not None:
             pulumi.set(__self__, "masking_character", masking_character)
         if name is not None:
@@ -196,6 +222,20 @@ class _TransformationState:
     @allowed_roles.setter
     def allowed_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allowed_roles", value)
+
+    @property
+    @pulumi.getter(name="deletionAllowed")
+    def deletion_allowed(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, this transform can be deleted.
+        Otherwise, deletion is blocked while this value remains false. Default: `false`
+        *Only supported on vault-1.12+*
+        """
+        return pulumi.get(self, "deletion_allowed")
+
+    @deletion_allowed.setter
+    def deletion_allowed(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "deletion_allowed", value)
 
     @property
     @pulumi.getter(name="maskingCharacter")
@@ -288,6 +328,7 @@ class Transformation(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 deletion_allowed: Optional[pulumi.Input[bool]] = None,
                  masking_character: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
@@ -301,6 +342,9 @@ class Transformation(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: The set of roles allowed to perform this transformation.
+        :param pulumi.Input[bool] deletion_allowed: If true, this transform can be deleted.
+               Otherwise, deletion is blocked while this value remains false. Default: `false`
+               *Only supported on vault-1.12+*
         :param pulumi.Input[str] masking_character: The character used to replace data when in masking mode
         :param pulumi.Input[str] name: The name of the transformation.
         :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
@@ -333,6 +377,7 @@ class Transformation(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 deletion_allowed: Optional[pulumi.Input[bool]] = None,
                  masking_character: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
@@ -350,6 +395,7 @@ class Transformation(pulumi.CustomResource):
             __props__ = TransformationArgs.__new__(TransformationArgs)
 
             __props__.__dict__["allowed_roles"] = allowed_roles
+            __props__.__dict__["deletion_allowed"] = deletion_allowed
             __props__.__dict__["masking_character"] = masking_character
             __props__.__dict__["name"] = name
             if path is None and not opts.urn:
@@ -370,6 +416,7 @@ class Transformation(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            deletion_allowed: Optional[pulumi.Input[bool]] = None,
             masking_character: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
@@ -385,6 +432,9 @@ class Transformation(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: The set of roles allowed to perform this transformation.
+        :param pulumi.Input[bool] deletion_allowed: If true, this transform can be deleted.
+               Otherwise, deletion is blocked while this value remains false. Default: `false`
+               *Only supported on vault-1.12+*
         :param pulumi.Input[str] masking_character: The character used to replace data when in masking mode
         :param pulumi.Input[str] name: The name of the transformation.
         :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
@@ -398,6 +448,7 @@ class Transformation(pulumi.CustomResource):
         __props__ = _TransformationState.__new__(_TransformationState)
 
         __props__.__dict__["allowed_roles"] = allowed_roles
+        __props__.__dict__["deletion_allowed"] = deletion_allowed
         __props__.__dict__["masking_character"] = masking_character
         __props__.__dict__["name"] = name
         __props__.__dict__["path"] = path
@@ -414,6 +465,16 @@ class Transformation(pulumi.CustomResource):
         The set of roles allowed to perform this transformation.
         """
         return pulumi.get(self, "allowed_roles")
+
+    @property
+    @pulumi.getter(name="deletionAllowed")
+    def deletion_allowed(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If true, this transform can be deleted.
+        Otherwise, deletion is blocked while this value remains false. Default: `false`
+        *Only supported on vault-1.12+*
+        """
+        return pulumi.get(self, "deletion_allowed")
 
     @property
     @pulumi.getter(name="maskingCharacter")

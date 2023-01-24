@@ -120,6 +120,11 @@ skipChildToken: Optional[bool]
 Set this to true to prevent the creation of ephemeral child token used by this provider.
 """
 
+skipGetVaultVersion: Optional[bool]
+"""
+Skip the dynamic fetching of the Vault server version.
+"""
+
 skipTlsVerify: Optional[bool]
 """
 Set this to true only if the target Vault server is an insecure development instance.
@@ -138,5 +143,10 @@ Token to use to authenticate to Vault.
 tokenName: Optional[str]
 """
 Token name to use for creating the Vault child token.
+"""
+
+vaultVersionOverride: Optional[str]
+"""
+Override the Vault server version, which is normally determined dynamically from the target Vault server
 """
 

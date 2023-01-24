@@ -59,7 +59,7 @@ public final class SecretBackendConnectionCassandra {
      */
     private @Nullable Integer protocolVersion;
     /**
-     * @return Whether to use TLS when connecting to Cassandra.
+     * @return Whether to use TLS when connecting to Redis.
      * 
      */
     private @Nullable Boolean tls;
@@ -131,7 +131,7 @@ public final class SecretBackendConnectionCassandra {
         return Optional.ofNullable(this.protocolVersion);
     }
     /**
-     * @return Whether to use TLS when connecting to Cassandra.
+     * @return Whether to use TLS when connecting to Redis.
      * 
      */
     public Optional<Boolean> tls() {

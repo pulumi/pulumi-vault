@@ -363,6 +363,21 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Skip the dynamic fetching of the Vault server version.
+     * 
+     */
+    @Import(name="skipGetVaultVersion", json=true)
+    private @Nullable Output<Boolean> skipGetVaultVersion;
+
+    /**
+     * @return Skip the dynamic fetching of the Vault server version.
+     * 
+     */
+    public Optional<Output<Boolean>> skipGetVaultVersion() {
+        return Optional.ofNullable(this.skipGetVaultVersion);
+    }
+
+    /**
      * Set this to true only if the target Vault server is an insecure development instance.
      * 
      */
@@ -422,6 +437,21 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.tokenName);
     }
 
+    /**
+     * Override the Vault server version, which is normally determined dynamically from the target Vault server
+     * 
+     */
+    @Import(name="vaultVersionOverride")
+    private @Nullable Output<String> vaultVersionOverride;
+
+    /**
+     * @return Override the Vault server version, which is normally determined dynamically from the target Vault server
+     * 
+     */
+    public Optional<Output<String>> vaultVersionOverride() {
+        return Optional.ofNullable(this.vaultVersionOverride);
+    }
+
     private ProviderArgs() {}
 
     private ProviderArgs(ProviderArgs $) {
@@ -447,10 +477,12 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         this.maxRetriesCcc = $.maxRetriesCcc;
         this.namespace = $.namespace;
         this.skipChildToken = $.skipChildToken;
+        this.skipGetVaultVersion = $.skipGetVaultVersion;
         this.skipTlsVerify = $.skipTlsVerify;
         this.tlsServerName = $.tlsServerName;
         this.token = $.token;
         this.tokenName = $.tokenName;
+        this.vaultVersionOverride = $.vaultVersionOverride;
     }
 
     public static Builder builder() {
@@ -944,6 +976,27 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param skipGetVaultVersion Skip the dynamic fetching of the Vault server version.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder skipGetVaultVersion(@Nullable Output<Boolean> skipGetVaultVersion) {
+            $.skipGetVaultVersion = skipGetVaultVersion;
+            return this;
+        }
+
+        /**
+         * @param skipGetVaultVersion Skip the dynamic fetching of the Vault server version.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder skipGetVaultVersion(Boolean skipGetVaultVersion) {
+            return skipGetVaultVersion(Output.of(skipGetVaultVersion));
+        }
+
+        /**
          * @param skipTlsVerify Set this to true only if the target Vault server is an insecure development instance.
          * 
          * @return builder
@@ -1025,6 +1078,27 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder tokenName(String tokenName) {
             return tokenName(Output.of(tokenName));
+        }
+
+        /**
+         * @param vaultVersionOverride Override the Vault server version, which is normally determined dynamically from the target Vault server
+         * 
+         * @return builder
+         * 
+         */
+        public Builder vaultVersionOverride(@Nullable Output<String> vaultVersionOverride) {
+            $.vaultVersionOverride = vaultVersionOverride;
+            return this;
+        }
+
+        /**
+         * @param vaultVersionOverride Override the Vault server version, which is normally determined dynamically from the target Vault server
+         * 
+         * @return builder
+         * 
+         */
+        public Builder vaultVersionOverride(String vaultVersionOverride) {
+            return vaultVersionOverride(Output.of(vaultVersionOverride));
         }
 
         public ProviderArgs build() {

@@ -19,6 +19,14 @@ namespace Pulumi.Vault.Transform
         public Output<ImmutableArray<string>> AllowedRoles { get; private set; } = null!;
 
         /// <summary>
+        /// If true, this transform can be deleted.
+        /// Otherwise, deletion is blocked while this value remains false. Default: `false`
+        /// *Only supported on vault-1.12+*
+        /// </summary>
+        [Output("deletionAllowed")]
+        public Output<bool?> DeletionAllowed { get; private set; } = null!;
+
+        /// <summary>
         /// The character used to replace data when in masking mode
         /// </summary>
         [Output("maskingCharacter")]
@@ -119,6 +127,14 @@ namespace Pulumi.Vault.Transform
         }
 
         /// <summary>
+        /// If true, this transform can be deleted.
+        /// Otherwise, deletion is blocked while this value remains false. Default: `false`
+        /// *Only supported on vault-1.12+*
+        /// </summary>
+        [Input("deletionAllowed")]
+        public Input<bool>? DeletionAllowed { get; set; }
+
+        /// <summary>
         /// The character used to replace data when in masking mode
         /// </summary>
         [Input("maskingCharacter")]
@@ -185,6 +201,14 @@ namespace Pulumi.Vault.Transform
             get => _allowedRoles ?? (_allowedRoles = new InputList<string>());
             set => _allowedRoles = value;
         }
+
+        /// <summary>
+        /// If true, this transform can be deleted.
+        /// Otherwise, deletion is blocked while this value remains false. Default: `false`
+        /// *Only supported on vault-1.12+*
+        /// </summary>
+        [Input("deletionAllowed")]
+        public Input<bool>? DeletionAllowed { get; set; }
 
         /// <summary>
         /// The character used to replace data when in masking mode

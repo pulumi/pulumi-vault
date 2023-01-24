@@ -12,51 +12,6 @@ namespace Pulumi.Vault.kv
     public static class GetSecretV2
     {
         /// <summary>
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Text.Json;
-        /// using Pulumi;
-        /// using Vault = Pulumi.Vault;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var kvv2 = new Vault.Mount("kvv2", new()
-        ///     {
-        ///         Path = "kvv2",
-        ///         Type = "kv",
-        ///         Options = 
-        ///         {
-        ///             { "version", "2" },
-        ///         },
-        ///         Description = "KV Version 2 secret engine mount",
-        ///     });
-        /// 
-        ///     var secret = new Vault.Kv.SecretV2("secret", new()
-        ///     {
-        ///         Mount = kvv2.Path,
-        ///         Cas = 1,
-        ///         DeleteAllVersions = true,
-        ///         DataJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
-        ///         {
-        ///             ["zip"] = "zap",
-        ///             ["foo"] = "bar",
-        ///         }),
-        ///     });
-        /// 
-        ///     var secretData = Vault.kv.GetSecretV2.Invoke(new()
-        ///     {
-        ///         Mount = kvv2.Path,
-        ///         Name = vault_kv_secret_v2.Test.Name,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// ## Required Vault Capabilities
         /// 
         /// Use of this resource requires the `read` capability on the given path.
@@ -65,51 +20,6 @@ namespace Pulumi.Vault.kv
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSecretV2Result>("vault:kv/getSecretV2:getSecretV2", args ?? new GetSecretV2Args(), options.WithDefaults());
 
         /// <summary>
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Text.Json;
-        /// using Pulumi;
-        /// using Vault = Pulumi.Vault;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var kvv2 = new Vault.Mount("kvv2", new()
-        ///     {
-        ///         Path = "kvv2",
-        ///         Type = "kv",
-        ///         Options = 
-        ///         {
-        ///             { "version", "2" },
-        ///         },
-        ///         Description = "KV Version 2 secret engine mount",
-        ///     });
-        /// 
-        ///     var secret = new Vault.Kv.SecretV2("secret", new()
-        ///     {
-        ///         Mount = kvv2.Path,
-        ///         Cas = 1,
-        ///         DeleteAllVersions = true,
-        ///         DataJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
-        ///         {
-        ///             ["zip"] = "zap",
-        ///             ["foo"] = "bar",
-        ///         }),
-        ///     });
-        /// 
-        ///     var secretData = Vault.kv.GetSecretV2.Invoke(new()
-        ///     {
-        ///         Mount = kvv2.Path,
-        ///         Name = vault_kv_secret_v2.Test.Name,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// ## Required Vault Capabilities
         /// 
         /// Use of this resource requires the `read` capability on the given path.

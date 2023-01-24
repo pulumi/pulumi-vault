@@ -39,6 +39,14 @@ namespace Pulumi.Vault.PkiSecret
     public partial class SecretBackendIntermediateCertRequest : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Adds a Basic Constraints extension with 'CA: true'.
+        /// Only needed as a workaround in some compatibility scenarios with Active Directory
+        /// Certificate Services
+        /// </summary>
+        [Output("addBasicConstraints")]
+        public Output<bool?> AddBasicConstraints { get; private set; } = null!;
+
+        /// <summary>
         /// List of alternative names
         /// </summary>
         [Output("altNames")]
@@ -244,6 +252,14 @@ namespace Pulumi.Vault.PkiSecret
 
     public sealed class SecretBackendIntermediateCertRequestArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Adds a Basic Constraints extension with 'CA: true'.
+        /// Only needed as a workaround in some compatibility scenarios with Active Directory
+        /// Certificate Services
+        /// </summary>
+        [Input("addBasicConstraints")]
+        public Input<bool>? AddBasicConstraints { get; set; }
+
         [Input("altNames")]
         private InputList<string>? _altNames;
 
@@ -414,6 +430,14 @@ namespace Pulumi.Vault.PkiSecret
 
     public sealed class SecretBackendIntermediateCertRequestState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Adds a Basic Constraints extension with 'CA: true'.
+        /// Only needed as a workaround in some compatibility scenarios with Active Directory
+        /// Certificate Services
+        /// </summary>
+        [Input("addBasicConstraints")]
+        public Input<bool>? AddBasicConstraints { get; set; }
+
         [Input("altNames")]
         private InputList<string>? _altNames;
 

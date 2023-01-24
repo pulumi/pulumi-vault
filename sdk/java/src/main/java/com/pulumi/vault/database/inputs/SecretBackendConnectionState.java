@@ -19,6 +19,7 @@ import com.pulumi.vault.database.inputs.SecretBackendConnectionMysqlLegacyArgs;
 import com.pulumi.vault.database.inputs.SecretBackendConnectionMysqlRdsArgs;
 import com.pulumi.vault.database.inputs.SecretBackendConnectionOracleArgs;
 import com.pulumi.vault.database.inputs.SecretBackendConnectionPostgresqlArgs;
+import com.pulumi.vault.database.inputs.SecretBackendConnectionRedisArgs;
 import com.pulumi.vault.database.inputs.SecretBackendConnectionRedisElasticacheArgs;
 import com.pulumi.vault.database.inputs.SecretBackendConnectionRedshiftArgs;
 import com.pulumi.vault.database.inputs.SecretBackendConnectionSnowflakeArgs;
@@ -345,6 +346,21 @@ public final class SecretBackendConnectionState extends com.pulumi.resources.Res
     }
 
     /**
+     * A nested block containing configuration options for Redis connections.
+     * 
+     */
+    @Import(name="redis")
+    private @Nullable Output<SecretBackendConnectionRedisArgs> redis;
+
+    /**
+     * @return A nested block containing configuration options for Redis connections.
+     * 
+     */
+    public Optional<Output<SecretBackendConnectionRedisArgs>> redis() {
+        return Optional.ofNullable(this.redis);
+    }
+
+    /**
      * A nested block containing configuration options for Redis ElastiCache connections.
      * 
      */
@@ -444,6 +460,7 @@ public final class SecretBackendConnectionState extends com.pulumi.resources.Res
         this.oracle = $.oracle;
         this.pluginName = $.pluginName;
         this.postgresql = $.postgresql;
+        this.redis = $.redis;
         this.redisElasticache = $.redisElasticache;
         this.redshift = $.redshift;
         this.rootRotationStatements = $.rootRotationStatements;
@@ -906,6 +923,27 @@ public final class SecretBackendConnectionState extends com.pulumi.resources.Res
          */
         public Builder postgresql(SecretBackendConnectionPostgresqlArgs postgresql) {
             return postgresql(Output.of(postgresql));
+        }
+
+        /**
+         * @param redis A nested block containing configuration options for Redis connections.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder redis(@Nullable Output<SecretBackendConnectionRedisArgs> redis) {
+            $.redis = redis;
+            return this;
+        }
+
+        /**
+         * @param redis A nested block containing configuration options for Redis connections.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder redis(SecretBackendConnectionRedisArgs redis) {
+            return redis(Output.of(redis));
         }
 
         /**

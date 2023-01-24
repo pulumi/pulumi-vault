@@ -15,7 +15,8 @@ __all__ = ['NamespaceArgs', 'Namespace']
 class NamespaceArgs:
     def __init__(__self__, *,
                  path: pulumi.Input[str],
-                 namespace: Optional[pulumi.Input[str]] = None):
+                 namespace: Optional[pulumi.Input[str]] = None,
+                 path_fq: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Namespace resource.
         :param pulumi.Input[str] path: The path of the namespace. Must not have a trailing `/`
@@ -23,10 +24,13 @@ class NamespaceArgs:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] path_fq: The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
         """
         pulumi.set(__self__, "path", path)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if path_fq is not None:
+            pulumi.set(__self__, "path_fq", path_fq)
 
     @property
     @pulumi.getter
@@ -54,6 +58,18 @@ class NamespaceArgs:
     @namespace.setter
     def namespace(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter(name="pathFq")
+    def path_fq(self) -> Optional[pulumi.Input[str]]:
+        """
+        The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+        """
+        return pulumi.get(self, "path_fq")
+
+    @path_fq.setter
+    def path_fq(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path_fq", value)
 
 
 @pulumi.input_type
@@ -141,6 +157,7 @@ class Namespace(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
+                 path_fq: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         ## Import
@@ -186,6 +203,7 @@ class Namespace(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The path of the namespace. Must not have a trailing `/`
+        :param pulumi.Input[str] path_fq: The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
         """
         ...
     @overload
@@ -247,6 +265,7 @@ class Namespace(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
+                 path_fq: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -260,8 +279,8 @@ class Namespace(pulumi.CustomResource):
             if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
             __props__.__dict__["path"] = path
+            __props__.__dict__["path_fq"] = path_fq
             __props__.__dict__["namespace_id"] = None
-            __props__.__dict__["path_fq"] = None
         super(Namespace, __self__).__init__(
             'vault:index/namespace:Namespace',
             resource_name,

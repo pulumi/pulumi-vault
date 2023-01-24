@@ -36,7 +36,7 @@ namespace Pulumi.Vault.kv
     ///         Description = "KV Version 2 secret engine mount",
     ///     });
     /// 
-    ///     var secret = new Vault.Kv.SecretV2("secret", new()
+    ///     var example = new Vault.Kv.SecretV2("example", new()
     ///     {
     ///         Mount = kvv2.Path,
     ///         Cas = 1,
@@ -46,6 +46,15 @@ namespace Pulumi.Vault.kv
     ///             ["zip"] = "zap",
     ///             ["foo"] = "bar",
     ///         }),
+    ///         CustomMetadata = new Vault.kv.Inputs.SecretV2CustomMetadataArgs
+    ///         {
+    ///             MaxVersions = 5,
+    ///             Data = 
+    ///             {
+    ///                 { "foo", "vault@example.com" },
+    ///                 { "bar", "12345" },
+    ///             },
+    ///         },
     ///     });
     /// 
     /// });
@@ -57,12 +66,24 @@ namespace Pulumi.Vault.kv
     /// the `delete` capability if the resource is removed from configuration,
     /// and the `read` capability for drift detection (by default).
     /// 
+    /// ### Custom Metadata Configuration Options
+    /// 
+    /// * `max_versions` - (Optional) The number of versions to keep per key.
+    /// 
+    /// * `cas_required` - (Optional) If true, all keys will require the cas
+    /// parameter to be set on all write requests.
+    /// 
+    /// * `delete_version_after` - (Optional) If set, specifies the length of time before
+    /// a version is deleted. Accepts duration in integer seconds.
+    /// 
+    /// * `data` - (Optional) A string to string map describing the secret.
+    /// 
     /// ## Import
     /// 
     /// KV-V2 secrets can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:kv/secretV2:SecretV2 secret kvv2/data/secret
+    ///  $ pulumi import vault:kv/secretV2:SecretV2 example kvv2/data/secret
     /// ```
     /// </summary>
     [VaultResourceType("vault:kv/secretV2:SecretV2")]
@@ -76,6 +97,14 @@ namespace Pulumi.Vault.kv
         /// </summary>
         [Output("cas")]
         public Output<int?> Cas { get; private set; } = null!;
+
+        /// <summary>
+        /// A nested block that allows configuring metadata for the
+        /// KV secret. Refer to the
+        /// Configuration Options for more info.
+        /// </summary>
+        [Output("customMetadata")]
+        public Output<Outputs.SecretV2CustomMetadata> CustomMetadata { get; private set; } = null!;
 
         /// <summary>
         /// A mapping whose keys are the top-level data keys returned from
@@ -209,6 +238,14 @@ namespace Pulumi.Vault.kv
         [Input("cas")]
         public Input<int>? Cas { get; set; }
 
+        /// <summary>
+        /// A nested block that allows configuring metadata for the
+        /// KV secret. Refer to the
+        /// Configuration Options for more info.
+        /// </summary>
+        [Input("customMetadata")]
+        public Input<Inputs.SecretV2CustomMetadataArgs>? CustomMetadata { get; set; }
+
         [Input("dataJson", required: true)]
         private Input<string>? _dataJson;
 
@@ -292,6 +329,14 @@ namespace Pulumi.Vault.kv
         /// </summary>
         [Input("cas")]
         public Input<int>? Cas { get; set; }
+
+        /// <summary>
+        /// A nested block that allows configuring metadata for the
+        /// KV secret. Refer to the
+        /// Configuration Options for more info.
+        /// </summary>
+        [Input("customMetadata")]
+        public Input<Inputs.SecretV2CustomMetadataGetArgs>? CustomMetadata { get; set; }
 
         [Input("data")]
         private InputMap<object>? _data;

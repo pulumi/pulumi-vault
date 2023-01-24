@@ -19,14 +19,20 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
     public static final GroupState Empty = new GroupState();
 
     /**
-     * `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
+     * `false` by default. If set to `true`, this resource will ignore any Entity IDs
+     * returned from Vault or specified in the resource. You can use
+     * `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a
+     * decoupled manner.
      * 
      */
     @Import(name="externalMemberEntityIds")
     private @Nullable Output<Boolean> externalMemberEntityIds;
 
     /**
-     * @return `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
+     * @return `false` by default. If set to `true`, this resource will ignore any Entity IDs
+     * returned from Vault or specified in the resource. You can use
+     * `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a
+     * decoupled manner.
      * 
      */
     public Optional<Output<Boolean>> externalMemberEntityIds() {
@@ -34,14 +40,39 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+     * `false` by default. If set to `true`, this resource will ignore any Group IDs
+     * returned from Vault or specified in the resource. You can use
+     * `vault.identity.GroupMemberGroupIds` to manage Group IDs for this group in a
+     * decoupled manner.
+     * 
+     */
+    @Import(name="externalMemberGroupIds")
+    private @Nullable Output<Boolean> externalMemberGroupIds;
+
+    /**
+     * @return `false` by default. If set to `true`, this resource will ignore any Group IDs
+     * returned from Vault or specified in the resource. You can use
+     * `vault.identity.GroupMemberGroupIds` to manage Group IDs for this group in a
+     * decoupled manner.
+     * 
+     */
+    public Optional<Output<Boolean>> externalMemberGroupIds() {
+        return Optional.ofNullable(this.externalMemberGroupIds);
+    }
+
+    /**
+     * `false` by default. If set to `true`, this resource will ignore any policies returned from
+     * Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage
+     * policies for this group in a decoupled manner.
      * 
      */
     @Import(name="externalPolicies")
     private @Nullable Output<Boolean> externalPolicies;
 
     /**
-     * @return `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+     * @return `false` by default. If set to `true`, this resource will ignore any policies returned from
+     * Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage
+     * policies for this group in a decoupled manner.
      * 
      */
     public Optional<Output<Boolean>> externalPolicies() {
@@ -163,6 +194,7 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
 
     private GroupState(GroupState $) {
         this.externalMemberEntityIds = $.externalMemberEntityIds;
+        this.externalMemberGroupIds = $.externalMemberGroupIds;
         this.externalPolicies = $.externalPolicies;
         this.memberEntityIds = $.memberEntityIds;
         this.memberGroupIds = $.memberGroupIds;
@@ -192,7 +224,10 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param externalMemberEntityIds `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
+         * @param externalMemberEntityIds `false` by default. If set to `true`, this resource will ignore any Entity IDs
+         * returned from Vault or specified in the resource. You can use
+         * `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a
+         * decoupled manner.
          * 
          * @return builder
          * 
@@ -203,7 +238,10 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param externalMemberEntityIds `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
+         * @param externalMemberEntityIds `false` by default. If set to `true`, this resource will ignore any Entity IDs
+         * returned from Vault or specified in the resource. You can use
+         * `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a
+         * decoupled manner.
          * 
          * @return builder
          * 
@@ -213,7 +251,36 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param externalPolicies `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+         * @param externalMemberGroupIds `false` by default. If set to `true`, this resource will ignore any Group IDs
+         * returned from Vault or specified in the resource. You can use
+         * `vault.identity.GroupMemberGroupIds` to manage Group IDs for this group in a
+         * decoupled manner.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder externalMemberGroupIds(@Nullable Output<Boolean> externalMemberGroupIds) {
+            $.externalMemberGroupIds = externalMemberGroupIds;
+            return this;
+        }
+
+        /**
+         * @param externalMemberGroupIds `false` by default. If set to `true`, this resource will ignore any Group IDs
+         * returned from Vault or specified in the resource. You can use
+         * `vault.identity.GroupMemberGroupIds` to manage Group IDs for this group in a
+         * decoupled manner.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder externalMemberGroupIds(Boolean externalMemberGroupIds) {
+            return externalMemberGroupIds(Output.of(externalMemberGroupIds));
+        }
+
+        /**
+         * @param externalPolicies `false` by default. If set to `true`, this resource will ignore any policies returned from
+         * Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage
+         * policies for this group in a decoupled manner.
          * 
          * @return builder
          * 
@@ -224,7 +291,9 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param externalPolicies `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+         * @param externalPolicies `false` by default. If set to `true`, this resource will ignore any policies returned from
+         * Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage
+         * policies for this group in a decoupled manner.
          * 
          * @return builder
          * 

@@ -43,7 +43,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = kv.NewSecretBackendV2(ctx, "config", &kv.SecretBackendV2Args{
+//			_, err = kv.NewSecretBackendV2(ctx, "example", &kv.SecretBackendV2Args{
 //				Mount:              kvv2.Path,
 //				MaxVersions:        pulumi.Int(5),
 //				DeleteVersionAfter: pulumi.Int(12600),
@@ -66,11 +66,11 @@ import (
 //
 // ## Import
 //
-// The KV-V2 secret backend can be imported using the `path`, e.g.
+// The KV-V2 secret backend can be imported using its unique ID, the `${mount}/config`, e.g.
 //
 // ```sh
 //
-//	$ pulumi import vault:kv/secretBackendV2:SecretBackendV2 config kvv2/config
+//	$ pulumi import vault:kv/secretBackendV2:SecretBackendV2 example kvv2/config
 //
 // ```
 type SecretBackendV2 struct {

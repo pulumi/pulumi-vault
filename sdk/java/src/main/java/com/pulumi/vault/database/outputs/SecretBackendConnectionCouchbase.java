@@ -40,7 +40,7 @@ public final class SecretBackendConnectionCouchbase {
      */
     private String password;
     /**
-     * @return Whether to use TLS when connecting to Cassandra.
+     * @return Whether to use TLS when connecting to Redis.
      * 
      */
     private @Nullable Boolean tls;
@@ -93,7 +93,7 @@ public final class SecretBackendConnectionCouchbase {
         return this.password;
     }
     /**
-     * @return Whether to use TLS when connecting to Cassandra.
+     * @return Whether to use TLS when connecting to Redis.
      * 
      */
     public Optional<Boolean> tls() {

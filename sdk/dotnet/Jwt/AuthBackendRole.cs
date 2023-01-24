@@ -117,8 +117,9 @@ namespace Pulumi.Vault.Jwt
         public Output<string?> Backend { get; private set; } = null!;
 
         /// <summary>
-        /// (Required for roles of type `jwt`, optional for roles of
-        /// type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+        /// (For "jwt" roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
+        /// or `token_bound_cidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
+        /// Any match is sufficient.
         /// </summary>
         [Output("boundAudiences")]
         public Output<ImmutableArray<string>> BoundAudiences { get; private set; } = null!;
@@ -393,8 +394,9 @@ namespace Pulumi.Vault.Jwt
         private InputList<string>? _boundAudiences;
 
         /// <summary>
-        /// (Required for roles of type `jwt`, optional for roles of
-        /// type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+        /// (For "jwt" roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
+        /// or `token_bound_cidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
+        /// Any match is sufficient.
         /// </summary>
         public InputList<string> BoundAudiences
         {
@@ -664,8 +666,9 @@ namespace Pulumi.Vault.Jwt
         private InputList<string>? _boundAudiences;
 
         /// <summary>
-        /// (Required for roles of type `jwt`, optional for roles of
-        /// type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+        /// (For "jwt" roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
+        /// or `token_bound_cidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
+        /// Any match is sufficient.
         /// </summary>
         public InputList<string> BoundAudiences
         {

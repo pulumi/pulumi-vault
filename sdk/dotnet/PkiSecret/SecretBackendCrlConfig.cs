@@ -43,16 +43,41 @@ namespace Pulumi.Vault.PkiSecret
     public partial class SecretBackendCrlConfig : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
+        /// </summary>
+        [Output("autoRebuild")]
+        public Output<bool?> AutoRebuild { get; private set; } = null!;
+
+        /// <summary>
+        /// Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**
+        /// </summary>
+        [Output("autoRebuildGracePeriod")]
+        public Output<string> AutoRebuildGracePeriod { get; private set; } = null!;
+
+        /// <summary>
         /// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         /// </summary>
         [Output("backend")]
         public Output<string> Backend { get; private set; } = null!;
 
         /// <summary>
+        /// Interval to check for new revocations on, to regenerate the delta CRL.
+        /// </summary>
+        [Output("deltaRebuildInterval")]
+        public Output<string> DeltaRebuildInterval { get; private set; } = null!;
+
+        /// <summary>
         /// Disables or enables CRL building.
         /// </summary>
         [Output("disable")]
         public Output<bool?> Disable { get; private set; } = null!;
+
+        /// <summary>
+        /// Enables building of delta CRLs with up-to-date revocation information, 
+        /// augmenting the last complete CRL.  **Vault 1.12+**
+        /// </summary>
+        [Output("enableDelta")]
+        public Output<bool?> EnableDelta { get; private set; } = null!;
 
         /// <summary>
         /// Specifies the time until expiration.
@@ -68,6 +93,19 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Output("namespace")]
         public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
+        /// Disables the OCSP responder in Vault. **Vault 1.12+**
+        /// </summary>
+        [Output("ocspDisable")]
+        public Output<bool?> OcspDisable { get; private set; } = null!;
+
+        /// <summary>
+        /// The amount of time an OCSP response can be cached for, useful for OCSP stapling 
+        /// refresh durations. **Vault 1.12+**
+        /// </summary>
+        [Output("ocspExpiry")]
+        public Output<string> OcspExpiry { get; private set; } = null!;
 
 
         /// <summary>
@@ -116,16 +154,41 @@ namespace Pulumi.Vault.PkiSecret
     public sealed class SecretBackendCrlConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
+        /// </summary>
+        [Input("autoRebuild")]
+        public Input<bool>? AutoRebuild { get; set; }
+
+        /// <summary>
+        /// Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**
+        /// </summary>
+        [Input("autoRebuildGracePeriod")]
+        public Input<string>? AutoRebuildGracePeriod { get; set; }
+
+        /// <summary>
         /// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         /// </summary>
         [Input("backend", required: true)]
         public Input<string> Backend { get; set; } = null!;
 
         /// <summary>
+        /// Interval to check for new revocations on, to regenerate the delta CRL.
+        /// </summary>
+        [Input("deltaRebuildInterval")]
+        public Input<string>? DeltaRebuildInterval { get; set; }
+
+        /// <summary>
         /// Disables or enables CRL building.
         /// </summary>
         [Input("disable")]
         public Input<bool>? Disable { get; set; }
+
+        /// <summary>
+        /// Enables building of delta CRLs with up-to-date revocation information, 
+        /// augmenting the last complete CRL.  **Vault 1.12+**
+        /// </summary>
+        [Input("enableDelta")]
+        public Input<bool>? EnableDelta { get; set; }
 
         /// <summary>
         /// Specifies the time until expiration.
@@ -141,6 +204,19 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
+
+        /// <summary>
+        /// Disables the OCSP responder in Vault. **Vault 1.12+**
+        /// </summary>
+        [Input("ocspDisable")]
+        public Input<bool>? OcspDisable { get; set; }
+
+        /// <summary>
+        /// The amount of time an OCSP response can be cached for, useful for OCSP stapling 
+        /// refresh durations. **Vault 1.12+**
+        /// </summary>
+        [Input("ocspExpiry")]
+        public Input<string>? OcspExpiry { get; set; }
 
         public SecretBackendCrlConfigArgs()
         {
@@ -151,16 +227,41 @@ namespace Pulumi.Vault.PkiSecret
     public sealed class SecretBackendCrlConfigState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
+        /// </summary>
+        [Input("autoRebuild")]
+        public Input<bool>? AutoRebuild { get; set; }
+
+        /// <summary>
+        /// Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**
+        /// </summary>
+        [Input("autoRebuildGracePeriod")]
+        public Input<string>? AutoRebuildGracePeriod { get; set; }
+
+        /// <summary>
         /// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
 
         /// <summary>
+        /// Interval to check for new revocations on, to regenerate the delta CRL.
+        /// </summary>
+        [Input("deltaRebuildInterval")]
+        public Input<string>? DeltaRebuildInterval { get; set; }
+
+        /// <summary>
         /// Disables or enables CRL building.
         /// </summary>
         [Input("disable")]
         public Input<bool>? Disable { get; set; }
+
+        /// <summary>
+        /// Enables building of delta CRLs with up-to-date revocation information, 
+        /// augmenting the last complete CRL.  **Vault 1.12+**
+        /// </summary>
+        [Input("enableDelta")]
+        public Input<bool>? EnableDelta { get; set; }
 
         /// <summary>
         /// Specifies the time until expiration.
@@ -176,6 +277,19 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
+
+        /// <summary>
+        /// Disables the OCSP responder in Vault. **Vault 1.12+**
+        /// </summary>
+        [Input("ocspDisable")]
+        public Input<bool>? OcspDisable { get; set; }
+
+        /// <summary>
+        /// The amount of time an OCSP response can be cached for, useful for OCSP stapling 
+        /// refresh durations. **Vault 1.12+**
+        /// </summary>
+        [Input("ocspExpiry")]
+        public Input<string>? OcspExpiry { get; set; }
 
         public SecretBackendCrlConfigState()
         {

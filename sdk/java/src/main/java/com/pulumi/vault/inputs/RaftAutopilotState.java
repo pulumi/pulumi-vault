@@ -54,6 +54,21 @@ public final class RaftAutopilotState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
+     * Disables automatically upgrading Vault using autopilot. (Enterprise-only)
+     * 
+     */
+    @Import(name="disableUpgradeMigration")
+    private @Nullable Output<Boolean> disableUpgradeMigration;
+
+    /**
+     * @return Disables automatically upgrading Vault using autopilot. (Enterprise-only)
+     * 
+     */
+    public Optional<Output<Boolean>> disableUpgradeMigration() {
+        return Optional.ofNullable(this.disableUpgradeMigration);
+    }
+
+    /**
      * Limit the amount of time a server can go
      * without leader contact before being considered unhealthy.
      * 
@@ -149,6 +164,7 @@ public final class RaftAutopilotState extends com.pulumi.resources.ResourceArgs 
     private RaftAutopilotState(RaftAutopilotState $) {
         this.cleanupDeadServers = $.cleanupDeadServers;
         this.deadServerLastContactThreshold = $.deadServerLastContactThreshold;
+        this.disableUpgradeMigration = $.disableUpgradeMigration;
         this.lastContactThreshold = $.lastContactThreshold;
         this.maxTrailingLogs = $.maxTrailingLogs;
         this.minQuorum = $.minQuorum;
@@ -220,6 +236,27 @@ public final class RaftAutopilotState extends com.pulumi.resources.ResourceArgs 
          */
         public Builder deadServerLastContactThreshold(String deadServerLastContactThreshold) {
             return deadServerLastContactThreshold(Output.of(deadServerLastContactThreshold));
+        }
+
+        /**
+         * @param disableUpgradeMigration Disables automatically upgrading Vault using autopilot. (Enterprise-only)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableUpgradeMigration(@Nullable Output<Boolean> disableUpgradeMigration) {
+            $.disableUpgradeMigration = disableUpgradeMigration;
+            return this;
+        }
+
+        /**
+         * @param disableUpgradeMigration Disables automatically upgrading Vault using autopilot. (Enterprise-only)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableUpgradeMigration(Boolean disableUpgradeMigration) {
+            return disableUpgradeMigration(Output.of(disableUpgradeMigration));
         }
 
         /**

@@ -16,6 +16,7 @@ from .get_oidc_public_keys import *
 from .group import *
 from .group_alias import *
 from .group_member_entity_ids import *
+from .group_member_group_ids import *
 from .group_policies import *
 from .mfa_duo import *
 from .mfa_login_enforcement import *

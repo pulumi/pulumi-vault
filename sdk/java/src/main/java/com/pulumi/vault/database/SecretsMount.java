@@ -24,6 +24,7 @@ import com.pulumi.vault.database.outputs.SecretsMountMysqlLegacy;
 import com.pulumi.vault.database.outputs.SecretsMountMysqlRd;
 import com.pulumi.vault.database.outputs.SecretsMountOracle;
 import com.pulumi.vault.database.outputs.SecretsMountPostgresql;
+import com.pulumi.vault.database.outputs.SecretsMountRedi;
 import com.pulumi.vault.database.outputs.SecretsMountRedisElasticach;
 import com.pulumi.vault.database.outputs.SecretsMountRedshift;
 import com.pulumi.vault.database.outputs.SecretsMountSnowflake;
@@ -521,7 +522,23 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.postgresqls);
     }
     /**
-     * A nested block containing configuration options for InfluxDB connections.\
+     * A nested block containing configuration options for Redis connections.\
+     * *See Configuration Options for more info*
+     * 
+     */
+    @Export(name="redis", type=List.class, parameters={SecretsMountRedi.class})
+    private Output</* @Nullable */ List<SecretsMountRedi>> redis;
+
+    /**
+     * @return A nested block containing configuration options for Redis connections.\
+     * *See Configuration Options for more info*
+     * 
+     */
+    public Output<Optional<List<SecretsMountRedi>>> redis() {
+        return Codegen.optional(this.redis);
+    }
+    /**
+     * A nested block containing configuration options for Redis ElastiCache connections.\
      * *See Configuration Options for more info*
      * 
      */
@@ -529,7 +546,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ List<SecretsMountRedisElasticach>> redisElasticaches;
 
     /**
-     * @return A nested block containing configuration options for InfluxDB connections.\
+     * @return A nested block containing configuration options for Redis ElastiCache connections.\
      * *See Configuration Options for more info*
      * 
      */

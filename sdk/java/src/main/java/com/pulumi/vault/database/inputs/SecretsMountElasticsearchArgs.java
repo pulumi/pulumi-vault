@@ -37,14 +37,14 @@ public final class SecretsMountElasticsearchArgs extends com.pulumi.resources.Re
     }
 
     /**
-     * The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity.
+     * The contents of a PEM-encoded CA cert file to use to verify the Redis server&#39;s identity.
      * 
      */
     @Import(name="caCert")
     private @Nullable Output<String> caCert;
 
     /**
-     * @return The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity.
+     * @return The contents of a PEM-encoded CA cert file to use to verify the Redis server&#39;s identity.
      * 
      */
     public Optional<Output<String>> caCert() {
@@ -329,7 +329,7 @@ public final class SecretsMountElasticsearchArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param caCert The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity.
+         * @param caCert The contents of a PEM-encoded CA cert file to use to verify the Redis server&#39;s identity.
          * 
          * @return builder
          * 
@@ -340,7 +340,7 @@ public final class SecretsMountElasticsearchArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param caCert The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity.
+         * @param caCert The contents of a PEM-encoded CA cert file to use to verify the Redis server&#39;s identity.
          * 
          * @return builder
          * 

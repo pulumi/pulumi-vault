@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -24,7 +26,7 @@ import * as utilities from "../utilities";
  *     },
  *     description: "KV Version 2 secret engine mount",
  * });
- * const secret = new vault.kv.SecretV2("secret", {
+ * const example = new vault.kv.SecretV2("example", {
  *     mount: kvv2.path,
  *     cas: 1,
  *     deleteAllVersions: true,
@@ -32,6 +34,13 @@ import * as utilities from "../utilities";
  *         zip: "zap",
  *         foo: "bar",
  *     }),
+ *     customMetadata: {
+ *         maxVersions: 5,
+ *         data: {
+ *             foo: "vault@example.com",
+ *             bar: "12345",
+ *         },
+ *     },
  * });
  * ```
  * ## Required Vault Capabilities
@@ -41,12 +50,24 @@ import * as utilities from "../utilities";
  * the `delete` capability if the resource is removed from configuration,
  * and the `read` capability for drift detection (by default).
  *
+ * ### Custom Metadata Configuration Options
+ *
+ * * `maxVersions` - (Optional) The number of versions to keep per key.
+ *
+ * * `casRequired` - (Optional) If true, all keys will require the cas
+ * parameter to be set on all write requests.
+ *
+ * * `deleteVersionAfter` - (Optional) If set, specifies the length of time before
+ * a version is deleted. Accepts duration in integer seconds.
+ *
+ * * `data` - (Optional) A string to string map describing the secret.
+ *
  * ## Import
  *
  * KV-V2 secrets can be imported using the `path`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:kv/secretV2:SecretV2 secret kvv2/data/secret
+ *  $ pulumi import vault:kv/secretV2:SecretV2 example kvv2/data/secret
  * ```
  */
 export class SecretV2 extends pulumi.CustomResource {
@@ -84,6 +105,12 @@ export class SecretV2 extends pulumi.CustomResource {
      * of the secret.
      */
     public readonly cas!: pulumi.Output<number | undefined>;
+    /**
+     * A nested block that allows configuring metadata for the
+     * KV secret. Refer to the
+     * Configuration Options for more info.
+     */
+    public readonly customMetadata!: pulumi.Output<outputs.kv.SecretV2CustomMetadata>;
     /**
      * A mapping whose keys are the top-level data keys returned from
      * Vault and whose values are the corresponding values. This map can only
@@ -151,6 +178,7 @@ export class SecretV2 extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SecretV2State | undefined;
             resourceInputs["cas"] = state ? state.cas : undefined;
+            resourceInputs["customMetadata"] = state ? state.customMetadata : undefined;
             resourceInputs["data"] = state ? state.data : undefined;
             resourceInputs["dataJson"] = state ? state.dataJson : undefined;
             resourceInputs["deleteAllVersions"] = state ? state.deleteAllVersions : undefined;
@@ -170,6 +198,7 @@ export class SecretV2 extends pulumi.CustomResource {
                 throw new Error("Missing required property 'mount'");
             }
             resourceInputs["cas"] = args ? args.cas : undefined;
+            resourceInputs["customMetadata"] = args ? args.customMetadata : undefined;
             resourceInputs["dataJson"] = args?.dataJson ? pulumi.secret(args.dataJson) : undefined;
             resourceInputs["deleteAllVersions"] = args ? args.deleteAllVersions : undefined;
             resourceInputs["disableRead"] = args ? args.disableRead : undefined;
@@ -199,6 +228,12 @@ export interface SecretV2State {
      * of the secret.
      */
     cas?: pulumi.Input<number>;
+    /**
+     * A nested block that allows configuring metadata for the
+     * KV secret. Refer to the
+     * Configuration Options for more info.
+     */
+    customMetadata?: pulumi.Input<inputs.kv.SecretV2CustomMetadata>;
     /**
      * A mapping whose keys are the top-level data keys returned from
      * Vault and whose values are the corresponding values. This map can only
@@ -264,6 +299,12 @@ export interface SecretV2Args {
      * of the secret.
      */
     cas?: pulumi.Input<number>;
+    /**
+     * A nested block that allows configuring metadata for the
+     * KV secret. Refer to the
+     * Configuration Options for more info.
+     */
+    customMetadata?: pulumi.Input<inputs.kv.SecretV2CustomMetadata>;
     /**
      * JSON-encoded string that will be
      * written as the secret data at the given path.

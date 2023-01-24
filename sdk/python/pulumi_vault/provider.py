@@ -38,9 +38,11 @@ class ProviderArgs:
                  max_retries_ccc: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  skip_child_token: Optional[pulumi.Input[bool]] = None,
+                 skip_get_vault_version: Optional[pulumi.Input[bool]] = None,
                  skip_tls_verify: Optional[pulumi.Input[bool]] = None,
                  tls_server_name: Optional[pulumi.Input[str]] = None,
-                 token_name: Optional[pulumi.Input[str]] = None):
+                 token_name: Optional[pulumi.Input[str]] = None,
+                 vault_version_override: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Provider resource.
         :param pulumi.Input[str] address: URL of the root of the target Vault server.
@@ -66,9 +68,11 @@ class ProviderArgs:
         :param pulumi.Input[int] max_retries_ccc: Maximum number of retries for Client Controlled Consistency related operations
         :param pulumi.Input[str] namespace: The namespace to use. Available only for Vault Enterprise.
         :param pulumi.Input[bool] skip_child_token: Set this to true to prevent the creation of ephemeral child token used by this provider.
+        :param pulumi.Input[bool] skip_get_vault_version: Skip the dynamic fetching of the Vault server version.
         :param pulumi.Input[bool] skip_tls_verify: Set this to true only if the target Vault server is an insecure development instance.
         :param pulumi.Input[str] tls_server_name: Name to use as the SNI host when connecting via TLS.
         :param pulumi.Input[str] token_name: Token name to use for creating the Vault child token.
+        :param pulumi.Input[str] vault_version_override: Override the Vault server version, which is normally determined dynamically from the target Vault server
         """
         pulumi.set(__self__, "address", address)
         pulumi.set(__self__, "token", token)
@@ -118,6 +122,8 @@ class ProviderArgs:
             pulumi.set(__self__, "namespace", namespace)
         if skip_child_token is not None:
             pulumi.set(__self__, "skip_child_token", skip_child_token)
+        if skip_get_vault_version is not None:
+            pulumi.set(__self__, "skip_get_vault_version", skip_get_vault_version)
         if skip_tls_verify is None:
             skip_tls_verify = _utilities.get_env_bool('VAULT_SKIP_VERIFY')
         if skip_tls_verify is not None:
@@ -126,6 +132,8 @@ class ProviderArgs:
             pulumi.set(__self__, "tls_server_name", tls_server_name)
         if token_name is not None:
             pulumi.set(__self__, "token_name", token_name)
+        if vault_version_override is not None:
+            pulumi.set(__self__, "vault_version_override", vault_version_override)
 
     @property
     @pulumi.getter
@@ -404,6 +412,18 @@ class ProviderArgs:
         pulumi.set(self, "skip_child_token", value)
 
     @property
+    @pulumi.getter(name="skipGetVaultVersion")
+    def skip_get_vault_version(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Skip the dynamic fetching of the Vault server version.
+        """
+        return pulumi.get(self, "skip_get_vault_version")
+
+    @skip_get_vault_version.setter
+    def skip_get_vault_version(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "skip_get_vault_version", value)
+
+    @property
     @pulumi.getter(name="skipTlsVerify")
     def skip_tls_verify(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -439,6 +459,18 @@ class ProviderArgs:
     def token_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "token_name", value)
 
+    @property
+    @pulumi.getter(name="vaultVersionOverride")
+    def vault_version_override(self) -> Optional[pulumi.Input[str]]:
+        """
+        Override the Vault server version, which is normally determined dynamically from the target Vault server
+        """
+        return pulumi.get(self, "vault_version_override")
+
+    @vault_version_override.setter
+    def vault_version_override(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vault_version_override", value)
+
 
 class Provider(pulumi.ProviderResource):
     @overload
@@ -467,10 +499,12 @@ class Provider(pulumi.ProviderResource):
                  max_retries_ccc: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  skip_child_token: Optional[pulumi.Input[bool]] = None,
+                 skip_get_vault_version: Optional[pulumi.Input[bool]] = None,
                  skip_tls_verify: Optional[pulumi.Input[bool]] = None,
                  tls_server_name: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
                  token_name: Optional[pulumi.Input[str]] = None,
+                 vault_version_override: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         The provider type for the vault package. By default, resources use package-wide configuration
@@ -502,10 +536,12 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[int] max_retries_ccc: Maximum number of retries for Client Controlled Consistency related operations
         :param pulumi.Input[str] namespace: The namespace to use. Available only for Vault Enterprise.
         :param pulumi.Input[bool] skip_child_token: Set this to true to prevent the creation of ephemeral child token used by this provider.
+        :param pulumi.Input[bool] skip_get_vault_version: Skip the dynamic fetching of the Vault server version.
         :param pulumi.Input[bool] skip_tls_verify: Set this to true only if the target Vault server is an insecure development instance.
         :param pulumi.Input[str] tls_server_name: Name to use as the SNI host when connecting via TLS.
         :param pulumi.Input[str] token: Token to use to authenticate to Vault.
         :param pulumi.Input[str] token_name: Token name to use for creating the Vault child token.
+        :param pulumi.Input[str] vault_version_override: Override the Vault server version, which is normally determined dynamically from the target Vault server
         """
         ...
     @overload
@@ -556,10 +592,12 @@ class Provider(pulumi.ProviderResource):
                  max_retries_ccc: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  skip_child_token: Optional[pulumi.Input[bool]] = None,
+                 skip_get_vault_version: Optional[pulumi.Input[bool]] = None,
                  skip_tls_verify: Optional[pulumi.Input[bool]] = None,
                  tls_server_name: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
                  token_name: Optional[pulumi.Input[str]] = None,
+                 vault_version_override: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -597,6 +635,7 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["max_retries_ccc"] = pulumi.Output.from_input(max_retries_ccc).apply(pulumi.runtime.to_json) if max_retries_ccc is not None else None
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["skip_child_token"] = pulumi.Output.from_input(skip_child_token).apply(pulumi.runtime.to_json) if skip_child_token is not None else None
+            __props__.__dict__["skip_get_vault_version"] = pulumi.Output.from_input(skip_get_vault_version).apply(pulumi.runtime.to_json) if skip_get_vault_version is not None else None
             if skip_tls_verify is None:
                 skip_tls_verify = _utilities.get_env_bool('VAULT_SKIP_VERIFY')
             __props__.__dict__["skip_tls_verify"] = pulumi.Output.from_input(skip_tls_verify).apply(pulumi.runtime.to_json) if skip_tls_verify is not None else None
@@ -605,6 +644,7 @@ class Provider(pulumi.ProviderResource):
                 raise TypeError("Missing required property 'token'")
             __props__.__dict__["token"] = token
             __props__.__dict__["token_name"] = token_name
+            __props__.__dict__["vault_version_override"] = vault_version_override
         super(Provider, __self__).__init__(
             'vault',
             resource_name,
@@ -674,4 +714,12 @@ class Provider(pulumi.ProviderResource):
         Token name to use for creating the Vault child token.
         """
         return pulumi.get(self, "token_name")
+
+    @property
+    @pulumi.getter(name="vaultVersionOverride")
+    def vault_version_override(self) -> pulumi.Output[Optional[str]]:
+        """
+        Override the Vault server version, which is normally determined dynamically from the target Vault server
+        """
+        return pulumi.get(self, "vault_version_override")
 

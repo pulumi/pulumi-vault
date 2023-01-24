@@ -16,6 +16,10 @@ type Transformation struct {
 
 	// The set of roles allowed to perform this transformation.
 	AllowedRoles pulumi.StringArrayOutput `pulumi:"allowedRoles"`
+	// If true, this transform can be deleted.
+	// Otherwise, deletion is blocked while this value remains false. Default: `false`
+	// *Only supported on vault-1.12+*
+	DeletionAllowed pulumi.BoolPtrOutput `pulumi:"deletionAllowed"`
 	// The character used to replace data when in masking mode
 	MaskingCharacter pulumi.StringPtrOutput `pulumi:"maskingCharacter"`
 	// The name of the transformation.
@@ -66,6 +70,10 @@ func GetTransformation(ctx *pulumi.Context,
 type transformationState struct {
 	// The set of roles allowed to perform this transformation.
 	AllowedRoles []string `pulumi:"allowedRoles"`
+	// If true, this transform can be deleted.
+	// Otherwise, deletion is blocked while this value remains false. Default: `false`
+	// *Only supported on vault-1.12+*
+	DeletionAllowed *bool `pulumi:"deletionAllowed"`
 	// The character used to replace data when in masking mode
 	MaskingCharacter *string `pulumi:"maskingCharacter"`
 	// The name of the transformation.
@@ -85,6 +93,10 @@ type transformationState struct {
 type TransformationState struct {
 	// The set of roles allowed to perform this transformation.
 	AllowedRoles pulumi.StringArrayInput
+	// If true, this transform can be deleted.
+	// Otherwise, deletion is blocked while this value remains false. Default: `false`
+	// *Only supported on vault-1.12+*
+	DeletionAllowed pulumi.BoolPtrInput
 	// The character used to replace data when in masking mode
 	MaskingCharacter pulumi.StringPtrInput
 	// The name of the transformation.
@@ -108,6 +120,10 @@ func (TransformationState) ElementType() reflect.Type {
 type transformationArgs struct {
 	// The set of roles allowed to perform this transformation.
 	AllowedRoles []string `pulumi:"allowedRoles"`
+	// If true, this transform can be deleted.
+	// Otherwise, deletion is blocked while this value remains false. Default: `false`
+	// *Only supported on vault-1.12+*
+	DeletionAllowed *bool `pulumi:"deletionAllowed"`
 	// The character used to replace data when in masking mode
 	MaskingCharacter *string `pulumi:"maskingCharacter"`
 	// The name of the transformation.
@@ -128,6 +144,10 @@ type transformationArgs struct {
 type TransformationArgs struct {
 	// The set of roles allowed to perform this transformation.
 	AllowedRoles pulumi.StringArrayInput
+	// If true, this transform can be deleted.
+	// Otherwise, deletion is blocked while this value remains false. Default: `false`
+	// *Only supported on vault-1.12+*
+	DeletionAllowed pulumi.BoolPtrInput
 	// The character used to replace data when in masking mode
 	MaskingCharacter pulumi.StringPtrInput
 	// The name of the transformation.
@@ -234,6 +254,13 @@ func (o TransformationOutput) ToTransformationOutputWithContext(ctx context.Cont
 // The set of roles allowed to perform this transformation.
 func (o TransformationOutput) AllowedRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Transformation) pulumi.StringArrayOutput { return v.AllowedRoles }).(pulumi.StringArrayOutput)
+}
+
+// If true, this transform can be deleted.
+// Otherwise, deletion is blocked while this value remains false. Default: `false`
+// *Only supported on vault-1.12+*
+func (o TransformationOutput) DeletionAllowed() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Transformation) pulumi.BoolPtrOutput { return v.DeletionAllowed }).(pulumi.BoolPtrOutput)
 }
 
 // The character used to replace data when in masking mode

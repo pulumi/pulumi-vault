@@ -36,7 +36,7 @@ namespace Pulumi.Vault.kv
     ///         Description = "KV Version 2 secret engine mount",
     ///     });
     /// 
-    ///     var config = new Vault.Kv.SecretBackendV2("config", new()
+    ///     var example = new Vault.Kv.SecretBackendV2("example", new()
     ///     {
     ///         Mount = kvv2.Path,
     ///         MaxVersions = 5,
@@ -55,10 +55,10 @@ namespace Pulumi.Vault.kv
     /// 
     /// ## Import
     /// 
-    /// The KV-V2 secret backend can be imported using the `path`, e.g.
+    /// The KV-V2 secret backend can be imported using its unique ID, the `${mount}/config`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:kv/secretBackendV2:SecretBackendV2 config kvv2/config
+    ///  $ pulumi import vault:kv/secretBackendV2:SecretBackendV2 example kvv2/config
     /// ```
     /// </summary>
     [VaultResourceType("vault:kv/secretBackendV2:SecretBackendV2")]

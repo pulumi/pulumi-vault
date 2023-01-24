@@ -150,6 +150,10 @@ export class SecretBackendConnection extends pulumi.CustomResource {
      */
     public readonly postgresql!: pulumi.Output<outputs.database.SecretBackendConnectionPostgresql | undefined>;
     /**
+     * A nested block containing configuration options for Redis connections.
+     */
+    public readonly redis!: pulumi.Output<outputs.database.SecretBackendConnectionRedis | undefined>;
+    /**
      * A nested block containing configuration options for Redis ElastiCache connections.
      */
     public readonly redisElasticache!: pulumi.Output<outputs.database.SecretBackendConnectionRedisElasticache | undefined>;
@@ -204,6 +208,7 @@ export class SecretBackendConnection extends pulumi.CustomResource {
             resourceInputs["oracle"] = state ? state.oracle : undefined;
             resourceInputs["pluginName"] = state ? state.pluginName : undefined;
             resourceInputs["postgresql"] = state ? state.postgresql : undefined;
+            resourceInputs["redis"] = state ? state.redis : undefined;
             resourceInputs["redisElasticache"] = state ? state.redisElasticache : undefined;
             resourceInputs["redshift"] = state ? state.redshift : undefined;
             resourceInputs["rootRotationStatements"] = state ? state.rootRotationStatements : undefined;
@@ -234,6 +239,7 @@ export class SecretBackendConnection extends pulumi.CustomResource {
             resourceInputs["oracle"] = args ? args.oracle : undefined;
             resourceInputs["pluginName"] = args ? args.pluginName : undefined;
             resourceInputs["postgresql"] = args ? args.postgresql : undefined;
+            resourceInputs["redis"] = args ? args.redis : undefined;
             resourceInputs["redisElasticache"] = args ? args.redisElasticache : undefined;
             resourceInputs["redshift"] = args ? args.redshift : undefined;
             resourceInputs["rootRotationStatements"] = args ? args.rootRotationStatements : undefined;
@@ -333,6 +339,10 @@ export interface SecretBackendConnectionState {
      * A nested block containing configuration options for PostgreSQL connections.
      */
     postgresql?: pulumi.Input<inputs.database.SecretBackendConnectionPostgresql>;
+    /**
+     * A nested block containing configuration options for Redis connections.
+     */
+    redis?: pulumi.Input<inputs.database.SecretBackendConnectionRedis>;
     /**
      * A nested block containing configuration options for Redis ElastiCache connections.
      */
@@ -444,6 +454,10 @@ export interface SecretBackendConnectionArgs {
      * A nested block containing configuration options for PostgreSQL connections.
      */
     postgresql?: pulumi.Input<inputs.database.SecretBackendConnectionPostgresql>;
+    /**
+     * A nested block containing configuration options for Redis connections.
+     */
+    redis?: pulumi.Input<inputs.database.SecretBackendConnectionRedis>;
     /**
      * A nested block containing configuration options for Redis ElastiCache connections.
      */

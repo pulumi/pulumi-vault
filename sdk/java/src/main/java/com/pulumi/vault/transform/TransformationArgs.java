@@ -5,6 +5,7 @@ package com.pulumi.vault.transform;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -29,6 +30,25 @@ public final class TransformationArgs extends com.pulumi.resources.ResourceArgs 
      */
     public Optional<Output<List<String>>> allowedRoles() {
         return Optional.ofNullable(this.allowedRoles);
+    }
+
+    /**
+     * If true, this transform can be deleted.
+     * Otherwise, deletion is blocked while this value remains false. Default: `false`
+     * *Only supported on vault-1.12+*
+     * 
+     */
+    @Import(name="deletionAllowed")
+    private @Nullable Output<Boolean> deletionAllowed;
+
+    /**
+     * @return If true, this transform can be deleted.
+     * Otherwise, deletion is blocked while this value remains false. Default: `false`
+     * *Only supported on vault-1.12+*
+     * 
+     */
+    public Optional<Output<Boolean>> deletionAllowed() {
+        return Optional.ofNullable(this.deletionAllowed);
     }
 
     /**
@@ -140,6 +160,7 @@ public final class TransformationArgs extends com.pulumi.resources.ResourceArgs 
 
     private TransformationArgs(TransformationArgs $) {
         this.allowedRoles = $.allowedRoles;
+        this.deletionAllowed = $.deletionAllowed;
         this.maskingCharacter = $.maskingCharacter;
         this.name = $.name;
         this.path = $.path;
@@ -196,6 +217,31 @@ public final class TransformationArgs extends com.pulumi.resources.ResourceArgs 
          */
         public Builder allowedRoles(String... allowedRoles) {
             return allowedRoles(List.of(allowedRoles));
+        }
+
+        /**
+         * @param deletionAllowed If true, this transform can be deleted.
+         * Otherwise, deletion is blocked while this value remains false. Default: `false`
+         * *Only supported on vault-1.12+*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deletionAllowed(@Nullable Output<Boolean> deletionAllowed) {
+            $.deletionAllowed = deletionAllowed;
+            return this;
+        }
+
+        /**
+         * @param deletionAllowed If true, this transform can be deleted.
+         * Otherwise, deletion is blocked while this value remains false. Default: `false`
+         * *Only supported on vault-1.12+*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deletionAllowed(Boolean deletionAllowed) {
+            return deletionAllowed(Output.of(deletionAllowed));
         }
 
         /**

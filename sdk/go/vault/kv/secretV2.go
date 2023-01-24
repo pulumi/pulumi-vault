@@ -52,11 +52,18 @@ import (
 //				return err
 //			}
 //			json0 := string(tmpJSON0)
-//			_, err = kv.NewSecretV2(ctx, "secret", &kv.SecretV2Args{
+//			_, err = kv.NewSecretV2(ctx, "example", &kv.SecretV2Args{
 //				Mount:             kvv2.Path,
 //				Cas:               pulumi.Int(1),
 //				DeleteAllVersions: pulumi.Bool(true),
 //				DataJson:          pulumi.String(json0),
+//				CustomMetadata: &kv.SecretV2CustomMetadataArgs{
+//					MaxVersions: pulumi.Int(5),
+//					Data: pulumi.AnyMap{
+//						"foo": pulumi.Any("vault@example.com"),
+//						"bar": pulumi.Any("12345"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -73,13 +80,25 @@ import (
 // the `delete` capability if the resource is removed from configuration,
 // and the `read` capability for drift detection (by default).
 //
+// ### Custom Metadata Configuration Options
+//
+// * `maxVersions` - (Optional) The number of versions to keep per key.
+//
+// * `casRequired` - (Optional) If true, all keys will require the cas
+// parameter to be set on all write requests.
+//
+// * `deleteVersionAfter` - (Optional) If set, specifies the length of time before
+// a version is deleted. Accepts duration in integer seconds.
+//
+// * `data` - (Optional) A string to string map describing the secret.
+//
 // ## Import
 //
 // KV-V2 secrets can be imported using the `path`, e.g.
 //
 // ```sh
 //
-//	$ pulumi import vault:kv/secretV2:SecretV2 secret kvv2/data/secret
+//	$ pulumi import vault:kv/secretV2:SecretV2 example kvv2/data/secret
 //
 // ```
 type SecretV2 struct {
@@ -90,6 +109,10 @@ type SecretV2 struct {
 	// write operation to be successful, cas must be set to the current version
 	// of the secret.
 	Cas pulumi.IntPtrOutput `pulumi:"cas"`
+	// A nested block that allows configuring metadata for the
+	// KV secret. Refer to the
+	// Configuration Options for more info.
+	CustomMetadata SecretV2CustomMetadataOutput `pulumi:"customMetadata"`
 	// A mapping whose keys are the top-level data keys returned from
 	// Vault and whose values are the corresponding values. This map can only
 	// represent string data, so any non-string values returned from Vault are
@@ -172,6 +195,10 @@ type secretV2State struct {
 	// write operation to be successful, cas must be set to the current version
 	// of the secret.
 	Cas *int `pulumi:"cas"`
+	// A nested block that allows configuring metadata for the
+	// KV secret. Refer to the
+	// Configuration Options for more info.
+	CustomMetadata *SecretV2CustomMetadata `pulumi:"customMetadata"`
 	// A mapping whose keys are the top-level data keys returned from
 	// Vault and whose values are the corresponding values. This map can only
 	// represent string data, so any non-string values returned from Vault are
@@ -212,6 +239,10 @@ type SecretV2State struct {
 	// write operation to be successful, cas must be set to the current version
 	// of the secret.
 	Cas pulumi.IntPtrInput
+	// A nested block that allows configuring metadata for the
+	// KV secret. Refer to the
+	// Configuration Options for more info.
+	CustomMetadata SecretV2CustomMetadataPtrInput
 	// A mapping whose keys are the top-level data keys returned from
 	// Vault and whose values are the corresponding values. This map can only
 	// represent string data, so any non-string values returned from Vault are
@@ -256,6 +287,10 @@ type secretV2Args struct {
 	// write operation to be successful, cas must be set to the current version
 	// of the secret.
 	Cas *int `pulumi:"cas"`
+	// A nested block that allows configuring metadata for the
+	// KV secret. Refer to the
+	// Configuration Options for more info.
+	CustomMetadata *SecretV2CustomMetadata `pulumi:"customMetadata"`
 	// JSON-encoded string that will be
 	// written as the secret data at the given path.
 	DataJson string `pulumi:"dataJson"`
@@ -288,6 +323,10 @@ type SecretV2Args struct {
 	// write operation to be successful, cas must be set to the current version
 	// of the secret.
 	Cas pulumi.IntPtrInput
+	// A nested block that allows configuring metadata for the
+	// KV secret. Refer to the
+	// Configuration Options for more info.
+	CustomMetadata SecretV2CustomMetadataPtrInput
 	// JSON-encoded string that will be
 	// written as the secret data at the given path.
 	DataJson pulumi.StringInput
@@ -406,6 +445,13 @@ func (o SecretV2Output) ToSecretV2OutputWithContext(ctx context.Context) SecretV
 // of the secret.
 func (o SecretV2Output) Cas() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretV2) pulumi.IntPtrOutput { return v.Cas }).(pulumi.IntPtrOutput)
+}
+
+// A nested block that allows configuring metadata for the
+// KV secret. Refer to the
+// Configuration Options for more info.
+func (o SecretV2Output) CustomMetadata() SecretV2CustomMetadataOutput {
+	return o.ApplyT(func(v *SecretV2) SecretV2CustomMetadataOutput { return v.CustomMetadata }).(SecretV2CustomMetadataOutput)
 }
 
 // A mapping whose keys are the top-level data keys returned from

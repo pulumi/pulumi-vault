@@ -171,6 +171,13 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get_bool('skipChildToken')
 
     @property
+    def skip_get_vault_version(self) -> Optional[bool]:
+        """
+        Skip the dynamic fetching of the Vault server version.
+        """
+        return __config__.get_bool('skipGetVaultVersion')
+
+    @property
     def skip_tls_verify(self) -> Optional[bool]:
         """
         Set this to true only if the target Vault server is an insecure development instance.
@@ -197,4 +204,11 @@ class _ExportableConfig(types.ModuleType):
         Token name to use for creating the Vault child token.
         """
         return __config__.get('tokenName')
+
+    @property
+    def vault_version_override(self) -> Optional[str]:
+        """
+        Override the Vault server version, which is normally determined dynamically from the target Vault server
+        """
+        return __config__.get('vaultVersionOverride')
 

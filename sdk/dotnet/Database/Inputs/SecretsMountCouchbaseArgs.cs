@@ -116,7 +116,7 @@ namespace Pulumi.Vault.Database.Inputs
         }
 
         /// <summary>
-        /// Whether to use TLS when connecting to Cassandra.
+        /// Whether to use TLS when connecting to Redis.
         /// </summary>
         [Input("tls")]
         public Input<bool>? Tls { get; set; }

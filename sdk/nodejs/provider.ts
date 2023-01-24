@@ -59,6 +59,10 @@ export class Provider extends pulumi.ProviderResource {
      * Token name to use for creating the Vault child token.
      */
     public readonly tokenName!: pulumi.Output<string | undefined>;
+    /**
+     * Override the Vault server version, which is normally determined dynamically from the target Vault server
+     */
+    public readonly vaultVersionOverride!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -99,10 +103,12 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["maxRetriesCcc"] = pulumi.output(args ? args.maxRetriesCcc : undefined).apply(JSON.stringify);
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["skipChildToken"] = pulumi.output(args ? args.skipChildToken : undefined).apply(JSON.stringify);
+            resourceInputs["skipGetVaultVersion"] = pulumi.output(args ? args.skipGetVaultVersion : undefined).apply(JSON.stringify);
             resourceInputs["skipTlsVerify"] = pulumi.output((args ? args.skipTlsVerify : undefined) ?? utilities.getEnvBoolean("VAULT_SKIP_VERIFY")).apply(JSON.stringify);
             resourceInputs["tlsServerName"] = args ? args.tlsServerName : undefined;
             resourceInputs["token"] = args ? args.token : undefined;
             resourceInputs["tokenName"] = args ? args.tokenName : undefined;
+            resourceInputs["vaultVersionOverride"] = args ? args.vaultVersionOverride : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
@@ -202,6 +208,10 @@ export interface ProviderArgs {
      */
     skipChildToken?: pulumi.Input<boolean>;
     /**
+     * Skip the dynamic fetching of the Vault server version.
+     */
+    skipGetVaultVersion?: pulumi.Input<boolean>;
+    /**
      * Set this to true only if the target Vault server is an insecure development instance.
      */
     skipTlsVerify?: pulumi.Input<boolean>;
@@ -217,4 +227,8 @@ export interface ProviderArgs {
      * Token name to use for creating the Vault child token.
      */
     tokenName?: pulumi.Input<string>;
+    /**
+     * Override the Vault server version, which is normally determined dynamically from the target Vault server
+     */
+    vaultVersionOverride?: pulumi.Input<string>;
 }

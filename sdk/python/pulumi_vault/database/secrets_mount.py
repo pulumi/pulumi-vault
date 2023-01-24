@@ -41,6 +41,7 @@ class SecretsMountArgs:
                  options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  oracles: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountOracleArgs']]]] = None,
                  postgresqls: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountPostgresqlArgs']]]] = None,
+                 redis: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountRediArgs']]]] = None,
                  redis_elasticaches: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountRedisElasticachArgs']]]] = None,
                  redshifts: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountRedshiftArgs']]]] = None,
                  seal_wrap: Optional[pulumi.Input[bool]] = None,
@@ -86,7 +87,9 @@ class SecretsMountArgs:
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountPostgresqlArgs']]] postgresqls: A nested block containing configuration options for PostgreSQL connections.  
                *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountRedisElasticachArgs']]] redis_elasticaches: A nested block containing configuration options for InfluxDB connections.  
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountRediArgs']]] redis: A nested block containing configuration options for Redis connections.  
+               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountRedisElasticachArgs']]] redis_elasticaches: A nested block containing configuration options for Redis ElastiCache connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountRedshiftArgs']]] redshifts: A nested block containing configuration options for AWS Redshift connections.  
                *See Configuration Options for more info*
@@ -143,6 +146,8 @@ class SecretsMountArgs:
             pulumi.set(__self__, "oracles", oracles)
         if postgresqls is not None:
             pulumi.set(__self__, "postgresqls", postgresqls)
+        if redis is not None:
+            pulumi.set(__self__, "redis", redis)
         if redis_elasticaches is not None:
             pulumi.set(__self__, "redis_elasticaches", redis_elasticaches)
         if redshifts is not None:
@@ -467,10 +472,23 @@ class SecretsMountArgs:
         pulumi.set(self, "postgresqls", value)
 
     @property
+    @pulumi.getter
+    def redis(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountRediArgs']]]]:
+        """
+        A nested block containing configuration options for Redis connections.  
+        *See Configuration Options for more info*
+        """
+        return pulumi.get(self, "redis")
+
+    @redis.setter
+    def redis(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountRediArgs']]]]):
+        pulumi.set(self, "redis", value)
+
+    @property
     @pulumi.getter(name="redisElasticaches")
     def redis_elasticaches(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountRedisElasticachArgs']]]]:
         """
-        A nested block containing configuration options for InfluxDB connections.  
+        A nested block containing configuration options for Redis ElastiCache connections.  
         *See Configuration Options for more info*
         """
         return pulumi.get(self, "redis_elasticaches")
@@ -548,6 +566,7 @@ class _SecretsMountState:
                  oracles: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountOracleArgs']]]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  postgresqls: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountPostgresqlArgs']]]] = None,
+                 redis: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountRediArgs']]]] = None,
                  redis_elasticaches: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountRedisElasticachArgs']]]] = None,
                  redshifts: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountRedshiftArgs']]]] = None,
                  seal_wrap: Optional[pulumi.Input[bool]] = None,
@@ -595,7 +614,9 @@ class _SecretsMountState:
         :param pulumi.Input[str] path: Where the secret backend will be mounted
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountPostgresqlArgs']]] postgresqls: A nested block containing configuration options for PostgreSQL connections.  
                *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountRedisElasticachArgs']]] redis_elasticaches: A nested block containing configuration options for InfluxDB connections.  
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountRediArgs']]] redis: A nested block containing configuration options for Redis connections.  
+               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountRedisElasticachArgs']]] redis_elasticaches: A nested block containing configuration options for Redis ElastiCache connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountRedshiftArgs']]] redshifts: A nested block containing configuration options for AWS Redshift connections.  
                *See Configuration Options for more info*
@@ -657,6 +678,8 @@ class _SecretsMountState:
             pulumi.set(__self__, "path", path)
         if postgresqls is not None:
             pulumi.set(__self__, "postgresqls", postgresqls)
+        if redis is not None:
+            pulumi.set(__self__, "redis", redis)
         if redis_elasticaches is not None:
             pulumi.set(__self__, "redis_elasticaches", redis_elasticaches)
         if redshifts is not None:
@@ -1005,10 +1028,23 @@ class _SecretsMountState:
         pulumi.set(self, "postgresqls", value)
 
     @property
+    @pulumi.getter
+    def redis(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountRediArgs']]]]:
+        """
+        A nested block containing configuration options for Redis connections.  
+        *See Configuration Options for more info*
+        """
+        return pulumi.get(self, "redis")
+
+    @redis.setter
+    def redis(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountRediArgs']]]]):
+        pulumi.set(self, "redis", value)
+
+    @property
     @pulumi.getter(name="redisElasticaches")
     def redis_elasticaches(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountRedisElasticachArgs']]]]:
         """
-        A nested block containing configuration options for InfluxDB connections.  
+        A nested block containing configuration options for Redis ElastiCache connections.  
         *See Configuration Options for more info*
         """
         return pulumi.get(self, "redis_elasticaches")
@@ -1086,6 +1122,7 @@ class SecretsMount(pulumi.CustomResource):
                  oracles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountOracleArgs']]]]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  postgresqls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountPostgresqlArgs']]]]] = None,
+                 redis: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRediArgs']]]]] = None,
                  redis_elasticaches: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRedisElasticachArgs']]]]] = None,
                  redshifts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRedshiftArgs']]]]] = None,
                  seal_wrap: Optional[pulumi.Input[bool]] = None,
@@ -1181,7 +1218,9 @@ class SecretsMount(pulumi.CustomResource):
         :param pulumi.Input[str] path: Where the secret backend will be mounted
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountPostgresqlArgs']]]] postgresqls: A nested block containing configuration options for PostgreSQL connections.  
                *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRedisElasticachArgs']]]] redis_elasticaches: A nested block containing configuration options for InfluxDB connections.  
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRediArgs']]]] redis: A nested block containing configuration options for Redis connections.  
+               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRedisElasticachArgs']]]] redis_elasticaches: A nested block containing configuration options for Redis ElastiCache connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRedshiftArgs']]]] redshifts: A nested block containing configuration options for AWS Redshift connections.  
                *See Configuration Options for more info*
@@ -1284,6 +1323,7 @@ class SecretsMount(pulumi.CustomResource):
                  oracles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountOracleArgs']]]]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  postgresqls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountPostgresqlArgs']]]]] = None,
+                 redis: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRediArgs']]]]] = None,
                  redis_elasticaches: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRedisElasticachArgs']]]]] = None,
                  redshifts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRedshiftArgs']]]]] = None,
                  seal_wrap: Optional[pulumi.Input[bool]] = None,
@@ -1324,6 +1364,7 @@ class SecretsMount(pulumi.CustomResource):
                 raise TypeError("Missing required property 'path'")
             __props__.__dict__["path"] = path
             __props__.__dict__["postgresqls"] = postgresqls
+            __props__.__dict__["redis"] = redis
             __props__.__dict__["redis_elasticaches"] = redis_elasticaches
             __props__.__dict__["redshifts"] = redshifts
             __props__.__dict__["seal_wrap"] = seal_wrap
@@ -1367,6 +1408,7 @@ class SecretsMount(pulumi.CustomResource):
             oracles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountOracleArgs']]]]] = None,
             path: Optional[pulumi.Input[str]] = None,
             postgresqls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountPostgresqlArgs']]]]] = None,
+            redis: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRediArgs']]]]] = None,
             redis_elasticaches: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRedisElasticachArgs']]]]] = None,
             redshifts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRedshiftArgs']]]]] = None,
             seal_wrap: Optional[pulumi.Input[bool]] = None,
@@ -1419,7 +1461,9 @@ class SecretsMount(pulumi.CustomResource):
         :param pulumi.Input[str] path: Where the secret backend will be mounted
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountPostgresqlArgs']]]] postgresqls: A nested block containing configuration options for PostgreSQL connections.  
                *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRedisElasticachArgs']]]] redis_elasticaches: A nested block containing configuration options for InfluxDB connections.  
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRediArgs']]]] redis: A nested block containing configuration options for Redis connections.  
+               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRedisElasticachArgs']]]] redis_elasticaches: A nested block containing configuration options for Redis ElastiCache connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRedshiftArgs']]]] redshifts: A nested block containing configuration options for AWS Redshift connections.  
                *See Configuration Options for more info*
@@ -1458,6 +1502,7 @@ class SecretsMount(pulumi.CustomResource):
         __props__.__dict__["oracles"] = oracles
         __props__.__dict__["path"] = path
         __props__.__dict__["postgresqls"] = postgresqls
+        __props__.__dict__["redis"] = redis
         __props__.__dict__["redis_elasticaches"] = redis_elasticaches
         __props__.__dict__["redshifts"] = redshifts
         __props__.__dict__["seal_wrap"] = seal_wrap
@@ -1695,10 +1740,19 @@ class SecretsMount(pulumi.CustomResource):
         return pulumi.get(self, "postgresqls")
 
     @property
+    @pulumi.getter
+    def redis(self) -> pulumi.Output[Optional[Sequence['outputs.SecretsMountRedi']]]:
+        """
+        A nested block containing configuration options for Redis connections.  
+        *See Configuration Options for more info*
+        """
+        return pulumi.get(self, "redis")
+
+    @property
     @pulumi.getter(name="redisElasticaches")
     def redis_elasticaches(self) -> pulumi.Output[Optional[Sequence['outputs.SecretsMountRedisElasticach']]]:
         """
-        A nested block containing configuration options for InfluxDB connections.  
+        A nested block containing configuration options for Redis ElastiCache connections.  
         *See Configuration Options for more info*
         """
         return pulumi.get(self, "redis_elasticaches")

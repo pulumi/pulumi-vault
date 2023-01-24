@@ -86,6 +86,7 @@
         "identity/group.ts",
         "identity/groupAlias.ts",
         "identity/groupMemberEntityIds.ts",
+        "identity/groupMemberGroupIds.ts",
         "identity/groupPolicies.ts",
         "identity/index.ts",
         "identity/mfaDuo.ts",

@@ -19,6 +19,25 @@ public final class SecretBackendIntermediateCertRequestState extends com.pulumi.
     public static final SecretBackendIntermediateCertRequestState Empty = new SecretBackendIntermediateCertRequestState();
 
     /**
+     * Adds a Basic Constraints extension with &#39;CA: true&#39;.
+     * Only needed as a workaround in some compatibility scenarios with Active Directory
+     * Certificate Services
+     * 
+     */
+    @Import(name="addBasicConstraints")
+    private @Nullable Output<Boolean> addBasicConstraints;
+
+    /**
+     * @return Adds a Basic Constraints extension with &#39;CA: true&#39;.
+     * Only needed as a workaround in some compatibility scenarios with Active Directory
+     * Certificate Services
+     * 
+     */
+    public Optional<Output<Boolean>> addBasicConstraints() {
+        return Optional.ofNullable(this.addBasicConstraints);
+    }
+
+    /**
      * List of alternative names
      * 
      */
@@ -408,6 +427,7 @@ public final class SecretBackendIntermediateCertRequestState extends com.pulumi.
     private SecretBackendIntermediateCertRequestState() {}
 
     private SecretBackendIntermediateCertRequestState(SecretBackendIntermediateCertRequestState $) {
+        this.addBasicConstraints = $.addBasicConstraints;
         this.altNames = $.altNames;
         this.backend = $.backend;
         this.commonName = $.commonName;
@@ -451,6 +471,31 @@ public final class SecretBackendIntermediateCertRequestState extends com.pulumi.
 
         public Builder(SecretBackendIntermediateCertRequestState defaults) {
             $ = new SecretBackendIntermediateCertRequestState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param addBasicConstraints Adds a Basic Constraints extension with &#39;CA: true&#39;.
+         * Only needed as a workaround in some compatibility scenarios with Active Directory
+         * Certificate Services
+         * 
+         * @return builder
+         * 
+         */
+        public Builder addBasicConstraints(@Nullable Output<Boolean> addBasicConstraints) {
+            $.addBasicConstraints = addBasicConstraints;
+            return this;
+        }
+
+        /**
+         * @param addBasicConstraints Adds a Basic Constraints extension with &#39;CA: true&#39;.
+         * Only needed as a workaround in some compatibility scenarios with Active Directory
+         * Certificate Services
+         * 
+         * @return builder
+         * 
+         */
+        public Builder addBasicConstraints(Boolean addBasicConstraints) {
+            return addBasicConstraints(Output.of(addBasicConstraints));
         }
 
         /**

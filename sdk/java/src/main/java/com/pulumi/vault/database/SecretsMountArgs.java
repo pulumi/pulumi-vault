@@ -19,6 +19,7 @@ import com.pulumi.vault.database.inputs.SecretsMountMysqlLegacyArgs;
 import com.pulumi.vault.database.inputs.SecretsMountMysqlRdArgs;
 import com.pulumi.vault.database.inputs.SecretsMountOracleArgs;
 import com.pulumi.vault.database.inputs.SecretsMountPostgresqlArgs;
+import com.pulumi.vault.database.inputs.SecretsMountRediArgs;
 import com.pulumi.vault.database.inputs.SecretsMountRedisElasticachArgs;
 import com.pulumi.vault.database.inputs.SecretsMountRedshiftArgs;
 import com.pulumi.vault.database.inputs.SecretsMountSnowflakeArgs;
@@ -441,7 +442,24 @@ public final class SecretsMountArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A nested block containing configuration options for InfluxDB connections.\
+     * A nested block containing configuration options for Redis connections.\
+     * *See Configuration Options for more info*
+     * 
+     */
+    @Import(name="redis")
+    private @Nullable Output<List<SecretsMountRediArgs>> redis;
+
+    /**
+     * @return A nested block containing configuration options for Redis connections.\
+     * *See Configuration Options for more info*
+     * 
+     */
+    public Optional<Output<List<SecretsMountRediArgs>>> redis() {
+        return Optional.ofNullable(this.redis);
+    }
+
+    /**
+     * A nested block containing configuration options for Redis ElastiCache connections.\
      * *See Configuration Options for more info*
      * 
      */
@@ -449,7 +467,7 @@ public final class SecretsMountArgs extends com.pulumi.resources.ResourceArgs {
     private @Nullable Output<List<SecretsMountRedisElasticachArgs>> redisElasticaches;
 
     /**
-     * @return A nested block containing configuration options for InfluxDB connections.\
+     * @return A nested block containing configuration options for Redis ElastiCache connections.\
      * *See Configuration Options for more info*
      * 
      */
@@ -534,6 +552,7 @@ public final class SecretsMountArgs extends com.pulumi.resources.ResourceArgs {
         this.oracles = $.oracles;
         this.path = $.path;
         this.postgresqls = $.postgresqls;
+        this.redis = $.redis;
         this.redisElasticaches = $.redisElasticaches;
         this.redshifts = $.redshifts;
         this.sealWrap = $.sealWrap;
@@ -1296,7 +1315,41 @@ public final class SecretsMountArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param redisElasticaches A nested block containing configuration options for InfluxDB connections.\
+         * @param redis A nested block containing configuration options for Redis connections.\
+         * *See Configuration Options for more info*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder redis(@Nullable Output<List<SecretsMountRediArgs>> redis) {
+            $.redis = redis;
+            return this;
+        }
+
+        /**
+         * @param redis A nested block containing configuration options for Redis connections.\
+         * *See Configuration Options for more info*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder redis(List<SecretsMountRediArgs> redis) {
+            return redis(Output.of(redis));
+        }
+
+        /**
+         * @param redis A nested block containing configuration options for Redis connections.\
+         * *See Configuration Options for more info*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder redis(SecretsMountRediArgs... redis) {
+            return redis(List.of(redis));
+        }
+
+        /**
+         * @param redisElasticaches A nested block containing configuration options for Redis ElastiCache connections.\
          * *See Configuration Options for more info*
          * 
          * @return builder
@@ -1308,7 +1361,7 @@ public final class SecretsMountArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param redisElasticaches A nested block containing configuration options for InfluxDB connections.\
+         * @param redisElasticaches A nested block containing configuration options for Redis ElastiCache connections.\
          * *See Configuration Options for more info*
          * 
          * @return builder
@@ -1319,7 +1372,7 @@ public final class SecretsMountArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param redisElasticaches A nested block containing configuration options for InfluxDB connections.\
+         * @param redisElasticaches A nested block containing configuration options for Redis ElastiCache connections.\
          * *See Configuration Options for more info*
          * 
          * @return builder

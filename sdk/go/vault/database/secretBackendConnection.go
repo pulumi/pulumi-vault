@@ -108,6 +108,8 @@ type SecretBackendConnection struct {
 	PluginName pulumi.StringOutput `pulumi:"pluginName"`
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql SecretBackendConnectionPostgresqlPtrOutput `pulumi:"postgresql"`
+	// A nested block containing configuration options for Redis connections.
+	Redis SecretBackendConnectionRedisPtrOutput `pulumi:"redis"`
 	// A nested block containing configuration options for Redis ElastiCache connections.
 	RedisElasticache SecretBackendConnectionRedisElasticachePtrOutput `pulumi:"redisElasticache"`
 	// Connection parameters for the redshift-database-plugin plugin.
@@ -197,6 +199,8 @@ type secretBackendConnectionState struct {
 	PluginName *string `pulumi:"pluginName"`
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql *SecretBackendConnectionPostgresql `pulumi:"postgresql"`
+	// A nested block containing configuration options for Redis connections.
+	Redis *SecretBackendConnectionRedis `pulumi:"redis"`
 	// A nested block containing configuration options for Redis ElastiCache connections.
 	RedisElasticache *SecretBackendConnectionRedisElasticache `pulumi:"redisElasticache"`
 	// Connection parameters for the redshift-database-plugin plugin.
@@ -255,6 +259,8 @@ type SecretBackendConnectionState struct {
 	PluginName pulumi.StringPtrInput
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql SecretBackendConnectionPostgresqlPtrInput
+	// A nested block containing configuration options for Redis connections.
+	Redis SecretBackendConnectionRedisPtrInput
 	// A nested block containing configuration options for Redis ElastiCache connections.
 	RedisElasticache SecretBackendConnectionRedisElasticachePtrInput
 	// Connection parameters for the redshift-database-plugin plugin.
@@ -317,6 +323,8 @@ type secretBackendConnectionArgs struct {
 	PluginName *string `pulumi:"pluginName"`
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql *SecretBackendConnectionPostgresql `pulumi:"postgresql"`
+	// A nested block containing configuration options for Redis connections.
+	Redis *SecretBackendConnectionRedis `pulumi:"redis"`
 	// A nested block containing configuration options for Redis ElastiCache connections.
 	RedisElasticache *SecretBackendConnectionRedisElasticache `pulumi:"redisElasticache"`
 	// Connection parameters for the redshift-database-plugin plugin.
@@ -376,6 +384,8 @@ type SecretBackendConnectionArgs struct {
 	PluginName pulumi.StringPtrInput
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql SecretBackendConnectionPostgresqlPtrInput
+	// A nested block containing configuration options for Redis connections.
+	Redis SecretBackendConnectionRedisPtrInput
 	// A nested block containing configuration options for Redis ElastiCache connections.
 	RedisElasticache SecretBackendConnectionRedisElasticachePtrInput
 	// Connection parameters for the redshift-database-plugin plugin.
@@ -578,6 +588,11 @@ func (o SecretBackendConnectionOutput) PluginName() pulumi.StringOutput {
 // A nested block containing configuration options for PostgreSQL connections.
 func (o SecretBackendConnectionOutput) Postgresql() SecretBackendConnectionPostgresqlPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnection) SecretBackendConnectionPostgresqlPtrOutput { return v.Postgresql }).(SecretBackendConnectionPostgresqlPtrOutput)
+}
+
+// A nested block containing configuration options for Redis connections.
+func (o SecretBackendConnectionOutput) Redis() SecretBackendConnectionRedisPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) SecretBackendConnectionRedisPtrOutput { return v.Redis }).(SecretBackendConnectionRedisPtrOutput)
 }
 
 // A nested block containing configuration options for Redis ElastiCache connections.

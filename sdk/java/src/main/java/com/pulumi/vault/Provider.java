@@ -134,6 +134,20 @@ public class Provider extends com.pulumi.resources.ProviderResource {
     public Output<Optional<String>> tokenName() {
         return Codegen.optional(this.tokenName);
     }
+    /**
+     * Override the Vault server version, which is normally determined dynamically from the target Vault server
+     * 
+     */
+    @Export(name="vaultVersionOverride", type=String.class, parameters={})
+    private Output</* @Nullable */ String> vaultVersionOverride;
+
+    /**
+     * @return Override the Vault server version, which is normally determined dynamically from the target Vault server
+     * 
+     */
+    public Output<Optional<String>> vaultVersionOverride() {
+        return Codegen.optional(this.vaultVersionOverride);
+    }
 
     /**
      *

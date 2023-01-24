@@ -44,7 +44,7 @@ class AuthBackendArgs:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[str] path: Path to mount the Okta auth backend
+        :param pulumi.Input[str] path: Path to mount the Okta auth backend. Default to path `okta`.
         :param pulumi.Input[str] token: The Okta API token. This is required to query Okta for user group membership.
                If this is not supplied only locally configured groups will be enabled.
         :param pulumi.Input[str] ttl: Duration after which authentication will be expired.
@@ -182,7 +182,7 @@ class AuthBackendArgs:
     @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
         """
-        Path to mount the Okta auth backend
+        Path to mount the Okta auth backend. Default to path `okta`.
         """
         return pulumi.get(self, "path")
 
@@ -263,7 +263,7 @@ class _AuthBackendState:
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: The Okta organization. This will be the first part of the url `https://XXX.okta.com`
-        :param pulumi.Input[str] path: Path to mount the Okta auth backend
+        :param pulumi.Input[str] path: Path to mount the Okta auth backend. Default to path `okta`.
         :param pulumi.Input[str] token: The Okta API token. This is required to query Okta for user group membership.
                If this is not supplied only locally configured groups will be enabled.
         :param pulumi.Input[str] ttl: Duration after which authentication will be expired.
@@ -416,7 +416,7 @@ class _AuthBackendState:
     @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
         """
-        Path to mount the Okta auth backend
+        Path to mount the Okta auth backend. Default to path `okta`.
         """
         return pulumi.get(self, "path")
 
@@ -533,7 +533,7 @@ class AuthBackend(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: The Okta organization. This will be the first part of the url `https://XXX.okta.com`
-        :param pulumi.Input[str] path: Path to mount the Okta auth backend
+        :param pulumi.Input[str] path: Path to mount the Okta auth backend. Default to path `okta`.
         :param pulumi.Input[str] token: The Okta API token. This is required to query Okta for user group membership.
                If this is not supplied only locally configured groups will be enabled.
         :param pulumi.Input[str] ttl: Duration after which authentication will be expired.
@@ -680,7 +680,7 @@ class AuthBackend(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: The Okta organization. This will be the first part of the url `https://XXX.okta.com`
-        :param pulumi.Input[str] path: Path to mount the Okta auth backend
+        :param pulumi.Input[str] path: Path to mount the Okta auth backend. Default to path `okta`.
         :param pulumi.Input[str] token: The Okta API token. This is required to query Okta for user group membership.
                If this is not supplied only locally configured groups will be enabled.
         :param pulumi.Input[str] ttl: Duration after which authentication will be expired.
@@ -789,7 +789,7 @@ class AuthBackend(pulumi.CustomResource):
     @pulumi.getter
     def path(self) -> pulumi.Output[Optional[str]]:
         """
-        Path to mount the Okta auth backend
+        Path to mount the Okta auth backend. Default to path `okta`.
         """
         return pulumi.get(self, "path")
 

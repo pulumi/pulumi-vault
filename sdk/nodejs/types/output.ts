@@ -279,7 +279,7 @@ export namespace database {
          */
         protocolVersion?: number;
         /**
-         * Whether to use TLS when connecting to Cassandra.
+         * Whether to use TLS when connecting to Redis.
          */
         tls?: boolean;
         /**
@@ -311,7 +311,7 @@ export namespace database {
          */
         password: string;
         /**
-         * Whether to use TLS when connecting to Cassandra.
+         * Whether to use TLS when connecting to Redis.
          */
         tls?: boolean;
         /**
@@ -438,7 +438,7 @@ export namespace database {
          */
         port?: number;
         /**
-         * Whether to use TLS when connecting to Cassandra.
+         * Whether to use TLS when connecting to Redis.
          */
         tls?: boolean;
         /**
@@ -777,6 +777,39 @@ export namespace database {
         usernameTemplate?: string;
     }
 
+    export interface SecretBackendConnectionRedis {
+        /**
+         * The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+         */
+        caCert?: string;
+        /**
+         * The host to connect to.
+         */
+        host: string;
+        /**
+         * Whether to skip verification of the server
+         * certificate when using TLS.
+         */
+        insecureTls?: boolean;
+        /**
+         * The root credential password used in the connection URL.
+         */
+        password: string;
+        /**
+         * The default port to connect to if no port is specified as
+         * part of the host.
+         */
+        port?: number;
+        /**
+         * Whether to use TLS when connecting to Redis.
+         */
+        tls?: boolean;
+        /**
+         * The root credential username used in the connection URL.
+         */
+        username: string;
+    }
+
     export interface SecretBackendConnectionRedisElasticache {
         /**
          * The root credential password used in the connection URL.
@@ -929,7 +962,7 @@ export namespace database {
          */
         rootRotationStatements?: string[];
         /**
-         * Whether to use TLS when connecting to Cassandra.
+         * Whether to use TLS when connecting to Redis.
          */
         tls?: boolean;
         /**
@@ -984,7 +1017,7 @@ export namespace database {
          */
         rootRotationStatements?: string[];
         /**
-         * Whether to use TLS when connecting to Cassandra.
+         * Whether to use TLS when connecting to Redis.
          */
         tls?: boolean;
         /**
@@ -1009,7 +1042,7 @@ export namespace database {
          */
         allowedRoles?: string[];
         /**
-         * The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+         * The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
          */
         caCert?: string;
         /**
@@ -1178,7 +1211,7 @@ export namespace database {
          */
         rootRotationStatements?: string[];
         /**
-         * Whether to use TLS when connecting to Cassandra.
+         * Whether to use TLS when connecting to Redis.
          */
         tls?: boolean;
         /**
@@ -1720,6 +1753,62 @@ export namespace database {
         verifyConnection?: boolean;
     }
 
+    export interface SecretsMountRedi {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: string[];
+        /**
+         * The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
+         */
+        caCert?: string;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: any};
+        /**
+         * The host to connect to.
+         */
+        host: string;
+        /**
+         * Whether to skip verification of the server
+         * certificate when using TLS.
+         */
+        insecureTls?: boolean;
+        name: string;
+        /**
+         * The password to be used in the connection.
+         */
+        password: string;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName: string;
+        /**
+         * The default port to connect to if no port is specified as
+         * part of the host.
+         */
+        port?: number;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: string[];
+        /**
+         * Whether to use TLS when connecting to Redis.
+         */
+        tls?: boolean;
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username: string;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: boolean;
+    }
+
     export interface SecretsMountRedisElasticach {
         /**
          * A list of roles that are allowed to use this
@@ -2067,6 +2156,22 @@ export namespace jwt {
          * the mount. Valid values are "default-service", "default-batch", "service", "batch".
          */
         tokenType?: string;
+    }
+
+}
+
+export namespace kv {
+    export interface SecretV2CustomMetadata {
+        casRequired?: boolean;
+        /**
+         * A mapping whose keys are the top-level data keys returned from
+         * Vault and whose values are the corresponding values. This map can only
+         * represent string data, so any non-string values returned from Vault are
+         * serialized as JSON.
+         */
+        data?: {[key: string]: any};
+        deleteVersionAfter?: number;
+        maxVersions?: number;
     }
 
 }

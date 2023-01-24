@@ -43,6 +43,10 @@ import (
 type SecretBackendIntermediateCertRequest struct {
 	pulumi.CustomResourceState
 
+	// Adds a Basic Constraints extension with 'CA: true'.
+	// Only needed as a workaround in some compatibility scenarios with Active Directory
+	// Certificate Services
+	AddBasicConstraints pulumi.BoolPtrOutput `pulumi:"addBasicConstraints"`
 	// List of alternative names
 	AltNames pulumi.StringArrayOutput `pulumi:"altNames"`
 	// The PKI secret backend the resource belongs to.
@@ -143,6 +147,10 @@ func GetSecretBackendIntermediateCertRequest(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SecretBackendIntermediateCertRequest resources.
 type secretBackendIntermediateCertRequestState struct {
+	// Adds a Basic Constraints extension with 'CA: true'.
+	// Only needed as a workaround in some compatibility scenarios with Active Directory
+	// Certificate Services
+	AddBasicConstraints *bool `pulumi:"addBasicConstraints"`
 	// List of alternative names
 	AltNames []string `pulumi:"altNames"`
 	// The PKI secret backend the resource belongs to.
@@ -202,6 +210,10 @@ type secretBackendIntermediateCertRequestState struct {
 }
 
 type SecretBackendIntermediateCertRequestState struct {
+	// Adds a Basic Constraints extension with 'CA: true'.
+	// Only needed as a workaround in some compatibility scenarios with Active Directory
+	// Certificate Services
+	AddBasicConstraints pulumi.BoolPtrInput
 	// List of alternative names
 	AltNames pulumi.StringArrayInput
 	// The PKI secret backend the resource belongs to.
@@ -265,6 +277,10 @@ func (SecretBackendIntermediateCertRequestState) ElementType() reflect.Type {
 }
 
 type secretBackendIntermediateCertRequestArgs struct {
+	// Adds a Basic Constraints extension with 'CA: true'.
+	// Only needed as a workaround in some compatibility scenarios with Active Directory
+	// Certificate Services
+	AddBasicConstraints *bool `pulumi:"addBasicConstraints"`
 	// List of alternative names
 	AltNames []string `pulumi:"altNames"`
 	// The PKI secret backend the resource belongs to.
@@ -319,6 +335,10 @@ type secretBackendIntermediateCertRequestArgs struct {
 
 // The set of arguments for constructing a SecretBackendIntermediateCertRequest resource.
 type SecretBackendIntermediateCertRequestArgs struct {
+	// Adds a Basic Constraints extension with 'CA: true'.
+	// Only needed as a workaround in some compatibility scenarios with Active Directory
+	// Certificate Services
+	AddBasicConstraints pulumi.BoolPtrInput
 	// List of alternative names
 	AltNames pulumi.StringArrayInput
 	// The PKI secret backend the resource belongs to.
@@ -456,6 +476,13 @@ func (o SecretBackendIntermediateCertRequestOutput) ToSecretBackendIntermediateC
 
 func (o SecretBackendIntermediateCertRequestOutput) ToSecretBackendIntermediateCertRequestOutputWithContext(ctx context.Context) SecretBackendIntermediateCertRequestOutput {
 	return o
+}
+
+// Adds a Basic Constraints extension with 'CA: true'.
+// Only needed as a workaround in some compatibility scenarios with Active Directory
+// Certificate Services
+func (o SecretBackendIntermediateCertRequestOutput) AddBasicConstraints() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendIntermediateCertRequest) pulumi.BoolPtrOutput { return v.AddBasicConstraints }).(pulumi.BoolPtrOutput)
 }
 
 // List of alternative names

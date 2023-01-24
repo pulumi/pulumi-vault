@@ -218,14 +218,14 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
     }
 
     /**
-     * Whether to use TLS when connecting to Cassandra.
+     * Whether to use TLS when connecting to Redis.
      * 
      */
     @Import(name="tls")
     private @Nullable Output<Boolean> tls;
 
     /**
-     * @return Whether to use TLS when connecting to Cassandra.
+     * @return Whether to use TLS when connecting to Redis.
      * 
      */
     public Optional<Output<Boolean>> tls() {
@@ -606,7 +606,7 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param tls Whether to use TLS when connecting to Cassandra.
+         * @param tls Whether to use TLS when connecting to Redis.
          * 
          * @return builder
          * 
@@ -617,7 +617,7 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param tls Whether to use TLS when connecting to Cassandra.
+         * @param tls Whether to use TLS when connecting to Redis.
          * 
          * @return builder
          * 

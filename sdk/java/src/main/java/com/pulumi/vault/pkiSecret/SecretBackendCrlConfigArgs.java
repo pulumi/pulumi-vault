@@ -17,6 +17,36 @@ public final class SecretBackendCrlConfigArgs extends com.pulumi.resources.Resou
     public static final SecretBackendCrlConfigArgs Empty = new SecretBackendCrlConfigArgs();
 
     /**
+     * Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
+     * 
+     */
+    @Import(name="autoRebuild")
+    private @Nullable Output<Boolean> autoRebuild;
+
+    /**
+     * @return Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
+     * 
+     */
+    public Optional<Output<Boolean>> autoRebuild() {
+        return Optional.ofNullable(this.autoRebuild);
+    }
+
+    /**
+     * Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**
+     * 
+     */
+    @Import(name="autoRebuildGracePeriod")
+    private @Nullable Output<String> autoRebuildGracePeriod;
+
+    /**
+     * @return Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**
+     * 
+     */
+    public Optional<Output<String>> autoRebuildGracePeriod() {
+        return Optional.ofNullable(this.autoRebuildGracePeriod);
+    }
+
+    /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      * 
      */
@@ -32,6 +62,21 @@ public final class SecretBackendCrlConfigArgs extends com.pulumi.resources.Resou
     }
 
     /**
+     * Interval to check for new revocations on, to regenerate the delta CRL.
+     * 
+     */
+    @Import(name="deltaRebuildInterval")
+    private @Nullable Output<String> deltaRebuildInterval;
+
+    /**
+     * @return Interval to check for new revocations on, to regenerate the delta CRL.
+     * 
+     */
+    public Optional<Output<String>> deltaRebuildInterval() {
+        return Optional.ofNullable(this.deltaRebuildInterval);
+    }
+
+    /**
      * Disables or enables CRL building.
      * 
      */
@@ -44,6 +89,23 @@ public final class SecretBackendCrlConfigArgs extends com.pulumi.resources.Resou
      */
     public Optional<Output<Boolean>> disable() {
         return Optional.ofNullable(this.disable);
+    }
+
+    /**
+     * Enables building of delta CRLs with up-to-date revocation information,
+     * augmenting the last complete CRL.  **Vault 1.12+**
+     * 
+     */
+    @Import(name="enableDelta")
+    private @Nullable Output<Boolean> enableDelta;
+
+    /**
+     * @return Enables building of delta CRLs with up-to-date revocation information,
+     * augmenting the last complete CRL.  **Vault 1.12+**
+     * 
+     */
+    public Optional<Output<Boolean>> enableDelta() {
+        return Optional.ofNullable(this.enableDelta);
     }
 
     /**
@@ -82,13 +144,51 @@ public final class SecretBackendCrlConfigArgs extends com.pulumi.resources.Resou
         return Optional.ofNullable(this.namespace);
     }
 
+    /**
+     * Disables the OCSP responder in Vault. **Vault 1.12+**
+     * 
+     */
+    @Import(name="ocspDisable")
+    private @Nullable Output<Boolean> ocspDisable;
+
+    /**
+     * @return Disables the OCSP responder in Vault. **Vault 1.12+**
+     * 
+     */
+    public Optional<Output<Boolean>> ocspDisable() {
+        return Optional.ofNullable(this.ocspDisable);
+    }
+
+    /**
+     * The amount of time an OCSP response can be cached for, useful for OCSP stapling
+     * refresh durations. **Vault 1.12+**
+     * 
+     */
+    @Import(name="ocspExpiry")
+    private @Nullable Output<String> ocspExpiry;
+
+    /**
+     * @return The amount of time an OCSP response can be cached for, useful for OCSP stapling
+     * refresh durations. **Vault 1.12+**
+     * 
+     */
+    public Optional<Output<String>> ocspExpiry() {
+        return Optional.ofNullable(this.ocspExpiry);
+    }
+
     private SecretBackendCrlConfigArgs() {}
 
     private SecretBackendCrlConfigArgs(SecretBackendCrlConfigArgs $) {
+        this.autoRebuild = $.autoRebuild;
+        this.autoRebuildGracePeriod = $.autoRebuildGracePeriod;
         this.backend = $.backend;
+        this.deltaRebuildInterval = $.deltaRebuildInterval;
         this.disable = $.disable;
+        this.enableDelta = $.enableDelta;
         this.expiry = $.expiry;
         this.namespace = $.namespace;
+        this.ocspDisable = $.ocspDisable;
+        this.ocspExpiry = $.ocspExpiry;
     }
 
     public static Builder builder() {
@@ -107,6 +207,48 @@ public final class SecretBackendCrlConfigArgs extends com.pulumi.resources.Resou
 
         public Builder(SecretBackendCrlConfigArgs defaults) {
             $ = new SecretBackendCrlConfigArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param autoRebuild Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
+         * 
+         * @return builder
+         * 
+         */
+        public Builder autoRebuild(@Nullable Output<Boolean> autoRebuild) {
+            $.autoRebuild = autoRebuild;
+            return this;
+        }
+
+        /**
+         * @param autoRebuild Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
+         * 
+         * @return builder
+         * 
+         */
+        public Builder autoRebuild(Boolean autoRebuild) {
+            return autoRebuild(Output.of(autoRebuild));
+        }
+
+        /**
+         * @param autoRebuildGracePeriod Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**
+         * 
+         * @return builder
+         * 
+         */
+        public Builder autoRebuildGracePeriod(@Nullable Output<String> autoRebuildGracePeriod) {
+            $.autoRebuildGracePeriod = autoRebuildGracePeriod;
+            return this;
+        }
+
+        /**
+         * @param autoRebuildGracePeriod Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**
+         * 
+         * @return builder
+         * 
+         */
+        public Builder autoRebuildGracePeriod(String autoRebuildGracePeriod) {
+            return autoRebuildGracePeriod(Output.of(autoRebuildGracePeriod));
         }
 
         /**
@@ -131,6 +273,27 @@ public final class SecretBackendCrlConfigArgs extends com.pulumi.resources.Resou
         }
 
         /**
+         * @param deltaRebuildInterval Interval to check for new revocations on, to regenerate the delta CRL.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deltaRebuildInterval(@Nullable Output<String> deltaRebuildInterval) {
+            $.deltaRebuildInterval = deltaRebuildInterval;
+            return this;
+        }
+
+        /**
+         * @param deltaRebuildInterval Interval to check for new revocations on, to regenerate the delta CRL.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deltaRebuildInterval(String deltaRebuildInterval) {
+            return deltaRebuildInterval(Output.of(deltaRebuildInterval));
+        }
+
+        /**
          * @param disable Disables or enables CRL building.
          * 
          * @return builder
@@ -149,6 +312,29 @@ public final class SecretBackendCrlConfigArgs extends com.pulumi.resources.Resou
          */
         public Builder disable(Boolean disable) {
             return disable(Output.of(disable));
+        }
+
+        /**
+         * @param enableDelta Enables building of delta CRLs with up-to-date revocation information,
+         * augmenting the last complete CRL.  **Vault 1.12+**
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enableDelta(@Nullable Output<Boolean> enableDelta) {
+            $.enableDelta = enableDelta;
+            return this;
+        }
+
+        /**
+         * @param enableDelta Enables building of delta CRLs with up-to-date revocation information,
+         * augmenting the last complete CRL.  **Vault 1.12+**
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enableDelta(Boolean enableDelta) {
+            return enableDelta(Output.of(enableDelta));
         }
 
         /**
@@ -197,6 +383,50 @@ public final class SecretBackendCrlConfigArgs extends com.pulumi.resources.Resou
          */
         public Builder namespace(String namespace) {
             return namespace(Output.of(namespace));
+        }
+
+        /**
+         * @param ocspDisable Disables the OCSP responder in Vault. **Vault 1.12+**
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ocspDisable(@Nullable Output<Boolean> ocspDisable) {
+            $.ocspDisable = ocspDisable;
+            return this;
+        }
+
+        /**
+         * @param ocspDisable Disables the OCSP responder in Vault. **Vault 1.12+**
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ocspDisable(Boolean ocspDisable) {
+            return ocspDisable(Output.of(ocspDisable));
+        }
+
+        /**
+         * @param ocspExpiry The amount of time an OCSP response can be cached for, useful for OCSP stapling
+         * refresh durations. **Vault 1.12+**
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ocspExpiry(@Nullable Output<String> ocspExpiry) {
+            $.ocspExpiry = ocspExpiry;
+            return this;
+        }
+
+        /**
+         * @param ocspExpiry The amount of time an OCSP response can be cached for, useful for OCSP stapling
+         * refresh durations. **Vault 1.12+**
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ocspExpiry(String ocspExpiry) {
+            return ocspExpiry(Output.of(ocspExpiry));
         }
 
         public SecretBackendCrlConfigArgs build() {

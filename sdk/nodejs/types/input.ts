@@ -334,7 +334,7 @@ export namespace database {
          */
         protocolVersion?: pulumi.Input<number>;
         /**
-         * Whether to use TLS when connecting to Cassandra.
+         * Whether to use TLS when connecting to Redis.
          */
         tls?: pulumi.Input<boolean>;
         /**
@@ -366,7 +366,7 @@ export namespace database {
          */
         password: pulumi.Input<string>;
         /**
-         * Whether to use TLS when connecting to Cassandra.
+         * Whether to use TLS when connecting to Redis.
          */
         tls?: pulumi.Input<boolean>;
         /**
@@ -493,7 +493,7 @@ export namespace database {
          */
         port?: pulumi.Input<number>;
         /**
-         * Whether to use TLS when connecting to Cassandra.
+         * Whether to use TLS when connecting to Redis.
          */
         tls?: pulumi.Input<boolean>;
         /**
@@ -832,6 +832,39 @@ export namespace database {
         usernameTemplate?: pulumi.Input<string>;
     }
 
+    export interface SecretBackendConnectionRedis {
+        /**
+         * The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+         */
+        caCert?: pulumi.Input<string>;
+        /**
+         * The host to connect to.
+         */
+        host: pulumi.Input<string>;
+        /**
+         * Whether to skip verification of the server
+         * certificate when using TLS.
+         */
+        insecureTls?: pulumi.Input<boolean>;
+        /**
+         * The root credential password used in the connection URL.
+         */
+        password: pulumi.Input<string>;
+        /**
+         * The default port to connect to if no port is specified as
+         * part of the host.
+         */
+        port?: pulumi.Input<number>;
+        /**
+         * Whether to use TLS when connecting to Redis.
+         */
+        tls?: pulumi.Input<boolean>;
+        /**
+         * The root credential username used in the connection URL.
+         */
+        username: pulumi.Input<string>;
+    }
+
     export interface SecretBackendConnectionRedisElasticache {
         /**
          * The root credential password used in the connection URL.
@@ -984,7 +1017,7 @@ export namespace database {
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Whether to use TLS when connecting to Cassandra.
+         * Whether to use TLS when connecting to Redis.
          */
         tls?: pulumi.Input<boolean>;
         /**
@@ -1039,7 +1072,7 @@ export namespace database {
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Whether to use TLS when connecting to Cassandra.
+         * Whether to use TLS when connecting to Redis.
          */
         tls?: pulumi.Input<boolean>;
         /**
@@ -1064,7 +1097,7 @@ export namespace database {
          */
         allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+         * The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
          */
         caCert?: pulumi.Input<string>;
         /**
@@ -1233,7 +1266,7 @@ export namespace database {
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Whether to use TLS when connecting to Cassandra.
+         * Whether to use TLS when connecting to Redis.
          */
         tls?: pulumi.Input<boolean>;
         /**
@@ -1775,6 +1808,62 @@ export namespace database {
         verifyConnection?: pulumi.Input<boolean>;
     }
 
+    export interface SecretsMountRedi {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
+         */
+        caCert?: pulumi.Input<string>;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: any}>;
+        /**
+         * The host to connect to.
+         */
+        host: pulumi.Input<string>;
+        /**
+         * Whether to skip verification of the server
+         * certificate when using TLS.
+         */
+        insecureTls?: pulumi.Input<boolean>;
+        name: pulumi.Input<string>;
+        /**
+         * The password to be used in the connection.
+         */
+        password: pulumi.Input<string>;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName?: pulumi.Input<string>;
+        /**
+         * The default port to connect to if no port is specified as
+         * part of the host.
+         */
+        port?: pulumi.Input<number>;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Whether to use TLS when connecting to Redis.
+         */
+        tls?: pulumi.Input<boolean>;
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username: pulumi.Input<string>;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: pulumi.Input<boolean>;
+    }
+
     export interface SecretsMountRedisElasticach {
         /**
          * A list of roles that are allowed to use this
@@ -2076,6 +2165,21 @@ export namespace jwt {
          * the mount. Valid values are "default-service", "default-batch", "service", "batch".
          */
         tokenType?: pulumi.Input<string>;
+    }
+}
+
+export namespace kv {
+    export interface SecretV2CustomMetadata {
+        casRequired?: pulumi.Input<boolean>;
+        /**
+         * A mapping whose keys are the top-level data keys returned from
+         * Vault and whose values are the corresponding values. This map can only
+         * represent string data, so any non-string values returned from Vault are
+         * serialized as JSON.
+         */
+        data?: pulumi.Input<{[key: string]: any}>;
+        deleteVersionAfter?: pulumi.Input<number>;
+        maxVersions?: pulumi.Input<number>;
     }
 }
 

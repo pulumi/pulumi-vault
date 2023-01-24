@@ -5,34 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const kvv2 = new vault.Mount("kvv2", {
- *     path: "kvv2",
- *     type: "kv",
- *     options: {
- *         version: "2",
- *     },
- *     description: "KV Version 2 secret engine mount",
- * });
- * const secret = new vault.kv.SecretV2("secret", {
- *     mount: kvv2.path,
- *     cas: 1,
- *     deleteAllVersions: true,
- *     dataJson: JSON.stringify({
- *         zip: "zap",
- *         foo: "bar",
- *     }),
- * });
- * const secretData = kvv2.path.apply(path => vault.kv.getSecretV2Output({
- *     mount: path,
- *     name: vault_kv_secret_v2.test.name,
- * }));
- * ```
  * ## Required Vault Capabilities
  *
  * Use of this resource requires the `read` capability on the given path.

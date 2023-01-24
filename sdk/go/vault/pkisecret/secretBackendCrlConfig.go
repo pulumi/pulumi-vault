@@ -55,10 +55,19 @@ import (
 type SecretBackendCrlConfig struct {
 	pulumi.CustomResourceState
 
+	// Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
+	AutoRebuild pulumi.BoolPtrOutput `pulumi:"autoRebuild"`
+	// Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**
+	AutoRebuildGracePeriod pulumi.StringOutput `pulumi:"autoRebuildGracePeriod"`
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 	Backend pulumi.StringOutput `pulumi:"backend"`
+	// Interval to check for new revocations on, to regenerate the delta CRL.
+	DeltaRebuildInterval pulumi.StringOutput `pulumi:"deltaRebuildInterval"`
 	// Disables or enables CRL building.
 	Disable pulumi.BoolPtrOutput `pulumi:"disable"`
+	// Enables building of delta CRLs with up-to-date revocation information,
+	// augmenting the last complete CRL.  **Vault 1.12+**
+	EnableDelta pulumi.BoolPtrOutput `pulumi:"enableDelta"`
 	// Specifies the time until expiration.
 	Expiry pulumi.StringPtrOutput `pulumi:"expiry"`
 	// The namespace to provision the resource in.
@@ -66,6 +75,11 @@ type SecretBackendCrlConfig struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
+	// Disables the OCSP responder in Vault. **Vault 1.12+**
+	OcspDisable pulumi.BoolPtrOutput `pulumi:"ocspDisable"`
+	// The amount of time an OCSP response can be cached for, useful for OCSP stapling
+	// refresh durations. **Vault 1.12+**
+	OcspExpiry pulumi.StringOutput `pulumi:"ocspExpiry"`
 }
 
 // NewSecretBackendCrlConfig registers a new resource with the given unique name, arguments, and options.
@@ -100,10 +114,19 @@ func GetSecretBackendCrlConfig(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SecretBackendCrlConfig resources.
 type secretBackendCrlConfigState struct {
+	// Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
+	AutoRebuild *bool `pulumi:"autoRebuild"`
+	// Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**
+	AutoRebuildGracePeriod *string `pulumi:"autoRebuildGracePeriod"`
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 	Backend *string `pulumi:"backend"`
+	// Interval to check for new revocations on, to regenerate the delta CRL.
+	DeltaRebuildInterval *string `pulumi:"deltaRebuildInterval"`
 	// Disables or enables CRL building.
 	Disable *bool `pulumi:"disable"`
+	// Enables building of delta CRLs with up-to-date revocation information,
+	// augmenting the last complete CRL.  **Vault 1.12+**
+	EnableDelta *bool `pulumi:"enableDelta"`
 	// Specifies the time until expiration.
 	Expiry *string `pulumi:"expiry"`
 	// The namespace to provision the resource in.
@@ -111,13 +134,27 @@ type secretBackendCrlConfigState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
+	// Disables the OCSP responder in Vault. **Vault 1.12+**
+	OcspDisable *bool `pulumi:"ocspDisable"`
+	// The amount of time an OCSP response can be cached for, useful for OCSP stapling
+	// refresh durations. **Vault 1.12+**
+	OcspExpiry *string `pulumi:"ocspExpiry"`
 }
 
 type SecretBackendCrlConfigState struct {
+	// Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
+	AutoRebuild pulumi.BoolPtrInput
+	// Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**
+	AutoRebuildGracePeriod pulumi.StringPtrInput
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 	Backend pulumi.StringPtrInput
+	// Interval to check for new revocations on, to regenerate the delta CRL.
+	DeltaRebuildInterval pulumi.StringPtrInput
 	// Disables or enables CRL building.
 	Disable pulumi.BoolPtrInput
+	// Enables building of delta CRLs with up-to-date revocation information,
+	// augmenting the last complete CRL.  **Vault 1.12+**
+	EnableDelta pulumi.BoolPtrInput
 	// Specifies the time until expiration.
 	Expiry pulumi.StringPtrInput
 	// The namespace to provision the resource in.
@@ -125,6 +162,11 @@ type SecretBackendCrlConfigState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
+	// Disables the OCSP responder in Vault. **Vault 1.12+**
+	OcspDisable pulumi.BoolPtrInput
+	// The amount of time an OCSP response can be cached for, useful for OCSP stapling
+	// refresh durations. **Vault 1.12+**
+	OcspExpiry pulumi.StringPtrInput
 }
 
 func (SecretBackendCrlConfigState) ElementType() reflect.Type {
@@ -132,10 +174,19 @@ func (SecretBackendCrlConfigState) ElementType() reflect.Type {
 }
 
 type secretBackendCrlConfigArgs struct {
+	// Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
+	AutoRebuild *bool `pulumi:"autoRebuild"`
+	// Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**
+	AutoRebuildGracePeriod *string `pulumi:"autoRebuildGracePeriod"`
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 	Backend string `pulumi:"backend"`
+	// Interval to check for new revocations on, to regenerate the delta CRL.
+	DeltaRebuildInterval *string `pulumi:"deltaRebuildInterval"`
 	// Disables or enables CRL building.
 	Disable *bool `pulumi:"disable"`
+	// Enables building of delta CRLs with up-to-date revocation information,
+	// augmenting the last complete CRL.  **Vault 1.12+**
+	EnableDelta *bool `pulumi:"enableDelta"`
 	// Specifies the time until expiration.
 	Expiry *string `pulumi:"expiry"`
 	// The namespace to provision the resource in.
@@ -143,14 +194,28 @@ type secretBackendCrlConfigArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
+	// Disables the OCSP responder in Vault. **Vault 1.12+**
+	OcspDisable *bool `pulumi:"ocspDisable"`
+	// The amount of time an OCSP response can be cached for, useful for OCSP stapling
+	// refresh durations. **Vault 1.12+**
+	OcspExpiry *string `pulumi:"ocspExpiry"`
 }
 
 // The set of arguments for constructing a SecretBackendCrlConfig resource.
 type SecretBackendCrlConfigArgs struct {
+	// Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
+	AutoRebuild pulumi.BoolPtrInput
+	// Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**
+	AutoRebuildGracePeriod pulumi.StringPtrInput
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 	Backend pulumi.StringInput
+	// Interval to check for new revocations on, to regenerate the delta CRL.
+	DeltaRebuildInterval pulumi.StringPtrInput
 	// Disables or enables CRL building.
 	Disable pulumi.BoolPtrInput
+	// Enables building of delta CRLs with up-to-date revocation information,
+	// augmenting the last complete CRL.  **Vault 1.12+**
+	EnableDelta pulumi.BoolPtrInput
 	// Specifies the time until expiration.
 	Expiry pulumi.StringPtrInput
 	// The namespace to provision the resource in.
@@ -158,6 +223,11 @@ type SecretBackendCrlConfigArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
+	// Disables the OCSP responder in Vault. **Vault 1.12+**
+	OcspDisable pulumi.BoolPtrInput
+	// The amount of time an OCSP response can be cached for, useful for OCSP stapling
+	// refresh durations. **Vault 1.12+**
+	OcspExpiry pulumi.StringPtrInput
 }
 
 func (SecretBackendCrlConfigArgs) ElementType() reflect.Type {
@@ -247,14 +317,35 @@ func (o SecretBackendCrlConfigOutput) ToSecretBackendCrlConfigOutputWithContext(
 	return o
 }
 
+// Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
+func (o SecretBackendCrlConfigOutput) AutoRebuild() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendCrlConfig) pulumi.BoolPtrOutput { return v.AutoRebuild }).(pulumi.BoolPtrOutput)
+}
+
+// Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**
+func (o SecretBackendCrlConfigOutput) AutoRebuildGracePeriod() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendCrlConfig) pulumi.StringOutput { return v.AutoRebuildGracePeriod }).(pulumi.StringOutput)
+}
+
 // The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 func (o SecretBackendCrlConfigOutput) Backend() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendCrlConfig) pulumi.StringOutput { return v.Backend }).(pulumi.StringOutput)
 }
 
+// Interval to check for new revocations on, to regenerate the delta CRL.
+func (o SecretBackendCrlConfigOutput) DeltaRebuildInterval() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendCrlConfig) pulumi.StringOutput { return v.DeltaRebuildInterval }).(pulumi.StringOutput)
+}
+
 // Disables or enables CRL building.
 func (o SecretBackendCrlConfigOutput) Disable() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendCrlConfig) pulumi.BoolPtrOutput { return v.Disable }).(pulumi.BoolPtrOutput)
+}
+
+// Enables building of delta CRLs with up-to-date revocation information,
+// augmenting the last complete CRL.  **Vault 1.12+**
+func (o SecretBackendCrlConfigOutput) EnableDelta() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendCrlConfig) pulumi.BoolPtrOutput { return v.EnableDelta }).(pulumi.BoolPtrOutput)
 }
 
 // Specifies the time until expiration.
@@ -268,6 +359,17 @@ func (o SecretBackendCrlConfigOutput) Expiry() pulumi.StringPtrOutput {
 // *Available only for Vault Enterprise*.
 func (o SecretBackendCrlConfigOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendCrlConfig) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+// Disables the OCSP responder in Vault. **Vault 1.12+**
+func (o SecretBackendCrlConfigOutput) OcspDisable() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendCrlConfig) pulumi.BoolPtrOutput { return v.OcspDisable }).(pulumi.BoolPtrOutput)
+}
+
+// The amount of time an OCSP response can be cached for, useful for OCSP stapling
+// refresh durations. **Vault 1.12+**
+func (o SecretBackendCrlConfigOutput) OcspExpiry() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendCrlConfig) pulumi.StringOutput { return v.OcspExpiry }).(pulumi.StringOutput)
 }
 
 type SecretBackendCrlConfigArrayOutput struct{ *pulumi.OutputState }

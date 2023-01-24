@@ -13,3 +13,5 @@ from .get_secrets_list_v2 import *
 from .secret import *
 from .secret_backend_v2 import *
 from .secret_v2 import *
+from ._inputs import *
+from . import outputs

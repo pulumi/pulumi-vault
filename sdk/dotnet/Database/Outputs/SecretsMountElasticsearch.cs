@@ -19,7 +19,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly ImmutableArray<string> AllowedRoles;
         /// <summary>
-        /// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+        /// The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
         /// </summary>
         public readonly string? CaCert;
         /// <summary>

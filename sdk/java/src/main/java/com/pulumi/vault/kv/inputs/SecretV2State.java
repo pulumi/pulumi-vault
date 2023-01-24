@@ -5,6 +5,7 @@ package com.pulumi.vault.kv.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.vault.kv.inputs.SecretV2CustomMetadataArgs;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Object;
@@ -38,6 +39,25 @@ public final class SecretV2State extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<Integer>> cas() {
         return Optional.ofNullable(this.cas);
+    }
+
+    /**
+     * A nested block that allows configuring metadata for the
+     * KV secret. Refer to the
+     * Configuration Options for more info.
+     * 
+     */
+    @Import(name="customMetadata")
+    private @Nullable Output<SecretV2CustomMetadataArgs> customMetadata;
+
+    /**
+     * @return A nested block that allows configuring metadata for the
+     * KV secret. Refer to the
+     * Configuration Options for more info.
+     * 
+     */
+    public Optional<Output<SecretV2CustomMetadataArgs>> customMetadata() {
+        return Optional.ofNullable(this.customMetadata);
     }
 
     /**
@@ -218,6 +238,7 @@ public final class SecretV2State extends com.pulumi.resources.ResourceArgs {
 
     private SecretV2State(SecretV2State $) {
         this.cas = $.cas;
+        this.customMetadata = $.customMetadata;
         this.data = $.data;
         this.dataJson = $.dataJson;
         this.deleteAllVersions = $.deleteAllVersions;
@@ -273,6 +294,31 @@ public final class SecretV2State extends com.pulumi.resources.ResourceArgs {
          */
         public Builder cas(Integer cas) {
             return cas(Output.of(cas));
+        }
+
+        /**
+         * @param customMetadata A nested block that allows configuring metadata for the
+         * KV secret. Refer to the
+         * Configuration Options for more info.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customMetadata(@Nullable Output<SecretV2CustomMetadataArgs> customMetadata) {
+            $.customMetadata = customMetadata;
+            return this;
+        }
+
+        /**
+         * @param customMetadata A nested block that allows configuring metadata for the
+         * KV secret. Refer to the
+         * Configuration Options for more info.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customMetadata(SecretV2CustomMetadataArgs customMetadata) {
+            return customMetadata(Output.of(customMetadata));
         }
 
         /**

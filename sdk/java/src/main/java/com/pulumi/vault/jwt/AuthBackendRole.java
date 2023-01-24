@@ -160,16 +160,18 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.backend);
     }
     /**
-     * (Required for roles of type `jwt`, optional for roles of
-     * type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+     * (For &#34;jwt&#34; roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
+     * or `token_bound_cidrs` is required. Optional for &#34;oidc&#34; roles.) List of `aud` claims to match against.
+     * Any match is sufficient.
      * 
      */
     @Export(name="boundAudiences", type=List.class, parameters={String.class})
     private Output</* @Nullable */ List<String>> boundAudiences;
 
     /**
-     * @return (Required for roles of type `jwt`, optional for roles of
-     * type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+     * @return (For &#34;jwt&#34; roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
+     * or `token_bound_cidrs` is required. Optional for &#34;oidc&#34; roles.) List of `aud` claims to match against.
+     * Any match is sufficient.
      * 
      */
     public Output<Optional<List<String>>> boundAudiences() {

@@ -182,6 +182,13 @@ public final class Config {
         return Codegen.booleanProp("skipChildToken").config(config).get();
     }
 /**
+ * Skip the dynamic fetching of the Vault server version.
+ * 
+ */
+    public Optional<Boolean> skipGetVaultVersion() {
+        return Codegen.booleanProp("skipGetVaultVersion").config(config).get();
+    }
+/**
  * Set this to true only if the target Vault server is an insecure development instance.
  * 
  */
@@ -208,5 +215,12 @@ public final class Config {
  */
     public Optional<String> tokenName() {
         return Codegen.stringProp("tokenName").config(config).get();
+    }
+/**
+ * Override the Vault server version, which is normally determined dynamically from the target Vault server
+ * 
+ */
+    public Optional<String> vaultVersionOverride() {
+        return Codegen.stringProp("vaultVersionOverride").config(config).get();
     }
 }

@@ -22,7 +22,7 @@ public final class SecretsMountElasticsearch {
      */
     private @Nullable List<String> allowedRoles;
     /**
-     * @return The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity.
+     * @return The contents of a PEM-encoded CA cert file to use to verify the Redis server&#39;s identity.
      * 
      */
     private @Nullable String caCert;
@@ -104,7 +104,7 @@ public final class SecretsMountElasticsearch {
         return this.allowedRoles == null ? List.of() : this.allowedRoles;
     }
     /**
-     * @return The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity.
+     * @return The contents of a PEM-encoded CA cert file to use to verify the Redis server&#39;s identity.
      * 
      */
     public Optional<String> caCert() {

@@ -126,6 +126,11 @@ func GetSkipChildToken(ctx *pulumi.Context) bool {
 	return config.GetBool(ctx, "vault:skipChildToken")
 }
 
+// Skip the dynamic fetching of the Vault server version.
+func GetSkipGetVaultVersion(ctx *pulumi.Context) bool {
+	return config.GetBool(ctx, "vault:skipGetVaultVersion")
+}
+
 // Set this to true only if the target Vault server is an insecure development instance.
 func GetSkipTlsVerify(ctx *pulumi.Context) bool {
 	v, err := config.TryBool(ctx, "vault:skipTlsVerify")
@@ -148,4 +153,9 @@ func GetToken(ctx *pulumi.Context) string {
 // Token name to use for creating the Vault child token.
 func GetTokenName(ctx *pulumi.Context) string {
 	return config.Get(ctx, "vault:tokenName")
+}
+
+// Override the Vault server version, which is normally determined dynamically from the target Vault server
+func GetVaultVersionOverride(ctx *pulumi.Context) string {
+	return config.Get(ctx, "vault:vaultVersionOverride")
 }

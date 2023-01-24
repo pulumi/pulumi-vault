@@ -56,6 +56,12 @@ namespace Pulumi.Vault
         public Output<string?> DeadServerLastContactThreshold { get; private set; } = null!;
 
         /// <summary>
+        /// Disables automatically upgrading Vault using autopilot. (Enterprise-only)
+        /// </summary>
+        [Output("disableUpgradeMigration")]
+        public Output<bool?> DisableUpgradeMigration { get; private set; } = null!;
+
+        /// <summary>
         /// Limit the amount of time a server can go 
         /// without leader contact before being considered unhealthy.
         /// </summary>
@@ -155,6 +161,12 @@ namespace Pulumi.Vault
         public Input<string>? DeadServerLastContactThreshold { get; set; }
 
         /// <summary>
+        /// Disables automatically upgrading Vault using autopilot. (Enterprise-only)
+        /// </summary>
+        [Input("disableUpgradeMigration")]
+        public Input<bool>? DisableUpgradeMigration { get; set; }
+
+        /// <summary>
         /// Limit the amount of time a server can go 
         /// without leader contact before being considered unhealthy.
         /// </summary>
@@ -214,6 +226,12 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("deadServerLastContactThreshold")]
         public Input<string>? DeadServerLastContactThreshold { get; set; }
+
+        /// <summary>
+        /// Disables automatically upgrading Vault using autopilot. (Enterprise-only)
+        /// </summary>
+        [Input("disableUpgradeMigration")]
+        public Input<bool>? DisableUpgradeMigration { get; set; }
 
         /// <summary>
         /// Limit the amount of time a server can go 

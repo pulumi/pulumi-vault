@@ -174,31 +174,6 @@ def get_secret_v2(mount: Optional[str] = None,
                   version: Optional[int] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretV2Result:
     """
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import json
-    import pulumi_vault as vault
-
-    kvv2 = vault.Mount("kvv2",
-        path="kvv2",
-        type="kv",
-        options={
-            "version": "2",
-        },
-        description="KV Version 2 secret engine mount")
-    secret = vault.kv.SecretV2("secret",
-        mount=kvv2.path,
-        cas=1,
-        delete_all_versions=True,
-        data_json=json.dumps({
-            "zip": "zap",
-            "foo": "bar",
-        }))
-    secret_data = kvv2.path.apply(lambda path: vault.kv.get_secret_v2_output(mount=path,
-        name=vault_kv_secret_v2["test"]["name"]))
-    ```
     ## Required Vault Capabilities
 
     Use of this resource requires the `read` capability on the given path.
@@ -245,31 +220,6 @@ def get_secret_v2_output(mount: Optional[pulumi.Input[str]] = None,
                          version: Optional[pulumi.Input[Optional[int]]] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSecretV2Result]:
     """
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import json
-    import pulumi_vault as vault
-
-    kvv2 = vault.Mount("kvv2",
-        path="kvv2",
-        type="kv",
-        options={
-            "version": "2",
-        },
-        description="KV Version 2 secret engine mount")
-    secret = vault.kv.SecretV2("secret",
-        mount=kvv2.path,
-        cas=1,
-        delete_all_versions=True,
-        data_json=json.dumps({
-            "zip": "zap",
-            "foo": "bar",
-        }))
-    secret_data = kvv2.path.apply(lambda path: vault.kv.get_secret_v2_output(mount=path,
-        name=vault_kv_secret_v2["test"]["name"]))
-    ```
     ## Required Vault Capabilities
 
     Use of this resource requires the `read` capability on the given path.

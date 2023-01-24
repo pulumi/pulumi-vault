@@ -87,7 +87,7 @@ export class Namespace extends pulumi.CustomResource {
     /**
      * The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
      */
-    public /*out*/ readonly pathFq!: pulumi.Output<string>;
+    public readonly pathFq!: pulumi.Output<string>;
 
     /**
      * Create a Namespace resource with the given unique name, arguments, and options.
@@ -113,8 +113,8 @@ export class Namespace extends pulumi.CustomResource {
             }
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["pathFq"] = args ? args.pathFq : undefined;
             resourceInputs["namespaceId"] = undefined /*out*/;
-            resourceInputs["pathFq"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Namespace.__pulumiType, name, resourceInputs, opts);
@@ -161,4 +161,8 @@ export interface NamespaceArgs {
      * The path of the namespace. Must not have a trailing `/`
      */
     path: pulumi.Input<string>;
+    /**
+     * The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+     */
+    pathFq?: pulumi.Input<string>;
 }
