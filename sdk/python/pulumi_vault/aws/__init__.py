@@ -7,6 +7,7 @@ import typing
 # Export this package's modules as members:
 from .auth_backend_cert import *
 from .auth_backend_client import *
+from .auth_backend_config_identity import *
 from .auth_backend_identity_whitelist import *
 from .auth_backend_login import *
 from .auth_backend_role import *

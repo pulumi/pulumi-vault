@@ -25,6 +25,14 @@ import * as utilities from "./utilities";
  *     serverStabilizationTime: "10s",
  * });
  * ```
+ *
+ * ## Import
+ *
+ * Raft Autopilot config can be imported using the ID, e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:index/raftAutopilot:RaftAutopilot autopilot sys/storage/raft/autopilot/configuration
+ * ```
  */
 export class RaftAutopilot extends pulumi.CustomResource {
     /**

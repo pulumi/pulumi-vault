@@ -36,6 +36,14 @@ namespace Pulumi.Vault
     /// 
     /// });
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Raft Autopilot config can be imported using the ID, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:index/raftAutopilot:RaftAutopilot autopilot sys/storage/raft/autopilot/configuration
+    /// ```
     /// </summary>
     [VaultResourceType("vault:index/raftAutopilot:RaftAutopilot")]
     public partial class RaftAutopilot : global::Pulumi.CustomResource

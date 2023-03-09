@@ -13,6 +13,10 @@ export { AuthBackendClientArgs, AuthBackendClientState } from "./authBackendClie
 export type AuthBackendClient = import("./authBackendClient").AuthBackendClient;
 export const AuthBackendClient: typeof import("./authBackendClient").AuthBackendClient = null as any;
 
+export { AuthBackendConfigIdentityArgs, AuthBackendConfigIdentityState } from "./authBackendConfigIdentity";
+export type AuthBackendConfigIdentity = import("./authBackendConfigIdentity").AuthBackendConfigIdentity;
+export const AuthBackendConfigIdentity: typeof import("./authBackendConfigIdentity").AuthBackendConfigIdentity = null as any;
+
 export { AuthBackendIdentityWhitelistArgs, AuthBackendIdentityWhitelistState } from "./authBackendIdentityWhitelist";
 export type AuthBackendIdentityWhitelist = import("./authBackendIdentityWhitelist").AuthBackendIdentityWhitelist;
 export const AuthBackendIdentityWhitelist: typeof import("./authBackendIdentityWhitelist").AuthBackendIdentityWhitelist = null as any;
@@ -51,6 +55,7 @@ export const SecretBackendRole: typeof import("./secretBackendRole").SecretBacke
 
 utilities.lazyLoad(exports, ["AuthBackendCert"], () => require("./authBackendCert"));
 utilities.lazyLoad(exports, ["AuthBackendClient"], () => require("./authBackendClient"));
+utilities.lazyLoad(exports, ["AuthBackendConfigIdentity"], () => require("./authBackendConfigIdentity"));
 utilities.lazyLoad(exports, ["AuthBackendIdentityWhitelist"], () => require("./authBackendIdentityWhitelist"));
 utilities.lazyLoad(exports, ["AuthBackendLogin"], () => require("./authBackendLogin"));
 utilities.lazyLoad(exports, ["AuthBackendRole"], () => require("./authBackendRole"));
@@ -69,6 +74,8 @@ const _module = {
                 return new AuthBackendCert(name, <any>undefined, { urn })
             case "vault:aws/authBackendClient:AuthBackendClient":
                 return new AuthBackendClient(name, <any>undefined, { urn })
+            case "vault:aws/authBackendConfigIdentity:AuthBackendConfigIdentity":
+                return new AuthBackendConfigIdentity(name, <any>undefined, { urn })
             case "vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist":
                 return new AuthBackendIdentityWhitelist(name, <any>undefined, { urn })
             case "vault:aws/authBackendLogin:AuthBackendLogin":
@@ -92,6 +99,7 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("vault", "aws/authBackendCert", _module)
 pulumi.runtime.registerResourceModule("vault", "aws/authBackendClient", _module)
+pulumi.runtime.registerResourceModule("vault", "aws/authBackendConfigIdentity", _module)
 pulumi.runtime.registerResourceModule("vault", "aws/authBackendIdentityWhitelist", _module)
 pulumi.runtime.registerResourceModule("vault", "aws/authBackendLogin", _module)
 pulumi.runtime.registerResourceModule("vault", "aws/authBackendRole", _module)

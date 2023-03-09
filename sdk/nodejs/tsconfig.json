@@ -29,6 +29,7 @@
         "authBackend.ts",
         "aws/authBackendCert.ts",
         "aws/authBackendClient.ts",
+        "aws/authBackendConfigIdentity.ts",
         "aws/authBackendIdentityWhitelist.ts",
         "aws/authBackendLogin.ts",
         "aws/authBackendRole.ts",

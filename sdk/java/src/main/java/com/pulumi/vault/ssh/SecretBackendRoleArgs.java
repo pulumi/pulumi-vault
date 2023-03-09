@@ -308,6 +308,21 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * If set, `default_users` can be specified using identity template values. A non-templated user is also permitted.
+     * 
+     */
+    @Import(name="defaultUserTemplate")
+    private @Nullable Output<Boolean> defaultUserTemplate;
+
+    /**
+     * @return If set, `default_users` can be specified using identity template values. A non-templated user is also permitted.
+     * 
+     */
+    public Optional<Output<Boolean>> defaultUserTemplate() {
+        return Optional.ofNullable(this.defaultUserTemplate);
+    }
+
+    /**
      * Specifies a custom format for the key id of a signed certificate.
      * 
      */
@@ -424,6 +439,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         this.defaultCriticalOptions = $.defaultCriticalOptions;
         this.defaultExtensions = $.defaultExtensions;
         this.defaultUser = $.defaultUser;
+        this.defaultUserTemplate = $.defaultUserTemplate;
         this.keyIdFormat = $.keyIdFormat;
         this.keyType = $.keyType;
         this.maxTtl = $.maxTtl;
@@ -854,6 +870,27 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder defaultUser(String defaultUser) {
             return defaultUser(Output.of(defaultUser));
+        }
+
+        /**
+         * @param defaultUserTemplate If set, `default_users` can be specified using identity template values. A non-templated user is also permitted.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder defaultUserTemplate(@Nullable Output<Boolean> defaultUserTemplate) {
+            $.defaultUserTemplate = defaultUserTemplate;
+            return this;
+        }
+
+        /**
+         * @param defaultUserTemplate If set, `default_users` can be specified using identity template values. A non-templated user is also permitted.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder defaultUserTemplate(Boolean defaultUserTemplate) {
+            return defaultUserTemplate(Output.of(defaultUserTemplate));
         }
 
         /**

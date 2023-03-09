@@ -57,6 +57,14 @@ import javax.annotation.Nullable;
  * }
  * ```
  * 
+ * ## Import
+ * 
+ * Raft Autopilot config can be imported using the ID, e.g.
+ * 
+ * ```sh
+ *  $ pulumi import vault:index/raftAutopilot:RaftAutopilot autopilot sys/storage/raft/autopilot/configuration
+ * ```
+ * 
  */
 @ResourceType(type="vault:index/raftAutopilot:RaftAutopilot")
 public class RaftAutopilot extends com.pulumi.resources.CustomResource {

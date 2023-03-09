@@ -362,6 +362,14 @@ class RaftAutopilot(pulumi.CustomResource):
             server_stabilization_time="10s")
         ```
 
+        ## Import
+
+        Raft Autopilot config can be imported using the ID, e.g.
+
+        ```sh
+         $ pulumi import vault:index/raftAutopilot:RaftAutopilot autopilot sys/storage/raft/autopilot/configuration
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] cleanup_dead_servers: Specifies whether to remove dead server nodes
@@ -409,6 +417,14 @@ class RaftAutopilot(pulumi.CustomResource):
             max_trailing_logs=1000,
             min_quorum=3,
             server_stabilization_time="10s")
+        ```
+
+        ## Import
+
+        Raft Autopilot config can be imported using the ID, e.g.
+
+        ```sh
+         $ pulumi import vault:index/raftAutopilot:RaftAutopilot autopilot sys/storage/raft/autopilot/configuration
         ```
 
         :param str resource_name: The name of the resource.
