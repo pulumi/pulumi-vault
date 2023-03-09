@@ -24,11 +24,13 @@ import (
 	"github.com/hashicorp/terraform-provider-vault/schema"
 	"github.com/hashicorp/terraform-provider-vault/vault"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/x"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi-vault/provider/v5/pkg/version"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
 )
 
 // all of the token components used below.
@@ -561,6 +563,52 @@ func Provider() tfbridge.ProviderInfo {
 		},
 	}
 
+	// The set of modules that x.TokensKnownModules is aware of.
+	mappedMods := map[string]string{
+		"approle":        appRoleMod,
+		"ad":             adMod,
+		"alicloud":       aliCloudMod,
+		"aws":            awsMod,
+		"azure":          azureMod,
+		"consul":         consulMod,
+		"database":       databaseMod,
+		"gcp":            gcpMod,
+		"generic":        genericMod,
+		"github":         githubMod,
+		"identity":       identityMod,
+		"jwt":            jwtMod,
+		"kmip":           kmipMod,
+		"kubernetes":     kubernetesMod,
+		"kv":             kvMod,
+		"ldap":           ldapMod,
+		"managed":        managedMod,
+		"okta":           oktaMod,
+		"pkisecret":      pkiSecretMod,
+		"rabbitmq":       rabbitMqMod,
+		"ssh":            sshMod,
+		"terraformcloud": terraformCloudMod,
+		"token":          tokenMod,
+		"transform":      transformMod,
+		"transit":        transitMod,
+	}
+
+	mappedModKeys := make([]string, 0, len(mappedMods))
+	for k := range mappedMods {
+		mappedModKeys = append(mappedModKeys, k)
+	}
+
+	moduleNameMap := make(map[string]string, len(mappedMods))
+	for _, v := range mappedMods {
+		moduleNameMap[strings.ToLower(v)] = v
+	}
+
+	err := x.ComputeDefaults(&prov, x.TokensKnownModules("vault_", "", mappedModKeys,
+		func(mod, name string) (string, error) {
+			m, ok := moduleNameMap[strings.ToLower(mod)]
+			contract.Assertf(ok, "all mods must be mapped: '%s'", strings.ToLower(mod))
+			return makeResource(m, name).String(), nil
+		}))
+	contract.AssertNoError(err)
 	prov.SetAutonaming(255, "-")
 
 	return prov
