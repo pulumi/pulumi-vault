@@ -221,6 +221,7 @@ func Provider() tfbridge.ProviderInfo {
 			// AWS
 			"vault_aws_auth_backend_cert":               {Tok: makeResource(awsMod, "AuthBackendCert")},
 			"vault_aws_auth_backend_client":             {Tok: makeResource(awsMod, "AuthBackendClient")},
+			"vault_aws_auth_backend_config_identity":    {Tok: makeResource(awsMod, "AuthBackendConfigIdentity")},
 			"vault_aws_auth_backend_identity_whitelist": {Tok: makeResource(awsMod, "AuthBackendIdentityWhitelist")},
 			"vault_aws_auth_backend_login":              {Tok: makeResource(awsMod, "AuthBackendLogin")},
 			"vault_aws_auth_backend_role":               {Tok: makeResource(awsMod, "AuthBackendRole")},
