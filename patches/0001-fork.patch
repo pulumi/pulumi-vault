@@ -1,0 +1,40 @@
+diff --git b/vault/resource_okta_auth_backend_user.go a/vault/resource_okta_auth_backend_user.go
+index 93b769d4..a0e68521 100644
+--- b/vault/resource_okta_auth_backend_user.go
++++ a/vault/resource_okta_auth_backend_user.go
+@@ -21,6 +21,19 @@ func oktaAuthBackendUserResource() *schema.Resource {
+ 		Read:   ReadWrapper(oktaAuthBackendUserRead),
+ 		Update: oktaAuthBackendUserWrite,
+ 		Delete: oktaAuthBackendUserDelete,
++		Importer: &schema.ResourceImporter{
++			State: func(d *schema.ResourceData, meta interface{}) ([]*schema.ResourceData, error) {
++				// An ID is based on the path/user so we need to break this into it's component parts
++				idParts := strings.Split(d.Id(), "/")
++				if len(idParts) != 2 {
++					return nil, fmt.Errorf("unable to parse the resource ID for okta_auth_backend_user: " +
++						"expected `path/user` format but got %q", d.Id())
++				}
++				d.Set("path", idParts[0])
++				d.Set("username", idParts[1])
++				return []*schema.ResourceData{d}, nil
++			},
++		},
+ 
+ 		Schema: map[string]*schema.Schema{
+ 			"path": {
+diff --git b/website/docs/r/okta_auth_backend_user.html.md a/website/docs/r/okta_auth_backend_user.html.md
+index f5f8e974..58843764 100644
+--- b/website/docs/r/okta_auth_backend_user.html.md
++++ a/website/docs/r/okta_auth_backend_user.html.md
+@@ -46,3 +46,11 @@ The following arguments are supported:
+ ## Attributes Reference
+ 
+ No additional attributes are exposed by this resource.
++
++## Import
++
++Okta authentication backend users can be imported using its `path/user` ID format, e.g.
++
++```
++$ terraform import vault_okta_auth_backend_user.example okta/foo
++```
