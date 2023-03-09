@@ -25,6 +25,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AuthBackendCert{}
 	case "vault:aws/authBackendClient:AuthBackendClient":
 		r = &AuthBackendClient{}
+	case "vault:aws/authBackendConfigIdentity:AuthBackendConfigIdentity":
+		r = &AuthBackendConfigIdentity{}
 	case "vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist":
 		r = &AuthBackendIdentityWhitelist{}
 	case "vault:aws/authBackendLogin:AuthBackendLogin":
@@ -62,6 +64,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"vault",
 		"aws/authBackendClient",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"aws/authBackendConfigIdentity",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

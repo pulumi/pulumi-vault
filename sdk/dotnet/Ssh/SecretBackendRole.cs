@@ -170,6 +170,12 @@ namespace Pulumi.Vault.Ssh
         public Output<string?> DefaultUser { get; private set; } = null!;
 
         /// <summary>
+        /// If set, `default_users` can be specified using identity template values. A non-templated user is also permitted.
+        /// </summary>
+        [Output("defaultUserTemplate")]
+        public Output<bool?> DefaultUserTemplate { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies a custom format for the key id of a signed certificate.
         /// </summary>
         [Output("keyIdFormat")]
@@ -392,6 +398,12 @@ namespace Pulumi.Vault.Ssh
         public Input<string>? DefaultUser { get; set; }
 
         /// <summary>
+        /// If set, `default_users` can be specified using identity template values. A non-templated user is also permitted.
+        /// </summary>
+        [Input("defaultUserTemplate")]
+        public Input<bool>? DefaultUserTemplate { get; set; }
+
+        /// <summary>
         /// Specifies a custom format for the key id of a signed certificate.
         /// </summary>
         [Input("keyIdFormat")]
@@ -574,6 +586,12 @@ namespace Pulumi.Vault.Ssh
         /// </summary>
         [Input("defaultUser")]
         public Input<string>? DefaultUser { get; set; }
+
+        /// <summary>
+        /// If set, `default_users` can be specified using identity template values. A non-templated user is also permitted.
+        /// </summary>
+        [Input("defaultUserTemplate")]
+        public Input<bool>? DefaultUserTemplate { get; set; }
 
         /// <summary>
         /// Specifies a custom format for the key id of a signed certificate.

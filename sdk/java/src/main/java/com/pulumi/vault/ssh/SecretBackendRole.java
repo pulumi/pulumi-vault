@@ -346,6 +346,20 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.defaultUser);
     }
     /**
+     * If set, `default_users` can be specified using identity template values. A non-templated user is also permitted.
+     * 
+     */
+    @Export(name="defaultUserTemplate", type=Boolean.class, parameters={})
+    private Output</* @Nullable */ Boolean> defaultUserTemplate;
+
+    /**
+     * @return If set, `default_users` can be specified using identity template values. A non-templated user is also permitted.
+     * 
+     */
+    public Output<Optional<Boolean>> defaultUserTemplate() {
+        return Codegen.optional(this.defaultUserTemplate);
+    }
+    /**
      * Specifies a custom format for the key id of a signed certificate.
      * 
      */

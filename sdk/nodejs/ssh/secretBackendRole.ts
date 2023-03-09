@@ -146,6 +146,10 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly defaultUser!: pulumi.Output<string | undefined>;
     /**
+     * If set, `defaultUsers` can be specified using identity template values. A non-templated user is also permitted.
+     */
+    public readonly defaultUserTemplate!: pulumi.Output<boolean | undefined>;
+    /**
      * Specifies a custom format for the key id of a signed certificate.
      */
     public readonly keyIdFormat!: pulumi.Output<string | undefined>;
@@ -204,6 +208,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["defaultCriticalOptions"] = state ? state.defaultCriticalOptions : undefined;
             resourceInputs["defaultExtensions"] = state ? state.defaultExtensions : undefined;
             resourceInputs["defaultUser"] = state ? state.defaultUser : undefined;
+            resourceInputs["defaultUserTemplate"] = state ? state.defaultUserTemplate : undefined;
             resourceInputs["keyIdFormat"] = state ? state.keyIdFormat : undefined;
             resourceInputs["keyType"] = state ? state.keyType : undefined;
             resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
@@ -236,6 +241,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["defaultCriticalOptions"] = args ? args.defaultCriticalOptions : undefined;
             resourceInputs["defaultExtensions"] = args ? args.defaultExtensions : undefined;
             resourceInputs["defaultUser"] = args ? args.defaultUser : undefined;
+            resourceInputs["defaultUserTemplate"] = args ? args.defaultUserTemplate : undefined;
             resourceInputs["keyIdFormat"] = args ? args.keyIdFormat : undefined;
             resourceInputs["keyType"] = args ? args.keyType : undefined;
             resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
@@ -330,6 +336,10 @@ export interface SecretBackendRoleState {
      * Specifies the default username for which a credential will be generated.
      */
     defaultUser?: pulumi.Input<string>;
+    /**
+     * If set, `defaultUsers` can be specified using identity template values. A non-templated user is also permitted.
+     */
+    defaultUserTemplate?: pulumi.Input<boolean>;
     /**
      * Specifies a custom format for the key id of a signed certificate.
      */
@@ -441,6 +451,10 @@ export interface SecretBackendRoleArgs {
      * Specifies the default username for which a credential will be generated.
      */
     defaultUser?: pulumi.Input<string>;
+    /**
+     * If set, `defaultUsers` can be specified using identity template values. A non-templated user is also permitted.
+     */
+    defaultUserTemplate?: pulumi.Input<boolean>;
     /**
      * Specifies a custom format for the key id of a signed certificate.
      */

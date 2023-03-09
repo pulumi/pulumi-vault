@@ -191,6 +191,14 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "aws/authBackendConfigIdentity",
+  "fqn": "pulumi_vault.aws",
+  "classes": {
+   "vault:aws/authBackendConfigIdentity:AuthBackendConfigIdentity": "AuthBackendConfigIdentity"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "aws/authBackendIdentityWhitelist",
   "fqn": "pulumi_vault.aws",
   "classes": {

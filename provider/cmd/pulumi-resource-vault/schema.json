@@ -8933,6 +8933,99 @@
                 "type": "object"
             }
         },
+        "vault:aws/authBackendConfigIdentity:AuthBackendConfigIdentity": {
+            "description": "Manages an AWS auth backend identity configuration in a Vault server. This configuration defines how Vault interacts\nwith the identity store. See the [Vault documentation](https://www.vaultproject.io/docs/auth/aws.html) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst aws = new vault.AuthBackend(\"aws\", {type: \"aws\"});\nconst example = new vault.aws.AuthBackendConfigIdentity(\"example\", {\n    backend: aws.path,\n    iamAlias: \"full_arn\",\n    iamMetadatas: [\n        \"canonical_arn\",\n        \"account_id\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\naws = vault.AuthBackend(\"aws\", type=\"aws\")\nexample = vault.aws.AuthBackendConfigIdentity(\"example\",\n    backend=aws.path,\n    iam_alias=\"full_arn\",\n    iam_metadatas=[\n        \"canonical_arn\",\n        \"account_id\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var aws = new Vault.AuthBackend(\"aws\", new()\n    {\n        Type = \"aws\",\n    });\n\n    var example = new Vault.Aws.AuthBackendConfigIdentity(\"example\", new()\n    {\n        Backend = aws.Path,\n        IamAlias = \"full_arn\",\n        IamMetadatas = new[]\n        {\n            \"canonical_arn\",\n            \"account_id\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/aws\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\taws, err := vault.NewAuthBackend(ctx, \"aws\", \u0026vault.AuthBackendArgs{\n\t\t\tType: pulumi.String(\"aws\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = aws.NewAuthBackendConfigIdentity(ctx, \"example\", \u0026aws.AuthBackendConfigIdentityArgs{\n\t\t\tBackend:  aws.Path,\n\t\t\tIamAlias: pulumi.String(\"full_arn\"),\n\t\t\tIamMetadatas: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"canonical_arn\"),\n\t\t\t\tpulumi.String(\"account_id\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.AuthBackend;\nimport com.pulumi.vault.AuthBackendArgs;\nimport com.pulumi.vault.aws.AuthBackendConfigIdentity;\nimport com.pulumi.vault.aws.AuthBackendConfigIdentityArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var aws = new AuthBackend(\"aws\", AuthBackendArgs.builder()        \n            .type(\"aws\")\n            .build());\n\n        var example = new AuthBackendConfigIdentity(\"example\", AuthBackendConfigIdentityArgs.builder()        \n            .backend(aws.path())\n            .iamAlias(\"full_arn\")\n            .iamMetadatas(            \n                \"canonical_arn\",\n                \"account_id\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  aws:\n    type: vault:AuthBackend\n    properties:\n      type: aws\n  example:\n    type: vault:aws:AuthBackendConfigIdentity\n    properties:\n      backend: ${aws.path}\n      iamAlias: full_arn\n      iamMetadatas:\n        - canonical_arn\n        - account_id\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nAWS auth backend identity config can be imported using `auth/`, the `backend` path, and `/config/identity` e.g.\n\n```sh\n $ pulumi import vault:aws/authBackendConfigIdentity:AuthBackendConfigIdentity example auth/aws/config/identity\n```\n\n ",
+            "properties": {
+                "backend": {
+                    "type": "string",
+                    "description": "Unique name of the auth backend to configure.\n"
+                },
+                "ec2Alias": {
+                    "type": "string",
+                    "description": "How to generate the identity alias when using the ec2 auth method. Valid choices are\n`role_id`, `instance_id`, and `image_id`. Defaults to `role_id`\n"
+                },
+                "ec2Metadatas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to include on the token returned by the `login` endpoint. This metadata will be\nadded to both audit logs, and on the `ec2_alias`\n"
+                },
+                "iamAlias": {
+                    "type": "string",
+                    "description": "How to generate the identity alias when using the iam auth method. Valid choices are\n`role_id`, `unique_id`, and `full_arn`. Defaults to `role_id`\n"
+                },
+                "iamMetadatas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to include on the token returned by the `login` endpoint. This metadata will be\nadded to both audit logs, and on the `iam_alias`\n"
+                }
+            },
+            "inputProperties": {
+                "backend": {
+                    "type": "string",
+                    "description": "Unique name of the auth backend to configure.\n",
+                    "willReplaceOnChanges": true
+                },
+                "ec2Alias": {
+                    "type": "string",
+                    "description": "How to generate the identity alias when using the ec2 auth method. Valid choices are\n`role_id`, `instance_id`, and `image_id`. Defaults to `role_id`\n"
+                },
+                "ec2Metadatas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to include on the token returned by the `login` endpoint. This metadata will be\nadded to both audit logs, and on the `ec2_alias`\n"
+                },
+                "iamAlias": {
+                    "type": "string",
+                    "description": "How to generate the identity alias when using the iam auth method. Valid choices are\n`role_id`, `unique_id`, and `full_arn`. Defaults to `role_id`\n"
+                },
+                "iamMetadatas": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to include on the token returned by the `login` endpoint. This metadata will be\nadded to both audit logs, and on the `iam_alias`\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering AuthBackendConfigIdentity resources.\n",
+                "properties": {
+                    "backend": {
+                        "type": "string",
+                        "description": "Unique name of the auth backend to configure.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "ec2Alias": {
+                        "type": "string",
+                        "description": "How to generate the identity alias when using the ec2 auth method. Valid choices are\n`role_id`, `instance_id`, and `image_id`. Defaults to `role_id`\n"
+                    },
+                    "ec2Metadatas": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The metadata to include on the token returned by the `login` endpoint. This metadata will be\nadded to both audit logs, and on the `ec2_alias`\n"
+                    },
+                    "iamAlias": {
+                        "type": "string",
+                        "description": "How to generate the identity alias when using the iam auth method. Valid choices are\n`role_id`, `unique_id`, and `full_arn`. Defaults to `role_id`\n"
+                    },
+                    "iamMetadatas": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The metadata to include on the token returned by the `login` endpoint. This metadata will be\nadded to both audit logs, and on the `iam_alias`\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist": {
             "description": "Configures the periodic tidying operation of the whitelisted identity entries.\n\nFor more information, see the\n[Vault docs](https://www.vaultproject.io/api-docs/auth/aws#configure-identity-whitelist-tidy-operation).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst exampleAuthBackend = new vault.AuthBackend(\"exampleAuthBackend\", {type: \"aws\"});\nconst exampleAuthBackendIdentityWhitelist = new vault.aws.AuthBackendIdentityWhitelist(\"exampleAuthBackendIdentityWhitelist\", {\n    backend: exampleAuthBackend.path,\n    safetyBuffer: 3600,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample_auth_backend = vault.AuthBackend(\"exampleAuthBackend\", type=\"aws\")\nexample_auth_backend_identity_whitelist = vault.aws.AuthBackendIdentityWhitelist(\"exampleAuthBackendIdentityWhitelist\",\n    backend=example_auth_backend.path,\n    safety_buffer=3600)\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleAuthBackend = new Vault.AuthBackend(\"exampleAuthBackend\", new()\n    {\n        Type = \"aws\",\n    });\n\n    var exampleAuthBackendIdentityWhitelist = new Vault.Aws.AuthBackendIdentityWhitelist(\"exampleAuthBackendIdentityWhitelist\", new()\n    {\n        Backend = exampleAuthBackend.Path,\n        SafetyBuffer = 3600,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/aws\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleAuthBackend, err := vault.NewAuthBackend(ctx, \"exampleAuthBackend\", \u0026vault.AuthBackendArgs{\n\t\t\tType: pulumi.String(\"aws\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = aws.NewAuthBackendIdentityWhitelist(ctx, \"exampleAuthBackendIdentityWhitelist\", \u0026aws.AuthBackendIdentityWhitelistArgs{\n\t\t\tBackend:      exampleAuthBackend.Path,\n\t\t\tSafetyBuffer: pulumi.Int(3600),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.AuthBackend;\nimport com.pulumi.vault.AuthBackendArgs;\nimport com.pulumi.vault.aws.AuthBackendIdentityWhitelist;\nimport com.pulumi.vault.aws.AuthBackendIdentityWhitelistArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleAuthBackend = new AuthBackend(\"exampleAuthBackend\", AuthBackendArgs.builder()        \n            .type(\"aws\")\n            .build());\n\n        var exampleAuthBackendIdentityWhitelist = new AuthBackendIdentityWhitelist(\"exampleAuthBackendIdentityWhitelist\", AuthBackendIdentityWhitelistArgs.builder()        \n            .backend(exampleAuthBackend.path())\n            .safetyBuffer(3600)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleAuthBackend:\n    type: vault:AuthBackend\n    properties:\n      type: aws\n  exampleAuthBackendIdentityWhitelist:\n    type: vault:aws:AuthBackendIdentityWhitelist\n    properties:\n      backend: ${exampleAuthBackend.path}\n      safetyBuffer: 3600\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nAWS auth backend identity whitelists can be imported using `auth/`, the `backend` path, and `/config/tidy/identity-whitelist` e.g.\n\n```sh\n $ pulumi import vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist example auth/aws/config/tidy/identity-whitelist\n```\n\n ",
             "properties": {
@@ -19170,7 +19263,7 @@
             }
         },
         "vault:index/raftAutopilot:RaftAutopilot": {
-            "description": "Autopilot enables automated workflows for managing Raft clusters. The \ncurrent feature set includes 3 main features: Server Stabilization, Dead \nServer Cleanup and State API. **These three features are introduced in \nVault 1.7.**\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst autopilot = new vault.RaftAutopilot(\"autopilot\", {\n    cleanupDeadServers: true,\n    deadServerLastContactThreshold: \"24h0m0s\",\n    lastContactThreshold: \"10s\",\n    maxTrailingLogs: 1000,\n    minQuorum: 3,\n    serverStabilizationTime: \"10s\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nautopilot = vault.RaftAutopilot(\"autopilot\",\n    cleanup_dead_servers=True,\n    dead_server_last_contact_threshold=\"24h0m0s\",\n    last_contact_threshold=\"10s\",\n    max_trailing_logs=1000,\n    min_quorum=3,\n    server_stabilization_time=\"10s\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var autopilot = new Vault.RaftAutopilot(\"autopilot\", new()\n    {\n        CleanupDeadServers = true,\n        DeadServerLastContactThreshold = \"24h0m0s\",\n        LastContactThreshold = \"10s\",\n        MaxTrailingLogs = 1000,\n        MinQuorum = 3,\n        ServerStabilizationTime = \"10s\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewRaftAutopilot(ctx, \"autopilot\", \u0026vault.RaftAutopilotArgs{\n\t\t\tCleanupDeadServers:             pulumi.Bool(true),\n\t\t\tDeadServerLastContactThreshold: pulumi.String(\"24h0m0s\"),\n\t\t\tLastContactThreshold:           pulumi.String(\"10s\"),\n\t\t\tMaxTrailingLogs:                pulumi.Int(1000),\n\t\t\tMinQuorum:                      pulumi.Int(3),\n\t\t\tServerStabilizationTime:        pulumi.String(\"10s\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.RaftAutopilot;\nimport com.pulumi.vault.RaftAutopilotArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var autopilot = new RaftAutopilot(\"autopilot\", RaftAutopilotArgs.builder()        \n            .cleanupDeadServers(true)\n            .deadServerLastContactThreshold(\"24h0m0s\")\n            .lastContactThreshold(\"10s\")\n            .maxTrailingLogs(1000)\n            .minQuorum(3)\n            .serverStabilizationTime(\"10s\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  autopilot:\n    type: vault:RaftAutopilot\n    properties:\n      cleanupDeadServers: true\n      deadServerLastContactThreshold: 24h0m0s\n      lastContactThreshold: 10s\n      maxTrailingLogs: 1000\n      minQuorum: 3\n      serverStabilizationTime: 10s\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Autopilot enables automated workflows for managing Raft clusters. The \ncurrent feature set includes 3 main features: Server Stabilization, Dead \nServer Cleanup and State API. **These three features are introduced in \nVault 1.7.**\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst autopilot = new vault.RaftAutopilot(\"autopilot\", {\n    cleanupDeadServers: true,\n    deadServerLastContactThreshold: \"24h0m0s\",\n    lastContactThreshold: \"10s\",\n    maxTrailingLogs: 1000,\n    minQuorum: 3,\n    serverStabilizationTime: \"10s\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nautopilot = vault.RaftAutopilot(\"autopilot\",\n    cleanup_dead_servers=True,\n    dead_server_last_contact_threshold=\"24h0m0s\",\n    last_contact_threshold=\"10s\",\n    max_trailing_logs=1000,\n    min_quorum=3,\n    server_stabilization_time=\"10s\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var autopilot = new Vault.RaftAutopilot(\"autopilot\", new()\n    {\n        CleanupDeadServers = true,\n        DeadServerLastContactThreshold = \"24h0m0s\",\n        LastContactThreshold = \"10s\",\n        MaxTrailingLogs = 1000,\n        MinQuorum = 3,\n        ServerStabilizationTime = \"10s\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewRaftAutopilot(ctx, \"autopilot\", \u0026vault.RaftAutopilotArgs{\n\t\t\tCleanupDeadServers:             pulumi.Bool(true),\n\t\t\tDeadServerLastContactThreshold: pulumi.String(\"24h0m0s\"),\n\t\t\tLastContactThreshold:           pulumi.String(\"10s\"),\n\t\t\tMaxTrailingLogs:                pulumi.Int(1000),\n\t\t\tMinQuorum:                      pulumi.Int(3),\n\t\t\tServerStabilizationTime:        pulumi.String(\"10s\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.RaftAutopilot;\nimport com.pulumi.vault.RaftAutopilotArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var autopilot = new RaftAutopilot(\"autopilot\", RaftAutopilotArgs.builder()        \n            .cleanupDeadServers(true)\n            .deadServerLastContactThreshold(\"24h0m0s\")\n            .lastContactThreshold(\"10s\")\n            .maxTrailingLogs(1000)\n            .minQuorum(3)\n            .serverStabilizationTime(\"10s\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  autopilot:\n    type: vault:RaftAutopilot\n    properties:\n      cleanupDeadServers: true\n      deadServerLastContactThreshold: 24h0m0s\n      lastContactThreshold: 10s\n      maxTrailingLogs: 1000\n      minQuorum: 3\n      serverStabilizationTime: 10s\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nRaft Autopilot config can be imported using the ID, e.g.\n\n```sh\n $ pulumi import vault:index/raftAutopilot:RaftAutopilot autopilot sys/storage/raft/autopilot/configuration\n```\n\n ",
             "properties": {
                 "cleanupDeadServers": {
                     "type": "boolean",
@@ -27203,6 +27296,10 @@
                     "type": "string",
                     "description": "Specifies the default username for which a credential will be generated.\n"
                 },
+                "defaultUserTemplate": {
+                    "type": "boolean",
+                    "description": "If set, `default_users` can be specified using identity template values. A non-templated user is also permitted.\n"
+                },
                 "keyIdFormat": {
                     "type": "string",
                     "description": "Specifies a custom format for the key id of a signed certificate.\n"
@@ -27323,6 +27420,10 @@
                     "type": "string",
                     "description": "Specifies the default username for which a credential will be generated.\n"
                 },
+                "defaultUserTemplate": {
+                    "type": "boolean",
+                    "description": "If set, `default_users` can be specified using identity template values. A non-templated user is also permitted.\n"
+                },
                 "keyIdFormat": {
                     "type": "string",
                     "description": "Specifies a custom format for the key id of a signed certificate.\n"
@@ -27442,6 +27543,10 @@
                     "defaultUser": {
                         "type": "string",
                         "description": "Specifies the default username for which a credential will be generated.\n"
+                    },
+                    "defaultUserTemplate": {
+                        "type": "boolean",
+                        "description": "If set, `default_users` can be specified using identity template values. A non-templated user is also permitted.\n"
                     },
                     "keyIdFormat": {
                         "type": "string",
@@ -28915,7 +29020,8 @@
                     },
                     "currentPassword": {
                         "type": "string",
-                        "description": "The current set password on the Active Directory service account.\n"
+                        "description": "The current set password on the Active Directory service account.\n",
+                        "secret": true
                     },
                     "id": {
                         "type": "string",
@@ -28923,7 +29029,8 @@
                     },
                     "lastPassword": {
                         "type": "string",
-                        "description": "The current set password on the Active Directory service account, provided because AD is eventually consistent.\n"
+                        "description": "The current set password on the Active Directory service account, provided because AD is eventually consistent.\n",
+                        "secret": true
                     },
                     "namespace": {
                         "type": "string"
@@ -29090,7 +29197,8 @@
                     },
                     "securityToken": {
                         "type": "string",
-                        "description": "The STS token returned by Vault, if any.\n"
+                        "description": "The STS token returned by Vault, if any.\n",
+                        "secret": true
                     },
                     "ttl": {
                         "type": "string"
@@ -29179,7 +29287,8 @@
                     },
                     "clientSecret": {
                         "type": "string",
-                        "description": "The client secret for credentials to query the Azure APIs.\n"
+                        "description": "The client secret for credentials to query the Azure APIs.\n",
+                        "secret": true
                     },
                     "environment": {
                         "type": "string"
@@ -30199,7 +30308,8 @@
                     },
                     "secretId": {
                         "type": "string",
-                        "description": "The token to be used when making requests to Nomad and should be kept private.\n"
+                        "description": "The token to be used when making requests to Nomad and should be kept private.\n",
+                        "secret": true
                     }
                 },
                 "type": "object",

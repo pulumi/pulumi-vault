@@ -45,6 +45,16 @@ import (
 //	}
 //
 // ```
+//
+// ## Import
+//
+// Raft Autopilot config can be imported using the ID, e.g.
+//
+// ```sh
+//
+//	$ pulumi import vault:index/raftAutopilot:RaftAutopilot autopilot sys/storage/raft/autopilot/configuration
+//
+// ```
 type RaftAutopilot struct {
 	pulumi.CustomResourceState
 
