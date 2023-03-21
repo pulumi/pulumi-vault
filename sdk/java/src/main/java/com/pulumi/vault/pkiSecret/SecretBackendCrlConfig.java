@@ -105,6 +105,20 @@ public class SecretBackendCrlConfig extends com.pulumi.resources.CustomResource 
         return this.backend;
     }
     /**
+     * Enable cross-cluster revocation request queues. **Vault 1.13+**
+     * 
+     */
+    @Export(name="crossClusterRevocation", type=Boolean.class, parameters={})
+    private Output<Boolean> crossClusterRevocation;
+
+    /**
+     * @return Enable cross-cluster revocation request queues. **Vault 1.13+**
+     * 
+     */
+    public Output<Boolean> crossClusterRevocation() {
+        return this.crossClusterRevocation;
+    }
+    /**
      * Interval to check for new revocations on, to regenerate the delta CRL.
      * 
      */
@@ -211,6 +225,36 @@ public class SecretBackendCrlConfig extends com.pulumi.resources.CustomResource 
      */
     public Output<String> ocspExpiry() {
         return this.ocspExpiry;
+    }
+    /**
+     * Enables unified CRL and OCSP building. **Vault 1.13+**
+     * 
+     */
+    @Export(name="unifiedCrl", type=Boolean.class, parameters={})
+    private Output<Boolean> unifiedCrl;
+
+    /**
+     * @return Enables unified CRL and OCSP building. **Vault 1.13+**
+     * 
+     */
+    public Output<Boolean> unifiedCrl() {
+        return this.unifiedCrl;
+    }
+    /**
+     * Enables serving the unified CRL and OCSP on the existing, previously
+     * cluster-local paths. **Vault 1.13+**
+     * 
+     */
+    @Export(name="unifiedCrlOnExistingPaths", type=Boolean.class, parameters={})
+    private Output<Boolean> unifiedCrlOnExistingPaths;
+
+    /**
+     * @return Enables serving the unified CRL and OCSP on the existing, previously
+     * cluster-local paths. **Vault 1.13+**
+     * 
+     */
+    public Output<Boolean> unifiedCrlOnExistingPaths() {
+        return this.unifiedCrlOnExistingPaths;
     }
 
     /**

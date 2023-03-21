@@ -67,6 +67,10 @@ export class SecretBackendCrlConfig extends pulumi.CustomResource {
      */
     public readonly backend!: pulumi.Output<string>;
     /**
+     * Enable cross-cluster revocation request queues. **Vault 1.13+**
+     */
+    public readonly crossClusterRevocation!: pulumi.Output<boolean>;
+    /**
      * Interval to check for new revocations on, to regenerate the delta CRL.
      */
     public readonly deltaRebuildInterval!: pulumi.Output<string>;
@@ -99,6 +103,15 @@ export class SecretBackendCrlConfig extends pulumi.CustomResource {
      * refresh durations. **Vault 1.12+**
      */
     public readonly ocspExpiry!: pulumi.Output<string>;
+    /**
+     * Enables unified CRL and OCSP building. **Vault 1.13+**
+     */
+    public readonly unifiedCrl!: pulumi.Output<boolean>;
+    /**
+     * Enables serving the unified CRL and OCSP on the existing, previously
+     * cluster-local paths. **Vault 1.13+**
+     */
+    public readonly unifiedCrlOnExistingPaths!: pulumi.Output<boolean>;
 
     /**
      * Create a SecretBackendCrlConfig resource with the given unique name, arguments, and options.
@@ -116,6 +129,7 @@ export class SecretBackendCrlConfig extends pulumi.CustomResource {
             resourceInputs["autoRebuild"] = state ? state.autoRebuild : undefined;
             resourceInputs["autoRebuildGracePeriod"] = state ? state.autoRebuildGracePeriod : undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["crossClusterRevocation"] = state ? state.crossClusterRevocation : undefined;
             resourceInputs["deltaRebuildInterval"] = state ? state.deltaRebuildInterval : undefined;
             resourceInputs["disable"] = state ? state.disable : undefined;
             resourceInputs["enableDelta"] = state ? state.enableDelta : undefined;
@@ -123,6 +137,8 @@ export class SecretBackendCrlConfig extends pulumi.CustomResource {
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["ocspDisable"] = state ? state.ocspDisable : undefined;
             resourceInputs["ocspExpiry"] = state ? state.ocspExpiry : undefined;
+            resourceInputs["unifiedCrl"] = state ? state.unifiedCrl : undefined;
+            resourceInputs["unifiedCrlOnExistingPaths"] = state ? state.unifiedCrlOnExistingPaths : undefined;
         } else {
             const args = argsOrState as SecretBackendCrlConfigArgs | undefined;
             if ((!args || args.backend === undefined) && !opts.urn) {
@@ -131,6 +147,7 @@ export class SecretBackendCrlConfig extends pulumi.CustomResource {
             resourceInputs["autoRebuild"] = args ? args.autoRebuild : undefined;
             resourceInputs["autoRebuildGracePeriod"] = args ? args.autoRebuildGracePeriod : undefined;
             resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["crossClusterRevocation"] = args ? args.crossClusterRevocation : undefined;
             resourceInputs["deltaRebuildInterval"] = args ? args.deltaRebuildInterval : undefined;
             resourceInputs["disable"] = args ? args.disable : undefined;
             resourceInputs["enableDelta"] = args ? args.enableDelta : undefined;
@@ -138,6 +155,8 @@ export class SecretBackendCrlConfig extends pulumi.CustomResource {
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["ocspDisable"] = args ? args.ocspDisable : undefined;
             resourceInputs["ocspExpiry"] = args ? args.ocspExpiry : undefined;
+            resourceInputs["unifiedCrl"] = args ? args.unifiedCrl : undefined;
+            resourceInputs["unifiedCrlOnExistingPaths"] = args ? args.unifiedCrlOnExistingPaths : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretBackendCrlConfig.__pulumiType, name, resourceInputs, opts);
@@ -161,6 +180,10 @@ export interface SecretBackendCrlConfigState {
      */
     backend?: pulumi.Input<string>;
     /**
+     * Enable cross-cluster revocation request queues. **Vault 1.13+**
+     */
+    crossClusterRevocation?: pulumi.Input<boolean>;
+    /**
      * Interval to check for new revocations on, to regenerate the delta CRL.
      */
     deltaRebuildInterval?: pulumi.Input<string>;
@@ -193,6 +216,15 @@ export interface SecretBackendCrlConfigState {
      * refresh durations. **Vault 1.12+**
      */
     ocspExpiry?: pulumi.Input<string>;
+    /**
+     * Enables unified CRL and OCSP building. **Vault 1.13+**
+     */
+    unifiedCrl?: pulumi.Input<boolean>;
+    /**
+     * Enables serving the unified CRL and OCSP on the existing, previously
+     * cluster-local paths. **Vault 1.13+**
+     */
+    unifiedCrlOnExistingPaths?: pulumi.Input<boolean>;
 }
 
 /**
@@ -212,6 +244,10 @@ export interface SecretBackendCrlConfigArgs {
      */
     backend: pulumi.Input<string>;
     /**
+     * Enable cross-cluster revocation request queues. **Vault 1.13+**
+     */
+    crossClusterRevocation?: pulumi.Input<boolean>;
+    /**
      * Interval to check for new revocations on, to regenerate the delta CRL.
      */
     deltaRebuildInterval?: pulumi.Input<string>;
@@ -244,4 +280,13 @@ export interface SecretBackendCrlConfigArgs {
      * refresh durations. **Vault 1.12+**
      */
     ocspExpiry?: pulumi.Input<string>;
+    /**
+     * Enables unified CRL and OCSP building. **Vault 1.13+**
+     */
+    unifiedCrl?: pulumi.Input<boolean>;
+    /**
+     * Enables serving the unified CRL and OCSP on the existing, previously
+     * cluster-local paths. **Vault 1.13+**
+     */
+    unifiedCrlOnExistingPaths?: pulumi.Input<boolean>;
 }

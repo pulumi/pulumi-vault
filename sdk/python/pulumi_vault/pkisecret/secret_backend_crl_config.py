@@ -17,18 +17,22 @@ class SecretBackendCrlConfigArgs:
                  backend: pulumi.Input[str],
                  auto_rebuild: Optional[pulumi.Input[bool]] = None,
                  auto_rebuild_grace_period: Optional[pulumi.Input[str]] = None,
+                 cross_cluster_revocation: Optional[pulumi.Input[bool]] = None,
                  delta_rebuild_interval: Optional[pulumi.Input[str]] = None,
                  disable: Optional[pulumi.Input[bool]] = None,
                  enable_delta: Optional[pulumi.Input[bool]] = None,
                  expiry: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  ocsp_disable: Optional[pulumi.Input[bool]] = None,
-                 ocsp_expiry: Optional[pulumi.Input[str]] = None):
+                 ocsp_expiry: Optional[pulumi.Input[str]] = None,
+                 unified_crl: Optional[pulumi.Input[bool]] = None,
+                 unified_crl_on_existing_paths: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a SecretBackendCrlConfig resource.
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] auto_rebuild: Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
         :param pulumi.Input[str] auto_rebuild_grace_period: Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**
+        :param pulumi.Input[bool] cross_cluster_revocation: Enable cross-cluster revocation request queues. **Vault 1.13+**
         :param pulumi.Input[str] delta_rebuild_interval: Interval to check for new revocations on, to regenerate the delta CRL.
         :param pulumi.Input[bool] disable: Disables or enables CRL building.
         :param pulumi.Input[bool] enable_delta: Enables building of delta CRLs with up-to-date revocation information, 
@@ -41,12 +45,17 @@ class SecretBackendCrlConfigArgs:
         :param pulumi.Input[bool] ocsp_disable: Disables the OCSP responder in Vault. **Vault 1.12+**
         :param pulumi.Input[str] ocsp_expiry: The amount of time an OCSP response can be cached for, useful for OCSP stapling 
                refresh durations. **Vault 1.12+**
+        :param pulumi.Input[bool] unified_crl: Enables unified CRL and OCSP building. **Vault 1.13+**
+        :param pulumi.Input[bool] unified_crl_on_existing_paths: Enables serving the unified CRL and OCSP on the existing, previously
+               cluster-local paths. **Vault 1.13+**
         """
         pulumi.set(__self__, "backend", backend)
         if auto_rebuild is not None:
             pulumi.set(__self__, "auto_rebuild", auto_rebuild)
         if auto_rebuild_grace_period is not None:
             pulumi.set(__self__, "auto_rebuild_grace_period", auto_rebuild_grace_period)
+        if cross_cluster_revocation is not None:
+            pulumi.set(__self__, "cross_cluster_revocation", cross_cluster_revocation)
         if delta_rebuild_interval is not None:
             pulumi.set(__self__, "delta_rebuild_interval", delta_rebuild_interval)
         if disable is not None:
@@ -61,6 +70,10 @@ class SecretBackendCrlConfigArgs:
             pulumi.set(__self__, "ocsp_disable", ocsp_disable)
         if ocsp_expiry is not None:
             pulumi.set(__self__, "ocsp_expiry", ocsp_expiry)
+        if unified_crl is not None:
+            pulumi.set(__self__, "unified_crl", unified_crl)
+        if unified_crl_on_existing_paths is not None:
+            pulumi.set(__self__, "unified_crl_on_existing_paths", unified_crl_on_existing_paths)
 
     @property
     @pulumi.getter
@@ -99,6 +112,18 @@ class SecretBackendCrlConfigArgs:
         pulumi.set(self, "auto_rebuild_grace_period", value)
 
     @property
+    @pulumi.getter(name="crossClusterRevocation")
+    def cross_cluster_revocation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable cross-cluster revocation request queues. **Vault 1.13+**
+        """
+        return pulumi.get(self, "cross_cluster_revocation")
+
+    @cross_cluster_revocation.setter
+    def cross_cluster_revocation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "cross_cluster_revocation", value)
+
+    @property
     @pulumi.getter(name="deltaRebuildInterval")
     def delta_rebuild_interval(self) -> Optional[pulumi.Input[str]]:
         """
@@ -187,6 +212,31 @@ class SecretBackendCrlConfigArgs:
     def ocsp_expiry(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ocsp_expiry", value)
 
+    @property
+    @pulumi.getter(name="unifiedCrl")
+    def unified_crl(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enables unified CRL and OCSP building. **Vault 1.13+**
+        """
+        return pulumi.get(self, "unified_crl")
+
+    @unified_crl.setter
+    def unified_crl(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "unified_crl", value)
+
+    @property
+    @pulumi.getter(name="unifiedCrlOnExistingPaths")
+    def unified_crl_on_existing_paths(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enables serving the unified CRL and OCSP on the existing, previously
+        cluster-local paths. **Vault 1.13+**
+        """
+        return pulumi.get(self, "unified_crl_on_existing_paths")
+
+    @unified_crl_on_existing_paths.setter
+    def unified_crl_on_existing_paths(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "unified_crl_on_existing_paths", value)
+
 
 @pulumi.input_type
 class _SecretBackendCrlConfigState:
@@ -194,18 +244,22 @@ class _SecretBackendCrlConfigState:
                  auto_rebuild: Optional[pulumi.Input[bool]] = None,
                  auto_rebuild_grace_period: Optional[pulumi.Input[str]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 cross_cluster_revocation: Optional[pulumi.Input[bool]] = None,
                  delta_rebuild_interval: Optional[pulumi.Input[str]] = None,
                  disable: Optional[pulumi.Input[bool]] = None,
                  enable_delta: Optional[pulumi.Input[bool]] = None,
                  expiry: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  ocsp_disable: Optional[pulumi.Input[bool]] = None,
-                 ocsp_expiry: Optional[pulumi.Input[str]] = None):
+                 ocsp_expiry: Optional[pulumi.Input[str]] = None,
+                 unified_crl: Optional[pulumi.Input[bool]] = None,
+                 unified_crl_on_existing_paths: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering SecretBackendCrlConfig resources.
         :param pulumi.Input[bool] auto_rebuild: Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
         :param pulumi.Input[str] auto_rebuild_grace_period: Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
+        :param pulumi.Input[bool] cross_cluster_revocation: Enable cross-cluster revocation request queues. **Vault 1.13+**
         :param pulumi.Input[str] delta_rebuild_interval: Interval to check for new revocations on, to regenerate the delta CRL.
         :param pulumi.Input[bool] disable: Disables or enables CRL building.
         :param pulumi.Input[bool] enable_delta: Enables building of delta CRLs with up-to-date revocation information, 
@@ -218,6 +272,9 @@ class _SecretBackendCrlConfigState:
         :param pulumi.Input[bool] ocsp_disable: Disables the OCSP responder in Vault. **Vault 1.12+**
         :param pulumi.Input[str] ocsp_expiry: The amount of time an OCSP response can be cached for, useful for OCSP stapling 
                refresh durations. **Vault 1.12+**
+        :param pulumi.Input[bool] unified_crl: Enables unified CRL and OCSP building. **Vault 1.13+**
+        :param pulumi.Input[bool] unified_crl_on_existing_paths: Enables serving the unified CRL and OCSP on the existing, previously
+               cluster-local paths. **Vault 1.13+**
         """
         if auto_rebuild is not None:
             pulumi.set(__self__, "auto_rebuild", auto_rebuild)
@@ -225,6 +282,8 @@ class _SecretBackendCrlConfigState:
             pulumi.set(__self__, "auto_rebuild_grace_period", auto_rebuild_grace_period)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
+        if cross_cluster_revocation is not None:
+            pulumi.set(__self__, "cross_cluster_revocation", cross_cluster_revocation)
         if delta_rebuild_interval is not None:
             pulumi.set(__self__, "delta_rebuild_interval", delta_rebuild_interval)
         if disable is not None:
@@ -239,6 +298,10 @@ class _SecretBackendCrlConfigState:
             pulumi.set(__self__, "ocsp_disable", ocsp_disable)
         if ocsp_expiry is not None:
             pulumi.set(__self__, "ocsp_expiry", ocsp_expiry)
+        if unified_crl is not None:
+            pulumi.set(__self__, "unified_crl", unified_crl)
+        if unified_crl_on_existing_paths is not None:
+            pulumi.set(__self__, "unified_crl_on_existing_paths", unified_crl_on_existing_paths)
 
     @property
     @pulumi.getter(name="autoRebuild")
@@ -277,6 +340,18 @@ class _SecretBackendCrlConfigState:
         pulumi.set(self, "backend", value)
 
     @property
+    @pulumi.getter(name="crossClusterRevocation")
+    def cross_cluster_revocation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable cross-cluster revocation request queues. **Vault 1.13+**
+        """
+        return pulumi.get(self, "cross_cluster_revocation")
+
+    @cross_cluster_revocation.setter
+    def cross_cluster_revocation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "cross_cluster_revocation", value)
+
+    @property
     @pulumi.getter(name="deltaRebuildInterval")
     def delta_rebuild_interval(self) -> Optional[pulumi.Input[str]]:
         """
@@ -365,6 +440,31 @@ class _SecretBackendCrlConfigState:
     def ocsp_expiry(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ocsp_expiry", value)
 
+    @property
+    @pulumi.getter(name="unifiedCrl")
+    def unified_crl(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enables unified CRL and OCSP building. **Vault 1.13+**
+        """
+        return pulumi.get(self, "unified_crl")
+
+    @unified_crl.setter
+    def unified_crl(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "unified_crl", value)
+
+    @property
+    @pulumi.getter(name="unifiedCrlOnExistingPaths")
+    def unified_crl_on_existing_paths(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enables serving the unified CRL and OCSP on the existing, previously
+        cluster-local paths. **Vault 1.13+**
+        """
+        return pulumi.get(self, "unified_crl_on_existing_paths")
+
+    @unified_crl_on_existing_paths.setter
+    def unified_crl_on_existing_paths(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "unified_crl_on_existing_paths", value)
+
 
 class SecretBackendCrlConfig(pulumi.CustomResource):
     @overload
@@ -374,6 +474,7 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
                  auto_rebuild: Optional[pulumi.Input[bool]] = None,
                  auto_rebuild_grace_period: Optional[pulumi.Input[str]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 cross_cluster_revocation: Optional[pulumi.Input[bool]] = None,
                  delta_rebuild_interval: Optional[pulumi.Input[str]] = None,
                  disable: Optional[pulumi.Input[bool]] = None,
                  enable_delta: Optional[pulumi.Input[bool]] = None,
@@ -381,6 +482,8 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
                  namespace: Optional[pulumi.Input[str]] = None,
                  ocsp_disable: Optional[pulumi.Input[bool]] = None,
                  ocsp_expiry: Optional[pulumi.Input[str]] = None,
+                 unified_crl: Optional[pulumi.Input[bool]] = None,
+                 unified_crl_on_existing_paths: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
         Allows setting the duration for which the generated CRL should be marked valid. If the CRL is disabled, it will return a signed but zero-length CRL for any request. If enabled, it will re-build the CRL.
@@ -407,6 +510,7 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
         :param pulumi.Input[bool] auto_rebuild: Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
         :param pulumi.Input[str] auto_rebuild_grace_period: Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
+        :param pulumi.Input[bool] cross_cluster_revocation: Enable cross-cluster revocation request queues. **Vault 1.13+**
         :param pulumi.Input[str] delta_rebuild_interval: Interval to check for new revocations on, to regenerate the delta CRL.
         :param pulumi.Input[bool] disable: Disables or enables CRL building.
         :param pulumi.Input[bool] enable_delta: Enables building of delta CRLs with up-to-date revocation information, 
@@ -419,6 +523,9 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
         :param pulumi.Input[bool] ocsp_disable: Disables the OCSP responder in Vault. **Vault 1.12+**
         :param pulumi.Input[str] ocsp_expiry: The amount of time an OCSP response can be cached for, useful for OCSP stapling 
                refresh durations. **Vault 1.12+**
+        :param pulumi.Input[bool] unified_crl: Enables unified CRL and OCSP building. **Vault 1.13+**
+        :param pulumi.Input[bool] unified_crl_on_existing_paths: Enables serving the unified CRL and OCSP on the existing, previously
+               cluster-local paths. **Vault 1.13+**
         """
         ...
     @overload
@@ -464,6 +571,7 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
                  auto_rebuild: Optional[pulumi.Input[bool]] = None,
                  auto_rebuild_grace_period: Optional[pulumi.Input[str]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 cross_cluster_revocation: Optional[pulumi.Input[bool]] = None,
                  delta_rebuild_interval: Optional[pulumi.Input[str]] = None,
                  disable: Optional[pulumi.Input[bool]] = None,
                  enable_delta: Optional[pulumi.Input[bool]] = None,
@@ -471,6 +579,8 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
                  namespace: Optional[pulumi.Input[str]] = None,
                  ocsp_disable: Optional[pulumi.Input[bool]] = None,
                  ocsp_expiry: Optional[pulumi.Input[str]] = None,
+                 unified_crl: Optional[pulumi.Input[bool]] = None,
+                 unified_crl_on_existing_paths: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -485,6 +595,7 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
             if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
             __props__.__dict__["backend"] = backend
+            __props__.__dict__["cross_cluster_revocation"] = cross_cluster_revocation
             __props__.__dict__["delta_rebuild_interval"] = delta_rebuild_interval
             __props__.__dict__["disable"] = disable
             __props__.__dict__["enable_delta"] = enable_delta
@@ -492,6 +603,8 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["ocsp_disable"] = ocsp_disable
             __props__.__dict__["ocsp_expiry"] = ocsp_expiry
+            __props__.__dict__["unified_crl"] = unified_crl
+            __props__.__dict__["unified_crl_on_existing_paths"] = unified_crl_on_existing_paths
         super(SecretBackendCrlConfig, __self__).__init__(
             'vault:pkiSecret/secretBackendCrlConfig:SecretBackendCrlConfig',
             resource_name,
@@ -505,13 +618,16 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
             auto_rebuild: Optional[pulumi.Input[bool]] = None,
             auto_rebuild_grace_period: Optional[pulumi.Input[str]] = None,
             backend: Optional[pulumi.Input[str]] = None,
+            cross_cluster_revocation: Optional[pulumi.Input[bool]] = None,
             delta_rebuild_interval: Optional[pulumi.Input[str]] = None,
             disable: Optional[pulumi.Input[bool]] = None,
             enable_delta: Optional[pulumi.Input[bool]] = None,
             expiry: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             ocsp_disable: Optional[pulumi.Input[bool]] = None,
-            ocsp_expiry: Optional[pulumi.Input[str]] = None) -> 'SecretBackendCrlConfig':
+            ocsp_expiry: Optional[pulumi.Input[str]] = None,
+            unified_crl: Optional[pulumi.Input[bool]] = None,
+            unified_crl_on_existing_paths: Optional[pulumi.Input[bool]] = None) -> 'SecretBackendCrlConfig':
         """
         Get an existing SecretBackendCrlConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -522,6 +638,7 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
         :param pulumi.Input[bool] auto_rebuild: Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
         :param pulumi.Input[str] auto_rebuild_grace_period: Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
+        :param pulumi.Input[bool] cross_cluster_revocation: Enable cross-cluster revocation request queues. **Vault 1.13+**
         :param pulumi.Input[str] delta_rebuild_interval: Interval to check for new revocations on, to regenerate the delta CRL.
         :param pulumi.Input[bool] disable: Disables or enables CRL building.
         :param pulumi.Input[bool] enable_delta: Enables building of delta CRLs with up-to-date revocation information, 
@@ -534,6 +651,9 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
         :param pulumi.Input[bool] ocsp_disable: Disables the OCSP responder in Vault. **Vault 1.12+**
         :param pulumi.Input[str] ocsp_expiry: The amount of time an OCSP response can be cached for, useful for OCSP stapling 
                refresh durations. **Vault 1.12+**
+        :param pulumi.Input[bool] unified_crl: Enables unified CRL and OCSP building. **Vault 1.13+**
+        :param pulumi.Input[bool] unified_crl_on_existing_paths: Enables serving the unified CRL and OCSP on the existing, previously
+               cluster-local paths. **Vault 1.13+**
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -542,6 +662,7 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
         __props__.__dict__["auto_rebuild"] = auto_rebuild
         __props__.__dict__["auto_rebuild_grace_period"] = auto_rebuild_grace_period
         __props__.__dict__["backend"] = backend
+        __props__.__dict__["cross_cluster_revocation"] = cross_cluster_revocation
         __props__.__dict__["delta_rebuild_interval"] = delta_rebuild_interval
         __props__.__dict__["disable"] = disable
         __props__.__dict__["enable_delta"] = enable_delta
@@ -549,6 +670,8 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["ocsp_disable"] = ocsp_disable
         __props__.__dict__["ocsp_expiry"] = ocsp_expiry
+        __props__.__dict__["unified_crl"] = unified_crl
+        __props__.__dict__["unified_crl_on_existing_paths"] = unified_crl_on_existing_paths
         return SecretBackendCrlConfig(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -574,6 +697,14 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
         The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         """
         return pulumi.get(self, "backend")
+
+    @property
+    @pulumi.getter(name="crossClusterRevocation")
+    def cross_cluster_revocation(self) -> pulumi.Output[bool]:
+        """
+        Enable cross-cluster revocation request queues. **Vault 1.13+**
+        """
+        return pulumi.get(self, "cross_cluster_revocation")
 
     @property
     @pulumi.getter(name="deltaRebuildInterval")
@@ -635,4 +766,21 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
         refresh durations. **Vault 1.12+**
         """
         return pulumi.get(self, "ocsp_expiry")
+
+    @property
+    @pulumi.getter(name="unifiedCrl")
+    def unified_crl(self) -> pulumi.Output[bool]:
+        """
+        Enables unified CRL and OCSP building. **Vault 1.13+**
+        """
+        return pulumi.get(self, "unified_crl")
+
+    @property
+    @pulumi.getter(name="unifiedCrlOnExistingPaths")
+    def unified_crl_on_existing_paths(self) -> pulumi.Output[bool]:
+        """
+        Enables serving the unified CRL and OCSP on the existing, previously
+        cluster-local paths. **Vault 1.13+**
+        """
+        return pulumi.get(self, "unified_crl_on_existing_paths")
 

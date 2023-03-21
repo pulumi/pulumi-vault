@@ -62,6 +62,21 @@ public final class SecretBackendCrlConfigState extends com.pulumi.resources.Reso
     }
 
     /**
+     * Enable cross-cluster revocation request queues. **Vault 1.13+**
+     * 
+     */
+    @Import(name="crossClusterRevocation")
+    private @Nullable Output<Boolean> crossClusterRevocation;
+
+    /**
+     * @return Enable cross-cluster revocation request queues. **Vault 1.13+**
+     * 
+     */
+    public Optional<Output<Boolean>> crossClusterRevocation() {
+        return Optional.ofNullable(this.crossClusterRevocation);
+    }
+
+    /**
      * Interval to check for new revocations on, to regenerate the delta CRL.
      * 
      */
@@ -176,12 +191,45 @@ public final class SecretBackendCrlConfigState extends com.pulumi.resources.Reso
         return Optional.ofNullable(this.ocspExpiry);
     }
 
+    /**
+     * Enables unified CRL and OCSP building. **Vault 1.13+**
+     * 
+     */
+    @Import(name="unifiedCrl")
+    private @Nullable Output<Boolean> unifiedCrl;
+
+    /**
+     * @return Enables unified CRL and OCSP building. **Vault 1.13+**
+     * 
+     */
+    public Optional<Output<Boolean>> unifiedCrl() {
+        return Optional.ofNullable(this.unifiedCrl);
+    }
+
+    /**
+     * Enables serving the unified CRL and OCSP on the existing, previously
+     * cluster-local paths. **Vault 1.13+**
+     * 
+     */
+    @Import(name="unifiedCrlOnExistingPaths")
+    private @Nullable Output<Boolean> unifiedCrlOnExistingPaths;
+
+    /**
+     * @return Enables serving the unified CRL and OCSP on the existing, previously
+     * cluster-local paths. **Vault 1.13+**
+     * 
+     */
+    public Optional<Output<Boolean>> unifiedCrlOnExistingPaths() {
+        return Optional.ofNullable(this.unifiedCrlOnExistingPaths);
+    }
+
     private SecretBackendCrlConfigState() {}
 
     private SecretBackendCrlConfigState(SecretBackendCrlConfigState $) {
         this.autoRebuild = $.autoRebuild;
         this.autoRebuildGracePeriod = $.autoRebuildGracePeriod;
         this.backend = $.backend;
+        this.crossClusterRevocation = $.crossClusterRevocation;
         this.deltaRebuildInterval = $.deltaRebuildInterval;
         this.disable = $.disable;
         this.enableDelta = $.enableDelta;
@@ -189,6 +237,8 @@ public final class SecretBackendCrlConfigState extends com.pulumi.resources.Reso
         this.namespace = $.namespace;
         this.ocspDisable = $.ocspDisable;
         this.ocspExpiry = $.ocspExpiry;
+        this.unifiedCrl = $.unifiedCrl;
+        this.unifiedCrlOnExistingPaths = $.unifiedCrlOnExistingPaths;
     }
 
     public static Builder builder() {
@@ -270,6 +320,27 @@ public final class SecretBackendCrlConfigState extends com.pulumi.resources.Reso
          */
         public Builder backend(String backend) {
             return backend(Output.of(backend));
+        }
+
+        /**
+         * @param crossClusterRevocation Enable cross-cluster revocation request queues. **Vault 1.13+**
+         * 
+         * @return builder
+         * 
+         */
+        public Builder crossClusterRevocation(@Nullable Output<Boolean> crossClusterRevocation) {
+            $.crossClusterRevocation = crossClusterRevocation;
+            return this;
+        }
+
+        /**
+         * @param crossClusterRevocation Enable cross-cluster revocation request queues. **Vault 1.13+**
+         * 
+         * @return builder
+         * 
+         */
+        public Builder crossClusterRevocation(Boolean crossClusterRevocation) {
+            return crossClusterRevocation(Output.of(crossClusterRevocation));
         }
 
         /**
@@ -427,6 +498,50 @@ public final class SecretBackendCrlConfigState extends com.pulumi.resources.Reso
          */
         public Builder ocspExpiry(String ocspExpiry) {
             return ocspExpiry(Output.of(ocspExpiry));
+        }
+
+        /**
+         * @param unifiedCrl Enables unified CRL and OCSP building. **Vault 1.13+**
+         * 
+         * @return builder
+         * 
+         */
+        public Builder unifiedCrl(@Nullable Output<Boolean> unifiedCrl) {
+            $.unifiedCrl = unifiedCrl;
+            return this;
+        }
+
+        /**
+         * @param unifiedCrl Enables unified CRL and OCSP building. **Vault 1.13+**
+         * 
+         * @return builder
+         * 
+         */
+        public Builder unifiedCrl(Boolean unifiedCrl) {
+            return unifiedCrl(Output.of(unifiedCrl));
+        }
+
+        /**
+         * @param unifiedCrlOnExistingPaths Enables serving the unified CRL and OCSP on the existing, previously
+         * cluster-local paths. **Vault 1.13+**
+         * 
+         * @return builder
+         * 
+         */
+        public Builder unifiedCrlOnExistingPaths(@Nullable Output<Boolean> unifiedCrlOnExistingPaths) {
+            $.unifiedCrlOnExistingPaths = unifiedCrlOnExistingPaths;
+            return this;
+        }
+
+        /**
+         * @param unifiedCrlOnExistingPaths Enables serving the unified CRL and OCSP on the existing, previously
+         * cluster-local paths. **Vault 1.13+**
+         * 
+         * @return builder
+         * 
+         */
+        public Builder unifiedCrlOnExistingPaths(Boolean unifiedCrlOnExistingPaths) {
+            return unifiedCrlOnExistingPaths(Output.of(unifiedCrlOnExistingPaths));
         }
 
         public SecretBackendCrlConfigState build() {
