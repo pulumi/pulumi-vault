@@ -13612,6 +13612,115 @@
                 "type": "object"
             }
         },
+        "vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount": {
+            "description": "Creates a Impersonated Account in the [GCP Secrets Engine](https://www.vaultproject.io/docs/secrets/gcp/index.html) for Vault.\n\nEach [impersonated account](https://www.vaultproject.io/docs/secrets/gcp/index.html#impersonated-accounts) is tied to a separately managed\nService Account.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fs from \"fs\";\nimport * as gcp from \"@pulumi/gcp\";\nimport * as vault from \"@pulumi/vault\";\n\nconst _this = new gcp.serviceaccount.Account(\"this\", {accountId: \"my-awesome-account\"});\nconst gcp = new vault.gcp.SecretBackend(\"gcp\", {\n    path: \"gcp\",\n    credentials: fs.readFileSync(\"credentials.json\"),\n});\nconst impersonatedAccount = new vault.gcp.SecretImpersonatedAccount(\"impersonatedAccount\", {\n    backend: gcp.path,\n    impersonatedAccount: \"this\",\n    serviceAccountEmail: _this.email,\n    tokenScopes: [\"https://www.googleapis.com/auth/cloud-platform\"],\n});\n```\n```python\nimport pulumi\nimport pulumi_gcp as gcp\nimport pulumi_vault as vault\n\nthis = gcp.service_account.Account(\"this\", account_id=\"my-awesome-account\")\ngcp = vault.gcp.SecretBackend(\"gcp\",\n    path=\"gcp\",\n    credentials=(lambda path: open(path).read())(\"credentials.json\"))\nimpersonated_account = vault.gcp.SecretImpersonatedAccount(\"impersonatedAccount\",\n    backend=gcp.path,\n    impersonated_account=\"this\",\n    service_account_email=this.email,\n    token_scopes=[\"https://www.googleapis.com/auth/cloud-platform\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.IO;\nusing Pulumi;\nusing Gcp = Pulumi.Gcp;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var @this = new Gcp.ServiceAccount.Account(\"this\", new()\n    {\n        AccountId = \"my-awesome-account\",\n    });\n\n    var gcp = new Vault.Gcp.SecretBackend(\"gcp\", new()\n    {\n        Path = \"gcp\",\n        Credentials = File.ReadAllText(\"credentials.json\"),\n    });\n\n    var impersonatedAccount = new Vault.Gcp.SecretImpersonatedAccount(\"impersonatedAccount\", new()\n    {\n        Backend = gcp.Path,\n        ImpersonatedAccount = \"this\",\n        ServiceAccountEmail = @this.Email,\n        TokenScopes = new[]\n        {\n            \"https://www.googleapis.com/auth/cloud-platform\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"io/ioutil\"\n\n\t\"github.com/pulumi/pulumi-gcp/sdk/v5/go/gcp/serviceAccount\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/gcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc readFileOrPanic(path string) pulumi.StringPtrInput {\n\tdata, err := ioutil.ReadFile(path)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\treturn pulumi.String(string(data))\n}\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tthis, err := serviceAccount.NewAccount(ctx, \"this\", \u0026serviceAccount.AccountArgs{\n\t\t\tAccountId: pulumi.String(\"my-awesome-account\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tgcp, err := gcp.NewSecretBackend(ctx, \"gcp\", \u0026gcp.SecretBackendArgs{\n\t\t\tPath:        pulumi.String(\"gcp\"),\n\t\t\tCredentials: readFileOrPanic(\"credentials.json\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = gcp.NewSecretImpersonatedAccount(ctx, \"impersonatedAccount\", \u0026gcp.SecretImpersonatedAccountArgs{\n\t\t\tBackend:             gcp.Path,\n\t\t\tImpersonatedAccount: pulumi.String(\"this\"),\n\t\t\tServiceAccountEmail: this.Email,\n\t\t\tTokenScopes: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"https://www.googleapis.com/auth/cloud-platform\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.gcp.serviceAccount.Account;\nimport com.pulumi.gcp.serviceAccount.AccountArgs;\nimport com.pulumi.vault.gcp.SecretBackend;\nimport com.pulumi.vault.gcp.SecretBackendArgs;\nimport com.pulumi.vault.gcp.SecretImpersonatedAccount;\nimport com.pulumi.vault.gcp.SecretImpersonatedAccountArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var this_ = new Account(\"this\", AccountArgs.builder()        \n            .accountId(\"my-awesome-account\")\n            .build());\n\n        var gcp = new SecretBackend(\"gcp\", SecretBackendArgs.builder()        \n            .path(\"gcp\")\n            .credentials(Files.readString(Paths.get(\"credentials.json\")))\n            .build());\n\n        var impersonatedAccount = new SecretImpersonatedAccount(\"impersonatedAccount\", SecretImpersonatedAccountArgs.builder()        \n            .backend(gcp.path())\n            .impersonatedAccount(\"this\")\n            .serviceAccountEmail(this_.email())\n            .tokenScopes(\"https://www.googleapis.com/auth/cloud-platform\")\n            .build());\n\n    }\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nA impersonated account can be imported using its Vault Path. For example, referencing the example above,\n\n```sh\n $ pulumi import vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount impersonated_account gcp/impersonated-account/project_viewer\n```\n\n ",
+            "properties": {
+                "backend": {
+                    "type": "string",
+                    "description": "Path where the GCP Secrets Engine is mounted\n"
+                },
+                "impersonatedAccount": {
+                    "type": "string",
+                    "description": "Name of the Impersonated Account to create\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "Target namespace. (requires Enterprise)\n"
+                },
+                "serviceAccountEmail": {
+                    "type": "string",
+                    "description": "Email of the GCP service account to impersonate.\n"
+                },
+                "serviceAccountProject": {
+                    "type": "string",
+                    "description": "Project the service account belongs to.\n"
+                },
+                "tokenScopes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of OAuth scopes to assign to access tokens generated under this impersonated account.\n"
+                }
+            },
+            "required": [
+                "backend",
+                "impersonatedAccount",
+                "serviceAccountEmail",
+                "serviceAccountProject"
+            ],
+            "inputProperties": {
+                "backend": {
+                    "type": "string",
+                    "description": "Path where the GCP Secrets Engine is mounted\n",
+                    "willReplaceOnChanges": true
+                },
+                "impersonatedAccount": {
+                    "type": "string",
+                    "description": "Name of the Impersonated Account to create\n",
+                    "willReplaceOnChanges": true
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "Target namespace. (requires Enterprise)\n",
+                    "willReplaceOnChanges": true
+                },
+                "serviceAccountEmail": {
+                    "type": "string",
+                    "description": "Email of the GCP service account to impersonate.\n",
+                    "willReplaceOnChanges": true
+                },
+                "tokenScopes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of OAuth scopes to assign to access tokens generated under this impersonated account.\n"
+                }
+            },
+            "requiredInputs": [
+                "backend",
+                "impersonatedAccount",
+                "serviceAccountEmail"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SecretImpersonatedAccount resources.\n",
+                "properties": {
+                    "backend": {
+                        "type": "string",
+                        "description": "Path where the GCP Secrets Engine is mounted\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "impersonatedAccount": {
+                        "type": "string",
+                        "description": "Name of the Impersonated Account to create\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "Target namespace. (requires Enterprise)\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "serviceAccountEmail": {
+                        "type": "string",
+                        "description": "Email of the GCP service account to impersonate.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "serviceAccountProject": {
+                        "type": "string",
+                        "description": "Project the service account belongs to.\n"
+                    },
+                    "tokenScopes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of OAuth scopes to assign to access tokens generated under this impersonated account.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "vault:gcp/secretRoleset:SecretRoleset": {
             "description": "Creates a Roleset in the [GCP Secrets Engine](https://www.vaultproject.io/docs/secrets/gcp/index.html) for Vault.\n\nEach Roleset is [tied](https://www.vaultproject.io/docs/secrets/gcp/index.html#service-accounts-are-tied-to-rolesets) to a Service Account, and can have one or more [bindings](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings) associated with it.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fs from \"fs\";\nimport * as vault from \"@pulumi/vault\";\n\nconst project = \"my-awesome-project\";\nconst gcp = new vault.gcp.SecretBackend(\"gcp\", {\n    path: \"gcp\",\n    credentials: fs.readFileSync(\"credentials.json\"),\n});\nconst roleset = new vault.gcp.SecretRoleset(\"roleset\", {\n    backend: gcp.path,\n    roleset: \"project_viewer\",\n    secretType: \"access_token\",\n    project: project,\n    tokenScopes: [\"https://www.googleapis.com/auth/cloud-platform\"],\n    bindings: [{\n        resource: `//cloudresourcemanager.googleapis.com/projects/${project}`,\n        roles: [\"roles/viewer\"],\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nproject = \"my-awesome-project\"\ngcp = vault.gcp.SecretBackend(\"gcp\",\n    path=\"gcp\",\n    credentials=(lambda path: open(path).read())(\"credentials.json\"))\nroleset = vault.gcp.SecretRoleset(\"roleset\",\n    backend=gcp.path,\n    roleset=\"project_viewer\",\n    secret_type=\"access_token\",\n    project=project,\n    token_scopes=[\"https://www.googleapis.com/auth/cloud-platform\"],\n    bindings=[vault.gcp.SecretRolesetBindingArgs(\n        resource=f\"//cloudresourcemanager.googleapis.com/projects/{project}\",\n        roles=[\"roles/viewer\"],\n    )])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.IO;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var project = \"my-awesome-project\";\n\n    var gcp = new Vault.Gcp.SecretBackend(\"gcp\", new()\n    {\n        Path = \"gcp\",\n        Credentials = File.ReadAllText(\"credentials.json\"),\n    });\n\n    var roleset = new Vault.Gcp.SecretRoleset(\"roleset\", new()\n    {\n        Backend = gcp.Path,\n        Roleset = \"project_viewer\",\n        SecretType = \"access_token\",\n        Project = project,\n        TokenScopes = new[]\n        {\n            \"https://www.googleapis.com/auth/cloud-platform\",\n        },\n        Bindings = new[]\n        {\n            new Vault.Gcp.Inputs.SecretRolesetBindingArgs\n            {\n                Resource = $\"//cloudresourcemanager.googleapis.com/projects/{project}\",\n                Roles = new[]\n                {\n                    \"roles/viewer\",\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"io/ioutil\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/gcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc readFileOrPanic(path string) pulumi.StringPtrInput {\n\tdata, err := ioutil.ReadFile(path)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\treturn pulumi.String(string(data))\n}\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tproject := \"my-awesome-project\"\n\t\tgcp, err := gcp.NewSecretBackend(ctx, \"gcp\", \u0026gcp.SecretBackendArgs{\n\t\t\tPath:        pulumi.String(\"gcp\"),\n\t\t\tCredentials: readFileOrPanic(\"credentials.json\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = gcp.NewSecretRoleset(ctx, \"roleset\", \u0026gcp.SecretRolesetArgs{\n\t\t\tBackend:    gcp.Path,\n\t\t\tRoleset:    pulumi.String(\"project_viewer\"),\n\t\t\tSecretType: pulumi.String(\"access_token\"),\n\t\t\tProject:    pulumi.String(project),\n\t\t\tTokenScopes: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"https://www.googleapis.com/auth/cloud-platform\"),\n\t\t\t},\n\t\t\tBindings: gcp.SecretRolesetBindingArray{\n\t\t\t\t\u0026gcp.SecretRolesetBindingArgs{\n\t\t\t\t\tResource: pulumi.String(fmt.Sprintf(\"//cloudresourcemanager.googleapis.com/projects/%v\", project)),\n\t\t\t\t\tRoles: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"roles/viewer\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.gcp.SecretBackend;\nimport com.pulumi.vault.gcp.SecretBackendArgs;\nimport com.pulumi.vault.gcp.SecretRoleset;\nimport com.pulumi.vault.gcp.SecretRolesetArgs;\nimport com.pulumi.vault.gcp.inputs.SecretRolesetBindingArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var project = \"my-awesome-project\";\n\n        var gcp = new SecretBackend(\"gcp\", SecretBackendArgs.builder()        \n            .path(\"gcp\")\n            .credentials(Files.readString(Paths.get(\"credentials.json\")))\n            .build());\n\n        var roleset = new SecretRoleset(\"roleset\", SecretRolesetArgs.builder()        \n            .backend(gcp.path())\n            .roleset(\"project_viewer\")\n            .secretType(\"access_token\")\n            .project(project)\n            .tokenScopes(\"https://www.googleapis.com/auth/cloud-platform\")\n            .bindings(SecretRolesetBindingArgs.builder()\n                .resource(String.format(\"//cloudresourcemanager.googleapis.com/projects/%s\", project))\n                .roles(\"roles/viewer\")\n                .build())\n            .build());\n\n    }\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nA roleset can be imported using its Vault Path. For example, referencing the example above,\n\n```sh\n $ pulumi import vault:gcp/secretRoleset:SecretRoleset roleset gcp/roleset/project_viewer\n```\n\n ",
             "properties": {
@@ -17128,6 +17237,62 @@
                     "type": {
                         "type": "string",
                         "description": "Type of the audit device, such as 'file'.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "vault:index/auditRequestHeader:AuditRequestHeader": {
+            "description": "Manages additional request headers that appear in audited requests.\n\n\u003e **Note**\nBecause of the way the [sys/config/auditing/request-headers API](https://www.vaultproject.io/api-docs/system/config-auditing)\nis implemented in Vault, this resource will manage existing audited headers with\nmatching names without requiring import.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst xForwardedFor = new vault.AuditRequestHeader(\"x_forwarded_for\", {\n    hmac: false,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nx_forwarded_for = vault.AuditRequestHeader(\"xForwardedFor\", hmac=False)\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var xForwardedFor = new Vault.AuditRequestHeader(\"xForwardedFor\", new()\n    {\n        Hmac = false,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewAuditRequestHeader(ctx, \"xForwardedFor\", \u0026vault.AuditRequestHeaderArgs{\n\t\t\tHmac: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.AuditRequestHeader;\nimport com.pulumi.vault.AuditRequestHeaderArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var xForwardedFor = new AuditRequestHeader(\"xForwardedFor\", AuditRequestHeaderArgs.builder()        \n            .hmac(false)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  xForwardedFor:\n    type: vault:AuditRequestHeader\n    properties:\n      hmac: false\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "hmac": {
+                    "type": "boolean",
+                    "description": "Whether this header's value should be HMAC'd in the audit logs.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the request header to audit.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "Target namespace. (requires Enterprise)\n"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "inputProperties": {
+                "hmac": {
+                    "type": "boolean",
+                    "description": "Whether this header's value should be HMAC'd in the audit logs.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the request header to audit.\n",
+                    "willReplaceOnChanges": true
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "Target namespace. (requires Enterprise)\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering AuditRequestHeader resources.\n",
+                "properties": {
+                    "hmac": {
+                        "type": "boolean",
+                        "description": "Whether this header's value should be HMAC'd in the audit logs.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the request header to audit.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "Target namespace. (requires Enterprise)\n",
                         "willReplaceOnChanges": true
                     }
                 },
@@ -24374,6 +24539,10 @@
                     "type": "string",
                     "description": "The path the PKI secret backend is mounted at, with no leading or trailing `/`s.\n"
                 },
+                "crossClusterRevocation": {
+                    "type": "boolean",
+                    "description": "Enable cross-cluster revocation request queues. **Vault 1.13+**\n"
+                },
                 "deltaRebuildInterval": {
                     "type": "string",
                     "description": "Interval to check for new revocations on, to regenerate the delta CRL.\n"
@@ -24401,13 +24570,24 @@
                 "ocspExpiry": {
                     "type": "string",
                     "description": "The amount of time an OCSP response can be cached for, useful for OCSP stapling \nrefresh durations. **Vault 1.12+**\n"
+                },
+                "unifiedCrl": {
+                    "type": "boolean",
+                    "description": "Enables unified CRL and OCSP building. **Vault 1.13+**\n"
+                },
+                "unifiedCrlOnExistingPaths": {
+                    "type": "boolean",
+                    "description": "Enables serving the unified CRL and OCSP on the existing, previously\ncluster-local paths. **Vault 1.13+**\n"
                 }
             },
             "required": [
                 "autoRebuildGracePeriod",
                 "backend",
+                "crossClusterRevocation",
                 "deltaRebuildInterval",
-                "ocspExpiry"
+                "ocspExpiry",
+                "unifiedCrl",
+                "unifiedCrlOnExistingPaths"
             ],
             "inputProperties": {
                 "autoRebuild": {
@@ -24422,6 +24602,10 @@
                     "type": "string",
                     "description": "The path the PKI secret backend is mounted at, with no leading or trailing `/`s.\n",
                     "willReplaceOnChanges": true
+                },
+                "crossClusterRevocation": {
+                    "type": "boolean",
+                    "description": "Enable cross-cluster revocation request queues. **Vault 1.13+**\n"
                 },
                 "deltaRebuildInterval": {
                     "type": "string",
@@ -24451,6 +24635,14 @@
                 "ocspExpiry": {
                     "type": "string",
                     "description": "The amount of time an OCSP response can be cached for, useful for OCSP stapling \nrefresh durations. **Vault 1.12+**\n"
+                },
+                "unifiedCrl": {
+                    "type": "boolean",
+                    "description": "Enables unified CRL and OCSP building. **Vault 1.13+**\n"
+                },
+                "unifiedCrlOnExistingPaths": {
+                    "type": "boolean",
+                    "description": "Enables serving the unified CRL and OCSP on the existing, previously\ncluster-local paths. **Vault 1.13+**\n"
                 }
             },
             "requiredInputs": [
@@ -24471,6 +24663,10 @@
                         "type": "string",
                         "description": "The path the PKI secret backend is mounted at, with no leading or trailing `/`s.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "crossClusterRevocation": {
+                        "type": "boolean",
+                        "description": "Enable cross-cluster revocation request queues. **Vault 1.13+**\n"
                     },
                     "deltaRebuildInterval": {
                         "type": "string",
@@ -24500,6 +24696,14 @@
                     "ocspExpiry": {
                         "type": "string",
                         "description": "The amount of time an OCSP response can be cached for, useful for OCSP stapling \nrefresh durations. **Vault 1.12+**\n"
+                    },
+                    "unifiedCrl": {
+                        "type": "boolean",
+                        "description": "Enables unified CRL and OCSP building. **Vault 1.13+**\n"
+                    },
+                    "unifiedCrlOnExistingPaths": {
+                        "type": "boolean",
+                        "description": "Enables serving the unified CRL and OCSP on the existing, previously\ncluster-local paths. **Vault 1.13+**\n"
                     }
                 },
                 "type": "object"

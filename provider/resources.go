@@ -164,6 +164,7 @@ func Provider() tfbridge.ProviderInfo {
 		Resources: map[string]*tfbridge.ResourceInfo{
 			// Main
 			"vault_audit":                  {Tok: makeResource(mainMod, "Audit")},
+			"vault_audit_request_header":   {Tok: makeResource(mainMod, "AuditRequestHeader")},
 			"vault_auth_backend":           {Tok: makeResource(mainMod, "AuthBackend")},
 			"vault_cert_auth_backend_role": {Tok: makeResource(mainMod, "CertAuthBackendRole")},
 			"vault_egp_policy":             {Tok: makeResource(mainMod, "EgpPolicy")},
@@ -263,11 +264,12 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_database_secrets_mount": {Tok: makeResource(databaseMod, "SecretsMount")},
 
 			// GCP
-			"vault_gcp_auth_backend":          {Tok: makeResource(gcpMod, "AuthBackend")},
-			"vault_gcp_auth_backend_role":     {Tok: makeResource(gcpMod, "AuthBackendRole")},
-			"vault_gcp_secret_backend":        {Tok: makeResource(gcpMod, "SecretBackend")},
-			"vault_gcp_secret_roleset":        {Tok: makeResource(gcpMod, "SecretRoleset")},
-			"vault_gcp_secret_static_account": {Tok: makeResource(gcpMod, "SecretStaticAccount")},
+			"vault_gcp_auth_backend":                {Tok: makeResource(gcpMod, "AuthBackend")},
+			"vault_gcp_auth_backend_role":           {Tok: makeResource(gcpMod, "AuthBackendRole")},
+			"vault_gcp_secret_backend":              {Tok: makeResource(gcpMod, "SecretBackend")},
+			"vault_gcp_secret_impersonated_account": {Tok: makeResource(gcpMod, "SecretImpersonatedAccount")},
+			"vault_gcp_secret_roleset":              {Tok: makeResource(gcpMod, "SecretRoleset")},
+			"vault_gcp_secret_static_account":       {Tok: makeResource(gcpMod, "SecretStaticAccount")},
 
 			// Generic
 			"vault_generic_endpoint": {Tok: makeResource(genericMod, "Endpoint")},
