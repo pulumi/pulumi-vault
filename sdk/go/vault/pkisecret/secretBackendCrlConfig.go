@@ -61,6 +61,8 @@ type SecretBackendCrlConfig struct {
 	AutoRebuildGracePeriod pulumi.StringOutput `pulumi:"autoRebuildGracePeriod"`
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 	Backend pulumi.StringOutput `pulumi:"backend"`
+	// Enable cross-cluster revocation request queues. **Vault 1.13+**
+	CrossClusterRevocation pulumi.BoolOutput `pulumi:"crossClusterRevocation"`
 	// Interval to check for new revocations on, to regenerate the delta CRL.
 	DeltaRebuildInterval pulumi.StringOutput `pulumi:"deltaRebuildInterval"`
 	// Disables or enables CRL building.
@@ -80,6 +82,11 @@ type SecretBackendCrlConfig struct {
 	// The amount of time an OCSP response can be cached for, useful for OCSP stapling
 	// refresh durations. **Vault 1.12+**
 	OcspExpiry pulumi.StringOutput `pulumi:"ocspExpiry"`
+	// Enables unified CRL and OCSP building. **Vault 1.13+**
+	UnifiedCrl pulumi.BoolOutput `pulumi:"unifiedCrl"`
+	// Enables serving the unified CRL and OCSP on the existing, previously
+	// cluster-local paths. **Vault 1.13+**
+	UnifiedCrlOnExistingPaths pulumi.BoolOutput `pulumi:"unifiedCrlOnExistingPaths"`
 }
 
 // NewSecretBackendCrlConfig registers a new resource with the given unique name, arguments, and options.
@@ -120,6 +127,8 @@ type secretBackendCrlConfigState struct {
 	AutoRebuildGracePeriod *string `pulumi:"autoRebuildGracePeriod"`
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 	Backend *string `pulumi:"backend"`
+	// Enable cross-cluster revocation request queues. **Vault 1.13+**
+	CrossClusterRevocation *bool `pulumi:"crossClusterRevocation"`
 	// Interval to check for new revocations on, to regenerate the delta CRL.
 	DeltaRebuildInterval *string `pulumi:"deltaRebuildInterval"`
 	// Disables or enables CRL building.
@@ -139,6 +148,11 @@ type secretBackendCrlConfigState struct {
 	// The amount of time an OCSP response can be cached for, useful for OCSP stapling
 	// refresh durations. **Vault 1.12+**
 	OcspExpiry *string `pulumi:"ocspExpiry"`
+	// Enables unified CRL and OCSP building. **Vault 1.13+**
+	UnifiedCrl *bool `pulumi:"unifiedCrl"`
+	// Enables serving the unified CRL and OCSP on the existing, previously
+	// cluster-local paths. **Vault 1.13+**
+	UnifiedCrlOnExistingPaths *bool `pulumi:"unifiedCrlOnExistingPaths"`
 }
 
 type SecretBackendCrlConfigState struct {
@@ -148,6 +162,8 @@ type SecretBackendCrlConfigState struct {
 	AutoRebuildGracePeriod pulumi.StringPtrInput
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 	Backend pulumi.StringPtrInput
+	// Enable cross-cluster revocation request queues. **Vault 1.13+**
+	CrossClusterRevocation pulumi.BoolPtrInput
 	// Interval to check for new revocations on, to regenerate the delta CRL.
 	DeltaRebuildInterval pulumi.StringPtrInput
 	// Disables or enables CRL building.
@@ -167,6 +183,11 @@ type SecretBackendCrlConfigState struct {
 	// The amount of time an OCSP response can be cached for, useful for OCSP stapling
 	// refresh durations. **Vault 1.12+**
 	OcspExpiry pulumi.StringPtrInput
+	// Enables unified CRL and OCSP building. **Vault 1.13+**
+	UnifiedCrl pulumi.BoolPtrInput
+	// Enables serving the unified CRL and OCSP on the existing, previously
+	// cluster-local paths. **Vault 1.13+**
+	UnifiedCrlOnExistingPaths pulumi.BoolPtrInput
 }
 
 func (SecretBackendCrlConfigState) ElementType() reflect.Type {
@@ -180,6 +201,8 @@ type secretBackendCrlConfigArgs struct {
 	AutoRebuildGracePeriod *string `pulumi:"autoRebuildGracePeriod"`
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 	Backend string `pulumi:"backend"`
+	// Enable cross-cluster revocation request queues. **Vault 1.13+**
+	CrossClusterRevocation *bool `pulumi:"crossClusterRevocation"`
 	// Interval to check for new revocations on, to regenerate the delta CRL.
 	DeltaRebuildInterval *string `pulumi:"deltaRebuildInterval"`
 	// Disables or enables CRL building.
@@ -199,6 +222,11 @@ type secretBackendCrlConfigArgs struct {
 	// The amount of time an OCSP response can be cached for, useful for OCSP stapling
 	// refresh durations. **Vault 1.12+**
 	OcspExpiry *string `pulumi:"ocspExpiry"`
+	// Enables unified CRL and OCSP building. **Vault 1.13+**
+	UnifiedCrl *bool `pulumi:"unifiedCrl"`
+	// Enables serving the unified CRL and OCSP on the existing, previously
+	// cluster-local paths. **Vault 1.13+**
+	UnifiedCrlOnExistingPaths *bool `pulumi:"unifiedCrlOnExistingPaths"`
 }
 
 // The set of arguments for constructing a SecretBackendCrlConfig resource.
@@ -209,6 +237,8 @@ type SecretBackendCrlConfigArgs struct {
 	AutoRebuildGracePeriod pulumi.StringPtrInput
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 	Backend pulumi.StringInput
+	// Enable cross-cluster revocation request queues. **Vault 1.13+**
+	CrossClusterRevocation pulumi.BoolPtrInput
 	// Interval to check for new revocations on, to regenerate the delta CRL.
 	DeltaRebuildInterval pulumi.StringPtrInput
 	// Disables or enables CRL building.
@@ -228,6 +258,11 @@ type SecretBackendCrlConfigArgs struct {
 	// The amount of time an OCSP response can be cached for, useful for OCSP stapling
 	// refresh durations. **Vault 1.12+**
 	OcspExpiry pulumi.StringPtrInput
+	// Enables unified CRL and OCSP building. **Vault 1.13+**
+	UnifiedCrl pulumi.BoolPtrInput
+	// Enables serving the unified CRL and OCSP on the existing, previously
+	// cluster-local paths. **Vault 1.13+**
+	UnifiedCrlOnExistingPaths pulumi.BoolPtrInput
 }
 
 func (SecretBackendCrlConfigArgs) ElementType() reflect.Type {
@@ -332,6 +367,11 @@ func (o SecretBackendCrlConfigOutput) Backend() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendCrlConfig) pulumi.StringOutput { return v.Backend }).(pulumi.StringOutput)
 }
 
+// Enable cross-cluster revocation request queues. **Vault 1.13+**
+func (o SecretBackendCrlConfigOutput) CrossClusterRevocation() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretBackendCrlConfig) pulumi.BoolOutput { return v.CrossClusterRevocation }).(pulumi.BoolOutput)
+}
+
 // Interval to check for new revocations on, to regenerate the delta CRL.
 func (o SecretBackendCrlConfigOutput) DeltaRebuildInterval() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendCrlConfig) pulumi.StringOutput { return v.DeltaRebuildInterval }).(pulumi.StringOutput)
@@ -370,6 +410,17 @@ func (o SecretBackendCrlConfigOutput) OcspDisable() pulumi.BoolPtrOutput {
 // refresh durations. **Vault 1.12+**
 func (o SecretBackendCrlConfigOutput) OcspExpiry() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendCrlConfig) pulumi.StringOutput { return v.OcspExpiry }).(pulumi.StringOutput)
+}
+
+// Enables unified CRL and OCSP building. **Vault 1.13+**
+func (o SecretBackendCrlConfigOutput) UnifiedCrl() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretBackendCrlConfig) pulumi.BoolOutput { return v.UnifiedCrl }).(pulumi.BoolOutput)
+}
+
+// Enables serving the unified CRL and OCSP on the existing, previously
+// cluster-local paths. **Vault 1.13+**
+func (o SecretBackendCrlConfigOutput) UnifiedCrlOnExistingPaths() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretBackendCrlConfig) pulumi.BoolOutput { return v.UnifiedCrlOnExistingPaths }).(pulumi.BoolOutput)
 }
 
 type SecretBackendCrlConfigArrayOutput struct{ *pulumi.OutputState }

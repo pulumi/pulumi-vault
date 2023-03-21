@@ -9,6 +9,7 @@ from .auth_backend import *
 from .auth_backend_role import *
 from .get_auth_backend_role import *
 from .secret_backend import *
+from .secret_impersonated_account import *
 from .secret_roleset import *
 from .secret_static_account import *
 from ._inputs import *

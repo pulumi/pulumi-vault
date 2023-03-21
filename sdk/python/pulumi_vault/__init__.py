@@ -6,6 +6,7 @@ from . import _utilities
 import typing
 # Export this package's modules as members:
 from .audit import *
+from .audit_request_header import *
 from .auth_backend import *
 from .cert_auth_backend_role import *
 from .egp_policy import *
@@ -367,6 +368,14 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "gcp/secretImpersonatedAccount",
+  "fqn": "pulumi_vault.gcp",
+  "classes": {
+   "vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount": "SecretImpersonatedAccount"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "gcp/secretRoleset",
   "fqn": "pulumi_vault.gcp",
   "classes": {
@@ -595,6 +604,14 @@ _utilities.register(
   "fqn": "pulumi_vault",
   "classes": {
    "vault:index/audit:Audit": "Audit"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/auditRequestHeader",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/auditRequestHeader:AuditRequestHeader": "AuditRequestHeader"
   }
  },
  {

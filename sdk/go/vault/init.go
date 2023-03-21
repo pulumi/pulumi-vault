@@ -22,6 +22,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "vault:index/audit:Audit":
 		r = &Audit{}
+	case "vault:index/auditRequestHeader:AuditRequestHeader":
+		r = &AuditRequestHeader{}
 	case "vault:index/authBackend:AuthBackend":
 		r = &AuthBackend{}
 	case "vault:index/certAuthBackendRole:CertAuthBackendRole":
@@ -91,6 +93,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"vault",
 		"index/audit",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"index/auditRequestHeader",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

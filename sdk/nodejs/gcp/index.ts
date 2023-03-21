@@ -21,6 +21,10 @@ export { SecretBackendArgs, SecretBackendState } from "./secretBackend";
 export type SecretBackend = import("./secretBackend").SecretBackend;
 export const SecretBackend: typeof import("./secretBackend").SecretBackend = null as any;
 
+export { SecretImpersonatedAccountArgs, SecretImpersonatedAccountState } from "./secretImpersonatedAccount";
+export type SecretImpersonatedAccount = import("./secretImpersonatedAccount").SecretImpersonatedAccount;
+export const SecretImpersonatedAccount: typeof import("./secretImpersonatedAccount").SecretImpersonatedAccount = null as any;
+
 export { SecretRolesetArgs, SecretRolesetState } from "./secretRoleset";
 export type SecretRoleset = import("./secretRoleset").SecretRoleset;
 export const SecretRoleset: typeof import("./secretRoleset").SecretRoleset = null as any;
@@ -33,6 +37,7 @@ utilities.lazyLoad(exports, ["AuthBackend"], () => require("./authBackend"));
 utilities.lazyLoad(exports, ["AuthBackendRole"], () => require("./authBackendRole"));
 utilities.lazyLoad(exports, ["getAuthBackendRole","getAuthBackendRoleOutput"], () => require("./getAuthBackendRole"));
 utilities.lazyLoad(exports, ["SecretBackend"], () => require("./secretBackend"));
+utilities.lazyLoad(exports, ["SecretImpersonatedAccount"], () => require("./secretImpersonatedAccount"));
 utilities.lazyLoad(exports, ["SecretRoleset"], () => require("./secretRoleset"));
 utilities.lazyLoad(exports, ["SecretStaticAccount"], () => require("./secretStaticAccount"));
 
@@ -46,6 +51,8 @@ const _module = {
                 return new AuthBackendRole(name, <any>undefined, { urn })
             case "vault:gcp/secretBackend:SecretBackend":
                 return new SecretBackend(name, <any>undefined, { urn })
+            case "vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount":
+                return new SecretImpersonatedAccount(name, <any>undefined, { urn })
             case "vault:gcp/secretRoleset:SecretRoleset":
                 return new SecretRoleset(name, <any>undefined, { urn })
             case "vault:gcp/secretStaticAccount:SecretStaticAccount":
@@ -58,5 +65,6 @@ const _module = {
 pulumi.runtime.registerResourceModule("vault", "gcp/authBackend", _module)
 pulumi.runtime.registerResourceModule("vault", "gcp/authBackendRole", _module)
 pulumi.runtime.registerResourceModule("vault", "gcp/secretBackend", _module)
+pulumi.runtime.registerResourceModule("vault", "gcp/secretImpersonatedAccount", _module)
 pulumi.runtime.registerResourceModule("vault", "gcp/secretRoleset", _module)
 pulumi.runtime.registerResourceModule("vault", "gcp/secretStaticAccount", _module)

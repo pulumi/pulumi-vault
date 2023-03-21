@@ -61,6 +61,12 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string> Backend { get; private set; } = null!;
 
         /// <summary>
+        /// Enable cross-cluster revocation request queues. **Vault 1.13+**
+        /// </summary>
+        [Output("crossClusterRevocation")]
+        public Output<bool> CrossClusterRevocation { get; private set; } = null!;
+
+        /// <summary>
         /// Interval to check for new revocations on, to regenerate the delta CRL.
         /// </summary>
         [Output("deltaRebuildInterval")]
@@ -106,6 +112,19 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Output("ocspExpiry")]
         public Output<string> OcspExpiry { get; private set; } = null!;
+
+        /// <summary>
+        /// Enables unified CRL and OCSP building. **Vault 1.13+**
+        /// </summary>
+        [Output("unifiedCrl")]
+        public Output<bool> UnifiedCrl { get; private set; } = null!;
+
+        /// <summary>
+        /// Enables serving the unified CRL and OCSP on the existing, previously
+        /// cluster-local paths. **Vault 1.13+**
+        /// </summary>
+        [Output("unifiedCrlOnExistingPaths")]
+        public Output<bool> UnifiedCrlOnExistingPaths { get; private set; } = null!;
 
 
         /// <summary>
@@ -172,6 +191,12 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string> Backend { get; set; } = null!;
 
         /// <summary>
+        /// Enable cross-cluster revocation request queues. **Vault 1.13+**
+        /// </summary>
+        [Input("crossClusterRevocation")]
+        public Input<bool>? CrossClusterRevocation { get; set; }
+
+        /// <summary>
         /// Interval to check for new revocations on, to regenerate the delta CRL.
         /// </summary>
         [Input("deltaRebuildInterval")]
@@ -217,6 +242,19 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("ocspExpiry")]
         public Input<string>? OcspExpiry { get; set; }
+
+        /// <summary>
+        /// Enables unified CRL and OCSP building. **Vault 1.13+**
+        /// </summary>
+        [Input("unifiedCrl")]
+        public Input<bool>? UnifiedCrl { get; set; }
+
+        /// <summary>
+        /// Enables serving the unified CRL and OCSP on the existing, previously
+        /// cluster-local paths. **Vault 1.13+**
+        /// </summary>
+        [Input("unifiedCrlOnExistingPaths")]
+        public Input<bool>? UnifiedCrlOnExistingPaths { get; set; }
 
         public SecretBackendCrlConfigArgs()
         {
@@ -245,6 +283,12 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? Backend { get; set; }
 
         /// <summary>
+        /// Enable cross-cluster revocation request queues. **Vault 1.13+**
+        /// </summary>
+        [Input("crossClusterRevocation")]
+        public Input<bool>? CrossClusterRevocation { get; set; }
+
+        /// <summary>
         /// Interval to check for new revocations on, to regenerate the delta CRL.
         /// </summary>
         [Input("deltaRebuildInterval")]
@@ -290,6 +334,19 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("ocspExpiry")]
         public Input<string>? OcspExpiry { get; set; }
+
+        /// <summary>
+        /// Enables unified CRL and OCSP building. **Vault 1.13+**
+        /// </summary>
+        [Input("unifiedCrl")]
+        public Input<bool>? UnifiedCrl { get; set; }
+
+        /// <summary>
+        /// Enables serving the unified CRL and OCSP on the existing, previously
+        /// cluster-local paths. **Vault 1.13+**
+        /// </summary>
+        [Input("unifiedCrlOnExistingPaths")]
+        public Input<bool>? UnifiedCrlOnExistingPaths { get; set; }
 
         public SecretBackendCrlConfigState()
         {

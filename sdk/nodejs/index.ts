@@ -9,6 +9,10 @@ export { AuditArgs, AuditState } from "./audit";
 export type Audit = import("./audit").Audit;
 export const Audit: typeof import("./audit").Audit = null as any;
 
+export { AuditRequestHeaderArgs, AuditRequestHeaderState } from "./auditRequestHeader";
+export type AuditRequestHeader = import("./auditRequestHeader").AuditRequestHeader;
+export const AuditRequestHeader: typeof import("./auditRequestHeader").AuditRequestHeader = null as any;
+
 export { AuthBackendArgs, AuthBackendState } from "./authBackend";
 export type AuthBackend = import("./authBackend").AuthBackend;
 export const AuthBackend: typeof import("./authBackend").AuthBackend = null as any;
@@ -102,6 +106,7 @@ export type Token = import("./token").Token;
 export const Token: typeof import("./token").Token = null as any;
 
 utilities.lazyLoad(exports, ["Audit"], () => require("./audit"));
+utilities.lazyLoad(exports, ["AuditRequestHeader"], () => require("./auditRequestHeader"));
 utilities.lazyLoad(exports, ["AuthBackend"], () => require("./authBackend"));
 utilities.lazyLoad(exports, ["CertAuthBackendRole"], () => require("./certAuthBackendRole"));
 utilities.lazyLoad(exports, ["EgpPolicy"], () => require("./egpPolicy"));
@@ -191,6 +196,8 @@ const _module = {
         switch (type) {
             case "vault:index/audit:Audit":
                 return new Audit(name, <any>undefined, { urn })
+            case "vault:index/auditRequestHeader:AuditRequestHeader":
+                return new AuditRequestHeader(name, <any>undefined, { urn })
             case "vault:index/authBackend:AuthBackend":
                 return new AuthBackend(name, <any>undefined, { urn })
             case "vault:index/certAuthBackendRole:CertAuthBackendRole":
@@ -235,6 +242,7 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("vault", "index/audit", _module)
+pulumi.runtime.registerResourceModule("vault", "index/auditRequestHeader", _module)
 pulumi.runtime.registerResourceModule("vault", "index/authBackend", _module)
 pulumi.runtime.registerResourceModule("vault", "index/certAuthBackendRole", _module)
 pulumi.runtime.registerResourceModule("vault", "index/egpPolicy", _module)

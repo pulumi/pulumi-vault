@@ -27,6 +27,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AuthBackendRole{}
 	case "vault:gcp/secretBackend:SecretBackend":
 		r = &SecretBackend{}
+	case "vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount":
+		r = &SecretImpersonatedAccount{}
 	case "vault:gcp/secretRoleset:SecretRoleset":
 		r = &SecretRoleset{}
 	case "vault:gcp/secretStaticAccount:SecretStaticAccount":
@@ -57,6 +59,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"vault",
 		"gcp/secretBackend",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"gcp/secretImpersonatedAccount",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
