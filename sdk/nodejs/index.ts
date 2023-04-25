@@ -150,6 +150,7 @@ import * as kubernetes from "./kubernetes";
 import * as kv from "./kv";
 import * as ldap from "./ldap";
 import * as managed from "./managed";
+import * as mongodbatlas from "./mongodbatlas";
 import * as okta from "./okta";
 import * as pkisecret from "./pkisecret";
 import * as rabbitmq from "./rabbitmq";
@@ -179,6 +180,7 @@ export {
     kv,
     ldap,
     managed,
+    mongodbatlas,
     okta,
     pkisecret,
     rabbitmq,

@@ -22,8 +22,6 @@ import (
 //
 // import (
 //
-//	"fmt"
-//
 //	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -32,7 +30,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := vault.NewPasswordPolicy(ctx, "alphanumeric", &vault.PasswordPolicyArgs{
-//				Policy: pulumi.String(fmt.Sprintf("    length = 20\n    rule \"charset\" {\n      charset = \"abcdefghijklmnopqrstuvwxyz0123456789\"\n    }\n  \n")),
+//				Policy: pulumi.String("    length = 20\n    rule \"charset\" {\n      charset = \"abcdefghijklmnopqrstuvwxyz0123456789\"\n    }\n  \n"),
 //			})
 //			if err != nil {
 //				return err

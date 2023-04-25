@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const pki = new vault.Mount("pki", {
- *     path: `%s`,
+ *     path: "%s",
  *     type: "pki",
  *     defaultLeaseTtlSeconds: 3600,
  *     maxLeaseTtlSeconds: 86400,

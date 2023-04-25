@@ -18,8 +18,6 @@ import (
 //
 // import (
 //
-//	"fmt"
-//
 //	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/aws"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -37,19 +35,7 @@ import (
 //			_, err = aws.NewSecretBackendRole(ctx, "role", &aws.SecretBackendRoleArgs{
 //				Backend:        aws.Path,
 //				CredentialType: pulumi.String("iam_user"),
-//				PolicyDocument: pulumi.String(fmt.Sprintf(`{
-//	  "Version": "2012-10-17",
-//	  "Statement": [
-//	    {
-//	      "Effect": "Allow",
-//	      "Action": "iam:*",
-//	      "Resource": "*"
-//	    }
-//	  ]
-//	}
-//
-// `)),
-//
+//				PolicyDocument: pulumi.String("{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": \"iam:*\",\n      \"Resource\": \"*\"\n    }\n  ]\n}\n"),
 //			})
 //			if err != nil {
 //				return err

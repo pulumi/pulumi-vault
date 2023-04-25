@@ -71,6 +71,8 @@ if typing.TYPE_CHECKING:
     ldap = __ldap
     import pulumi_vault.managed as __managed
     managed = __managed
+    import pulumi_vault.mongodbatlas as __mongodbatlas
+    mongodbatlas = __mongodbatlas
     import pulumi_vault.okta as __okta
     okta = __okta
     import pulumi_vault.pkisecret as __pkisecret
@@ -106,6 +108,7 @@ else:
     kv = _utilities.lazy_import('pulumi_vault.kv')
     ldap = _utilities.lazy_import('pulumi_vault.ldap')
     managed = _utilities.lazy_import('pulumi_vault.managed')
+    mongodbatlas = _utilities.lazy_import('pulumi_vault.mongodbatlas')
     okta = _utilities.lazy_import('pulumi_vault.okta')
     pkisecret = _utilities.lazy_import('pulumi_vault.pkisecret')
     rabbitmq = _utilities.lazy_import('pulumi_vault.rabbitmq')
@@ -892,6 +895,22 @@ _utilities.register(
   "fqn": "pulumi_vault.managed",
   "classes": {
    "vault:managed/keys:Keys": "Keys"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "mongodbatlas/secretBackend",
+  "fqn": "pulumi_vault.mongodbatlas",
+  "classes": {
+   "vault:mongodbatlas/secretBackend:SecretBackend": "SecretBackend"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "mongodbatlas/secretRole",
+  "fqn": "pulumi_vault.mongodbatlas",
+  "classes": {
+   "vault:mongodbatlas/secretRole:SecretRole": "SecretRole"
   }
  },
  {
