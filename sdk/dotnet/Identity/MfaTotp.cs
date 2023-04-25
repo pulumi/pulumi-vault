@@ -225,6 +225,12 @@ namespace Pulumi.Vault.Identity
         public Input<int>? Period { get; set; }
 
         /// <summary>
+        /// The pixel size of the generated square QR code.
+        /// </summary>
+        [Input("qrSize")]
+        public Input<int>? QrSize { get; set; }
+
+        /// <summary>
         /// The number of delay periods that are allowed when validating a TOTP token. This value can either be 0 or 1.
         /// </summary>
         [Input("skew")]

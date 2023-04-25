@@ -205,6 +205,8 @@ type mfaTotpArgs struct {
 	Namespace *string `pulumi:"namespace"`
 	// The length of time in seconds used to generate a counter for the TOTP token calculation.
 	Period *int `pulumi:"period"`
+	// The pixel size of the generated square QR code.
+	QrSize *int `pulumi:"qrSize"`
 	// The number of delay periods that are allowed when validating a TOTP token. This value can either be 0 or 1.
 	Skew *int `pulumi:"skew"`
 }
@@ -225,6 +227,8 @@ type MfaTotpArgs struct {
 	Namespace pulumi.StringPtrInput
 	// The length of time in seconds used to generate a counter for the TOTP token calculation.
 	Period pulumi.IntPtrInput
+	// The pixel size of the generated square QR code.
+	QrSize pulumi.IntPtrInput
 	// The number of delay periods that are allowed when validating a TOTP token. This value can either be 0 or 1.
 	Skew pulumi.IntPtrInput
 }

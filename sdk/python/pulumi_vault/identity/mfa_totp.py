@@ -21,6 +21,7 @@ class MfaTotpArgs:
                  max_validation_attempts: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
+                 qr_size: Optional[pulumi.Input[int]] = None,
                  skew: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a MfaTotp resource.
@@ -31,6 +32,7 @@ class MfaTotpArgs:
         :param pulumi.Input[int] max_validation_attempts: The maximum number of consecutive failed validation attempts allowed.
         :param pulumi.Input[str] namespace: Target namespace. (requires Enterprise)
         :param pulumi.Input[int] period: The length of time in seconds used to generate a counter for the TOTP token calculation.
+        :param pulumi.Input[int] qr_size: The pixel size of the generated square QR code.
         :param pulumi.Input[int] skew: The number of delay periods that are allowed when validating a TOTP token. This value can either be 0 or 1.
         """
         pulumi.set(__self__, "issuer", issuer)
@@ -46,6 +48,8 @@ class MfaTotpArgs:
             pulumi.set(__self__, "namespace", namespace)
         if period is not None:
             pulumi.set(__self__, "period", period)
+        if qr_size is not None:
+            pulumi.set(__self__, "qr_size", qr_size)
         if skew is not None:
             pulumi.set(__self__, "skew", skew)
 
@@ -132,6 +136,18 @@ class MfaTotpArgs:
     @period.setter
     def period(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "period", value)
+
+    @property
+    @pulumi.getter(name="qrSize")
+    def qr_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        The pixel size of the generated square QR code.
+        """
+        return pulumi.get(self, "qr_size")
+
+    @qr_size.setter
+    def qr_size(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "qr_size", value)
 
     @property
     @pulumi.getter
@@ -422,6 +438,7 @@ class MfaTotp(pulumi.CustomResource):
                  max_validation_attempts: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
+                 qr_size: Optional[pulumi.Input[int]] = None,
                  skew: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
@@ -453,6 +470,7 @@ class MfaTotp(pulumi.CustomResource):
         :param pulumi.Input[int] max_validation_attempts: The maximum number of consecutive failed validation attempts allowed.
         :param pulumi.Input[str] namespace: Target namespace. (requires Enterprise)
         :param pulumi.Input[int] period: The length of time in seconds used to generate a counter for the TOTP token calculation.
+        :param pulumi.Input[int] qr_size: The pixel size of the generated square QR code.
         :param pulumi.Input[int] skew: The number of delay periods that are allowed when validating a TOTP token. This value can either be 0 or 1.
         """
         ...
@@ -503,6 +521,7 @@ class MfaTotp(pulumi.CustomResource):
                  max_validation_attempts: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
+                 qr_size: Optional[pulumi.Input[int]] = None,
                  skew: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -522,13 +541,13 @@ class MfaTotp(pulumi.CustomResource):
             __props__.__dict__["max_validation_attempts"] = max_validation_attempts
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["period"] = period
+            __props__.__dict__["qr_size"] = qr_size
             __props__.__dict__["skew"] = skew
             __props__.__dict__["method_id"] = None
             __props__.__dict__["mount_accessor"] = None
             __props__.__dict__["name"] = None
             __props__.__dict__["namespace_id"] = None
             __props__.__dict__["namespace_path"] = None
-            __props__.__dict__["qr_size"] = None
             __props__.__dict__["type"] = None
             __props__.__dict__["uuid"] = None
         super(MfaTotp, __self__).__init__(

@@ -105,7 +105,7 @@ export class MfaTotp extends pulumi.CustomResource {
     /**
      * The pixel size of the generated square QR code.
      */
-    public /*out*/ readonly qrSize!: pulumi.Output<number>;
+    public readonly qrSize!: pulumi.Output<number>;
     /**
      * The number of delay periods that are allowed when validating a TOTP token. This value can either be 0 or 1.
      */
@@ -160,13 +160,13 @@ export class MfaTotp extends pulumi.CustomResource {
             resourceInputs["maxValidationAttempts"] = args ? args.maxValidationAttempts : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["period"] = args ? args.period : undefined;
+            resourceInputs["qrSize"] = args ? args.qrSize : undefined;
             resourceInputs["skew"] = args ? args.skew : undefined;
             resourceInputs["methodId"] = undefined /*out*/;
             resourceInputs["mountAccessor"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
             resourceInputs["namespaceId"] = undefined /*out*/;
             resourceInputs["namespacePath"] = undefined /*out*/;
-            resourceInputs["qrSize"] = undefined /*out*/;
             resourceInputs["type"] = undefined /*out*/;
             resourceInputs["uuid"] = undefined /*out*/;
         }
@@ -277,6 +277,10 @@ export interface MfaTotpArgs {
      * The length of time in seconds used to generate a counter for the TOTP token calculation.
      */
     period?: pulumi.Input<number>;
+    /**
+     * The pixel size of the generated square QR code.
+     */
+    qrSize?: pulumi.Input<number>;
     /**
      * The number of delay periods that are allowed when validating a TOTP token. This value can either be 0 or 1.
      */

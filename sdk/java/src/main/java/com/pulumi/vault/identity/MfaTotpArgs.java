@@ -122,6 +122,21 @@ public final class MfaTotpArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The pixel size of the generated square QR code.
+     * 
+     */
+    @Import(name="qrSize")
+    private @Nullable Output<Integer> qrSize;
+
+    /**
+     * @return The pixel size of the generated square QR code.
+     * 
+     */
+    public Optional<Output<Integer>> qrSize() {
+        return Optional.ofNullable(this.qrSize);
+    }
+
+    /**
      * The number of delay periods that are allowed when validating a TOTP token. This value can either be 0 or 1.
      * 
      */
@@ -146,6 +161,7 @@ public final class MfaTotpArgs extends com.pulumi.resources.ResourceArgs {
         this.maxValidationAttempts = $.maxValidationAttempts;
         this.namespace = $.namespace;
         this.period = $.period;
+        this.qrSize = $.qrSize;
         this.skew = $.skew;
     }
 
@@ -312,6 +328,27 @@ public final class MfaTotpArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder period(Integer period) {
             return period(Output.of(period));
+        }
+
+        /**
+         * @param qrSize The pixel size of the generated square QR code.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder qrSize(@Nullable Output<Integer> qrSize) {
+            $.qrSize = qrSize;
+            return this;
+        }
+
+        /**
+         * @param qrSize The pixel size of the generated square QR code.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder qrSize(Integer qrSize) {
+            return qrSize(Output.of(qrSize));
         }
 
         /**

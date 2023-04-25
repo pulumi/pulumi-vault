@@ -55,6 +55,7 @@ const (
 	kvMod             = "kv"
 	ldapMod           = "Ldap"
 	managedMod        = "Managed"
+	mongoDBAtlasMod   = "MongoDBAtlas"
 	oktaMod           = "Okta"
 	pkiSecretMod      = "PkiSecret"
 	rabbitMqMod       = "RabbitMQ"
@@ -376,6 +377,10 @@ func Provider() tfbridge.ProviderInfo {
 
 			// Managed keys
 			"vault_managed_keys": {Tok: makeResource(managedMod, "Keys")},
+
+			// MongoDBAtlas
+			"vault_mongodbatlas_secret_backend": {Tok: makeResource(mongoDBAtlasMod, "SecretBackend")},
+			"vault_mongodbatlas_secret_role":    {Tok: makeResource(mongoDBAtlasMod, "SecretRole")},
 
 			// Okta
 			"vault_okta_auth_backend":       {Tok: makeResource(oktaMod, "AuthBackend")},

@@ -22,8 +22,6 @@ import (
 //
 // import (
 //
-//	"fmt"
-//
 //	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -33,7 +31,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := vault.NewRgpPolicy(ctx, "allow-all", &vault.RgpPolicyArgs{
 //				EnforcementLevel: pulumi.String("soft-mandatory"),
-//				Policy:           pulumi.String(fmt.Sprintf("main = rule {\n  true\n}\n\n")),
+//				Policy:           pulumi.String("main = rule {\n  true\n}\n\n"),
 //			})
 //			if err != nil {
 //				return err

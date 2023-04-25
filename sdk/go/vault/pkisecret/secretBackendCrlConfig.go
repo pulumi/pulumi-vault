@@ -20,8 +20,6 @@ import (
 //
 // import (
 //
-//	"fmt"
-//
 //	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
 //	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -31,7 +29,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			pki, err := vault.NewMount(ctx, "pki", &vault.MountArgs{
-//				Path:                   pulumi.String(fmt.Sprintf("%vs", "%")),
+//				Path:                   pulumi.String("%s"),
 //				Type:                   pulumi.String("pki"),
 //				DefaultLeaseTtlSeconds: pulumi.Int(3600),
 //				MaxLeaseTtlSeconds:     pulumi.Int(86400),
