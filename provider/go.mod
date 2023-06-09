@@ -147,7 +147,7 @@ require (
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.19.0 // indirect
 	github.com/hashicorp/terraform-registry-address v0.1.0 // indirect
 	github.com/hashicorp/terraform-svchost v0.0.0-20200729002733-f050f53b9734 // indirect
-	github.com/hashicorp/vault v1.11.3 // indirect
+	github.com/hashicorp/vault v1.11.11 // indirect
 	github.com/hashicorp/vault-plugin-auth-jwt v0.13.2-0.20221012184020-28cc68ee722b // indirect
 	github.com/hashicorp/vault-plugin-auth-kerberos v0.8.0 // indirect
 	github.com/hashicorp/vault-plugin-auth-oci v0.13.0-pre // indirect
@@ -201,7 +201,7 @@ require (
 	github.com/pkg/browser v0.0.0-20210911075715-681adbf594b8 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pkg/term v1.1.0 // indirect
-	github.com/pmezard/go-difflib v1.0.0 // indirect
+	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
 	github.com/posener/complete v1.2.3 // indirect
 	github.com/prometheus/client_golang v1.11.1 // indirect
 	github.com/prometheus/client_model v0.2.0 // indirect
@@ -222,7 +222,7 @@ require (
 	github.com/segmentio/encoding v0.3.5 // indirect
 	github.com/sergi/go-diff v1.2.0 // indirect
 	github.com/shopspring/decimal v1.2.0 // indirect
-	github.com/spf13/afero v1.6.0 // indirect
+	github.com/spf13/afero v1.9.2 // indirect
 	github.com/spf13/cast v1.4.1 // indirect
 	github.com/spf13/cobra v1.5.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
