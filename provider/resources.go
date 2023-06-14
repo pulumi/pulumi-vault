@@ -371,9 +371,13 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_kv_secret_v2":         {Tok: makeResource(kvMod, "SecretV2")},
 
 			// LDAP
-			"vault_ldap_auth_backend":       {Tok: makeResource(ldapMod, "AuthBackend")},
-			"vault_ldap_auth_backend_user":  {Tok: makeResource(ldapMod, "AuthBackendUser")},
-			"vault_ldap_auth_backend_group": {Tok: makeResource(ldapMod, "AuthBackendGroup")},
+			"vault_ldap_auth_backend":                {Tok: makeResource(ldapMod, "AuthBackend")},
+			"vault_ldap_auth_backend_group":          {Tok: makeResource(ldapMod, "AuthBackendGroup")},
+			"vault_ldap_auth_backend_user":           {Tok: makeResource(ldapMod, "AuthBackendUser")},
+			"vault_ldap_secret_backend":              {Tok: makeResource(ldapMod, "SecretBackend")},
+			"vault_ldap_secret_backend_dynamic_role": {Tok: makeResource(ldapMod, "SecretBackendDynamicRole")},
+			"vault_ldap_secret_backend_library_set":  {Tok: makeResource(ldapMod, "SecretBackendLibrarySet")},
+			"vault_ldap_secret_backend_static_role":  {Tok: makeResource(ldapMod, "SecretBackendStaticRole")},
 
 			// Managed keys
 			"vault_managed_keys": {Tok: makeResource(managedMod, "Keys")},
