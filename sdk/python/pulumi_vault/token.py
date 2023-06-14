@@ -32,7 +32,7 @@ class TokenArgs:
         """
         The set of arguments for constructing a Token resource.
         :param pulumi.Input[str] display_name: String containing the token display name
-        :param pulumi.Input[str] explicit_max_ttl: The explicit max TTL of this token
+        :param pulumi.Input[str] explicit_max_ttl: The explicit max TTL of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Metadata to be set on this token
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -41,13 +41,13 @@ class TokenArgs:
         :param pulumi.Input[bool] no_default_policy: Flag to not attach the default policy to this token
         :param pulumi.Input[bool] no_parent: Flag to create a token without parent
         :param pulumi.Input[int] num_uses: The number of allowed uses of this token
-        :param pulumi.Input[str] period: The period of this token
+        :param pulumi.Input[str] period: The period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to attach to this token
-        :param pulumi.Input[int] renew_increment: The renew increment
+        :param pulumi.Input[int] renew_increment: The renew increment. This is specified in seconds
         :param pulumi.Input[int] renew_min_lease: The minimal lease to renew this token
         :param pulumi.Input[bool] renewable: Flag to allow to renew this token
         :param pulumi.Input[str] role_name: The token role name
-        :param pulumi.Input[str] ttl: The TTL period of this token
+        :param pulumi.Input[str] ttl: The TTL period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         :param pulumi.Input[str] wrapping_ttl: The TTL period of the wrapped token.
         """
         if display_name is not None:
@@ -97,7 +97,7 @@ class TokenArgs:
     @pulumi.getter(name="explicitMaxTtl")
     def explicit_max_ttl(self) -> Optional[pulumi.Input[str]]:
         """
-        The explicit max TTL of this token
+        The explicit max TTL of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         """
         return pulumi.get(self, "explicit_max_ttl")
 
@@ -172,7 +172,7 @@ class TokenArgs:
     @pulumi.getter
     def period(self) -> Optional[pulumi.Input[str]]:
         """
-        The period of this token
+        The period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         """
         return pulumi.get(self, "period")
 
@@ -196,7 +196,7 @@ class TokenArgs:
     @pulumi.getter(name="renewIncrement")
     def renew_increment(self) -> Optional[pulumi.Input[int]]:
         """
-        The renew increment
+        The renew increment. This is specified in seconds
         """
         return pulumi.get(self, "renew_increment")
 
@@ -244,7 +244,7 @@ class TokenArgs:
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[str]]:
         """
-        The TTL period of this token
+        The TTL period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         """
         return pulumi.get(self, "ttl")
 
@@ -292,7 +292,7 @@ class _TokenState:
         Input properties used for looking up and filtering Token resources.
         :param pulumi.Input[str] client_token: String containing the client token if stored in present file
         :param pulumi.Input[str] display_name: String containing the token display name
-        :param pulumi.Input[str] explicit_max_ttl: The explicit max TTL of this token
+        :param pulumi.Input[str] explicit_max_ttl: The explicit max TTL of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         :param pulumi.Input[int] lease_duration: String containing the token lease duration if present in state file
         :param pulumi.Input[str] lease_started: String containing the token lease started time if present in state file
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Metadata to be set on this token
@@ -303,13 +303,13 @@ class _TokenState:
         :param pulumi.Input[bool] no_default_policy: Flag to not attach the default policy to this token
         :param pulumi.Input[bool] no_parent: Flag to create a token without parent
         :param pulumi.Input[int] num_uses: The number of allowed uses of this token
-        :param pulumi.Input[str] period: The period of this token
+        :param pulumi.Input[str] period: The period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to attach to this token
-        :param pulumi.Input[int] renew_increment: The renew increment
+        :param pulumi.Input[int] renew_increment: The renew increment. This is specified in seconds
         :param pulumi.Input[int] renew_min_lease: The minimal lease to renew this token
         :param pulumi.Input[bool] renewable: Flag to allow to renew this token
         :param pulumi.Input[str] role_name: The token role name
-        :param pulumi.Input[str] ttl: The TTL period of this token
+        :param pulumi.Input[str] ttl: The TTL period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         :param pulumi.Input[str] wrapped_token: The client wrapped token.
         :param pulumi.Input[str] wrapping_accessor: The client wrapping accessor.
         :param pulumi.Input[str] wrapping_ttl: The TTL period of the wrapped token.
@@ -383,7 +383,7 @@ class _TokenState:
     @pulumi.getter(name="explicitMaxTtl")
     def explicit_max_ttl(self) -> Optional[pulumi.Input[str]]:
         """
-        The explicit max TTL of this token
+        The explicit max TTL of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         """
         return pulumi.get(self, "explicit_max_ttl")
 
@@ -482,7 +482,7 @@ class _TokenState:
     @pulumi.getter
     def period(self) -> Optional[pulumi.Input[str]]:
         """
-        The period of this token
+        The period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         """
         return pulumi.get(self, "period")
 
@@ -506,7 +506,7 @@ class _TokenState:
     @pulumi.getter(name="renewIncrement")
     def renew_increment(self) -> Optional[pulumi.Input[int]]:
         """
-        The renew increment
+        The renew increment. This is specified in seconds
         """
         return pulumi.get(self, "renew_increment")
 
@@ -554,7 +554,7 @@ class _TokenState:
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[str]]:
         """
-        The TTL period of this token
+        The TTL period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         """
         return pulumi.get(self, "ttl")
 
@@ -653,7 +653,7 @@ class Token(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] display_name: String containing the token display name
-        :param pulumi.Input[str] explicit_max_ttl: The explicit max TTL of this token
+        :param pulumi.Input[str] explicit_max_ttl: The explicit max TTL of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Metadata to be set on this token
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -662,13 +662,13 @@ class Token(pulumi.CustomResource):
         :param pulumi.Input[bool] no_default_policy: Flag to not attach the default policy to this token
         :param pulumi.Input[bool] no_parent: Flag to create a token without parent
         :param pulumi.Input[int] num_uses: The number of allowed uses of this token
-        :param pulumi.Input[str] period: The period of this token
+        :param pulumi.Input[str] period: The period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to attach to this token
-        :param pulumi.Input[int] renew_increment: The renew increment
+        :param pulumi.Input[int] renew_increment: The renew increment. This is specified in seconds
         :param pulumi.Input[int] renew_min_lease: The minimal lease to renew this token
         :param pulumi.Input[bool] renewable: Flag to allow to renew this token
         :param pulumi.Input[str] role_name: The token role name
-        :param pulumi.Input[str] ttl: The TTL period of this token
+        :param pulumi.Input[str] ttl: The TTL period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         :param pulumi.Input[str] wrapping_ttl: The TTL period of the wrapped token.
         """
         ...
@@ -807,7 +807,7 @@ class Token(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] client_token: String containing the client token if stored in present file
         :param pulumi.Input[str] display_name: String containing the token display name
-        :param pulumi.Input[str] explicit_max_ttl: The explicit max TTL of this token
+        :param pulumi.Input[str] explicit_max_ttl: The explicit max TTL of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         :param pulumi.Input[int] lease_duration: String containing the token lease duration if present in state file
         :param pulumi.Input[str] lease_started: String containing the token lease started time if present in state file
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Metadata to be set on this token
@@ -818,13 +818,13 @@ class Token(pulumi.CustomResource):
         :param pulumi.Input[bool] no_default_policy: Flag to not attach the default policy to this token
         :param pulumi.Input[bool] no_parent: Flag to create a token without parent
         :param pulumi.Input[int] num_uses: The number of allowed uses of this token
-        :param pulumi.Input[str] period: The period of this token
+        :param pulumi.Input[str] period: The period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to attach to this token
-        :param pulumi.Input[int] renew_increment: The renew increment
+        :param pulumi.Input[int] renew_increment: The renew increment. This is specified in seconds
         :param pulumi.Input[int] renew_min_lease: The minimal lease to renew this token
         :param pulumi.Input[bool] renewable: Flag to allow to renew this token
         :param pulumi.Input[str] role_name: The token role name
-        :param pulumi.Input[str] ttl: The TTL period of this token
+        :param pulumi.Input[str] ttl: The TTL period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         :param pulumi.Input[str] wrapped_token: The client wrapped token.
         :param pulumi.Input[str] wrapping_accessor: The client wrapping accessor.
         :param pulumi.Input[str] wrapping_ttl: The TTL period of the wrapped token.
@@ -875,7 +875,7 @@ class Token(pulumi.CustomResource):
     @pulumi.getter(name="explicitMaxTtl")
     def explicit_max_ttl(self) -> pulumi.Output[Optional[str]]:
         """
-        The explicit max TTL of this token
+        The explicit max TTL of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         """
         return pulumi.get(self, "explicit_max_ttl")
 
@@ -942,7 +942,7 @@ class Token(pulumi.CustomResource):
     @pulumi.getter
     def period(self) -> pulumi.Output[Optional[str]]:
         """
-        The period of this token
+        The period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         """
         return pulumi.get(self, "period")
 
@@ -958,7 +958,7 @@ class Token(pulumi.CustomResource):
     @pulumi.getter(name="renewIncrement")
     def renew_increment(self) -> pulumi.Output[Optional[int]]:
         """
-        The renew increment
+        The renew increment. This is specified in seconds
         """
         return pulumi.get(self, "renew_increment")
 
@@ -990,7 +990,7 @@ class Token(pulumi.CustomResource):
     @pulumi.getter
     def ttl(self) -> pulumi.Output[Optional[str]]:
         """
-        The TTL period of this token
+        The TTL period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         """
         return pulumi.get(self, "ttl")
 

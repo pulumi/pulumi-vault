@@ -37,14 +37,14 @@ public final class NamespaceArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The path of the namespace. Must not have a trailing `/`
+     * The path of the namespace. Must not have a trailing `/`.
      * 
      */
     @Import(name="path", required=true)
     private Output<String> path;
 
     /**
-     * @return The path of the namespace. Must not have a trailing `/`
+     * @return The path of the namespace. Must not have a trailing `/`.
      * 
      */
     public Output<String> path() {
@@ -53,6 +53,7 @@ public final class NamespaceArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+     * The path is relative to the provider&#39;s `namespace` argument.
      * 
      */
     @Import(name="pathFq")
@@ -60,6 +61,7 @@ public final class NamespaceArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+     * The path is relative to the provider&#39;s `namespace` argument.
      * 
      */
     public Optional<Output<String>> pathFq() {
@@ -120,7 +122,7 @@ public final class NamespaceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param path The path of the namespace. Must not have a trailing `/`
+         * @param path The path of the namespace. Must not have a trailing `/`.
          * 
          * @return builder
          * 
@@ -131,7 +133,7 @@ public final class NamespaceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param path The path of the namespace. Must not have a trailing `/`
+         * @param path The path of the namespace. Must not have a trailing `/`.
          * 
          * @return builder
          * 
@@ -142,6 +144,7 @@ public final class NamespaceArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param pathFq The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+         * The path is relative to the provider&#39;s `namespace` argument.
          * 
          * @return builder
          * 
@@ -153,6 +156,7 @@ public final class NamespaceArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param pathFq The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+         * The path is relative to the provider&#39;s `namespace` argument.
          * 
          * @return builder
          * 

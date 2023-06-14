@@ -72,7 +72,7 @@ export class Token extends pulumi.CustomResource {
      */
     public readonly displayName!: pulumi.Output<string | undefined>;
     /**
-     * The explicit max TTL of this token
+     * The explicit max TTL of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
      */
     public readonly explicitMaxTtl!: pulumi.Output<string | undefined>;
     /**
@@ -107,7 +107,7 @@ export class Token extends pulumi.CustomResource {
      */
     public readonly numUses!: pulumi.Output<number>;
     /**
-     * The period of this token
+     * The period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
      */
     public readonly period!: pulumi.Output<string | undefined>;
     /**
@@ -115,7 +115,7 @@ export class Token extends pulumi.CustomResource {
      */
     public readonly policies!: pulumi.Output<string[] | undefined>;
     /**
-     * The renew increment
+     * The renew increment. This is specified in seconds
      */
     public readonly renewIncrement!: pulumi.Output<number | undefined>;
     /**
@@ -131,7 +131,7 @@ export class Token extends pulumi.CustomResource {
      */
     public readonly roleName!: pulumi.Output<string | undefined>;
     /**
-     * The TTL period of this token
+     * The TTL period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
      */
     public readonly ttl!: pulumi.Output<string | undefined>;
     /**
@@ -223,7 +223,7 @@ export interface TokenState {
      */
     displayName?: pulumi.Input<string>;
     /**
-     * The explicit max TTL of this token
+     * The explicit max TTL of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
      */
     explicitMaxTtl?: pulumi.Input<string>;
     /**
@@ -258,7 +258,7 @@ export interface TokenState {
      */
     numUses?: pulumi.Input<number>;
     /**
-     * The period of this token
+     * The period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
      */
     period?: pulumi.Input<string>;
     /**
@@ -266,7 +266,7 @@ export interface TokenState {
      */
     policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The renew increment
+     * The renew increment. This is specified in seconds
      */
     renewIncrement?: pulumi.Input<number>;
     /**
@@ -282,7 +282,7 @@ export interface TokenState {
      */
     roleName?: pulumi.Input<string>;
     /**
-     * The TTL period of this token
+     * The TTL period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
      */
     ttl?: pulumi.Input<string>;
     /**
@@ -308,7 +308,7 @@ export interface TokenArgs {
      */
     displayName?: pulumi.Input<string>;
     /**
-     * The explicit max TTL of this token
+     * The explicit max TTL of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
      */
     explicitMaxTtl?: pulumi.Input<string>;
     /**
@@ -335,7 +335,7 @@ export interface TokenArgs {
      */
     numUses?: pulumi.Input<number>;
     /**
-     * The period of this token
+     * The period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
      */
     period?: pulumi.Input<string>;
     /**
@@ -343,7 +343,7 @@ export interface TokenArgs {
      */
     policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The renew increment
+     * The renew increment. This is specified in seconds
      */
     renewIncrement?: pulumi.Input<number>;
     /**
@@ -359,7 +359,7 @@ export interface TokenArgs {
      */
     roleName?: pulumi.Input<string>;
     /**
-     * The TTL period of this token
+     * The TTL period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
      */
     ttl?: pulumi.Input<string>;
     /**

@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  *  $ pulumi import vault:index/namespace:Namespace example <name>
  * ```
  *
- *  If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path. provider "vault" {
+ *  If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path. hcl provider "vault" {
  *
  * # Configuration options
  *
@@ -21,15 +21,19 @@ import * as utilities from "./utilities";
  *
  *  alias
  *
- *  = "example" } resource vault_namespace "example2" {
+ *  = "example" } resource "vault_namespace" "example2" {
  *
- *  provider = vault.example }
+ *  provider = vault.example
+ *
+ *  path
+ *
+ *  = "example2" }
  *
  * ```sh
  *  $ pulumi import vault:index/namespace:Namespace example2 example2
  * ```
  *
- *  $ terraform state show vault_namespace.example2 vault_namespace.example2 resource "vault_namespace" "example2" {
+ *  $ terraform state show vault_namespace.example2 vault_namespace.example2resource "vault_namespace" "example2" {
  *
  *  id
  *
@@ -39,7 +43,11 @@ import * as utilities from "./utilities";
  *
  *  path
  *
- *  = "example2" }
+ *  = "example2"
+ *
+ *  path_fq
+ *
+ * = "example2" }
  */
 export class Namespace extends pulumi.CustomResource {
     /**
@@ -77,15 +85,16 @@ export class Namespace extends pulumi.CustomResource {
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
     /**
-     * Namespace ID.
+     * Vault server's internal ID of the namespace.
      */
     public /*out*/ readonly namespaceId!: pulumi.Output<string>;
     /**
-     * The path of the namespace. Must not have a trailing `/`
+     * The path of the namespace. Must not have a trailing `/`.
      */
     public readonly path!: pulumi.Output<string>;
     /**
      * The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+     * The path is relative to the provider's `namespace` argument.
      */
     public readonly pathFq!: pulumi.Output<string>;
 
@@ -133,15 +142,16 @@ export interface NamespaceState {
      */
     namespace?: pulumi.Input<string>;
     /**
-     * Namespace ID.
+     * Vault server's internal ID of the namespace.
      */
     namespaceId?: pulumi.Input<string>;
     /**
-     * The path of the namespace. Must not have a trailing `/`
+     * The path of the namespace. Must not have a trailing `/`.
      */
     path?: pulumi.Input<string>;
     /**
      * The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+     * The path is relative to the provider's `namespace` argument.
      */
     pathFq?: pulumi.Input<string>;
 }
@@ -158,11 +168,12 @@ export interface NamespaceArgs {
      */
     namespace?: pulumi.Input<string>;
     /**
-     * The path of the namespace. Must not have a trailing `/`
+     * The path of the namespace. Must not have a trailing `/`.
      */
     path: pulumi.Input<string>;
     /**
      * The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+     * The path is relative to the provider's `namespace` argument.
      */
     pathFq?: pulumi.Input<string>;
 }

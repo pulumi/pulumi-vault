@@ -13,6 +13,55 @@ import (
 
 // Provides a resource to create a role in an [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/gcp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			gcp, err := vault.NewAuthBackend(ctx, "gcp", &vault.AuthBackendArgs{
+//				Path: pulumi.String("gcp"),
+//				Type: pulumi.String("gcp"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = gcp.NewAuthBackendRole(ctx, "test", &gcp.AuthBackendRoleArgs{
+//				Backend: gcp.Path,
+//				Role:    pulumi.String("test"),
+//				Type:    pulumi.String("iam"),
+//				BoundServiceAccounts: pulumi.StringArray{
+//					pulumi.String("test"),
+//				},
+//				BoundProjects: pulumi.StringArray{
+//					pulumi.String("test"),
+//				},
+//				TokenTtl:    pulumi.Int(300),
+//				TokenMaxTtl: pulumi.Int(600),
+//				TokenPolicies: pulumi.StringArray{
+//					pulumi.String("policy_a"),
+//					pulumi.String("policy_b"),
+//				},
+//				AddGroupAliases: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // GCP authentication roles can be imported using the `path`, e.g.

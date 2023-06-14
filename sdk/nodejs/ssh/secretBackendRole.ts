@@ -100,6 +100,11 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly allowedDomains!: pulumi.Output<string | undefined>;
     /**
+     * Specifies if `allowedDomains` can be declared using
+     * identity template policies. Non-templated domains are also permitted.
+     */
+    public readonly allowedDomainsTemplate!: pulumi.Output<boolean>;
+    /**
      * Specifies a comma-separated list of extensions that certificates can have when signed.
      */
     public readonly allowedExtensions!: pulumi.Output<string | undefined>;
@@ -198,6 +203,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["allowUserKeyIds"] = state ? state.allowUserKeyIds : undefined;
             resourceInputs["allowedCriticalOptions"] = state ? state.allowedCriticalOptions : undefined;
             resourceInputs["allowedDomains"] = state ? state.allowedDomains : undefined;
+            resourceInputs["allowedDomainsTemplate"] = state ? state.allowedDomainsTemplate : undefined;
             resourceInputs["allowedExtensions"] = state ? state.allowedExtensions : undefined;
             resourceInputs["allowedUserKeyConfigs"] = state ? state.allowedUserKeyConfigs : undefined;
             resourceInputs["allowedUserKeyLengths"] = state ? state.allowedUserKeyLengths : undefined;
@@ -231,6 +237,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["allowUserKeyIds"] = args ? args.allowUserKeyIds : undefined;
             resourceInputs["allowedCriticalOptions"] = args ? args.allowedCriticalOptions : undefined;
             resourceInputs["allowedDomains"] = args ? args.allowedDomains : undefined;
+            resourceInputs["allowedDomainsTemplate"] = args ? args.allowedDomainsTemplate : undefined;
             resourceInputs["allowedExtensions"] = args ? args.allowedExtensions : undefined;
             resourceInputs["allowedUserKeyConfigs"] = args ? args.allowedUserKeyConfigs : undefined;
             resourceInputs["allowedUserKeyLengths"] = args ? args.allowedUserKeyLengths : undefined;
@@ -290,6 +297,11 @@ export interface SecretBackendRoleState {
      * The list of domains for which a client can request a host certificate.
      */
     allowedDomains?: pulumi.Input<string>;
+    /**
+     * Specifies if `allowedDomains` can be declared using
+     * identity template policies. Non-templated domains are also permitted.
+     */
+    allowedDomainsTemplate?: pulumi.Input<boolean>;
     /**
      * Specifies a comma-separated list of extensions that certificates can have when signed.
      */
@@ -405,6 +417,11 @@ export interface SecretBackendRoleArgs {
      * The list of domains for which a client can request a host certificate.
      */
     allowedDomains?: pulumi.Input<string>;
+    /**
+     * Specifies if `allowedDomains` can be declared using
+     * identity template policies. Non-templated domains are also permitted.
+     */
+    allowedDomainsTemplate?: pulumi.Input<boolean>;
     /**
      * Specifies a comma-separated list of extensions that certificates can have when signed.
      */

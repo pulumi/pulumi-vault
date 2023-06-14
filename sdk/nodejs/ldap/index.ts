@@ -17,9 +17,29 @@ export { AuthBackendUserArgs, AuthBackendUserState } from "./authBackendUser";
 export type AuthBackendUser = import("./authBackendUser").AuthBackendUser;
 export const AuthBackendUser: typeof import("./authBackendUser").AuthBackendUser = null as any;
 
+export { SecretBackendArgs, SecretBackendState } from "./secretBackend";
+export type SecretBackend = import("./secretBackend").SecretBackend;
+export const SecretBackend: typeof import("./secretBackend").SecretBackend = null as any;
+
+export { SecretBackendDynamicRoleArgs, SecretBackendDynamicRoleState } from "./secretBackendDynamicRole";
+export type SecretBackendDynamicRole = import("./secretBackendDynamicRole").SecretBackendDynamicRole;
+export const SecretBackendDynamicRole: typeof import("./secretBackendDynamicRole").SecretBackendDynamicRole = null as any;
+
+export { SecretBackendLibrarySetArgs, SecretBackendLibrarySetState } from "./secretBackendLibrarySet";
+export type SecretBackendLibrarySet = import("./secretBackendLibrarySet").SecretBackendLibrarySet;
+export const SecretBackendLibrarySet: typeof import("./secretBackendLibrarySet").SecretBackendLibrarySet = null as any;
+
+export { SecretBackendStaticRoleArgs, SecretBackendStaticRoleState } from "./secretBackendStaticRole";
+export type SecretBackendStaticRole = import("./secretBackendStaticRole").SecretBackendStaticRole;
+export const SecretBackendStaticRole: typeof import("./secretBackendStaticRole").SecretBackendStaticRole = null as any;
+
 utilities.lazyLoad(exports, ["AuthBackend"], () => require("./authBackend"));
 utilities.lazyLoad(exports, ["AuthBackendGroup"], () => require("./authBackendGroup"));
 utilities.lazyLoad(exports, ["AuthBackendUser"], () => require("./authBackendUser"));
+utilities.lazyLoad(exports, ["SecretBackend"], () => require("./secretBackend"));
+utilities.lazyLoad(exports, ["SecretBackendDynamicRole"], () => require("./secretBackendDynamicRole"));
+utilities.lazyLoad(exports, ["SecretBackendLibrarySet"], () => require("./secretBackendLibrarySet"));
+utilities.lazyLoad(exports, ["SecretBackendStaticRole"], () => require("./secretBackendStaticRole"));
 
 const _module = {
     version: utilities.getVersion(),
@@ -31,6 +51,14 @@ const _module = {
                 return new AuthBackendGroup(name, <any>undefined, { urn })
             case "vault:ldap/authBackendUser:AuthBackendUser":
                 return new AuthBackendUser(name, <any>undefined, { urn })
+            case "vault:ldap/secretBackend:SecretBackend":
+                return new SecretBackend(name, <any>undefined, { urn })
+            case "vault:ldap/secretBackendDynamicRole:SecretBackendDynamicRole":
+                return new SecretBackendDynamicRole(name, <any>undefined, { urn })
+            case "vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet":
+                return new SecretBackendLibrarySet(name, <any>undefined, { urn })
+            case "vault:ldap/secretBackendStaticRole:SecretBackendStaticRole":
+                return new SecretBackendStaticRole(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -39,3 +67,7 @@ const _module = {
 pulumi.runtime.registerResourceModule("vault", "ldap/authBackend", _module)
 pulumi.runtime.registerResourceModule("vault", "ldap/authBackendGroup", _module)
 pulumi.runtime.registerResourceModule("vault", "ldap/authBackendUser", _module)
+pulumi.runtime.registerResourceModule("vault", "ldap/secretBackend", _module)
+pulumi.runtime.registerResourceModule("vault", "ldap/secretBackendDynamicRole", _module)
+pulumi.runtime.registerResourceModule("vault", "ldap/secretBackendLibrarySet", _module)
+pulumi.runtime.registerResourceModule("vault", "ldap/secretBackendStaticRole", _module)

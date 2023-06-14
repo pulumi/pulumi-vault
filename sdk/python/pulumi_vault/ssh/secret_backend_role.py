@@ -26,6 +26,7 @@ class SecretBackendRoleArgs:
                  allow_user_key_ids: Optional[pulumi.Input[bool]] = None,
                  allowed_critical_options: Optional[pulumi.Input[str]] = None,
                  allowed_domains: Optional[pulumi.Input[str]] = None,
+                 allowed_domains_template: Optional[pulumi.Input[bool]] = None,
                  allowed_extensions: Optional[pulumi.Input[str]] = None,
                  allowed_user_key_configs: Optional[pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]]] = None,
                  allowed_user_key_lengths: Optional[pulumi.Input[Mapping[str, pulumi.Input[int]]]] = None,
@@ -53,6 +54,8 @@ class SecretBackendRoleArgs:
         :param pulumi.Input[bool] allow_user_key_ids: Specifies if users can override the key ID for a signed certificate with the `key_id` field.
         :param pulumi.Input[str] allowed_critical_options: Specifies a comma-separated list of critical options that certificates can have when signed.
         :param pulumi.Input[str] allowed_domains: The list of domains for which a client can request a host certificate.
+        :param pulumi.Input[bool] allowed_domains_template: Specifies if `allowed_domains` can be declared using
+               identity template policies. Non-templated domains are also permitted.
         :param pulumi.Input[str] allowed_extensions: Specifies a comma-separated list of extensions that certificates can have when signed.
         :param pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]] allowed_user_key_configs: Set of configuration blocks to define allowed  
                user key configuration, like key type and their lengths. Can be specified multiple times.
@@ -94,6 +97,8 @@ class SecretBackendRoleArgs:
             pulumi.set(__self__, "allowed_critical_options", allowed_critical_options)
         if allowed_domains is not None:
             pulumi.set(__self__, "allowed_domains", allowed_domains)
+        if allowed_domains_template is not None:
+            pulumi.set(__self__, "allowed_domains_template", allowed_domains_template)
         if allowed_extensions is not None:
             pulumi.set(__self__, "allowed_extensions", allowed_extensions)
         if allowed_user_key_configs is not None:
@@ -247,6 +252,19 @@ class SecretBackendRoleArgs:
     @allowed_domains.setter
     def allowed_domains(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "allowed_domains", value)
+
+    @property
+    @pulumi.getter(name="allowedDomainsTemplate")
+    def allowed_domains_template(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies if `allowed_domains` can be declared using
+        identity template policies. Non-templated domains are also permitted.
+        """
+        return pulumi.get(self, "allowed_domains_template")
+
+    @allowed_domains_template.setter
+    def allowed_domains_template(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "allowed_domains_template", value)
 
     @property
     @pulumi.getter(name="allowedExtensions")
@@ -447,6 +465,7 @@ class _SecretBackendRoleState:
                  allow_user_key_ids: Optional[pulumi.Input[bool]] = None,
                  allowed_critical_options: Optional[pulumi.Input[str]] = None,
                  allowed_domains: Optional[pulumi.Input[str]] = None,
+                 allowed_domains_template: Optional[pulumi.Input[bool]] = None,
                  allowed_extensions: Optional[pulumi.Input[str]] = None,
                  allowed_user_key_configs: Optional[pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]]] = None,
                  allowed_user_key_lengths: Optional[pulumi.Input[Mapping[str, pulumi.Input[int]]]] = None,
@@ -474,6 +493,8 @@ class _SecretBackendRoleState:
         :param pulumi.Input[bool] allow_user_key_ids: Specifies if users can override the key ID for a signed certificate with the `key_id` field.
         :param pulumi.Input[str] allowed_critical_options: Specifies a comma-separated list of critical options that certificates can have when signed.
         :param pulumi.Input[str] allowed_domains: The list of domains for which a client can request a host certificate.
+        :param pulumi.Input[bool] allowed_domains_template: Specifies if `allowed_domains` can be declared using
+               identity template policies. Non-templated domains are also permitted.
         :param pulumi.Input[str] allowed_extensions: Specifies a comma-separated list of extensions that certificates can have when signed.
         :param pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]] allowed_user_key_configs: Set of configuration blocks to define allowed  
                user key configuration, like key type and their lengths. Can be specified multiple times.
@@ -515,6 +536,8 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "allowed_critical_options", allowed_critical_options)
         if allowed_domains is not None:
             pulumi.set(__self__, "allowed_domains", allowed_domains)
+        if allowed_domains_template is not None:
+            pulumi.set(__self__, "allowed_domains_template", allowed_domains_template)
         if allowed_extensions is not None:
             pulumi.set(__self__, "allowed_extensions", allowed_extensions)
         if allowed_user_key_configs is not None:
@@ -648,6 +671,19 @@ class _SecretBackendRoleState:
     @allowed_domains.setter
     def allowed_domains(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "allowed_domains", value)
+
+    @property
+    @pulumi.getter(name="allowedDomainsTemplate")
+    def allowed_domains_template(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies if `allowed_domains` can be declared using
+        identity template policies. Non-templated domains are also permitted.
+        """
+        return pulumi.get(self, "allowed_domains_template")
+
+    @allowed_domains_template.setter
+    def allowed_domains_template(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "allowed_domains_template", value)
 
     @property
     @pulumi.getter(name="allowedExtensions")
@@ -874,6 +910,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  allow_user_key_ids: Optional[pulumi.Input[bool]] = None,
                  allowed_critical_options: Optional[pulumi.Input[str]] = None,
                  allowed_domains: Optional[pulumi.Input[str]] = None,
+                 allowed_domains_template: Optional[pulumi.Input[bool]] = None,
                  allowed_extensions: Optional[pulumi.Input[str]] = None,
                  allowed_user_key_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleAllowedUserKeyConfigArgs']]]]] = None,
                  allowed_user_key_lengths: Optional[pulumi.Input[Mapping[str, pulumi.Input[int]]]] = None,
@@ -933,6 +970,8 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[bool] allow_user_key_ids: Specifies if users can override the key ID for a signed certificate with the `key_id` field.
         :param pulumi.Input[str] allowed_critical_options: Specifies a comma-separated list of critical options that certificates can have when signed.
         :param pulumi.Input[str] allowed_domains: The list of domains for which a client can request a host certificate.
+        :param pulumi.Input[bool] allowed_domains_template: Specifies if `allowed_domains` can be declared using
+               identity template policies. Non-templated domains are also permitted.
         :param pulumi.Input[str] allowed_extensions: Specifies a comma-separated list of extensions that certificates can have when signed.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleAllowedUserKeyConfigArgs']]]] allowed_user_key_configs: Set of configuration blocks to define allowed  
                user key configuration, like key type and their lengths. Can be specified multiple times.
@@ -1018,6 +1057,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  allow_user_key_ids: Optional[pulumi.Input[bool]] = None,
                  allowed_critical_options: Optional[pulumi.Input[str]] = None,
                  allowed_domains: Optional[pulumi.Input[str]] = None,
+                 allowed_domains_template: Optional[pulumi.Input[bool]] = None,
                  allowed_extensions: Optional[pulumi.Input[str]] = None,
                  allowed_user_key_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleAllowedUserKeyConfigArgs']]]]] = None,
                  allowed_user_key_lengths: Optional[pulumi.Input[Mapping[str, pulumi.Input[int]]]] = None,
@@ -1052,6 +1092,7 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__.__dict__["allow_user_key_ids"] = allow_user_key_ids
             __props__.__dict__["allowed_critical_options"] = allowed_critical_options
             __props__.__dict__["allowed_domains"] = allowed_domains
+            __props__.__dict__["allowed_domains_template"] = allowed_domains_template
             __props__.__dict__["allowed_extensions"] = allowed_extensions
             __props__.__dict__["allowed_user_key_configs"] = allowed_user_key_configs
             if allowed_user_key_lengths is not None and not opts.urn:
@@ -1094,6 +1135,7 @@ class SecretBackendRole(pulumi.CustomResource):
             allow_user_key_ids: Optional[pulumi.Input[bool]] = None,
             allowed_critical_options: Optional[pulumi.Input[str]] = None,
             allowed_domains: Optional[pulumi.Input[str]] = None,
+            allowed_domains_template: Optional[pulumi.Input[bool]] = None,
             allowed_extensions: Optional[pulumi.Input[str]] = None,
             allowed_user_key_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleAllowedUserKeyConfigArgs']]]]] = None,
             allowed_user_key_lengths: Optional[pulumi.Input[Mapping[str, pulumi.Input[int]]]] = None,
@@ -1126,6 +1168,8 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[bool] allow_user_key_ids: Specifies if users can override the key ID for a signed certificate with the `key_id` field.
         :param pulumi.Input[str] allowed_critical_options: Specifies a comma-separated list of critical options that certificates can have when signed.
         :param pulumi.Input[str] allowed_domains: The list of domains for which a client can request a host certificate.
+        :param pulumi.Input[bool] allowed_domains_template: Specifies if `allowed_domains` can be declared using
+               identity template policies. Non-templated domains are also permitted.
         :param pulumi.Input[str] allowed_extensions: Specifies a comma-separated list of extensions that certificates can have when signed.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleAllowedUserKeyConfigArgs']]]] allowed_user_key_configs: Set of configuration blocks to define allowed  
                user key configuration, like key type and their lengths. Can be specified multiple times.
@@ -1163,6 +1207,7 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["allow_user_key_ids"] = allow_user_key_ids
         __props__.__dict__["allowed_critical_options"] = allowed_critical_options
         __props__.__dict__["allowed_domains"] = allowed_domains
+        __props__.__dict__["allowed_domains_template"] = allowed_domains_template
         __props__.__dict__["allowed_extensions"] = allowed_extensions
         __props__.__dict__["allowed_user_key_configs"] = allowed_user_key_configs
         __props__.__dict__["allowed_user_key_lengths"] = allowed_user_key_lengths
@@ -1245,6 +1290,15 @@ class SecretBackendRole(pulumi.CustomResource):
         The list of domains for which a client can request a host certificate.
         """
         return pulumi.get(self, "allowed_domains")
+
+    @property
+    @pulumi.getter(name="allowedDomainsTemplate")
+    def allowed_domains_template(self) -> pulumi.Output[bool]:
+        """
+        Specifies if `allowed_domains` can be declared using
+        identity template policies. Non-templated domains are also permitted.
+        """
+        return pulumi.get(self, "allowed_domains_template")
 
     @property
     @pulumi.getter(name="allowedExtensions")

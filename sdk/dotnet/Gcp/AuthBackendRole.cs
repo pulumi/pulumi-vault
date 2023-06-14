@@ -12,6 +12,47 @@ namespace Pulumi.Vault.Gcp
     /// <summary>
     /// Provides a resource to create a role in an [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var gcp = new Vault.AuthBackend("gcp", new()
+    ///     {
+    ///         Path = "gcp",
+    ///         Type = "gcp",
+    ///     });
+    /// 
+    ///     var test = new Vault.Gcp.AuthBackendRole("test", new()
+    ///     {
+    ///         Backend = gcp.Path,
+    ///         Role = "test",
+    ///         Type = "iam",
+    ///         BoundServiceAccounts = new[]
+    ///         {
+    ///             "test",
+    ///         },
+    ///         BoundProjects = new[]
+    ///         {
+    ///             "test",
+    ///         },
+    ///         TokenTtl = 300,
+    ///         TokenMaxTtl = 600,
+    ///         TokenPolicies = new[]
+    ///         {
+    ///             "policy_a",
+    ///             "policy_b",
+    ///         },
+    ///         AddGroupAliases = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// GCP authentication roles can be imported using the `path`, e.g.

@@ -891,6 +891,38 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "ldap/secretBackend",
+  "fqn": "pulumi_vault.ldap",
+  "classes": {
+   "vault:ldap/secretBackend:SecretBackend": "SecretBackend"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "ldap/secretBackendDynamicRole",
+  "fqn": "pulumi_vault.ldap",
+  "classes": {
+   "vault:ldap/secretBackendDynamicRole:SecretBackendDynamicRole": "SecretBackendDynamicRole"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "ldap/secretBackendLibrarySet",
+  "fqn": "pulumi_vault.ldap",
+  "classes": {
+   "vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet": "SecretBackendLibrarySet"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "ldap/secretBackendStaticRole",
+  "fqn": "pulumi_vault.ldap",
+  "classes": {
+   "vault:ldap/secretBackendStaticRole:SecretBackendStaticRole": "SecretBackendStaticRole"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "managed/keys",
   "fqn": "pulumi_vault.managed",
   "classes": {

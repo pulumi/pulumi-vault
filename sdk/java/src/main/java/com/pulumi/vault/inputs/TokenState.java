@@ -50,14 +50,14 @@ public final class TokenState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The explicit max TTL of this token
+     * The explicit max TTL of this token. This is specified as a numeric string with suffix like &#34;30s&#34; ro &#34;5m&#34;
      * 
      */
     @Import(name="explicitMaxTtl")
     private @Nullable Output<String> explicitMaxTtl;
 
     /**
-     * @return The explicit max TTL of this token
+     * @return The explicit max TTL of this token. This is specified as a numeric string with suffix like &#34;30s&#34; ro &#34;5m&#34;
      * 
      */
     public Optional<Output<String>> explicitMaxTtl() {
@@ -176,14 +176,14 @@ public final class TokenState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The period of this token
+     * The period of this token. This is specified as a numeric string with suffix like &#34;30s&#34; ro &#34;5m&#34;
      * 
      */
     @Import(name="period")
     private @Nullable Output<String> period;
 
     /**
-     * @return The period of this token
+     * @return The period of this token. This is specified as a numeric string with suffix like &#34;30s&#34; ro &#34;5m&#34;
      * 
      */
     public Optional<Output<String>> period() {
@@ -206,14 +206,14 @@ public final class TokenState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The renew increment
+     * The renew increment. This is specified in seconds
      * 
      */
     @Import(name="renewIncrement")
     private @Nullable Output<Integer> renewIncrement;
 
     /**
-     * @return The renew increment
+     * @return The renew increment. This is specified in seconds
      * 
      */
     public Optional<Output<Integer>> renewIncrement() {
@@ -266,14 +266,14 @@ public final class TokenState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The TTL period of this token
+     * The TTL period of this token. This is specified as a numeric string with suffix like &#34;30s&#34; ro &#34;5m&#34;
      * 
      */
     @Import(name="ttl")
     private @Nullable Output<String> ttl;
 
     /**
-     * @return The TTL period of this token
+     * @return The TTL period of this token. This is specified as a numeric string with suffix like &#34;30s&#34; ro &#34;5m&#34;
      * 
      */
     public Optional<Output<String>> ttl() {
@@ -411,7 +411,7 @@ public final class TokenState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param explicitMaxTtl The explicit max TTL of this token
+         * @param explicitMaxTtl The explicit max TTL of this token. This is specified as a numeric string with suffix like &#34;30s&#34; ro &#34;5m&#34;
          * 
          * @return builder
          * 
@@ -422,7 +422,7 @@ public final class TokenState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param explicitMaxTtl The explicit max TTL of this token
+         * @param explicitMaxTtl The explicit max TTL of this token. This is specified as a numeric string with suffix like &#34;30s&#34; ro &#34;5m&#34;
          * 
          * @return builder
          * 
@@ -585,7 +585,7 @@ public final class TokenState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param period The period of this token
+         * @param period The period of this token. This is specified as a numeric string with suffix like &#34;30s&#34; ro &#34;5m&#34;
          * 
          * @return builder
          * 
@@ -596,7 +596,7 @@ public final class TokenState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param period The period of this token
+         * @param period The period of this token. This is specified as a numeric string with suffix like &#34;30s&#34; ro &#34;5m&#34;
          * 
          * @return builder
          * 
@@ -637,7 +637,7 @@ public final class TokenState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param renewIncrement The renew increment
+         * @param renewIncrement The renew increment. This is specified in seconds
          * 
          * @return builder
          * 
@@ -648,7 +648,7 @@ public final class TokenState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param renewIncrement The renew increment
+         * @param renewIncrement The renew increment. This is specified in seconds
          * 
          * @return builder
          * 
@@ -721,7 +721,7 @@ public final class TokenState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param ttl The TTL period of this token
+         * @param ttl The TTL period of this token. This is specified as a numeric string with suffix like &#34;30s&#34; ro &#34;5m&#34;
          * 
          * @return builder
          * 
@@ -732,7 +732,7 @@ public final class TokenState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param ttl The TTL period of this token
+         * @param ttl The TTL period of this token. This is specified as a numeric string with suffix like &#34;30s&#34; ro &#34;5m&#34;
          * 
          * @return builder
          * 

@@ -29,7 +29,8 @@ type GetAccessCredentialsArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
-	Region    *string `pulumi:"region"`
+	// The region the read credentials belong to.
+	Region *string `pulumi:"region"`
 	// The name of the AWS secret backend role to read
 	// credentials from, with no leading or trailing `/`s.
 	Role string `pulumi:"role"`
@@ -39,7 +40,7 @@ type GetAccessCredentialsArgs struct {
 	RoleArn *string `pulumi:"roleArn"`
 	// Specifies the TTL for the use of the STS token. This
 	// is specified as a string with a duration suffix. Valid only when
-	// `credentialType` is `assumedRole` or `federationToken`
+	// `credentialType` of the connected `aws.SecretBackendRole` resource is `assumedRole` or `federationToken`
 	Ttl *string `pulumi:"ttl"`
 	// The type of credentials to read. Defaults
 	// to `"creds"`, which just returns an AWS Access Key ID and Secret
@@ -98,7 +99,8 @@ type GetAccessCredentialsOutputArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
-	Region    pulumi.StringPtrInput `pulumi:"region"`
+	// The region the read credentials belong to.
+	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The name of the AWS secret backend role to read
 	// credentials from, with no leading or trailing `/`s.
 	Role pulumi.StringInput `pulumi:"role"`
@@ -108,7 +110,7 @@ type GetAccessCredentialsOutputArgs struct {
 	RoleArn pulumi.StringPtrInput `pulumi:"roleArn"`
 	// Specifies the TTL for the use of the STS token. This
 	// is specified as a string with a duration suffix. Valid only when
-	// `credentialType` is `assumedRole` or `federationToken`
+	// `credentialType` of the connected `aws.SecretBackendRole` resource is `assumedRole` or `federationToken`
 	Ttl pulumi.StringPtrInput `pulumi:"ttl"`
 	// The type of credentials to read. Defaults
 	// to `"creds"`, which just returns an AWS Access Key ID and Secret

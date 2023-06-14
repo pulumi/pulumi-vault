@@ -64,7 +64,7 @@ namespace Pulumi.Vault
         public Output<string?> DisplayName { get; private set; } = null!;
 
         /// <summary>
-        /// The explicit max TTL of this token
+        /// The explicit max TTL of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         /// </summary>
         [Output("explicitMaxTtl")]
         public Output<string?> ExplicitMaxTtl { get; private set; } = null!;
@@ -115,7 +115,7 @@ namespace Pulumi.Vault
         public Output<int> NumUses { get; private set; } = null!;
 
         /// <summary>
-        /// The period of this token
+        /// The period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         /// </summary>
         [Output("period")]
         public Output<string?> Period { get; private set; } = null!;
@@ -127,7 +127,7 @@ namespace Pulumi.Vault
         public Output<ImmutableArray<string>> Policies { get; private set; } = null!;
 
         /// <summary>
-        /// The renew increment
+        /// The renew increment. This is specified in seconds
         /// </summary>
         [Output("renewIncrement")]
         public Output<int?> RenewIncrement { get; private set; } = null!;
@@ -151,7 +151,7 @@ namespace Pulumi.Vault
         public Output<string?> RoleName { get; private set; } = null!;
 
         /// <summary>
-        /// The TTL period of this token
+        /// The TTL period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         /// </summary>
         [Output("ttl")]
         public Output<string?> Ttl { get; private set; } = null!;
@@ -233,7 +233,7 @@ namespace Pulumi.Vault
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
-        /// The explicit max TTL of this token
+        /// The explicit max TTL of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         /// </summary>
         [Input("explicitMaxTtl")]
         public Input<string>? ExplicitMaxTtl { get; set; }
@@ -278,7 +278,7 @@ namespace Pulumi.Vault
         public Input<int>? NumUses { get; set; }
 
         /// <summary>
-        /// The period of this token
+        /// The period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         /// </summary>
         [Input("period")]
         public Input<string>? Period { get; set; }
@@ -296,7 +296,7 @@ namespace Pulumi.Vault
         }
 
         /// <summary>
-        /// The renew increment
+        /// The renew increment. This is specified in seconds
         /// </summary>
         [Input("renewIncrement")]
         public Input<int>? RenewIncrement { get; set; }
@@ -320,7 +320,7 @@ namespace Pulumi.Vault
         public Input<string>? RoleName { get; set; }
 
         /// <summary>
-        /// The TTL period of this token
+        /// The TTL period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         /// </summary>
         [Input("ttl")]
         public Input<string>? Ttl { get; set; }
@@ -362,7 +362,7 @@ namespace Pulumi.Vault
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
-        /// The explicit max TTL of this token
+        /// The explicit max TTL of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         /// </summary>
         [Input("explicitMaxTtl")]
         public Input<string>? ExplicitMaxTtl { get; set; }
@@ -419,7 +419,7 @@ namespace Pulumi.Vault
         public Input<int>? NumUses { get; set; }
 
         /// <summary>
-        /// The period of this token
+        /// The period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         /// </summary>
         [Input("period")]
         public Input<string>? Period { get; set; }
@@ -437,7 +437,7 @@ namespace Pulumi.Vault
         }
 
         /// <summary>
-        /// The renew increment
+        /// The renew increment. This is specified in seconds
         /// </summary>
         [Input("renewIncrement")]
         public Input<int>? RenewIncrement { get; set; }
@@ -461,7 +461,7 @@ namespace Pulumi.Vault
         public Input<string>? RoleName { get; set; }
 
         /// <summary>
-        /// The TTL period of this token
+        /// The TTL period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         /// </summary>
         [Input("ttl")]
         public Input<string>? Ttl { get; set; }

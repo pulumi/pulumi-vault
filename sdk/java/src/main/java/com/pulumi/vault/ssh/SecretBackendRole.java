@@ -194,6 +194,22 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.allowedDomains);
     }
     /**
+     * Specifies if `allowed_domains` can be declared using
+     * identity template policies. Non-templated domains are also permitted.
+     * 
+     */
+    @Export(name="allowedDomainsTemplate", type=Boolean.class, parameters={})
+    private Output<Boolean> allowedDomainsTemplate;
+
+    /**
+     * @return Specifies if `allowed_domains` can be declared using
+     * identity template policies. Non-templated domains are also permitted.
+     * 
+     */
+    public Output<Boolean> allowedDomainsTemplate() {
+        return this.allowedDomainsTemplate;
+    }
+    /**
      * Specifies a comma-separated list of extensions that certificates can have when signed.
      * 
      */
