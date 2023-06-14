@@ -27,6 +27,14 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AuthBackendGroup{}
 	case "vault:ldap/authBackendUser:AuthBackendUser":
 		r = &AuthBackendUser{}
+	case "vault:ldap/secretBackend:SecretBackend":
+		r = &SecretBackend{}
+	case "vault:ldap/secretBackendDynamicRole:SecretBackendDynamicRole":
+		r = &SecretBackendDynamicRole{}
+	case "vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet":
+		r = &SecretBackendLibrarySet{}
+	case "vault:ldap/secretBackendStaticRole:SecretBackendStaticRole":
+		r = &SecretBackendStaticRole{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -53,6 +61,26 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"vault",
 		"ldap/authBackendUser",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"ldap/secretBackend",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"ldap/secretBackendDynamicRole",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"ldap/secretBackendLibrarySet",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"ldap/secretBackendStaticRole",
 		&module{version},
 	)
 }

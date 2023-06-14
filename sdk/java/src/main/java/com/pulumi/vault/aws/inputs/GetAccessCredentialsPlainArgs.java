@@ -52,9 +52,17 @@ public final class GetAccessCredentialsPlainArgs extends com.pulumi.resources.In
         return Optional.ofNullable(this.namespace);
     }
 
+    /**
+     * The region the read credentials belong to.
+     * 
+     */
     @Import(name="region")
     private @Nullable String region;
 
+    /**
+     * @return The region the read credentials belong to.
+     * 
+     */
     public Optional<String> region() {
         return Optional.ofNullable(this.region);
     }
@@ -98,7 +106,7 @@ public final class GetAccessCredentialsPlainArgs extends com.pulumi.resources.In
     /**
      * Specifies the TTL for the use of the STS token. This
      * is specified as a string with a duration suffix. Valid only when
-     * `credential_type` is `assumed_role` or `federation_token`
+     * `credential_type` of the connected `vault.aws.SecretBackendRole` resource is `assumed_role` or `federation_token`
      * 
      */
     @Import(name="ttl")
@@ -107,7 +115,7 @@ public final class GetAccessCredentialsPlainArgs extends com.pulumi.resources.In
     /**
      * @return Specifies the TTL for the use of the STS token. This
      * is specified as a string with a duration suffix. Valid only when
-     * `credential_type` is `assumed_role` or `federation_token`
+     * `credential_type` of the connected `vault.aws.SecretBackendRole` resource is `assumed_role` or `federation_token`
      * 
      */
     public Optional<String> ttl() {
@@ -191,6 +199,12 @@ public final class GetAccessCredentialsPlainArgs extends com.pulumi.resources.In
             return this;
         }
 
+        /**
+         * @param region The region the read credentials belong to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder region(@Nullable String region) {
             $.region = region;
             return this;
@@ -224,7 +238,7 @@ public final class GetAccessCredentialsPlainArgs extends com.pulumi.resources.In
         /**
          * @param ttl Specifies the TTL for the use of the STS token. This
          * is specified as a string with a duration suffix. Valid only when
-         * `credential_type` is `assumed_role` or `federation_token`
+         * `credential_type` of the connected `vault.aws.SecretBackendRole` resource is `assumed_role` or `federation_token`
          * 
          * @return builder
          * 

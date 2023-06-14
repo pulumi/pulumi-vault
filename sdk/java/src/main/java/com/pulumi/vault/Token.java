@@ -97,14 +97,14 @@ public class Token extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.displayName);
     }
     /**
-     * The explicit max TTL of this token
+     * The explicit max TTL of this token. This is specified as a numeric string with suffix like &#34;30s&#34; ro &#34;5m&#34;
      * 
      */
     @Export(name="explicitMaxTtl", type=String.class, parameters={})
     private Output</* @Nullable */ String> explicitMaxTtl;
 
     /**
-     * @return The explicit max TTL of this token
+     * @return The explicit max TTL of this token. This is specified as a numeric string with suffix like &#34;30s&#34; ro &#34;5m&#34;
      * 
      */
     public Output<Optional<String>> explicitMaxTtl() {
@@ -215,14 +215,14 @@ public class Token extends com.pulumi.resources.CustomResource {
         return this.numUses;
     }
     /**
-     * The period of this token
+     * The period of this token. This is specified as a numeric string with suffix like &#34;30s&#34; ro &#34;5m&#34;
      * 
      */
     @Export(name="period", type=String.class, parameters={})
     private Output</* @Nullable */ String> period;
 
     /**
-     * @return The period of this token
+     * @return The period of this token. This is specified as a numeric string with suffix like &#34;30s&#34; ro &#34;5m&#34;
      * 
      */
     public Output<Optional<String>> period() {
@@ -243,14 +243,14 @@ public class Token extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.policies);
     }
     /**
-     * The renew increment
+     * The renew increment. This is specified in seconds
      * 
      */
     @Export(name="renewIncrement", type=Integer.class, parameters={})
     private Output</* @Nullable */ Integer> renewIncrement;
 
     /**
-     * @return The renew increment
+     * @return The renew increment. This is specified in seconds
      * 
      */
     public Output<Optional<Integer>> renewIncrement() {
@@ -299,14 +299,14 @@ public class Token extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.roleName);
     }
     /**
-     * The TTL period of this token
+     * The TTL period of this token. This is specified as a numeric string with suffix like &#34;30s&#34; ro &#34;5m&#34;
      * 
      */
     @Export(name="ttl", type=String.class, parameters={})
     private Output</* @Nullable */ String> ttl;
 
     /**
-     * @return The TTL period of this token
+     * @return The TTL period of this token. This is specified as a numeric string with suffix like &#34;30s&#34; ro &#34;5m&#34;
      * 
      */
     public Output<Optional<String>> ttl() {

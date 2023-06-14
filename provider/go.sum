@@ -1935,8 +1935,8 @@ github.com/pulumi/terraform-diff-reader v0.0.0-20201211191010-ad4715e9285e h1:Di
 github.com/pulumi/terraform-diff-reader v0.0.0-20201211191010-ad4715e9285e/go.mod h1:sZ9FUzGO+yM41hsQHs/yIcj/Y993qMdBxBU5mpDmAfQ=
 github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20230327102345-3fa930f86570 h1:tolpgmAY4Mc19AMxaed9nRRaeqKMOonDu4oDwU0cISs=
 github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20230327102345-3fa930f86570/go.mod h1:xcOSYlRVdPLmDUoqPhO9fiO/YCN/l6MGYeTzGt5jgkQ=
-github.com/pulumi/terraform-provider-vault v1.9.1-0.20230425005943-b35550ff155a h1:x/Lt1nI5SKutV8aXbrnJC2lO5bEESZDd8hgPHCPUw54=
-github.com/pulumi/terraform-provider-vault v1.9.1-0.20230425005943-b35550ff155a/go.mod h1:rKuyGO8WCw8Jq8H9BW3K8jesAcWOKcc38rUQkuR5xhQ=
+github.com/pulumi/terraform-provider-vault v1.9.1-0.20230614125410-724020df5e36 h1:4mWwzu9w7ks1l00goZliAvWe5PnJ+QAu9xy3twuXNyQ=
+github.com/pulumi/terraform-provider-vault v1.9.1-0.20230614125410-724020df5e36/go.mod h1:3iJlwZFAsPOF8VrbU4PMm5kfnfHBjI/dYfrctDTkLro=
 github.com/rboyer/safeio v0.2.1/go.mod h1:Cq/cEPK+YXFn622lsQ0K4KsPZSPtaptHHEldsy7Fmig=
 github.com/rcrowley/go-metrics v0.0.0-20181016184325-3113b8401b8a/go.mod h1:bCqnVzQkZxMG4s8nGwiZ5l3QUCyqpo9Y+/ZMZ9VjZe4=
 github.com/renier/xmlrpc v0.0.0-20170708154548-ce4a1a486c03/go.mod h1:gRAiPF5C5Nd0eyyRdqIu9qTiFSoZzpTq727b5B8fkkU=
@@ -3189,6 +3189,7 @@ k8s.io/utils v0.0.0-20200324210504-a9aa75ae1b89/go.mod h1:sZAwmy6armz5eXlNoLmJcl
 k8s.io/utils v0.0.0-20201110183641-67b214c5f920/go.mod h1:jPW/WVKK9YHAvNhRxK0md/EJ228hCsBRufyofKtW8HA=
 k8s.io/utils v0.0.0-20210819203725-bdf08cb9a70a/go.mod h1:jPW/WVKK9YHAvNhRxK0md/EJ228hCsBRufyofKtW8HA=
 k8s.io/utils v0.0.0-20210930125809-cb0fa318a74b/go.mod h1:jPW/WVKK9YHAvNhRxK0md/EJ228hCsBRufyofKtW8HA=
+k8s.io/utils v0.0.0-20220210201930-3a6ce19ff2f9 h1:HNSDgDCrr/6Ly3WEGKZftiE7IY19Vz2GdbOCyI4qqhc=
 k8s.io/utils v0.0.0-20220210201930-3a6ce19ff2f9/go.mod h1:jPW/WVKK9YHAvNhRxK0md/EJ228hCsBRufyofKtW8HA=
 layeh.com/radius v0.0.0-20190322222518-890bc1058917/go.mod h1:fywZKyu//X7iRzaxLgPWsvc0L26IUpVvE/aeIL2JtIQ=
 lukechampine.com/frand v1.4.2 h1:RzFIpOvkMXuPMBb9maa4ND4wjBn71E1Jpf8BzJHMaVw=

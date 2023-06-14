@@ -37,6 +37,9 @@ namespace Pulumi.Vault.Aws
         [Input("namespace")]
         public string? Namespace { get; set; }
 
+        /// <summary>
+        /// The region the read credentials belong to.
+        /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
@@ -58,7 +61,7 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// Specifies the TTL for the use of the STS token. This
         /// is specified as a string with a duration suffix. Valid only when
-        /// `credential_type` is `assumed_role` or `federation_token`
+        /// `credential_type` of the connected `vault.aws.SecretBackendRole` resource is `assumed_role` or `federation_token`
         /// </summary>
         [Input("ttl")]
         public string? Ttl { get; set; }
@@ -96,6 +99,9 @@ namespace Pulumi.Vault.Aws
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
+        /// <summary>
+        /// The region the read credentials belong to.
+        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
@@ -117,7 +123,7 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// Specifies the TTL for the use of the STS token. This
         /// is specified as a string with a duration suffix. Valid only when
-        /// `credential_type` is `assumed_role` or `federation_token`
+        /// `credential_type` of the connected `vault.aws.SecretBackendRole` resource is `assumed_role` or `federation_token`
         /// </summary>
         [Input("ttl")]
         public Input<string>? Ttl { get; set; }

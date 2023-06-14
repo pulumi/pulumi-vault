@@ -21,7 +21,6 @@ import javax.annotation.Nullable;
  * Provides a resource to create a role in an [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
  * 
  * ## Example Usage
- * 
  * ```java
  * package generated_program;
  * 
@@ -45,16 +44,23 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var gcpAuthBackend = new AuthBackend(&#34;gcpAuthBackend&#34;, AuthBackendArgs.builder()        
+ *         var gcp = new AuthBackend(&#34;gcp&#34;, AuthBackendArgs.builder()        
  *             .path(&#34;gcp&#34;)
  *             .type(&#34;gcp&#34;)
  *             .build());
  * 
- *         var gcpAuthBackendRole = new AuthBackendRole(&#34;gcpAuthBackendRole&#34;, AuthBackendRoleArgs.builder()        
- *             .backend(gcpAuthBackend.path())
- *             .projectId(&#34;foo-bar-baz&#34;)
- *             .boundServiceAccounts(&#34;database-server@foo-bar-baz.iam.gserviceaccount.com&#34;)
- *             .tokenPolicies(&#34;database-server&#34;)
+ *         var test = new AuthBackendRole(&#34;test&#34;, AuthBackendRoleArgs.builder()        
+ *             .backend(gcp.path())
+ *             .role(&#34;test&#34;)
+ *             .type(&#34;iam&#34;)
+ *             .boundServiceAccounts(&#34;test&#34;)
+ *             .boundProjects(&#34;test&#34;)
+ *             .tokenTtl(300)
+ *             .tokenMaxTtl(600)
+ *             .tokenPolicies(            
+ *                 &#34;policy_a&#34;,
+ *                 &#34;policy_b&#34;)
+ *             .addGroupAliases(true)
  *             .build());
  * 
  *     }

@@ -87,6 +87,9 @@ type SecretBackendRole struct {
 	AllowedCriticalOptions pulumi.StringPtrOutput `pulumi:"allowedCriticalOptions"`
 	// The list of domains for which a client can request a host certificate.
 	AllowedDomains pulumi.StringPtrOutput `pulumi:"allowedDomains"`
+	// Specifies if `allowedDomains` can be declared using
+	// identity template policies. Non-templated domains are also permitted.
+	AllowedDomainsTemplate pulumi.BoolOutput `pulumi:"allowedDomainsTemplate"`
 	// Specifies a comma-separated list of extensions that certificates can have when signed.
 	AllowedExtensions pulumi.StringPtrOutput `pulumi:"allowedExtensions"`
 	// Set of configuration blocks to define allowed\
@@ -183,6 +186,9 @@ type secretBackendRoleState struct {
 	AllowedCriticalOptions *string `pulumi:"allowedCriticalOptions"`
 	// The list of domains for which a client can request a host certificate.
 	AllowedDomains *string `pulumi:"allowedDomains"`
+	// Specifies if `allowedDomains` can be declared using
+	// identity template policies. Non-templated domains are also permitted.
+	AllowedDomainsTemplate *bool `pulumi:"allowedDomainsTemplate"`
 	// Specifies a comma-separated list of extensions that certificates can have when signed.
 	AllowedExtensions *string `pulumi:"allowedExtensions"`
 	// Set of configuration blocks to define allowed\
@@ -245,6 +251,9 @@ type SecretBackendRoleState struct {
 	AllowedCriticalOptions pulumi.StringPtrInput
 	// The list of domains for which a client can request a host certificate.
 	AllowedDomains pulumi.StringPtrInput
+	// Specifies if `allowedDomains` can be declared using
+	// identity template policies. Non-templated domains are also permitted.
+	AllowedDomainsTemplate pulumi.BoolPtrInput
 	// Specifies a comma-separated list of extensions that certificates can have when signed.
 	AllowedExtensions pulumi.StringPtrInput
 	// Set of configuration blocks to define allowed\
@@ -311,6 +320,9 @@ type secretBackendRoleArgs struct {
 	AllowedCriticalOptions *string `pulumi:"allowedCriticalOptions"`
 	// The list of domains for which a client can request a host certificate.
 	AllowedDomains *string `pulumi:"allowedDomains"`
+	// Specifies if `allowedDomains` can be declared using
+	// identity template policies. Non-templated domains are also permitted.
+	AllowedDomainsTemplate *bool `pulumi:"allowedDomainsTemplate"`
 	// Specifies a comma-separated list of extensions that certificates can have when signed.
 	AllowedExtensions *string `pulumi:"allowedExtensions"`
 	// Set of configuration blocks to define allowed\
@@ -374,6 +386,9 @@ type SecretBackendRoleArgs struct {
 	AllowedCriticalOptions pulumi.StringPtrInput
 	// The list of domains for which a client can request a host certificate.
 	AllowedDomains pulumi.StringPtrInput
+	// Specifies if `allowedDomains` can be declared using
+	// identity template policies. Non-templated domains are also permitted.
+	AllowedDomainsTemplate pulumi.BoolPtrInput
 	// Specifies a comma-separated list of extensions that certificates can have when signed.
 	AllowedExtensions pulumi.StringPtrInput
 	// Set of configuration blocks to define allowed\
@@ -544,6 +559,12 @@ func (o SecretBackendRoleOutput) AllowedCriticalOptions() pulumi.StringPtrOutput
 // The list of domains for which a client can request a host certificate.
 func (o SecretBackendRoleOutput) AllowedDomains() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.AllowedDomains }).(pulumi.StringPtrOutput)
+}
+
+// Specifies if `allowedDomains` can be declared using
+// identity template policies. Non-templated domains are also permitted.
+func (o SecretBackendRoleOutput) AllowedDomainsTemplate() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolOutput { return v.AllowedDomainsTemplate }).(pulumi.BoolOutput)
 }
 
 // Specifies a comma-separated list of extensions that certificates can have when signed.

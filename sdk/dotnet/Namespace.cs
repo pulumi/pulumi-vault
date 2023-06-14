@@ -18,7 +18,7 @@ namespace Pulumi.Vault
     ///  $ pulumi import vault:index/namespace:Namespace example &lt;name&gt;
     /// ```
     /// 
-    ///  If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path. provider "vault" {
+    ///  If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path. hcl provider "vault" {
     /// 
     /// # Configuration options
     /// 
@@ -26,15 +26,19 @@ namespace Pulumi.Vault
     /// 
     ///  alias
     /// 
-    ///  = "example" } resource vault_namespace "example2" {
+    ///  = "example" } resource "vault_namespace" "example2" {
     /// 
-    ///  provider = vault.example }
+    ///  provider = vault.example
+    /// 
+    ///  path
+    /// 
+    ///  = "example2" }
     /// 
     /// ```sh
     ///  $ pulumi import vault:index/namespace:Namespace example2 example2
     /// ```
     /// 
-    ///  $ terraform state show vault_namespace.example2 vault_namespace.example2 resource "vault_namespace" "example2" {
+    ///  $ terraform state show vault_namespace.example2 vault_namespace.example2resource "vault_namespace" "example2" {
     /// 
     ///  id
     /// 
@@ -44,7 +48,11 @@ namespace Pulumi.Vault
     /// 
     ///  path
     /// 
-    ///  = "example2" }
+    ///  = "example2"
+    /// 
+    ///  path_fq
+    /// 
+    /// = "example2" }
     /// </summary>
     [VaultResourceType("vault:index/namespace:Namespace")]
     public partial class Namespace : global::Pulumi.CustomResource
@@ -59,19 +67,20 @@ namespace Pulumi.Vault
         public Output<string?> TargetNamespace { get; private set; } = null!;
 
         /// <summary>
-        /// Namespace ID.
+        /// Vault server's internal ID of the namespace.
         /// </summary>
         [Output("namespaceId")]
         public Output<string> NamespaceId { get; private set; } = null!;
 
         /// <summary>
-        /// The path of the namespace. Must not have a trailing `/`
+        /// The path of the namespace. Must not have a trailing `/`.
         /// </summary>
         [Output("path")]
         public Output<string> Path { get; private set; } = null!;
 
         /// <summary>
         /// The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+        /// The path is relative to the provider's `namespace` argument.
         /// </summary>
         [Output("pathFq")]
         public Output<string> PathFq { get; private set; } = null!;
@@ -132,13 +141,14 @@ namespace Pulumi.Vault
         public Input<string>? TargetNamespace { get; set; }
 
         /// <summary>
-        /// The path of the namespace. Must not have a trailing `/`
+        /// The path of the namespace. Must not have a trailing `/`.
         /// </summary>
         [Input("path", required: true)]
         public Input<string> Path { get; set; } = null!;
 
         /// <summary>
         /// The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+        /// The path is relative to the provider's `namespace` argument.
         /// </summary>
         [Input("pathFq")]
         public Input<string>? PathFq { get; set; }
@@ -161,19 +171,20 @@ namespace Pulumi.Vault
         public Input<string>? TargetNamespace { get; set; }
 
         /// <summary>
-        /// Namespace ID.
+        /// Vault server's internal ID of the namespace.
         /// </summary>
         [Input("namespaceId")]
         public Input<string>? NamespaceId { get; set; }
 
         /// <summary>
-        /// The path of the namespace. Must not have a trailing `/`
+        /// The path of the namespace. Must not have a trailing `/`.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
         /// <summary>
         /// The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+        /// The path is relative to the provider's `namespace` argument.
         /// </summary>
         [Input("pathFq")]
         public Input<string>? PathFq { get; set; }

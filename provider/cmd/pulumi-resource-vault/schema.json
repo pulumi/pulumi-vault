@@ -13126,7 +13126,7 @@
             }
         },
         "vault:gcp/authBackendRole:AuthBackendRole": {
-            "description": "Provides a resource to create a role in an [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.AuthBackend;\nimport com.pulumi.vault.AuthBackendArgs;\nimport com.pulumi.vault.gcp.AuthBackendRole;\nimport com.pulumi.vault.gcp.AuthBackendRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var gcpAuthBackend = new AuthBackend(\"gcpAuthBackend\", AuthBackendArgs.builder()        \n            .path(\"gcp\")\n            .type(\"gcp\")\n            .build());\n\n        var gcpAuthBackendRole = new AuthBackendRole(\"gcpAuthBackendRole\", AuthBackendRoleArgs.builder()        \n            .backend(gcpAuthBackend.path())\n            .projectId(\"foo-bar-baz\")\n            .boundServiceAccounts(\"database-server@foo-bar-baz.iam.gserviceaccount.com\")\n            .tokenPolicies(\"database-server\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  gcpAuthBackend:\n    type: vault:AuthBackend\n    properties:\n      path: gcp\n      type: gcp\n  gcpAuthBackendRole:\n    type: vault:gcp:AuthBackendRole\n    properties:\n      backend: ${gcpAuthBackend.path}\n      projectId: foo-bar-baz\n      boundServiceAccounts:\n        - database-server@foo-bar-baz.iam.gserviceaccount.com\n      tokenPolicies:\n        - database-server\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nGCP authentication roles can be imported using the `path`, e.g.\n\n```sh\n $ pulumi import vault:gcp/authBackendRole:AuthBackendRole my_role auth/gcp/role/my_role\n```\n\n ",
+            "description": "Provides a resource to create a role in an [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst gcp = new vault.AuthBackend(\"gcp\", {\n    path: \"gcp\",\n    type: \"gcp\",\n});\nconst test = new vault.gcp.AuthBackendRole(\"test\", {\n    backend: gcp.path,\n    role: \"test\",\n    type: \"iam\",\n    boundServiceAccounts: [\"test\"],\n    boundProjects: [\"test\"],\n    tokenTtl: 300,\n    tokenMaxTtl: 600,\n    tokenPolicies: [\n        \"policy_a\",\n        \"policy_b\",\n    ],\n    addGroupAliases: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ngcp = vault.AuthBackend(\"gcp\",\n    path=\"gcp\",\n    type=\"gcp\")\ntest = vault.gcp.AuthBackendRole(\"test\",\n    backend=gcp.path,\n    role=\"test\",\n    type=\"iam\",\n    bound_service_accounts=[\"test\"],\n    bound_projects=[\"test\"],\n    token_ttl=300,\n    token_max_ttl=600,\n    token_policies=[\n        \"policy_a\",\n        \"policy_b\",\n    ],\n    add_group_aliases=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var gcp = new Vault.AuthBackend(\"gcp\", new()\n    {\n        Path = \"gcp\",\n        Type = \"gcp\",\n    });\n\n    var test = new Vault.Gcp.AuthBackendRole(\"test\", new()\n    {\n        Backend = gcp.Path,\n        Role = \"test\",\n        Type = \"iam\",\n        BoundServiceAccounts = new[]\n        {\n            \"test\",\n        },\n        BoundProjects = new[]\n        {\n            \"test\",\n        },\n        TokenTtl = 300,\n        TokenMaxTtl = 600,\n        TokenPolicies = new[]\n        {\n            \"policy_a\",\n            \"policy_b\",\n        },\n        AddGroupAliases = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/gcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tgcp, err := vault.NewAuthBackend(ctx, \"gcp\", \u0026vault.AuthBackendArgs{\n\t\t\tPath: pulumi.String(\"gcp\"),\n\t\t\tType: pulumi.String(\"gcp\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = gcp.NewAuthBackendRole(ctx, \"test\", \u0026gcp.AuthBackendRoleArgs{\n\t\t\tBackend: gcp.Path,\n\t\t\tRole:    pulumi.String(\"test\"),\n\t\t\tType:    pulumi.String(\"iam\"),\n\t\t\tBoundServiceAccounts: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"test\"),\n\t\t\t},\n\t\t\tBoundProjects: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"test\"),\n\t\t\t},\n\t\t\tTokenTtl:    pulumi.Int(300),\n\t\t\tTokenMaxTtl: pulumi.Int(600),\n\t\t\tTokenPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"policy_a\"),\n\t\t\t\tpulumi.String(\"policy_b\"),\n\t\t\t},\n\t\t\tAddGroupAliases: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.AuthBackend;\nimport com.pulumi.vault.AuthBackendArgs;\nimport com.pulumi.vault.gcp.AuthBackendRole;\nimport com.pulumi.vault.gcp.AuthBackendRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var gcp = new AuthBackend(\"gcp\", AuthBackendArgs.builder()        \n            .path(\"gcp\")\n            .type(\"gcp\")\n            .build());\n\n        var test = new AuthBackendRole(\"test\", AuthBackendRoleArgs.builder()        \n            .backend(gcp.path())\n            .role(\"test\")\n            .type(\"iam\")\n            .boundServiceAccounts(\"test\")\n            .boundProjects(\"test\")\n            .tokenTtl(300)\n            .tokenMaxTtl(600)\n            .tokenPolicies(            \n                \"policy_a\",\n                \"policy_b\")\n            .addGroupAliases(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  gcp:\n    type: vault:AuthBackend\n    properties:\n      path: gcp\n      type: gcp\n  test:\n    type: vault:gcp:AuthBackendRole\n    properties:\n      backend: ${gcp.path}\n      role: test\n      type: iam\n      boundServiceAccounts:\n        - test\n      boundProjects:\n        - test\n      tokenTtl: 300\n      tokenMaxTtl: 600\n      tokenPolicies:\n        - policy_a\n        - policy_b\n      addGroupAliases: true\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nGCP authentication roles can be imported using the `path`, e.g.\n\n```sh\n $ pulumi import vault:gcp/authBackendRole:AuthBackendRole my_role auth/gcp/role/my_role\n```\n\n ",
             "properties": {
                 "addGroupAliases": {
                     "type": "boolean"
@@ -18721,7 +18721,7 @@
             }
         },
         "vault:index/namespace:Namespace": {
-            "description": "\n\n\n## Import\n\nNamespaces can be imported using its `name` as accessor id\n\n```sh\n $ pulumi import vault:index/namespace:Namespace example \u003cname\u003e\n```\n\n If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path. provider \"vault\" {\n\n # Configuration options\n\n namespace = \"example\"\n\n alias\n\n\n\n = \"example\" } resource vault_namespace \"example2\" {\n\n provider = vault.example }\n\n```sh\n $ pulumi import vault:index/namespace:Namespace example2 example2\n```\n\n $ terraform state show vault_namespace.example2 vault_namespace.example2 resource \"vault_namespace\" \"example2\" {\n\n\n\n id\n\n\n\n\n\n\n\n\n\n = \"example/example2/\"\n\n\n\n namespace_id = \u003cknown after import\u003e\n\n\n\n path\n\n\n\n\n\n\n\n = \"example2\" } ",
+            "description": "\n\n\n## Import\n\nNamespaces can be imported using its `name` as accessor id\n\n```sh\n $ pulumi import vault:index/namespace:Namespace example \u003cname\u003e\n```\n\n If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path. hcl provider \"vault\" {\n\n # Configuration options\n\n namespace = \"example\"\n\n alias\n\n\n\n = \"example\" } resource \"vault_namespace\" \"example2\" {\n\n provider = vault.example\n\n path\n\n\n\n = \"example2\" }\n\n```sh\n $ pulumi import vault:index/namespace:Namespace example2 example2\n```\n\n $ terraform state show vault_namespace.example2 vault_namespace.example2resource \"vault_namespace\" \"example2\" {\n\n\n\n id\n\n\n\n\n\n\n\n\n\n = \"example/example2/\"\n\n\n\n namespace_id = \u003cknown after import\u003e\n\n\n\n path\n\n\n\n\n\n\n\n = \"example2\"\n\n\n\n path_fq\n\n\n\n\n\n= \"example2\" } ",
             "properties": {
                 "namespace": {
                     "type": "string",
@@ -18734,15 +18734,15 @@
                 },
                 "namespaceId": {
                     "type": "string",
-                    "description": "Namespace ID.\n"
+                    "description": "Vault server's internal ID of the namespace.\n"
                 },
                 "path": {
                     "type": "string",
-                    "description": "The path of the namespace. Must not have a trailing `/`\n"
+                    "description": "The path of the namespace. Must not have a trailing `/`.\n"
                 },
                 "pathFq": {
                     "type": "string",
-                    "description": "The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.\n"
+                    "description": "The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.\nThe path is relative to the provider's `namespace` argument.\n"
                 }
             },
             "required": [
@@ -18763,12 +18763,12 @@
                 },
                 "path": {
                     "type": "string",
-                    "description": "The path of the namespace. Must not have a trailing `/`\n",
+                    "description": "The path of the namespace. Must not have a trailing `/`.\n",
                     "willReplaceOnChanges": true
                 },
                 "pathFq": {
                     "type": "string",
-                    "description": "The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.\n"
+                    "description": "The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.\nThe path is relative to the provider's `namespace` argument.\n"
                 }
             },
             "requiredInputs": [
@@ -18789,16 +18789,16 @@
                     },
                     "namespaceId": {
                         "type": "string",
-                        "description": "Namespace ID.\n"
+                        "description": "Vault server's internal ID of the namespace.\n"
                     },
                     "path": {
                         "type": "string",
-                        "description": "The path of the namespace. Must not have a trailing `/`\n",
+                        "description": "The path of the namespace. Must not have a trailing `/`.\n",
                         "willReplaceOnChanges": true
                     },
                     "pathFq": {
                         "type": "string",
-                        "description": "The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.\n"
+                        "description": "The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.\nThe path is relative to the provider's `namespace` argument.\n"
                     }
                 },
                 "type": "object"
@@ -19997,7 +19997,7 @@
                 },
                 "explicitMaxTtl": {
                     "type": "string",
-                    "description": "The explicit max TTL of this token\n"
+                    "description": "The explicit max TTL of this token. This is specified as a numeric string with suffix like \"30s\" ro \"5m\"\n"
                 },
                 "leaseDuration": {
                     "type": "integer",
@@ -20032,7 +20032,7 @@
                 },
                 "period": {
                     "type": "string",
-                    "description": "The period of this token\n"
+                    "description": "The period of this token. This is specified as a numeric string with suffix like \"30s\" ro \"5m\"\n"
                 },
                 "policies": {
                     "type": "array",
@@ -20043,7 +20043,7 @@
                 },
                 "renewIncrement": {
                     "type": "integer",
-                    "description": "The renew increment\n"
+                    "description": "The renew increment. This is specified in seconds\n"
                 },
                 "renewMinLease": {
                     "type": "integer",
@@ -20059,7 +20059,7 @@
                 },
                 "ttl": {
                     "type": "string",
-                    "description": "The TTL period of this token\n"
+                    "description": "The TTL period of this token. This is specified as a numeric string with suffix like \"30s\" ro \"5m\"\n"
                 },
                 "wrappedToken": {
                     "type": "string",
@@ -20094,7 +20094,7 @@
                 },
                 "explicitMaxTtl": {
                     "type": "string",
-                    "description": "The explicit max TTL of this token\n",
+                    "description": "The explicit max TTL of this token. This is specified as a numeric string with suffix like \"30s\" ro \"5m\"\n",
                     "willReplaceOnChanges": true
                 },
                 "metadata": {
@@ -20127,7 +20127,7 @@
                 },
                 "period": {
                     "type": "string",
-                    "description": "The period of this token\n",
+                    "description": "The period of this token. This is specified as a numeric string with suffix like \"30s\" ro \"5m\"\n",
                     "willReplaceOnChanges": true
                 },
                 "policies": {
@@ -20140,7 +20140,7 @@
                 },
                 "renewIncrement": {
                     "type": "integer",
-                    "description": "The renew increment\n"
+                    "description": "The renew increment. This is specified in seconds\n"
                 },
                 "renewMinLease": {
                     "type": "integer",
@@ -20158,7 +20158,7 @@
                 },
                 "ttl": {
                     "type": "string",
-                    "description": "The TTL period of this token\n",
+                    "description": "The TTL period of this token. This is specified as a numeric string with suffix like \"30s\" ro \"5m\"\n",
                     "willReplaceOnChanges": true
                 },
                 "wrappingTtl": {
@@ -20181,7 +20181,7 @@
                     },
                     "explicitMaxTtl": {
                         "type": "string",
-                        "description": "The explicit max TTL of this token\n",
+                        "description": "The explicit max TTL of this token. This is specified as a numeric string with suffix like \"30s\" ro \"5m\"\n",
                         "willReplaceOnChanges": true
                     },
                     "leaseDuration": {
@@ -20222,7 +20222,7 @@
                     },
                     "period": {
                         "type": "string",
-                        "description": "The period of this token\n",
+                        "description": "The period of this token. This is specified as a numeric string with suffix like \"30s\" ro \"5m\"\n",
                         "willReplaceOnChanges": true
                     },
                     "policies": {
@@ -20235,7 +20235,7 @@
                     },
                     "renewIncrement": {
                         "type": "integer",
-                        "description": "The renew increment\n"
+                        "description": "The renew increment. This is specified in seconds\n"
                     },
                     "renewMinLease": {
                         "type": "integer",
@@ -20253,7 +20253,7 @@
                     },
                     "ttl": {
                         "type": "string",
-                        "description": "The TTL period of this token\n",
+                        "description": "The TTL period of this token. This is specified as a numeric string with suffix like \"30s\" ro \"5m\"\n",
                         "willReplaceOnChanges": true
                     },
                     "wrappedToken": {
@@ -20275,7 +20275,7 @@
             }
         },
         "vault:jwt/authBackend:AuthBackend": {
-            "description": "Provides a resource for managing an\n[JWT auth backend within Vault](https://www.vaultproject.io/docs/auth/jwt.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nManage JWT auth backend:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.jwt.AuthBackend(\"example\", {\n    boundIssuer: \"https://myco.auth0.com/\",\n    description: \"Demonstration of the Terraform JWT auth backend\",\n    oidcDiscoveryUrl: \"https://myco.auth0.com/\",\n    path: \"jwt\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.jwt.AuthBackend(\"example\",\n    bound_issuer=\"https://myco.auth0.com/\",\n    description=\"Demonstration of the Terraform JWT auth backend\",\n    oidc_discovery_url=\"https://myco.auth0.com/\",\n    path=\"jwt\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Vault.Jwt.AuthBackend(\"example\", new()\n    {\n        BoundIssuer = \"https://myco.auth0.com/\",\n        Description = \"Demonstration of the Terraform JWT auth backend\",\n        OidcDiscoveryUrl = \"https://myco.auth0.com/\",\n        Path = \"jwt\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/jwt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := jwt.NewAuthBackend(ctx, \"example\", \u0026jwt.AuthBackendArgs{\n\t\t\tBoundIssuer:      pulumi.String(\"https://myco.auth0.com/\"),\n\t\t\tDescription:      pulumi.String(\"Demonstration of the Terraform JWT auth backend\"),\n\t\t\tOidcDiscoveryUrl: pulumi.String(\"https://myco.auth0.com/\"),\n\t\t\tPath:             pulumi.String(\"jwt\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.jwt.AuthBackend;\nimport com.pulumi.vault.jwt.AuthBackendArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new AuthBackend(\"example\", AuthBackendArgs.builder()        \n            .boundIssuer(\"https://myco.auth0.com/\")\n            .description(\"Demonstration of the Terraform JWT auth backend\")\n            .oidcDiscoveryUrl(\"https://myco.auth0.com/\")\n            .path(\"jwt\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: vault:jwt:AuthBackend\n    properties:\n      boundIssuer: https://myco.auth0.com/\n      description: Demonstration of the Terraform JWT auth backend\n      oidcDiscoveryUrl: https://myco.auth0.com/\n      path: jwt\n```\n\nManage OIDC auth backend:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.jwt.AuthBackend(\"example\", {\n    boundIssuer: \"https://myco.auth0.com/\",\n    description: \"Demonstration of the Terraform JWT auth backend\",\n    oidcClientId: \"1234567890\",\n    oidcClientSecret: \"secret123456\",\n    oidcDiscoveryUrl: \"https://myco.auth0.com/\",\n    path: \"oidc\",\n    tune: {\n        listingVisibility: \"unauth\",\n    },\n    type: \"oidc\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.jwt.AuthBackend(\"example\",\n    bound_issuer=\"https://myco.auth0.com/\",\n    description=\"Demonstration of the Terraform JWT auth backend\",\n    oidc_client_id=\"1234567890\",\n    oidc_client_secret=\"secret123456\",\n    oidc_discovery_url=\"https://myco.auth0.com/\",\n    path=\"oidc\",\n    tune=vault.jwt.AuthBackendTuneArgs(\n        listing_visibility=\"unauth\",\n    ),\n    type=\"oidc\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Vault.Jwt.AuthBackend(\"example\", new()\n    {\n        BoundIssuer = \"https://myco.auth0.com/\",\n        Description = \"Demonstration of the Terraform JWT auth backend\",\n        OidcClientId = \"1234567890\",\n        OidcClientSecret = \"secret123456\",\n        OidcDiscoveryUrl = \"https://myco.auth0.com/\",\n        Path = \"oidc\",\n        Tune = new Vault.Jwt.Inputs.AuthBackendTuneArgs\n        {\n            ListingVisibility = \"unauth\",\n        },\n        Type = \"oidc\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/jwt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := jwt.NewAuthBackend(ctx, \"example\", \u0026jwt.AuthBackendArgs{\n\t\t\tBoundIssuer:      pulumi.String(\"https://myco.auth0.com/\"),\n\t\t\tDescription:      pulumi.String(\"Demonstration of the Terraform JWT auth backend\"),\n\t\t\tOidcClientId:     pulumi.String(\"1234567890\"),\n\t\t\tOidcClientSecret: pulumi.String(\"secret123456\"),\n\t\t\tOidcDiscoveryUrl: pulumi.String(\"https://myco.auth0.com/\"),\n\t\t\tPath:             pulumi.String(\"oidc\"),\n\t\t\tTune: \u0026jwt.AuthBackendTuneArgs{\n\t\t\t\tListingVisibility: pulumi.String(\"unauth\"),\n\t\t\t},\n\t\t\tType: pulumi.String(\"oidc\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.jwt.AuthBackend;\nimport com.pulumi.vault.jwt.AuthBackendArgs;\nimport com.pulumi.vault.jwt.inputs.AuthBackendTuneArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new AuthBackend(\"example\", AuthBackendArgs.builder()        \n            .boundIssuer(\"https://myco.auth0.com/\")\n            .description(\"Demonstration of the Terraform JWT auth backend\")\n            .oidcClientId(\"1234567890\")\n            .oidcClientSecret(\"secret123456\")\n            .oidcDiscoveryUrl(\"https://myco.auth0.com/\")\n            .path(\"oidc\")\n            .tune(AuthBackendTuneArgs.builder()\n                .listingVisibility(\"unauth\")\n                .build())\n            .type(\"oidc\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: vault:jwt:AuthBackend\n    properties:\n      boundIssuer: https://myco.auth0.com/\n      description: Demonstration of the Terraform JWT auth backend\n      oidcClientId: 1234567890\n      oidcClientSecret: secret123456\n      oidcDiscoveryUrl: https://myco.auth0.com/\n      path: oidc\n      tune:\n        listingVisibility: unauth\n      type: oidc\n```\n\nConfiguring the auth backend with a `provider_config:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst gsuite = new vault.jwt.AuthBackend(\"gsuite\", {\n    description: \"OIDC backend\",\n    oidcDiscoveryUrl: \"https://accounts.google.com\",\n    path: \"oidc\",\n    providerConfig: {\n        fetch_groups: true,\n        fetch_user_info: true,\n        groups_recurse_max_depth: 1,\n        provider: \"gsuite\",\n    },\n    type: \"oidc\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ngsuite = vault.jwt.AuthBackend(\"gsuite\",\n    description=\"OIDC backend\",\n    oidc_discovery_url=\"https://accounts.google.com\",\n    path=\"oidc\",\n    provider_config={\n        \"fetch_groups\": \"true\",\n        \"fetch_user_info\": \"true\",\n        \"groups_recurse_max_depth\": \"1\",\n        \"provider\": \"gsuite\",\n    },\n    type=\"oidc\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var gsuite = new Vault.Jwt.AuthBackend(\"gsuite\", new()\n    {\n        Description = \"OIDC backend\",\n        OidcDiscoveryUrl = \"https://accounts.google.com\",\n        Path = \"oidc\",\n        ProviderConfig = \n        {\n            { \"fetch_groups\", \"true\" },\n            { \"fetch_user_info\", \"true\" },\n            { \"groups_recurse_max_depth\", \"1\" },\n            { \"provider\", \"gsuite\" },\n        },\n        Type = \"oidc\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/jwt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := jwt.NewAuthBackend(ctx, \"gsuite\", \u0026jwt.AuthBackendArgs{\n\t\t\tDescription:      pulumi.String(\"OIDC backend\"),\n\t\t\tOidcDiscoveryUrl: pulumi.String(\"https://accounts.google.com\"),\n\t\t\tPath:             pulumi.String(\"oidc\"),\n\t\t\tProviderConfig: pulumi.StringMap{\n\t\t\t\t\"fetch_groups\":             pulumi.String(\"true\"),\n\t\t\t\t\"fetch_user_info\":          pulumi.String(\"true\"),\n\t\t\t\t\"groups_recurse_max_depth\": pulumi.String(\"1\"),\n\t\t\t\t\"provider\":                 pulumi.String(\"gsuite\"),\n\t\t\t},\n\t\t\tType: pulumi.String(\"oidc\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.jwt.AuthBackend;\nimport com.pulumi.vault.jwt.AuthBackendArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var gsuite = new AuthBackend(\"gsuite\", AuthBackendArgs.builder()        \n            .description(\"OIDC backend\")\n            .oidcDiscoveryUrl(\"https://accounts.google.com\")\n            .path(\"oidc\")\n            .providerConfig(Map.ofEntries(\n                Map.entry(\"fetch_groups\", true),\n                Map.entry(\"fetch_user_info\", true),\n                Map.entry(\"groups_recurse_max_depth\", 1),\n                Map.entry(\"provider\", \"gsuite\")\n            ))\n            .type(\"oidc\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  gsuite:\n    type: vault:jwt:AuthBackend\n    properties:\n      description: OIDC backend\n      oidcDiscoveryUrl: https://accounts.google.com\n      path: oidc\n      providerConfig:\n        fetch_groups: true\n        fetch_user_info: true\n        groups_recurse_max_depth: 1\n        provider: gsuite\n      type: oidc\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nJWT auth backend can be imported using the `type`, e.g.\n\n```sh\n $ pulumi import vault:jwt/authBackend:AuthBackend oidc oidc\n```\n\n or\n\n```sh\n $ pulumi import vault:jwt/authBackend:AuthBackend jwt jwt\n```\n\n ",
+            "description": "Provides a resource for managing an\n[JWT auth backend within Vault](https://www.vaultproject.io/docs/auth/jwt.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nManage JWT auth backend:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.jwt.AuthBackend(\"example\", {\n    boundIssuer: \"https://myco.auth0.com/\",\n    description: \"Demonstration of the Terraform JWT auth backend\",\n    oidcDiscoveryUrl: \"https://myco.auth0.com/\",\n    path: \"jwt\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.jwt.AuthBackend(\"example\",\n    bound_issuer=\"https://myco.auth0.com/\",\n    description=\"Demonstration of the Terraform JWT auth backend\",\n    oidc_discovery_url=\"https://myco.auth0.com/\",\n    path=\"jwt\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Vault.Jwt.AuthBackend(\"example\", new()\n    {\n        BoundIssuer = \"https://myco.auth0.com/\",\n        Description = \"Demonstration of the Terraform JWT auth backend\",\n        OidcDiscoveryUrl = \"https://myco.auth0.com/\",\n        Path = \"jwt\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/jwt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := jwt.NewAuthBackend(ctx, \"example\", \u0026jwt.AuthBackendArgs{\n\t\t\tBoundIssuer:      pulumi.String(\"https://myco.auth0.com/\"),\n\t\t\tDescription:      pulumi.String(\"Demonstration of the Terraform JWT auth backend\"),\n\t\t\tOidcDiscoveryUrl: pulumi.String(\"https://myco.auth0.com/\"),\n\t\t\tPath:             pulumi.String(\"jwt\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.jwt.AuthBackend;\nimport com.pulumi.vault.jwt.AuthBackendArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new AuthBackend(\"example\", AuthBackendArgs.builder()        \n            .boundIssuer(\"https://myco.auth0.com/\")\n            .description(\"Demonstration of the Terraform JWT auth backend\")\n            .oidcDiscoveryUrl(\"https://myco.auth0.com/\")\n            .path(\"jwt\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: vault:jwt:AuthBackend\n    properties:\n      boundIssuer: https://myco.auth0.com/\n      description: Demonstration of the Terraform JWT auth backend\n      oidcDiscoveryUrl: https://myco.auth0.com/\n      path: jwt\n```\n\nManage OIDC auth backend:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.jwt.AuthBackend(\"example\", {\n    boundIssuer: \"https://myco.auth0.com/\",\n    description: \"Demonstration of the Terraform JWT auth backend\",\n    oidcClientId: \"1234567890\",\n    oidcClientSecret: \"secret123456\",\n    oidcDiscoveryUrl: \"https://myco.auth0.com/\",\n    path: \"oidc\",\n    tune: {\n        listingVisibility: \"unauth\",\n    },\n    type: \"oidc\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.jwt.AuthBackend(\"example\",\n    bound_issuer=\"https://myco.auth0.com/\",\n    description=\"Demonstration of the Terraform JWT auth backend\",\n    oidc_client_id=\"1234567890\",\n    oidc_client_secret=\"secret123456\",\n    oidc_discovery_url=\"https://myco.auth0.com/\",\n    path=\"oidc\",\n    tune=vault.jwt.AuthBackendTuneArgs(\n        listing_visibility=\"unauth\",\n    ),\n    type=\"oidc\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Vault.Jwt.AuthBackend(\"example\", new()\n    {\n        BoundIssuer = \"https://myco.auth0.com/\",\n        Description = \"Demonstration of the Terraform JWT auth backend\",\n        OidcClientId = \"1234567890\",\n        OidcClientSecret = \"secret123456\",\n        OidcDiscoveryUrl = \"https://myco.auth0.com/\",\n        Path = \"oidc\",\n        Tune = new Vault.Jwt.Inputs.AuthBackendTuneArgs\n        {\n            ListingVisibility = \"unauth\",\n        },\n        Type = \"oidc\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/jwt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := jwt.NewAuthBackend(ctx, \"example\", \u0026jwt.AuthBackendArgs{\n\t\t\tBoundIssuer:      pulumi.String(\"https://myco.auth0.com/\"),\n\t\t\tDescription:      pulumi.String(\"Demonstration of the Terraform JWT auth backend\"),\n\t\t\tOidcClientId:     pulumi.String(\"1234567890\"),\n\t\t\tOidcClientSecret: pulumi.String(\"secret123456\"),\n\t\t\tOidcDiscoveryUrl: pulumi.String(\"https://myco.auth0.com/\"),\n\t\t\tPath:             pulumi.String(\"oidc\"),\n\t\t\tTune: \u0026jwt.AuthBackendTuneArgs{\n\t\t\t\tListingVisibility: pulumi.String(\"unauth\"),\n\t\t\t},\n\t\t\tType: pulumi.String(\"oidc\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.jwt.AuthBackend;\nimport com.pulumi.vault.jwt.AuthBackendArgs;\nimport com.pulumi.vault.jwt.inputs.AuthBackendTuneArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new AuthBackend(\"example\", AuthBackendArgs.builder()        \n            .boundIssuer(\"https://myco.auth0.com/\")\n            .description(\"Demonstration of the Terraform JWT auth backend\")\n            .oidcClientId(\"1234567890\")\n            .oidcClientSecret(\"secret123456\")\n            .oidcDiscoveryUrl(\"https://myco.auth0.com/\")\n            .path(\"oidc\")\n            .tune(AuthBackendTuneArgs.builder()\n                .listingVisibility(\"unauth\")\n                .build())\n            .type(\"oidc\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: vault:jwt:AuthBackend\n    properties:\n      boundIssuer: https://myco.auth0.com/\n      description: Demonstration of the Terraform JWT auth backend\n      oidcClientId: 1234567890\n      oidcClientSecret: secret123456\n      oidcDiscoveryUrl: https://myco.auth0.com/\n      path: oidc\n      tune:\n        listingVisibility: unauth\n      type: oidc\n```\n\nConfiguring the auth backend with a `provider_config:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst gsuite = new vault.jwt.AuthBackend(\"gsuite\", {\n    description: \"OIDC backend\",\n    oidcDiscoveryUrl: \"https://accounts.google.com\",\n    path: \"oidc\",\n    providerConfig: {\n        fetch_groups: true,\n        fetch_user_info: true,\n        groups_recurse_max_depth: 1,\n        provider: \"gsuite\",\n    },\n    type: \"oidc\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ngsuite = vault.jwt.AuthBackend(\"gsuite\",\n    description=\"OIDC backend\",\n    oidc_discovery_url=\"https://accounts.google.com\",\n    path=\"oidc\",\n    provider_config={\n        \"fetch_groups\": \"true\",\n        \"fetch_user_info\": \"true\",\n        \"groups_recurse_max_depth\": \"1\",\n        \"provider\": \"gsuite\",\n    },\n    type=\"oidc\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var gsuite = new Vault.Jwt.AuthBackend(\"gsuite\", new()\n    {\n        Description = \"OIDC backend\",\n        OidcDiscoveryUrl = \"https://accounts.google.com\",\n        Path = \"oidc\",\n        ProviderConfig = \n        {\n            { \"fetch_groups\", \"true\" },\n            { \"fetch_user_info\", \"true\" },\n            { \"groups_recurse_max_depth\", \"1\" },\n            { \"provider\", \"gsuite\" },\n        },\n        Type = \"oidc\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/jwt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := jwt.NewAuthBackend(ctx, \"gsuite\", \u0026jwt.AuthBackendArgs{\n\t\t\tDescription:      pulumi.String(\"OIDC backend\"),\n\t\t\tOidcDiscoveryUrl: pulumi.String(\"https://accounts.google.com\"),\n\t\t\tPath:             pulumi.String(\"oidc\"),\n\t\t\tProviderConfig: pulumi.StringMap{\n\t\t\t\t\"fetch_groups\":             pulumi.String(\"true\"),\n\t\t\t\t\"fetch_user_info\":          pulumi.String(\"true\"),\n\t\t\t\t\"groups_recurse_max_depth\": pulumi.String(\"1\"),\n\t\t\t\t\"provider\":                 pulumi.String(\"gsuite\"),\n\t\t\t},\n\t\t\tType: pulumi.String(\"oidc\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.jwt.AuthBackend;\nimport com.pulumi.vault.jwt.AuthBackendArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var gsuite = new AuthBackend(\"gsuite\", AuthBackendArgs.builder()        \n            .description(\"OIDC backend\")\n            .oidcDiscoveryUrl(\"https://accounts.google.com\")\n            .path(\"oidc\")\n            .providerConfig(Map.ofEntries(\n                Map.entry(\"fetch_groups\", true),\n                Map.entry(\"fetch_user_info\", true),\n                Map.entry(\"groups_recurse_max_depth\", 1),\n                Map.entry(\"provider\", \"gsuite\")\n            ))\n            .type(\"oidc\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  gsuite:\n    type: vault:jwt:AuthBackend\n    properties:\n      description: OIDC backend\n      oidcDiscoveryUrl: https://accounts.google.com\n      path: oidc\n      providerConfig:\n        fetch_groups: true\n        fetch_user_info: true\n        groups_recurse_max_depth: 1\n        provider: gsuite\n      type: oidc\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nJWT auth backend can be imported using the `path`, e.g.\n\n```sh\n $ pulumi import vault:jwt/authBackend:AuthBackend oidc oidc\n```\n\n or\n\n```sh\n $ pulumi import vault:jwt/authBackend:AuthBackend jwt jwt\n```\n\n ",
             "properties": {
                 "accessor": {
                     "type": "string",
@@ -23540,6 +23540,811 @@
                     "username": {
                         "type": "string",
                         "description": "The LDAP username\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "vault:ldap/secretBackend:SecretBackend": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst config = new vault.ldap.SecretBackend(\"config\", {\n    binddn: \"CN=Administrator,CN=Users,DC=corp,DC=example,DC=net\",\n    bindpass: \"SuperSecretPassw0rd\",\n    insecureTls: true,\n    path: \"my-custom-ldap\",\n    url: \"ldaps://localhost\",\n    userdn: \"CN=Users,DC=corp,DC=example,DC=net\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nconfig = vault.ldap.SecretBackend(\"config\",\n    binddn=\"CN=Administrator,CN=Users,DC=corp,DC=example,DC=net\",\n    bindpass=\"SuperSecretPassw0rd\",\n    insecure_tls=True,\n    path=\"my-custom-ldap\",\n    url=\"ldaps://localhost\",\n    userdn=\"CN=Users,DC=corp,DC=example,DC=net\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Vault.Ldap.SecretBackend(\"config\", new()\n    {\n        Binddn = \"CN=Administrator,CN=Users,DC=corp,DC=example,DC=net\",\n        Bindpass = \"SuperSecretPassw0rd\",\n        InsecureTls = true,\n        Path = \"my-custom-ldap\",\n        Url = \"ldaps://localhost\",\n        Userdn = \"CN=Users,DC=corp,DC=example,DC=net\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ldap\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ldap.NewSecretBackend(ctx, \"config\", \u0026ldap.SecretBackendArgs{\n\t\t\tBinddn:      pulumi.String(\"CN=Administrator,CN=Users,DC=corp,DC=example,DC=net\"),\n\t\t\tBindpass:    pulumi.String(\"SuperSecretPassw0rd\"),\n\t\t\tInsecureTls: pulumi.Bool(true),\n\t\t\tPath:        pulumi.String(\"my-custom-ldap\"),\n\t\t\tUrl:         pulumi.String(\"ldaps://localhost\"),\n\t\t\tUserdn:      pulumi.String(\"CN=Users,DC=corp,DC=example,DC=net\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.ldap.SecretBackend;\nimport com.pulumi.vault.ldap.SecretBackendArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var config = new SecretBackend(\"config\", SecretBackendArgs.builder()        \n            .binddn(\"CN=Administrator,CN=Users,DC=corp,DC=example,DC=net\")\n            .bindpass(\"SuperSecretPassw0rd\")\n            .insecureTls(\"true\")\n            .path(\"my-custom-ldap\")\n            .url(\"ldaps://localhost\")\n            .userdn(\"CN=Users,DC=corp,DC=example,DC=net\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  config:\n    type: vault:ldap:SecretBackend\n    properties:\n      binddn: CN=Administrator,CN=Users,DC=corp,DC=example,DC=net\n      bindpass: SuperSecretPassw0rd\n      insecureTls: true\n      path: my-custom-ldap\n      url: ldaps://localhost\n      userdn: CN=Users,DC=corp,DC=example,DC=net\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nLDAP secret backend can be imported using the `${mount}/config`, e.g.\n\n```sh\n $ pulumi import vault:ldap/secretBackend:SecretBackend config ldap/config\n```\n\n ",
+            "properties": {
+                "accessor": {
+                    "type": "string",
+                    "description": "Accessor of the mount\n"
+                },
+                "allowedManagedKeys": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of managed key registry entry names that the mount in question is allowed to access\n"
+                },
+                "auditNonHmacRequestKeys": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.\n"
+                },
+                "auditNonHmacResponseKeys": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.\n"
+                },
+                "binddn": {
+                    "type": "string",
+                    "description": "Distinguished name of object to bind when performing user and group search.\n"
+                },
+                "bindpass": {
+                    "type": "string",
+                    "description": "Password to use along with binddn when performing user search.\n",
+                    "secret": true
+                },
+                "certificate": {
+                    "type": "string",
+                    "description": "CA certificate to use when verifying LDAP server certificate, must be\nx509 PEM encoded.\n"
+                },
+                "clientTlsCert": {
+                    "type": "string",
+                    "description": "Client certificate to provide to the LDAP server, must be x509 PEM encoded.\n",
+                    "secret": true
+                },
+                "clientTlsKey": {
+                    "type": "string",
+                    "description": "Client certificate key to provide to the LDAP server, must be x509 PEM encoded.\n",
+                    "secret": true
+                },
+                "connectionTimeout": {
+                    "type": "integer",
+                    "description": "Timeout, in seconds, when attempting to connect to the LDAP server before trying\nthe next URL in the configuration.\n"
+                },
+                "defaultLeaseTtlSeconds": {
+                    "type": "integer",
+                    "description": "Default lease duration for secrets in seconds.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Human-friendly description of the mount for the Active Directory backend.\n"
+                },
+                "disableRemount": {
+                    "type": "boolean",
+                    "description": "If set, opts out of mount migration on path updates.\n"
+                },
+                "externalEntropyAccess": {
+                    "type": "boolean",
+                    "description": "Enable the secrets engine to access Vault's external entropy source\n"
+                },
+                "insecureTls": {
+                    "type": "boolean",
+                    "description": "Skip LDAP server SSL Certificate verification. This is not recommended for production.\nDefaults to `false`.\n"
+                },
+                "length": {
+                    "type": "integer",
+                    "description": "**Deprecated** use `password_policy`. The desired length of passwords that Vault generates.\n*Mutually exclusive with `password_policy` on vault-1.11+*\n",
+                    "deprecationMessage": "Length is deprecated and password_policy should be used with Vault \u003e= 1.5."
+                },
+                "local": {
+                    "type": "boolean",
+                    "description": "Mark the secrets engine as local-only. Local engines are not replicated or removed by\nreplication.Tolerance duration to use when checking the last rotation time.\n"
+                },
+                "maxLeaseTtlSeconds": {
+                    "type": "integer",
+                    "description": "Maximum possible lease duration for secrets in seconds.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n"
+                },
+                "options": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "description": "Specifies mount type specific options that are passed to the backend\n"
+                },
+                "passwordPolicy": {
+                    "type": "string",
+                    "description": "Name of the password policy to use to generate passwords.\n"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `ldap`.\n"
+                },
+                "requestTimeout": {
+                    "type": "integer",
+                    "description": "Timeout, in seconds, for the connection when making requests against the server\nbefore returning back an error.\n"
+                },
+                "schema": {
+                    "type": "string",
+                    "description": "The LDAP schema to use when storing entry passwords. Valid schemas include openldap, ad, and racf.\n"
+                },
+                "sealWrap": {
+                    "type": "boolean",
+                    "description": "Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability\n"
+                },
+                "starttls": {
+                    "type": "boolean",
+                    "description": "Issue a StartTLS command after establishing unencrypted connection.\n"
+                },
+                "upndomain": {
+                    "type": "string",
+                    "description": "Enables userPrincipalDomain login with [username]@UPNDomain.\n"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "LDAP URL to connect to. Multiple URLs can be specified by concatenating\nthem with commas; they will be tried in-order. Defaults to `ldap://127.0.0.1`.\n"
+                },
+                "userattr": {
+                    "type": "string",
+                    "description": "Attribute used when searching users. Defaults to `cn`.\n"
+                },
+                "userdn": {
+                    "type": "string",
+                    "description": "LDAP domain to use for users (eg: ou=People,dc=example,dc=org)`.\n"
+                }
+            },
+            "required": [
+                "accessor",
+                "auditNonHmacRequestKeys",
+                "auditNonHmacResponseKeys",
+                "binddn",
+                "bindpass",
+                "defaultLeaseTtlSeconds",
+                "length",
+                "maxLeaseTtlSeconds",
+                "requestTimeout",
+                "schema",
+                "sealWrap",
+                "starttls",
+                "upndomain",
+                "url",
+                "userattr"
+            ],
+            "inputProperties": {
+                "allowedManagedKeys": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of managed key registry entry names that the mount in question is allowed to access\n",
+                    "willReplaceOnChanges": true
+                },
+                "auditNonHmacRequestKeys": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.\n"
+                },
+                "auditNonHmacResponseKeys": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.\n"
+                },
+                "binddn": {
+                    "type": "string",
+                    "description": "Distinguished name of object to bind when performing user and group search.\n"
+                },
+                "bindpass": {
+                    "type": "string",
+                    "description": "Password to use along with binddn when performing user search.\n",
+                    "secret": true
+                },
+                "certificate": {
+                    "type": "string",
+                    "description": "CA certificate to use when verifying LDAP server certificate, must be\nx509 PEM encoded.\n"
+                },
+                "clientTlsCert": {
+                    "type": "string",
+                    "description": "Client certificate to provide to the LDAP server, must be x509 PEM encoded.\n",
+                    "secret": true
+                },
+                "clientTlsKey": {
+                    "type": "string",
+                    "description": "Client certificate key to provide to the LDAP server, must be x509 PEM encoded.\n",
+                    "secret": true
+                },
+                "connectionTimeout": {
+                    "type": "integer",
+                    "description": "Timeout, in seconds, when attempting to connect to the LDAP server before trying\nthe next URL in the configuration.\n"
+                },
+                "defaultLeaseTtlSeconds": {
+                    "type": "integer",
+                    "description": "Default lease duration for secrets in seconds.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Human-friendly description of the mount for the Active Directory backend.\n"
+                },
+                "disableRemount": {
+                    "type": "boolean",
+                    "description": "If set, opts out of mount migration on path updates.\n"
+                },
+                "externalEntropyAccess": {
+                    "type": "boolean",
+                    "description": "Enable the secrets engine to access Vault's external entropy source\n",
+                    "willReplaceOnChanges": true
+                },
+                "insecureTls": {
+                    "type": "boolean",
+                    "description": "Skip LDAP server SSL Certificate verification. This is not recommended for production.\nDefaults to `false`.\n"
+                },
+                "length": {
+                    "type": "integer",
+                    "description": "**Deprecated** use `password_policy`. The desired length of passwords that Vault generates.\n*Mutually exclusive with `password_policy` on vault-1.11+*\n",
+                    "deprecationMessage": "Length is deprecated and password_policy should be used with Vault \u003e= 1.5."
+                },
+                "local": {
+                    "type": "boolean",
+                    "description": "Mark the secrets engine as local-only. Local engines are not replicated or removed by\nreplication.Tolerance duration to use when checking the last rotation time.\n",
+                    "willReplaceOnChanges": true
+                },
+                "maxLeaseTtlSeconds": {
+                    "type": "integer",
+                    "description": "Maximum possible lease duration for secrets in seconds.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
+                    "willReplaceOnChanges": true
+                },
+                "options": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "description": "Specifies mount type specific options that are passed to the backend\n"
+                },
+                "passwordPolicy": {
+                    "type": "string",
+                    "description": "Name of the password policy to use to generate passwords.\n"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `ldap`.\n"
+                },
+                "requestTimeout": {
+                    "type": "integer",
+                    "description": "Timeout, in seconds, for the connection when making requests against the server\nbefore returning back an error.\n"
+                },
+                "schema": {
+                    "type": "string",
+                    "description": "The LDAP schema to use when storing entry passwords. Valid schemas include openldap, ad, and racf.\n"
+                },
+                "sealWrap": {
+                    "type": "boolean",
+                    "description": "Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability\n",
+                    "willReplaceOnChanges": true
+                },
+                "starttls": {
+                    "type": "boolean",
+                    "description": "Issue a StartTLS command after establishing unencrypted connection.\n"
+                },
+                "upndomain": {
+                    "type": "string",
+                    "description": "Enables userPrincipalDomain login with [username]@UPNDomain.\n"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "LDAP URL to connect to. Multiple URLs can be specified by concatenating\nthem with commas; they will be tried in-order. Defaults to `ldap://127.0.0.1`.\n"
+                },
+                "userattr": {
+                    "type": "string",
+                    "description": "Attribute used when searching users. Defaults to `cn`.\n"
+                },
+                "userdn": {
+                    "type": "string",
+                    "description": "LDAP domain to use for users (eg: ou=People,dc=example,dc=org)`.\n"
+                }
+            },
+            "requiredInputs": [
+                "binddn",
+                "bindpass"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SecretBackend resources.\n",
+                "properties": {
+                    "accessor": {
+                        "type": "string",
+                        "description": "Accessor of the mount\n"
+                    },
+                    "allowedManagedKeys": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of managed key registry entry names that the mount in question is allowed to access\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "auditNonHmacRequestKeys": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.\n"
+                    },
+                    "auditNonHmacResponseKeys": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.\n"
+                    },
+                    "binddn": {
+                        "type": "string",
+                        "description": "Distinguished name of object to bind when performing user and group search.\n"
+                    },
+                    "bindpass": {
+                        "type": "string",
+                        "description": "Password to use along with binddn when performing user search.\n",
+                        "secret": true
+                    },
+                    "certificate": {
+                        "type": "string",
+                        "description": "CA certificate to use when verifying LDAP server certificate, must be\nx509 PEM encoded.\n"
+                    },
+                    "clientTlsCert": {
+                        "type": "string",
+                        "description": "Client certificate to provide to the LDAP server, must be x509 PEM encoded.\n",
+                        "secret": true
+                    },
+                    "clientTlsKey": {
+                        "type": "string",
+                        "description": "Client certificate key to provide to the LDAP server, must be x509 PEM encoded.\n",
+                        "secret": true
+                    },
+                    "connectionTimeout": {
+                        "type": "integer",
+                        "description": "Timeout, in seconds, when attempting to connect to the LDAP server before trying\nthe next URL in the configuration.\n"
+                    },
+                    "defaultLeaseTtlSeconds": {
+                        "type": "integer",
+                        "description": "Default lease duration for secrets in seconds.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Human-friendly description of the mount for the Active Directory backend.\n"
+                    },
+                    "disableRemount": {
+                        "type": "boolean",
+                        "description": "If set, opts out of mount migration on path updates.\n"
+                    },
+                    "externalEntropyAccess": {
+                        "type": "boolean",
+                        "description": "Enable the secrets engine to access Vault's external entropy source\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "insecureTls": {
+                        "type": "boolean",
+                        "description": "Skip LDAP server SSL Certificate verification. This is not recommended for production.\nDefaults to `false`.\n"
+                    },
+                    "length": {
+                        "type": "integer",
+                        "description": "**Deprecated** use `password_policy`. The desired length of passwords that Vault generates.\n*Mutually exclusive with `password_policy` on vault-1.11+*\n",
+                        "deprecationMessage": "Length is deprecated and password_policy should be used with Vault \u003e= 1.5."
+                    },
+                    "local": {
+                        "type": "boolean",
+                        "description": "Mark the secrets engine as local-only. Local engines are not replicated or removed by\nreplication.Tolerance duration to use when checking the last rotation time.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "maxLeaseTtlSeconds": {
+                        "type": "integer",
+                        "description": "Maximum possible lease duration for secrets in seconds.\n"
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "options": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        },
+                        "description": "Specifies mount type specific options that are passed to the backend\n"
+                    },
+                    "passwordPolicy": {
+                        "type": "string",
+                        "description": "Name of the password policy to use to generate passwords.\n"
+                    },
+                    "path": {
+                        "type": "string",
+                        "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `ldap`.\n"
+                    },
+                    "requestTimeout": {
+                        "type": "integer",
+                        "description": "Timeout, in seconds, for the connection when making requests against the server\nbefore returning back an error.\n"
+                    },
+                    "schema": {
+                        "type": "string",
+                        "description": "The LDAP schema to use when storing entry passwords. Valid schemas include openldap, ad, and racf.\n"
+                    },
+                    "sealWrap": {
+                        "type": "boolean",
+                        "description": "Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "starttls": {
+                        "type": "boolean",
+                        "description": "Issue a StartTLS command after establishing unencrypted connection.\n"
+                    },
+                    "upndomain": {
+                        "type": "string",
+                        "description": "Enables userPrincipalDomain login with [username]@UPNDomain.\n"
+                    },
+                    "url": {
+                        "type": "string",
+                        "description": "LDAP URL to connect to. Multiple URLs can be specified by concatenating\nthem with commas; they will be tried in-order. Defaults to `ldap://127.0.0.1`.\n"
+                    },
+                    "userattr": {
+                        "type": "string",
+                        "description": "Attribute used when searching users. Defaults to `cn`.\n"
+                    },
+                    "userdn": {
+                        "type": "string",
+                        "description": "LDAP domain to use for users (eg: ou=People,dc=example,dc=org)`.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "vault:ldap/secretBackendDynamicRole:SecretBackendDynamicRole": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst config = new vault.ldap.SecretBackend(\"config\", {\n    path: \"my-custom-ldap\",\n    binddn: \"CN=Administrator,CN=Users,DC=corp,DC=example,DC=net\",\n    bindpass: \"SuperSecretPassw0rd\",\n    url: \"ldaps://localhost\",\n    userdn: \"CN=Users,DC=corp,DC=example,DC=net\",\n});\nconst role = new vault.ldap.SecretBackendDynamicRole(\"role\", {\n    mount: config.path,\n    roleName: \"alice\",\n    creationLdif: `dn: cn={{.Username}},ou=users,dc=learn,dc=example\nobjectClass: person\nobjectClass: top\ncn: learn\nsn: {{.Password | utf16le | base64}}\nmemberOf: cn=dev,ou=groups,dc=learn,dc=example\nuserPassword: {{.Password}}\n`,\n    deletionLdif: `dn: cn={{.Username}},ou=users,dc=learn,dc=example\nchangetype: delete\n  rollback_ldif = \u003c\u003cEOT\ndn: cn={{.Username}},ou=users,dc=learn,dc=example\nchangetype: delete\n`,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nconfig = vault.ldap.SecretBackend(\"config\",\n    path=\"my-custom-ldap\",\n    binddn=\"CN=Administrator,CN=Users,DC=corp,DC=example,DC=net\",\n    bindpass=\"SuperSecretPassw0rd\",\n    url=\"ldaps://localhost\",\n    userdn=\"CN=Users,DC=corp,DC=example,DC=net\")\nrole = vault.ldap.SecretBackendDynamicRole(\"role\",\n    mount=config.path,\n    role_name=\"alice\",\n    creation_ldif=\"\"\"dn: cn={{.Username}},ou=users,dc=learn,dc=example\nobjectClass: person\nobjectClass: top\ncn: learn\nsn: {{.Password | utf16le | base64}}\nmemberOf: cn=dev,ou=groups,dc=learn,dc=example\nuserPassword: {{.Password}}\n\"\"\",\n    deletion_ldif=\"\"\"dn: cn={{.Username}},ou=users,dc=learn,dc=example\nchangetype: delete\n  rollback_ldif = \u003c\u003cEOT\ndn: cn={{.Username}},ou=users,dc=learn,dc=example\nchangetype: delete\n\"\"\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Vault.Ldap.SecretBackend(\"config\", new()\n    {\n        Path = \"my-custom-ldap\",\n        Binddn = \"CN=Administrator,CN=Users,DC=corp,DC=example,DC=net\",\n        Bindpass = \"SuperSecretPassw0rd\",\n        Url = \"ldaps://localhost\",\n        Userdn = \"CN=Users,DC=corp,DC=example,DC=net\",\n    });\n\n    var role = new Vault.Ldap.SecretBackendDynamicRole(\"role\", new()\n    {\n        Mount = config.Path,\n        RoleName = \"alice\",\n        CreationLdif = @\"dn: cn={{.Username}},ou=users,dc=learn,dc=example\nobjectClass: person\nobjectClass: top\ncn: learn\nsn: {{.Password | utf16le | base64}}\nmemberOf: cn=dev,ou=groups,dc=learn,dc=example\nuserPassword: {{.Password}}\n\",\n        DeletionLdif = @\"dn: cn={{.Username}},ou=users,dc=learn,dc=example\nchangetype: delete\n  rollback_ldif = \u003c\u003cEOT\ndn: cn={{.Username}},ou=users,dc=learn,dc=example\nchangetype: delete\n\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ldap\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tconfig, err := ldap.NewSecretBackend(ctx, \"config\", \u0026ldap.SecretBackendArgs{\n\t\t\tPath:     pulumi.String(\"my-custom-ldap\"),\n\t\t\tBinddn:   pulumi.String(\"CN=Administrator,CN=Users,DC=corp,DC=example,DC=net\"),\n\t\t\tBindpass: pulumi.String(\"SuperSecretPassw0rd\"),\n\t\t\tUrl:      pulumi.String(\"ldaps://localhost\"),\n\t\t\tUserdn:   pulumi.String(\"CN=Users,DC=corp,DC=example,DC=net\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ldap.NewSecretBackendDynamicRole(ctx, \"role\", \u0026ldap.SecretBackendDynamicRoleArgs{\n\t\t\tMount:        config.Path,\n\t\t\tRoleName:     pulumi.String(\"alice\"),\n\t\t\tCreationLdif: pulumi.String(\"dn: cn={{.Username}},ou=users,dc=learn,dc=example\\nobjectClass: person\\nobjectClass: top\\ncn: learn\\nsn: {{.Password | utf16le | base64}}\\nmemberOf: cn=dev,ou=groups,dc=learn,dc=example\\nuserPassword: {{.Password}}\\n\"),\n\t\t\tDeletionLdif: pulumi.String(\"dn: cn={{.Username}},ou=users,dc=learn,dc=example\\nchangetype: delete\\n  rollback_ldif = \u003c\u003cEOT\\ndn: cn={{.Username}},ou=users,dc=learn,dc=example\\nchangetype: delete\\n\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.ldap.SecretBackend;\nimport com.pulumi.vault.ldap.SecretBackendArgs;\nimport com.pulumi.vault.ldap.SecretBackendDynamicRole;\nimport com.pulumi.vault.ldap.SecretBackendDynamicRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var config = new SecretBackend(\"config\", SecretBackendArgs.builder()        \n            .path(\"my-custom-ldap\")\n            .binddn(\"CN=Administrator,CN=Users,DC=corp,DC=example,DC=net\")\n            .bindpass(\"SuperSecretPassw0rd\")\n            .url(\"ldaps://localhost\")\n            .userdn(\"CN=Users,DC=corp,DC=example,DC=net\")\n            .build());\n\n        var role = new SecretBackendDynamicRole(\"role\", SecretBackendDynamicRoleArgs.builder()        \n            .mount(config.path())\n            .roleName(\"alice\")\n            .creationLdif(\"\"\"\ndn: cn={{.Username}},ou=users,dc=learn,dc=example\nobjectClass: person\nobjectClass: top\ncn: learn\nsn: {{.Password | utf16le | base64}}\nmemberOf: cn=dev,ou=groups,dc=learn,dc=example\nuserPassword: {{.Password}}\n            \"\"\")\n            .deletionLdif(\"\"\"\ndn: cn={{.Username}},ou=users,dc=learn,dc=example\nchangetype: delete\n  rollback_ldif = \u003c\u003cEOT\ndn: cn={{.Username}},ou=users,dc=learn,dc=example\nchangetype: delete\n            \"\"\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  config:\n    type: vault:ldap:SecretBackend\n    properties:\n      path: my-custom-ldap\n      binddn: CN=Administrator,CN=Users,DC=corp,DC=example,DC=net\n      bindpass: SuperSecretPassw0rd\n      url: ldaps://localhost\n      userdn: CN=Users,DC=corp,DC=example,DC=net\n  role:\n    type: vault:ldap:SecretBackendDynamicRole\n    properties:\n      mount: ${config.path}\n      roleName: alice\n      creationLdif: |\n        dn: cn={{.Username}},ou=users,dc=learn,dc=example\n        objectClass: person\n        objectClass: top\n        cn: learn\n        sn: {{.Password | utf16le | base64}}\n        memberOf: cn=dev,ou=groups,dc=learn,dc=example\n        userPassword: {{.Password}}\n      deletionLdif: |\n        dn: cn={{.Username}},ou=users,dc=learn,dc=example\n        changetype: delete\n          rollback_ldif = \u003c\u003cEOT\n        dn: cn={{.Username}},ou=users,dc=learn,dc=example\n        changetype: delete\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nLDAP secret backend dynamic role can be imported using the full path to the role of the form`\u003cmount_path\u003e/dynamic-role/\u003crole_name\u003e` e.g.\n\n```sh\n $ pulumi import vault:ldap/secretBackendDynamicRole:SecretBackendDynamicRole role ldap/role/dynamic-role\n```\n\n ",
+            "properties": {
+                "creationLdif": {
+                    "type": "string",
+                    "description": "A templatized LDIF string used to create a user\naccount. This may contain multiple LDIF entries. The `creation_ldif` can also\nbe used to add the user account to an existing group. All LDIF entries are\nperformed in order. If Vault encounters an error while executing the\n`creation_ldif` it will stop at the first error and not execute any remaining\nLDIF entries. If an error occurs and `rollback_ldif` is specified, the LDIF\nentries in `rollback_ldif` will be executed. See `rollback_ldif` for more\ndetails. This field may optionally be provided as a base64 encoded string.\n"
+                },
+                "defaultTtl": {
+                    "type": "integer",
+                    "description": "Specifies the TTL for the leases associated with this role.\n"
+                },
+                "deletionLdif": {
+                    "type": "string",
+                    "description": "A templatized LDIF string used to delete the\nuser account once its TTL has expired. This may contain multiple LDIF\nentries. All LDIF entries are performed in order. If Vault encounters an\nerror while executing an entry in the `deletion_ldif` it will attempt to\ncontinue executing any remaining entries. This field may optionally be\nprovided as a base64 encoded string.\n"
+                },
+                "maxTtl": {
+                    "type": "integer",
+                    "description": "Specifies the maximum TTL for the leases associated with this role.\n"
+                },
+                "mount": {
+                    "type": "string",
+                    "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `ldap`.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n"
+                },
+                "roleName": {
+                    "type": "string",
+                    "description": "Name of the role.\n"
+                },
+                "rollbackLdif": {
+                    "type": "string",
+                    "description": "A templatized LDIF string used to attempt to\nrollback any changes in the event that execution of the `creation_ldif` results\nin an error. This may contain multiple LDIF entries. All LDIF entries are\nperformed in order. If Vault encounters an error while executing an entry in\nthe `rollback_ldif` it will attempt to continue executing any remaining\nentries. This field may optionally be provided as a base64 encoded string.\n"
+                },
+                "usernameTemplate": {
+                    "type": "string",
+                    "description": "A template used to generate a dynamic\nusername. This will be used to fill in the `.Username` field within the\n`creation_ldif` string.\n"
+                }
+            },
+            "required": [
+                "creationLdif",
+                "deletionLdif",
+                "roleName"
+            ],
+            "inputProperties": {
+                "creationLdif": {
+                    "type": "string",
+                    "description": "A templatized LDIF string used to create a user\naccount. This may contain multiple LDIF entries. The `creation_ldif` can also\nbe used to add the user account to an existing group. All LDIF entries are\nperformed in order. If Vault encounters an error while executing the\n`creation_ldif` it will stop at the first error and not execute any remaining\nLDIF entries. If an error occurs and `rollback_ldif` is specified, the LDIF\nentries in `rollback_ldif` will be executed. See `rollback_ldif` for more\ndetails. This field may optionally be provided as a base64 encoded string.\n"
+                },
+                "defaultTtl": {
+                    "type": "integer",
+                    "description": "Specifies the TTL for the leases associated with this role.\n"
+                },
+                "deletionLdif": {
+                    "type": "string",
+                    "description": "A templatized LDIF string used to delete the\nuser account once its TTL has expired. This may contain multiple LDIF\nentries. All LDIF entries are performed in order. If Vault encounters an\nerror while executing an entry in the `deletion_ldif` it will attempt to\ncontinue executing any remaining entries. This field may optionally be\nprovided as a base64 encoded string.\n"
+                },
+                "maxTtl": {
+                    "type": "integer",
+                    "description": "Specifies the maximum TTL for the leases associated with this role.\n"
+                },
+                "mount": {
+                    "type": "string",
+                    "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `ldap`.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
+                    "willReplaceOnChanges": true
+                },
+                "roleName": {
+                    "type": "string",
+                    "description": "Name of the role.\n",
+                    "willReplaceOnChanges": true
+                },
+                "rollbackLdif": {
+                    "type": "string",
+                    "description": "A templatized LDIF string used to attempt to\nrollback any changes in the event that execution of the `creation_ldif` results\nin an error. This may contain multiple LDIF entries. All LDIF entries are\nperformed in order. If Vault encounters an error while executing an entry in\nthe `rollback_ldif` it will attempt to continue executing any remaining\nentries. This field may optionally be provided as a base64 encoded string.\n"
+                },
+                "usernameTemplate": {
+                    "type": "string",
+                    "description": "A template used to generate a dynamic\nusername. This will be used to fill in the `.Username` field within the\n`creation_ldif` string.\n"
+                }
+            },
+            "requiredInputs": [
+                "creationLdif",
+                "deletionLdif",
+                "roleName"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SecretBackendDynamicRole resources.\n",
+                "properties": {
+                    "creationLdif": {
+                        "type": "string",
+                        "description": "A templatized LDIF string used to create a user\naccount. This may contain multiple LDIF entries. The `creation_ldif` can also\nbe used to add the user account to an existing group. All LDIF entries are\nperformed in order. If Vault encounters an error while executing the\n`creation_ldif` it will stop at the first error and not execute any remaining\nLDIF entries. If an error occurs and `rollback_ldif` is specified, the LDIF\nentries in `rollback_ldif` will be executed. See `rollback_ldif` for more\ndetails. This field may optionally be provided as a base64 encoded string.\n"
+                    },
+                    "defaultTtl": {
+                        "type": "integer",
+                        "description": "Specifies the TTL for the leases associated with this role.\n"
+                    },
+                    "deletionLdif": {
+                        "type": "string",
+                        "description": "A templatized LDIF string used to delete the\nuser account once its TTL has expired. This may contain multiple LDIF\nentries. All LDIF entries are performed in order. If Vault encounters an\nerror while executing an entry in the `deletion_ldif` it will attempt to\ncontinue executing any remaining entries. This field may optionally be\nprovided as a base64 encoded string.\n"
+                    },
+                    "maxTtl": {
+                        "type": "integer",
+                        "description": "Specifies the maximum TTL for the leases associated with this role.\n"
+                    },
+                    "mount": {
+                        "type": "string",
+                        "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `ldap`.\n"
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "roleName": {
+                        "type": "string",
+                        "description": "Name of the role.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "rollbackLdif": {
+                        "type": "string",
+                        "description": "A templatized LDIF string used to attempt to\nrollback any changes in the event that execution of the `creation_ldif` results\nin an error. This may contain multiple LDIF entries. All LDIF entries are\nperformed in order. If Vault encounters an error while executing an entry in\nthe `rollback_ldif` it will attempt to continue executing any remaining\nentries. This field may optionally be provided as a base64 encoded string.\n"
+                    },
+                    "usernameTemplate": {
+                        "type": "string",
+                        "description": "A template used to generate a dynamic\nusername. This will be used to fill in the `.Username` field within the\n`creation_ldif` string.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet": {
+            "description": "\n\n## Import\n\nLDAP secret backend libraries can be imported using the `path`, e.g.\n\n```sh\n $ pulumi import vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet set ldap/library/bob\n```\n\n ",
+            "properties": {
+                "disableCheckInEnforcement": {
+                    "type": "boolean",
+                    "description": "Disable enforcing that service\naccounts must be checked in by the entity or client token that checked them\nout. Defaults to false.\n"
+                },
+                "maxTtl": {
+                    "type": "integer",
+                    "description": "The maximum password time-to-live in seconds. Defaults\nto the configuration max_ttl if not provided.\n"
+                },
+                "mount": {
+                    "type": "string",
+                    "description": "The path where the LDAP secrets backend is mounted.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name to identify this set of service accounts.\nMust be unique within the backend.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n"
+                },
+                "serviceAccountNames": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Specifies the slice of service accounts mapped to this set.\n"
+                },
+                "ttl": {
+                    "type": "integer",
+                    "description": "The password time-to-live in seconds. Defaults to the configuration\nttl if not provided.\n"
+                }
+            },
+            "required": [
+                "maxTtl",
+                "name",
+                "serviceAccountNames",
+                "ttl"
+            ],
+            "inputProperties": {
+                "disableCheckInEnforcement": {
+                    "type": "boolean",
+                    "description": "Disable enforcing that service\naccounts must be checked in by the entity or client token that checked them\nout. Defaults to false.\n"
+                },
+                "maxTtl": {
+                    "type": "integer",
+                    "description": "The maximum password time-to-live in seconds. Defaults\nto the configuration max_ttl if not provided.\n"
+                },
+                "mount": {
+                    "type": "string",
+                    "description": "The path where the LDAP secrets backend is mounted.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name to identify this set of service accounts.\nMust be unique within the backend.\n",
+                    "willReplaceOnChanges": true
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
+                    "willReplaceOnChanges": true
+                },
+                "serviceAccountNames": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Specifies the slice of service accounts mapped to this set.\n",
+                    "willReplaceOnChanges": true
+                },
+                "ttl": {
+                    "type": "integer",
+                    "description": "The password time-to-live in seconds. Defaults to the configuration\nttl if not provided.\n"
+                }
+            },
+            "requiredInputs": [
+                "serviceAccountNames"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SecretBackendLibrarySet resources.\n",
+                "properties": {
+                    "disableCheckInEnforcement": {
+                        "type": "boolean",
+                        "description": "Disable enforcing that service\naccounts must be checked in by the entity or client token that checked them\nout. Defaults to false.\n"
+                    },
+                    "maxTtl": {
+                        "type": "integer",
+                        "description": "The maximum password time-to-live in seconds. Defaults\nto the configuration max_ttl if not provided.\n"
+                    },
+                    "mount": {
+                        "type": "string",
+                        "description": "The path where the LDAP secrets backend is mounted.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name to identify this set of service accounts.\nMust be unique within the backend.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "serviceAccountNames": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Specifies the slice of service accounts mapped to this set.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "ttl": {
+                        "type": "integer",
+                        "description": "The password time-to-live in seconds. Defaults to the configuration\nttl if not provided.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "vault:ldap/secretBackendStaticRole:SecretBackendStaticRole": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst config = new vault.ldap.SecretBackend(\"config\", {\n    path: \"my-custom-ldap\",\n    binddn: \"CN=Administrator,CN=Users,DC=corp,DC=example,DC=net\",\n    bindpass: \"SuperSecretPassw0rd\",\n    url: \"ldaps://localhost\",\n    insecureTls: true,\n    userdn: \"CN=Users,DC=corp,DC=example,DC=net\",\n});\nconst role = new vault.ldap.SecretBackendStaticRole(\"role\", {\n    mount: config.path,\n    username: \"alice\",\n    dn: \"cn=alice,ou=Users,DC=corp,DC=example,DC=net\",\n    roleName: \"alice\",\n    rotationPeriod: 60,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nconfig = vault.ldap.SecretBackend(\"config\",\n    path=\"my-custom-ldap\",\n    binddn=\"CN=Administrator,CN=Users,DC=corp,DC=example,DC=net\",\n    bindpass=\"SuperSecretPassw0rd\",\n    url=\"ldaps://localhost\",\n    insecure_tls=True,\n    userdn=\"CN=Users,DC=corp,DC=example,DC=net\")\nrole = vault.ldap.SecretBackendStaticRole(\"role\",\n    mount=config.path,\n    username=\"alice\",\n    dn=\"cn=alice,ou=Users,DC=corp,DC=example,DC=net\",\n    role_name=\"alice\",\n    rotation_period=60)\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Vault.Ldap.SecretBackend(\"config\", new()\n    {\n        Path = \"my-custom-ldap\",\n        Binddn = \"CN=Administrator,CN=Users,DC=corp,DC=example,DC=net\",\n        Bindpass = \"SuperSecretPassw0rd\",\n        Url = \"ldaps://localhost\",\n        InsecureTls = true,\n        Userdn = \"CN=Users,DC=corp,DC=example,DC=net\",\n    });\n\n    var role = new Vault.Ldap.SecretBackendStaticRole(\"role\", new()\n    {\n        Mount = config.Path,\n        Username = \"alice\",\n        Dn = \"cn=alice,ou=Users,DC=corp,DC=example,DC=net\",\n        RoleName = \"alice\",\n        RotationPeriod = 60,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ldap\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tconfig, err := ldap.NewSecretBackend(ctx, \"config\", \u0026ldap.SecretBackendArgs{\n\t\t\tPath:        pulumi.String(\"my-custom-ldap\"),\n\t\t\tBinddn:      pulumi.String(\"CN=Administrator,CN=Users,DC=corp,DC=example,DC=net\"),\n\t\t\tBindpass:    pulumi.String(\"SuperSecretPassw0rd\"),\n\t\t\tUrl:         pulumi.String(\"ldaps://localhost\"),\n\t\t\tInsecureTls: pulumi.Bool(true),\n\t\t\tUserdn:      pulumi.String(\"CN=Users,DC=corp,DC=example,DC=net\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ldap.NewSecretBackendStaticRole(ctx, \"role\", \u0026ldap.SecretBackendStaticRoleArgs{\n\t\t\tMount:          config.Path,\n\t\t\tUsername:       pulumi.String(\"alice\"),\n\t\t\tDn:             pulumi.String(\"cn=alice,ou=Users,DC=corp,DC=example,DC=net\"),\n\t\t\tRoleName:       pulumi.String(\"alice\"),\n\t\t\tRotationPeriod: pulumi.Int(60),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.ldap.SecretBackend;\nimport com.pulumi.vault.ldap.SecretBackendArgs;\nimport com.pulumi.vault.ldap.SecretBackendStaticRole;\nimport com.pulumi.vault.ldap.SecretBackendStaticRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var config = new SecretBackend(\"config\", SecretBackendArgs.builder()        \n            .path(\"my-custom-ldap\")\n            .binddn(\"CN=Administrator,CN=Users,DC=corp,DC=example,DC=net\")\n            .bindpass(\"SuperSecretPassw0rd\")\n            .url(\"ldaps://localhost\")\n            .insecureTls(\"true\")\n            .userdn(\"CN=Users,DC=corp,DC=example,DC=net\")\n            .build());\n\n        var role = new SecretBackendStaticRole(\"role\", SecretBackendStaticRoleArgs.builder()        \n            .mount(config.path())\n            .username(\"alice\")\n            .dn(\"cn=alice,ou=Users,DC=corp,DC=example,DC=net\")\n            .roleName(\"alice\")\n            .rotationPeriod(60)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  config:\n    type: vault:ldap:SecretBackend\n    properties:\n      path: my-custom-ldap\n      binddn: CN=Administrator,CN=Users,DC=corp,DC=example,DC=net\n      bindpass: SuperSecretPassw0rd\n      url: ldaps://localhost\n      insecureTls: true\n      userdn: CN=Users,DC=corp,DC=example,DC=net\n  role:\n    type: vault:ldap:SecretBackendStaticRole\n    properties:\n      mount: ${config.path}\n      username: alice\n      dn: cn=alice,ou=Users,DC=corp,DC=example,DC=net\n      roleName: alice\n      rotationPeriod: 60\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nLDAP secret backend static role can be imported using the full path to the role of the form`\u003cmount_path\u003e/static-role/\u003crole_name\u003e` e.g.\n\n```sh\n $ pulumi import vault:ldap/secretBackendStaticRole:SecretBackendStaticRole role ldap/static-role/example-role\n```\n\n ",
+            "properties": {
+                "dn": {
+                    "type": "string",
+                    "description": "Distinguished name (DN) of the existing LDAP entry to manage\npassword rotation for. If given, it will take precedence over `username` for the LDAP\nsearch performed during password rotation. Cannot be modified after creation.\n"
+                },
+                "mount": {
+                    "type": "string",
+                    "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `ldap`.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n"
+                },
+                "roleName": {
+                    "type": "string",
+                    "description": "Name of the role.\n"
+                },
+                "rotationPeriod": {
+                    "type": "integer",
+                    "description": "How often Vault should rotate the password of the user entry.\n"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The username of the existing LDAP entry to manage password rotation for.\n"
+                }
+            },
+            "required": [
+                "roleName",
+                "rotationPeriod",
+                "username"
+            ],
+            "inputProperties": {
+                "dn": {
+                    "type": "string",
+                    "description": "Distinguished name (DN) of the existing LDAP entry to manage\npassword rotation for. If given, it will take precedence over `username` for the LDAP\nsearch performed during password rotation. Cannot be modified after creation.\n"
+                },
+                "mount": {
+                    "type": "string",
+                    "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `ldap`.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
+                    "willReplaceOnChanges": true
+                },
+                "roleName": {
+                    "type": "string",
+                    "description": "Name of the role.\n",
+                    "willReplaceOnChanges": true
+                },
+                "rotationPeriod": {
+                    "type": "integer",
+                    "description": "How often Vault should rotate the password of the user entry.\n"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The username of the existing LDAP entry to manage password rotation for.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "roleName",
+                "rotationPeriod",
+                "username"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SecretBackendStaticRole resources.\n",
+                "properties": {
+                    "dn": {
+                        "type": "string",
+                        "description": "Distinguished name (DN) of the existing LDAP entry to manage\npassword rotation for. If given, it will take precedence over `username` for the LDAP\nsearch performed during password rotation. Cannot be modified after creation.\n"
+                    },
+                    "mount": {
+                        "type": "string",
+                        "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `ldap`.\n"
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "roleName": {
+                        "type": "string",
+                        "description": "Name of the role.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "rotationPeriod": {
+                        "type": "integer",
+                        "description": "How often Vault should rotate the password of the user entry.\n"
+                    },
+                    "username": {
+                        "type": "string",
+                        "description": "The username of the existing LDAP entry to manage password rotation for.\n",
+                        "willReplaceOnChanges": true
                     }
                 },
                 "type": "object"
@@ -27728,6 +28533,10 @@
                     "type": "string",
                     "description": "The list of domains for which a client can request a host certificate.\n"
                 },
+                "allowedDomainsTemplate": {
+                    "type": "boolean",
+                    "description": "Specifies if `allowed_domains` can be declared using\nidentity template policies. Non-templated domains are also permitted.\n"
+                },
                 "allowedExtensions": {
                     "type": "string",
                     "description": "Specifies a comma-separated list of extensions that certificates can have when signed.\n"
@@ -27812,6 +28621,7 @@
             },
             "required": [
                 "algorithmSigner",
+                "allowedDomainsTemplate",
                 "backend",
                 "keyType",
                 "maxTtl",
@@ -27850,6 +28660,10 @@
                 "allowedDomains": {
                     "type": "string",
                     "description": "The list of domains for which a client can request a host certificate.\n"
+                },
+                "allowedDomainsTemplate": {
+                    "type": "boolean",
+                    "description": "Specifies if `allowed_domains` can be declared using\nidentity template policies. Non-templated domains are also permitted.\n"
                 },
                 "allowedExtensions": {
                     "type": "string",
@@ -27974,6 +28788,10 @@
                     "allowedDomains": {
                         "type": "string",
                         "description": "The list of domains for which a client can request a host certificate.\n"
+                    },
+                    "allowedDomainsTemplate": {
+                        "type": "boolean",
+                        "description": "Specifies if `allowed_domains` can be declared using\nidentity template policies. Non-templated domains are also permitted.\n"
                     },
                     "allowedExtensions": {
                         "type": "string",
@@ -29609,7 +30427,8 @@
                         "willReplaceOnChanges": true
                     },
                     "region": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The region the read credentials belong to.\n"
                     },
                     "role": {
                         "type": "string",
@@ -29621,7 +30440,7 @@
                     },
                     "ttl": {
                         "type": "string",
-                        "description": "Specifies the TTL for the use of the STS token. This\nis specified as a string with a duration suffix. Valid only when\n`credential_type` is `assumed_role` or `federation_token`\n"
+                        "description": "Specifies the TTL for the use of the STS token. This\nis specified as a string with a duration suffix. Valid only when\n`credential_type` of the connected `vault.aws.SecretBackendRole` resource is `assumed_role` or `federation_token`\n"
                     },
                     "type": {
                         "type": "string",

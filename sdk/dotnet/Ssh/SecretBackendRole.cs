@@ -106,6 +106,13 @@ namespace Pulumi.Vault.Ssh
         public Output<string?> AllowedDomains { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies if `allowed_domains` can be declared using
+        /// identity template policies. Non-templated domains are also permitted.
+        /// </summary>
+        [Output("allowedDomainsTemplate")]
+        public Output<bool> AllowedDomainsTemplate { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies a comma-separated list of extensions that certificates can have when signed.
         /// </summary>
         [Output("allowedExtensions")]
@@ -309,6 +316,13 @@ namespace Pulumi.Vault.Ssh
         public Input<string>? AllowedDomains { get; set; }
 
         /// <summary>
+        /// Specifies if `allowed_domains` can be declared using
+        /// identity template policies. Non-templated domains are also permitted.
+        /// </summary>
+        [Input("allowedDomainsTemplate")]
+        public Input<bool>? AllowedDomainsTemplate { get; set; }
+
+        /// <summary>
         /// Specifies a comma-separated list of extensions that certificates can have when signed.
         /// </summary>
         [Input("allowedExtensions")]
@@ -497,6 +511,13 @@ namespace Pulumi.Vault.Ssh
         /// </summary>
         [Input("allowedDomains")]
         public Input<string>? AllowedDomains { get; set; }
+
+        /// <summary>
+        /// Specifies if `allowed_domains` can be declared using
+        /// identity template policies. Non-templated domains are also permitted.
+        /// </summary>
+        [Input("allowedDomainsTemplate")]
+        public Input<bool>? AllowedDomainsTemplate { get; set; }
 
         /// <summary>
         /// Specifies a comma-separated list of extensions that certificates can have when signed.

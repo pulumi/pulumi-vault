@@ -19,12 +19,13 @@ class NamespaceArgs:
                  path_fq: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Namespace resource.
-        :param pulumi.Input[str] path: The path of the namespace. Must not have a trailing `/`
+        :param pulumi.Input[str] path: The path of the namespace. Must not have a trailing `/`.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path_fq: The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+               The path is relative to the provider's `namespace` argument.
         """
         pulumi.set(__self__, "path", path)
         if namespace is not None:
@@ -36,7 +37,7 @@ class NamespaceArgs:
     @pulumi.getter
     def path(self) -> pulumi.Input[str]:
         """
-        The path of the namespace. Must not have a trailing `/`
+        The path of the namespace. Must not have a trailing `/`.
         """
         return pulumi.get(self, "path")
 
@@ -64,6 +65,7 @@ class NamespaceArgs:
     def path_fq(self) -> Optional[pulumi.Input[str]]:
         """
         The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+        The path is relative to the provider's `namespace` argument.
         """
         return pulumi.get(self, "path_fq")
 
@@ -85,9 +87,10 @@ class _NamespaceState:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[str] namespace_id: Namespace ID.
-        :param pulumi.Input[str] path: The path of the namespace. Must not have a trailing `/`
+        :param pulumi.Input[str] namespace_id: Vault server's internal ID of the namespace.
+        :param pulumi.Input[str] path: The path of the namespace. Must not have a trailing `/`.
         :param pulumi.Input[str] path_fq: The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+               The path is relative to the provider's `namespace` argument.
         """
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
@@ -117,7 +120,7 @@ class _NamespaceState:
     @pulumi.getter(name="namespaceId")
     def namespace_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Namespace ID.
+        Vault server's internal ID of the namespace.
         """
         return pulumi.get(self, "namespace_id")
 
@@ -129,7 +132,7 @@ class _NamespaceState:
     @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
         """
-        The path of the namespace. Must not have a trailing `/`
+        The path of the namespace. Must not have a trailing `/`.
         """
         return pulumi.get(self, "path")
 
@@ -142,6 +145,7 @@ class _NamespaceState:
     def path_fq(self) -> Optional[pulumi.Input[str]]:
         """
         The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+        The path is relative to the provider's `namespace` argument.
         """
         return pulumi.get(self, "path_fq")
 
@@ -168,7 +172,7 @@ class Namespace(pulumi.CustomResource):
          $ pulumi import vault:index/namespace:Namespace example <name>
         ```
 
-         If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path. provider "vault" {
+         If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path. hcl provider "vault" {
 
         # Configuration options
 
@@ -176,15 +180,19 @@ class Namespace(pulumi.CustomResource):
 
          alias
 
-         = "example" } resource vault_namespace "example2" {
+         = "example" } resource "vault_namespace" "example2" {
 
-         provider = vault.example }
+         provider = vault.example
+
+         path
+
+         = "example2" }
 
         ```sh
          $ pulumi import vault:index/namespace:Namespace example2 example2
         ```
 
-         $ terraform state show vault_namespace.example2 vault_namespace.example2 resource "vault_namespace" "example2" {
+         $ terraform state show vault_namespace.example2 vault_namespace.example2resource "vault_namespace" "example2" {
 
          id
 
@@ -194,7 +202,11 @@ class Namespace(pulumi.CustomResource):
 
          path
 
-         = "example2" }
+         = "example2"
+
+         path_fq
+
+        = "example2" }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -202,8 +214,9 @@ class Namespace(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[str] path: The path of the namespace. Must not have a trailing `/`
+        :param pulumi.Input[str] path: The path of the namespace. Must not have a trailing `/`.
         :param pulumi.Input[str] path_fq: The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+               The path is relative to the provider's `namespace` argument.
         """
         ...
     @overload
@@ -220,7 +233,7 @@ class Namespace(pulumi.CustomResource):
          $ pulumi import vault:index/namespace:Namespace example <name>
         ```
 
-         If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path. provider "vault" {
+         If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path. hcl provider "vault" {
 
         # Configuration options
 
@@ -228,15 +241,19 @@ class Namespace(pulumi.CustomResource):
 
          alias
 
-         = "example" } resource vault_namespace "example2" {
+         = "example" } resource "vault_namespace" "example2" {
 
-         provider = vault.example }
+         provider = vault.example
+
+         path
+
+         = "example2" }
 
         ```sh
          $ pulumi import vault:index/namespace:Namespace example2 example2
         ```
 
-         $ terraform state show vault_namespace.example2 vault_namespace.example2 resource "vault_namespace" "example2" {
+         $ terraform state show vault_namespace.example2 vault_namespace.example2resource "vault_namespace" "example2" {
 
          id
 
@@ -246,7 +263,11 @@ class Namespace(pulumi.CustomResource):
 
          path
 
-         = "example2" }
+         = "example2"
+
+         path_fq
+
+        = "example2" }
 
         :param str resource_name: The name of the resource.
         :param NamespaceArgs args: The arguments to use to populate this resource's properties.
@@ -306,9 +327,10 @@ class Namespace(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[str] namespace_id: Namespace ID.
-        :param pulumi.Input[str] path: The path of the namespace. Must not have a trailing `/`
+        :param pulumi.Input[str] namespace_id: Vault server's internal ID of the namespace.
+        :param pulumi.Input[str] path: The path of the namespace. Must not have a trailing `/`.
         :param pulumi.Input[str] path_fq: The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+               The path is relative to the provider's `namespace` argument.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -335,7 +357,7 @@ class Namespace(pulumi.CustomResource):
     @pulumi.getter(name="namespaceId")
     def namespace_id(self) -> pulumi.Output[str]:
         """
-        Namespace ID.
+        Vault server's internal ID of the namespace.
         """
         return pulumi.get(self, "namespace_id")
 
@@ -343,7 +365,7 @@ class Namespace(pulumi.CustomResource):
     @pulumi.getter
     def path(self) -> pulumi.Output[str]:
         """
-        The path of the namespace. Must not have a trailing `/`
+        The path of the namespace. Must not have a trailing `/`.
         """
         return pulumi.get(self, "path")
 
@@ -352,6 +374,7 @@ class Namespace(pulumi.CustomResource):
     def path_fq(self) -> pulumi.Output[str]:
         """
         The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+        The path is relative to the provider's `namespace` argument.
         """
         return pulumi.get(self, "path_fq")
 

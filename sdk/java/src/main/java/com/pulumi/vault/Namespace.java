@@ -23,7 +23,7 @@ import javax.annotation.Nullable;
  *  $ pulumi import vault:index/namespace:Namespace example &lt;name&gt;
  * ```
  * 
- *  If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path. provider &#34;vault&#34; {
+ *  If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path. hcl provider &#34;vault&#34; {
  * 
  * # Configuration options
  * 
@@ -31,15 +31,19 @@ import javax.annotation.Nullable;
  * 
  *  alias
  * 
- *  = &#34;example&#34; } resource vault_namespace &#34;example2&#34; {
+ *  = &#34;example&#34; } resource &#34;vault_namespace&#34; &#34;example2&#34; {
  * 
- *  provider = vault.example }
+ *  provider = vault.example
+ * 
+ *  path
+ * 
+ *  = &#34;example2&#34; }
  * 
  * ```sh
  *  $ pulumi import vault:index/namespace:Namespace example2 example2
  * ```
  * 
- *  $ terraform state show vault_namespace.example2 vault_namespace.example2 resource &#34;vault_namespace&#34; &#34;example2&#34; {
+ *  $ terraform state show vault_namespace.example2 vault_namespace.example2resource &#34;vault_namespace&#34; &#34;example2&#34; {
  * 
  *  id
  * 
@@ -49,7 +53,11 @@ import javax.annotation.Nullable;
  * 
  *  path
  * 
- *  = &#34;example2&#34; }
+ *  = &#34;example2&#34;
+ * 
+ *  path_fq
+ * 
+ * = &#34;example2&#34; }
  * 
  */
 @ResourceType(type="vault:index/namespace:Namespace")
@@ -75,28 +83,28 @@ public class Namespace extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.namespace);
     }
     /**
-     * Namespace ID.
+     * Vault server&#39;s internal ID of the namespace.
      * 
      */
     @Export(name="namespaceId", type=String.class, parameters={})
     private Output<String> namespaceId;
 
     /**
-     * @return Namespace ID.
+     * @return Vault server&#39;s internal ID of the namespace.
      * 
      */
     public Output<String> namespaceId() {
         return this.namespaceId;
     }
     /**
-     * The path of the namespace. Must not have a trailing `/`
+     * The path of the namespace. Must not have a trailing `/`.
      * 
      */
     @Export(name="path", type=String.class, parameters={})
     private Output<String> path;
 
     /**
-     * @return The path of the namespace. Must not have a trailing `/`
+     * @return The path of the namespace. Must not have a trailing `/`.
      * 
      */
     public Output<String> path() {
@@ -104,6 +112,7 @@ public class Namespace extends com.pulumi.resources.CustomResource {
     }
     /**
      * The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+     * The path is relative to the provider&#39;s `namespace` argument.
      * 
      */
     @Export(name="pathFq", type=String.class, parameters={})
@@ -111,6 +120,7 @@ public class Namespace extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+     * The path is relative to the provider&#39;s `namespace` argument.
      * 
      */
     public Output<String> pathFq() {

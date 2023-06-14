@@ -37,6 +37,9 @@ export interface GetAccessCredentialsArgs {
      * *Available only for Vault Enterprise*.
      */
     namespace?: string;
+    /**
+     * The region the read credentials belong to.
+     */
     region?: string;
     /**
      * The name of the AWS secret backend role to read
@@ -52,7 +55,7 @@ export interface GetAccessCredentialsArgs {
     /**
      * Specifies the TTL for the use of the STS token. This
      * is specified as a string with a duration suffix. Valid only when
-     * `credentialType` is `assumedRole` or `federationToken`
+     * `credentialType` of the connected `vault.aws.SecretBackendRole` resource is `assumedRole` or `federationToken`
      */
     ttl?: string;
     /**
@@ -125,6 +128,9 @@ export interface GetAccessCredentialsOutputArgs {
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;
+    /**
+     * The region the read credentials belong to.
+     */
     region?: pulumi.Input<string>;
     /**
      * The name of the AWS secret backend role to read
@@ -140,7 +146,7 @@ export interface GetAccessCredentialsOutputArgs {
     /**
      * Specifies the TTL for the use of the STS token. This
      * is specified as a string with a duration suffix. Valid only when
-     * `credentialType` is `assumedRole` or `federationToken`
+     * `credentialType` of the connected `vault.aws.SecretBackendRole` resource is `assumedRole` or `federationToken`
      */
     ttl?: pulumi.Input<string>;
     /**

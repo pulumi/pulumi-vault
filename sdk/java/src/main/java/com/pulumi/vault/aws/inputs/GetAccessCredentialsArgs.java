@@ -53,9 +53,17 @@ public final class GetAccessCredentialsArgs extends com.pulumi.resources.InvokeA
         return Optional.ofNullable(this.namespace);
     }
 
+    /**
+     * The region the read credentials belong to.
+     * 
+     */
     @Import(name="region")
     private @Nullable Output<String> region;
 
+    /**
+     * @return The region the read credentials belong to.
+     * 
+     */
     public Optional<Output<String>> region() {
         return Optional.ofNullable(this.region);
     }
@@ -99,7 +107,7 @@ public final class GetAccessCredentialsArgs extends com.pulumi.resources.InvokeA
     /**
      * Specifies the TTL for the use of the STS token. This
      * is specified as a string with a duration suffix. Valid only when
-     * `credential_type` is `assumed_role` or `federation_token`
+     * `credential_type` of the connected `vault.aws.SecretBackendRole` resource is `assumed_role` or `federation_token`
      * 
      */
     @Import(name="ttl")
@@ -108,7 +116,7 @@ public final class GetAccessCredentialsArgs extends com.pulumi.resources.InvokeA
     /**
      * @return Specifies the TTL for the use of the STS token. This
      * is specified as a string with a duration suffix. Valid only when
-     * `credential_type` is `assumed_role` or `federation_token`
+     * `credential_type` of the connected `vault.aws.SecretBackendRole` resource is `assumed_role` or `federation_token`
      * 
      */
     public Optional<Output<String>> ttl() {
@@ -216,11 +224,23 @@ public final class GetAccessCredentialsArgs extends com.pulumi.resources.InvokeA
             return namespace(Output.of(namespace));
         }
 
+        /**
+         * @param region The region the read credentials belong to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder region(@Nullable Output<String> region) {
             $.region = region;
             return this;
         }
 
+        /**
+         * @param region The region the read credentials belong to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder region(String region) {
             return region(Output.of(region));
         }
@@ -276,7 +296,7 @@ public final class GetAccessCredentialsArgs extends com.pulumi.resources.InvokeA
         /**
          * @param ttl Specifies the TTL for the use of the STS token. This
          * is specified as a string with a duration suffix. Valid only when
-         * `credential_type` is `assumed_role` or `federation_token`
+         * `credential_type` of the connected `vault.aws.SecretBackendRole` resource is `assumed_role` or `federation_token`
          * 
          * @return builder
          * 
@@ -289,7 +309,7 @@ public final class GetAccessCredentialsArgs extends com.pulumi.resources.InvokeA
         /**
          * @param ttl Specifies the TTL for the use of the STS token. This
          * is specified as a string with a duration suffix. Valid only when
-         * `credential_type` is `assumed_role` or `federation_token`
+         * `credential_type` of the connected `vault.aws.SecretBackendRole` resource is `assumed_role` or `federation_token`
          * 
          * @return builder
          * 

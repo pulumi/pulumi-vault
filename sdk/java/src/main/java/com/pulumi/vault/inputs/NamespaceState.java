@@ -37,14 +37,14 @@ public final class NamespaceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Namespace ID.
+     * Vault server&#39;s internal ID of the namespace.
      * 
      */
     @Import(name="namespaceId")
     private @Nullable Output<String> namespaceId;
 
     /**
-     * @return Namespace ID.
+     * @return Vault server&#39;s internal ID of the namespace.
      * 
      */
     public Optional<Output<String>> namespaceId() {
@@ -52,14 +52,14 @@ public final class NamespaceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The path of the namespace. Must not have a trailing `/`
+     * The path of the namespace. Must not have a trailing `/`.
      * 
      */
     @Import(name="path")
     private @Nullable Output<String> path;
 
     /**
-     * @return The path of the namespace. Must not have a trailing `/`
+     * @return The path of the namespace. Must not have a trailing `/`.
      * 
      */
     public Optional<Output<String>> path() {
@@ -68,6 +68,7 @@ public final class NamespaceState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+     * The path is relative to the provider&#39;s `namespace` argument.
      * 
      */
     @Import(name="pathFq")
@@ -75,6 +76,7 @@ public final class NamespaceState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+     * The path is relative to the provider&#39;s `namespace` argument.
      * 
      */
     public Optional<Output<String>> pathFq() {
@@ -136,7 +138,7 @@ public final class NamespaceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param namespaceId Namespace ID.
+         * @param namespaceId Vault server&#39;s internal ID of the namespace.
          * 
          * @return builder
          * 
@@ -147,7 +149,7 @@ public final class NamespaceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param namespaceId Namespace ID.
+         * @param namespaceId Vault server&#39;s internal ID of the namespace.
          * 
          * @return builder
          * 
@@ -157,7 +159,7 @@ public final class NamespaceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param path The path of the namespace. Must not have a trailing `/`
+         * @param path The path of the namespace. Must not have a trailing `/`.
          * 
          * @return builder
          * 
@@ -168,7 +170,7 @@ public final class NamespaceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param path The path of the namespace. Must not have a trailing `/`
+         * @param path The path of the namespace. Must not have a trailing `/`.
          * 
          * @return builder
          * 
@@ -179,6 +181,7 @@ public final class NamespaceState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param pathFq The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+         * The path is relative to the provider&#39;s `namespace` argument.
          * 
          * @return builder
          * 
@@ -190,6 +193,7 @@ public final class NamespaceState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param pathFq The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
+         * The path is relative to the provider&#39;s `namespace` argument.
          * 
          * @return builder
          * 

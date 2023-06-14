@@ -142,6 +142,23 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
     }
 
     /**
+     * Specifies if `allowed_domains` can be declared using
+     * identity template policies. Non-templated domains are also permitted.
+     * 
+     */
+    @Import(name="allowedDomainsTemplate")
+    private @Nullable Output<Boolean> allowedDomainsTemplate;
+
+    /**
+     * @return Specifies if `allowed_domains` can be declared using
+     * identity template policies. Non-templated domains are also permitted.
+     * 
+     */
+    public Optional<Output<Boolean>> allowedDomainsTemplate() {
+        return Optional.ofNullable(this.allowedDomainsTemplate);
+    }
+
+    /**
      * Specifies a comma-separated list of extensions that certificates can have when signed.
      * 
      */
@@ -429,6 +446,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         this.allowUserKeyIds = $.allowUserKeyIds;
         this.allowedCriticalOptions = $.allowedCriticalOptions;
         this.allowedDomains = $.allowedDomains;
+        this.allowedDomainsTemplate = $.allowedDomainsTemplate;
         this.allowedExtensions = $.allowedExtensions;
         this.allowedUserKeyConfigs = $.allowedUserKeyConfigs;
         this.allowedUserKeyLengths = $.allowedUserKeyLengths;
@@ -632,6 +650,29 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
          */
         public Builder allowedDomains(String allowedDomains) {
             return allowedDomains(Output.of(allowedDomains));
+        }
+
+        /**
+         * @param allowedDomainsTemplate Specifies if `allowed_domains` can be declared using
+         * identity template policies. Non-templated domains are also permitted.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedDomainsTemplate(@Nullable Output<Boolean> allowedDomainsTemplate) {
+            $.allowedDomainsTemplate = allowedDomainsTemplate;
+            return this;
+        }
+
+        /**
+         * @param allowedDomainsTemplate Specifies if `allowed_domains` can be declared using
+         * identity template policies. Non-templated domains are also permitted.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedDomainsTemplate(Boolean allowedDomainsTemplate) {
+            return allowedDomainsTemplate(Output.of(allowedDomainsTemplate));
         }
 
         /**

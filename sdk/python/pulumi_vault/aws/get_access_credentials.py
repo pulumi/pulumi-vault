@@ -204,6 +204,7 @@ def get_access_credentials(backend: Optional[str] = None,
            The value should not contain leading or trailing forward slashes.
            The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
            *Available only for Vault Enterprise*.
+    :param str region: The region the read credentials belong to.
     :param str role: The name of the AWS secret backend role to read
            credentials from, with no leading or trailing `/`s.
     :param str role_arn: The specific AWS ARN to use
@@ -211,7 +212,7 @@ def get_access_credentials(backend: Optional[str] = None,
            not need to be specified.
     :param str ttl: Specifies the TTL for the use of the STS token. This
            is specified as a string with a duration suffix. Valid only when
-           `credential_type` is `assumed_role` or `federation_token`
+           `credential_type` of the connected `aws.SecretBackendRole` resource is `assumed_role` or `federation_token`
     :param str type: The type of credentials to read. Defaults
            to `"creds"`, which just returns an AWS Access Key ID and Secret
            Key. Can also be set to `"sts"`, which will return a security token
@@ -264,6 +265,7 @@ def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
            The value should not contain leading or trailing forward slashes.
            The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
            *Available only for Vault Enterprise*.
+    :param str region: The region the read credentials belong to.
     :param str role: The name of the AWS secret backend role to read
            credentials from, with no leading or trailing `/`s.
     :param str role_arn: The specific AWS ARN to use
@@ -271,7 +273,7 @@ def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
            not need to be specified.
     :param str ttl: Specifies the TTL for the use of the STS token. This
            is specified as a string with a duration suffix. Valid only when
-           `credential_type` is `assumed_role` or `federation_token`
+           `credential_type` of the connected `aws.SecretBackendRole` resource is `assumed_role` or `federation_token`
     :param str type: The type of credentials to read. Defaults
            to `"creds"`, which just returns an AWS Access Key ID and Secret
            Key. Can also be set to `"sts"`, which will return a security token

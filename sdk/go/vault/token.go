@@ -63,7 +63,7 @@ type Token struct {
 	ClientToken pulumi.StringOutput `pulumi:"clientToken"`
 	// String containing the token display name
 	DisplayName pulumi.StringPtrOutput `pulumi:"displayName"`
-	// The explicit max TTL of this token
+	// The explicit max TTL of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
 	ExplicitMaxTtl pulumi.StringPtrOutput `pulumi:"explicitMaxTtl"`
 	// String containing the token lease duration if present in state file
 	LeaseDuration pulumi.IntOutput `pulumi:"leaseDuration"`
@@ -82,11 +82,11 @@ type Token struct {
 	NoParent pulumi.BoolOutput `pulumi:"noParent"`
 	// The number of allowed uses of this token
 	NumUses pulumi.IntOutput `pulumi:"numUses"`
-	// The period of this token
+	// The period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
 	Period pulumi.StringPtrOutput `pulumi:"period"`
 	// List of policies to attach to this token
 	Policies pulumi.StringArrayOutput `pulumi:"policies"`
-	// The renew increment
+	// The renew increment. This is specified in seconds
 	RenewIncrement pulumi.IntPtrOutput `pulumi:"renewIncrement"`
 	// The minimal lease to renew this token
 	RenewMinLease pulumi.IntPtrOutput `pulumi:"renewMinLease"`
@@ -94,7 +94,7 @@ type Token struct {
 	Renewable pulumi.BoolOutput `pulumi:"renewable"`
 	// The token role name
 	RoleName pulumi.StringPtrOutput `pulumi:"roleName"`
-	// The TTL period of this token
+	// The TTL period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
 	Ttl pulumi.StringPtrOutput `pulumi:"ttl"`
 	// The client wrapped token.
 	WrappedToken pulumi.StringOutput `pulumi:"wrappedToken"`
@@ -143,7 +143,7 @@ type tokenState struct {
 	ClientToken *string `pulumi:"clientToken"`
 	// String containing the token display name
 	DisplayName *string `pulumi:"displayName"`
-	// The explicit max TTL of this token
+	// The explicit max TTL of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
 	ExplicitMaxTtl *string `pulumi:"explicitMaxTtl"`
 	// String containing the token lease duration if present in state file
 	LeaseDuration *int `pulumi:"leaseDuration"`
@@ -162,11 +162,11 @@ type tokenState struct {
 	NoParent *bool `pulumi:"noParent"`
 	// The number of allowed uses of this token
 	NumUses *int `pulumi:"numUses"`
-	// The period of this token
+	// The period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
 	Period *string `pulumi:"period"`
 	// List of policies to attach to this token
 	Policies []string `pulumi:"policies"`
-	// The renew increment
+	// The renew increment. This is specified in seconds
 	RenewIncrement *int `pulumi:"renewIncrement"`
 	// The minimal lease to renew this token
 	RenewMinLease *int `pulumi:"renewMinLease"`
@@ -174,7 +174,7 @@ type tokenState struct {
 	Renewable *bool `pulumi:"renewable"`
 	// The token role name
 	RoleName *string `pulumi:"roleName"`
-	// The TTL period of this token
+	// The TTL period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
 	Ttl *string `pulumi:"ttl"`
 	// The client wrapped token.
 	WrappedToken *string `pulumi:"wrappedToken"`
@@ -189,7 +189,7 @@ type TokenState struct {
 	ClientToken pulumi.StringPtrInput
 	// String containing the token display name
 	DisplayName pulumi.StringPtrInput
-	// The explicit max TTL of this token
+	// The explicit max TTL of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
 	ExplicitMaxTtl pulumi.StringPtrInput
 	// String containing the token lease duration if present in state file
 	LeaseDuration pulumi.IntPtrInput
@@ -208,11 +208,11 @@ type TokenState struct {
 	NoParent pulumi.BoolPtrInput
 	// The number of allowed uses of this token
 	NumUses pulumi.IntPtrInput
-	// The period of this token
+	// The period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
 	Period pulumi.StringPtrInput
 	// List of policies to attach to this token
 	Policies pulumi.StringArrayInput
-	// The renew increment
+	// The renew increment. This is specified in seconds
 	RenewIncrement pulumi.IntPtrInput
 	// The minimal lease to renew this token
 	RenewMinLease pulumi.IntPtrInput
@@ -220,7 +220,7 @@ type TokenState struct {
 	Renewable pulumi.BoolPtrInput
 	// The token role name
 	RoleName pulumi.StringPtrInput
-	// The TTL period of this token
+	// The TTL period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
 	Ttl pulumi.StringPtrInput
 	// The client wrapped token.
 	WrappedToken pulumi.StringPtrInput
@@ -237,7 +237,7 @@ func (TokenState) ElementType() reflect.Type {
 type tokenArgs struct {
 	// String containing the token display name
 	DisplayName *string `pulumi:"displayName"`
-	// The explicit max TTL of this token
+	// The explicit max TTL of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
 	ExplicitMaxTtl *string `pulumi:"explicitMaxTtl"`
 	// Metadata to be set on this token
 	Metadata map[string]string `pulumi:"metadata"`
@@ -252,11 +252,11 @@ type tokenArgs struct {
 	NoParent *bool `pulumi:"noParent"`
 	// The number of allowed uses of this token
 	NumUses *int `pulumi:"numUses"`
-	// The period of this token
+	// The period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
 	Period *string `pulumi:"period"`
 	// List of policies to attach to this token
 	Policies []string `pulumi:"policies"`
-	// The renew increment
+	// The renew increment. This is specified in seconds
 	RenewIncrement *int `pulumi:"renewIncrement"`
 	// The minimal lease to renew this token
 	RenewMinLease *int `pulumi:"renewMinLease"`
@@ -264,7 +264,7 @@ type tokenArgs struct {
 	Renewable *bool `pulumi:"renewable"`
 	// The token role name
 	RoleName *string `pulumi:"roleName"`
-	// The TTL period of this token
+	// The TTL period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
 	Ttl *string `pulumi:"ttl"`
 	// The TTL period of the wrapped token.
 	WrappingTtl *string `pulumi:"wrappingTtl"`
@@ -274,7 +274,7 @@ type tokenArgs struct {
 type TokenArgs struct {
 	// String containing the token display name
 	DisplayName pulumi.StringPtrInput
-	// The explicit max TTL of this token
+	// The explicit max TTL of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
 	ExplicitMaxTtl pulumi.StringPtrInput
 	// Metadata to be set on this token
 	Metadata pulumi.StringMapInput
@@ -289,11 +289,11 @@ type TokenArgs struct {
 	NoParent pulumi.BoolPtrInput
 	// The number of allowed uses of this token
 	NumUses pulumi.IntPtrInput
-	// The period of this token
+	// The period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
 	Period pulumi.StringPtrInput
 	// List of policies to attach to this token
 	Policies pulumi.StringArrayInput
-	// The renew increment
+	// The renew increment. This is specified in seconds
 	RenewIncrement pulumi.IntPtrInput
 	// The minimal lease to renew this token
 	RenewMinLease pulumi.IntPtrInput
@@ -301,7 +301,7 @@ type TokenArgs struct {
 	Renewable pulumi.BoolPtrInput
 	// The token role name
 	RoleName pulumi.StringPtrInput
-	// The TTL period of this token
+	// The TTL period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
 	Ttl pulumi.StringPtrInput
 	// The TTL period of the wrapped token.
 	WrappingTtl pulumi.StringPtrInput
@@ -404,7 +404,7 @@ func (o TokenOutput) DisplayName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Token) pulumi.StringPtrOutput { return v.DisplayName }).(pulumi.StringPtrOutput)
 }
 
-// The explicit max TTL of this token
+// The explicit max TTL of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
 func (o TokenOutput) ExplicitMaxTtl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Token) pulumi.StringPtrOutput { return v.ExplicitMaxTtl }).(pulumi.StringPtrOutput)
 }
@@ -447,7 +447,7 @@ func (o TokenOutput) NumUses() pulumi.IntOutput {
 	return o.ApplyT(func(v *Token) pulumi.IntOutput { return v.NumUses }).(pulumi.IntOutput)
 }
 
-// The period of this token
+// The period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
 func (o TokenOutput) Period() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Token) pulumi.StringPtrOutput { return v.Period }).(pulumi.StringPtrOutput)
 }
@@ -457,7 +457,7 @@ func (o TokenOutput) Policies() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Token) pulumi.StringArrayOutput { return v.Policies }).(pulumi.StringArrayOutput)
 }
 
-// The renew increment
+// The renew increment. This is specified in seconds
 func (o TokenOutput) RenewIncrement() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Token) pulumi.IntPtrOutput { return v.RenewIncrement }).(pulumi.IntPtrOutput)
 }
@@ -477,7 +477,7 @@ func (o TokenOutput) RoleName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Token) pulumi.StringPtrOutput { return v.RoleName }).(pulumi.StringPtrOutput)
 }
 
-// The TTL period of this token
+// The TTL period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
 func (o TokenOutput) Ttl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Token) pulumi.StringPtrOutput { return v.Ttl }).(pulumi.StringPtrOutput)
 }

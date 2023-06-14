@@ -7,6 +7,32 @@ import * as utilities from "../utilities";
 /**
  * Provides a resource to create a role in an [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const gcp = new vault.AuthBackend("gcp", {
+ *     path: "gcp",
+ *     type: "gcp",
+ * });
+ * const test = new vault.gcp.AuthBackendRole("test", {
+ *     backend: gcp.path,
+ *     role: "test",
+ *     type: "iam",
+ *     boundServiceAccounts: ["test"],
+ *     boundProjects: ["test"],
+ *     tokenTtl: 300,
+ *     tokenMaxTtl: 600,
+ *     tokenPolicies: [
+ *         "policy_a",
+ *         "policy_b",
+ *     ],
+ *     addGroupAliases: true,
+ * });
+ * ```
+ *
  * ## Import
  *
  * GCP authentication roles can be imported using the `path`, e.g.

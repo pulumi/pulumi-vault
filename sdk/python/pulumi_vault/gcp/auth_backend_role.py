@@ -832,6 +832,30 @@ class AuthBackendRole(pulumi.CustomResource):
         """
         Provides a resource to create a role in an [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        gcp = vault.AuthBackend("gcp",
+            path="gcp",
+            type="gcp")
+        test = vault.gcp.AuthBackendRole("test",
+            backend=gcp.path,
+            role="test",
+            type="iam",
+            bound_service_accounts=["test"],
+            bound_projects=["test"],
+            token_ttl=300,
+            token_max_ttl=600,
+            token_policies=[
+                "policy_a",
+                "policy_b",
+            ],
+            add_group_aliases=True)
+        ```
+
         ## Import
 
         GCP authentication roles can be imported using the `path`, e.g.
@@ -892,6 +916,30 @@ class AuthBackendRole(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides a resource to create a role in an [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        gcp = vault.AuthBackend("gcp",
+            path="gcp",
+            type="gcp")
+        test = vault.gcp.AuthBackendRole("test",
+            backend=gcp.path,
+            role="test",
+            type="iam",
+            bound_service_accounts=["test"],
+            bound_projects=["test"],
+            token_ttl=300,
+            token_max_ttl=600,
+            token_policies=[
+                "policy_a",
+                "policy_b",
+            ],
+            add_group_aliases=True)
+        ```
 
         ## Import
 
