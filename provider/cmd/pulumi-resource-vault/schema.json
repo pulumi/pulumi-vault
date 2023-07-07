@@ -6774,7 +6774,6 @@
             },
             "type": "object",
             "required": [
-                "groups",
                 "username"
             ]
         },
@@ -10496,6 +10495,94 @@
                 "type": "object"
             }
         },
+        "vault:aws/secretBackendStaticRole:SecretBackendStaticRole": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst aws = new vault.aws.SecretBackend(\"aws\", {\n    path: \"my-aws\",\n    description: \"Obtain AWS credentials.\",\n});\nconst role = new vault.aws.SecretBackendStaticRole(\"role\", {\n    backend: aws.path,\n    username: \"my-test-user\",\n    rotationPeriod: 3600,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\naws = vault.aws.SecretBackend(\"aws\",\n    path=\"my-aws\",\n    description=\"Obtain AWS credentials.\")\nrole = vault.aws.SecretBackendStaticRole(\"role\",\n    backend=aws.path,\n    username=\"my-test-user\",\n    rotation_period=3600)\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var aws = new Vault.Aws.SecretBackend(\"aws\", new()\n    {\n        Path = \"my-aws\",\n        Description = \"Obtain AWS credentials.\",\n    });\n\n    var role = new Vault.Aws.SecretBackendStaticRole(\"role\", new()\n    {\n        Backend = aws.Path,\n        Username = \"my-test-user\",\n        RotationPeriod = 3600,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/aws\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\taws, err := aws.NewSecretBackend(ctx, \"aws\", \u0026aws.SecretBackendArgs{\n\t\t\tPath:        pulumi.String(\"my-aws\"),\n\t\t\tDescription: pulumi.String(\"Obtain AWS credentials.\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = aws.NewSecretBackendStaticRole(ctx, \"role\", \u0026aws.SecretBackendStaticRoleArgs{\n\t\t\tBackend:        aws.Path,\n\t\t\tUsername:       pulumi.String(\"my-test-user\"),\n\t\t\tRotationPeriod: pulumi.Int(3600),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.aws.SecretBackend;\nimport com.pulumi.vault.aws.SecretBackendArgs;\nimport com.pulumi.vault.aws.SecretBackendStaticRole;\nimport com.pulumi.vault.aws.SecretBackendStaticRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var aws = new SecretBackend(\"aws\", SecretBackendArgs.builder()        \n            .path(\"my-aws\")\n            .description(\"Obtain AWS credentials.\")\n            .build());\n\n        var role = new SecretBackendStaticRole(\"role\", SecretBackendStaticRoleArgs.builder()        \n            .backend(aws.path())\n            .username(\"my-test-user\")\n            .rotationPeriod(\"3600\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  aws:\n    type: vault:aws:SecretBackend\n    properties:\n      path: my-aws\n      description: Obtain AWS credentials.\n  role:\n    type: vault:aws:SecretBackendStaticRole\n    properties:\n      backend: ${aws.path}\n      username: my-test-user\n      rotationPeriod: 3600\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nAWS secret backend static role can be imported using the full path to the role of the form`\u003cmount_path\u003e/static-roles/\u003crole_name\u003e` e.g.\n\n```sh\n $ pulumi import vault:aws/secretBackendStaticRole:SecretBackendStaticRole role aws/static-roles/example-role\n```\n\n ",
+            "properties": {
+                "backend": {
+                    "type": "string",
+                    "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `aws`\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name to identify this role within the backend.\nMust be unique within the backend.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n"
+                },
+                "rotationPeriod": {
+                    "type": "integer",
+                    "description": "How often Vault should rotate the password of the user entry.\n"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The username of the existing AWS IAM to manage password rotation for.\n"
+                }
+            },
+            "required": [
+                "name",
+                "rotationPeriod",
+                "username"
+            ],
+            "inputProperties": {
+                "backend": {
+                    "type": "string",
+                    "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `aws`\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name to identify this role within the backend.\nMust be unique within the backend.\n",
+                    "willReplaceOnChanges": true
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
+                    "willReplaceOnChanges": true
+                },
+                "rotationPeriod": {
+                    "type": "integer",
+                    "description": "How often Vault should rotate the password of the user entry.\n"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The username of the existing AWS IAM to manage password rotation for.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "rotationPeriod",
+                "username"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SecretBackendStaticRole resources.\n",
+                "properties": {
+                    "backend": {
+                        "type": "string",
+                        "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `aws`\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name to identify this role within the backend.\nMust be unique within the backend.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "rotationPeriod": {
+                        "type": "integer",
+                        "description": "How often Vault should rotate the password of the user entry.\n"
+                    },
+                    "username": {
+                        "type": "string",
+                        "description": "The username of the existing AWS IAM to manage password rotation for.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
         "vault:azure/authBackendConfig:AuthBackendConfig": {
             "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst exampleAuthBackend = new vault.AuthBackend(\"exampleAuthBackend\", {type: \"azure\"});\nconst exampleAuthBackendConfig = new vault.azure.AuthBackendConfig(\"exampleAuthBackendConfig\", {\n    backend: exampleAuthBackend.path,\n    tenantId: \"11111111-2222-3333-4444-555555555555\",\n    clientId: \"11111111-2222-3333-4444-555555555555\",\n    clientSecret: \"01234567890123456789\",\n    resource: \"https://vault.hashicorp.com\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample_auth_backend = vault.AuthBackend(\"exampleAuthBackend\", type=\"azure\")\nexample_auth_backend_config = vault.azure.AuthBackendConfig(\"exampleAuthBackendConfig\",\n    backend=example_auth_backend.path,\n    tenant_id=\"11111111-2222-3333-4444-555555555555\",\n    client_id=\"11111111-2222-3333-4444-555555555555\",\n    client_secret=\"01234567890123456789\",\n    resource=\"https://vault.hashicorp.com\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleAuthBackend = new Vault.AuthBackend(\"exampleAuthBackend\", new()\n    {\n        Type = \"azure\",\n    });\n\n    var exampleAuthBackendConfig = new Vault.Azure.AuthBackendConfig(\"exampleAuthBackendConfig\", new()\n    {\n        Backend = exampleAuthBackend.Path,\n        TenantId = \"11111111-2222-3333-4444-555555555555\",\n        ClientId = \"11111111-2222-3333-4444-555555555555\",\n        ClientSecret = \"01234567890123456789\",\n        Resource = \"https://vault.hashicorp.com\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/azure\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleAuthBackend, err := vault.NewAuthBackend(ctx, \"exampleAuthBackend\", \u0026vault.AuthBackendArgs{\n\t\t\tType: pulumi.String(\"azure\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = azure.NewAuthBackendConfig(ctx, \"exampleAuthBackendConfig\", \u0026azure.AuthBackendConfigArgs{\n\t\t\tBackend:      exampleAuthBackend.Path,\n\t\t\tTenantId:     pulumi.String(\"11111111-2222-3333-4444-555555555555\"),\n\t\t\tClientId:     pulumi.String(\"11111111-2222-3333-4444-555555555555\"),\n\t\t\tClientSecret: pulumi.String(\"01234567890123456789\"),\n\t\t\tResource:     pulumi.String(\"https://vault.hashicorp.com\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.AuthBackend;\nimport com.pulumi.vault.AuthBackendArgs;\nimport com.pulumi.vault.azure.AuthBackendConfig;\nimport com.pulumi.vault.azure.AuthBackendConfigArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleAuthBackend = new AuthBackend(\"exampleAuthBackend\", AuthBackendArgs.builder()        \n            .type(\"azure\")\n            .build());\n\n        var exampleAuthBackendConfig = new AuthBackendConfig(\"exampleAuthBackendConfig\", AuthBackendConfigArgs.builder()        \n            .backend(exampleAuthBackend.path())\n            .tenantId(\"11111111-2222-3333-4444-555555555555\")\n            .clientId(\"11111111-2222-3333-4444-555555555555\")\n            .clientSecret(\"01234567890123456789\")\n            .resource(\"https://vault.hashicorp.com\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleAuthBackend:\n    type: vault:AuthBackend\n    properties:\n      type: azure\n  exampleAuthBackendConfig:\n    type: vault:azure:AuthBackendConfig\n    properties:\n      backend: ${exampleAuthBackend.path}\n      tenantId: 11111111-2222-3333-4444-555555555555\n      clientId: 11111111-2222-3333-4444-555555555555\n      clientSecret: 01234567890123456789\n      resource: https://vault.hashicorp.com\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nAzure auth backends can be imported using `auth/`, the `backend` path, and `/config` e.g.\n\n```sh\n $ pulumi import vault:azure/authBackendConfig:AuthBackendConfig example auth/azure/config\n```\n\n ",
             "properties": {
@@ -12054,6 +12141,17 @@
                     },
                     "description": "The database statements to execute when\ncreating a user.\n"
                 },
+                "credentialConfig": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "description": "Specifies the configuration\nfor the given `credential_type`.\n"
+                },
+                "credentialType": {
+                    "type": "string",
+                    "description": "Specifies the type of credential that\nwill be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.\nSee the plugin's API page for credential types supported by individual databases.\n"
+                },
                 "dbName": {
                     "type": "string",
                     "description": "The unique name of the database connection to use for\nthe role.\n"
@@ -12099,6 +12197,7 @@
             "required": [
                 "backend",
                 "creationStatements",
+                "credentialType",
                 "dbName",
                 "name"
             ],
@@ -12114,6 +12213,17 @@
                         "type": "string"
                     },
                     "description": "The database statements to execute when\ncreating a user.\n"
+                },
+                "credentialConfig": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "description": "Specifies the configuration\nfor the given `credential_type`.\n"
+                },
+                "credentialType": {
+                    "type": "string",
+                    "description": "Specifies the type of credential that\nwill be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.\nSee the plugin's API page for credential types supported by individual databases.\n"
                 },
                 "dbName": {
                     "type": "string",
@@ -12179,6 +12289,17 @@
                             "type": "string"
                         },
                         "description": "The database statements to execute when\ncreating a user.\n"
+                    },
+                    "credentialConfig": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        },
+                        "description": "Specifies the configuration\nfor the given `credential_type`.\n"
+                    },
+                    "credentialType": {
+                        "type": "string",
+                        "description": "Specifies the type of credential that\nwill be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.\nSee the plugin's API page for credential types supported by individual databases.\n"
                     },
                     "dbName": {
                         "type": "string",
@@ -14015,7 +14136,7 @@
             }
         },
         "vault:generic/endpoint:Endpoint": {
-            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst userpass = new vault.AuthBackend(\"userpass\", {type: \"userpass\"});\nconst u1 = new vault.generic.Endpoint(\"u1\", {\n    path: \"auth/userpass/users/u1\",\n    ignoreAbsentFields: true,\n    dataJson: `{\n  \"policies\": [\"p1\"],\n  \"password\": \"changeme\"\n}\n`,\n}, {\n    dependsOn: [userpass],\n});\nconst u1Token = new vault.generic.Endpoint(\"u1Token\", {\n    path: \"auth/userpass/login/u1\",\n    disableRead: true,\n    disableDelete: true,\n    dataJson: `{\n  \"password\": \"changeme\"\n}\n`,\n}, {\n    dependsOn: [u1],\n});\nconst u1Entity = new vault.generic.Endpoint(\"u1Entity\", {\n    disableRead: true,\n    disableDelete: true,\n    path: \"identity/lookup/entity\",\n    ignoreAbsentFields: true,\n    writeFields: [\"id\"],\n    dataJson: `{\n  \"alias_name\": \"u1\",\n  \"alias_mount_accessor\": vault_auth_backend.userpass.accessor\n}\n`,\n}, {\n    dependsOn: [u1Token],\n});\nexport const u1Id = u1Entity.writeData.id;\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var userpass = new Vault.AuthBackend(\"userpass\", new()\n    {\n        Type = \"userpass\",\n    });\n\n    var u1 = new Vault.Generic.Endpoint(\"u1\", new()\n    {\n        Path = \"auth/userpass/users/u1\",\n        IgnoreAbsentFields = true,\n        DataJson = @\"{\n  \"\"policies\"\": [\"\"p1\"\"],\n  \"\"password\"\": \"\"changeme\"\"\n}\n\",\n    }, new CustomResourceOptions\n    {\n        DependsOn = new[]\n        {\n            userpass,\n        },\n    });\n\n    var u1Token = new Vault.Generic.Endpoint(\"u1Token\", new()\n    {\n        Path = \"auth/userpass/login/u1\",\n        DisableRead = true,\n        DisableDelete = true,\n        DataJson = @\"{\n  \"\"password\"\": \"\"changeme\"\"\n}\n\",\n    }, new CustomResourceOptions\n    {\n        DependsOn = new[]\n        {\n            u1,\n        },\n    });\n\n    var u1Entity = new Vault.Generic.Endpoint(\"u1Entity\", new()\n    {\n        DisableRead = true,\n        DisableDelete = true,\n        Path = \"identity/lookup/entity\",\n        IgnoreAbsentFields = true,\n        WriteFields = new[]\n        {\n            \"id\",\n        },\n        DataJson = @\"{\n  \"\"alias_name\"\": \"\"u1\"\",\n  \"\"alias_mount_accessor\"\": vault_auth_backend.userpass.accessor\n}\n\",\n    }, new CustomResourceOptions\n    {\n        DependsOn = new[]\n        {\n            u1Token,\n        },\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"u1Id\"] = u1Entity.WriteData.Apply(writeData =\u003e writeData.Id),\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/generic\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tuserpass, err := vault.NewAuthBackend(ctx, \"userpass\", \u0026vault.AuthBackendArgs{\n\t\t\tType: pulumi.String(\"userpass\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tu1, err := generic.NewEndpoint(ctx, \"u1\", \u0026generic.EndpointArgs{\n\t\t\tPath:               pulumi.String(\"auth/userpass/users/u1\"),\n\t\t\tIgnoreAbsentFields: pulumi.Bool(true),\n\t\t\tDataJson:           pulumi.String(\"{\\n  \\\"policies\\\": [\\\"p1\\\"],\\n  \\\"password\\\": \\\"changeme\\\"\\n}\\n\"),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tuserpass,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tu1Token, err := generic.NewEndpoint(ctx, \"u1Token\", \u0026generic.EndpointArgs{\n\t\t\tPath:          pulumi.String(\"auth/userpass/login/u1\"),\n\t\t\tDisableRead:   pulumi.Bool(true),\n\t\t\tDisableDelete: pulumi.Bool(true),\n\t\t\tDataJson:      pulumi.String(\"{\\n  \\\"password\\\": \\\"changeme\\\"\\n}\\n\"),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tu1,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tu1Entity, err := generic.NewEndpoint(ctx, \"u1Entity\", \u0026generic.EndpointArgs{\n\t\t\tDisableRead:        pulumi.Bool(true),\n\t\t\tDisableDelete:      pulumi.Bool(true),\n\t\t\tPath:               pulumi.String(\"identity/lookup/entity\"),\n\t\t\tIgnoreAbsentFields: pulumi.Bool(true),\n\t\t\tWriteFields: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"id\"),\n\t\t\t},\n\t\t\tDataJson: pulumi.String(\"{\\n  \\\"alias_name\\\": \\\"u1\\\",\\n  \\\"alias_mount_accessor\\\": vault_auth_backend.userpass.accessor\\n}\\n\"),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tu1Token,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"u1Id\", u1Entity.WriteData.ApplyT(func(writeData map[string]string) (string, error) {\n\t\t\treturn writeData.Id, nil\n\t\t}).(pulumi.StringOutput))\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.AuthBackend;\nimport com.pulumi.vault.AuthBackendArgs;\nimport com.pulumi.vault.generic.Endpoint;\nimport com.pulumi.vault.generic.EndpointArgs;\nimport com.pulumi.resources.CustomResourceOptions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var userpass = new AuthBackend(\"userpass\", AuthBackendArgs.builder()        \n            .type(\"userpass\")\n            .build());\n\n        var u1 = new Endpoint(\"u1\", EndpointArgs.builder()        \n            .path(\"auth/userpass/users/u1\")\n            .ignoreAbsentFields(true)\n            .dataJson(\"\"\"\n{\n  \"policies\": [\"p1\"],\n  \"password\": \"changeme\"\n}\n            \"\"\")\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(userpass)\n                .build());\n\n        var u1Token = new Endpoint(\"u1Token\", EndpointArgs.builder()        \n            .path(\"auth/userpass/login/u1\")\n            .disableRead(true)\n            .disableDelete(true)\n            .dataJson(\"\"\"\n{\n  \"password\": \"changeme\"\n}\n            \"\"\")\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(u1)\n                .build());\n\n        var u1Entity = new Endpoint(\"u1Entity\", EndpointArgs.builder()        \n            .disableRead(true)\n            .disableDelete(true)\n            .path(\"identity/lookup/entity\")\n            .ignoreAbsentFields(true)\n            .writeFields(\"id\")\n            .dataJson(\"\"\"\n{\n  \"alias_name\": \"u1\",\n  \"alias_mount_accessor\": vault_auth_backend.userpass.accessor\n}\n            \"\"\")\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(u1Token)\n                .build());\n\n        ctx.export(\"u1Id\", u1Entity.writeData().applyValue(writeData -\u003e writeData.id()));\n    }\n}\n```\n```yaml\nresources:\n  userpass:\n    type: vault:AuthBackend\n    properties:\n      type: userpass\n  u1:\n    type: vault:generic:Endpoint\n    properties:\n      path: auth/userpass/users/u1\n      ignoreAbsentFields: true\n      dataJson: |\n        {\n          \"policies\": [\"p1\"],\n          \"password\": \"changeme\"\n        }\n    options:\n      dependson:\n        - ${userpass}\n  u1Token:\n    type: vault:generic:Endpoint\n    properties:\n      path: auth/userpass/login/u1\n      disableRead: true\n      disableDelete: true\n      dataJson: |\n        {\n          \"password\": \"changeme\"\n        }\n    options:\n      dependson:\n        - ${u1}\n  u1Entity:\n    type: vault:generic:Endpoint\n    properties:\n      disableRead: true\n      disableDelete: true\n      path: identity/lookup/entity\n      ignoreAbsentFields: true\n      writeFields:\n        - id\n      dataJson: |\n        {\n          \"alias_name\": \"u1\",\n          \"alias_mount_accessor\": vault_auth_backend.userpass.accessor\n        }\n    options:\n      dependson:\n        - ${u1Token}\noutputs:\n  u1Id: ${u1Entity.writeData.id}\n```\n{{% /example %}}\n{{% /examples %}}\n## Required Vault Capabilities\n\nUse of this resource requires the `create` or `update` capability\n(depending on whether the resource already exists) on the given path. If\n`disable_delete` is false, the `delete` capbility is also required. If\n`disable_delete` is false, the `read` capbility is required.\n\n\n## Import\n\nImport is not supported for this resource. ",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst userpass = new vault.AuthBackend(\"userpass\", {type: \"userpass\"});\nconst u1 = new vault.generic.Endpoint(\"u1\", {\n    path: \"auth/userpass/users/u1\",\n    ignoreAbsentFields: true,\n    dataJson: `{\n  \"policies\": [\"p1\"],\n  \"password\": \"changeme\"\n}\n`,\n}, {\n    dependsOn: [userpass],\n});\nconst u1Token = new vault.generic.Endpoint(\"u1Token\", {\n    path: \"auth/userpass/login/u1\",\n    disableRead: true,\n    disableDelete: true,\n    dataJson: `{\n  \"password\": \"changeme\"\n}\n`,\n}, {\n    dependsOn: [u1],\n});\nconst u1Entity = new vault.generic.Endpoint(\"u1Entity\", {\n    disableRead: true,\n    disableDelete: true,\n    path: \"identity/lookup/entity\",\n    ignoreAbsentFields: true,\n    writeFields: [\"id\"],\n    dataJson: `{\n  \"alias_name\": \"u1\",\n  \"alias_mount_accessor\": vault_auth_backend.userpass.accessor\n}\n`,\n}, {\n    dependsOn: [u1Token],\n});\nexport const u1Id = u1Entity.writeData.id;\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var userpass = new Vault.AuthBackend(\"userpass\", new()\n    {\n        Type = \"userpass\",\n    });\n\n    var u1 = new Vault.Generic.Endpoint(\"u1\", new()\n    {\n        Path = \"auth/userpass/users/u1\",\n        IgnoreAbsentFields = true,\n        DataJson = @\"{\n  \"\"policies\"\": [\"\"p1\"\"],\n  \"\"password\"\": \"\"changeme\"\"\n}\n\",\n    }, new CustomResourceOptions\n    {\n        DependsOn = new[]\n        {\n            userpass,\n        },\n    });\n\n    var u1Token = new Vault.Generic.Endpoint(\"u1Token\", new()\n    {\n        Path = \"auth/userpass/login/u1\",\n        DisableRead = true,\n        DisableDelete = true,\n        DataJson = @\"{\n  \"\"password\"\": \"\"changeme\"\"\n}\n\",\n    }, new CustomResourceOptions\n    {\n        DependsOn = new[]\n        {\n            u1,\n        },\n    });\n\n    var u1Entity = new Vault.Generic.Endpoint(\"u1Entity\", new()\n    {\n        DisableRead = true,\n        DisableDelete = true,\n        Path = \"identity/lookup/entity\",\n        IgnoreAbsentFields = true,\n        WriteFields = new[]\n        {\n            \"id\",\n        },\n        DataJson = @\"{\n  \"\"alias_name\"\": \"\"u1\"\",\n  \"\"alias_mount_accessor\"\": vault_auth_backend.userpass.accessor\n}\n\",\n    }, new CustomResourceOptions\n    {\n        DependsOn = new[]\n        {\n            u1Token,\n        },\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"u1Id\"] = u1Entity.WriteData.Apply(writeData =\u003e writeData.Id),\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/generic\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tuserpass, err := vault.NewAuthBackend(ctx, \"userpass\", \u0026vault.AuthBackendArgs{\n\t\t\tType: pulumi.String(\"userpass\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tu1, err := generic.NewEndpoint(ctx, \"u1\", \u0026generic.EndpointArgs{\n\t\t\tPath:               pulumi.String(\"auth/userpass/users/u1\"),\n\t\t\tIgnoreAbsentFields: pulumi.Bool(true),\n\t\t\tDataJson:           pulumi.String(\"{\\n  \\\"policies\\\": [\\\"p1\\\"],\\n  \\\"password\\\": \\\"changeme\\\"\\n}\\n\"),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tuserpass,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tu1Token, err := generic.NewEndpoint(ctx, \"u1Token\", \u0026generic.EndpointArgs{\n\t\t\tPath:          pulumi.String(\"auth/userpass/login/u1\"),\n\t\t\tDisableRead:   pulumi.Bool(true),\n\t\t\tDisableDelete: pulumi.Bool(true),\n\t\t\tDataJson:      pulumi.String(\"{\\n  \\\"password\\\": \\\"changeme\\\"\\n}\\n\"),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tu1,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tu1Entity, err := generic.NewEndpoint(ctx, \"u1Entity\", \u0026generic.EndpointArgs{\n\t\t\tDisableRead:        pulumi.Bool(true),\n\t\t\tDisableDelete:      pulumi.Bool(true),\n\t\t\tPath:               pulumi.String(\"identity/lookup/entity\"),\n\t\t\tIgnoreAbsentFields: pulumi.Bool(true),\n\t\t\tWriteFields: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"id\"),\n\t\t\t},\n\t\t\tDataJson: pulumi.String(\"{\\n  \\\"alias_name\\\": \\\"u1\\\",\\n  \\\"alias_mount_accessor\\\": vault_auth_backend.userpass.accessor\\n}\\n\"),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tu1Token,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"u1Id\", u1Entity.WriteData.ApplyT(func(writeData map[string]string) (string, error) {\n\t\t\treturn writeData.Id, nil\n\t\t}).(pulumi.StringOutput))\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.AuthBackend;\nimport com.pulumi.vault.AuthBackendArgs;\nimport com.pulumi.vault.generic.Endpoint;\nimport com.pulumi.vault.generic.EndpointArgs;\nimport com.pulumi.resources.CustomResourceOptions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var userpass = new AuthBackend(\"userpass\", AuthBackendArgs.builder()        \n            .type(\"userpass\")\n            .build());\n\n        var u1 = new Endpoint(\"u1\", EndpointArgs.builder()        \n            .path(\"auth/userpass/users/u1\")\n            .ignoreAbsentFields(true)\n            .dataJson(\"\"\"\n{\n  \"policies\": [\"p1\"],\n  \"password\": \"changeme\"\n}\n            \"\"\")\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(userpass)\n                .build());\n\n        var u1Token = new Endpoint(\"u1Token\", EndpointArgs.builder()        \n            .path(\"auth/userpass/login/u1\")\n            .disableRead(true)\n            .disableDelete(true)\n            .dataJson(\"\"\"\n{\n  \"password\": \"changeme\"\n}\n            \"\"\")\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(u1)\n                .build());\n\n        var u1Entity = new Endpoint(\"u1Entity\", EndpointArgs.builder()        \n            .disableRead(true)\n            .disableDelete(true)\n            .path(\"identity/lookup/entity\")\n            .ignoreAbsentFields(true)\n            .writeFields(\"id\")\n            .dataJson(\"\"\"\n{\n  \"alias_name\": \"u1\",\n  \"alias_mount_accessor\": vault_auth_backend.userpass.accessor\n}\n            \"\"\")\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(u1Token)\n                .build());\n\n        ctx.export(\"u1Id\", u1Entity.writeData().applyValue(writeData -\u003e writeData.id()));\n    }\n}\n```\n```yaml\nresources:\n  userpass:\n    type: vault:AuthBackend\n    properties:\n      type: userpass\n  u1:\n    type: vault:generic:Endpoint\n    properties:\n      path: auth/userpass/users/u1\n      ignoreAbsentFields: true\n      dataJson: |\n        {\n          \"policies\": [\"p1\"],\n          \"password\": \"changeme\"\n        }\n    options:\n      dependson:\n        - ${userpass}\n  u1Token:\n    type: vault:generic:Endpoint\n    properties:\n      path: auth/userpass/login/u1\n      disableRead: true\n      disableDelete: true\n      dataJson: |\n        {\n          \"password\": \"changeme\"\n        }\n    options:\n      dependson:\n        - ${u1}\n  u1Entity:\n    type: vault:generic:Endpoint\n    properties:\n      disableRead: true\n      disableDelete: true\n      path: identity/lookup/entity\n      ignoreAbsentFields: true\n      writeFields:\n        - id\n      dataJson: |\n        {\n          \"alias_name\": \"u1\",\n          \"alias_mount_accessor\": vault_auth_backend.userpass.accessor\n        }\n    options:\n      dependson:\n        - ${u1Token}\noutputs:\n  u1Id: ${u1Entity.writeData.id}\n```\n{{% /example %}}\n{{% /examples %}}\n## Required Vault Capabilities\n\nUse of this resource requires the `create` or `update` capability\n(depending on whether the resource already exists) on the given path. If\n`disable_delete` is false, the `delete` capability is also required. If\n`disable_read` is false, the `read` capability is required.\n\n\n## Import\n\nImport is not supported for this resource. ",
             "properties": {
                 "dataJson": {
                     "type": "string",
@@ -22926,6 +23047,10 @@
                     "type": "boolean",
                     "description": "Specifies if the auth method is local only.\n"
                 },
+                "maxPageSize": {
+                    "type": "integer",
+                    "description": "Sets the max page size for LDAP lookups, by default it's set to -1.\n*Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.\n"
+                },
                 "namespace": {
                     "type": "string",
                     "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n"
@@ -23103,6 +23228,10 @@
                     "description": "Specifies if the auth method is local only.\n",
                     "willReplaceOnChanges": true
                 },
+                "maxPageSize": {
+                    "type": "integer",
+                    "description": "Sets the max page size for LDAP lookups, by default it's set to -1.\n*Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.\n"
+                },
                 "namespace": {
                     "type": "string",
                     "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
@@ -23263,6 +23392,10 @@
                         "type": "boolean",
                         "description": "Specifies if the auth method is local only.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "maxPageSize": {
+                        "type": "integer",
+                        "description": "Sets the max page size for LDAP lookups, by default it's set to -1.\n*Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.\n"
                     },
                     "namespace": {
                         "type": "string",
@@ -24129,7 +24262,7 @@
             }
         },
         "vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet": {
-            "description": "\n\n## Import\n\nLDAP secret backend libraries can be imported using the `path`, e.g.\n\n```sh\n $ pulumi import vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet set ldap/library/bob\n```\n\n ",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst config = new vault.ldap.SecretBackend(\"config\", {\n    path: \"ldap\",\n    binddn: \"CN=Administrator,CN=Users,DC=corp,DC=example,DC=net\",\n    bindpass: \"SuperSecretPassw0rd\",\n    url: \"ldaps://localhost\",\n    insecureTls: true,\n    userdn: \"CN=Users,DC=corp,DC=example,DC=net\",\n});\nconst qa = new vault.ldap.SecretBackendLibrarySet(\"qa\", {\n    mount: config.path,\n    serviceAccountNames: [\n        \"Bob\",\n        \"Mary\",\n    ],\n    ttl: 60,\n    disableCheckInEnforcement: true,\n    maxTtl: 120,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nconfig = vault.ldap.SecretBackend(\"config\",\n    path=\"ldap\",\n    binddn=\"CN=Administrator,CN=Users,DC=corp,DC=example,DC=net\",\n    bindpass=\"SuperSecretPassw0rd\",\n    url=\"ldaps://localhost\",\n    insecure_tls=True,\n    userdn=\"CN=Users,DC=corp,DC=example,DC=net\")\nqa = vault.ldap.SecretBackendLibrarySet(\"qa\",\n    mount=config.path,\n    service_account_names=[\n        \"Bob\",\n        \"Mary\",\n    ],\n    ttl=60,\n    disable_check_in_enforcement=True,\n    max_ttl=120)\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Vault.Ldap.SecretBackend(\"config\", new()\n    {\n        Path = \"ldap\",\n        Binddn = \"CN=Administrator,CN=Users,DC=corp,DC=example,DC=net\",\n        Bindpass = \"SuperSecretPassw0rd\",\n        Url = \"ldaps://localhost\",\n        InsecureTls = true,\n        Userdn = \"CN=Users,DC=corp,DC=example,DC=net\",\n    });\n\n    var qa = new Vault.Ldap.SecretBackendLibrarySet(\"qa\", new()\n    {\n        Mount = config.Path,\n        ServiceAccountNames = new[]\n        {\n            \"Bob\",\n            \"Mary\",\n        },\n        Ttl = 60,\n        DisableCheckInEnforcement = true,\n        MaxTtl = 120,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ldap\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tconfig, err := ldap.NewSecretBackend(ctx, \"config\", \u0026ldap.SecretBackendArgs{\n\t\t\tPath:        pulumi.String(\"ldap\"),\n\t\t\tBinddn:      pulumi.String(\"CN=Administrator,CN=Users,DC=corp,DC=example,DC=net\"),\n\t\t\tBindpass:    pulumi.String(\"SuperSecretPassw0rd\"),\n\t\t\tUrl:         pulumi.String(\"ldaps://localhost\"),\n\t\t\tInsecureTls: pulumi.Bool(true),\n\t\t\tUserdn:      pulumi.String(\"CN=Users,DC=corp,DC=example,DC=net\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ldap.NewSecretBackendLibrarySet(ctx, \"qa\", \u0026ldap.SecretBackendLibrarySetArgs{\n\t\t\tMount: config.Path,\n\t\t\tServiceAccountNames: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"Bob\"),\n\t\t\t\tpulumi.String(\"Mary\"),\n\t\t\t},\n\t\t\tTtl:                       pulumi.Int(60),\n\t\t\tDisableCheckInEnforcement: pulumi.Bool(true),\n\t\t\tMaxTtl:                    pulumi.Int(120),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.ldap.SecretBackend;\nimport com.pulumi.vault.ldap.SecretBackendArgs;\nimport com.pulumi.vault.ldap.SecretBackendLibrarySet;\nimport com.pulumi.vault.ldap.SecretBackendLibrarySetArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var config = new SecretBackend(\"config\", SecretBackendArgs.builder()        \n            .path(\"ldap\")\n            .binddn(\"CN=Administrator,CN=Users,DC=corp,DC=example,DC=net\")\n            .bindpass(\"SuperSecretPassw0rd\")\n            .url(\"ldaps://localhost\")\n            .insecureTls(\"true\")\n            .userdn(\"CN=Users,DC=corp,DC=example,DC=net\")\n            .build());\n\n        var qa = new SecretBackendLibrarySet(\"qa\", SecretBackendLibrarySetArgs.builder()        \n            .mount(config.path())\n            .serviceAccountNames(            \n                \"Bob\",\n                \"Mary\")\n            .ttl(60)\n            .disableCheckInEnforcement(true)\n            .maxTtl(120)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  config:\n    type: vault:ldap:SecretBackend\n    properties:\n      path: ldap\n      binddn: CN=Administrator,CN=Users,DC=corp,DC=example,DC=net\n      bindpass: SuperSecretPassw0rd\n      url: ldaps://localhost\n      insecureTls: true\n      userdn: CN=Users,DC=corp,DC=example,DC=net\n  qa:\n    type: vault:ldap:SecretBackendLibrarySet\n    properties:\n      mount: ${config.path}\n      serviceAccountNames:\n        - Bob\n        - Mary\n      ttl: 60\n      disableCheckInEnforcement: true\n      maxTtl: 120\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nLDAP secret backend libraries can be imported using the `path`, e.g.\n\n```sh\n $ pulumi import vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet qa ldap/library/bob\n```\n\n ",
             "properties": {
                 "disableCheckInEnforcement": {
                     "type": "boolean",
@@ -25151,6 +25284,10 @@
                     },
                     "description": "List of alternative IPs\n"
                 },
+                "issuerRef": {
+                    "type": "string",
+                    "description": "Specifies the default issuer of this request.\n"
+                },
                 "issuingCa": {
                     "type": "string",
                     "description": "The issuing CA\n"
@@ -25265,6 +25402,10 @@
                     "description": "List of alternative IPs\n",
                     "willReplaceOnChanges": true
                 },
+                "issuerRef": {
+                    "type": "string",
+                    "description": "Specifies the default issuer of this request.\n"
+                },
                 "minSecondsRemaining": {
                     "type": "integer",
                     "description": "Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)\n"
@@ -25367,6 +25508,10 @@
                         },
                         "description": "List of alternative IPs\n",
                         "willReplaceOnChanges": true
+                    },
+                    "issuerRef": {
+                        "type": "string",
+                        "description": "Specifies the default issuer of this request.\n"
                     },
                     "issuingCa": {
                         "type": "string",
@@ -25844,6 +25989,18 @@
                     "type": "integer",
                     "description": "The number of bits to use\n"
                 },
+                "keyId": {
+                    "type": "string",
+                    "description": "The ID of the generated key.\n"
+                },
+                "keyName": {
+                    "type": "string",
+                    "description": "When a new key is created with this request, optionally specifies\nthe name for this. The global ref `default` may not be used as a name.\n"
+                },
+                "keyRef": {
+                    "type": "string",
+                    "description": "Specifies the key (either default, by name, or by identifier) to use\nfor generating this request. Only suitable for `type=existing` requests.\n"
+                },
                 "keyType": {
                     "type": "string",
                     "description": "The desired key type\n"
@@ -25920,6 +26077,9 @@
                 "backend",
                 "commonName",
                 "csr",
+                "keyId",
+                "keyName",
+                "keyRef",
                 "privateKey",
                 "privateKeyType",
                 "type"
@@ -25974,6 +26134,16 @@
                 "keyBits": {
                     "type": "integer",
                     "description": "The number of bits to use\n",
+                    "willReplaceOnChanges": true
+                },
+                "keyName": {
+                    "type": "string",
+                    "description": "When a new key is created with this request, optionally specifies\nthe name for this. The global ref `default` may not be used as a name.\n",
+                    "willReplaceOnChanges": true
+                },
+                "keyRef": {
+                    "type": "string",
+                    "description": "Specifies the key (either default, by name, or by identifier) to use\nfor generating this request. Only suitable for `type=existing` requests.\n",
                     "willReplaceOnChanges": true
                 },
                 "keyType": {
@@ -26116,6 +26286,21 @@
                         "description": "The number of bits to use\n",
                         "willReplaceOnChanges": true
                     },
+                    "keyId": {
+                        "type": "string",
+                        "description": "The ID of the generated key.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "keyName": {
+                        "type": "string",
+                        "description": "When a new key is created with this request, optionally specifies\nthe name for this. The global ref `default` may not be used as a name.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "keyRef": {
+                        "type": "string",
+                        "description": "Specifies the key (either default, by name, or by identifier) to use\nfor generating this request. Only suitable for `type=existing` requests.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "keyType": {
                         "type": "string",
                         "description": "The desired key type\n",
@@ -26216,6 +26401,20 @@
                     "type": "string",
                     "description": "Specifies the PEM encoded certificate. May optionally append additional\nCA certificates to populate the whole chain, which will then enable returning the full chain from\nissue and sign operations.\n"
                 },
+                "importedIssuers": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The imported issuers indicating which issuers were created as part of\nthis request.\n"
+                },
+                "importedKeys": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The imported keys indicating which keys were created as part of this request.\n"
+                },
                 "namespace": {
                     "type": "string",
                     "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n"
@@ -26223,7 +26422,9 @@
             },
             "required": [
                 "backend",
-                "certificate"
+                "certificate",
+                "importedIssuers",
+                "importedKeys"
             ],
             "inputProperties": {
                 "backend": {
@@ -26259,9 +26460,380 @@
                         "description": "Specifies the PEM encoded certificate. May optionally append additional\nCA certificates to populate the whole chain, which will then enable returning the full chain from\nissue and sign operations.\n",
                         "willReplaceOnChanges": true
                     },
+                    "importedIssuers": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The imported issuers indicating which issuers were created as part of\nthis request.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "importedKeys": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The imported keys indicating which keys were created as part of this request.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "namespace": {
                         "type": "string",
                         "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "vault:pkiSecret/secretBackendIssuer:SecretBackendIssuer": {
+            "description": "Manages the lifecycle of an existing issuer on a PKI Secret Backend. This resource does not\ncreate issuers. It instead tracks and performs updates made to an existing issuer that was\ncreated by one of the PKI generate endpoints. For more information, see the \n[Vault documentation](https://developer.hashicorp.com/vault/api-docs/secret/pki#managing-keys-and-issuers)\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst pki = new vault.Mount(\"pki\", {\n    path: \"pki\",\n    type: \"pki\",\n    defaultLeaseTtlSeconds: 3600,\n    maxLeaseTtlSeconds: 86400,\n});\nconst root = new vault.pkisecret.SecretBackendRootCert(\"root\", {\n    backend: pki.path,\n    type: \"internal\",\n    commonName: \"test\",\n    ttl: \"86400\",\n});\nconst example = new vault.pkisecret.SecretBackendIssuer(\"example\", {\n    backend: root.backend,\n    issuerRef: root.issuerId,\n    issuerName: \"example-issuer\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\npki = vault.Mount(\"pki\",\n    path=\"pki\",\n    type=\"pki\",\n    default_lease_ttl_seconds=3600,\n    max_lease_ttl_seconds=86400)\nroot = vault.pki_secret.SecretBackendRootCert(\"root\",\n    backend=pki.path,\n    type=\"internal\",\n    common_name=\"test\",\n    ttl=\"86400\")\nexample = vault.pki_secret.SecretBackendIssuer(\"example\",\n    backend=root.backend,\n    issuer_ref=root.issuer_id,\n    issuer_name=\"example-issuer\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var pki = new Vault.Mount(\"pki\", new()\n    {\n        Path = \"pki\",\n        Type = \"pki\",\n        DefaultLeaseTtlSeconds = 3600,\n        MaxLeaseTtlSeconds = 86400,\n    });\n\n    var root = new Vault.PkiSecret.SecretBackendRootCert(\"root\", new()\n    {\n        Backend = pki.Path,\n        Type = \"internal\",\n        CommonName = \"test\",\n        Ttl = \"86400\",\n    });\n\n    var example = new Vault.PkiSecret.SecretBackendIssuer(\"example\", new()\n    {\n        Backend = root.Backend,\n        IssuerRef = root.IssuerId,\n        IssuerName = \"example-issuer\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tpki, err := vault.NewMount(ctx, \"pki\", \u0026vault.MountArgs{\n\t\t\tPath:                   pulumi.String(\"pki\"),\n\t\t\tType:                   pulumi.String(\"pki\"),\n\t\t\tDefaultLeaseTtlSeconds: pulumi.Int(3600),\n\t\t\tMaxLeaseTtlSeconds:     pulumi.Int(86400),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\troot, err := pkiSecret.NewSecretBackendRootCert(ctx, \"root\", \u0026pkiSecret.SecretBackendRootCertArgs{\n\t\t\tBackend:    pki.Path,\n\t\t\tType:       pulumi.String(\"internal\"),\n\t\t\tCommonName: pulumi.String(\"test\"),\n\t\t\tTtl:        pulumi.String(\"86400\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = pkiSecret.NewSecretBackendIssuer(ctx, \"example\", \u0026pkiSecret.SecretBackendIssuerArgs{\n\t\t\tBackend:    root.Backend,\n\t\t\tIssuerRef:  root.IssuerId,\n\t\t\tIssuerName: pulumi.String(\"example-issuer\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.pkiSecret.SecretBackendRootCert;\nimport com.pulumi.vault.pkiSecret.SecretBackendRootCertArgs;\nimport com.pulumi.vault.pkiSecret.SecretBackendIssuer;\nimport com.pulumi.vault.pkiSecret.SecretBackendIssuerArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var pki = new Mount(\"pki\", MountArgs.builder()        \n            .path(\"pki\")\n            .type(\"pki\")\n            .defaultLeaseTtlSeconds(3600)\n            .maxLeaseTtlSeconds(86400)\n            .build());\n\n        var root = new SecretBackendRootCert(\"root\", SecretBackendRootCertArgs.builder()        \n            .backend(pki.path())\n            .type(\"internal\")\n            .commonName(\"test\")\n            .ttl(\"86400\")\n            .build());\n\n        var example = new SecretBackendIssuer(\"example\", SecretBackendIssuerArgs.builder()        \n            .backend(root.backend())\n            .issuerRef(root.issuerId())\n            .issuerName(\"example-issuer\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  pki:\n    type: vault:Mount\n    properties:\n      path: pki\n      type: pki\n      defaultLeaseTtlSeconds: 3600\n      maxLeaseTtlSeconds: 86400\n  root:\n    type: vault:pkiSecret:SecretBackendRootCert\n    properties:\n      backend: ${pki.path}\n      type: internal\n      commonName: test\n      ttl: 86400\n  example:\n    type: vault:pkiSecret:SecretBackendIssuer\n    properties:\n      backend: ${root.backend}\n      issuerRef: ${root.issuerId}\n      issuerName: example-issuer\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nPKI secret backend issuer can be imported using the `id`, e.g.\n\n```sh\n $ pulumi import vault:pkiSecret/secretBackendIssuer:SecretBackendIssuer example pki/issuer/bf9b0d48-d0dd-652c-30be-77d04fc7e94d\n```\n\n ",
+            "properties": {
+                "backend": {
+                    "type": "string",
+                    "description": "The path the PKI secret backend is mounted at, with no\nleading or trailing `/`s.\n"
+                },
+                "crlDistributionPoints": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Specifies the URL values for the CRL\nDistribution Points field.\n"
+                },
+                "enableAiaUrlTemplating": {
+                    "type": "boolean",
+                    "description": "Specifies that the AIA URL values should\nbe templated.\n"
+                },
+                "issuerId": {
+                    "type": "string",
+                    "description": "ID of the issuer.\n"
+                },
+                "issuerName": {
+                    "type": "string",
+                    "description": "Name of the issuer.\n"
+                },
+                "issuerRef": {
+                    "type": "string",
+                    "description": "Reference to an existing issuer.\n"
+                },
+                "issuingCertificates": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Specifies the URL values for the Issuing\nCertificate field.\n"
+                },
+                "leafNotAfterBehavior": {
+                    "type": "string",
+                    "description": "Behavior of a leaf's NotAfter field during\nissuance.\n"
+                },
+                "manualChains": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Chain of issuer references to build this issuer's\ncomputed CAChain field from, when non-empty.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n"
+                },
+                "ocspServers": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Specifies the URL values for the OCSP Servers field.\n"
+                },
+                "revocationSignatureAlgorithm": {
+                    "type": "string",
+                    "description": "Which signature algorithm to use\nwhen building CRLs.\n"
+                },
+                "usage": {
+                    "type": "string",
+                    "description": "Allowed usages for this issuer.\n"
+                }
+            },
+            "required": [
+                "backend",
+                "issuerId",
+                "issuerRef",
+                "leafNotAfterBehavior",
+                "revocationSignatureAlgorithm",
+                "usage"
+            ],
+            "inputProperties": {
+                "backend": {
+                    "type": "string",
+                    "description": "The path the PKI secret backend is mounted at, with no\nleading or trailing `/`s.\n",
+                    "willReplaceOnChanges": true
+                },
+                "crlDistributionPoints": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Specifies the URL values for the CRL\nDistribution Points field.\n"
+                },
+                "enableAiaUrlTemplating": {
+                    "type": "boolean",
+                    "description": "Specifies that the AIA URL values should\nbe templated.\n"
+                },
+                "issuerName": {
+                    "type": "string",
+                    "description": "Name of the issuer.\n"
+                },
+                "issuerRef": {
+                    "type": "string",
+                    "description": "Reference to an existing issuer.\n"
+                },
+                "issuingCertificates": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Specifies the URL values for the Issuing\nCertificate field.\n"
+                },
+                "leafNotAfterBehavior": {
+                    "type": "string",
+                    "description": "Behavior of a leaf's NotAfter field during\nissuance.\n"
+                },
+                "manualChains": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Chain of issuer references to build this issuer's\ncomputed CAChain field from, when non-empty.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
+                    "willReplaceOnChanges": true
+                },
+                "ocspServers": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Specifies the URL values for the OCSP Servers field.\n"
+                },
+                "revocationSignatureAlgorithm": {
+                    "type": "string",
+                    "description": "Which signature algorithm to use\nwhen building CRLs.\n"
+                },
+                "usage": {
+                    "type": "string",
+                    "description": "Allowed usages for this issuer.\n"
+                }
+            },
+            "requiredInputs": [
+                "backend",
+                "issuerRef"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SecretBackendIssuer resources.\n",
+                "properties": {
+                    "backend": {
+                        "type": "string",
+                        "description": "The path the PKI secret backend is mounted at, with no\nleading or trailing `/`s.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "crlDistributionPoints": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Specifies the URL values for the CRL\nDistribution Points field.\n"
+                    },
+                    "enableAiaUrlTemplating": {
+                        "type": "boolean",
+                        "description": "Specifies that the AIA URL values should\nbe templated.\n"
+                    },
+                    "issuerId": {
+                        "type": "string",
+                        "description": "ID of the issuer.\n"
+                    },
+                    "issuerName": {
+                        "type": "string",
+                        "description": "Name of the issuer.\n"
+                    },
+                    "issuerRef": {
+                        "type": "string",
+                        "description": "Reference to an existing issuer.\n"
+                    },
+                    "issuingCertificates": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Specifies the URL values for the Issuing\nCertificate field.\n"
+                    },
+                    "leafNotAfterBehavior": {
+                        "type": "string",
+                        "description": "Behavior of a leaf's NotAfter field during\nissuance.\n"
+                    },
+                    "manualChains": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Chain of issuer references to build this issuer's\ncomputed CAChain field from, when non-empty.\n"
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "ocspServers": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Specifies the URL values for the OCSP Servers field.\n"
+                    },
+                    "revocationSignatureAlgorithm": {
+                        "type": "string",
+                        "description": "Which signature algorithm to use\nwhen building CRLs.\n"
+                    },
+                    "usage": {
+                        "type": "string",
+                        "description": "Allowed usages for this issuer.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "vault:pkiSecret/secretBackendKey:SecretBackendKey": {
+            "description": "Creates a key on a PKI Secret Backend for Vault.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.pkiSecret.SecretBackendKey;\nimport com.pulumi.vault.pkiSecret.SecretBackendKeyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var pki = new Mount(\"pki\", MountArgs.builder()        \n            .path(\"pki\")\n            .type(\"pki\")\n            .defaultLeaseTtlSeconds(3600)\n            .maxLeaseTtlSeconds(86400)\n            .build());\n\n        var key = new SecretBackendKey(\"key\", SecretBackendKeyArgs.builder()        \n            .mount(pki.path())\n            .type(\"exported\")\n            .keyName(\"example-key\")\n            .keyType(\"rsa\")\n            .keyBits(\"2048\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  pki:\n    type: vault:Mount\n    properties:\n      path: pki\n      type: pki\n      defaultLeaseTtlSeconds: 3600\n      maxLeaseTtlSeconds: 86400\n  key:\n    type: vault:pkiSecret:SecretBackendKey\n    properties:\n      mount: ${pki.path}\n      type: exported\n      keyName: example-key\n      keyType: rsa\n      keyBits: 2048\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nPKI secret backend key can be imported using the `id`, e.g.\n\n```sh\n $ pulumi import vault:pkiSecret/secretBackendKey:SecretBackendKey key pki/key/bf9b0d48-d0dd-652c-30be-77d04fc7e94d\n```\n\n ",
+            "properties": {
+                "backend": {
+                    "type": "string",
+                    "description": "The path the PKI secret backend is mounted at, with no leading or trailing `/`s.\n"
+                },
+                "keyBits": {
+                    "type": "integer",
+                    "description": "Specifies the number of bits to use for the generated keys. \nAllowed values are 0 (universal default); with `key_type=rsa`, allowed values are:\n2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default),\n384, or 521; ignored with `key_type=ed25519`.\n"
+                },
+                "keyId": {
+                    "type": "string",
+                    "description": "ID of the generated key.\n"
+                },
+                "keyName": {
+                    "type": "string",
+                    "description": "When a new key is created with this request, optionally specifies the name for this. \nThe global ref `default` may not be used as a name.\n"
+                },
+                "keyType": {
+                    "type": "string",
+                    "description": "Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.\n"
+                },
+                "managedKeyId": {
+                    "type": "string",
+                    "description": "The managed key's UUID.\n"
+                },
+                "managedKeyName": {
+                    "type": "string",
+                    "description": "The managed key's configured name.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.\n"
+                }
+            },
+            "required": [
+                "backend",
+                "keyBits",
+                "keyId",
+                "keyType",
+                "type"
+            ],
+            "inputProperties": {
+                "backend": {
+                    "type": "string",
+                    "description": "The path the PKI secret backend is mounted at, with no leading or trailing `/`s.\n",
+                    "willReplaceOnChanges": true
+                },
+                "keyBits": {
+                    "type": "integer",
+                    "description": "Specifies the number of bits to use for the generated keys. \nAllowed values are 0 (universal default); with `key_type=rsa`, allowed values are:\n2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default),\n384, or 521; ignored with `key_type=ed25519`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "keyName": {
+                    "type": "string",
+                    "description": "When a new key is created with this request, optionally specifies the name for this. \nThe global ref `default` may not be used as a name.\n"
+                },
+                "keyType": {
+                    "type": "string",
+                    "description": "Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "managedKeyId": {
+                    "type": "string",
+                    "description": "The managed key's UUID.\n"
+                },
+                "managedKeyName": {
+                    "type": "string",
+                    "description": "The managed key's configured name.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
+                    "willReplaceOnChanges": true
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "backend",
+                "type"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SecretBackendKey resources.\n",
+                "properties": {
+                    "backend": {
+                        "type": "string",
+                        "description": "The path the PKI secret backend is mounted at, with no leading or trailing `/`s.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "keyBits": {
+                        "type": "integer",
+                        "description": "Specifies the number of bits to use for the generated keys. \nAllowed values are 0 (universal default); with `key_type=rsa`, allowed values are:\n2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default),\n384, or 521; ignored with `key_type=ed25519`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "keyId": {
+                        "type": "string",
+                        "description": "ID of the generated key.\n"
+                    },
+                    "keyName": {
+                        "type": "string",
+                        "description": "When a new key is created with this request, optionally specifies the name for this. \nThe global ref `default` may not be used as a name.\n"
+                    },
+                    "keyType": {
+                        "type": "string",
+                        "description": "Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "managedKeyId": {
+                        "type": "string",
+                        "description": "The managed key's UUID.\n"
+                    },
+                    "managedKeyName": {
+                        "type": "string",
+                        "description": "The managed key's configured name.\n"
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.\n",
                         "willReplaceOnChanges": true
                     }
                 },
@@ -26295,6 +26867,10 @@
                     "type": "boolean",
                     "description": "Flag to allow certificates matching subdomains\n"
                 },
+                "allowWildcardCertificates": {
+                    "type": "boolean",
+                    "description": "Flag to allow wildcard certificates.\n"
+                },
                 "allowedDomains": {
                     "type": "array",
                     "items": {
@@ -26326,6 +26902,10 @@
                         "type": "string"
                     },
                     "description": "Defines allowed URI SANs\n"
+                },
+                "allowedUriSansTemplate": {
+                    "type": "boolean",
+                    "description": "Flag, if set, `allowed_uri_sans` can be specified using identity template expressions such as `{{identity.entity.aliases.\u003cmount accessor\u003e.name}}`.\n"
                 },
                 "backend": {
                     "type": "string",
@@ -26369,13 +26949,17 @@
                     "type": "boolean",
                     "description": "Flag to generate leases with certificates\n"
                 },
+                "issuerRef": {
+                    "type": "string",
+                    "description": "Specifies the default issuer of this request. May\nbe the value `default`, a name, or an issuer ID. Use ACLs to prevent access to\nthe `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users\noverriding the role's `issuer_ref` value.\n"
+                },
                 "keyBits": {
                     "type": "integer",
                     "description": "The number of bits of generated keys\n"
                 },
                 "keyType": {
                     "type": "string",
-                    "description": "The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`  \nDefaults to `rsa`\n"
+                    "description": "The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`\nDefaults to `rsa`\n"
                 },
                 "keyUsages": {
                     "type": "array",
@@ -26475,7 +27059,9 @@
                 }
             },
             "required": [
+                "allowedUriSansTemplate",
                 "backend",
+                "issuerRef",
                 "keyUsages",
                 "maxTtl",
                 "name",
@@ -26506,6 +27092,10 @@
                 "allowSubdomains": {
                     "type": "boolean",
                     "description": "Flag to allow certificates matching subdomains\n"
+                },
+                "allowWildcardCertificates": {
+                    "type": "boolean",
+                    "description": "Flag to allow wildcard certificates.\n"
                 },
                 "allowedDomains": {
                     "type": "array",
@@ -26538,6 +27128,10 @@
                         "type": "string"
                     },
                     "description": "Defines allowed URI SANs\n"
+                },
+                "allowedUriSansTemplate": {
+                    "type": "boolean",
+                    "description": "Flag, if set, `allowed_uri_sans` can be specified using identity template expressions such as `{{identity.entity.aliases.\u003cmount accessor\u003e.name}}`.\n"
                 },
                 "backend": {
                     "type": "string",
@@ -26582,13 +27176,17 @@
                     "type": "boolean",
                     "description": "Flag to generate leases with certificates\n"
                 },
+                "issuerRef": {
+                    "type": "string",
+                    "description": "Specifies the default issuer of this request. May\nbe the value `default`, a name, or an issuer ID. Use ACLs to prevent access to\nthe `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users\noverriding the role's `issuer_ref` value.\n"
+                },
                 "keyBits": {
                     "type": "integer",
                     "description": "The number of bits of generated keys\n"
                 },
                 "keyType": {
                     "type": "string",
-                    "description": "The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`  \nDefaults to `rsa`\n"
+                    "description": "The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`\nDefaults to `rsa`\n"
                 },
                 "keyUsages": {
                     "type": "array",
@@ -26719,6 +27317,10 @@
                         "type": "boolean",
                         "description": "Flag to allow certificates matching subdomains\n"
                     },
+                    "allowWildcardCertificates": {
+                        "type": "boolean",
+                        "description": "Flag to allow wildcard certificates.\n"
+                    },
                     "allowedDomains": {
                         "type": "array",
                         "items": {
@@ -26750,6 +27352,10 @@
                             "type": "string"
                         },
                         "description": "Defines allowed URI SANs\n"
+                    },
+                    "allowedUriSansTemplate": {
+                        "type": "boolean",
+                        "description": "Flag, if set, `allowed_uri_sans` can be specified using identity template expressions such as `{{identity.entity.aliases.\u003cmount accessor\u003e.name}}`.\n"
                     },
                     "backend": {
                         "type": "string",
@@ -26794,13 +27400,17 @@
                         "type": "boolean",
                         "description": "Flag to generate leases with certificates\n"
                     },
+                    "issuerRef": {
+                        "type": "string",
+                        "description": "Specifies the default issuer of this request. May\nbe the value `default`, a name, or an issuer ID. Use ACLs to prevent access to\nthe `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users\noverriding the role's `issuer_ref` value.\n"
+                    },
                     "keyBits": {
                         "type": "integer",
                         "description": "The number of bits of generated keys\n"
                     },
                     "keyType": {
                         "type": "string",
-                        "description": "The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`  \nDefaults to `rsa`\n"
+                        "description": "The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`\nDefaults to `rsa`\n"
                     },
                     "keyUsages": {
                         "type": "array",
@@ -26945,6 +27555,14 @@
                     },
                     "description": "List of alternative IPs\n"
                 },
+                "issuerId": {
+                    "type": "string",
+                    "description": "The ID of the generated issuer.\n"
+                },
+                "issuerName": {
+                    "type": "string",
+                    "description": "Provides a name to the specified issuer. The name must be unique\nacross all issuers and not be the reserved value `default`\n"
+                },
                 "issuingCa": {
                     "type": "string",
                     "description": "The issuing CA certificate.\n"
@@ -26952,6 +27570,18 @@
                 "keyBits": {
                     "type": "integer",
                     "description": "The number of bits to use\n"
+                },
+                "keyId": {
+                    "type": "string",
+                    "description": "The ID of the generated key.\n"
+                },
+                "keyName": {
+                    "type": "string",
+                    "description": "When a new key is created with this request, optionally specifies\nthe name for this. The global ref `default` may not be used as a name.\n"
+                },
+                "keyRef": {
+                    "type": "string",
+                    "description": "Specifies the key (either default, by name, or by identifier) to use\nfor generating this request. Only suitable for `type=existing` requests.\n"
                 },
                 "keyType": {
                     "type": "string",
@@ -27044,7 +27674,12 @@
                 "backend",
                 "certificate",
                 "commonName",
+                "issuerId",
+                "issuerName",
                 "issuingCa",
+                "keyId",
+                "keyName",
+                "keyRef",
                 "managedKeyId",
                 "managedKeyName",
                 "serial",
@@ -27093,9 +27728,24 @@
                     "description": "List of alternative IPs\n",
                     "willReplaceOnChanges": true
                 },
+                "issuerName": {
+                    "type": "string",
+                    "description": "Provides a name to the specified issuer. The name must be unique\nacross all issuers and not be the reserved value `default`\n",
+                    "willReplaceOnChanges": true
+                },
                 "keyBits": {
                     "type": "integer",
                     "description": "The number of bits to use\n",
+                    "willReplaceOnChanges": true
+                },
+                "keyName": {
+                    "type": "string",
+                    "description": "When a new key is created with this request, optionally specifies\nthe name for this. The global ref `default` may not be used as a name.\n",
+                    "willReplaceOnChanges": true
+                },
+                "keyRef": {
+                    "type": "string",
+                    "description": "Specifies the key (either default, by name, or by identifier) to use\nfor generating this request. Only suitable for `type=existing` requests.\n",
                     "willReplaceOnChanges": true
                 },
                 "keyType": {
@@ -27245,6 +27895,16 @@
                         "description": "List of alternative IPs\n",
                         "willReplaceOnChanges": true
                     },
+                    "issuerId": {
+                        "type": "string",
+                        "description": "The ID of the generated issuer.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "issuerName": {
+                        "type": "string",
+                        "description": "Provides a name to the specified issuer. The name must be unique\nacross all issuers and not be the reserved value `default`\n",
+                        "willReplaceOnChanges": true
+                    },
                     "issuingCa": {
                         "type": "string",
                         "description": "The issuing CA certificate.\n"
@@ -27252,6 +27912,21 @@
                     "keyBits": {
                         "type": "integer",
                         "description": "The number of bits to use\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "keyId": {
+                        "type": "string",
+                        "description": "The ID of the generated key.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "keyName": {
+                        "type": "string",
+                        "description": "When a new key is created with this request, optionally specifies\nthe name for this. The global ref `default` may not be used as a name.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "keyRef": {
+                        "type": "string",
+                        "description": "Specifies the key (either default, by name, or by identifier) to use\nfor generating this request. Only suitable for `type=existing` requests.\n",
                         "willReplaceOnChanges": true
                     },
                     "keyType": {
@@ -27416,6 +28091,10 @@
                     },
                     "description": "List of alternative IPs\n"
                 },
+                "issuerRef": {
+                    "type": "string",
+                    "description": "Specifies the default issuer of this request. May\nbe the value `default`, a name, or an issuer ID. Use ACLs to prevent access to\nthe `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users\noverriding the role's `issuer_ref` value.\n"
+                },
                 "issuingCa": {
                     "type": "string",
                     "description": "The issuing CA certificate in the `format` specified.\n"
@@ -27552,6 +28231,10 @@
                     },
                     "description": "List of alternative IPs\n",
                     "willReplaceOnChanges": true
+                },
+                "issuerRef": {
+                    "type": "string",
+                    "description": "Specifies the default issuer of this request. May\nbe the value `default`, a name, or an issuer ID. Use ACLs to prevent access to\nthe `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users\noverriding the role's `issuer_ref` value.\n"
                 },
                 "locality": {
                     "type": "string",
@@ -27699,6 +28382,10 @@
                         },
                         "description": "List of alternative IPs\n",
                         "willReplaceOnChanges": true
+                    },
+                    "issuerRef": {
+                        "type": "string",
+                        "description": "Specifies the default issuer of this request. May\nbe the value `default`, a name, or an issuer ID. Use ACLs to prevent access to\nthe `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users\noverriding the role's `issuer_ref` value.\n"
                     },
                     "issuingCa": {
                         "type": "string",
@@ -27850,6 +28537,10 @@
                     },
                     "description": "List of alternative IPs\n"
                 },
+                "issuerRef": {
+                    "type": "string",
+                    "description": "Specifies the default issuer of this request. Can\nbe the value `default`, a name, or an issuer ID. Use ACLs to prevent access to\nthe `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users\noverriding the role's `issuer_ref` value.\n"
+                },
                 "issuingCa": {
                     "type": "string",
                     "description": "The issuing CA\n"
@@ -27957,6 +28648,10 @@
                     "description": "List of alternative IPs\n",
                     "willReplaceOnChanges": true
                 },
+                "issuerRef": {
+                    "type": "string",
+                    "description": "Specifies the default issuer of this request. Can\nbe the value `default`, a name, or an issuer ID. Use ACLs to prevent access to\nthe `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users\noverriding the role's `issuer_ref` value.\n"
+                },
                 "minSecondsRemaining": {
                     "type": "integer",
                     "description": "Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)\n"
@@ -28059,6 +28754,10 @@
                         },
                         "description": "List of alternative IPs\n",
                         "willReplaceOnChanges": true
+                    },
+                    "issuerRef": {
+                        "type": "string",
+                        "description": "Specifies the default issuer of this request. Can\nbe the value `default`, a name, or an issuer ID. Use ACLs to prevent access to\nthe `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users\noverriding the role's `issuer_ref` value.\n"
                     },
                     "issuingCa": {
                         "type": "string",

@@ -232,6 +232,7 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_aws_auth_backend_sts_role":           {Tok: makeResource(awsMod, "AuthBackendStsRole")},
 			"vault_aws_secret_backend":                  {Tok: makeResource(awsMod, "SecretBackend")},
 			"vault_aws_secret_backend_role":             {Tok: makeResource(awsMod, "SecretBackendRole")},
+			"vault_aws_secret_backend_static_role":      {Tok: makeResource(awsMod, "SecretBackendStaticRole")},
 
 			// Azure
 			"vault_azure_auth_backend_config": {Tok: makeResource(azureMod, "AuthBackendConfig")},
@@ -401,6 +402,8 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_pki_secret_backend_intermediate_set_signed": {
 				Tok: makeResource(pkiSecretMod, "SecretBackendIntermediateSetSigned"),
 			},
+			"vault_pki_secret_backend_issuer": {Tok: makeResource(pkiSecretMod, "SecretBackendIssuer")},
+			"vault_pki_secret_backend_key":    {Tok: makeResource(pkiSecretMod, "SecretBackendKey")},
 			"vault_pki_secret_backend_role": {
 				Tok: makeResource(pkiSecretMod, "SecretBackendRole"),
 				Fields: map[string]*tfbridge.SchemaInfo{
