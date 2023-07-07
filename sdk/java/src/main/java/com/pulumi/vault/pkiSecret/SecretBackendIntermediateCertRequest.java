@@ -201,6 +201,52 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
         return Codegen.optional(this.keyBits);
     }
     /**
+     * The ID of the generated key.
+     * 
+     */
+    @Export(name="keyId", type=String.class, parameters={})
+    private Output<String> keyId;
+
+    /**
+     * @return The ID of the generated key.
+     * 
+     */
+    public Output<String> keyId() {
+        return this.keyId;
+    }
+    /**
+     * When a new key is created with this request, optionally specifies
+     * the name for this. The global ref `default` may not be used as a name.
+     * 
+     */
+    @Export(name="keyName", type=String.class, parameters={})
+    private Output<String> keyName;
+
+    /**
+     * @return When a new key is created with this request, optionally specifies
+     * the name for this. The global ref `default` may not be used as a name.
+     * 
+     */
+    public Output<String> keyName() {
+        return this.keyName;
+    }
+    /**
+     * Specifies the key (either default, by name, or by identifier) to use
+     * for generating this request. Only suitable for `type=existing` requests.
+     * 
+     */
+    @Export(name="keyRef", type=String.class, parameters={})
+    private Output<String> keyRef;
+
+    /**
+     * @return Specifies the key (either default, by name, or by identifier) to use
+     * for generating this request. Only suitable for `type=existing` requests.
+     * 
+     */
+    public Output<String> keyRef() {
+        return this.keyRef;
+    }
+    /**
      * The desired key type
      * 
      */

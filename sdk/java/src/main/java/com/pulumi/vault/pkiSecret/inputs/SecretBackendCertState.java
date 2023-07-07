@@ -169,6 +169,21 @@ public final class SecretBackendCertState extends com.pulumi.resources.ResourceA
     }
 
     /**
+     * Specifies the default issuer of this request.
+     * 
+     */
+    @Import(name="issuerRef")
+    private @Nullable Output<String> issuerRef;
+
+    /**
+     * @return Specifies the default issuer of this request.
+     * 
+     */
+    public Optional<Output<String>> issuerRef() {
+        return Optional.ofNullable(this.issuerRef);
+    }
+
+    /**
      * The issuing CA
      * 
      */
@@ -382,6 +397,7 @@ public final class SecretBackendCertState extends com.pulumi.resources.ResourceA
         this.expiration = $.expiration;
         this.format = $.format;
         this.ipSans = $.ipSans;
+        this.issuerRef = $.issuerRef;
         this.issuingCa = $.issuingCa;
         this.minSecondsRemaining = $.minSecondsRemaining;
         this.name = $.name;
@@ -643,6 +659,27 @@ public final class SecretBackendCertState extends com.pulumi.resources.ResourceA
          */
         public Builder ipSans(String... ipSans) {
             return ipSans(List.of(ipSans));
+        }
+
+        /**
+         * @param issuerRef Specifies the default issuer of this request.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder issuerRef(@Nullable Output<String> issuerRef) {
+            $.issuerRef = issuerRef;
+            return this;
+        }
+
+        /**
+         * @param issuerRef Specifies the default issuer of this request.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder issuerRef(String issuerRef) {
+            return issuerRef(Output.of(issuerRef));
         }
 
         /**

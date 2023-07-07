@@ -124,6 +124,21 @@ public final class SecretBackendCertArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * Specifies the default issuer of this request.
+     * 
+     */
+    @Import(name="issuerRef")
+    private @Nullable Output<String> issuerRef;
+
+    /**
+     * @return Specifies the default issuer of this request.
+     * 
+     */
+    public Optional<Output<String>> issuerRef() {
+        return Optional.ofNullable(this.issuerRef);
+    }
+
+    /**
      * Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
      * 
      */
@@ -259,6 +274,7 @@ public final class SecretBackendCertArgs extends com.pulumi.resources.ResourceAr
         this.excludeCnFromSans = $.excludeCnFromSans;
         this.format = $.format;
         this.ipSans = $.ipSans;
+        this.issuerRef = $.issuerRef;
         this.minSecondsRemaining = $.minSecondsRemaining;
         this.name = $.name;
         this.namespace = $.namespace;
@@ -452,6 +468,27 @@ public final class SecretBackendCertArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder ipSans(String... ipSans) {
             return ipSans(List.of(ipSans));
+        }
+
+        /**
+         * @param issuerRef Specifies the default issuer of this request.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder issuerRef(@Nullable Output<String> issuerRef) {
+            $.issuerRef = issuerRef;
+            return this;
+        }
+
+        /**
+         * @param issuerRef Specifies the default issuer of this request.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder issuerRef(String issuerRef) {
+            return issuerRef(Output.of(issuerRef));
         }
 
         /**

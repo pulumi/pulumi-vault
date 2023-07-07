@@ -17,3 +17,4 @@ from .auth_backend_sts_role import *
 from .get_access_credentials import *
 from .secret_backend import *
 from .secret_backend_role import *
+from .secret_backend_static_role import *

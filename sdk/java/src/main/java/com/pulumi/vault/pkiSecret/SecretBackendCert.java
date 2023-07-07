@@ -196,6 +196,20 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.ipSans);
     }
     /**
+     * Specifies the default issuer of this request.
+     * 
+     */
+    @Export(name="issuerRef", type=String.class, parameters={})
+    private Output</* @Nullable */ String> issuerRef;
+
+    /**
+     * @return Specifies the default issuer of this request.
+     * 
+     */
+    public Output<Optional<String>> issuerRef() {
+        return Codegen.optional(this.issuerRef);
+    }
+    /**
      * The issuing CA
      * 
      */

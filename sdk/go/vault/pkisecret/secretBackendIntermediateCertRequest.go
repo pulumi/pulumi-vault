@@ -65,6 +65,14 @@ type SecretBackendIntermediateCertRequest struct {
 	IpSans pulumi.StringArrayOutput `pulumi:"ipSans"`
 	// The number of bits to use
 	KeyBits pulumi.IntPtrOutput `pulumi:"keyBits"`
+	// The ID of the generated key.
+	KeyId pulumi.StringOutput `pulumi:"keyId"`
+	// When a new key is created with this request, optionally specifies
+	// the name for this. The global ref `default` may not be used as a name.
+	KeyName pulumi.StringOutput `pulumi:"keyName"`
+	// Specifies the key (either default, by name, or by identifier) to use
+	// for generating this request. Only suitable for `type=existing` requests.
+	KeyRef pulumi.StringOutput `pulumi:"keyRef"`
 	// The desired key type
 	KeyType pulumi.StringPtrOutput `pulumi:"keyType"`
 	// The locality
@@ -169,6 +177,14 @@ type secretBackendIntermediateCertRequestState struct {
 	IpSans []string `pulumi:"ipSans"`
 	// The number of bits to use
 	KeyBits *int `pulumi:"keyBits"`
+	// The ID of the generated key.
+	KeyId *string `pulumi:"keyId"`
+	// When a new key is created with this request, optionally specifies
+	// the name for this. The global ref `default` may not be used as a name.
+	KeyName *string `pulumi:"keyName"`
+	// Specifies the key (either default, by name, or by identifier) to use
+	// for generating this request. Only suitable for `type=existing` requests.
+	KeyRef *string `pulumi:"keyRef"`
 	// The desired key type
 	KeyType *string `pulumi:"keyType"`
 	// The locality
@@ -232,6 +248,14 @@ type SecretBackendIntermediateCertRequestState struct {
 	IpSans pulumi.StringArrayInput
 	// The number of bits to use
 	KeyBits pulumi.IntPtrInput
+	// The ID of the generated key.
+	KeyId pulumi.StringPtrInput
+	// When a new key is created with this request, optionally specifies
+	// the name for this. The global ref `default` may not be used as a name.
+	KeyName pulumi.StringPtrInput
+	// Specifies the key (either default, by name, or by identifier) to use
+	// for generating this request. Only suitable for `type=existing` requests.
+	KeyRef pulumi.StringPtrInput
 	// The desired key type
 	KeyType pulumi.StringPtrInput
 	// The locality
@@ -297,6 +321,12 @@ type secretBackendIntermediateCertRequestArgs struct {
 	IpSans []string `pulumi:"ipSans"`
 	// The number of bits to use
 	KeyBits *int `pulumi:"keyBits"`
+	// When a new key is created with this request, optionally specifies
+	// the name for this. The global ref `default` may not be used as a name.
+	KeyName *string `pulumi:"keyName"`
+	// Specifies the key (either default, by name, or by identifier) to use
+	// for generating this request. Only suitable for `type=existing` requests.
+	KeyRef *string `pulumi:"keyRef"`
 	// The desired key type
 	KeyType *string `pulumi:"keyType"`
 	// The locality
@@ -355,6 +385,12 @@ type SecretBackendIntermediateCertRequestArgs struct {
 	IpSans pulumi.StringArrayInput
 	// The number of bits to use
 	KeyBits pulumi.IntPtrInput
+	// When a new key is created with this request, optionally specifies
+	// the name for this. The global ref `default` may not be used as a name.
+	KeyName pulumi.StringPtrInput
+	// Specifies the key (either default, by name, or by identifier) to use
+	// for generating this request. Only suitable for `type=existing` requests.
+	KeyRef pulumi.StringPtrInput
 	// The desired key type
 	KeyType pulumi.StringPtrInput
 	// The locality
@@ -528,6 +564,23 @@ func (o SecretBackendIntermediateCertRequestOutput) IpSans() pulumi.StringArrayO
 // The number of bits to use
 func (o SecretBackendIntermediateCertRequestOutput) KeyBits() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendIntermediateCertRequest) pulumi.IntPtrOutput { return v.KeyBits }).(pulumi.IntPtrOutput)
+}
+
+// The ID of the generated key.
+func (o SecretBackendIntermediateCertRequestOutput) KeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendIntermediateCertRequest) pulumi.StringOutput { return v.KeyId }).(pulumi.StringOutput)
+}
+
+// When a new key is created with this request, optionally specifies
+// the name for this. The global ref `default` may not be used as a name.
+func (o SecretBackendIntermediateCertRequestOutput) KeyName() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendIntermediateCertRequest) pulumi.StringOutput { return v.KeyName }).(pulumi.StringOutput)
+}
+
+// Specifies the key (either default, by name, or by identifier) to use
+// for generating this request. Only suitable for `type=existing` requests.
+func (o SecretBackendIntermediateCertRequestOutput) KeyRef() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendIntermediateCertRequest) pulumi.StringOutput { return v.KeyRef }).(pulumi.StringOutput)
 }
 
 // The desired key type

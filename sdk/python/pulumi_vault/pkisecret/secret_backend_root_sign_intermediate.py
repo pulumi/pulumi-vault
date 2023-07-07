@@ -22,6 +22,7 @@ class SecretBackendRootSignIntermediateArgs:
                  exclude_cn_from_sans: Optional[pulumi.Input[bool]] = None,
                  format: Optional[pulumi.Input[str]] = None,
                  ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 issuer_ref: Optional[pulumi.Input[str]] = None,
                  locality: Optional[pulumi.Input[str]] = None,
                  max_path_length: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -46,6 +47,10 @@ class SecretBackendRootSignIntermediateArgs:
         :param pulumi.Input[bool] exclude_cn_from_sans: Flag to exclude CN from SANs
         :param pulumi.Input[str] format: The format of data
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
+        :param pulumi.Input[str] issuer_ref: Specifies the default issuer of this request. May
+               be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+               the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+               overriding the role's `issuer_ref` value.
         :param pulumi.Input[str] locality: The locality
         :param pulumi.Input[int] max_path_length: The maximum path length to encode in the generated certificate
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -77,6 +82,8 @@ class SecretBackendRootSignIntermediateArgs:
             pulumi.set(__self__, "format", format)
         if ip_sans is not None:
             pulumi.set(__self__, "ip_sans", ip_sans)
+        if issuer_ref is not None:
+            pulumi.set(__self__, "issuer_ref", issuer_ref)
         if locality is not None:
             pulumi.set(__self__, "locality", locality)
         if max_path_length is not None:
@@ -201,6 +208,21 @@ class SecretBackendRootSignIntermediateArgs:
     @ip_sans.setter
     def ip_sans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "ip_sans", value)
+
+    @property
+    @pulumi.getter(name="issuerRef")
+    def issuer_ref(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the default issuer of this request. May
+        be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+        the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+        overriding the role's `issuer_ref` value.
+        """
+        return pulumi.get(self, "issuer_ref")
+
+    @issuer_ref.setter
+    def issuer_ref(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "issuer_ref", value)
 
     @property
     @pulumi.getter
@@ -388,6 +410,7 @@ class _SecretBackendRootSignIntermediateState:
                  exclude_cn_from_sans: Optional[pulumi.Input[bool]] = None,
                  format: Optional[pulumi.Input[str]] = None,
                  ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 issuer_ref: Optional[pulumi.Input[str]] = None,
                  issuing_ca: Optional[pulumi.Input[str]] = None,
                  locality: Optional[pulumi.Input[str]] = None,
                  max_path_length: Optional[pulumi.Input[int]] = None,
@@ -419,6 +442,10 @@ class _SecretBackendRootSignIntermediateState:
         :param pulumi.Input[bool] exclude_cn_from_sans: Flag to exclude CN from SANs
         :param pulumi.Input[str] format: The format of data
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
+        :param pulumi.Input[str] issuer_ref: Specifies the default issuer of this request. May
+               be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+               the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+               overriding the role's `issuer_ref` value.
         :param pulumi.Input[str] issuing_ca: The issuing CA certificate in the `format` specified.
         :param pulumi.Input[str] locality: The locality
         :param pulumi.Input[int] max_path_length: The maximum path length to encode in the generated certificate
@@ -462,6 +489,8 @@ class _SecretBackendRootSignIntermediateState:
             pulumi.set(__self__, "format", format)
         if ip_sans is not None:
             pulumi.set(__self__, "ip_sans", ip_sans)
+        if issuer_ref is not None:
+            pulumi.set(__self__, "issuer_ref", issuer_ref)
         if issuing_ca is not None:
             pulumi.set(__self__, "issuing_ca", issuing_ca)
         if locality is not None:
@@ -632,6 +661,21 @@ class _SecretBackendRootSignIntermediateState:
     @ip_sans.setter
     def ip_sans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "ip_sans", value)
+
+    @property
+    @pulumi.getter(name="issuerRef")
+    def issuer_ref(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the default issuer of this request. May
+        be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+        the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+        overriding the role's `issuer_ref` value.
+        """
+        return pulumi.get(self, "issuer_ref")
+
+    @issuer_ref.setter
+    def issuer_ref(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "issuer_ref", value)
 
     @property
     @pulumi.getter(name="issuingCa")
@@ -854,6 +898,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
                  exclude_cn_from_sans: Optional[pulumi.Input[bool]] = None,
                  format: Optional[pulumi.Input[str]] = None,
                  ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 issuer_ref: Optional[pulumi.Input[str]] = None,
                  locality: Optional[pulumi.Input[str]] = None,
                  max_path_length: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -901,6 +946,10 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         :param pulumi.Input[bool] exclude_cn_from_sans: Flag to exclude CN from SANs
         :param pulumi.Input[str] format: The format of data
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
+        :param pulumi.Input[str] issuer_ref: Specifies the default issuer of this request. May
+               be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+               the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+               overriding the role's `issuer_ref` value.
         :param pulumi.Input[str] locality: The locality
         :param pulumi.Input[int] max_path_length: The maximum path length to encode in the generated certificate
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -970,6 +1019,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
                  exclude_cn_from_sans: Optional[pulumi.Input[bool]] = None,
                  format: Optional[pulumi.Input[str]] = None,
                  ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 issuer_ref: Optional[pulumi.Input[str]] = None,
                  locality: Optional[pulumi.Input[str]] = None,
                  max_path_length: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -1007,6 +1057,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
             __props__.__dict__["exclude_cn_from_sans"] = exclude_cn_from_sans
             __props__.__dict__["format"] = format
             __props__.__dict__["ip_sans"] = ip_sans
+            __props__.__dict__["issuer_ref"] = issuer_ref
             __props__.__dict__["locality"] = locality
             __props__.__dict__["max_path_length"] = max_path_length
             __props__.__dict__["namespace"] = namespace
@@ -1048,6 +1099,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
             exclude_cn_from_sans: Optional[pulumi.Input[bool]] = None,
             format: Optional[pulumi.Input[str]] = None,
             ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            issuer_ref: Optional[pulumi.Input[str]] = None,
             issuing_ca: Optional[pulumi.Input[str]] = None,
             locality: Optional[pulumi.Input[str]] = None,
             max_path_length: Optional[pulumi.Input[int]] = None,
@@ -1084,6 +1136,10 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         :param pulumi.Input[bool] exclude_cn_from_sans: Flag to exclude CN from SANs
         :param pulumi.Input[str] format: The format of data
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
+        :param pulumi.Input[str] issuer_ref: Specifies the default issuer of this request. May
+               be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+               the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+               overriding the role's `issuer_ref` value.
         :param pulumi.Input[str] issuing_ca: The issuing CA certificate in the `format` specified.
         :param pulumi.Input[str] locality: The locality
         :param pulumi.Input[int] max_path_length: The maximum path length to encode in the generated certificate
@@ -1120,6 +1176,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         __props__.__dict__["exclude_cn_from_sans"] = exclude_cn_from_sans
         __props__.__dict__["format"] = format
         __props__.__dict__["ip_sans"] = ip_sans
+        __props__.__dict__["issuer_ref"] = issuer_ref
         __props__.__dict__["issuing_ca"] = issuing_ca
         __props__.__dict__["locality"] = locality
         __props__.__dict__["max_path_length"] = max_path_length
@@ -1227,6 +1284,17 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         List of alternative IPs
         """
         return pulumi.get(self, "ip_sans")
+
+    @property
+    @pulumi.getter(name="issuerRef")
+    def issuer_ref(self) -> pulumi.Output[Optional[str]]:
+        """
+        Specifies the default issuer of this request. May
+        be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+        the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+        overriding the role's `issuer_ref` value.
+        """
+        return pulumi.get(self, "issuer_ref")
 
     @property
     @pulumi.getter(name="issuingCa")

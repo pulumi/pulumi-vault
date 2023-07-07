@@ -163,6 +163,20 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.allowSubdomains);
     }
     /**
+     * Flag to allow wildcard certificates.
+     * 
+     */
+    @Export(name="allowWildcardCertificates", type=Boolean.class, parameters={})
+    private Output</* @Nullable */ Boolean> allowWildcardCertificates;
+
+    /**
+     * @return Flag to allow wildcard certificates.
+     * 
+     */
+    public Output<Optional<Boolean>> allowWildcardCertificates() {
+        return Codegen.optional(this.allowWildcardCertificates);
+    }
+    /**
      * List of allowed domains for certificates
      * 
      */
@@ -231,6 +245,20 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<List<String>>> allowedUriSans() {
         return Codegen.optional(this.allowedUriSans);
+    }
+    /**
+     * Flag, if set, `allowed_uri_sans` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
+     * 
+     */
+    @Export(name="allowedUriSansTemplate", type=Boolean.class, parameters={})
+    private Output<Boolean> allowedUriSansTemplate;
+
+    /**
+     * @return Flag, if set, `allowed_uri_sans` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
+     * 
+     */
+    public Output<Boolean> allowedUriSansTemplate() {
+        return this.allowedUriSansTemplate;
     }
     /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
@@ -359,6 +387,26 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.generateLease);
     }
     /**
+     * Specifies the default issuer of this request. May
+     * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+     * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+     * overriding the role&#39;s `issuer_ref` value.
+     * 
+     */
+    @Export(name="issuerRef", type=String.class, parameters={})
+    private Output<String> issuerRef;
+
+    /**
+     * @return Specifies the default issuer of this request. May
+     * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+     * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+     * overriding the role&#39;s `issuer_ref` value.
+     * 
+     */
+    public Output<String> issuerRef() {
+        return this.issuerRef;
+    }
+    /**
      * The number of bits of generated keys
      * 
      */
@@ -373,7 +421,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.keyBits);
     }
     /**
-     * The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`\
+     * The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
      * Defaults to `rsa`
      * 
      */
@@ -381,7 +429,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ String> keyType;
 
     /**
-     * @return The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`\
+     * @return The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
      * Defaults to `rsa`
      * 
      */

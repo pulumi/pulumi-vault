@@ -11,8 +11,10 @@ import com.pulumi.vault.Utilities;
 import com.pulumi.vault.database.SecretBackendRoleArgs;
 import com.pulumi.vault.database.inputs.SecretBackendRoleState;
 import java.lang.Integer;
+import java.lang.Object;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -109,6 +111,40 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      */
     public Output<List<String>> creationStatements() {
         return this.creationStatements;
+    }
+    /**
+     * Specifies the configuration
+     * for the given `credential_type`.
+     * 
+     */
+    @Export(name="credentialConfig", type=Map.class, parameters={String.class, Object.class})
+    private Output</* @Nullable */ Map<String,Object>> credentialConfig;
+
+    /**
+     * @return Specifies the configuration
+     * for the given `credential_type`.
+     * 
+     */
+    public Output<Optional<Map<String,Object>>> credentialConfig() {
+        return Codegen.optional(this.credentialConfig);
+    }
+    /**
+     * Specifies the type of credential that
+     * will be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.
+     * See the plugin&#39;s API page for credential types supported by individual databases.
+     * 
+     */
+    @Export(name="credentialType", type=String.class, parameters={})
+    private Output<String> credentialType;
+
+    /**
+     * @return Specifies the type of credential that
+     * will be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.
+     * See the plugin&#39;s API page for credential types supported by individual databases.
+     * 
+     */
+    public Output<String> credentialType() {
+        return this.credentialType;
     }
     /**
      * The unique name of the database connection to use for

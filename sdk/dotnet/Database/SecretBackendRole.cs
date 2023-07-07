@@ -77,6 +77,21 @@ namespace Pulumi.Vault.Database
         public Output<ImmutableArray<string>> CreationStatements { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies the configuration
+        /// for the given `credential_type`.
+        /// </summary>
+        [Output("credentialConfig")]
+        public Output<ImmutableDictionary<string, object>?> CredentialConfig { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies the type of credential that
+        /// will be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.
+        /// See the plugin's API page for credential types supported by individual databases.
+        /// </summary>
+        [Output("credentialType")]
+        public Output<string> CredentialType { get; private set; } = null!;
+
+        /// <summary>
         /// The unique name of the database connection to use for
         /// the role.
         /// </summary>
@@ -198,6 +213,27 @@ namespace Pulumi.Vault.Database
             set => _creationStatements = value;
         }
 
+        [Input("credentialConfig")]
+        private InputMap<object>? _credentialConfig;
+
+        /// <summary>
+        /// Specifies the configuration
+        /// for the given `credential_type`.
+        /// </summary>
+        public InputMap<object> CredentialConfig
+        {
+            get => _credentialConfig ?? (_credentialConfig = new InputMap<object>());
+            set => _credentialConfig = value;
+        }
+
+        /// <summary>
+        /// Specifies the type of credential that
+        /// will be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.
+        /// See the plugin's API page for credential types supported by individual databases.
+        /// </summary>
+        [Input("credentialType")]
+        public Input<string>? CredentialType { get; set; }
+
         /// <summary>
         /// The unique name of the database connection to use for
         /// the role.
@@ -299,6 +335,27 @@ namespace Pulumi.Vault.Database
             get => _creationStatements ?? (_creationStatements = new InputList<string>());
             set => _creationStatements = value;
         }
+
+        [Input("credentialConfig")]
+        private InputMap<object>? _credentialConfig;
+
+        /// <summary>
+        /// Specifies the configuration
+        /// for the given `credential_type`.
+        /// </summary>
+        public InputMap<object> CredentialConfig
+        {
+            get => _credentialConfig ?? (_credentialConfig = new InputMap<object>());
+            set => _credentialConfig = value;
+        }
+
+        /// <summary>
+        /// Specifies the type of credential that
+        /// will be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.
+        /// See the plugin's API page for credential types supported by individual databases.
+        /// </summary>
+        [Input("credentialType")]
+        public Input<string>? CredentialType { get; set; }
 
         /// <summary>
         /// The unique name of the database connection to use for

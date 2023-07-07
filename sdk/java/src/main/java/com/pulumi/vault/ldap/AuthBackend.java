@@ -263,6 +263,22 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.local);
     }
     /**
+     * Sets the max page size for LDAP lookups, by default it&#39;s set to -1.
+     * *Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.
+     * 
+     */
+    @Export(name="maxPageSize", type=Integer.class, parameters={})
+    private Output</* @Nullable */ Integer> maxPageSize;
+
+    /**
+     * @return Sets the max page size for LDAP lookups, by default it&#39;s set to -1.
+     * *Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.
+     * 
+     */
+    public Output<Optional<Integer>> maxPageSize() {
+        return Codegen.optional(this.maxPageSize);
+    }
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).

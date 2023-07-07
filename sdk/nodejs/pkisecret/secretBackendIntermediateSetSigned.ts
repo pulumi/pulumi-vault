@@ -103,6 +103,15 @@ export class SecretBackendIntermediateSetSigned extends pulumi.CustomResource {
      */
     public readonly certificate!: pulumi.Output<string>;
     /**
+     * The imported issuers indicating which issuers were created as part of
+     * this request.
+     */
+    public /*out*/ readonly importedIssuers!: pulumi.Output<string[]>;
+    /**
+     * The imported keys indicating which keys were created as part of this request.
+     */
+    public /*out*/ readonly importedKeys!: pulumi.Output<string[]>;
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -125,6 +134,8 @@ export class SecretBackendIntermediateSetSigned extends pulumi.CustomResource {
             const state = argsOrState as SecretBackendIntermediateSetSignedState | undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["certificate"] = state ? state.certificate : undefined;
+            resourceInputs["importedIssuers"] = state ? state.importedIssuers : undefined;
+            resourceInputs["importedKeys"] = state ? state.importedKeys : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
         } else {
             const args = argsOrState as SecretBackendIntermediateSetSignedArgs | undefined;
@@ -137,6 +148,8 @@ export class SecretBackendIntermediateSetSigned extends pulumi.CustomResource {
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["certificate"] = args ? args.certificate : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["importedIssuers"] = undefined /*out*/;
+            resourceInputs["importedKeys"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretBackendIntermediateSetSigned.__pulumiType, name, resourceInputs, opts);
@@ -157,6 +170,15 @@ export interface SecretBackendIntermediateSetSignedState {
      * issue and sign operations.
      */
     certificate?: pulumi.Input<string>;
+    /**
+     * The imported issuers indicating which issuers were created as part of
+     * this request.
+     */
+    importedIssuers?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The imported keys indicating which keys were created as part of this request.
+     */
+    importedKeys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.

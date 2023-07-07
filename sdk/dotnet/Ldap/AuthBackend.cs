@@ -133,6 +133,13 @@ namespace Pulumi.Vault.Ldap
         public Output<bool?> Local { get; private set; } = null!;
 
         /// <summary>
+        /// Sets the max page size for LDAP lookups, by default it's set to -1.
+        /// *Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.
+        /// </summary>
+        [Output("maxPageSize")]
+        public Output<int?> MaxPageSize { get; private set; } = null!;
+
+        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -428,6 +435,13 @@ namespace Pulumi.Vault.Ldap
         public Input<bool>? Local { get; set; }
 
         /// <summary>
+        /// Sets the max page size for LDAP lookups, by default it's set to -1.
+        /// *Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.
+        /// </summary>
+        [Input("maxPageSize")]
+        public Input<int>? MaxPageSize { get; set; }
+
+        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -696,6 +710,13 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Input("local")]
         public Input<bool>? Local { get; set; }
+
+        /// <summary>
+        /// Sets the max page size for LDAP lookups, by default it's set to -1.
+        /// *Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.
+        /// </summary>
+        [Input("maxPageSize")]
+        public Input<int>? MaxPageSize { get; set; }
 
         /// <summary>
         /// The namespace to provision the resource in.

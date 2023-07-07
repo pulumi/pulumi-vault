@@ -30,6 +30,7 @@ class AuthBackendArgs:
                  groupfilter: Optional[pulumi.Input[str]] = None,
                  insecure_tls: Optional[pulumi.Input[bool]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
+                 max_page_size: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  starttls: Optional[pulumi.Input[bool]] = None,
@@ -65,6 +66,8 @@ class AuthBackendArgs:
         :param pulumi.Input[str] groupfilter: Go template used to construct group membership query
         :param pulumi.Input[bool] insecure_tls: Control whether or TLS certificates must be validated
         :param pulumi.Input[bool] local: Specifies if the auth method is local only.
+        :param pulumi.Input[int] max_page_size: Sets the max page size for LDAP lookups, by default it's set to -1.
+               *Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -137,6 +140,8 @@ class AuthBackendArgs:
             pulumi.set(__self__, "insecure_tls", insecure_tls)
         if local is not None:
             pulumi.set(__self__, "local", local)
+        if max_page_size is not None:
+            pulumi.set(__self__, "max_page_size", max_page_size)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if path is not None:
@@ -358,6 +363,19 @@ class AuthBackendArgs:
     @local.setter
     def local(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "local", value)
+
+    @property
+    @pulumi.getter(name="maxPageSize")
+    def max_page_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Sets the max page size for LDAP lookups, by default it's set to -1.
+        *Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.
+        """
+        return pulumi.get(self, "max_page_size")
+
+    @max_page_size.setter
+    def max_page_size(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_page_size", value)
 
     @property
     @pulumi.getter
@@ -639,6 +657,7 @@ class _AuthBackendState:
                  groupfilter: Optional[pulumi.Input[str]] = None,
                  insecure_tls: Optional[pulumi.Input[bool]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
+                 max_page_size: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  starttls: Optional[pulumi.Input[bool]] = None,
@@ -675,6 +694,8 @@ class _AuthBackendState:
         :param pulumi.Input[str] groupfilter: Go template used to construct group membership query
         :param pulumi.Input[bool] insecure_tls: Control whether or TLS certificates must be validated
         :param pulumi.Input[bool] local: Specifies if the auth method is local only.
+        :param pulumi.Input[int] max_page_size: Sets the max page size for LDAP lookups, by default it's set to -1.
+               *Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -749,6 +770,8 @@ class _AuthBackendState:
             pulumi.set(__self__, "insecure_tls", insecure_tls)
         if local is not None:
             pulumi.set(__self__, "local", local)
+        if max_page_size is not None:
+            pulumi.set(__self__, "max_page_size", max_page_size)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if path is not None:
@@ -972,6 +995,19 @@ class _AuthBackendState:
     @local.setter
     def local(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "local", value)
+
+    @property
+    @pulumi.getter(name="maxPageSize")
+    def max_page_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Sets the max page size for LDAP lookups, by default it's set to -1.
+        *Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.
+        """
+        return pulumi.get(self, "max_page_size")
+
+    @max_page_size.setter
+    def max_page_size(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_page_size", value)
 
     @property
     @pulumi.getter
@@ -1266,6 +1302,7 @@ class AuthBackend(pulumi.CustomResource):
                  groupfilter: Optional[pulumi.Input[str]] = None,
                  insecure_tls: Optional[pulumi.Input[bool]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
+                 max_page_size: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  starttls: Optional[pulumi.Input[bool]] = None,
@@ -1330,6 +1367,8 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] groupfilter: Go template used to construct group membership query
         :param pulumi.Input[bool] insecure_tls: Control whether or TLS certificates must be validated
         :param pulumi.Input[bool] local: Specifies if the auth method is local only.
+        :param pulumi.Input[int] max_page_size: Sets the max page size for LDAP lookups, by default it's set to -1.
+               *Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -1436,6 +1475,7 @@ class AuthBackend(pulumi.CustomResource):
                  groupfilter: Optional[pulumi.Input[str]] = None,
                  insecure_tls: Optional[pulumi.Input[bool]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
+                 max_page_size: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  starttls: Optional[pulumi.Input[bool]] = None,
@@ -1481,6 +1521,7 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["groupfilter"] = groupfilter
             __props__.__dict__["insecure_tls"] = insecure_tls
             __props__.__dict__["local"] = local
+            __props__.__dict__["max_page_size"] = max_page_size
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["path"] = path
             __props__.__dict__["starttls"] = starttls
@@ -1533,6 +1574,7 @@ class AuthBackend(pulumi.CustomResource):
             groupfilter: Optional[pulumi.Input[str]] = None,
             insecure_tls: Optional[pulumi.Input[bool]] = None,
             local: Optional[pulumi.Input[bool]] = None,
+            max_page_size: Optional[pulumi.Input[int]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
             starttls: Optional[pulumi.Input[bool]] = None,
@@ -1574,6 +1616,8 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] groupfilter: Go template used to construct group membership query
         :param pulumi.Input[bool] insecure_tls: Control whether or TLS certificates must be validated
         :param pulumi.Input[bool] local: Specifies if the auth method is local only.
+        :param pulumi.Input[int] max_page_size: Sets the max page size for LDAP lookups, by default it's set to -1.
+               *Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -1636,6 +1680,7 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["groupfilter"] = groupfilter
         __props__.__dict__["insecure_tls"] = insecure_tls
         __props__.__dict__["local"] = local
+        __props__.__dict__["max_page_size"] = max_page_size
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["path"] = path
         __props__.__dict__["starttls"] = starttls
@@ -1775,6 +1820,15 @@ class AuthBackend(pulumi.CustomResource):
         Specifies if the auth method is local only.
         """
         return pulumi.get(self, "local")
+
+    @property
+    @pulumi.getter(name="maxPageSize")
+    def max_page_size(self) -> pulumi.Output[Optional[int]]:
+        """
+        Sets the max page size for LDAP lookups, by default it's set to -1.
+        *Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.
+        """
+        return pulumi.get(self, "max_page_size")
 
     @property
     @pulumi.getter

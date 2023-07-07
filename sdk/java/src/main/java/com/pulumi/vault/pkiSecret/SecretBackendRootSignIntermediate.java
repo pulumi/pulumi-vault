@@ -221,6 +221,26 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
         return Codegen.optional(this.ipSans);
     }
     /**
+     * Specifies the default issuer of this request. May
+     * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+     * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+     * overriding the role&#39;s `issuer_ref` value.
+     * 
+     */
+    @Export(name="issuerRef", type=String.class, parameters={})
+    private Output</* @Nullable */ String> issuerRef;
+
+    /**
+     * @return Specifies the default issuer of this request. May
+     * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+     * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+     * overriding the role&#39;s `issuer_ref` value.
+     * 
+     */
+    public Output<Optional<String>> issuerRef() {
+        return Codegen.optional(this.issuerRef);
+    }
+    /**
      * The issuing CA certificate in the `format` specified.
      * 
      */

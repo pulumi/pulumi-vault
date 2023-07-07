@@ -11,6 +11,7 @@ import com.pulumi.vault.Utilities;
 import com.pulumi.vault.pkiSecret.SecretBackendIntermediateSetSignedArgs;
 import com.pulumi.vault.pkiSecret.inputs.SecretBackendIntermediateSetSignedState;
 import java.lang.String;
+import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -140,6 +141,36 @@ public class SecretBackendIntermediateSetSigned extends com.pulumi.resources.Cus
      */
     public Output<String> certificate() {
         return this.certificate;
+    }
+    /**
+     * The imported issuers indicating which issuers were created as part of
+     * this request.
+     * 
+     */
+    @Export(name="importedIssuers", type=List.class, parameters={String.class})
+    private Output<List<String>> importedIssuers;
+
+    /**
+     * @return The imported issuers indicating which issuers were created as part of
+     * this request.
+     * 
+     */
+    public Output<List<String>> importedIssuers() {
+        return this.importedIssuers;
+    }
+    /**
+     * The imported keys indicating which keys were created as part of this request.
+     * 
+     */
+    @Export(name="importedKeys", type=List.class, parameters={String.class})
+    private Output<List<String>> importedKeys;
+
+    /**
+     * @return The imported keys indicating which keys were created as part of this request.
+     * 
+     */
+    public Output<List<String>> importedKeys() {
+        return this.importedKeys;
     }
     /**
      * The namespace to provision the resource in.

@@ -109,6 +109,11 @@ type SecretBackendIntermediateSetSigned struct {
 	// CA certificates to populate the whole chain, which will then enable returning the full chain from
 	// issue and sign operations.
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
+	// The imported issuers indicating which issuers were created as part of
+	// this request.
+	ImportedIssuers pulumi.StringArrayOutput `pulumi:"importedIssuers"`
+	// The imported keys indicating which keys were created as part of this request.
+	ImportedKeys pulumi.StringArrayOutput `pulumi:"importedKeys"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -157,6 +162,11 @@ type secretBackendIntermediateSetSignedState struct {
 	// CA certificates to populate the whole chain, which will then enable returning the full chain from
 	// issue and sign operations.
 	Certificate *string `pulumi:"certificate"`
+	// The imported issuers indicating which issuers were created as part of
+	// this request.
+	ImportedIssuers []string `pulumi:"importedIssuers"`
+	// The imported keys indicating which keys were created as part of this request.
+	ImportedKeys []string `pulumi:"importedKeys"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -171,6 +181,11 @@ type SecretBackendIntermediateSetSignedState struct {
 	// CA certificates to populate the whole chain, which will then enable returning the full chain from
 	// issue and sign operations.
 	Certificate pulumi.StringPtrInput
+	// The imported issuers indicating which issuers were created as part of
+	// this request.
+	ImportedIssuers pulumi.StringArrayInput
+	// The imported keys indicating which keys were created as part of this request.
+	ImportedKeys pulumi.StringArrayInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -308,6 +323,17 @@ func (o SecretBackendIntermediateSetSignedOutput) Backend() pulumi.StringOutput 
 // issue and sign operations.
 func (o SecretBackendIntermediateSetSignedOutput) Certificate() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendIntermediateSetSigned) pulumi.StringOutput { return v.Certificate }).(pulumi.StringOutput)
+}
+
+// The imported issuers indicating which issuers were created as part of
+// this request.
+func (o SecretBackendIntermediateSetSignedOutput) ImportedIssuers() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendIntermediateSetSigned) pulumi.StringArrayOutput { return v.ImportedIssuers }).(pulumi.StringArrayOutput)
+}
+
+// The imported keys indicating which keys were created as part of this request.
+func (o SecretBackendIntermediateSetSignedOutput) ImportedKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendIntermediateSetSigned) pulumi.StringArrayOutput { return v.ImportedKeys }).(pulumi.StringArrayOutput)
 }
 
 // The namespace to provision the resource in.

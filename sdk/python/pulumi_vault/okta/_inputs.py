@@ -54,30 +54,19 @@ class AuthBackendGroupArgs:
 @pulumi.input_type
 class AuthBackendUserArgs:
     def __init__(__self__, *,
-                 groups: pulumi.Input[Sequence[pulumi.Input[str]]],
                  username: pulumi.Input[str],
+                 groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: List of Okta groups to associate with this user
         :param pulumi.Input[str] username: Name of the user within Okta
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: List of Okta groups to associate with this user
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of Vault policies to associate with this user
         """
-        pulumi.set(__self__, "groups", groups)
         pulumi.set(__self__, "username", username)
+        if groups is not None:
+            pulumi.set(__self__, "groups", groups)
         if policies is not None:
             pulumi.set(__self__, "policies", policies)
-
-    @property
-    @pulumi.getter
-    def groups(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
-        """
-        List of Okta groups to associate with this user
-        """
-        return pulumi.get(self, "groups")
-
-    @groups.setter
-    def groups(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
-        pulumi.set(self, "groups", value)
 
     @property
     @pulumi.getter
@@ -90,6 +79,18 @@ class AuthBackendUserArgs:
     @username.setter
     def username(self, value: pulumi.Input[str]):
         pulumi.set(self, "username", value)
+
+    @property
+    @pulumi.getter
+    def groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of Okta groups to associate with this user
+        """
+        return pulumi.get(self, "groups")
+
+    @groups.setter
+    def groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "groups", value)
 
     @property
     @pulumi.getter

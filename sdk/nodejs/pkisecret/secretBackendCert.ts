@@ -88,6 +88,10 @@ export class SecretBackendCert extends pulumi.CustomResource {
      */
     public readonly ipSans!: pulumi.Output<string[] | undefined>;
     /**
+     * Specifies the default issuer of this request.
+     */
+    public readonly issuerRef!: pulumi.Output<string | undefined>;
+    /**
      * The issuing CA
      */
     public /*out*/ readonly issuingCa!: pulumi.Output<string>;
@@ -166,6 +170,7 @@ export class SecretBackendCert extends pulumi.CustomResource {
             resourceInputs["expiration"] = state ? state.expiration : undefined;
             resourceInputs["format"] = state ? state.format : undefined;
             resourceInputs["ipSans"] = state ? state.ipSans : undefined;
+            resourceInputs["issuerRef"] = state ? state.issuerRef : undefined;
             resourceInputs["issuingCa"] = state ? state.issuingCa : undefined;
             resourceInputs["minSecondsRemaining"] = state ? state.minSecondsRemaining : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -194,6 +199,7 @@ export class SecretBackendCert extends pulumi.CustomResource {
             resourceInputs["excludeCnFromSans"] = args ? args.excludeCnFromSans : undefined;
             resourceInputs["format"] = args ? args.format : undefined;
             resourceInputs["ipSans"] = args ? args.ipSans : undefined;
+            resourceInputs["issuerRef"] = args ? args.issuerRef : undefined;
             resourceInputs["minSecondsRemaining"] = args ? args.minSecondsRemaining : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
@@ -262,6 +268,10 @@ export interface SecretBackendCertState {
      * List of alternative IPs
      */
     ipSans?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies the default issuer of this request.
+     */
+    issuerRef?: pulumi.Input<string>;
     /**
      * The issuing CA
      */
@@ -351,6 +361,10 @@ export interface SecretBackendCertArgs {
      * List of alternative IPs
      */
     ipSans?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies the default issuer of this request.
+     */
+    issuerRef?: pulumi.Input<string>;
     /**
      * Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
      */

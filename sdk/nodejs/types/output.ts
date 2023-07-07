@@ -2405,7 +2405,7 @@ export namespace okta {
         /**
          * List of Okta groups to associate with this user
          */
-        groups: string[];
+        groups?: string[];
         /**
          * List of Vault policies to associate with this user
          */

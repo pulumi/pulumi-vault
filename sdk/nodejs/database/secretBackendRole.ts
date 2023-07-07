@@ -78,6 +78,17 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly creationStatements!: pulumi.Output<string[]>;
     /**
+     * Specifies the configuration
+     * for the given `credentialType`.
+     */
+    public readonly credentialConfig!: pulumi.Output<{[key: string]: any} | undefined>;
+    /**
+     * Specifies the type of credential that
+     * will be generated for the role. Options include: `password`, `rsaPrivateKey`, `clientCertificate`.
+     * See the plugin's API page for credential types supported by individual databases.
+     */
+    public readonly credentialType!: pulumi.Output<string>;
+    /**
      * The unique name of the database connection to use for
      * the role.
      */
@@ -134,6 +145,8 @@ export class SecretBackendRole extends pulumi.CustomResource {
             const state = argsOrState as SecretBackendRoleState | undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["creationStatements"] = state ? state.creationStatements : undefined;
+            resourceInputs["credentialConfig"] = state ? state.credentialConfig : undefined;
+            resourceInputs["credentialType"] = state ? state.credentialType : undefined;
             resourceInputs["dbName"] = state ? state.dbName : undefined;
             resourceInputs["defaultTtl"] = state ? state.defaultTtl : undefined;
             resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
@@ -155,6 +168,8 @@ export class SecretBackendRole extends pulumi.CustomResource {
             }
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["creationStatements"] = args ? args.creationStatements : undefined;
+            resourceInputs["credentialConfig"] = args ? args.credentialConfig : undefined;
+            resourceInputs["credentialType"] = args ? args.credentialType : undefined;
             resourceInputs["dbName"] = args ? args.dbName : undefined;
             resourceInputs["defaultTtl"] = args ? args.defaultTtl : undefined;
             resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
@@ -182,6 +197,17 @@ export interface SecretBackendRoleState {
      * creating a user.
      */
     creationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies the configuration
+     * for the given `credentialType`.
+     */
+    credentialConfig?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * Specifies the type of credential that
+     * will be generated for the role. Options include: `password`, `rsaPrivateKey`, `clientCertificate`.
+     * See the plugin's API page for credential types supported by individual databases.
+     */
+    credentialType?: pulumi.Input<string>;
     /**
      * The unique name of the database connection to use for
      * the role.
@@ -238,6 +264,17 @@ export interface SecretBackendRoleArgs {
      * creating a user.
      */
     creationStatements: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies the configuration
+     * for the given `credentialType`.
+     */
+    credentialConfig?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * Specifies the type of credential that
+     * will be generated for the role. Options include: `password`, `rsaPrivateKey`, `clientCertificate`.
+     * See the plugin's API page for credential types supported by individual databases.
+     */
+    credentialType?: pulumi.Input<string>;
     /**
      * The unique name of the database connection to use for
      * the role.

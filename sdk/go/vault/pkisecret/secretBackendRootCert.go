@@ -67,10 +67,23 @@ type SecretBackendRootCert struct {
 	Format pulumi.StringPtrOutput `pulumi:"format"`
 	// List of alternative IPs
 	IpSans pulumi.StringArrayOutput `pulumi:"ipSans"`
+	// The ID of the generated issuer.
+	IssuerId pulumi.StringOutput `pulumi:"issuerId"`
+	// Provides a name to the specified issuer. The name must be unique
+	// across all issuers and not be the reserved value `default`
+	IssuerName pulumi.StringOutput `pulumi:"issuerName"`
 	// The issuing CA certificate.
 	IssuingCa pulumi.StringOutput `pulumi:"issuingCa"`
 	// The number of bits to use
 	KeyBits pulumi.IntPtrOutput `pulumi:"keyBits"`
+	// The ID of the generated key.
+	KeyId pulumi.StringOutput `pulumi:"keyId"`
+	// When a new key is created with this request, optionally specifies
+	// the name for this. The global ref `default` may not be used as a name.
+	KeyName pulumi.StringOutput `pulumi:"keyName"`
+	// Specifies the key (either default, by name, or by identifier) to use
+	// for generating this request. Only suitable for `type=existing` requests.
+	KeyRef pulumi.StringOutput `pulumi:"keyRef"`
 	// The desired key type
 	KeyType pulumi.StringPtrOutput `pulumi:"keyType"`
 	// The locality
@@ -173,10 +186,23 @@ type secretBackendRootCertState struct {
 	Format *string `pulumi:"format"`
 	// List of alternative IPs
 	IpSans []string `pulumi:"ipSans"`
+	// The ID of the generated issuer.
+	IssuerId *string `pulumi:"issuerId"`
+	// Provides a name to the specified issuer. The name must be unique
+	// across all issuers and not be the reserved value `default`
+	IssuerName *string `pulumi:"issuerName"`
 	// The issuing CA certificate.
 	IssuingCa *string `pulumi:"issuingCa"`
 	// The number of bits to use
 	KeyBits *int `pulumi:"keyBits"`
+	// The ID of the generated key.
+	KeyId *string `pulumi:"keyId"`
+	// When a new key is created with this request, optionally specifies
+	// the name for this. The global ref `default` may not be used as a name.
+	KeyName *string `pulumi:"keyName"`
+	// Specifies the key (either default, by name, or by identifier) to use
+	// for generating this request. Only suitable for `type=existing` requests.
+	KeyRef *string `pulumi:"keyRef"`
 	// The desired key type
 	KeyType *string `pulumi:"keyType"`
 	// The locality
@@ -242,10 +268,23 @@ type SecretBackendRootCertState struct {
 	Format pulumi.StringPtrInput
 	// List of alternative IPs
 	IpSans pulumi.StringArrayInput
+	// The ID of the generated issuer.
+	IssuerId pulumi.StringPtrInput
+	// Provides a name to the specified issuer. The name must be unique
+	// across all issuers and not be the reserved value `default`
+	IssuerName pulumi.StringPtrInput
 	// The issuing CA certificate.
 	IssuingCa pulumi.StringPtrInput
 	// The number of bits to use
 	KeyBits pulumi.IntPtrInput
+	// The ID of the generated key.
+	KeyId pulumi.StringPtrInput
+	// When a new key is created with this request, optionally specifies
+	// the name for this. The global ref `default` may not be used as a name.
+	KeyName pulumi.StringPtrInput
+	// Specifies the key (either default, by name, or by identifier) to use
+	// for generating this request. Only suitable for `type=existing` requests.
+	KeyRef pulumi.StringPtrInput
 	// The desired key type
 	KeyType pulumi.StringPtrInput
 	// The locality
@@ -313,8 +352,17 @@ type secretBackendRootCertArgs struct {
 	Format *string `pulumi:"format"`
 	// List of alternative IPs
 	IpSans []string `pulumi:"ipSans"`
+	// Provides a name to the specified issuer. The name must be unique
+	// across all issuers and not be the reserved value `default`
+	IssuerName *string `pulumi:"issuerName"`
 	// The number of bits to use
 	KeyBits *int `pulumi:"keyBits"`
+	// When a new key is created with this request, optionally specifies
+	// the name for this. The global ref `default` may not be used as a name.
+	KeyName *string `pulumi:"keyName"`
+	// Specifies the key (either default, by name, or by identifier) to use
+	// for generating this request. Only suitable for `type=existing` requests.
+	KeyRef *string `pulumi:"keyRef"`
 	// The desired key type
 	KeyType *string `pulumi:"keyType"`
 	// The locality
@@ -373,8 +421,17 @@ type SecretBackendRootCertArgs struct {
 	Format pulumi.StringPtrInput
 	// List of alternative IPs
 	IpSans pulumi.StringArrayInput
+	// Provides a name to the specified issuer. The name must be unique
+	// across all issuers and not be the reserved value `default`
+	IssuerName pulumi.StringPtrInput
 	// The number of bits to use
 	KeyBits pulumi.IntPtrInput
+	// When a new key is created with this request, optionally specifies
+	// the name for this. The global ref `default` may not be used as a name.
+	KeyName pulumi.StringPtrInput
+	// Specifies the key (either default, by name, or by identifier) to use
+	// for generating this request. Only suitable for `type=existing` requests.
+	KeyRef pulumi.StringPtrInput
 	// The desired key type
 	KeyType pulumi.StringPtrInput
 	// The locality
@@ -544,6 +601,17 @@ func (o SecretBackendRootCertOutput) IpSans() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringArrayOutput { return v.IpSans }).(pulumi.StringArrayOutput)
 }
 
+// The ID of the generated issuer.
+func (o SecretBackendRootCertOutput) IssuerId() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringOutput { return v.IssuerId }).(pulumi.StringOutput)
+}
+
+// Provides a name to the specified issuer. The name must be unique
+// across all issuers and not be the reserved value `default`
+func (o SecretBackendRootCertOutput) IssuerName() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringOutput { return v.IssuerName }).(pulumi.StringOutput)
+}
+
 // The issuing CA certificate.
 func (o SecretBackendRootCertOutput) IssuingCa() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringOutput { return v.IssuingCa }).(pulumi.StringOutput)
@@ -552,6 +620,23 @@ func (o SecretBackendRootCertOutput) IssuingCa() pulumi.StringOutput {
 // The number of bits to use
 func (o SecretBackendRootCertOutput) KeyBits() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.IntPtrOutput { return v.KeyBits }).(pulumi.IntPtrOutput)
+}
+
+// The ID of the generated key.
+func (o SecretBackendRootCertOutput) KeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringOutput { return v.KeyId }).(pulumi.StringOutput)
+}
+
+// When a new key is created with this request, optionally specifies
+// the name for this. The global ref `default` may not be used as a name.
+func (o SecretBackendRootCertOutput) KeyName() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringOutput { return v.KeyName }).(pulumi.StringOutput)
+}
+
+// Specifies the key (either default, by name, or by identifier) to use
+// for generating this request. Only suitable for `type=existing` requests.
+func (o SecretBackendRootCertOutput) KeyRef() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringOutput { return v.KeyRef }).(pulumi.StringOutput)
 }
 
 // The desired key type

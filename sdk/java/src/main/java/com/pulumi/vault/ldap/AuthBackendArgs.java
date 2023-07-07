@@ -214,6 +214,23 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Sets the max page size for LDAP lookups, by default it&#39;s set to -1.
+     * *Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.
+     * 
+     */
+    @Import(name="maxPageSize")
+    private @Nullable Output<Integer> maxPageSize;
+
+    /**
+     * @return Sets the max page size for LDAP lookups, by default it&#39;s set to -1.
+     * *Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.
+     * 
+     */
+    public Optional<Output<Integer>> maxPageSize() {
+        return Optional.ofNullable(this.maxPageSize);
+    }
+
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -586,6 +603,7 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
         this.groupfilter = $.groupfilter;
         this.insecureTls = $.insecureTls;
         this.local = $.local;
+        this.maxPageSize = $.maxPageSize;
         this.namespace = $.namespace;
         this.path = $.path;
         this.starttls = $.starttls;
@@ -894,6 +912,29 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder local(Boolean local) {
             return local(Output.of(local));
+        }
+
+        /**
+         * @param maxPageSize Sets the max page size for LDAP lookups, by default it&#39;s set to -1.
+         * *Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxPageSize(@Nullable Output<Integer> maxPageSize) {
+            $.maxPageSize = maxPageSize;
+            return this;
+        }
+
+        /**
+         * @param maxPageSize Sets the max page size for LDAP lookups, by default it&#39;s set to -1.
+         * *Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxPageSize(Integer maxPageSize) {
+            return maxPageSize(Output.of(maxPageSize));
         }
 
         /**

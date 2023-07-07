@@ -94,6 +94,10 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly allowSubdomains!: pulumi.Output<boolean | undefined>;
     /**
+     * Flag to allow wildcard certificates.
+     */
+    public readonly allowWildcardCertificates!: pulumi.Output<boolean | undefined>;
+    /**
      * List of allowed domains for certificates
      */
     public readonly allowedDomains!: pulumi.Output<string[] | undefined>;
@@ -113,6 +117,10 @@ export class SecretBackendRole extends pulumi.CustomResource {
      * Defines allowed URI SANs
      */
     public readonly allowedUriSans!: pulumi.Output<string[] | undefined>;
+    /**
+     * Flag, if set, `allowedUriSans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
+     */
+    public readonly allowedUriSansTemplate!: pulumi.Output<boolean>;
     /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      */
@@ -150,11 +158,18 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly generateLease!: pulumi.Output<boolean | undefined>;
     /**
+     * Specifies the default issuer of this request. May
+     * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+     * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+     * overriding the role's `issuerRef` value.
+     */
+    public readonly issuerRef!: pulumi.Output<string>;
+    /**
      * The number of bits of generated keys
      */
     public readonly keyBits!: pulumi.Output<number | undefined>;
     /**
-     * The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`  
+     * The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
      * Defaults to `rsa`
      */
     public readonly keyType!: pulumi.Output<string | undefined>;
@@ -253,11 +268,13 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["allowIpSans"] = state ? state.allowIpSans : undefined;
             resourceInputs["allowLocalhost"] = state ? state.allowLocalhost : undefined;
             resourceInputs["allowSubdomains"] = state ? state.allowSubdomains : undefined;
+            resourceInputs["allowWildcardCertificates"] = state ? state.allowWildcardCertificates : undefined;
             resourceInputs["allowedDomains"] = state ? state.allowedDomains : undefined;
             resourceInputs["allowedDomainsTemplate"] = state ? state.allowedDomainsTemplate : undefined;
             resourceInputs["allowedOtherSans"] = state ? state.allowedOtherSans : undefined;
             resourceInputs["allowedSerialNumbers"] = state ? state.allowedSerialNumbers : undefined;
             resourceInputs["allowedUriSans"] = state ? state.allowedUriSans : undefined;
+            resourceInputs["allowedUriSansTemplate"] = state ? state.allowedUriSansTemplate : undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["basicConstraintsValidForNonCa"] = state ? state.basicConstraintsValidForNonCa : undefined;
             resourceInputs["clientFlag"] = state ? state.clientFlag : undefined;
@@ -267,6 +284,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["enforceHostnames"] = state ? state.enforceHostnames : undefined;
             resourceInputs["extKeyUsages"] = state ? state.extKeyUsages : undefined;
             resourceInputs["generateLease"] = state ? state.generateLease : undefined;
+            resourceInputs["issuerRef"] = state ? state.issuerRef : undefined;
             resourceInputs["keyBits"] = state ? state.keyBits : undefined;
             resourceInputs["keyType"] = state ? state.keyType : undefined;
             resourceInputs["keyUsages"] = state ? state.keyUsages : undefined;
@@ -298,11 +316,13 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["allowIpSans"] = args ? args.allowIpSans : undefined;
             resourceInputs["allowLocalhost"] = args ? args.allowLocalhost : undefined;
             resourceInputs["allowSubdomains"] = args ? args.allowSubdomains : undefined;
+            resourceInputs["allowWildcardCertificates"] = args ? args.allowWildcardCertificates : undefined;
             resourceInputs["allowedDomains"] = args ? args.allowedDomains : undefined;
             resourceInputs["allowedDomainsTemplate"] = args ? args.allowedDomainsTemplate : undefined;
             resourceInputs["allowedOtherSans"] = args ? args.allowedOtherSans : undefined;
             resourceInputs["allowedSerialNumbers"] = args ? args.allowedSerialNumbers : undefined;
             resourceInputs["allowedUriSans"] = args ? args.allowedUriSans : undefined;
+            resourceInputs["allowedUriSansTemplate"] = args ? args.allowedUriSansTemplate : undefined;
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["basicConstraintsValidForNonCa"] = args ? args.basicConstraintsValidForNonCa : undefined;
             resourceInputs["clientFlag"] = args ? args.clientFlag : undefined;
@@ -312,6 +332,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["enforceHostnames"] = args ? args.enforceHostnames : undefined;
             resourceInputs["extKeyUsages"] = args ? args.extKeyUsages : undefined;
             resourceInputs["generateLease"] = args ? args.generateLease : undefined;
+            resourceInputs["issuerRef"] = args ? args.issuerRef : undefined;
             resourceInputs["keyBits"] = args ? args.keyBits : undefined;
             resourceInputs["keyType"] = args ? args.keyType : undefined;
             resourceInputs["keyUsages"] = args ? args.keyUsages : undefined;
@@ -367,6 +388,10 @@ export interface SecretBackendRoleState {
      */
     allowSubdomains?: pulumi.Input<boolean>;
     /**
+     * Flag to allow wildcard certificates.
+     */
+    allowWildcardCertificates?: pulumi.Input<boolean>;
+    /**
      * List of allowed domains for certificates
      */
     allowedDomains?: pulumi.Input<pulumi.Input<string>[]>;
@@ -386,6 +411,10 @@ export interface SecretBackendRoleState {
      * Defines allowed URI SANs
      */
     allowedUriSans?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Flag, if set, `allowedUriSans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
+     */
+    allowedUriSansTemplate?: pulumi.Input<boolean>;
     /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      */
@@ -423,11 +452,18 @@ export interface SecretBackendRoleState {
      */
     generateLease?: pulumi.Input<boolean>;
     /**
+     * Specifies the default issuer of this request. May
+     * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+     * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+     * overriding the role's `issuerRef` value.
+     */
+    issuerRef?: pulumi.Input<string>;
+    /**
      * The number of bits of generated keys
      */
     keyBits?: pulumi.Input<number>;
     /**
-     * The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`  
+     * The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
      * Defaults to `rsa`
      */
     keyType?: pulumi.Input<string>;
@@ -537,6 +573,10 @@ export interface SecretBackendRoleArgs {
      */
     allowSubdomains?: pulumi.Input<boolean>;
     /**
+     * Flag to allow wildcard certificates.
+     */
+    allowWildcardCertificates?: pulumi.Input<boolean>;
+    /**
      * List of allowed domains for certificates
      */
     allowedDomains?: pulumi.Input<pulumi.Input<string>[]>;
@@ -556,6 +596,10 @@ export interface SecretBackendRoleArgs {
      * Defines allowed URI SANs
      */
     allowedUriSans?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Flag, if set, `allowedUriSans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
+     */
+    allowedUriSansTemplate?: pulumi.Input<boolean>;
     /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      */
@@ -593,11 +637,18 @@ export interface SecretBackendRoleArgs {
      */
     generateLease?: pulumi.Input<boolean>;
     /**
+     * Specifies the default issuer of this request. May
+     * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+     * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+     * overriding the role's `issuerRef` value.
+     */
+    issuerRef?: pulumi.Input<string>;
+    /**
      * The number of bits of generated keys
      */
     keyBits?: pulumi.Input<number>;
     /**
-     * The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`  
+     * The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
      * Defaults to `rsa`
      */
     keyType?: pulumi.Input<string>;

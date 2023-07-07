@@ -109,6 +109,21 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * Flag to allow wildcard certificates.
+     * 
+     */
+    @Import(name="allowWildcardCertificates")
+    private @Nullable Output<Boolean> allowWildcardCertificates;
+
+    /**
+     * @return Flag to allow wildcard certificates.
+     * 
+     */
+    public Optional<Output<Boolean>> allowWildcardCertificates() {
+        return Optional.ofNullable(this.allowWildcardCertificates);
+    }
+
+    /**
      * List of allowed domains for certificates
      * 
      */
@@ -181,6 +196,21 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
      */
     public Optional<Output<List<String>>> allowedUriSans() {
         return Optional.ofNullable(this.allowedUriSans);
+    }
+
+    /**
+     * Flag, if set, `allowed_uri_sans` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
+     * 
+     */
+    @Import(name="allowedUriSansTemplate")
+    private @Nullable Output<Boolean> allowedUriSansTemplate;
+
+    /**
+     * @return Flag, if set, `allowed_uri_sans` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
+     * 
+     */
+    public Optional<Output<Boolean>> allowedUriSansTemplate() {
+        return Optional.ofNullable(this.allowedUriSansTemplate);
     }
 
     /**
@@ -319,6 +349,27 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * Specifies the default issuer of this request. May
+     * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+     * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+     * overriding the role&#39;s `issuer_ref` value.
+     * 
+     */
+    @Import(name="issuerRef")
+    private @Nullable Output<String> issuerRef;
+
+    /**
+     * @return Specifies the default issuer of this request. May
+     * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+     * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+     * overriding the role&#39;s `issuer_ref` value.
+     * 
+     */
+    public Optional<Output<String>> issuerRef() {
+        return Optional.ofNullable(this.issuerRef);
+    }
+
+    /**
      * The number of bits of generated keys
      * 
      */
@@ -334,7 +385,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`\
+     * The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
      * Defaults to `rsa`
      * 
      */
@@ -342,7 +393,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
     private @Nullable Output<String> keyType;
 
     /**
-     * @return The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`\
+     * @return The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
      * Defaults to `rsa`
      * 
      */
@@ -635,11 +686,13 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         this.allowIpSans = $.allowIpSans;
         this.allowLocalhost = $.allowLocalhost;
         this.allowSubdomains = $.allowSubdomains;
+        this.allowWildcardCertificates = $.allowWildcardCertificates;
         this.allowedDomains = $.allowedDomains;
         this.allowedDomainsTemplate = $.allowedDomainsTemplate;
         this.allowedOtherSans = $.allowedOtherSans;
         this.allowedSerialNumbers = $.allowedSerialNumbers;
         this.allowedUriSans = $.allowedUriSans;
+        this.allowedUriSansTemplate = $.allowedUriSansTemplate;
         this.backend = $.backend;
         this.basicConstraintsValidForNonCa = $.basicConstraintsValidForNonCa;
         this.clientFlag = $.clientFlag;
@@ -649,6 +702,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         this.enforceHostnames = $.enforceHostnames;
         this.extKeyUsages = $.extKeyUsages;
         this.generateLease = $.generateLease;
+        this.issuerRef = $.issuerRef;
         this.keyBits = $.keyBits;
         this.keyType = $.keyType;
         this.keyUsages = $.keyUsages;
@@ -816,6 +870,27 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
+         * @param allowWildcardCertificates Flag to allow wildcard certificates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowWildcardCertificates(@Nullable Output<Boolean> allowWildcardCertificates) {
+            $.allowWildcardCertificates = allowWildcardCertificates;
+            return this;
+        }
+
+        /**
+         * @param allowWildcardCertificates Flag to allow wildcard certificates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowWildcardCertificates(Boolean allowWildcardCertificates) {
+            return allowWildcardCertificates(Output.of(allowWildcardCertificates));
+        }
+
+        /**
          * @param allowedDomains List of allowed domains for certificates
          * 
          * @return builder
@@ -958,6 +1033,27 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder allowedUriSans(String... allowedUriSans) {
             return allowedUriSans(List.of(allowedUriSans));
+        }
+
+        /**
+         * @param allowedUriSansTemplate Flag, if set, `allowed_uri_sans` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedUriSansTemplate(@Nullable Output<Boolean> allowedUriSansTemplate) {
+            $.allowedUriSansTemplate = allowedUriSansTemplate;
+            return this;
+        }
+
+        /**
+         * @param allowedUriSansTemplate Flag, if set, `allowed_uri_sans` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedUriSansTemplate(Boolean allowedUriSansTemplate) {
+            return allowedUriSansTemplate(Output.of(allowedUriSansTemplate));
         }
 
         /**
@@ -1170,6 +1266,33 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
+         * @param issuerRef Specifies the default issuer of this request. May
+         * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+         * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+         * overriding the role&#39;s `issuer_ref` value.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder issuerRef(@Nullable Output<String> issuerRef) {
+            $.issuerRef = issuerRef;
+            return this;
+        }
+
+        /**
+         * @param issuerRef Specifies the default issuer of this request. May
+         * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+         * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+         * overriding the role&#39;s `issuer_ref` value.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder issuerRef(String issuerRef) {
+            return issuerRef(Output.of(issuerRef));
+        }
+
+        /**
          * @param keyBits The number of bits of generated keys
          * 
          * @return builder
@@ -1191,7 +1314,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param keyType The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`\
+         * @param keyType The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
          * Defaults to `rsa`
          * 
          * @return builder
@@ -1203,7 +1326,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param keyType The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`\
+         * @param keyType The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
          * Defaults to `rsa`
          * 
          * @return builder

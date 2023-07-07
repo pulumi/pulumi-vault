@@ -102,6 +102,13 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
      */
     public readonly ipSans!: pulumi.Output<string[] | undefined>;
     /**
+     * Specifies the default issuer of this request. May
+     * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+     * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+     * overriding the role's `issuerRef` value.
+     */
+    public readonly issuerRef!: pulumi.Output<string | undefined>;
+    /**
      * The issuing CA certificate in the `format` specified.
      */
     public /*out*/ readonly issuingCa!: pulumi.Output<string>;
@@ -199,6 +206,7 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
             resourceInputs["excludeCnFromSans"] = state ? state.excludeCnFromSans : undefined;
             resourceInputs["format"] = state ? state.format : undefined;
             resourceInputs["ipSans"] = state ? state.ipSans : undefined;
+            resourceInputs["issuerRef"] = state ? state.issuerRef : undefined;
             resourceInputs["issuingCa"] = state ? state.issuingCa : undefined;
             resourceInputs["locality"] = state ? state.locality : undefined;
             resourceInputs["maxPathLength"] = state ? state.maxPathLength : undefined;
@@ -235,6 +243,7 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
             resourceInputs["excludeCnFromSans"] = args ? args.excludeCnFromSans : undefined;
             resourceInputs["format"] = args ? args.format : undefined;
             resourceInputs["ipSans"] = args ? args.ipSans : undefined;
+            resourceInputs["issuerRef"] = args ? args.issuerRef : undefined;
             resourceInputs["locality"] = args ? args.locality : undefined;
             resourceInputs["maxPathLength"] = args ? args.maxPathLength : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
@@ -310,6 +319,13 @@ export interface SecretBackendRootSignIntermediateState {
      * List of alternative IPs
      */
     ipSans?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies the default issuer of this request. May
+     * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+     * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+     * overriding the role's `issuerRef` value.
+     */
+    issuerRef?: pulumi.Input<string>;
     /**
      * The issuing CA certificate in the `format` specified.
      */
@@ -421,6 +437,13 @@ export interface SecretBackendRootSignIntermediateArgs {
      * List of alternative IPs
      */
     ipSans?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies the default issuer of this request. May
+     * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+     * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+     * overriding the role's `issuerRef` value.
+     */
+    issuerRef?: pulumi.Input<string>;
     /**
      * The locality
      */

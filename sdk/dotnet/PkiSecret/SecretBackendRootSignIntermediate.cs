@@ -114,6 +114,15 @@ namespace Pulumi.Vault.PkiSecret
         public Output<ImmutableArray<string>> IpSans { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies the default issuer of this request. May
+        /// be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+        /// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+        /// overriding the role's `issuer_ref` value.
+        /// </summary>
+        [Output("issuerRef")]
+        public Output<string?> IssuerRef { get; private set; } = null!;
+
+        /// <summary>
         /// The issuing CA certificate in the `format` specified.
         /// </summary>
         [Output("issuingCa")]
@@ -325,6 +334,15 @@ namespace Pulumi.Vault.PkiSecret
         }
 
         /// <summary>
+        /// Specifies the default issuer of this request. May
+        /// be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+        /// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+        /// overriding the role's `issuer_ref` value.
+        /// </summary>
+        [Input("issuerRef")]
+        public Input<string>? IssuerRef { get; set; }
+
+        /// <summary>
         /// The locality
         /// </summary>
         [Input("locality")]
@@ -521,6 +539,15 @@ namespace Pulumi.Vault.PkiSecret
             get => _ipSans ?? (_ipSans = new InputList<string>());
             set => _ipSans = value;
         }
+
+        /// <summary>
+        /// Specifies the default issuer of this request. May
+        /// be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+        /// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+        /// overriding the role's `issuer_ref` value.
+        /// </summary>
+        [Input("issuerRef")]
+        public Input<string>? IssuerRef { get; set; }
 
         /// <summary>
         /// The issuing CA certificate in the `format` specified.

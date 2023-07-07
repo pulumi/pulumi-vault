@@ -173,6 +173,55 @@ public final class SecretBackendIntermediateCertRequestState extends com.pulumi.
     }
 
     /**
+     * The ID of the generated key.
+     * 
+     */
+    @Import(name="keyId")
+    private @Nullable Output<String> keyId;
+
+    /**
+     * @return The ID of the generated key.
+     * 
+     */
+    public Optional<Output<String>> keyId() {
+        return Optional.ofNullable(this.keyId);
+    }
+
+    /**
+     * When a new key is created with this request, optionally specifies
+     * the name for this. The global ref `default` may not be used as a name.
+     * 
+     */
+    @Import(name="keyName")
+    private @Nullable Output<String> keyName;
+
+    /**
+     * @return When a new key is created with this request, optionally specifies
+     * the name for this. The global ref `default` may not be used as a name.
+     * 
+     */
+    public Optional<Output<String>> keyName() {
+        return Optional.ofNullable(this.keyName);
+    }
+
+    /**
+     * Specifies the key (either default, by name, or by identifier) to use
+     * for generating this request. Only suitable for `type=existing` requests.
+     * 
+     */
+    @Import(name="keyRef")
+    private @Nullable Output<String> keyRef;
+
+    /**
+     * @return Specifies the key (either default, by name, or by identifier) to use
+     * for generating this request. Only suitable for `type=existing` requests.
+     * 
+     */
+    public Optional<Output<String>> keyRef() {
+        return Optional.ofNullable(this.keyRef);
+    }
+
+    /**
      * The desired key type
      * 
      */
@@ -437,6 +486,9 @@ public final class SecretBackendIntermediateCertRequestState extends com.pulumi.
         this.format = $.format;
         this.ipSans = $.ipSans;
         this.keyBits = $.keyBits;
+        this.keyId = $.keyId;
+        this.keyName = $.keyName;
+        this.keyRef = $.keyRef;
         this.keyType = $.keyType;
         this.locality = $.locality;
         this.managedKeyId = $.managedKeyId;
@@ -705,6 +757,73 @@ public final class SecretBackendIntermediateCertRequestState extends com.pulumi.
          */
         public Builder keyBits(Integer keyBits) {
             return keyBits(Output.of(keyBits));
+        }
+
+        /**
+         * @param keyId The ID of the generated key.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyId(@Nullable Output<String> keyId) {
+            $.keyId = keyId;
+            return this;
+        }
+
+        /**
+         * @param keyId The ID of the generated key.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyId(String keyId) {
+            return keyId(Output.of(keyId));
+        }
+
+        /**
+         * @param keyName When a new key is created with this request, optionally specifies
+         * the name for this. The global ref `default` may not be used as a name.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyName(@Nullable Output<String> keyName) {
+            $.keyName = keyName;
+            return this;
+        }
+
+        /**
+         * @param keyName When a new key is created with this request, optionally specifies
+         * the name for this. The global ref `default` may not be used as a name.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyName(String keyName) {
+            return keyName(Output.of(keyName));
+        }
+
+        /**
+         * @param keyRef Specifies the key (either default, by name, or by identifier) to use
+         * for generating this request. Only suitable for `type=existing` requests.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyRef(@Nullable Output<String> keyRef) {
+            $.keyRef = keyRef;
+            return this;
+        }
+
+        /**
+         * @param keyRef Specifies the key (either default, by name, or by identifier) to use
+         * for generating this request. Only suitable for `type=existing` requests.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyRef(String keyRef) {
+            return keyRef(Output.of(keyRef));
         }
 
         /**

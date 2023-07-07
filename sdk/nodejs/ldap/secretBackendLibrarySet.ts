@@ -5,12 +5,38 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const config = new vault.ldap.SecretBackend("config", {
+ *     path: "ldap",
+ *     binddn: "CN=Administrator,CN=Users,DC=corp,DC=example,DC=net",
+ *     bindpass: "SuperSecretPassw0rd",
+ *     url: "ldaps://localhost",
+ *     insecureTls: true,
+ *     userdn: "CN=Users,DC=corp,DC=example,DC=net",
+ * });
+ * const qa = new vault.ldap.SecretBackendLibrarySet("qa", {
+ *     mount: config.path,
+ *     serviceAccountNames: [
+ *         "Bob",
+ *         "Mary",
+ *     ],
+ *     ttl: 60,
+ *     disableCheckInEnforcement: true,
+ *     maxTtl: 120,
+ * });
+ * ```
+ *
  * ## Import
  *
  * LDAP secret backend libraries can be imported using the `path`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet set ldap/library/bob
+ *  $ pulumi import vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet qa ldap/library/bob
  * ```
  */
 export class SecretBackendLibrarySet extends pulumi.CustomResource {

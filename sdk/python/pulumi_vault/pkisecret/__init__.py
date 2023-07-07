@@ -11,6 +11,8 @@ from .secret_backend_config_urls import *
 from .secret_backend_crl_config import *
 from .secret_backend_intermediate_cert_request import *
 from .secret_backend_intermediate_set_signed import *
+from .secret_backend_issuer import *
+from .secret_backend_key import *
 from .secret_backend_role import *
 from .secret_backend_root_cert import *
 from .secret_backend_root_sign_intermediate import *

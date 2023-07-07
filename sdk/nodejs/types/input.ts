@@ -2411,7 +2411,7 @@ export namespace okta {
         /**
          * List of Okta groups to associate with this user
          */
-        groups: pulumi.Input<pulumi.Input<string>[]>;
+        groups?: pulumi.Input<pulumi.Input<string>[]>;
         /**
          * List of Vault policies to associate with this user
          */

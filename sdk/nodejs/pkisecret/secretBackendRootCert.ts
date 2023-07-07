@@ -89,6 +89,15 @@ export class SecretBackendRootCert extends pulumi.CustomResource {
      */
     public readonly ipSans!: pulumi.Output<string[] | undefined>;
     /**
+     * The ID of the generated issuer.
+     */
+    public /*out*/ readonly issuerId!: pulumi.Output<string>;
+    /**
+     * Provides a name to the specified issuer. The name must be unique
+     * across all issuers and not be the reserved value `default`
+     */
+    public readonly issuerName!: pulumi.Output<string>;
+    /**
      * The issuing CA certificate.
      */
     public /*out*/ readonly issuingCa!: pulumi.Output<string>;
@@ -96,6 +105,20 @@ export class SecretBackendRootCert extends pulumi.CustomResource {
      * The number of bits to use
      */
     public readonly keyBits!: pulumi.Output<number | undefined>;
+    /**
+     * The ID of the generated key.
+     */
+    public /*out*/ readonly keyId!: pulumi.Output<string>;
+    /**
+     * When a new key is created with this request, optionally specifies
+     * the name for this. The global ref `default` may not be used as a name.
+     */
+    public readonly keyName!: pulumi.Output<string>;
+    /**
+     * Specifies the key (either default, by name, or by identifier) to use
+     * for generating this request. Only suitable for `type=existing` requests.
+     */
+    public readonly keyRef!: pulumi.Output<string>;
     /**
      * The desired key type
      */
@@ -202,8 +225,13 @@ export class SecretBackendRootCert extends pulumi.CustomResource {
             resourceInputs["excludeCnFromSans"] = state ? state.excludeCnFromSans : undefined;
             resourceInputs["format"] = state ? state.format : undefined;
             resourceInputs["ipSans"] = state ? state.ipSans : undefined;
+            resourceInputs["issuerId"] = state ? state.issuerId : undefined;
+            resourceInputs["issuerName"] = state ? state.issuerName : undefined;
             resourceInputs["issuingCa"] = state ? state.issuingCa : undefined;
             resourceInputs["keyBits"] = state ? state.keyBits : undefined;
+            resourceInputs["keyId"] = state ? state.keyId : undefined;
+            resourceInputs["keyName"] = state ? state.keyName : undefined;
+            resourceInputs["keyRef"] = state ? state.keyRef : undefined;
             resourceInputs["keyType"] = state ? state.keyType : undefined;
             resourceInputs["locality"] = state ? state.locality : undefined;
             resourceInputs["managedKeyId"] = state ? state.managedKeyId : undefined;
@@ -241,7 +269,10 @@ export class SecretBackendRootCert extends pulumi.CustomResource {
             resourceInputs["excludeCnFromSans"] = args ? args.excludeCnFromSans : undefined;
             resourceInputs["format"] = args ? args.format : undefined;
             resourceInputs["ipSans"] = args ? args.ipSans : undefined;
+            resourceInputs["issuerName"] = args ? args.issuerName : undefined;
             resourceInputs["keyBits"] = args ? args.keyBits : undefined;
+            resourceInputs["keyName"] = args ? args.keyName : undefined;
+            resourceInputs["keyRef"] = args ? args.keyRef : undefined;
             resourceInputs["keyType"] = args ? args.keyType : undefined;
             resourceInputs["locality"] = args ? args.locality : undefined;
             resourceInputs["managedKeyId"] = args ? args.managedKeyId : undefined;
@@ -260,7 +291,9 @@ export class SecretBackendRootCert extends pulumi.CustomResource {
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["uriSans"] = args ? args.uriSans : undefined;
             resourceInputs["certificate"] = undefined /*out*/;
+            resourceInputs["issuerId"] = undefined /*out*/;
             resourceInputs["issuingCa"] = undefined /*out*/;
+            resourceInputs["keyId"] = undefined /*out*/;
             resourceInputs["serial"] = undefined /*out*/;
             resourceInputs["serialNumber"] = undefined /*out*/;
         }
@@ -306,6 +339,15 @@ export interface SecretBackendRootCertState {
      */
     ipSans?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * The ID of the generated issuer.
+     */
+    issuerId?: pulumi.Input<string>;
+    /**
+     * Provides a name to the specified issuer. The name must be unique
+     * across all issuers and not be the reserved value `default`
+     */
+    issuerName?: pulumi.Input<string>;
+    /**
      * The issuing CA certificate.
      */
     issuingCa?: pulumi.Input<string>;
@@ -313,6 +355,20 @@ export interface SecretBackendRootCertState {
      * The number of bits to use
      */
     keyBits?: pulumi.Input<number>;
+    /**
+     * The ID of the generated key.
+     */
+    keyId?: pulumi.Input<string>;
+    /**
+     * When a new key is created with this request, optionally specifies
+     * the name for this. The global ref `default` may not be used as a name.
+     */
+    keyName?: pulumi.Input<string>;
+    /**
+     * Specifies the key (either default, by name, or by identifier) to use
+     * for generating this request. Only suitable for `type=existing` requests.
+     */
+    keyRef?: pulumi.Input<string>;
     /**
      * The desired key type
      */
@@ -432,9 +488,24 @@ export interface SecretBackendRootCertArgs {
      */
     ipSans?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * Provides a name to the specified issuer. The name must be unique
+     * across all issuers and not be the reserved value `default`
+     */
+    issuerName?: pulumi.Input<string>;
+    /**
      * The number of bits to use
      */
     keyBits?: pulumi.Input<number>;
+    /**
+     * When a new key is created with this request, optionally specifies
+     * the name for this. The global ref `default` may not be used as a name.
+     */
+    keyName?: pulumi.Input<string>;
+    /**
+     * Specifies the key (either default, by name, or by identifier) to use
+     * for generating this request. Only suitable for `type=existing` requests.
+     */
+    keyRef?: pulumi.Input<string>;
     /**
      * The desired key type
      */

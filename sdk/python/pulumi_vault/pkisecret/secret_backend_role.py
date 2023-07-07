@@ -21,11 +21,13 @@ class SecretBackendRoleArgs:
                  allow_ip_sans: Optional[pulumi.Input[bool]] = None,
                  allow_localhost: Optional[pulumi.Input[bool]] = None,
                  allow_subdomains: Optional[pulumi.Input[bool]] = None,
+                 allow_wildcard_certificates: Optional[pulumi.Input[bool]] = None,
                  allowed_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_domains_template: Optional[pulumi.Input[bool]] = None,
                  allowed_other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_serial_numbers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allowed_uri_sans_template: Optional[pulumi.Input[bool]] = None,
                  basic_constraints_valid_for_non_ca: Optional[pulumi.Input[bool]] = None,
                  client_flag: Optional[pulumi.Input[bool]] = None,
                  code_signing_flag: Optional[pulumi.Input[bool]] = None,
@@ -34,6 +36,7 @@ class SecretBackendRoleArgs:
                  enforce_hostnames: Optional[pulumi.Input[bool]] = None,
                  ext_key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  generate_lease: Optional[pulumi.Input[bool]] = None,
+                 issuer_ref: Optional[pulumi.Input[str]] = None,
                  key_bits: Optional[pulumi.Input[int]] = None,
                  key_type: Optional[pulumi.Input[str]] = None,
                  key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -63,11 +66,13 @@ class SecretBackendRoleArgs:
         :param pulumi.Input[bool] allow_ip_sans: Flag to allow IP SANs
         :param pulumi.Input[bool] allow_localhost: Flag to allow certificates for localhost
         :param pulumi.Input[bool] allow_subdomains: Flag to allow certificates matching subdomains
+        :param pulumi.Input[bool] allow_wildcard_certificates: Flag to allow wildcard certificates.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_domains: List of allowed domains for certificates
         :param pulumi.Input[bool] allowed_domains_template: Flag, if set, `allowed_domains` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_other_sans: Defines allowed custom SANs
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_serial_numbers: An array of allowed serial numbers to put in Subject
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_uri_sans: Defines allowed URI SANs
+        :param pulumi.Input[bool] allowed_uri_sans_template: Flag, if set, `allowed_uri_sans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
         :param pulumi.Input[bool] basic_constraints_valid_for_non_ca: Flag to mark basic constraints valid when issuing non-CA certificates
         :param pulumi.Input[bool] client_flag: Flag to specify certificates for client use
         :param pulumi.Input[bool] code_signing_flag: Flag to specify certificates for code signing use
@@ -76,8 +81,12 @@ class SecretBackendRoleArgs:
         :param pulumi.Input[bool] enforce_hostnames: Flag to allow only valid host names
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ext_key_usages: Specify the allowed extended key usage constraint on issued certificates
         :param pulumi.Input[bool] generate_lease: Flag to generate leases with certificates
+        :param pulumi.Input[str] issuer_ref: Specifies the default issuer of this request. May
+               be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+               the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+               overriding the role's `issuer_ref` value.
         :param pulumi.Input[int] key_bits: The number of bits of generated keys
-        :param pulumi.Input[str] key_type: The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`  
+        :param pulumi.Input[str] key_type: The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
                Defaults to `rsa`
         :param pulumi.Input[Sequence[pulumi.Input[str]]] key_usages: Specify the allowed key usage constraint on issued certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] localities: The locality of generated certificates
@@ -114,6 +123,8 @@ class SecretBackendRoleArgs:
             pulumi.set(__self__, "allow_localhost", allow_localhost)
         if allow_subdomains is not None:
             pulumi.set(__self__, "allow_subdomains", allow_subdomains)
+        if allow_wildcard_certificates is not None:
+            pulumi.set(__self__, "allow_wildcard_certificates", allow_wildcard_certificates)
         if allowed_domains is not None:
             pulumi.set(__self__, "allowed_domains", allowed_domains)
         if allowed_domains_template is not None:
@@ -124,6 +135,8 @@ class SecretBackendRoleArgs:
             pulumi.set(__self__, "allowed_serial_numbers", allowed_serial_numbers)
         if allowed_uri_sans is not None:
             pulumi.set(__self__, "allowed_uri_sans", allowed_uri_sans)
+        if allowed_uri_sans_template is not None:
+            pulumi.set(__self__, "allowed_uri_sans_template", allowed_uri_sans_template)
         if basic_constraints_valid_for_non_ca is not None:
             pulumi.set(__self__, "basic_constraints_valid_for_non_ca", basic_constraints_valid_for_non_ca)
         if client_flag is not None:
@@ -140,6 +153,8 @@ class SecretBackendRoleArgs:
             pulumi.set(__self__, "ext_key_usages", ext_key_usages)
         if generate_lease is not None:
             pulumi.set(__self__, "generate_lease", generate_lease)
+        if issuer_ref is not None:
+            pulumi.set(__self__, "issuer_ref", issuer_ref)
         if key_bits is not None:
             pulumi.set(__self__, "key_bits", key_bits)
         if key_type is not None:
@@ -266,6 +281,18 @@ class SecretBackendRoleArgs:
         pulumi.set(self, "allow_subdomains", value)
 
     @property
+    @pulumi.getter(name="allowWildcardCertificates")
+    def allow_wildcard_certificates(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag to allow wildcard certificates.
+        """
+        return pulumi.get(self, "allow_wildcard_certificates")
+
+    @allow_wildcard_certificates.setter
+    def allow_wildcard_certificates(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "allow_wildcard_certificates", value)
+
+    @property
     @pulumi.getter(name="allowedDomains")
     def allowed_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -324,6 +351,18 @@ class SecretBackendRoleArgs:
     @allowed_uri_sans.setter
     def allowed_uri_sans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allowed_uri_sans", value)
+
+    @property
+    @pulumi.getter(name="allowedUriSansTemplate")
+    def allowed_uri_sans_template(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag, if set, `allowed_uri_sans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
+        """
+        return pulumi.get(self, "allowed_uri_sans_template")
+
+    @allowed_uri_sans_template.setter
+    def allowed_uri_sans_template(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "allowed_uri_sans_template", value)
 
     @property
     @pulumi.getter(name="basicConstraintsValidForNonCa")
@@ -422,6 +461,21 @@ class SecretBackendRoleArgs:
         pulumi.set(self, "generate_lease", value)
 
     @property
+    @pulumi.getter(name="issuerRef")
+    def issuer_ref(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the default issuer of this request. May
+        be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+        the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+        overriding the role's `issuer_ref` value.
+        """
+        return pulumi.get(self, "issuer_ref")
+
+    @issuer_ref.setter
+    def issuer_ref(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "issuer_ref", value)
+
+    @property
     @pulumi.getter(name="keyBits")
     def key_bits(self) -> Optional[pulumi.Input[int]]:
         """
@@ -437,7 +491,7 @@ class SecretBackendRoleArgs:
     @pulumi.getter(name="keyType")
     def key_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`  
+        The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
         Defaults to `rsa`
         """
         return pulumi.get(self, "key_type")
@@ -675,11 +729,13 @@ class _SecretBackendRoleState:
                  allow_ip_sans: Optional[pulumi.Input[bool]] = None,
                  allow_localhost: Optional[pulumi.Input[bool]] = None,
                  allow_subdomains: Optional[pulumi.Input[bool]] = None,
+                 allow_wildcard_certificates: Optional[pulumi.Input[bool]] = None,
                  allowed_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_domains_template: Optional[pulumi.Input[bool]] = None,
                  allowed_other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_serial_numbers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allowed_uri_sans_template: Optional[pulumi.Input[bool]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  basic_constraints_valid_for_non_ca: Optional[pulumi.Input[bool]] = None,
                  client_flag: Optional[pulumi.Input[bool]] = None,
@@ -689,6 +745,7 @@ class _SecretBackendRoleState:
                  enforce_hostnames: Optional[pulumi.Input[bool]] = None,
                  ext_key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  generate_lease: Optional[pulumi.Input[bool]] = None,
+                 issuer_ref: Optional[pulumi.Input[str]] = None,
                  key_bits: Optional[pulumi.Input[int]] = None,
                  key_type: Optional[pulumi.Input[str]] = None,
                  key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -717,11 +774,13 @@ class _SecretBackendRoleState:
         :param pulumi.Input[bool] allow_ip_sans: Flag to allow IP SANs
         :param pulumi.Input[bool] allow_localhost: Flag to allow certificates for localhost
         :param pulumi.Input[bool] allow_subdomains: Flag to allow certificates matching subdomains
+        :param pulumi.Input[bool] allow_wildcard_certificates: Flag to allow wildcard certificates.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_domains: List of allowed domains for certificates
         :param pulumi.Input[bool] allowed_domains_template: Flag, if set, `allowed_domains` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_other_sans: Defines allowed custom SANs
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_serial_numbers: An array of allowed serial numbers to put in Subject
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_uri_sans: Defines allowed URI SANs
+        :param pulumi.Input[bool] allowed_uri_sans_template: Flag, if set, `allowed_uri_sans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] basic_constraints_valid_for_non_ca: Flag to mark basic constraints valid when issuing non-CA certificates
         :param pulumi.Input[bool] client_flag: Flag to specify certificates for client use
@@ -731,8 +790,12 @@ class _SecretBackendRoleState:
         :param pulumi.Input[bool] enforce_hostnames: Flag to allow only valid host names
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ext_key_usages: Specify the allowed extended key usage constraint on issued certificates
         :param pulumi.Input[bool] generate_lease: Flag to generate leases with certificates
+        :param pulumi.Input[str] issuer_ref: Specifies the default issuer of this request. May
+               be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+               the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+               overriding the role's `issuer_ref` value.
         :param pulumi.Input[int] key_bits: The number of bits of generated keys
-        :param pulumi.Input[str] key_type: The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`  
+        :param pulumi.Input[str] key_type: The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
                Defaults to `rsa`
         :param pulumi.Input[Sequence[pulumi.Input[str]]] key_usages: Specify the allowed key usage constraint on issued certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] localities: The locality of generated certificates
@@ -768,6 +831,8 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "allow_localhost", allow_localhost)
         if allow_subdomains is not None:
             pulumi.set(__self__, "allow_subdomains", allow_subdomains)
+        if allow_wildcard_certificates is not None:
+            pulumi.set(__self__, "allow_wildcard_certificates", allow_wildcard_certificates)
         if allowed_domains is not None:
             pulumi.set(__self__, "allowed_domains", allowed_domains)
         if allowed_domains_template is not None:
@@ -778,6 +843,8 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "allowed_serial_numbers", allowed_serial_numbers)
         if allowed_uri_sans is not None:
             pulumi.set(__self__, "allowed_uri_sans", allowed_uri_sans)
+        if allowed_uri_sans_template is not None:
+            pulumi.set(__self__, "allowed_uri_sans_template", allowed_uri_sans_template)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
         if basic_constraints_valid_for_non_ca is not None:
@@ -796,6 +863,8 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "ext_key_usages", ext_key_usages)
         if generate_lease is not None:
             pulumi.set(__self__, "generate_lease", generate_lease)
+        if issuer_ref is not None:
+            pulumi.set(__self__, "issuer_ref", issuer_ref)
         if key_bits is not None:
             pulumi.set(__self__, "key_bits", key_bits)
         if key_type is not None:
@@ -910,6 +979,18 @@ class _SecretBackendRoleState:
         pulumi.set(self, "allow_subdomains", value)
 
     @property
+    @pulumi.getter(name="allowWildcardCertificates")
+    def allow_wildcard_certificates(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag to allow wildcard certificates.
+        """
+        return pulumi.get(self, "allow_wildcard_certificates")
+
+    @allow_wildcard_certificates.setter
+    def allow_wildcard_certificates(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "allow_wildcard_certificates", value)
+
+    @property
     @pulumi.getter(name="allowedDomains")
     def allowed_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -968,6 +1049,18 @@ class _SecretBackendRoleState:
     @allowed_uri_sans.setter
     def allowed_uri_sans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allowed_uri_sans", value)
+
+    @property
+    @pulumi.getter(name="allowedUriSansTemplate")
+    def allowed_uri_sans_template(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag, if set, `allowed_uri_sans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
+        """
+        return pulumi.get(self, "allowed_uri_sans_template")
+
+    @allowed_uri_sans_template.setter
+    def allowed_uri_sans_template(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "allowed_uri_sans_template", value)
 
     @property
     @pulumi.getter
@@ -1078,6 +1171,21 @@ class _SecretBackendRoleState:
         pulumi.set(self, "generate_lease", value)
 
     @property
+    @pulumi.getter(name="issuerRef")
+    def issuer_ref(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the default issuer of this request. May
+        be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+        the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+        overriding the role's `issuer_ref` value.
+        """
+        return pulumi.get(self, "issuer_ref")
+
+    @issuer_ref.setter
+    def issuer_ref(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "issuer_ref", value)
+
+    @property
     @pulumi.getter(name="keyBits")
     def key_bits(self) -> Optional[pulumi.Input[int]]:
         """
@@ -1093,7 +1201,7 @@ class _SecretBackendRoleState:
     @pulumi.getter(name="keyType")
     def key_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`  
+        The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
         Defaults to `rsa`
         """
         return pulumi.get(self, "key_type")
@@ -1333,11 +1441,13 @@ class SecretBackendRole(pulumi.CustomResource):
                  allow_ip_sans: Optional[pulumi.Input[bool]] = None,
                  allow_localhost: Optional[pulumi.Input[bool]] = None,
                  allow_subdomains: Optional[pulumi.Input[bool]] = None,
+                 allow_wildcard_certificates: Optional[pulumi.Input[bool]] = None,
                  allowed_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_domains_template: Optional[pulumi.Input[bool]] = None,
                  allowed_other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_serial_numbers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allowed_uri_sans_template: Optional[pulumi.Input[bool]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  basic_constraints_valid_for_non_ca: Optional[pulumi.Input[bool]] = None,
                  client_flag: Optional[pulumi.Input[bool]] = None,
@@ -1347,6 +1457,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  enforce_hostnames: Optional[pulumi.Input[bool]] = None,
                  ext_key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  generate_lease: Optional[pulumi.Input[bool]] = None,
+                 issuer_ref: Optional[pulumi.Input[str]] = None,
                  key_bits: Optional[pulumi.Input[int]] = None,
                  key_type: Optional[pulumi.Input[str]] = None,
                  key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -1411,11 +1522,13 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[bool] allow_ip_sans: Flag to allow IP SANs
         :param pulumi.Input[bool] allow_localhost: Flag to allow certificates for localhost
         :param pulumi.Input[bool] allow_subdomains: Flag to allow certificates matching subdomains
+        :param pulumi.Input[bool] allow_wildcard_certificates: Flag to allow wildcard certificates.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_domains: List of allowed domains for certificates
         :param pulumi.Input[bool] allowed_domains_template: Flag, if set, `allowed_domains` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_other_sans: Defines allowed custom SANs
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_serial_numbers: An array of allowed serial numbers to put in Subject
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_uri_sans: Defines allowed URI SANs
+        :param pulumi.Input[bool] allowed_uri_sans_template: Flag, if set, `allowed_uri_sans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] basic_constraints_valid_for_non_ca: Flag to mark basic constraints valid when issuing non-CA certificates
         :param pulumi.Input[bool] client_flag: Flag to specify certificates for client use
@@ -1425,8 +1538,12 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[bool] enforce_hostnames: Flag to allow only valid host names
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ext_key_usages: Specify the allowed extended key usage constraint on issued certificates
         :param pulumi.Input[bool] generate_lease: Flag to generate leases with certificates
+        :param pulumi.Input[str] issuer_ref: Specifies the default issuer of this request. May
+               be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+               the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+               overriding the role's `issuer_ref` value.
         :param pulumi.Input[int] key_bits: The number of bits of generated keys
-        :param pulumi.Input[str] key_type: The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`  
+        :param pulumi.Input[str] key_type: The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
                Defaults to `rsa`
         :param pulumi.Input[Sequence[pulumi.Input[str]]] key_usages: Specify the allowed key usage constraint on issued certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] localities: The locality of generated certificates
@@ -1512,11 +1629,13 @@ class SecretBackendRole(pulumi.CustomResource):
                  allow_ip_sans: Optional[pulumi.Input[bool]] = None,
                  allow_localhost: Optional[pulumi.Input[bool]] = None,
                  allow_subdomains: Optional[pulumi.Input[bool]] = None,
+                 allow_wildcard_certificates: Optional[pulumi.Input[bool]] = None,
                  allowed_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_domains_template: Optional[pulumi.Input[bool]] = None,
                  allowed_other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_serial_numbers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allowed_uri_sans_template: Optional[pulumi.Input[bool]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  basic_constraints_valid_for_non_ca: Optional[pulumi.Input[bool]] = None,
                  client_flag: Optional[pulumi.Input[bool]] = None,
@@ -1526,6 +1645,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  enforce_hostnames: Optional[pulumi.Input[bool]] = None,
                  ext_key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  generate_lease: Optional[pulumi.Input[bool]] = None,
+                 issuer_ref: Optional[pulumi.Input[str]] = None,
                  key_bits: Optional[pulumi.Input[int]] = None,
                  key_type: Optional[pulumi.Input[str]] = None,
                  key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -1561,11 +1681,13 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__.__dict__["allow_ip_sans"] = allow_ip_sans
             __props__.__dict__["allow_localhost"] = allow_localhost
             __props__.__dict__["allow_subdomains"] = allow_subdomains
+            __props__.__dict__["allow_wildcard_certificates"] = allow_wildcard_certificates
             __props__.__dict__["allowed_domains"] = allowed_domains
             __props__.__dict__["allowed_domains_template"] = allowed_domains_template
             __props__.__dict__["allowed_other_sans"] = allowed_other_sans
             __props__.__dict__["allowed_serial_numbers"] = allowed_serial_numbers
             __props__.__dict__["allowed_uri_sans"] = allowed_uri_sans
+            __props__.__dict__["allowed_uri_sans_template"] = allowed_uri_sans_template
             if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
             __props__.__dict__["backend"] = backend
@@ -1577,6 +1699,7 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__.__dict__["enforce_hostnames"] = enforce_hostnames
             __props__.__dict__["ext_key_usages"] = ext_key_usages
             __props__.__dict__["generate_lease"] = generate_lease
+            __props__.__dict__["issuer_ref"] = issuer_ref
             __props__.__dict__["key_bits"] = key_bits
             __props__.__dict__["key_type"] = key_type
             __props__.__dict__["key_usages"] = key_usages
@@ -1613,11 +1736,13 @@ class SecretBackendRole(pulumi.CustomResource):
             allow_ip_sans: Optional[pulumi.Input[bool]] = None,
             allow_localhost: Optional[pulumi.Input[bool]] = None,
             allow_subdomains: Optional[pulumi.Input[bool]] = None,
+            allow_wildcard_certificates: Optional[pulumi.Input[bool]] = None,
             allowed_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             allowed_domains_template: Optional[pulumi.Input[bool]] = None,
             allowed_other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             allowed_serial_numbers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            allowed_uri_sans_template: Optional[pulumi.Input[bool]] = None,
             backend: Optional[pulumi.Input[str]] = None,
             basic_constraints_valid_for_non_ca: Optional[pulumi.Input[bool]] = None,
             client_flag: Optional[pulumi.Input[bool]] = None,
@@ -1627,6 +1752,7 @@ class SecretBackendRole(pulumi.CustomResource):
             enforce_hostnames: Optional[pulumi.Input[bool]] = None,
             ext_key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             generate_lease: Optional[pulumi.Input[bool]] = None,
+            issuer_ref: Optional[pulumi.Input[str]] = None,
             key_bits: Optional[pulumi.Input[int]] = None,
             key_type: Optional[pulumi.Input[str]] = None,
             key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -1660,11 +1786,13 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[bool] allow_ip_sans: Flag to allow IP SANs
         :param pulumi.Input[bool] allow_localhost: Flag to allow certificates for localhost
         :param pulumi.Input[bool] allow_subdomains: Flag to allow certificates matching subdomains
+        :param pulumi.Input[bool] allow_wildcard_certificates: Flag to allow wildcard certificates.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_domains: List of allowed domains for certificates
         :param pulumi.Input[bool] allowed_domains_template: Flag, if set, `allowed_domains` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_other_sans: Defines allowed custom SANs
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_serial_numbers: An array of allowed serial numbers to put in Subject
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_uri_sans: Defines allowed URI SANs
+        :param pulumi.Input[bool] allowed_uri_sans_template: Flag, if set, `allowed_uri_sans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] basic_constraints_valid_for_non_ca: Flag to mark basic constraints valid when issuing non-CA certificates
         :param pulumi.Input[bool] client_flag: Flag to specify certificates for client use
@@ -1674,8 +1802,12 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[bool] enforce_hostnames: Flag to allow only valid host names
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ext_key_usages: Specify the allowed extended key usage constraint on issued certificates
         :param pulumi.Input[bool] generate_lease: Flag to generate leases with certificates
+        :param pulumi.Input[str] issuer_ref: Specifies the default issuer of this request. May
+               be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+               the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+               overriding the role's `issuer_ref` value.
         :param pulumi.Input[int] key_bits: The number of bits of generated keys
-        :param pulumi.Input[str] key_type: The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`  
+        :param pulumi.Input[str] key_type: The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
                Defaults to `rsa`
         :param pulumi.Input[Sequence[pulumi.Input[str]]] key_usages: Specify the allowed key usage constraint on issued certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] localities: The locality of generated certificates
@@ -1709,11 +1841,13 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["allow_ip_sans"] = allow_ip_sans
         __props__.__dict__["allow_localhost"] = allow_localhost
         __props__.__dict__["allow_subdomains"] = allow_subdomains
+        __props__.__dict__["allow_wildcard_certificates"] = allow_wildcard_certificates
         __props__.__dict__["allowed_domains"] = allowed_domains
         __props__.__dict__["allowed_domains_template"] = allowed_domains_template
         __props__.__dict__["allowed_other_sans"] = allowed_other_sans
         __props__.__dict__["allowed_serial_numbers"] = allowed_serial_numbers
         __props__.__dict__["allowed_uri_sans"] = allowed_uri_sans
+        __props__.__dict__["allowed_uri_sans_template"] = allowed_uri_sans_template
         __props__.__dict__["backend"] = backend
         __props__.__dict__["basic_constraints_valid_for_non_ca"] = basic_constraints_valid_for_non_ca
         __props__.__dict__["client_flag"] = client_flag
@@ -1723,6 +1857,7 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["enforce_hostnames"] = enforce_hostnames
         __props__.__dict__["ext_key_usages"] = ext_key_usages
         __props__.__dict__["generate_lease"] = generate_lease
+        __props__.__dict__["issuer_ref"] = issuer_ref
         __props__.__dict__["key_bits"] = key_bits
         __props__.__dict__["key_type"] = key_type
         __props__.__dict__["key_usages"] = key_usages
@@ -1794,6 +1929,14 @@ class SecretBackendRole(pulumi.CustomResource):
         return pulumi.get(self, "allow_subdomains")
 
     @property
+    @pulumi.getter(name="allowWildcardCertificates")
+    def allow_wildcard_certificates(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Flag to allow wildcard certificates.
+        """
+        return pulumi.get(self, "allow_wildcard_certificates")
+
+    @property
     @pulumi.getter(name="allowedDomains")
     def allowed_domains(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
@@ -1832,6 +1975,14 @@ class SecretBackendRole(pulumi.CustomResource):
         Defines allowed URI SANs
         """
         return pulumi.get(self, "allowed_uri_sans")
+
+    @property
+    @pulumi.getter(name="allowedUriSansTemplate")
+    def allowed_uri_sans_template(self) -> pulumi.Output[bool]:
+        """
+        Flag, if set, `allowed_uri_sans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
+        """
+        return pulumi.get(self, "allowed_uri_sans_template")
 
     @property
     @pulumi.getter
@@ -1906,6 +2057,17 @@ class SecretBackendRole(pulumi.CustomResource):
         return pulumi.get(self, "generate_lease")
 
     @property
+    @pulumi.getter(name="issuerRef")
+    def issuer_ref(self) -> pulumi.Output[str]:
+        """
+        Specifies the default issuer of this request. May
+        be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+        the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+        overriding the role's `issuer_ref` value.
+        """
+        return pulumi.get(self, "issuer_ref")
+
+    @property
     @pulumi.getter(name="keyBits")
     def key_bits(self) -> pulumi.Output[Optional[int]]:
         """
@@ -1917,7 +2079,7 @@ class SecretBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="keyType")
     def key_type(self) -> pulumi.Output[Optional[str]]:
         """
-        The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`  
+        The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
         Defaults to `rsa`
         """
         return pulumi.get(self, "key_type")
