@@ -177,6 +177,36 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.ipSans);
     }
     /**
+     * The ID of the generated issuer.
+     * 
+     */
+    @Export(name="issuerId", type=String.class, parameters={})
+    private Output<String> issuerId;
+
+    /**
+     * @return The ID of the generated issuer.
+     * 
+     */
+    public Output<String> issuerId() {
+        return this.issuerId;
+    }
+    /**
+     * Provides a name to the specified issuer. The name must be unique
+     * across all issuers and not be the reserved value `default`
+     * 
+     */
+    @Export(name="issuerName", type=String.class, parameters={})
+    private Output<String> issuerName;
+
+    /**
+     * @return Provides a name to the specified issuer. The name must be unique
+     * across all issuers and not be the reserved value `default`
+     * 
+     */
+    public Output<String> issuerName() {
+        return this.issuerName;
+    }
+    /**
      * The issuing CA certificate.
      * 
      */
@@ -203,6 +233,52 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Integer>> keyBits() {
         return Codegen.optional(this.keyBits);
+    }
+    /**
+     * The ID of the generated key.
+     * 
+     */
+    @Export(name="keyId", type=String.class, parameters={})
+    private Output<String> keyId;
+
+    /**
+     * @return The ID of the generated key.
+     * 
+     */
+    public Output<String> keyId() {
+        return this.keyId;
+    }
+    /**
+     * When a new key is created with this request, optionally specifies
+     * the name for this. The global ref `default` may not be used as a name.
+     * 
+     */
+    @Export(name="keyName", type=String.class, parameters={})
+    private Output<String> keyName;
+
+    /**
+     * @return When a new key is created with this request, optionally specifies
+     * the name for this. The global ref `default` may not be used as a name.
+     * 
+     */
+    public Output<String> keyName() {
+        return this.keyName;
+    }
+    /**
+     * Specifies the key (either default, by name, or by identifier) to use
+     * for generating this request. Only suitable for `type=existing` requests.
+     * 
+     */
+    @Export(name="keyRef", type=String.class, parameters={})
+    private Output<String> keyRef;
+
+    /**
+     * @return Specifies the key (either default, by name, or by identifier) to use
+     * for generating this request. Only suitable for `type=existing` requests.
+     * 
+     */
+    public Output<String> keyRef() {
+        return this.keyRef;
     }
     /**
      * The desired key type

@@ -343,8 +343,8 @@ class Endpoint(pulumi.CustomResource):
 
         Use of this resource requires the `create` or `update` capability
         (depending on whether the resource already exists) on the given path. If
-        `disable_delete` is false, the `delete` capbility is also required. If
-        `disable_delete` is false, the `read` capbility is required.
+        `disable_delete` is false, the `delete` capability is also required. If
+        `disable_read` is false, the `read` capability is required.
 
         ## Import
 
@@ -382,8 +382,8 @@ class Endpoint(pulumi.CustomResource):
 
         Use of this resource requires the `create` or `update` capability
         (depending on whether the resource already exists) on the given path. If
-        `disable_delete` is false, the `delete` capbility is also required. If
-        `disable_delete` is false, the `read` capbility is required.
+        `disable_delete` is false, the `delete` capability is also required. If
+        `disable_read` is false, the `read` capability is required.
 
         ## Import
 

@@ -15,7 +15,7 @@ public final class AuthBackendUser {
      * @return List of Okta groups to associate with this user
      * 
      */
-    private List<String> groups;
+    private @Nullable List<String> groups;
     /**
      * @return List of Vault policies to associate with this user
      * 
@@ -33,7 +33,7 @@ public final class AuthBackendUser {
      * 
      */
     public List<String> groups() {
-        return this.groups;
+        return this.groups == null ? List.of() : this.groups;
     }
     /**
      * @return List of Vault policies to associate with this user
@@ -59,7 +59,7 @@ public final class AuthBackendUser {
     }
     @CustomType.Builder
     public static final class Builder {
-        private List<String> groups;
+        private @Nullable List<String> groups;
         private @Nullable List<String> policies;
         private String username;
         public Builder() {}
@@ -71,8 +71,8 @@ public final class AuthBackendUser {
         }
 
         @CustomType.Setter
-        public Builder groups(List<String> groups) {
-            this.groups = Objects.requireNonNull(groups);
+        public Builder groups(@Nullable List<String> groups) {
+            this.groups = groups;
             return this;
         }
         public Builder groups(String... groups) {

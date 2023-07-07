@@ -91,6 +91,20 @@ export class SecretBackendIntermediateCertRequest extends pulumi.CustomResource 
      */
     public readonly keyBits!: pulumi.Output<number | undefined>;
     /**
+     * The ID of the generated key.
+     */
+    public /*out*/ readonly keyId!: pulumi.Output<string>;
+    /**
+     * When a new key is created with this request, optionally specifies
+     * the name for this. The global ref `default` may not be used as a name.
+     */
+    public readonly keyName!: pulumi.Output<string>;
+    /**
+     * Specifies the key (either default, by name, or by identifier) to use
+     * for generating this request. Only suitable for `type=existing` requests.
+     */
+    public readonly keyRef!: pulumi.Output<string>;
+    /**
      * The desired key type
      */
     public readonly keyType!: pulumi.Output<string | undefined>;
@@ -184,6 +198,9 @@ export class SecretBackendIntermediateCertRequest extends pulumi.CustomResource 
             resourceInputs["format"] = state ? state.format : undefined;
             resourceInputs["ipSans"] = state ? state.ipSans : undefined;
             resourceInputs["keyBits"] = state ? state.keyBits : undefined;
+            resourceInputs["keyId"] = state ? state.keyId : undefined;
+            resourceInputs["keyName"] = state ? state.keyName : undefined;
+            resourceInputs["keyRef"] = state ? state.keyRef : undefined;
             resourceInputs["keyType"] = state ? state.keyType : undefined;
             resourceInputs["locality"] = state ? state.locality : undefined;
             resourceInputs["managedKeyId"] = state ? state.managedKeyId : undefined;
@@ -220,6 +237,8 @@ export class SecretBackendIntermediateCertRequest extends pulumi.CustomResource 
             resourceInputs["format"] = args ? args.format : undefined;
             resourceInputs["ipSans"] = args ? args.ipSans : undefined;
             resourceInputs["keyBits"] = args ? args.keyBits : undefined;
+            resourceInputs["keyName"] = args ? args.keyName : undefined;
+            resourceInputs["keyRef"] = args ? args.keyRef : undefined;
             resourceInputs["keyType"] = args ? args.keyType : undefined;
             resourceInputs["locality"] = args ? args.locality : undefined;
             resourceInputs["managedKeyId"] = args ? args.managedKeyId : undefined;
@@ -235,6 +254,7 @@ export class SecretBackendIntermediateCertRequest extends pulumi.CustomResource 
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["uriSans"] = args ? args.uriSans : undefined;
             resourceInputs["csr"] = undefined /*out*/;
+            resourceInputs["keyId"] = undefined /*out*/;
             resourceInputs["privateKey"] = undefined /*out*/;
             resourceInputs["privateKeyType"] = undefined /*out*/;
         }
@@ -291,6 +311,20 @@ export interface SecretBackendIntermediateCertRequestState {
      * The number of bits to use
      */
     keyBits?: pulumi.Input<number>;
+    /**
+     * The ID of the generated key.
+     */
+    keyId?: pulumi.Input<string>;
+    /**
+     * When a new key is created with this request, optionally specifies
+     * the name for this. The global ref `default` may not be used as a name.
+     */
+    keyName?: pulumi.Input<string>;
+    /**
+     * Specifies the key (either default, by name, or by identifier) to use
+     * for generating this request. Only suitable for `type=existing` requests.
+     */
+    keyRef?: pulumi.Input<string>;
     /**
      * The desired key type
      */
@@ -405,6 +439,16 @@ export interface SecretBackendIntermediateCertRequestArgs {
      * The number of bits to use
      */
     keyBits?: pulumi.Input<number>;
+    /**
+     * When a new key is created with this request, optionally specifies
+     * the name for this. The global ref `default` may not be used as a name.
+     */
+    keyName?: pulumi.Input<string>;
+    /**
+     * Specifies the key (either default, by name, or by identifier) to use
+     * for generating this request. Only suitable for `type=existing` requests.
+     */
+    keyRef?: pulumi.Input<string>;
     /**
      * The desired key type
      */

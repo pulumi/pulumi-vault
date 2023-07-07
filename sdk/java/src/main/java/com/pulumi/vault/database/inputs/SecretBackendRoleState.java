@@ -6,8 +6,10 @@ package com.pulumi.vault.database.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Integer;
+import java.lang.Object;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -47,6 +49,42 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
      */
     public Optional<Output<List<String>>> creationStatements() {
         return Optional.ofNullable(this.creationStatements);
+    }
+
+    /**
+     * Specifies the configuration
+     * for the given `credential_type`.
+     * 
+     */
+    @Import(name="credentialConfig")
+    private @Nullable Output<Map<String,Object>> credentialConfig;
+
+    /**
+     * @return Specifies the configuration
+     * for the given `credential_type`.
+     * 
+     */
+    public Optional<Output<Map<String,Object>>> credentialConfig() {
+        return Optional.ofNullable(this.credentialConfig);
+    }
+
+    /**
+     * Specifies the type of credential that
+     * will be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.
+     * See the plugin&#39;s API page for credential types supported by individual databases.
+     * 
+     */
+    @Import(name="credentialType")
+    private @Nullable Output<String> credentialType;
+
+    /**
+     * @return Specifies the type of credential that
+     * will be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.
+     * See the plugin&#39;s API page for credential types supported by individual databases.
+     * 
+     */
+    public Optional<Output<String>> credentialType() {
+        return Optional.ofNullable(this.credentialType);
     }
 
     /**
@@ -192,6 +230,8 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
     private SecretBackendRoleState(SecretBackendRoleState $) {
         this.backend = $.backend;
         this.creationStatements = $.creationStatements;
+        this.credentialConfig = $.credentialConfig;
+        this.credentialType = $.credentialType;
         this.dbName = $.dbName;
         this.defaultTtl = $.defaultTtl;
         this.maxTtl = $.maxTtl;
@@ -273,6 +313,54 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
          */
         public Builder creationStatements(String... creationStatements) {
             return creationStatements(List.of(creationStatements));
+        }
+
+        /**
+         * @param credentialConfig Specifies the configuration
+         * for the given `credential_type`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder credentialConfig(@Nullable Output<Map<String,Object>> credentialConfig) {
+            $.credentialConfig = credentialConfig;
+            return this;
+        }
+
+        /**
+         * @param credentialConfig Specifies the configuration
+         * for the given `credential_type`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder credentialConfig(Map<String,Object> credentialConfig) {
+            return credentialConfig(Output.of(credentialConfig));
+        }
+
+        /**
+         * @param credentialType Specifies the type of credential that
+         * will be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.
+         * See the plugin&#39;s API page for credential types supported by individual databases.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder credentialType(@Nullable Output<String> credentialType) {
+            $.credentialType = credentialType;
+            return this;
+        }
+
+        /**
+         * @param credentialType Specifies the type of credential that
+         * will be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.
+         * See the plugin&#39;s API page for credential types supported by individual databases.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder credentialType(String credentialType) {
+            return credentialType(Output.of(credentialType));
         }
 
         /**

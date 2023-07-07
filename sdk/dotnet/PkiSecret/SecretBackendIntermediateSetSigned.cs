@@ -103,6 +103,19 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string> Certificate { get; private set; } = null!;
 
         /// <summary>
+        /// The imported issuers indicating which issuers were created as part of
+        /// this request.
+        /// </summary>
+        [Output("importedIssuers")]
+        public Output<ImmutableArray<string>> ImportedIssuers { get; private set; } = null!;
+
+        /// <summary>
+        /// The imported keys indicating which keys were created as part of this request.
+        /// </summary>
+        [Output("importedKeys")]
+        public Output<ImmutableArray<string>> ImportedKeys { get; private set; } = null!;
+
+        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -201,6 +214,31 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("certificate")]
         public Input<string>? Certificate { get; set; }
+
+        [Input("importedIssuers")]
+        private InputList<string>? _importedIssuers;
+
+        /// <summary>
+        /// The imported issuers indicating which issuers were created as part of
+        /// this request.
+        /// </summary>
+        public InputList<string> ImportedIssuers
+        {
+            get => _importedIssuers ?? (_importedIssuers = new InputList<string>());
+            set => _importedIssuers = value;
+        }
+
+        [Input("importedKeys")]
+        private InputList<string>? _importedKeys;
+
+        /// <summary>
+        /// The imported keys indicating which keys were created as part of this request.
+        /// </summary>
+        public InputList<string> ImportedKeys
+        {
+            get => _importedKeys ?? (_importedKeys = new InputList<string>());
+            set => _importedKeys = value;
+        }
 
         /// <summary>
         /// The namespace to provision the resource in.

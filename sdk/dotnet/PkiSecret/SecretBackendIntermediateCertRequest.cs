@@ -101,6 +101,26 @@ namespace Pulumi.Vault.PkiSecret
         public Output<int?> KeyBits { get; private set; } = null!;
 
         /// <summary>
+        /// The ID of the generated key.
+        /// </summary>
+        [Output("keyId")]
+        public Output<string> KeyId { get; private set; } = null!;
+
+        /// <summary>
+        /// When a new key is created with this request, optionally specifies
+        /// the name for this. The global ref `default` may not be used as a name.
+        /// </summary>
+        [Output("keyName")]
+        public Output<string> KeyName { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies the key (either default, by name, or by identifier) to use
+        /// for generating this request. Only suitable for `type=existing` requests.
+        /// </summary>
+        [Output("keyRef")]
+        public Output<string> KeyRef { get; private set; } = null!;
+
+        /// <summary>
         /// The desired key type
         /// </summary>
         [Output("keyType")]
@@ -321,6 +341,20 @@ namespace Pulumi.Vault.PkiSecret
         public Input<int>? KeyBits { get; set; }
 
         /// <summary>
+        /// When a new key is created with this request, optionally specifies
+        /// the name for this. The global ref `default` may not be used as a name.
+        /// </summary>
+        [Input("keyName")]
+        public Input<string>? KeyName { get; set; }
+
+        /// <summary>
+        /// Specifies the key (either default, by name, or by identifier) to use
+        /// for generating this request. Only suitable for `type=existing` requests.
+        /// </summary>
+        [Input("keyRef")]
+        public Input<string>? KeyRef { get; set; }
+
+        /// <summary>
         /// The desired key type
         /// </summary>
         [Input("keyType")]
@@ -503,6 +537,26 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("keyBits")]
         public Input<int>? KeyBits { get; set; }
+
+        /// <summary>
+        /// The ID of the generated key.
+        /// </summary>
+        [Input("keyId")]
+        public Input<string>? KeyId { get; set; }
+
+        /// <summary>
+        /// When a new key is created with this request, optionally specifies
+        /// the name for this. The global ref `default` may not be used as a name.
+        /// </summary>
+        [Input("keyName")]
+        public Input<string>? KeyName { get; set; }
+
+        /// <summary>
+        /// Specifies the key (either default, by name, or by identifier) to use
+        /// for generating this request. Only suitable for `type=existing` requests.
+        /// </summary>
+        [Input("keyRef")]
+        public Input<string>? KeyRef { get; set; }
 
         /// <summary>
         /// The desired key type

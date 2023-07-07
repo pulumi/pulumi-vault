@@ -24,6 +24,8 @@ class SecretBackendIntermediateCertRequestArgs:
                  format: Optional[pulumi.Input[str]] = None,
                  ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  key_bits: Optional[pulumi.Input[int]] = None,
+                 key_name: Optional[pulumi.Input[str]] = None,
+                 key_ref: Optional[pulumi.Input[str]] = None,
                  key_type: Optional[pulumi.Input[str]] = None,
                  locality: Optional[pulumi.Input[str]] = None,
                  managed_key_id: Optional[pulumi.Input[str]] = None,
@@ -52,6 +54,10 @@ class SecretBackendIntermediateCertRequestArgs:
         :param pulumi.Input[str] format: The format of data
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
         :param pulumi.Input[int] key_bits: The number of bits to use
+        :param pulumi.Input[str] key_name: When a new key is created with this request, optionally specifies
+               the name for this. The global ref `default` may not be used as a name.
+        :param pulumi.Input[str] key_ref: Specifies the key (either default, by name, or by identifier) to use
+               for generating this request. Only suitable for `type=existing` requests.
         :param pulumi.Input[str] key_type: The desired key type
         :param pulumi.Input[str] locality: The locality
         :param pulumi.Input[str] managed_key_id: The ID of the previously configured managed key. This field is
@@ -88,6 +94,10 @@ class SecretBackendIntermediateCertRequestArgs:
             pulumi.set(__self__, "ip_sans", ip_sans)
         if key_bits is not None:
             pulumi.set(__self__, "key_bits", key_bits)
+        if key_name is not None:
+            pulumi.set(__self__, "key_name", key_name)
+        if key_ref is not None:
+            pulumi.set(__self__, "key_ref", key_ref)
         if key_type is not None:
             pulumi.set(__self__, "key_type", key_type)
         if locality is not None:
@@ -237,6 +247,32 @@ class SecretBackendIntermediateCertRequestArgs:
     @key_bits.setter
     def key_bits(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "key_bits", value)
+
+    @property
+    @pulumi.getter(name="keyName")
+    def key_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        When a new key is created with this request, optionally specifies
+        the name for this. The global ref `default` may not be used as a name.
+        """
+        return pulumi.get(self, "key_name")
+
+    @key_name.setter
+    def key_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key_name", value)
+
+    @property
+    @pulumi.getter(name="keyRef")
+    def key_ref(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the key (either default, by name, or by identifier) to use
+        for generating this request. Only suitable for `type=existing` requests.
+        """
+        return pulumi.get(self, "key_ref")
+
+    @key_ref.setter
+    def key_ref(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key_ref", value)
 
     @property
     @pulumi.getter(name="keyType")
@@ -413,6 +449,9 @@ class _SecretBackendIntermediateCertRequestState:
                  format: Optional[pulumi.Input[str]] = None,
                  ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  key_bits: Optional[pulumi.Input[int]] = None,
+                 key_id: Optional[pulumi.Input[str]] = None,
+                 key_name: Optional[pulumi.Input[str]] = None,
+                 key_ref: Optional[pulumi.Input[str]] = None,
                  key_type: Optional[pulumi.Input[str]] = None,
                  locality: Optional[pulumi.Input[str]] = None,
                  managed_key_id: Optional[pulumi.Input[str]] = None,
@@ -443,6 +482,11 @@ class _SecretBackendIntermediateCertRequestState:
         :param pulumi.Input[str] format: The format of data
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
         :param pulumi.Input[int] key_bits: The number of bits to use
+        :param pulumi.Input[str] key_id: The ID of the generated key.
+        :param pulumi.Input[str] key_name: When a new key is created with this request, optionally specifies
+               the name for this. The global ref `default` may not be used as a name.
+        :param pulumi.Input[str] key_ref: Specifies the key (either default, by name, or by identifier) to use
+               for generating this request. Only suitable for `type=existing` requests.
         :param pulumi.Input[str] key_type: The desired key type
         :param pulumi.Input[str] locality: The locality
         :param pulumi.Input[str] managed_key_id: The ID of the previously configured managed key. This field is
@@ -486,6 +530,12 @@ class _SecretBackendIntermediateCertRequestState:
             pulumi.set(__self__, "ip_sans", ip_sans)
         if key_bits is not None:
             pulumi.set(__self__, "key_bits", key_bits)
+        if key_id is not None:
+            pulumi.set(__self__, "key_id", key_id)
+        if key_name is not None:
+            pulumi.set(__self__, "key_name", key_name)
+        if key_ref is not None:
+            pulumi.set(__self__, "key_ref", key_ref)
         if key_type is not None:
             pulumi.set(__self__, "key_type", key_type)
         if locality is not None:
@@ -640,6 +690,44 @@ class _SecretBackendIntermediateCertRequestState:
     @key_bits.setter
     def key_bits(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "key_bits", value)
+
+    @property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the generated key.
+        """
+        return pulumi.get(self, "key_id")
+
+    @key_id.setter
+    def key_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key_id", value)
+
+    @property
+    @pulumi.getter(name="keyName")
+    def key_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        When a new key is created with this request, optionally specifies
+        the name for this. The global ref `default` may not be used as a name.
+        """
+        return pulumi.get(self, "key_name")
+
+    @key_name.setter
+    def key_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key_name", value)
+
+    @property
+    @pulumi.getter(name="keyRef")
+    def key_ref(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the key (either default, by name, or by identifier) to use
+        for generating this request. Only suitable for `type=existing` requests.
+        """
+        return pulumi.get(self, "key_ref")
+
+    @key_ref.setter
+    def key_ref(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key_ref", value)
 
     @property
     @pulumi.getter(name="keyType")
@@ -854,6 +942,8 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
                  format: Optional[pulumi.Input[str]] = None,
                  ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  key_bits: Optional[pulumi.Input[int]] = None,
+                 key_name: Optional[pulumi.Input[str]] = None,
+                 key_ref: Optional[pulumi.Input[str]] = None,
                  key_type: Optional[pulumi.Input[str]] = None,
                  locality: Optional[pulumi.Input[str]] = None,
                  managed_key_id: Optional[pulumi.Input[str]] = None,
@@ -896,6 +986,10 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         :param pulumi.Input[str] format: The format of data
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
         :param pulumi.Input[int] key_bits: The number of bits to use
+        :param pulumi.Input[str] key_name: When a new key is created with this request, optionally specifies
+               the name for this. The global ref `default` may not be used as a name.
+        :param pulumi.Input[str] key_ref: Specifies the key (either default, by name, or by identifier) to use
+               for generating this request. Only suitable for `type=existing` requests.
         :param pulumi.Input[str] key_type: The desired key type
         :param pulumi.Input[str] locality: The locality
         :param pulumi.Input[str] managed_key_id: The ID of the previously configured managed key. This field is
@@ -961,6 +1055,8 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
                  format: Optional[pulumi.Input[str]] = None,
                  ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  key_bits: Optional[pulumi.Input[int]] = None,
+                 key_name: Optional[pulumi.Input[str]] = None,
+                 key_ref: Optional[pulumi.Input[str]] = None,
                  key_type: Optional[pulumi.Input[str]] = None,
                  locality: Optional[pulumi.Input[str]] = None,
                  managed_key_id: Optional[pulumi.Input[str]] = None,
@@ -997,6 +1093,8 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
             __props__.__dict__["format"] = format
             __props__.__dict__["ip_sans"] = ip_sans
             __props__.__dict__["key_bits"] = key_bits
+            __props__.__dict__["key_name"] = key_name
+            __props__.__dict__["key_ref"] = key_ref
             __props__.__dict__["key_type"] = key_type
             __props__.__dict__["locality"] = locality
             __props__.__dict__["managed_key_id"] = managed_key_id
@@ -1014,6 +1112,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
             __props__.__dict__["type"] = type
             __props__.__dict__["uri_sans"] = uri_sans
             __props__.__dict__["csr"] = None
+            __props__.__dict__["key_id"] = None
             __props__.__dict__["private_key"] = None
             __props__.__dict__["private_key_type"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["privateKey"])
@@ -1038,6 +1137,9 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
             format: Optional[pulumi.Input[str]] = None,
             ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             key_bits: Optional[pulumi.Input[int]] = None,
+            key_id: Optional[pulumi.Input[str]] = None,
+            key_name: Optional[pulumi.Input[str]] = None,
+            key_ref: Optional[pulumi.Input[str]] = None,
             key_type: Optional[pulumi.Input[str]] = None,
             locality: Optional[pulumi.Input[str]] = None,
             managed_key_id: Optional[pulumi.Input[str]] = None,
@@ -1073,6 +1175,11 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         :param pulumi.Input[str] format: The format of data
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
         :param pulumi.Input[int] key_bits: The number of bits to use
+        :param pulumi.Input[str] key_id: The ID of the generated key.
+        :param pulumi.Input[str] key_name: When a new key is created with this request, optionally specifies
+               the name for this. The global ref `default` may not be used as a name.
+        :param pulumi.Input[str] key_ref: Specifies the key (either default, by name, or by identifier) to use
+               for generating this request. Only suitable for `type=existing` requests.
         :param pulumi.Input[str] key_type: The desired key type
         :param pulumi.Input[str] locality: The locality
         :param pulumi.Input[str] managed_key_id: The ID of the previously configured managed key. This field is
@@ -1110,6 +1217,9 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         __props__.__dict__["format"] = format
         __props__.__dict__["ip_sans"] = ip_sans
         __props__.__dict__["key_bits"] = key_bits
+        __props__.__dict__["key_id"] = key_id
+        __props__.__dict__["key_name"] = key_name
+        __props__.__dict__["key_ref"] = key_ref
         __props__.__dict__["key_type"] = key_type
         __props__.__dict__["locality"] = locality
         __props__.__dict__["managed_key_id"] = managed_key_id
@@ -1209,6 +1319,32 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         The number of bits to use
         """
         return pulumi.get(self, "key_bits")
+
+    @property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the generated key.
+        """
+        return pulumi.get(self, "key_id")
+
+    @property
+    @pulumi.getter(name="keyName")
+    def key_name(self) -> pulumi.Output[str]:
+        """
+        When a new key is created with this request, optionally specifies
+        the name for this. The global ref `default` may not be used as a name.
+        """
+        return pulumi.get(self, "key_name")
+
+    @property
+    @pulumi.getter(name="keyRef")
+    def key_ref(self) -> pulumi.Output[str]:
+        """
+        Specifies the key (either default, by name, or by identifier) to use
+        for generating this request. Only suitable for `type=existing` requests.
+        """
+        return pulumi.get(self, "key_ref")
 
     @property
     @pulumi.getter(name="keyType")

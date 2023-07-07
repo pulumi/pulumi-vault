@@ -296,12 +296,36 @@ class SecretBackendLibrarySet(pulumi.CustomResource):
                  ttl: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        config = vault.ldap.SecretBackend("config",
+            path="ldap",
+            binddn="CN=Administrator,CN=Users,DC=corp,DC=example,DC=net",
+            bindpass="SuperSecretPassw0rd",
+            url="ldaps://localhost",
+            insecure_tls=True,
+            userdn="CN=Users,DC=corp,DC=example,DC=net")
+        qa = vault.ldap.SecretBackendLibrarySet("qa",
+            mount=config.path,
+            service_account_names=[
+                "Bob",
+                "Mary",
+            ],
+            ttl=60,
+            disable_check_in_enforcement=True,
+            max_ttl=120)
+        ```
+
         ## Import
 
         LDAP secret backend libraries can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet set ldap/library/bob
+         $ pulumi import vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet qa ldap/library/bob
         ```
 
         :param str resource_name: The name of the resource.
@@ -329,12 +353,36 @@ class SecretBackendLibrarySet(pulumi.CustomResource):
                  args: SecretBackendLibrarySetArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        config = vault.ldap.SecretBackend("config",
+            path="ldap",
+            binddn="CN=Administrator,CN=Users,DC=corp,DC=example,DC=net",
+            bindpass="SuperSecretPassw0rd",
+            url="ldaps://localhost",
+            insecure_tls=True,
+            userdn="CN=Users,DC=corp,DC=example,DC=net")
+        qa = vault.ldap.SecretBackendLibrarySet("qa",
+            mount=config.path,
+            service_account_names=[
+                "Bob",
+                "Mary",
+            ],
+            ttl=60,
+            disable_check_in_enforcement=True,
+            max_ttl=120)
+        ```
+
         ## Import
 
         LDAP secret backend libraries can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet set ldap/library/bob
+         $ pulumi import vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet qa ldap/library/bob
         ```
 
         :param str resource_name: The name of the resource.

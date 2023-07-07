@@ -139,6 +139,38 @@ public final class SecretBackendRootCertState extends com.pulumi.resources.Resou
     }
 
     /**
+     * The ID of the generated issuer.
+     * 
+     */
+    @Import(name="issuerId")
+    private @Nullable Output<String> issuerId;
+
+    /**
+     * @return The ID of the generated issuer.
+     * 
+     */
+    public Optional<Output<String>> issuerId() {
+        return Optional.ofNullable(this.issuerId);
+    }
+
+    /**
+     * Provides a name to the specified issuer. The name must be unique
+     * across all issuers and not be the reserved value `default`
+     * 
+     */
+    @Import(name="issuerName")
+    private @Nullable Output<String> issuerName;
+
+    /**
+     * @return Provides a name to the specified issuer. The name must be unique
+     * across all issuers and not be the reserved value `default`
+     * 
+     */
+    public Optional<Output<String>> issuerName() {
+        return Optional.ofNullable(this.issuerName);
+    }
+
+    /**
      * The issuing CA certificate.
      * 
      */
@@ -166,6 +198,55 @@ public final class SecretBackendRootCertState extends com.pulumi.resources.Resou
      */
     public Optional<Output<Integer>> keyBits() {
         return Optional.ofNullable(this.keyBits);
+    }
+
+    /**
+     * The ID of the generated key.
+     * 
+     */
+    @Import(name="keyId")
+    private @Nullable Output<String> keyId;
+
+    /**
+     * @return The ID of the generated key.
+     * 
+     */
+    public Optional<Output<String>> keyId() {
+        return Optional.ofNullable(this.keyId);
+    }
+
+    /**
+     * When a new key is created with this request, optionally specifies
+     * the name for this. The global ref `default` may not be used as a name.
+     * 
+     */
+    @Import(name="keyName")
+    private @Nullable Output<String> keyName;
+
+    /**
+     * @return When a new key is created with this request, optionally specifies
+     * the name for this. The global ref `default` may not be used as a name.
+     * 
+     */
+    public Optional<Output<String>> keyName() {
+        return Optional.ofNullable(this.keyName);
+    }
+
+    /**
+     * Specifies the key (either default, by name, or by identifier) to use
+     * for generating this request. Only suitable for `type=existing` requests.
+     * 
+     */
+    @Import(name="keyRef")
+    private @Nullable Output<String> keyRef;
+
+    /**
+     * @return Specifies the key (either default, by name, or by identifier) to use
+     * for generating this request. Only suitable for `type=existing` requests.
+     * 
+     */
+    public Optional<Output<String>> keyRef() {
+        return Optional.ofNullable(this.keyRef);
     }
 
     /**
@@ -484,8 +565,13 @@ public final class SecretBackendRootCertState extends com.pulumi.resources.Resou
         this.excludeCnFromSans = $.excludeCnFromSans;
         this.format = $.format;
         this.ipSans = $.ipSans;
+        this.issuerId = $.issuerId;
+        this.issuerName = $.issuerName;
         this.issuingCa = $.issuingCa;
         this.keyBits = $.keyBits;
+        this.keyId = $.keyId;
+        this.keyName = $.keyName;
+        this.keyRef = $.keyRef;
         this.keyType = $.keyType;
         this.locality = $.locality;
         this.managedKeyId = $.managedKeyId;
@@ -714,6 +800,50 @@ public final class SecretBackendRootCertState extends com.pulumi.resources.Resou
         }
 
         /**
+         * @param issuerId The ID of the generated issuer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder issuerId(@Nullable Output<String> issuerId) {
+            $.issuerId = issuerId;
+            return this;
+        }
+
+        /**
+         * @param issuerId The ID of the generated issuer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder issuerId(String issuerId) {
+            return issuerId(Output.of(issuerId));
+        }
+
+        /**
+         * @param issuerName Provides a name to the specified issuer. The name must be unique
+         * across all issuers and not be the reserved value `default`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder issuerName(@Nullable Output<String> issuerName) {
+            $.issuerName = issuerName;
+            return this;
+        }
+
+        /**
+         * @param issuerName Provides a name to the specified issuer. The name must be unique
+         * across all issuers and not be the reserved value `default`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder issuerName(String issuerName) {
+            return issuerName(Output.of(issuerName));
+        }
+
+        /**
          * @param issuingCa The issuing CA certificate.
          * 
          * @return builder
@@ -753,6 +883,73 @@ public final class SecretBackendRootCertState extends com.pulumi.resources.Resou
          */
         public Builder keyBits(Integer keyBits) {
             return keyBits(Output.of(keyBits));
+        }
+
+        /**
+         * @param keyId The ID of the generated key.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyId(@Nullable Output<String> keyId) {
+            $.keyId = keyId;
+            return this;
+        }
+
+        /**
+         * @param keyId The ID of the generated key.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyId(String keyId) {
+            return keyId(Output.of(keyId));
+        }
+
+        /**
+         * @param keyName When a new key is created with this request, optionally specifies
+         * the name for this. The global ref `default` may not be used as a name.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyName(@Nullable Output<String> keyName) {
+            $.keyName = keyName;
+            return this;
+        }
+
+        /**
+         * @param keyName When a new key is created with this request, optionally specifies
+         * the name for this. The global ref `default` may not be used as a name.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyName(String keyName) {
+            return keyName(Output.of(keyName));
+        }
+
+        /**
+         * @param keyRef Specifies the key (either default, by name, or by identifier) to use
+         * for generating this request. Only suitable for `type=existing` requests.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyRef(@Nullable Output<String> keyRef) {
+            $.keyRef = keyRef;
+            return this;
+        }
+
+        /**
+         * @param keyRef Specifies the key (either default, by name, or by identifier) to use
+         * for generating this request. Only suitable for `type=existing` requests.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyRef(String keyRef) {
+            return keyRef(Output.of(keyRef));
         }
 
         /**

@@ -95,6 +95,12 @@ namespace Pulumi.Vault.PkiSecret
         public Output<bool?> AllowSubdomains { get; private set; } = null!;
 
         /// <summary>
+        /// Flag to allow wildcard certificates.
+        /// </summary>
+        [Output("allowWildcardCertificates")]
+        public Output<bool?> AllowWildcardCertificates { get; private set; } = null!;
+
+        /// <summary>
         /// List of allowed domains for certificates
         /// </summary>
         [Output("allowedDomains")]
@@ -123,6 +129,12 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Output("allowedUriSans")]
         public Output<ImmutableArray<string>> AllowedUriSans { get; private set; } = null!;
+
+        /// <summary>
+        /// Flag, if set, `allowed_uri_sans` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
+        /// </summary>
+        [Output("allowedUriSansTemplate")]
+        public Output<bool> AllowedUriSansTemplate { get; private set; } = null!;
 
         /// <summary>
         /// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
@@ -179,13 +191,22 @@ namespace Pulumi.Vault.PkiSecret
         public Output<bool?> GenerateLease { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies the default issuer of this request. May
+        /// be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+        /// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+        /// overriding the role's `issuer_ref` value.
+        /// </summary>
+        [Output("issuerRef")]
+        public Output<string> IssuerRef { get; private set; } = null!;
+
+        /// <summary>
         /// The number of bits of generated keys
         /// </summary>
         [Output("keyBits")]
         public Output<int?> KeyBits { get; private set; } = null!;
 
         /// <summary>
-        /// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`  
+        /// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
         /// Defaults to `rsa`
         /// </summary>
         [Output("keyType")]
@@ -384,6 +405,12 @@ namespace Pulumi.Vault.PkiSecret
         [Input("allowSubdomains")]
         public Input<bool>? AllowSubdomains { get; set; }
 
+        /// <summary>
+        /// Flag to allow wildcard certificates.
+        /// </summary>
+        [Input("allowWildcardCertificates")]
+        public Input<bool>? AllowWildcardCertificates { get; set; }
+
         [Input("allowedDomains")]
         private InputList<string>? _allowedDomains;
 
@@ -437,6 +464,12 @@ namespace Pulumi.Vault.PkiSecret
             get => _allowedUriSans ?? (_allowedUriSans = new InputList<string>());
             set => _allowedUriSans = value;
         }
+
+        /// <summary>
+        /// Flag, if set, `allowed_uri_sans` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
+        /// </summary>
+        [Input("allowedUriSansTemplate")]
+        public Input<bool>? AllowedUriSansTemplate { get; set; }
 
         /// <summary>
         /// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
@@ -505,13 +538,22 @@ namespace Pulumi.Vault.PkiSecret
         public Input<bool>? GenerateLease { get; set; }
 
         /// <summary>
+        /// Specifies the default issuer of this request. May
+        /// be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+        /// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+        /// overriding the role's `issuer_ref` value.
+        /// </summary>
+        [Input("issuerRef")]
+        public Input<string>? IssuerRef { get; set; }
+
+        /// <summary>
         /// The number of bits of generated keys
         /// </summary>
         [Input("keyBits")]
         public Input<int>? KeyBits { get; set; }
 
         /// <summary>
-        /// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`  
+        /// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
         /// Defaults to `rsa`
         /// </summary>
         [Input("keyType")]
@@ -720,6 +762,12 @@ namespace Pulumi.Vault.PkiSecret
         [Input("allowSubdomains")]
         public Input<bool>? AllowSubdomains { get; set; }
 
+        /// <summary>
+        /// Flag to allow wildcard certificates.
+        /// </summary>
+        [Input("allowWildcardCertificates")]
+        public Input<bool>? AllowWildcardCertificates { get; set; }
+
         [Input("allowedDomains")]
         private InputList<string>? _allowedDomains;
 
@@ -773,6 +821,12 @@ namespace Pulumi.Vault.PkiSecret
             get => _allowedUriSans ?? (_allowedUriSans = new InputList<string>());
             set => _allowedUriSans = value;
         }
+
+        /// <summary>
+        /// Flag, if set, `allowed_uri_sans` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
+        /// </summary>
+        [Input("allowedUriSansTemplate")]
+        public Input<bool>? AllowedUriSansTemplate { get; set; }
 
         /// <summary>
         /// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
@@ -841,13 +895,22 @@ namespace Pulumi.Vault.PkiSecret
         public Input<bool>? GenerateLease { get; set; }
 
         /// <summary>
+        /// Specifies the default issuer of this request. May
+        /// be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+        /// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+        /// overriding the role's `issuer_ref` value.
+        /// </summary>
+        [Input("issuerRef")]
+        public Input<string>? IssuerRef { get; set; }
+
+        /// <summary>
         /// The number of bits of generated keys
         /// </summary>
         [Input("keyBits")]
         public Input<int>? KeyBits { get; set; }
 
         /// <summary>
-        /// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`  
+        /// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
         /// Defaults to `rsa`
         /// </summary>
         [Input("keyType")]

@@ -6,6 +6,7 @@ package com.pulumi.vault.pkiSecret.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -50,6 +51,38 @@ public final class SecretBackendIntermediateSetSignedState extends com.pulumi.re
     }
 
     /**
+     * The imported issuers indicating which issuers were created as part of
+     * this request.
+     * 
+     */
+    @Import(name="importedIssuers")
+    private @Nullable Output<List<String>> importedIssuers;
+
+    /**
+     * @return The imported issuers indicating which issuers were created as part of
+     * this request.
+     * 
+     */
+    public Optional<Output<List<String>>> importedIssuers() {
+        return Optional.ofNullable(this.importedIssuers);
+    }
+
+    /**
+     * The imported keys indicating which keys were created as part of this request.
+     * 
+     */
+    @Import(name="importedKeys")
+    private @Nullable Output<List<String>> importedKeys;
+
+    /**
+     * @return The imported keys indicating which keys were created as part of this request.
+     * 
+     */
+    public Optional<Output<List<String>>> importedKeys() {
+        return Optional.ofNullable(this.importedKeys);
+    }
+
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -75,6 +108,8 @@ public final class SecretBackendIntermediateSetSignedState extends com.pulumi.re
     private SecretBackendIntermediateSetSignedState(SecretBackendIntermediateSetSignedState $) {
         this.backend = $.backend;
         this.certificate = $.certificate;
+        this.importedIssuers = $.importedIssuers;
+        this.importedKeys = $.importedKeys;
         this.namespace = $.namespace;
     }
 
@@ -140,6 +175,71 @@ public final class SecretBackendIntermediateSetSignedState extends com.pulumi.re
          */
         public Builder certificate(String certificate) {
             return certificate(Output.of(certificate));
+        }
+
+        /**
+         * @param importedIssuers The imported issuers indicating which issuers were created as part of
+         * this request.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder importedIssuers(@Nullable Output<List<String>> importedIssuers) {
+            $.importedIssuers = importedIssuers;
+            return this;
+        }
+
+        /**
+         * @param importedIssuers The imported issuers indicating which issuers were created as part of
+         * this request.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder importedIssuers(List<String> importedIssuers) {
+            return importedIssuers(Output.of(importedIssuers));
+        }
+
+        /**
+         * @param importedIssuers The imported issuers indicating which issuers were created as part of
+         * this request.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder importedIssuers(String... importedIssuers) {
+            return importedIssuers(List.of(importedIssuers));
+        }
+
+        /**
+         * @param importedKeys The imported keys indicating which keys were created as part of this request.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder importedKeys(@Nullable Output<List<String>> importedKeys) {
+            $.importedKeys = importedKeys;
+            return this;
+        }
+
+        /**
+         * @param importedKeys The imported keys indicating which keys were created as part of this request.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder importedKeys(List<String> importedKeys) {
+            return importedKeys(Output.of(importedKeys));
+        }
+
+        /**
+         * @param importedKeys The imported keys indicating which keys were created as part of this request.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder importedKeys(String... importedKeys) {
+            return importedKeys(List.of(importedKeys));
         }
 
         /**

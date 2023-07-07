@@ -62,6 +62,8 @@ type SecretBackendCert struct {
 	Format pulumi.StringPtrOutput `pulumi:"format"`
 	// List of alternative IPs
 	IpSans pulumi.StringArrayOutput `pulumi:"ipSans"`
+	// Specifies the default issuer of this request.
+	IssuerRef pulumi.StringPtrOutput `pulumi:"issuerRef"`
 	// The issuing CA
 	IssuingCa pulumi.StringOutput `pulumi:"issuingCa"`
 	// Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
@@ -152,6 +154,8 @@ type secretBackendCertState struct {
 	Format *string `pulumi:"format"`
 	// List of alternative IPs
 	IpSans []string `pulumi:"ipSans"`
+	// Specifies the default issuer of this request.
+	IssuerRef *string `pulumi:"issuerRef"`
 	// The issuing CA
 	IssuingCa *string `pulumi:"issuingCa"`
 	// Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
@@ -204,6 +208,8 @@ type SecretBackendCertState struct {
 	Format pulumi.StringPtrInput
 	// List of alternative IPs
 	IpSans pulumi.StringArrayInput
+	// Specifies the default issuer of this request.
+	IssuerRef pulumi.StringPtrInput
 	// The issuing CA
 	IssuingCa pulumi.StringPtrInput
 	// Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
@@ -254,6 +260,8 @@ type secretBackendCertArgs struct {
 	Format *string `pulumi:"format"`
 	// List of alternative IPs
 	IpSans []string `pulumi:"ipSans"`
+	// Specifies the default issuer of this request.
+	IssuerRef *string `pulumi:"issuerRef"`
 	// Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
 	MinSecondsRemaining *int `pulumi:"minSecondsRemaining"`
 	// Name of the role to create the certificate against
@@ -291,6 +299,8 @@ type SecretBackendCertArgs struct {
 	Format pulumi.StringPtrInput
 	// List of alternative IPs
 	IpSans pulumi.StringArrayInput
+	// Specifies the default issuer of this request.
+	IssuerRef pulumi.StringPtrInput
 	// Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
 	MinSecondsRemaining pulumi.IntPtrInput
 	// Name of the role to create the certificate against
@@ -447,6 +457,11 @@ func (o SecretBackendCertOutput) Format() pulumi.StringPtrOutput {
 // List of alternative IPs
 func (o SecretBackendCertOutput) IpSans() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringArrayOutput { return v.IpSans }).(pulumi.StringArrayOutput)
+}
+
+// Specifies the default issuer of this request.
+func (o SecretBackendCertOutput) IssuerRef() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringPtrOutput { return v.IssuerRef }).(pulumi.StringPtrOutput)
 }
 
 // The issuing CA

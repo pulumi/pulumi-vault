@@ -63,26 +63,19 @@ class AuthBackendGroup(dict):
 @pulumi.output_type
 class AuthBackendUser(dict):
     def __init__(__self__, *,
-                 groups: Sequence[str],
                  username: str,
+                 groups: Optional[Sequence[str]] = None,
                  policies: Optional[Sequence[str]] = None):
         """
-        :param Sequence[str] groups: List of Okta groups to associate with this user
         :param str username: Name of the user within Okta
+        :param Sequence[str] groups: List of Okta groups to associate with this user
         :param Sequence[str] policies: List of Vault policies to associate with this user
         """
-        pulumi.set(__self__, "groups", groups)
         pulumi.set(__self__, "username", username)
+        if groups is not None:
+            pulumi.set(__self__, "groups", groups)
         if policies is not None:
             pulumi.set(__self__, "policies", policies)
-
-    @property
-    @pulumi.getter
-    def groups(self) -> Sequence[str]:
-        """
-        List of Okta groups to associate with this user
-        """
-        return pulumi.get(self, "groups")
 
     @property
     @pulumi.getter
@@ -91,6 +84,14 @@ class AuthBackendUser(dict):
         Name of the user within Okta
         """
         return pulumi.get(self, "username")
+
+    @property
+    @pulumi.getter
+    def groups(self) -> Optional[Sequence[str]]:
+        """
+        List of Okta groups to associate with this user
+        """
+        return pulumi.get(self, "groups")
 
     @property
     @pulumi.getter

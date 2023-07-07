@@ -18,12 +18,59 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.ldap.SecretBackend;
+ * import com.pulumi.vault.ldap.SecretBackendArgs;
+ * import com.pulumi.vault.ldap.SecretBackendLibrarySet;
+ * import com.pulumi.vault.ldap.SecretBackendLibrarySetArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var config = new SecretBackend(&#34;config&#34;, SecretBackendArgs.builder()        
+ *             .path(&#34;ldap&#34;)
+ *             .binddn(&#34;CN=Administrator,CN=Users,DC=corp,DC=example,DC=net&#34;)
+ *             .bindpass(&#34;SuperSecretPassw0rd&#34;)
+ *             .url(&#34;ldaps://localhost&#34;)
+ *             .insecureTls(&#34;true&#34;)
+ *             .userdn(&#34;CN=Users,DC=corp,DC=example,DC=net&#34;)
+ *             .build());
+ * 
+ *         var qa = new SecretBackendLibrarySet(&#34;qa&#34;, SecretBackendLibrarySetArgs.builder()        
+ *             .mount(config.path())
+ *             .serviceAccountNames(            
+ *                 &#34;Bob&#34;,
+ *                 &#34;Mary&#34;)
+ *             .ttl(60)
+ *             .disableCheckInEnforcement(true)
+ *             .maxTtl(120)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
  * ## Import
  * 
  * LDAP secret backend libraries can be imported using the `path`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet set ldap/library/bob
+ *  $ pulumi import vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet qa ldap/library/bob
  * ```
  * 
  */

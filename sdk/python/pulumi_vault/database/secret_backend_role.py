@@ -17,6 +17,8 @@ class SecretBackendRoleArgs:
                  backend: pulumi.Input[str],
                  creation_statements: pulumi.Input[Sequence[pulumi.Input[str]]],
                  db_name: pulumi.Input[str],
+                 credential_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 credential_type: Optional[pulumi.Input[str]] = None,
                  default_ttl: Optional[pulumi.Input[int]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -31,6 +33,11 @@ class SecretBackendRoleArgs:
                creating a user.
         :param pulumi.Input[str] db_name: The unique name of the database connection to use for
                the role.
+        :param pulumi.Input[Mapping[str, Any]] credential_config: Specifies the configuration
+               for the given `credential_type`.
+        :param pulumi.Input[str] credential_type: Specifies the type of credential that
+               will be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.
+               See the plugin's API page for credential types supported by individual databases.
         :param pulumi.Input[int] default_ttl: The default number of seconds for leases for this
                role.
         :param pulumi.Input[int] max_ttl: The maximum number of seconds for leases for this
@@ -50,6 +57,10 @@ class SecretBackendRoleArgs:
         pulumi.set(__self__, "backend", backend)
         pulumi.set(__self__, "creation_statements", creation_statements)
         pulumi.set(__self__, "db_name", db_name)
+        if credential_config is not None:
+            pulumi.set(__self__, "credential_config", credential_config)
+        if credential_type is not None:
+            pulumi.set(__self__, "credential_type", credential_type)
         if default_ttl is not None:
             pulumi.set(__self__, "default_ttl", default_ttl)
         if max_ttl is not None:
@@ -102,6 +113,33 @@ class SecretBackendRoleArgs:
     @db_name.setter
     def db_name(self, value: pulumi.Input[str]):
         pulumi.set(self, "db_name", value)
+
+    @property
+    @pulumi.getter(name="credentialConfig")
+    def credential_config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        Specifies the configuration
+        for the given `credential_type`.
+        """
+        return pulumi.get(self, "credential_config")
+
+    @credential_config.setter
+    def credential_config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "credential_config", value)
+
+    @property
+    @pulumi.getter(name="credentialType")
+    def credential_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the type of credential that
+        will be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.
+        See the plugin's API page for credential types supported by individual databases.
+        """
+        return pulumi.get(self, "credential_type")
+
+    @credential_type.setter
+    def credential_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "credential_type", value)
 
     @property
     @pulumi.getter(name="defaultTtl")
@@ -201,6 +239,8 @@ class _SecretBackendRoleState:
     def __init__(__self__, *,
                  backend: Optional[pulumi.Input[str]] = None,
                  creation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 credential_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 credential_type: Optional[pulumi.Input[str]] = None,
                  db_name: Optional[pulumi.Input[str]] = None,
                  default_ttl: Optional[pulumi.Input[int]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
@@ -214,6 +254,11 @@ class _SecretBackendRoleState:
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] creation_statements: The database statements to execute when
                creating a user.
+        :param pulumi.Input[Mapping[str, Any]] credential_config: Specifies the configuration
+               for the given `credential_type`.
+        :param pulumi.Input[str] credential_type: Specifies the type of credential that
+               will be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.
+               See the plugin's API page for credential types supported by individual databases.
         :param pulumi.Input[str] db_name: The unique name of the database connection to use for
                the role.
         :param pulumi.Input[int] default_ttl: The default number of seconds for leases for this
@@ -236,6 +281,10 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "backend", backend)
         if creation_statements is not None:
             pulumi.set(__self__, "creation_statements", creation_statements)
+        if credential_config is not None:
+            pulumi.set(__self__, "credential_config", credential_config)
+        if credential_type is not None:
+            pulumi.set(__self__, "credential_type", credential_type)
         if db_name is not None:
             pulumi.set(__self__, "db_name", db_name)
         if default_ttl is not None:
@@ -277,6 +326,33 @@ class _SecretBackendRoleState:
     @creation_statements.setter
     def creation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "creation_statements", value)
+
+    @property
+    @pulumi.getter(name="credentialConfig")
+    def credential_config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        Specifies the configuration
+        for the given `credential_type`.
+        """
+        return pulumi.get(self, "credential_config")
+
+    @credential_config.setter
+    def credential_config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "credential_config", value)
+
+    @property
+    @pulumi.getter(name="credentialType")
+    def credential_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the type of credential that
+        will be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.
+        See the plugin's API page for credential types supported by individual databases.
+        """
+        return pulumi.get(self, "credential_type")
+
+    @credential_type.setter
+    def credential_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "credential_type", value)
 
     @property
     @pulumi.getter(name="dbName")
@@ -391,6 +467,8 @@ class SecretBackendRole(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  creation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 credential_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 credential_type: Optional[pulumi.Input[str]] = None,
                  db_name: Optional[pulumi.Input[str]] = None,
                  default_ttl: Optional[pulumi.Input[int]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
@@ -438,6 +516,11 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] creation_statements: The database statements to execute when
                creating a user.
+        :param pulumi.Input[Mapping[str, Any]] credential_config: Specifies the configuration
+               for the given `credential_type`.
+        :param pulumi.Input[str] credential_type: Specifies the type of credential that
+               will be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.
+               See the plugin's API page for credential types supported by individual databases.
         :param pulumi.Input[str] db_name: The unique name of the database connection to use for
                the role.
         :param pulumi.Input[int] default_ttl: The default number of seconds for leases for this
@@ -512,6 +595,8 @@ class SecretBackendRole(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  creation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 credential_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 credential_type: Optional[pulumi.Input[str]] = None,
                  db_name: Optional[pulumi.Input[str]] = None,
                  default_ttl: Optional[pulumi.Input[int]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
@@ -535,6 +620,8 @@ class SecretBackendRole(pulumi.CustomResource):
             if creation_statements is None and not opts.urn:
                 raise TypeError("Missing required property 'creation_statements'")
             __props__.__dict__["creation_statements"] = creation_statements
+            __props__.__dict__["credential_config"] = credential_config
+            __props__.__dict__["credential_type"] = credential_type
             if db_name is None and not opts.urn:
                 raise TypeError("Missing required property 'db_name'")
             __props__.__dict__["db_name"] = db_name
@@ -557,6 +644,8 @@ class SecretBackendRole(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
             creation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            credential_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            credential_type: Optional[pulumi.Input[str]] = None,
             db_name: Optional[pulumi.Input[str]] = None,
             default_ttl: Optional[pulumi.Input[int]] = None,
             max_ttl: Optional[pulumi.Input[int]] = None,
@@ -575,6 +664,11 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] creation_statements: The database statements to execute when
                creating a user.
+        :param pulumi.Input[Mapping[str, Any]] credential_config: Specifies the configuration
+               for the given `credential_type`.
+        :param pulumi.Input[str] credential_type: Specifies the type of credential that
+               will be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.
+               See the plugin's API page for credential types supported by individual databases.
         :param pulumi.Input[str] db_name: The unique name of the database connection to use for
                the role.
         :param pulumi.Input[int] default_ttl: The default number of seconds for leases for this
@@ -599,6 +693,8 @@ class SecretBackendRole(pulumi.CustomResource):
 
         __props__.__dict__["backend"] = backend
         __props__.__dict__["creation_statements"] = creation_statements
+        __props__.__dict__["credential_config"] = credential_config
+        __props__.__dict__["credential_type"] = credential_type
         __props__.__dict__["db_name"] = db_name
         __props__.__dict__["default_ttl"] = default_ttl
         __props__.__dict__["max_ttl"] = max_ttl
@@ -625,6 +721,25 @@ class SecretBackendRole(pulumi.CustomResource):
         creating a user.
         """
         return pulumi.get(self, "creation_statements")
+
+    @property
+    @pulumi.getter(name="credentialConfig")
+    def credential_config(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+        """
+        Specifies the configuration
+        for the given `credential_type`.
+        """
+        return pulumi.get(self, "credential_config")
+
+    @property
+    @pulumi.getter(name="credentialType")
+    def credential_type(self) -> pulumi.Output[str]:
+        """
+        Specifies the type of credential that
+        will be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.
+        See the plugin's API page for credential types supported by individual databases.
+        """
+        return pulumi.get(self, "credential_type")
 
     @property
     @pulumi.getter(name="dbName")

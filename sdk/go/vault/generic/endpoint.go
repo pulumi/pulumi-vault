@@ -80,8 +80,8 @@ import (
 //
 // Use of this resource requires the `create` or `update` capability
 // (depending on whether the resource already exists) on the given path. If
-// `disableDelete` is false, the `delete` capbility is also required. If
-// `disableDelete` is false, the `read` capbility is required.
+// `disableDelete` is false, the `delete` capability is also required. If
+// `disableRead` is false, the `read` capability is required.
 //
 // ## Import
 //

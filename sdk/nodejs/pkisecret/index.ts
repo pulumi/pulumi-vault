@@ -29,6 +29,14 @@ export { SecretBackendIntermediateSetSignedArgs, SecretBackendIntermediateSetSig
 export type SecretBackendIntermediateSetSigned = import("./secretBackendIntermediateSetSigned").SecretBackendIntermediateSetSigned;
 export const SecretBackendIntermediateSetSigned: typeof import("./secretBackendIntermediateSetSigned").SecretBackendIntermediateSetSigned = null as any;
 
+export { SecretBackendIssuerArgs, SecretBackendIssuerState } from "./secretBackendIssuer";
+export type SecretBackendIssuer = import("./secretBackendIssuer").SecretBackendIssuer;
+export const SecretBackendIssuer: typeof import("./secretBackendIssuer").SecretBackendIssuer = null as any;
+
+export { SecretBackendKeyArgs, SecretBackendKeyState } from "./secretBackendKey";
+export type SecretBackendKey = import("./secretBackendKey").SecretBackendKey;
+export const SecretBackendKey: typeof import("./secretBackendKey").SecretBackendKey = null as any;
+
 export { SecretBackendRoleArgs, SecretBackendRoleState } from "./secretBackendRole";
 export type SecretBackendRole = import("./secretBackendRole").SecretBackendRole;
 export const SecretBackendRole: typeof import("./secretBackendRole").SecretBackendRole = null as any;
@@ -51,6 +59,8 @@ utilities.lazyLoad(exports, ["SecretBackendConfigUrls"], () => require("./secret
 utilities.lazyLoad(exports, ["SecretBackendCrlConfig"], () => require("./secretBackendCrlConfig"));
 utilities.lazyLoad(exports, ["SecretBackendIntermediateCertRequest"], () => require("./secretBackendIntermediateCertRequest"));
 utilities.lazyLoad(exports, ["SecretBackendIntermediateSetSigned"], () => require("./secretBackendIntermediateSetSigned"));
+utilities.lazyLoad(exports, ["SecretBackendIssuer"], () => require("./secretBackendIssuer"));
+utilities.lazyLoad(exports, ["SecretBackendKey"], () => require("./secretBackendKey"));
 utilities.lazyLoad(exports, ["SecretBackendRole"], () => require("./secretBackendRole"));
 utilities.lazyLoad(exports, ["SecretBackendRootCert"], () => require("./secretBackendRootCert"));
 utilities.lazyLoad(exports, ["SecretBackendRootSignIntermediate"], () => require("./secretBackendRootSignIntermediate"));
@@ -72,6 +82,10 @@ const _module = {
                 return new SecretBackendIntermediateCertRequest(name, <any>undefined, { urn })
             case "vault:pkiSecret/secretBackendIntermediateSetSigned:SecretBackendIntermediateSetSigned":
                 return new SecretBackendIntermediateSetSigned(name, <any>undefined, { urn })
+            case "vault:pkiSecret/secretBackendIssuer:SecretBackendIssuer":
+                return new SecretBackendIssuer(name, <any>undefined, { urn })
+            case "vault:pkiSecret/secretBackendKey:SecretBackendKey":
+                return new SecretBackendKey(name, <any>undefined, { urn })
             case "vault:pkiSecret/secretBackendRole:SecretBackendRole":
                 return new SecretBackendRole(name, <any>undefined, { urn })
             case "vault:pkiSecret/secretBackendRootCert:SecretBackendRootCert":
@@ -91,6 +105,8 @@ pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendConfigUrl
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendCrlConfig", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendIntermediateCertRequest", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendIntermediateSetSigned", _module)
+pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendIssuer", _module)
+pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendKey", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendRole", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendRootCert", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendRootSignIntermediate", _module)

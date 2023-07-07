@@ -139,6 +139,27 @@ public final class SecretBackendRootSignIntermediateArgs extends com.pulumi.reso
     }
 
     /**
+     * Specifies the default issuer of this request. May
+     * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+     * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+     * overriding the role&#39;s `issuer_ref` value.
+     * 
+     */
+    @Import(name="issuerRef")
+    private @Nullable Output<String> issuerRef;
+
+    /**
+     * @return Specifies the default issuer of this request. May
+     * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+     * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+     * overriding the role&#39;s `issuer_ref` value.
+     * 
+     */
+    public Optional<Output<String>> issuerRef() {
+        return Optional.ofNullable(this.issuerRef);
+    }
+
+    /**
      * The locality
      * 
      */
@@ -365,6 +386,7 @@ public final class SecretBackendRootSignIntermediateArgs extends com.pulumi.reso
         this.excludeCnFromSans = $.excludeCnFromSans;
         this.format = $.format;
         this.ipSans = $.ipSans;
+        this.issuerRef = $.issuerRef;
         this.locality = $.locality;
         this.maxPathLength = $.maxPathLength;
         this.namespace = $.namespace;
@@ -585,6 +607,33 @@ public final class SecretBackendRootSignIntermediateArgs extends com.pulumi.reso
          */
         public Builder ipSans(String... ipSans) {
             return ipSans(List.of(ipSans));
+        }
+
+        /**
+         * @param issuerRef Specifies the default issuer of this request. May
+         * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+         * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+         * overriding the role&#39;s `issuer_ref` value.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder issuerRef(@Nullable Output<String> issuerRef) {
+            $.issuerRef = issuerRef;
+            return this;
+        }
+
+        /**
+         * @param issuerRef Specifies the default issuer of this request. May
+         * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+         * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+         * overriding the role&#39;s `issuer_ref` value.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder issuerRef(String issuerRef) {
+            return issuerRef(Output.of(issuerRef));
         }
 
         /**

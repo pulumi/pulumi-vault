@@ -53,6 +53,10 @@ export { SecretBackendRoleArgs, SecretBackendRoleState } from "./secretBackendRo
 export type SecretBackendRole = import("./secretBackendRole").SecretBackendRole;
 export const SecretBackendRole: typeof import("./secretBackendRole").SecretBackendRole = null as any;
 
+export { SecretBackendStaticRoleArgs, SecretBackendStaticRoleState } from "./secretBackendStaticRole";
+export type SecretBackendStaticRole = import("./secretBackendStaticRole").SecretBackendStaticRole;
+export const SecretBackendStaticRole: typeof import("./secretBackendStaticRole").SecretBackendStaticRole = null as any;
+
 utilities.lazyLoad(exports, ["AuthBackendCert"], () => require("./authBackendCert"));
 utilities.lazyLoad(exports, ["AuthBackendClient"], () => require("./authBackendClient"));
 utilities.lazyLoad(exports, ["AuthBackendConfigIdentity"], () => require("./authBackendConfigIdentity"));
@@ -65,6 +69,7 @@ utilities.lazyLoad(exports, ["AuthBackendStsRole"], () => require("./authBackend
 utilities.lazyLoad(exports, ["getAccessCredentials","getAccessCredentialsOutput"], () => require("./getAccessCredentials"));
 utilities.lazyLoad(exports, ["SecretBackend"], () => require("./secretBackend"));
 utilities.lazyLoad(exports, ["SecretBackendRole"], () => require("./secretBackendRole"));
+utilities.lazyLoad(exports, ["SecretBackendStaticRole"], () => require("./secretBackendStaticRole"));
 
 const _module = {
     version: utilities.getVersion(),
@@ -92,6 +97,8 @@ const _module = {
                 return new SecretBackend(name, <any>undefined, { urn })
             case "vault:aws/secretBackendRole:SecretBackendRole":
                 return new SecretBackendRole(name, <any>undefined, { urn })
+            case "vault:aws/secretBackendStaticRole:SecretBackendStaticRole":
+                return new SecretBackendStaticRole(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -108,3 +115,4 @@ pulumi.runtime.registerResourceModule("vault", "aws/authBackendRoletagBlacklist"
 pulumi.runtime.registerResourceModule("vault", "aws/authBackendStsRole", _module)
 pulumi.runtime.registerResourceModule("vault", "aws/secretBackend", _module)
 pulumi.runtime.registerResourceModule("vault", "aws/secretBackendRole", _module)
+pulumi.runtime.registerResourceModule("vault", "aws/secretBackendStaticRole", _module)

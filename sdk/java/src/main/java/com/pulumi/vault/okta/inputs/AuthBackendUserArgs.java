@@ -20,15 +20,15 @@ public final class AuthBackendUserArgs extends com.pulumi.resources.ResourceArgs
      * List of Okta groups to associate with this user
      * 
      */
-    @Import(name="groups", required=true)
-    private Output<List<String>> groups;
+    @Import(name="groups")
+    private @Nullable Output<List<String>> groups;
 
     /**
      * @return List of Okta groups to associate with this user
      * 
      */
-    public Output<List<String>> groups() {
-        return this.groups;
+    public Optional<Output<List<String>>> groups() {
+        return Optional.ofNullable(this.groups);
     }
 
     /**
@@ -93,7 +93,7 @@ public final class AuthBackendUserArgs extends com.pulumi.resources.ResourceArgs
          * @return builder
          * 
          */
-        public Builder groups(Output<List<String>> groups) {
+        public Builder groups(@Nullable Output<List<String>> groups) {
             $.groups = groups;
             return this;
         }
@@ -171,7 +171,6 @@ public final class AuthBackendUserArgs extends com.pulumi.resources.ResourceArgs
         }
 
         public AuthBackendUserArgs build() {
-            $.groups = Objects.requireNonNull($.groups, "expected parameter 'groups' to be non-null");
             $.username = Objects.requireNonNull($.username, "expected parameter 'username' to be non-null");
             return $;
         }

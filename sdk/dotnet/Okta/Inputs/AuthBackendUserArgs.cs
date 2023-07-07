@@ -12,7 +12,7 @@ namespace Pulumi.Vault.Okta.Inputs
 
     public sealed class AuthBackendUserArgs : global::Pulumi.ResourceArgs
     {
-        [Input("groups", required: true)]
+        [Input("groups")]
         private InputList<string>? _groups;
 
         /// <summary>

@@ -267,6 +267,14 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "aws/secretBackendStaticRole",
+  "fqn": "pulumi_vault.aws",
+  "classes": {
+   "vault:aws/secretBackendStaticRole:SecretBackendStaticRole": "SecretBackendStaticRole"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "azure/authBackendConfig",
   "fqn": "pulumi_vault.azure",
   "classes": {
@@ -1015,6 +1023,22 @@ _utilities.register(
   "fqn": "pulumi_vault.pkisecret",
   "classes": {
    "vault:pkiSecret/secretBackendIntermediateSetSigned:SecretBackendIntermediateSetSigned": "SecretBackendIntermediateSetSigned"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "pkiSecret/secretBackendIssuer",
+  "fqn": "pulumi_vault.pkisecret",
+  "classes": {
+   "vault:pkiSecret/secretBackendIssuer:SecretBackendIssuer": "SecretBackendIssuer"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "pkiSecret/secretBackendKey",
+  "fqn": "pulumi_vault.pkisecret",
+  "classes": {
+   "vault:pkiSecret/secretBackendKey:SecretBackendKey": "SecretBackendKey"
   }
  },
  {

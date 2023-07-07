@@ -11,13 +11,57 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ldap"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			config, err := ldap.NewSecretBackend(ctx, "config", &ldap.SecretBackendArgs{
+//				Path:        pulumi.String("ldap"),
+//				Binddn:      pulumi.String("CN=Administrator,CN=Users,DC=corp,DC=example,DC=net"),
+//				Bindpass:    pulumi.String("SuperSecretPassw0rd"),
+//				Url:         pulumi.String("ldaps://localhost"),
+//				InsecureTls: pulumi.Bool(true),
+//				Userdn:      pulumi.String("CN=Users,DC=corp,DC=example,DC=net"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ldap.NewSecretBackendLibrarySet(ctx, "qa", &ldap.SecretBackendLibrarySetArgs{
+//				Mount: config.Path,
+//				ServiceAccountNames: pulumi.StringArray{
+//					pulumi.String("Bob"),
+//					pulumi.String("Mary"),
+//				},
+//				Ttl:                       pulumi.Int(60),
+//				DisableCheckInEnforcement: pulumi.Bool(true),
+//				MaxTtl:                    pulumi.Int(120),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // LDAP secret backend libraries can be imported using the `path`, e.g.
 //
 // ```sh
 //
-//	$ pulumi import vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet set ldap/library/bob
+//	$ pulumi import vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet qa ldap/library/bob
 //
 // ```
 type SecretBackendLibrarySet struct {

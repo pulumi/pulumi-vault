@@ -87,6 +87,9 @@ type AuthBackend struct {
 	InsecureTls pulumi.BoolOutput `pulumi:"insecureTls"`
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
+	// Sets the max page size for LDAP lookups, by default it's set to -1.
+	// *Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.
+	MaxPageSize pulumi.IntPtrOutput `pulumi:"maxPageSize"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -223,6 +226,9 @@ type authBackendState struct {
 	InsecureTls *bool `pulumi:"insecureTls"`
 	// Specifies if the auth method is local only.
 	Local *bool `pulumi:"local"`
+	// Sets the max page size for LDAP lookups, by default it's set to -1.
+	// *Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.
+	MaxPageSize *int `pulumi:"maxPageSize"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -317,6 +323,9 @@ type AuthBackendState struct {
 	InsecureTls pulumi.BoolPtrInput
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrInput
+	// Sets the max page size for LDAP lookups, by default it's set to -1.
+	// *Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.
+	MaxPageSize pulumi.IntPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -413,6 +422,9 @@ type authBackendArgs struct {
 	InsecureTls *bool `pulumi:"insecureTls"`
 	// Specifies if the auth method is local only.
 	Local *bool `pulumi:"local"`
+	// Sets the max page size for LDAP lookups, by default it's set to -1.
+	// *Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.
+	MaxPageSize *int `pulumi:"maxPageSize"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -506,6 +518,9 @@ type AuthBackendArgs struct {
 	InsecureTls pulumi.BoolPtrInput
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrInput
+	// Sets the max page size for LDAP lookups, by default it's set to -1.
+	// *Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.
+	MaxPageSize pulumi.IntPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -732,6 +747,12 @@ func (o AuthBackendOutput) InsecureTls() pulumi.BoolOutput {
 // Specifies if the auth method is local only.
 func (o AuthBackendOutput) Local() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.BoolPtrOutput { return v.Local }).(pulumi.BoolPtrOutput)
+}
+
+// Sets the max page size for LDAP lookups, by default it's set to -1.
+// *Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.
+func (o AuthBackendOutput) MaxPageSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.IntPtrOutput { return v.MaxPageSize }).(pulumi.IntPtrOutput)
 }
 
 // The namespace to provision the resource in.

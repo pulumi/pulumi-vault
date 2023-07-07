@@ -80,6 +80,8 @@ class _SecretBackendIntermediateSetSignedState:
     def __init__(__self__, *,
                  backend: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
+                 imported_issuers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 imported_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  namespace: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendIntermediateSetSigned resources.
@@ -87,6 +89,9 @@ class _SecretBackendIntermediateSetSignedState:
         :param pulumi.Input[str] certificate: Specifies the PEM encoded certificate. May optionally append additional
                CA certificates to populate the whole chain, which will then enable returning the full chain from
                issue and sign operations.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] imported_issuers: The imported issuers indicating which issuers were created as part of
+               this request.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] imported_keys: The imported keys indicating which keys were created as part of this request.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -96,6 +101,10 @@ class _SecretBackendIntermediateSetSignedState:
             pulumi.set(__self__, "backend", backend)
         if certificate is not None:
             pulumi.set(__self__, "certificate", certificate)
+        if imported_issuers is not None:
+            pulumi.set(__self__, "imported_issuers", imported_issuers)
+        if imported_keys is not None:
+            pulumi.set(__self__, "imported_keys", imported_keys)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
 
@@ -124,6 +133,31 @@ class _SecretBackendIntermediateSetSignedState:
     @certificate.setter
     def certificate(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "certificate", value)
+
+    @property
+    @pulumi.getter(name="importedIssuers")
+    def imported_issuers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The imported issuers indicating which issuers were created as part of
+        this request.
+        """
+        return pulumi.get(self, "imported_issuers")
+
+    @imported_issuers.setter
+    def imported_issuers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "imported_issuers", value)
+
+    @property
+    @pulumi.getter(name="importedKeys")
+    def imported_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The imported keys indicating which keys were created as part of this request.
+        """
+        return pulumi.get(self, "imported_keys")
+
+    @imported_keys.setter
+    def imported_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "imported_keys", value)
 
     @property
     @pulumi.getter
@@ -309,6 +343,8 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
                 raise TypeError("Missing required property 'certificate'")
             __props__.__dict__["certificate"] = certificate
             __props__.__dict__["namespace"] = namespace
+            __props__.__dict__["imported_issuers"] = None
+            __props__.__dict__["imported_keys"] = None
         super(SecretBackendIntermediateSetSigned, __self__).__init__(
             'vault:pkiSecret/secretBackendIntermediateSetSigned:SecretBackendIntermediateSetSigned',
             resource_name,
@@ -321,6 +357,8 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
             certificate: Optional[pulumi.Input[str]] = None,
+            imported_issuers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            imported_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             namespace: Optional[pulumi.Input[str]] = None) -> 'SecretBackendIntermediateSetSigned':
         """
         Get an existing SecretBackendIntermediateSetSigned resource's state with the given name, id, and optional extra
@@ -333,6 +371,9 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
         :param pulumi.Input[str] certificate: Specifies the PEM encoded certificate. May optionally append additional
                CA certificates to populate the whole chain, which will then enable returning the full chain from
                issue and sign operations.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] imported_issuers: The imported issuers indicating which issuers were created as part of
+               this request.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] imported_keys: The imported keys indicating which keys were created as part of this request.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -344,6 +385,8 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
 
         __props__.__dict__["backend"] = backend
         __props__.__dict__["certificate"] = certificate
+        __props__.__dict__["imported_issuers"] = imported_issuers
+        __props__.__dict__["imported_keys"] = imported_keys
         __props__.__dict__["namespace"] = namespace
         return SecretBackendIntermediateSetSigned(resource_name, opts=opts, __props__=__props__)
 
@@ -364,6 +407,23 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
         issue and sign operations.
         """
         return pulumi.get(self, "certificate")
+
+    @property
+    @pulumi.getter(name="importedIssuers")
+    def imported_issuers(self) -> pulumi.Output[Sequence[str]]:
+        """
+        The imported issuers indicating which issuers were created as part of
+        this request.
+        """
+        return pulumi.get(self, "imported_issuers")
+
+    @property
+    @pulumi.getter(name="importedKeys")
+    def imported_keys(self) -> pulumi.Output[Sequence[str]]:
+        """
+        The imported keys indicating which keys were created as part of this request.
+        """
+        return pulumi.get(self, "imported_keys")
 
     @property
     @pulumi.getter

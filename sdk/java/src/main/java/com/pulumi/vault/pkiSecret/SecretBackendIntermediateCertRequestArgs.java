@@ -158,6 +158,40 @@ public final class SecretBackendIntermediateCertRequestArgs extends com.pulumi.r
     }
 
     /**
+     * When a new key is created with this request, optionally specifies
+     * the name for this. The global ref `default` may not be used as a name.
+     * 
+     */
+    @Import(name="keyName")
+    private @Nullable Output<String> keyName;
+
+    /**
+     * @return When a new key is created with this request, optionally specifies
+     * the name for this. The global ref `default` may not be used as a name.
+     * 
+     */
+    public Optional<Output<String>> keyName() {
+        return Optional.ofNullable(this.keyName);
+    }
+
+    /**
+     * Specifies the key (either default, by name, or by identifier) to use
+     * for generating this request. Only suitable for `type=existing` requests.
+     * 
+     */
+    @Import(name="keyRef")
+    private @Nullable Output<String> keyRef;
+
+    /**
+     * @return Specifies the key (either default, by name, or by identifier) to use
+     * for generating this request. Only suitable for `type=existing` requests.
+     * 
+     */
+    public Optional<Output<String>> keyRef() {
+        return Optional.ofNullable(this.keyRef);
+    }
+
+    /**
      * The desired key type
      * 
      */
@@ -391,6 +425,8 @@ public final class SecretBackendIntermediateCertRequestArgs extends com.pulumi.r
         this.format = $.format;
         this.ipSans = $.ipSans;
         this.keyBits = $.keyBits;
+        this.keyName = $.keyName;
+        this.keyRef = $.keyRef;
         this.keyType = $.keyType;
         this.locality = $.locality;
         this.managedKeyId = $.managedKeyId;
@@ -636,6 +672,52 @@ public final class SecretBackendIntermediateCertRequestArgs extends com.pulumi.r
          */
         public Builder keyBits(Integer keyBits) {
             return keyBits(Output.of(keyBits));
+        }
+
+        /**
+         * @param keyName When a new key is created with this request, optionally specifies
+         * the name for this. The global ref `default` may not be used as a name.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyName(@Nullable Output<String> keyName) {
+            $.keyName = keyName;
+            return this;
+        }
+
+        /**
+         * @param keyName When a new key is created with this request, optionally specifies
+         * the name for this. The global ref `default` may not be used as a name.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyName(String keyName) {
+            return keyName(Output.of(keyName));
+        }
+
+        /**
+         * @param keyRef Specifies the key (either default, by name, or by identifier) to use
+         * for generating this request. Only suitable for `type=existing` requests.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyRef(@Nullable Output<String> keyRef) {
+            $.keyRef = keyRef;
+            return this;
+        }
+
+        /**
+         * @param keyRef Specifies the key (either default, by name, or by identifier) to use
+         * for generating this request. Only suitable for `type=existing` requests.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyRef(String keyRef) {
+            return keyRef(Output.of(keyRef));
         }
 
         /**

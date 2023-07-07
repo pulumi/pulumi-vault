@@ -139,6 +139,27 @@ public final class SecretBackendSignArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * Specifies the default issuer of this request. Can
+     * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+     * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+     * overriding the role&#39;s `issuer_ref` value.
+     * 
+     */
+    @Import(name="issuerRef")
+    private @Nullable Output<String> issuerRef;
+
+    /**
+     * @return Specifies the default issuer of this request. Can
+     * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+     * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+     * overriding the role&#39;s `issuer_ref` value.
+     * 
+     */
+    public Optional<Output<String>> issuerRef() {
+        return Optional.ofNullable(this.issuerRef);
+    }
+
+    /**
      * Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
      * 
      */
@@ -245,6 +266,7 @@ public final class SecretBackendSignArgs extends com.pulumi.resources.ResourceAr
         this.excludeCnFromSans = $.excludeCnFromSans;
         this.format = $.format;
         this.ipSans = $.ipSans;
+        this.issuerRef = $.issuerRef;
         this.minSecondsRemaining = $.minSecondsRemaining;
         this.name = $.name;
         this.namespace = $.namespace;
@@ -457,6 +479,33 @@ public final class SecretBackendSignArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder ipSans(String... ipSans) {
             return ipSans(List.of(ipSans));
+        }
+
+        /**
+         * @param issuerRef Specifies the default issuer of this request. Can
+         * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+         * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+         * overriding the role&#39;s `issuer_ref` value.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder issuerRef(@Nullable Output<String> issuerRef) {
+            $.issuerRef = issuerRef;
+            return this;
+        }
+
+        /**
+         * @param issuerRef Specifies the default issuer of this request. Can
+         * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+         * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+         * overriding the role&#39;s `issuer_ref` value.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder issuerRef(String issuerRef) {
+            return issuerRef(Output.of(issuerRef));
         }
 
         /**

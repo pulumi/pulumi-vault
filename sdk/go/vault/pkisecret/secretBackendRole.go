@@ -82,6 +82,8 @@ type SecretBackendRole struct {
 	AllowLocalhost pulumi.BoolPtrOutput `pulumi:"allowLocalhost"`
 	// Flag to allow certificates matching subdomains
 	AllowSubdomains pulumi.BoolPtrOutput `pulumi:"allowSubdomains"`
+	// Flag to allow wildcard certificates.
+	AllowWildcardCertificates pulumi.BoolPtrOutput `pulumi:"allowWildcardCertificates"`
 	// List of allowed domains for certificates
 	AllowedDomains pulumi.StringArrayOutput `pulumi:"allowedDomains"`
 	// Flag, if set, `allowedDomains` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
@@ -92,6 +94,8 @@ type SecretBackendRole struct {
 	AllowedSerialNumbers pulumi.StringArrayOutput `pulumi:"allowedSerialNumbers"`
 	// Defines allowed URI SANs
 	AllowedUriSans pulumi.StringArrayOutput `pulumi:"allowedUriSans"`
+	// Flag, if set, `allowedUriSans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
+	AllowedUriSansTemplate pulumi.BoolOutput `pulumi:"allowedUriSansTemplate"`
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 	Backend pulumi.StringOutput `pulumi:"backend"`
 	// Flag to mark basic constraints valid when issuing non-CA certificates
@@ -110,9 +114,14 @@ type SecretBackendRole struct {
 	ExtKeyUsages pulumi.StringArrayOutput `pulumi:"extKeyUsages"`
 	// Flag to generate leases with certificates
 	GenerateLease pulumi.BoolPtrOutput `pulumi:"generateLease"`
+	// Specifies the default issuer of this request. May
+	// be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+	// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+	// overriding the role's `issuerRef` value.
+	IssuerRef pulumi.StringOutput `pulumi:"issuerRef"`
 	// The number of bits of generated keys
 	KeyBits pulumi.IntPtrOutput `pulumi:"keyBits"`
-	// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`\
+	// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
 	// Defaults to `rsa`
 	KeyType pulumi.StringPtrOutput `pulumi:"keyType"`
 	// Specify the allowed key usage constraint on issued certificates
@@ -200,6 +209,8 @@ type secretBackendRoleState struct {
 	AllowLocalhost *bool `pulumi:"allowLocalhost"`
 	// Flag to allow certificates matching subdomains
 	AllowSubdomains *bool `pulumi:"allowSubdomains"`
+	// Flag to allow wildcard certificates.
+	AllowWildcardCertificates *bool `pulumi:"allowWildcardCertificates"`
 	// List of allowed domains for certificates
 	AllowedDomains []string `pulumi:"allowedDomains"`
 	// Flag, if set, `allowedDomains` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
@@ -210,6 +221,8 @@ type secretBackendRoleState struct {
 	AllowedSerialNumbers []string `pulumi:"allowedSerialNumbers"`
 	// Defines allowed URI SANs
 	AllowedUriSans []string `pulumi:"allowedUriSans"`
+	// Flag, if set, `allowedUriSans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
+	AllowedUriSansTemplate *bool `pulumi:"allowedUriSansTemplate"`
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 	Backend *string `pulumi:"backend"`
 	// Flag to mark basic constraints valid when issuing non-CA certificates
@@ -228,9 +241,14 @@ type secretBackendRoleState struct {
 	ExtKeyUsages []string `pulumi:"extKeyUsages"`
 	// Flag to generate leases with certificates
 	GenerateLease *bool `pulumi:"generateLease"`
+	// Specifies the default issuer of this request. May
+	// be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+	// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+	// overriding the role's `issuerRef` value.
+	IssuerRef *string `pulumi:"issuerRef"`
 	// The number of bits of generated keys
 	KeyBits *int `pulumi:"keyBits"`
-	// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`\
+	// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
 	// Defaults to `rsa`
 	KeyType *string `pulumi:"keyType"`
 	// Specify the allowed key usage constraint on issued certificates
@@ -287,6 +305,8 @@ type SecretBackendRoleState struct {
 	AllowLocalhost pulumi.BoolPtrInput
 	// Flag to allow certificates matching subdomains
 	AllowSubdomains pulumi.BoolPtrInput
+	// Flag to allow wildcard certificates.
+	AllowWildcardCertificates pulumi.BoolPtrInput
 	// List of allowed domains for certificates
 	AllowedDomains pulumi.StringArrayInput
 	// Flag, if set, `allowedDomains` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
@@ -297,6 +317,8 @@ type SecretBackendRoleState struct {
 	AllowedSerialNumbers pulumi.StringArrayInput
 	// Defines allowed URI SANs
 	AllowedUriSans pulumi.StringArrayInput
+	// Flag, if set, `allowedUriSans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
+	AllowedUriSansTemplate pulumi.BoolPtrInput
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 	Backend pulumi.StringPtrInput
 	// Flag to mark basic constraints valid when issuing non-CA certificates
@@ -315,9 +337,14 @@ type SecretBackendRoleState struct {
 	ExtKeyUsages pulumi.StringArrayInput
 	// Flag to generate leases with certificates
 	GenerateLease pulumi.BoolPtrInput
+	// Specifies the default issuer of this request. May
+	// be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+	// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+	// overriding the role's `issuerRef` value.
+	IssuerRef pulumi.StringPtrInput
 	// The number of bits of generated keys
 	KeyBits pulumi.IntPtrInput
-	// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`\
+	// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
 	// Defaults to `rsa`
 	KeyType pulumi.StringPtrInput
 	// Specify the allowed key usage constraint on issued certificates
@@ -378,6 +405,8 @@ type secretBackendRoleArgs struct {
 	AllowLocalhost *bool `pulumi:"allowLocalhost"`
 	// Flag to allow certificates matching subdomains
 	AllowSubdomains *bool `pulumi:"allowSubdomains"`
+	// Flag to allow wildcard certificates.
+	AllowWildcardCertificates *bool `pulumi:"allowWildcardCertificates"`
 	// List of allowed domains for certificates
 	AllowedDomains []string `pulumi:"allowedDomains"`
 	// Flag, if set, `allowedDomains` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
@@ -388,6 +417,8 @@ type secretBackendRoleArgs struct {
 	AllowedSerialNumbers []string `pulumi:"allowedSerialNumbers"`
 	// Defines allowed URI SANs
 	AllowedUriSans []string `pulumi:"allowedUriSans"`
+	// Flag, if set, `allowedUriSans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
+	AllowedUriSansTemplate *bool `pulumi:"allowedUriSansTemplate"`
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 	Backend string `pulumi:"backend"`
 	// Flag to mark basic constraints valid when issuing non-CA certificates
@@ -406,9 +437,14 @@ type secretBackendRoleArgs struct {
 	ExtKeyUsages []string `pulumi:"extKeyUsages"`
 	// Flag to generate leases with certificates
 	GenerateLease *bool `pulumi:"generateLease"`
+	// Specifies the default issuer of this request. May
+	// be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+	// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+	// overriding the role's `issuerRef` value.
+	IssuerRef *string `pulumi:"issuerRef"`
 	// The number of bits of generated keys
 	KeyBits *int `pulumi:"keyBits"`
-	// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`\
+	// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
 	// Defaults to `rsa`
 	KeyType *string `pulumi:"keyType"`
 	// Specify the allowed key usage constraint on issued certificates
@@ -466,6 +502,8 @@ type SecretBackendRoleArgs struct {
 	AllowLocalhost pulumi.BoolPtrInput
 	// Flag to allow certificates matching subdomains
 	AllowSubdomains pulumi.BoolPtrInput
+	// Flag to allow wildcard certificates.
+	AllowWildcardCertificates pulumi.BoolPtrInput
 	// List of allowed domains for certificates
 	AllowedDomains pulumi.StringArrayInput
 	// Flag, if set, `allowedDomains` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
@@ -476,6 +514,8 @@ type SecretBackendRoleArgs struct {
 	AllowedSerialNumbers pulumi.StringArrayInput
 	// Defines allowed URI SANs
 	AllowedUriSans pulumi.StringArrayInput
+	// Flag, if set, `allowedUriSans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
+	AllowedUriSansTemplate pulumi.BoolPtrInput
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 	Backend pulumi.StringInput
 	// Flag to mark basic constraints valid when issuing non-CA certificates
@@ -494,9 +534,14 @@ type SecretBackendRoleArgs struct {
 	ExtKeyUsages pulumi.StringArrayInput
 	// Flag to generate leases with certificates
 	GenerateLease pulumi.BoolPtrInput
+	// Specifies the default issuer of this request. May
+	// be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+	// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+	// overriding the role's `issuerRef` value.
+	IssuerRef pulumi.StringPtrInput
 	// The number of bits of generated keys
 	KeyBits pulumi.IntPtrInput
-	// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`\
+	// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
 	// Defaults to `rsa`
 	KeyType pulumi.StringPtrInput
 	// Specify the allowed key usage constraint on issued certificates
@@ -657,6 +702,11 @@ func (o SecretBackendRoleOutput) AllowSubdomains() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.AllowSubdomains }).(pulumi.BoolPtrOutput)
 }
 
+// Flag to allow wildcard certificates.
+func (o SecretBackendRoleOutput) AllowWildcardCertificates() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.AllowWildcardCertificates }).(pulumi.BoolPtrOutput)
+}
+
 // List of allowed domains for certificates
 func (o SecretBackendRoleOutput) AllowedDomains() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.AllowedDomains }).(pulumi.StringArrayOutput)
@@ -680,6 +730,11 @@ func (o SecretBackendRoleOutput) AllowedSerialNumbers() pulumi.StringArrayOutput
 // Defines allowed URI SANs
 func (o SecretBackendRoleOutput) AllowedUriSans() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.AllowedUriSans }).(pulumi.StringArrayOutput)
+}
+
+// Flag, if set, `allowedUriSans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
+func (o SecretBackendRoleOutput) AllowedUriSansTemplate() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolOutput { return v.AllowedUriSansTemplate }).(pulumi.BoolOutput)
 }
 
 // The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
@@ -727,12 +782,20 @@ func (o SecretBackendRoleOutput) GenerateLease() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.GenerateLease }).(pulumi.BoolPtrOutput)
 }
 
+// Specifies the default issuer of this request. May
+// be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+// overriding the role's `issuerRef` value.
+func (o SecretBackendRoleOutput) IssuerRef() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.IssuerRef }).(pulumi.StringOutput)
+}
+
 // The number of bits of generated keys
 func (o SecretBackendRoleOutput) KeyBits() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.IntPtrOutput { return v.KeyBits }).(pulumi.IntPtrOutput)
 }
 
-// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`\
+// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
 // Defaults to `rsa`
 func (o SecretBackendRoleOutput) KeyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.KeyType }).(pulumi.StringPtrOutput)

@@ -43,6 +43,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SecretBackend{}
 	case "vault:aws/secretBackendRole:SecretBackendRole":
 		r = &SecretBackendRole{}
+	case "vault:aws/secretBackendStaticRole:SecretBackendStaticRole":
+		r = &SecretBackendStaticRole{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -109,6 +111,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"vault",
 		"aws/secretBackendRole",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"aws/secretBackendStaticRole",
 		&module{version},
 	)
 }

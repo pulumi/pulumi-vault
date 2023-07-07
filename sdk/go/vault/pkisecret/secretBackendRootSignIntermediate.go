@@ -74,6 +74,11 @@ type SecretBackendRootSignIntermediate struct {
 	Format pulumi.StringPtrOutput `pulumi:"format"`
 	// List of alternative IPs
 	IpSans pulumi.StringArrayOutput `pulumi:"ipSans"`
+	// Specifies the default issuer of this request. May
+	// be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+	// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+	// overriding the role's `issuerRef` value.
+	IssuerRef pulumi.StringPtrOutput `pulumi:"issuerRef"`
 	// The issuing CA certificate in the `format` specified.
 	IssuingCa pulumi.StringOutput `pulumi:"issuingCa"`
 	// The locality
@@ -176,6 +181,11 @@ type secretBackendRootSignIntermediateState struct {
 	Format *string `pulumi:"format"`
 	// List of alternative IPs
 	IpSans []string `pulumi:"ipSans"`
+	// Specifies the default issuer of this request. May
+	// be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+	// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+	// overriding the role's `issuerRef` value.
+	IssuerRef *string `pulumi:"issuerRef"`
 	// The issuing CA certificate in the `format` specified.
 	IssuingCa *string `pulumi:"issuingCa"`
 	// The locality
@@ -241,6 +251,11 @@ type SecretBackendRootSignIntermediateState struct {
 	Format pulumi.StringPtrInput
 	// List of alternative IPs
 	IpSans pulumi.StringArrayInput
+	// Specifies the default issuer of this request. May
+	// be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+	// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+	// overriding the role's `issuerRef` value.
+	IssuerRef pulumi.StringPtrInput
 	// The issuing CA certificate in the `format` specified.
 	IssuingCa pulumi.StringPtrInput
 	// The locality
@@ -303,6 +318,11 @@ type secretBackendRootSignIntermediateArgs struct {
 	Format *string `pulumi:"format"`
 	// List of alternative IPs
 	IpSans []string `pulumi:"ipSans"`
+	// Specifies the default issuer of this request. May
+	// be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+	// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+	// overriding the role's `issuerRef` value.
+	IssuerRef *string `pulumi:"issuerRef"`
 	// The locality
 	Locality *string `pulumi:"locality"`
 	// The maximum path length to encode in the generated certificate
@@ -354,6 +374,11 @@ type SecretBackendRootSignIntermediateArgs struct {
 	Format pulumi.StringPtrInput
 	// List of alternative IPs
 	IpSans pulumi.StringArrayInput
+	// Specifies the default issuer of this request. May
+	// be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+	// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+	// overriding the role's `issuerRef` value.
+	IssuerRef pulumi.StringPtrInput
 	// The locality
 	Locality pulumi.StringPtrInput
 	// The maximum path length to encode in the generated certificate
@@ -528,6 +553,14 @@ func (o SecretBackendRootSignIntermediateOutput) Format() pulumi.StringPtrOutput
 // List of alternative IPs
 func (o SecretBackendRootSignIntermediateOutput) IpSans() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringArrayOutput { return v.IpSans }).(pulumi.StringArrayOutput)
+}
+
+// Specifies the default issuer of this request. May
+// be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
+// overriding the role's `issuerRef` value.
+func (o SecretBackendRootSignIntermediateOutput) IssuerRef() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringPtrOutput { return v.IssuerRef }).(pulumi.StringPtrOutput)
 }
 
 // The issuing CA certificate in the `format` specified.

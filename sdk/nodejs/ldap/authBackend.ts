@@ -115,6 +115,11 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public readonly local!: pulumi.Output<boolean | undefined>;
     /**
+     * Sets the max page size for LDAP lookups, by default it's set to -1.
+     * *Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.
+     */
+    public readonly maxPageSize!: pulumi.Output<number | undefined>;
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -248,6 +253,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["groupfilter"] = state ? state.groupfilter : undefined;
             resourceInputs["insecureTls"] = state ? state.insecureTls : undefined;
             resourceInputs["local"] = state ? state.local : undefined;
+            resourceInputs["maxPageSize"] = state ? state.maxPageSize : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
             resourceInputs["starttls"] = state ? state.starttls : undefined;
@@ -289,6 +295,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["groupfilter"] = args ? args.groupfilter : undefined;
             resourceInputs["insecureTls"] = args ? args.insecureTls : undefined;
             resourceInputs["local"] = args ? args.local : undefined;
+            resourceInputs["maxPageSize"] = args ? args.maxPageSize : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["starttls"] = args ? args.starttls : undefined;
@@ -376,6 +383,11 @@ export interface AuthBackendState {
      * Specifies if the auth method is local only.
      */
     local?: pulumi.Input<boolean>;
+    /**
+     * Sets the max page size for LDAP lookups, by default it's set to -1.
+     * *Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.
+     */
+    maxPageSize?: pulumi.Input<number>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
@@ -535,6 +547,11 @@ export interface AuthBackendArgs {
      * Specifies if the auth method is local only.
      */
     local?: pulumi.Input<boolean>;
+    /**
+     * Sets the max page size for LDAP lookups, by default it's set to -1.
+     * *Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.
+     */
+    maxPageSize?: pulumi.Input<number>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.

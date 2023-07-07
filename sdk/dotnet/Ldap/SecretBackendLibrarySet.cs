@@ -10,12 +10,47 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Ldap
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var config = new Vault.Ldap.SecretBackend("config", new()
+    ///     {
+    ///         Path = "ldap",
+    ///         Binddn = "CN=Administrator,CN=Users,DC=corp,DC=example,DC=net",
+    ///         Bindpass = "SuperSecretPassw0rd",
+    ///         Url = "ldaps://localhost",
+    ///         InsecureTls = true,
+    ///         Userdn = "CN=Users,DC=corp,DC=example,DC=net",
+    ///     });
+    /// 
+    ///     var qa = new Vault.Ldap.SecretBackendLibrarySet("qa", new()
+    ///     {
+    ///         Mount = config.Path,
+    ///         ServiceAccountNames = new[]
+    ///         {
+    ///             "Bob",
+    ///             "Mary",
+    ///         },
+    ///         Ttl = 60,
+    ///         DisableCheckInEnforcement = true,
+    ///         MaxTtl = 120,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// LDAP secret backend libraries can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet set ldap/library/bob
+    ///  $ pulumi import vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet qa ldap/library/bob
     /// ```
     /// </summary>
     [VaultResourceType("vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet")]

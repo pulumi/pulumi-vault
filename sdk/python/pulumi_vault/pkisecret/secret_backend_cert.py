@@ -21,6 +21,7 @@ class SecretBackendCertArgs:
                  exclude_cn_from_sans: Optional[pulumi.Input[bool]] = None,
                  format: Optional[pulumi.Input[str]] = None,
                  ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 issuer_ref: Optional[pulumi.Input[str]] = None,
                  min_seconds_remaining: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -38,6 +39,7 @@ class SecretBackendCertArgs:
         :param pulumi.Input[bool] exclude_cn_from_sans: Flag to exclude CN from SANs
         :param pulumi.Input[str] format: The format of data
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
+        :param pulumi.Input[str] issuer_ref: Specifies the default issuer of this request.
         :param pulumi.Input[int] min_seconds_remaining: Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
         :param pulumi.Input[str] name: Name of the role to create the certificate against
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -62,6 +64,8 @@ class SecretBackendCertArgs:
             pulumi.set(__self__, "format", format)
         if ip_sans is not None:
             pulumi.set(__self__, "ip_sans", ip_sans)
+        if issuer_ref is not None:
+            pulumi.set(__self__, "issuer_ref", issuer_ref)
         if min_seconds_remaining is not None:
             pulumi.set(__self__, "min_seconds_remaining", min_seconds_remaining)
         if name is not None:
@@ -162,6 +166,18 @@ class SecretBackendCertArgs:
     @ip_sans.setter
     def ip_sans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "ip_sans", value)
+
+    @property
+    @pulumi.getter(name="issuerRef")
+    def issuer_ref(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the default issuer of this request.
+        """
+        return pulumi.get(self, "issuer_ref")
+
+    @issuer_ref.setter
+    def issuer_ref(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "issuer_ref", value)
 
     @property
     @pulumi.getter(name="minSecondsRemaining")
@@ -276,6 +292,7 @@ class _SecretBackendCertState:
                  expiration: Optional[pulumi.Input[int]] = None,
                  format: Optional[pulumi.Input[str]] = None,
                  ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 issuer_ref: Optional[pulumi.Input[str]] = None,
                  issuing_ca: Optional[pulumi.Input[str]] = None,
                  min_seconds_remaining: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -301,6 +318,7 @@ class _SecretBackendCertState:
         :param pulumi.Input[int] expiration: The expiration date of the certificate in unix epoch format
         :param pulumi.Input[str] format: The format of data
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
+        :param pulumi.Input[str] issuer_ref: Specifies the default issuer of this request.
         :param pulumi.Input[str] issuing_ca: The issuing CA
         :param pulumi.Input[int] min_seconds_remaining: Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
         :param pulumi.Input[str] name: Name of the role to create the certificate against
@@ -338,6 +356,8 @@ class _SecretBackendCertState:
             pulumi.set(__self__, "format", format)
         if ip_sans is not None:
             pulumi.set(__self__, "ip_sans", ip_sans)
+        if issuer_ref is not None:
+            pulumi.set(__self__, "issuer_ref", issuer_ref)
         if issuing_ca is not None:
             pulumi.set(__self__, "issuing_ca", issuing_ca)
         if min_seconds_remaining is not None:
@@ -484,6 +504,18 @@ class _SecretBackendCertState:
     @ip_sans.setter
     def ip_sans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "ip_sans", value)
+
+    @property
+    @pulumi.getter(name="issuerRef")
+    def issuer_ref(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the default issuer of this request.
+        """
+        return pulumi.get(self, "issuer_ref")
+
+    @issuer_ref.setter
+    def issuer_ref(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "issuer_ref", value)
 
     @property
     @pulumi.getter(name="issuingCa")
@@ -657,6 +689,7 @@ class SecretBackendCert(pulumi.CustomResource):
                  exclude_cn_from_sans: Optional[pulumi.Input[bool]] = None,
                  format: Optional[pulumi.Input[str]] = None,
                  ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 issuer_ref: Optional[pulumi.Input[str]] = None,
                  min_seconds_remaining: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -688,6 +721,7 @@ class SecretBackendCert(pulumi.CustomResource):
         :param pulumi.Input[bool] exclude_cn_from_sans: Flag to exclude CN from SANs
         :param pulumi.Input[str] format: The format of data
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
+        :param pulumi.Input[str] issuer_ref: Specifies the default issuer of this request.
         :param pulumi.Input[int] min_seconds_remaining: Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
         :param pulumi.Input[str] name: Name of the role to create the certificate against
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -741,6 +775,7 @@ class SecretBackendCert(pulumi.CustomResource):
                  exclude_cn_from_sans: Optional[pulumi.Input[bool]] = None,
                  format: Optional[pulumi.Input[str]] = None,
                  ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 issuer_ref: Optional[pulumi.Input[str]] = None,
                  min_seconds_remaining: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -769,6 +804,7 @@ class SecretBackendCert(pulumi.CustomResource):
             __props__.__dict__["exclude_cn_from_sans"] = exclude_cn_from_sans
             __props__.__dict__["format"] = format
             __props__.__dict__["ip_sans"] = ip_sans
+            __props__.__dict__["issuer_ref"] = issuer_ref
             __props__.__dict__["min_seconds_remaining"] = min_seconds_remaining
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
@@ -807,6 +843,7 @@ class SecretBackendCert(pulumi.CustomResource):
             expiration: Optional[pulumi.Input[int]] = None,
             format: Optional[pulumi.Input[str]] = None,
             ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            issuer_ref: Optional[pulumi.Input[str]] = None,
             issuing_ca: Optional[pulumi.Input[str]] = None,
             min_seconds_remaining: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -837,6 +874,7 @@ class SecretBackendCert(pulumi.CustomResource):
         :param pulumi.Input[int] expiration: The expiration date of the certificate in unix epoch format
         :param pulumi.Input[str] format: The format of data
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
+        :param pulumi.Input[str] issuer_ref: Specifies the default issuer of this request.
         :param pulumi.Input[str] issuing_ca: The issuing CA
         :param pulumi.Input[int] min_seconds_remaining: Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
         :param pulumi.Input[str] name: Name of the role to create the certificate against
@@ -868,6 +906,7 @@ class SecretBackendCert(pulumi.CustomResource):
         __props__.__dict__["expiration"] = expiration
         __props__.__dict__["format"] = format
         __props__.__dict__["ip_sans"] = ip_sans
+        __props__.__dict__["issuer_ref"] = issuer_ref
         __props__.__dict__["issuing_ca"] = issuing_ca
         __props__.__dict__["min_seconds_remaining"] = min_seconds_remaining
         __props__.__dict__["name"] = name
@@ -962,6 +1001,14 @@ class SecretBackendCert(pulumi.CustomResource):
         List of alternative IPs
         """
         return pulumi.get(self, "ip_sans")
+
+    @property
+    @pulumi.getter(name="issuerRef")
+    def issuer_ref(self) -> pulumi.Output[Optional[str]]:
+        """
+        Specifies the default issuer of this request.
+        """
+        return pulumi.get(self, "issuer_ref")
 
     @property
     @pulumi.getter(name="issuingCa")

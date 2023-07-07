@@ -79,6 +79,13 @@ type SecretBackendRole struct {
 	// The database statements to execute when
 	// creating a user.
 	CreationStatements pulumi.StringArrayOutput `pulumi:"creationStatements"`
+	// Specifies the configuration
+	// for the given `credentialType`.
+	CredentialConfig pulumi.MapOutput `pulumi:"credentialConfig"`
+	// Specifies the type of credential that
+	// will be generated for the role. Options include: `password`, `rsaPrivateKey`, `clientCertificate`.
+	// See the plugin's API page for credential types supported by individual databases.
+	CredentialType pulumi.StringOutput `pulumi:"credentialType"`
 	// The unique name of the database connection to use for
 	// the role.
 	DbName pulumi.StringOutput `pulumi:"dbName"`
@@ -149,6 +156,13 @@ type secretBackendRoleState struct {
 	// The database statements to execute when
 	// creating a user.
 	CreationStatements []string `pulumi:"creationStatements"`
+	// Specifies the configuration
+	// for the given `credentialType`.
+	CredentialConfig map[string]interface{} `pulumi:"credentialConfig"`
+	// Specifies the type of credential that
+	// will be generated for the role. Options include: `password`, `rsaPrivateKey`, `clientCertificate`.
+	// See the plugin's API page for credential types supported by individual databases.
+	CredentialType *string `pulumi:"credentialType"`
 	// The unique name of the database connection to use for
 	// the role.
 	DbName *string `pulumi:"dbName"`
@@ -182,6 +196,13 @@ type SecretBackendRoleState struct {
 	// The database statements to execute when
 	// creating a user.
 	CreationStatements pulumi.StringArrayInput
+	// Specifies the configuration
+	// for the given `credentialType`.
+	CredentialConfig pulumi.MapInput
+	// Specifies the type of credential that
+	// will be generated for the role. Options include: `password`, `rsaPrivateKey`, `clientCertificate`.
+	// See the plugin's API page for credential types supported by individual databases.
+	CredentialType pulumi.StringPtrInput
 	// The unique name of the database connection to use for
 	// the role.
 	DbName pulumi.StringPtrInput
@@ -219,6 +240,13 @@ type secretBackendRoleArgs struct {
 	// The database statements to execute when
 	// creating a user.
 	CreationStatements []string `pulumi:"creationStatements"`
+	// Specifies the configuration
+	// for the given `credentialType`.
+	CredentialConfig map[string]interface{} `pulumi:"credentialConfig"`
+	// Specifies the type of credential that
+	// will be generated for the role. Options include: `password`, `rsaPrivateKey`, `clientCertificate`.
+	// See the plugin's API page for credential types supported by individual databases.
+	CredentialType *string `pulumi:"credentialType"`
 	// The unique name of the database connection to use for
 	// the role.
 	DbName string `pulumi:"dbName"`
@@ -253,6 +281,13 @@ type SecretBackendRoleArgs struct {
 	// The database statements to execute when
 	// creating a user.
 	CreationStatements pulumi.StringArrayInput
+	// Specifies the configuration
+	// for the given `credentialType`.
+	CredentialConfig pulumi.MapInput
+	// Specifies the type of credential that
+	// will be generated for the role. Options include: `password`, `rsaPrivateKey`, `clientCertificate`.
+	// See the plugin's API page for credential types supported by individual databases.
+	CredentialType pulumi.StringPtrInput
 	// The unique name of the database connection to use for
 	// the role.
 	DbName pulumi.StringInput
@@ -376,6 +411,19 @@ func (o SecretBackendRoleOutput) Backend() pulumi.StringOutput {
 // creating a user.
 func (o SecretBackendRoleOutput) CreationStatements() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.CreationStatements }).(pulumi.StringArrayOutput)
+}
+
+// Specifies the configuration
+// for the given `credentialType`.
+func (o SecretBackendRoleOutput) CredentialConfig() pulumi.MapOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.MapOutput { return v.CredentialConfig }).(pulumi.MapOutput)
+}
+
+// Specifies the type of credential that
+// will be generated for the role. Options include: `password`, `rsaPrivateKey`, `clientCertificate`.
+// See the plugin's API page for credential types supported by individual databases.
+func (o SecretBackendRoleOutput) CredentialType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.CredentialType }).(pulumi.StringOutput)
 }
 
 // The unique name of the database connection to use for
