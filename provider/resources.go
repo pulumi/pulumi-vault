@@ -124,15 +124,16 @@ func Provider() tfbridge.ProviderInfo {
 	// https://github.com/pulumi/pulumi/issues/11278
 	overrideSecretFlagForHeaders := false
 	prov := tfbridge.ProviderInfo{
-		P:           p,
-		Name:        "vault",
-		DisplayName: "HashiCorp Vault",
-		Description: "A Pulumi package for creating and managing HashiCorp Vault cloud resources.",
-		Keywords:    []string{"pulumi", "vault"},
-		License:     "Apache-2.0",
-		Homepage:    "https://pulumi.io",
-		GitHubOrg:   "hashicorp",
-		Repository:  "https://github.com/pulumi/pulumi-vault",
+		P:                p,
+		Name:             "vault",
+		DisplayName:      "HashiCorp Vault",
+		Description:      "A Pulumi package for creating and managing HashiCorp Vault cloud resources.",
+		Keywords:         []string{"pulumi", "vault"},
+		License:          "Apache-2.0",
+		Homepage:         "https://pulumi.io",
+		GitHubOrg:        "hashicorp",
+		Repository:       "https://github.com/pulumi/pulumi-vault",
+		UpstreamRepoPath: "./upstream",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"skip_tls_verify": {
 				Default: &tfbridge.DefaultInfo{
