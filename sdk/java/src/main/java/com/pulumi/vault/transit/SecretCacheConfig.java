@@ -66,7 +66,7 @@ public class SecretCacheConfig extends com.pulumi.resources.CustomResource {
      * The path the transit secret backend is mounted at, with no leading or trailing `/`s.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output<String> backend;
 
     /**
@@ -83,7 +83,7 @@ public class SecretCacheConfig extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -100,7 +100,7 @@ public class SecretCacheConfig extends com.pulumi.resources.CustomResource {
      * The number of cache entries. 0 means unlimited.
      * 
      */
-    @Export(name="size", type=Integer.class, parameters={})
+    @Export(name="size", refs={Integer.class}, tree="[0]")
     private Output<Integer> size;
 
     /**

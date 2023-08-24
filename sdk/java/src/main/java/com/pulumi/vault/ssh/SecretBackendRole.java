@@ -85,7 +85,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
      * 
      */
-    @Export(name="algorithmSigner", type=String.class, parameters={})
+    @Export(name="algorithmSigner", refs={String.class}, tree="[0]")
     private Output<String> algorithmSigner;
 
     /**
@@ -99,7 +99,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * Specifies if host certificates that are requested are allowed to use the base domains listed in `allowed_domains`.
      * 
      */
-    @Export(name="allowBareDomains", type=Boolean.class, parameters={})
+    @Export(name="allowBareDomains", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> allowBareDomains;
 
     /**
@@ -113,7 +113,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * Specifies if certificates are allowed to be signed for use as a &#39;host&#39;.
      * 
      */
-    @Export(name="allowHostCertificates", type=Boolean.class, parameters={})
+    @Export(name="allowHostCertificates", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> allowHostCertificates;
 
     /**
@@ -127,7 +127,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * Specifies if host certificates that are requested are allowed to be subdomains of those listed in `allowed_domains`.
      * 
      */
-    @Export(name="allowSubdomains", type=Boolean.class, parameters={})
+    @Export(name="allowSubdomains", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> allowSubdomains;
 
     /**
@@ -141,7 +141,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * Specifies if certificates are allowed to be signed for use as a &#39;user&#39;.
      * 
      */
-    @Export(name="allowUserCertificates", type=Boolean.class, parameters={})
+    @Export(name="allowUserCertificates", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> allowUserCertificates;
 
     /**
@@ -155,7 +155,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * Specifies if users can override the key ID for a signed certificate with the `key_id` field.
      * 
      */
-    @Export(name="allowUserKeyIds", type=Boolean.class, parameters={})
+    @Export(name="allowUserKeyIds", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> allowUserKeyIds;
 
     /**
@@ -169,7 +169,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * Specifies a comma-separated list of critical options that certificates can have when signed.
      * 
      */
-    @Export(name="allowedCriticalOptions", type=String.class, parameters={})
+    @Export(name="allowedCriticalOptions", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> allowedCriticalOptions;
 
     /**
@@ -183,7 +183,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * The list of domains for which a client can request a host certificate.
      * 
      */
-    @Export(name="allowedDomains", type=String.class, parameters={})
+    @Export(name="allowedDomains", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> allowedDomains;
 
     /**
@@ -198,7 +198,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * identity template policies. Non-templated domains are also permitted.
      * 
      */
-    @Export(name="allowedDomainsTemplate", type=Boolean.class, parameters={})
+    @Export(name="allowedDomainsTemplate", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> allowedDomainsTemplate;
 
     /**
@@ -213,7 +213,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * Specifies a comma-separated list of extensions that certificates can have when signed.
      * 
      */
-    @Export(name="allowedExtensions", type=String.class, parameters={})
+    @Export(name="allowedExtensions", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> allowedExtensions;
 
     /**
@@ -229,7 +229,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * *See Configuration-Options for more info*
      * 
      */
-    @Export(name="allowedUserKeyConfigs", type=List.class, parameters={SecretBackendRoleAllowedUserKeyConfig.class})
+    @Export(name="allowedUserKeyConfigs", refs={List.class,SecretBackendRoleAllowedUserKeyConfig.class}, tree="[0,1]")
     private Output</* @Nullable */ List<SecretBackendRoleAllowedUserKeyConfig>> allowedUserKeyConfigs;
 
     /**
@@ -251,7 +251,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* Set in allowed_user_key_config */
-    @Export(name="allowedUserKeyLengths", type=Map.class, parameters={String.class, Integer.class})
+    @Export(name="allowedUserKeyLengths", refs={Map.class,String.class,Integer.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Integer>> allowedUserKeyLengths;
 
     /**
@@ -267,7 +267,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
      * 
      */
-    @Export(name="allowedUsers", type=String.class, parameters={})
+    @Export(name="allowedUsers", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> allowedUsers;
 
     /**
@@ -281,7 +281,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
      * 
      */
-    @Export(name="allowedUsersTemplate", type=Boolean.class, parameters={})
+    @Export(name="allowedUsersTemplate", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> allowedUsersTemplate;
 
     /**
@@ -295,7 +295,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * The path where the SSH secret backend is mounted.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output<String> backend;
 
     /**
@@ -309,7 +309,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * The comma-separated string of CIDR blocks for which this role is applicable.
      * 
      */
-    @Export(name="cidrList", type=String.class, parameters={})
+    @Export(name="cidrList", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> cidrList;
 
     /**
@@ -323,7 +323,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * Specifies a map of critical options that certificates have when signed.
      * 
      */
-    @Export(name="defaultCriticalOptions", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="defaultCriticalOptions", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> defaultCriticalOptions;
 
     /**
@@ -337,7 +337,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * Specifies a map of extensions that certificates have when signed.
      * 
      */
-    @Export(name="defaultExtensions", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="defaultExtensions", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> defaultExtensions;
 
     /**
@@ -351,7 +351,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * Specifies the default username for which a credential will be generated.
      * 
      */
-    @Export(name="defaultUser", type=String.class, parameters={})
+    @Export(name="defaultUser", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> defaultUser;
 
     /**
@@ -365,7 +365,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * If set, `default_users` can be specified using identity template values. A non-templated user is also permitted.
      * 
      */
-    @Export(name="defaultUserTemplate", type=Boolean.class, parameters={})
+    @Export(name="defaultUserTemplate", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> defaultUserTemplate;
 
     /**
@@ -379,7 +379,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * Specifies a custom format for the key id of a signed certificate.
      * 
      */
-    @Export(name="keyIdFormat", type=String.class, parameters={})
+    @Export(name="keyIdFormat", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> keyIdFormat;
 
     /**
@@ -393,7 +393,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * Specifies the type of credentials generated by this role. This can be either `otp`, `dynamic` or `ca`.
      * 
      */
-    @Export(name="keyType", type=String.class, parameters={})
+    @Export(name="keyType", refs={String.class}, tree="[0]")
     private Output<String> keyType;
 
     /**
@@ -407,7 +407,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * Specifies the maximum Time To Live value.
      * 
      */
-    @Export(name="maxTtl", type=String.class, parameters={})
+    @Export(name="maxTtl", refs={String.class}, tree="[0]")
     private Output<String> maxTtl;
 
     /**
@@ -421,7 +421,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * Specifies the name of the role to create.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -438,7 +438,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -455,7 +455,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * Specifies the Time To Live value.
      * 
      */
-    @Export(name="ttl", type=String.class, parameters={})
+    @Export(name="ttl", refs={String.class}, tree="[0]")
     private Output<String> ttl;
 
     /**

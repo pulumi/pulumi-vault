@@ -75,7 +75,7 @@ public class AuthBackendGroup extends com.pulumi.resources.CustomResource {
      * Name of the group within the Okta
      * 
      */
-    @Export(name="groupName", type=String.class, parameters={})
+    @Export(name="groupName", refs={String.class}, tree="[0]")
     private Output<String> groupName;
 
     /**
@@ -92,7 +92,7 @@ public class AuthBackendGroup extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -109,7 +109,7 @@ public class AuthBackendGroup extends com.pulumi.resources.CustomResource {
      * The path where the Okta auth backend is mounted
      * 
      */
-    @Export(name="path", type=String.class, parameters={})
+    @Export(name="path", refs={String.class}, tree="[0]")
     private Output<String> path;
 
     /**
@@ -123,7 +123,7 @@ public class AuthBackendGroup extends com.pulumi.resources.CustomResource {
      * Vault policies to associate with this group
      * 
      */
-    @Export(name="policies", type=List.class, parameters={String.class})
+    @Export(name="policies", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> policies;
 
     /**

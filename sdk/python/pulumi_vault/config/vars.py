@@ -101,6 +101,13 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get('authLoginRadius')
 
     @property
+    def auth_login_token_file(self) -> Optional[str]:
+        """
+        Login to vault using
+        """
+        return __config__.get('authLoginTokenFile')
+
+    @property
     def auth_login_userpass(self) -> Optional[str]:
         """
         Login to vault using the userpass method

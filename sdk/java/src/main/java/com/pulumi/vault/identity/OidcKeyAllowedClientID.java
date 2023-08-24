@@ -65,7 +65,7 @@ public class OidcKeyAllowedClientID extends com.pulumi.resources.CustomResource 
      * Client ID to allow usage with the OIDC named key
      * 
      */
-    @Export(name="allowedClientId", type=String.class, parameters={})
+    @Export(name="allowedClientId", refs={String.class}, tree="[0]")
     private Output<String> allowedClientId;
 
     /**
@@ -79,7 +79,7 @@ public class OidcKeyAllowedClientID extends com.pulumi.resources.CustomResource 
      * Name of the OIDC Key allow the Client ID.
      * 
      */
-    @Export(name="keyName", type=String.class, parameters={})
+    @Export(name="keyName", refs={String.class}, tree="[0]")
     private Output<String> keyName;
 
     /**
@@ -96,7 +96,7 @@ public class OidcKeyAllowedClientID extends com.pulumi.resources.CustomResource 
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**

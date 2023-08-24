@@ -13,6 +13,10 @@ export { SecretBackendConfigCaArgs, SecretBackendConfigCaState } from "./secretB
 export type SecretBackendConfigCa = import("./secretBackendConfigCa").SecretBackendConfigCa;
 export const SecretBackendConfigCa: typeof import("./secretBackendConfigCa").SecretBackendConfigCa = null as any;
 
+export { SecretBackendConfigIssuersArgs, SecretBackendConfigIssuersState } from "./secretBackendConfigIssuers";
+export type SecretBackendConfigIssuers = import("./secretBackendConfigIssuers").SecretBackendConfigIssuers;
+export const SecretBackendConfigIssuers: typeof import("./secretBackendConfigIssuers").SecretBackendConfigIssuers = null as any;
+
 export { SecretBackendConfigUrlsArgs, SecretBackendConfigUrlsState } from "./secretBackendConfigUrls";
 export type SecretBackendConfigUrls = import("./secretBackendConfigUrls").SecretBackendConfigUrls;
 export const SecretBackendConfigUrls: typeof import("./secretBackendConfigUrls").SecretBackendConfigUrls = null as any;
@@ -55,6 +59,7 @@ export const SecretBackendSign: typeof import("./secretBackendSign").SecretBacke
 
 utilities.lazyLoad(exports, ["SecretBackendCert"], () => require("./secretBackendCert"));
 utilities.lazyLoad(exports, ["SecretBackendConfigCa"], () => require("./secretBackendConfigCa"));
+utilities.lazyLoad(exports, ["SecretBackendConfigIssuers"], () => require("./secretBackendConfigIssuers"));
 utilities.lazyLoad(exports, ["SecretBackendConfigUrls"], () => require("./secretBackendConfigUrls"));
 utilities.lazyLoad(exports, ["SecretBackendCrlConfig"], () => require("./secretBackendCrlConfig"));
 utilities.lazyLoad(exports, ["SecretBackendIntermediateCertRequest"], () => require("./secretBackendIntermediateCertRequest"));
@@ -74,6 +79,8 @@ const _module = {
                 return new SecretBackendCert(name, <any>undefined, { urn })
             case "vault:pkiSecret/secretBackendConfigCa:SecretBackendConfigCa":
                 return new SecretBackendConfigCa(name, <any>undefined, { urn })
+            case "vault:pkiSecret/secretBackendConfigIssuers:SecretBackendConfigIssuers":
+                return new SecretBackendConfigIssuers(name, <any>undefined, { urn })
             case "vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls":
                 return new SecretBackendConfigUrls(name, <any>undefined, { urn })
             case "vault:pkiSecret/secretBackendCrlConfig:SecretBackendCrlConfig":
@@ -101,6 +108,7 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendCert", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendConfigCa", _module)
+pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendConfigIssuers", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendConfigUrls", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendCrlConfig", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendIntermediateCertRequest", _module)

@@ -66,7 +66,7 @@ public class MfaDuo extends com.pulumi.resources.CustomResource {
      * API hostname for Duo
      * 
      */
-    @Export(name="apiHostname", type=String.class, parameters={})
+    @Export(name="apiHostname", refs={String.class}, tree="[0]")
     private Output<String> apiHostname;
 
     /**
@@ -80,7 +80,7 @@ public class MfaDuo extends com.pulumi.resources.CustomResource {
      * Integration key for Duo
      * 
      */
-    @Export(name="integrationKey", type=String.class, parameters={})
+    @Export(name="integrationKey", refs={String.class}, tree="[0]")
     private Output<String> integrationKey;
 
     /**
@@ -94,7 +94,7 @@ public class MfaDuo extends com.pulumi.resources.CustomResource {
      * Method ID.
      * 
      */
-    @Export(name="methodId", type=String.class, parameters={})
+    @Export(name="methodId", refs={String.class}, tree="[0]")
     private Output<String> methodId;
 
     /**
@@ -108,7 +108,7 @@ public class MfaDuo extends com.pulumi.resources.CustomResource {
      * Mount accessor.
      * 
      */
-    @Export(name="mountAccessor", type=String.class, parameters={})
+    @Export(name="mountAccessor", refs={String.class}, tree="[0]")
     private Output<String> mountAccessor;
 
     /**
@@ -122,7 +122,7 @@ public class MfaDuo extends com.pulumi.resources.CustomResource {
      * Method name.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -136,7 +136,7 @@ public class MfaDuo extends com.pulumi.resources.CustomResource {
      * Target namespace. (requires Enterprise)
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -150,7 +150,7 @@ public class MfaDuo extends com.pulumi.resources.CustomResource {
      * Method&#39;s namespace ID.
      * 
      */
-    @Export(name="namespaceId", type=String.class, parameters={})
+    @Export(name="namespaceId", refs={String.class}, tree="[0]")
     private Output<String> namespaceId;
 
     /**
@@ -164,7 +164,7 @@ public class MfaDuo extends com.pulumi.resources.CustomResource {
      * Method&#39;s namespace path.
      * 
      */
-    @Export(name="namespacePath", type=String.class, parameters={})
+    @Export(name="namespacePath", refs={String.class}, tree="[0]")
     private Output<String> namespacePath;
 
     /**
@@ -178,7 +178,7 @@ public class MfaDuo extends com.pulumi.resources.CustomResource {
      * Push information for Duo.
      * 
      */
-    @Export(name="pushInfo", type=String.class, parameters={})
+    @Export(name="pushInfo", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> pushInfo;
 
     /**
@@ -192,7 +192,7 @@ public class MfaDuo extends com.pulumi.resources.CustomResource {
      * Secret key for Duo
      * 
      */
-    @Export(name="secretKey", type=String.class, parameters={})
+    @Export(name="secretKey", refs={String.class}, tree="[0]")
     private Output<String> secretKey;
 
     /**
@@ -206,7 +206,7 @@ public class MfaDuo extends com.pulumi.resources.CustomResource {
      * MFA type.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
@@ -220,7 +220,7 @@ public class MfaDuo extends com.pulumi.resources.CustomResource {
      * Require passcode upon MFA validation.
      * 
      */
-    @Export(name="usePasscode", type=Boolean.class, parameters={})
+    @Export(name="usePasscode", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> usePasscode;
 
     /**
@@ -234,7 +234,7 @@ public class MfaDuo extends com.pulumi.resources.CustomResource {
      * A template string for mapping Identity names to MFA methods.
      * 
      */
-    @Export(name="usernameFormat", type=String.class, parameters={})
+    @Export(name="usernameFormat", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> usernameFormat;
 
     /**
@@ -248,7 +248,7 @@ public class MfaDuo extends com.pulumi.resources.CustomResource {
      * Resource UUID.
      * 
      */
-    @Export(name="uuid", type=String.class, parameters={})
+    @Export(name="uuid", refs={String.class}, tree="[0]")
     private Output<String> uuid;
 
     /**

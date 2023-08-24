@@ -93,7 +93,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -110,7 +110,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * Grant permission to use the KMIP Activate operation.
      * 
      */
-    @Export(name="operationActivate", type=Boolean.class, parameters={})
+    @Export(name="operationActivate", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> operationActivate;
 
     /**
@@ -124,7 +124,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * Grant permission to use the KMIP Add Attribute operation.
      * 
      */
-    @Export(name="operationAddAttribute", type=Boolean.class, parameters={})
+    @Export(name="operationAddAttribute", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> operationAddAttribute;
 
     /**
@@ -138,7 +138,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * Grant all permissions to this role. May not be specified with any other `operation_*` params.
      * 
      */
-    @Export(name="operationAll", type=Boolean.class, parameters={})
+    @Export(name="operationAll", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> operationAll;
 
     /**
@@ -152,7 +152,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * Grant permission to use the KMIP Create operation.
      * 
      */
-    @Export(name="operationCreate", type=Boolean.class, parameters={})
+    @Export(name="operationCreate", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> operationCreate;
 
     /**
@@ -166,7 +166,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * Grant permission to use the KMIP Destroy operation.
      * 
      */
-    @Export(name="operationDestroy", type=Boolean.class, parameters={})
+    @Export(name="operationDestroy", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> operationDestroy;
 
     /**
@@ -180,7 +180,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * Grant permission to use the KMIP Discover Version operation.
      * 
      */
-    @Export(name="operationDiscoverVersions", type=Boolean.class, parameters={})
+    @Export(name="operationDiscoverVersions", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> operationDiscoverVersions;
 
     /**
@@ -194,7 +194,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * Grant permission to use the KMIP Get operation.
      * 
      */
-    @Export(name="operationGet", type=Boolean.class, parameters={})
+    @Export(name="operationGet", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> operationGet;
 
     /**
@@ -208,7 +208,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * Grant permission to use the KMIP Get Atrribute List operation.
      * 
      */
-    @Export(name="operationGetAttributeList", type=Boolean.class, parameters={})
+    @Export(name="operationGetAttributeList", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> operationGetAttributeList;
 
     /**
@@ -222,7 +222,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * Grant permission to use the KMIP Get Atrributes operation.
      * 
      */
-    @Export(name="operationGetAttributes", type=Boolean.class, parameters={})
+    @Export(name="operationGetAttributes", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> operationGetAttributes;
 
     /**
@@ -236,7 +236,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * Grant permission to use the KMIP Get Locate operation.
      * 
      */
-    @Export(name="operationLocate", type=Boolean.class, parameters={})
+    @Export(name="operationLocate", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> operationLocate;
 
     /**
@@ -250,7 +250,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * Remove all permissions from this role. May not be specified with any other `operation_*` params.
      * 
      */
-    @Export(name="operationNone", type=Boolean.class, parameters={})
+    @Export(name="operationNone", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> operationNone;
 
     /**
@@ -264,7 +264,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * Grant permission to use the KMIP Register operation.
      * 
      */
-    @Export(name="operationRegister", type=Boolean.class, parameters={})
+    @Export(name="operationRegister", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> operationRegister;
 
     /**
@@ -278,7 +278,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * Grant permission to use the KMIP Rekey operation.
      * 
      */
-    @Export(name="operationRekey", type=Boolean.class, parameters={})
+    @Export(name="operationRekey", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> operationRekey;
 
     /**
@@ -292,7 +292,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * Grant permission to use the KMIP Revoke operation.
      * 
      */
-    @Export(name="operationRevoke", type=Boolean.class, parameters={})
+    @Export(name="operationRevoke", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> operationRevoke;
 
     /**
@@ -307,7 +307,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * not begin or end with a `/`. Defaults to `kmip`.
      * 
      */
-    @Export(name="path", type=String.class, parameters={})
+    @Export(name="path", refs={String.class}, tree="[0]")
     private Output<String> path;
 
     /**
@@ -322,7 +322,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * Name of the role.
      * 
      */
-    @Export(name="role", type=String.class, parameters={})
+    @Export(name="role", refs={String.class}, tree="[0]")
     private Output<String> role;
 
     /**
@@ -336,7 +336,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * Name of the scope.
      * 
      */
-    @Export(name="scope", type=String.class, parameters={})
+    @Export(name="scope", refs={String.class}, tree="[0]")
     private Output<String> scope;
 
     /**
@@ -350,7 +350,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * Client certificate key bits, valid values depend on key type.
      * 
      */
-    @Export(name="tlsClientKeyBits", type=Integer.class, parameters={})
+    @Export(name="tlsClientKeyBits", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tlsClientKeyBits;
 
     /**
@@ -364,7 +364,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * Client certificate key type, `rsa` or `ec`.
      * 
      */
-    @Export(name="tlsClientKeyType", type=String.class, parameters={})
+    @Export(name="tlsClientKeyType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tlsClientKeyType;
 
     /**
@@ -378,7 +378,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * Client certificate TTL in seconds.
      * 
      */
-    @Export(name="tlsClientTtl", type=Integer.class, parameters={})
+    @Export(name="tlsClientTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tlsClientTtl;
 
     /**

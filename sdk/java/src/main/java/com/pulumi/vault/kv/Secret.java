@@ -92,7 +92,7 @@ public class Secret extends com.pulumi.resources.CustomResource {
      * serialized as JSON.
      * 
      */
-    @Export(name="data", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="data", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output<Map<String,Object>> data;
 
     /**
@@ -110,7 +110,7 @@ public class Secret extends com.pulumi.resources.CustomResource {
      * written as the secret data at the given path.
      * 
      */
-    @Export(name="dataJson", type=String.class, parameters={})
+    @Export(name="dataJson", refs={String.class}, tree="[0]")
     private Output<String> dataJson;
 
     /**
@@ -128,7 +128,7 @@ public class Secret extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -145,7 +145,7 @@ public class Secret extends com.pulumi.resources.CustomResource {
      * Full path of the KV-V1 secret.
      * 
      */
-    @Export(name="path", type=String.class, parameters={})
+    @Export(name="path", refs={String.class}, tree="[0]")
     private Output<String> path;
 
     /**

@@ -13,6 +13,32 @@ import (
 
 // Resource for configuring the pingid MFA method.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := identity.NewMfaPingid(ctx, "example", &identity.MfaPingidArgs{
+//				SettingsFileBase64: pulumi.String("CnVzZV9iYXNlNjR[...]HBtCg=="),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Resource can be imported using its `uuid` field, e.g.

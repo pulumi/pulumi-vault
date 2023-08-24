@@ -87,7 +87,7 @@ public class SecretBackendV2 extends com.pulumi.resources.CustomResource {
      * parameter to be set on all write requests.
      * 
      */
-    @Export(name="casRequired", type=Boolean.class, parameters={})
+    @Export(name="casRequired", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> casRequired;
 
     /**
@@ -103,7 +103,7 @@ public class SecretBackendV2 extends com.pulumi.resources.CustomResource {
      * a version is deleted. Accepts duration in integer seconds.
      * 
      */
-    @Export(name="deleteVersionAfter", type=Integer.class, parameters={})
+    @Export(name="deleteVersionAfter", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> deleteVersionAfter;
 
     /**
@@ -118,7 +118,7 @@ public class SecretBackendV2 extends com.pulumi.resources.CustomResource {
      * The number of versions to keep per key.
      * 
      */
-    @Export(name="maxVersions", type=Integer.class, parameters={})
+    @Export(name="maxVersions", refs={Integer.class}, tree="[0]")
     private Output<Integer> maxVersions;
 
     /**
@@ -132,7 +132,7 @@ public class SecretBackendV2 extends com.pulumi.resources.CustomResource {
      * Path where KV-V2 engine is mounted.
      * 
      */
-    @Export(name="mount", type=String.class, parameters={})
+    @Export(name="mount", refs={String.class}, tree="[0]")
     private Output<String> mount;
 
     /**
@@ -149,7 +149,7 @@ public class SecretBackendV2 extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**

@@ -76,7 +76,7 @@ public class OidcKey extends com.pulumi.resources.CustomResource {
      * Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
      * 
      */
-    @Export(name="algorithm", type=String.class, parameters={})
+    @Export(name="algorithm", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> algorithm;
 
     /**
@@ -92,7 +92,7 @@ public class OidcKey extends com.pulumi.resources.CustomResource {
      * allowed.
      * 
      */
-    @Export(name="allowedClientIds", type=List.class, parameters={String.class})
+    @Export(name="allowedClientIds", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> allowedClientIds;
 
     /**
@@ -107,7 +107,7 @@ public class OidcKey extends com.pulumi.resources.CustomResource {
      * Name of the OIDC Key to create.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -124,7 +124,7 @@ public class OidcKey extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -141,7 +141,7 @@ public class OidcKey extends com.pulumi.resources.CustomResource {
      * How often to generate a new signing key in number of seconds
      * 
      */
-    @Export(name="rotationPeriod", type=Integer.class, parameters={})
+    @Export(name="rotationPeriod", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> rotationPeriod;
 
     /**
@@ -156,7 +156,7 @@ public class OidcKey extends com.pulumi.resources.CustomResource {
      * available for verification after being rotated in seconds.
      * 
      */
-    @Export(name="verificationTtl", type=Integer.class, parameters={})
+    @Export(name="verificationTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> verificationTtl;
 
     /**

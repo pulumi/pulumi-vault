@@ -71,7 +71,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      * not begin or end with a `/`. Defaults to `aws`
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backend;
 
     /**
@@ -87,7 +87,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      * Must be unique within the backend.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -105,7 +105,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -122,7 +122,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      * How often Vault should rotate the password of the user entry.
      * 
      */
-    @Export(name="rotationPeriod", type=Integer.class, parameters={})
+    @Export(name="rotationPeriod", refs={Integer.class}, tree="[0]")
     private Output<Integer> rotationPeriod;
 
     /**
@@ -136,7 +136,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      * The username of the existing AWS IAM to manage password rotation for.
      * 
      */
-    @Export(name="username", type=String.class, parameters={})
+    @Export(name="username", refs={String.class}, tree="[0]")
     private Output<String> username;
 
     /**

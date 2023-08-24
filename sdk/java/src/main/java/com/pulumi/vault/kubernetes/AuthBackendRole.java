@@ -83,7 +83,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * Valid choices are: `serviceaccount_uid`, `serviceaccount_name`. (vault-1.9+)
      * 
      */
-    @Export(name="aliasNameSource", type=String.class, parameters={})
+    @Export(name="aliasNameSource", refs={String.class}, tree="[0]")
     private Output<String> aliasNameSource;
 
     /**
@@ -98,7 +98,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * Audience claim to verify in the JWT.
      * 
      */
-    @Export(name="audience", type=String.class, parameters={})
+    @Export(name="audience", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> audience;
 
     /**
@@ -112,7 +112,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * Unique name of the kubernetes backend to configure.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backend;
 
     /**
@@ -126,7 +126,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * List of service account names able to access this role. If set to `[&#34;*&#34;]` all names are allowed, both this and bound_service_account_namespaces can not be &#34;*&#34;.
      * 
      */
-    @Export(name="boundServiceAccountNames", type=List.class, parameters={String.class})
+    @Export(name="boundServiceAccountNames", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> boundServiceAccountNames;
 
     /**
@@ -140,7 +140,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * List of namespaces allowed to access this role. If set to `[&#34;*&#34;]` all namespaces are allowed, both this and bound_service_account_names can not be set to &#34;*&#34;.
      * 
      */
-    @Export(name="boundServiceAccountNamespaces", type=List.class, parameters={String.class})
+    @Export(name="boundServiceAccountNamespaces", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> boundServiceAccountNamespaces;
 
     /**
@@ -157,7 +157,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -174,7 +174,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * Name of the role.
      * 
      */
-    @Export(name="roleName", type=String.class, parameters={})
+    @Export(name="roleName", refs={String.class}, tree="[0]")
     private Output<String> roleName;
 
     /**
@@ -190,7 +190,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * as well.
      * 
      */
-    @Export(name="tokenBoundCidrs", type=List.class, parameters={String.class})
+    @Export(name="tokenBoundCidrs", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tokenBoundCidrs;
 
     /**
@@ -209,7 +209,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * `token_max_ttl` would otherwise allow a renewal.
      * 
      */
-    @Export(name="tokenExplicitMaxTtl", type=Integer.class, parameters={})
+    @Export(name="tokenExplicitMaxTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenExplicitMaxTtl;
 
     /**
@@ -227,7 +227,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * Its current value will be referenced at renewal time.
      * 
      */
-    @Export(name="tokenMaxTtl", type=Integer.class, parameters={})
+    @Export(name="tokenMaxTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenMaxTtl;
 
     /**
@@ -243,7 +243,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * generated tokens; otherwise it will be added to the policies set in token_policies.
      * 
      */
-    @Export(name="tokenNoDefaultPolicy", type=Boolean.class, parameters={})
+    @Export(name="tokenNoDefaultPolicy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> tokenNoDefaultPolicy;
 
     /**
@@ -259,7 +259,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * of times a generated token may be used (within its lifetime); 0 means unlimited.
      * 
      */
-    @Export(name="tokenNumUses", type=Integer.class, parameters={})
+    @Export(name="tokenNumUses", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenNumUses;
 
     /**
@@ -277,7 +277,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * value of this field. Specified in seconds.
      * 
      */
-    @Export(name="tokenPeriod", type=Integer.class, parameters={})
+    @Export(name="tokenPeriod", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenPeriod;
 
     /**
@@ -295,7 +295,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * on the auth method, this list may be supplemented by user/group/other values.
      * 
      */
-    @Export(name="tokenPolicies", type=List.class, parameters={String.class})
+    @Export(name="tokenPolicies", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tokenPolicies;
 
     /**
@@ -310,7 +310,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * The initial ttl of the token to generate in seconds
      * 
      */
-    @Export(name="tokenTtl", type=Integer.class, parameters={})
+    @Export(name="tokenTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenTtl;
 
     /**
@@ -328,7 +328,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * requests a different type at generation time.
      * 
      */
-    @Export(name="tokenType", type=String.class, parameters={})
+    @Export(name="tokenType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tokenType;
 
     /**

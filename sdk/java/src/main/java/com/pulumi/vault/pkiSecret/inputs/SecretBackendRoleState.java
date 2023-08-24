@@ -214,6 +214,21 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
     }
 
     /**
+     * Defines allowed User IDs
+     * 
+     */
+    @Import(name="allowedUserIds")
+    private @Nullable Output<List<String>> allowedUserIds;
+
+    /**
+     * @return Defines allowed User IDs
+     * 
+     */
+    public Optional<Output<List<String>>> allowedUserIds() {
+        return Optional.ofNullable(this.allowedUserIds);
+    }
+
+    /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      * 
      */
@@ -693,6 +708,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         this.allowedSerialNumbers = $.allowedSerialNumbers;
         this.allowedUriSans = $.allowedUriSans;
         this.allowedUriSansTemplate = $.allowedUriSansTemplate;
+        this.allowedUserIds = $.allowedUserIds;
         this.backend = $.backend;
         this.basicConstraintsValidForNonCa = $.basicConstraintsValidForNonCa;
         this.clientFlag = $.clientFlag;
@@ -1054,6 +1070,37 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
          */
         public Builder allowedUriSansTemplate(Boolean allowedUriSansTemplate) {
             return allowedUriSansTemplate(Output.of(allowedUriSansTemplate));
+        }
+
+        /**
+         * @param allowedUserIds Defines allowed User IDs
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedUserIds(@Nullable Output<List<String>> allowedUserIds) {
+            $.allowedUserIds = allowedUserIds;
+            return this;
+        }
+
+        /**
+         * @param allowedUserIds Defines allowed User IDs
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedUserIds(List<String> allowedUserIds) {
+            return allowedUserIds(Output.of(allowedUserIds));
+        }
+
+        /**
+         * @param allowedUserIds Defines allowed User IDs
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedUserIds(String... allowedUserIds) {
+            return allowedUserIds(List.of(allowedUserIds));
         }
 
         /**

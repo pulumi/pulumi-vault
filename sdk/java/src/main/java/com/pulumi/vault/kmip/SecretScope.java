@@ -74,7 +74,7 @@ public class SecretScope extends com.pulumi.resources.CustomResource {
      * Boolean field to force deletion even if there are managed objects in the scope.
      * 
      */
-    @Export(name="force", type=Boolean.class, parameters={})
+    @Export(name="force", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> force;
 
     /**
@@ -91,7 +91,7 @@ public class SecretScope extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -109,7 +109,7 @@ public class SecretScope extends com.pulumi.resources.CustomResource {
      * not begin or end with a `/`. Defaults to `kmip`.
      * 
      */
-    @Export(name="path", type=String.class, parameters={})
+    @Export(name="path", refs={String.class}, tree="[0]")
     private Output<String> path;
 
     /**
@@ -124,7 +124,7 @@ public class SecretScope extends com.pulumi.resources.CustomResource {
      * Name of the scope.
      * 
      */
-    @Export(name="scope", type=String.class, parameters={})
+    @Export(name="scope", refs={String.class}, tree="[0]")
     private Output<String> scope;
 
     /**

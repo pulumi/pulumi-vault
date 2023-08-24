@@ -120,17 +120,6 @@ export interface GetPolicyDocumentRuleArgs {
     requiredParameters?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
-export interface GetPolicyDocumentRuleAllowedParameterArgs {
-    /**
-     * name of permitted or denied parameter.
-     */
-    key: pulumi.Input<string>;
-    /**
-     * list of values what are permitted or denied by policy rule.
-     */
-    values: pulumi.Input<pulumi.Input<string>[]>;
-}
-
 export interface GetPolicyDocumentRuleAllowedParameter {
     /**
      * name of permitted or denied parameter.
@@ -142,7 +131,7 @@ export interface GetPolicyDocumentRuleAllowedParameter {
     values: string[];
 }
 
-export interface GetPolicyDocumentRuleDeniedParameterArgs {
+export interface GetPolicyDocumentRuleAllowedParameterArgs {
     /**
      * name of permitted or denied parameter.
      */
@@ -162,6 +151,17 @@ export interface GetPolicyDocumentRuleDeniedParameter {
      * list of values what are permitted or denied by policy rule.
      */
     values: string[];
+}
+
+export interface GetPolicyDocumentRuleDeniedParameterArgs {
+    /**
+     * name of permitted or denied parameter.
+     */
+    key: pulumi.Input<string>;
+    /**
+     * list of values what are permitted or denied by policy rule.
+     */
+    values: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface ProviderAuthLogin {
@@ -260,6 +260,11 @@ export interface ProviderAuthLoginRadius {
     namespace?: pulumi.Input<string>;
     password: pulumi.Input<string>;
     username: pulumi.Input<string>;
+}
+
+export interface ProviderAuthLoginTokenFile {
+    filename: pulumi.Input<string>;
+    namespace?: pulumi.Input<string>;
 }
 
 export interface ProviderAuthLoginUserpass {

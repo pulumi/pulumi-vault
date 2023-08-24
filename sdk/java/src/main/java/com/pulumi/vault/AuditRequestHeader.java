@@ -60,7 +60,7 @@ public class AuditRequestHeader extends com.pulumi.resources.CustomResource {
      * Whether this header&#39;s value should be HMAC&#39;d in the audit logs.
      * 
      */
-    @Export(name="hmac", type=Boolean.class, parameters={})
+    @Export(name="hmac", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> hmac;
 
     /**
@@ -74,7 +74,7 @@ public class AuditRequestHeader extends com.pulumi.resources.CustomResource {
      * The name of the request header to audit.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -88,7 +88,7 @@ public class AuditRequestHeader extends com.pulumi.resources.CustomResource {
      * Target namespace. (requires Enterprise)
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**

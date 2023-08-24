@@ -66,7 +66,7 @@ public class Role extends com.pulumi.resources.CustomResource {
      * The name of the role.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -80,7 +80,7 @@ public class Role extends com.pulumi.resources.CustomResource {
      * Path to where the back-end is mounted within Vault.
      * 
      */
-    @Export(name="path", type=String.class, parameters={})
+    @Export(name="path", refs={String.class}, tree="[0]")
     private Output<String> path;
 
     /**
@@ -94,7 +94,7 @@ public class Role extends com.pulumi.resources.CustomResource {
      * A comma separated string or slice of transformations to use.
      * 
      */
-    @Export(name="transformations", type=List.class, parameters={String.class})
+    @Export(name="transformations", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> transformations;
 
     /**

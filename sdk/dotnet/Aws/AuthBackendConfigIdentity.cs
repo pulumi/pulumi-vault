@@ -87,6 +87,15 @@ namespace Pulumi.Vault.Aws
         [Output("iamMetadatas")]
         public Output<ImmutableArray<string>> IamMetadatas { get; private set; } = null!;
 
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a AuthBackendConfigIdentity resource with the given unique name, arguments, and options.
@@ -179,6 +188,15 @@ namespace Pulumi.Vault.Aws
             set => _iamMetadatas = value;
         }
 
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
         public AuthBackendConfigIdentityArgs()
         {
         }
@@ -232,6 +250,15 @@ namespace Pulumi.Vault.Aws
             get => _iamMetadatas ?? (_iamMetadatas = new InputList<string>());
             set => _iamMetadatas = value;
         }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         public AuthBackendConfigIdentityState()
         {

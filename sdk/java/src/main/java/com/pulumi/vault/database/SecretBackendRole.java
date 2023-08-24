@@ -86,7 +86,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * The unique name of the Vault mount to configure.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output<String> backend;
 
     /**
@@ -101,7 +101,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * creating a user.
      * 
      */
-    @Export(name="creationStatements", type=List.class, parameters={String.class})
+    @Export(name="creationStatements", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> creationStatements;
 
     /**
@@ -117,7 +117,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * for the given `credential_type`.
      * 
      */
-    @Export(name="credentialConfig", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="credentialConfig", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> credentialConfig;
 
     /**
@@ -134,7 +134,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * See the plugin&#39;s API page for credential types supported by individual databases.
      * 
      */
-    @Export(name="credentialType", type=String.class, parameters={})
+    @Export(name="credentialType", refs={String.class}, tree="[0]")
     private Output<String> credentialType;
 
     /**
@@ -151,7 +151,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * the role.
      * 
      */
-    @Export(name="dbName", type=String.class, parameters={})
+    @Export(name="dbName", refs={String.class}, tree="[0]")
     private Output<String> dbName;
 
     /**
@@ -167,7 +167,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * role.
      * 
      */
-    @Export(name="defaultTtl", type=Integer.class, parameters={})
+    @Export(name="defaultTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> defaultTtl;
 
     /**
@@ -183,7 +183,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * role.
      * 
      */
-    @Export(name="maxTtl", type=Integer.class, parameters={})
+    @Export(name="maxTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> maxTtl;
 
     /**
@@ -198,7 +198,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * A unique name to give the role.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -215,7 +215,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -233,7 +233,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * renewing a user.
      * 
      */
-    @Export(name="renewStatements", type=List.class, parameters={String.class})
+    @Export(name="renewStatements", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> renewStatements;
 
     /**
@@ -249,7 +249,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * revoking a user.
      * 
      */
-    @Export(name="revocationStatements", type=List.class, parameters={String.class})
+    @Export(name="revocationStatements", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> revocationStatements;
 
     /**
@@ -265,7 +265,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * rolling back creation due to an error.
      * 
      */
-    @Export(name="rollbackStatements", type=List.class, parameters={String.class})
+    @Export(name="rollbackStatements", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> rollbackStatements;
 
     /**

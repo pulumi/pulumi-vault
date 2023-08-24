@@ -26,7 +26,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * If true, adds the value of the `address` argument to the Terraform process environment.
      * 
      */
-    @Export(name="addAddressToEnv", type=String.class, parameters={})
+    @Export(name="addAddressToEnv", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> addAddressToEnv;
 
     /**
@@ -40,7 +40,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * URL of the root of the target Vault server.
      * 
      */
-    @Export(name="address", type=String.class, parameters={})
+    @Export(name="address", refs={String.class}, tree="[0]")
     private Output<String> address;
 
     /**
@@ -54,7 +54,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * Path to directory containing CA certificate files to validate the server&#39;s certificate.
      * 
      */
-    @Export(name="caCertDir", type=String.class, parameters={})
+    @Export(name="caCertDir", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> caCertDir;
 
     /**
@@ -68,7 +68,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * Path to a CA certificate file to validate the server&#39;s certificate.
      * 
      */
-    @Export(name="caCertFile", type=String.class, parameters={})
+    @Export(name="caCertFile", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> caCertFile;
 
     /**
@@ -82,7 +82,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * The namespace to use. Available only for Vault Enterprise.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -96,7 +96,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * Name to use as the SNI host when connecting via TLS.
      * 
      */
-    @Export(name="tlsServerName", type=String.class, parameters={})
+    @Export(name="tlsServerName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tlsServerName;
 
     /**
@@ -110,7 +110,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * Token to use to authenticate to Vault.
      * 
      */
-    @Export(name="token", type=String.class, parameters={})
+    @Export(name="token", refs={String.class}, tree="[0]")
     private Output<String> token;
 
     /**
@@ -124,7 +124,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * Token name to use for creating the Vault child token.
      * 
      */
-    @Export(name="tokenName", type=String.class, parameters={})
+    @Export(name="tokenName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tokenName;
 
     /**
@@ -138,7 +138,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * Override the Vault server version, which is normally determined dynamically from the target Vault server
      * 
      */
-    @Export(name="vaultVersionOverride", type=String.class, parameters={})
+    @Export(name="vaultVersionOverride", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> vaultVersionOverride;
 
     /**

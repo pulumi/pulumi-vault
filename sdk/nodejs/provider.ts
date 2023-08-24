@@ -93,6 +93,7 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["authLoginOci"] = pulumi.output(args ? args.authLoginOci : undefined).apply(JSON.stringify);
             resourceInputs["authLoginOidc"] = pulumi.output(args ? args.authLoginOidc : undefined).apply(JSON.stringify);
             resourceInputs["authLoginRadius"] = pulumi.output(args ? args.authLoginRadius : undefined).apply(JSON.stringify);
+            resourceInputs["authLoginTokenFile"] = pulumi.output(args ? args.authLoginTokenFile : undefined).apply(JSON.stringify);
             resourceInputs["authLoginUserpass"] = pulumi.output(args ? args.authLoginUserpass : undefined).apply(JSON.stringify);
             resourceInputs["caCertDir"] = args ? args.caCertDir : undefined;
             resourceInputs["caCertFile"] = args ? args.caCertFile : undefined;
@@ -168,6 +169,10 @@ export interface ProviderArgs {
      */
     authLoginRadius?: pulumi.Input<inputs.ProviderAuthLoginRadius>;
     /**
+     * Login to vault using
+     */
+    authLoginTokenFile?: pulumi.Input<inputs.ProviderAuthLoginTokenFile>;
+    /**
      * Login to vault using the userpass method
      */
     authLoginUserpass?: pulumi.Input<inputs.ProviderAuthLoginUserpass>;
@@ -181,6 +186,8 @@ export interface ProviderArgs {
     caCertFile?: pulumi.Input<string>;
     /**
      * Client authentication credentials.
+     *
+     * @deprecated Use auth_login_cert instead
      */
     clientAuth?: pulumi.Input<inputs.ProviderClientAuth>;
     /**

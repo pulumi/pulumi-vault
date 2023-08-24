@@ -80,7 +80,7 @@ public class OidcAssignment extends com.pulumi.resources.CustomResource {
      * A set of Vault entity IDs.
      * 
      */
-    @Export(name="entityIds", type=List.class, parameters={String.class})
+    @Export(name="entityIds", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> entityIds;
 
     /**
@@ -94,7 +94,7 @@ public class OidcAssignment extends com.pulumi.resources.CustomResource {
      * A set of Vault group IDs.
      * 
      */
-    @Export(name="groupIds", type=List.class, parameters={String.class})
+    @Export(name="groupIds", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> groupIds;
 
     /**
@@ -108,7 +108,7 @@ public class OidcAssignment extends com.pulumi.resources.CustomResource {
      * The name of the assignment.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -125,7 +125,7 @@ public class OidcAssignment extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**

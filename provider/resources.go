@@ -393,9 +393,10 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_okta_auth_backend_user":  {Tok: makeResource(oktaMod, "AuthBackendUser")},
 
 			// PKI
-			"vault_pki_secret_backend_cert":        {Tok: makeResource(pkiSecretMod, "SecretBackendCert")},
-			"vault_pki_secret_backend_config_ca":   {Tok: makeResource(pkiSecretMod, "SecretBackendConfigCa")},
-			"vault_pki_secret_backend_config_urls": {Tok: makeResource(pkiSecretMod, "SecretBackendConfigUrls")},
+			"vault_pki_secret_backend_cert":           {Tok: makeResource(pkiSecretMod, "SecretBackendCert")},
+			"vault_pki_secret_backend_config_ca":      {Tok: makeResource(pkiSecretMod, "SecretBackendConfigCa")},
+			"vault_pki_secret_backend_config_issuers": {Tok: makeResource(pkiSecretMod, "SecretBackendConfigIssuers")},
+			"vault_pki_secret_backend_config_urls":    {Tok: makeResource(pkiSecretMod, "SecretBackendConfigUrls")},
 			"vault_pki_secret_backend_intermediate_cert_request": {
 				Tok: makeResource(pkiSecretMod, "SecretBackendIntermediateCertRequest"),
 			},

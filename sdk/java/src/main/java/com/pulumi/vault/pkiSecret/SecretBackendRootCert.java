@@ -68,7 +68,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * List of alternative names
      * 
      */
-    @Export(name="altNames", type=List.class, parameters={String.class})
+    @Export(name="altNames", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> altNames;
 
     /**
@@ -82,7 +82,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * The PKI secret backend the resource belongs to.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output<String> backend;
 
     /**
@@ -96,7 +96,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * The certificate.
      * 
      */
-    @Export(name="certificate", type=String.class, parameters={})
+    @Export(name="certificate", refs={String.class}, tree="[0]")
     private Output<String> certificate;
 
     /**
@@ -110,7 +110,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * CN of intermediate to create
      * 
      */
-    @Export(name="commonName", type=String.class, parameters={})
+    @Export(name="commonName", refs={String.class}, tree="[0]")
     private Output<String> commonName;
 
     /**
@@ -124,7 +124,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * The country
      * 
      */
-    @Export(name="country", type=String.class, parameters={})
+    @Export(name="country", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> country;
 
     /**
@@ -138,7 +138,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * Flag to exclude CN from SANs
      * 
      */
-    @Export(name="excludeCnFromSans", type=Boolean.class, parameters={})
+    @Export(name="excludeCnFromSans", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> excludeCnFromSans;
 
     /**
@@ -152,7 +152,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * The format of data
      * 
      */
-    @Export(name="format", type=String.class, parameters={})
+    @Export(name="format", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> format;
 
     /**
@@ -166,7 +166,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * List of alternative IPs
      * 
      */
-    @Export(name="ipSans", type=List.class, parameters={String.class})
+    @Export(name="ipSans", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> ipSans;
 
     /**
@@ -180,7 +180,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * The ID of the generated issuer.
      * 
      */
-    @Export(name="issuerId", type=String.class, parameters={})
+    @Export(name="issuerId", refs={String.class}, tree="[0]")
     private Output<String> issuerId;
 
     /**
@@ -195,7 +195,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * across all issuers and not be the reserved value `default`
      * 
      */
-    @Export(name="issuerName", type=String.class, parameters={})
+    @Export(name="issuerName", refs={String.class}, tree="[0]")
     private Output<String> issuerName;
 
     /**
@@ -210,7 +210,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * The issuing CA certificate.
      * 
      */
-    @Export(name="issuingCa", type=String.class, parameters={})
+    @Export(name="issuingCa", refs={String.class}, tree="[0]")
     private Output<String> issuingCa;
 
     /**
@@ -224,7 +224,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * The number of bits to use
      * 
      */
-    @Export(name="keyBits", type=Integer.class, parameters={})
+    @Export(name="keyBits", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> keyBits;
 
     /**
@@ -238,7 +238,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * The ID of the generated key.
      * 
      */
-    @Export(name="keyId", type=String.class, parameters={})
+    @Export(name="keyId", refs={String.class}, tree="[0]")
     private Output<String> keyId;
 
     /**
@@ -253,7 +253,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * the name for this. The global ref `default` may not be used as a name.
      * 
      */
-    @Export(name="keyName", type=String.class, parameters={})
+    @Export(name="keyName", refs={String.class}, tree="[0]")
     private Output<String> keyName;
 
     /**
@@ -269,7 +269,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * for generating this request. Only suitable for `type=existing` requests.
      * 
      */
-    @Export(name="keyRef", type=String.class, parameters={})
+    @Export(name="keyRef", refs={String.class}, tree="[0]")
     private Output<String> keyRef;
 
     /**
@@ -284,7 +284,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * The desired key type
      * 
      */
-    @Export(name="keyType", type=String.class, parameters={})
+    @Export(name="keyType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> keyType;
 
     /**
@@ -298,7 +298,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * The locality
      * 
      */
-    @Export(name="locality", type=String.class, parameters={})
+    @Export(name="locality", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> locality;
 
     /**
@@ -313,7 +313,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * required if `type` is `kms` and it conflicts with `managed_key_name`
      * 
      */
-    @Export(name="managedKeyId", type=String.class, parameters={})
+    @Export(name="managedKeyId", refs={String.class}, tree="[0]")
     private Output<String> managedKeyId;
 
     /**
@@ -329,7 +329,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * required if `type` is `kms`  and it conflicts with `managed_key_id`
      * 
      */
-    @Export(name="managedKeyName", type=String.class, parameters={})
+    @Export(name="managedKeyName", refs={String.class}, tree="[0]")
     private Output<String> managedKeyName;
 
     /**
@@ -344,7 +344,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * The maximum path length to encode in the generated certificate
      * 
      */
-    @Export(name="maxPathLength", type=Integer.class, parameters={})
+    @Export(name="maxPathLength", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> maxPathLength;
 
     /**
@@ -361,7 +361,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -378,7 +378,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * The organization
      * 
      */
-    @Export(name="organization", type=String.class, parameters={})
+    @Export(name="organization", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> organization;
 
     /**
@@ -392,7 +392,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * List of other SANs
      * 
      */
-    @Export(name="otherSans", type=List.class, parameters={String.class})
+    @Export(name="otherSans", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> otherSans;
 
     /**
@@ -406,7 +406,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * The organization unit
      * 
      */
-    @Export(name="ou", type=String.class, parameters={})
+    @Export(name="ou", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> ou;
 
     /**
@@ -420,7 +420,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * List of domains for which certificates are allowed to be issued
      * 
      */
-    @Export(name="permittedDnsDomains", type=List.class, parameters={String.class})
+    @Export(name="permittedDnsDomains", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> permittedDnsDomains;
 
     /**
@@ -434,7 +434,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * The postal code
      * 
      */
-    @Export(name="postalCode", type=String.class, parameters={})
+    @Export(name="postalCode", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> postalCode;
 
     /**
@@ -448,7 +448,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * The private key format
      * 
      */
-    @Export(name="privateKeyFormat", type=String.class, parameters={})
+    @Export(name="privateKeyFormat", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> privateKeyFormat;
 
     /**
@@ -462,7 +462,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * The province
      * 
      */
-    @Export(name="province", type=String.class, parameters={})
+    @Export(name="province", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> province;
 
     /**
@@ -480,7 +480,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* Use serial_number instead */
-    @Export(name="serial", type=String.class, parameters={})
+    @Export(name="serial", refs={String.class}, tree="[0]")
     private Output<String> serial;
 
     /**
@@ -494,7 +494,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * The certificate&#39;s serial number, hex formatted.
      * 
      */
-    @Export(name="serialNumber", type=String.class, parameters={})
+    @Export(name="serialNumber", refs={String.class}, tree="[0]")
     private Output<String> serialNumber;
 
     /**
@@ -508,7 +508,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * The street address
      * 
      */
-    @Export(name="streetAddress", type=String.class, parameters={})
+    @Export(name="streetAddress", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> streetAddress;
 
     /**
@@ -522,7 +522,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * Time to live
      * 
      */
-    @Export(name="ttl", type=String.class, parameters={})
+    @Export(name="ttl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> ttl;
 
     /**
@@ -537,7 +537,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * or \&#34;kms\&#34;
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
@@ -552,7 +552,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * List of alternative URIs
      * 
      */
-    @Export(name="uriSans", type=List.class, parameters={String.class})
+    @Export(name="uriSans", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> uriSans;
 
     /**

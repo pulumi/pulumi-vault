@@ -112,7 +112,7 @@ public class EntityPolicies extends com.pulumi.resources.CustomResource {
      * Entity ID to assign policies to.
      * 
      */
-    @Export(name="entityId", type=String.class, parameters={})
+    @Export(name="entityId", refs={String.class}, tree="[0]")
     private Output<String> entityId;
 
     /**
@@ -126,7 +126,7 @@ public class EntityPolicies extends com.pulumi.resources.CustomResource {
      * The name of the entity that are assigned the policies.
      * 
      */
-    @Export(name="entityName", type=String.class, parameters={})
+    @Export(name="entityName", refs={String.class}, tree="[0]")
     private Output<String> entityName;
 
     /**
@@ -140,7 +140,7 @@ public class EntityPolicies extends com.pulumi.resources.CustomResource {
      * Defaults to `true`.
      * 
      */
-    @Export(name="exclusive", type=Boolean.class, parameters={})
+    @Export(name="exclusive", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> exclusive;
 
     /**
@@ -157,7 +157,7 @@ public class EntityPolicies extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -174,7 +174,7 @@ public class EntityPolicies extends com.pulumi.resources.CustomResource {
      * List of policies to assign to the entity
      * 
      */
-    @Export(name="policies", type=List.class, parameters={String.class})
+    @Export(name="policies", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> policies;
 
     /**

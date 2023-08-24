@@ -86,7 +86,7 @@ public class GroupAlias extends com.pulumi.resources.CustomResource {
      * ID of the group to which this is an alias.
      * 
      */
-    @Export(name="canonicalId", type=String.class, parameters={})
+    @Export(name="canonicalId", refs={String.class}, tree="[0]")
     private Output<String> canonicalId;
 
     /**
@@ -100,7 +100,7 @@ public class GroupAlias extends com.pulumi.resources.CustomResource {
      * Mount accessor of the authentication backend to which this alias belongs to.
      * 
      */
-    @Export(name="mountAccessor", type=String.class, parameters={})
+    @Export(name="mountAccessor", refs={String.class}, tree="[0]")
     private Output<String> mountAccessor;
 
     /**
@@ -114,7 +114,7 @@ public class GroupAlias extends com.pulumi.resources.CustomResource {
      * Name of the group alias to create.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -131,7 +131,7 @@ public class GroupAlias extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**

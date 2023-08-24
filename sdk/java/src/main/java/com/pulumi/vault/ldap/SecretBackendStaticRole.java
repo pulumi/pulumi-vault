@@ -78,7 +78,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      * search performed during password rotation. Cannot be modified after creation.
      * 
      */
-    @Export(name="dn", type=String.class, parameters={})
+    @Export(name="dn", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> dn;
 
     /**
@@ -95,7 +95,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      * not begin or end with a `/`. Defaults to `ldap`.
      * 
      */
-    @Export(name="mount", type=String.class, parameters={})
+    @Export(name="mount", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> mount;
 
     /**
@@ -113,7 +113,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -130,7 +130,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      * Name of the role.
      * 
      */
-    @Export(name="roleName", type=String.class, parameters={})
+    @Export(name="roleName", refs={String.class}, tree="[0]")
     private Output<String> roleName;
 
     /**
@@ -144,7 +144,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      * How often Vault should rotate the password of the user entry.
      * 
      */
-    @Export(name="rotationPeriod", type=Integer.class, parameters={})
+    @Export(name="rotationPeriod", refs={Integer.class}, tree="[0]")
     private Output<Integer> rotationPeriod;
 
     /**
@@ -158,7 +158,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      * The username of the existing LDAP entry to manage password rotation for.
      * 
      */
-    @Export(name="username", type=String.class, parameters={})
+    @Export(name="username", refs={String.class}, tree="[0]")
     private Output<String> username;
 
     /**

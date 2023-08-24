@@ -81,7 +81,7 @@ public class SecretLibrary extends com.pulumi.resources.CustomResource {
      * with no leading or trailing `/`s.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output<String> backend;
 
     /**
@@ -96,7 +96,7 @@ public class SecretLibrary extends com.pulumi.resources.CustomResource {
      * Disable enforcing that service accounts must be checked in by the entity or client token that checked them out.
      * 
      */
-    @Export(name="disableCheckInEnforcement", type=Boolean.class, parameters={})
+    @Export(name="disableCheckInEnforcement", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> disableCheckInEnforcement;
 
     /**
@@ -111,7 +111,7 @@ public class SecretLibrary extends com.pulumi.resources.CustomResource {
      * max_ttl if not provided.
      * 
      */
-    @Export(name="maxTtl", type=Integer.class, parameters={})
+    @Export(name="maxTtl", refs={Integer.class}, tree="[0]")
     private Output<Integer> maxTtl;
 
     /**
@@ -127,7 +127,7 @@ public class SecretLibrary extends com.pulumi.resources.CustomResource {
      * Must be unique within the backend.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -145,7 +145,7 @@ public class SecretLibrary extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -162,7 +162,7 @@ public class SecretLibrary extends com.pulumi.resources.CustomResource {
      * Specifies the slice of service accounts mapped to this set.
      * 
      */
-    @Export(name="serviceAccountNames", type=List.class, parameters={String.class})
+    @Export(name="serviceAccountNames", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> serviceAccountNames;
 
     /**
@@ -177,7 +177,7 @@ public class SecretLibrary extends com.pulumi.resources.CustomResource {
      * ttl if not provided.
      * 
      */
-    @Export(name="ttl", type=Integer.class, parameters={})
+    @Export(name="ttl", refs={Integer.class}, tree="[0]")
     private Output<Integer> ttl;
 
     /**

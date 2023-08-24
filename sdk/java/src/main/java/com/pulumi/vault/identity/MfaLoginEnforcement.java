@@ -72,7 +72,7 @@ public class MfaLoginEnforcement extends com.pulumi.resources.CustomResource {
      * Set of auth method accessor IDs.
      * 
      */
-    @Export(name="authMethodAccessors", type=List.class, parameters={String.class})
+    @Export(name="authMethodAccessors", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> authMethodAccessors;
 
     /**
@@ -86,7 +86,7 @@ public class MfaLoginEnforcement extends com.pulumi.resources.CustomResource {
      * Set of auth method types.
      * 
      */
-    @Export(name="authMethodTypes", type=List.class, parameters={String.class})
+    @Export(name="authMethodTypes", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> authMethodTypes;
 
     /**
@@ -100,7 +100,7 @@ public class MfaLoginEnforcement extends com.pulumi.resources.CustomResource {
      * Set of identity entity IDs.
      * 
      */
-    @Export(name="identityEntityIds", type=List.class, parameters={String.class})
+    @Export(name="identityEntityIds", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> identityEntityIds;
 
     /**
@@ -114,7 +114,7 @@ public class MfaLoginEnforcement extends com.pulumi.resources.CustomResource {
      * Set of identity group IDs.
      * 
      */
-    @Export(name="identityGroupIds", type=List.class, parameters={String.class})
+    @Export(name="identityGroupIds", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> identityGroupIds;
 
     /**
@@ -128,7 +128,7 @@ public class MfaLoginEnforcement extends com.pulumi.resources.CustomResource {
      * Set of MFA method UUIDs.
      * 
      */
-    @Export(name="mfaMethodIds", type=List.class, parameters={String.class})
+    @Export(name="mfaMethodIds", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> mfaMethodIds;
 
     /**
@@ -142,7 +142,7 @@ public class MfaLoginEnforcement extends com.pulumi.resources.CustomResource {
      * Login enforcement name.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -156,7 +156,7 @@ public class MfaLoginEnforcement extends com.pulumi.resources.CustomResource {
      * Target namespace. (requires Enterprise)
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -170,7 +170,7 @@ public class MfaLoginEnforcement extends com.pulumi.resources.CustomResource {
      * Method&#39;s namespace ID.
      * 
      */
-    @Export(name="namespaceId", type=String.class, parameters={})
+    @Export(name="namespaceId", refs={String.class}, tree="[0]")
     private Output<String> namespaceId;
 
     /**
@@ -184,7 +184,7 @@ public class MfaLoginEnforcement extends com.pulumi.resources.CustomResource {
      * Method&#39;s namespace path.
      * 
      */
-    @Export(name="namespacePath", type=String.class, parameters={})
+    @Export(name="namespacePath", refs={String.class}, tree="[0]")
     private Output<String> namespacePath;
 
     /**
@@ -198,7 +198,7 @@ public class MfaLoginEnforcement extends com.pulumi.resources.CustomResource {
      * Resource UUID.
      * 
      */
-    @Export(name="uuid", type=String.class, parameters={})
+    @Export(name="uuid", refs={String.class}, tree="[0]")
     private Output<String> uuid;
 
     /**

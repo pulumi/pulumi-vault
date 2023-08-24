@@ -68,7 +68,7 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * List of alternative names
      * 
      */
-    @Export(name="altNames", type=List.class, parameters={String.class})
+    @Export(name="altNames", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> altNames;
 
     /**
@@ -82,7 +82,7 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * The PKI secret backend the resource belongs to.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output<String> backend;
 
     /**
@@ -96,7 +96,7 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * A list of the issuing and intermediate CA certificates in the `format` specified.
      * 
      */
-    @Export(name="caChains", type=List.class, parameters={String.class})
+    @Export(name="caChains", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> caChains;
 
     /**
@@ -110,7 +110,7 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * The intermediate CA certificate in the `format` specified.
      * 
      */
-    @Export(name="certificate", type=String.class, parameters={})
+    @Export(name="certificate", refs={String.class}, tree="[0]")
     private Output<String> certificate;
 
     /**
@@ -125,7 +125,7 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * Requires the `format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.
      * 
      */
-    @Export(name="certificateBundle", type=String.class, parameters={})
+    @Export(name="certificateBundle", refs={String.class}, tree="[0]")
     private Output<String> certificateBundle;
 
     /**
@@ -140,7 +140,7 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * CN of intermediate to create
      * 
      */
-    @Export(name="commonName", type=String.class, parameters={})
+    @Export(name="commonName", refs={String.class}, tree="[0]")
     private Output<String> commonName;
 
     /**
@@ -154,7 +154,7 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * The country
      * 
      */
-    @Export(name="country", type=String.class, parameters={})
+    @Export(name="country", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> country;
 
     /**
@@ -168,7 +168,7 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * The CSR
      * 
      */
-    @Export(name="csr", type=String.class, parameters={})
+    @Export(name="csr", refs={String.class}, tree="[0]")
     private Output<String> csr;
 
     /**
@@ -182,7 +182,7 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * Flag to exclude CN from SANs
      * 
      */
-    @Export(name="excludeCnFromSans", type=Boolean.class, parameters={})
+    @Export(name="excludeCnFromSans", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> excludeCnFromSans;
 
     /**
@@ -196,7 +196,7 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * The format of data
      * 
      */
-    @Export(name="format", type=String.class, parameters={})
+    @Export(name="format", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> format;
 
     /**
@@ -210,7 +210,7 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * List of alternative IPs
      * 
      */
-    @Export(name="ipSans", type=List.class, parameters={String.class})
+    @Export(name="ipSans", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> ipSans;
 
     /**
@@ -227,7 +227,7 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * overriding the role&#39;s `issuer_ref` value.
      * 
      */
-    @Export(name="issuerRef", type=String.class, parameters={})
+    @Export(name="issuerRef", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> issuerRef;
 
     /**
@@ -244,7 +244,7 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * The issuing CA certificate in the `format` specified.
      * 
      */
-    @Export(name="issuingCa", type=String.class, parameters={})
+    @Export(name="issuingCa", refs={String.class}, tree="[0]")
     private Output<String> issuingCa;
 
     /**
@@ -258,7 +258,7 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * The locality
      * 
      */
-    @Export(name="locality", type=String.class, parameters={})
+    @Export(name="locality", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> locality;
 
     /**
@@ -272,7 +272,7 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * The maximum path length to encode in the generated certificate
      * 
      */
-    @Export(name="maxPathLength", type=Integer.class, parameters={})
+    @Export(name="maxPathLength", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> maxPathLength;
 
     /**
@@ -289,7 +289,7 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -306,7 +306,7 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * The organization
      * 
      */
-    @Export(name="organization", type=String.class, parameters={})
+    @Export(name="organization", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> organization;
 
     /**
@@ -320,7 +320,7 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * List of other SANs
      * 
      */
-    @Export(name="otherSans", type=List.class, parameters={String.class})
+    @Export(name="otherSans", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> otherSans;
 
     /**
@@ -334,7 +334,7 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * The organization unit
      * 
      */
-    @Export(name="ou", type=String.class, parameters={})
+    @Export(name="ou", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> ou;
 
     /**
@@ -348,7 +348,7 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * List of domains for which certificates are allowed to be issued
      * 
      */
-    @Export(name="permittedDnsDomains", type=List.class, parameters={String.class})
+    @Export(name="permittedDnsDomains", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> permittedDnsDomains;
 
     /**
@@ -362,7 +362,7 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * The postal code
      * 
      */
-    @Export(name="postalCode", type=String.class, parameters={})
+    @Export(name="postalCode", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> postalCode;
 
     /**
@@ -376,7 +376,7 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * The province
      * 
      */
-    @Export(name="province", type=String.class, parameters={})
+    @Export(name="province", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> province;
 
     /**
@@ -390,7 +390,7 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * If set to `true`, the certificate will be revoked on resource destruction.
      * 
      */
-    @Export(name="revoke", type=Boolean.class, parameters={})
+    @Export(name="revoke", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> revoke;
 
     /**
@@ -408,7 +408,7 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * 
      */
     @Deprecated /* Use serial_number instead */
-    @Export(name="serial", type=String.class, parameters={})
+    @Export(name="serial", refs={String.class}, tree="[0]")
     private Output<String> serial;
 
     /**
@@ -422,7 +422,7 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * The certificate&#39;s serial number, hex formatted.
      * 
      */
-    @Export(name="serialNumber", type=String.class, parameters={})
+    @Export(name="serialNumber", refs={String.class}, tree="[0]")
     private Output<String> serialNumber;
 
     /**
@@ -436,7 +436,7 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * The street address
      * 
      */
-    @Export(name="streetAddress", type=String.class, parameters={})
+    @Export(name="streetAddress", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> streetAddress;
 
     /**
@@ -450,7 +450,7 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * Time to live
      * 
      */
-    @Export(name="ttl", type=String.class, parameters={})
+    @Export(name="ttl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> ttl;
 
     /**
@@ -464,7 +464,7 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * List of alternative URIs
      * 
      */
-    @Export(name="uriSans", type=List.class, parameters={String.class})
+    @Export(name="uriSans", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> uriSans;
 
     /**
@@ -478,7 +478,7 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * Preserve CSR values
      * 
      */
-    @Export(name="useCsrValues", type=Boolean.class, parameters={})
+    @Export(name="useCsrValues", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> useCsrValues;
 
     /**

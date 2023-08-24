@@ -77,7 +77,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output<String> backend;
 
     /**
@@ -94,7 +94,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      * 384, or 521; ignored with `key_type=ed25519`.
      * 
      */
-    @Export(name="keyBits", type=Integer.class, parameters={})
+    @Export(name="keyBits", refs={Integer.class}, tree="[0]")
     private Output<Integer> keyBits;
 
     /**
@@ -111,7 +111,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      * ID of the generated key.
      * 
      */
-    @Export(name="keyId", type=String.class, parameters={})
+    @Export(name="keyId", refs={String.class}, tree="[0]")
     private Output<String> keyId;
 
     /**
@@ -126,7 +126,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      * The global ref `default` may not be used as a name.
      * 
      */
-    @Export(name="keyName", type=String.class, parameters={})
+    @Export(name="keyName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> keyName;
 
     /**
@@ -141,7 +141,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      * Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
      * 
      */
-    @Export(name="keyType", type=String.class, parameters={})
+    @Export(name="keyType", refs={String.class}, tree="[0]")
     private Output<String> keyType;
 
     /**
@@ -155,7 +155,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      * The managed key&#39;s UUID.
      * 
      */
-    @Export(name="managedKeyId", type=String.class, parameters={})
+    @Export(name="managedKeyId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> managedKeyId;
 
     /**
@@ -169,7 +169,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      * The managed key&#39;s configured name.
      * 
      */
-    @Export(name="managedKeyName", type=String.class, parameters={})
+    @Export(name="managedKeyName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> managedKeyName;
 
     /**
@@ -186,7 +186,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -203,7 +203,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      * Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**

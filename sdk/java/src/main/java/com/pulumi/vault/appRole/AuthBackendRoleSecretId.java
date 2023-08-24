@@ -82,7 +82,7 @@ public class AuthBackendRoleSecretId extends com.pulumi.resources.CustomResource
      * The unique ID for this SecretID that can be safely logged.
      * 
      */
-    @Export(name="accessor", type=String.class, parameters={})
+    @Export(name="accessor", refs={String.class}, tree="[0]")
     private Output<String> accessor;
 
     /**
@@ -96,7 +96,7 @@ public class AuthBackendRoleSecretId extends com.pulumi.resources.CustomResource
      * Unique name of the auth backend to configure.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backend;
 
     /**
@@ -111,7 +111,7 @@ public class AuthBackendRoleSecretId extends com.pulumi.resources.CustomResource
      * perform the login operation using this SecretID.
      * 
      */
-    @Export(name="cidrLists", type=List.class, parameters={String.class})
+    @Export(name="cidrLists", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> cidrLists;
 
     /**
@@ -127,7 +127,7 @@ public class AuthBackendRoleSecretId extends com.pulumi.resources.CustomResource
      * key-value pairs to be set on tokens issued with this SecretID.
      * 
      */
-    @Export(name="metadata", type=String.class, parameters={})
+    @Export(name="metadata", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> metadata;
 
     /**
@@ -145,7 +145,7 @@ public class AuthBackendRoleSecretId extends com.pulumi.resources.CustomResource
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -162,7 +162,7 @@ public class AuthBackendRoleSecretId extends com.pulumi.resources.CustomResource
      * The name of the role to create the SecretID for.
      * 
      */
-    @Export(name="roleName", type=String.class, parameters={})
+    @Export(name="roleName", refs={String.class}, tree="[0]")
     private Output<String> roleName;
 
     /**
@@ -177,7 +177,7 @@ public class AuthBackendRoleSecretId extends com.pulumi.resources.CustomResource
      * mode.  Defaults to Vault auto-generating SecretIDs.
      * 
      */
-    @Export(name="secretId", type=String.class, parameters={})
+    @Export(name="secretId", refs={String.class}, tree="[0]")
     private Output<String> secretId;
 
     /**
@@ -194,7 +194,7 @@ public class AuthBackendRoleSecretId extends com.pulumi.resources.CustomResource
      * invalidated through unwrapping.
      * 
      */
-    @Export(name="withWrappedAccessor", type=Boolean.class, parameters={})
+    @Export(name="withWrappedAccessor", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> withWrappedAccessor;
 
     /**
@@ -211,7 +211,7 @@ public class AuthBackendRoleSecretId extends com.pulumi.resources.CustomResource
      * be safely logged.
      * 
      */
-    @Export(name="wrappingAccessor", type=String.class, parameters={})
+    @Export(name="wrappingAccessor", refs={String.class}, tree="[0]")
     private Output<String> wrappingAccessor;
 
     /**
@@ -226,7 +226,7 @@ public class AuthBackendRoleSecretId extends com.pulumi.resources.CustomResource
      * The token used to retrieve a response-wrapped SecretID.
      * 
      */
-    @Export(name="wrappingToken", type=String.class, parameters={})
+    @Export(name="wrappingToken", refs={String.class}, tree="[0]")
     private Output<String> wrappingToken;
 
     /**
@@ -243,7 +243,7 @@ public class AuthBackendRoleSecretId extends com.pulumi.resources.CustomResource
      * token is allowed.
      * 
      */
-    @Export(name="wrappingTtl", type=String.class, parameters={})
+    @Export(name="wrappingTtl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> wrappingTtl;
 
     /**

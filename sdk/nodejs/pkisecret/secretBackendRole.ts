@@ -122,6 +122,10 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly allowedUriSansTemplate!: pulumi.Output<boolean>;
     /**
+     * Defines allowed User IDs
+     */
+    public readonly allowedUserIds!: pulumi.Output<string[] | undefined>;
+    /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      */
     public readonly backend!: pulumi.Output<string>;
@@ -275,6 +279,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["allowedSerialNumbers"] = state ? state.allowedSerialNumbers : undefined;
             resourceInputs["allowedUriSans"] = state ? state.allowedUriSans : undefined;
             resourceInputs["allowedUriSansTemplate"] = state ? state.allowedUriSansTemplate : undefined;
+            resourceInputs["allowedUserIds"] = state ? state.allowedUserIds : undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["basicConstraintsValidForNonCa"] = state ? state.basicConstraintsValidForNonCa : undefined;
             resourceInputs["clientFlag"] = state ? state.clientFlag : undefined;
@@ -323,6 +328,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["allowedSerialNumbers"] = args ? args.allowedSerialNumbers : undefined;
             resourceInputs["allowedUriSans"] = args ? args.allowedUriSans : undefined;
             resourceInputs["allowedUriSansTemplate"] = args ? args.allowedUriSansTemplate : undefined;
+            resourceInputs["allowedUserIds"] = args ? args.allowedUserIds : undefined;
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["basicConstraintsValidForNonCa"] = args ? args.basicConstraintsValidForNonCa : undefined;
             resourceInputs["clientFlag"] = args ? args.clientFlag : undefined;
@@ -415,6 +421,10 @@ export interface SecretBackendRoleState {
      * Flag, if set, `allowedUriSans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
      */
     allowedUriSansTemplate?: pulumi.Input<boolean>;
+    /**
+     * Defines allowed User IDs
+     */
+    allowedUserIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      */
@@ -600,6 +610,10 @@ export interface SecretBackendRoleArgs {
      * Flag, if set, `allowedUriSans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
      */
     allowedUriSansTemplate?: pulumi.Input<boolean>;
+    /**
+     * Defines allowed User IDs
+     */
+    allowedUserIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      */

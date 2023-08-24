@@ -28,6 +28,7 @@ class ProviderArgs:
                  auth_login_oci: Optional[pulumi.Input['ProviderAuthLoginOciArgs']] = None,
                  auth_login_oidc: Optional[pulumi.Input['ProviderAuthLoginOidcArgs']] = None,
                  auth_login_radius: Optional[pulumi.Input['ProviderAuthLoginRadiusArgs']] = None,
+                 auth_login_token_file: Optional[pulumi.Input['ProviderAuthLoginTokenFileArgs']] = None,
                  auth_login_userpass: Optional[pulumi.Input['ProviderAuthLoginUserpassArgs']] = None,
                  ca_cert_dir: Optional[pulumi.Input[str]] = None,
                  ca_cert_file: Optional[pulumi.Input[str]] = None,
@@ -58,6 +59,7 @@ class ProviderArgs:
         :param pulumi.Input['ProviderAuthLoginOciArgs'] auth_login_oci: Login to vault using the OCI method
         :param pulumi.Input['ProviderAuthLoginOidcArgs'] auth_login_oidc: Login to vault using the oidc method
         :param pulumi.Input['ProviderAuthLoginRadiusArgs'] auth_login_radius: Login to vault using the radius method
+        :param pulumi.Input['ProviderAuthLoginTokenFileArgs'] auth_login_token_file: Login to vault using
         :param pulumi.Input['ProviderAuthLoginUserpassArgs'] auth_login_userpass: Login to vault using the userpass method
         :param pulumi.Input[str] ca_cert_dir: Path to directory containing CA certificate files to validate the server's certificate.
         :param pulumi.Input[str] ca_cert_file: Path to a CA certificate file to validate the server's certificate.
@@ -98,12 +100,17 @@ class ProviderArgs:
             pulumi.set(__self__, "auth_login_oidc", auth_login_oidc)
         if auth_login_radius is not None:
             pulumi.set(__self__, "auth_login_radius", auth_login_radius)
+        if auth_login_token_file is not None:
+            pulumi.set(__self__, "auth_login_token_file", auth_login_token_file)
         if auth_login_userpass is not None:
             pulumi.set(__self__, "auth_login_userpass", auth_login_userpass)
         if ca_cert_dir is not None:
             pulumi.set(__self__, "ca_cert_dir", ca_cert_dir)
         if ca_cert_file is not None:
             pulumi.set(__self__, "ca_cert_file", ca_cert_file)
+        if client_auth is not None:
+            warnings.warn("""Use auth_login_cert instead""", DeprecationWarning)
+            pulumi.log.warn("""client_auth is deprecated: Use auth_login_cert instead""")
         if client_auth is not None:
             pulumi.set(__self__, "client_auth", client_auth)
         if headers is not None:
@@ -290,6 +297,18 @@ class ProviderArgs:
     @auth_login_radius.setter
     def auth_login_radius(self, value: Optional[pulumi.Input['ProviderAuthLoginRadiusArgs']]):
         pulumi.set(self, "auth_login_radius", value)
+
+    @property
+    @pulumi.getter(name="authLoginTokenFile")
+    def auth_login_token_file(self) -> Optional[pulumi.Input['ProviderAuthLoginTokenFileArgs']]:
+        """
+        Login to vault using
+        """
+        return pulumi.get(self, "auth_login_token_file")
+
+    @auth_login_token_file.setter
+    def auth_login_token_file(self, value: Optional[pulumi.Input['ProviderAuthLoginTokenFileArgs']]):
+        pulumi.set(self, "auth_login_token_file", value)
 
     @property
     @pulumi.getter(name="authLoginUserpass")
@@ -489,6 +508,7 @@ class Provider(pulumi.ProviderResource):
                  auth_login_oci: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginOciArgs']]] = None,
                  auth_login_oidc: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginOidcArgs']]] = None,
                  auth_login_radius: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginRadiusArgs']]] = None,
+                 auth_login_token_file: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginTokenFileArgs']]] = None,
                  auth_login_userpass: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginUserpassArgs']]] = None,
                  ca_cert_dir: Optional[pulumi.Input[str]] = None,
                  ca_cert_file: Optional[pulumi.Input[str]] = None,
@@ -526,6 +546,7 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[pulumi.InputType['ProviderAuthLoginOciArgs']] auth_login_oci: Login to vault using the OCI method
         :param pulumi.Input[pulumi.InputType['ProviderAuthLoginOidcArgs']] auth_login_oidc: Login to vault using the oidc method
         :param pulumi.Input[pulumi.InputType['ProviderAuthLoginRadiusArgs']] auth_login_radius: Login to vault using the radius method
+        :param pulumi.Input[pulumi.InputType['ProviderAuthLoginTokenFileArgs']] auth_login_token_file: Login to vault using
         :param pulumi.Input[pulumi.InputType['ProviderAuthLoginUserpassArgs']] auth_login_userpass: Login to vault using the userpass method
         :param pulumi.Input[str] ca_cert_dir: Path to directory containing CA certificate files to validate the server's certificate.
         :param pulumi.Input[str] ca_cert_file: Path to a CA certificate file to validate the server's certificate.
@@ -582,6 +603,7 @@ class Provider(pulumi.ProviderResource):
                  auth_login_oci: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginOciArgs']]] = None,
                  auth_login_oidc: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginOidcArgs']]] = None,
                  auth_login_radius: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginRadiusArgs']]] = None,
+                 auth_login_token_file: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginTokenFileArgs']]] = None,
                  auth_login_userpass: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginUserpassArgs']]] = None,
                  ca_cert_dir: Optional[pulumi.Input[str]] = None,
                  ca_cert_file: Optional[pulumi.Input[str]] = None,
@@ -621,9 +643,13 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["auth_login_oci"] = pulumi.Output.from_input(auth_login_oci).apply(pulumi.runtime.to_json) if auth_login_oci is not None else None
             __props__.__dict__["auth_login_oidc"] = pulumi.Output.from_input(auth_login_oidc).apply(pulumi.runtime.to_json) if auth_login_oidc is not None else None
             __props__.__dict__["auth_login_radius"] = pulumi.Output.from_input(auth_login_radius).apply(pulumi.runtime.to_json) if auth_login_radius is not None else None
+            __props__.__dict__["auth_login_token_file"] = pulumi.Output.from_input(auth_login_token_file).apply(pulumi.runtime.to_json) if auth_login_token_file is not None else None
             __props__.__dict__["auth_login_userpass"] = pulumi.Output.from_input(auth_login_userpass).apply(pulumi.runtime.to_json) if auth_login_userpass is not None else None
             __props__.__dict__["ca_cert_dir"] = ca_cert_dir
             __props__.__dict__["ca_cert_file"] = ca_cert_file
+            if client_auth is not None and not opts.urn:
+                warnings.warn("""Use auth_login_cert instead""", DeprecationWarning)
+                pulumi.log.warn("""client_auth is deprecated: Use auth_login_cert instead""")
             __props__.__dict__["client_auth"] = pulumi.Output.from_input(client_auth).apply(pulumi.runtime.to_json) if client_auth is not None else None
             __props__.__dict__["headers"] = pulumi.Output.from_input(headers).apply(pulumi.runtime.to_json) if headers is not None else None
             if max_lease_ttl_seconds is None:

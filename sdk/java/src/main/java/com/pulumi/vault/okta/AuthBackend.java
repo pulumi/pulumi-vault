@@ -81,7 +81,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
      * 
      */
-    @Export(name="accessor", type=String.class, parameters={})
+    @Export(name="accessor", refs={String.class}, tree="[0]")
     private Output<String> accessor;
 
     /**
@@ -95,7 +95,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * The Okta url. Examples: oktapreview.com, okta.com
      * 
      */
-    @Export(name="baseUrl", type=String.class, parameters={})
+    @Export(name="baseUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> baseUrl;
 
     /**
@@ -109,7 +109,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
      * 
      */
-    @Export(name="bypassOktaMfa", type=Boolean.class, parameters={})
+    @Export(name="bypassOktaMfa", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> bypassOktaMfa;
 
     /**
@@ -123,7 +123,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * The description of the auth backend
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -138,7 +138,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      * 
      */
-    @Export(name="disableRemount", type=Boolean.class, parameters={})
+    @Export(name="disableRemount", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> disableRemount;
 
     /**
@@ -154,7 +154,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * See below for more details.
      * 
      */
-    @Export(name="groups", type=List.class, parameters={AuthBackendGroup.class})
+    @Export(name="groups", refs={List.class,AuthBackendGroup.class}, tree="[0,1]")
     private Output<List<AuthBackendGroup>> groups;
 
     /**
@@ -170,7 +170,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
      * 
      */
-    @Export(name="maxTtl", type=String.class, parameters={})
+    @Export(name="maxTtl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> maxTtl;
 
     /**
@@ -188,7 +188,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -205,7 +205,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * The Okta organization. This will be the first part of the url `https://XXX.okta.com`
      * 
      */
-    @Export(name="organization", type=String.class, parameters={})
+    @Export(name="organization", refs={String.class}, tree="[0]")
     private Output<String> organization;
 
     /**
@@ -219,7 +219,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * Path to mount the Okta auth backend. Default to path `okta`.
      * 
      */
-    @Export(name="path", type=String.class, parameters={})
+    @Export(name="path", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> path;
 
     /**
@@ -234,7 +234,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * If this is not supplied only locally configured groups will be enabled.
      * 
      */
-    @Export(name="token", type=String.class, parameters={})
+    @Export(name="token", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> token;
 
     /**
@@ -250,7 +250,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
      * 
      */
-    @Export(name="ttl", type=String.class, parameters={})
+    @Export(name="ttl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> ttl;
 
     /**
@@ -266,7 +266,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * See below for more details.
      * 
      */
-    @Export(name="users", type=List.class, parameters={AuthBackendUser.class})
+    @Export(name="users", refs={List.class,AuthBackendUser.class}, tree="[0,1]")
     private Output<List<AuthBackendUser>> users;
 
     /**

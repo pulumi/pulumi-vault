@@ -64,7 +64,7 @@ public class OidcScope extends com.pulumi.resources.CustomResource {
      * A description of the scope.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -78,7 +78,7 @@ public class OidcScope extends com.pulumi.resources.CustomResource {
      * The name of the scope. The `openid` scope name is reserved.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -95,7 +95,7 @@ public class OidcScope extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -112,7 +112,7 @@ public class OidcScope extends com.pulumi.resources.CustomResource {
      * The template string for the scope. This may be provided as escaped JSON or base64 encoded JSON.
      * 
      */
-    @Export(name="template", type=String.class, parameters={})
+    @Export(name="template", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> template;
 
     /**

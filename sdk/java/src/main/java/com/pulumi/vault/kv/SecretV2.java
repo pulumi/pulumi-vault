@@ -117,7 +117,7 @@ public class SecretV2 extends com.pulumi.resources.CustomResource {
      * of the secret.
      * 
      */
-    @Export(name="cas", type=Integer.class, parameters={})
+    @Export(name="cas", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> cas;
 
     /**
@@ -136,7 +136,7 @@ public class SecretV2 extends com.pulumi.resources.CustomResource {
      * Configuration Options for more info.
      * 
      */
-    @Export(name="customMetadata", type=SecretV2CustomMetadata.class, parameters={})
+    @Export(name="customMetadata", refs={SecretV2CustomMetadata.class}, tree="[0]")
     private Output<SecretV2CustomMetadata> customMetadata;
 
     /**
@@ -155,7 +155,7 @@ public class SecretV2 extends com.pulumi.resources.CustomResource {
      * serialized as JSON.
      * 
      */
-    @Export(name="data", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="data", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output<Map<String,Object>> data;
 
     /**
@@ -173,7 +173,7 @@ public class SecretV2 extends com.pulumi.resources.CustomResource {
      * written as the secret data at the given path.
      * 
      */
-    @Export(name="dataJson", type=String.class, parameters={})
+    @Export(name="dataJson", refs={String.class}, tree="[0]")
     private Output<String> dataJson;
 
     /**
@@ -189,7 +189,7 @@ public class SecretV2 extends com.pulumi.resources.CustomResource {
      * versions for the specified key.
      * 
      */
-    @Export(name="deleteAllVersions", type=Boolean.class, parameters={})
+    @Export(name="deleteAllVersions", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> deleteAllVersions;
 
     /**
@@ -205,7 +205,7 @@ public class SecretV2 extends com.pulumi.resources.CustomResource {
      * note: drift won&#39;t be detected.
      * 
      */
-    @Export(name="disableRead", type=Boolean.class, parameters={})
+    @Export(name="disableRead", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> disableRead;
 
     /**
@@ -220,7 +220,7 @@ public class SecretV2 extends com.pulumi.resources.CustomResource {
      * Metadata associated with this secret read from Vault.
      * 
      */
-    @Export(name="metadata", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="metadata", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output<Map<String,Object>> metadata;
 
     /**
@@ -234,7 +234,7 @@ public class SecretV2 extends com.pulumi.resources.CustomResource {
      * Path where KV-V2 engine is mounted.
      * 
      */
-    @Export(name="mount", type=String.class, parameters={})
+    @Export(name="mount", refs={String.class}, tree="[0]")
     private Output<String> mount;
 
     /**
@@ -251,7 +251,7 @@ public class SecretV2 extends com.pulumi.resources.CustomResource {
      * the name is `foo/bar/baz`.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -271,7 +271,7 @@ public class SecretV2 extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -288,7 +288,7 @@ public class SecretV2 extends com.pulumi.resources.CustomResource {
      * An object that holds option settings.
      * 
      */
-    @Export(name="options", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="options", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> options;
 
     /**
@@ -302,7 +302,7 @@ public class SecretV2 extends com.pulumi.resources.CustomResource {
      * Full path where the KV-V2 secret will be written.
      * 
      */
-    @Export(name="path", type=String.class, parameters={})
+    @Export(name="path", refs={String.class}, tree="[0]")
     private Output<String> path;
 
     /**

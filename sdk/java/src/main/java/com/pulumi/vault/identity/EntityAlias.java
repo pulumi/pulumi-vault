@@ -62,7 +62,7 @@ public class EntityAlias extends com.pulumi.resources.CustomResource {
      * Entity ID to which this alias belongs to.
      * 
      */
-    @Export(name="canonicalId", type=String.class, parameters={})
+    @Export(name="canonicalId", refs={String.class}, tree="[0]")
     private Output<String> canonicalId;
 
     /**
@@ -76,7 +76,7 @@ public class EntityAlias extends com.pulumi.resources.CustomResource {
      * Custom metadata to be associated with this alias.
      * 
      */
-    @Export(name="customMetadata", type=Map.class, parameters={String.class, String.class})
+    @Export(name="customMetadata", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> customMetadata;
 
     /**
@@ -90,7 +90,7 @@ public class EntityAlias extends com.pulumi.resources.CustomResource {
      * Accessor of the mount to which the alias should belong to.
      * 
      */
-    @Export(name="mountAccessor", type=String.class, parameters={})
+    @Export(name="mountAccessor", refs={String.class}, tree="[0]")
     private Output<String> mountAccessor;
 
     /**
@@ -104,7 +104,7 @@ public class EntityAlias extends com.pulumi.resources.CustomResource {
      * Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -121,7 +121,7 @@ public class EntityAlias extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**

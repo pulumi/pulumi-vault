@@ -201,7 +201,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * can generate credentials for. If set to `*` all namespaces are allowed.
      * 
      */
-    @Export(name="allowedKubernetesNamespaces", type=List.class, parameters={String.class})
+    @Export(name="allowedKubernetesNamespaces", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> allowedKubernetesNamespaces;
 
     /**
@@ -217,7 +217,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * the role in.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output<String> backend;
 
     /**
@@ -233,7 +233,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * Kubernetes objects.
      * 
      */
-    @Export(name="extraAnnotations", type=Map.class, parameters={String.class, String.class})
+    @Export(name="extraAnnotations", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> extraAnnotations;
 
     /**
@@ -249,7 +249,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * objects.
      * 
      */
-    @Export(name="extraLabels", type=Map.class, parameters={String.class, String.class})
+    @Export(name="extraLabels", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> extraLabels;
 
     /**
@@ -267,7 +267,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * when credentials are requested.
      * 
      */
-    @Export(name="generatedRoleRules", type=String.class, parameters={})
+    @Export(name="generatedRoleRules", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> generatedRoleRules;
 
     /**
@@ -287,7 +287,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * binding objects will be created when credentials are requested.
      * 
      */
-    @Export(name="kubernetesRoleName", type=String.class, parameters={})
+    @Export(name="kubernetesRoleName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> kubernetesRoleName;
 
     /**
@@ -305,7 +305,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * ClusterRole.
      * 
      */
-    @Export(name="kubernetesRoleType", type=String.class, parameters={})
+    @Export(name="kubernetesRoleType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> kubernetesRoleType;
 
     /**
@@ -320,7 +320,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * The name of the role.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -335,7 +335,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * roles and role bindings. If unset, a default template is used.
      * 
      */
-    @Export(name="nameTemplate", type=String.class, parameters={})
+    @Export(name="nameTemplate", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> nameTemplate;
 
     /**
@@ -353,7 +353,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -372,7 +372,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * Kubernetes token will be created when credentials are requested.
      * 
      */
-    @Export(name="serviceAccountName", type=String.class, parameters={})
+    @Export(name="serviceAccountName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> serviceAccountName;
 
     /**
@@ -388,7 +388,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * The default TTL for generated Kubernetes tokens in seconds.
      * 
      */
-    @Export(name="tokenDefaultTtl", type=Integer.class, parameters={})
+    @Export(name="tokenDefaultTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenDefaultTtl;
 
     /**
@@ -402,7 +402,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * The maximum TTL for generated Kubernetes tokens in seconds.
      * 
      */
-    @Export(name="tokenMaxTtl", type=Integer.class, parameters={})
+    @Export(name="tokenMaxTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenMaxTtl;
 
     /**

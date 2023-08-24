@@ -78,7 +78,7 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="vault:gcp/authBackendRole:AuthBackendRole")
 public class AuthBackendRole extends com.pulumi.resources.CustomResource {
-    @Export(name="addGroupAliases", type=Boolean.class, parameters={})
+    @Export(name="addGroupAliases", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> addGroupAliases;
 
     public Output<Boolean> addGroupAliases() {
@@ -88,7 +88,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * A flag to determine if this role should allow GCE instances to authenticate by inferring service accounts from the GCE identity metadata token.
      * 
      */
-    @Export(name="allowGceInference", type=Boolean.class, parameters={})
+    @Export(name="allowGceInference", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> allowGceInference;
 
     /**
@@ -102,7 +102,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * Path to the mounted GCP auth backend
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backend;
 
     /**
@@ -116,7 +116,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * The instance groups that an authorized instance must belong to in order to be authenticated. If specified, either `bound_zones` or `bound_regions` must be set too.
      * 
      */
-    @Export(name="boundInstanceGroups", type=List.class, parameters={String.class})
+    @Export(name="boundInstanceGroups", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> boundInstanceGroups;
 
     /**
@@ -130,7 +130,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * A comma-separated list of GCP labels formatted as `&#34;key:value&#34;` strings that must be set on authorized GCE instances. Because GCP labels are not currently ACL&#39;d, we recommend that this be used in conjunction with other restrictions.
      * 
      */
-    @Export(name="boundLabels", type=List.class, parameters={String.class})
+    @Export(name="boundLabels", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> boundLabels;
 
     /**
@@ -144,7 +144,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * GCP Projects that the role exists within
      * 
      */
-    @Export(name="boundProjects", type=List.class, parameters={String.class})
+    @Export(name="boundProjects", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> boundProjects;
 
     /**
@@ -158,7 +158,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * The list of regions that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a regional group and the group must belong to this region. If bound_zones are provided, this attribute is ignored.
      * 
      */
-    @Export(name="boundRegions", type=List.class, parameters={String.class})
+    @Export(name="boundRegions", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> boundRegions;
 
     /**
@@ -172,7 +172,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * GCP Service Accounts allowed to issue tokens under this role. (Note: **Required** if role is `iam`)
      * 
      */
-    @Export(name="boundServiceAccounts", type=List.class, parameters={String.class})
+    @Export(name="boundServiceAccounts", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> boundServiceAccounts;
 
     /**
@@ -186,7 +186,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * The list of zones that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a zonal group and the group must belong to this zone.
      * 
      */
-    @Export(name="boundZones", type=List.class, parameters={String.class})
+    @Export(name="boundZones", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> boundZones;
 
     /**
@@ -200,7 +200,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
      * 
      */
-    @Export(name="maxJwtExp", type=String.class, parameters={})
+    @Export(name="maxJwtExp", refs={String.class}, tree="[0]")
     private Output<String> maxJwtExp;
 
     /**
@@ -217,7 +217,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -234,7 +234,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * Name of the GCP role
      * 
      */
-    @Export(name="role", type=String.class, parameters={})
+    @Export(name="role", refs={String.class}, tree="[0]")
     private Output<String> role;
 
     /**
@@ -250,7 +250,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * as well.
      * 
      */
-    @Export(name="tokenBoundCidrs", type=List.class, parameters={String.class})
+    @Export(name="tokenBoundCidrs", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tokenBoundCidrs;
 
     /**
@@ -269,7 +269,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * `token_max_ttl` would otherwise allow a renewal.
      * 
      */
-    @Export(name="tokenExplicitMaxTtl", type=Integer.class, parameters={})
+    @Export(name="tokenExplicitMaxTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenExplicitMaxTtl;
 
     /**
@@ -287,7 +287,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * Its current value will be referenced at renewal time.
      * 
      */
-    @Export(name="tokenMaxTtl", type=Integer.class, parameters={})
+    @Export(name="tokenMaxTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenMaxTtl;
 
     /**
@@ -303,7 +303,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * generated tokens; otherwise it will be added to the policies set in token_policies.
      * 
      */
-    @Export(name="tokenNoDefaultPolicy", type=Boolean.class, parameters={})
+    @Export(name="tokenNoDefaultPolicy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> tokenNoDefaultPolicy;
 
     /**
@@ -319,7 +319,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * of times a generated token may be used (within its lifetime); 0 means unlimited.
      * 
      */
-    @Export(name="tokenNumUses", type=Integer.class, parameters={})
+    @Export(name="tokenNumUses", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenNumUses;
 
     /**
@@ -337,7 +337,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * value of this field. Specified in seconds.
      * 
      */
-    @Export(name="tokenPeriod", type=Integer.class, parameters={})
+    @Export(name="tokenPeriod", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenPeriod;
 
     /**
@@ -355,7 +355,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * on the auth method, this list may be supplemented by user/group/other values.
      * 
      */
-    @Export(name="tokenPolicies", type=List.class, parameters={String.class})
+    @Export(name="tokenPolicies", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tokenPolicies;
 
     /**
@@ -371,7 +371,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * Its current value will be referenced at renewal time.
      * 
      */
-    @Export(name="tokenTtl", type=Integer.class, parameters={})
+    @Export(name="tokenTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenTtl;
 
     /**
@@ -390,7 +390,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * requests a different type at generation time.
      * 
      */
-    @Export(name="tokenType", type=String.class, parameters={})
+    @Export(name="tokenType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tokenType;
 
     /**
@@ -408,7 +408,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * Type of GCP authentication role (either `gce` or `iam`)
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**

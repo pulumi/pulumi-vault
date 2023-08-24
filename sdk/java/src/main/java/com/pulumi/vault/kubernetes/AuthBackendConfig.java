@@ -80,7 +80,7 @@ public class AuthBackendConfig extends com.pulumi.resources.CustomResource {
      * Unique name of the kubernetes backend to configure.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backend;
 
     /**
@@ -94,7 +94,7 @@ public class AuthBackendConfig extends com.pulumi.resources.CustomResource {
      * Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
      * 
      */
-    @Export(name="disableIssValidation", type=Boolean.class, parameters={})
+    @Export(name="disableIssValidation", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> disableIssValidation;
 
     /**
@@ -108,7 +108,7 @@ public class AuthBackendConfig extends com.pulumi.resources.CustomResource {
      * Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
      * 
      */
-    @Export(name="disableLocalCaJwt", type=Boolean.class, parameters={})
+    @Export(name="disableLocalCaJwt", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> disableLocalCaJwt;
 
     /**
@@ -122,7 +122,7 @@ public class AuthBackendConfig extends com.pulumi.resources.CustomResource {
      * JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
      * 
      */
-    @Export(name="issuer", type=String.class, parameters={})
+    @Export(name="issuer", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> issuer;
 
     /**
@@ -136,7 +136,7 @@ public class AuthBackendConfig extends com.pulumi.resources.CustomResource {
      * PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
      * 
      */
-    @Export(name="kubernetesCaCert", type=String.class, parameters={})
+    @Export(name="kubernetesCaCert", refs={String.class}, tree="[0]")
     private Output<String> kubernetesCaCert;
 
     /**
@@ -150,7 +150,7 @@ public class AuthBackendConfig extends com.pulumi.resources.CustomResource {
      * Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
      * 
      */
-    @Export(name="kubernetesHost", type=String.class, parameters={})
+    @Export(name="kubernetesHost", refs={String.class}, tree="[0]")
     private Output<String> kubernetesHost;
 
     /**
@@ -167,7 +167,7 @@ public class AuthBackendConfig extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -184,7 +184,7 @@ public class AuthBackendConfig extends com.pulumi.resources.CustomResource {
      * List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
      * 
      */
-    @Export(name="pemKeys", type=List.class, parameters={String.class})
+    @Export(name="pemKeys", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> pemKeys;
 
     /**
@@ -198,7 +198,7 @@ public class AuthBackendConfig extends com.pulumi.resources.CustomResource {
      * A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
      * 
      */
-    @Export(name="tokenReviewerJwt", type=String.class, parameters={})
+    @Export(name="tokenReviewerJwt", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tokenReviewerJwt;
 
     /**

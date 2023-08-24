@@ -995,6 +995,14 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "pkiSecret/secretBackendConfigIssuers",
+  "fqn": "pulumi_vault.pkisecret",
+  "classes": {
+   "vault:pkiSecret/secretBackendConfigIssuers:SecretBackendConfigIssuers": "SecretBackendConfigIssuers"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "pkiSecret/secretBackendConfigUrls",
   "fqn": "pulumi_vault.pkisecret",
   "classes": {

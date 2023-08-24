@@ -72,7 +72,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * The clients email associated with the credentials
      * 
      */
-    @Export(name="clientEmail", type=String.class, parameters={})
+    @Export(name="clientEmail", refs={String.class}, tree="[0]")
     private Output<String> clientEmail;
 
     /**
@@ -86,7 +86,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * The Client ID of the credentials
      * 
      */
-    @Export(name="clientId", type=String.class, parameters={})
+    @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output<String> clientId;
 
     /**
@@ -100,7 +100,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
      * 
      */
-    @Export(name="credentials", type=String.class, parameters={})
+    @Export(name="credentials", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> credentials;
 
     /**
@@ -118,7 +118,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * environments. Requires Vault 1.11+.
      * 
      */
-    @Export(name="customEndpoint", type=AuthBackendCustomEndpoint.class, parameters={})
+    @Export(name="customEndpoint", refs={AuthBackendCustomEndpoint.class}, tree="[0]")
     private Output</* @Nullable */ AuthBackendCustomEndpoint> customEndpoint;
 
     /**
@@ -136,7 +136,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * A description of the auth method.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -151,7 +151,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      * 
      */
-    @Export(name="disableRemount", type=Boolean.class, parameters={})
+    @Export(name="disableRemount", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> disableRemount;
 
     /**
@@ -166,7 +166,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * Specifies if the auth method is local only.
      * 
      */
-    @Export(name="local", type=Boolean.class, parameters={})
+    @Export(name="local", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> local;
 
     /**
@@ -183,7 +183,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -200,7 +200,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * The path to mount the auth method — this defaults to &#39;gcp&#39;.
      * 
      */
-    @Export(name="path", type=String.class, parameters={})
+    @Export(name="path", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> path;
 
     /**
@@ -214,7 +214,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * The ID of the private key from the credentials
      * 
      */
-    @Export(name="privateKeyId", type=String.class, parameters={})
+    @Export(name="privateKeyId", refs={String.class}, tree="[0]")
     private Output<String> privateKeyId;
 
     /**
@@ -228,7 +228,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * The GCP Project ID
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**

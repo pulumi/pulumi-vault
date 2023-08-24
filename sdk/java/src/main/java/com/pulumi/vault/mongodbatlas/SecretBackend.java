@@ -70,7 +70,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      * Path where the MongoDB Atlas Secrets Engine is mounted.
      * 
      */
-    @Export(name="mount", type=String.class, parameters={})
+    @Export(name="mount", refs={String.class}, tree="[0]")
     private Output<String> mount;
 
     /**
@@ -87,7 +87,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -104,7 +104,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      * Path where MongoDB Atlas configuration is located
      * 
      */
-    @Export(name="path", type=String.class, parameters={})
+    @Export(name="path", refs={String.class}, tree="[0]")
     private Output<String> path;
 
     /**
@@ -118,7 +118,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      * Specifies the Private API Key used to authenticate with the MongoDB Atlas API.
      * 
      */
-    @Export(name="privateKey", type=String.class, parameters={})
+    @Export(name="privateKey", refs={String.class}, tree="[0]")
     private Output<String> privateKey;
 
     /**
@@ -132,7 +132,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      * Specifies the Public API Key used to authenticate with the MongoDB Atlas API.
      * 
      */
-    @Export(name="publicKey", type=String.class, parameters={})
+    @Export(name="publicKey", refs={String.class}, tree="[0]")
     private Output<String> publicKey;
 
     /**

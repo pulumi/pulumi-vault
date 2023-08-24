@@ -59,7 +59,7 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
      * List of alternative names
      * 
      */
-    @Export(name="altNames", type=List.class, parameters={String.class})
+    @Export(name="altNames", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> altNames;
 
     /**
@@ -73,7 +73,7 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
      * If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
      * 
      */
-    @Export(name="autoRenew", type=Boolean.class, parameters={})
+    @Export(name="autoRenew", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> autoRenew;
 
     /**
@@ -87,7 +87,7 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
      * The PKI secret backend the resource belongs to.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output<String> backend;
 
     /**
@@ -101,7 +101,7 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
      * The CA chain
      * 
      */
-    @Export(name="caChain", type=String.class, parameters={})
+    @Export(name="caChain", refs={String.class}, tree="[0]")
     private Output<String> caChain;
 
     /**
@@ -115,7 +115,7 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
      * The certificate
      * 
      */
-    @Export(name="certificate", type=String.class, parameters={})
+    @Export(name="certificate", refs={String.class}, tree="[0]")
     private Output<String> certificate;
 
     /**
@@ -129,7 +129,7 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
      * CN of certificate to create
      * 
      */
-    @Export(name="commonName", type=String.class, parameters={})
+    @Export(name="commonName", refs={String.class}, tree="[0]")
     private Output<String> commonName;
 
     /**
@@ -143,7 +143,7 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
      * Flag to exclude CN from SANs
      * 
      */
-    @Export(name="excludeCnFromSans", type=Boolean.class, parameters={})
+    @Export(name="excludeCnFromSans", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> excludeCnFromSans;
 
     /**
@@ -157,7 +157,7 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
      * The expiration date of the certificate in unix epoch format
      * 
      */
-    @Export(name="expiration", type=Integer.class, parameters={})
+    @Export(name="expiration", refs={Integer.class}, tree="[0]")
     private Output<Integer> expiration;
 
     /**
@@ -171,7 +171,7 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
      * The format of data
      * 
      */
-    @Export(name="format", type=String.class, parameters={})
+    @Export(name="format", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> format;
 
     /**
@@ -185,7 +185,7 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
      * List of alternative IPs
      * 
      */
-    @Export(name="ipSans", type=List.class, parameters={String.class})
+    @Export(name="ipSans", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> ipSans;
 
     /**
@@ -199,7 +199,7 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
      * Specifies the default issuer of this request.
      * 
      */
-    @Export(name="issuerRef", type=String.class, parameters={})
+    @Export(name="issuerRef", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> issuerRef;
 
     /**
@@ -213,7 +213,7 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
      * The issuing CA
      * 
      */
-    @Export(name="issuingCa", type=String.class, parameters={})
+    @Export(name="issuingCa", refs={String.class}, tree="[0]")
     private Output<String> issuingCa;
 
     /**
@@ -227,7 +227,7 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
      * Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
      * 
      */
-    @Export(name="minSecondsRemaining", type=Integer.class, parameters={})
+    @Export(name="minSecondsRemaining", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> minSecondsRemaining;
 
     /**
@@ -241,7 +241,7 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
      * Name of the role to create the certificate against
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -258,7 +258,7 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -275,7 +275,7 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
      * List of other SANs
      * 
      */
-    @Export(name="otherSans", type=List.class, parameters={String.class})
+    @Export(name="otherSans", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> otherSans;
 
     /**
@@ -289,7 +289,7 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
      * The private key
      * 
      */
-    @Export(name="privateKey", type=String.class, parameters={})
+    @Export(name="privateKey", refs={String.class}, tree="[0]")
     private Output<String> privateKey;
 
     /**
@@ -303,7 +303,7 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
      * The private key format
      * 
      */
-    @Export(name="privateKeyFormat", type=String.class, parameters={})
+    @Export(name="privateKeyFormat", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> privateKeyFormat;
 
     /**
@@ -317,7 +317,7 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
      * The private key type
      * 
      */
-    @Export(name="privateKeyType", type=String.class, parameters={})
+    @Export(name="privateKeyType", refs={String.class}, tree="[0]")
     private Output<String> privateKeyType;
 
     /**
@@ -331,7 +331,7 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
      * `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
      * 
      */
-    @Export(name="renewPending", type=Boolean.class, parameters={})
+    @Export(name="renewPending", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> renewPending;
 
     /**
@@ -345,7 +345,7 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
      * If set to `true`, the certificate will be revoked on resource destruction.
      * 
      */
-    @Export(name="revoke", type=Boolean.class, parameters={})
+    @Export(name="revoke", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> revoke;
 
     /**
@@ -359,7 +359,7 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
      * The serial number
      * 
      */
-    @Export(name="serialNumber", type=String.class, parameters={})
+    @Export(name="serialNumber", refs={String.class}, tree="[0]")
     private Output<String> serialNumber;
 
     /**
@@ -373,7 +373,7 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
      * Time to live
      * 
      */
-    @Export(name="ttl", type=String.class, parameters={})
+    @Export(name="ttl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> ttl;
 
     /**
@@ -387,7 +387,7 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
      * List of alternative URIs
      * 
      */
-    @Export(name="uriSans", type=List.class, parameters={String.class})
+    @Export(name="uriSans", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> uriSans;
 
     /**
@@ -396,6 +396,20 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<List<String>>> uriSans() {
         return Codegen.optional(this.uriSans);
+    }
+    /**
+     * List of Subject User IDs
+     * 
+     */
+    @Export(name="userIds", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> userIds;
+
+    /**
+     * @return List of Subject User IDs
+     * 
+     */
+    public Output<Optional<List<String>>> userIds() {
+        return Codegen.optional(this.userIds);
     }
 
     /**

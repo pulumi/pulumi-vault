@@ -68,6 +68,11 @@ func GetAuthLoginRadius(ctx *pulumi.Context) string {
 	return config.Get(ctx, "vault:authLoginRadius")
 }
 
+// Login to vault using
+func GetAuthLoginTokenFile(ctx *pulumi.Context) string {
+	return config.Get(ctx, "vault:authLoginTokenFile")
+}
+
 // Login to vault using the userpass method
 func GetAuthLoginUserpass(ctx *pulumi.Context) string {
 	return config.Get(ctx, "vault:authLoginUserpass")
@@ -84,6 +89,8 @@ func GetCaCertFile(ctx *pulumi.Context) string {
 }
 
 // Client authentication credentials.
+//
+// Deprecated: Use auth_login_cert instead
 func GetClientAuth(ctx *pulumi.Context) string {
 	return config.Get(ctx, "vault:clientAuth")
 }

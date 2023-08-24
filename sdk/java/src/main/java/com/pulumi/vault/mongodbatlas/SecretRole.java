@@ -85,7 +85,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * Whitelist entry in CIDR notation to be added for the API key.
      * 
      */
-    @Export(name="cidrBlocks", type=List.class, parameters={String.class})
+    @Export(name="cidrBlocks", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> cidrBlocks;
 
     /**
@@ -99,7 +99,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * IP address to be added to the whitelist for the API key.
      * 
      */
-    @Export(name="ipAddresses", type=List.class, parameters={String.class})
+    @Export(name="ipAddresses", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> ipAddresses;
 
     /**
@@ -113,7 +113,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * The maximum allowed lifetime of credentials issued using this role.
      * 
      */
-    @Export(name="maxTtl", type=String.class, parameters={})
+    @Export(name="maxTtl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> maxTtl;
 
     /**
@@ -127,7 +127,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * Path where the MongoDB Atlas Secrets Engine is mounted.
      * 
      */
-    @Export(name="mount", type=String.class, parameters={})
+    @Export(name="mount", refs={String.class}, tree="[0]")
     private Output<String> mount;
 
     /**
@@ -141,7 +141,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * The name of the role.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -158,7 +158,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -176,7 +176,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * Required if `project_id` is not set.
      * 
      */
-    @Export(name="organizationId", type=String.class, parameters={})
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> organizationId;
 
     /**
@@ -192,7 +192,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * Required if `organization_id is` not set.
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> projectId;
 
     /**
@@ -207,7 +207,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * Roles assigned when an org API key is assigned to a project API key.
      * 
      */
-    @Export(name="projectRoles", type=List.class, parameters={String.class})
+    @Export(name="projectRoles", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> projectRoles;
 
     /**
@@ -221,7 +221,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * List of roles that the API Key needs to have.
      * 
      */
-    @Export(name="roles", type=List.class, parameters={String.class})
+    @Export(name="roles", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> roles;
 
     /**
@@ -235,7 +235,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * Duration in seconds after which the issued credential should expire.
      * 
      */
-    @Export(name="ttl", type=String.class, parameters={})
+    @Export(name="ttl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> ttl;
 
     /**

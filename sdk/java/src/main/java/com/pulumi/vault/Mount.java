@@ -160,7 +160,7 @@ public class Mount extends com.pulumi.resources.CustomResource {
      * The accessor for this mount.
      * 
      */
-    @Export(name="accessor", type=String.class, parameters={})
+    @Export(name="accessor", refs={String.class}, tree="[0]")
     private Output<String> accessor;
 
     /**
@@ -174,7 +174,7 @@ public class Mount extends com.pulumi.resources.CustomResource {
      * Set of managed key registry entry names that the mount in question is allowed to access
      * 
      */
-    @Export(name="allowedManagedKeys", type=List.class, parameters={String.class})
+    @Export(name="allowedManagedKeys", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> allowedManagedKeys;
 
     /**
@@ -188,7 +188,7 @@ public class Mount extends com.pulumi.resources.CustomResource {
      * Specifies the list of keys that will not be HMAC&#39;d by audit devices in the request data object.
      * 
      */
-    @Export(name="auditNonHmacRequestKeys", type=List.class, parameters={String.class})
+    @Export(name="auditNonHmacRequestKeys", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> auditNonHmacRequestKeys;
 
     /**
@@ -202,7 +202,7 @@ public class Mount extends com.pulumi.resources.CustomResource {
      * Specifies the list of keys that will not be HMAC&#39;d by audit devices in the response data object.
      * 
      */
-    @Export(name="auditNonHmacResponseKeys", type=List.class, parameters={String.class})
+    @Export(name="auditNonHmacResponseKeys", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> auditNonHmacResponseKeys;
 
     /**
@@ -216,7 +216,7 @@ public class Mount extends com.pulumi.resources.CustomResource {
      * Default lease duration for tokens and secrets in seconds
      * 
      */
-    @Export(name="defaultLeaseTtlSeconds", type=Integer.class, parameters={})
+    @Export(name="defaultLeaseTtlSeconds", refs={Integer.class}, tree="[0]")
     private Output<Integer> defaultLeaseTtlSeconds;
 
     /**
@@ -230,7 +230,7 @@ public class Mount extends com.pulumi.resources.CustomResource {
      * Human-friendly description of the mount
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -244,7 +244,7 @@ public class Mount extends com.pulumi.resources.CustomResource {
      * Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault&#39;s external entropy source
      * 
      */
-    @Export(name="externalEntropyAccess", type=Boolean.class, parameters={})
+    @Export(name="externalEntropyAccess", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> externalEntropyAccess;
 
     /**
@@ -258,7 +258,7 @@ public class Mount extends com.pulumi.resources.CustomResource {
      * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
      * 
      */
-    @Export(name="local", type=Boolean.class, parameters={})
+    @Export(name="local", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> local;
 
     /**
@@ -272,7 +272,7 @@ public class Mount extends com.pulumi.resources.CustomResource {
      * Maximum possible lease duration for tokens and secrets in seconds
      * 
      */
-    @Export(name="maxLeaseTtlSeconds", type=Integer.class, parameters={})
+    @Export(name="maxLeaseTtlSeconds", refs={Integer.class}, tree="[0]")
     private Output<Integer> maxLeaseTtlSeconds;
 
     /**
@@ -289,7 +289,7 @@ public class Mount extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -306,7 +306,7 @@ public class Mount extends com.pulumi.resources.CustomResource {
      * Specifies mount type specific options that are passed to the backend
      * 
      */
-    @Export(name="options", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="options", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> options;
 
     /**
@@ -320,7 +320,7 @@ public class Mount extends com.pulumi.resources.CustomResource {
      * Where the secret backend will be mounted
      * 
      */
-    @Export(name="path", type=String.class, parameters={})
+    @Export(name="path", refs={String.class}, tree="[0]")
     private Output<String> path;
 
     /**
@@ -334,7 +334,7 @@ public class Mount extends com.pulumi.resources.CustomResource {
      * Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal&#39;s encryption capability
      * 
      */
-    @Export(name="sealWrap", type=Boolean.class, parameters={})
+    @Export(name="sealWrap", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> sealWrap;
 
     /**
@@ -348,7 +348,7 @@ public class Mount extends com.pulumi.resources.CustomResource {
      * Type of the backend, such as &#34;aws&#34;
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**

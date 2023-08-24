@@ -80,7 +80,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backend;
 
     /**
@@ -95,7 +95,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * Applicable for Vault 1.10+ and Consul 1.7+&#34;.
      * 
      */
-    @Export(name="consulNamespace", type=String.class, parameters={})
+    @Export(name="consulNamespace", refs={String.class}, tree="[0]")
     private Output<String> consulNamespace;
 
     /**
@@ -110,7 +110,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * &lt;sup&gt;&lt;a href=&#34;#note-about-required-arguments&#34;&gt;SEE NOTE&lt;/a&gt;&lt;/sup&gt; The list of Consul ACL policies to associate with these roles.
      * 
      */
-    @Export(name="consulPolicies", type=List.class, parameters={String.class})
+    @Export(name="consulPolicies", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> consulPolicies;
 
     /**
@@ -125,7 +125,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * Applicable for Vault 1.10+ with Consul 1.5+.
      * 
      */
-    @Export(name="consulRoles", type=List.class, parameters={String.class})
+    @Export(name="consulRoles", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> consulRoles;
 
     /**
@@ -140,7 +140,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * Indicates that the token should not be replicated globally and instead be local to the current datacenter.
      * 
      */
-    @Export(name="local", type=Boolean.class, parameters={})
+    @Export(name="local", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> local;
 
     /**
@@ -154,7 +154,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * Maximum TTL for leases associated with this role, in seconds.
      * 
      */
-    @Export(name="maxTtl", type=Integer.class, parameters={})
+    @Export(name="maxTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> maxTtl;
 
     /**
@@ -168,7 +168,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * The name of the Consul secrets engine role to create.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -185,7 +185,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -203,7 +203,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.8+.
      * 
      */
-    @Export(name="nodeIdentities", type=List.class, parameters={String.class})
+    @Export(name="nodeIdentities", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> nodeIdentities;
 
     /**
@@ -219,7 +219,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * Applicable for Vault 1.10+ and Consul 1.11+&#34;.
      * 
      */
-    @Export(name="partition", type=String.class, parameters={})
+    @Export(name="partition", refs={String.class}, tree="[0]")
     private Output<String> partition;
 
     /**
@@ -236,7 +236,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * `policies`, remains supported for legacy users, but Vault has deprecated this field.
      * 
      */
-    @Export(name="policies", type=List.class, parameters={String.class})
+    @Export(name="policies", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> policies;
 
     /**
@@ -253,7 +253,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * service identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.5+.
      * 
      */
-    @Export(name="serviceIdentities", type=List.class, parameters={String.class})
+    @Export(name="serviceIdentities", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> serviceIdentities;
 
     /**
@@ -273,7 +273,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* Consul 1.11 and later removed the legacy ACL system which supported this field. */
-    @Export(name="tokenType", type=String.class, parameters={})
+    @Export(name="tokenType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tokenType;
 
     /**
@@ -288,7 +288,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * Specifies the TTL for this role.
      * 
      */
-    @Export(name="ttl", type=Integer.class, parameters={})
+    @Export(name="ttl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> ttl;
 
     /**

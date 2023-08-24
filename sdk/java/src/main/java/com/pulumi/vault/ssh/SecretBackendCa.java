@@ -71,7 +71,7 @@ public class SecretBackendCa extends com.pulumi.resources.CustomResource {
      * The path where the SSH secret backend is mounted. Defaults to &#39;ssh&#39;
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backend;
 
     /**
@@ -85,7 +85,7 @@ public class SecretBackendCa extends com.pulumi.resources.CustomResource {
      * Whether Vault should generate the signing key pair internally. Defaults to true
      * 
      */
-    @Export(name="generateSigningKey", type=Boolean.class, parameters={})
+    @Export(name="generateSigningKey", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> generateSigningKey;
 
     /**
@@ -102,7 +102,7 @@ public class SecretBackendCa extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -119,7 +119,7 @@ public class SecretBackendCa extends com.pulumi.resources.CustomResource {
      * The private key part the SSH CA key pair; required if generate_signing_key is false.
      * 
      */
-    @Export(name="privateKey", type=String.class, parameters={})
+    @Export(name="privateKey", refs={String.class}, tree="[0]")
     private Output<String> privateKey;
 
     /**
@@ -133,7 +133,7 @@ public class SecretBackendCa extends com.pulumi.resources.CustomResource {
      * The public key part the SSH CA key pair; required if generate_signing_key is false.
      * 
      */
-    @Export(name="publicKey", type=String.class, parameters={})
+    @Export(name="publicKey", refs={String.class}, tree="[0]")
     private Output<String> publicKey;
 
     /**

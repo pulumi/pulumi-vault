@@ -22,7 +22,7 @@ public class Template extends com.pulumi.resources.CustomResource {
      * The alphabet to use for this template. This is only used during FPE transformations.
      * 
      */
-    @Export(name="alphabet", type=String.class, parameters={})
+    @Export(name="alphabet", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> alphabet;
 
     /**
@@ -37,7 +37,7 @@ public class Template extends com.pulumi.resources.CustomResource {
      *   the decoded output. (requires Vault Enterprise 1.9+)
      * 
      */
-    @Export(name="decodeFormats", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="decodeFormats", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> decodeFormats;
 
     /**
@@ -53,7 +53,7 @@ public class Template extends com.pulumi.resources.CustomResource {
      *   (requires Vault Enterprise 1.9+)
      * 
      */
-    @Export(name="encodeFormat", type=String.class, parameters={})
+    @Export(name="encodeFormat", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> encodeFormat;
 
     /**
@@ -68,7 +68,7 @@ public class Template extends com.pulumi.resources.CustomResource {
      * The name of the template.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -82,7 +82,7 @@ public class Template extends com.pulumi.resources.CustomResource {
      * Path to where the back-end is mounted within Vault.
      * 
      */
-    @Export(name="path", type=String.class, parameters={})
+    @Export(name="path", refs={String.class}, tree="[0]")
     private Output<String> path;
 
     /**
@@ -96,7 +96,7 @@ public class Template extends com.pulumi.resources.CustomResource {
      * The pattern used for matching. Currently, only regular expression pattern is supported.
      * 
      */
-    @Export(name="pattern", type=String.class, parameters={})
+    @Export(name="pattern", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> pattern;
 
     /**
@@ -110,7 +110,7 @@ public class Template extends com.pulumi.resources.CustomResource {
      * The pattern type to use for match detection. Currently, only regex is supported.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> type;
 
     /**

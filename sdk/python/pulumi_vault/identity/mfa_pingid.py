@@ -326,6 +326,15 @@ class MfaPingid(pulumi.CustomResource):
         """
         Resource for configuring the pingid MFA method.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.identity.MfaPingid("example", settings_file_base64="CnVzZV9iYXNlNjR[...]HBtCg==")
+        ```
+
         ## Import
 
         Resource can be imported using its `uuid` field, e.g.
@@ -348,6 +357,15 @@ class MfaPingid(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Resource for configuring the pingid MFA method.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.identity.MfaPingid("example", settings_file_base64="CnVzZV9iYXNlNjR[...]HBtCg==")
+        ```
 
         ## Import
 

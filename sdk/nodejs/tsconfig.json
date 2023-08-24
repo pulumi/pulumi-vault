@@ -160,6 +160,7 @@
         "pkisecret/index.ts",
         "pkisecret/secretBackendCert.ts",
         "pkisecret/secretBackendConfigCa.ts",
+        "pkisecret/secretBackendConfigIssuers.ts",
         "pkisecret/secretBackendConfigUrls.ts",
         "pkisecret/secretBackendCrlConfig.ts",
         "pkisecret/secretBackendIntermediateCertRequest.ts",

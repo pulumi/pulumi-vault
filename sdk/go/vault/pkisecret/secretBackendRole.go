@@ -96,6 +96,8 @@ type SecretBackendRole struct {
 	AllowedUriSans pulumi.StringArrayOutput `pulumi:"allowedUriSans"`
 	// Flag, if set, `allowedUriSans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
 	AllowedUriSansTemplate pulumi.BoolOutput `pulumi:"allowedUriSansTemplate"`
+	// Defines allowed User IDs
+	AllowedUserIds pulumi.StringArrayOutput `pulumi:"allowedUserIds"`
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 	Backend pulumi.StringOutput `pulumi:"backend"`
 	// Flag to mark basic constraints valid when issuing non-CA certificates
@@ -223,6 +225,8 @@ type secretBackendRoleState struct {
 	AllowedUriSans []string `pulumi:"allowedUriSans"`
 	// Flag, if set, `allowedUriSans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
 	AllowedUriSansTemplate *bool `pulumi:"allowedUriSansTemplate"`
+	// Defines allowed User IDs
+	AllowedUserIds []string `pulumi:"allowedUserIds"`
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 	Backend *string `pulumi:"backend"`
 	// Flag to mark basic constraints valid when issuing non-CA certificates
@@ -319,6 +323,8 @@ type SecretBackendRoleState struct {
 	AllowedUriSans pulumi.StringArrayInput
 	// Flag, if set, `allowedUriSans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
 	AllowedUriSansTemplate pulumi.BoolPtrInput
+	// Defines allowed User IDs
+	AllowedUserIds pulumi.StringArrayInput
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 	Backend pulumi.StringPtrInput
 	// Flag to mark basic constraints valid when issuing non-CA certificates
@@ -419,6 +425,8 @@ type secretBackendRoleArgs struct {
 	AllowedUriSans []string `pulumi:"allowedUriSans"`
 	// Flag, if set, `allowedUriSans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
 	AllowedUriSansTemplate *bool `pulumi:"allowedUriSansTemplate"`
+	// Defines allowed User IDs
+	AllowedUserIds []string `pulumi:"allowedUserIds"`
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 	Backend string `pulumi:"backend"`
 	// Flag to mark basic constraints valid when issuing non-CA certificates
@@ -516,6 +524,8 @@ type SecretBackendRoleArgs struct {
 	AllowedUriSans pulumi.StringArrayInput
 	// Flag, if set, `allowedUriSans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
 	AllowedUriSansTemplate pulumi.BoolPtrInput
+	// Defines allowed User IDs
+	AllowedUserIds pulumi.StringArrayInput
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 	Backend pulumi.StringInput
 	// Flag to mark basic constraints valid when issuing non-CA certificates
@@ -735,6 +745,11 @@ func (o SecretBackendRoleOutput) AllowedUriSans() pulumi.StringArrayOutput {
 // Flag, if set, `allowedUriSans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
 func (o SecretBackendRoleOutput) AllowedUriSansTemplate() pulumi.BoolOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolOutput { return v.AllowedUriSansTemplate }).(pulumi.BoolOutput)
+}
+
+// Defines allowed User IDs
+func (o SecretBackendRoleOutput) AllowedUserIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.AllowedUserIds }).(pulumi.StringArrayOutput)
 }
 
 // The path the PKI secret backend is mounted at, with no leading or trailing `/`s.

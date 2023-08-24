@@ -99,6 +99,27 @@ public final class AuthBackendConfigIdentityState extends com.pulumi.resources.R
         return Optional.ofNullable(this.iamMetadatas);
     }
 
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable Output<String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
+
     private AuthBackendConfigIdentityState() {}
 
     private AuthBackendConfigIdentityState(AuthBackendConfigIdentityState $) {
@@ -107,6 +128,7 @@ public final class AuthBackendConfigIdentityState extends com.pulumi.resources.R
         this.ec2Metadatas = $.ec2Metadatas;
         this.iamAlias = $.iamAlias;
         this.iamMetadatas = $.iamMetadatas;
+        this.namespace = $.namespace;
     }
 
     public static Builder builder() {
@@ -260,6 +282,33 @@ public final class AuthBackendConfigIdentityState extends com.pulumi.resources.R
          */
         public Builder iamMetadatas(String... iamMetadatas) {
             return iamMetadatas(List.of(iamMetadatas));
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable Output<String> namespace) {
+            $.namespace = namespace;
+            return this;
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(String namespace) {
+            return namespace(Output.of(namespace));
         }
 
         public AuthBackendConfigIdentityState build() {

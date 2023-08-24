@@ -70,7 +70,7 @@ public class SecretCreds extends com.pulumi.resources.CustomResource {
      * Terraform Cloud secret backend to generate tokens from
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output<String> backend;
 
     /**
@@ -85,7 +85,7 @@ public class SecretCreds extends com.pulumi.resources.CustomResource {
      * Vault lease associated with them.
      * 
      */
-    @Export(name="leaseId", type=String.class, parameters={})
+    @Export(name="leaseId", refs={String.class}, tree="[0]")
     private Output<String> leaseId;
 
     /**
@@ -103,7 +103,7 @@ public class SecretCreds extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -120,7 +120,7 @@ public class SecretCreds extends com.pulumi.resources.CustomResource {
      * The organization associated with the token provided.
      * 
      */
-    @Export(name="organization", type=String.class, parameters={})
+    @Export(name="organization", refs={String.class}, tree="[0]")
     private Output<String> organization;
 
     /**
@@ -134,7 +134,7 @@ public class SecretCreds extends com.pulumi.resources.CustomResource {
      * Name of the role.
      * 
      */
-    @Export(name="role", type=String.class, parameters={})
+    @Export(name="role", refs={String.class}, tree="[0]")
     private Output<String> role;
 
     /**
@@ -148,7 +148,7 @@ public class SecretCreds extends com.pulumi.resources.CustomResource {
      * The team id associated with the token provided.
      * 
      */
-    @Export(name="teamId", type=String.class, parameters={})
+    @Export(name="teamId", refs={String.class}, tree="[0]")
     private Output<String> teamId;
 
     /**
@@ -163,7 +163,7 @@ public class SecretCreds extends com.pulumi.resources.CustomResource {
      * to identify the user of the call.
      * 
      */
-    @Export(name="token", type=String.class, parameters={})
+    @Export(name="token", refs={String.class}, tree="[0]")
     private Output<String> token;
 
     /**
@@ -179,7 +179,7 @@ public class SecretCreds extends com.pulumi.resources.CustomResource {
      * to look up information about a token or to revoke a token.
      * 
      */
-    @Export(name="tokenId", type=String.class, parameters={})
+    @Export(name="tokenId", refs={String.class}, tree="[0]")
     private Output<String> tokenId;
 
     /**

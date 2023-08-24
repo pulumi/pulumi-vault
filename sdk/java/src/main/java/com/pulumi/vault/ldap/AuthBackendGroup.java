@@ -78,7 +78,7 @@ public class AuthBackendGroup extends com.pulumi.resources.CustomResource {
      * Path to the authentication backend
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backend;
 
     /**
@@ -92,7 +92,7 @@ public class AuthBackendGroup extends com.pulumi.resources.CustomResource {
      * The LDAP groupname
      * 
      */
-    @Export(name="groupname", type=String.class, parameters={})
+    @Export(name="groupname", refs={String.class}, tree="[0]")
     private Output<String> groupname;
 
     /**
@@ -109,7 +109,7 @@ public class AuthBackendGroup extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -126,7 +126,7 @@ public class AuthBackendGroup extends com.pulumi.resources.CustomResource {
      * Policies which should be granted to members of the group
      * 
      */
-    @Export(name="policies", type=List.class, parameters={String.class})
+    @Export(name="policies", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> policies;
 
     /**

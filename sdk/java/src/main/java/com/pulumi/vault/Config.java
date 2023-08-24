@@ -15,6 +15,7 @@ import com.pulumi.vault.config.inputs.AuthLoginKerberos;
 import com.pulumi.vault.config.inputs.AuthLoginOci;
 import com.pulumi.vault.config.inputs.AuthLoginOidc;
 import com.pulumi.vault.config.inputs.AuthLoginRadius;
+import com.pulumi.vault.config.inputs.AuthLoginTokenFile;
 import com.pulumi.vault.config.inputs.AuthLoginUserpass;
 import com.pulumi.vault.config.inputs.ClientAuth;
 import com.pulumi.vault.config.inputs.Headers;
@@ -110,6 +111,13 @@ public final class Config {
  */
     public Optional<AuthLoginRadius> authLoginRadius() {
         return Codegen.objectProp("authLoginRadius", AuthLoginRadius.class).config(config).get();
+    }
+/**
+ * Login to vault using
+ * 
+ */
+    public Optional<AuthLoginTokenFile> authLoginTokenFile() {
+        return Codegen.objectProp("authLoginTokenFile", AuthLoginTokenFile.class).config(config).get();
     }
 /**
  * Login to vault using the userpass method

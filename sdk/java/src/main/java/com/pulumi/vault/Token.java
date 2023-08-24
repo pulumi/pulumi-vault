@@ -72,7 +72,7 @@ public class Token extends com.pulumi.resources.CustomResource {
      * String containing the client token if stored in present file
      * 
      */
-    @Export(name="clientToken", type=String.class, parameters={})
+    @Export(name="clientToken", refs={String.class}, tree="[0]")
     private Output<String> clientToken;
 
     /**
@@ -86,7 +86,7 @@ public class Token extends com.pulumi.resources.CustomResource {
      * String containing the token display name
      * 
      */
-    @Export(name="displayName", type=String.class, parameters={})
+    @Export(name="displayName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> displayName;
 
     /**
@@ -100,7 +100,7 @@ public class Token extends com.pulumi.resources.CustomResource {
      * The explicit max TTL of this token. This is specified as a numeric string with suffix like &#34;30s&#34; ro &#34;5m&#34;
      * 
      */
-    @Export(name="explicitMaxTtl", type=String.class, parameters={})
+    @Export(name="explicitMaxTtl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> explicitMaxTtl;
 
     /**
@@ -114,7 +114,7 @@ public class Token extends com.pulumi.resources.CustomResource {
      * String containing the token lease duration if present in state file
      * 
      */
-    @Export(name="leaseDuration", type=Integer.class, parameters={})
+    @Export(name="leaseDuration", refs={Integer.class}, tree="[0]")
     private Output<Integer> leaseDuration;
 
     /**
@@ -128,7 +128,7 @@ public class Token extends com.pulumi.resources.CustomResource {
      * String containing the token lease started time if present in state file
      * 
      */
-    @Export(name="leaseStarted", type=String.class, parameters={})
+    @Export(name="leaseStarted", refs={String.class}, tree="[0]")
     private Output<String> leaseStarted;
 
     /**
@@ -142,7 +142,7 @@ public class Token extends com.pulumi.resources.CustomResource {
      * Metadata to be set on this token
      * 
      */
-    @Export(name="metadata", type=Map.class, parameters={String.class, String.class})
+    @Export(name="metadata", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> metadata;
 
     /**
@@ -159,7 +159,7 @@ public class Token extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -176,7 +176,7 @@ public class Token extends com.pulumi.resources.CustomResource {
      * Flag to not attach the default policy to this token
      * 
      */
-    @Export(name="noDefaultPolicy", type=Boolean.class, parameters={})
+    @Export(name="noDefaultPolicy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> noDefaultPolicy;
 
     /**
@@ -190,7 +190,7 @@ public class Token extends com.pulumi.resources.CustomResource {
      * Flag to create a token without parent
      * 
      */
-    @Export(name="noParent", type=Boolean.class, parameters={})
+    @Export(name="noParent", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> noParent;
 
     /**
@@ -204,7 +204,7 @@ public class Token extends com.pulumi.resources.CustomResource {
      * The number of allowed uses of this token
      * 
      */
-    @Export(name="numUses", type=Integer.class, parameters={})
+    @Export(name="numUses", refs={Integer.class}, tree="[0]")
     private Output<Integer> numUses;
 
     /**
@@ -218,7 +218,7 @@ public class Token extends com.pulumi.resources.CustomResource {
      * The period of this token. This is specified as a numeric string with suffix like &#34;30s&#34; ro &#34;5m&#34;
      * 
      */
-    @Export(name="period", type=String.class, parameters={})
+    @Export(name="period", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> period;
 
     /**
@@ -232,7 +232,7 @@ public class Token extends com.pulumi.resources.CustomResource {
      * List of policies to attach to this token
      * 
      */
-    @Export(name="policies", type=List.class, parameters={String.class})
+    @Export(name="policies", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> policies;
 
     /**
@@ -246,7 +246,7 @@ public class Token extends com.pulumi.resources.CustomResource {
      * The renew increment. This is specified in seconds
      * 
      */
-    @Export(name="renewIncrement", type=Integer.class, parameters={})
+    @Export(name="renewIncrement", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> renewIncrement;
 
     /**
@@ -260,7 +260,7 @@ public class Token extends com.pulumi.resources.CustomResource {
      * The minimal lease to renew this token
      * 
      */
-    @Export(name="renewMinLease", type=Integer.class, parameters={})
+    @Export(name="renewMinLease", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> renewMinLease;
 
     /**
@@ -274,7 +274,7 @@ public class Token extends com.pulumi.resources.CustomResource {
      * Flag to allow to renew this token
      * 
      */
-    @Export(name="renewable", type=Boolean.class, parameters={})
+    @Export(name="renewable", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> renewable;
 
     /**
@@ -288,7 +288,7 @@ public class Token extends com.pulumi.resources.CustomResource {
      * The token role name
      * 
      */
-    @Export(name="roleName", type=String.class, parameters={})
+    @Export(name="roleName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> roleName;
 
     /**
@@ -302,7 +302,7 @@ public class Token extends com.pulumi.resources.CustomResource {
      * The TTL period of this token. This is specified as a numeric string with suffix like &#34;30s&#34; ro &#34;5m&#34;
      * 
      */
-    @Export(name="ttl", type=String.class, parameters={})
+    @Export(name="ttl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> ttl;
 
     /**
@@ -316,7 +316,7 @@ public class Token extends com.pulumi.resources.CustomResource {
      * The client wrapped token.
      * 
      */
-    @Export(name="wrappedToken", type=String.class, parameters={})
+    @Export(name="wrappedToken", refs={String.class}, tree="[0]")
     private Output<String> wrappedToken;
 
     /**
@@ -330,7 +330,7 @@ public class Token extends com.pulumi.resources.CustomResource {
      * The client wrapping accessor.
      * 
      */
-    @Export(name="wrappingAccessor", type=String.class, parameters={})
+    @Export(name="wrappingAccessor", refs={String.class}, tree="[0]")
     private Output<String> wrappingAccessor;
 
     /**
@@ -344,7 +344,7 @@ public class Token extends com.pulumi.resources.CustomResource {
      * The TTL period of the wrapped token.
      * 
      */
-    @Export(name="wrappingTtl", type=String.class, parameters={})
+    @Export(name="wrappingTtl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> wrappingTtl;
 
     /**

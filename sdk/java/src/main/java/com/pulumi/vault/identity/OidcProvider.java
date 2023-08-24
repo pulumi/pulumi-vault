@@ -108,7 +108,7 @@ public class OidcProvider extends com.pulumi.resources.CustomResource {
      * If empty, no clients are allowed. If `*`, all clients are allowed.
      * 
      */
-    @Export(name="allowedClientIds", type=List.class, parameters={String.class})
+    @Export(name="allowedClientIds", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> allowedClientIds;
 
     /**
@@ -123,7 +123,7 @@ public class OidcProvider extends com.pulumi.resources.CustomResource {
      * Set to true if the issuer endpoint uses HTTPS.
      * 
      */
-    @Export(name="httpsEnabled", type=Boolean.class, parameters={})
+    @Export(name="httpsEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> httpsEnabled;
 
     /**
@@ -139,7 +139,7 @@ public class OidcProvider extends com.pulumi.resources.CustomResource {
      * `issuer_host` and `https_enabled` fields.
      * 
      */
-    @Export(name="issuer", type=String.class, parameters={})
+    @Export(name="issuer", refs={String.class}, tree="[0]")
     private Output<String> issuer;
 
     /**
@@ -155,7 +155,7 @@ public class OidcProvider extends com.pulumi.resources.CustomResource {
      * The host for the issuer. Can be either host or host:port.
      * 
      */
-    @Export(name="issuerHost", type=String.class, parameters={})
+    @Export(name="issuerHost", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> issuerHost;
 
     /**
@@ -169,7 +169,7 @@ public class OidcProvider extends com.pulumi.resources.CustomResource {
      * The name of the provider.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -186,7 +186,7 @@ public class OidcProvider extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -203,7 +203,7 @@ public class OidcProvider extends com.pulumi.resources.CustomResource {
      * The scopes available for requesting on the provider.
      * 
      */
-    @Export(name="scopesSupporteds", type=List.class, parameters={String.class})
+    @Export(name="scopesSupporteds", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> scopesSupporteds;
 
     /**

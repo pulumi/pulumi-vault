@@ -72,7 +72,7 @@ public class QuotaLeaseCount extends com.pulumi.resources.CustomResource {
      * rule. The `max_leases` must be positive.
      * 
      */
-    @Export(name="maxLeases", type=Integer.class, parameters={})
+    @Export(name="maxLeases", refs={Integer.class}, tree="[0]")
     private Output<Integer> maxLeases;
 
     /**
@@ -87,7 +87,7 @@ public class QuotaLeaseCount extends com.pulumi.resources.CustomResource {
      * Name of the rate limit quota
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -104,7 +104,7 @@ public class QuotaLeaseCount extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -126,7 +126,7 @@ public class QuotaLeaseCount extends com.pulumi.resources.CustomResource {
      * a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
      * 
      */
-    @Export(name="path", type=String.class, parameters={})
+    @Export(name="path", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> path;
 
     /**

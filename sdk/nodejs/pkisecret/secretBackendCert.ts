@@ -146,6 +146,10 @@ export class SecretBackendCert extends pulumi.CustomResource {
      * List of alternative URIs
      */
     public readonly uriSans!: pulumi.Output<string[] | undefined>;
+    /**
+     * List of Subject User IDs
+     */
+    public readonly userIds!: pulumi.Output<string[] | undefined>;
 
     /**
      * Create a SecretBackendCert resource with the given unique name, arguments, and options.
@@ -184,6 +188,7 @@ export class SecretBackendCert extends pulumi.CustomResource {
             resourceInputs["serialNumber"] = state ? state.serialNumber : undefined;
             resourceInputs["ttl"] = state ? state.ttl : undefined;
             resourceInputs["uriSans"] = state ? state.uriSans : undefined;
+            resourceInputs["userIds"] = state ? state.userIds : undefined;
         } else {
             const args = argsOrState as SecretBackendCertArgs | undefined;
             if ((!args || args.backend === undefined) && !opts.urn) {
@@ -208,6 +213,7 @@ export class SecretBackendCert extends pulumi.CustomResource {
             resourceInputs["revoke"] = args ? args.revoke : undefined;
             resourceInputs["ttl"] = args ? args.ttl : undefined;
             resourceInputs["uriSans"] = args ? args.uriSans : undefined;
+            resourceInputs["userIds"] = args ? args.userIds : undefined;
             resourceInputs["caChain"] = undefined /*out*/;
             resourceInputs["certificate"] = undefined /*out*/;
             resourceInputs["expiration"] = undefined /*out*/;
@@ -327,6 +333,10 @@ export interface SecretBackendCertState {
      * List of alternative URIs
      */
     uriSans?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of Subject User IDs
+     */
+    userIds?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 /**
@@ -400,4 +410,8 @@ export interface SecretBackendCertArgs {
      * List of alternative URIs
      */
     uriSans?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of Subject User IDs
+     */
+    userIds?: pulumi.Input<pulumi.Input<string>[]>;
 }

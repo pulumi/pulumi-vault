@@ -83,7 +83,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * with no leading or trailing `/`s.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output<String> backend;
 
     /**
@@ -100,7 +100,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * `federation_token`.
      * 
      */
-    @Export(name="credentialType", type=String.class, parameters={})
+    @Export(name="credentialType", refs={String.class}, tree="[0]")
     private Output<String> credentialType;
 
     /**
@@ -120,7 +120,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * `assumed_role` or `federation_token`.
      * 
      */
-    @Export(name="defaultStsTtl", type=Integer.class, parameters={})
+    @Export(name="defaultStsTtl", refs={Integer.class}, tree="[0]")
     private Output<Integer> defaultStsTtl;
 
     /**
@@ -143,7 +143,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * and `policy_arns` parameters.
      * 
      */
-    @Export(name="iamGroups", type=List.class, parameters={String.class})
+    @Export(name="iamGroups", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> iamGroups;
 
     /**
@@ -164,7 +164,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * one of `assumed_role` or `federation_token`.
      * 
      */
-    @Export(name="maxStsTtl", type=Integer.class, parameters={})
+    @Export(name="maxStsTtl", refs={Integer.class}, tree="[0]")
     private Output<Integer> maxStsTtl;
 
     /**
@@ -181,7 +181,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * Must be unique within the backend.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -199,7 +199,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -219,7 +219,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * policy will be attached.
      * 
      */
-    @Export(name="permissionsBoundaryArn", type=String.class, parameters={})
+    @Export(name="permissionsBoundaryArn", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> permissionsBoundaryArn;
 
     /**
@@ -242,7 +242,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * be specified.
      * 
      */
-    @Export(name="policyArns", type=List.class, parameters={String.class})
+    @Export(name="policyArns", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> policyArns;
 
     /**
@@ -266,7 +266,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * act as a filter on what the credentials can do, similar to `policy_arns`.
      * 
      */
-    @Export(name="policyDocument", type=String.class, parameters={})
+    @Export(name="policyDocument", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> policyDocument;
 
     /**
@@ -286,7 +286,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * prohibited otherwise.
      * 
      */
-    @Export(name="roleArns", type=List.class, parameters={String.class})
+    @Export(name="roleArns", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> roleArns;
 
     /**
@@ -303,7 +303,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * `credential_type` is `iam_user`. Default is `/`.
      * 
      */
-    @Export(name="userPath", type=String.class, parameters={})
+    @Export(name="userPath", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> userPath;
 
     /**

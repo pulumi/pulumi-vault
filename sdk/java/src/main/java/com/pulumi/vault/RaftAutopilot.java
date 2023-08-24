@@ -73,7 +73,7 @@ public class RaftAutopilot extends com.pulumi.resources.CustomResource {
      * periodically or when a new server joins. This requires that `min-quorum` is also set.
      * 
      */
-    @Export(name="cleanupDeadServers", type=Boolean.class, parameters={})
+    @Export(name="cleanupDeadServers", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> cleanupDeadServers;
 
     /**
@@ -90,7 +90,7 @@ public class RaftAutopilot extends com.pulumi.resources.CustomResource {
      * effect when `cleanup_dead_servers` is set.
      * 
      */
-    @Export(name="deadServerLastContactThreshold", type=String.class, parameters={})
+    @Export(name="deadServerLastContactThreshold", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> deadServerLastContactThreshold;
 
     /**
@@ -106,7 +106,7 @@ public class RaftAutopilot extends com.pulumi.resources.CustomResource {
      * Disables automatically upgrading Vault using autopilot. (Enterprise-only)
      * 
      */
-    @Export(name="disableUpgradeMigration", type=Boolean.class, parameters={})
+    @Export(name="disableUpgradeMigration", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> disableUpgradeMigration;
 
     /**
@@ -121,7 +121,7 @@ public class RaftAutopilot extends com.pulumi.resources.CustomResource {
      * without leader contact before being considered unhealthy.
      * 
      */
-    @Export(name="lastContactThreshold", type=String.class, parameters={})
+    @Export(name="lastContactThreshold", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> lastContactThreshold;
 
     /**
@@ -137,7 +137,7 @@ public class RaftAutopilot extends com.pulumi.resources.CustomResource {
      * that a server can be behind its leader before being considered unhealthy.
      * 
      */
-    @Export(name="maxTrailingLogs", type=Integer.class, parameters={})
+    @Export(name="maxTrailingLogs", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> maxTrailingLogs;
 
     /**
@@ -154,7 +154,7 @@ public class RaftAutopilot extends com.pulumi.resources.CustomResource {
      * voting nodes.
      * 
      */
-    @Export(name="minQuorum", type=Integer.class, parameters={})
+    @Export(name="minQuorum", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> minQuorum;
 
     /**
@@ -173,7 +173,7 @@ public class RaftAutopilot extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -191,7 +191,7 @@ public class RaftAutopilot extends com.pulumi.resources.CustomResource {
      * stable in the &#39;healthy&#39; state before being added to the cluster.
      * 
      */
-    @Export(name="serverStabilizationTime", type=String.class, parameters={})
+    @Export(name="serverStabilizationTime", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> serverStabilizationTime;
 
     /**

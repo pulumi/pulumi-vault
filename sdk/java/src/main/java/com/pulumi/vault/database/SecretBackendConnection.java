@@ -97,7 +97,7 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      * connection.
      * 
      */
-    @Export(name="allowedRoles", type=List.class, parameters={String.class})
+    @Export(name="allowedRoles", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> allowedRoles;
 
     /**
@@ -112,7 +112,7 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      * The unique name of the Vault mount to configure.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output<String> backend;
 
     /**
@@ -126,7 +126,7 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      * A nested block containing configuration options for Cassandra connections.
      * 
      */
-    @Export(name="cassandra", type=SecretBackendConnectionCassandra.class, parameters={})
+    @Export(name="cassandra", refs={SecretBackendConnectionCassandra.class}, tree="[0]")
     private Output</* @Nullable */ SecretBackendConnectionCassandra> cassandra;
 
     /**
@@ -140,7 +140,7 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      * A nested block containing configuration options for Couchbase connections.
      * 
      */
-    @Export(name="couchbase", type=SecretBackendConnectionCouchbase.class, parameters={})
+    @Export(name="couchbase", refs={SecretBackendConnectionCouchbase.class}, tree="[0]")
     private Output</* @Nullable */ SecretBackendConnectionCouchbase> couchbase;
 
     /**
@@ -154,7 +154,7 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
      */
-    @Export(name="data", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="data", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> data;
 
     /**
@@ -168,7 +168,7 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      * A nested block containing configuration options for Elasticsearch connections.
      * 
      */
-    @Export(name="elasticsearch", type=SecretBackendConnectionElasticsearch.class, parameters={})
+    @Export(name="elasticsearch", refs={SecretBackendConnectionElasticsearch.class}, tree="[0]")
     private Output</* @Nullable */ SecretBackendConnectionElasticsearch> elasticsearch;
 
     /**
@@ -182,7 +182,7 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      * A nested block containing configuration options for SAP HanaDB connections.
      * 
      */
-    @Export(name="hana", type=SecretBackendConnectionHana.class, parameters={})
+    @Export(name="hana", refs={SecretBackendConnectionHana.class}, tree="[0]")
     private Output</* @Nullable */ SecretBackendConnectionHana> hana;
 
     /**
@@ -196,7 +196,7 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      * A nested block containing configuration options for InfluxDB connections.
      * 
      */
-    @Export(name="influxdb", type=SecretBackendConnectionInfluxdb.class, parameters={})
+    @Export(name="influxdb", refs={SecretBackendConnectionInfluxdb.class}, tree="[0]")
     private Output</* @Nullable */ SecretBackendConnectionInfluxdb> influxdb;
 
     /**
@@ -210,7 +210,7 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      * A nested block containing configuration options for MongoDB connections.
      * 
      */
-    @Export(name="mongodb", type=SecretBackendConnectionMongodb.class, parameters={})
+    @Export(name="mongodb", refs={SecretBackendConnectionMongodb.class}, tree="[0]")
     private Output</* @Nullable */ SecretBackendConnectionMongodb> mongodb;
 
     /**
@@ -224,7 +224,7 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      * A nested block containing configuration options for MongoDB Atlas connections.
      * 
      */
-    @Export(name="mongodbatlas", type=SecretBackendConnectionMongodbatlas.class, parameters={})
+    @Export(name="mongodbatlas", refs={SecretBackendConnectionMongodbatlas.class}, tree="[0]")
     private Output</* @Nullable */ SecretBackendConnectionMongodbatlas> mongodbatlas;
 
     /**
@@ -238,7 +238,7 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      * A nested block containing configuration options for MSSQL connections.
      * 
      */
-    @Export(name="mssql", type=SecretBackendConnectionMssql.class, parameters={})
+    @Export(name="mssql", refs={SecretBackendConnectionMssql.class}, tree="[0]")
     private Output</* @Nullable */ SecretBackendConnectionMssql> mssql;
 
     /**
@@ -252,7 +252,7 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      * A nested block containing configuration options for MySQL connections.
      * 
      */
-    @Export(name="mysql", type=SecretBackendConnectionMysql.class, parameters={})
+    @Export(name="mysql", refs={SecretBackendConnectionMysql.class}, tree="[0]")
     private Output</* @Nullable */ SecretBackendConnectionMysql> mysql;
 
     /**
@@ -266,7 +266,7 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      * A nested block containing configuration options for Aurora MySQL connections.
      * 
      */
-    @Export(name="mysqlAurora", type=SecretBackendConnectionMysqlAurora.class, parameters={})
+    @Export(name="mysqlAurora", refs={SecretBackendConnectionMysqlAurora.class}, tree="[0]")
     private Output</* @Nullable */ SecretBackendConnectionMysqlAurora> mysqlAurora;
 
     /**
@@ -280,7 +280,7 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      * A nested block containing configuration options for legacy MySQL connections.
      * 
      */
-    @Export(name="mysqlLegacy", type=SecretBackendConnectionMysqlLegacy.class, parameters={})
+    @Export(name="mysqlLegacy", refs={SecretBackendConnectionMysqlLegacy.class}, tree="[0]")
     private Output</* @Nullable */ SecretBackendConnectionMysqlLegacy> mysqlLegacy;
 
     /**
@@ -294,7 +294,7 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      * A nested block containing configuration options for RDS MySQL connections.
      * 
      */
-    @Export(name="mysqlRds", type=SecretBackendConnectionMysqlRds.class, parameters={})
+    @Export(name="mysqlRds", refs={SecretBackendConnectionMysqlRds.class}, tree="[0]")
     private Output</* @Nullable */ SecretBackendConnectionMysqlRds> mysqlRds;
 
     /**
@@ -308,7 +308,7 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      * A unique name to give the database connection.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -325,7 +325,7 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -342,7 +342,7 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      * A nested block containing configuration options for Oracle connections.
      * 
      */
-    @Export(name="oracle", type=SecretBackendConnectionOracle.class, parameters={})
+    @Export(name="oracle", refs={SecretBackendConnectionOracle.class}, tree="[0]")
     private Output</* @Nullable */ SecretBackendConnectionOracle> oracle;
 
     /**
@@ -356,7 +356,7 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      * Specifies the name of the plugin to use.
      * 
      */
-    @Export(name="pluginName", type=String.class, parameters={})
+    @Export(name="pluginName", refs={String.class}, tree="[0]")
     private Output<String> pluginName;
 
     /**
@@ -370,7 +370,7 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      * A nested block containing configuration options for PostgreSQL connections.
      * 
      */
-    @Export(name="postgresql", type=SecretBackendConnectionPostgresql.class, parameters={})
+    @Export(name="postgresql", refs={SecretBackendConnectionPostgresql.class}, tree="[0]")
     private Output</* @Nullable */ SecretBackendConnectionPostgresql> postgresql;
 
     /**
@@ -384,7 +384,7 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      * A nested block containing configuration options for Redis connections.
      * 
      */
-    @Export(name="redis", type=SecretBackendConnectionRedis.class, parameters={})
+    @Export(name="redis", refs={SecretBackendConnectionRedis.class}, tree="[0]")
     private Output</* @Nullable */ SecretBackendConnectionRedis> redis;
 
     /**
@@ -398,7 +398,7 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      * A nested block containing configuration options for Redis ElastiCache connections.
      * 
      */
-    @Export(name="redisElasticache", type=SecretBackendConnectionRedisElasticache.class, parameters={})
+    @Export(name="redisElasticache", refs={SecretBackendConnectionRedisElasticache.class}, tree="[0]")
     private Output</* @Nullable */ SecretBackendConnectionRedisElasticache> redisElasticache;
 
     /**
@@ -412,7 +412,7 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      * Connection parameters for the redshift-database-plugin plugin.
      * 
      */
-    @Export(name="redshift", type=SecretBackendConnectionRedshift.class, parameters={})
+    @Export(name="redshift", refs={SecretBackendConnectionRedshift.class}, tree="[0]")
     private Output</* @Nullable */ SecretBackendConnectionRedshift> redshift;
 
     /**
@@ -426,7 +426,7 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      * A list of database statements to be executed to rotate the root user&#39;s credentials.
      * 
      */
-    @Export(name="rootRotationStatements", type=List.class, parameters={String.class})
+    @Export(name="rootRotationStatements", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> rootRotationStatements;
 
     /**
@@ -440,7 +440,7 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      * A nested block containing configuration options for Snowflake connections.
      * 
      */
-    @Export(name="snowflake", type=SecretBackendConnectionSnowflake.class, parameters={})
+    @Export(name="snowflake", refs={SecretBackendConnectionSnowflake.class}, tree="[0]")
     private Output</* @Nullable */ SecretBackendConnectionSnowflake> snowflake;
 
     /**
@@ -455,7 +455,7 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      * initial configuration or not.
      * 
      */
-    @Export(name="verifyConnection", type=Boolean.class, parameters={})
+    @Export(name="verifyConnection", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> verifyConnection;
 
     /**

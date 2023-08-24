@@ -848,6 +848,61 @@ func (o AuthLoginRadiusOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v AuthLoginRadius) string { return v.Username }).(pulumi.StringOutput)
 }
 
+type AuthLoginTokenFile struct {
+	Filename  string  `pulumi:"filename"`
+	Namespace *string `pulumi:"namespace"`
+}
+
+// AuthLoginTokenFileInput is an input type that accepts AuthLoginTokenFileArgs and AuthLoginTokenFileOutput values.
+// You can construct a concrete instance of `AuthLoginTokenFileInput` via:
+//
+//	AuthLoginTokenFileArgs{...}
+type AuthLoginTokenFileInput interface {
+	pulumi.Input
+
+	ToAuthLoginTokenFileOutput() AuthLoginTokenFileOutput
+	ToAuthLoginTokenFileOutputWithContext(context.Context) AuthLoginTokenFileOutput
+}
+
+type AuthLoginTokenFileArgs struct {
+	Filename  pulumi.StringInput    `pulumi:"filename"`
+	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
+}
+
+func (AuthLoginTokenFileArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthLoginTokenFile)(nil)).Elem()
+}
+
+func (i AuthLoginTokenFileArgs) ToAuthLoginTokenFileOutput() AuthLoginTokenFileOutput {
+	return i.ToAuthLoginTokenFileOutputWithContext(context.Background())
+}
+
+func (i AuthLoginTokenFileArgs) ToAuthLoginTokenFileOutputWithContext(ctx context.Context) AuthLoginTokenFileOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthLoginTokenFileOutput)
+}
+
+type AuthLoginTokenFileOutput struct{ *pulumi.OutputState }
+
+func (AuthLoginTokenFileOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthLoginTokenFile)(nil)).Elem()
+}
+
+func (o AuthLoginTokenFileOutput) ToAuthLoginTokenFileOutput() AuthLoginTokenFileOutput {
+	return o
+}
+
+func (o AuthLoginTokenFileOutput) ToAuthLoginTokenFileOutputWithContext(ctx context.Context) AuthLoginTokenFileOutput {
+	return o
+}
+
+func (o AuthLoginTokenFileOutput) Filename() pulumi.StringOutput {
+	return o.ApplyT(func(v AuthLoginTokenFile) string { return v.Filename }).(pulumi.StringOutput)
+}
+
+func (o AuthLoginTokenFileOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginTokenFile) *string { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
 type AuthLoginUserpass struct {
 	Mount        *string `pulumi:"mount"`
 	Namespace    *string `pulumi:"namespace"`
@@ -1087,6 +1142,7 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AuthLoginOciInput)(nil)).Elem(), AuthLoginOciArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AuthLoginOidcInput)(nil)).Elem(), AuthLoginOidcArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AuthLoginRadiusInput)(nil)).Elem(), AuthLoginRadiusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthLoginTokenFileInput)(nil)).Elem(), AuthLoginTokenFileArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AuthLoginUserpassInput)(nil)).Elem(), AuthLoginUserpassArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClientAuthInput)(nil)).Elem(), ClientAuthArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*HeadersInput)(nil)).Elem(), HeadersArgs{})
@@ -1101,6 +1157,7 @@ func init() {
 	pulumi.RegisterOutputType(AuthLoginOciOutput{})
 	pulumi.RegisterOutputType(AuthLoginOidcOutput{})
 	pulumi.RegisterOutputType(AuthLoginRadiusOutput{})
+	pulumi.RegisterOutputType(AuthLoginTokenFileOutput{})
 	pulumi.RegisterOutputType(AuthLoginUserpassOutput{})
 	pulumi.RegisterOutputType(ClientAuthOutput{})
 	pulumi.RegisterOutputType(HeadersOutput{})

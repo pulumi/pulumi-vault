@@ -33,7 +33,7 @@ public class AuthBackendCert extends com.pulumi.resources.CustomResource {
      * documentation](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-identity-documents.html).
      * 
      */
-    @Export(name="awsPublicCert", type=String.class, parameters={})
+    @Export(name="awsPublicCert", refs={String.class}, tree="[0]")
     private Output<String> awsPublicCert;
 
     /**
@@ -51,7 +51,7 @@ public class AuthBackendCert extends com.pulumi.resources.CustomResource {
      * mounted at.  Defaults to `aws`.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backend;
 
     /**
@@ -66,7 +66,7 @@ public class AuthBackendCert extends com.pulumi.resources.CustomResource {
      * The name of the certificate.
      * 
      */
-    @Export(name="certName", type=String.class, parameters={})
+    @Export(name="certName", refs={String.class}, tree="[0]")
     private Output<String> certName;
 
     /**
@@ -83,7 +83,7 @@ public class AuthBackendCert extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -102,7 +102,7 @@ public class AuthBackendCert extends com.pulumi.resources.CustomResource {
      * &#34;pkcs7&#34;.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> type;
 
     /**

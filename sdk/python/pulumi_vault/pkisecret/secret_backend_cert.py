@@ -29,7 +29,8 @@ class SecretBackendCertArgs:
                  private_key_format: Optional[pulumi.Input[str]] = None,
                  revoke: Optional[pulumi.Input[bool]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
-                 uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+                 uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a SecretBackendCert resource.
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
@@ -51,6 +52,7 @@ class SecretBackendCertArgs:
         :param pulumi.Input[bool] revoke: If set to `true`, the certificate will be revoked on resource destruction.
         :param pulumi.Input[str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_ids: List of Subject User IDs
         """
         pulumi.set(__self__, "backend", backend)
         pulumi.set(__self__, "common_name", common_name)
@@ -82,6 +84,8 @@ class SecretBackendCertArgs:
             pulumi.set(__self__, "ttl", ttl)
         if uri_sans is not None:
             pulumi.set(__self__, "uri_sans", uri_sans)
+        if user_ids is not None:
+            pulumi.set(__self__, "user_ids", user_ids)
 
     @property
     @pulumi.getter
@@ -278,6 +282,18 @@ class SecretBackendCertArgs:
     def uri_sans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "uri_sans", value)
 
+    @property
+    @pulumi.getter(name="userIds")
+    def user_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of Subject User IDs
+        """
+        return pulumi.get(self, "user_ids")
+
+    @user_ids.setter
+    def user_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "user_ids", value)
+
 
 @pulumi.input_type
 class _SecretBackendCertState:
@@ -305,7 +321,8 @@ class _SecretBackendCertState:
                  revoke: Optional[pulumi.Input[bool]] = None,
                  serial_number: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
-                 uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+                 uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering SecretBackendCert resources.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] alt_names: List of alternative names
@@ -335,6 +352,7 @@ class _SecretBackendCertState:
         :param pulumi.Input[str] serial_number: The serial number
         :param pulumi.Input[str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_ids: List of Subject User IDs
         """
         if alt_names is not None:
             pulumi.set(__self__, "alt_names", alt_names)
@@ -384,6 +402,8 @@ class _SecretBackendCertState:
             pulumi.set(__self__, "ttl", ttl)
         if uri_sans is not None:
             pulumi.set(__self__, "uri_sans", uri_sans)
+        if user_ids is not None:
+            pulumi.set(__self__, "user_ids", user_ids)
 
     @property
     @pulumi.getter(name="altNames")
@@ -676,6 +696,18 @@ class _SecretBackendCertState:
     def uri_sans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "uri_sans", value)
 
+    @property
+    @pulumi.getter(name="userIds")
+    def user_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of Subject User IDs
+        """
+        return pulumi.get(self, "user_ids")
+
+    @user_ids.setter
+    def user_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "user_ids", value)
+
 
 class SecretBackendCert(pulumi.CustomResource):
     @overload
@@ -698,6 +730,7 @@ class SecretBackendCert(pulumi.CustomResource):
                  revoke: Optional[pulumi.Input[bool]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
         ## Example Usage
@@ -733,6 +766,7 @@ class SecretBackendCert(pulumi.CustomResource):
         :param pulumi.Input[bool] revoke: If set to `true`, the certificate will be revoked on resource destruction.
         :param pulumi.Input[str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_ids: List of Subject User IDs
         """
         ...
     @overload
@@ -784,6 +818,7 @@ class SecretBackendCert(pulumi.CustomResource):
                  revoke: Optional[pulumi.Input[bool]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -813,6 +848,7 @@ class SecretBackendCert(pulumi.CustomResource):
             __props__.__dict__["revoke"] = revoke
             __props__.__dict__["ttl"] = ttl
             __props__.__dict__["uri_sans"] = uri_sans
+            __props__.__dict__["user_ids"] = user_ids
             __props__.__dict__["ca_chain"] = None
             __props__.__dict__["certificate"] = None
             __props__.__dict__["expiration"] = None
@@ -856,7 +892,8 @@ class SecretBackendCert(pulumi.CustomResource):
             revoke: Optional[pulumi.Input[bool]] = None,
             serial_number: Optional[pulumi.Input[str]] = None,
             ttl: Optional[pulumi.Input[str]] = None,
-            uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'SecretBackendCert':
+            uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'SecretBackendCert':
         """
         Get an existing SecretBackendCert resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -891,6 +928,7 @@ class SecretBackendCert(pulumi.CustomResource):
         :param pulumi.Input[str] serial_number: The serial number
         :param pulumi.Input[str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_ids: List of Subject User IDs
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -920,6 +958,7 @@ class SecretBackendCert(pulumi.CustomResource):
         __props__.__dict__["serial_number"] = serial_number
         __props__.__dict__["ttl"] = ttl
         __props__.__dict__["uri_sans"] = uri_sans
+        __props__.__dict__["user_ids"] = user_ids
         return SecretBackendCert(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -1116,4 +1155,12 @@ class SecretBackendCert(pulumi.CustomResource):
         List of alternative URIs
         """
         return pulumi.get(self, "uri_sans")
+
+    @property
+    @pulumi.getter(name="userIds")
+    def user_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of Subject User IDs
+        """
+        return pulumi.get(self, "user_ids")
 

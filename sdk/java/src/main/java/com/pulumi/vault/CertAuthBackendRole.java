@@ -71,7 +71,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
      * Allowed the common names for authenticated client certificates
      * 
      */
-    @Export(name="allowedCommonNames", type=List.class, parameters={String.class})
+    @Export(name="allowedCommonNames", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> allowedCommonNames;
 
     /**
@@ -85,7 +85,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
      * Allowed alternative dns names for authenticated client certificates
      * 
      */
-    @Export(name="allowedDnsSans", type=List.class, parameters={String.class})
+    @Export(name="allowedDnsSans", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> allowedDnsSans;
 
     /**
@@ -99,7 +99,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
      * Allowed emails for authenticated client certificates
      * 
      */
-    @Export(name="allowedEmailSans", type=List.class, parameters={String.class})
+    @Export(name="allowedEmailSans", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> allowedEmailSans;
 
     /**
@@ -113,7 +113,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
      * Allowed subject names for authenticated client certificates
      * 
      */
-    @Export(name="allowedNames", type=List.class, parameters={String.class})
+    @Export(name="allowedNames", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> allowedNames;
 
     /**
@@ -129,7 +129,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* Use allowed_organizational_units */
-    @Export(name="allowedOrganizationUnits", type=List.class, parameters={String.class})
+    @Export(name="allowedOrganizationUnits", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> allowedOrganizationUnits;
 
     public Output<List<String>> allowedOrganizationUnits() {
@@ -140,7 +140,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
      * *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
      * 
      */
-    @Export(name="allowedOrganizationalUnits", type=List.class, parameters={String.class})
+    @Export(name="allowedOrganizationalUnits", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> allowedOrganizationalUnits;
 
     /**
@@ -155,7 +155,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
      * Allowed URIs for authenticated client certificates
      * 
      */
-    @Export(name="allowedUriSans", type=List.class, parameters={String.class})
+    @Export(name="allowedUriSans", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> allowedUriSans;
 
     /**
@@ -169,7 +169,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
      * Path to the mounted Cert auth backend
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backend;
 
     /**
@@ -183,7 +183,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
      * CA certificate used to validate client certificates
      * 
      */
-    @Export(name="certificate", type=String.class, parameters={})
+    @Export(name="certificate", refs={String.class}, tree="[0]")
     private Output<String> certificate;
 
     /**
@@ -197,7 +197,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
      * The name to display on tokens issued under this role.
      * 
      */
-    @Export(name="displayName", type=String.class, parameters={})
+    @Export(name="displayName", refs={String.class}, tree="[0]")
     private Output<String> displayName;
 
     /**
@@ -211,7 +211,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
      * Name of the role
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -228,7 +228,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -245,7 +245,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
      * TLS extensions required on client certificates
      * 
      */
-    @Export(name="requiredExtensions", type=List.class, parameters={String.class})
+    @Export(name="requiredExtensions", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> requiredExtensions;
 
     /**
@@ -261,7 +261,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
      * as well.
      * 
      */
-    @Export(name="tokenBoundCidrs", type=List.class, parameters={String.class})
+    @Export(name="tokenBoundCidrs", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tokenBoundCidrs;
 
     /**
@@ -280,7 +280,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
      * `token_max_ttl` would otherwise allow a renewal.
      * 
      */
-    @Export(name="tokenExplicitMaxTtl", type=Integer.class, parameters={})
+    @Export(name="tokenExplicitMaxTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenExplicitMaxTtl;
 
     /**
@@ -298,7 +298,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
      * Its current value will be referenced at renewal time.
      * 
      */
-    @Export(name="tokenMaxTtl", type=Integer.class, parameters={})
+    @Export(name="tokenMaxTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenMaxTtl;
 
     /**
@@ -314,7 +314,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
      * generated tokens; otherwise it will be added to the policies set in token_policies.
      * 
      */
-    @Export(name="tokenNoDefaultPolicy", type=Boolean.class, parameters={})
+    @Export(name="tokenNoDefaultPolicy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> tokenNoDefaultPolicy;
 
     /**
@@ -330,7 +330,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
      * of times a generated token may be used (within its lifetime); 0 means unlimited.
      * 
      */
-    @Export(name="tokenNumUses", type=Integer.class, parameters={})
+    @Export(name="tokenNumUses", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenNumUses;
 
     /**
@@ -348,7 +348,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
      * value of this field. Specified in seconds.
      * 
      */
-    @Export(name="tokenPeriod", type=Integer.class, parameters={})
+    @Export(name="tokenPeriod", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenPeriod;
 
     /**
@@ -366,7 +366,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
      * on the auth method, this list may be supplemented by user/group/other values.
      * 
      */
-    @Export(name="tokenPolicies", type=List.class, parameters={String.class})
+    @Export(name="tokenPolicies", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tokenPolicies;
 
     /**
@@ -382,7 +382,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
      * Its current value will be referenced at renewal time.
      * 
      */
-    @Export(name="tokenTtl", type=Integer.class, parameters={})
+    @Export(name="tokenTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenTtl;
 
     /**
@@ -401,7 +401,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
      * requests a different type at generation time.
      * 
      */
-    @Export(name="tokenType", type=String.class, parameters={})
+    @Export(name="tokenType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tokenType;
 
     /**

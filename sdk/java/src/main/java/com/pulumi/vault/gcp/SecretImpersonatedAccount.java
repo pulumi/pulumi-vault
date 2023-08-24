@@ -82,7 +82,7 @@ public class SecretImpersonatedAccount extends com.pulumi.resources.CustomResour
      * Path where the GCP Secrets Engine is mounted
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output<String> backend;
 
     /**
@@ -96,7 +96,7 @@ public class SecretImpersonatedAccount extends com.pulumi.resources.CustomResour
      * Name of the Impersonated Account to create
      * 
      */
-    @Export(name="impersonatedAccount", type=String.class, parameters={})
+    @Export(name="impersonatedAccount", refs={String.class}, tree="[0]")
     private Output<String> impersonatedAccount;
 
     /**
@@ -110,7 +110,7 @@ public class SecretImpersonatedAccount extends com.pulumi.resources.CustomResour
      * Target namespace. (requires Enterprise)
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -124,7 +124,7 @@ public class SecretImpersonatedAccount extends com.pulumi.resources.CustomResour
      * Email of the GCP service account to impersonate.
      * 
      */
-    @Export(name="serviceAccountEmail", type=String.class, parameters={})
+    @Export(name="serviceAccountEmail", refs={String.class}, tree="[0]")
     private Output<String> serviceAccountEmail;
 
     /**
@@ -138,7 +138,7 @@ public class SecretImpersonatedAccount extends com.pulumi.resources.CustomResour
      * Project the service account belongs to.
      * 
      */
-    @Export(name="serviceAccountProject", type=String.class, parameters={})
+    @Export(name="serviceAccountProject", refs={String.class}, tree="[0]")
     private Output<String> serviceAccountProject;
 
     /**
@@ -152,7 +152,7 @@ public class SecretImpersonatedAccount extends com.pulumi.resources.CustomResour
      * List of OAuth scopes to assign to access tokens generated under this impersonated account.
      * 
      */
-    @Export(name="tokenScopes", type=List.class, parameters={String.class})
+    @Export(name="tokenScopes", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tokenScopes;
 
     /**

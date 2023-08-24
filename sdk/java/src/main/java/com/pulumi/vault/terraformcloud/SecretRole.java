@@ -71,7 +71,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * The path of the Terraform Cloud Secret Backend the role belongs to.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backend;
 
     /**
@@ -85,7 +85,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * Maximum TTL for leases associated with this role, in seconds.
      * 
      */
-    @Export(name="maxTtl", type=Integer.class, parameters={})
+    @Export(name="maxTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> maxTtl;
 
     /**
@@ -99,7 +99,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * The name of an existing role against which to create this Terraform Cloud credential
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -116,7 +116,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -133,7 +133,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * Name of the Terraform Cloud or Enterprise organization
      * 
      */
-    @Export(name="organization", type=String.class, parameters={})
+    @Export(name="organization", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> organization;
 
     /**
@@ -147,7 +147,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
      * 
      */
-    @Export(name="teamId", type=String.class, parameters={})
+    @Export(name="teamId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> teamId;
 
     /**
@@ -161,7 +161,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * Specifies the TTL for this role.
      * 
      */
-    @Export(name="ttl", type=Integer.class, parameters={})
+    @Export(name="ttl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> ttl;
 
     /**
@@ -175,7 +175,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * ID of the Terraform Cloud or Enterprise user (e.g., user-xxxxxxxxxxxxxxxx)
      * 
      */
-    @Export(name="userId", type=String.class, parameters={})
+    @Export(name="userId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> userId;
 
     /**

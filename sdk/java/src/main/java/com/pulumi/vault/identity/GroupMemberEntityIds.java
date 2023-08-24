@@ -124,7 +124,7 @@ public class GroupMemberEntityIds extends com.pulumi.resources.CustomResource {
      * Defaults to `true`.
      * 
      */
-    @Export(name="exclusive", type=Boolean.class, parameters={})
+    @Export(name="exclusive", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> exclusive;
 
     /**
@@ -138,7 +138,7 @@ public class GroupMemberEntityIds extends com.pulumi.resources.CustomResource {
      * Group ID to assign member entities to.
      * 
      */
-    @Export(name="groupId", type=String.class, parameters={})
+    @Export(name="groupId", refs={String.class}, tree="[0]")
     private Output<String> groupId;
 
     /**
@@ -160,7 +160,7 @@ public class GroupMemberEntityIds extends com.pulumi.resources.CustomResource {
      */
     @Deprecated /* The value for group_name may not always be accurate, 
 use ""data.vault_identity_group.*.group_name"", ""vault_identity_group.*.group_name"" instead */
-    @Export(name="groupName", type=String.class, parameters={})
+    @Export(name="groupName", refs={String.class}, tree="[0]")
     private Output<String> groupName;
 
     /**
@@ -176,7 +176,7 @@ use ""data.vault_identity_group.*.group_name"", ""vault_identity_group.*.group_n
      * List of member entities that belong to the group
      * 
      */
-    @Export(name="memberEntityIds", type=List.class, parameters={String.class})
+    @Export(name="memberEntityIds", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> memberEntityIds;
 
     /**
@@ -193,7 +193,7 @@ use ""data.vault_identity_group.*.group_name"", ""vault_identity_group.*.group_n
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
