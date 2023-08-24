@@ -77,7 +77,7 @@ public class NomadSecretRole extends com.pulumi.resources.CustomResource {
      * not begin or end with a `/`. Defaults to `nomad`.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output<String> backend;
 
     /**
@@ -93,7 +93,7 @@ public class NomadSecretRole extends com.pulumi.resources.CustomResource {
      * false.
      * 
      */
-    @Export(name="global", type=Boolean.class, parameters={})
+    @Export(name="global", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> global;
 
     /**
@@ -111,7 +111,7 @@ public class NomadSecretRole extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -129,7 +129,7 @@ public class NomadSecretRole extends com.pulumi.resources.CustomResource {
      * when `type` is &#39;client&#39;.
      * 
      */
-    @Export(name="policies", type=List.class, parameters={String.class})
+    @Export(name="policies", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> policies;
 
     /**
@@ -145,7 +145,7 @@ public class NomadSecretRole extends com.pulumi.resources.CustomResource {
      * Must be unique within the backend.
      * 
      */
-    @Export(name="role", type=String.class, parameters={})
+    @Export(name="role", refs={String.class}, tree="[0]")
     private Output<String> role;
 
     /**
@@ -161,7 +161,7 @@ public class NomadSecretRole extends com.pulumi.resources.CustomResource {
      * settings are &#39;client&#39; and &#39;management&#39;. Defaults to &#39;client&#39;.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**

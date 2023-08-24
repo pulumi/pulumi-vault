@@ -95,7 +95,7 @@ public class SecretBackendDynamicRole extends com.pulumi.resources.CustomResourc
      * details. This field may optionally be provided as a base64 encoded string.
      * 
      */
-    @Export(name="creationLdif", type=String.class, parameters={})
+    @Export(name="creationLdif", refs={String.class}, tree="[0]")
     private Output<String> creationLdif;
 
     /**
@@ -116,7 +116,7 @@ public class SecretBackendDynamicRole extends com.pulumi.resources.CustomResourc
      * Specifies the TTL for the leases associated with this role.
      * 
      */
-    @Export(name="defaultTtl", type=Integer.class, parameters={})
+    @Export(name="defaultTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> defaultTtl;
 
     /**
@@ -135,7 +135,7 @@ public class SecretBackendDynamicRole extends com.pulumi.resources.CustomResourc
      * provided as a base64 encoded string.
      * 
      */
-    @Export(name="deletionLdif", type=String.class, parameters={})
+    @Export(name="deletionLdif", refs={String.class}, tree="[0]")
     private Output<String> deletionLdif;
 
     /**
@@ -154,7 +154,7 @@ public class SecretBackendDynamicRole extends com.pulumi.resources.CustomResourc
      * Specifies the maximum TTL for the leases associated with this role.
      * 
      */
-    @Export(name="maxTtl", type=Integer.class, parameters={})
+    @Export(name="maxTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> maxTtl;
 
     /**
@@ -169,7 +169,7 @@ public class SecretBackendDynamicRole extends com.pulumi.resources.CustomResourc
      * not begin or end with a `/`. Defaults to `ldap`.
      * 
      */
-    @Export(name="mount", type=String.class, parameters={})
+    @Export(name="mount", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> mount;
 
     /**
@@ -187,7 +187,7 @@ public class SecretBackendDynamicRole extends com.pulumi.resources.CustomResourc
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -204,7 +204,7 @@ public class SecretBackendDynamicRole extends com.pulumi.resources.CustomResourc
      * Name of the role.
      * 
      */
-    @Export(name="roleName", type=String.class, parameters={})
+    @Export(name="roleName", refs={String.class}, tree="[0]")
     private Output<String> roleName;
 
     /**
@@ -223,7 +223,7 @@ public class SecretBackendDynamicRole extends com.pulumi.resources.CustomResourc
      * entries. This field may optionally be provided as a base64 encoded string.
      * 
      */
-    @Export(name="rollbackLdif", type=String.class, parameters={})
+    @Export(name="rollbackLdif", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> rollbackLdif;
 
     /**
@@ -244,7 +244,7 @@ public class SecretBackendDynamicRole extends com.pulumi.resources.CustomResourc
      * `creation_ldif` string.
      * 
      */
-    @Export(name="usernameTemplate", type=String.class, parameters={})
+    @Export(name="usernameTemplate", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> usernameTemplate;
 
     /**

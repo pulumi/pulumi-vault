@@ -149,7 +149,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
      * AWS access key ID.
      * 
      */
-    @Export(name="awsAccessKeyId", type=String.class, parameters={})
+    @Export(name="awsAccessKeyId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> awsAccessKeyId;
 
     /**
@@ -163,7 +163,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
      * `&lt;required&gt;` - S3 bucket to write snapshots to.
      * 
      */
-    @Export(name="awsS3Bucket", type=String.class, parameters={})
+    @Export(name="awsS3Bucket", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> awsS3Bucket;
 
     /**
@@ -179,7 +179,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
      * `aws_s3_endpoint`.
      * 
      */
-    @Export(name="awsS3DisableTls", type=Boolean.class, parameters={})
+    @Export(name="awsS3DisableTls", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> awsS3DisableTls;
 
     /**
@@ -195,7 +195,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
      * Use KMS to encrypt bucket contents.
      * 
      */
-    @Export(name="awsS3EnableKms", type=Boolean.class, parameters={})
+    @Export(name="awsS3EnableKms", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> awsS3EnableKms;
 
     /**
@@ -210,7 +210,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
      * using a non-AWS S3 implementation like Minio.
      * 
      */
-    @Export(name="awsS3Endpoint", type=String.class, parameters={})
+    @Export(name="awsS3Endpoint", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> awsS3Endpoint;
 
     /**
@@ -226,7 +226,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
      * instead of bucket.endpoint. May be needed when setting `aws_s3_endpoint`.
      * 
      */
-    @Export(name="awsS3ForcePathStyle", type=Boolean.class, parameters={})
+    @Export(name="awsS3ForcePathStyle", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> awsS3ForcePathStyle;
 
     /**
@@ -241,7 +241,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
      * Use named KMS key, when `aws_s3_enable_kms = true`
      * 
      */
-    @Export(name="awsS3KmsKey", type=String.class, parameters={})
+    @Export(name="awsS3KmsKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> awsS3KmsKey;
 
     /**
@@ -255,7 +255,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
      * `&lt;required&gt;` - AWS region bucket is in.
      * 
      */
-    @Export(name="awsS3Region", type=String.class, parameters={})
+    @Export(name="awsS3Region", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> awsS3Region;
 
     /**
@@ -269,7 +269,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
      * Use AES256 to encrypt bucket contents.
      * 
      */
-    @Export(name="awsS3ServerSideEncryption", type=Boolean.class, parameters={})
+    @Export(name="awsS3ServerSideEncryption", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> awsS3ServerSideEncryption;
 
     /**
@@ -283,7 +283,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
      * AWS secret access key.
      * 
      */
-    @Export(name="awsSecretAccessKey", type=String.class, parameters={})
+    @Export(name="awsSecretAccessKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> awsSecretAccessKey;
 
     /**
@@ -297,7 +297,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
      * AWS session token.
      * 
      */
-    @Export(name="awsSessionToken", type=String.class, parameters={})
+    @Export(name="awsSessionToken", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> awsSessionToken;
 
     /**
@@ -311,7 +311,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
      * Azure account key.
      * 
      */
-    @Export(name="azureAccountKey", type=String.class, parameters={})
+    @Export(name="azureAccountKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> azureAccountKey;
 
     /**
@@ -325,7 +325,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
      * Azure account name.
      * 
      */
-    @Export(name="azureAccountName", type=String.class, parameters={})
+    @Export(name="azureAccountName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> azureAccountName;
 
     /**
@@ -339,7 +339,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
      * Azure blob environment.
      * 
      */
-    @Export(name="azureBlobEnvironment", type=String.class, parameters={})
+    @Export(name="azureBlobEnvironment", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> azureBlobEnvironment;
 
     /**
@@ -354,7 +354,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
      * snapshots to.
      * 
      */
-    @Export(name="azureContainerName", type=String.class, parameters={})
+    @Export(name="azureContainerName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> azureContainerName;
 
     /**
@@ -370,7 +370,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
      * only set when using a non-Azure implementation like Azurite.
      * 
      */
-    @Export(name="azureEndpoint", type=String.class, parameters={})
+    @Export(name="azureEndpoint", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> azureEndpoint;
 
     /**
@@ -387,7 +387,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
      * will start with this string.
      * 
      */
-    @Export(name="filePrefix", type=String.class, parameters={})
+    @Export(name="filePrefix", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> filePrefix;
 
     /**
@@ -405,7 +405,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
      * `google_endpoint`.
      * 
      */
-    @Export(name="googleDisableTls", type=Boolean.class, parameters={})
+    @Export(name="googleDisableTls", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> googleDisableTls;
 
     /**
@@ -422,7 +422,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
      * using a non-Google GCS implementation like fake-gcs-server.
      * 
      */
-    @Export(name="googleEndpoint", type=String.class, parameters={})
+    @Export(name="googleEndpoint", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> googleEndpoint;
 
     /**
@@ -437,7 +437,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
      * `&lt;required&gt;` - GCS bucket to write snapshots to.
      * 
      */
-    @Export(name="googleGcsBucket", type=String.class, parameters={})
+    @Export(name="googleGcsBucket", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> googleGcsBucket;
 
     /**
@@ -452,7 +452,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
      * The raw value looks like this:
      * 
      */
-    @Export(name="googleServiceAccountKey", type=String.class, parameters={})
+    @Export(name="googleServiceAccountKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> googleServiceAccountKey;
 
     /**
@@ -467,7 +467,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
      * `&lt;required&gt;` - Time (in seconds) between snapshots.
      * 
      */
-    @Export(name="intervalSeconds", type=Integer.class, parameters={})
+    @Export(name="intervalSeconds", refs={Integer.class}, tree="[0]")
     private Output<Integer> intervalSeconds;
 
     /**
@@ -483,7 +483,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
      * space left in this allowance.
      * 
      */
-    @Export(name="localMaxSpace", type=Integer.class, parameters={})
+    @Export(name="localMaxSpace", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> localMaxSpace;
 
     /**
@@ -499,7 +499,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
      * `&lt;required&gt;` – Name of the configuration to modify.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -516,7 +516,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -536,7 +536,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
      * Types `local` and `aws-s3` the trailing `/` is optional.
      * 
      */
-    @Export(name="pathPrefix", type=String.class, parameters={})
+    @Export(name="pathPrefix", refs={String.class}, tree="[0]")
     private Output<String> pathPrefix;
 
     /**
@@ -555,7 +555,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
      * oldest ones will be deleted.
      * 
      */
-    @Export(name="retain", type=Integer.class, parameters={})
+    @Export(name="retain", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> retain;
 
     /**
@@ -573,7 +573,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
      * the selected `storage_type` and prefixed accordingly.
      * 
      */
-    @Export(name="storageType", type=String.class, parameters={})
+    @Export(name="storageType", refs={String.class}, tree="[0]")
     private Output<String> storageType;
 
     /**

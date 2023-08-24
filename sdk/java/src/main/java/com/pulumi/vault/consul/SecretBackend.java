@@ -99,7 +99,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      * Specifies the address of the Consul instance, provided as &#34;host:port&#34; like &#34;127.0.0.1:8500&#34;.
      * 
      */
-    @Export(name="address", type=String.class, parameters={})
+    @Export(name="address", refs={String.class}, tree="[0]")
     private Output<String> address;
 
     /**
@@ -113,7 +113,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      * Denotes that the resource is used to bootstrap the Consul ACL system.
      * 
      */
-    @Export(name="bootstrap", type=Boolean.class, parameters={})
+    @Export(name="bootstrap", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> bootstrap;
 
     /**
@@ -127,7 +127,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      * CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
      * 
      */
-    @Export(name="caCert", type=String.class, parameters={})
+    @Export(name="caCert", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> caCert;
 
     /**
@@ -142,7 +142,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      * this is set you need to also set client_key.
      * 
      */
-    @Export(name="clientCert", type=String.class, parameters={})
+    @Export(name="clientCert", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientCert;
 
     /**
@@ -158,7 +158,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      * you need to also set client_cert.
      * 
      */
-    @Export(name="clientKey", type=String.class, parameters={})
+    @Export(name="clientKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientKey;
 
     /**
@@ -173,7 +173,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      * The default TTL for credentials issued by this backend.
      * 
      */
-    @Export(name="defaultLeaseTtlSeconds", type=Integer.class, parameters={})
+    @Export(name="defaultLeaseTtlSeconds", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> defaultLeaseTtlSeconds;
 
     /**
@@ -187,7 +187,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      * A human-friendly description for this backend.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -202,7 +202,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      * 
      */
-    @Export(name="disableRemount", type=Boolean.class, parameters={})
+    @Export(name="disableRemount", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> disableRemount;
 
     /**
@@ -217,7 +217,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      * Specifies if the secret backend is local only.
      * 
      */
-    @Export(name="local", type=Boolean.class, parameters={})
+    @Export(name="local", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> local;
 
     /**
@@ -232,7 +232,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      * for credentials issued by this backend.
      * 
      */
-    @Export(name="maxLeaseTtlSeconds", type=Integer.class, parameters={})
+    @Export(name="maxLeaseTtlSeconds", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> maxLeaseTtlSeconds;
 
     /**
@@ -250,7 +250,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -268,7 +268,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      * to `consul`.
      * 
      */
-    @Export(name="path", type=String.class, parameters={})
+    @Export(name="path", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> path;
 
     /**
@@ -283,7 +283,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      * Specifies the URL scheme to use. Defaults to `http`.
      * 
      */
-    @Export(name="scheme", type=String.class, parameters={})
+    @Export(name="scheme", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> scheme;
 
     /**
@@ -298,7 +298,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      * when `bootstrap` is false.
      * 
      */
-    @Export(name="token", type=String.class, parameters={})
+    @Export(name="token", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> token;
 
     /**

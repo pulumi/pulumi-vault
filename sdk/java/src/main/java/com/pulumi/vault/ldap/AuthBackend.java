@@ -72,7 +72,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * The accessor for this auth mount.
      * 
      */
-    @Export(name="accessor", type=String.class, parameters={})
+    @Export(name="accessor", refs={String.class}, tree="[0]")
     private Output<String> accessor;
 
     /**
@@ -86,7 +86,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * DN of object to bind when performing user search
      * 
      */
-    @Export(name="binddn", type=String.class, parameters={})
+    @Export(name="binddn", refs={String.class}, tree="[0]")
     private Output<String> binddn;
 
     /**
@@ -100,7 +100,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * Password to use with `binddn` when performing user search
      * 
      */
-    @Export(name="bindpass", type=String.class, parameters={})
+    @Export(name="bindpass", refs={String.class}, tree="[0]")
     private Output<String> bindpass;
 
     /**
@@ -114,7 +114,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
      * 
      */
-    @Export(name="caseSensitiveNames", type=Boolean.class, parameters={})
+    @Export(name="caseSensitiveNames", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> caseSensitiveNames;
 
     /**
@@ -128,7 +128,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * Trusted CA to validate TLS certificate
      * 
      */
-    @Export(name="certificate", type=String.class, parameters={})
+    @Export(name="certificate", refs={String.class}, tree="[0]")
     private Output<String> certificate;
 
     /**
@@ -138,19 +138,19 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
     public Output<String> certificate() {
         return this.certificate;
     }
-    @Export(name="clientTlsCert", type=String.class, parameters={})
+    @Export(name="clientTlsCert", refs={String.class}, tree="[0]")
     private Output<String> clientTlsCert;
 
     public Output<String> clientTlsCert() {
         return this.clientTlsCert;
     }
-    @Export(name="clientTlsKey", type=String.class, parameters={})
+    @Export(name="clientTlsKey", refs={String.class}, tree="[0]")
     private Output<String> clientTlsKey;
 
     public Output<String> clientTlsKey() {
         return this.clientTlsKey;
     }
-    @Export(name="denyNullBind", type=Boolean.class, parameters={})
+    @Export(name="denyNullBind", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> denyNullBind;
 
     public Output<Boolean> denyNullBind() {
@@ -160,7 +160,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * Description for the LDAP auth backend mount
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output<String> description;
 
     /**
@@ -175,7 +175,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      * 
      */
-    @Export(name="disableRemount", type=Boolean.class, parameters={})
+    @Export(name="disableRemount", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> disableRemount;
 
     /**
@@ -186,7 +186,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
     public Output<Optional<Boolean>> disableRemount() {
         return Codegen.optional(this.disableRemount);
     }
-    @Export(name="discoverdn", type=Boolean.class, parameters={})
+    @Export(name="discoverdn", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> discoverdn;
 
     public Output<Boolean> discoverdn() {
@@ -196,7 +196,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * LDAP attribute to follow on objects returned by groupfilter
      * 
      */
-    @Export(name="groupattr", type=String.class, parameters={})
+    @Export(name="groupattr", refs={String.class}, tree="[0]")
     private Output<String> groupattr;
 
     /**
@@ -210,7 +210,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * Base DN under which to perform group search
      * 
      */
-    @Export(name="groupdn", type=String.class, parameters={})
+    @Export(name="groupdn", refs={String.class}, tree="[0]")
     private Output<String> groupdn;
 
     /**
@@ -224,7 +224,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * Go template used to construct group membership query
      * 
      */
-    @Export(name="groupfilter", type=String.class, parameters={})
+    @Export(name="groupfilter", refs={String.class}, tree="[0]")
     private Output<String> groupfilter;
 
     /**
@@ -238,7 +238,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * Control whether or TLS certificates must be validated
      * 
      */
-    @Export(name="insecureTls", type=Boolean.class, parameters={})
+    @Export(name="insecureTls", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> insecureTls;
 
     /**
@@ -252,7 +252,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * Specifies if the auth method is local only.
      * 
      */
-    @Export(name="local", type=Boolean.class, parameters={})
+    @Export(name="local", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> local;
 
     /**
@@ -267,7 +267,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * *Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.
      * 
      */
-    @Export(name="maxPageSize", type=Integer.class, parameters={})
+    @Export(name="maxPageSize", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> maxPageSize;
 
     /**
@@ -285,7 +285,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -302,7 +302,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * Path to mount the LDAP auth backend under
      * 
      */
-    @Export(name="path", type=String.class, parameters={})
+    @Export(name="path", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> path;
 
     /**
@@ -316,7 +316,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * Control use of TLS when conecting to LDAP
      * 
      */
-    @Export(name="starttls", type=Boolean.class, parameters={})
+    @Export(name="starttls", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> starttls;
 
     /**
@@ -330,7 +330,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * Maximum acceptable version of TLS
      * 
      */
-    @Export(name="tlsMaxVersion", type=String.class, parameters={})
+    @Export(name="tlsMaxVersion", refs={String.class}, tree="[0]")
     private Output<String> tlsMaxVersion;
 
     /**
@@ -344,7 +344,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * Minimum acceptable version of TLS
      * 
      */
-    @Export(name="tlsMinVersion", type=String.class, parameters={})
+    @Export(name="tlsMinVersion", refs={String.class}, tree="[0]")
     private Output<String> tlsMinVersion;
 
     /**
@@ -360,7 +360,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * as well.
      * 
      */
-    @Export(name="tokenBoundCidrs", type=List.class, parameters={String.class})
+    @Export(name="tokenBoundCidrs", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tokenBoundCidrs;
 
     /**
@@ -379,7 +379,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * `token_max_ttl` would otherwise allow a renewal.
      * 
      */
-    @Export(name="tokenExplicitMaxTtl", type=Integer.class, parameters={})
+    @Export(name="tokenExplicitMaxTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenExplicitMaxTtl;
 
     /**
@@ -397,7 +397,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * Its current value will be referenced at renewal time.
      * 
      */
-    @Export(name="tokenMaxTtl", type=Integer.class, parameters={})
+    @Export(name="tokenMaxTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenMaxTtl;
 
     /**
@@ -413,7 +413,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * generated tokens; otherwise it will be added to the policies set in token_policies.
      * 
      */
-    @Export(name="tokenNoDefaultPolicy", type=Boolean.class, parameters={})
+    @Export(name="tokenNoDefaultPolicy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> tokenNoDefaultPolicy;
 
     /**
@@ -429,7 +429,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * of times a generated token may be used (within its lifetime); 0 means unlimited.
      * 
      */
-    @Export(name="tokenNumUses", type=Integer.class, parameters={})
+    @Export(name="tokenNumUses", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenNumUses;
 
     /**
@@ -447,7 +447,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * value of this field. Specified in seconds.
      * 
      */
-    @Export(name="tokenPeriod", type=Integer.class, parameters={})
+    @Export(name="tokenPeriod", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenPeriod;
 
     /**
@@ -465,7 +465,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * on the auth method, this list may be supplemented by user/group/other values.
      * 
      */
-    @Export(name="tokenPolicies", type=List.class, parameters={String.class})
+    @Export(name="tokenPolicies", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tokenPolicies;
 
     /**
@@ -481,7 +481,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * Its current value will be referenced at renewal time.
      * 
      */
-    @Export(name="tokenTtl", type=Integer.class, parameters={})
+    @Export(name="tokenTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenTtl;
 
     /**
@@ -500,7 +500,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * requests a different type at generation time.
      * 
      */
-    @Export(name="tokenType", type=String.class, parameters={})
+    @Export(name="tokenType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tokenType;
 
     /**
@@ -518,7 +518,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * The userPrincipalDomain used to construct UPN string
      * 
      */
-    @Export(name="upndomain", type=String.class, parameters={})
+    @Export(name="upndomain", refs={String.class}, tree="[0]")
     private Output<String> upndomain;
 
     /**
@@ -532,7 +532,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * The URL of the LDAP server
      * 
      */
-    @Export(name="url", type=String.class, parameters={})
+    @Export(name="url", refs={String.class}, tree="[0]")
     private Output<String> url;
 
     /**
@@ -546,7 +546,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * Use the Active Directory tokenGroups constructed attribute of the user to find the group memberships
      * 
      */
-    @Export(name="useTokenGroups", type=Boolean.class, parameters={})
+    @Export(name="useTokenGroups", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> useTokenGroups;
 
     /**
@@ -560,7 +560,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * Attribute on user object matching username passed in
      * 
      */
-    @Export(name="userattr", type=String.class, parameters={})
+    @Export(name="userattr", refs={String.class}, tree="[0]")
     private Output<String> userattr;
 
     /**
@@ -574,7 +574,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * Base DN under which to perform user search
      * 
      */
-    @Export(name="userdn", type=String.class, parameters={})
+    @Export(name="userdn", refs={String.class}, tree="[0]")
     private Output<String> userdn;
 
     /**
@@ -588,7 +588,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * LDAP user search filter
      * 
      */
-    @Export(name="userfilter", type=String.class, parameters={})
+    @Export(name="userfilter", refs={String.class}, tree="[0]")
     private Output<String> userfilter;
 
     /**
@@ -602,7 +602,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * Force the auth method to use the username passed by the user as the alias name.
      * 
      */
-    @Export(name="usernameAsAlias", type=Boolean.class, parameters={})
+    @Export(name="usernameAsAlias", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> usernameAsAlias;
 
     /**

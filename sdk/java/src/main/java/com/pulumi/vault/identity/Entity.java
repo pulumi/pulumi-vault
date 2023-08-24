@@ -64,7 +64,7 @@ public class Entity extends com.pulumi.resources.CustomResource {
      * True/false Is this entity currently disabled. Defaults to `false`
      * 
      */
-    @Export(name="disabled", type=Boolean.class, parameters={})
+    @Export(name="disabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> disabled;
 
     /**
@@ -78,7 +78,7 @@ public class Entity extends com.pulumi.resources.CustomResource {
      * `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
      * 
      */
-    @Export(name="externalPolicies", type=Boolean.class, parameters={})
+    @Export(name="externalPolicies", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> externalPolicies;
 
     /**
@@ -92,7 +92,7 @@ public class Entity extends com.pulumi.resources.CustomResource {
      * A Map of additional metadata to associate with the user.
      * 
      */
-    @Export(name="metadata", type=Map.class, parameters={String.class, String.class})
+    @Export(name="metadata", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> metadata;
 
     /**
@@ -106,7 +106,7 @@ public class Entity extends com.pulumi.resources.CustomResource {
      * Name of the identity entity to create.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -123,7 +123,7 @@ public class Entity extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -140,7 +140,7 @@ public class Entity extends com.pulumi.resources.CustomResource {
      * A list of policies to apply to the entity.
      * 
      */
-    @Export(name="policies", type=List.class, parameters={String.class})
+    @Export(name="policies", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> policies;
 
     /**

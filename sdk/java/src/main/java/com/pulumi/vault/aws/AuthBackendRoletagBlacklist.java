@@ -64,7 +64,7 @@ public class AuthBackendRoletagBlacklist extends com.pulumi.resources.CustomReso
      * mounted at.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output<String> backend;
 
     /**
@@ -80,7 +80,7 @@ public class AuthBackendRoletagBlacklist extends com.pulumi.resources.CustomReso
      * tidying of the roletag blacklist entries. Defaults to false.
      * 
      */
-    @Export(name="disablePeriodicTidy", type=Boolean.class, parameters={})
+    @Export(name="disablePeriodicTidy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> disablePeriodicTidy;
 
     /**
@@ -98,7 +98,7 @@ public class AuthBackendRoletagBlacklist extends com.pulumi.resources.CustomReso
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -117,7 +117,7 @@ public class AuthBackendRoletagBlacklist extends com.pulumi.resources.CustomReso
      * Defaults to 259,200 seconds, or 72 hours.
      * 
      */
-    @Export(name="safetyBuffer", type=Integer.class, parameters={})
+    @Export(name="safetyBuffer", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> safetyBuffer;
 
     /**

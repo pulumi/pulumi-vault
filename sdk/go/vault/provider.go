@@ -93,6 +93,8 @@ type providerArgs struct {
 	AuthLoginOidc *ProviderAuthLoginOidc `pulumi:"authLoginOidc"`
 	// Login to vault using the radius method
 	AuthLoginRadius *ProviderAuthLoginRadius `pulumi:"authLoginRadius"`
+	// Login to vault using
+	AuthLoginTokenFile *ProviderAuthLoginTokenFile `pulumi:"authLoginTokenFile"`
 	// Login to vault using the userpass method
 	AuthLoginUserpass *ProviderAuthLoginUserpass `pulumi:"authLoginUserpass"`
 	// Path to directory containing CA certificate files to validate the server's certificate.
@@ -100,6 +102,8 @@ type providerArgs struct {
 	// Path to a CA certificate file to validate the server's certificate.
 	CaCertFile *string `pulumi:"caCertFile"`
 	// Client authentication credentials.
+	//
+	// Deprecated: Use auth_login_cert instead
 	ClientAuth *ProviderClientAuth `pulumi:"clientAuth"`
 	// The headers to send with each Vault request.
 	Headers []ProviderHeader `pulumi:"headers"`
@@ -153,6 +157,8 @@ type ProviderArgs struct {
 	AuthLoginOidc ProviderAuthLoginOidcPtrInput
 	// Login to vault using the radius method
 	AuthLoginRadius ProviderAuthLoginRadiusPtrInput
+	// Login to vault using
+	AuthLoginTokenFile ProviderAuthLoginTokenFilePtrInput
 	// Login to vault using the userpass method
 	AuthLoginUserpass ProviderAuthLoginUserpassPtrInput
 	// Path to directory containing CA certificate files to validate the server's certificate.
@@ -160,6 +166,8 @@ type ProviderArgs struct {
 	// Path to a CA certificate file to validate the server's certificate.
 	CaCertFile pulumi.StringPtrInput
 	// Client authentication credentials.
+	//
+	// Deprecated: Use auth_login_cert instead
 	ClientAuth ProviderClientAuthPtrInput
 	// The headers to send with each Vault request.
 	Headers ProviderHeaderArrayInput

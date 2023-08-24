@@ -81,7 +81,7 @@ public class BackendRole extends com.pulumi.resources.CustomResource {
      * be used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.
      * 
      */
-    @Export(name="applicationObjectId", type=String.class, parameters={})
+    @Export(name="applicationObjectId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> applicationObjectId;
 
     /**
@@ -96,7 +96,7 @@ public class BackendRole extends com.pulumi.resources.CustomResource {
      * List of Azure groups to be assigned to the generated service principal.
      * 
      */
-    @Export(name="azureGroups", type=List.class, parameters={BackendRoleAzureGroup.class})
+    @Export(name="azureGroups", refs={List.class,BackendRoleAzureGroup.class}, tree="[0,1]")
     private Output</* @Nullable */ List<BackendRoleAzureGroup>> azureGroups;
 
     /**
@@ -110,7 +110,7 @@ public class BackendRole extends com.pulumi.resources.CustomResource {
      * List of Azure roles to be assigned to the generated service principal.
      * 
      */
-    @Export(name="azureRoles", type=List.class, parameters={BackendRoleAzureRole.class})
+    @Export(name="azureRoles", refs={List.class,BackendRoleAzureRole.class}, tree="[0,1]")
     private Output</* @Nullable */ List<BackendRoleAzureRole>> azureRoles;
 
     /**
@@ -124,7 +124,7 @@ public class BackendRole extends com.pulumi.resources.CustomResource {
      * Path to the mounted Azure auth backend
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backend;
 
     /**
@@ -138,7 +138,7 @@ public class BackendRole extends com.pulumi.resources.CustomResource {
      * Human-friendly description of the mount for the backend.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -153,7 +153,7 @@ public class BackendRole extends com.pulumi.resources.CustomResource {
      * suffixed strings (&#34;1h&#34;) or an integer number of seconds. Defaults to the system/engine max TTL time.
      * 
      */
-    @Export(name="maxTtl", type=String.class, parameters={})
+    @Export(name="maxTtl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> maxTtl;
 
     /**
@@ -171,7 +171,7 @@ public class BackendRole extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -188,7 +188,7 @@ public class BackendRole extends com.pulumi.resources.CustomResource {
      * Name of the Azure role
      * 
      */
-    @Export(name="role", type=String.class, parameters={})
+    @Export(name="role", refs={String.class}, tree="[0]")
     private Output<String> role;
 
     /**
@@ -203,7 +203,7 @@ public class BackendRole extends com.pulumi.resources.CustomResource {
      * Accepts time suffixed strings (&#34;1h&#34;) or an integer number of seconds. Defaults to the system/engine default TTL time.
      * 
      */
-    @Export(name="ttl", type=String.class, parameters={})
+    @Export(name="ttl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> ttl;
 
     /**

@@ -142,6 +142,17 @@ Object.defineProperty(exports, "authLoginRadius", {
 });
 
 /**
+ * Login to vault using
+ */
+export declare const authLoginTokenFile: outputs.config.AuthLoginTokenFile | undefined;
+Object.defineProperty(exports, "authLoginTokenFile", {
+    get() {
+        return __config.getObject<outputs.config.AuthLoginTokenFile>("authLoginTokenFile");
+    },
+    enumerable: true,
+});
+
+/**
  * Login to vault using the userpass method
  */
 export declare const authLoginUserpass: outputs.config.AuthLoginUserpass | undefined;

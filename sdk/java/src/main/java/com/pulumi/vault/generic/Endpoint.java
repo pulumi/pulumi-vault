@@ -112,7 +112,7 @@ public class Endpoint extends com.pulumi.resources.CustomResource {
      * written to the given path as the secret data.
      * 
      */
-    @Export(name="dataJson", type=String.class, parameters={})
+    @Export(name="dataJson", refs={String.class}, tree="[0]")
     private Output<String> dataJson;
 
     /**
@@ -127,7 +127,7 @@ public class Endpoint extends com.pulumi.resources.CustomResource {
      * Don&#39;t attempt to delete the path from Vault if true
      * 
      */
-    @Export(name="disableDelete", type=Boolean.class, parameters={})
+    @Export(name="disableDelete", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> disableDelete;
 
     /**
@@ -145,7 +145,7 @@ public class Endpoint extends com.pulumi.resources.CustomResource {
      * write-only. Defaults to false.
      * 
      */
-    @Export(name="disableRead", type=Boolean.class, parameters={})
+    @Export(name="disableRead", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> disableRead;
 
     /**
@@ -163,7 +163,7 @@ public class Endpoint extends com.pulumi.resources.CustomResource {
      * When reading, disregard fields not present in data_json
      * 
      */
-    @Export(name="ignoreAbsentFields", type=Boolean.class, parameters={})
+    @Export(name="ignoreAbsentFields", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> ignoreAbsentFields;
 
     /**
@@ -180,7 +180,7 @@ public class Endpoint extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -200,7 +200,7 @@ public class Endpoint extends com.pulumi.resources.CustomResource {
      * `DELETE` and `GET`.
      * 
      */
-    @Export(name="path", type=String.class, parameters={})
+    @Export(name="path", refs={String.class}, tree="[0]")
     private Output<String> path;
 
     /**
@@ -217,7 +217,7 @@ public class Endpoint extends com.pulumi.resources.CustomResource {
      * Map of strings returned by write operation
      * 
      */
-    @Export(name="writeData", type=Map.class, parameters={String.class, String.class})
+    @Export(name="writeData", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output<Map<String,String>> writeData;
 
     /**
@@ -231,7 +231,7 @@ public class Endpoint extends com.pulumi.resources.CustomResource {
      * JSON data returned by write operation
      * 
      */
-    @Export(name="writeDataJson", type=String.class, parameters={})
+    @Export(name="writeDataJson", refs={String.class}, tree="[0]")
     private Output<String> writeDataJson;
 
     /**
@@ -245,7 +245,7 @@ public class Endpoint extends com.pulumi.resources.CustomResource {
      * Top-level fields returned by write to persist in state
      * 
      */
-    @Export(name="writeFields", type=List.class, parameters={String.class})
+    @Export(name="writeFields", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> writeFields;
 
     /**

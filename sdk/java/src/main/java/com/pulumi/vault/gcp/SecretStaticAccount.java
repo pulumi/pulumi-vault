@@ -89,7 +89,7 @@ public class SecretStaticAccount extends com.pulumi.resources.CustomResource {
      * Path where the GCP Secrets Engine is mounted
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output<String> backend;
 
     /**
@@ -103,7 +103,7 @@ public class SecretStaticAccount extends com.pulumi.resources.CustomResource {
      * Bindings to create for this static account. This can be specified multiple times for multiple bindings. Structure is documented below.
      * 
      */
-    @Export(name="bindings", type=List.class, parameters={SecretStaticAccountBinding.class})
+    @Export(name="bindings", refs={List.class,SecretStaticAccountBinding.class}, tree="[0,1]")
     private Output</* @Nullable */ List<SecretStaticAccountBinding>> bindings;
 
     /**
@@ -120,7 +120,7 @@ public class SecretStaticAccount extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -137,7 +137,7 @@ public class SecretStaticAccount extends com.pulumi.resources.CustomResource {
      * Type of secret generated for this static account. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
      * 
      */
-    @Export(name="secretType", type=String.class, parameters={})
+    @Export(name="secretType", refs={String.class}, tree="[0]")
     private Output<String> secretType;
 
     /**
@@ -151,7 +151,7 @@ public class SecretStaticAccount extends com.pulumi.resources.CustomResource {
      * Email of the GCP service account to manage.
      * 
      */
-    @Export(name="serviceAccountEmail", type=String.class, parameters={})
+    @Export(name="serviceAccountEmail", refs={String.class}, tree="[0]")
     private Output<String> serviceAccountEmail;
 
     /**
@@ -165,7 +165,7 @@ public class SecretStaticAccount extends com.pulumi.resources.CustomResource {
      * Project the service account belongs to.
      * 
      */
-    @Export(name="serviceAccountProject", type=String.class, parameters={})
+    @Export(name="serviceAccountProject", refs={String.class}, tree="[0]")
     private Output<String> serviceAccountProject;
 
     /**
@@ -179,7 +179,7 @@ public class SecretStaticAccount extends com.pulumi.resources.CustomResource {
      * Name of the Static Account to create
      * 
      */
-    @Export(name="staticAccount", type=String.class, parameters={})
+    @Export(name="staticAccount", refs={String.class}, tree="[0]")
     private Output<String> staticAccount;
 
     /**
@@ -193,7 +193,7 @@ public class SecretStaticAccount extends com.pulumi.resources.CustomResource {
      * List of OAuth scopes to assign to `access_token` secrets generated under this static account (`access_token` static accounts only).
      * 
      */
-    @Export(name="tokenScopes", type=List.class, parameters={String.class})
+    @Export(name="tokenScopes", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tokenScopes;
 
     /**

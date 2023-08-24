@@ -70,6 +70,11 @@ authLoginRadius: Optional[str]
 Login to vault using the radius method
 """
 
+authLoginTokenFile: Optional[str]
+"""
+Login to vault using
+"""
+
 authLoginUserpass: Optional[str]
 """
 Login to vault using the userpass method

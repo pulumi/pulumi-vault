@@ -71,7 +71,7 @@ public class NomadSecretBackend extends com.pulumi.resources.CustomResource {
      * as &#34;protocol://host:port&#34; like &#34;http://127.0.0.1:4646&#34;.
      * 
      */
-    @Export(name="address", type=String.class, parameters={})
+    @Export(name="address", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> address;
 
     /**
@@ -87,7 +87,7 @@ public class NomadSecretBackend extends com.pulumi.resources.CustomResource {
      * not begin or end with a `/`. Defaults to `nomad`.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backend;
 
     /**
@@ -103,7 +103,7 @@ public class NomadSecretBackend extends com.pulumi.resources.CustomResource {
      * x509 PEM encoded.
      * 
      */
-    @Export(name="caCert", type=String.class, parameters={})
+    @Export(name="caCert", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> caCert;
 
     /**
@@ -118,7 +118,7 @@ public class NomadSecretBackend extends com.pulumi.resources.CustomResource {
      * Client certificate to provide to the Nomad server, must be x509 PEM encoded.
      * 
      */
-    @Export(name="clientCert", type=String.class, parameters={})
+    @Export(name="clientCert", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientCert;
 
     /**
@@ -132,7 +132,7 @@ public class NomadSecretBackend extends com.pulumi.resources.CustomResource {
      * Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
      * 
      */
-    @Export(name="clientKey", type=String.class, parameters={})
+    @Export(name="clientKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientKey;
 
     /**
@@ -146,7 +146,7 @@ public class NomadSecretBackend extends com.pulumi.resources.CustomResource {
      * Default lease duration for secrets in seconds.
      * 
      */
-    @Export(name="defaultLeaseTtlSeconds", type=Integer.class, parameters={})
+    @Export(name="defaultLeaseTtlSeconds", refs={Integer.class}, tree="[0]")
     private Output<Integer> defaultLeaseTtlSeconds;
 
     /**
@@ -160,7 +160,7 @@ public class NomadSecretBackend extends com.pulumi.resources.CustomResource {
      * Human-friendly description of the mount for the Active Directory backend.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -175,7 +175,7 @@ public class NomadSecretBackend extends com.pulumi.resources.CustomResource {
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      * 
      */
-    @Export(name="disableRemount", type=Boolean.class, parameters={})
+    @Export(name="disableRemount", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> disableRemount;
 
     /**
@@ -191,7 +191,7 @@ public class NomadSecretBackend extends com.pulumi.resources.CustomResource {
      * replication.Tolerance duration to use when checking the last rotation time.
      * 
      */
-    @Export(name="local", type=Boolean.class, parameters={})
+    @Export(name="local", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> local;
 
     /**
@@ -206,7 +206,7 @@ public class NomadSecretBackend extends com.pulumi.resources.CustomResource {
      * Maximum possible lease duration for secrets in seconds.
      * 
      */
-    @Export(name="maxLeaseTtlSeconds", type=Integer.class, parameters={})
+    @Export(name="maxLeaseTtlSeconds", refs={Integer.class}, tree="[0]")
     private Output<Integer> maxLeaseTtlSeconds;
 
     /**
@@ -222,7 +222,7 @@ public class NomadSecretBackend extends com.pulumi.resources.CustomResource {
      * by the Nomad version.
      * 
      */
-    @Export(name="maxTokenNameLength", type=Integer.class, parameters={})
+    @Export(name="maxTokenNameLength", refs={Integer.class}, tree="[0]")
     private Output<Integer> maxTokenNameLength;
 
     /**
@@ -238,7 +238,7 @@ public class NomadSecretBackend extends com.pulumi.resources.CustomResource {
      * Maximum possible lease duration for secrets in seconds.
      * 
      */
-    @Export(name="maxTtl", type=Integer.class, parameters={})
+    @Export(name="maxTtl", refs={Integer.class}, tree="[0]")
     private Output<Integer> maxTtl;
 
     /**
@@ -255,7 +255,7 @@ public class NomadSecretBackend extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -272,7 +272,7 @@ public class NomadSecretBackend extends com.pulumi.resources.CustomResource {
      * Specifies the Nomad Management token to use.
      * 
      */
-    @Export(name="token", type=String.class, parameters={})
+    @Export(name="token", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> token;
 
     /**
@@ -286,7 +286,7 @@ public class NomadSecretBackend extends com.pulumi.resources.CustomResource {
      * Specifies the ttl of the lease for the generated token.
      * 
      */
-    @Export(name="ttl", type=Integer.class, parameters={})
+    @Export(name="ttl", refs={Integer.class}, tree="[0]")
     private Output<Integer> ttl;
 
     /**

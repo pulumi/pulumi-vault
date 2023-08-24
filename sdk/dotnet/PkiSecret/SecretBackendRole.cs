@@ -137,6 +137,12 @@ namespace Pulumi.Vault.PkiSecret
         public Output<bool> AllowedUriSansTemplate { get; private set; } = null!;
 
         /// <summary>
+        /// Defines allowed User IDs
+        /// </summary>
+        [Output("allowedUserIds")]
+        public Output<ImmutableArray<string>> AllowedUserIds { get; private set; } = null!;
+
+        /// <summary>
         /// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         /// </summary>
         [Output("backend")]
@@ -470,6 +476,18 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("allowedUriSansTemplate")]
         public Input<bool>? AllowedUriSansTemplate { get; set; }
+
+        [Input("allowedUserIds")]
+        private InputList<string>? _allowedUserIds;
+
+        /// <summary>
+        /// Defines allowed User IDs
+        /// </summary>
+        public InputList<string> AllowedUserIds
+        {
+            get => _allowedUserIds ?? (_allowedUserIds = new InputList<string>());
+            set => _allowedUserIds = value;
+        }
 
         /// <summary>
         /// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
@@ -827,6 +845,18 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("allowedUriSansTemplate")]
         public Input<bool>? AllowedUriSansTemplate { get; set; }
+
+        [Input("allowedUserIds")]
+        private InputList<string>? _allowedUserIds;
+
+        /// <summary>
+        /// Defines allowed User IDs
+        /// </summary>
+        public InputList<string> AllowedUserIds
+        {
+            get => _allowedUserIds ?? (_allowedUserIds = new InputList<string>());
+            set => _allowedUserIds = value;
+        }
 
         /// <summary>
         /// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.

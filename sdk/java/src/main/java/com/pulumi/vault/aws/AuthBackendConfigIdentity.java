@@ -75,7 +75,7 @@ public class AuthBackendConfigIdentity extends com.pulumi.resources.CustomResour
      * Unique name of the auth backend to configure.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backend;
 
     /**
@@ -90,7 +90,7 @@ public class AuthBackendConfigIdentity extends com.pulumi.resources.CustomResour
      * `role_id`, `instance_id`, and `image_id`. Defaults to `role_id`
      * 
      */
-    @Export(name="ec2Alias", type=String.class, parameters={})
+    @Export(name="ec2Alias", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> ec2Alias;
 
     /**
@@ -106,7 +106,7 @@ public class AuthBackendConfigIdentity extends com.pulumi.resources.CustomResour
      * added to both audit logs, and on the `ec2_alias`
      * 
      */
-    @Export(name="ec2Metadatas", type=List.class, parameters={String.class})
+    @Export(name="ec2Metadatas", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> ec2Metadatas;
 
     /**
@@ -122,7 +122,7 @@ public class AuthBackendConfigIdentity extends com.pulumi.resources.CustomResour
      * `role_id`, `unique_id`, and `full_arn`. Defaults to `role_id`
      * 
      */
-    @Export(name="iamAlias", type=String.class, parameters={})
+    @Export(name="iamAlias", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> iamAlias;
 
     /**
@@ -138,7 +138,7 @@ public class AuthBackendConfigIdentity extends com.pulumi.resources.CustomResour
      * added to both audit logs, and on the `iam_alias`
      * 
      */
-    @Export(name="iamMetadatas", type=List.class, parameters={String.class})
+    @Export(name="iamMetadatas", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> iamMetadatas;
 
     /**
@@ -148,6 +148,26 @@ public class AuthBackendConfigIdentity extends com.pulumi.resources.CustomResour
      */
     public Output<Optional<List<String>>> iamMetadatas() {
         return Codegen.optional(this.iamMetadatas);
+    }
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="namespace", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> namespace() {
+        return Codegen.optional(this.namespace);
     }
 
     /**

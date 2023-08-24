@@ -69,7 +69,7 @@ public class Namespace extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -86,7 +86,7 @@ public class Namespace extends com.pulumi.resources.CustomResource {
      * Vault server&#39;s internal ID of the namespace.
      * 
      */
-    @Export(name="namespaceId", type=String.class, parameters={})
+    @Export(name="namespaceId", refs={String.class}, tree="[0]")
     private Output<String> namespaceId;
 
     /**
@@ -100,7 +100,7 @@ public class Namespace extends com.pulumi.resources.CustomResource {
      * The path of the namespace. Must not have a trailing `/`.
      * 
      */
-    @Export(name="path", type=String.class, parameters={})
+    @Export(name="path", refs={String.class}, tree="[0]")
     private Output<String> path;
 
     /**
@@ -115,7 +115,7 @@ public class Namespace extends com.pulumi.resources.CustomResource {
      * The path is relative to the provider&#39;s `namespace` argument.
      * 
      */
-    @Export(name="pathFq", type=String.class, parameters={})
+    @Export(name="pathFq", refs={String.class}, tree="[0]")
     private Output<String> pathFq;
 
     /**

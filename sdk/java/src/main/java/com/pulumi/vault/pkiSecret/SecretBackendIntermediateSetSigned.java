@@ -114,7 +114,7 @@ public class SecretBackendIntermediateSetSigned extends com.pulumi.resources.Cus
      * The PKI secret backend the resource belongs to.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output<String> backend;
 
     /**
@@ -130,7 +130,7 @@ public class SecretBackendIntermediateSetSigned extends com.pulumi.resources.Cus
      * issue and sign operations.
      * 
      */
-    @Export(name="certificate", type=String.class, parameters={})
+    @Export(name="certificate", refs={String.class}, tree="[0]")
     private Output<String> certificate;
 
     /**
@@ -147,7 +147,7 @@ public class SecretBackendIntermediateSetSigned extends com.pulumi.resources.Cus
      * this request.
      * 
      */
-    @Export(name="importedIssuers", type=List.class, parameters={String.class})
+    @Export(name="importedIssuers", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> importedIssuers;
 
     /**
@@ -162,7 +162,7 @@ public class SecretBackendIntermediateSetSigned extends com.pulumi.resources.Cus
      * The imported keys indicating which keys were created as part of this request.
      * 
      */
-    @Export(name="importedKeys", type=List.class, parameters={String.class})
+    @Export(name="importedKeys", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> importedKeys;
 
     /**
@@ -179,7 +179,7 @@ public class SecretBackendIntermediateSetSigned extends com.pulumi.resources.Cus
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**

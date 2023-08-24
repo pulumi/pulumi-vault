@@ -84,7 +84,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * Unique name of the auth backend to configure.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backend;
 
     /**
@@ -100,7 +100,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * ID specified by this field.
      * 
      */
-    @Export(name="boundGroupIds", type=List.class, parameters={String.class})
+    @Export(name="boundGroupIds", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> boundGroupIds;
 
     /**
@@ -118,7 +118,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * document must match the one specified by this field.
      * 
      */
-    @Export(name="boundLocations", type=List.class, parameters={String.class})
+    @Export(name="boundLocations", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> boundLocations;
 
     /**
@@ -136,7 +136,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * the resource group that matches the value specified by this field.
      * 
      */
-    @Export(name="boundResourceGroups", type=List.class, parameters={String.class})
+    @Export(name="boundResourceGroups", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> boundResourceGroups;
 
     /**
@@ -154,7 +154,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * specified by this field.
      * 
      */
-    @Export(name="boundScaleSets", type=List.class, parameters={String.class})
+    @Export(name="boundScaleSets", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> boundScaleSets;
 
     /**
@@ -172,7 +172,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * the ids specified by this field.
      * 
      */
-    @Export(name="boundServicePrincipalIds", type=List.class, parameters={String.class})
+    @Export(name="boundServicePrincipalIds", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> boundServicePrincipalIds;
 
     /**
@@ -190,7 +190,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * field.
      * 
      */
-    @Export(name="boundSubscriptionIds", type=List.class, parameters={String.class})
+    @Export(name="boundSubscriptionIds", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> boundSubscriptionIds;
 
     /**
@@ -209,7 +209,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -226,7 +226,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * The name of the role.
      * 
      */
-    @Export(name="role", type=String.class, parameters={})
+    @Export(name="role", refs={String.class}, tree="[0]")
     private Output<String> role;
 
     /**
@@ -242,7 +242,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * as well.
      * 
      */
-    @Export(name="tokenBoundCidrs", type=List.class, parameters={String.class})
+    @Export(name="tokenBoundCidrs", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tokenBoundCidrs;
 
     /**
@@ -261,7 +261,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * `token_max_ttl` would otherwise allow a renewal.
      * 
      */
-    @Export(name="tokenExplicitMaxTtl", type=Integer.class, parameters={})
+    @Export(name="tokenExplicitMaxTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenExplicitMaxTtl;
 
     /**
@@ -279,7 +279,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * Its current value will be referenced at renewal time.
      * 
      */
-    @Export(name="tokenMaxTtl", type=Integer.class, parameters={})
+    @Export(name="tokenMaxTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenMaxTtl;
 
     /**
@@ -295,7 +295,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * generated tokens; otherwise it will be added to the policies set in token_policies.
      * 
      */
-    @Export(name="tokenNoDefaultPolicy", type=Boolean.class, parameters={})
+    @Export(name="tokenNoDefaultPolicy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> tokenNoDefaultPolicy;
 
     /**
@@ -311,7 +311,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * of times a generated token may be used (within its lifetime); 0 means unlimited.
      * 
      */
-    @Export(name="tokenNumUses", type=Integer.class, parameters={})
+    @Export(name="tokenNumUses", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenNumUses;
 
     /**
@@ -329,7 +329,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * value of this field. Specified in seconds.
      * 
      */
-    @Export(name="tokenPeriod", type=Integer.class, parameters={})
+    @Export(name="tokenPeriod", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenPeriod;
 
     /**
@@ -347,7 +347,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * on the auth method, this list may be supplemented by user/group/other values.
      * 
      */
-    @Export(name="tokenPolicies", type=List.class, parameters={String.class})
+    @Export(name="tokenPolicies", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tokenPolicies;
 
     /**
@@ -363,7 +363,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * Its current value will be referenced at renewal time.
      * 
      */
-    @Export(name="tokenTtl", type=Integer.class, parameters={})
+    @Export(name="tokenTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenTtl;
 
     /**
@@ -382,7 +382,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * requests a different type at generation time.
      * 
      */
-    @Export(name="tokenType", type=String.class, parameters={})
+    @Export(name="tokenType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tokenType;
 
     /**

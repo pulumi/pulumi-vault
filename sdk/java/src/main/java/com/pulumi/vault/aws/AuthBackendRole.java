@@ -92,7 +92,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * the underlying instance where the client resides.
      * 
      */
-    @Export(name="allowInstanceMigration", type=Boolean.class, parameters={})
+    @Export(name="allowInstanceMigration", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> allowInstanceMigration;
 
     /**
@@ -108,7 +108,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * are `ec2` and `iam`. Defaults to `iam`.
      * 
      */
-    @Export(name="authType", type=String.class, parameters={})
+    @Export(name="authType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> authType;
 
     /**
@@ -123,7 +123,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * Unique name of the auth backend to configure.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backend;
 
     /**
@@ -140,7 +140,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
      * 
      */
-    @Export(name="boundAccountIds", type=List.class, parameters={String.class})
+    @Export(name="boundAccountIds", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> boundAccountIds;
 
     /**
@@ -160,7 +160,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
      * 
      */
-    @Export(name="boundAmiIds", type=List.class, parameters={String.class})
+    @Export(name="boundAmiIds", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> boundAmiIds;
 
     /**
@@ -177,7 +177,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * Only EC2 instances that match this instance ID will be permitted to log in.
      * 
      */
-    @Export(name="boundEc2InstanceIds", type=List.class, parameters={String.class})
+    @Export(name="boundEc2InstanceIds", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> boundEc2InstanceIds;
 
     /**
@@ -196,7 +196,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
      * 
      */
-    @Export(name="boundIamInstanceProfileArns", type=List.class, parameters={String.class})
+    @Export(name="boundIamInstanceProfileArns", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> boundIamInstanceProfileArns;
 
     /**
@@ -217,7 +217,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * supported at the end of the ARN.
      * 
      */
-    @Export(name="boundIamPrincipalArns", type=List.class, parameters={String.class})
+    @Export(name="boundIamPrincipalArns", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> boundIamPrincipalArns;
 
     /**
@@ -236,7 +236,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
      * 
      */
-    @Export(name="boundIamRoleArns", type=List.class, parameters={String.class})
+    @Export(name="boundIamRoleArns", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> boundIamRoleArns;
 
     /**
@@ -257,7 +257,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * constraint.
      * 
      */
-    @Export(name="boundRegions", type=List.class, parameters={String.class})
+    @Export(name="boundRegions", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> boundRegions;
 
     /**
@@ -279,7 +279,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * to use this constraint.
      * 
      */
-    @Export(name="boundSubnetIds", type=List.class, parameters={String.class})
+    @Export(name="boundSubnetIds", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> boundSubnetIds;
 
     /**
@@ -301,7 +301,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * constraint.
      * 
      */
-    @Export(name="boundVpcIds", type=List.class, parameters={String.class})
+    @Export(name="boundVpcIds", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> boundVpcIds;
 
     /**
@@ -321,7 +321,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * `auth_type` is set to `ec2`.
      * 
      */
-    @Export(name="disallowReauthentication", type=Boolean.class, parameters={})
+    @Export(name="disallowReauthentication", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> disallowReauthentication;
 
     /**
@@ -340,7 +340,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * `iam`.
      * 
      */
-    @Export(name="inferredAwsRegion", type=String.class, parameters={})
+    @Export(name="inferredAwsRegion", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> inferredAwsRegion;
 
     /**
@@ -360,7 +360,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * This only applies when `auth_type` is set to `iam`.
      * 
      */
-    @Export(name="inferredEntityType", type=String.class, parameters={})
+    @Export(name="inferredEntityType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> inferredEntityType;
 
     /**
@@ -380,7 +380,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -407,7 +407,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * Once set to `true`, this cannot be changed to `false` without recreating the role.
      * 
      */
-    @Export(name="resolveAwsUniqueIds", type=Boolean.class, parameters={})
+    @Export(name="resolveAwsUniqueIds", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> resolveAwsUniqueIds;
 
     /**
@@ -431,7 +431,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * The name of the role.
      * 
      */
-    @Export(name="role", type=String.class, parameters={})
+    @Export(name="role", refs={String.class}, tree="[0]")
     private Output<String> role;
 
     /**
@@ -445,7 +445,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * The Vault generated role ID.
      * 
      */
-    @Export(name="roleId", type=String.class, parameters={})
+    @Export(name="roleId", refs={String.class}, tree="[0]")
     private Output<String> roleId;
 
     /**
@@ -462,7 +462,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * to use this constraint.
      * 
      */
-    @Export(name="roleTag", type=String.class, parameters={})
+    @Export(name="roleTag", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> roleTag;
 
     /**
@@ -481,7 +481,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * as well.
      * 
      */
-    @Export(name="tokenBoundCidrs", type=List.class, parameters={String.class})
+    @Export(name="tokenBoundCidrs", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tokenBoundCidrs;
 
     /**
@@ -500,7 +500,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * `token_max_ttl` would otherwise allow a renewal.
      * 
      */
-    @Export(name="tokenExplicitMaxTtl", type=Integer.class, parameters={})
+    @Export(name="tokenExplicitMaxTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenExplicitMaxTtl;
 
     /**
@@ -518,7 +518,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * Its current value will be referenced at renewal time.
      * 
      */
-    @Export(name="tokenMaxTtl", type=Integer.class, parameters={})
+    @Export(name="tokenMaxTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenMaxTtl;
 
     /**
@@ -534,7 +534,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * generated tokens; otherwise it will be added to the policies set in token_policies.
      * 
      */
-    @Export(name="tokenNoDefaultPolicy", type=Boolean.class, parameters={})
+    @Export(name="tokenNoDefaultPolicy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> tokenNoDefaultPolicy;
 
     /**
@@ -550,7 +550,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * of times a generated token may be used (within its lifetime); 0 means unlimited.
      * 
      */
-    @Export(name="tokenNumUses", type=Integer.class, parameters={})
+    @Export(name="tokenNumUses", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenNumUses;
 
     /**
@@ -568,7 +568,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * value of this field. Specified in seconds.
      * 
      */
-    @Export(name="tokenPeriod", type=Integer.class, parameters={})
+    @Export(name="tokenPeriod", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenPeriod;
 
     /**
@@ -586,7 +586,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * on the auth method, this list may be supplemented by user/group/other values.
      * 
      */
-    @Export(name="tokenPolicies", type=List.class, parameters={String.class})
+    @Export(name="tokenPolicies", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tokenPolicies;
 
     /**
@@ -602,7 +602,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * Its current value will be referenced at renewal time.
      * 
      */
-    @Export(name="tokenTtl", type=Integer.class, parameters={})
+    @Export(name="tokenTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenTtl;
 
     /**
@@ -621,7 +621,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * requests a different type at generation time.
      * 
      */
-    @Export(name="tokenType", type=String.class, parameters={})
+    @Export(name="tokenType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tokenType;
 
     /**

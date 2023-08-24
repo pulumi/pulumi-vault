@@ -84,7 +84,7 @@ public class SecretRoleset extends com.pulumi.resources.CustomResource {
      * Path where the GCP Secrets Engine is mounted
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output<String> backend;
 
     /**
@@ -98,7 +98,7 @@ public class SecretRoleset extends com.pulumi.resources.CustomResource {
      * Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
      * 
      */
-    @Export(name="bindings", type=List.class, parameters={SecretRolesetBinding.class})
+    @Export(name="bindings", refs={List.class,SecretRolesetBinding.class}, tree="[0,1]")
     private Output<List<SecretRolesetBinding>> bindings;
 
     /**
@@ -115,7 +115,7 @@ public class SecretRoleset extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -132,7 +132,7 @@ public class SecretRoleset extends com.pulumi.resources.CustomResource {
      * Name of the GCP project that this roleset&#39;s service account will belong to.
      * 
      */
-    @Export(name="project", type=String.class, parameters={})
+    @Export(name="project", refs={String.class}, tree="[0]")
     private Output<String> project;
 
     /**
@@ -146,7 +146,7 @@ public class SecretRoleset extends com.pulumi.resources.CustomResource {
      * Name of the Roleset to create
      * 
      */
-    @Export(name="roleset", type=String.class, parameters={})
+    @Export(name="roleset", refs={String.class}, tree="[0]")
     private Output<String> roleset;
 
     /**
@@ -160,7 +160,7 @@ public class SecretRoleset extends com.pulumi.resources.CustomResource {
      * Type of secret generated for this role set. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
      * 
      */
-    @Export(name="secretType", type=String.class, parameters={})
+    @Export(name="secretType", refs={String.class}, tree="[0]")
     private Output<String> secretType;
 
     /**
@@ -174,7 +174,7 @@ public class SecretRoleset extends com.pulumi.resources.CustomResource {
      * Email of the service account created by Vault for this Roleset
      * 
      */
-    @Export(name="serviceAccountEmail", type=String.class, parameters={})
+    @Export(name="serviceAccountEmail", refs={String.class}, tree="[0]")
     private Output<String> serviceAccountEmail;
 
     /**
@@ -188,7 +188,7 @@ public class SecretRoleset extends com.pulumi.resources.CustomResource {
      * List of OAuth scopes to assign to `access_token` secrets generated under this role set (`access_token` role sets only).
      * 
      */
-    @Export(name="tokenScopes", type=List.class, parameters={String.class})
+    @Export(name="tokenScopes", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tokenScopes;
 
     /**

@@ -86,6 +86,13 @@ export class AuthBackendConfigIdentity extends pulumi.CustomResource {
      * added to both audit logs, and on the `iamAlias`
      */
     public readonly iamMetadatas!: pulumi.Output<string[] | undefined>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
 
     /**
      * Create a AuthBackendConfigIdentity resource with the given unique name, arguments, and options.
@@ -105,6 +112,7 @@ export class AuthBackendConfigIdentity extends pulumi.CustomResource {
             resourceInputs["ec2Metadatas"] = state ? state.ec2Metadatas : undefined;
             resourceInputs["iamAlias"] = state ? state.iamAlias : undefined;
             resourceInputs["iamMetadatas"] = state ? state.iamMetadatas : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
         } else {
             const args = argsOrState as AuthBackendConfigIdentityArgs | undefined;
             resourceInputs["backend"] = args ? args.backend : undefined;
@@ -112,6 +120,7 @@ export class AuthBackendConfigIdentity extends pulumi.CustomResource {
             resourceInputs["ec2Metadatas"] = args ? args.ec2Metadatas : undefined;
             resourceInputs["iamAlias"] = args ? args.iamAlias : undefined;
             resourceInputs["iamMetadatas"] = args ? args.iamMetadatas : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AuthBackendConfigIdentity.__pulumiType, name, resourceInputs, opts);
@@ -146,6 +155,13 @@ export interface AuthBackendConfigIdentityState {
      * added to both audit logs, and on the `iamAlias`
      */
     iamMetadatas?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
 }
 
 /**
@@ -176,4 +192,11 @@ export interface AuthBackendConfigIdentityArgs {
      * added to both audit logs, and on the `iamAlias`
      */
     iamMetadatas?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
 }

@@ -18,7 +18,8 @@ class AuthBackendConfigIdentityArgs:
                  ec2_alias: Optional[pulumi.Input[str]] = None,
                  ec2_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  iam_alias: Optional[pulumi.Input[str]] = None,
-                 iam_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+                 iam_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AuthBackendConfigIdentity resource.
         :param pulumi.Input[str] backend: Unique name of the auth backend to configure.
@@ -30,6 +31,10 @@ class AuthBackendConfigIdentityArgs:
                `role_id`, `unique_id`, and `full_arn`. Defaults to `role_id`
         :param pulumi.Input[Sequence[pulumi.Input[str]]] iam_metadatas: The metadata to include on the token returned by the `login` endpoint. This metadata will be
                added to both audit logs, and on the `iam_alias`
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
@@ -41,6 +46,8 @@ class AuthBackendConfigIdentityArgs:
             pulumi.set(__self__, "iam_alias", iam_alias)
         if iam_metadatas is not None:
             pulumi.set(__self__, "iam_metadatas", iam_metadatas)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter
@@ -106,6 +113,21 @@ class AuthBackendConfigIdentityArgs:
     def iam_metadatas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "iam_metadatas", value)
 
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
 
 @pulumi.input_type
 class _AuthBackendConfigIdentityState:
@@ -114,7 +136,8 @@ class _AuthBackendConfigIdentityState:
                  ec2_alias: Optional[pulumi.Input[str]] = None,
                  ec2_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  iam_alias: Optional[pulumi.Input[str]] = None,
-                 iam_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+                 iam_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendConfigIdentity resources.
         :param pulumi.Input[str] backend: Unique name of the auth backend to configure.
@@ -126,6 +149,10 @@ class _AuthBackendConfigIdentityState:
                `role_id`, `unique_id`, and `full_arn`. Defaults to `role_id`
         :param pulumi.Input[Sequence[pulumi.Input[str]]] iam_metadatas: The metadata to include on the token returned by the `login` endpoint. This metadata will be
                added to both audit logs, and on the `iam_alias`
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
@@ -137,6 +164,8 @@ class _AuthBackendConfigIdentityState:
             pulumi.set(__self__, "iam_alias", iam_alias)
         if iam_metadatas is not None:
             pulumi.set(__self__, "iam_metadatas", iam_metadatas)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter
@@ -201,6 +230,21 @@ class _AuthBackendConfigIdentityState:
     @iam_metadatas.setter
     def iam_metadatas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "iam_metadatas", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
 
 class AuthBackendConfigIdentity(pulumi.CustomResource):
@@ -213,6 +257,7 @@ class AuthBackendConfigIdentity(pulumi.CustomResource):
                  ec2_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  iam_alias: Optional[pulumi.Input[str]] = None,
                  iam_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Manages an AWS auth backend identity configuration in a Vault server. This configuration defines how Vault interacts
@@ -254,6 +299,10 @@ class AuthBackendConfigIdentity(pulumi.CustomResource):
                `role_id`, `unique_id`, and `full_arn`. Defaults to `role_id`
         :param pulumi.Input[Sequence[pulumi.Input[str]]] iam_metadatas: The metadata to include on the token returned by the `login` endpoint. This metadata will be
                added to both audit logs, and on the `iam_alias`
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         ...
     @overload
@@ -310,6 +359,7 @@ class AuthBackendConfigIdentity(pulumi.CustomResource):
                  ec2_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  iam_alias: Optional[pulumi.Input[str]] = None,
                  iam_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -324,6 +374,7 @@ class AuthBackendConfigIdentity(pulumi.CustomResource):
             __props__.__dict__["ec2_metadatas"] = ec2_metadatas
             __props__.__dict__["iam_alias"] = iam_alias
             __props__.__dict__["iam_metadatas"] = iam_metadatas
+            __props__.__dict__["namespace"] = namespace
         super(AuthBackendConfigIdentity, __self__).__init__(
             'vault:aws/authBackendConfigIdentity:AuthBackendConfigIdentity',
             resource_name,
@@ -338,7 +389,8 @@ class AuthBackendConfigIdentity(pulumi.CustomResource):
             ec2_alias: Optional[pulumi.Input[str]] = None,
             ec2_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             iam_alias: Optional[pulumi.Input[str]] = None,
-            iam_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'AuthBackendConfigIdentity':
+            iam_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            namespace: Optional[pulumi.Input[str]] = None) -> 'AuthBackendConfigIdentity':
         """
         Get an existing AuthBackendConfigIdentity resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -355,6 +407,10 @@ class AuthBackendConfigIdentity(pulumi.CustomResource):
                `role_id`, `unique_id`, and `full_arn`. Defaults to `role_id`
         :param pulumi.Input[Sequence[pulumi.Input[str]]] iam_metadatas: The metadata to include on the token returned by the `login` endpoint. This metadata will be
                added to both audit logs, and on the `iam_alias`
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -365,6 +421,7 @@ class AuthBackendConfigIdentity(pulumi.CustomResource):
         __props__.__dict__["ec2_metadatas"] = ec2_metadatas
         __props__.__dict__["iam_alias"] = iam_alias
         __props__.__dict__["iam_metadatas"] = iam_metadatas
+        __props__.__dict__["namespace"] = namespace
         return AuthBackendConfigIdentity(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -410,4 +467,15 @@ class AuthBackendConfigIdentity(pulumi.CustomResource):
         added to both audit logs, and on the `iam_alias`
         """
         return pulumi.get(self, "iam_metadatas")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 

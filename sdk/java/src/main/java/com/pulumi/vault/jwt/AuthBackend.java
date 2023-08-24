@@ -157,7 +157,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * The accessor for this auth method
      * 
      */
-    @Export(name="accessor", type=String.class, parameters={})
+    @Export(name="accessor", refs={String.class}, tree="[0]")
     private Output<String> accessor;
 
     /**
@@ -171,7 +171,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * The value against which to match the iss claim in a JWT
      * 
      */
-    @Export(name="boundIssuer", type=String.class, parameters={})
+    @Export(name="boundIssuer", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> boundIssuer;
 
     /**
@@ -185,7 +185,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * The default role to use if none is provided during login
      * 
      */
-    @Export(name="defaultRole", type=String.class, parameters={})
+    @Export(name="defaultRole", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> defaultRole;
 
     /**
@@ -199,7 +199,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * The description of the auth backend
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -214,7 +214,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      * 
      */
-    @Export(name="disableRemount", type=Boolean.class, parameters={})
+    @Export(name="disableRemount", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> disableRemount;
 
     /**
@@ -229,7 +229,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
      * 
      */
-    @Export(name="jwksCaPem", type=String.class, parameters={})
+    @Export(name="jwksCaPem", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> jwksCaPem;
 
     /**
@@ -243,7 +243,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * JWKS URL to use to authenticate signatures. Cannot be used with &#34;oidc_discovery_url&#34; or &#34;jwt_validation_pubkeys&#34;.
      * 
      */
-    @Export(name="jwksUrl", type=String.class, parameters={})
+    @Export(name="jwksUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> jwksUrl;
 
     /**
@@ -257,7 +257,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
      * 
      */
-    @Export(name="jwtSupportedAlgs", type=List.class, parameters={String.class})
+    @Export(name="jwtSupportedAlgs", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> jwtSupportedAlgs;
 
     /**
@@ -271,7 +271,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
      * 
      */
-    @Export(name="jwtValidationPubkeys", type=List.class, parameters={String.class})
+    @Export(name="jwtValidationPubkeys", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> jwtValidationPubkeys;
 
     /**
@@ -285,7 +285,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * Specifies if the auth method is local only.
      * 
      */
-    @Export(name="local", type=Boolean.class, parameters={})
+    @Export(name="local", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> local;
 
     /**
@@ -302,7 +302,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -319,7 +319,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
      * 
      */
-    @Export(name="namespaceInState", type=Boolean.class, parameters={})
+    @Export(name="namespaceInState", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> namespaceInState;
 
     /**
@@ -333,7 +333,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * Client ID used for OIDC backends
      * 
      */
-    @Export(name="oidcClientId", type=String.class, parameters={})
+    @Export(name="oidcClientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> oidcClientId;
 
     /**
@@ -347,7 +347,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * Client Secret used for OIDC backends
      * 
      */
-    @Export(name="oidcClientSecret", type=String.class, parameters={})
+    @Export(name="oidcClientSecret", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> oidcClientSecret;
 
     /**
@@ -361,7 +361,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
      * 
      */
-    @Export(name="oidcDiscoveryCaPem", type=String.class, parameters={})
+    @Export(name="oidcDiscoveryCaPem", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> oidcDiscoveryCaPem;
 
     /**
@@ -375,7 +375,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
      * 
      */
-    @Export(name="oidcDiscoveryUrl", type=String.class, parameters={})
+    @Export(name="oidcDiscoveryUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> oidcDiscoveryUrl;
 
     /**
@@ -389,7 +389,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * The response mode to be used in the OAuth2 request. Allowed values are `query` and `form_post`. Defaults to `query`. If using Vault namespaces, and `oidc_response_mode` is `form_post`, then `namespace_in_state` should be set to `false`.
      * 
      */
-    @Export(name="oidcResponseMode", type=String.class, parameters={})
+    @Export(name="oidcResponseMode", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> oidcResponseMode;
 
     /**
@@ -403,7 +403,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * List of response types to request. Allowed values are &#39;code&#39; and &#39;id_token&#39;. Defaults to `[&#34;code&#34;]`. Note: `id_token` may only be used if `oidc_response_mode` is set to `form_post`.
      * 
      */
-    @Export(name="oidcResponseTypes", type=List.class, parameters={String.class})
+    @Export(name="oidcResponseTypes", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> oidcResponseTypes;
 
     /**
@@ -417,7 +417,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * Path to mount the JWT/OIDC auth backend
      * 
      */
-    @Export(name="path", type=String.class, parameters={})
+    @Export(name="path", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> path;
 
     /**
@@ -431,7 +431,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
      * 
      */
-    @Export(name="providerConfig", type=Map.class, parameters={String.class, String.class})
+    @Export(name="providerConfig", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> providerConfig;
 
     /**
@@ -441,7 +441,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
     public Output<Optional<Map<String,String>>> providerConfig() {
         return Codegen.optional(this.providerConfig);
     }
-    @Export(name="tune", type=AuthBackendTune.class, parameters={})
+    @Export(name="tune", refs={AuthBackendTune.class}, tree="[0]")
     private Output<AuthBackendTune> tune;
 
     public Output<AuthBackendTune> tune() {
@@ -451,7 +451,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> type;
 
     /**

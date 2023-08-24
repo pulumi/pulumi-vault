@@ -28,6 +28,7 @@ class SecretBackendRoleArgs:
                  allowed_serial_numbers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_uri_sans_template: Optional[pulumi.Input[bool]] = None,
+                 allowed_user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  basic_constraints_valid_for_non_ca: Optional[pulumi.Input[bool]] = None,
                  client_flag: Optional[pulumi.Input[bool]] = None,
                  code_signing_flag: Optional[pulumi.Input[bool]] = None,
@@ -73,6 +74,7 @@ class SecretBackendRoleArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_serial_numbers: An array of allowed serial numbers to put in Subject
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_uri_sans: Defines allowed URI SANs
         :param pulumi.Input[bool] allowed_uri_sans_template: Flag, if set, `allowed_uri_sans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_user_ids: Defines allowed User IDs
         :param pulumi.Input[bool] basic_constraints_valid_for_non_ca: Flag to mark basic constraints valid when issuing non-CA certificates
         :param pulumi.Input[bool] client_flag: Flag to specify certificates for client use
         :param pulumi.Input[bool] code_signing_flag: Flag to specify certificates for code signing use
@@ -137,6 +139,8 @@ class SecretBackendRoleArgs:
             pulumi.set(__self__, "allowed_uri_sans", allowed_uri_sans)
         if allowed_uri_sans_template is not None:
             pulumi.set(__self__, "allowed_uri_sans_template", allowed_uri_sans_template)
+        if allowed_user_ids is not None:
+            pulumi.set(__self__, "allowed_user_ids", allowed_user_ids)
         if basic_constraints_valid_for_non_ca is not None:
             pulumi.set(__self__, "basic_constraints_valid_for_non_ca", basic_constraints_valid_for_non_ca)
         if client_flag is not None:
@@ -363,6 +367,18 @@ class SecretBackendRoleArgs:
     @allowed_uri_sans_template.setter
     def allowed_uri_sans_template(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "allowed_uri_sans_template", value)
+
+    @property
+    @pulumi.getter(name="allowedUserIds")
+    def allowed_user_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Defines allowed User IDs
+        """
+        return pulumi.get(self, "allowed_user_ids")
+
+    @allowed_user_ids.setter
+    def allowed_user_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allowed_user_ids", value)
 
     @property
     @pulumi.getter(name="basicConstraintsValidForNonCa")
@@ -736,6 +752,7 @@ class _SecretBackendRoleState:
                  allowed_serial_numbers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_uri_sans_template: Optional[pulumi.Input[bool]] = None,
+                 allowed_user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  basic_constraints_valid_for_non_ca: Optional[pulumi.Input[bool]] = None,
                  client_flag: Optional[pulumi.Input[bool]] = None,
@@ -781,6 +798,7 @@ class _SecretBackendRoleState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_serial_numbers: An array of allowed serial numbers to put in Subject
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_uri_sans: Defines allowed URI SANs
         :param pulumi.Input[bool] allowed_uri_sans_template: Flag, if set, `allowed_uri_sans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_user_ids: Defines allowed User IDs
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] basic_constraints_valid_for_non_ca: Flag to mark basic constraints valid when issuing non-CA certificates
         :param pulumi.Input[bool] client_flag: Flag to specify certificates for client use
@@ -845,6 +863,8 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "allowed_uri_sans", allowed_uri_sans)
         if allowed_uri_sans_template is not None:
             pulumi.set(__self__, "allowed_uri_sans_template", allowed_uri_sans_template)
+        if allowed_user_ids is not None:
+            pulumi.set(__self__, "allowed_user_ids", allowed_user_ids)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
         if basic_constraints_valid_for_non_ca is not None:
@@ -1061,6 +1081,18 @@ class _SecretBackendRoleState:
     @allowed_uri_sans_template.setter
     def allowed_uri_sans_template(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "allowed_uri_sans_template", value)
+
+    @property
+    @pulumi.getter(name="allowedUserIds")
+    def allowed_user_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Defines allowed User IDs
+        """
+        return pulumi.get(self, "allowed_user_ids")
+
+    @allowed_user_ids.setter
+    def allowed_user_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allowed_user_ids", value)
 
     @property
     @pulumi.getter
@@ -1448,6 +1480,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  allowed_serial_numbers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_uri_sans_template: Optional[pulumi.Input[bool]] = None,
+                 allowed_user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  basic_constraints_valid_for_non_ca: Optional[pulumi.Input[bool]] = None,
                  client_flag: Optional[pulumi.Input[bool]] = None,
@@ -1529,6 +1562,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_serial_numbers: An array of allowed serial numbers to put in Subject
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_uri_sans: Defines allowed URI SANs
         :param pulumi.Input[bool] allowed_uri_sans_template: Flag, if set, `allowed_uri_sans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_user_ids: Defines allowed User IDs
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] basic_constraints_valid_for_non_ca: Flag to mark basic constraints valid when issuing non-CA certificates
         :param pulumi.Input[bool] client_flag: Flag to specify certificates for client use
@@ -1636,6 +1670,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  allowed_serial_numbers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_uri_sans_template: Optional[pulumi.Input[bool]] = None,
+                 allowed_user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  basic_constraints_valid_for_non_ca: Optional[pulumi.Input[bool]] = None,
                  client_flag: Optional[pulumi.Input[bool]] = None,
@@ -1688,6 +1723,7 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__.__dict__["allowed_serial_numbers"] = allowed_serial_numbers
             __props__.__dict__["allowed_uri_sans"] = allowed_uri_sans
             __props__.__dict__["allowed_uri_sans_template"] = allowed_uri_sans_template
+            __props__.__dict__["allowed_user_ids"] = allowed_user_ids
             if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
             __props__.__dict__["backend"] = backend
@@ -1743,6 +1779,7 @@ class SecretBackendRole(pulumi.CustomResource):
             allowed_serial_numbers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             allowed_uri_sans_template: Optional[pulumi.Input[bool]] = None,
+            allowed_user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             backend: Optional[pulumi.Input[str]] = None,
             basic_constraints_valid_for_non_ca: Optional[pulumi.Input[bool]] = None,
             client_flag: Optional[pulumi.Input[bool]] = None,
@@ -1793,6 +1830,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_serial_numbers: An array of allowed serial numbers to put in Subject
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_uri_sans: Defines allowed URI SANs
         :param pulumi.Input[bool] allowed_uri_sans_template: Flag, if set, `allowed_uri_sans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_user_ids: Defines allowed User IDs
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] basic_constraints_valid_for_non_ca: Flag to mark basic constraints valid when issuing non-CA certificates
         :param pulumi.Input[bool] client_flag: Flag to specify certificates for client use
@@ -1848,6 +1886,7 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["allowed_serial_numbers"] = allowed_serial_numbers
         __props__.__dict__["allowed_uri_sans"] = allowed_uri_sans
         __props__.__dict__["allowed_uri_sans_template"] = allowed_uri_sans_template
+        __props__.__dict__["allowed_user_ids"] = allowed_user_ids
         __props__.__dict__["backend"] = backend
         __props__.__dict__["basic_constraints_valid_for_non_ca"] = basic_constraints_valid_for_non_ca
         __props__.__dict__["client_flag"] = client_flag
@@ -1983,6 +2022,14 @@ class SecretBackendRole(pulumi.CustomResource):
         Flag, if set, `allowed_uri_sans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
         """
         return pulumi.get(self, "allowed_uri_sans_template")
+
+    @property
+    @pulumi.getter(name="allowedUserIds")
+    def allowed_user_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        Defines allowed User IDs
+        """
+        return pulumi.get(self, "allowed_user_ids")
 
     @property
     @pulumi.getter

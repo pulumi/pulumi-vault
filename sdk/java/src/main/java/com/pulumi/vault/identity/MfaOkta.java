@@ -66,7 +66,7 @@ public class MfaOkta extends com.pulumi.resources.CustomResource {
      * Okta API token.
      * 
      */
-    @Export(name="apiToken", type=String.class, parameters={})
+    @Export(name="apiToken", refs={String.class}, tree="[0]")
     private Output<String> apiToken;
 
     /**
@@ -80,7 +80,7 @@ public class MfaOkta extends com.pulumi.resources.CustomResource {
      * The base domain to use for API requests.
      * 
      */
-    @Export(name="baseUrl", type=String.class, parameters={})
+    @Export(name="baseUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> baseUrl;
 
     /**
@@ -94,7 +94,7 @@ public class MfaOkta extends com.pulumi.resources.CustomResource {
      * Method ID.
      * 
      */
-    @Export(name="methodId", type=String.class, parameters={})
+    @Export(name="methodId", refs={String.class}, tree="[0]")
     private Output<String> methodId;
 
     /**
@@ -108,7 +108,7 @@ public class MfaOkta extends com.pulumi.resources.CustomResource {
      * Mount accessor.
      * 
      */
-    @Export(name="mountAccessor", type=String.class, parameters={})
+    @Export(name="mountAccessor", refs={String.class}, tree="[0]")
     private Output<String> mountAccessor;
 
     /**
@@ -122,7 +122,7 @@ public class MfaOkta extends com.pulumi.resources.CustomResource {
      * Method name.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -136,7 +136,7 @@ public class MfaOkta extends com.pulumi.resources.CustomResource {
      * Target namespace. (requires Enterprise)
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -150,7 +150,7 @@ public class MfaOkta extends com.pulumi.resources.CustomResource {
      * Method&#39;s namespace ID.
      * 
      */
-    @Export(name="namespaceId", type=String.class, parameters={})
+    @Export(name="namespaceId", refs={String.class}, tree="[0]")
     private Output<String> namespaceId;
 
     /**
@@ -164,7 +164,7 @@ public class MfaOkta extends com.pulumi.resources.CustomResource {
      * Method&#39;s namespace path.
      * 
      */
-    @Export(name="namespacePath", type=String.class, parameters={})
+    @Export(name="namespacePath", refs={String.class}, tree="[0]")
     private Output<String> namespacePath;
 
     /**
@@ -178,7 +178,7 @@ public class MfaOkta extends com.pulumi.resources.CustomResource {
      * Name of the organization to be used in the Okta API.
      * 
      */
-    @Export(name="orgName", type=String.class, parameters={})
+    @Export(name="orgName", refs={String.class}, tree="[0]")
     private Output<String> orgName;
 
     /**
@@ -192,7 +192,7 @@ public class MfaOkta extends com.pulumi.resources.CustomResource {
      * Only match the primary email for the account.
      * 
      */
-    @Export(name="primaryEmail", type=Boolean.class, parameters={})
+    @Export(name="primaryEmail", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> primaryEmail;
 
     /**
@@ -206,7 +206,7 @@ public class MfaOkta extends com.pulumi.resources.CustomResource {
      * MFA type.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
@@ -220,7 +220,7 @@ public class MfaOkta extends com.pulumi.resources.CustomResource {
      * A template string for mapping Identity names to MFA methods.
      * 
      */
-    @Export(name="usernameFormat", type=String.class, parameters={})
+    @Export(name="usernameFormat", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> usernameFormat;
 
     /**
@@ -234,7 +234,7 @@ public class MfaOkta extends com.pulumi.resources.CustomResource {
      * Resource UUID.
      * 
      */
-    @Export(name="uuid", type=String.class, parameters={})
+    @Export(name="uuid", refs={String.class}, tree="[0]")
     private Output<String> uuid;
 
     /**

@@ -94,7 +94,7 @@ public class Backend extends com.pulumi.resources.CustomResource {
      * - The OAuth2 client id to connect to Azure.
      * 
      */
-    @Export(name="clientId", type=String.class, parameters={})
+    @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientId;
 
     /**
@@ -108,7 +108,7 @@ public class Backend extends com.pulumi.resources.CustomResource {
      * - The OAuth2 client secret to connect to Azure.
      * 
      */
-    @Export(name="clientSecret", type=String.class, parameters={})
+    @Export(name="clientSecret", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientSecret;
 
     /**
@@ -122,7 +122,7 @@ public class Backend extends com.pulumi.resources.CustomResource {
      * Human-friendly description of the mount for the backend.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -137,7 +137,7 @@ public class Backend extends com.pulumi.resources.CustomResource {
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      * 
      */
-    @Export(name="disableRemount", type=Boolean.class, parameters={})
+    @Export(name="disableRemount", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> disableRemount;
 
     /**
@@ -152,7 +152,7 @@ public class Backend extends com.pulumi.resources.CustomResource {
      * - The Azure environment.
      * 
      */
-    @Export(name="environment", type=String.class, parameters={})
+    @Export(name="environment", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> environment;
 
     /**
@@ -169,7 +169,7 @@ public class Backend extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -186,7 +186,7 @@ public class Backend extends com.pulumi.resources.CustomResource {
      * - The unique path this backend should be mounted at. Defaults to `azure`.
      * 
      */
-    @Export(name="path", type=String.class, parameters={})
+    @Export(name="path", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> path;
 
     /**
@@ -200,7 +200,7 @@ public class Backend extends com.pulumi.resources.CustomResource {
      * - The subscription id for the Azure Active Directory.
      * 
      */
-    @Export(name="subscriptionId", type=String.class, parameters={})
+    @Export(name="subscriptionId", refs={String.class}, tree="[0]")
     private Output<String> subscriptionId;
 
     /**
@@ -214,7 +214,7 @@ public class Backend extends com.pulumi.resources.CustomResource {
      * - The tenant id for the Azure Active Directory.
      * 
      */
-    @Export(name="tenantId", type=String.class, parameters={})
+    @Export(name="tenantId", refs={String.class}, tree="[0]")
     private Output<String> tenantId;
 
     /**
@@ -230,7 +230,7 @@ public class Backend extends com.pulumi.resources.CustomResource {
      *   For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
      * 
      */
-    @Export(name="useMicrosoftGraphApi", type=Boolean.class, parameters={})
+    @Export(name="useMicrosoftGraphApi", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> useMicrosoftGraphApi;
 
     /**

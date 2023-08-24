@@ -76,7 +76,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
      * Admin URL computed by Vault.
      * 
      */
-    @Export(name="adminUrl", type=String.class, parameters={})
+    @Export(name="adminUrl", refs={String.class}, tree="[0]")
     private Output<String> adminUrl;
 
     /**
@@ -90,7 +90,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
      * Authenticator URL computed by Vault.
      * 
      */
-    @Export(name="authenticatorUrl", type=String.class, parameters={})
+    @Export(name="authenticatorUrl", refs={String.class}, tree="[0]")
     private Output<String> authenticatorUrl;
 
     /**
@@ -104,7 +104,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
      * IDP URL computed by Vault.
      * 
      */
-    @Export(name="idpUrl", type=String.class, parameters={})
+    @Export(name="idpUrl", refs={String.class}, tree="[0]")
     private Output<String> idpUrl;
 
     /**
@@ -119,7 +119,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
      * The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
      * 
      */
-    @Export(name="mountAccessor", type=String.class, parameters={})
+    @Export(name="mountAccessor", refs={String.class}, tree="[0]")
     private Output<String> mountAccessor;
 
     /**
@@ -134,7 +134,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
      * `(string: &lt;required&gt;)` – Name of the MFA method.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -151,7 +151,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -168,7 +168,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
      * Namespace ID computed by Vault.
      * 
      */
-    @Export(name="namespaceId", type=String.class, parameters={})
+    @Export(name="namespaceId", refs={String.class}, tree="[0]")
     private Output<String> namespaceId;
 
     /**
@@ -182,7 +182,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
      * Org Alias computed by Vault.
      * 
      */
-    @Export(name="orgAlias", type=String.class, parameters={})
+    @Export(name="orgAlias", refs={String.class}, tree="[0]")
     private Output<String> orgAlias;
 
     /**
@@ -197,7 +197,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
      * from PingID&#39;s configuration page.
      * 
      */
-    @Export(name="settingsFileBase64", type=String.class, parameters={})
+    @Export(name="settingsFileBase64", refs={String.class}, tree="[0]")
     private Output<String> settingsFileBase64;
 
     /**
@@ -212,7 +212,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
      * Type of configuration computed by Vault.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
@@ -226,7 +226,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
      * If set, enables use of PingID signature. Computed by Vault
      * 
      */
-    @Export(name="useSignature", type=Boolean.class, parameters={})
+    @Export(name="useSignature", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> useSignature;
 
     /**
@@ -246,7 +246,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
      * - entity.metadata.`&lt;key&gt;`: The value of the Entity&#39;s metadata parameter
      * 
      */
-    @Export(name="usernameFormat", type=String.class, parameters={})
+    @Export(name="usernameFormat", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> usernameFormat;
 
     /**

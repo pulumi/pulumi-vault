@@ -70,7 +70,7 @@ public class AuthBackendClient extends com.pulumi.resources.CustomResource {
      * auth backend.
      * 
      */
-    @Export(name="accessKey", type=String.class, parameters={})
+    @Export(name="accessKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> accessKey;
 
     /**
@@ -86,7 +86,7 @@ public class AuthBackendClient extends com.pulumi.resources.CustomResource {
      * mounted at.  Defaults to `aws`.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backend;
 
     /**
@@ -102,7 +102,7 @@ public class AuthBackendClient extends com.pulumi.resources.CustomResource {
      * calls.
      * 
      */
-    @Export(name="ec2Endpoint", type=String.class, parameters={})
+    @Export(name="ec2Endpoint", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> ec2Endpoint;
 
     /**
@@ -118,7 +118,7 @@ public class AuthBackendClient extends com.pulumi.resources.CustomResource {
      * calls.
      * 
      */
-    @Export(name="iamEndpoint", type=String.class, parameters={})
+    @Export(name="iamEndpoint", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> iamEndpoint;
 
     /**
@@ -135,7 +135,7 @@ public class AuthBackendClient extends com.pulumi.resources.CustomResource {
      * that are used in the IAM auth method.
      * 
      */
-    @Export(name="iamServerIdHeaderValue", type=String.class, parameters={})
+    @Export(name="iamServerIdHeaderValue", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> iamServerIdHeaderValue;
 
     /**
@@ -154,7 +154,7 @@ public class AuthBackendClient extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -172,7 +172,7 @@ public class AuthBackendClient extends com.pulumi.resources.CustomResource {
      * auth backend.
      * 
      */
-    @Export(name="secretKey", type=String.class, parameters={})
+    @Export(name="secretKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> secretKey;
 
     /**
@@ -188,7 +188,7 @@ public class AuthBackendClient extends com.pulumi.resources.CustomResource {
      * calls.
      * 
      */
-    @Export(name="stsEndpoint", type=String.class, parameters={})
+    @Export(name="stsEndpoint", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> stsEndpoint;
 
     /**
@@ -204,7 +204,7 @@ public class AuthBackendClient extends com.pulumi.resources.CustomResource {
      * calls. The `sts_endpoint` argument must be set when using `sts_region`.
      * 
      */
-    @Export(name="stsRegion", type=String.class, parameters={})
+    @Export(name="stsRegion", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> stsRegion;
 
     /**

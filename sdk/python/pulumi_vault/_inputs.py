@@ -21,6 +21,7 @@ __all__ = [
     'ProviderAuthLoginOciArgs',
     'ProviderAuthLoginOidcArgs',
     'ProviderAuthLoginRadiusArgs',
+    'ProviderAuthLoginTokenFileArgs',
     'ProviderAuthLoginUserpassArgs',
     'ProviderClientAuthArgs',
     'ProviderHeaderArgs',
@@ -1024,6 +1025,34 @@ class ProviderAuthLoginRadiusArgs:
     @mount.setter
     def mount(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "mount", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+
+@pulumi.input_type
+class ProviderAuthLoginTokenFileArgs:
+    def __init__(__self__, *,
+                 filename: pulumi.Input[str],
+                 namespace: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "filename", filename)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def filename(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "filename")
+
+    @filename.setter
+    def filename(self, value: pulumi.Input[str]):
+        pulumi.set(self, "filename", value)
 
     @property
     @pulumi.getter

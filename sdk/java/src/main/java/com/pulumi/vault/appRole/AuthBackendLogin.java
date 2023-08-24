@@ -86,7 +86,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * The accessor for the token.
      * 
      */
-    @Export(name="accessor", type=String.class, parameters={})
+    @Export(name="accessor", refs={String.class}, tree="[0]")
     private Output<String> accessor;
 
     /**
@@ -100,7 +100,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * The unique path of the Vault backend to log in with.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backend;
 
     /**
@@ -114,7 +114,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * The Vault token created.
      * 
      */
-    @Export(name="clientToken", type=String.class, parameters={})
+    @Export(name="clientToken", refs={String.class}, tree="[0]")
     private Output<String> clientToken;
 
     /**
@@ -128,7 +128,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * How long the token is valid for, in seconds.
      * 
      */
-    @Export(name="leaseDuration", type=Integer.class, parameters={})
+    @Export(name="leaseDuration", refs={Integer.class}, tree="[0]")
     private Output<Integer> leaseDuration;
 
     /**
@@ -142,7 +142,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * The date and time the lease started, in RFC 3339 format.
      * 
      */
-    @Export(name="leaseStarted", type=String.class, parameters={})
+    @Export(name="leaseStarted", refs={String.class}, tree="[0]")
     private Output<String> leaseStarted;
 
     /**
@@ -156,7 +156,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * The metadata associated with the token.
      * 
      */
-    @Export(name="metadata", type=Map.class, parameters={String.class, String.class})
+    @Export(name="metadata", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output<Map<String,String>> metadata;
 
     /**
@@ -173,7 +173,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -190,7 +190,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * A list of policies applied to the token.
      * 
      */
-    @Export(name="policies", type=List.class, parameters={String.class})
+    @Export(name="policies", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> policies;
 
     /**
@@ -204,7 +204,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * Whether the token is renewable or not.
      * 
      */
-    @Export(name="renewable", type=Boolean.class, parameters={})
+    @Export(name="renewable", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> renewable;
 
     /**
@@ -218,7 +218,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * The ID of the role to log in with.
      * 
      */
-    @Export(name="roleId", type=String.class, parameters={})
+    @Export(name="roleId", refs={String.class}, tree="[0]")
     private Output<String> roleId;
 
     /**
@@ -233,7 +233,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * unless `bind_secret_id` is set to false on the role.
      * 
      */
-    @Export(name="secretId", type=String.class, parameters={})
+    @Export(name="secretId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> secretId;
 
     /**

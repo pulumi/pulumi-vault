@@ -173,6 +173,12 @@ namespace Pulumi.Vault
         public Input<Inputs.ProviderAuthLoginRadiusArgs>? AuthLoginRadius { get; set; }
 
         /// <summary>
+        /// Login to vault using
+        /// </summary>
+        [Input("authLoginTokenFile", json: true)]
+        public Input<Inputs.ProviderAuthLoginTokenFileArgs>? AuthLoginTokenFile { get; set; }
+
+        /// <summary>
         /// Login to vault using the userpass method
         /// </summary>
         [Input("authLoginUserpass", json: true)]

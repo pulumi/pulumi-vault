@@ -25,8 +25,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.vault.identity.MfaDuo;
- * import com.pulumi.vault.identity.MfaDuoArgs;
+ * import com.pulumi.vault.identity.MfaPingid;
+ * import com.pulumi.vault.identity.MfaPingidArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -40,7 +40,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new MfaDuo(&#34;example&#34;, MfaDuoArgs.builder()        
+ *         var example = new MfaPingid(&#34;example&#34;, MfaPingidArgs.builder()        
  *             .settingsFileBase64(&#34;CnVzZV9iYXNlNjR[...]HBtCg==&#34;)
  *             .build());
  * 
@@ -63,7 +63,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
      * The admin URL, derived from &#34;settings_file_base64&#34;
      * 
      */
-    @Export(name="adminUrl", type=String.class, parameters={})
+    @Export(name="adminUrl", refs={String.class}, tree="[0]")
     private Output<String> adminUrl;
 
     /**
@@ -77,7 +77,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
      * A unique identifier of the organization, derived from &#34;settings_file_base64&#34;
      * 
      */
-    @Export(name="authenticatorUrl", type=String.class, parameters={})
+    @Export(name="authenticatorUrl", refs={String.class}, tree="[0]")
     private Output<String> authenticatorUrl;
 
     /**
@@ -91,7 +91,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
      * The IDP URL, derived from &#34;settings_file_base64&#34;
      * 
      */
-    @Export(name="idpUrl", type=String.class, parameters={})
+    @Export(name="idpUrl", refs={String.class}, tree="[0]")
     private Output<String> idpUrl;
 
     /**
@@ -105,7 +105,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
      * Method ID.
      * 
      */
-    @Export(name="methodId", type=String.class, parameters={})
+    @Export(name="methodId", refs={String.class}, tree="[0]")
     private Output<String> methodId;
 
     /**
@@ -119,7 +119,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
      * Mount accessor.
      * 
      */
-    @Export(name="mountAccessor", type=String.class, parameters={})
+    @Export(name="mountAccessor", refs={String.class}, tree="[0]")
     private Output<String> mountAccessor;
 
     /**
@@ -133,7 +133,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
      * Method name.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -147,7 +147,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
      * Target namespace. (requires Enterprise)
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -161,7 +161,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
      * Method&#39;s namespace ID.
      * 
      */
-    @Export(name="namespaceId", type=String.class, parameters={})
+    @Export(name="namespaceId", refs={String.class}, tree="[0]")
     private Output<String> namespaceId;
 
     /**
@@ -175,7 +175,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
      * Method&#39;s namespace path.
      * 
      */
-    @Export(name="namespacePath", type=String.class, parameters={})
+    @Export(name="namespacePath", refs={String.class}, tree="[0]")
     private Output<String> namespacePath;
 
     /**
@@ -189,7 +189,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
      * The name of the PingID client organization, derived from &#34;settings_file_base64&#34;
      * 
      */
-    @Export(name="orgAlias", type=String.class, parameters={})
+    @Export(name="orgAlias", refs={String.class}, tree="[0]")
     private Output<String> orgAlias;
 
     /**
@@ -203,7 +203,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
      * A base64-encoded third-party settings contents as retrieved from PingID&#39;s configuration page.
      * 
      */
-    @Export(name="settingsFileBase64", type=String.class, parameters={})
+    @Export(name="settingsFileBase64", refs={String.class}, tree="[0]")
     private Output<String> settingsFileBase64;
 
     /**
@@ -217,7 +217,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
      * MFA type.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
@@ -231,7 +231,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
      * Use signature value, derived from &#34;settings_file_base64&#34;
      * 
      */
-    @Export(name="useSignature", type=Boolean.class, parameters={})
+    @Export(name="useSignature", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> useSignature;
 
     /**
@@ -245,7 +245,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
      * A template string for mapping Identity names to MFA methods.
      * 
      */
-    @Export(name="usernameFormat", type=String.class, parameters={})
+    @Export(name="usernameFormat", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> usernameFormat;
 
     /**
@@ -259,7 +259,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
      * Resource UUID.
      * 
      */
-    @Export(name="uuid", type=String.class, parameters={})
+    @Export(name="uuid", refs={String.class}, tree="[0]")
     private Output<String> uuid;
 
     /**

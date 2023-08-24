@@ -76,7 +76,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * with no leading or trailing `/`s.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output<String> backend;
 
     /**
@@ -91,7 +91,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * Timestamp of the last password rotation by Vault.
      * 
      */
-    @Export(name="lastVaultRotation", type=String.class, parameters={})
+    @Export(name="lastVaultRotation", refs={String.class}, tree="[0]")
     private Output<String> lastVaultRotation;
 
     /**
@@ -108,7 +108,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -125,7 +125,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * Timestamp of the last password set by Vault.
      * 
      */
-    @Export(name="passwordLastSet", type=String.class, parameters={})
+    @Export(name="passwordLastSet", refs={String.class}, tree="[0]")
     private Output<String> passwordLastSet;
 
     /**
@@ -140,7 +140,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * Must be unique within the backend.
      * 
      */
-    @Export(name="role", type=String.class, parameters={})
+    @Export(name="role", refs={String.class}, tree="[0]")
     private Output<String> role;
 
     /**
@@ -156,7 +156,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * account mapped to this role.
      * 
      */
-    @Export(name="serviceAccountName", type=String.class, parameters={})
+    @Export(name="serviceAccountName", refs={String.class}, tree="[0]")
     private Output<String> serviceAccountName;
 
     /**
@@ -172,7 +172,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * ttl if not provided.
      * 
      */
-    @Export(name="ttl", type=Integer.class, parameters={})
+    @Export(name="ttl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> ttl;
 
     /**

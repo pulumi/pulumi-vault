@@ -152,6 +152,16 @@ namespace Pulumi.Vault
             set => _authLoginRadius.Set(value);
         }
 
+        private static readonly __Value<Pulumi.Vault.Config.Types.AuthLoginTokenFile?> _authLoginTokenFile = new __Value<Pulumi.Vault.Config.Types.AuthLoginTokenFile?>(() => __config.GetObject<Pulumi.Vault.Config.Types.AuthLoginTokenFile>("authLoginTokenFile"));
+        /// <summary>
+        /// Login to vault using
+        /// </summary>
+        public static Pulumi.Vault.Config.Types.AuthLoginTokenFile? AuthLoginTokenFile
+        {
+            get => _authLoginTokenFile.Get();
+            set => _authLoginTokenFile.Set(value);
+        }
+
         private static readonly __Value<Pulumi.Vault.Config.Types.AuthLoginUserpass?> _authLoginUserpass = new __Value<Pulumi.Vault.Config.Types.AuthLoginUserpass?>(() => __config.GetObject<Pulumi.Vault.Config.Types.AuthLoginUserpass>("authLoginUserpass"));
         /// <summary>
         /// Login to vault using the userpass method
@@ -421,6 +431,12 @@ namespace Pulumi.Vault
                 public string? Namespace { get; set; } = null!;
                 public string Password { get; set; }
                 public string Username { get; set; }
+            }
+
+             public class AuthLoginTokenFile
+             {
+                public string Filename { get; set; }
+                public string? Namespace { get; set; } = null!;
             }
 
              public class AuthLoginUserpass

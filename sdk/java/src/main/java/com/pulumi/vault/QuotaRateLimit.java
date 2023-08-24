@@ -71,7 +71,7 @@ public class QuotaRateLimit extends com.pulumi.resources.CustomResource {
      * be prohibited from any further requests until after the &#39;block_interval&#39; in seconds has elapsed.
      * 
      */
-    @Export(name="blockInterval", type=Integer.class, parameters={})
+    @Export(name="blockInterval", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> blockInterval;
 
     /**
@@ -86,7 +86,7 @@ public class QuotaRateLimit extends com.pulumi.resources.CustomResource {
      * The duration in seconds to enforce rate limiting for.
      * 
      */
-    @Export(name="interval", type=Integer.class, parameters={})
+    @Export(name="interval", refs={Integer.class}, tree="[0]")
     private Output<Integer> interval;
 
     /**
@@ -100,7 +100,7 @@ public class QuotaRateLimit extends com.pulumi.resources.CustomResource {
      * Name of the rate limit quota
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -117,7 +117,7 @@ public class QuotaRateLimit extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -139,7 +139,7 @@ public class QuotaRateLimit extends com.pulumi.resources.CustomResource {
      * a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
      * 
      */
-    @Export(name="path", type=String.class, parameters={})
+    @Export(name="path", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> path;
 
     /**
@@ -159,7 +159,7 @@ public class QuotaRateLimit extends com.pulumi.resources.CustomResource {
      * rule. The `rate` must be positive.
      * 
      */
-    @Export(name="rate", type=Double.class, parameters={})
+    @Export(name="rate", refs={Double.class}, tree="[0]")
     private Output<Double> rate;
 
     /**

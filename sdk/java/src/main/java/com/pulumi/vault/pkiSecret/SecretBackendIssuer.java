@@ -88,7 +88,7 @@ public class SecretBackendIssuer extends com.pulumi.resources.CustomResource {
      * leading or trailing `/`s.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output<String> backend;
 
     /**
@@ -104,7 +104,7 @@ public class SecretBackendIssuer extends com.pulumi.resources.CustomResource {
      * Distribution Points field.
      * 
      */
-    @Export(name="crlDistributionPoints", type=List.class, parameters={String.class})
+    @Export(name="crlDistributionPoints", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> crlDistributionPoints;
 
     /**
@@ -120,7 +120,7 @@ public class SecretBackendIssuer extends com.pulumi.resources.CustomResource {
      * be templated.
      * 
      */
-    @Export(name="enableAiaUrlTemplating", type=Boolean.class, parameters={})
+    @Export(name="enableAiaUrlTemplating", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enableAiaUrlTemplating;
 
     /**
@@ -135,7 +135,7 @@ public class SecretBackendIssuer extends com.pulumi.resources.CustomResource {
      * ID of the issuer.
      * 
      */
-    @Export(name="issuerId", type=String.class, parameters={})
+    @Export(name="issuerId", refs={String.class}, tree="[0]")
     private Output<String> issuerId;
 
     /**
@@ -149,7 +149,7 @@ public class SecretBackendIssuer extends com.pulumi.resources.CustomResource {
      * Name of the issuer.
      * 
      */
-    @Export(name="issuerName", type=String.class, parameters={})
+    @Export(name="issuerName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> issuerName;
 
     /**
@@ -163,7 +163,7 @@ public class SecretBackendIssuer extends com.pulumi.resources.CustomResource {
      * Reference to an existing issuer.
      * 
      */
-    @Export(name="issuerRef", type=String.class, parameters={})
+    @Export(name="issuerRef", refs={String.class}, tree="[0]")
     private Output<String> issuerRef;
 
     /**
@@ -178,7 +178,7 @@ public class SecretBackendIssuer extends com.pulumi.resources.CustomResource {
      * Certificate field.
      * 
      */
-    @Export(name="issuingCertificates", type=List.class, parameters={String.class})
+    @Export(name="issuingCertificates", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> issuingCertificates;
 
     /**
@@ -194,7 +194,7 @@ public class SecretBackendIssuer extends com.pulumi.resources.CustomResource {
      * issuance.
      * 
      */
-    @Export(name="leafNotAfterBehavior", type=String.class, parameters={})
+    @Export(name="leafNotAfterBehavior", refs={String.class}, tree="[0]")
     private Output<String> leafNotAfterBehavior;
 
     /**
@@ -210,7 +210,7 @@ public class SecretBackendIssuer extends com.pulumi.resources.CustomResource {
      * computed CAChain field from, when non-empty.
      * 
      */
-    @Export(name="manualChains", type=List.class, parameters={String.class})
+    @Export(name="manualChains", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> manualChains;
 
     /**
@@ -228,7 +228,7 @@ public class SecretBackendIssuer extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -245,7 +245,7 @@ public class SecretBackendIssuer extends com.pulumi.resources.CustomResource {
      * Specifies the URL values for the OCSP Servers field.
      * 
      */
-    @Export(name="ocspServers", type=List.class, parameters={String.class})
+    @Export(name="ocspServers", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> ocspServers;
 
     /**
@@ -260,7 +260,7 @@ public class SecretBackendIssuer extends com.pulumi.resources.CustomResource {
      * when building CRLs.
      * 
      */
-    @Export(name="revocationSignatureAlgorithm", type=String.class, parameters={})
+    @Export(name="revocationSignatureAlgorithm", refs={String.class}, tree="[0]")
     private Output<String> revocationSignatureAlgorithm;
 
     /**
@@ -275,7 +275,7 @@ public class SecretBackendIssuer extends com.pulumi.resources.CustomResource {
      * Allowed usages for this issuer.
      * 
      */
-    @Export(name="usage", type=String.class, parameters={})
+    @Export(name="usage", refs={String.class}, tree="[0]")
     private Output<String> usage;
 
     /**

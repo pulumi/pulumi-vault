@@ -132,7 +132,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * Required for OIDC roles
      * 
      */
-    @Export(name="allowedRedirectUris", type=List.class, parameters={String.class})
+    @Export(name="allowedRedirectUris", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> allowedRedirectUris;
 
     /**
@@ -148,7 +148,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * Defaults to `jwt`.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backend;
 
     /**
@@ -165,7 +165,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * Any match is sufficient.
      * 
      */
-    @Export(name="boundAudiences", type=List.class, parameters={String.class})
+    @Export(name="boundAudiences", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> boundAudiences;
 
     /**
@@ -183,7 +183,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * comma-separated values, e.g. `&#34;red&#34;` or `&#34;red,green,blue&#34;`.
      * 
      */
-    @Export(name="boundClaims", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="boundClaims", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> boundClaims;
 
     /**
@@ -201,7 +201,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * match). Requires Vault 1.4.0 or above.
      * 
      */
-    @Export(name="boundClaimsType", type=String.class, parameters={})
+    @Export(name="boundClaimsType", refs={String.class}, tree="[0]")
     private Output<String> boundClaimsType;
 
     /**
@@ -218,7 +218,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * this value.
      * 
      */
-    @Export(name="boundSubject", type=String.class, parameters={})
+    @Export(name="boundSubject", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> boundSubject;
 
     /**
@@ -234,7 +234,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * to specified metadata fields (values).
      * 
      */
-    @Export(name="claimMappings", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="claimMappings", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> claimMappings;
 
     /**
@@ -251,7 +251,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * Only applicable with &#34;jwt&#34; roles.
      * 
      */
-    @Export(name="clockSkewLeeway", type=Integer.class, parameters={})
+    @Export(name="clockSkewLeeway", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> clockSkewLeeway;
 
     /**
@@ -267,7 +267,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * Disable bound claim value parsing. Useful when values contain commas.
      * 
      */
-    @Export(name="disableBoundClaimsParsing", type=Boolean.class, parameters={})
+    @Export(name="disableBoundClaimsParsing", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> disableBoundClaimsParsing;
 
     /**
@@ -283,7 +283,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * Only applicable with &#34;jwt&#34; roles.
      * 
      */
-    @Export(name="expirationLeeway", type=Integer.class, parameters={})
+    @Export(name="expirationLeeway", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> expirationLeeway;
 
     /**
@@ -302,7 +302,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * value must be a list of strings.
      * 
      */
-    @Export(name="groupsClaim", type=String.class, parameters={})
+    @Export(name="groupsClaim", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> groupsClaim;
 
     /**
@@ -320,7 +320,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * the user was actively authenticated with the OIDC provider.
      * 
      */
-    @Export(name="maxAge", type=Integer.class, parameters={})
+    @Export(name="maxAge", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> maxAge;
 
     /**
@@ -338,7 +338,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -357,7 +357,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * Only applicable with &#34;jwt&#34; roles.
      * 
      */
-    @Export(name="notBeforeLeeway", type=Integer.class, parameters={})
+    @Export(name="notBeforeLeeway", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> notBeforeLeeway;
 
     /**
@@ -374,7 +374,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * The standard scope &#34;openid&#34; is automatically included and need not be specified.
      * 
      */
-    @Export(name="oidcScopes", type=List.class, parameters={String.class})
+    @Export(name="oidcScopes", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> oidcScopes;
 
     /**
@@ -389,7 +389,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * The name of the role.
      * 
      */
-    @Export(name="roleName", type=String.class, parameters={})
+    @Export(name="roleName", refs={String.class}, tree="[0]")
     private Output<String> roleName;
 
     /**
@@ -403,7 +403,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * Type of role, either &#34;oidc&#34; (default) or &#34;jwt&#34;.
      * 
      */
-    @Export(name="roleType", type=String.class, parameters={})
+    @Export(name="roleType", refs={String.class}, tree="[0]")
     private Output<String> roleType;
 
     /**
@@ -419,7 +419,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * as well.
      * 
      */
-    @Export(name="tokenBoundCidrs", type=List.class, parameters={String.class})
+    @Export(name="tokenBoundCidrs", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tokenBoundCidrs;
 
     /**
@@ -438,7 +438,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * `token_max_ttl` would otherwise allow a renewal.
      * 
      */
-    @Export(name="tokenExplicitMaxTtl", type=Integer.class, parameters={})
+    @Export(name="tokenExplicitMaxTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenExplicitMaxTtl;
 
     /**
@@ -456,7 +456,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * Its current value will be referenced at renewal time.
      * 
      */
-    @Export(name="tokenMaxTtl", type=Integer.class, parameters={})
+    @Export(name="tokenMaxTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenMaxTtl;
 
     /**
@@ -472,7 +472,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * generated tokens; otherwise it will be added to the policies set in token_policies.
      * 
      */
-    @Export(name="tokenNoDefaultPolicy", type=Boolean.class, parameters={})
+    @Export(name="tokenNoDefaultPolicy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> tokenNoDefaultPolicy;
 
     /**
@@ -488,7 +488,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * of times a generated token may be used (within its lifetime); 0 means unlimited.
      * 
      */
-    @Export(name="tokenNumUses", type=Integer.class, parameters={})
+    @Export(name="tokenNumUses", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenNumUses;
 
     /**
@@ -506,7 +506,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * value of this field. Specified in seconds.
      * 
      */
-    @Export(name="tokenPeriod", type=Integer.class, parameters={})
+    @Export(name="tokenPeriod", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenPeriod;
 
     /**
@@ -524,7 +524,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * on the auth method, this list may be supplemented by user/group/other values.
      * 
      */
-    @Export(name="tokenPolicies", type=List.class, parameters={String.class})
+    @Export(name="tokenPolicies", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tokenPolicies;
 
     /**
@@ -540,7 +540,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * Its current value will be referenced at renewal time.
      * 
      */
-    @Export(name="tokenTtl", type=Integer.class, parameters={})
+    @Export(name="tokenTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenTtl;
 
     /**
@@ -559,7 +559,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * requests a different type at generation time.
      * 
      */
-    @Export(name="tokenType", type=String.class, parameters={})
+    @Export(name="tokenType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tokenType;
 
     /**
@@ -579,7 +579,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * due to a successful login.
      * 
      */
-    @Export(name="userClaim", type=String.class, parameters={})
+    @Export(name="userClaim", refs={String.class}, tree="[0]")
     private Output<String> userClaim;
 
     /**
@@ -598,7 +598,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * Requires Vault 1.11+.
      * 
      */
-    @Export(name="userClaimJsonPointer", type=Boolean.class, parameters={})
+    @Export(name="userClaimJsonPointer", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> userClaimJsonPointer;
 
     /**
@@ -617,7 +617,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * in OIDC responses.
      * 
      */
-    @Export(name="verboseOidcLogging", type=Boolean.class, parameters={})
+    @Export(name="verboseOidcLogging", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> verboseOidcLogging;
 
     /**

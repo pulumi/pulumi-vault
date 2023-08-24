@@ -68,7 +68,7 @@ public class AuthBackendStsRole extends com.pulumi.resources.CustomResource {
      * The AWS account ID to configure the STS role for.
      * 
      */
-    @Export(name="accountId", type=String.class, parameters={})
+    @Export(name="accountId", refs={String.class}, tree="[0]")
     private Output<String> accountId;
 
     /**
@@ -83,7 +83,7 @@ public class AuthBackendStsRole extends com.pulumi.resources.CustomResource {
      * mounted at.  Defaults to `aws`.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backend;
 
     /**
@@ -101,7 +101,7 @@ public class AuthBackendStsRole extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -119,7 +119,7 @@ public class AuthBackendStsRole extends com.pulumi.resources.CustomResource {
      * by EC2 instances in the account specified by `account_id`.
      * 
      */
-    @Export(name="stsRole", type=String.class, parameters={})
+    @Export(name="stsRole", refs={String.class}, tree="[0]")
     private Output<String> stsRole;
 
     /**

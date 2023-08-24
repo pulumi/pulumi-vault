@@ -25,6 +25,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SecretBackendCert{}
 	case "vault:pkiSecret/secretBackendConfigCa:SecretBackendConfigCa":
 		r = &SecretBackendConfigCa{}
+	case "vault:pkiSecret/secretBackendConfigIssuers:SecretBackendConfigIssuers":
+		r = &SecretBackendConfigIssuers{}
 	case "vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls":
 		r = &SecretBackendConfigUrls{}
 	case "vault:pkiSecret/secretBackendCrlConfig:SecretBackendCrlConfig":
@@ -66,6 +68,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"vault",
 		"pkiSecret/secretBackendConfigCa",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"pkiSecret/secretBackendConfigIssuers",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

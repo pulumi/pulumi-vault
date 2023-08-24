@@ -55,7 +55,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      * The GCP service account credentials in JSON format.
      * 
      */
-    @Export(name="credentials", type=String.class, parameters={})
+    @Export(name="credentials", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> credentials;
 
     /**
@@ -70,7 +70,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      * issued by this backend. Defaults to &#39;0&#39;.
      * 
      */
-    @Export(name="defaultLeaseTtlSeconds", type=Integer.class, parameters={})
+    @Export(name="defaultLeaseTtlSeconds", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> defaultLeaseTtlSeconds;
 
     /**
@@ -85,7 +85,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      * A human-friendly description for this backend.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -100,7 +100,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      * 
      */
-    @Export(name="disableRemount", type=Boolean.class, parameters={})
+    @Export(name="disableRemount", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> disableRemount;
 
     /**
@@ -115,7 +115,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
      * 
      */
-    @Export(name="local", type=Boolean.class, parameters={})
+    @Export(name="local", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> local;
 
     /**
@@ -130,7 +130,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      * for credentials issued by this backend. Defaults to &#39;0&#39;.
      * 
      */
-    @Export(name="maxLeaseTtlSeconds", type=Integer.class, parameters={})
+    @Export(name="maxLeaseTtlSeconds", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> maxLeaseTtlSeconds;
 
     /**
@@ -148,7 +148,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -166,7 +166,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      * not begin or end with a `/`. Defaults to `gcp`.
      * 
      */
-    @Export(name="path", type=String.class, parameters={})
+    @Export(name="path", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> path;
 
     /**

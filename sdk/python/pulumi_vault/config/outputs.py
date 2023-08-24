@@ -20,6 +20,7 @@ __all__ = [
     'AuthLoginOci',
     'AuthLoginOidc',
     'AuthLoginRadius',
+    'AuthLoginTokenFile',
     'AuthLoginUserpass',
     'ClientAuth',
     'Headers',
@@ -597,6 +598,26 @@ class AuthLoginRadius(dict):
     @pulumi.getter
     def mount(self) -> Optional[str]:
         return pulumi.get(self, "mount")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[str]:
+        return pulumi.get(self, "namespace")
+
+
+@pulumi.output_type
+class AuthLoginTokenFile(dict):
+    def __init__(__self__, *,
+                 filename: str,
+                 namespace: Optional[str] = None):
+        pulumi.set(__self__, "filename", filename)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def filename(self) -> str:
+        return pulumi.get(self, "filename")
 
     @property
     @pulumi.getter

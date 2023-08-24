@@ -66,7 +66,7 @@ public class SecretBackendCrlConfig extends com.pulumi.resources.CustomResource 
      * Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
      * 
      */
-    @Export(name="autoRebuild", type=Boolean.class, parameters={})
+    @Export(name="autoRebuild", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> autoRebuild;
 
     /**
@@ -80,7 +80,7 @@ public class SecretBackendCrlConfig extends com.pulumi.resources.CustomResource 
      * Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**
      * 
      */
-    @Export(name="autoRebuildGracePeriod", type=String.class, parameters={})
+    @Export(name="autoRebuildGracePeriod", refs={String.class}, tree="[0]")
     private Output<String> autoRebuildGracePeriod;
 
     /**
@@ -94,7 +94,7 @@ public class SecretBackendCrlConfig extends com.pulumi.resources.CustomResource 
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output<String> backend;
 
     /**
@@ -108,7 +108,7 @@ public class SecretBackendCrlConfig extends com.pulumi.resources.CustomResource 
      * Enable cross-cluster revocation request queues. **Vault 1.13+**
      * 
      */
-    @Export(name="crossClusterRevocation", type=Boolean.class, parameters={})
+    @Export(name="crossClusterRevocation", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> crossClusterRevocation;
 
     /**
@@ -122,7 +122,7 @@ public class SecretBackendCrlConfig extends com.pulumi.resources.CustomResource 
      * Interval to check for new revocations on, to regenerate the delta CRL.
      * 
      */
-    @Export(name="deltaRebuildInterval", type=String.class, parameters={})
+    @Export(name="deltaRebuildInterval", refs={String.class}, tree="[0]")
     private Output<String> deltaRebuildInterval;
 
     /**
@@ -136,7 +136,7 @@ public class SecretBackendCrlConfig extends com.pulumi.resources.CustomResource 
      * Disables or enables CRL building.
      * 
      */
-    @Export(name="disable", type=Boolean.class, parameters={})
+    @Export(name="disable", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> disable;
 
     /**
@@ -151,7 +151,7 @@ public class SecretBackendCrlConfig extends com.pulumi.resources.CustomResource 
      * augmenting the last complete CRL.  **Vault 1.12+**
      * 
      */
-    @Export(name="enableDelta", type=Boolean.class, parameters={})
+    @Export(name="enableDelta", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enableDelta;
 
     /**
@@ -166,7 +166,7 @@ public class SecretBackendCrlConfig extends com.pulumi.resources.CustomResource 
      * Specifies the time until expiration.
      * 
      */
-    @Export(name="expiry", type=String.class, parameters={})
+    @Export(name="expiry", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> expiry;
 
     /**
@@ -183,7 +183,7 @@ public class SecretBackendCrlConfig extends com.pulumi.resources.CustomResource 
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -200,7 +200,7 @@ public class SecretBackendCrlConfig extends com.pulumi.resources.CustomResource 
      * Disables the OCSP responder in Vault. **Vault 1.12+**
      * 
      */
-    @Export(name="ocspDisable", type=Boolean.class, parameters={})
+    @Export(name="ocspDisable", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> ocspDisable;
 
     /**
@@ -215,7 +215,7 @@ public class SecretBackendCrlConfig extends com.pulumi.resources.CustomResource 
      * refresh durations. **Vault 1.12+**
      * 
      */
-    @Export(name="ocspExpiry", type=String.class, parameters={})
+    @Export(name="ocspExpiry", refs={String.class}, tree="[0]")
     private Output<String> ocspExpiry;
 
     /**
@@ -230,7 +230,7 @@ public class SecretBackendCrlConfig extends com.pulumi.resources.CustomResource 
      * Enables unified CRL and OCSP building. **Vault 1.13+**
      * 
      */
-    @Export(name="unifiedCrl", type=Boolean.class, parameters={})
+    @Export(name="unifiedCrl", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> unifiedCrl;
 
     /**
@@ -245,7 +245,7 @@ public class SecretBackendCrlConfig extends com.pulumi.resources.CustomResource 
      * cluster-local paths. **Vault 1.13+**
      * 
      */
-    @Export(name="unifiedCrlOnExistingPaths", type=Boolean.class, parameters={})
+    @Export(name="unifiedCrlOnExistingPaths", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> unifiedCrlOnExistingPaths;
 
     /**

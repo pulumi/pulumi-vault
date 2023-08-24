@@ -78,6 +78,11 @@ type AuthBackendConfigIdentity struct {
 	// The metadata to include on the token returned by the `login` endpoint. This metadata will be
 	// added to both audit logs, and on the `iamAlias`
 	IamMetadatas pulumi.StringArrayOutput `pulumi:"iamMetadatas"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 }
 
 // NewAuthBackendConfigIdentity registers a new resource with the given unique name, arguments, and options.
@@ -123,6 +128,11 @@ type authBackendConfigIdentityState struct {
 	// The metadata to include on the token returned by the `login` endpoint. This metadata will be
 	// added to both audit logs, and on the `iamAlias`
 	IamMetadatas []string `pulumi:"iamMetadatas"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 }
 
 type AuthBackendConfigIdentityState struct {
@@ -140,6 +150,11 @@ type AuthBackendConfigIdentityState struct {
 	// The metadata to include on the token returned by the `login` endpoint. This metadata will be
 	// added to both audit logs, and on the `iamAlias`
 	IamMetadatas pulumi.StringArrayInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 }
 
 func (AuthBackendConfigIdentityState) ElementType() reflect.Type {
@@ -161,6 +176,11 @@ type authBackendConfigIdentityArgs struct {
 	// The metadata to include on the token returned by the `login` endpoint. This metadata will be
 	// added to both audit logs, and on the `iamAlias`
 	IamMetadatas []string `pulumi:"iamMetadatas"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 }
 
 // The set of arguments for constructing a AuthBackendConfigIdentity resource.
@@ -179,6 +199,11 @@ type AuthBackendConfigIdentityArgs struct {
 	// The metadata to include on the token returned by the `login` endpoint. This metadata will be
 	// added to both audit logs, and on the `iamAlias`
 	IamMetadatas pulumi.StringArrayInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 }
 
 func (AuthBackendConfigIdentityArgs) ElementType() reflect.Type {
@@ -295,6 +320,14 @@ func (o AuthBackendConfigIdentityOutput) IamAlias() pulumi.StringPtrOutput {
 // added to both audit logs, and on the `iamAlias`
 func (o AuthBackendConfigIdentityOutput) IamMetadatas() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AuthBackendConfigIdentity) pulumi.StringArrayOutput { return v.IamMetadatas }).(pulumi.StringArrayOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o AuthBackendConfigIdentityOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendConfigIdentity) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 type AuthBackendConfigIdentityArrayOutput struct{ *pulumi.OutputState }

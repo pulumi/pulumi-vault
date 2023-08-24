@@ -121,7 +121,7 @@ public class OidcRole extends com.pulumi.resources.CustomResource {
      * tokens issued by this role
      * 
      */
-    @Export(name="clientId", type=String.class, parameters={})
+    @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output<String> clientId;
 
     /**
@@ -137,7 +137,7 @@ public class OidcRole extends com.pulumi.resources.CustomResource {
      * before tokens can be issued.
      * 
      */
-    @Export(name="key", type=String.class, parameters={})
+    @Export(name="key", refs={String.class}, tree="[0]")
     private Output<String> key;
 
     /**
@@ -152,7 +152,7 @@ public class OidcRole extends com.pulumi.resources.CustomResource {
      * Name of the OIDC Role to create.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -169,7 +169,7 @@ public class OidcRole extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -189,7 +189,7 @@ public class OidcRole extends com.pulumi.resources.CustomResource {
      * for the template format.
      * 
      */
-    @Export(name="template", type=String.class, parameters={})
+    @Export(name="template", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> template;
 
     /**
@@ -206,7 +206,7 @@ public class OidcRole extends com.pulumi.resources.CustomResource {
      * TTL of the tokens generated against the role in number of seconds.
      * 
      */
-    @Export(name="ttl", type=Integer.class, parameters={})
+    @Export(name="ttl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> ttl;
 
     /**

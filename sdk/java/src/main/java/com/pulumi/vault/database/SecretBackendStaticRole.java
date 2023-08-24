@@ -88,7 +88,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      * The unique name of the Vault mount to configure.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output<String> backend;
 
     /**
@@ -102,7 +102,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      * The unique name of the database connection to use for the static role.
      * 
      */
-    @Export(name="dbName", type=String.class, parameters={})
+    @Export(name="dbName", refs={String.class}, tree="[0]")
     private Output<String> dbName;
 
     /**
@@ -116,7 +116,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      * A unique name to give the static role.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -133,7 +133,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -150,7 +150,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      * The amount of time Vault should wait before rotating the password, in seconds.
      * 
      */
-    @Export(name="rotationPeriod", type=Integer.class, parameters={})
+    @Export(name="rotationPeriod", refs={Integer.class}, tree="[0]")
     private Output<Integer> rotationPeriod;
 
     /**
@@ -164,7 +164,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      * Database statements to execute to rotate the password for the configured database user.
      * 
      */
-    @Export(name="rotationStatements", type=List.class, parameters={String.class})
+    @Export(name="rotationStatements", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> rotationStatements;
 
     /**
@@ -178,7 +178,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      * The database username that this static role corresponds to.
      * 
      */
-    @Export(name="username", type=String.class, parameters={})
+    @Export(name="username", refs={String.class}, tree="[0]")
     private Output<String> username;
 
     /**

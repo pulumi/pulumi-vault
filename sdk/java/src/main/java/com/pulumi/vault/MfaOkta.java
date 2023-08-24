@@ -76,7 +76,7 @@ public class MfaOkta extends com.pulumi.resources.CustomResource {
      * `(string: &lt;required&gt;)` - Okta API key.
      * 
      */
-    @Export(name="apiToken", type=String.class, parameters={})
+    @Export(name="apiToken", refs={String.class}, tree="[0]")
     private Output<String> apiToken;
 
     /**
@@ -91,7 +91,7 @@ public class MfaOkta extends com.pulumi.resources.CustomResource {
      * `oktapreview.com`, and `okta-emea.com`.
      * 
      */
-    @Export(name="baseUrl", type=String.class, parameters={})
+    @Export(name="baseUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> baseUrl;
 
     /**
@@ -107,7 +107,7 @@ public class MfaOkta extends com.pulumi.resources.CustomResource {
      * The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
      * 
      */
-    @Export(name="mountAccessor", type=String.class, parameters={})
+    @Export(name="mountAccessor", refs={String.class}, tree="[0]")
     private Output<String> mountAccessor;
 
     /**
@@ -122,7 +122,7 @@ public class MfaOkta extends com.pulumi.resources.CustomResource {
      * `(string: &lt;required&gt;)` – Name of the MFA method.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -139,7 +139,7 @@ public class MfaOkta extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -156,7 +156,7 @@ public class MfaOkta extends com.pulumi.resources.CustomResource {
      * `(string: &lt;required&gt;)` - Name of the organization to be used in the Okta API.
      * 
      */
-    @Export(name="orgName", type=String.class, parameters={})
+    @Export(name="orgName", refs={String.class}, tree="[0]")
     private Output<String> orgName;
 
     /**
@@ -171,7 +171,7 @@ public class MfaOkta extends com.pulumi.resources.CustomResource {
      * primary email for the account.
      * 
      */
-    @Export(name="primaryEmail", type=Boolean.class, parameters={})
+    @Export(name="primaryEmail", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> primaryEmail;
 
     /**
@@ -192,7 +192,7 @@ public class MfaOkta extends com.pulumi.resources.CustomResource {
      * - entity.metadata.`&lt;key&gt;`: The value of the Entity&#39;s metadata parameter
      * 
      */
-    @Export(name="usernameFormat", type=String.class, parameters={})
+    @Export(name="usernameFormat", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> usernameFormat;
 
     /**

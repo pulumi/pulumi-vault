@@ -2520,6 +2520,154 @@ func (o ProviderAuthLoginRadiusPtrOutput) Username() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type ProviderAuthLoginTokenFile struct {
+	Filename  string  `pulumi:"filename"`
+	Namespace *string `pulumi:"namespace"`
+}
+
+// ProviderAuthLoginTokenFileInput is an input type that accepts ProviderAuthLoginTokenFileArgs and ProviderAuthLoginTokenFileOutput values.
+// You can construct a concrete instance of `ProviderAuthLoginTokenFileInput` via:
+//
+//	ProviderAuthLoginTokenFileArgs{...}
+type ProviderAuthLoginTokenFileInput interface {
+	pulumi.Input
+
+	ToProviderAuthLoginTokenFileOutput() ProviderAuthLoginTokenFileOutput
+	ToProviderAuthLoginTokenFileOutputWithContext(context.Context) ProviderAuthLoginTokenFileOutput
+}
+
+type ProviderAuthLoginTokenFileArgs struct {
+	Filename  pulumi.StringInput    `pulumi:"filename"`
+	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
+}
+
+func (ProviderAuthLoginTokenFileArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderAuthLoginTokenFile)(nil)).Elem()
+}
+
+func (i ProviderAuthLoginTokenFileArgs) ToProviderAuthLoginTokenFileOutput() ProviderAuthLoginTokenFileOutput {
+	return i.ToProviderAuthLoginTokenFileOutputWithContext(context.Background())
+}
+
+func (i ProviderAuthLoginTokenFileArgs) ToProviderAuthLoginTokenFileOutputWithContext(ctx context.Context) ProviderAuthLoginTokenFileOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginTokenFileOutput)
+}
+
+func (i ProviderAuthLoginTokenFileArgs) ToProviderAuthLoginTokenFilePtrOutput() ProviderAuthLoginTokenFilePtrOutput {
+	return i.ToProviderAuthLoginTokenFilePtrOutputWithContext(context.Background())
+}
+
+func (i ProviderAuthLoginTokenFileArgs) ToProviderAuthLoginTokenFilePtrOutputWithContext(ctx context.Context) ProviderAuthLoginTokenFilePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginTokenFileOutput).ToProviderAuthLoginTokenFilePtrOutputWithContext(ctx)
+}
+
+// ProviderAuthLoginTokenFilePtrInput is an input type that accepts ProviderAuthLoginTokenFileArgs, ProviderAuthLoginTokenFilePtr and ProviderAuthLoginTokenFilePtrOutput values.
+// You can construct a concrete instance of `ProviderAuthLoginTokenFilePtrInput` via:
+//
+//	        ProviderAuthLoginTokenFileArgs{...}
+//
+//	or:
+//
+//	        nil
+type ProviderAuthLoginTokenFilePtrInput interface {
+	pulumi.Input
+
+	ToProviderAuthLoginTokenFilePtrOutput() ProviderAuthLoginTokenFilePtrOutput
+	ToProviderAuthLoginTokenFilePtrOutputWithContext(context.Context) ProviderAuthLoginTokenFilePtrOutput
+}
+
+type providerAuthLoginTokenFilePtrType ProviderAuthLoginTokenFileArgs
+
+func ProviderAuthLoginTokenFilePtr(v *ProviderAuthLoginTokenFileArgs) ProviderAuthLoginTokenFilePtrInput {
+	return (*providerAuthLoginTokenFilePtrType)(v)
+}
+
+func (*providerAuthLoginTokenFilePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProviderAuthLoginTokenFile)(nil)).Elem()
+}
+
+func (i *providerAuthLoginTokenFilePtrType) ToProviderAuthLoginTokenFilePtrOutput() ProviderAuthLoginTokenFilePtrOutput {
+	return i.ToProviderAuthLoginTokenFilePtrOutputWithContext(context.Background())
+}
+
+func (i *providerAuthLoginTokenFilePtrType) ToProviderAuthLoginTokenFilePtrOutputWithContext(ctx context.Context) ProviderAuthLoginTokenFilePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginTokenFilePtrOutput)
+}
+
+type ProviderAuthLoginTokenFileOutput struct{ *pulumi.OutputState }
+
+func (ProviderAuthLoginTokenFileOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderAuthLoginTokenFile)(nil)).Elem()
+}
+
+func (o ProviderAuthLoginTokenFileOutput) ToProviderAuthLoginTokenFileOutput() ProviderAuthLoginTokenFileOutput {
+	return o
+}
+
+func (o ProviderAuthLoginTokenFileOutput) ToProviderAuthLoginTokenFileOutputWithContext(ctx context.Context) ProviderAuthLoginTokenFileOutput {
+	return o
+}
+
+func (o ProviderAuthLoginTokenFileOutput) ToProviderAuthLoginTokenFilePtrOutput() ProviderAuthLoginTokenFilePtrOutput {
+	return o.ToProviderAuthLoginTokenFilePtrOutputWithContext(context.Background())
+}
+
+func (o ProviderAuthLoginTokenFileOutput) ToProviderAuthLoginTokenFilePtrOutputWithContext(ctx context.Context) ProviderAuthLoginTokenFilePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProviderAuthLoginTokenFile) *ProviderAuthLoginTokenFile {
+		return &v
+	}).(ProviderAuthLoginTokenFilePtrOutput)
+}
+
+func (o ProviderAuthLoginTokenFileOutput) Filename() pulumi.StringOutput {
+	return o.ApplyT(func(v ProviderAuthLoginTokenFile) string { return v.Filename }).(pulumi.StringOutput)
+}
+
+func (o ProviderAuthLoginTokenFileOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLoginTokenFile) *string { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+type ProviderAuthLoginTokenFilePtrOutput struct{ *pulumi.OutputState }
+
+func (ProviderAuthLoginTokenFilePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProviderAuthLoginTokenFile)(nil)).Elem()
+}
+
+func (o ProviderAuthLoginTokenFilePtrOutput) ToProviderAuthLoginTokenFilePtrOutput() ProviderAuthLoginTokenFilePtrOutput {
+	return o
+}
+
+func (o ProviderAuthLoginTokenFilePtrOutput) ToProviderAuthLoginTokenFilePtrOutputWithContext(ctx context.Context) ProviderAuthLoginTokenFilePtrOutput {
+	return o
+}
+
+func (o ProviderAuthLoginTokenFilePtrOutput) Elem() ProviderAuthLoginTokenFileOutput {
+	return o.ApplyT(func(v *ProviderAuthLoginTokenFile) ProviderAuthLoginTokenFile {
+		if v != nil {
+			return *v
+		}
+		var ret ProviderAuthLoginTokenFile
+		return ret
+	}).(ProviderAuthLoginTokenFileOutput)
+}
+
+func (o ProviderAuthLoginTokenFilePtrOutput) Filename() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProviderAuthLoginTokenFile) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Filename
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ProviderAuthLoginTokenFilePtrOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProviderAuthLoginTokenFile) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Namespace
+	}).(pulumi.StringPtrOutput)
+}
+
 type ProviderAuthLoginUserpass struct {
 	Mount        *string `pulumi:"mount"`
 	Namespace    *string `pulumi:"namespace"`
@@ -3356,6 +3504,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAuthLoginOidcPtrInput)(nil)).Elem(), ProviderAuthLoginOidcArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAuthLoginRadiusInput)(nil)).Elem(), ProviderAuthLoginRadiusArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAuthLoginRadiusPtrInput)(nil)).Elem(), ProviderAuthLoginRadiusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAuthLoginTokenFileInput)(nil)).Elem(), ProviderAuthLoginTokenFileArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAuthLoginTokenFilePtrInput)(nil)).Elem(), ProviderAuthLoginTokenFileArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAuthLoginUserpassInput)(nil)).Elem(), ProviderAuthLoginUserpassArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAuthLoginUserpassPtrInput)(nil)).Elem(), ProviderAuthLoginUserpassArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderClientAuthInput)(nil)).Elem(), ProviderClientAuthArgs{})
@@ -3390,6 +3540,8 @@ func init() {
 	pulumi.RegisterOutputType(ProviderAuthLoginOidcPtrOutput{})
 	pulumi.RegisterOutputType(ProviderAuthLoginRadiusOutput{})
 	pulumi.RegisterOutputType(ProviderAuthLoginRadiusPtrOutput{})
+	pulumi.RegisterOutputType(ProviderAuthLoginTokenFileOutput{})
+	pulumi.RegisterOutputType(ProviderAuthLoginTokenFilePtrOutput{})
 	pulumi.RegisterOutputType(ProviderAuthLoginUserpassOutput{})
 	pulumi.RegisterOutputType(ProviderAuthLoginUserpassPtrOutput{})
 	pulumi.RegisterOutputType(ProviderClientAuthOutput{})

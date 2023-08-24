@@ -72,7 +72,7 @@ public class AuthBackendConfig extends com.pulumi.resources.CustomResource {
      * mounted at.  Defaults to `azure`.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backend;
 
     /**
@@ -88,7 +88,7 @@ public class AuthBackendConfig extends com.pulumi.resources.CustomResource {
      * Currently read permissions to query compute resources are required.
      * 
      */
-    @Export(name="clientId", type=String.class, parameters={})
+    @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientId;
 
     /**
@@ -104,7 +104,7 @@ public class AuthBackendConfig extends com.pulumi.resources.CustomResource {
      * Azure APIs.
      * 
      */
-    @Export(name="clientSecret", type=String.class, parameters={})
+    @Export(name="clientSecret", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientSecret;
 
     /**
@@ -121,7 +121,7 @@ public class AuthBackendConfig extends com.pulumi.resources.CustomResource {
      * AzureGermanCloud.  Defaults to `AzurePublicCloud`.
      * 
      */
-    @Export(name="environment", type=String.class, parameters={})
+    @Export(name="environment", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> environment;
 
     /**
@@ -140,7 +140,7 @@ public class AuthBackendConfig extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -158,7 +158,7 @@ public class AuthBackendConfig extends com.pulumi.resources.CustomResource {
      * Azure Active Directory.
      * 
      */
-    @Export(name="resource", type=String.class, parameters={})
+    @Export(name="resource", refs={String.class}, tree="[0]")
     private Output<String> resource;
 
     /**
@@ -174,7 +174,7 @@ public class AuthBackendConfig extends com.pulumi.resources.CustomResource {
      * organization.
      * 
      */
-    @Export(name="tenantId", type=String.class, parameters={})
+    @Export(name="tenantId", refs={String.class}, tree="[0]")
     private Output<String> tenantId;
 
     /**

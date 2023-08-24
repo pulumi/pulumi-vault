@@ -12,6 +12,23 @@ namespace Pulumi.Vault.Identity
     /// <summary>
     /// Resource for configuring the pingid MFA method.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Vault.Identity.MfaPingid("example", new()
+    ///     {
+    ///         SettingsFileBase64 = "CnVzZV9iYXNlNjR[...]HBtCg==",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Resource can be imported using its `uuid` field, e.g.

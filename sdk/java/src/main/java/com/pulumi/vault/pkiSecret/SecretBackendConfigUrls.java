@@ -78,7 +78,7 @@ public class SecretBackendConfigUrls extends com.pulumi.resources.CustomResource
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output<String> backend;
 
     /**
@@ -92,7 +92,7 @@ public class SecretBackendConfigUrls extends com.pulumi.resources.CustomResource
      * Specifies the URL values for the CRL Distribution Points field.
      * 
      */
-    @Export(name="crlDistributionPoints", type=List.class, parameters={String.class})
+    @Export(name="crlDistributionPoints", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> crlDistributionPoints;
 
     /**
@@ -106,7 +106,7 @@ public class SecretBackendConfigUrls extends com.pulumi.resources.CustomResource
      * Specifies the URL values for the Issuing Certificate field.
      * 
      */
-    @Export(name="issuingCertificates", type=List.class, parameters={String.class})
+    @Export(name="issuingCertificates", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> issuingCertificates;
 
     /**
@@ -123,7 +123,7 @@ public class SecretBackendConfigUrls extends com.pulumi.resources.CustomResource
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -140,7 +140,7 @@ public class SecretBackendConfigUrls extends com.pulumi.resources.CustomResource
      * Specifies the URL values for the OCSP Servers field.
      * 
      */
-    @Export(name="ocspServers", type=List.class, parameters={String.class})
+    @Export(name="ocspServers", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> ocspServers;
 
     /**

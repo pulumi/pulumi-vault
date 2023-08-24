@@ -86,7 +86,7 @@ public class AuthBackendRoleTag extends com.pulumi.resources.CustomResource {
      * If set, allows migration of the underlying instances where the client resides. Use with caution.
      * 
      */
-    @Export(name="allowInstanceMigration", type=Boolean.class, parameters={})
+    @Export(name="allowInstanceMigration", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> allowInstanceMigration;
 
     /**
@@ -101,7 +101,7 @@ public class AuthBackendRoleTag extends com.pulumi.resources.CustomResource {
      * read role tags from, with no leading or trailing `/`s. Defaults to &#34;aws&#34;.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backend;
 
     /**
@@ -116,7 +116,7 @@ public class AuthBackendRoleTag extends com.pulumi.resources.CustomResource {
      * If set, only allows a single token to be granted per instance ID.
      * 
      */
-    @Export(name="disallowReauthentication", type=Boolean.class, parameters={})
+    @Export(name="disallowReauthentication", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> disallowReauthentication;
 
     /**
@@ -130,7 +130,7 @@ public class AuthBackendRoleTag extends com.pulumi.resources.CustomResource {
      * Instance ID for which this tag is intended for. If set, the created tag can only be used by the instance with the given ID.
      * 
      */
-    @Export(name="instanceId", type=String.class, parameters={})
+    @Export(name="instanceId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> instanceId;
 
     /**
@@ -144,7 +144,7 @@ public class AuthBackendRoleTag extends com.pulumi.resources.CustomResource {
      * The maximum TTL of the tokens issued using this role.
      * 
      */
-    @Export(name="maxTtl", type=String.class, parameters={})
+    @Export(name="maxTtl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> maxTtl;
 
     /**
@@ -161,7 +161,7 @@ public class AuthBackendRoleTag extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -178,7 +178,7 @@ public class AuthBackendRoleTag extends com.pulumi.resources.CustomResource {
      * The policies to be associated with the tag. Must be a subset of the policies associated with the role.
      * 
      */
-    @Export(name="policies", type=List.class, parameters={String.class})
+    @Export(name="policies", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> policies;
 
     /**
@@ -193,7 +193,7 @@ public class AuthBackendRoleTag extends com.pulumi.resources.CustomResource {
      * role tags from, with no leading or trailing `/`s.
      * 
      */
-    @Export(name="role", type=String.class, parameters={})
+    @Export(name="role", refs={String.class}, tree="[0]")
     private Output<String> role;
 
     /**
@@ -208,7 +208,7 @@ public class AuthBackendRoleTag extends com.pulumi.resources.CustomResource {
      * The key of the role tag.
      * 
      */
-    @Export(name="tagKey", type=String.class, parameters={})
+    @Export(name="tagKey", refs={String.class}, tree="[0]")
     private Output<String> tagKey;
 
     /**
@@ -222,7 +222,7 @@ public class AuthBackendRoleTag extends com.pulumi.resources.CustomResource {
      * The value to set the role key.
      * 
      */
-    @Export(name="tagValue", type=String.class, parameters={})
+    @Export(name="tagValue", refs={String.class}, tree="[0]")
     private Output<String> tagValue;
 
     /**

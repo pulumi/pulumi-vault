@@ -100,7 +100,7 @@ public class Audit extends com.pulumi.resources.CustomResource {
      * Human-friendly description of the audit device.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -114,7 +114,7 @@ public class Audit extends com.pulumi.resources.CustomResource {
      * Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
      * 
      */
-    @Export(name="local", type=Boolean.class, parameters={})
+    @Export(name="local", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> local;
 
     /**
@@ -131,7 +131,7 @@ public class Audit extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -148,7 +148,7 @@ public class Audit extends com.pulumi.resources.CustomResource {
      * Configuration options to pass to the audit device itself.
      * 
      */
-    @Export(name="options", type=Map.class, parameters={String.class, String.class})
+    @Export(name="options", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output<Map<String,String>> options;
 
     /**
@@ -162,7 +162,7 @@ public class Audit extends com.pulumi.resources.CustomResource {
      * The path to mount the audit device. This defaults to the type.
      * 
      */
-    @Export(name="path", type=String.class, parameters={})
+    @Export(name="path", refs={String.class}, tree="[0]")
     private Output<String> path;
 
     /**
@@ -176,7 +176,7 @@ public class Audit extends com.pulumi.resources.CustomResource {
      * Type of the audit device, such as &#39;file&#39;.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**

@@ -93,6 +93,8 @@ type SecretBackendCert struct {
 	Ttl pulumi.StringPtrOutput `pulumi:"ttl"`
 	// List of alternative URIs
 	UriSans pulumi.StringArrayOutput `pulumi:"uriSans"`
+	// List of Subject User IDs
+	UserIds pulumi.StringArrayOutput `pulumi:"userIds"`
 }
 
 // NewSecretBackendCert registers a new resource with the given unique name, arguments, and options.
@@ -185,6 +187,8 @@ type secretBackendCertState struct {
 	Ttl *string `pulumi:"ttl"`
 	// List of alternative URIs
 	UriSans []string `pulumi:"uriSans"`
+	// List of Subject User IDs
+	UserIds []string `pulumi:"userIds"`
 }
 
 type SecretBackendCertState struct {
@@ -239,6 +243,8 @@ type SecretBackendCertState struct {
 	Ttl pulumi.StringPtrInput
 	// List of alternative URIs
 	UriSans pulumi.StringArrayInput
+	// List of Subject User IDs
+	UserIds pulumi.StringArrayInput
 }
 
 func (SecretBackendCertState) ElementType() reflect.Type {
@@ -281,6 +287,8 @@ type secretBackendCertArgs struct {
 	Ttl *string `pulumi:"ttl"`
 	// List of alternative URIs
 	UriSans []string `pulumi:"uriSans"`
+	// List of Subject User IDs
+	UserIds []string `pulumi:"userIds"`
 }
 
 // The set of arguments for constructing a SecretBackendCert resource.
@@ -320,6 +328,8 @@ type SecretBackendCertArgs struct {
 	Ttl pulumi.StringPtrInput
 	// List of alternative URIs
 	UriSans pulumi.StringArrayInput
+	// List of Subject User IDs
+	UserIds pulumi.StringArrayInput
 }
 
 func (SecretBackendCertArgs) ElementType() reflect.Type {
@@ -530,6 +540,11 @@ func (o SecretBackendCertOutput) Ttl() pulumi.StringPtrOutput {
 // List of alternative URIs
 func (o SecretBackendCertOutput) UriSans() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringArrayOutput { return v.UriSans }).(pulumi.StringArrayOutput)
+}
+
+// List of Subject User IDs
+func (o SecretBackendCertOutput) UserIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringArrayOutput { return v.UserIds }).(pulumi.StringArrayOutput)
 }
 
 type SecretBackendCertArrayOutput struct{ *pulumi.OutputState }

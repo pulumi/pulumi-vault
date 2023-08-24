@@ -78,7 +78,7 @@ public class OidcClient extends com.pulumi.resources.CustomResource {
      * The time-to-live for access tokens obtained by the client.
      * 
      */
-    @Export(name="accessTokenTtl", type=Integer.class, parameters={})
+    @Export(name="accessTokenTtl", refs={Integer.class}, tree="[0]")
     private Output<Integer> accessTokenTtl;
 
     /**
@@ -92,7 +92,7 @@ public class OidcClient extends com.pulumi.resources.CustomResource {
      * A list of assignment resources associated with the client.
      * 
      */
-    @Export(name="assignments", type=List.class, parameters={String.class})
+    @Export(name="assignments", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> assignments;
 
     /**
@@ -106,7 +106,7 @@ public class OidcClient extends com.pulumi.resources.CustomResource {
      * The Client ID from Vault.
      * 
      */
-    @Export(name="clientId", type=String.class, parameters={})
+    @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output<String> clientId;
 
     /**
@@ -120,7 +120,7 @@ public class OidcClient extends com.pulumi.resources.CustomResource {
      * The Client Secret from Vault.
      * 
      */
-    @Export(name="clientSecret", type=String.class, parameters={})
+    @Export(name="clientSecret", refs={String.class}, tree="[0]")
     private Output<String> clientSecret;
 
     /**
@@ -135,7 +135,7 @@ public class OidcClient extends com.pulumi.resources.CustomResource {
      * The following client types are supported: `confidential`, `public`. Defaults to `confidential`.
      * 
      */
-    @Export(name="clientType", type=String.class, parameters={})
+    @Export(name="clientType", refs={String.class}, tree="[0]")
     private Output<String> clientType;
 
     /**
@@ -151,7 +151,7 @@ public class OidcClient extends com.pulumi.resources.CustomResource {
      * The value should be less than the `verification_ttl` on the key.
      * 
      */
-    @Export(name="idTokenTtl", type=Integer.class, parameters={})
+    @Export(name="idTokenTtl", refs={Integer.class}, tree="[0]")
     private Output<Integer> idTokenTtl;
 
     /**
@@ -168,7 +168,7 @@ public class OidcClient extends com.pulumi.resources.CustomResource {
      * key is used.
      * 
      */
-    @Export(name="key", type=String.class, parameters={})
+    @Export(name="key", refs={String.class}, tree="[0]")
     private Output<String> key;
 
     /**
@@ -184,7 +184,7 @@ public class OidcClient extends com.pulumi.resources.CustomResource {
      * The name of the client.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -201,7 +201,7 @@ public class OidcClient extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -220,7 +220,7 @@ public class OidcClient extends com.pulumi.resources.CustomResource {
      * used in each authentication request.
      * 
      */
-    @Export(name="redirectUris", type=List.class, parameters={String.class})
+    @Export(name="redirectUris", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> redirectUris;
 
     /**

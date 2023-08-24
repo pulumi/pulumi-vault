@@ -16,6 +16,7 @@ import com.pulumi.vault.inputs.ProviderAuthLoginKerberosArgs;
 import com.pulumi.vault.inputs.ProviderAuthLoginOciArgs;
 import com.pulumi.vault.inputs.ProviderAuthLoginOidcArgs;
 import com.pulumi.vault.inputs.ProviderAuthLoginRadiusArgs;
+import com.pulumi.vault.inputs.ProviderAuthLoginTokenFileArgs;
 import com.pulumi.vault.inputs.ProviderAuthLoginUserpassArgs;
 import com.pulumi.vault.inputs.ProviderClientAuthArgs;
 import com.pulumi.vault.inputs.ProviderHeaderArgs;
@@ -213,6 +214,21 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Login to vault using
+     * 
+     */
+    @Import(name="authLoginTokenFile", json=true)
+    private @Nullable Output<ProviderAuthLoginTokenFileArgs> authLoginTokenFile;
+
+    /**
+     * @return Login to vault using
+     * 
+     */
+    public Optional<Output<ProviderAuthLoginTokenFileArgs>> authLoginTokenFile() {
+        return Optional.ofNullable(this.authLoginTokenFile);
+    }
+
+    /**
      * Login to vault using the userpass method
      * 
      */
@@ -260,14 +276,22 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * Client authentication credentials.
      * 
+     * @deprecated
+     * Use auth_login_cert instead
+     * 
      */
+    @Deprecated /* Use auth_login_cert instead */
     @Import(name="clientAuth", json=true)
     private @Nullable Output<ProviderClientAuthArgs> clientAuth;
 
     /**
      * @return Client authentication credentials.
      * 
+     * @deprecated
+     * Use auth_login_cert instead
+     * 
      */
+    @Deprecated /* Use auth_login_cert instead */
     public Optional<Output<ProviderClientAuthArgs>> clientAuth() {
         return Optional.ofNullable(this.clientAuth);
     }
@@ -467,6 +491,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         this.authLoginOci = $.authLoginOci;
         this.authLoginOidc = $.authLoginOidc;
         this.authLoginRadius = $.authLoginRadius;
+        this.authLoginTokenFile = $.authLoginTokenFile;
         this.authLoginUserpass = $.authLoginUserpass;
         this.caCertDir = $.caCertDir;
         this.caCertFile = $.caCertFile;
@@ -756,6 +781,27 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param authLoginTokenFile Login to vault using
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authLoginTokenFile(@Nullable Output<ProviderAuthLoginTokenFileArgs> authLoginTokenFile) {
+            $.authLoginTokenFile = authLoginTokenFile;
+            return this;
+        }
+
+        /**
+         * @param authLoginTokenFile Login to vault using
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authLoginTokenFile(ProviderAuthLoginTokenFileArgs authLoginTokenFile) {
+            return authLoginTokenFile(Output.of(authLoginTokenFile));
+        }
+
+        /**
          * @param authLoginUserpass Login to vault using the userpass method
          * 
          * @return builder
@@ -823,7 +869,11 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
+         * @deprecated
+         * Use auth_login_cert instead
+         * 
          */
+        @Deprecated /* Use auth_login_cert instead */
         public Builder clientAuth(@Nullable Output<ProviderClientAuthArgs> clientAuth) {
             $.clientAuth = clientAuth;
             return this;
@@ -834,7 +884,11 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
+         * @deprecated
+         * Use auth_login_cert instead
+         * 
          */
+        @Deprecated /* Use auth_login_cert instead */
         public Builder clientAuth(ProviderClientAuthArgs clientAuth) {
             return clientAuth(Output.of(clientAuth));
         }

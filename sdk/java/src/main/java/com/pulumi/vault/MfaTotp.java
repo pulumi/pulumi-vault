@@ -70,7 +70,7 @@ public class MfaTotp extends com.pulumi.resources.CustomResource {
      * Options include `SHA1`, `SHA256` and `SHA512`
      * 
      */
-    @Export(name="algorithm", type=String.class, parameters={})
+    @Export(name="algorithm", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> algorithm;
 
     /**
@@ -86,7 +86,7 @@ public class MfaTotp extends com.pulumi.resources.CustomResource {
      * This value can either be 6 or 8.
      * 
      */
-    @Export(name="digits", type=Integer.class, parameters={})
+    @Export(name="digits", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> digits;
 
     /**
@@ -101,7 +101,7 @@ public class MfaTotp extends com.pulumi.resources.CustomResource {
      * `(string: &lt;required&gt;)` - The name of the key&#39;s issuing organization.
      * 
      */
-    @Export(name="issuer", type=String.class, parameters={})
+    @Export(name="issuer", refs={String.class}, tree="[0]")
     private Output<String> issuer;
 
     /**
@@ -115,7 +115,7 @@ public class MfaTotp extends com.pulumi.resources.CustomResource {
      * `(int)` - Specifies the size in bytes of the generated key.
      * 
      */
-    @Export(name="keySize", type=Integer.class, parameters={})
+    @Export(name="keySize", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> keySize;
 
     /**
@@ -129,7 +129,7 @@ public class MfaTotp extends com.pulumi.resources.CustomResource {
      * `(string: &lt;required&gt;)` – Name of the MFA method.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -146,7 +146,7 @@ public class MfaTotp extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -163,7 +163,7 @@ public class MfaTotp extends com.pulumi.resources.CustomResource {
      * `(int)` - The length of time used to generate a counter for the TOTP token calculation.
      * 
      */
-    @Export(name="period", type=Integer.class, parameters={})
+    @Export(name="period", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> period;
 
     /**
@@ -177,7 +177,7 @@ public class MfaTotp extends com.pulumi.resources.CustomResource {
      * `(int)` - The pixel size of the generated square QR code.
      * 
      */
-    @Export(name="qrSize", type=Integer.class, parameters={})
+    @Export(name="qrSize", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> qrSize;
 
     /**
@@ -192,7 +192,7 @@ public class MfaTotp extends com.pulumi.resources.CustomResource {
      * This value can either be 0 or 1.
      * 
      */
-    @Export(name="skew", type=Integer.class, parameters={})
+    @Export(name="skew", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> skew;
 
     /**

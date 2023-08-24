@@ -74,7 +74,7 @@ public class AuthBackendIdentityWhitelist extends com.pulumi.resources.CustomRes
      * The path of the AWS backend being configured.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backend;
 
     /**
@@ -89,7 +89,7 @@ public class AuthBackendIdentityWhitelist extends com.pulumi.resources.CustomRes
      * tidying of the identity-whitelist entries.
      * 
      */
-    @Export(name="disablePeriodicTidy", type=Boolean.class, parameters={})
+    @Export(name="disablePeriodicTidy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> disablePeriodicTidy;
 
     /**
@@ -107,7 +107,7 @@ public class AuthBackendIdentityWhitelist extends com.pulumi.resources.CustomRes
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -126,7 +126,7 @@ public class AuthBackendIdentityWhitelist extends com.pulumi.resources.CustomRes
      * backend storage.
      * 
      */
-    @Export(name="safetyBuffer", type=Integer.class, parameters={})
+    @Export(name="safetyBuffer", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> safetyBuffer;
 
     /**

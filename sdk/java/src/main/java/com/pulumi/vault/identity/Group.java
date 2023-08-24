@@ -152,7 +152,7 @@ public class Group extends com.pulumi.resources.CustomResource {
      * decoupled manner.
      * 
      */
-    @Export(name="externalMemberEntityIds", type=Boolean.class, parameters={})
+    @Export(name="externalMemberEntityIds", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> externalMemberEntityIds;
 
     /**
@@ -172,7 +172,7 @@ public class Group extends com.pulumi.resources.CustomResource {
      * decoupled manner.
      * 
      */
-    @Export(name="externalMemberGroupIds", type=Boolean.class, parameters={})
+    @Export(name="externalMemberGroupIds", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> externalMemberGroupIds;
 
     /**
@@ -191,7 +191,7 @@ public class Group extends com.pulumi.resources.CustomResource {
      * policies for this group in a decoupled manner.
      * 
      */
-    @Export(name="externalPolicies", type=Boolean.class, parameters={})
+    @Export(name="externalPolicies", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> externalPolicies;
 
     /**
@@ -207,7 +207,7 @@ public class Group extends com.pulumi.resources.CustomResource {
      * A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
      * 
      */
-    @Export(name="memberEntityIds", type=List.class, parameters={String.class})
+    @Export(name="memberEntityIds", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> memberEntityIds;
 
     /**
@@ -221,7 +221,7 @@ public class Group extends com.pulumi.resources.CustomResource {
      * A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
      * 
      */
-    @Export(name="memberGroupIds", type=List.class, parameters={String.class})
+    @Export(name="memberGroupIds", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> memberGroupIds;
 
     /**
@@ -235,7 +235,7 @@ public class Group extends com.pulumi.resources.CustomResource {
      * A Map of additional metadata to associate with the group.
      * 
      */
-    @Export(name="metadata", type=Map.class, parameters={String.class, String.class})
+    @Export(name="metadata", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> metadata;
 
     /**
@@ -249,7 +249,7 @@ public class Group extends com.pulumi.resources.CustomResource {
      * Name of the identity group to create.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -266,7 +266,7 @@ public class Group extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -283,7 +283,7 @@ public class Group extends com.pulumi.resources.CustomResource {
      * A list of policies to apply to the group.
      * 
      */
-    @Export(name="policies", type=List.class, parameters={String.class})
+    @Export(name="policies", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> policies;
 
     /**
@@ -297,7 +297,7 @@ public class Group extends com.pulumi.resources.CustomResource {
      * Type of the group, internal or external. Defaults to `internal`.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> type;
 
     /**

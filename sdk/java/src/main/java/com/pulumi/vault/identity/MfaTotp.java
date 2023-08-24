@@ -63,7 +63,7 @@ public class MfaTotp extends com.pulumi.resources.CustomResource {
      * Specifies the hashing algorithm used to generate the TOTP code. Options include SHA1, SHA256, SHA512.
      * 
      */
-    @Export(name="algorithm", type=String.class, parameters={})
+    @Export(name="algorithm", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> algorithm;
 
     /**
@@ -77,7 +77,7 @@ public class MfaTotp extends com.pulumi.resources.CustomResource {
      * The number of digits in the generated TOTP token. This value can either be 6 or 8
      * 
      */
-    @Export(name="digits", type=Integer.class, parameters={})
+    @Export(name="digits", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> digits;
 
     /**
@@ -91,7 +91,7 @@ public class MfaTotp extends com.pulumi.resources.CustomResource {
      * The name of the key&#39;s issuing organization.
      * 
      */
-    @Export(name="issuer", type=String.class, parameters={})
+    @Export(name="issuer", refs={String.class}, tree="[0]")
     private Output<String> issuer;
 
     /**
@@ -105,7 +105,7 @@ public class MfaTotp extends com.pulumi.resources.CustomResource {
      * Specifies the size in bytes of the generated key.
      * 
      */
-    @Export(name="keySize", type=Integer.class, parameters={})
+    @Export(name="keySize", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> keySize;
 
     /**
@@ -119,7 +119,7 @@ public class MfaTotp extends com.pulumi.resources.CustomResource {
      * The maximum number of consecutive failed validation attempts allowed.
      * 
      */
-    @Export(name="maxValidationAttempts", type=Integer.class, parameters={})
+    @Export(name="maxValidationAttempts", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> maxValidationAttempts;
 
     /**
@@ -133,7 +133,7 @@ public class MfaTotp extends com.pulumi.resources.CustomResource {
      * Method ID.
      * 
      */
-    @Export(name="methodId", type=String.class, parameters={})
+    @Export(name="methodId", refs={String.class}, tree="[0]")
     private Output<String> methodId;
 
     /**
@@ -147,7 +147,7 @@ public class MfaTotp extends com.pulumi.resources.CustomResource {
      * Mount accessor.
      * 
      */
-    @Export(name="mountAccessor", type=String.class, parameters={})
+    @Export(name="mountAccessor", refs={String.class}, tree="[0]")
     private Output<String> mountAccessor;
 
     /**
@@ -161,7 +161,7 @@ public class MfaTotp extends com.pulumi.resources.CustomResource {
      * Method name.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -175,7 +175,7 @@ public class MfaTotp extends com.pulumi.resources.CustomResource {
      * Target namespace. (requires Enterprise)
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -189,7 +189,7 @@ public class MfaTotp extends com.pulumi.resources.CustomResource {
      * Method&#39;s namespace ID.
      * 
      */
-    @Export(name="namespaceId", type=String.class, parameters={})
+    @Export(name="namespaceId", refs={String.class}, tree="[0]")
     private Output<String> namespaceId;
 
     /**
@@ -203,7 +203,7 @@ public class MfaTotp extends com.pulumi.resources.CustomResource {
      * Method&#39;s namespace path.
      * 
      */
-    @Export(name="namespacePath", type=String.class, parameters={})
+    @Export(name="namespacePath", refs={String.class}, tree="[0]")
     private Output<String> namespacePath;
 
     /**
@@ -217,7 +217,7 @@ public class MfaTotp extends com.pulumi.resources.CustomResource {
      * The length of time in seconds used to generate a counter for the TOTP token calculation.
      * 
      */
-    @Export(name="period", type=Integer.class, parameters={})
+    @Export(name="period", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> period;
 
     /**
@@ -231,7 +231,7 @@ public class MfaTotp extends com.pulumi.resources.CustomResource {
      * The pixel size of the generated square QR code.
      * 
      */
-    @Export(name="qrSize", type=Integer.class, parameters={})
+    @Export(name="qrSize", refs={Integer.class}, tree="[0]")
     private Output<Integer> qrSize;
 
     /**
@@ -245,7 +245,7 @@ public class MfaTotp extends com.pulumi.resources.CustomResource {
      * The number of delay periods that are allowed when validating a TOTP token. This value can either be 0 or 1.
      * 
      */
-    @Export(name="skew", type=Integer.class, parameters={})
+    @Export(name="skew", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> skew;
 
     /**
@@ -259,7 +259,7 @@ public class MfaTotp extends com.pulumi.resources.CustomResource {
      * MFA type.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
@@ -273,7 +273,7 @@ public class MfaTotp extends com.pulumi.resources.CustomResource {
      * Resource UUID.
      * 
      */
-    @Export(name="uuid", type=String.class, parameters={})
+    @Export(name="uuid", refs={String.class}, tree="[0]")
     private Output<String> uuid;
 
     /**

@@ -64,7 +64,7 @@ public class Alphabet extends com.pulumi.resources.CustomResource {
      * A string of characters that contains the alphabet set.
      * 
      */
-    @Export(name="alphabet", type=String.class, parameters={})
+    @Export(name="alphabet", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> alphabet;
 
     /**
@@ -78,7 +78,7 @@ public class Alphabet extends com.pulumi.resources.CustomResource {
      * The name of the alphabet.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -92,7 +92,7 @@ public class Alphabet extends com.pulumi.resources.CustomResource {
      * Path to where the back-end is mounted within Vault.
      * 
      */
-    @Export(name="path", type=String.class, parameters={})
+    @Export(name="path", refs={String.class}, tree="[0]")
     private Output<String> path;
 
     /**

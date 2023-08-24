@@ -22,7 +22,7 @@ public class Transformation extends com.pulumi.resources.CustomResource {
      * The set of roles allowed to perform this transformation.
      * 
      */
-    @Export(name="allowedRoles", type=List.class, parameters={String.class})
+    @Export(name="allowedRoles", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> allowedRoles;
 
     /**
@@ -38,7 +38,7 @@ public class Transformation extends com.pulumi.resources.CustomResource {
      * *Only supported on vault-1.12+*
      * 
      */
-    @Export(name="deletionAllowed", type=Boolean.class, parameters={})
+    @Export(name="deletionAllowed", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> deletionAllowed;
 
     /**
@@ -54,7 +54,7 @@ public class Transformation extends com.pulumi.resources.CustomResource {
      * The character used to replace data when in masking mode
      * 
      */
-    @Export(name="maskingCharacter", type=String.class, parameters={})
+    @Export(name="maskingCharacter", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> maskingCharacter;
 
     /**
@@ -68,7 +68,7 @@ public class Transformation extends com.pulumi.resources.CustomResource {
      * The name of the transformation.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -82,7 +82,7 @@ public class Transformation extends com.pulumi.resources.CustomResource {
      * Path to where the back-end is mounted within Vault.
      * 
      */
-    @Export(name="path", type=String.class, parameters={})
+    @Export(name="path", refs={String.class}, tree="[0]")
     private Output<String> path;
 
     /**
@@ -96,7 +96,7 @@ public class Transformation extends com.pulumi.resources.CustomResource {
      * The name of the template to use.
      * 
      */
-    @Export(name="template", type=String.class, parameters={})
+    @Export(name="template", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> template;
 
     /**
@@ -110,7 +110,7 @@ public class Transformation extends com.pulumi.resources.CustomResource {
      * Templates configured for transformation.
      * 
      */
-    @Export(name="templates", type=List.class, parameters={String.class})
+    @Export(name="templates", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> templates;
 
     /**
@@ -124,7 +124,7 @@ public class Transformation extends com.pulumi.resources.CustomResource {
      * The source of where the tweak value comes from. Only valid when in FPE mode.
      * 
      */
-    @Export(name="tweakSource", type=String.class, parameters={})
+    @Export(name="tweakSource", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tweakSource;
 
     /**
@@ -138,7 +138,7 @@ public class Transformation extends com.pulumi.resources.CustomResource {
      * The type of transformation to perform.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> type;
 
     /**

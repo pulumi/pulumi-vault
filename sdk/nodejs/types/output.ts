@@ -220,6 +220,11 @@ export namespace config {
         username: string;
     }
 
+    export interface AuthLoginTokenFile {
+        filename: string;
+        namespace?: string;
+    }
+
     export interface AuthLoginUserpass {
         mount?: string;
         namespace?: string;

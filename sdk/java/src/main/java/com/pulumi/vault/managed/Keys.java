@@ -34,7 +34,7 @@ public class Keys extends com.pulumi.resources.CustomResource {
      * Configuration block for AWS Managed Keys
      * 
      */
-    @Export(name="aws", type=List.class, parameters={KeysAw.class})
+    @Export(name="aws", refs={List.class,KeysAw.class}, tree="[0,1]")
     private Output</* @Nullable */ List<KeysAw>> aws;
 
     /**
@@ -48,7 +48,7 @@ public class Keys extends com.pulumi.resources.CustomResource {
      * Configuration block for Azure Managed Keys
      * 
      */
-    @Export(name="azures", type=List.class, parameters={KeysAzure.class})
+    @Export(name="azures", refs={List.class,KeysAzure.class}, tree="[0,1]")
     private Output</* @Nullable */ List<KeysAzure>> azures;
 
     /**
@@ -65,7 +65,7 @@ public class Keys extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -82,7 +82,7 @@ public class Keys extends com.pulumi.resources.CustomResource {
      * Configuration block for PKCS Managed Keys
      * 
      */
-    @Export(name="pkcs", type=List.class, parameters={KeysPkc.class})
+    @Export(name="pkcs", refs={List.class,KeysPkc.class}, tree="[0,1]")
     private Output</* @Nullable */ List<KeysPkc>> pkcs;
 
     /**

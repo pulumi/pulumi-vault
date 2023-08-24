@@ -106,7 +106,7 @@ public class SecretBackendConfigCa extends com.pulumi.resources.CustomResource {
      * The PKI secret backend the resource belongs to.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output<String> backend;
 
     /**
@@ -123,7 +123,7 @@ public class SecretBackendConfigCa extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -140,7 +140,7 @@ public class SecretBackendConfigCa extends com.pulumi.resources.CustomResource {
      * The key and certificate PEM bundle
      * 
      */
-    @Export(name="pemBundle", type=String.class, parameters={})
+    @Export(name="pemBundle", refs={String.class}, tree="[0]")
     private Output<String> pemBundle;
 
     /**

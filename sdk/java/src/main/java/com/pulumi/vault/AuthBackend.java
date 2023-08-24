@@ -32,7 +32,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * The accessor for this auth method
      * 
      */
-    @Export(name="accessor", type=String.class, parameters={})
+    @Export(name="accessor", refs={String.class}, tree="[0]")
     private Output<String> accessor;
 
     /**
@@ -46,7 +46,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * A description of the auth method.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -61,7 +61,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      * 
      */
-    @Export(name="disableRemount", type=Boolean.class, parameters={})
+    @Export(name="disableRemount", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> disableRemount;
 
     /**
@@ -76,7 +76,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * Specifies if the auth method is local only.
      * 
      */
-    @Export(name="local", type=Boolean.class, parameters={})
+    @Export(name="local", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> local;
 
     /**
@@ -93,7 +93,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -110,7 +110,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * The path to mount the auth method — this defaults to the name of the type.
      * 
      */
-    @Export(name="path", type=String.class, parameters={})
+    @Export(name="path", refs={String.class}, tree="[0]")
     private Output<String> path;
 
     /**
@@ -124,7 +124,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * Extra configuration block. Structure is documented below.
      * 
      */
-    @Export(name="tune", type=AuthBackendTune.class, parameters={})
+    @Export(name="tune", refs={AuthBackendTune.class}, tree="[0]")
     private Output<AuthBackendTune> tune;
 
     /**
@@ -138,7 +138,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * The name of the auth method type.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**

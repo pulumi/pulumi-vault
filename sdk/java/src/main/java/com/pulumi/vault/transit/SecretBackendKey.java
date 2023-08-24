@@ -81,7 +81,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      * * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
      * 
      */
-    @Export(name="allowPlaintextBackup", type=Boolean.class, parameters={})
+    @Export(name="allowPlaintextBackup", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> allowPlaintextBackup;
 
     /**
@@ -101,7 +101,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* Use auto_rotate_period instead */
-    @Export(name="autoRotateInterval", type=Integer.class, parameters={})
+    @Export(name="autoRotateInterval", refs={Integer.class}, tree="[0]")
     private Output<Integer> autoRotateInterval;
 
     /**
@@ -117,7 +117,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      * A value of 0 disables automatic rotation for the key.
      * 
      */
-    @Export(name="autoRotatePeriod", type=Integer.class, parameters={})
+    @Export(name="autoRotatePeriod", refs={Integer.class}, tree="[0]")
     private Output<Integer> autoRotatePeriod;
 
     /**
@@ -132,7 +132,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      * The path the transit secret backend is mounted at, with no leading or trailing `/`s.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output<String> backend;
 
     /**
@@ -146,7 +146,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      * Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
      * 
      */
-    @Export(name="convergentEncryption", type=Boolean.class, parameters={})
+    @Export(name="convergentEncryption", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> convergentEncryption;
 
     /**
@@ -160,7 +160,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      * Specifies if the key is allowed to be deleted.
      * 
      */
-    @Export(name="deletionAllowed", type=Boolean.class, parameters={})
+    @Export(name="deletionAllowed", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> deletionAllowed;
 
     /**
@@ -174,7 +174,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      * Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
      * 
      */
-    @Export(name="derived", type=Boolean.class, parameters={})
+    @Export(name="derived", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> derived;
 
     /**
@@ -188,7 +188,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      * Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
      * 
      */
-    @Export(name="exportable", type=Boolean.class, parameters={})
+    @Export(name="exportable", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> exportable;
 
     /**
@@ -204,7 +204,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      * * for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
      * 
      */
-    @Export(name="keys", type=List.class, parameters={Map.class})
+    @Export(name="keys", refs={List.class,Map.class,String.class,Object.class}, tree="[0,[1,2,3]]")
     private Output<List<Map<String,Object>>> keys;
 
     /**
@@ -220,7 +220,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      * Latest key version available. This value is 1-indexed, so if `latest_version` is `1`, then the key&#39;s information can be referenced from `keys` by selecting element `0`
      * 
      */
-    @Export(name="latestVersion", type=Integer.class, parameters={})
+    @Export(name="latestVersion", refs={Integer.class}, tree="[0]")
     private Output<Integer> latestVersion;
 
     /**
@@ -234,7 +234,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      * Minimum key version available for use. If keys have been archived by increasing `min_decryption_version`, this attribute will reflect that change.
      * 
      */
-    @Export(name="minAvailableVersion", type=Integer.class, parameters={})
+    @Export(name="minAvailableVersion", refs={Integer.class}, tree="[0]")
     private Output<Integer> minAvailableVersion;
 
     /**
@@ -248,7 +248,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      * Minimum key version to use for decryption.
      * 
      */
-    @Export(name="minDecryptionVersion", type=Integer.class, parameters={})
+    @Export(name="minDecryptionVersion", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> minDecryptionVersion;
 
     /**
@@ -262,7 +262,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      * Minimum key version to use for encryption
      * 
      */
-    @Export(name="minEncryptionVersion", type=Integer.class, parameters={})
+    @Export(name="minEncryptionVersion", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> minEncryptionVersion;
 
     /**
@@ -276,7 +276,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      * The name to identify this key within the backend. Must be unique within the backend.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -293,7 +293,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -310,7 +310,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      * Whether or not the key supports decryption, based on key type.
      * 
      */
-    @Export(name="supportsDecryption", type=Boolean.class, parameters={})
+    @Export(name="supportsDecryption", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> supportsDecryption;
 
     /**
@@ -324,7 +324,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      * Whether or not the key supports derivation, based on key type.
      * 
      */
-    @Export(name="supportsDerivation", type=Boolean.class, parameters={})
+    @Export(name="supportsDerivation", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> supportsDerivation;
 
     /**
@@ -338,7 +338,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      * Whether or not the key supports encryption, based on key type.
      * 
      */
-    @Export(name="supportsEncryption", type=Boolean.class, parameters={})
+    @Export(name="supportsEncryption", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> supportsEncryption;
 
     /**
@@ -352,7 +352,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      * Whether or not the key supports signing, based on key type.
      * 
      */
-    @Export(name="supportsSigning", type=Boolean.class, parameters={})
+    @Export(name="supportsSigning", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> supportsSigning;
 
     /**
@@ -367,7 +367,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      * * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> type;
 
     /**

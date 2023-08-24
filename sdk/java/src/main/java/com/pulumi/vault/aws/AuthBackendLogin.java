@@ -103,7 +103,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * The token&#39;s accessor.
      * 
      */
-    @Export(name="accessor", type=String.class, parameters={})
+    @Export(name="accessor", refs={String.class}, tree="[0]")
     private Output<String> accessor;
 
     /**
@@ -117,7 +117,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * The authentication type used to generate this token.
      * 
      */
-    @Export(name="authType", type=String.class, parameters={})
+    @Export(name="authType", refs={String.class}, tree="[0]")
     private Output<String> authType;
 
     /**
@@ -132,7 +132,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * &#39;aws&#39;.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backend;
 
     /**
@@ -147,7 +147,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * The token returned by Vault.
      * 
      */
-    @Export(name="clientToken", type=String.class, parameters={})
+    @Export(name="clientToken", refs={String.class}, tree="[0]")
     private Output<String> clientToken;
 
     /**
@@ -162,7 +162,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * request.
      * 
      */
-    @Export(name="iamHttpRequestMethod", type=String.class, parameters={})
+    @Export(name="iamHttpRequestMethod", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> iamHttpRequestMethod;
 
     /**
@@ -178,7 +178,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * request.
      * 
      */
-    @Export(name="iamRequestBody", type=String.class, parameters={})
+    @Export(name="iamRequestBody", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> iamRequestBody;
 
     /**
@@ -194,7 +194,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * representation of the GetCallerIdentity HTTP request headers.
      * 
      */
-    @Export(name="iamRequestHeaders", type=String.class, parameters={})
+    @Export(name="iamRequestHeaders", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> iamRequestHeaders;
 
     /**
@@ -210,7 +210,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * request.
      * 
      */
-    @Export(name="iamRequestUrl", type=String.class, parameters={})
+    @Export(name="iamRequestUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> iamRequestUrl;
 
     /**
@@ -226,7 +226,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * authenticate with. Can be retrieved from the EC2 metadata server.
      * 
      */
-    @Export(name="identity", type=String.class, parameters={})
+    @Export(name="identity", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> identity;
 
     /**
@@ -242,7 +242,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * to the time in `lease_start_time`.
      * 
      */
-    @Export(name="leaseDuration", type=Integer.class, parameters={})
+    @Export(name="leaseDuration", refs={Integer.class}, tree="[0]")
     private Output<Integer> leaseDuration;
 
     /**
@@ -257,7 +257,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * Time at which the lease was read, using the clock of the system where Terraform was running
      * 
      */
-    @Export(name="leaseStartTime", type=String.class, parameters={})
+    @Export(name="leaseStartTime", refs={String.class}, tree="[0]")
     private Output<String> leaseStartTime;
 
     /**
@@ -272,7 +272,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * authentication used to generate this token.
      * 
      */
-    @Export(name="metadata", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="metadata", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output<Map<String,Object>> metadata;
 
     /**
@@ -290,7 +290,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -310,7 +310,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * the whitelist is tidied again unless they keep track of this nonce.
      * 
      */
-    @Export(name="nonce", type=String.class, parameters={})
+    @Export(name="nonce", refs={String.class}, tree="[0]")
     private Output<String> nonce;
 
     /**
@@ -329,7 +329,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * the EC2 metadata server.
      * 
      */
-    @Export(name="pkcs7", type=String.class, parameters={})
+    @Export(name="pkcs7", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> pkcs7;
 
     /**
@@ -345,7 +345,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * The Vault policies assigned to this token.
      * 
      */
-    @Export(name="policies", type=List.class, parameters={String.class})
+    @Export(name="policies", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> policies;
 
     /**
@@ -359,7 +359,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * Set to true if the token can be extended through renewal.
      * 
      */
-    @Export(name="renewable", type=Boolean.class, parameters={})
+    @Export(name="renewable", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> renewable;
 
     /**
@@ -374,7 +374,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * against.
      * 
      */
-    @Export(name="role", type=String.class, parameters={})
+    @Export(name="role", refs={String.class}, tree="[0]")
     private Output<String> role;
 
     /**
@@ -391,7 +391,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * removed. Can be retrieved from the EC2 metadata server.
      * 
      */
-    @Export(name="signature", type=String.class, parameters={})
+    @Export(name="signature", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> signature;
 
     /**

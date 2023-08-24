@@ -7,6 +7,7 @@ import typing
 # Export this package's modules as members:
 from .secret_backend_cert import *
 from .secret_backend_config_ca import *
+from .secret_backend_config_issuers import *
 from .secret_backend_config_urls import *
 from .secret_backend_crl_config import *
 from .secret_backend_intermediate_cert_request import *

@@ -62,7 +62,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * Certificate Services
      * 
      */
-    @Export(name="addBasicConstraints", type=Boolean.class, parameters={})
+    @Export(name="addBasicConstraints", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> addBasicConstraints;
 
     /**
@@ -78,7 +78,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * List of alternative names
      * 
      */
-    @Export(name="altNames", type=List.class, parameters={String.class})
+    @Export(name="altNames", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> altNames;
 
     /**
@@ -92,7 +92,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * The PKI secret backend the resource belongs to.
      * 
      */
-    @Export(name="backend", type=String.class, parameters={})
+    @Export(name="backend", refs={String.class}, tree="[0]")
     private Output<String> backend;
 
     /**
@@ -106,7 +106,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * CN of intermediate to create
      * 
      */
-    @Export(name="commonName", type=String.class, parameters={})
+    @Export(name="commonName", refs={String.class}, tree="[0]")
     private Output<String> commonName;
 
     /**
@@ -120,7 +120,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * The country
      * 
      */
-    @Export(name="country", type=String.class, parameters={})
+    @Export(name="country", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> country;
 
     /**
@@ -134,7 +134,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * The CSR
      * 
      */
-    @Export(name="csr", type=String.class, parameters={})
+    @Export(name="csr", refs={String.class}, tree="[0]")
     private Output<String> csr;
 
     /**
@@ -148,7 +148,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * Flag to exclude CN from SANs
      * 
      */
-    @Export(name="excludeCnFromSans", type=Boolean.class, parameters={})
+    @Export(name="excludeCnFromSans", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> excludeCnFromSans;
 
     /**
@@ -162,7 +162,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * The format of data
      * 
      */
-    @Export(name="format", type=String.class, parameters={})
+    @Export(name="format", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> format;
 
     /**
@@ -176,7 +176,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * List of alternative IPs
      * 
      */
-    @Export(name="ipSans", type=List.class, parameters={String.class})
+    @Export(name="ipSans", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> ipSans;
 
     /**
@@ -190,7 +190,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * The number of bits to use
      * 
      */
-    @Export(name="keyBits", type=Integer.class, parameters={})
+    @Export(name="keyBits", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> keyBits;
 
     /**
@@ -204,7 +204,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * The ID of the generated key.
      * 
      */
-    @Export(name="keyId", type=String.class, parameters={})
+    @Export(name="keyId", refs={String.class}, tree="[0]")
     private Output<String> keyId;
 
     /**
@@ -219,7 +219,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * the name for this. The global ref `default` may not be used as a name.
      * 
      */
-    @Export(name="keyName", type=String.class, parameters={})
+    @Export(name="keyName", refs={String.class}, tree="[0]")
     private Output<String> keyName;
 
     /**
@@ -235,7 +235,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * for generating this request. Only suitable for `type=existing` requests.
      * 
      */
-    @Export(name="keyRef", type=String.class, parameters={})
+    @Export(name="keyRef", refs={String.class}, tree="[0]")
     private Output<String> keyRef;
 
     /**
@@ -250,7 +250,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * The desired key type
      * 
      */
-    @Export(name="keyType", type=String.class, parameters={})
+    @Export(name="keyType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> keyType;
 
     /**
@@ -264,7 +264,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * The locality
      * 
      */
-    @Export(name="locality", type=String.class, parameters={})
+    @Export(name="locality", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> locality;
 
     /**
@@ -279,7 +279,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * required if `type` is `kms` and it conflicts with `managed_key_name`
      * 
      */
-    @Export(name="managedKeyId", type=String.class, parameters={})
+    @Export(name="managedKeyId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> managedKeyId;
 
     /**
@@ -295,7 +295,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * required if `type` is `kms`  and it conflicts with `managed_key_id`
      * 
      */
-    @Export(name="managedKeyName", type=String.class, parameters={})
+    @Export(name="managedKeyName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> managedKeyName;
 
     /**
@@ -313,7 +313,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * *Available only for Vault Enterprise*.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -330,7 +330,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * The organization
      * 
      */
-    @Export(name="organization", type=String.class, parameters={})
+    @Export(name="organization", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> organization;
 
     /**
@@ -344,7 +344,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * List of other SANs
      * 
      */
-    @Export(name="otherSans", type=List.class, parameters={String.class})
+    @Export(name="otherSans", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> otherSans;
 
     /**
@@ -358,7 +358,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * The organization unit
      * 
      */
-    @Export(name="ou", type=String.class, parameters={})
+    @Export(name="ou", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> ou;
 
     /**
@@ -372,7 +372,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * The postal code
      * 
      */
-    @Export(name="postalCode", type=String.class, parameters={})
+    @Export(name="postalCode", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> postalCode;
 
     /**
@@ -386,7 +386,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * The private key
      * 
      */
-    @Export(name="privateKey", type=String.class, parameters={})
+    @Export(name="privateKey", refs={String.class}, tree="[0]")
     private Output<String> privateKey;
 
     /**
@@ -400,7 +400,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * The private key format
      * 
      */
-    @Export(name="privateKeyFormat", type=String.class, parameters={})
+    @Export(name="privateKeyFormat", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> privateKeyFormat;
 
     /**
@@ -414,7 +414,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * The private key type
      * 
      */
-    @Export(name="privateKeyType", type=String.class, parameters={})
+    @Export(name="privateKeyType", refs={String.class}, tree="[0]")
     private Output<String> privateKeyType;
 
     /**
@@ -428,7 +428,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * The province
      * 
      */
-    @Export(name="province", type=String.class, parameters={})
+    @Export(name="province", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> province;
 
     /**
@@ -442,7 +442,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * The street address
      * 
      */
-    @Export(name="streetAddress", type=String.class, parameters={})
+    @Export(name="streetAddress", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> streetAddress;
 
     /**
@@ -457,7 +457,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * or \&#34;kms\&#34;
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
@@ -472,7 +472,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * List of alternative URIs
      * 
      */
-    @Export(name="uriSans", type=List.class, parameters={String.class})
+    @Export(name="uriSans", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> uriSans;
 
     /**

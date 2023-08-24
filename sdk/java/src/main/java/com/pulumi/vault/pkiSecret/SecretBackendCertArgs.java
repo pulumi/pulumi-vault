@@ -264,6 +264,21 @@ public final class SecretBackendCertArgs extends com.pulumi.resources.ResourceAr
         return Optional.ofNullable(this.uriSans);
     }
 
+    /**
+     * List of Subject User IDs
+     * 
+     */
+    @Import(name="userIds")
+    private @Nullable Output<List<String>> userIds;
+
+    /**
+     * @return List of Subject User IDs
+     * 
+     */
+    public Optional<Output<List<String>>> userIds() {
+        return Optional.ofNullable(this.userIds);
+    }
+
     private SecretBackendCertArgs() {}
 
     private SecretBackendCertArgs(SecretBackendCertArgs $) {
@@ -283,6 +298,7 @@ public final class SecretBackendCertArgs extends com.pulumi.resources.ResourceAr
         this.revoke = $.revoke;
         this.ttl = $.ttl;
         this.uriSans = $.uriSans;
+        this.userIds = $.userIds;
     }
 
     public static Builder builder() {
@@ -683,6 +699,37 @@ public final class SecretBackendCertArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder uriSans(String... uriSans) {
             return uriSans(List.of(uriSans));
+        }
+
+        /**
+         * @param userIds List of Subject User IDs
+         * 
+         * @return builder
+         * 
+         */
+        public Builder userIds(@Nullable Output<List<String>> userIds) {
+            $.userIds = userIds;
+            return this;
+        }
+
+        /**
+         * @param userIds List of Subject User IDs
+         * 
+         * @return builder
+         * 
+         */
+        public Builder userIds(List<String> userIds) {
+            return userIds(Output.of(userIds));
+        }
+
+        /**
+         * @param userIds List of Subject User IDs
+         * 
+         * @return builder
+         * 
+         */
+        public Builder userIds(String... userIds) {
+            return userIds(List.of(userIds));
         }
 
         public SecretBackendCertArgs build() {
