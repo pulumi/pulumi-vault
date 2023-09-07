@@ -39,6 +39,11 @@ namespace Pulumi.Vault
     ///     var kvv2_example = new Vault.Mount("kvv2-example", new()
     ///     {
     ///         Description = "This is an example KV Version 2 secret engine mount",
+    ///         Options = 
+    ///         {
+    ///             { "type", "kv-v2" },
+    ///             { "version", "2" },
+    ///         },
     ///         Path = "version2-example",
     ///         Type = "kv-v2",
     ///     });

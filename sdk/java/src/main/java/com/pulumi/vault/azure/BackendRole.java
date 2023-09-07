@@ -12,6 +12,7 @@ import com.pulumi.vault.azure.BackendRoleArgs;
 import com.pulumi.vault.azure.inputs.BackendRoleState;
 import com.pulumi.vault.azure.outputs.BackendRoleAzureGroup;
 import com.pulumi.vault.azure.outputs.BackendRoleAzureRole;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -78,7 +79,7 @@ import javax.annotation.Nullable;
 public class BackendRole extends com.pulumi.resources.CustomResource {
     /**
      * Application Object ID for an existing service principal that will
-     * be used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.
+     * be used instead of creating dynamic service principals. If present, `azure_roles` and `permanently_delete` will be ignored.
      * 
      */
     @Export(name="applicationObjectId", refs={String.class}, tree="[0]")
@@ -86,7 +87,7 @@ public class BackendRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Application Object ID for an existing service principal that will
-     * be used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.
+     * be used instead of creating dynamic service principals. If present, `azure_roles` and `permanently_delete` will be ignored.
      * 
      */
     public Output<Optional<String>> applicationObjectId() {
@@ -183,6 +184,22 @@ public class BackendRole extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> namespace() {
         return Codegen.optional(this.namespace);
+    }
+    /**
+     * Indicates whether the applications and service principals created by Vault will be permanently
+     * deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
+     * 
+     */
+    @Export(name="permanentlyDelete", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> permanentlyDelete;
+
+    /**
+     * @return Indicates whether the applications and service principals created by Vault will be permanently
+     * deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
+     * 
+     */
+    public Output<Boolean> permanentlyDelete() {
+        return this.permanentlyDelete;
     }
     /**
      * Name of the Azure role

@@ -99,7 +99,7 @@ class SecretBackendRoleArgs:
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] no_store: Flag to not store certificates in the storage backend
-        :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
+        :param pulumi.Input[str] not_before_duration: Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] organization_unit: The organization unit of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] organizations: The organization of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policy_identifiers: Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
@@ -595,7 +595,7 @@ class SecretBackendRoleArgs:
     @pulumi.getter(name="notBeforeDuration")
     def not_before_duration(self) -> Optional[pulumi.Input[str]]:
         """
-        Specifies the duration by which to backdate the NotBefore property.
+        Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
         """
         return pulumi.get(self, "not_before_duration")
 
@@ -824,7 +824,7 @@ class _SecretBackendRoleState:
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] no_store: Flag to not store certificates in the storage backend
-        :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
+        :param pulumi.Input[str] not_before_duration: Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] organization_unit: The organization unit of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] organizations: The organization of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policy_identifiers: Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
@@ -1321,7 +1321,7 @@ class _SecretBackendRoleState:
     @pulumi.getter(name="notBeforeDuration")
     def not_before_duration(self) -> Optional[pulumi.Input[str]]:
         """
-        Specifies the duration by which to backdate the NotBefore property.
+        Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
         """
         return pulumi.get(self, "not_before_duration")
 
@@ -1588,7 +1588,7 @@ class SecretBackendRole(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] no_store: Flag to not store certificates in the storage backend
-        :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
+        :param pulumi.Input[str] not_before_duration: Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] organization_unit: The organization unit of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] organizations: The organization of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policy_identifiers: Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
@@ -1856,7 +1856,7 @@ class SecretBackendRole(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] no_store: Flag to not store certificates in the storage backend
-        :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
+        :param pulumi.Input[str] not_before_duration: Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] organization_unit: The organization unit of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] organizations: The organization of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policy_identifiers: Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
@@ -2186,7 +2186,7 @@ class SecretBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="notBeforeDuration")
     def not_before_duration(self) -> pulumi.Output[str]:
         """
-        Specifies the duration by which to backdate the NotBefore property.
+        Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
         """
         return pulumi.get(self, "not_before_duration")
 

@@ -53,14 +53,14 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Unique name of the auth backend to configure.
+     * Path to the mounted aws auth backend.
      * 
      */
     @Import(name="backend")
     private @Nullable Output<String> backend;
 
     /**
-     * @return Unique name of the auth backend to configure.
+     * @return Path to the mounted aws auth backend.
      * 
      */
     public Optional<Output<String>> backend() {
@@ -694,7 +694,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param backend Unique name of the auth backend to configure.
+         * @param backend Path to the mounted aws auth backend.
          * 
          * @return builder
          * 
@@ -705,7 +705,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param backend Unique name of the auth backend to configure.
+         * @param backend Path to the mounted aws auth backend.
          * 
          * @return builder
          * 

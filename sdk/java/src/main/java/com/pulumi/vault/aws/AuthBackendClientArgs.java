@@ -5,6 +5,7 @@ package com.pulumi.vault.aws;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -174,6 +175,29 @@ public final class AuthBackendClientArgs extends com.pulumi.resources.ResourceAr
         return Optional.ofNullable(this.stsRegion);
     }
 
+    /**
+     * Available in Vault v1.15+. If set,
+     * overrides both `sts_endpoint` and `sts_region` to instead use the region
+     * specified in the client request headers for IAM-based authentication.
+     * This can be useful when you have client requests coming from different
+     * regions and want flexibility in which regional STS API is used.
+     * 
+     */
+    @Import(name="useStsRegionFromClient")
+    private @Nullable Output<Boolean> useStsRegionFromClient;
+
+    /**
+     * @return Available in Vault v1.15+. If set,
+     * overrides both `sts_endpoint` and `sts_region` to instead use the region
+     * specified in the client request headers for IAM-based authentication.
+     * This can be useful when you have client requests coming from different
+     * regions and want flexibility in which regional STS API is used.
+     * 
+     */
+    public Optional<Output<Boolean>> useStsRegionFromClient() {
+        return Optional.ofNullable(this.useStsRegionFromClient);
+    }
+
     private AuthBackendClientArgs() {}
 
     private AuthBackendClientArgs(AuthBackendClientArgs $) {
@@ -186,6 +210,7 @@ public final class AuthBackendClientArgs extends com.pulumi.resources.ResourceAr
         this.secretKey = $.secretKey;
         this.stsEndpoint = $.stsEndpoint;
         this.stsRegion = $.stsRegion;
+        this.useStsRegionFromClient = $.useStsRegionFromClient;
     }
 
     public static Builder builder() {
@@ -417,6 +442,35 @@ public final class AuthBackendClientArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder stsRegion(String stsRegion) {
             return stsRegion(Output.of(stsRegion));
+        }
+
+        /**
+         * @param useStsRegionFromClient Available in Vault v1.15+. If set,
+         * overrides both `sts_endpoint` and `sts_region` to instead use the region
+         * specified in the client request headers for IAM-based authentication.
+         * This can be useful when you have client requests coming from different
+         * regions and want flexibility in which regional STS API is used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder useStsRegionFromClient(@Nullable Output<Boolean> useStsRegionFromClient) {
+            $.useStsRegionFromClient = useStsRegionFromClient;
+            return this;
+        }
+
+        /**
+         * @param useStsRegionFromClient Available in Vault v1.15+. If set,
+         * overrides both `sts_endpoint` and `sts_region` to instead use the region
+         * specified in the client request headers for IAM-based authentication.
+         * This can be useful when you have client requests coming from different
+         * regions and want flexibility in which regional STS API is used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder useStsRegionFromClient(Boolean useStsRegionFromClient) {
+            return useStsRegionFromClient(Output.of(useStsRegionFromClient));
         }
 
         public AuthBackendClientArgs build() {

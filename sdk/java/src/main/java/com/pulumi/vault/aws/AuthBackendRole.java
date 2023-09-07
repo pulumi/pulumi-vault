@@ -120,14 +120,14 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.authType);
     }
     /**
-     * Unique name of the auth backend to configure.
+     * Path to the mounted aws auth backend.
      * 
      */
     @Export(name="backend", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backend;
 
     /**
-     * @return Unique name of the auth backend to configure.
+     * @return Path to the mounted aws auth backend.
      * 
      */
     public Output<Optional<String>> backend() {

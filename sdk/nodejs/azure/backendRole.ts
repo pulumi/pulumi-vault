@@ -68,7 +68,7 @@ export class BackendRole extends pulumi.CustomResource {
 
     /**
      * Application Object ID for an existing service principal that will
-     * be used instead of creating dynamic service principals. If present, `azureRoles` will be ignored.
+     * be used instead of creating dynamic service principals. If present, `azureRoles` and `permanentlyDelete` will be ignored.
      */
     public readonly applicationObjectId!: pulumi.Output<string | undefined>;
     /**
@@ -100,6 +100,11 @@ export class BackendRole extends pulumi.CustomResource {
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
     /**
+     * Indicates whether the applications and service principals created by Vault will be permanently
+     * deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
+     */
+    public readonly permanentlyDelete!: pulumi.Output<boolean>;
+    /**
      * Name of the Azure role
      */
     public readonly role!: pulumi.Output<string>;
@@ -129,6 +134,7 @@ export class BackendRole extends pulumi.CustomResource {
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
+            resourceInputs["permanentlyDelete"] = state ? state.permanentlyDelete : undefined;
             resourceInputs["role"] = state ? state.role : undefined;
             resourceInputs["ttl"] = state ? state.ttl : undefined;
         } else {
@@ -143,6 +149,7 @@ export class BackendRole extends pulumi.CustomResource {
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["permanentlyDelete"] = args ? args.permanentlyDelete : undefined;
             resourceInputs["role"] = args ? args.role : undefined;
             resourceInputs["ttl"] = args ? args.ttl : undefined;
         }
@@ -157,7 +164,7 @@ export class BackendRole extends pulumi.CustomResource {
 export interface BackendRoleState {
     /**
      * Application Object ID for an existing service principal that will
-     * be used instead of creating dynamic service principals. If present, `azureRoles` will be ignored.
+     * be used instead of creating dynamic service principals. If present, `azureRoles` and `permanentlyDelete` will be ignored.
      */
     applicationObjectId?: pulumi.Input<string>;
     /**
@@ -188,6 +195,11 @@ export interface BackendRoleState {
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;
+    /**
+     * Indicates whether the applications and service principals created by Vault will be permanently
+     * deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
+     */
+    permanentlyDelete?: pulumi.Input<boolean>;
     /**
      * Name of the Azure role
      */
@@ -205,7 +217,7 @@ export interface BackendRoleState {
 export interface BackendRoleArgs {
     /**
      * Application Object ID for an existing service principal that will
-     * be used instead of creating dynamic service principals. If present, `azureRoles` will be ignored.
+     * be used instead of creating dynamic service principals. If present, `azureRoles` and `permanentlyDelete` will be ignored.
      */
     applicationObjectId?: pulumi.Input<string>;
     /**
@@ -236,6 +248,11 @@ export interface BackendRoleArgs {
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;
+    /**
+     * Indicates whether the applications and service principals created by Vault will be permanently
+     * deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
+     */
+    permanentlyDelete?: pulumi.Input<boolean>;
     /**
      * Name of the Azure role
      */

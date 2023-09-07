@@ -216,6 +216,7 @@ class AuthBackendArgs:
 @pulumi.input_type
 class _AuthBackendState:
     def __init__(__self__, *,
+                 accessor: Optional[pulumi.Input[str]] = None,
                  client_email: Optional[pulumi.Input[str]] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  credentials: Optional[pulumi.Input[str]] = None,
@@ -229,6 +230,7 @@ class _AuthBackendState:
                  project_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AuthBackend resources.
+        :param pulumi.Input[str] accessor: The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
         :param pulumi.Input[str] client_email: The clients email associated with the credentials
         :param pulumi.Input[str] client_id: The Client ID of the credentials
         :param pulumi.Input[str] credentials: A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
@@ -249,6 +251,8 @@ class _AuthBackendState:
         :param pulumi.Input[str] private_key_id: The ID of the private key from the credentials
         :param pulumi.Input[str] project_id: The GCP Project ID
         """
+        if accessor is not None:
+            pulumi.set(__self__, "accessor", accessor)
         if client_email is not None:
             pulumi.set(__self__, "client_email", client_email)
         if client_id is not None:
@@ -271,6 +275,18 @@ class _AuthBackendState:
             pulumi.set(__self__, "private_key_id", private_key_id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+
+    @property
+    @pulumi.getter
+    def accessor(self) -> Optional[pulumi.Input[str]]:
+        """
+        The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
+        """
+        return pulumi.get(self, "accessor")
+
+    @accessor.setter
+    def accessor(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "accessor", value)
 
     @property
     @pulumi.getter(name="clientEmail")
@@ -558,6 +574,7 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["path"] = path
             __props__.__dict__["private_key_id"] = private_key_id
             __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["accessor"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["credentials"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(AuthBackend, __self__).__init__(
@@ -570,6 +587,7 @@ class AuthBackend(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            accessor: Optional[pulumi.Input[str]] = None,
             client_email: Optional[pulumi.Input[str]] = None,
             client_id: Optional[pulumi.Input[str]] = None,
             credentials: Optional[pulumi.Input[str]] = None,
@@ -588,6 +606,7 @@ class AuthBackend(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] accessor: The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
         :param pulumi.Input[str] client_email: The clients email associated with the credentials
         :param pulumi.Input[str] client_id: The Client ID of the credentials
         :param pulumi.Input[str] credentials: A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
@@ -612,6 +631,7 @@ class AuthBackend(pulumi.CustomResource):
 
         __props__ = _AuthBackendState.__new__(_AuthBackendState)
 
+        __props__.__dict__["accessor"] = accessor
         __props__.__dict__["client_email"] = client_email
         __props__.__dict__["client_id"] = client_id
         __props__.__dict__["credentials"] = credentials
@@ -624,6 +644,14 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["private_key_id"] = private_key_id
         __props__.__dict__["project_id"] = project_id
         return AuthBackend(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def accessor(self) -> pulumi.Output[str]:
+        """
+        The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
+        """
+        return pulumi.get(self, "accessor")
 
     @property
     @pulumi.getter(name="clientEmail")

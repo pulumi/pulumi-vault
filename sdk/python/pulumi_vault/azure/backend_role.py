@@ -24,12 +24,13 @@ class BackendRoleArgs:
                  description: Optional[pulumi.Input[str]] = None,
                  max_ttl: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 permanently_delete: Optional[pulumi.Input[bool]] = None,
                  ttl: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a BackendRole resource.
         :param pulumi.Input[str] role: Name of the Azure role
         :param pulumi.Input[str] application_object_id: Application Object ID for an existing service principal that will
-               be used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.
+               be used instead of creating dynamic service principals. If present, `azure_roles` and `permanently_delete` will be ignored.
         :param pulumi.Input[Sequence[pulumi.Input['BackendRoleAzureGroupArgs']]] azure_groups: List of Azure groups to be assigned to the generated service principal.
         :param pulumi.Input[Sequence[pulumi.Input['BackendRoleAzureRoleArgs']]] azure_roles: List of Azure roles to be assigned to the generated service principal.
         :param pulumi.Input[str] backend: Path to the mounted Azure auth backend
@@ -40,6 +41,8 @@ class BackendRoleArgs:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[bool] permanently_delete: Indicates whether the applications and service principals created by Vault will be permanently
+               deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
         :param pulumi.Input[str] ttl: Specifies the default TTL for service principals generated using this role.
                Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
         """
@@ -58,6 +61,8 @@ class BackendRoleArgs:
             pulumi.set(__self__, "max_ttl", max_ttl)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if permanently_delete is not None:
+            pulumi.set(__self__, "permanently_delete", permanently_delete)
         if ttl is not None:
             pulumi.set(__self__, "ttl", ttl)
 
@@ -78,7 +83,7 @@ class BackendRoleArgs:
     def application_object_id(self) -> Optional[pulumi.Input[str]]:
         """
         Application Object ID for an existing service principal that will
-        be used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.
+        be used instead of creating dynamic service principals. If present, `azure_roles` and `permanently_delete` will be ignored.
         """
         return pulumi.get(self, "application_object_id")
 
@@ -161,6 +166,19 @@ class BackendRoleArgs:
     @namespace.setter
     def namespace(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter(name="permanentlyDelete")
+    def permanently_delete(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Indicates whether the applications and service principals created by Vault will be permanently
+        deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
+        """
+        return pulumi.get(self, "permanently_delete")
+
+    @permanently_delete.setter
+    def permanently_delete(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "permanently_delete", value)
 
     @property
     @pulumi.getter
@@ -186,12 +204,13 @@ class _BackendRoleState:
                  description: Optional[pulumi.Input[str]] = None,
                  max_ttl: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 permanently_delete: Optional[pulumi.Input[bool]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering BackendRole resources.
         :param pulumi.Input[str] application_object_id: Application Object ID for an existing service principal that will
-               be used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.
+               be used instead of creating dynamic service principals. If present, `azure_roles` and `permanently_delete` will be ignored.
         :param pulumi.Input[Sequence[pulumi.Input['BackendRoleAzureGroupArgs']]] azure_groups: List of Azure groups to be assigned to the generated service principal.
         :param pulumi.Input[Sequence[pulumi.Input['BackendRoleAzureRoleArgs']]] azure_roles: List of Azure roles to be assigned to the generated service principal.
         :param pulumi.Input[str] backend: Path to the mounted Azure auth backend
@@ -202,6 +221,8 @@ class _BackendRoleState:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[bool] permanently_delete: Indicates whether the applications and service principals created by Vault will be permanently
+               deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
         :param pulumi.Input[str] role: Name of the Azure role
         :param pulumi.Input[str] ttl: Specifies the default TTL for service principals generated using this role.
                Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
@@ -220,6 +241,8 @@ class _BackendRoleState:
             pulumi.set(__self__, "max_ttl", max_ttl)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if permanently_delete is not None:
+            pulumi.set(__self__, "permanently_delete", permanently_delete)
         if role is not None:
             pulumi.set(__self__, "role", role)
         if ttl is not None:
@@ -230,7 +253,7 @@ class _BackendRoleState:
     def application_object_id(self) -> Optional[pulumi.Input[str]]:
         """
         Application Object ID for an existing service principal that will
-        be used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.
+        be used instead of creating dynamic service principals. If present, `azure_roles` and `permanently_delete` will be ignored.
         """
         return pulumi.get(self, "application_object_id")
 
@@ -313,6 +336,19 @@ class _BackendRoleState:
     @namespace.setter
     def namespace(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter(name="permanentlyDelete")
+    def permanently_delete(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Indicates whether the applications and service principals created by Vault will be permanently
+        deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
+        """
+        return pulumi.get(self, "permanently_delete")
+
+    @permanently_delete.setter
+    def permanently_delete(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "permanently_delete", value)
 
     @property
     @pulumi.getter
@@ -352,6 +388,7 @@ class BackendRole(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  max_ttl: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 permanently_delete: Optional[pulumi.Input[bool]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -387,7 +424,7 @@ class BackendRole(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] application_object_id: Application Object ID for an existing service principal that will
-               be used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.
+               be used instead of creating dynamic service principals. If present, `azure_roles` and `permanently_delete` will be ignored.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackendRoleAzureGroupArgs']]]] azure_groups: List of Azure groups to be assigned to the generated service principal.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackendRoleAzureRoleArgs']]]] azure_roles: List of Azure roles to be assigned to the generated service principal.
         :param pulumi.Input[str] backend: Path to the mounted Azure auth backend
@@ -398,6 +435,8 @@ class BackendRole(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[bool] permanently_delete: Indicates whether the applications and service principals created by Vault will be permanently
+               deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
         :param pulumi.Input[str] role: Name of the Azure role
         :param pulumi.Input[str] ttl: Specifies the default TTL for service principals generated using this role.
                Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
@@ -459,6 +498,7 @@ class BackendRole(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  max_ttl: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 permanently_delete: Optional[pulumi.Input[bool]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -477,6 +517,7 @@ class BackendRole(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["max_ttl"] = max_ttl
             __props__.__dict__["namespace"] = namespace
+            __props__.__dict__["permanently_delete"] = permanently_delete
             if role is None and not opts.urn:
                 raise TypeError("Missing required property 'role'")
             __props__.__dict__["role"] = role
@@ -498,6 +539,7 @@ class BackendRole(pulumi.CustomResource):
             description: Optional[pulumi.Input[str]] = None,
             max_ttl: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
+            permanently_delete: Optional[pulumi.Input[bool]] = None,
             role: Optional[pulumi.Input[str]] = None,
             ttl: Optional[pulumi.Input[str]] = None) -> 'BackendRole':
         """
@@ -508,7 +550,7 @@ class BackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] application_object_id: Application Object ID for an existing service principal that will
-               be used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.
+               be used instead of creating dynamic service principals. If present, `azure_roles` and `permanently_delete` will be ignored.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackendRoleAzureGroupArgs']]]] azure_groups: List of Azure groups to be assigned to the generated service principal.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackendRoleAzureRoleArgs']]]] azure_roles: List of Azure roles to be assigned to the generated service principal.
         :param pulumi.Input[str] backend: Path to the mounted Azure auth backend
@@ -519,6 +561,8 @@ class BackendRole(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[bool] permanently_delete: Indicates whether the applications and service principals created by Vault will be permanently
+               deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
         :param pulumi.Input[str] role: Name of the Azure role
         :param pulumi.Input[str] ttl: Specifies the default TTL for service principals generated using this role.
                Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
@@ -534,6 +578,7 @@ class BackendRole(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["max_ttl"] = max_ttl
         __props__.__dict__["namespace"] = namespace
+        __props__.__dict__["permanently_delete"] = permanently_delete
         __props__.__dict__["role"] = role
         __props__.__dict__["ttl"] = ttl
         return BackendRole(resource_name, opts=opts, __props__=__props__)
@@ -543,7 +588,7 @@ class BackendRole(pulumi.CustomResource):
     def application_object_id(self) -> pulumi.Output[Optional[str]]:
         """
         Application Object ID for an existing service principal that will
-        be used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.
+        be used instead of creating dynamic service principals. If present, `azure_roles` and `permanently_delete` will be ignored.
         """
         return pulumi.get(self, "application_object_id")
 
@@ -598,6 +643,15 @@ class BackendRole(pulumi.CustomResource):
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
+
+    @property
+    @pulumi.getter(name="permanentlyDelete")
+    def permanently_delete(self) -> pulumi.Output[bool]:
+        """
+        Indicates whether the applications and service principals created by Vault will be permanently
+        deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
+        """
+        return pulumi.get(self, "permanently_delete")
 
     @property
     @pulumi.getter

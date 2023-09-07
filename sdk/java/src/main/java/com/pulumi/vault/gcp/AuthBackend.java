@@ -69,6 +69,20 @@ import javax.annotation.Nullable;
 @ResourceType(type="vault:gcp/authBackend:AuthBackend")
 public class AuthBackend extends com.pulumi.resources.CustomResource {
     /**
+     * The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
+     * 
+     */
+    @Export(name="accessor", refs={String.class}, tree="[0]")
+    private Output<String> accessor;
+
+    /**
+     * @return The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
+     * 
+     */
+    public Output<String> accessor() {
+        return this.accessor;
+    }
+    /**
      * The clients email associated with the credentials
      * 
      */

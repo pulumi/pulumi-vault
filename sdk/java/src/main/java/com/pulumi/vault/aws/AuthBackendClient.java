@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.aws.AuthBackendClientArgs;
 import com.pulumi.vault.aws.inputs.AuthBackendClientState;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -214,6 +215,28 @@ public class AuthBackendClient extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> stsRegion() {
         return Codegen.optional(this.stsRegion);
+    }
+    /**
+     * Available in Vault v1.15+. If set,
+     * overrides both `sts_endpoint` and `sts_region` to instead use the region
+     * specified in the client request headers for IAM-based authentication.
+     * This can be useful when you have client requests coming from different
+     * regions and want flexibility in which regional STS API is used.
+     * 
+     */
+    @Export(name="useStsRegionFromClient", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> useStsRegionFromClient;
+
+    /**
+     * @return Available in Vault v1.15+. If set,
+     * overrides both `sts_endpoint` and `sts_region` to instead use the region
+     * specified in the client request headers for IAM-based authentication.
+     * This can be useful when you have client requests coming from different
+     * regions and want flexibility in which regional STS API is used.
+     * 
+     */
+    public Output<Boolean> useStsRegionFromClient() {
+        return this.useStsRegionFromClient;
     }
 
     /**

@@ -258,7 +258,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<bool?> NoStore { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the duration by which to backdate the NotBefore property.
+        /// Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
         /// </summary>
         [Output("notBeforeDuration")]
         public Output<string> NotBeforeDuration { get; private set; } = null!;
@@ -629,7 +629,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<bool>? NoStore { get; set; }
 
         /// <summary>
-        /// Specifies the duration by which to backdate the NotBefore property.
+        /// Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
         /// </summary>
         [Input("notBeforeDuration")]
         public Input<string>? NotBeforeDuration { get; set; }
@@ -998,7 +998,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<bool>? NoStore { get; set; }
 
         /// <summary>
-        /// Specifies the duration by which to backdate the NotBefore property.
+        /// Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
         /// </summary>
         [Input("notBeforeDuration")]
         public Input<string>? NotBeforeDuration { get; set; }

@@ -103,6 +103,14 @@ export class AuthBackendClient extends pulumi.CustomResource {
      * calls. The `stsEndpoint` argument must be set when using `stsRegion`.
      */
     public readonly stsRegion!: pulumi.Output<string | undefined>;
+    /**
+     * Available in Vault v1.15+. If set, 
+     * overrides both `stsEndpoint` and `stsRegion` to instead use the region
+     * specified in the client request headers for IAM-based authentication.
+     * This can be useful when you have client requests coming from different
+     * regions and want flexibility in which regional STS API is used.
+     */
+    public readonly useStsRegionFromClient!: pulumi.Output<boolean>;
 
     /**
      * Create a AuthBackendClient resource with the given unique name, arguments, and options.
@@ -126,6 +134,7 @@ export class AuthBackendClient extends pulumi.CustomResource {
             resourceInputs["secretKey"] = state ? state.secretKey : undefined;
             resourceInputs["stsEndpoint"] = state ? state.stsEndpoint : undefined;
             resourceInputs["stsRegion"] = state ? state.stsRegion : undefined;
+            resourceInputs["useStsRegionFromClient"] = state ? state.useStsRegionFromClient : undefined;
         } else {
             const args = argsOrState as AuthBackendClientArgs | undefined;
             resourceInputs["accessKey"] = args?.accessKey ? pulumi.secret(args.accessKey) : undefined;
@@ -137,6 +146,7 @@ export class AuthBackendClient extends pulumi.CustomResource {
             resourceInputs["secretKey"] = args?.secretKey ? pulumi.secret(args.secretKey) : undefined;
             resourceInputs["stsEndpoint"] = args ? args.stsEndpoint : undefined;
             resourceInputs["stsRegion"] = args ? args.stsRegion : undefined;
+            resourceInputs["useStsRegionFromClient"] = args ? args.useStsRegionFromClient : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["accessKey", "secretKey"] };
@@ -197,6 +207,14 @@ export interface AuthBackendClientState {
      * calls. The `stsEndpoint` argument must be set when using `stsRegion`.
      */
     stsRegion?: pulumi.Input<string>;
+    /**
+     * Available in Vault v1.15+. If set, 
+     * overrides both `stsEndpoint` and `stsRegion` to instead use the region
+     * specified in the client request headers for IAM-based authentication.
+     * This can be useful when you have client requests coming from different
+     * regions and want flexibility in which regional STS API is used.
+     */
+    useStsRegionFromClient?: pulumi.Input<boolean>;
 }
 
 /**
@@ -251,4 +269,12 @@ export interface AuthBackendClientArgs {
      * calls. The `stsEndpoint` argument must be set when using `stsRegion`.
      */
     stsRegion?: pulumi.Input<string>;
+    /**
+     * Available in Vault v1.15+. If set, 
+     * overrides both `stsEndpoint` and `stsRegion` to instead use the region
+     * specified in the client request headers for IAM-based authentication.
+     * This can be useful when you have client requests coming from different
+     * regions and want flexibility in which regional STS API is used.
+     */
+    useStsRegionFromClient?: pulumi.Input<boolean>;
 }
