@@ -1,11 +1,8 @@
 version: "3"
 services:
   vault:
-    image: hashicorp/vault:latest
-    cap_add:
-      - IPC_LOCK
+    image: hashicorp/vault:1.14.2
     environment:
       - VAULT_DEV_ROOT_TOKEN_ID=root
     ports:
-      - 8200:8200
-    command: vault server -dev
+      - "8200:8200"

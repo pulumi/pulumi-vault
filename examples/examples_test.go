@@ -14,7 +14,10 @@ import (
 // If the test is running in CI, a missing token will fail the test. Otherwise a missing
 // token will skip the test.
 func getToken(t *testing.T) string {
-	env := "VAULT_DEV_ROOT_TOKEN_ID"
+	return getEnv(t, "VAULT_DEV_ROOT_TOKEN_ID")
+}
+
+func getEnv(t *testing.T, env string) string {
 	token := os.Getenv(env)
 	if token != "" {
 		return token
