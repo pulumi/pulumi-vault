@@ -49,7 +49,7 @@ class AuthBackendRoleArgs:
                the underlying instance where the client resides.
         :param pulumi.Input[str] auth_type: The auth type permitted for this role. Valid choices
                are `ec2` and `iam`. Defaults to `iam`.
-        :param pulumi.Input[str] backend: Unique name of the auth backend to configure.
+        :param pulumi.Input[str] backend: Path to the mounted aws auth backend.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_account_ids: If set, defines a constraint on the EC2
                instances that can perform the login operation that they should be using the
                account ID specified by this field. `auth_type` must be set to `ec2` or
@@ -242,7 +242,7 @@ class AuthBackendRoleArgs:
     @pulumi.getter
     def backend(self) -> Optional[pulumi.Input[str]]:
         """
-        Unique name of the auth backend to configure.
+        Path to the mounted aws auth backend.
         """
         return pulumi.get(self, "backend")
 
@@ -646,7 +646,7 @@ class _AuthBackendRoleState:
                the underlying instance where the client resides.
         :param pulumi.Input[str] auth_type: The auth type permitted for this role. Valid choices
                are `ec2` and `iam`. Defaults to `iam`.
-        :param pulumi.Input[str] backend: Unique name of the auth backend to configure.
+        :param pulumi.Input[str] backend: Path to the mounted aws auth backend.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_account_ids: If set, defines a constraint on the EC2
                instances that can perform the login operation that they should be using the
                account ID specified by this field. `auth_type` must be set to `ec2` or
@@ -832,7 +832,7 @@ class _AuthBackendRoleState:
     @pulumi.getter
     def backend(self) -> Optional[pulumi.Input[str]]:
         """
-        Unique name of the auth backend to configure.
+        Path to the mounted aws auth backend.
         """
         return pulumi.get(self, "backend")
 
@@ -1305,7 +1305,7 @@ class AuthBackendRole(pulumi.CustomResource):
                the underlying instance where the client resides.
         :param pulumi.Input[str] auth_type: The auth type permitted for this role. Valid choices
                are `ec2` and `iam`. Defaults to `iam`.
-        :param pulumi.Input[str] backend: Unique name of the auth backend to configure.
+        :param pulumi.Input[str] backend: Path to the mounted aws auth backend.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_account_ids: If set, defines a constraint on the EC2
                instances that can perform the login operation that they should be using the
                account ID specified by this field. `auth_type` must be set to `ec2` or
@@ -1583,7 +1583,7 @@ class AuthBackendRole(pulumi.CustomResource):
                the underlying instance where the client resides.
         :param pulumi.Input[str] auth_type: The auth type permitted for this role. Valid choices
                are `ec2` and `iam`. Defaults to `iam`.
-        :param pulumi.Input[str] backend: Unique name of the auth backend to configure.
+        :param pulumi.Input[str] backend: Path to the mounted aws auth backend.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_account_ids: If set, defines a constraint on the EC2
                instances that can perform the login operation that they should be using the
                account ID specified by this field. `auth_type` must be set to `ec2` or
@@ -1737,7 +1737,7 @@ class AuthBackendRole(pulumi.CustomResource):
     @pulumi.getter
     def backend(self) -> pulumi.Output[Optional[str]]:
         """
-        Unique name of the auth backend to configure.
+        Path to the mounted aws auth backend.
         """
         return pulumi.get(self, "backend")
 

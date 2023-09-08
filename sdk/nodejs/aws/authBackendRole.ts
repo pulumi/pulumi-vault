@@ -87,7 +87,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly authType!: pulumi.Output<string | undefined>;
     /**
-     * Unique name of the auth backend to configure.
+     * Path to the mounted aws auth backend.
      */
     public readonly backend!: pulumi.Output<string | undefined>;
     /**
@@ -361,7 +361,7 @@ export interface AuthBackendRoleState {
      */
     authType?: pulumi.Input<string>;
     /**
-     * Unique name of the auth backend to configure.
+     * Path to the mounted aws auth backend.
      */
     backend?: pulumi.Input<string>;
     /**
@@ -554,7 +554,7 @@ export interface AuthBackendRoleArgs {
      */
     authType?: pulumi.Input<string>;
     /**
-     * Unique name of the auth backend to configure.
+     * Path to the mounted aws auth backend.
      */
     backend?: pulumi.Input<string>;
     /**

@@ -74,6 +74,10 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var kvv2_example = new Mount(&#34;kvv2-example&#34;, MountArgs.builder()        
  *             .description(&#34;This is an example KV Version 2 secret engine mount&#34;)
+ *             .options(Map.ofEntries(
+ *                 Map.entry(&#34;type&#34;, &#34;kv-v2&#34;),
+ *                 Map.entry(&#34;version&#34;, &#34;2&#34;)
+ *             ))
  *             .path(&#34;version2-example&#34;)
  *             .type(&#34;kv-v2&#34;)
  *             .build());

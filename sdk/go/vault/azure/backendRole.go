@@ -70,7 +70,7 @@ type BackendRole struct {
 	pulumi.CustomResourceState
 
 	// Application Object ID for an existing service principal that will
-	// be used instead of creating dynamic service principals. If present, `azureRoles` will be ignored.
+	// be used instead of creating dynamic service principals. If present, `azureRoles` and `permanentlyDelete` will be ignored.
 	ApplicationObjectId pulumi.StringPtrOutput `pulumi:"applicationObjectId"`
 	// List of Azure groups to be assigned to the generated service principal.
 	AzureGroups BackendRoleAzureGroupArrayOutput `pulumi:"azureGroups"`
@@ -88,6 +88,9 @@ type BackendRole struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
+	// Indicates whether the applications and service principals created by Vault will be permanently
+	// deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
+	PermanentlyDelete pulumi.BoolOutput `pulumi:"permanentlyDelete"`
 	// Name of the Azure role
 	Role pulumi.StringOutput `pulumi:"role"`
 	// Specifies the default TTL for service principals generated using this role.
@@ -128,7 +131,7 @@ func GetBackendRole(ctx *pulumi.Context,
 // Input properties used for looking up and filtering BackendRole resources.
 type backendRoleState struct {
 	// Application Object ID for an existing service principal that will
-	// be used instead of creating dynamic service principals. If present, `azureRoles` will be ignored.
+	// be used instead of creating dynamic service principals. If present, `azureRoles` and `permanentlyDelete` will be ignored.
 	ApplicationObjectId *string `pulumi:"applicationObjectId"`
 	// List of Azure groups to be assigned to the generated service principal.
 	AzureGroups []BackendRoleAzureGroup `pulumi:"azureGroups"`
@@ -146,6 +149,9 @@ type backendRoleState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
+	// Indicates whether the applications and service principals created by Vault will be permanently
+	// deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
+	PermanentlyDelete *bool `pulumi:"permanentlyDelete"`
 	// Name of the Azure role
 	Role *string `pulumi:"role"`
 	// Specifies the default TTL for service principals generated using this role.
@@ -155,7 +161,7 @@ type backendRoleState struct {
 
 type BackendRoleState struct {
 	// Application Object ID for an existing service principal that will
-	// be used instead of creating dynamic service principals. If present, `azureRoles` will be ignored.
+	// be used instead of creating dynamic service principals. If present, `azureRoles` and `permanentlyDelete` will be ignored.
 	ApplicationObjectId pulumi.StringPtrInput
 	// List of Azure groups to be assigned to the generated service principal.
 	AzureGroups BackendRoleAzureGroupArrayInput
@@ -173,6 +179,9 @@ type BackendRoleState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
+	// Indicates whether the applications and service principals created by Vault will be permanently
+	// deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
+	PermanentlyDelete pulumi.BoolPtrInput
 	// Name of the Azure role
 	Role pulumi.StringPtrInput
 	// Specifies the default TTL for service principals generated using this role.
@@ -186,7 +195,7 @@ func (BackendRoleState) ElementType() reflect.Type {
 
 type backendRoleArgs struct {
 	// Application Object ID for an existing service principal that will
-	// be used instead of creating dynamic service principals. If present, `azureRoles` will be ignored.
+	// be used instead of creating dynamic service principals. If present, `azureRoles` and `permanentlyDelete` will be ignored.
 	ApplicationObjectId *string `pulumi:"applicationObjectId"`
 	// List of Azure groups to be assigned to the generated service principal.
 	AzureGroups []BackendRoleAzureGroup `pulumi:"azureGroups"`
@@ -204,6 +213,9 @@ type backendRoleArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
+	// Indicates whether the applications and service principals created by Vault will be permanently
+	// deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
+	PermanentlyDelete *bool `pulumi:"permanentlyDelete"`
 	// Name of the Azure role
 	Role string `pulumi:"role"`
 	// Specifies the default TTL for service principals generated using this role.
@@ -214,7 +226,7 @@ type backendRoleArgs struct {
 // The set of arguments for constructing a BackendRole resource.
 type BackendRoleArgs struct {
 	// Application Object ID for an existing service principal that will
-	// be used instead of creating dynamic service principals. If present, `azureRoles` will be ignored.
+	// be used instead of creating dynamic service principals. If present, `azureRoles` and `permanentlyDelete` will be ignored.
 	ApplicationObjectId pulumi.StringPtrInput
 	// List of Azure groups to be assigned to the generated service principal.
 	AzureGroups BackendRoleAzureGroupArrayInput
@@ -232,6 +244,9 @@ type BackendRoleArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
+	// Indicates whether the applications and service principals created by Vault will be permanently
+	// deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
+	PermanentlyDelete pulumi.BoolPtrInput
 	// Name of the Azure role
 	Role pulumi.StringInput
 	// Specifies the default TTL for service principals generated using this role.
@@ -327,7 +342,7 @@ func (o BackendRoleOutput) ToBackendRoleOutputWithContext(ctx context.Context) B
 }
 
 // Application Object ID for an existing service principal that will
-// be used instead of creating dynamic service principals. If present, `azureRoles` will be ignored.
+// be used instead of creating dynamic service principals. If present, `azureRoles` and `permanentlyDelete` will be ignored.
 func (o BackendRoleOutput) ApplicationObjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BackendRole) pulumi.StringPtrOutput { return v.ApplicationObjectId }).(pulumi.StringPtrOutput)
 }
@@ -364,6 +379,12 @@ func (o BackendRoleOutput) MaxTtl() pulumi.StringPtrOutput {
 // *Available only for Vault Enterprise*.
 func (o BackendRoleOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BackendRole) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether the applications and service principals created by Vault will be permanently
+// deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
+func (o BackendRoleOutput) PermanentlyDelete() pulumi.BoolOutput {
+	return o.ApplyT(func(v *BackendRole) pulumi.BoolOutput { return v.PermanentlyDelete }).(pulumi.BoolOutput)
 }
 
 // Name of the Azure role

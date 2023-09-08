@@ -53,8 +53,12 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := vault.NewMount(ctx, "kvv2-example", &vault.MountArgs{
 //				Description: pulumi.String("This is an example KV Version 2 secret engine mount"),
-//				Path:        pulumi.String("version2-example"),
-//				Type:        pulumi.String("kv-v2"),
+//				Options: pulumi.AnyMap{
+//					"type":    pulumi.Any("kv-v2"),
+//					"version": pulumi.Any("2"),
+//				},
+//				Path: pulumi.String("version2-example"),
+//				Type: pulumi.String("kv-v2"),
 //			})
 //			if err != nil {
 //				return err

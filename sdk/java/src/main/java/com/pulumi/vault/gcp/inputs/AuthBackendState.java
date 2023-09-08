@@ -18,6 +18,21 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
     public static final AuthBackendState Empty = new AuthBackendState();
 
     /**
+     * The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
+     * 
+     */
+    @Import(name="accessor")
+    private @Nullable Output<String> accessor;
+
+    /**
+     * @return The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
+     * 
+     */
+    public Optional<Output<String>> accessor() {
+        return Optional.ofNullable(this.accessor);
+    }
+
+    /**
      * The clients email associated with the credentials
      * 
      */
@@ -201,6 +216,7 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
     private AuthBackendState() {}
 
     private AuthBackendState(AuthBackendState $) {
+        this.accessor = $.accessor;
         this.clientEmail = $.clientEmail;
         this.clientId = $.clientId;
         this.credentials = $.credentials;
@@ -230,6 +246,27 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
 
         public Builder(AuthBackendState defaults) {
             $ = new AuthBackendState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param accessor The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accessor(@Nullable Output<String> accessor) {
+            $.accessor = accessor;
+            return this;
+        }
+
+        /**
+         * @param accessor The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accessor(String accessor) {
+            return accessor(Output.of(accessor));
         }
 
         /**

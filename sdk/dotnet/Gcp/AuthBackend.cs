@@ -49,6 +49,12 @@ namespace Pulumi.Vault.Gcp
     public partial class AuthBackend : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
+        /// </summary>
+        [Output("accessor")]
+        public Output<string> Accessor { get; private set; } = null!;
+
+        /// <summary>
         /// The clients email associated with the credentials
         /// </summary>
         [Output("clientEmail")]
@@ -264,6 +270,12 @@ namespace Pulumi.Vault.Gcp
 
     public sealed class AuthBackendState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
+        /// </summary>
+        [Input("accessor")]
+        public Input<string>? Accessor { get; set; }
+
         /// <summary>
         /// The clients email associated with the credentials
         /// </summary>

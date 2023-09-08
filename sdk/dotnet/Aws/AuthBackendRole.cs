@@ -100,7 +100,7 @@ namespace Pulumi.Vault.Aws
         public Output<string?> AuthType { get; private set; } = null!;
 
         /// <summary>
-        /// Unique name of the auth backend to configure.
+        /// Path to the mounted aws auth backend.
         /// </summary>
         [Output("backend")]
         public Output<string?> Backend { get; private set; } = null!;
@@ -391,7 +391,7 @@ namespace Pulumi.Vault.Aws
         public Input<string>? AuthType { get; set; }
 
         /// <summary>
-        /// Unique name of the auth backend to configure.
+        /// Path to the mounted aws auth backend.
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
@@ -704,7 +704,7 @@ namespace Pulumi.Vault.Aws
         public Input<string>? AuthType { get; set; }
 
         /// <summary>
-        /// Unique name of the auth backend to configure.
+        /// Path to the mounted aws auth backend.
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }

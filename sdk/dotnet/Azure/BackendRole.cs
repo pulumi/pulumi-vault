@@ -60,7 +60,7 @@ namespace Pulumi.Vault.Azure
     {
         /// <summary>
         /// Application Object ID for an existing service principal that will
-        /// be used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.
+        /// be used instead of creating dynamic service principals. If present, `azure_roles` and `permanently_delete` will be ignored.
         /// </summary>
         [Output("applicationObjectId")]
         public Output<string?> ApplicationObjectId { get; private set; } = null!;
@@ -104,6 +104,13 @@ namespace Pulumi.Vault.Azure
         /// </summary>
         [Output("namespace")]
         public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
+        /// Indicates whether the applications and service principals created by Vault will be permanently
+        /// deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
+        /// </summary>
+        [Output("permanentlyDelete")]
+        public Output<bool> PermanentlyDelete { get; private set; } = null!;
 
         /// <summary>
         /// Name of the Azure role
@@ -166,7 +173,7 @@ namespace Pulumi.Vault.Azure
     {
         /// <summary>
         /// Application Object ID for an existing service principal that will
-        /// be used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.
+        /// be used instead of creating dynamic service principals. If present, `azure_roles` and `permanently_delete` will be ignored.
         /// </summary>
         [Input("applicationObjectId")]
         public Input<string>? ApplicationObjectId { get; set; }
@@ -224,6 +231,13 @@ namespace Pulumi.Vault.Azure
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
+        /// Indicates whether the applications and service principals created by Vault will be permanently
+        /// deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
+        /// </summary>
+        [Input("permanentlyDelete")]
+        public Input<bool>? PermanentlyDelete { get; set; }
+
+        /// <summary>
         /// Name of the Azure role
         /// </summary>
         [Input("role", required: true)]
@@ -246,7 +260,7 @@ namespace Pulumi.Vault.Azure
     {
         /// <summary>
         /// Application Object ID for an existing service principal that will
-        /// be used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.
+        /// be used instead of creating dynamic service principals. If present, `azure_roles` and `permanently_delete` will be ignored.
         /// </summary>
         [Input("applicationObjectId")]
         public Input<string>? ApplicationObjectId { get; set; }
@@ -302,6 +316,13 @@ namespace Pulumi.Vault.Azure
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
+
+        /// <summary>
+        /// Indicates whether the applications and service principals created by Vault will be permanently
+        /// deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
+        /// </summary>
+        [Input("permanentlyDelete")]
+        public Input<bool>? PermanentlyDelete { get; set; }
 
         /// <summary>
         /// Name of the Azure role

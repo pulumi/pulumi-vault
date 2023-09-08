@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.vault.azure.inputs.BackendRoleAzureGroupArgs;
 import com.pulumi.vault.azure.inputs.BackendRoleAzureRoleArgs;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -20,7 +21,7 @@ public final class BackendRoleState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * Application Object ID for an existing service principal that will
-     * be used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.
+     * be used instead of creating dynamic service principals. If present, `azure_roles` and `permanently_delete` will be ignored.
      * 
      */
     @Import(name="applicationObjectId")
@@ -28,7 +29,7 @@ public final class BackendRoleState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return Application Object ID for an existing service principal that will
-     * be used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.
+     * be used instead of creating dynamic service principals. If present, `azure_roles` and `permanently_delete` will be ignored.
      * 
      */
     public Optional<Output<String>> applicationObjectId() {
@@ -134,6 +135,23 @@ public final class BackendRoleState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Indicates whether the applications and service principals created by Vault will be permanently
+     * deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
+     * 
+     */
+    @Import(name="permanentlyDelete")
+    private @Nullable Output<Boolean> permanentlyDelete;
+
+    /**
+     * @return Indicates whether the applications and service principals created by Vault will be permanently
+     * deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
+     * 
+     */
+    public Optional<Output<Boolean>> permanentlyDelete() {
+        return Optional.ofNullable(this.permanentlyDelete);
+    }
+
+    /**
      * Name of the Azure role
      * 
      */
@@ -175,6 +193,7 @@ public final class BackendRoleState extends com.pulumi.resources.ResourceArgs {
         this.description = $.description;
         this.maxTtl = $.maxTtl;
         this.namespace = $.namespace;
+        this.permanentlyDelete = $.permanentlyDelete;
         this.role = $.role;
         this.ttl = $.ttl;
     }
@@ -199,7 +218,7 @@ public final class BackendRoleState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param applicationObjectId Application Object ID for an existing service principal that will
-         * be used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.
+         * be used instead of creating dynamic service principals. If present, `azure_roles` and `permanently_delete` will be ignored.
          * 
          * @return builder
          * 
@@ -211,7 +230,7 @@ public final class BackendRoleState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param applicationObjectId Application Object ID for an existing service principal that will
-         * be used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.
+         * be used instead of creating dynamic service principals. If present, `azure_roles` and `permanently_delete` will be ignored.
          * 
          * @return builder
          * 
@@ -372,6 +391,29 @@ public final class BackendRoleState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder namespace(String namespace) {
             return namespace(Output.of(namespace));
+        }
+
+        /**
+         * @param permanentlyDelete Indicates whether the applications and service principals created by Vault will be permanently
+         * deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder permanentlyDelete(@Nullable Output<Boolean> permanentlyDelete) {
+            $.permanentlyDelete = permanentlyDelete;
+            return this;
+        }
+
+        /**
+         * @param permanentlyDelete Indicates whether the applications and service principals created by Vault will be permanently
+         * deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder permanentlyDelete(Boolean permanentlyDelete) {
+            return permanentlyDelete(Output.of(permanentlyDelete));
         }
 
         /**

@@ -24,6 +24,10 @@ import * as utilities from "./utilities";
  *
  * const kvv2_example = new vault.Mount("kvv2-example", {
  *     description: "This is an example KV Version 2 secret engine mount",
+ *     options: {
+ *         type: "kv-v2",
+ *         version: "2",
+ *     },
  *     path: "version2-example",
  *     type: "kv-v2",
  * });

@@ -64,6 +64,10 @@ export class AuthBackend extends pulumi.CustomResource {
     }
 
     /**
+     * The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
+     */
+    public /*out*/ readonly accessor!: pulumi.Output<string>;
+    /**
      * The clients email associated with the credentials
      */
     public readonly clientEmail!: pulumi.Output<string>;
@@ -129,6 +133,7 @@ export class AuthBackend extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendState | undefined;
+            resourceInputs["accessor"] = state ? state.accessor : undefined;
             resourceInputs["clientEmail"] = state ? state.clientEmail : undefined;
             resourceInputs["clientId"] = state ? state.clientId : undefined;
             resourceInputs["credentials"] = state ? state.credentials : undefined;
@@ -153,6 +158,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["privateKeyId"] = args ? args.privateKeyId : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["accessor"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["credentials"] };
@@ -165,6 +171,10 @@ export class AuthBackend extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AuthBackend resources.
  */
 export interface AuthBackendState {
+    /**
+     * The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
+     */
+    accessor?: pulumi.Input<string>;
     /**
      * The clients email associated with the credentials
      */

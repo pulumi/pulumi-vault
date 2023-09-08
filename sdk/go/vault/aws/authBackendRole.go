@@ -97,7 +97,7 @@ type AuthBackendRole struct {
 	// The auth type permitted for this role. Valid choices
 	// are `ec2` and `iam`. Defaults to `iam`.
 	AuthType pulumi.StringPtrOutput `pulumi:"authType"`
-	// Unique name of the auth backend to configure.
+	// Path to the mounted aws auth backend.
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
 	// If set, defines a constraint on the EC2
 	// instances that can perform the login operation that they should be using the
@@ -260,7 +260,7 @@ type authBackendRoleState struct {
 	// The auth type permitted for this role. Valid choices
 	// are `ec2` and `iam`. Defaults to `iam`.
 	AuthType *string `pulumi:"authType"`
-	// Unique name of the auth backend to configure.
+	// Path to the mounted aws auth backend.
 	Backend *string `pulumi:"backend"`
 	// If set, defines a constraint on the EC2
 	// instances that can perform the login operation that they should be using the
@@ -392,7 +392,7 @@ type AuthBackendRoleState struct {
 	// The auth type permitted for this role. Valid choices
 	// are `ec2` and `iam`. Defaults to `iam`.
 	AuthType pulumi.StringPtrInput
-	// Unique name of the auth backend to configure.
+	// Path to the mounted aws auth backend.
 	Backend pulumi.StringPtrInput
 	// If set, defines a constraint on the EC2
 	// instances that can perform the login operation that they should be using the
@@ -528,7 +528,7 @@ type authBackendRoleArgs struct {
 	// The auth type permitted for this role. Valid choices
 	// are `ec2` and `iam`. Defaults to `iam`.
 	AuthType *string `pulumi:"authType"`
-	// Unique name of the auth backend to configure.
+	// Path to the mounted aws auth backend.
 	Backend *string `pulumi:"backend"`
 	// If set, defines a constraint on the EC2
 	// instances that can perform the login operation that they should be using the
@@ -659,7 +659,7 @@ type AuthBackendRoleArgs struct {
 	// The auth type permitted for this role. Valid choices
 	// are `ec2` and `iam`. Defaults to `iam`.
 	AuthType pulumi.StringPtrInput
-	// Unique name of the auth backend to configure.
+	// Path to the mounted aws auth backend.
 	Backend pulumi.StringPtrInput
 	// If set, defines a constraint on the EC2
 	// instances that can perform the login operation that they should be using the
@@ -881,7 +881,7 @@ func (o AuthBackendRoleOutput) AuthType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringPtrOutput { return v.AuthType }).(pulumi.StringPtrOutput)
 }
 
-// Unique name of the auth backend to configure.
+// Path to the mounted aws auth backend.
 func (o AuthBackendRoleOutput) Backend() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
 }

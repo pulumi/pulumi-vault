@@ -8905,8 +8905,15 @@
                 "stsRegion": {
                     "type": "string",
                     "description": "Override the default region when making STS API \ncalls. The `sts_endpoint` argument must be set when using `sts_region`.\n"
+                },
+                "useStsRegionFromClient": {
+                    "type": "boolean",
+                    "description": "Available in Vault v1.15+. If set, \noverrides both `sts_endpoint` and `sts_region` to instead use the region\nspecified in the client request headers for IAM-based authentication.\nThis can be useful when you have client requests coming from different\nregions and want flexibility in which regional STS API is used.\n"
                 }
             },
+            "required": [
+                "useStsRegionFromClient"
+            ],
             "inputProperties": {
                 "accessKey": {
                     "type": "string",
@@ -8947,6 +8954,10 @@
                 "stsRegion": {
                     "type": "string",
                     "description": "Override the default region when making STS API \ncalls. The `sts_endpoint` argument must be set when using `sts_region`.\n"
+                },
+                "useStsRegionFromClient": {
+                    "type": "boolean",
+                    "description": "Available in Vault v1.15+. If set, \noverrides both `sts_endpoint` and `sts_region` to instead use the region\nspecified in the client request headers for IAM-based authentication.\nThis can be useful when you have client requests coming from different\nregions and want flexibility in which regional STS API is used.\n"
                 }
             },
             "stateInputs": {
@@ -8991,6 +9002,10 @@
                     "stsRegion": {
                         "type": "string",
                         "description": "Override the default region when making STS API \ncalls. The `sts_endpoint` argument must be set when using `sts_region`.\n"
+                    },
+                    "useStsRegionFromClient": {
+                        "type": "boolean",
+                        "description": "Available in Vault v1.15+. If set, \noverrides both `sts_endpoint` and `sts_region` to instead use the region\nspecified in the client request headers for IAM-based authentication.\nThis can be useful when you have client requests coming from different\nregions and want flexibility in which regional STS API is used.\n"
                     }
                 },
                 "type": "object"
@@ -9438,7 +9453,7 @@
                 },
                 "backend": {
                     "type": "string",
-                    "description": "Unique name of the auth backend to configure.\n"
+                    "description": "Path to the mounted aws auth backend.\n"
                 },
                 "boundAccountIds": {
                     "type": "array",
@@ -9594,7 +9609,7 @@
                 },
                 "backend": {
                     "type": "string",
-                    "description": "Unique name of the auth backend to configure.\n",
+                    "description": "Path to the mounted aws auth backend.\n",
                     "willReplaceOnChanges": true
                 },
                 "boundAccountIds": {
@@ -9750,7 +9765,7 @@
                     },
                     "backend": {
                         "type": "string",
-                        "description": "Unique name of the auth backend to configure.\n",
+                        "description": "Path to the mounted aws auth backend.\n",
                         "willReplaceOnChanges": true
                     },
                     "boundAccountIds": {
@@ -11254,7 +11269,7 @@
             "properties": {
                 "applicationObjectId": {
                     "type": "string",
-                    "description": "Application Object ID for an existing service principal that will\nbe used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.\n"
+                    "description": "Application Object ID for an existing service principal that will\nbe used instead of creating dynamic service principals. If present, `azure_roles` and `permanently_delete` will be ignored.\n"
                 },
                 "azureGroups": {
                     "type": "array",
@@ -11286,6 +11301,10 @@
                     "type": "string",
                     "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n"
                 },
+                "permanentlyDelete": {
+                    "type": "boolean",
+                    "description": "Indicates whether the applications and service principals created by Vault will be permanently\ndeleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.\n"
+                },
                 "role": {
                     "type": "string",
                     "description": "Name of the Azure role\n"
@@ -11296,12 +11315,13 @@
                 }
             },
             "required": [
+                "permanentlyDelete",
                 "role"
             ],
             "inputProperties": {
                 "applicationObjectId": {
                     "type": "string",
-                    "description": "Application Object ID for an existing service principal that will\nbe used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.\n"
+                    "description": "Application Object ID for an existing service principal that will\nbe used instead of creating dynamic service principals. If present, `azure_roles` and `permanently_delete` will be ignored.\n"
                 },
                 "azureGroups": {
                     "type": "array",
@@ -11335,6 +11355,10 @@
                     "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
                     "willReplaceOnChanges": true
                 },
+                "permanentlyDelete": {
+                    "type": "boolean",
+                    "description": "Indicates whether the applications and service principals created by Vault will be permanently\ndeleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.\n"
+                },
                 "role": {
                     "type": "string",
                     "description": "Name of the Azure role\n",
@@ -11353,7 +11377,7 @@
                 "properties": {
                     "applicationObjectId": {
                         "type": "string",
-                        "description": "Application Object ID for an existing service principal that will\nbe used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.\n"
+                        "description": "Application Object ID for an existing service principal that will\nbe used instead of creating dynamic service principals. If present, `azure_roles` and `permanently_delete` will be ignored.\n"
                     },
                     "azureGroups": {
                         "type": "array",
@@ -11386,6 +11410,10 @@
                         "type": "string",
                         "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "permanentlyDelete": {
+                        "type": "boolean",
+                        "description": "Indicates whether the applications and service principals created by Vault will be permanently\ndeleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.\n"
                     },
                     "role": {
                         "type": "string",
@@ -13168,6 +13196,10 @@
         "vault:gcp/authBackend:AuthBackend": {
             "description": "Provides a resource to configure the [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fs from \"fs\";\nimport * as vault from \"@pulumi/vault\";\n\nconst gcp = new vault.gcp.AuthBackend(\"gcp\", {\n    credentials: fs.readFileSync(\"vault-gcp-credentials.json\"),\n    customEndpoint: {\n        api: \"www.googleapis.com\",\n        iam: \"iam.googleapis.com\",\n        crm: \"cloudresourcemanager.googleapis.com\",\n        compute: \"compute.googleapis.com\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ngcp = vault.gcp.AuthBackend(\"gcp\",\n    credentials=(lambda path: open(path).read())(\"vault-gcp-credentials.json\"),\n    custom_endpoint=vault.gcp.AuthBackendCustomEndpointArgs(\n        api=\"www.googleapis.com\",\n        iam=\"iam.googleapis.com\",\n        crm=\"cloudresourcemanager.googleapis.com\",\n        compute=\"compute.googleapis.com\",\n    ))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.IO;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var gcp = new Vault.Gcp.AuthBackend(\"gcp\", new()\n    {\n        Credentials = File.ReadAllText(\"vault-gcp-credentials.json\"),\n        CustomEndpoint = new Vault.Gcp.Inputs.AuthBackendCustomEndpointArgs\n        {\n            Api = \"www.googleapis.com\",\n            Iam = \"iam.googleapis.com\",\n            Crm = \"cloudresourcemanager.googleapis.com\",\n            Compute = \"compute.googleapis.com\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"io/ioutil\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/gcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc readFileOrPanic(path string) pulumi.StringPtrInput {\n\tdata, err := ioutil.ReadFile(path)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\treturn pulumi.String(string(data))\n}\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := gcp.NewAuthBackend(ctx, \"gcp\", \u0026gcp.AuthBackendArgs{\n\t\t\tCredentials: readFileOrPanic(\"vault-gcp-credentials.json\"),\n\t\t\tCustomEndpoint: \u0026gcp.AuthBackendCustomEndpointArgs{\n\t\t\t\tApi:     pulumi.String(\"www.googleapis.com\"),\n\t\t\t\tIam:     pulumi.String(\"iam.googleapis.com\"),\n\t\t\t\tCrm:     pulumi.String(\"cloudresourcemanager.googleapis.com\"),\n\t\t\t\tCompute: pulumi.String(\"compute.googleapis.com\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.gcp.AuthBackend;\nimport com.pulumi.vault.gcp.AuthBackendArgs;\nimport com.pulumi.vault.gcp.inputs.AuthBackendCustomEndpointArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var gcp = new AuthBackend(\"gcp\", AuthBackendArgs.builder()        \n            .credentials(Files.readString(Paths.get(\"vault-gcp-credentials.json\")))\n            .customEndpoint(AuthBackendCustomEndpointArgs.builder()\n                .api(\"www.googleapis.com\")\n                .iam(\"iam.googleapis.com\")\n                .crm(\"cloudresourcemanager.googleapis.com\")\n                .compute(\"compute.googleapis.com\")\n                .build())\n            .build());\n\n    }\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nGCP authentication backends can be imported using the backend name, e.g.\n\n```sh\n $ pulumi import vault:gcp/authBackend:AuthBackend gcp gcp\n```\n\n ",
             "properties": {
+                "accessor": {
+                    "type": "string",
+                    "description": "The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).\n"
+                },
                 "clientEmail": {
                     "type": "string",
                     "description": "The clients email associated with the credentials\n"
@@ -13215,6 +13247,7 @@
                 }
             },
             "required": [
+                "accessor",
                 "clientEmail",
                 "clientId",
                 "privateKeyId",
@@ -13272,6 +13305,10 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering AuthBackend resources.\n",
                 "properties": {
+                    "accessor": {
+                        "type": "string",
+                        "description": "The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).\n"
+                    },
                     "clientEmail": {
                         "type": "string",
                         "description": "The clients email associated with the credentials\n"
@@ -18680,7 +18717,7 @@
             }
         },
         "vault:index/mount:Mount": {
-            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.Mount(\"example\", {\n    description: \"This is an example mount\",\n    path: \"dummy\",\n    type: \"generic\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.Mount(\"example\",\n    description=\"This is an example mount\",\n    path=\"dummy\",\n    type=\"generic\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Vault.Mount(\"example\", new()\n    {\n        Description = \"This is an example mount\",\n        Path = \"dummy\",\n        Type = \"generic\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewMount(ctx, \"example\", \u0026vault.MountArgs{\n\t\t\tDescription: pulumi.String(\"This is an example mount\"),\n\t\t\tPath:        pulumi.String(\"dummy\"),\n\t\t\tType:        pulumi.String(\"generic\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Mount(\"example\", MountArgs.builder()        \n            .description(\"This is an example mount\")\n            .path(\"dummy\")\n            .type(\"generic\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: vault:Mount\n    properties:\n      description: This is an example mount\n      path: dummy\n      type: generic\n```\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst kvv2_example = new vault.Mount(\"kvv2-example\", {\n    description: \"This is an example KV Version 2 secret engine mount\",\n    path: \"version2-example\",\n    type: \"kv-v2\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nkvv2_example = vault.Mount(\"kvv2-example\",\n    description=\"This is an example KV Version 2 secret engine mount\",\n    path=\"version2-example\",\n    type=\"kv-v2\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var kvv2_example = new Vault.Mount(\"kvv2-example\", new()\n    {\n        Description = \"This is an example KV Version 2 secret engine mount\",\n        Path = \"version2-example\",\n        Type = \"kv-v2\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewMount(ctx, \"kvv2-example\", \u0026vault.MountArgs{\n\t\t\tDescription: pulumi.String(\"This is an example KV Version 2 secret engine mount\"),\n\t\t\tPath:        pulumi.String(\"version2-example\"),\n\t\t\tType:        pulumi.String(\"kv-v2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var kvv2_example = new Mount(\"kvv2-example\", MountArgs.builder()        \n            .description(\"This is an example KV Version 2 secret engine mount\")\n            .path(\"version2-example\")\n            .type(\"kv-v2\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  kvv2-example:\n    type: vault:Mount\n    properties:\n      description: This is an example KV Version 2 secret engine mount\n      path: version2-example\n      type: kv-v2\n```\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst transit_example = new vault.Mount(\"transit-example\", {\n    description: \"This is an example transit secret engine mount\",\n    options: {\n        convergent_encryption: false,\n    },\n    path: \"transit-example\",\n    type: \"transit\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ntransit_example = vault.Mount(\"transit-example\",\n    description=\"This is an example transit secret engine mount\",\n    options={\n        \"convergent_encryption\": False,\n    },\n    path=\"transit-example\",\n    type=\"transit\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var transit_example = new Vault.Mount(\"transit-example\", new()\n    {\n        Description = \"This is an example transit secret engine mount\",\n        Options = \n        {\n            { \"convergent_encryption\", false },\n        },\n        Path = \"transit-example\",\n        Type = \"transit\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewMount(ctx, \"transit-example\", \u0026vault.MountArgs{\n\t\t\tDescription: pulumi.String(\"This is an example transit secret engine mount\"),\n\t\t\tOptions: pulumi.AnyMap{\n\t\t\t\t\"convergent_encryption\": pulumi.Any(false),\n\t\t\t},\n\t\t\tPath: pulumi.String(\"transit-example\"),\n\t\t\tType: pulumi.String(\"transit\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var transit_example = new Mount(\"transit-example\", MountArgs.builder()        \n            .description(\"This is an example transit secret engine mount\")\n            .options(Map.of(\"convergent_encryption\", false))\n            .path(\"transit-example\")\n            .type(\"transit\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  transit-example:\n    type: vault:Mount\n    properties:\n      description: This is an example transit secret engine mount\n      options:\n        convergent_encryption: false\n      path: transit-example\n      type: transit\n```\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst pki_example = new vault.Mount(\"pki-example\", {\n    defaultLeaseTtlSeconds: 3600,\n    description: \"This is an example PKI mount\",\n    maxLeaseTtlSeconds: 86400,\n    path: \"pki-example\",\n    type: \"pki\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\npki_example = vault.Mount(\"pki-example\",\n    default_lease_ttl_seconds=3600,\n    description=\"This is an example PKI mount\",\n    max_lease_ttl_seconds=86400,\n    path=\"pki-example\",\n    type=\"pki\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var pki_example = new Vault.Mount(\"pki-example\", new()\n    {\n        DefaultLeaseTtlSeconds = 3600,\n        Description = \"This is an example PKI mount\",\n        MaxLeaseTtlSeconds = 86400,\n        Path = \"pki-example\",\n        Type = \"pki\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewMount(ctx, \"pki-example\", \u0026vault.MountArgs{\n\t\t\tDefaultLeaseTtlSeconds: pulumi.Int(3600),\n\t\t\tDescription:            pulumi.String(\"This is an example PKI mount\"),\n\t\t\tMaxLeaseTtlSeconds:     pulumi.Int(86400),\n\t\t\tPath:                   pulumi.String(\"pki-example\"),\n\t\t\tType:                   pulumi.String(\"pki\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var pki_example = new Mount(\"pki-example\", MountArgs.builder()        \n            .defaultLeaseTtlSeconds(3600)\n            .description(\"This is an example PKI mount\")\n            .maxLeaseTtlSeconds(86400)\n            .path(\"pki-example\")\n            .type(\"pki\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  pki-example:\n    type: vault:Mount\n    properties:\n      defaultLeaseTtlSeconds: 3600\n      description: This is an example PKI mount\n      maxLeaseTtlSeconds: 86400\n      path: pki-example\n      type: pki\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nMounts can be imported using the `path`, e.g.\n\n```sh\n $ pulumi import vault:index/mount:Mount example dummy\n```\n\n ",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.Mount(\"example\", {\n    description: \"This is an example mount\",\n    path: \"dummy\",\n    type: \"generic\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.Mount(\"example\",\n    description=\"This is an example mount\",\n    path=\"dummy\",\n    type=\"generic\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Vault.Mount(\"example\", new()\n    {\n        Description = \"This is an example mount\",\n        Path = \"dummy\",\n        Type = \"generic\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewMount(ctx, \"example\", \u0026vault.MountArgs{\n\t\t\tDescription: pulumi.String(\"This is an example mount\"),\n\t\t\tPath:        pulumi.String(\"dummy\"),\n\t\t\tType:        pulumi.String(\"generic\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Mount(\"example\", MountArgs.builder()        \n            .description(\"This is an example mount\")\n            .path(\"dummy\")\n            .type(\"generic\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: vault:Mount\n    properties:\n      description: This is an example mount\n      path: dummy\n      type: generic\n```\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst kvv2_example = new vault.Mount(\"kvv2-example\", {\n    description: \"This is an example KV Version 2 secret engine mount\",\n    options: {\n        type: \"kv-v2\",\n        version: \"2\",\n    },\n    path: \"version2-example\",\n    type: \"kv-v2\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nkvv2_example = vault.Mount(\"kvv2-example\",\n    description=\"This is an example KV Version 2 secret engine mount\",\n    options={\n        \"type\": \"kv-v2\",\n        \"version\": \"2\",\n    },\n    path=\"version2-example\",\n    type=\"kv-v2\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var kvv2_example = new Vault.Mount(\"kvv2-example\", new()\n    {\n        Description = \"This is an example KV Version 2 secret engine mount\",\n        Options = \n        {\n            { \"type\", \"kv-v2\" },\n            { \"version\", \"2\" },\n        },\n        Path = \"version2-example\",\n        Type = \"kv-v2\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewMount(ctx, \"kvv2-example\", \u0026vault.MountArgs{\n\t\t\tDescription: pulumi.String(\"This is an example KV Version 2 secret engine mount\"),\n\t\t\tOptions: pulumi.AnyMap{\n\t\t\t\t\"type\":    pulumi.Any(\"kv-v2\"),\n\t\t\t\t\"version\": pulumi.Any(\"2\"),\n\t\t\t},\n\t\t\tPath: pulumi.String(\"version2-example\"),\n\t\t\tType: pulumi.String(\"kv-v2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var kvv2_example = new Mount(\"kvv2-example\", MountArgs.builder()        \n            .description(\"This is an example KV Version 2 secret engine mount\")\n            .options(Map.ofEntries(\n                Map.entry(\"type\", \"kv-v2\"),\n                Map.entry(\"version\", \"2\")\n            ))\n            .path(\"version2-example\")\n            .type(\"kv-v2\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  kvv2-example:\n    type: vault:Mount\n    properties:\n      description: This is an example KV Version 2 secret engine mount\n      options:\n        type: kv-v2\n        version: 2\n      path: version2-example\n      type: kv-v2\n```\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst transit_example = new vault.Mount(\"transit-example\", {\n    description: \"This is an example transit secret engine mount\",\n    options: {\n        convergent_encryption: false,\n    },\n    path: \"transit-example\",\n    type: \"transit\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ntransit_example = vault.Mount(\"transit-example\",\n    description=\"This is an example transit secret engine mount\",\n    options={\n        \"convergent_encryption\": False,\n    },\n    path=\"transit-example\",\n    type=\"transit\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var transit_example = new Vault.Mount(\"transit-example\", new()\n    {\n        Description = \"This is an example transit secret engine mount\",\n        Options = \n        {\n            { \"convergent_encryption\", false },\n        },\n        Path = \"transit-example\",\n        Type = \"transit\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewMount(ctx, \"transit-example\", \u0026vault.MountArgs{\n\t\t\tDescription: pulumi.String(\"This is an example transit secret engine mount\"),\n\t\t\tOptions: pulumi.AnyMap{\n\t\t\t\t\"convergent_encryption\": pulumi.Any(false),\n\t\t\t},\n\t\t\tPath: pulumi.String(\"transit-example\"),\n\t\t\tType: pulumi.String(\"transit\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var transit_example = new Mount(\"transit-example\", MountArgs.builder()        \n            .description(\"This is an example transit secret engine mount\")\n            .options(Map.of(\"convergent_encryption\", false))\n            .path(\"transit-example\")\n            .type(\"transit\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  transit-example:\n    type: vault:Mount\n    properties:\n      description: This is an example transit secret engine mount\n      options:\n        convergent_encryption: false\n      path: transit-example\n      type: transit\n```\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst pki_example = new vault.Mount(\"pki-example\", {\n    defaultLeaseTtlSeconds: 3600,\n    description: \"This is an example PKI mount\",\n    maxLeaseTtlSeconds: 86400,\n    path: \"pki-example\",\n    type: \"pki\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\npki_example = vault.Mount(\"pki-example\",\n    default_lease_ttl_seconds=3600,\n    description=\"This is an example PKI mount\",\n    max_lease_ttl_seconds=86400,\n    path=\"pki-example\",\n    type=\"pki\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var pki_example = new Vault.Mount(\"pki-example\", new()\n    {\n        DefaultLeaseTtlSeconds = 3600,\n        Description = \"This is an example PKI mount\",\n        MaxLeaseTtlSeconds = 86400,\n        Path = \"pki-example\",\n        Type = \"pki\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewMount(ctx, \"pki-example\", \u0026vault.MountArgs{\n\t\t\tDefaultLeaseTtlSeconds: pulumi.Int(3600),\n\t\t\tDescription:            pulumi.String(\"This is an example PKI mount\"),\n\t\t\tMaxLeaseTtlSeconds:     pulumi.Int(86400),\n\t\t\tPath:                   pulumi.String(\"pki-example\"),\n\t\t\tType:                   pulumi.String(\"pki\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var pki_example = new Mount(\"pki-example\", MountArgs.builder()        \n            .defaultLeaseTtlSeconds(3600)\n            .description(\"This is an example PKI mount\")\n            .maxLeaseTtlSeconds(86400)\n            .path(\"pki-example\")\n            .type(\"pki\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  pki-example:\n    type: vault:Mount\n    properties:\n      defaultLeaseTtlSeconds: 3600\n      description: This is an example PKI mount\n      maxLeaseTtlSeconds: 86400\n      path: pki-example\n      type: pki\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nMounts can be imported using the `path`, e.g.\n\n```sh\n $ pulumi import vault:index/mount:Mount example dummy\n```\n\n ",
             "properties": {
                 "accessor": {
                     "type": "string",
@@ -27170,7 +27207,7 @@
                 },
                 "notBeforeDuration": {
                     "type": "string",
-                    "description": "Specifies the duration by which to backdate the NotBefore property.\n"
+                    "description": "Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.\n"
                 },
                 "organizationUnit": {
                     "type": "array",
@@ -27406,7 +27443,7 @@
                 },
                 "notBeforeDuration": {
                     "type": "string",
-                    "description": "Specifies the duration by which to backdate the NotBefore property.\n"
+                    "description": "Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.\n"
                 },
                 "organizationUnit": {
                     "type": "array",
@@ -27637,7 +27674,7 @@
                     },
                     "notBeforeDuration": {
                         "type": "string",
-                        "description": "Specifies the duration by which to backdate the NotBefore property.\n"
+                        "description": "Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.\n"
                     },
                     "organizationUnit": {
                         "type": "array",

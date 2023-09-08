@@ -111,6 +111,16 @@ namespace Pulumi.Vault.Aws
         [Output("stsRegion")]
         public Output<string?> StsRegion { get; private set; } = null!;
 
+        /// <summary>
+        /// Available in Vault v1.15+. If set, 
+        /// overrides both `sts_endpoint` and `sts_region` to instead use the region
+        /// specified in the client request headers for IAM-based authentication.
+        /// This can be useful when you have client requests coming from different
+        /// regions and want flexibility in which regional STS API is used.
+        /// </summary>
+        [Output("useStsRegionFromClient")]
+        public Output<bool> UseStsRegionFromClient { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a AuthBackendClient resource with the given unique name, arguments, and options.
@@ -248,6 +258,16 @@ namespace Pulumi.Vault.Aws
         [Input("stsRegion")]
         public Input<string>? StsRegion { get; set; }
 
+        /// <summary>
+        /// Available in Vault v1.15+. If set, 
+        /// overrides both `sts_endpoint` and `sts_region` to instead use the region
+        /// specified in the client request headers for IAM-based authentication.
+        /// This can be useful when you have client requests coming from different
+        /// regions and want flexibility in which regional STS API is used.
+        /// </summary>
+        [Input("useStsRegionFromClient")]
+        public Input<bool>? UseStsRegionFromClient { get; set; }
+
         public AuthBackendClientArgs()
         {
         }
@@ -341,6 +361,16 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Input("stsRegion")]
         public Input<string>? StsRegion { get; set; }
+
+        /// <summary>
+        /// Available in Vault v1.15+. If set, 
+        /// overrides both `sts_endpoint` and `sts_region` to instead use the region
+        /// specified in the client request headers for IAM-based authentication.
+        /// This can be useful when you have client requests coming from different
+        /// regions and want flexibility in which regional STS API is used.
+        /// </summary>
+        [Input("useStsRegionFromClient")]
+        public Input<bool>? UseStsRegionFromClient { get; set; }
 
         public AuthBackendClientState()
         {

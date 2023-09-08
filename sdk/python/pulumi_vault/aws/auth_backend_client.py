@@ -22,7 +22,8 @@ class AuthBackendClientArgs:
                  namespace: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  sts_endpoint: Optional[pulumi.Input[str]] = None,
-                 sts_region: Optional[pulumi.Input[str]] = None):
+                 sts_region: Optional[pulumi.Input[str]] = None,
+                 use_sts_region_from_client: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a AuthBackendClient resource.
         :param pulumi.Input[str] access_key: The AWS access key that Vault should use for the
@@ -46,6 +47,11 @@ class AuthBackendClientArgs:
                calls.
         :param pulumi.Input[str] sts_region: Override the default region when making STS API 
                calls. The `sts_endpoint` argument must be set when using `sts_region`.
+        :param pulumi.Input[bool] use_sts_region_from_client: Available in Vault v1.15+. If set, 
+               overrides both `sts_endpoint` and `sts_region` to instead use the region
+               specified in the client request headers for IAM-based authentication.
+               This can be useful when you have client requests coming from different
+               regions and want flexibility in which regional STS API is used.
         """
         if access_key is not None:
             pulumi.set(__self__, "access_key", access_key)
@@ -65,6 +71,8 @@ class AuthBackendClientArgs:
             pulumi.set(__self__, "sts_endpoint", sts_endpoint)
         if sts_region is not None:
             pulumi.set(__self__, "sts_region", sts_region)
+        if use_sts_region_from_client is not None:
+            pulumi.set(__self__, "use_sts_region_from_client", use_sts_region_from_client)
 
     @property
     @pulumi.getter(name="accessKey")
@@ -186,6 +194,22 @@ class AuthBackendClientArgs:
     def sts_region(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sts_region", value)
 
+    @property
+    @pulumi.getter(name="useStsRegionFromClient")
+    def use_sts_region_from_client(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Available in Vault v1.15+. If set, 
+        overrides both `sts_endpoint` and `sts_region` to instead use the region
+        specified in the client request headers for IAM-based authentication.
+        This can be useful when you have client requests coming from different
+        regions and want flexibility in which regional STS API is used.
+        """
+        return pulumi.get(self, "use_sts_region_from_client")
+
+    @use_sts_region_from_client.setter
+    def use_sts_region_from_client(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_sts_region_from_client", value)
+
 
 @pulumi.input_type
 class _AuthBackendClientState:
@@ -198,7 +222,8 @@ class _AuthBackendClientState:
                  namespace: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  sts_endpoint: Optional[pulumi.Input[str]] = None,
-                 sts_region: Optional[pulumi.Input[str]] = None):
+                 sts_region: Optional[pulumi.Input[str]] = None,
+                 use_sts_region_from_client: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering AuthBackendClient resources.
         :param pulumi.Input[str] access_key: The AWS access key that Vault should use for the
@@ -222,6 +247,11 @@ class _AuthBackendClientState:
                calls.
         :param pulumi.Input[str] sts_region: Override the default region when making STS API 
                calls. The `sts_endpoint` argument must be set when using `sts_region`.
+        :param pulumi.Input[bool] use_sts_region_from_client: Available in Vault v1.15+. If set, 
+               overrides both `sts_endpoint` and `sts_region` to instead use the region
+               specified in the client request headers for IAM-based authentication.
+               This can be useful when you have client requests coming from different
+               regions and want flexibility in which regional STS API is used.
         """
         if access_key is not None:
             pulumi.set(__self__, "access_key", access_key)
@@ -241,6 +271,8 @@ class _AuthBackendClientState:
             pulumi.set(__self__, "sts_endpoint", sts_endpoint)
         if sts_region is not None:
             pulumi.set(__self__, "sts_region", sts_region)
+        if use_sts_region_from_client is not None:
+            pulumi.set(__self__, "use_sts_region_from_client", use_sts_region_from_client)
 
     @property
     @pulumi.getter(name="accessKey")
@@ -362,6 +394,22 @@ class _AuthBackendClientState:
     def sts_region(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sts_region", value)
 
+    @property
+    @pulumi.getter(name="useStsRegionFromClient")
+    def use_sts_region_from_client(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Available in Vault v1.15+. If set, 
+        overrides both `sts_endpoint` and `sts_region` to instead use the region
+        specified in the client request headers for IAM-based authentication.
+        This can be useful when you have client requests coming from different
+        regions and want flexibility in which regional STS API is used.
+        """
+        return pulumi.get(self, "use_sts_region_from_client")
+
+    @use_sts_region_from_client.setter
+    def use_sts_region_from_client(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_sts_region_from_client", value)
+
 
 class AuthBackendClient(pulumi.CustomResource):
     @overload
@@ -377,6 +425,7 @@ class AuthBackendClient(pulumi.CustomResource):
                  secret_key: Optional[pulumi.Input[str]] = None,
                  sts_endpoint: Optional[pulumi.Input[str]] = None,
                  sts_region: Optional[pulumi.Input[str]] = None,
+                 use_sts_region_from_client: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
         ## Example Usage
@@ -423,6 +472,11 @@ class AuthBackendClient(pulumi.CustomResource):
                calls.
         :param pulumi.Input[str] sts_region: Override the default region when making STS API 
                calls. The `sts_endpoint` argument must be set when using `sts_region`.
+        :param pulumi.Input[bool] use_sts_region_from_client: Available in Vault v1.15+. If set, 
+               overrides both `sts_endpoint` and `sts_region` to instead use the region
+               specified in the client request headers for IAM-based authentication.
+               This can be useful when you have client requests coming from different
+               regions and want flexibility in which regional STS API is used.
         """
         ...
     @overload
@@ -476,6 +530,7 @@ class AuthBackendClient(pulumi.CustomResource):
                  secret_key: Optional[pulumi.Input[str]] = None,
                  sts_endpoint: Optional[pulumi.Input[str]] = None,
                  sts_region: Optional[pulumi.Input[str]] = None,
+                 use_sts_region_from_client: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -494,6 +549,7 @@ class AuthBackendClient(pulumi.CustomResource):
             __props__.__dict__["secret_key"] = None if secret_key is None else pulumi.Output.secret(secret_key)
             __props__.__dict__["sts_endpoint"] = sts_endpoint
             __props__.__dict__["sts_region"] = sts_region
+            __props__.__dict__["use_sts_region_from_client"] = use_sts_region_from_client
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["accessKey", "secretKey"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(AuthBackendClient, __self__).__init__(
@@ -514,7 +570,8 @@ class AuthBackendClient(pulumi.CustomResource):
             namespace: Optional[pulumi.Input[str]] = None,
             secret_key: Optional[pulumi.Input[str]] = None,
             sts_endpoint: Optional[pulumi.Input[str]] = None,
-            sts_region: Optional[pulumi.Input[str]] = None) -> 'AuthBackendClient':
+            sts_region: Optional[pulumi.Input[str]] = None,
+            use_sts_region_from_client: Optional[pulumi.Input[bool]] = None) -> 'AuthBackendClient':
         """
         Get an existing AuthBackendClient resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -543,6 +600,11 @@ class AuthBackendClient(pulumi.CustomResource):
                calls.
         :param pulumi.Input[str] sts_region: Override the default region when making STS API 
                calls. The `sts_endpoint` argument must be set when using `sts_region`.
+        :param pulumi.Input[bool] use_sts_region_from_client: Available in Vault v1.15+. If set, 
+               overrides both `sts_endpoint` and `sts_region` to instead use the region
+               specified in the client request headers for IAM-based authentication.
+               This can be useful when you have client requests coming from different
+               regions and want flexibility in which regional STS API is used.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -557,6 +619,7 @@ class AuthBackendClient(pulumi.CustomResource):
         __props__.__dict__["secret_key"] = secret_key
         __props__.__dict__["sts_endpoint"] = sts_endpoint
         __props__.__dict__["sts_region"] = sts_region
+        __props__.__dict__["use_sts_region_from_client"] = use_sts_region_from_client
         return AuthBackendClient(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -642,4 +705,16 @@ class AuthBackendClient(pulumi.CustomResource):
         calls. The `sts_endpoint` argument must be set when using `sts_region`.
         """
         return pulumi.get(self, "sts_region")
+
+    @property
+    @pulumi.getter(name="useStsRegionFromClient")
+    def use_sts_region_from_client(self) -> pulumi.Output[bool]:
+        """
+        Available in Vault v1.15+. If set, 
+        overrides both `sts_endpoint` and `sts_region` to instead use the region
+        specified in the client request headers for IAM-based authentication.
+        This can be useful when you have client requests coming from different
+        regions and want flexibility in which regional STS API is used.
+        """
+        return pulumi.get(self, "use_sts_region_from_client")
 

@@ -66,6 +66,8 @@ import (
 type AuthBackend struct {
 	pulumi.CustomResourceState
 
+	// The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
+	Accessor pulumi.StringOutput `pulumi:"accessor"`
 	// The clients email associated with the credentials
 	ClientEmail pulumi.StringOutput `pulumi:"clientEmail"`
 	// The Client ID of the credentials
@@ -134,6 +136,8 @@ func GetAuthBackend(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AuthBackend resources.
 type authBackendState struct {
+	// The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
+	Accessor *string `pulumi:"accessor"`
 	// The clients email associated with the credentials
 	ClientEmail *string `pulumi:"clientEmail"`
 	// The Client ID of the credentials
@@ -167,6 +171,8 @@ type authBackendState struct {
 }
 
 type AuthBackendState struct {
+	// The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
+	Accessor pulumi.StringPtrInput
 	// The clients email associated with the credentials
 	ClientEmail pulumi.StringPtrInput
 	// The Client ID of the credentials
@@ -355,6 +361,11 @@ func (o AuthBackendOutput) ToAuthBackendOutput() AuthBackendOutput {
 
 func (o AuthBackendOutput) ToAuthBackendOutputWithContext(ctx context.Context) AuthBackendOutput {
 	return o
+}
+
+// The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
+func (o AuthBackendOutput) Accessor() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Accessor }).(pulumi.StringOutput)
 }
 
 // The clients email associated with the credentials

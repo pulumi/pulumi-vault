@@ -87,6 +87,12 @@ type AuthBackendClient struct {
 	// Override the default region when making STS API
 	// calls. The `stsEndpoint` argument must be set when using `stsRegion`.
 	StsRegion pulumi.StringPtrOutput `pulumi:"stsRegion"`
+	// Available in Vault v1.15+. If set,
+	// overrides both `stsEndpoint` and `stsRegion` to instead use the region
+	// specified in the client request headers for IAM-based authentication.
+	// This can be useful when you have client requests coming from different
+	// regions and want flexibility in which regional STS API is used.
+	UseStsRegionFromClient pulumi.BoolOutput `pulumi:"useStsRegionFromClient"`
 }
 
 // NewAuthBackendClient registers a new resource with the given unique name, arguments, and options.
@@ -159,6 +165,12 @@ type authBackendClientState struct {
 	// Override the default region when making STS API
 	// calls. The `stsEndpoint` argument must be set when using `stsRegion`.
 	StsRegion *string `pulumi:"stsRegion"`
+	// Available in Vault v1.15+. If set,
+	// overrides both `stsEndpoint` and `stsRegion` to instead use the region
+	// specified in the client request headers for IAM-based authentication.
+	// This can be useful when you have client requests coming from different
+	// regions and want flexibility in which regional STS API is used.
+	UseStsRegionFromClient *bool `pulumi:"useStsRegionFromClient"`
 }
 
 type AuthBackendClientState struct {
@@ -192,6 +204,12 @@ type AuthBackendClientState struct {
 	// Override the default region when making STS API
 	// calls. The `stsEndpoint` argument must be set when using `stsRegion`.
 	StsRegion pulumi.StringPtrInput
+	// Available in Vault v1.15+. If set,
+	// overrides both `stsEndpoint` and `stsRegion` to instead use the region
+	// specified in the client request headers for IAM-based authentication.
+	// This can be useful when you have client requests coming from different
+	// regions and want flexibility in which regional STS API is used.
+	UseStsRegionFromClient pulumi.BoolPtrInput
 }
 
 func (AuthBackendClientState) ElementType() reflect.Type {
@@ -229,6 +247,12 @@ type authBackendClientArgs struct {
 	// Override the default region when making STS API
 	// calls. The `stsEndpoint` argument must be set when using `stsRegion`.
 	StsRegion *string `pulumi:"stsRegion"`
+	// Available in Vault v1.15+. If set,
+	// overrides both `stsEndpoint` and `stsRegion` to instead use the region
+	// specified in the client request headers for IAM-based authentication.
+	// This can be useful when you have client requests coming from different
+	// regions and want flexibility in which regional STS API is used.
+	UseStsRegionFromClient *bool `pulumi:"useStsRegionFromClient"`
 }
 
 // The set of arguments for constructing a AuthBackendClient resource.
@@ -263,6 +287,12 @@ type AuthBackendClientArgs struct {
 	// Override the default region when making STS API
 	// calls. The `stsEndpoint` argument must be set when using `stsRegion`.
 	StsRegion pulumi.StringPtrInput
+	// Available in Vault v1.15+. If set,
+	// overrides both `stsEndpoint` and `stsRegion` to instead use the region
+	// specified in the client request headers for IAM-based authentication.
+	// This can be useful when you have client requests coming from different
+	// regions and want flexibility in which regional STS API is used.
+	UseStsRegionFromClient pulumi.BoolPtrInput
 }
 
 func (AuthBackendClientArgs) ElementType() reflect.Type {
@@ -407,6 +437,15 @@ func (o AuthBackendClientOutput) StsEndpoint() pulumi.StringPtrOutput {
 // calls. The `stsEndpoint` argument must be set when using `stsRegion`.
 func (o AuthBackendClientOutput) StsRegion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendClient) pulumi.StringPtrOutput { return v.StsRegion }).(pulumi.StringPtrOutput)
+}
+
+// Available in Vault v1.15+. If set,
+// overrides both `stsEndpoint` and `stsRegion` to instead use the region
+// specified in the client request headers for IAM-based authentication.
+// This can be useful when you have client requests coming from different
+// regions and want flexibility in which regional STS API is used.
+func (o AuthBackendClientOutput) UseStsRegionFromClient() pulumi.BoolOutput {
+	return o.ApplyT(func(v *AuthBackendClient) pulumi.BoolOutput { return v.UseStsRegionFromClient }).(pulumi.BoolOutput)
 }
 
 type AuthBackendClientArrayOutput struct{ *pulumi.OutputState }
