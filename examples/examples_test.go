@@ -9,12 +9,23 @@ import (
 	"github.com/pulumi/pulumi/pkg/v3/testing/integration"
 )
 
+// Retrieve the token.
+//
+// If the test is running in CI, a missing token will fail the test. Otherwise a missing
+// token will skip the test.
 func getToken(t *testing.T) string {
-	token := os.Getenv("VAULT_DEV_ROOT_TOKEN_ID")
-	if token == "" {
-		t.Skipf("Skipping test due to missing VAULT_DEV_ROOT_TOKEN_ID environment variable")
-	}
+	return getEnv(t, "VAULT_DEV_ROOT_TOKEN_ID")
+}
 
+func getEnv(t *testing.T, env string) string {
+	token := os.Getenv(env)
+	if token != "" {
+		return token
+	}
+	if os.Getenv("CI") != "" {
+		t.Fatalf("%q is expected but not defined", env)
+	}
+	t.Skipf("Skipping test due to missing %q environment variable", env)
 	return token
 }
 
