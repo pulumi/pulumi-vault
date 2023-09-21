@@ -413,14 +413,14 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return this.requestTimeout;
     }
     /**
-     * The LDAP schema to use when storing entry passwords. Valid schemas include openldap, ad, and racf.
+     * The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
      * 
      */
     @Export(name="schema", refs={String.class}, tree="[0]")
     private Output<String> schema;
 
     /**
-     * @return The LDAP schema to use when storing entry passwords. Valid schemas include openldap, ad, and racf.
+     * @return The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
      * 
      */
     public Output<String> schema() {

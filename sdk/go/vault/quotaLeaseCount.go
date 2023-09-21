@@ -76,6 +76,8 @@ type QuotaLeaseCount struct {
 	// `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
 	// a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
 	Path pulumi.StringPtrOutput `pulumi:"path"`
+	// If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+	Role pulumi.StringPtrOutput `pulumi:"role"`
 }
 
 // NewQuotaLeaseCount registers a new resource with the given unique name, arguments, and options.
@@ -127,6 +129,8 @@ type quotaLeaseCountState struct {
 	// `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
 	// a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
 	Path *string `pulumi:"path"`
+	// If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+	Role *string `pulumi:"role"`
 }
 
 type QuotaLeaseCountState struct {
@@ -147,6 +151,8 @@ type QuotaLeaseCountState struct {
 	// `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
 	// a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
 	Path pulumi.StringPtrInput
+	// If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+	Role pulumi.StringPtrInput
 }
 
 func (QuotaLeaseCountState) ElementType() reflect.Type {
@@ -171,6 +177,8 @@ type quotaLeaseCountArgs struct {
 	// `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
 	// a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
 	Path *string `pulumi:"path"`
+	// If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+	Role *string `pulumi:"role"`
 }
 
 // The set of arguments for constructing a QuotaLeaseCount resource.
@@ -192,6 +200,8 @@ type QuotaLeaseCountArgs struct {
 	// `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
 	// a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
 	Path pulumi.StringPtrInput
+	// If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+	Role pulumi.StringPtrInput
 }
 
 func (QuotaLeaseCountArgs) ElementType() reflect.Type {
@@ -308,6 +318,11 @@ func (o QuotaLeaseCountOutput) Namespace() pulumi.StringPtrOutput {
 // a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
 func (o QuotaLeaseCountOutput) Path() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *QuotaLeaseCount) pulumi.StringPtrOutput { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+// If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+func (o QuotaLeaseCountOutput) Role() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *QuotaLeaseCount) pulumi.StringPtrOutput { return v.Role }).(pulumi.StringPtrOutput)
 }
 
 type QuotaLeaseCountArrayOutput struct{ *pulumi.OutputState }

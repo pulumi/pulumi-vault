@@ -192,7 +192,7 @@ namespace Pulumi.Vault.Ldap
         public Output<int> RequestTimeout { get; private set; } = null!;
 
         /// <summary>
-        /// The LDAP schema to use when storing entry passwords. Valid schemas include openldap, ad, and racf.
+        /// The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
         /// </summary>
         [Output("schema")]
         public Output<string> Schema { get; private set; } = null!;
@@ -483,7 +483,7 @@ namespace Pulumi.Vault.Ldap
         public Input<int>? RequestTimeout { get; set; }
 
         /// <summary>
-        /// The LDAP schema to use when storing entry passwords. Valid schemas include openldap, ad, and racf.
+        /// The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
         /// </summary>
         [Input("schema")]
         public Input<string>? Schema { get; set; }
@@ -736,7 +736,7 @@ namespace Pulumi.Vault.Ldap
         public Input<int>? RequestTimeout { get; set; }
 
         /// <summary>
-        /// The LDAP schema to use when storing entry passwords. Valid schemas include openldap, ad, and racf.
+        /// The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
         /// </summary>
         [Input("schema")]
         public Input<string>? Schema { get; set; }

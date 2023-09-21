@@ -117,7 +117,7 @@ require (
 	github.com/hashicorp/go-retryablehttp v0.7.1 // indirect
 	github.com/hashicorp/go-rootcerts v1.0.2 // indirect
 	github.com/hashicorp/go-safetemp v1.0.0 // indirect
-	github.com/hashicorp/go-secure-stdlib/awsutil v0.1.6 // indirect
+	github.com/hashicorp/go-secure-stdlib/awsutil v0.2.3 // indirect
 	github.com/hashicorp/go-secure-stdlib/base62 v0.1.2 // indirect
 	github.com/hashicorp/go-secure-stdlib/mlock v0.1.2 // indirect
 	github.com/hashicorp/go-secure-stdlib/parseutil v0.1.7 // indirect
@@ -262,5 +262,5 @@ require (
 replace (
 	github.com/hashicorp/go-getter => github.com/hashicorp/go-getter v1.4.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20230710100801-03a71d0fca3d
-	github.com/hashicorp/terraform-provider-vault => github.com/pulumi/terraform-provider-vault v1.9.1-0.20230907011922-74f744c1d6cf
+	github.com/hashicorp/terraform-provider-vault => github.com/pulumi/terraform-provider-vault v1.9.1-0.20230921173105-deee6abfe8ed
 )

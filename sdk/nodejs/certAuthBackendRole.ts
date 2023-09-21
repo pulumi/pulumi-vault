@@ -72,7 +72,7 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
      */
     public readonly allowedEmailSans!: pulumi.Output<string[]>;
     /**
-     * Allowed subject names for authenticated client certificates
+     * DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
      */
     public readonly allowedNames!: pulumi.Output<string[]>;
     /**
@@ -254,7 +254,7 @@ export interface CertAuthBackendRoleState {
      */
     allowedEmailSans?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Allowed subject names for authenticated client certificates
+     * DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
      */
     allowedNames?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -369,7 +369,7 @@ export interface CertAuthBackendRoleArgs {
      */
     allowedEmailSans?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Allowed subject names for authenticated client certificates
+     * DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
      */
     allowedNames?: pulumi.Input<pulumi.Input<string>[]>;
     /**

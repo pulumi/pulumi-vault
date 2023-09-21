@@ -94,6 +94,10 @@ export class QuotaRateLimit extends pulumi.CustomResource {
      * rule. The `rate` must be positive.
      */
     public readonly rate!: pulumi.Output<number>;
+    /**
+     * If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+     */
+    public readonly role!: pulumi.Output<string | undefined>;
 
     /**
      * Create a QuotaRateLimit resource with the given unique name, arguments, and options.
@@ -114,6 +118,7 @@ export class QuotaRateLimit extends pulumi.CustomResource {
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
             resourceInputs["rate"] = state ? state.rate : undefined;
+            resourceInputs["role"] = state ? state.role : undefined;
         } else {
             const args = argsOrState as QuotaRateLimitArgs | undefined;
             if ((!args || args.rate === undefined) && !opts.urn) {
@@ -125,6 +130,7 @@ export class QuotaRateLimit extends pulumi.CustomResource {
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["rate"] = args ? args.rate : undefined;
+            resourceInputs["role"] = args ? args.role : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(QuotaRateLimit.__pulumiType, name, resourceInputs, opts);
@@ -169,6 +175,10 @@ export interface QuotaRateLimitState {
      * rule. The `rate` must be positive.
      */
     rate?: pulumi.Input<number>;
+    /**
+     * If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+     */
+    role?: pulumi.Input<string>;
 }
 
 /**
@@ -209,4 +219,8 @@ export interface QuotaRateLimitArgs {
      * rule. The `rate` must be positive.
      */
     rate: pulumi.Input<number>;
+    /**
+     * If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+     */
+    role?: pulumi.Input<string>;
 }

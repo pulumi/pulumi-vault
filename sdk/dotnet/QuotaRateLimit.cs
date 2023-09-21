@@ -92,6 +92,12 @@ namespace Pulumi.Vault
         [Output("rate")]
         public Output<double> Rate { get; private set; } = null!;
 
+        /// <summary>
+        /// If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+        /// </summary>
+        [Output("role")]
+        public Output<string?> Role { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a QuotaRateLimit resource with the given unique name, arguments, and options.
@@ -184,6 +190,12 @@ namespace Pulumi.Vault
         [Input("rate", required: true)]
         public Input<double> Rate { get; set; } = null!;
 
+        /// <summary>
+        /// If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+        /// </summary>
+        [Input("role")]
+        public Input<string>? Role { get; set; }
+
         public QuotaRateLimitArgs()
         {
         }
@@ -237,6 +249,12 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("rate")]
         public Input<double>? Rate { get; set; }
+
+        /// <summary>
+        /// If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+        /// </summary>
+        [Input("role")]
+        public Input<string>? Role { get; set; }
 
         public QuotaRateLimitState()
         {

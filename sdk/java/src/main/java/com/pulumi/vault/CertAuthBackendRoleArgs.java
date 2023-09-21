@@ -64,14 +64,14 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Allowed subject names for authenticated client certificates
+     * DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
      * 
      */
     @Import(name="allowedNames")
     private @Nullable Output<List<String>> allowedNames;
 
     /**
-     * @return Allowed subject names for authenticated client certificates
+     * @return DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
      * 
      */
     public Optional<Output<List<String>>> allowedNames() {
@@ -533,7 +533,7 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param allowedNames Allowed subject names for authenticated client certificates
+         * @param allowedNames DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
          * 
          * @return builder
          * 
@@ -544,7 +544,7 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param allowedNames Allowed subject names for authenticated client certificates
+         * @param allowedNames DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
          * 
          * @return builder
          * 
@@ -554,7 +554,7 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param allowedNames Allowed subject names for authenticated client certificates
+         * @param allowedNames DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
          * 
          * @return builder
          * 

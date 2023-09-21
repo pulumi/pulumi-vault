@@ -170,6 +170,20 @@ public class QuotaRateLimit extends com.pulumi.resources.CustomResource {
     public Output<Double> rate() {
         return this.rate;
     }
+    /**
+     * If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+     * 
+     */
+    @Export(name="role", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> role;
+
+    /**
+     * @return If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+     * 
+     */
+    public Output<Optional<String>> role() {
+        return Codegen.optional(this.role);
+    }
 
     /**
      *

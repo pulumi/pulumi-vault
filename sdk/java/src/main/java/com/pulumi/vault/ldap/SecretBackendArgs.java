@@ -379,14 +379,14 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The LDAP schema to use when storing entry passwords. Valid schemas include openldap, ad, and racf.
+     * The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
      * 
      */
     @Import(name="schema")
     private @Nullable Output<String> schema;
 
     /**
-     * @return The LDAP schema to use when storing entry passwords. Valid schemas include openldap, ad, and racf.
+     * @return The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
      * 
      */
     public Optional<Output<String>> schema() {
@@ -1058,7 +1058,7 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param schema The LDAP schema to use when storing entry passwords. Valid schemas include openldap, ad, and racf.
+         * @param schema The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
          * 
          * @return builder
          * 
@@ -1069,7 +1069,7 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param schema The LDAP schema to use when storing entry passwords. Valid schemas include openldap, ad, and racf.
+         * @param schema The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
          * 
          * @return builder
          * 

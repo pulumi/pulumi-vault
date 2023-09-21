@@ -79,6 +79,8 @@ type QuotaRateLimit struct {
 	// The maximum number of requests at any given second to be allowed by the quota
 	// rule. The `rate` must be positive.
 	Rate pulumi.Float64Output `pulumi:"rate"`
+	// If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+	Role pulumi.StringPtrOutput `pulumi:"role"`
 }
 
 // NewQuotaRateLimit registers a new resource with the given unique name, arguments, and options.
@@ -135,6 +137,8 @@ type quotaRateLimitState struct {
 	// The maximum number of requests at any given second to be allowed by the quota
 	// rule. The `rate` must be positive.
 	Rate *float64 `pulumi:"rate"`
+	// If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+	Role *string `pulumi:"role"`
 }
 
 type QuotaRateLimitState struct {
@@ -160,6 +164,8 @@ type QuotaRateLimitState struct {
 	// The maximum number of requests at any given second to be allowed by the quota
 	// rule. The `rate` must be positive.
 	Rate pulumi.Float64PtrInput
+	// If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+	Role pulumi.StringPtrInput
 }
 
 func (QuotaRateLimitState) ElementType() reflect.Type {
@@ -189,6 +195,8 @@ type quotaRateLimitArgs struct {
 	// The maximum number of requests at any given second to be allowed by the quota
 	// rule. The `rate` must be positive.
 	Rate float64 `pulumi:"rate"`
+	// If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+	Role *string `pulumi:"role"`
 }
 
 // The set of arguments for constructing a QuotaRateLimit resource.
@@ -215,6 +223,8 @@ type QuotaRateLimitArgs struct {
 	// The maximum number of requests at any given second to be allowed by the quota
 	// rule. The `rate` must be positive.
 	Rate pulumi.Float64Input
+	// If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+	Role pulumi.StringPtrInput
 }
 
 func (QuotaRateLimitArgs) ElementType() reflect.Type {
@@ -342,6 +352,11 @@ func (o QuotaRateLimitOutput) Path() pulumi.StringPtrOutput {
 // rule. The `rate` must be positive.
 func (o QuotaRateLimitOutput) Rate() pulumi.Float64Output {
 	return o.ApplyT(func(v *QuotaRateLimit) pulumi.Float64Output { return v.Rate }).(pulumi.Float64Output)
+}
+
+// If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+func (o QuotaRateLimitOutput) Role() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *QuotaRateLimit) pulumi.StringPtrOutput { return v.Role }).(pulumi.StringPtrOutput)
 }
 
 type QuotaRateLimitArrayOutput struct{ *pulumi.OutputState }

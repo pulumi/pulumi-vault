@@ -77,7 +77,7 @@ class SecretBackendArgs:
                not begin or end with a `/`. Defaults to `ldap`.
         :param pulumi.Input[int] request_timeout: Timeout, in seconds, for the connection when making requests against the server
                before returning back an error.
-        :param pulumi.Input[str] schema: The LDAP schema to use when storing entry passwords. Valid schemas include openldap, ad, and racf.
+        :param pulumi.Input[str] schema: The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
         :param pulumi.Input[bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[bool] starttls: Issue a StartTLS command after establishing unencrypted connection.
         :param pulumi.Input[str] upndomain: Enables userPrincipalDomain login with [username]@UPNDomain.
@@ -424,7 +424,7 @@ class SecretBackendArgs:
     @pulumi.getter
     def schema(self) -> Optional[pulumi.Input[str]]:
         """
-        The LDAP schema to use when storing entry passwords. Valid schemas include openldap, ad, and racf.
+        The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
         """
         return pulumi.get(self, "schema")
 
@@ -574,7 +574,7 @@ class _SecretBackendState:
                not begin or end with a `/`. Defaults to `ldap`.
         :param pulumi.Input[int] request_timeout: Timeout, in seconds, for the connection when making requests against the server
                before returning back an error.
-        :param pulumi.Input[str] schema: The LDAP schema to use when storing entry passwords. Valid schemas include openldap, ad, and racf.
+        :param pulumi.Input[str] schema: The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
         :param pulumi.Input[bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[bool] starttls: Issue a StartTLS command after establishing unencrypted connection.
         :param pulumi.Input[str] upndomain: Enables userPrincipalDomain login with [username]@UPNDomain.
@@ -937,7 +937,7 @@ class _SecretBackendState:
     @pulumi.getter
     def schema(self) -> Optional[pulumi.Input[str]]:
         """
-        The LDAP schema to use when storing entry passwords. Valid schemas include openldap, ad, and racf.
+        The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
         """
         return pulumi.get(self, "schema")
 
@@ -1112,7 +1112,7 @@ class SecretBackend(pulumi.CustomResource):
                not begin or end with a `/`. Defaults to `ldap`.
         :param pulumi.Input[int] request_timeout: Timeout, in seconds, for the connection when making requests against the server
                before returning back an error.
-        :param pulumi.Input[str] schema: The LDAP schema to use when storing entry passwords. Valid schemas include openldap, ad, and racf.
+        :param pulumi.Input[str] schema: The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
         :param pulumi.Input[bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[bool] starttls: Issue a StartTLS command after establishing unencrypted connection.
         :param pulumi.Input[str] upndomain: Enables userPrincipalDomain login with [username]@UPNDomain.
@@ -1323,7 +1323,7 @@ class SecretBackend(pulumi.CustomResource):
                not begin or end with a `/`. Defaults to `ldap`.
         :param pulumi.Input[int] request_timeout: Timeout, in seconds, for the connection when making requests against the server
                before returning back an error.
-        :param pulumi.Input[str] schema: The LDAP schema to use when storing entry passwords. Valid schemas include openldap, ad, and racf.
+        :param pulumi.Input[str] schema: The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
         :param pulumi.Input[bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[bool] starttls: Issue a StartTLS command after establishing unencrypted connection.
         :param pulumi.Input[str] upndomain: Enables userPrincipalDomain login with [username]@UPNDomain.
@@ -1566,7 +1566,7 @@ class SecretBackend(pulumi.CustomResource):
     @pulumi.getter
     def schema(self) -> pulumi.Output[str]:
         """
-        The LDAP schema to use when storing entry passwords. Valid schemas include openldap, ad, and racf.
+        The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
         """
         return pulumi.get(self, "schema")
 

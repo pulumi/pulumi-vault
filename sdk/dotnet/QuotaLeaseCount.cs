@@ -81,6 +81,12 @@ namespace Pulumi.Vault
         [Output("path")]
         public Output<string?> Path { get; private set; } = null!;
 
+        /// <summary>
+        /// If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+        /// </summary>
+        [Output("role")]
+        public Output<string?> Role { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a QuotaLeaseCount resource with the given unique name, arguments, and options.
@@ -160,6 +166,12 @@ namespace Pulumi.Vault
         [Input("path")]
         public Input<string>? Path { get; set; }
 
+        /// <summary>
+        /// If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+        /// </summary>
+        [Input("role")]
+        public Input<string>? Role { get; set; }
+
         public QuotaLeaseCountArgs()
         {
         }
@@ -200,6 +212,12 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
+
+        /// <summary>
+        /// If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+        /// </summary>
+        [Input("role")]
+        public Input<string>? Role { get; set; }
 
         public QuotaLeaseCountState()
         {

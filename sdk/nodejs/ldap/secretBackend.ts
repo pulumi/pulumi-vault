@@ -162,7 +162,7 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly requestTimeout!: pulumi.Output<number>;
     /**
-     * The LDAP schema to use when storing entry passwords. Valid schemas include openldap, ad, and racf.
+     * The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
      */
     public readonly schema!: pulumi.Output<string>;
     /**
@@ -389,7 +389,7 @@ export interface SecretBackendState {
      */
     requestTimeout?: pulumi.Input<number>;
     /**
-     * The LDAP schema to use when storing entry passwords. Valid schemas include openldap, ad, and racf.
+     * The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
      */
     schema?: pulumi.Input<string>;
     /**
@@ -524,7 +524,7 @@ export interface SecretBackendArgs {
      */
     requestTimeout?: pulumi.Input<number>;
     /**
-     * The LDAP schema to use when storing entry passwords. Valid schemas include openldap, ad, and racf.
+     * The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
      */
     schema?: pulumi.Input<string>;
     /**

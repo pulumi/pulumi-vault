@@ -110,14 +110,14 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
         return this.allowedEmailSans;
     }
     /**
-     * Allowed subject names for authenticated client certificates
+     * DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
      * 
      */
     @Export(name="allowedNames", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> allowedNames;
 
     /**
-     * @return Allowed subject names for authenticated client certificates
+     * @return DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
      * 
      */
     public Output<List<String>> allowedNames() {

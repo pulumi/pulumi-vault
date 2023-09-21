@@ -70,7 +70,7 @@ namespace Pulumi.Vault
         public Output<ImmutableArray<string>> AllowedEmailSans { get; private set; } = null!;
 
         /// <summary>
-        /// Allowed subject names for authenticated client certificates
+        /// DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
         /// </summary>
         [Output("allowedNames")]
         public Output<ImmutableArray<string>> AllowedNames { get; private set; } = null!;
@@ -287,7 +287,7 @@ namespace Pulumi.Vault
         private InputList<string>? _allowedNames;
 
         /// <summary>
-        /// Allowed subject names for authenticated client certificates
+        /// DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
         /// </summary>
         public InputList<string> AllowedNames
         {
@@ -505,7 +505,7 @@ namespace Pulumi.Vault
         private InputList<string>? _allowedNames;
 
         /// <summary>
-        /// Allowed subject names for authenticated client certificates
+        /// DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
         /// </summary>
         public InputList<string> AllowedNames
         {
