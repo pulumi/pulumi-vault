@@ -275,7 +275,7 @@ jobs:
       uses: goreleaser/goreleaser-action@v2
       with:
         args: -p 3 release --rm-dist --timeout 60m0s
-        version: latest
+        version: v1.20.0
     - if: failure() && github.event_name == 'push'
       name: Notify Slack
       uses: 8398a7/action-slack@v3
