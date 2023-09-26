@@ -87,6 +87,10 @@ export class QuotaLeaseCount extends pulumi.CustomResource {
      * a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
      */
     public readonly path!: pulumi.Output<string | undefined>;
+    /**
+     * If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+     */
+    public readonly role!: pulumi.Output<string | undefined>;
 
     /**
      * Create a QuotaLeaseCount resource with the given unique name, arguments, and options.
@@ -105,6 +109,7 @@ export class QuotaLeaseCount extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["role"] = state ? state.role : undefined;
         } else {
             const args = argsOrState as QuotaLeaseCountArgs | undefined;
             if ((!args || args.maxLeases === undefined) && !opts.urn) {
@@ -114,6 +119,7 @@ export class QuotaLeaseCount extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["role"] = args ? args.role : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(QuotaLeaseCount.__pulumiType, name, resourceInputs, opts);
@@ -149,6 +155,10 @@ export interface QuotaLeaseCountState {
      * a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
      */
     path?: pulumi.Input<string>;
+    /**
+     * If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+     */
+    role?: pulumi.Input<string>;
 }
 
 /**
@@ -180,4 +190,8 @@ export interface QuotaLeaseCountArgs {
      * a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
      */
     path?: pulumi.Input<string>;
+    /**
+     * If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+     */
+    role?: pulumi.Input<string>;
 }

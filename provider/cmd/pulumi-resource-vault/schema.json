@@ -17688,7 +17688,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "Allowed subject names for authenticated client certificates\n"
+                    "description": "DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates\n"
                 },
                 "allowedOrganizationUnits": {
                     "type": "array",
@@ -17820,7 +17820,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "Allowed subject names for authenticated client certificates\n"
+                    "description": "DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates\n"
                 },
                 "allowedOrganizationUnits": {
                     "type": "array",
@@ -17949,7 +17949,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "Allowed subject names for authenticated client certificates\n"
+                        "description": "DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates\n"
                     },
                     "allowedOrganizationUnits": {
                         "type": "array",
@@ -19514,6 +19514,10 @@
                 "path": {
                     "type": "string",
                     "description": "Path of the mount or namespace to apply the quota. A blank path configures a\nglobal rate limit quota. For example `namespace1/` adds a quota to a full namespace,\n`namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.\nUpdating this field on an existing quota can have \"moving\" effects. For example, updating\n`auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to\na namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**\n"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.\n"
                 }
             },
             "required": [
@@ -19538,6 +19542,10 @@
                 "path": {
                     "type": "string",
                     "description": "Path of the mount or namespace to apply the quota. A blank path configures a\nglobal rate limit quota. For example `namespace1/` adds a quota to a full namespace,\n`namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.\nUpdating this field on an existing quota can have \"moving\" effects. For example, updating\n`auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to\na namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**\n"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.\n"
                 }
             },
             "requiredInputs": [
@@ -19563,6 +19571,10 @@
                     "path": {
                         "type": "string",
                         "description": "Path of the mount or namespace to apply the quota. A blank path configures a\nglobal rate limit quota. For example `namespace1/` adds a quota to a full namespace,\n`namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.\nUpdating this field on an existing quota can have \"moving\" effects. For example, updating\n`auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to\na namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**\n"
+                    },
+                    "role": {
+                        "type": "string",
+                        "description": "If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.\n"
                     }
                 },
                 "type": "object"
@@ -19594,6 +19606,10 @@
                 "rate": {
                     "type": "number",
                     "description": "The maximum number of requests at any given second to be allowed by the quota\nrule. The `rate` must be positive.\n"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.\n"
                 }
             },
             "required": [
@@ -19628,6 +19644,10 @@
                 "rate": {
                     "type": "number",
                     "description": "The maximum number of requests at any given second to be allowed by the quota\nrule. The `rate` must be positive.\n"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.\n"
                 }
             },
             "requiredInputs": [
@@ -19662,6 +19682,10 @@
                     "rate": {
                         "type": "number",
                         "description": "The maximum number of requests at any given second to be allowed by the quota\nrule. The `rate` must be positive.\n"
+                    },
+                    "role": {
+                        "type": "string",
+                        "description": "If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.\n"
                     }
                 },
                 "type": "object"
@@ -23905,7 +23929,7 @@
                 },
                 "schema": {
                     "type": "string",
-                    "description": "The LDAP schema to use when storing entry passwords. Valid schemas include openldap, ad, and racf.\n"
+                    "description": "The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.\n"
                 },
                 "sealWrap": {
                     "type": "boolean",
@@ -24060,7 +24084,7 @@
                 },
                 "schema": {
                     "type": "string",
-                    "description": "The LDAP schema to use when storing entry passwords. Valid schemas include openldap, ad, and racf.\n"
+                    "description": "The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.\n"
                 },
                 "sealWrap": {
                     "type": "boolean",
@@ -24209,7 +24233,7 @@
                     },
                     "schema": {
                         "type": "string",
-                        "description": "The LDAP schema to use when storing entry passwords. Valid schemas include openldap, ad, and racf.\n"
+                        "description": "The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.\n"
                     },
                     "sealWrap": {
                         "type": "boolean",

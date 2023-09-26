@@ -112,7 +112,7 @@ type SecretBackend struct {
 	// Timeout, in seconds, for the connection when making requests against the server
 	// before returning back an error.
 	RequestTimeout pulumi.IntOutput `pulumi:"requestTimeout"`
-	// The LDAP schema to use when storing entry passwords. Valid schemas include openldap, ad, and racf.
+	// The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
 	Schema pulumi.StringOutput `pulumi:"schema"`
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolOutput `pulumi:"sealWrap"`
@@ -237,7 +237,7 @@ type secretBackendState struct {
 	// Timeout, in seconds, for the connection when making requests against the server
 	// before returning back an error.
 	RequestTimeout *int `pulumi:"requestTimeout"`
-	// The LDAP schema to use when storing entry passwords. Valid schemas include openldap, ad, and racf.
+	// The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
 	Schema *string `pulumi:"schema"`
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap *bool `pulumi:"sealWrap"`
@@ -313,7 +313,7 @@ type SecretBackendState struct {
 	// Timeout, in seconds, for the connection when making requests against the server
 	// before returning back an error.
 	RequestTimeout pulumi.IntPtrInput
-	// The LDAP schema to use when storing entry passwords. Valid schemas include openldap, ad, and racf.
+	// The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
 	Schema pulumi.StringPtrInput
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolPtrInput
@@ -391,7 +391,7 @@ type secretBackendArgs struct {
 	// Timeout, in seconds, for the connection when making requests against the server
 	// before returning back an error.
 	RequestTimeout *int `pulumi:"requestTimeout"`
-	// The LDAP schema to use when storing entry passwords. Valid schemas include openldap, ad, and racf.
+	// The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
 	Schema *string `pulumi:"schema"`
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap *bool `pulumi:"sealWrap"`
@@ -466,7 +466,7 @@ type SecretBackendArgs struct {
 	// Timeout, in seconds, for the connection when making requests against the server
 	// before returning back an error.
 	RequestTimeout pulumi.IntPtrInput
-	// The LDAP schema to use when storing entry passwords. Valid schemas include openldap, ad, and racf.
+	// The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
 	Schema pulumi.StringPtrInput
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolPtrInput
@@ -697,7 +697,7 @@ func (o SecretBackendOutput) RequestTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.IntOutput { return v.RequestTimeout }).(pulumi.IntOutput)
 }
 
-// The LDAP schema to use when storing entry passwords. Valid schemas include openldap, ad, and racf.
+// The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
 func (o SecretBackendOutput) Schema() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringOutput { return v.Schema }).(pulumi.StringOutput)
 }

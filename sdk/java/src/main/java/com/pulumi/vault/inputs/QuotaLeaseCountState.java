@@ -94,6 +94,21 @@ public final class QuotaLeaseCountState extends com.pulumi.resources.ResourceArg
         return Optional.ofNullable(this.path);
     }
 
+    /**
+     * If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+     * 
+     */
+    @Import(name="role")
+    private @Nullable Output<String> role;
+
+    /**
+     * @return If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+     * 
+     */
+    public Optional<Output<String>> role() {
+        return Optional.ofNullable(this.role);
+    }
+
     private QuotaLeaseCountState() {}
 
     private QuotaLeaseCountState(QuotaLeaseCountState $) {
@@ -101,6 +116,7 @@ public final class QuotaLeaseCountState extends com.pulumi.resources.ResourceArg
         this.name = $.name;
         this.namespace = $.namespace;
         this.path = $.path;
+        this.role = $.role;
     }
 
     public static Builder builder() {
@@ -221,6 +237,27 @@ public final class QuotaLeaseCountState extends com.pulumi.resources.ResourceArg
          */
         public Builder path(String path) {
             return path(Output.of(path));
+        }
+
+        /**
+         * @param role If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder role(@Nullable Output<String> role) {
+            $.role = role;
+            return this;
+        }
+
+        /**
+         * @param role If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder role(String role) {
+            return role(Output.of(role));
         }
 
         public QuotaLeaseCountState build() {

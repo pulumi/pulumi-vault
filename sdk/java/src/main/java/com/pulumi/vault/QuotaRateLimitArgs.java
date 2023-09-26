@@ -127,6 +127,21 @@ public final class QuotaRateLimitArgs extends com.pulumi.resources.ResourceArgs 
         return this.rate;
     }
 
+    /**
+     * If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+     * 
+     */
+    @Import(name="role")
+    private @Nullable Output<String> role;
+
+    /**
+     * @return If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+     * 
+     */
+    public Optional<Output<String>> role() {
+        return Optional.ofNullable(this.role);
+    }
+
     private QuotaRateLimitArgs() {}
 
     private QuotaRateLimitArgs(QuotaRateLimitArgs $) {
@@ -136,6 +151,7 @@ public final class QuotaRateLimitArgs extends com.pulumi.resources.ResourceArgs 
         this.namespace = $.namespace;
         this.path = $.path;
         this.rate = $.rate;
+        this.role = $.role;
     }
 
     public static Builder builder() {
@@ -300,6 +316,27 @@ public final class QuotaRateLimitArgs extends com.pulumi.resources.ResourceArgs 
          */
         public Builder rate(Double rate) {
             return rate(Output.of(rate));
+        }
+
+        /**
+         * @param role If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder role(@Nullable Output<String> role) {
+            $.role = role;
+            return this;
+        }
+
+        /**
+         * @param role If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder role(String role) {
+            return role(Output.of(role));
         }
 
         public QuotaRateLimitArgs build() {

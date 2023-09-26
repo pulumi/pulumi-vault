@@ -74,7 +74,7 @@ type CertAuthBackendRole struct {
 	AllowedDnsSans pulumi.StringArrayOutput `pulumi:"allowedDnsSans"`
 	// Allowed emails for authenticated client certificates
 	AllowedEmailSans pulumi.StringArrayOutput `pulumi:"allowedEmailSans"`
-	// Allowed subject names for authenticated client certificates
+	// DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
 	AllowedNames pulumi.StringArrayOutput `pulumi:"allowedNames"`
 	// Deprecated: Use allowed_organizational_units
 	AllowedOrganizationUnits pulumi.StringArrayOutput `pulumi:"allowedOrganizationUnits"`
@@ -173,7 +173,7 @@ type certAuthBackendRoleState struct {
 	AllowedDnsSans []string `pulumi:"allowedDnsSans"`
 	// Allowed emails for authenticated client certificates
 	AllowedEmailSans []string `pulumi:"allowedEmailSans"`
-	// Allowed subject names for authenticated client certificates
+	// DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
 	AllowedNames []string `pulumi:"allowedNames"`
 	// Deprecated: Use allowed_organizational_units
 	AllowedOrganizationUnits []string `pulumi:"allowedOrganizationUnits"`
@@ -241,7 +241,7 @@ type CertAuthBackendRoleState struct {
 	AllowedDnsSans pulumi.StringArrayInput
 	// Allowed emails for authenticated client certificates
 	AllowedEmailSans pulumi.StringArrayInput
-	// Allowed subject names for authenticated client certificates
+	// DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
 	AllowedNames pulumi.StringArrayInput
 	// Deprecated: Use allowed_organizational_units
 	AllowedOrganizationUnits pulumi.StringArrayInput
@@ -313,7 +313,7 @@ type certAuthBackendRoleArgs struct {
 	AllowedDnsSans []string `pulumi:"allowedDnsSans"`
 	// Allowed emails for authenticated client certificates
 	AllowedEmailSans []string `pulumi:"allowedEmailSans"`
-	// Allowed subject names for authenticated client certificates
+	// DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
 	AllowedNames []string `pulumi:"allowedNames"`
 	// Deprecated: Use allowed_organizational_units
 	AllowedOrganizationUnits []string `pulumi:"allowedOrganizationUnits"`
@@ -382,7 +382,7 @@ type CertAuthBackendRoleArgs struct {
 	AllowedDnsSans pulumi.StringArrayInput
 	// Allowed emails for authenticated client certificates
 	AllowedEmailSans pulumi.StringArrayInput
-	// Allowed subject names for authenticated client certificates
+	// DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
 	AllowedNames pulumi.StringArrayInput
 	// Deprecated: Use allowed_organizational_units
 	AllowedOrganizationUnits pulumi.StringArrayInput
@@ -545,7 +545,7 @@ func (o CertAuthBackendRoleOutput) AllowedEmailSans() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringArrayOutput { return v.AllowedEmailSans }).(pulumi.StringArrayOutput)
 }
 
-// Allowed subject names for authenticated client certificates
+// DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
 func (o CertAuthBackendRoleOutput) AllowedNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringArrayOutput { return v.AllowedNames }).(pulumi.StringArrayOutput)
 }

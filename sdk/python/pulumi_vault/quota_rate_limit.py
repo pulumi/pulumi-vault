@@ -19,7 +19,8 @@ class QuotaRateLimitArgs:
                  interval: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
-                 path: Optional[pulumi.Input[str]] = None):
+                 path: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a QuotaRateLimit resource.
         :param pulumi.Input[float] rate: The maximum number of requests at any given second to be allowed by the quota
@@ -38,6 +39,7 @@ class QuotaRateLimitArgs:
                Updating this field on an existing quota can have "moving" effects. For example, updating
                `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
                a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
+        :param pulumi.Input[str] role: If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
         """
         pulumi.set(__self__, "rate", rate)
         if block_interval is not None:
@@ -50,6 +52,8 @@ class QuotaRateLimitArgs:
             pulumi.set(__self__, "namespace", namespace)
         if path is not None:
             pulumi.set(__self__, "path", path)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
 
     @property
     @pulumi.getter
@@ -133,6 +137,18 @@ class QuotaRateLimitArgs:
     def path(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "path", value)
 
+    @property
+    @pulumi.getter
+    def role(self) -> Optional[pulumi.Input[str]]:
+        """
+        If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role", value)
+
 
 @pulumi.input_type
 class _QuotaRateLimitState:
@@ -142,7 +158,8 @@ class _QuotaRateLimitState:
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
-                 rate: Optional[pulumi.Input[float]] = None):
+                 rate: Optional[pulumi.Input[float]] = None,
+                 role: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering QuotaRateLimit resources.
         :param pulumi.Input[int] block_interval: If set, when a client reaches a rate limit threshold, the client will
@@ -161,6 +178,7 @@ class _QuotaRateLimitState:
                a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
         :param pulumi.Input[float] rate: The maximum number of requests at any given second to be allowed by the quota
                rule. The `rate` must be positive.
+        :param pulumi.Input[str] role: If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
         """
         if block_interval is not None:
             pulumi.set(__self__, "block_interval", block_interval)
@@ -174,6 +192,8 @@ class _QuotaRateLimitState:
             pulumi.set(__self__, "path", path)
         if rate is not None:
             pulumi.set(__self__, "rate", rate)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
 
     @property
     @pulumi.getter(name="blockInterval")
@@ -257,6 +277,18 @@ class _QuotaRateLimitState:
     def rate(self, value: Optional[pulumi.Input[float]]):
         pulumi.set(self, "rate", value)
 
+    @property
+    @pulumi.getter
+    def role(self) -> Optional[pulumi.Input[str]]:
+        """
+        If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role", value)
+
 
 class QuotaRateLimit(pulumi.CustomResource):
     @overload
@@ -269,6 +301,7 @@ class QuotaRateLimit(pulumi.CustomResource):
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  rate: Optional[pulumi.Input[float]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Manage rate limit quotas which enforce API rate limiting using a token bucket algorithm.
@@ -315,6 +348,7 @@ class QuotaRateLimit(pulumi.CustomResource):
                a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
         :param pulumi.Input[float] rate: The maximum number of requests at any given second to be allowed by the quota
                rule. The `rate` must be positive.
+        :param pulumi.Input[str] role: If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
         """
         ...
     @overload
@@ -370,6 +404,7 @@ class QuotaRateLimit(pulumi.CustomResource):
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  rate: Optional[pulumi.Input[float]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -387,6 +422,7 @@ class QuotaRateLimit(pulumi.CustomResource):
             if rate is None and not opts.urn:
                 raise TypeError("Missing required property 'rate'")
             __props__.__dict__["rate"] = rate
+            __props__.__dict__["role"] = role
         super(QuotaRateLimit, __self__).__init__(
             'vault:index/quotaRateLimit:QuotaRateLimit',
             resource_name,
@@ -402,7 +438,8 @@ class QuotaRateLimit(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
-            rate: Optional[pulumi.Input[float]] = None) -> 'QuotaRateLimit':
+            rate: Optional[pulumi.Input[float]] = None,
+            role: Optional[pulumi.Input[str]] = None) -> 'QuotaRateLimit':
         """
         Get an existing QuotaRateLimit resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -426,6 +463,7 @@ class QuotaRateLimit(pulumi.CustomResource):
                a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
         :param pulumi.Input[float] rate: The maximum number of requests at any given second to be allowed by the quota
                rule. The `rate` must be positive.
+        :param pulumi.Input[str] role: If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -437,6 +475,7 @@ class QuotaRateLimit(pulumi.CustomResource):
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["path"] = path
         __props__.__dict__["rate"] = rate
+        __props__.__dict__["role"] = role
         return QuotaRateLimit(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -496,4 +535,12 @@ class QuotaRateLimit(pulumi.CustomResource):
         rule. The `rate` must be positive.
         """
         return pulumi.get(self, "rate")
+
+    @property
+    @pulumi.getter
+    def role(self) -> pulumi.Output[Optional[str]]:
+        """
+        If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+        """
+        return pulumi.get(self, "role")
 

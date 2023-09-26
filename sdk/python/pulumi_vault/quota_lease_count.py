@@ -17,7 +17,8 @@ class QuotaLeaseCountArgs:
                  max_leases: pulumi.Input[int],
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
-                 path: Optional[pulumi.Input[str]] = None):
+                 path: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a QuotaLeaseCount resource.
         :param pulumi.Input[int] max_leases: The maximum number of leases to be allowed by the quota
@@ -33,6 +34,7 @@ class QuotaLeaseCountArgs:
                Updating this field on an existing quota can have "moving" effects. For example, updating
                `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
                a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
+        :param pulumi.Input[str] role: If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
         """
         pulumi.set(__self__, "max_leases", max_leases)
         if name is not None:
@@ -41,6 +43,8 @@ class QuotaLeaseCountArgs:
             pulumi.set(__self__, "namespace", namespace)
         if path is not None:
             pulumi.set(__self__, "path", path)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
 
     @property
     @pulumi.getter(name="maxLeases")
@@ -99,6 +103,18 @@ class QuotaLeaseCountArgs:
     def path(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "path", value)
 
+    @property
+    @pulumi.getter
+    def role(self) -> Optional[pulumi.Input[str]]:
+        """
+        If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role", value)
+
 
 @pulumi.input_type
 class _QuotaLeaseCountState:
@@ -106,7 +122,8 @@ class _QuotaLeaseCountState:
                  max_leases: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
-                 path: Optional[pulumi.Input[str]] = None):
+                 path: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering QuotaLeaseCount resources.
         :param pulumi.Input[int] max_leases: The maximum number of leases to be allowed by the quota
@@ -122,6 +139,7 @@ class _QuotaLeaseCountState:
                Updating this field on an existing quota can have "moving" effects. For example, updating
                `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
                a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
+        :param pulumi.Input[str] role: If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
         """
         if max_leases is not None:
             pulumi.set(__self__, "max_leases", max_leases)
@@ -131,6 +149,8 @@ class _QuotaLeaseCountState:
             pulumi.set(__self__, "namespace", namespace)
         if path is not None:
             pulumi.set(__self__, "path", path)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
 
     @property
     @pulumi.getter(name="maxLeases")
@@ -189,6 +209,18 @@ class _QuotaLeaseCountState:
     def path(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "path", value)
 
+    @property
+    @pulumi.getter
+    def role(self) -> Optional[pulumi.Input[str]]:
+        """
+        If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role", value)
+
 
 class QuotaLeaseCount(pulumi.CustomResource):
     @overload
@@ -199,6 +231,7 @@ class QuotaLeaseCount(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Manage lease count quotas which enforce the number of leases that can be created.
@@ -244,6 +277,7 @@ class QuotaLeaseCount(pulumi.CustomResource):
                Updating this field on an existing quota can have "moving" effects. For example, updating
                `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
                a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
+        :param pulumi.Input[str] role: If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
         """
         ...
     @overload
@@ -299,6 +333,7 @@ class QuotaLeaseCount(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -314,6 +349,7 @@ class QuotaLeaseCount(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["path"] = path
+            __props__.__dict__["role"] = role
         super(QuotaLeaseCount, __self__).__init__(
             'vault:index/quotaLeaseCount:QuotaLeaseCount',
             resource_name,
@@ -327,7 +363,8 @@ class QuotaLeaseCount(pulumi.CustomResource):
             max_leases: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
-            path: Optional[pulumi.Input[str]] = None) -> 'QuotaLeaseCount':
+            path: Optional[pulumi.Input[str]] = None,
+            role: Optional[pulumi.Input[str]] = None) -> 'QuotaLeaseCount':
         """
         Get an existing QuotaLeaseCount resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -348,6 +385,7 @@ class QuotaLeaseCount(pulumi.CustomResource):
                Updating this field on an existing quota can have "moving" effects. For example, updating
                `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
                a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
+        :param pulumi.Input[str] role: If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -357,6 +395,7 @@ class QuotaLeaseCount(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["path"] = path
+        __props__.__dict__["role"] = role
         return QuotaLeaseCount(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -399,4 +438,12 @@ class QuotaLeaseCount(pulumi.CustomResource):
         a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
         """
         return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter
+    def role(self) -> pulumi.Output[Optional[str]]:
+        """
+        If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+        """
+        return pulumi.get(self, "role")
 

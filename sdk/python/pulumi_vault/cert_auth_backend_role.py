@@ -42,7 +42,7 @@ class CertAuthBackendRoleArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_common_names: Allowed the common names for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_dns_sans: Allowed alternative dns names for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_email_sans: Allowed emails for authenticated client certificates
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_names: Allowed subject names for authenticated client certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_names: DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_organizational_units: Allowed organization units for authenticated client certificates.
                *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_uri_sans: Allowed URIs for authenticated client certificates
@@ -180,7 +180,7 @@ class CertAuthBackendRoleArgs:
     @pulumi.getter(name="allowedNames")
     def allowed_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Allowed subject names for authenticated client certificates
+        DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
         """
         return pulumi.get(self, "allowed_names")
 
@@ -441,7 +441,7 @@ class _CertAuthBackendRoleState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_common_names: Allowed the common names for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_dns_sans: Allowed alternative dns names for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_email_sans: Allowed emails for authenticated client certificates
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_names: Allowed subject names for authenticated client certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_names: DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_organizational_units: Allowed organization units for authenticated client certificates.
                *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_uri_sans: Allowed URIs for authenticated client certificates
@@ -569,7 +569,7 @@ class _CertAuthBackendRoleState:
     @pulumi.getter(name="allowedNames")
     def allowed_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Allowed subject names for authenticated client certificates
+        DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
         """
         return pulumi.get(self, "allowed_names")
 
@@ -869,7 +869,7 @@ class CertAuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_common_names: Allowed the common names for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_dns_sans: Allowed alternative dns names for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_email_sans: Allowed emails for authenticated client certificates
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_names: Allowed subject names for authenticated client certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_names: DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_organizational_units: Allowed organization units for authenticated client certificates.
                *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_uri_sans: Allowed URIs for authenticated client certificates
@@ -1054,7 +1054,7 @@ class CertAuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_common_names: Allowed the common names for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_dns_sans: Allowed alternative dns names for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_email_sans: Allowed emails for authenticated client certificates
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_names: Allowed subject names for authenticated client certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_names: DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_organizational_units: Allowed organization units for authenticated client certificates.
                *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_uri_sans: Allowed URIs for authenticated client certificates
@@ -1150,7 +1150,7 @@ class CertAuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="allowedNames")
     def allowed_names(self) -> pulumi.Output[Sequence[str]]:
         """
-        Allowed subject names for authenticated client certificates
+        DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
         """
         return pulumi.get(self, "allowed_names")
 
