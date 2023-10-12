@@ -17,6 +17,21 @@ public final class SecretBackendConnectionMysqlArgs extends com.pulumi.resources
     public static final SecretBackendConnectionMysqlArgs Empty = new SecretBackendConnectionMysqlArgs();
 
     /**
+     * Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+     * 
+     */
+    @Import(name="authType")
+    private @Nullable Output<String> authType;
+
+    /**
+     * @return Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+     * 
+     */
+    public Optional<Output<String>> authType() {
+        return Optional.ofNullable(this.authType);
+    }
+
+    /**
      * Specifies the Redshift DSN. See
      * the [Vault
      * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
@@ -102,6 +117,21 @@ public final class SecretBackendConnectionMysqlArgs extends com.pulumi.resources
     }
 
     /**
+     * JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+     * 
+     */
+    @Import(name="serviceAccountJson")
+    private @Nullable Output<String> serviceAccountJson;
+
+    /**
+     * @return JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+     * 
+     */
+    public Optional<Output<String>> serviceAccountJson() {
+        return Optional.ofNullable(this.serviceAccountJson);
+    }
+
+    /**
      * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
      * 
      */
@@ -164,11 +194,13 @@ public final class SecretBackendConnectionMysqlArgs extends com.pulumi.resources
     private SecretBackendConnectionMysqlArgs() {}
 
     private SecretBackendConnectionMysqlArgs(SecretBackendConnectionMysqlArgs $) {
+        this.authType = $.authType;
         this.connectionUrl = $.connectionUrl;
         this.maxConnectionLifetime = $.maxConnectionLifetime;
         this.maxIdleConnections = $.maxIdleConnections;
         this.maxOpenConnections = $.maxOpenConnections;
         this.password = $.password;
+        this.serviceAccountJson = $.serviceAccountJson;
         this.tlsCa = $.tlsCa;
         this.tlsCertificateKey = $.tlsCertificateKey;
         this.username = $.username;
@@ -191,6 +223,27 @@ public final class SecretBackendConnectionMysqlArgs extends com.pulumi.resources
 
         public Builder(SecretBackendConnectionMysqlArgs defaults) {
             $ = new SecretBackendConnectionMysqlArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param authType Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authType(@Nullable Output<String> authType) {
+            $.authType = authType;
+            return this;
+        }
+
+        /**
+         * @param authType Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authType(String authType) {
+            return authType(Output.of(authType));
         }
 
         /**
@@ -306,6 +359,27 @@ public final class SecretBackendConnectionMysqlArgs extends com.pulumi.resources
          */
         public Builder password(String password) {
             return password(Output.of(password));
+        }
+
+        /**
+         * @param serviceAccountJson JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serviceAccountJson(@Nullable Output<String> serviceAccountJson) {
+            $.serviceAccountJson = serviceAccountJson;
+            return this;
+        }
+
+        /**
+         * @param serviceAccountJson JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serviceAccountJson(String serviceAccountJson) {
+            return serviceAccountJson(Output.of(serviceAccountJson));
         }
 
         /**

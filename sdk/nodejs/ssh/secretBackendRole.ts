@@ -178,6 +178,11 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
     /**
+     * Specifies the duration by which to backdate the ValidAfter property.
+     * Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+     */
+    public readonly notBeforeDuration!: pulumi.Output<string>;
+    /**
      * Specifies the Time To Live value.
      */
     public readonly ttl!: pulumi.Output<string>;
@@ -220,6 +225,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
+            resourceInputs["notBeforeDuration"] = state ? state.notBeforeDuration : undefined;
             resourceInputs["ttl"] = state ? state.ttl : undefined;
         } else {
             const args = argsOrState as SecretBackendRoleArgs | undefined;
@@ -254,6 +260,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["notBeforeDuration"] = args ? args.notBeforeDuration : undefined;
             resourceInputs["ttl"] = args ? args.ttl : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -376,6 +383,11 @@ export interface SecretBackendRoleState {
      */
     namespace?: pulumi.Input<string>;
     /**
+     * Specifies the duration by which to backdate the ValidAfter property.
+     * Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+     */
+    notBeforeDuration?: pulumi.Input<string>;
+    /**
      * Specifies the Time To Live value.
      */
     ttl?: pulumi.Input<string>;
@@ -495,6 +507,11 @@ export interface SecretBackendRoleArgs {
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;
+    /**
+     * Specifies the duration by which to backdate the ValidAfter property.
+     * Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+     */
+    notBeforeDuration?: pulumi.Input<string>;
     /**
      * Specifies the Time To Live value.
      */

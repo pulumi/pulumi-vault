@@ -18,16 +18,14 @@ public final class NomadSecretRoleState extends com.pulumi.resources.ResourceArg
     public static final NomadSecretRoleState Empty = new NomadSecretRoleState();
 
     /**
-     * The unique path this backend should be mounted at. Must
-     * not begin or end with a `/`. Defaults to `nomad`.
+     * The unique path this backend should be mounted at.
      * 
      */
     @Import(name="backend")
     private @Nullable Output<String> backend;
 
     /**
-     * @return The unique path this backend should be mounted at. Must
-     * not begin or end with a `/`. Defaults to `nomad`.
+     * @return The unique path this backend should be mounted at.
      * 
      */
     public Optional<Output<String>> backend() {
@@ -153,8 +151,7 @@ public final class NomadSecretRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param backend The unique path this backend should be mounted at. Must
-         * not begin or end with a `/`. Defaults to `nomad`.
+         * @param backend The unique path this backend should be mounted at.
          * 
          * @return builder
          * 
@@ -165,8 +162,7 @@ public final class NomadSecretRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param backend The unique path this backend should be mounted at. Must
-         * not begin or end with a `/`. Defaults to `nomad`.
+         * @param backend The unique path this backend should be mounted at.
          * 
          * @return builder
          * 

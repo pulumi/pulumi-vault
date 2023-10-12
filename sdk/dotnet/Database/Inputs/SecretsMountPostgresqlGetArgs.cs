@@ -25,6 +25,9 @@ namespace Pulumi.Vault.Database.Inputs
             set => _allowedRoles = value;
         }
 
+        [Input("authType")]
+        public Input<string>? AuthType { get; set; }
+
         /// <summary>
         /// A URL containing connection information.  
         /// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
@@ -106,6 +109,18 @@ namespace Pulumi.Vault.Database.Inputs
         {
             get => _rootRotationStatements ?? (_rootRotationStatements = new InputList<string>());
             set => _rootRotationStatements = value;
+        }
+
+        [Input("serviceAccountJson")]
+        private Input<string>? _serviceAccountJson;
+        public Input<string>? ServiceAccountJson
+        {
+            get => _serviceAccountJson;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _serviceAccountJson = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
         }
 
         /// <summary>

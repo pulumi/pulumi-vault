@@ -65,6 +65,10 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly iamEndpoint!: pulumi.Output<string | undefined>;
     /**
+     * Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
+     */
+    public readonly local!: pulumi.Output<boolean | undefined>;
+    /**
      * The maximum TTL that can be requested
      * for credentials issued by this backend.
      */
@@ -117,6 +121,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
             resourceInputs["iamEndpoint"] = state ? state.iamEndpoint : undefined;
+            resourceInputs["local"] = state ? state.local : undefined;
             resourceInputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
@@ -131,6 +136,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
             resourceInputs["iamEndpoint"] = args ? args.iamEndpoint : undefined;
+            resourceInputs["local"] = args ? args.local : undefined;
             resourceInputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
@@ -173,6 +179,10 @@ export interface SecretBackendState {
      * Specifies a custom HTTP IAM endpoint to use.
      */
     iamEndpoint?: pulumi.Input<string>;
+    /**
+     * Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
+     */
+    local?: pulumi.Input<boolean>;
     /**
      * The maximum TTL that can be requested
      * for credentials issued by this backend.
@@ -236,6 +246,10 @@ export interface SecretBackendArgs {
      * Specifies a custom HTTP IAM endpoint to use.
      */
     iamEndpoint?: pulumi.Input<string>;
+    /**
+     * Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
+     */
+    local?: pulumi.Input<boolean>;
     /**
      * The maximum TTL that can be requested
      * for credentials issued by this backend.

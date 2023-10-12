@@ -85,17 +85,36 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
 
     /**
      * The amount of time Vault should wait before rotating the password, in seconds.
+     * Mutually exclusive with `rotation_schedule`.
      * 
      */
-    @Import(name="rotationPeriod", required=true)
-    private Output<Integer> rotationPeriod;
+    @Import(name="rotationPeriod")
+    private @Nullable Output<Integer> rotationPeriod;
 
     /**
      * @return The amount of time Vault should wait before rotating the password, in seconds.
+     * Mutually exclusive with `rotation_schedule`.
      * 
      */
-    public Output<Integer> rotationPeriod() {
-        return this.rotationPeriod;
+    public Optional<Output<Integer>> rotationPeriod() {
+        return Optional.ofNullable(this.rotationPeriod);
+    }
+
+    /**
+     * A cron-style string that will define the schedule on which rotations should occur.
+     * Mutually exclusive with `rotation_period`.
+     * 
+     */
+    @Import(name="rotationSchedule")
+    private @Nullable Output<String> rotationSchedule;
+
+    /**
+     * @return A cron-style string that will define the schedule on which rotations should occur.
+     * Mutually exclusive with `rotation_period`.
+     * 
+     */
+    public Optional<Output<String>> rotationSchedule() {
+        return Optional.ofNullable(this.rotationSchedule);
     }
 
     /**
@@ -111,6 +130,23 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
      */
     public Optional<Output<List<String>>> rotationStatements() {
         return Optional.ofNullable(this.rotationStatements);
+    }
+
+    /**
+     * The amount of time, in seconds, in which rotations are allowed to occur starting
+     * from a given `rotation_schedule`.
+     * 
+     */
+    @Import(name="rotationWindow")
+    private @Nullable Output<Integer> rotationWindow;
+
+    /**
+     * @return The amount of time, in seconds, in which rotations are allowed to occur starting
+     * from a given `rotation_schedule`.
+     * 
+     */
+    public Optional<Output<Integer>> rotationWindow() {
+        return Optional.ofNullable(this.rotationWindow);
     }
 
     /**
@@ -136,7 +172,9 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
         this.name = $.name;
         this.namespace = $.namespace;
         this.rotationPeriod = $.rotationPeriod;
+        this.rotationSchedule = $.rotationSchedule;
         this.rotationStatements = $.rotationStatements;
+        this.rotationWindow = $.rotationWindow;
         this.username = $.username;
     }
 
@@ -250,23 +288,48 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
 
         /**
          * @param rotationPeriod The amount of time Vault should wait before rotating the password, in seconds.
+         * Mutually exclusive with `rotation_schedule`.
          * 
          * @return builder
          * 
          */
-        public Builder rotationPeriod(Output<Integer> rotationPeriod) {
+        public Builder rotationPeriod(@Nullable Output<Integer> rotationPeriod) {
             $.rotationPeriod = rotationPeriod;
             return this;
         }
 
         /**
          * @param rotationPeriod The amount of time Vault should wait before rotating the password, in seconds.
+         * Mutually exclusive with `rotation_schedule`.
          * 
          * @return builder
          * 
          */
         public Builder rotationPeriod(Integer rotationPeriod) {
             return rotationPeriod(Output.of(rotationPeriod));
+        }
+
+        /**
+         * @param rotationSchedule A cron-style string that will define the schedule on which rotations should occur.
+         * Mutually exclusive with `rotation_period`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationSchedule(@Nullable Output<String> rotationSchedule) {
+            $.rotationSchedule = rotationSchedule;
+            return this;
+        }
+
+        /**
+         * @param rotationSchedule A cron-style string that will define the schedule on which rotations should occur.
+         * Mutually exclusive with `rotation_period`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationSchedule(String rotationSchedule) {
+            return rotationSchedule(Output.of(rotationSchedule));
         }
 
         /**
@@ -301,6 +364,29 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
         }
 
         /**
+         * @param rotationWindow The amount of time, in seconds, in which rotations are allowed to occur starting
+         * from a given `rotation_schedule`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationWindow(@Nullable Output<Integer> rotationWindow) {
+            $.rotationWindow = rotationWindow;
+            return this;
+        }
+
+        /**
+         * @param rotationWindow The amount of time, in seconds, in which rotations are allowed to occur starting
+         * from a given `rotation_schedule`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationWindow(Integer rotationWindow) {
+            return rotationWindow(Output.of(rotationWindow));
+        }
+
+        /**
          * @param username The database username that this static role corresponds to.
          * 
          * @return builder
@@ -324,7 +410,6 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
         public SecretBackendStaticRoleArgs build() {
             $.backend = Objects.requireNonNull($.backend, "expected parameter 'backend' to be non-null");
             $.dbName = Objects.requireNonNull($.dbName, "expected parameter 'dbName' to be non-null");
-            $.rotationPeriod = Objects.requireNonNull($.rotationPeriod, "expected parameter 'rotationPeriod' to be non-null");
             $.username = Objects.requireNonNull($.username, "expected parameter 'username' to be non-null");
             return $;
         }

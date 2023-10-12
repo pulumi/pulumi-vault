@@ -13,6 +13,12 @@ namespace Pulumi.Vault.Database.Inputs
     public sealed class SecretBackendConnectionPostgresqlGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+        /// </summary>
+        [Input("authType")]
+        public Input<string>? AuthType { get; set; }
+
+        /// <summary>
         /// Specifies the Redshift DSN. See
         /// the [Vault
         /// docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
@@ -60,6 +66,22 @@ namespace Pulumi.Vault.Database.Inputs
             {
                 var emptySecret = Output.CreateSecret(0);
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("serviceAccountJson")]
+        private Input<string>? _serviceAccountJson;
+
+        /// <summary>
+        /// JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+        /// </summary>
+        public Input<string>? ServiceAccountJson
+        {
+            get => _serviceAccountJson;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _serviceAccountJson = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
 

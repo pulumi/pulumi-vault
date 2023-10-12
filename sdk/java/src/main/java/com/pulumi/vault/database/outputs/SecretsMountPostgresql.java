@@ -22,6 +22,7 @@ public final class SecretsMountPostgresql {
      * 
      */
     private @Nullable List<String> allowedRoles;
+    private @Nullable String authType;
     /**
      * @return A URL containing connection information.\
      * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
@@ -72,6 +73,7 @@ public final class SecretsMountPostgresql {
      * 
      */
     private @Nullable List<String> rootRotationStatements;
+    private @Nullable String serviceAccountJson;
     /**
      * @return The username to be used in the connection (the account admin level).
      * 
@@ -97,6 +99,9 @@ public final class SecretsMountPostgresql {
      */
     public List<String> allowedRoles() {
         return this.allowedRoles == null ? List.of() : this.allowedRoles;
+    }
+    public Optional<String> authType() {
+        return Optional.ofNullable(this.authType);
     }
     /**
      * @return A URL containing connection information.\
@@ -168,6 +173,9 @@ public final class SecretsMountPostgresql {
     public List<String> rootRotationStatements() {
         return this.rootRotationStatements == null ? List.of() : this.rootRotationStatements;
     }
+    public Optional<String> serviceAccountJson() {
+        return Optional.ofNullable(this.serviceAccountJson);
+    }
     /**
      * @return The username to be used in the connection (the account admin level).
      * 
@@ -201,6 +209,7 @@ public final class SecretsMountPostgresql {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable List<String> allowedRoles;
+        private @Nullable String authType;
         private @Nullable String connectionUrl;
         private @Nullable Map<String,Object> data;
         private @Nullable Boolean disableEscaping;
@@ -211,6 +220,7 @@ public final class SecretsMountPostgresql {
         private @Nullable String password;
         private @Nullable String pluginName;
         private @Nullable List<String> rootRotationStatements;
+        private @Nullable String serviceAccountJson;
         private @Nullable String username;
         private @Nullable String usernameTemplate;
         private @Nullable Boolean verifyConnection;
@@ -218,6 +228,7 @@ public final class SecretsMountPostgresql {
         public Builder(SecretsMountPostgresql defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.allowedRoles = defaults.allowedRoles;
+    	      this.authType = defaults.authType;
     	      this.connectionUrl = defaults.connectionUrl;
     	      this.data = defaults.data;
     	      this.disableEscaping = defaults.disableEscaping;
@@ -228,6 +239,7 @@ public final class SecretsMountPostgresql {
     	      this.password = defaults.password;
     	      this.pluginName = defaults.pluginName;
     	      this.rootRotationStatements = defaults.rootRotationStatements;
+    	      this.serviceAccountJson = defaults.serviceAccountJson;
     	      this.username = defaults.username;
     	      this.usernameTemplate = defaults.usernameTemplate;
     	      this.verifyConnection = defaults.verifyConnection;
@@ -240,6 +252,11 @@ public final class SecretsMountPostgresql {
         }
         public Builder allowedRoles(String... allowedRoles) {
             return allowedRoles(List.of(allowedRoles));
+        }
+        @CustomType.Setter
+        public Builder authType(@Nullable String authType) {
+            this.authType = authType;
+            return this;
         }
         @CustomType.Setter
         public Builder connectionUrl(@Nullable String connectionUrl) {
@@ -295,6 +312,11 @@ public final class SecretsMountPostgresql {
             return rootRotationStatements(List.of(rootRotationStatements));
         }
         @CustomType.Setter
+        public Builder serviceAccountJson(@Nullable String serviceAccountJson) {
+            this.serviceAccountJson = serviceAccountJson;
+            return this;
+        }
+        @CustomType.Setter
         public Builder username(@Nullable String username) {
             this.username = username;
             return this;
@@ -312,6 +334,7 @@ public final class SecretsMountPostgresql {
         public SecretsMountPostgresql build() {
             final var o = new SecretsMountPostgresql();
             o.allowedRoles = allowedRoles;
+            o.authType = authType;
             o.connectionUrl = connectionUrl;
             o.data = data;
             o.disableEscaping = disableEscaping;
@@ -322,6 +345,7 @@ public final class SecretsMountPostgresql {
             o.password = password;
             o.pluginName = pluginName;
             o.rootRotationStatements = rootRotationStatements;
+            o.serviceAccountJson = serviceAccountJson;
             o.username = username;
             o.usernameTemplate = usernameTemplate;
             o.verifyConnection = verifyConnection;

@@ -152,6 +152,11 @@ namespace Pulumi.Vault.AppRole
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "clientToken",
+                    "secretId",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -196,12 +201,22 @@ namespace Pulumi.Vault.AppRole
         [Input("roleId", required: true)]
         public Input<string> RoleId { get; set; } = null!;
 
+        [Input("secretId")]
+        private Input<string>? _secretId;
+
         /// <summary>
         /// The secret ID of the role to log in with. Required
         /// unless `bind_secret_id` is set to false on the role.
         /// </summary>
-        [Input("secretId")]
-        public Input<string>? SecretId { get; set; }
+        public Input<string>? SecretId
+        {
+            get => _secretId;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretId = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public AuthBackendLoginArgs()
         {
@@ -223,11 +238,21 @@ namespace Pulumi.Vault.AppRole
         [Input("backend")]
         public Input<string>? Backend { get; set; }
 
+        [Input("clientToken")]
+        private Input<string>? _clientToken;
+
         /// <summary>
         /// The Vault token created.
         /// </summary>
-        [Input("clientToken")]
-        public Input<string>? ClientToken { get; set; }
+        public Input<string>? ClientToken
+        {
+            get => _clientToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// How long the token is valid for, in seconds.
@@ -286,12 +311,22 @@ namespace Pulumi.Vault.AppRole
         [Input("roleId")]
         public Input<string>? RoleId { get; set; }
 
+        [Input("secretId")]
+        private Input<string>? _secretId;
+
         /// <summary>
         /// The secret ID of the role to log in with. Required
         /// unless `bind_secret_id` is set to false on the role.
         /// </summary>
-        [Input("secretId")]
-        public Input<string>? SecretId { get; set; }
+        public Input<string>? SecretId
+        {
+            get => _secretId;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretId = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public AuthBackendLoginState()
         {

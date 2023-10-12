@@ -64,8 +64,7 @@ export class NomadSecretRole extends pulumi.CustomResource {
     }
 
     /**
-     * The unique path this backend should be mounted at. Must
-     * not begin or end with a `/`. Defaults to `nomad`.
+     * The unique path this backend should be mounted at.
      */
     public readonly backend!: pulumi.Output<string>;
     /**
@@ -140,8 +139,7 @@ export class NomadSecretRole extends pulumi.CustomResource {
  */
 export interface NomadSecretRoleState {
     /**
-     * The unique path this backend should be mounted at. Must
-     * not begin or end with a `/`. Defaults to `nomad`.
+     * The unique path this backend should be mounted at.
      */
     backend?: pulumi.Input<string>;
     /**
@@ -178,8 +176,7 @@ export interface NomadSecretRoleState {
  */
 export interface NomadSecretRoleArgs {
     /**
-     * The unique path this backend should be mounted at. Must
-     * not begin or end with a `/`. Defaults to `nomad`.
+     * The unique path this backend should be mounted at.
      */
     backend: pulumi.Input<string>;
     /**

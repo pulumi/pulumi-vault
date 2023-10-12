@@ -26,11 +26,21 @@ import * as utilities from "../utilities";
  *         connectionUrl: "postgres://username:password@host:port/database",
  *     },
  * });
- * const staticRole = new vault.database.SecretBackendStaticRole("staticRole", {
+ * // configure a static role with period-based rotations
+ * const periodRole = new vault.database.SecretBackendStaticRole("periodRole", {
  *     backend: db.path,
  *     dbName: postgres.name,
  *     username: "example",
  *     rotationPeriod: 3600,
+ *     rotationStatements: ["ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';"],
+ * });
+ * // configure a static role with schedule-based rotations
+ * const scheduleRole = new vault.database.SecretBackendStaticRole("scheduleRole", {
+ *     backend: db.path,
+ *     dbName: postgres.name,
+ *     username: "example",
+ *     rotationSchedule: "0 0 * * SAT",
+ *     rotationWindow: 172800,
  *     rotationStatements: ["ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';"],
  * });
  * ```
@@ -92,12 +102,23 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
     public readonly namespace!: pulumi.Output<string | undefined>;
     /**
      * The amount of time Vault should wait before rotating the password, in seconds.
+     * Mutually exclusive with `rotationSchedule`.
      */
-    public readonly rotationPeriod!: pulumi.Output<number>;
+    public readonly rotationPeriod!: pulumi.Output<number | undefined>;
+    /**
+     * A cron-style string that will define the schedule on which rotations should occur.
+     * Mutually exclusive with `rotationPeriod`.
+     */
+    public readonly rotationSchedule!: pulumi.Output<string | undefined>;
     /**
      * Database statements to execute to rotate the password for the configured database user.
      */
     public readonly rotationStatements!: pulumi.Output<string[] | undefined>;
+    /**
+     * The amount of time, in seconds, in which rotations are allowed to occur starting
+     * from a given `rotationSchedule`.
+     */
+    public readonly rotationWindow!: pulumi.Output<number | undefined>;
     /**
      * The database username that this static role corresponds to.
      */
@@ -121,7 +142,9 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["rotationPeriod"] = state ? state.rotationPeriod : undefined;
+            resourceInputs["rotationSchedule"] = state ? state.rotationSchedule : undefined;
             resourceInputs["rotationStatements"] = state ? state.rotationStatements : undefined;
+            resourceInputs["rotationWindow"] = state ? state.rotationWindow : undefined;
             resourceInputs["username"] = state ? state.username : undefined;
         } else {
             const args = argsOrState as SecretBackendStaticRoleArgs | undefined;
@@ -131,9 +154,6 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
             if ((!args || args.dbName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'dbName'");
             }
-            if ((!args || args.rotationPeriod === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'rotationPeriod'");
-            }
             if ((!args || args.username === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'username'");
             }
@@ -142,7 +162,9 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["rotationPeriod"] = args ? args.rotationPeriod : undefined;
+            resourceInputs["rotationSchedule"] = args ? args.rotationSchedule : undefined;
             resourceInputs["rotationStatements"] = args ? args.rotationStatements : undefined;
+            resourceInputs["rotationWindow"] = args ? args.rotationWindow : undefined;
             resourceInputs["username"] = args ? args.username : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -175,12 +197,23 @@ export interface SecretBackendStaticRoleState {
     namespace?: pulumi.Input<string>;
     /**
      * The amount of time Vault should wait before rotating the password, in seconds.
+     * Mutually exclusive with `rotationSchedule`.
      */
     rotationPeriod?: pulumi.Input<number>;
+    /**
+     * A cron-style string that will define the schedule on which rotations should occur.
+     * Mutually exclusive with `rotationPeriod`.
+     */
+    rotationSchedule?: pulumi.Input<string>;
     /**
      * Database statements to execute to rotate the password for the configured database user.
      */
     rotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The amount of time, in seconds, in which rotations are allowed to occur starting
+     * from a given `rotationSchedule`.
+     */
+    rotationWindow?: pulumi.Input<number>;
     /**
      * The database username that this static role corresponds to.
      */
@@ -212,12 +245,23 @@ export interface SecretBackendStaticRoleArgs {
     namespace?: pulumi.Input<string>;
     /**
      * The amount of time Vault should wait before rotating the password, in seconds.
+     * Mutually exclusive with `rotationSchedule`.
      */
-    rotationPeriod: pulumi.Input<number>;
+    rotationPeriod?: pulumi.Input<number>;
+    /**
+     * A cron-style string that will define the schedule on which rotations should occur.
+     * Mutually exclusive with `rotationPeriod`.
+     */
+    rotationSchedule?: pulumi.Input<string>;
     /**
      * Database statements to execute to rotate the password for the configured database user.
      */
     rotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The amount of time, in seconds, in which rotations are allowed to occur starting
+     * from a given `rotationSchedule`.
+     */
+    rotationWindow?: pulumi.Input<number>;
     /**
      * The database username that this static role corresponds to.
      */

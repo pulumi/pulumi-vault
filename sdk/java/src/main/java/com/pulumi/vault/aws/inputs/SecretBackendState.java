@@ -99,6 +99,21 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
+     * Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
+     * 
+     */
+    @Import(name="local")
+    private @Nullable Output<Boolean> local;
+
+    /**
+     * @return Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
+     * 
+     */
+    public Optional<Output<Boolean>> local() {
+        return Optional.ofNullable(this.local);
+    }
+
+    /**
      * The maximum TTL that can be requested
      * for credentials issued by this backend.
      * 
@@ -223,6 +238,7 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         this.description = $.description;
         this.disableRemount = $.disableRemount;
         this.iamEndpoint = $.iamEndpoint;
+        this.local = $.local;
         this.maxLeaseTtlSeconds = $.maxLeaseTtlSeconds;
         this.namespace = $.namespace;
         this.path = $.path;
@@ -359,6 +375,27 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
          */
         public Builder iamEndpoint(String iamEndpoint) {
             return iamEndpoint(Output.of(iamEndpoint));
+        }
+
+        /**
+         * @param local Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder local(@Nullable Output<Boolean> local) {
+            $.local = local;
+            return this;
+        }
+
+        /**
+         * @param local Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder local(Boolean local) {
+            return local(Output.of(local));
         }
 
         /**

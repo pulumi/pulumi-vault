@@ -49,11 +49,24 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = database.NewSecretBackendStaticRole(ctx, "staticRole", &database.SecretBackendStaticRoleArgs{
+//			_, err = database.NewSecretBackendStaticRole(ctx, "periodRole", &database.SecretBackendStaticRoleArgs{
 //				Backend:        db.Path,
 //				DbName:         postgres.Name,
 //				Username:       pulumi.String("example"),
 //				RotationPeriod: pulumi.Int(3600),
+//				RotationStatements: pulumi.StringArray{
+//					pulumi.String("ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = database.NewSecretBackendStaticRole(ctx, "scheduleRole", &database.SecretBackendStaticRoleArgs{
+//				Backend:          db.Path,
+//				DbName:           postgres.Name,
+//				Username:         pulumi.String("example"),
+//				RotationSchedule: pulumi.String("0 0 * * SAT"),
+//				RotationWindow:   pulumi.Int(172800),
 //				RotationStatements: pulumi.StringArray{
 //					pulumi.String("ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';"),
 //				},
@@ -91,9 +104,16 @@ type SecretBackendStaticRole struct {
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The amount of time Vault should wait before rotating the password, in seconds.
-	RotationPeriod pulumi.IntOutput `pulumi:"rotationPeriod"`
+	// Mutually exclusive with `rotationSchedule`.
+	RotationPeriod pulumi.IntPtrOutput `pulumi:"rotationPeriod"`
+	// A cron-style string that will define the schedule on which rotations should occur.
+	// Mutually exclusive with `rotationPeriod`.
+	RotationSchedule pulumi.StringPtrOutput `pulumi:"rotationSchedule"`
 	// Database statements to execute to rotate the password for the configured database user.
 	RotationStatements pulumi.StringArrayOutput `pulumi:"rotationStatements"`
+	// The amount of time, in seconds, in which rotations are allowed to occur starting
+	// from a given `rotationSchedule`.
+	RotationWindow pulumi.IntPtrOutput `pulumi:"rotationWindow"`
 	// The database username that this static role corresponds to.
 	Username pulumi.StringOutput `pulumi:"username"`
 }
@@ -110,9 +130,6 @@ func NewSecretBackendStaticRole(ctx *pulumi.Context,
 	}
 	if args.DbName == nil {
 		return nil, errors.New("invalid value for required argument 'DbName'")
-	}
-	if args.RotationPeriod == nil {
-		return nil, errors.New("invalid value for required argument 'RotationPeriod'")
 	}
 	if args.Username == nil {
 		return nil, errors.New("invalid value for required argument 'Username'")
@@ -151,9 +168,16 @@ type secretBackendStaticRoleState struct {
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// The amount of time Vault should wait before rotating the password, in seconds.
+	// Mutually exclusive with `rotationSchedule`.
 	RotationPeriod *int `pulumi:"rotationPeriod"`
+	// A cron-style string that will define the schedule on which rotations should occur.
+	// Mutually exclusive with `rotationPeriod`.
+	RotationSchedule *string `pulumi:"rotationSchedule"`
 	// Database statements to execute to rotate the password for the configured database user.
 	RotationStatements []string `pulumi:"rotationStatements"`
+	// The amount of time, in seconds, in which rotations are allowed to occur starting
+	// from a given `rotationSchedule`.
+	RotationWindow *int `pulumi:"rotationWindow"`
 	// The database username that this static role corresponds to.
 	Username *string `pulumi:"username"`
 }
@@ -171,9 +195,16 @@ type SecretBackendStaticRoleState struct {
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// The amount of time Vault should wait before rotating the password, in seconds.
+	// Mutually exclusive with `rotationSchedule`.
 	RotationPeriod pulumi.IntPtrInput
+	// A cron-style string that will define the schedule on which rotations should occur.
+	// Mutually exclusive with `rotationPeriod`.
+	RotationSchedule pulumi.StringPtrInput
 	// Database statements to execute to rotate the password for the configured database user.
 	RotationStatements pulumi.StringArrayInput
+	// The amount of time, in seconds, in which rotations are allowed to occur starting
+	// from a given `rotationSchedule`.
+	RotationWindow pulumi.IntPtrInput
 	// The database username that this static role corresponds to.
 	Username pulumi.StringPtrInput
 }
@@ -195,9 +226,16 @@ type secretBackendStaticRoleArgs struct {
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// The amount of time Vault should wait before rotating the password, in seconds.
-	RotationPeriod int `pulumi:"rotationPeriod"`
+	// Mutually exclusive with `rotationSchedule`.
+	RotationPeriod *int `pulumi:"rotationPeriod"`
+	// A cron-style string that will define the schedule on which rotations should occur.
+	// Mutually exclusive with `rotationPeriod`.
+	RotationSchedule *string `pulumi:"rotationSchedule"`
 	// Database statements to execute to rotate the password for the configured database user.
 	RotationStatements []string `pulumi:"rotationStatements"`
+	// The amount of time, in seconds, in which rotations are allowed to occur starting
+	// from a given `rotationSchedule`.
+	RotationWindow *int `pulumi:"rotationWindow"`
 	// The database username that this static role corresponds to.
 	Username string `pulumi:"username"`
 }
@@ -216,9 +254,16 @@ type SecretBackendStaticRoleArgs struct {
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// The amount of time Vault should wait before rotating the password, in seconds.
-	RotationPeriod pulumi.IntInput
+	// Mutually exclusive with `rotationSchedule`.
+	RotationPeriod pulumi.IntPtrInput
+	// A cron-style string that will define the schedule on which rotations should occur.
+	// Mutually exclusive with `rotationPeriod`.
+	RotationSchedule pulumi.StringPtrInput
 	// Database statements to execute to rotate the password for the configured database user.
 	RotationStatements pulumi.StringArrayInput
+	// The amount of time, in seconds, in which rotations are allowed to occur starting
+	// from a given `rotationSchedule`.
+	RotationWindow pulumi.IntPtrInput
 	// The database username that this static role corresponds to.
 	Username pulumi.StringInput
 }
@@ -334,13 +379,26 @@ func (o SecretBackendStaticRoleOutput) Namespace() pulumi.StringPtrOutput {
 }
 
 // The amount of time Vault should wait before rotating the password, in seconds.
-func (o SecretBackendStaticRoleOutput) RotationPeriod() pulumi.IntOutput {
-	return o.ApplyT(func(v *SecretBackendStaticRole) pulumi.IntOutput { return v.RotationPeriod }).(pulumi.IntOutput)
+// Mutually exclusive with `rotationSchedule`.
+func (o SecretBackendStaticRoleOutput) RotationPeriod() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendStaticRole) pulumi.IntPtrOutput { return v.RotationPeriod }).(pulumi.IntPtrOutput)
+}
+
+// A cron-style string that will define the schedule on which rotations should occur.
+// Mutually exclusive with `rotationPeriod`.
+func (o SecretBackendStaticRoleOutput) RotationSchedule() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendStaticRole) pulumi.StringPtrOutput { return v.RotationSchedule }).(pulumi.StringPtrOutput)
 }
 
 // Database statements to execute to rotate the password for the configured database user.
 func (o SecretBackendStaticRoleOutput) RotationStatements() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendStaticRole) pulumi.StringArrayOutput { return v.RotationStatements }).(pulumi.StringArrayOutput)
+}
+
+// The amount of time, in seconds, in which rotations are allowed to occur starting
+// from a given `rotationSchedule`.
+func (o SecretBackendStaticRoleOutput) RotationWindow() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendStaticRole) pulumi.IntPtrOutput { return v.RotationWindow }).(pulumi.IntPtrOutput)
 }
 
 // The database username that this static role corresponds to.

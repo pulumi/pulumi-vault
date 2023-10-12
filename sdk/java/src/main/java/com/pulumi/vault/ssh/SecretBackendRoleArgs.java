@@ -421,6 +421,23 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * Specifies the duration by which to backdate the ValidAfter property.
+     * Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+     * 
+     */
+    @Import(name="notBeforeDuration")
+    private @Nullable Output<String> notBeforeDuration;
+
+    /**
+     * @return Specifies the duration by which to backdate the ValidAfter property.
+     * Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+     * 
+     */
+    public Optional<Output<String>> notBeforeDuration() {
+        return Optional.ofNullable(this.notBeforeDuration);
+    }
+
+    /**
      * Specifies the Time To Live value.
      * 
      */
@@ -463,6 +480,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         this.maxTtl = $.maxTtl;
         this.name = $.name;
         this.namespace = $.namespace;
+        this.notBeforeDuration = $.notBeforeDuration;
         this.ttl = $.ttl;
     }
 
@@ -1043,6 +1061,29 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder namespace(String namespace) {
             return namespace(Output.of(namespace));
+        }
+
+        /**
+         * @param notBeforeDuration Specifies the duration by which to backdate the ValidAfter property.
+         * Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder notBeforeDuration(@Nullable Output<String> notBeforeDuration) {
+            $.notBeforeDuration = notBeforeDuration;
+            return this;
+        }
+
+        /**
+         * @param notBeforeDuration Specifies the duration by which to backdate the ValidAfter property.
+         * Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder notBeforeDuration(String notBeforeDuration) {
+            return notBeforeDuration(Output.of(notBeforeDuration));
         }
 
         /**

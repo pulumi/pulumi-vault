@@ -63,7 +63,7 @@ public final class SecretBackendKeyState extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Amount of time the key should live before being automatically rotated.
+     * Amount of seconds the key should live before being automatically rotated.
      * A value of 0 disables automatic rotation for the key.
      * 
      */
@@ -71,7 +71,7 @@ public final class SecretBackendKeyState extends com.pulumi.resources.ResourceAr
     private @Nullable Output<Integer> autoRotatePeriod;
 
     /**
-     * @return Amount of time the key should live before being automatically rotated.
+     * @return Amount of seconds the key should live before being automatically rotated.
      * A value of 0 disables automatic rotation for the key.
      * 
      */
@@ -152,6 +152,21 @@ public final class SecretBackendKeyState extends com.pulumi.resources.ResourceAr
      */
     public Optional<Output<Boolean>> exportable() {
         return Optional.ofNullable(this.exportable);
+    }
+
+    /**
+     * The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
+     * 
+     */
+    @Import(name="keySize")
+    private @Nullable Output<Integer> keySize;
+
+    /**
+     * @return The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
+     * 
+     */
+    public Optional<Output<Integer>> keySize() {
+        return Optional.ofNullable(this.keySize);
     }
 
     /**
@@ -330,7 +345,7 @@ public final class SecretBackendKeyState extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
+     * Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
      * * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
      * 
      */
@@ -338,7 +353,7 @@ public final class SecretBackendKeyState extends com.pulumi.resources.ResourceAr
     private @Nullable Output<String> type;
 
     /**
-     * @return Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
+     * @return Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
      * * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
      * 
      */
@@ -357,6 +372,7 @@ public final class SecretBackendKeyState extends com.pulumi.resources.ResourceAr
         this.deletionAllowed = $.deletionAllowed;
         this.derived = $.derived;
         this.exportable = $.exportable;
+        this.keySize = $.keySize;
         this.keys = $.keys;
         this.latestVersion = $.latestVersion;
         this.minAvailableVersion = $.minAvailableVersion;
@@ -444,7 +460,7 @@ public final class SecretBackendKeyState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param autoRotatePeriod Amount of time the key should live before being automatically rotated.
+         * @param autoRotatePeriod Amount of seconds the key should live before being automatically rotated.
          * A value of 0 disables automatic rotation for the key.
          * 
          * @return builder
@@ -456,7 +472,7 @@ public final class SecretBackendKeyState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param autoRotatePeriod Amount of time the key should live before being automatically rotated.
+         * @param autoRotatePeriod Amount of seconds the key should live before being automatically rotated.
          * A value of 0 disables automatic rotation for the key.
          * 
          * @return builder
@@ -569,6 +585,27 @@ public final class SecretBackendKeyState extends com.pulumi.resources.ResourceAr
          */
         public Builder exportable(Boolean exportable) {
             return exportable(Output.of(exportable));
+        }
+
+        /**
+         * @param keySize The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keySize(@Nullable Output<Integer> keySize) {
+            $.keySize = keySize;
+            return this;
+        }
+
+        /**
+         * @param keySize The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keySize(Integer keySize) {
+            return keySize(Output.of(keySize));
         }
 
         /**
@@ -825,7 +862,7 @@ public final class SecretBackendKeyState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param type Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
+         * @param type Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
          * * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
          * 
          * @return builder
@@ -837,7 +874,7 @@ public final class SecretBackendKeyState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param type Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
+         * @param type Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
          * * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
          * 
          * @return builder

@@ -178,7 +178,9 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly keyType!: pulumi.Output<string | undefined>;
     /**
-     * Specify the allowed key usage constraint on issued certificates
+     * Specify the allowed key usage constraint on issued
+     * certificates. Defaults to `["DigitalSignature", "KeyAgreement", "KeyEncipherment"])`.
+     * To specify no default key usage constraints, set this to an empty list `[]`.
      */
     public readonly keyUsages!: pulumi.Output<string[]>;
     /**
@@ -478,7 +480,9 @@ export interface SecretBackendRoleState {
      */
     keyType?: pulumi.Input<string>;
     /**
-     * Specify the allowed key usage constraint on issued certificates
+     * Specify the allowed key usage constraint on issued
+     * certificates. Defaults to `["DigitalSignature", "KeyAgreement", "KeyEncipherment"])`.
+     * To specify no default key usage constraints, set this to an empty list `[]`.
      */
     keyUsages?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -667,7 +671,9 @@ export interface SecretBackendRoleArgs {
      */
     keyType?: pulumi.Input<string>;
     /**
-     * Specify the allowed key usage constraint on issued certificates
+     * Specify the allowed key usage constraint on issued
+     * certificates. Defaults to `["DigitalSignature", "KeyAgreement", "KeyEncipherment"])`.
+     * To specify no default key usage constraints, set this to an empty list `[]`.
      */
     keyUsages?: pulumi.Input<pulumi.Input<string>[]>;
     /**

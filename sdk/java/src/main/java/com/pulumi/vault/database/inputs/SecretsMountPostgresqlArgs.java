@@ -37,6 +37,13 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
         return Optional.ofNullable(this.allowedRoles);
     }
 
+    @Import(name="authType")
+    private @Nullable Output<String> authType;
+
+    public Optional<Output<String>> authType() {
+        return Optional.ofNullable(this.authType);
+    }
+
     /**
      * A URL containing connection information.\
      * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
@@ -187,6 +194,13 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
         return Optional.ofNullable(this.rootRotationStatements);
     }
 
+    @Import(name="serviceAccountJson")
+    private @Nullable Output<String> serviceAccountJson;
+
+    public Optional<Output<String>> serviceAccountJson() {
+        return Optional.ofNullable(this.serviceAccountJson);
+    }
+
     /**
      * The username to be used in the connection (the account admin level).
      * 
@@ -238,6 +252,7 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
 
     private SecretsMountPostgresqlArgs(SecretsMountPostgresqlArgs $) {
         this.allowedRoles = $.allowedRoles;
+        this.authType = $.authType;
         this.connectionUrl = $.connectionUrl;
         this.data = $.data;
         this.disableEscaping = $.disableEscaping;
@@ -248,6 +263,7 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
         this.password = $.password;
         this.pluginName = $.pluginName;
         this.rootRotationStatements = $.rootRotationStatements;
+        this.serviceAccountJson = $.serviceAccountJson;
         this.username = $.username;
         this.usernameTemplate = $.usernameTemplate;
         this.verifyConnection = $.verifyConnection;
@@ -303,6 +319,15 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
          */
         public Builder allowedRoles(String... allowedRoles) {
             return allowedRoles(List.of(allowedRoles));
+        }
+
+        public Builder authType(@Nullable Output<String> authType) {
+            $.authType = authType;
+            return this;
+        }
+
+        public Builder authType(String authType) {
+            return authType(Output.of(authType));
         }
 
         /**
@@ -519,6 +544,15 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
          */
         public Builder rootRotationStatements(String... rootRotationStatements) {
             return rootRotationStatements(List.of(rootRotationStatements));
+        }
+
+        public Builder serviceAccountJson(@Nullable Output<String> serviceAccountJson) {
+            $.serviceAccountJson = serviceAccountJson;
+            return this;
+        }
+
+        public Builder serviceAccountJson(String serviceAccountJson) {
+            return serviceAccountJson(Output.of(serviceAccountJson));
         }
 
         /**

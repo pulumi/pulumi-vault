@@ -106,6 +106,20 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.iamEndpoint);
     }
     /**
+     * Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
+     * 
+     */
+    @Export(name="local", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> local;
+
+    /**
+     * @return Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
+     * 
+     */
+    public Output<Optional<Boolean>> local() {
+        return Codegen.optional(this.local);
+    }
+    /**
      * The maximum TTL that can be requested
      * for credentials issued by this backend.
      * 

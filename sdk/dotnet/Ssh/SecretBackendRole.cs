@@ -216,6 +216,13 @@ namespace Pulumi.Vault.Ssh
         public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies the duration by which to backdate the ValidAfter property.
+        /// Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+        /// </summary>
+        [Output("notBeforeDuration")]
+        public Output<string> NotBeforeDuration { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies the Time To Live value.
         /// </summary>
         [Output("ttl")]
@@ -451,6 +458,13 @@ namespace Pulumi.Vault.Ssh
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
+        /// Specifies the duration by which to backdate the ValidAfter property.
+        /// Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+        /// </summary>
+        [Input("notBeforeDuration")]
+        public Input<string>? NotBeforeDuration { get; set; }
+
+        /// <summary>
         /// Specifies the Time To Live value.
         /// </summary>
         [Input("ttl")]
@@ -646,6 +660,13 @@ namespace Pulumi.Vault.Ssh
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
+
+        /// <summary>
+        /// Specifies the duration by which to backdate the ValidAfter property.
+        /// Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+        /// </summary>
+        [Input("notBeforeDuration")]
+        public Input<string>? NotBeforeDuration { get; set; }
 
         /// <summary>
         /// Specifies the Time To Live value.

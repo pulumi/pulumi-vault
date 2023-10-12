@@ -451,14 +451,18 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.keyType);
     }
     /**
-     * Specify the allowed key usage constraint on issued certificates
+     * Specify the allowed key usage constraint on issued
+     * certificates. Defaults to `[&#34;DigitalSignature&#34;, &#34;KeyAgreement&#34;, &#34;KeyEncipherment&#34;])`.
+     * To specify no default key usage constraints, set this to an empty list `[]`.
      * 
      */
     @Export(name="keyUsages", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> keyUsages;
 
     /**
-     * @return Specify the allowed key usage constraint on issued certificates
+     * @return Specify the allowed key usage constraint on issued
+     * certificates. Defaults to `[&#34;DigitalSignature&#34;, &#34;KeyAgreement&#34;, &#34;KeyEncipherment&#34;])`.
+     * To specify no default key usage constraints, set this to an empty list `[]`.
      * 
      */
     public Output<List<String>> keyUsages() {

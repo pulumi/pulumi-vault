@@ -13,6 +13,11 @@ import javax.annotation.Nullable;
 @CustomType
 public final class SecretBackendConnectionMysql {
     /**
+     * @return Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+     * 
+     */
+    private @Nullable String authType;
+    /**
      * @return Specifies the Redshift DSN. See
      * the [Vault
      * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
@@ -43,6 +48,11 @@ public final class SecretBackendConnectionMysql {
      */
     private @Nullable String password;
     /**
+     * @return JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+     * 
+     */
+    private @Nullable String serviceAccountJson;
+    /**
      * @return x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
      * 
      */
@@ -64,6 +74,13 @@ public final class SecretBackendConnectionMysql {
     private @Nullable String usernameTemplate;
 
     private SecretBackendConnectionMysql() {}
+    /**
+     * @return Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+     * 
+     */
+    public Optional<String> authType() {
+        return Optional.ofNullable(this.authType);
+    }
     /**
      * @return Specifies the Redshift DSN. See
      * the [Vault
@@ -105,6 +122,13 @@ public final class SecretBackendConnectionMysql {
         return Optional.ofNullable(this.password);
     }
     /**
+     * @return JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+     * 
+     */
+    public Optional<String> serviceAccountJson() {
+        return Optional.ofNullable(this.serviceAccountJson);
+    }
+    /**
      * @return x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
      * 
      */
@@ -142,11 +166,13 @@ public final class SecretBackendConnectionMysql {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable String authType;
         private @Nullable String connectionUrl;
         private @Nullable Integer maxConnectionLifetime;
         private @Nullable Integer maxIdleConnections;
         private @Nullable Integer maxOpenConnections;
         private @Nullable String password;
+        private @Nullable String serviceAccountJson;
         private @Nullable String tlsCa;
         private @Nullable String tlsCertificateKey;
         private @Nullable String username;
@@ -154,17 +180,24 @@ public final class SecretBackendConnectionMysql {
         public Builder() {}
         public Builder(SecretBackendConnectionMysql defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.authType = defaults.authType;
     	      this.connectionUrl = defaults.connectionUrl;
     	      this.maxConnectionLifetime = defaults.maxConnectionLifetime;
     	      this.maxIdleConnections = defaults.maxIdleConnections;
     	      this.maxOpenConnections = defaults.maxOpenConnections;
     	      this.password = defaults.password;
+    	      this.serviceAccountJson = defaults.serviceAccountJson;
     	      this.tlsCa = defaults.tlsCa;
     	      this.tlsCertificateKey = defaults.tlsCertificateKey;
     	      this.username = defaults.username;
     	      this.usernameTemplate = defaults.usernameTemplate;
         }
 
+        @CustomType.Setter
+        public Builder authType(@Nullable String authType) {
+            this.authType = authType;
+            return this;
+        }
         @CustomType.Setter
         public Builder connectionUrl(@Nullable String connectionUrl) {
             this.connectionUrl = connectionUrl;
@@ -191,6 +224,11 @@ public final class SecretBackendConnectionMysql {
             return this;
         }
         @CustomType.Setter
+        public Builder serviceAccountJson(@Nullable String serviceAccountJson) {
+            this.serviceAccountJson = serviceAccountJson;
+            return this;
+        }
+        @CustomType.Setter
         public Builder tlsCa(@Nullable String tlsCa) {
             this.tlsCa = tlsCa;
             return this;
@@ -212,11 +250,13 @@ public final class SecretBackendConnectionMysql {
         }
         public SecretBackendConnectionMysql build() {
             final var o = new SecretBackendConnectionMysql();
+            o.authType = authType;
             o.connectionUrl = connectionUrl;
             o.maxConnectionLifetime = maxConnectionLifetime;
             o.maxIdleConnections = maxIdleConnections;
             o.maxOpenConnections = maxOpenConnections;
             o.password = password;
+            o.serviceAccountJson = serviceAccountJson;
             o.tlsCa = tlsCa;
             o.tlsCertificateKey = tlsCertificateKey;
             o.username = username;

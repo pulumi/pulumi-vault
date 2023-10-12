@@ -90,7 +90,9 @@ class SecretBackendRoleArgs:
         :param pulumi.Input[int] key_bits: The number of bits of generated keys
         :param pulumi.Input[str] key_type: The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
                Defaults to `rsa`
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] key_usages: Specify the allowed key usage constraint on issued certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] key_usages: Specify the allowed key usage constraint on issued
+               certificates. Defaults to `["DigitalSignature", "KeyAgreement", "KeyEncipherment"])`.
+               To specify no default key usage constraints, set this to an empty list `[]`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] localities: The locality of generated certificates
         :param pulumi.Input[str] max_ttl: The maximum lease TTL, in seconds, for the role.
         :param pulumi.Input[str] name: The name to identify this role within the backend. Must be unique within the backend.
@@ -520,7 +522,9 @@ class SecretBackendRoleArgs:
     @pulumi.getter(name="keyUsages")
     def key_usages(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Specify the allowed key usage constraint on issued certificates
+        Specify the allowed key usage constraint on issued
+        certificates. Defaults to `["DigitalSignature", "KeyAgreement", "KeyEncipherment"])`.
+        To specify no default key usage constraints, set this to an empty list `[]`.
         """
         return pulumi.get(self, "key_usages")
 
@@ -815,7 +819,9 @@ class _SecretBackendRoleState:
         :param pulumi.Input[int] key_bits: The number of bits of generated keys
         :param pulumi.Input[str] key_type: The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
                Defaults to `rsa`
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] key_usages: Specify the allowed key usage constraint on issued certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] key_usages: Specify the allowed key usage constraint on issued
+               certificates. Defaults to `["DigitalSignature", "KeyAgreement", "KeyEncipherment"])`.
+               To specify no default key usage constraints, set this to an empty list `[]`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] localities: The locality of generated certificates
         :param pulumi.Input[str] max_ttl: The maximum lease TTL, in seconds, for the role.
         :param pulumi.Input[str] name: The name to identify this role within the backend. Must be unique within the backend.
@@ -1246,7 +1252,9 @@ class _SecretBackendRoleState:
     @pulumi.getter(name="keyUsages")
     def key_usages(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Specify the allowed key usage constraint on issued certificates
+        Specify the allowed key usage constraint on issued
+        certificates. Defaults to `["DigitalSignature", "KeyAgreement", "KeyEncipherment"])`.
+        To specify no default key usage constraints, set this to an empty list `[]`.
         """
         return pulumi.get(self, "key_usages")
 
@@ -1579,7 +1587,9 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[int] key_bits: The number of bits of generated keys
         :param pulumi.Input[str] key_type: The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
                Defaults to `rsa`
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] key_usages: Specify the allowed key usage constraint on issued certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] key_usages: Specify the allowed key usage constraint on issued
+               certificates. Defaults to `["DigitalSignature", "KeyAgreement", "KeyEncipherment"])`.
+               To specify no default key usage constraints, set this to an empty list `[]`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] localities: The locality of generated certificates
         :param pulumi.Input[str] max_ttl: The maximum lease TTL, in seconds, for the role.
         :param pulumi.Input[str] name: The name to identify this role within the backend. Must be unique within the backend.
@@ -1847,7 +1857,9 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[int] key_bits: The number of bits of generated keys
         :param pulumi.Input[str] key_type: The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
                Defaults to `rsa`
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] key_usages: Specify the allowed key usage constraint on issued certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] key_usages: Specify the allowed key usage constraint on issued
+               certificates. Defaults to `["DigitalSignature", "KeyAgreement", "KeyEncipherment"])`.
+               To specify no default key usage constraints, set this to an empty list `[]`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] localities: The locality of generated certificates
         :param pulumi.Input[str] max_ttl: The maximum lease TTL, in seconds, for the role.
         :param pulumi.Input[str] name: The name to identify this role within the backend. Must be unique within the backend.
@@ -2135,7 +2147,9 @@ class SecretBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="keyUsages")
     def key_usages(self) -> pulumi.Output[Sequence[str]]:
         """
-        Specify the allowed key usage constraint on issued certificates
+        Specify the allowed key usage constraint on issued
+        certificates. Defaults to `["DigitalSignature", "KeyAgreement", "KeyEncipherment"])`.
+        To specify no default key usage constraints, set this to an empty list `[]`.
         """
         return pulumi.get(self, "key_usages")
 

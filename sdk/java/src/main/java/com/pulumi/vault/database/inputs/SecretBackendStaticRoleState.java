@@ -85,6 +85,7 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
 
     /**
      * The amount of time Vault should wait before rotating the password, in seconds.
+     * Mutually exclusive with `rotation_schedule`.
      * 
      */
     @Import(name="rotationPeriod")
@@ -92,10 +93,28 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
 
     /**
      * @return The amount of time Vault should wait before rotating the password, in seconds.
+     * Mutually exclusive with `rotation_schedule`.
      * 
      */
     public Optional<Output<Integer>> rotationPeriod() {
         return Optional.ofNullable(this.rotationPeriod);
+    }
+
+    /**
+     * A cron-style string that will define the schedule on which rotations should occur.
+     * Mutually exclusive with `rotation_period`.
+     * 
+     */
+    @Import(name="rotationSchedule")
+    private @Nullable Output<String> rotationSchedule;
+
+    /**
+     * @return A cron-style string that will define the schedule on which rotations should occur.
+     * Mutually exclusive with `rotation_period`.
+     * 
+     */
+    public Optional<Output<String>> rotationSchedule() {
+        return Optional.ofNullable(this.rotationSchedule);
     }
 
     /**
@@ -111,6 +130,23 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
      */
     public Optional<Output<List<String>>> rotationStatements() {
         return Optional.ofNullable(this.rotationStatements);
+    }
+
+    /**
+     * The amount of time, in seconds, in which rotations are allowed to occur starting
+     * from a given `rotation_schedule`.
+     * 
+     */
+    @Import(name="rotationWindow")
+    private @Nullable Output<Integer> rotationWindow;
+
+    /**
+     * @return The amount of time, in seconds, in which rotations are allowed to occur starting
+     * from a given `rotation_schedule`.
+     * 
+     */
+    public Optional<Output<Integer>> rotationWindow() {
+        return Optional.ofNullable(this.rotationWindow);
     }
 
     /**
@@ -136,7 +172,9 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
         this.name = $.name;
         this.namespace = $.namespace;
         this.rotationPeriod = $.rotationPeriod;
+        this.rotationSchedule = $.rotationSchedule;
         this.rotationStatements = $.rotationStatements;
+        this.rotationWindow = $.rotationWindow;
         this.username = $.username;
     }
 
@@ -250,6 +288,7 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
 
         /**
          * @param rotationPeriod The amount of time Vault should wait before rotating the password, in seconds.
+         * Mutually exclusive with `rotation_schedule`.
          * 
          * @return builder
          * 
@@ -261,12 +300,36 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
 
         /**
          * @param rotationPeriod The amount of time Vault should wait before rotating the password, in seconds.
+         * Mutually exclusive with `rotation_schedule`.
          * 
          * @return builder
          * 
          */
         public Builder rotationPeriod(Integer rotationPeriod) {
             return rotationPeriod(Output.of(rotationPeriod));
+        }
+
+        /**
+         * @param rotationSchedule A cron-style string that will define the schedule on which rotations should occur.
+         * Mutually exclusive with `rotation_period`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationSchedule(@Nullable Output<String> rotationSchedule) {
+            $.rotationSchedule = rotationSchedule;
+            return this;
+        }
+
+        /**
+         * @param rotationSchedule A cron-style string that will define the schedule on which rotations should occur.
+         * Mutually exclusive with `rotation_period`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationSchedule(String rotationSchedule) {
+            return rotationSchedule(Output.of(rotationSchedule));
         }
 
         /**
@@ -298,6 +361,29 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
          */
         public Builder rotationStatements(String... rotationStatements) {
             return rotationStatements(List.of(rotationStatements));
+        }
+
+        /**
+         * @param rotationWindow The amount of time, in seconds, in which rotations are allowed to occur starting
+         * from a given `rotation_schedule`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationWindow(@Nullable Output<Integer> rotationWindow) {
+            $.rotationWindow = rotationWindow;
+            return this;
+        }
+
+        /**
+         * @param rotationWindow The amount of time, in seconds, in which rotations are allowed to occur starting
+         * from a given `rotation_schedule`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationWindow(Integer rotationWindow) {
+            return rotationWindow(Output.of(rotationWindow));
         }
 
         /**

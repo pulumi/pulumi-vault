@@ -14,6 +14,11 @@ import javax.annotation.Nullable;
 @CustomType
 public final class SecretBackendConnectionPostgresql {
     /**
+     * @return Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+     * 
+     */
+    private @Nullable String authType;
+    /**
      * @return Specifies the Redshift DSN. See
      * the [Vault
      * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
@@ -49,6 +54,11 @@ public final class SecretBackendConnectionPostgresql {
      */
     private @Nullable String password;
     /**
+     * @return JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+     * 
+     */
+    private @Nullable String serviceAccountJson;
+    /**
      * @return The root credential username used in the connection URL.
      * 
      */
@@ -60,6 +70,13 @@ public final class SecretBackendConnectionPostgresql {
     private @Nullable String usernameTemplate;
 
     private SecretBackendConnectionPostgresql() {}
+    /**
+     * @return Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+     * 
+     */
+    public Optional<String> authType() {
+        return Optional.ofNullable(this.authType);
+    }
     /**
      * @return Specifies the Redshift DSN. See
      * the [Vault
@@ -108,6 +125,13 @@ public final class SecretBackendConnectionPostgresql {
         return Optional.ofNullable(this.password);
     }
     /**
+     * @return JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+     * 
+     */
+    public Optional<String> serviceAccountJson() {
+        return Optional.ofNullable(this.serviceAccountJson);
+    }
+    /**
      * @return The root credential username used in the connection URL.
      * 
      */
@@ -131,27 +155,36 @@ public final class SecretBackendConnectionPostgresql {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable String authType;
         private @Nullable String connectionUrl;
         private @Nullable Boolean disableEscaping;
         private @Nullable Integer maxConnectionLifetime;
         private @Nullable Integer maxIdleConnections;
         private @Nullable Integer maxOpenConnections;
         private @Nullable String password;
+        private @Nullable String serviceAccountJson;
         private @Nullable String username;
         private @Nullable String usernameTemplate;
         public Builder() {}
         public Builder(SecretBackendConnectionPostgresql defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.authType = defaults.authType;
     	      this.connectionUrl = defaults.connectionUrl;
     	      this.disableEscaping = defaults.disableEscaping;
     	      this.maxConnectionLifetime = defaults.maxConnectionLifetime;
     	      this.maxIdleConnections = defaults.maxIdleConnections;
     	      this.maxOpenConnections = defaults.maxOpenConnections;
     	      this.password = defaults.password;
+    	      this.serviceAccountJson = defaults.serviceAccountJson;
     	      this.username = defaults.username;
     	      this.usernameTemplate = defaults.usernameTemplate;
         }
 
+        @CustomType.Setter
+        public Builder authType(@Nullable String authType) {
+            this.authType = authType;
+            return this;
+        }
         @CustomType.Setter
         public Builder connectionUrl(@Nullable String connectionUrl) {
             this.connectionUrl = connectionUrl;
@@ -183,6 +216,11 @@ public final class SecretBackendConnectionPostgresql {
             return this;
         }
         @CustomType.Setter
+        public Builder serviceAccountJson(@Nullable String serviceAccountJson) {
+            this.serviceAccountJson = serviceAccountJson;
+            return this;
+        }
+        @CustomType.Setter
         public Builder username(@Nullable String username) {
             this.username = username;
             return this;
@@ -194,12 +232,14 @@ public final class SecretBackendConnectionPostgresql {
         }
         public SecretBackendConnectionPostgresql build() {
             final var o = new SecretBackendConnectionPostgresql();
+            o.authType = authType;
             o.connectionUrl = connectionUrl;
             o.disableEscaping = disableEscaping;
             o.maxConnectionLifetime = maxConnectionLifetime;
             o.maxIdleConnections = maxIdleConnections;
             o.maxOpenConnections = maxOpenConnections;
             o.password = password;
+            o.serviceAccountJson = serviceAccountJson;
             o.username = username;
             o.usernameTemplate = usernameTemplate;
             return o;

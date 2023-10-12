@@ -126,7 +126,9 @@ type SecretBackendRole struct {
 	// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
 	// Defaults to `rsa`
 	KeyType pulumi.StringPtrOutput `pulumi:"keyType"`
-	// Specify the allowed key usage constraint on issued certificates
+	// Specify the allowed key usage constraint on issued
+	// certificates. Defaults to `["DigitalSignature", "KeyAgreement", "KeyEncipherment"])`.
+	// To specify no default key usage constraints, set this to an empty list `[]`.
 	KeyUsages pulumi.StringArrayOutput `pulumi:"keyUsages"`
 	// The locality of generated certificates
 	Localities pulumi.StringArrayOutput `pulumi:"localities"`
@@ -255,7 +257,9 @@ type secretBackendRoleState struct {
 	// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
 	// Defaults to `rsa`
 	KeyType *string `pulumi:"keyType"`
-	// Specify the allowed key usage constraint on issued certificates
+	// Specify the allowed key usage constraint on issued
+	// certificates. Defaults to `["DigitalSignature", "KeyAgreement", "KeyEncipherment"])`.
+	// To specify no default key usage constraints, set this to an empty list `[]`.
 	KeyUsages []string `pulumi:"keyUsages"`
 	// The locality of generated certificates
 	Localities []string `pulumi:"localities"`
@@ -353,7 +357,9 @@ type SecretBackendRoleState struct {
 	// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
 	// Defaults to `rsa`
 	KeyType pulumi.StringPtrInput
-	// Specify the allowed key usage constraint on issued certificates
+	// Specify the allowed key usage constraint on issued
+	// certificates. Defaults to `["DigitalSignature", "KeyAgreement", "KeyEncipherment"])`.
+	// To specify no default key usage constraints, set this to an empty list `[]`.
 	KeyUsages pulumi.StringArrayInput
 	// The locality of generated certificates
 	Localities pulumi.StringArrayInput
@@ -455,7 +461,9 @@ type secretBackendRoleArgs struct {
 	// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
 	// Defaults to `rsa`
 	KeyType *string `pulumi:"keyType"`
-	// Specify the allowed key usage constraint on issued certificates
+	// Specify the allowed key usage constraint on issued
+	// certificates. Defaults to `["DigitalSignature", "KeyAgreement", "KeyEncipherment"])`.
+	// To specify no default key usage constraints, set this to an empty list `[]`.
 	KeyUsages []string `pulumi:"keyUsages"`
 	// The locality of generated certificates
 	Localities []string `pulumi:"localities"`
@@ -554,7 +562,9 @@ type SecretBackendRoleArgs struct {
 	// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
 	// Defaults to `rsa`
 	KeyType pulumi.StringPtrInput
-	// Specify the allowed key usage constraint on issued certificates
+	// Specify the allowed key usage constraint on issued
+	// certificates. Defaults to `["DigitalSignature", "KeyAgreement", "KeyEncipherment"])`.
+	// To specify no default key usage constraints, set this to an empty list `[]`.
 	KeyUsages pulumi.StringArrayInput
 	// The locality of generated certificates
 	Localities pulumi.StringArrayInput
@@ -816,7 +826,9 @@ func (o SecretBackendRoleOutput) KeyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.KeyType }).(pulumi.StringPtrOutput)
 }
 
-// Specify the allowed key usage constraint on issued certificates
+// Specify the allowed key usage constraint on issued
+// certificates. Defaults to `["DigitalSignature", "KeyAgreement", "KeyEncipherment"])`.
+// To specify no default key usage constraints, set this to an empty list `[]`.
 func (o SecretBackendRoleOutput) KeyUsages() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.KeyUsages }).(pulumi.StringArrayOutput)
 }

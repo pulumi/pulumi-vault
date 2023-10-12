@@ -65,8 +65,7 @@ import (
 type NomadSecretRole struct {
 	pulumi.CustomResourceState
 
-	// The unique path this backend should be mounted at. Must
-	// not begin or end with a `/`. Defaults to `nomad`.
+	// The unique path this backend should be mounted at.
 	Backend pulumi.StringOutput `pulumi:"backend"`
 	// Specifies if the generated token should be global. Defaults to
 	// false.
@@ -122,8 +121,7 @@ func GetNomadSecretRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering NomadSecretRole resources.
 type nomadSecretRoleState struct {
-	// The unique path this backend should be mounted at. Must
-	// not begin or end with a `/`. Defaults to `nomad`.
+	// The unique path this backend should be mounted at.
 	Backend *string `pulumi:"backend"`
 	// Specifies if the generated token should be global. Defaults to
 	// false.
@@ -145,8 +143,7 @@ type nomadSecretRoleState struct {
 }
 
 type NomadSecretRoleState struct {
-	// The unique path this backend should be mounted at. Must
-	// not begin or end with a `/`. Defaults to `nomad`.
+	// The unique path this backend should be mounted at.
 	Backend pulumi.StringPtrInput
 	// Specifies if the generated token should be global. Defaults to
 	// false.
@@ -172,8 +169,7 @@ func (NomadSecretRoleState) ElementType() reflect.Type {
 }
 
 type nomadSecretRoleArgs struct {
-	// The unique path this backend should be mounted at. Must
-	// not begin or end with a `/`. Defaults to `nomad`.
+	// The unique path this backend should be mounted at.
 	Backend string `pulumi:"backend"`
 	// Specifies if the generated token should be global. Defaults to
 	// false.
@@ -196,8 +192,7 @@ type nomadSecretRoleArgs struct {
 
 // The set of arguments for constructing a NomadSecretRole resource.
 type NomadSecretRoleArgs struct {
-	// The unique path this backend should be mounted at. Must
-	// not begin or end with a `/`. Defaults to `nomad`.
+	// The unique path this backend should be mounted at.
 	Backend pulumi.StringInput
 	// Specifies if the generated token should be global. Defaults to
 	// false.
@@ -305,8 +300,7 @@ func (o NomadSecretRoleOutput) ToNomadSecretRoleOutputWithContext(ctx context.Co
 	return o
 }
 
-// The unique path this backend should be mounted at. Must
-// not begin or end with a `/`. Defaults to `nomad`.
+// The unique path this backend should be mounted at.
 func (o NomadSecretRoleOutput) Backend() pulumi.StringOutput {
 	return o.ApplyT(func(v *NomadSecretRole) pulumi.StringOutput { return v.Backend }).(pulumi.StringOutput)
 }

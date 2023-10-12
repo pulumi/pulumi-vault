@@ -14,6 +14,10 @@ namespace Pulumi.Vault.Database.Outputs
     public sealed class SecretBackendConnectionMysql
     {
         /// <summary>
+        /// Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+        /// </summary>
+        public readonly string? AuthType;
+        /// <summary>
         /// Specifies the Redshift DSN. See
         /// the [Vault
         /// docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
@@ -39,6 +43,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string? Password;
         /// <summary>
+        /// JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+        /// </summary>
+        public readonly string? ServiceAccountJson;
+        /// <summary>
         /// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         /// </summary>
         public readonly string? TlsCa;
@@ -57,6 +65,8 @@ namespace Pulumi.Vault.Database.Outputs
 
         [OutputConstructor]
         private SecretBackendConnectionMysql(
+            string? authType,
+
             string? connectionUrl,
 
             int? maxConnectionLifetime,
@@ -67,6 +77,8 @@ namespace Pulumi.Vault.Database.Outputs
 
             string? password,
 
+            string? serviceAccountJson,
+
             string? tlsCa,
 
             string? tlsCertificateKey,
@@ -75,11 +87,13 @@ namespace Pulumi.Vault.Database.Outputs
 
             string? usernameTemplate)
         {
+            AuthType = authType;
             ConnectionUrl = connectionUrl;
             MaxConnectionLifetime = maxConnectionLifetime;
             MaxIdleConnections = maxIdleConnections;
             MaxOpenConnections = maxOpenConnections;
             Password = password;
+            ServiceAccountJson = serviceAccountJson;
             TlsCa = tlsCa;
             TlsCertificateKey = tlsCertificateKey;
             Username = username;

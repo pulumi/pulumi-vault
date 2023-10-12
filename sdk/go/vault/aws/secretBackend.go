@@ -35,6 +35,8 @@ type SecretBackend struct {
 	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
 	// Specifies a custom HTTP IAM endpoint to use.
 	IamEndpoint pulumi.StringPtrOutput `pulumi:"iamEndpoint"`
+	// Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
+	Local pulumi.BoolPtrOutput `pulumi:"local"`
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend.
 	MaxLeaseTtlSeconds pulumi.IntOutput `pulumi:"maxLeaseTtlSeconds"`
@@ -110,6 +112,8 @@ type secretBackendState struct {
 	DisableRemount *bool `pulumi:"disableRemount"`
 	// Specifies a custom HTTP IAM endpoint to use.
 	IamEndpoint *string `pulumi:"iamEndpoint"`
+	// Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
+	Local *bool `pulumi:"local"`
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend.
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
@@ -146,6 +150,8 @@ type SecretBackendState struct {
 	DisableRemount pulumi.BoolPtrInput
 	// Specifies a custom HTTP IAM endpoint to use.
 	IamEndpoint pulumi.StringPtrInput
+	// Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
+	Local pulumi.BoolPtrInput
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend.
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
@@ -186,6 +192,8 @@ type secretBackendArgs struct {
 	DisableRemount *bool `pulumi:"disableRemount"`
 	// Specifies a custom HTTP IAM endpoint to use.
 	IamEndpoint *string `pulumi:"iamEndpoint"`
+	// Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
+	Local *bool `pulumi:"local"`
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend.
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
@@ -223,6 +231,8 @@ type SecretBackendArgs struct {
 	DisableRemount pulumi.BoolPtrInput
 	// Specifies a custom HTTP IAM endpoint to use.
 	IamEndpoint pulumi.StringPtrInput
+	// Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
+	Local pulumi.BoolPtrInput
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend.
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
@@ -358,6 +368,11 @@ func (o SecretBackendOutput) DisableRemount() pulumi.BoolPtrOutput {
 // Specifies a custom HTTP IAM endpoint to use.
 func (o SecretBackendOutput) IamEndpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.IamEndpoint }).(pulumi.StringPtrOutput)
+}
+
+// Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
+func (o SecretBackendOutput) Local() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.Local }).(pulumi.BoolPtrOutput)
 }
 
 // The maximum TTL that can be requested

@@ -55,8 +55,7 @@ namespace Pulumi.Vault
     public partial class NomadSecretRole : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `nomad`.
+        /// The unique path this backend should be mounted at.
         /// </summary>
         [Output("backend")]
         public Output<string> Backend { get; private set; } = null!;
@@ -145,8 +144,7 @@ namespace Pulumi.Vault
     public sealed class NomadSecretRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `nomad`.
+        /// The unique path this backend should be mounted at.
         /// </summary>
         [Input("backend", required: true)]
         public Input<string> Backend { get; set; } = null!;
@@ -203,8 +201,7 @@ namespace Pulumi.Vault
     public sealed class NomadSecretRoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `nomad`.
+        /// The unique path this backend should be mounted at.
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }

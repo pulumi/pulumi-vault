@@ -73,7 +73,7 @@ type SecretBackendKey struct {
 	//
 	// Deprecated: Use auto_rotate_period instead
 	AutoRotateInterval pulumi.IntOutput `pulumi:"autoRotateInterval"`
-	// Amount of time the key should live before being automatically rotated.
+	// Amount of seconds the key should live before being automatically rotated.
 	// A value of 0 disables automatic rotation for the key.
 	AutoRotatePeriod pulumi.IntOutput `pulumi:"autoRotatePeriod"`
 	// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
@@ -86,6 +86,8 @@ type SecretBackendKey struct {
 	Derived pulumi.BoolPtrOutput `pulumi:"derived"`
 	// Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
 	Exportable pulumi.BoolPtrOutput `pulumi:"exportable"`
+	// The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
+	KeySize pulumi.IntPtrOutput `pulumi:"keySize"`
 	// List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
 	// * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
 	// * for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
@@ -113,7 +115,7 @@ type SecretBackendKey struct {
 	SupportsEncryption pulumi.BoolOutput `pulumi:"supportsEncryption"`
 	// Whether or not the key supports signing, based on key type.
 	SupportsSigning pulumi.BoolOutput `pulumi:"supportsSigning"`
-	// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
+	// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
 	// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
 	Type pulumi.StringPtrOutput `pulumi:"type"`
 }
@@ -158,7 +160,7 @@ type secretBackendKeyState struct {
 	//
 	// Deprecated: Use auto_rotate_period instead
 	AutoRotateInterval *int `pulumi:"autoRotateInterval"`
-	// Amount of time the key should live before being automatically rotated.
+	// Amount of seconds the key should live before being automatically rotated.
 	// A value of 0 disables automatic rotation for the key.
 	AutoRotatePeriod *int `pulumi:"autoRotatePeriod"`
 	// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
@@ -171,6 +173,8 @@ type secretBackendKeyState struct {
 	Derived *bool `pulumi:"derived"`
 	// Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
 	Exportable *bool `pulumi:"exportable"`
+	// The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
+	KeySize *int `pulumi:"keySize"`
 	// List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
 	// * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
 	// * for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
@@ -198,7 +202,7 @@ type secretBackendKeyState struct {
 	SupportsEncryption *bool `pulumi:"supportsEncryption"`
 	// Whether or not the key supports signing, based on key type.
 	SupportsSigning *bool `pulumi:"supportsSigning"`
-	// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
+	// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
 	// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
 	Type *string `pulumi:"type"`
 }
@@ -212,7 +216,7 @@ type SecretBackendKeyState struct {
 	//
 	// Deprecated: Use auto_rotate_period instead
 	AutoRotateInterval pulumi.IntPtrInput
-	// Amount of time the key should live before being automatically rotated.
+	// Amount of seconds the key should live before being automatically rotated.
 	// A value of 0 disables automatic rotation for the key.
 	AutoRotatePeriod pulumi.IntPtrInput
 	// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
@@ -225,6 +229,8 @@ type SecretBackendKeyState struct {
 	Derived pulumi.BoolPtrInput
 	// Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
 	Exportable pulumi.BoolPtrInput
+	// The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
+	KeySize pulumi.IntPtrInput
 	// List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
 	// * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
 	// * for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
@@ -252,7 +258,7 @@ type SecretBackendKeyState struct {
 	SupportsEncryption pulumi.BoolPtrInput
 	// Whether or not the key supports signing, based on key type.
 	SupportsSigning pulumi.BoolPtrInput
-	// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
+	// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
 	// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
 	Type pulumi.StringPtrInput
 }
@@ -270,7 +276,7 @@ type secretBackendKeyArgs struct {
 	//
 	// Deprecated: Use auto_rotate_period instead
 	AutoRotateInterval *int `pulumi:"autoRotateInterval"`
-	// Amount of time the key should live before being automatically rotated.
+	// Amount of seconds the key should live before being automatically rotated.
 	// A value of 0 disables automatic rotation for the key.
 	AutoRotatePeriod *int `pulumi:"autoRotatePeriod"`
 	// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
@@ -283,6 +289,8 @@ type secretBackendKeyArgs struct {
 	Derived *bool `pulumi:"derived"`
 	// Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
 	Exportable *bool `pulumi:"exportable"`
+	// The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
+	KeySize *int `pulumi:"keySize"`
 	// Minimum key version to use for decryption.
 	MinDecryptionVersion *int `pulumi:"minDecryptionVersion"`
 	// Minimum key version to use for encryption
@@ -294,7 +302,7 @@ type secretBackendKeyArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
-	// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
+	// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
 	// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
 	Type *string `pulumi:"type"`
 }
@@ -309,7 +317,7 @@ type SecretBackendKeyArgs struct {
 	//
 	// Deprecated: Use auto_rotate_period instead
 	AutoRotateInterval pulumi.IntPtrInput
-	// Amount of time the key should live before being automatically rotated.
+	// Amount of seconds the key should live before being automatically rotated.
 	// A value of 0 disables automatic rotation for the key.
 	AutoRotatePeriod pulumi.IntPtrInput
 	// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
@@ -322,6 +330,8 @@ type SecretBackendKeyArgs struct {
 	Derived pulumi.BoolPtrInput
 	// Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
 	Exportable pulumi.BoolPtrInput
+	// The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
+	KeySize pulumi.IntPtrInput
 	// Minimum key version to use for decryption.
 	MinDecryptionVersion pulumi.IntPtrInput
 	// Minimum key version to use for encryption
@@ -333,7 +343,7 @@ type SecretBackendKeyArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
-	// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
+	// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
 	// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
 	Type pulumi.StringPtrInput
 }
@@ -439,7 +449,7 @@ func (o SecretBackendKeyOutput) AutoRotateInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v *SecretBackendKey) pulumi.IntOutput { return v.AutoRotateInterval }).(pulumi.IntOutput)
 }
 
-// Amount of time the key should live before being automatically rotated.
+// Amount of seconds the key should live before being automatically rotated.
 // A value of 0 disables automatic rotation for the key.
 func (o SecretBackendKeyOutput) AutoRotatePeriod() pulumi.IntOutput {
 	return o.ApplyT(func(v *SecretBackendKey) pulumi.IntOutput { return v.AutoRotatePeriod }).(pulumi.IntOutput)
@@ -468,6 +478,11 @@ func (o SecretBackendKeyOutput) Derived() pulumi.BoolPtrOutput {
 // Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
 func (o SecretBackendKeyOutput) Exportable() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendKey) pulumi.BoolPtrOutput { return v.Exportable }).(pulumi.BoolPtrOutput)
+}
+
+// The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
+func (o SecretBackendKeyOutput) KeySize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendKey) pulumi.IntPtrOutput { return v.KeySize }).(pulumi.IntPtrOutput)
 }
 
 // List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
@@ -530,7 +545,7 @@ func (o SecretBackendKeyOutput) SupportsSigning() pulumi.BoolOutput {
 	return o.ApplyT(func(v *SecretBackendKey) pulumi.BoolOutput { return v.SupportsSigning }).(pulumi.BoolOutput)
 }
 
-// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
+// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
 // * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
 func (o SecretBackendKeyOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendKey) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)

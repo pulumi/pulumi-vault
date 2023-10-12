@@ -109,6 +109,14 @@ func NewAuthBackendLogin(ctx *pulumi.Context,
 	if args.RoleId == nil {
 		return nil, errors.New("invalid value for required argument 'RoleId'")
 	}
+	if args.SecretId != nil {
+		args.SecretId = pulumi.ToSecret(args.SecretId).(pulumi.StringPtrOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"clientToken",
+		"secretId",
+	})
+	opts = append(opts, secrets)
 	var resource AuthBackendLogin
 	err := ctx.RegisterResource("vault:appRole/authBackendLogin:AuthBackendLogin", name, args, &resource, opts...)
 	if err != nil {

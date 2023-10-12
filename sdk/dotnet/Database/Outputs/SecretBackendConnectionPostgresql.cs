@@ -14,6 +14,10 @@ namespace Pulumi.Vault.Database.Outputs
     public sealed class SecretBackendConnectionPostgresql
     {
         /// <summary>
+        /// Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+        /// </summary>
+        public readonly string? AuthType;
+        /// <summary>
         /// Specifies the Redshift DSN. See
         /// the [Vault
         /// docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
@@ -43,6 +47,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string? Password;
         /// <summary>
+        /// JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+        /// </summary>
+        public readonly string? ServiceAccountJson;
+        /// <summary>
         /// The root credential username used in the connection URL.
         /// </summary>
         public readonly string? Username;
@@ -53,6 +61,8 @@ namespace Pulumi.Vault.Database.Outputs
 
         [OutputConstructor]
         private SecretBackendConnectionPostgresql(
+            string? authType,
+
             string? connectionUrl,
 
             bool? disableEscaping,
@@ -65,16 +75,20 @@ namespace Pulumi.Vault.Database.Outputs
 
             string? password,
 
+            string? serviceAccountJson,
+
             string? username,
 
             string? usernameTemplate)
         {
+            AuthType = authType;
             ConnectionUrl = connectionUrl;
             DisableEscaping = disableEscaping;
             MaxConnectionLifetime = maxConnectionLifetime;
             MaxIdleConnections = maxIdleConnections;
             MaxOpenConnections = maxOpenConnections;
             Password = password;
+            ServiceAccountJson = serviceAccountJson;
             Username = username;
             UsernameTemplate = usernameTemplate;
         }

@@ -55,6 +55,12 @@ namespace Pulumi.Vault.Aws
         public Output<string?> IamEndpoint { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
+        /// </summary>
+        [Output("local")]
+        public Output<bool?> Local { get; private set; } = null!;
+
+        /// <summary>
         /// The maximum TTL that can be requested
         /// for credentials issued by this backend.
         /// </summary>
@@ -197,6 +203,12 @@ namespace Pulumi.Vault.Aws
         public Input<string>? IamEndpoint { get; set; }
 
         /// <summary>
+        /// Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
+        /// </summary>
+        [Input("local")]
+        public Input<bool>? Local { get; set; }
+
+        /// <summary>
         /// The maximum TTL that can be requested
         /// for credentials issued by this backend.
         /// </summary>
@@ -304,6 +316,12 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Input("iamEndpoint")]
         public Input<string>? IamEndpoint { get; set; }
+
+        /// <summary>
+        /// Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
+        /// </summary>
+        [Input("local")]
+        public Input<bool>? Local { get; set; }
 
         /// <summary>
         /// The maximum TTL that can be requested
