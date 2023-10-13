@@ -42,12 +42,27 @@ namespace Pulumi.Vault.Database
     ///         },
     ///     });
     /// 
-    ///     var staticRole = new Vault.Database.SecretBackendStaticRole("staticRole", new()
+    ///     // configure a static role with period-based rotations
+    ///     var periodRole = new Vault.Database.SecretBackendStaticRole("periodRole", new()
     ///     {
     ///         Backend = db.Path,
     ///         DbName = postgres.Name,
     ///         Username = "example",
     ///         RotationPeriod = 3600,
+    ///         RotationStatements = new[]
+    ///         {
+    ///             "ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';",
+    ///         },
+    ///     });
+    /// 
+    ///     // configure a static role with schedule-based rotations
+    ///     var scheduleRole = new Vault.Database.SecretBackendStaticRole("scheduleRole", new()
+    ///     {
+    ///         Backend = db.Path,
+    ///         DbName = postgres.Name,
+    ///         Username = "example",
+    ///         RotationSchedule = "0 0 * * SAT",
+    ///         RotationWindow = 172800,
     ///         RotationStatements = new[]
     ///         {
     ///             "ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';",
@@ -97,15 +112,30 @@ namespace Pulumi.Vault.Database
 
         /// <summary>
         /// The amount of time Vault should wait before rotating the password, in seconds.
+        /// Mutually exclusive with `rotation_schedule`.
         /// </summary>
         [Output("rotationPeriod")]
-        public Output<int> RotationPeriod { get; private set; } = null!;
+        public Output<int?> RotationPeriod { get; private set; } = null!;
+
+        /// <summary>
+        /// A cron-style string that will define the schedule on which rotations should occur.
+        /// Mutually exclusive with `rotation_period`.
+        /// </summary>
+        [Output("rotationSchedule")]
+        public Output<string?> RotationSchedule { get; private set; } = null!;
 
         /// <summary>
         /// Database statements to execute to rotate the password for the configured database user.
         /// </summary>
         [Output("rotationStatements")]
         public Output<ImmutableArray<string>> RotationStatements { get; private set; } = null!;
+
+        /// <summary>
+        /// The amount of time, in seconds, in which rotations are allowed to occur starting
+        /// from a given `rotation_schedule`.
+        /// </summary>
+        [Output("rotationWindow")]
+        public Output<int?> RotationWindow { get; private set; } = null!;
 
         /// <summary>
         /// The database username that this static role corresponds to.
@@ -188,9 +218,17 @@ namespace Pulumi.Vault.Database
 
         /// <summary>
         /// The amount of time Vault should wait before rotating the password, in seconds.
+        /// Mutually exclusive with `rotation_schedule`.
         /// </summary>
-        [Input("rotationPeriod", required: true)]
-        public Input<int> RotationPeriod { get; set; } = null!;
+        [Input("rotationPeriod")]
+        public Input<int>? RotationPeriod { get; set; }
+
+        /// <summary>
+        /// A cron-style string that will define the schedule on which rotations should occur.
+        /// Mutually exclusive with `rotation_period`.
+        /// </summary>
+        [Input("rotationSchedule")]
+        public Input<string>? RotationSchedule { get; set; }
 
         [Input("rotationStatements")]
         private InputList<string>? _rotationStatements;
@@ -203,6 +241,13 @@ namespace Pulumi.Vault.Database
             get => _rotationStatements ?? (_rotationStatements = new InputList<string>());
             set => _rotationStatements = value;
         }
+
+        /// <summary>
+        /// The amount of time, in seconds, in which rotations are allowed to occur starting
+        /// from a given `rotation_schedule`.
+        /// </summary>
+        [Input("rotationWindow")]
+        public Input<int>? RotationWindow { get; set; }
 
         /// <summary>
         /// The database username that this static role corresponds to.
@@ -247,9 +292,17 @@ namespace Pulumi.Vault.Database
 
         /// <summary>
         /// The amount of time Vault should wait before rotating the password, in seconds.
+        /// Mutually exclusive with `rotation_schedule`.
         /// </summary>
         [Input("rotationPeriod")]
         public Input<int>? RotationPeriod { get; set; }
+
+        /// <summary>
+        /// A cron-style string that will define the schedule on which rotations should occur.
+        /// Mutually exclusive with `rotation_period`.
+        /// </summary>
+        [Input("rotationSchedule")]
+        public Input<string>? RotationSchedule { get; set; }
 
         [Input("rotationStatements")]
         private InputList<string>? _rotationStatements;
@@ -262,6 +315,13 @@ namespace Pulumi.Vault.Database
             get => _rotationStatements ?? (_rotationStatements = new InputList<string>());
             set => _rotationStatements = value;
         }
+
+        /// <summary>
+        /// The amount of time, in seconds, in which rotations are allowed to occur starting
+        /// from a given `rotation_schedule`.
+        /// </summary>
+        [Input("rotationWindow")]
+        public Input<int>? RotationWindow { get; set; }
 
         /// <summary>
         /// The database username that this static role corresponds to.

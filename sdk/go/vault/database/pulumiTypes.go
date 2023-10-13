@@ -2283,6 +2283,8 @@ func (o SecretBackendConnectionMssqlPtrOutput) UsernameTemplate() pulumi.StringP
 }
 
 type SecretBackendConnectionMysql struct {
+	// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+	AuthType *string `pulumi:"authType"`
 	// Specifies the Redshift DSN. See
 	// the [Vault
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
@@ -2298,6 +2300,8 @@ type SecretBackendConnectionMysql struct {
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL.
 	Password *string `pulumi:"password"`
+	// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+	ServiceAccountJson *string `pulumi:"serviceAccountJson"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 	TlsCa *string `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
@@ -2320,6 +2324,8 @@ type SecretBackendConnectionMysqlInput interface {
 }
 
 type SecretBackendConnectionMysqlArgs struct {
+	// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+	AuthType pulumi.StringPtrInput `pulumi:"authType"`
 	// Specifies the Redshift DSN. See
 	// the [Vault
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
@@ -2335,6 +2341,8 @@ type SecretBackendConnectionMysqlArgs struct {
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL.
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+	ServiceAccountJson pulumi.StringPtrInput `pulumi:"serviceAccountJson"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
@@ -2422,6 +2430,11 @@ func (o SecretBackendConnectionMysqlOutput) ToSecretBackendConnectionMysqlPtrOut
 	}).(SecretBackendConnectionMysqlPtrOutput)
 }
 
+// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+func (o SecretBackendConnectionMysqlOutput) AuthType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysql) *string { return v.AuthType }).(pulumi.StringPtrOutput)
+}
+
 // Specifies the Redshift DSN. See
 // the [Vault
 // docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
@@ -2450,6 +2463,11 @@ func (o SecretBackendConnectionMysqlOutput) MaxOpenConnections() pulumi.IntPtrOu
 // The root credential password used in the connection URL.
 func (o SecretBackendConnectionMysqlOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysql) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+func (o SecretBackendConnectionMysqlOutput) ServiceAccountJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysql) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
 }
 
 // x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
@@ -2494,6 +2512,16 @@ func (o SecretBackendConnectionMysqlPtrOutput) Elem() SecretBackendConnectionMys
 		var ret SecretBackendConnectionMysql
 		return ret
 	}).(SecretBackendConnectionMysqlOutput)
+}
+
+// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+func (o SecretBackendConnectionMysqlPtrOutput) AuthType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysql) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AuthType
+	}).(pulumi.StringPtrOutput)
 }
 
 // Specifies the Redshift DSN. See
@@ -2548,6 +2576,16 @@ func (o SecretBackendConnectionMysqlPtrOutput) Password() pulumi.StringPtrOutput
 			return nil
 		}
 		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+func (o SecretBackendConnectionMysqlPtrOutput) ServiceAccountJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysql) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ServiceAccountJson
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -3676,6 +3714,8 @@ func (o SecretBackendConnectionOraclePtrOutput) UsernameTemplate() pulumi.String
 }
 
 type SecretBackendConnectionPostgresql struct {
+	// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+	AuthType *string `pulumi:"authType"`
 	// Specifies the Redshift DSN. See
 	// the [Vault
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
@@ -3693,6 +3733,8 @@ type SecretBackendConnectionPostgresql struct {
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL.
 	Password *string `pulumi:"password"`
+	// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+	ServiceAccountJson *string `pulumi:"serviceAccountJson"`
 	// The root credential username used in the connection URL.
 	Username *string `pulumi:"username"`
 	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
@@ -3711,6 +3753,8 @@ type SecretBackendConnectionPostgresqlInput interface {
 }
 
 type SecretBackendConnectionPostgresqlArgs struct {
+	// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+	AuthType pulumi.StringPtrInput `pulumi:"authType"`
 	// Specifies the Redshift DSN. See
 	// the [Vault
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
@@ -3728,6 +3772,8 @@ type SecretBackendConnectionPostgresqlArgs struct {
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL.
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+	ServiceAccountJson pulumi.StringPtrInput `pulumi:"serviceAccountJson"`
 	// The root credential username used in the connection URL.
 	Username pulumi.StringPtrInput `pulumi:"username"`
 	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
@@ -3811,6 +3857,11 @@ func (o SecretBackendConnectionPostgresqlOutput) ToSecretBackendConnectionPostgr
 	}).(SecretBackendConnectionPostgresqlPtrOutput)
 }
 
+// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+func (o SecretBackendConnectionPostgresqlOutput) AuthType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *string { return v.AuthType }).(pulumi.StringPtrOutput)
+}
+
 // Specifies the Redshift DSN. See
 // the [Vault
 // docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
@@ -3846,6 +3897,11 @@ func (o SecretBackendConnectionPostgresqlOutput) Password() pulumi.StringPtrOutp
 	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+func (o SecretBackendConnectionPostgresqlOutput) ServiceAccountJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
+}
+
 // The root credential username used in the connection URL.
 func (o SecretBackendConnectionPostgresqlOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *string { return v.Username }).(pulumi.StringPtrOutput)
@@ -3878,6 +3934,16 @@ func (o SecretBackendConnectionPostgresqlPtrOutput) Elem() SecretBackendConnecti
 		var ret SecretBackendConnectionPostgresql
 		return ret
 	}).(SecretBackendConnectionPostgresqlOutput)
+}
+
+// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+func (o SecretBackendConnectionPostgresqlPtrOutput) AuthType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionPostgresql) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AuthType
+	}).(pulumi.StringPtrOutput)
 }
 
 // Specifies the Redshift DSN. See
@@ -3942,6 +4008,16 @@ func (o SecretBackendConnectionPostgresqlPtrOutput) Password() pulumi.StringPtrO
 			return nil
 		}
 		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+func (o SecretBackendConnectionPostgresqlPtrOutput) ServiceAccountJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionPostgresql) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ServiceAccountJson
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -6792,6 +6868,7 @@ type SecretsMountMysql struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles []string `pulumi:"allowedRoles"`
+	AuthType     *string  `pulumi:"authType"`
 	// A URL containing connection information.\
 	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 	ConnectionUrl *string `pulumi:"connectionUrl"`
@@ -6813,6 +6890,7 @@ type SecretsMountMysql struct {
 	PluginName *string `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
+	ServiceAccountJson     *string  `pulumi:"serviceAccountJson"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 	TlsCa *string `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
@@ -6841,6 +6919,7 @@ type SecretsMountMysqlArgs struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
+	AuthType     pulumi.StringPtrInput   `pulumi:"authType"`
 	// A URL containing connection information.\
 	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
@@ -6862,6 +6941,7 @@ type SecretsMountMysqlArgs struct {
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
+	ServiceAccountJson     pulumi.StringPtrInput   `pulumi:"serviceAccountJson"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
@@ -6932,6 +7012,10 @@ func (o SecretsMountMysqlOutput) AllowedRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecretsMountMysql) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
 }
 
+func (o SecretsMountMysqlOutput) AuthType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysql) *string { return v.AuthType }).(pulumi.StringPtrOutput)
+}
+
 // A URL containing connection information.\
 // See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 func (o SecretsMountMysqlOutput) ConnectionUrl() pulumi.StringPtrOutput {
@@ -6978,6 +7062,10 @@ func (o SecretsMountMysqlOutput) PluginName() pulumi.StringPtrOutput {
 // A list of database statements to be executed to rotate the root user's credentials.
 func (o SecretsMountMysqlOutput) RootRotationStatements() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecretsMountMysql) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
+}
+
+func (o SecretsMountMysqlOutput) ServiceAccountJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysql) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
 }
 
 // x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
@@ -7910,6 +7998,7 @@ type SecretsMountPostgresql struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles []string `pulumi:"allowedRoles"`
+	AuthType     *string  `pulumi:"authType"`
 	// A URL containing connection information.\
 	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 	ConnectionUrl *string `pulumi:"connectionUrl"`
@@ -7933,6 +8022,7 @@ type SecretsMountPostgresql struct {
 	PluginName *string `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
+	ServiceAccountJson     *string  `pulumi:"serviceAccountJson"`
 	// The username to be used in the connection (the account admin level).
 	Username *string `pulumi:"username"`
 	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
@@ -7957,6 +8047,7 @@ type SecretsMountPostgresqlArgs struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
+	AuthType     pulumi.StringPtrInput   `pulumi:"authType"`
 	// A URL containing connection information.\
 	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
@@ -7980,6 +8071,7 @@ type SecretsMountPostgresqlArgs struct {
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
+	ServiceAccountJson     pulumi.StringPtrInput   `pulumi:"serviceAccountJson"`
 	// The username to be used in the connection (the account admin level).
 	Username pulumi.StringPtrInput `pulumi:"username"`
 	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
@@ -8046,6 +8138,10 @@ func (o SecretsMountPostgresqlOutput) AllowedRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecretsMountPostgresql) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
 }
 
+func (o SecretsMountPostgresqlOutput) AuthType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountPostgresql) *string { return v.AuthType }).(pulumi.StringPtrOutput)
+}
+
 // A URL containing connection information.\
 // See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 func (o SecretsMountPostgresqlOutput) ConnectionUrl() pulumi.StringPtrOutput {
@@ -8097,6 +8193,10 @@ func (o SecretsMountPostgresqlOutput) PluginName() pulumi.StringPtrOutput {
 // A list of database statements to be executed to rotate the root user's credentials.
 func (o SecretsMountPostgresqlOutput) RootRotationStatements() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecretsMountPostgresql) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
+}
+
+func (o SecretsMountPostgresqlOutput) ServiceAccountJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountPostgresql) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
 }
 
 // The username to be used in the connection (the account admin level).

@@ -219,7 +219,9 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string?> KeyType { get; private set; } = null!;
 
         /// <summary>
-        /// Specify the allowed key usage constraint on issued certificates
+        /// Specify the allowed key usage constraint on issued
+        /// certificates. Defaults to `["DigitalSignature", "KeyAgreement", "KeyEncipherment"])`.
+        /// To specify no default key usage constraints, set this to an empty list `[]`.
         /// </summary>
         [Output("keyUsages")]
         public Output<ImmutableArray<string>> KeyUsages { get; private set; } = null!;
@@ -581,7 +583,9 @@ namespace Pulumi.Vault.PkiSecret
         private InputList<string>? _keyUsages;
 
         /// <summary>
-        /// Specify the allowed key usage constraint on issued certificates
+        /// Specify the allowed key usage constraint on issued
+        /// certificates. Defaults to `["DigitalSignature", "KeyAgreement", "KeyEncipherment"])`.
+        /// To specify no default key usage constraints, set this to an empty list `[]`.
         /// </summary>
         public InputList<string> KeyUsages
         {
@@ -950,7 +954,9 @@ namespace Pulumi.Vault.PkiSecret
         private InputList<string>? _keyUsages;
 
         /// <summary>
-        /// Specify the allowed key usage constraint on issued certificates
+        /// Specify the allowed key usage constraint on issued
+        /// certificates. Defaults to `["DigitalSignature", "KeyAgreement", "KeyEncipherment"])`.
+        /// To specify no default key usage constraints, set this to an empty list `[]`.
         /// </summary>
         public InputList<string> KeyUsages
         {

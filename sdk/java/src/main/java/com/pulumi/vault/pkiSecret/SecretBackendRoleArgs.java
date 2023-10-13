@@ -417,14 +417,18 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Specify the allowed key usage constraint on issued certificates
+     * Specify the allowed key usage constraint on issued
+     * certificates. Defaults to `[&#34;DigitalSignature&#34;, &#34;KeyAgreement&#34;, &#34;KeyEncipherment&#34;])`.
+     * To specify no default key usage constraints, set this to an empty list `[]`.
      * 
      */
     @Import(name="keyUsages")
     private @Nullable Output<List<String>> keyUsages;
 
     /**
-     * @return Specify the allowed key usage constraint on issued certificates
+     * @return Specify the allowed key usage constraint on issued
+     * certificates. Defaults to `[&#34;DigitalSignature&#34;, &#34;KeyAgreement&#34;, &#34;KeyEncipherment&#34;])`.
+     * To specify no default key usage constraints, set this to an empty list `[]`.
      * 
      */
     public Optional<Output<List<String>>> keyUsages() {
@@ -1384,7 +1388,9 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param keyUsages Specify the allowed key usage constraint on issued certificates
+         * @param keyUsages Specify the allowed key usage constraint on issued
+         * certificates. Defaults to `[&#34;DigitalSignature&#34;, &#34;KeyAgreement&#34;, &#34;KeyEncipherment&#34;])`.
+         * To specify no default key usage constraints, set this to an empty list `[]`.
          * 
          * @return builder
          * 
@@ -1395,7 +1401,9 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param keyUsages Specify the allowed key usage constraint on issued certificates
+         * @param keyUsages Specify the allowed key usage constraint on issued
+         * certificates. Defaults to `[&#34;DigitalSignature&#34;, &#34;KeyAgreement&#34;, &#34;KeyEncipherment&#34;])`.
+         * To specify no default key usage constraints, set this to an empty list `[]`.
          * 
          * @return builder
          * 
@@ -1405,7 +1413,9 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param keyUsages Specify the allowed key usage constraint on issued certificates
+         * @param keyUsages Specify the allowed key usage constraint on issued
+         * certificates. Defaults to `[&#34;DigitalSignature&#34;, &#34;KeyAgreement&#34;, &#34;KeyEncipherment&#34;])`.
+         * To specify no default key usage constraints, set this to an empty list `[]`.
          * 
          * @return builder
          * 

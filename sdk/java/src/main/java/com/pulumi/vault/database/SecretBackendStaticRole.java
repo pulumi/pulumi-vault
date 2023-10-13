@@ -61,11 +61,20 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
- *         var staticRole = new SecretBackendStaticRole(&#34;staticRole&#34;, SecretBackendStaticRoleArgs.builder()        
+ *         var periodRole = new SecretBackendStaticRole(&#34;periodRole&#34;, SecretBackendStaticRoleArgs.builder()        
  *             .backend(db.path())
  *             .dbName(postgres.name())
  *             .username(&#34;example&#34;)
  *             .rotationPeriod(&#34;3600&#34;)
+ *             .rotationStatements(&#34;ALTER USER \&#34;{{name}}\&#34; WITH PASSWORD &#39;{{password}}&#39;;&#34;)
+ *             .build());
+ * 
+ *         var scheduleRole = new SecretBackendStaticRole(&#34;scheduleRole&#34;, SecretBackendStaticRoleArgs.builder()        
+ *             .backend(db.path())
+ *             .dbName(postgres.name())
+ *             .username(&#34;example&#34;)
+ *             .rotationSchedule(&#34;0 0 * * SAT&#34;)
+ *             .rotationWindow(&#34;172800&#34;)
  *             .rotationStatements(&#34;ALTER USER \&#34;{{name}}\&#34; WITH PASSWORD &#39;{{password}}&#39;;&#34;)
  *             .build());
  * 
@@ -148,17 +157,35 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
     }
     /**
      * The amount of time Vault should wait before rotating the password, in seconds.
+     * Mutually exclusive with `rotation_schedule`.
      * 
      */
     @Export(name="rotationPeriod", refs={Integer.class}, tree="[0]")
-    private Output<Integer> rotationPeriod;
+    private Output</* @Nullable */ Integer> rotationPeriod;
 
     /**
      * @return The amount of time Vault should wait before rotating the password, in seconds.
+     * Mutually exclusive with `rotation_schedule`.
      * 
      */
-    public Output<Integer> rotationPeriod() {
-        return this.rotationPeriod;
+    public Output<Optional<Integer>> rotationPeriod() {
+        return Codegen.optional(this.rotationPeriod);
+    }
+    /**
+     * A cron-style string that will define the schedule on which rotations should occur.
+     * Mutually exclusive with `rotation_period`.
+     * 
+     */
+    @Export(name="rotationSchedule", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> rotationSchedule;
+
+    /**
+     * @return A cron-style string that will define the schedule on which rotations should occur.
+     * Mutually exclusive with `rotation_period`.
+     * 
+     */
+    public Output<Optional<String>> rotationSchedule() {
+        return Codegen.optional(this.rotationSchedule);
     }
     /**
      * Database statements to execute to rotate the password for the configured database user.
@@ -173,6 +200,22 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      */
     public Output<Optional<List<String>>> rotationStatements() {
         return Codegen.optional(this.rotationStatements);
+    }
+    /**
+     * The amount of time, in seconds, in which rotations are allowed to occur starting
+     * from a given `rotation_schedule`.
+     * 
+     */
+    @Export(name="rotationWindow", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> rotationWindow;
+
+    /**
+     * @return The amount of time, in seconds, in which rotations are allowed to occur starting
+     * from a given `rotation_schedule`.
+     * 
+     */
+    public Output<Optional<Integer>> rotationWindow() {
+        return Codegen.optional(this.rotationWindow);
     }
     /**
      * The database username that this static role corresponds to.

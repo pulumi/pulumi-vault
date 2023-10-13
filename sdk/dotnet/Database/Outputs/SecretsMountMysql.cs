@@ -18,6 +18,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// connection.
         /// </summary>
         public readonly ImmutableArray<string> AllowedRoles;
+        public readonly string? AuthType;
         /// <summary>
         /// A URL containing connection information.  
         /// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
@@ -55,6 +56,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// A list of database statements to be executed to rotate the root user's credentials.
         /// </summary>
         public readonly ImmutableArray<string> RootRotationStatements;
+        public readonly string? ServiceAccountJson;
         /// <summary>
         /// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         /// </summary>
@@ -81,6 +83,8 @@ namespace Pulumi.Vault.Database.Outputs
         private SecretsMountMysql(
             ImmutableArray<string> allowedRoles,
 
+            string? authType,
+
             string? connectionUrl,
 
             ImmutableDictionary<string, object>? data,
@@ -99,6 +103,8 @@ namespace Pulumi.Vault.Database.Outputs
 
             ImmutableArray<string> rootRotationStatements,
 
+            string? serviceAccountJson,
+
             string? tlsCa,
 
             string? tlsCertificateKey,
@@ -110,6 +116,7 @@ namespace Pulumi.Vault.Database.Outputs
             bool? verifyConnection)
         {
             AllowedRoles = allowedRoles;
+            AuthType = authType;
             ConnectionUrl = connectionUrl;
             Data = data;
             MaxConnectionLifetime = maxConnectionLifetime;
@@ -119,6 +126,7 @@ namespace Pulumi.Vault.Database.Outputs
             Password = password;
             PluginName = pluginName;
             RootRotationStatements = rootRotationStatements;
+            ServiceAccountJson = serviceAccountJson;
             TlsCa = tlsCa;
             TlsCertificateKey = tlsCertificateKey;
             Username = username;

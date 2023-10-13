@@ -67,7 +67,7 @@ namespace Pulumi.Vault.Transit
         public Output<int> AutoRotateInterval { get; private set; } = null!;
 
         /// <summary>
-        /// Amount of time the key should live before being automatically rotated.
+        /// Amount of seconds the key should live before being automatically rotated.
         /// A value of 0 disables automatic rotation for the key.
         /// </summary>
         [Output("autoRotatePeriod")]
@@ -102,6 +102,12 @@ namespace Pulumi.Vault.Transit
         /// </summary>
         [Output("exportable")]
         public Output<bool?> Exportable { get; private set; } = null!;
+
+        /// <summary>
+        /// The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
+        /// </summary>
+        [Output("keySize")]
+        public Output<int?> KeySize { get; private set; } = null!;
 
         /// <summary>
         /// List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
@@ -175,7 +181,7 @@ namespace Pulumi.Vault.Transit
         public Output<bool> SupportsSigning { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`. 
+        /// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
         /// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
         /// </summary>
         [Output("type")]
@@ -242,7 +248,7 @@ namespace Pulumi.Vault.Transit
         public Input<int>? AutoRotateInterval { get; set; }
 
         /// <summary>
-        /// Amount of time the key should live before being automatically rotated.
+        /// Amount of seconds the key should live before being automatically rotated.
         /// A value of 0 disables automatic rotation for the key.
         /// </summary>
         [Input("autoRotatePeriod")]
@@ -279,6 +285,12 @@ namespace Pulumi.Vault.Transit
         public Input<bool>? Exportable { get; set; }
 
         /// <summary>
+        /// The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
+        /// </summary>
+        [Input("keySize")]
+        public Input<int>? KeySize { get; set; }
+
+        /// <summary>
         /// Minimum key version to use for decryption.
         /// </summary>
         [Input("minDecryptionVersion")]
@@ -306,7 +318,7 @@ namespace Pulumi.Vault.Transit
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`. 
+        /// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
         /// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
         /// </summary>
         [Input("type")]
@@ -335,7 +347,7 @@ namespace Pulumi.Vault.Transit
         public Input<int>? AutoRotateInterval { get; set; }
 
         /// <summary>
-        /// Amount of time the key should live before being automatically rotated.
+        /// Amount of seconds the key should live before being automatically rotated.
         /// A value of 0 disables automatic rotation for the key.
         /// </summary>
         [Input("autoRotatePeriod")]
@@ -370,6 +382,12 @@ namespace Pulumi.Vault.Transit
         /// </summary>
         [Input("exportable")]
         public Input<bool>? Exportable { get; set; }
+
+        /// <summary>
+        /// The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
+        /// </summary>
+        [Input("keySize")]
+        public Input<int>? KeySize { get; set; }
 
         [Input("keys")]
         private InputList<ImmutableDictionary<string, object>>? _keys;
@@ -449,7 +467,7 @@ namespace Pulumi.Vault.Transit
         public Input<bool>? SupportsSigning { get; set; }
 
         /// <summary>
-        /// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`. 
+        /// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
         /// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
         /// </summary>
         [Input("type")]

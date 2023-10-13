@@ -22,8 +22,7 @@ class NomadSecretRoleArgs:
                  type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a NomadSecretRole resource.
-        :param pulumi.Input[str] backend: The unique path this backend should be mounted at. Must
-               not begin or end with a `/`. Defaults to `nomad`.
+        :param pulumi.Input[str] backend: The unique path this backend should be mounted at.
         :param pulumi.Input[str] role: The name to identify this role within the backend.
                Must be unique within the backend.
         :param pulumi.Input[bool] global_: Specifies if the generated token should be global. Defaults to 
@@ -52,8 +51,7 @@ class NomadSecretRoleArgs:
     @pulumi.getter
     def backend(self) -> pulumi.Input[str]:
         """
-        The unique path this backend should be mounted at. Must
-        not begin or end with a `/`. Defaults to `nomad`.
+        The unique path this backend should be mounted at.
         """
         return pulumi.get(self, "backend")
 
@@ -140,8 +138,7 @@ class _NomadSecretRoleState:
                  type: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering NomadSecretRole resources.
-        :param pulumi.Input[str] backend: The unique path this backend should be mounted at. Must
-               not begin or end with a `/`. Defaults to `nomad`.
+        :param pulumi.Input[str] backend: The unique path this backend should be mounted at.
         :param pulumi.Input[bool] global_: Specifies if the generated token should be global. Defaults to 
                false.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -172,8 +169,7 @@ class _NomadSecretRoleState:
     @pulumi.getter
     def backend(self) -> Optional[pulumi.Input[str]]:
         """
-        The unique path this backend should be mounted at. Must
-        not begin or end with a `/`. Defaults to `nomad`.
+        The unique path this backend should be mounted at.
         """
         return pulumi.get(self, "backend")
 
@@ -292,8 +288,7 @@ class NomadSecretRole(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] backend: The unique path this backend should be mounted at. Must
-               not begin or end with a `/`. Defaults to `nomad`.
+        :param pulumi.Input[str] backend: The unique path this backend should be mounted at.
         :param pulumi.Input[bool] global_: Specifies if the generated token should be global. Defaults to 
                false.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -405,8 +400,7 @@ class NomadSecretRole(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] backend: The unique path this backend should be mounted at. Must
-               not begin or end with a `/`. Defaults to `nomad`.
+        :param pulumi.Input[str] backend: The unique path this backend should be mounted at.
         :param pulumi.Input[bool] global_: Specifies if the generated token should be global. Defaults to 
                false.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -436,8 +430,7 @@ class NomadSecretRole(pulumi.CustomResource):
     @pulumi.getter
     def backend(self) -> pulumi.Output[str]:
         """
-        The unique path this backend should be mounted at. Must
-        not begin or end with a `/`. Defaults to `nomad`.
+        The unique path this backend should be mounted at.
         """
         return pulumi.get(self, "backend")
 

@@ -400,7 +400,7 @@ class AuthBackendLogin(pulumi.CustomResource):
             if role_id is None and not opts.urn:
                 raise TypeError("Missing required property 'role_id'")
             __props__.__dict__["role_id"] = role_id
-            __props__.__dict__["secret_id"] = secret_id
+            __props__.__dict__["secret_id"] = None if secret_id is None else pulumi.Output.secret(secret_id)
             __props__.__dict__["accessor"] = None
             __props__.__dict__["client_token"] = None
             __props__.__dict__["lease_duration"] = None
@@ -408,6 +408,8 @@ class AuthBackendLogin(pulumi.CustomResource):
             __props__.__dict__["metadata"] = None
             __props__.__dict__["policies"] = None
             __props__.__dict__["renewable"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientToken", "secretId"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(AuthBackendLogin, __self__).__init__(
             'vault:appRole/authBackendLogin:AuthBackendLogin',
             resource_name,

@@ -18,6 +18,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// connection.
         /// </summary>
         public readonly ImmutableArray<string> AllowedRoles;
+        public readonly string? AuthType;
         /// <summary>
         /// A URL containing connection information.  
         /// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
@@ -59,6 +60,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// A list of database statements to be executed to rotate the root user's credentials.
         /// </summary>
         public readonly ImmutableArray<string> RootRotationStatements;
+        public readonly string? ServiceAccountJson;
         /// <summary>
         /// The username to be used in the connection (the account admin level).
         /// </summary>
@@ -76,6 +78,8 @@ namespace Pulumi.Vault.Database.Outputs
         [OutputConstructor]
         private SecretsMountPostgresql(
             ImmutableArray<string> allowedRoles,
+
+            string? authType,
 
             string? connectionUrl,
 
@@ -97,6 +101,8 @@ namespace Pulumi.Vault.Database.Outputs
 
             ImmutableArray<string> rootRotationStatements,
 
+            string? serviceAccountJson,
+
             string? username,
 
             string? usernameTemplate,
@@ -104,6 +110,7 @@ namespace Pulumi.Vault.Database.Outputs
             bool? verifyConnection)
         {
             AllowedRoles = allowedRoles;
+            AuthType = authType;
             ConnectionUrl = connectionUrl;
             Data = data;
             DisableEscaping = disableEscaping;
@@ -114,6 +121,7 @@ namespace Pulumi.Vault.Database.Outputs
             Password = password;
             PluginName = pluginName;
             RootRotationStatements = rootRotationStatements;
+            ServiceAccountJson = serviceAccountJson;
             Username = username;
             UsernameTemplate = usernameTemplate;
             VerifyConnection = verifyConnection;

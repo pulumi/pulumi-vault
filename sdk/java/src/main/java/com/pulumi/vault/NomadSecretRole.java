@@ -73,16 +73,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="vault:index/nomadSecretRole:NomadSecretRole")
 public class NomadSecretRole extends com.pulumi.resources.CustomResource {
     /**
-     * The unique path this backend should be mounted at. Must
-     * not begin or end with a `/`. Defaults to `nomad`.
+     * The unique path this backend should be mounted at.
      * 
      */
     @Export(name="backend", refs={String.class}, tree="[0]")
     private Output<String> backend;
 
     /**
-     * @return The unique path this backend should be mounted at. Must
-     * not begin or end with a `/`. Defaults to `nomad`.
+     * @return The unique path this backend should be mounted at.
      * 
      */
     public Output<String> backend() {

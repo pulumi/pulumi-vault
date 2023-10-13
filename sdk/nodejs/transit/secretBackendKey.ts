@@ -75,7 +75,7 @@ export class SecretBackendKey extends pulumi.CustomResource {
      */
     public readonly autoRotateInterval!: pulumi.Output<number>;
     /**
-     * Amount of time the key should live before being automatically rotated.
+     * Amount of seconds the key should live before being automatically rotated.
      * A value of 0 disables automatic rotation for the key.
      */
     public readonly autoRotatePeriod!: pulumi.Output<number>;
@@ -99,6 +99,10 @@ export class SecretBackendKey extends pulumi.CustomResource {
      * Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
      */
     public readonly exportable!: pulumi.Output<boolean | undefined>;
+    /**
+     * The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
+     */
+    public readonly keySize!: pulumi.Output<number | undefined>;
     /**
      * List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
      * * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
@@ -149,7 +153,7 @@ export class SecretBackendKey extends pulumi.CustomResource {
      */
     public /*out*/ readonly supportsSigning!: pulumi.Output<boolean>;
     /**
-     * Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`. 
+     * Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
      * * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
      */
     public readonly type!: pulumi.Output<string | undefined>;
@@ -175,6 +179,7 @@ export class SecretBackendKey extends pulumi.CustomResource {
             resourceInputs["deletionAllowed"] = state ? state.deletionAllowed : undefined;
             resourceInputs["derived"] = state ? state.derived : undefined;
             resourceInputs["exportable"] = state ? state.exportable : undefined;
+            resourceInputs["keySize"] = state ? state.keySize : undefined;
             resourceInputs["keys"] = state ? state.keys : undefined;
             resourceInputs["latestVersion"] = state ? state.latestVersion : undefined;
             resourceInputs["minAvailableVersion"] = state ? state.minAvailableVersion : undefined;
@@ -200,6 +205,7 @@ export class SecretBackendKey extends pulumi.CustomResource {
             resourceInputs["deletionAllowed"] = args ? args.deletionAllowed : undefined;
             resourceInputs["derived"] = args ? args.derived : undefined;
             resourceInputs["exportable"] = args ? args.exportable : undefined;
+            resourceInputs["keySize"] = args ? args.keySize : undefined;
             resourceInputs["minDecryptionVersion"] = args ? args.minDecryptionVersion : undefined;
             resourceInputs["minEncryptionVersion"] = args ? args.minEncryptionVersion : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -235,7 +241,7 @@ export interface SecretBackendKeyState {
      */
     autoRotateInterval?: pulumi.Input<number>;
     /**
-     * Amount of time the key should live before being automatically rotated.
+     * Amount of seconds the key should live before being automatically rotated.
      * A value of 0 disables automatic rotation for the key.
      */
     autoRotatePeriod?: pulumi.Input<number>;
@@ -259,6 +265,10 @@ export interface SecretBackendKeyState {
      * Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
      */
     exportable?: pulumi.Input<boolean>;
+    /**
+     * The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
+     */
+    keySize?: pulumi.Input<number>;
     /**
      * List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
      * * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
@@ -309,7 +319,7 @@ export interface SecretBackendKeyState {
      */
     supportsSigning?: pulumi.Input<boolean>;
     /**
-     * Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`. 
+     * Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
      * * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
      */
     type?: pulumi.Input<string>;
@@ -332,7 +342,7 @@ export interface SecretBackendKeyArgs {
      */
     autoRotateInterval?: pulumi.Input<number>;
     /**
-     * Amount of time the key should live before being automatically rotated.
+     * Amount of seconds the key should live before being automatically rotated.
      * A value of 0 disables automatic rotation for the key.
      */
     autoRotatePeriod?: pulumi.Input<number>;
@@ -357,6 +367,10 @@ export interface SecretBackendKeyArgs {
      */
     exportable?: pulumi.Input<boolean>;
     /**
+     * The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
+     */
+    keySize?: pulumi.Input<number>;
+    /**
      * Minimum key version to use for decryption.
      */
     minDecryptionVersion?: pulumi.Input<number>;
@@ -376,7 +390,7 @@ export interface SecretBackendKeyArgs {
      */
     namespace?: pulumi.Input<string>;
     /**
-     * Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`. 
+     * Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
      * * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
      */
     type?: pulumi.Input<string>;

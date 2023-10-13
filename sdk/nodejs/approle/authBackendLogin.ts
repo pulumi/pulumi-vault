@@ -145,7 +145,7 @@ export class AuthBackendLogin extends pulumi.CustomResource {
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["roleId"] = args ? args.roleId : undefined;
-            resourceInputs["secretId"] = args ? args.secretId : undefined;
+            resourceInputs["secretId"] = args?.secretId ? pulumi.secret(args.secretId) : undefined;
             resourceInputs["accessor"] = undefined /*out*/;
             resourceInputs["clientToken"] = undefined /*out*/;
             resourceInputs["leaseDuration"] = undefined /*out*/;
@@ -155,6 +155,8 @@ export class AuthBackendLogin extends pulumi.CustomResource {
             resourceInputs["renewable"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["clientToken", "secretId"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(AuthBackendLogin.__pulumiType, name, resourceInputs, opts);
     }
 }

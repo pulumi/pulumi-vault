@@ -41,6 +41,7 @@ class SecretBackendRoleArgs:
                  max_ttl: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 not_before_duration: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SecretBackendRole resource.
@@ -77,6 +78,8 @@ class SecretBackendRoleArgs:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the ValidAfter property.
+               Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
         :param pulumi.Input[str] ttl: Specifies the Time To Live value.
         """
         pulumi.set(__self__, "backend", backend)
@@ -130,6 +133,8 @@ class SecretBackendRoleArgs:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if not_before_duration is not None:
+            pulumi.set(__self__, "not_before_duration", not_before_duration)
         if ttl is not None:
             pulumi.set(__self__, "ttl", ttl)
 
@@ -442,6 +447,19 @@ class SecretBackendRoleArgs:
         pulumi.set(self, "namespace", value)
 
     @property
+    @pulumi.getter(name="notBeforeDuration")
+    def not_before_duration(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the duration by which to backdate the ValidAfter property.
+        Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+        """
+        return pulumi.get(self, "not_before_duration")
+
+    @not_before_duration.setter
+    def not_before_duration(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "not_before_duration", value)
+
+    @property
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[str]]:
         """
@@ -482,6 +500,7 @@ class _SecretBackendRoleState:
                  max_ttl: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 not_before_duration: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendRole resources.
@@ -518,6 +537,8 @@ class _SecretBackendRoleState:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the ValidAfter property.
+               Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
         :param pulumi.Input[str] ttl: Specifies the Time To Live value.
         """
         if algorithm_signer is not None:
@@ -573,6 +594,8 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if not_before_duration is not None:
+            pulumi.set(__self__, "not_before_duration", not_before_duration)
         if ttl is not None:
             pulumi.set(__self__, "ttl", ttl)
 
@@ -885,6 +908,19 @@ class _SecretBackendRoleState:
         pulumi.set(self, "namespace", value)
 
     @property
+    @pulumi.getter(name="notBeforeDuration")
+    def not_before_duration(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the duration by which to backdate the ValidAfter property.
+        Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+        """
+        return pulumi.get(self, "not_before_duration")
+
+    @not_before_duration.setter
+    def not_before_duration(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "not_before_duration", value)
+
+    @property
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[str]]:
         """
@@ -927,6 +963,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  max_ttl: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 not_before_duration: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -995,6 +1032,8 @@ class SecretBackendRole(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the ValidAfter property.
+               Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
         :param pulumi.Input[str] ttl: Specifies the Time To Live value.
         """
         ...
@@ -1074,6 +1113,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  max_ttl: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 not_before_duration: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -1116,6 +1156,7 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__.__dict__["max_ttl"] = max_ttl
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
+            __props__.__dict__["not_before_duration"] = not_before_duration
             __props__.__dict__["ttl"] = ttl
         super(SecretBackendRole, __self__).__init__(
             'vault:ssh/secretBackendRole:SecretBackendRole',
@@ -1152,6 +1193,7 @@ class SecretBackendRole(pulumi.CustomResource):
             max_ttl: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
+            not_before_duration: Optional[pulumi.Input[str]] = None,
             ttl: Optional[pulumi.Input[str]] = None) -> 'SecretBackendRole':
         """
         Get an existing SecretBackendRole resource's state with the given name, id, and optional extra
@@ -1193,6 +1235,8 @@ class SecretBackendRole(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the ValidAfter property.
+               Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
         :param pulumi.Input[str] ttl: Specifies the Time To Live value.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1224,6 +1268,7 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["max_ttl"] = max_ttl
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
+        __props__.__dict__["not_before_duration"] = not_before_duration
         __props__.__dict__["ttl"] = ttl
         return SecretBackendRole(resource_name, opts=opts, __props__=__props__)
 
@@ -1434,6 +1479,15 @@ class SecretBackendRole(pulumi.CustomResource):
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
+
+    @property
+    @pulumi.getter(name="notBeforeDuration")
+    def not_before_duration(self) -> pulumi.Output[str]:
+        """
+        Specifies the duration by which to backdate the ValidAfter property.
+        Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+        """
+        return pulumi.get(self, "not_before_duration")
 
     @property
     @pulumi.getter

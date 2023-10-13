@@ -19,6 +19,7 @@ class SecretBackendArgs:
                  description: Optional[pulumi.Input[str]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
                  iam_endpoint: Optional[pulumi.Input[str]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
@@ -36,6 +37,7 @@ class SecretBackendArgs:
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[str] iam_endpoint: Specifies a custom HTTP IAM endpoint to use.
+        :param pulumi.Input[bool] local: Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
         :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -60,6 +62,8 @@ class SecretBackendArgs:
             pulumi.set(__self__, "disable_remount", disable_remount)
         if iam_endpoint is not None:
             pulumi.set(__self__, "iam_endpoint", iam_endpoint)
+        if local is not None:
+            pulumi.set(__self__, "local", local)
         if max_lease_ttl_seconds is not None:
             pulumi.set(__self__, "max_lease_ttl_seconds", max_lease_ttl_seconds)
         if namespace is not None:
@@ -137,6 +141,18 @@ class SecretBackendArgs:
     @iam_endpoint.setter
     def iam_endpoint(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "iam_endpoint", value)
+
+    @property
+    @pulumi.getter
+    def local(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
+        """
+        return pulumi.get(self, "local")
+
+    @local.setter
+    def local(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "local", value)
 
     @property
     @pulumi.getter(name="maxLeaseTtlSeconds")
@@ -237,6 +253,7 @@ class _SecretBackendState:
                  description: Optional[pulumi.Input[str]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
                  iam_endpoint: Optional[pulumi.Input[str]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
@@ -254,6 +271,7 @@ class _SecretBackendState:
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[str] iam_endpoint: Specifies a custom HTTP IAM endpoint to use.
+        :param pulumi.Input[bool] local: Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
         :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -278,6 +296,8 @@ class _SecretBackendState:
             pulumi.set(__self__, "disable_remount", disable_remount)
         if iam_endpoint is not None:
             pulumi.set(__self__, "iam_endpoint", iam_endpoint)
+        if local is not None:
+            pulumi.set(__self__, "local", local)
         if max_lease_ttl_seconds is not None:
             pulumi.set(__self__, "max_lease_ttl_seconds", max_lease_ttl_seconds)
         if namespace is not None:
@@ -355,6 +375,18 @@ class _SecretBackendState:
     @iam_endpoint.setter
     def iam_endpoint(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "iam_endpoint", value)
+
+    @property
+    @pulumi.getter
+    def local(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
+        """
+        return pulumi.get(self, "local")
+
+    @local.setter
+    def local(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "local", value)
 
     @property
     @pulumi.getter(name="maxLeaseTtlSeconds")
@@ -457,6 +489,7 @@ class SecretBackend(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
                  iam_endpoint: Optional[pulumi.Input[str]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
@@ -484,6 +517,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[str] iam_endpoint: Specifies a custom HTTP IAM endpoint to use.
+        :param pulumi.Input[bool] local: Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
         :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -533,6 +567,7 @@ class SecretBackend(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
                  iam_endpoint: Optional[pulumi.Input[str]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
@@ -554,6 +589,7 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["disable_remount"] = disable_remount
             __props__.__dict__["iam_endpoint"] = iam_endpoint
+            __props__.__dict__["local"] = local
             __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["path"] = path
@@ -578,6 +614,7 @@ class SecretBackend(pulumi.CustomResource):
             description: Optional[pulumi.Input[str]] = None,
             disable_remount: Optional[pulumi.Input[bool]] = None,
             iam_endpoint: Optional[pulumi.Input[str]] = None,
+            local: Optional[pulumi.Input[bool]] = None,
             max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
@@ -600,6 +637,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[str] iam_endpoint: Specifies a custom HTTP IAM endpoint to use.
+        :param pulumi.Input[bool] local: Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
         :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -623,6 +661,7 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["disable_remount"] = disable_remount
         __props__.__dict__["iam_endpoint"] = iam_endpoint
+        __props__.__dict__["local"] = local
         __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["path"] = path
@@ -674,6 +713,14 @@ class SecretBackend(pulumi.CustomResource):
         Specifies a custom HTTP IAM endpoint to use.
         """
         return pulumi.get(self, "iam_endpoint")
+
+    @property
+    @pulumi.getter
+    def local(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
+        """
+        return pulumi.get(self, "local")
 
     @property
     @pulumi.getter(name="maxLeaseTtlSeconds")

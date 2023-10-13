@@ -37,6 +37,13 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
         return Optional.ofNullable(this.allowedRoles);
     }
 
+    @Import(name="authType")
+    private @Nullable Output<String> authType;
+
+    public Optional<Output<String>> authType() {
+        return Optional.ofNullable(this.authType);
+    }
+
     /**
      * A URL containing connection information.\
      * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
@@ -172,6 +179,13 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
         return Optional.ofNullable(this.rootRotationStatements);
     }
 
+    @Import(name="serviceAccountJson")
+    private @Nullable Output<String> serviceAccountJson;
+
+    public Optional<Output<String>> serviceAccountJson() {
+        return Optional.ofNullable(this.serviceAccountJson);
+    }
+
     /**
      * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
      * 
@@ -253,6 +267,7 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
 
     private SecretsMountMysqlArgs(SecretsMountMysqlArgs $) {
         this.allowedRoles = $.allowedRoles;
+        this.authType = $.authType;
         this.connectionUrl = $.connectionUrl;
         this.data = $.data;
         this.maxConnectionLifetime = $.maxConnectionLifetime;
@@ -262,6 +277,7 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
         this.password = $.password;
         this.pluginName = $.pluginName;
         this.rootRotationStatements = $.rootRotationStatements;
+        this.serviceAccountJson = $.serviceAccountJson;
         this.tlsCa = $.tlsCa;
         this.tlsCertificateKey = $.tlsCertificateKey;
         this.username = $.username;
@@ -319,6 +335,15 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder allowedRoles(String... allowedRoles) {
             return allowedRoles(List.of(allowedRoles));
+        }
+
+        public Builder authType(@Nullable Output<String> authType) {
+            $.authType = authType;
+            return this;
+        }
+
+        public Builder authType(String authType) {
+            return authType(Output.of(authType));
         }
 
         /**
@@ -514,6 +539,15 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder rootRotationStatements(String... rootRotationStatements) {
             return rootRotationStatements(List.of(rootRotationStatements));
+        }
+
+        public Builder serviceAccountJson(@Nullable Output<String> serviceAccountJson) {
+            $.serviceAccountJson = serviceAccountJson;
+            return this;
+        }
+
+        public Builder serviceAccountJson(String serviceAccountJson) {
+            return serviceAccountJson(Output.of(serviceAccountJson));
         }
 
         /**

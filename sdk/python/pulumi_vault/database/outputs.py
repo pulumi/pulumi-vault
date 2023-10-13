@@ -1121,7 +1121,9 @@ class SecretBackendConnectionMysql(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "connectionUrl":
+        if key == "authType":
+            suggest = "auth_type"
+        elif key == "connectionUrl":
             suggest = "connection_url"
         elif key == "maxConnectionLifetime":
             suggest = "max_connection_lifetime"
@@ -1129,6 +1131,8 @@ class SecretBackendConnectionMysql(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "serviceAccountJson":
+            suggest = "service_account_json"
         elif key == "tlsCa":
             suggest = "tls_ca"
         elif key == "tlsCertificateKey":
@@ -1148,16 +1152,19 @@ class SecretBackendConnectionMysql(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 auth_type: Optional[str] = None,
                  connection_url: Optional[str] = None,
                  max_connection_lifetime: Optional[int] = None,
                  max_idle_connections: Optional[int] = None,
                  max_open_connections: Optional[int] = None,
                  password: Optional[str] = None,
+                 service_account_json: Optional[str] = None,
                  tls_ca: Optional[str] = None,
                  tls_certificate_key: Optional[str] = None,
                  username: Optional[str] = None,
                  username_template: Optional[str] = None):
         """
+        :param str auth_type: Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
         :param str connection_url: Specifies the Redshift DSN. See
                the [Vault
                docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
@@ -1168,11 +1175,14 @@ class SecretBackendConnectionMysql(dict):
         :param int max_open_connections: The maximum number of open connections to
                the database.
         :param str password: The root credential password used in the connection URL.
+        :param str service_account_json: JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
         :param str tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         :param str tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
         :param str username: The root credential username used in the connection URL.
         :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         """
+        if auth_type is not None:
+            pulumi.set(__self__, "auth_type", auth_type)
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
         if max_connection_lifetime is not None:
@@ -1183,6 +1193,8 @@ class SecretBackendConnectionMysql(dict):
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if service_account_json is not None:
+            pulumi.set(__self__, "service_account_json", service_account_json)
         if tls_ca is not None:
             pulumi.set(__self__, "tls_ca", tls_ca)
         if tls_certificate_key is not None:
@@ -1191,6 +1203,14 @@ class SecretBackendConnectionMysql(dict):
             pulumi.set(__self__, "username", username)
         if username_template is not None:
             pulumi.set(__self__, "username_template", username_template)
+
+    @property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> Optional[str]:
+        """
+        Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+        """
+        return pulumi.get(self, "auth_type")
 
     @property
     @pulumi.getter(name="connectionUrl")
@@ -1236,6 +1256,14 @@ class SecretBackendConnectionMysql(dict):
         The root credential password used in the connection URL.
         """
         return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="serviceAccountJson")
+    def service_account_json(self) -> Optional[str]:
+        """
+        JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+        """
+        return pulumi.get(self, "service_account_json")
 
     @property
     @pulumi.getter(name="tlsCa")
@@ -1779,7 +1807,9 @@ class SecretBackendConnectionPostgresql(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "connectionUrl":
+        if key == "authType":
+            suggest = "auth_type"
+        elif key == "connectionUrl":
             suggest = "connection_url"
         elif key == "disableEscaping":
             suggest = "disable_escaping"
@@ -1789,6 +1819,8 @@ class SecretBackendConnectionPostgresql(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "serviceAccountJson":
+            suggest = "service_account_json"
         elif key == "usernameTemplate":
             suggest = "username_template"
 
@@ -1804,15 +1836,18 @@ class SecretBackendConnectionPostgresql(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 auth_type: Optional[str] = None,
                  connection_url: Optional[str] = None,
                  disable_escaping: Optional[bool] = None,
                  max_connection_lifetime: Optional[int] = None,
                  max_idle_connections: Optional[int] = None,
                  max_open_connections: Optional[int] = None,
                  password: Optional[str] = None,
+                 service_account_json: Optional[str] = None,
                  username: Optional[str] = None,
                  username_template: Optional[str] = None):
         """
+        :param str auth_type: Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
         :param str connection_url: Specifies the Redshift DSN. See
                the [Vault
                docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
@@ -1824,9 +1859,12 @@ class SecretBackendConnectionPostgresql(dict):
         :param int max_open_connections: The maximum number of open connections to
                the database.
         :param str password: The root credential password used in the connection URL.
+        :param str service_account_json: JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
         :param str username: The root credential username used in the connection URL.
         :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         """
+        if auth_type is not None:
+            pulumi.set(__self__, "auth_type", auth_type)
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
         if disable_escaping is not None:
@@ -1839,10 +1877,20 @@ class SecretBackendConnectionPostgresql(dict):
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if service_account_json is not None:
+            pulumi.set(__self__, "service_account_json", service_account_json)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if username_template is not None:
             pulumi.set(__self__, "username_template", username_template)
+
+    @property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> Optional[str]:
+        """
+        Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+        """
+        return pulumi.get(self, "auth_type")
 
     @property
     @pulumi.getter(name="connectionUrl")
@@ -1896,6 +1944,14 @@ class SecretBackendConnectionPostgresql(dict):
         The root credential password used in the connection URL.
         """
         return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="serviceAccountJson")
+    def service_account_json(self) -> Optional[str]:
+        """
+        JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+        """
+        return pulumi.get(self, "service_account_json")
 
     @property
     @pulumi.getter
@@ -4044,6 +4100,8 @@ class SecretsMountMysql(dict):
         suggest = None
         if key == "allowedRoles":
             suggest = "allowed_roles"
+        elif key == "authType":
+            suggest = "auth_type"
         elif key == "connectionUrl":
             suggest = "connection_url"
         elif key == "maxConnectionLifetime":
@@ -4056,6 +4114,8 @@ class SecretsMountMysql(dict):
             suggest = "plugin_name"
         elif key == "rootRotationStatements":
             suggest = "root_rotation_statements"
+        elif key == "serviceAccountJson":
+            suggest = "service_account_json"
         elif key == "tlsCa":
             suggest = "tls_ca"
         elif key == "tlsCertificateKey":
@@ -4079,6 +4139,7 @@ class SecretsMountMysql(dict):
     def __init__(__self__, *,
                  name: str,
                  allowed_roles: Optional[Sequence[str]] = None,
+                 auth_type: Optional[str] = None,
                  connection_url: Optional[str] = None,
                  data: Optional[Mapping[str, Any]] = None,
                  max_connection_lifetime: Optional[int] = None,
@@ -4087,6 +4148,7 @@ class SecretsMountMysql(dict):
                  password: Optional[str] = None,
                  plugin_name: Optional[str] = None,
                  root_rotation_statements: Optional[Sequence[str]] = None,
+                 service_account_json: Optional[str] = None,
                  tls_ca: Optional[str] = None,
                  tls_certificate_key: Optional[str] = None,
                  username: Optional[str] = None,
@@ -4117,6 +4179,8 @@ class SecretsMountMysql(dict):
         pulumi.set(__self__, "name", name)
         if allowed_roles is not None:
             pulumi.set(__self__, "allowed_roles", allowed_roles)
+        if auth_type is not None:
+            pulumi.set(__self__, "auth_type", auth_type)
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
         if data is not None:
@@ -4133,6 +4197,8 @@ class SecretsMountMysql(dict):
             pulumi.set(__self__, "plugin_name", plugin_name)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if service_account_json is not None:
+            pulumi.set(__self__, "service_account_json", service_account_json)
         if tls_ca is not None:
             pulumi.set(__self__, "tls_ca", tls_ca)
         if tls_certificate_key is not None:
@@ -4157,6 +4223,11 @@ class SecretsMountMysql(dict):
         connection.
         """
         return pulumi.get(self, "allowed_roles")
+
+    @property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> Optional[str]:
+        return pulumi.get(self, "auth_type")
 
     @property
     @pulumi.getter(name="connectionUrl")
@@ -4225,6 +4296,11 @@ class SecretsMountMysql(dict):
         A list of database statements to be executed to rotate the root user's credentials.
         """
         return pulumi.get(self, "root_rotation_statements")
+
+    @property
+    @pulumi.getter(name="serviceAccountJson")
+    def service_account_json(self) -> Optional[str]:
+        return pulumi.get(self, "service_account_json")
 
     @property
     @pulumi.getter(name="tlsCa")
@@ -5087,6 +5163,8 @@ class SecretsMountPostgresql(dict):
         suggest = None
         if key == "allowedRoles":
             suggest = "allowed_roles"
+        elif key == "authType":
+            suggest = "auth_type"
         elif key == "connectionUrl":
             suggest = "connection_url"
         elif key == "disableEscaping":
@@ -5101,6 +5179,8 @@ class SecretsMountPostgresql(dict):
             suggest = "plugin_name"
         elif key == "rootRotationStatements":
             suggest = "root_rotation_statements"
+        elif key == "serviceAccountJson":
+            suggest = "service_account_json"
         elif key == "usernameTemplate":
             suggest = "username_template"
         elif key == "verifyConnection":
@@ -5120,6 +5200,7 @@ class SecretsMountPostgresql(dict):
     def __init__(__self__, *,
                  name: str,
                  allowed_roles: Optional[Sequence[str]] = None,
+                 auth_type: Optional[str] = None,
                  connection_url: Optional[str] = None,
                  data: Optional[Mapping[str, Any]] = None,
                  disable_escaping: Optional[bool] = None,
@@ -5129,6 +5210,7 @@ class SecretsMountPostgresql(dict):
                  password: Optional[str] = None,
                  plugin_name: Optional[str] = None,
                  root_rotation_statements: Optional[Sequence[str]] = None,
+                 service_account_json: Optional[str] = None,
                  username: Optional[str] = None,
                  username_template: Optional[str] = None,
                  verify_connection: Optional[bool] = None):
@@ -5156,6 +5238,8 @@ class SecretsMountPostgresql(dict):
         pulumi.set(__self__, "name", name)
         if allowed_roles is not None:
             pulumi.set(__self__, "allowed_roles", allowed_roles)
+        if auth_type is not None:
+            pulumi.set(__self__, "auth_type", auth_type)
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
         if data is not None:
@@ -5174,6 +5258,8 @@ class SecretsMountPostgresql(dict):
             pulumi.set(__self__, "plugin_name", plugin_name)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if service_account_json is not None:
+            pulumi.set(__self__, "service_account_json", service_account_json)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if username_template is not None:
@@ -5194,6 +5280,11 @@ class SecretsMountPostgresql(dict):
         connection.
         """
         return pulumi.get(self, "allowed_roles")
+
+    @property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> Optional[str]:
+        return pulumi.get(self, "auth_type")
 
     @property
     @pulumi.getter(name="connectionUrl")
@@ -5270,6 +5361,11 @@ class SecretsMountPostgresql(dict):
         A list of database statements to be executed to rotate the root user's credentials.
         """
         return pulumi.get(self, "root_rotation_statements")
+
+    @property
+    @pulumi.getter(name="serviceAccountJson")
+    def service_account_json(self) -> Optional[str]:
+        return pulumi.get(self, "service_account_json")
 
     @property
     @pulumi.getter

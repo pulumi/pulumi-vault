@@ -22,6 +22,7 @@ public final class SecretsMountMysql {
      * 
      */
     private @Nullable List<String> allowedRoles;
+    private @Nullable String authType;
     /**
      * @return A URL containing connection information.\
      * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
@@ -67,6 +68,7 @@ public final class SecretsMountMysql {
      * 
      */
     private @Nullable List<String> rootRotationStatements;
+    private @Nullable String serviceAccountJson;
     /**
      * @return x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
      * 
@@ -102,6 +104,9 @@ public final class SecretsMountMysql {
      */
     public List<String> allowedRoles() {
         return this.allowedRoles == null ? List.of() : this.allowedRoles;
+    }
+    public Optional<String> authType() {
+        return Optional.ofNullable(this.authType);
     }
     /**
      * @return A URL containing connection information.\
@@ -166,6 +171,9 @@ public final class SecretsMountMysql {
     public List<String> rootRotationStatements() {
         return this.rootRotationStatements == null ? List.of() : this.rootRotationStatements;
     }
+    public Optional<String> serviceAccountJson() {
+        return Optional.ofNullable(this.serviceAccountJson);
+    }
     /**
      * @return x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
      * 
@@ -213,6 +221,7 @@ public final class SecretsMountMysql {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable List<String> allowedRoles;
+        private @Nullable String authType;
         private @Nullable String connectionUrl;
         private @Nullable Map<String,Object> data;
         private @Nullable Integer maxConnectionLifetime;
@@ -222,6 +231,7 @@ public final class SecretsMountMysql {
         private @Nullable String password;
         private @Nullable String pluginName;
         private @Nullable List<String> rootRotationStatements;
+        private @Nullable String serviceAccountJson;
         private @Nullable String tlsCa;
         private @Nullable String tlsCertificateKey;
         private @Nullable String username;
@@ -231,6 +241,7 @@ public final class SecretsMountMysql {
         public Builder(SecretsMountMysql defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.allowedRoles = defaults.allowedRoles;
+    	      this.authType = defaults.authType;
     	      this.connectionUrl = defaults.connectionUrl;
     	      this.data = defaults.data;
     	      this.maxConnectionLifetime = defaults.maxConnectionLifetime;
@@ -240,6 +251,7 @@ public final class SecretsMountMysql {
     	      this.password = defaults.password;
     	      this.pluginName = defaults.pluginName;
     	      this.rootRotationStatements = defaults.rootRotationStatements;
+    	      this.serviceAccountJson = defaults.serviceAccountJson;
     	      this.tlsCa = defaults.tlsCa;
     	      this.tlsCertificateKey = defaults.tlsCertificateKey;
     	      this.username = defaults.username;
@@ -254,6 +266,11 @@ public final class SecretsMountMysql {
         }
         public Builder allowedRoles(String... allowedRoles) {
             return allowedRoles(List.of(allowedRoles));
+        }
+        @CustomType.Setter
+        public Builder authType(@Nullable String authType) {
+            this.authType = authType;
+            return this;
         }
         @CustomType.Setter
         public Builder connectionUrl(@Nullable String connectionUrl) {
@@ -304,6 +321,11 @@ public final class SecretsMountMysql {
             return rootRotationStatements(List.of(rootRotationStatements));
         }
         @CustomType.Setter
+        public Builder serviceAccountJson(@Nullable String serviceAccountJson) {
+            this.serviceAccountJson = serviceAccountJson;
+            return this;
+        }
+        @CustomType.Setter
         public Builder tlsCa(@Nullable String tlsCa) {
             this.tlsCa = tlsCa;
             return this;
@@ -331,6 +353,7 @@ public final class SecretsMountMysql {
         public SecretsMountMysql build() {
             final var o = new SecretsMountMysql();
             o.allowedRoles = allowedRoles;
+            o.authType = authType;
             o.connectionUrl = connectionUrl;
             o.data = data;
             o.maxConnectionLifetime = maxConnectionLifetime;
@@ -340,6 +363,7 @@ public final class SecretsMountMysql {
             o.password = password;
             o.pluginName = pluginName;
             o.rootRotationStatements = rootRotationStatements;
+            o.serviceAccountJson = serviceAccountJson;
             o.tlsCa = tlsCa;
             o.tlsCertificateKey = tlsCertificateKey;
             o.username = username;

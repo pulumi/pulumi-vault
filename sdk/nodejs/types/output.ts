@@ -556,6 +556,10 @@ export namespace database {
 
     export interface SecretBackendConnectionMysql {
         /**
+         * Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+         */
+        authType?: string;
+        /**
          * Specifies the Redshift DSN. See
          * the [Vault
          * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
@@ -580,6 +584,10 @@ export namespace database {
          * The root credential password used in the connection URL.
          */
         password?: string;
+        /**
+         * JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+         */
+        serviceAccountJson?: string;
         /**
          * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
          */
@@ -744,6 +752,10 @@ export namespace database {
 
     export interface SecretBackendConnectionPostgresql {
         /**
+         * Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+         */
+        authType?: string;
+        /**
          * Specifies the Redshift DSN. See
          * the [Vault
          * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
@@ -772,6 +784,10 @@ export namespace database {
          * The root credential password used in the connection URL.
          */
         password?: string;
+        /**
+         * JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+         */
+        serviceAccountJson?: string;
         /**
          * The root credential username used in the connection URL.
          */
@@ -1404,6 +1420,7 @@ export namespace database {
          * connection.
          */
         allowedRoles?: string[];
+        authType?: string;
         /**
          * A URL containing connection information.  
          * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
@@ -1441,6 +1458,7 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: string[];
+        serviceAccountJson?: string;
         /**
          * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
          */
@@ -1702,6 +1720,7 @@ export namespace database {
          * connection.
          */
         allowedRoles?: string[];
+        authType?: string;
         /**
          * A URL containing connection information.  
          * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
@@ -1743,6 +1762,7 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: string[];
+        serviceAccountJson?: string;
         /**
          * The username to be used in the connection (the account admin level).
          */
