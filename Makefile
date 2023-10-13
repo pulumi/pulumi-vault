@@ -12,6 +12,7 @@ JAVA_GEN := pulumi-java-gen
 JAVA_GEN_VERSION := v0.9.5
 TESTPARALLELISM := 10
 WORKING_DIR := $(shell pwd)
+PULUMI_CONVERT := 0
 
 development: install_plugins provider build_sdks install_sdks
 
@@ -90,10 +91,9 @@ install_dotnet_sdk:
 install_nodejs_sdk:
 	yarn link --cwd $(WORKING_DIR)/sdk/nodejs/bin
 
-install_plugins:
-	[ -x "$(shell command -v pulumi 2>/dev/null)" ] || curl -fsSL https://get.pulumi.com | sh
-	pulumi plugin install resource gcp 5.26.0
-	pulumi plugin install resource aws 5.42.0
+install_plugins: .pulumi/bin/pulumi
+	.pulumi/bin/pulumi plugin install resource gcp 5.26.0
+	.pulumi/bin/pulumi plugin install resource aws 5.42.0
 
 lint_provider: provider
 	cd provider && golangci-lint run -c ../.golangci.yml
@@ -104,9 +104,15 @@ provider: tfgen install_plugins
 test:
 	cd examples && go test -v -tags=all -parallel $(TESTPARALLELISM) -timeout 2h
 
+test_provider:
+	@echo ""
+	@echo "== test_provider ==================================================================="
+	@echo ""
+	cd provider && go test -v -short ./... -parallel $(TESTPARALLELISM)
+
 tfgen: install_plugins upstream
 	(cd provider && go build $(PULUMI_PROVIDER_BUILD_PARALLELISM) -o $(WORKING_DIR)/bin/$(TFGEN) -ldflags "-X $(PROJECT)/$(VERSION_PATH)=$(VERSION)" $(PROJECT)/$(PROVIDER_PATH)/cmd/$(TFGEN))
-	$(WORKING_DIR)/bin/$(TFGEN) schema --out provider/cmd/$(PROVIDER)
+	PATH=${PWD}/.pulumi/bin:$$PATH PULUMI_CONVERT=$(PULUMI_CONVERT) $(WORKING_DIR)/bin/$(TFGEN) schema --out provider/cmd/$(PROVIDER)
 	(cd provider && VERSION=$(VERSION) go generate cmd/$(PROVIDER)/main.go)
 
 upstream:
@@ -123,4 +129,25 @@ upstream.rebase:
 bin/pulumi-java-gen:
 	$(shell pulumictl download-binary -n pulumi-language-java -v $(JAVA_GEN_VERSION) -r pulumi/pulumi-java)
 
-.PHONY: development build build_sdks install_go_sdk install_java_sdk install_python_sdk install_sdks only_build build_dotnet build_go build_java build_nodejs build_python clean cleanup help install_dotnet_sdk install_nodejs_sdk install_plugins lint_provider provider test tfgen upstream upstream.finalize upstream.rebase
+# To make an immediately observable change to .ci-mgmt.yaml:
+#
+# - Edit .ci-mgmt.yaml
+# - Run make ci-mgmt to apply the change locally.
+#
+ci-mgmt: .ci-mgmt.yaml
+	rm .github/workflows/*.yml # Copied from update-workflows.yml
+	go run github.com/pulumi/ci-mgmt/provider-ci@master generate \
+		--name pulumi/pulumi-$(PACK) \
+		--out . \
+		--template bridged-provider \
+		--config $<
+
+.pulumi/bin/pulumi: .pulumi/version
+	curl -fsSL https://get.pulumi.com | HOME=$(WORKING_DIR) sh -s -- --version $(cat .pulumi/version)
+
+# Compute the version of Pulumi to use by inspecting the Go dependencies of the provider.
+.pulumi/version:
+	@mkdir -p .pulumi
+	@cd provider && go list -f "{{slice .Version 1}}" -m github.com/pulumi/pulumi/pkg/v3 | tee ../$@
+
+.PHONY: development build build_sdks install_go_sdk install_java_sdk install_python_sdk install_sdks only_build build_dotnet build_go build_java build_nodejs build_python clean cleanup help install_dotnet_sdk install_nodejs_sdk install_plugins lint_provider provider test tfgen upstream upstream.finalize upstream.rebase ci-mgmt test_provider

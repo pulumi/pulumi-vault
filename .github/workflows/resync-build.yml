@@ -11,7 +11,7 @@ env:
   GOVERSION: 1.21.x
   JAVAVERSION: "11"
   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-  NODEVERSION: 16.x
+  NODEVERSION: 20.x
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   NUGET_PUBLISH_KEY: ${{ secrets.NUGET_PUBLISH_KEY }}
   PUBLISH_REPO_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
@@ -59,7 +59,7 @@ jobs:
     - name: Install Pulumi CLI
       uses: pulumi/action-install-pulumi-cli@v2
     - name: Setup DotNet
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: ${{ env.DOTNETVERSION }}
     - name: Setup Node
