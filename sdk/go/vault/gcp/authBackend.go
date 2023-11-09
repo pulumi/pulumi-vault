@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Provides a resource to configure the [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
@@ -19,7 +21,7 @@ import (
 //
 // import (
 //
-//	"io/ioutil"
+//	"os"
 //
 //	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/gcp"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -27,7 +29,7 @@ import (
 // )
 //
 //	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := ioutil.ReadFile(path)
+//		data, err := os.ReadFile(path)
 //		if err != nil {
 //			panic(err.Error())
 //		}
@@ -79,6 +81,8 @@ type AuthBackend struct {
 	// used when making API requests. This allows specific requests made during authentication
 	// to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
 	// environments. Requires Vault 1.11+.
+	//
+	// Overrides are set at the subdomain level using the following keys:
 	CustomEndpoint AuthBackendCustomEndpointPtrOutput `pulumi:"customEndpoint"`
 	// A description of the auth method.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
@@ -108,12 +112,13 @@ func NewAuthBackend(ctx *pulumi.Context,
 	}
 
 	if args.Credentials != nil {
-		args.Credentials = pulumi.ToSecret(args.Credentials).(pulumi.StringPtrOutput)
+		args.Credentials = pulumi.ToSecret(args.Credentials).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"credentials",
 	})
 	opts = append(opts, secrets)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AuthBackend
 	err := ctx.RegisterResource("vault:gcp/authBackend:AuthBackend", name, args, &resource, opts...)
 	if err != nil {
@@ -149,6 +154,8 @@ type authBackendState struct {
 	// used when making API requests. This allows specific requests made during authentication
 	// to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
 	// environments. Requires Vault 1.11+.
+	//
+	// Overrides are set at the subdomain level using the following keys:
 	CustomEndpoint *AuthBackendCustomEndpoint `pulumi:"customEndpoint"`
 	// A description of the auth method.
 	Description *string `pulumi:"description"`
@@ -184,6 +191,8 @@ type AuthBackendState struct {
 	// used when making API requests. This allows specific requests made during authentication
 	// to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
 	// environments. Requires Vault 1.11+.
+	//
+	// Overrides are set at the subdomain level using the following keys:
 	CustomEndpoint AuthBackendCustomEndpointPtrInput
 	// A description of the auth method.
 	Description pulumi.StringPtrInput
@@ -221,6 +230,8 @@ type authBackendArgs struct {
 	// used when making API requests. This allows specific requests made during authentication
 	// to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
 	// environments. Requires Vault 1.11+.
+	//
+	// Overrides are set at the subdomain level using the following keys:
 	CustomEndpoint *AuthBackendCustomEndpoint `pulumi:"customEndpoint"`
 	// A description of the auth method.
 	Description *string `pulumi:"description"`
@@ -255,6 +266,8 @@ type AuthBackendArgs struct {
 	// used when making API requests. This allows specific requests made during authentication
 	// to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
 	// environments. Requires Vault 1.11+.
+	//
+	// Overrides are set at the subdomain level using the following keys:
 	CustomEndpoint AuthBackendCustomEndpointPtrInput
 	// A description of the auth method.
 	Description pulumi.StringPtrInput
@@ -299,6 +312,12 @@ func (i *AuthBackend) ToAuthBackendOutputWithContext(ctx context.Context) AuthBa
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendOutput)
 }
 
+func (i *AuthBackend) ToOutput(ctx context.Context) pulumix.Output[*AuthBackend] {
+	return pulumix.Output[*AuthBackend]{
+		OutputState: i.ToAuthBackendOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AuthBackendArrayInput is an input type that accepts AuthBackendArray and AuthBackendArrayOutput values.
 // You can construct a concrete instance of `AuthBackendArrayInput` via:
 //
@@ -322,6 +341,12 @@ func (i AuthBackendArray) ToAuthBackendArrayOutput() AuthBackendArrayOutput {
 
 func (i AuthBackendArray) ToAuthBackendArrayOutputWithContext(ctx context.Context) AuthBackendArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendArrayOutput)
+}
+
+func (i AuthBackendArray) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackend] {
+	return pulumix.Output[[]*AuthBackend]{
+		OutputState: i.ToAuthBackendArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AuthBackendMapInput is an input type that accepts AuthBackendMap and AuthBackendMapOutput values.
@@ -349,6 +374,12 @@ func (i AuthBackendMap) ToAuthBackendMapOutputWithContext(ctx context.Context) A
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendMapOutput)
 }
 
+func (i AuthBackendMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackend] {
+	return pulumix.Output[map[string]*AuthBackend]{
+		OutputState: i.ToAuthBackendMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AuthBackendOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendOutput) ElementType() reflect.Type {
@@ -361,6 +392,12 @@ func (o AuthBackendOutput) ToAuthBackendOutput() AuthBackendOutput {
 
 func (o AuthBackendOutput) ToAuthBackendOutputWithContext(ctx context.Context) AuthBackendOutput {
 	return o
+}
+
+func (o AuthBackendOutput) ToOutput(ctx context.Context) pulumix.Output[*AuthBackend] {
+	return pulumix.Output[*AuthBackend]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
@@ -388,6 +425,8 @@ func (o AuthBackendOutput) Credentials() pulumi.StringPtrOutput {
 // used when making API requests. This allows specific requests made during authentication
 // to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
 // environments. Requires Vault 1.11+.
+//
+// Overrides are set at the subdomain level using the following keys:
 func (o AuthBackendOutput) CustomEndpoint() AuthBackendCustomEndpointPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) AuthBackendCustomEndpointPtrOutput { return v.CustomEndpoint }).(AuthBackendCustomEndpointPtrOutput)
 }
@@ -445,6 +484,12 @@ func (o AuthBackendArrayOutput) ToAuthBackendArrayOutputWithContext(ctx context.
 	return o
 }
 
+func (o AuthBackendArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackend] {
+	return pulumix.Output[[]*AuthBackend]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AuthBackendArrayOutput) Index(i pulumi.IntInput) AuthBackendOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AuthBackend {
 		return vs[0].([]*AuthBackend)[vs[1].(int)]
@@ -463,6 +508,12 @@ func (o AuthBackendMapOutput) ToAuthBackendMapOutput() AuthBackendMapOutput {
 
 func (o AuthBackendMapOutput) ToAuthBackendMapOutputWithContext(ctx context.Context) AuthBackendMapOutput {
 	return o
+}
+
+func (o AuthBackendMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackend] {
+	return pulumix.Output[map[string]*AuthBackend]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuthBackendMapOutput) MapIndex(k pulumi.StringInput) AuthBackendOutput {

@@ -13,20 +13,20 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const role = pulumi.output(vault.gcp.getAuthBackendRole({
- *     backend: "my-gcp-backend",
- *     roleName: "my-role",
- * }));
- *
- * export const role_id = role.roleId;
+ * export = async () => {
+ *     const role = await vault.gcp.getAuthBackendRole({
+ *         backend: "my-gcp-backend",
+ *         roleName: "my-role",
+ *     });
+ *     return {
+ *         "role-id": role.roleId,
+ *     };
+ * }
  * ```
  */
 export function getAuthBackendRole(args: GetAuthBackendRoleArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthBackendRoleResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:gcp/getAuthBackendRole:getAuthBackendRole", {
         "backend": args.backend,
         "namespace": args.namespace,
@@ -216,9 +216,28 @@ export interface GetAuthBackendRoleResult {
      */
     readonly type: string;
 }
-
+/**
+ * Reads a GCP auth role from a Vault server.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * export = async () => {
+ *     const role = await vault.gcp.getAuthBackendRole({
+ *         backend: "my-gcp-backend",
+ *         roleName: "my-role",
+ *     });
+ *     return {
+ *         "role-id": role.roleId,
+ *     };
+ * }
+ * ```
+ */
 export function getAuthBackendRoleOutput(args: GetAuthBackendRoleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthBackendRoleResult> {
-    return pulumi.output(args).apply(a => getAuthBackendRole(a, opts))
+    return pulumi.output(args).apply((a: any) => getAuthBackendRole(a, opts))
 }
 
 /**

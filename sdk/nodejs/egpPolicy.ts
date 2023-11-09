@@ -21,6 +21,7 @@ import * as utilities from "./utilities";
  *     policy: `main = rule {
  *   true
  * }
+ *
  * `,
  * });
  * ```

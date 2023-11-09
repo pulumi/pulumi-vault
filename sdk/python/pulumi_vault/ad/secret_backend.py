@@ -359,6 +359,9 @@ class SecretBackendArgs:
         """
         **Deprecated** use `password_policy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
         """
+        warnings.warn("""Formatter is deprecated and password_policy should be used with Vault >= 1.5.""", DeprecationWarning)
+        pulumi.log.warn("""formatter is deprecated: Formatter is deprecated and password_policy should be used with Vault >= 1.5.""")
+
         return pulumi.get(self, "formatter")
 
     @formatter.setter
@@ -436,6 +439,9 @@ class SecretBackendArgs:
         **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
         *Mutually exclusive with `password_policy` on vault-1.11+*
         """
+        warnings.warn("""Length is deprecated and password_policy should be used with Vault >= 1.5.""", DeprecationWarning)
+        pulumi.log.warn("""length is deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.""")
+
         return pulumi.get(self, "length")
 
     @length.setter
@@ -999,6 +1005,9 @@ class _SecretBackendState:
         """
         **Deprecated** use `password_policy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
         """
+        warnings.warn("""Formatter is deprecated and password_policy should be used with Vault >= 1.5.""", DeprecationWarning)
+        pulumi.log.warn("""formatter is deprecated: Formatter is deprecated and password_policy should be used with Vault >= 1.5.""")
+
         return pulumi.get(self, "formatter")
 
     @formatter.setter
@@ -1076,6 +1085,9 @@ class _SecretBackendState:
         **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
         *Mutually exclusive with `password_policy` on vault-1.11+*
         """
+        warnings.warn("""Length is deprecated and password_policy should be used with Vault >= 1.5.""", DeprecationWarning)
+        pulumi.log.warn("""length is deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.""")
+
         return pulumi.get(self, "length")
 
     @length.setter
@@ -1526,18 +1538,12 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["disable_remount"] = disable_remount
             __props__.__dict__["discoverdn"] = discoverdn
-            if formatter is not None and not opts.urn:
-                warnings.warn("""Formatter is deprecated and password_policy should be used with Vault >= 1.5.""", DeprecationWarning)
-                pulumi.log.warn("""formatter is deprecated: Formatter is deprecated and password_policy should be used with Vault >= 1.5.""")
             __props__.__dict__["formatter"] = formatter
             __props__.__dict__["groupattr"] = groupattr
             __props__.__dict__["groupdn"] = groupdn
             __props__.__dict__["groupfilter"] = groupfilter
             __props__.__dict__["insecure_tls"] = insecure_tls
             __props__.__dict__["last_rotation_tolerance"] = last_rotation_tolerance
-            if length is not None and not opts.urn:
-                warnings.warn("""Length is deprecated and password_policy should be used with Vault >= 1.5.""", DeprecationWarning)
-                pulumi.log.warn("""length is deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.""")
             __props__.__dict__["length"] = length
             __props__.__dict__["local"] = local
             __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
@@ -1830,6 +1836,9 @@ class SecretBackend(pulumi.CustomResource):
         """
         **Deprecated** use `password_policy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
         """
+        warnings.warn("""Formatter is deprecated and password_policy should be used with Vault >= 1.5.""", DeprecationWarning)
+        pulumi.log.warn("""formatter is deprecated: Formatter is deprecated and password_policy should be used with Vault >= 1.5.""")
+
         return pulumi.get(self, "formatter")
 
     @property
@@ -1883,6 +1892,9 @@ class SecretBackend(pulumi.CustomResource):
         **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
         *Mutually exclusive with `password_policy` on vault-1.11+*
         """
+        warnings.warn("""Length is deprecated and password_policy should be used with Vault >= 1.5.""", DeprecationWarning)
+        pulumi.log.warn("""length is deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.""")
+
         return pulumi.get(self, "length")
 
     @property

@@ -118,11 +118,11 @@ def get_auth_backend_role_id(backend: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId', __args__, opts=opts, typ=GetAuthBackendRoleIdResult).value
 
     return AwaitableGetAuthBackendRoleIdResult(
-        backend=__ret__.backend,
-        id=__ret__.id,
-        namespace=__ret__.namespace,
-        role_id=__ret__.role_id,
-        role_name=__ret__.role_name)
+        backend=pulumi.get(__ret__, 'backend'),
+        id=pulumi.get(__ret__, 'id'),
+        namespace=pulumi.get(__ret__, 'namespace'),
+        role_id=pulumi.get(__ret__, 'role_id'),
+        role_name=pulumi.get(__ret__, 'role_name'))
 
 
 @_utilities.lift_output_func(get_auth_backend_role_id)

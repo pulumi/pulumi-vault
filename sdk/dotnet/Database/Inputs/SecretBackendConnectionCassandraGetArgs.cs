@@ -23,7 +23,7 @@ namespace Pulumi.Vault.Database.Inputs
         private InputList<string>? _hosts;
 
         /// <summary>
-        /// A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+        /// The hosts to connect to.
         /// </summary>
         public InputList<string> Hosts
         {
@@ -42,7 +42,7 @@ namespace Pulumi.Vault.Database.Inputs
         private Input<string>? _password;
 
         /// <summary>
-        /// The root credential password used in the connection URL.
+        /// The password to authenticate with.
         /// </summary>
         public Input<string>? Password
         {
@@ -101,13 +101,13 @@ namespace Pulumi.Vault.Database.Inputs
         public Input<int>? ProtocolVersion { get; set; }
 
         /// <summary>
-        /// Whether to use TLS when connecting to Redis.
+        /// Whether to use TLS when connecting to Cassandra.
         /// </summary>
         [Input("tls")]
         public Input<bool>? Tls { get; set; }
 
         /// <summary>
-        /// The root credential username used in the connection URL.
+        /// The username to authenticate with.
         /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }

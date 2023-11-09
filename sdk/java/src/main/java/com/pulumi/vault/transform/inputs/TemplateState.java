@@ -33,15 +33,15 @@ public final class TemplateState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * - Optional mapping of name to regular expression template, used to customize
-     *   the decoded output. (requires Vault Enterprise 1.9+)
+     * Optional mapping of name to regular expression template, used to customize
+     * the decoded output. (requires Vault Enterprise 1.9+)
      * 
      */
     @Import(name="decodeFormats")
     private @Nullable Output<Map<String,Object>> decodeFormats;
 
     /**
-     * @return - Optional mapping of name to regular expression template, used to customize
+     * @return Optional mapping of name to regular expression template, used to customize
      * the decoded output. (requires Vault Enterprise 1.9+)
      * 
      */
@@ -50,15 +50,15 @@ public final class TemplateState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * - The regular expression template used to format encoded values.
-     *   (requires Vault Enterprise 1.9+)
+     * The regular expression template used to format encoded values.
+     * (requires Vault Enterprise 1.9+)
      * 
      */
     @Import(name="encodeFormat")
     private @Nullable Output<String> encodeFormat;
 
     /**
-     * @return - The regular expression template used to format encoded values.
+     * @return The regular expression template used to format encoded values.
      * (requires Vault Enterprise 1.9+)
      * 
      */
@@ -200,7 +200,7 @@ public final class TemplateState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param decodeFormats - Optional mapping of name to regular expression template, used to customize
+         * @param decodeFormats Optional mapping of name to regular expression template, used to customize
          * the decoded output. (requires Vault Enterprise 1.9+)
          * 
          * @return builder
@@ -212,7 +212,7 @@ public final class TemplateState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param decodeFormats - Optional mapping of name to regular expression template, used to customize
+         * @param decodeFormats Optional mapping of name to regular expression template, used to customize
          * the decoded output. (requires Vault Enterprise 1.9+)
          * 
          * @return builder
@@ -223,7 +223,7 @@ public final class TemplateState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param encodeFormat - The regular expression template used to format encoded values.
+         * @param encodeFormat The regular expression template used to format encoded values.
          * (requires Vault Enterprise 1.9+)
          * 
          * @return builder
@@ -235,7 +235,7 @@ public final class TemplateState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param encodeFormat - The regular expression template used to format encoded values.
+         * @param encodeFormat The regular expression template used to format encoded values.
          * (requires Vault Enterprise 1.9+)
          * 
          * @return builder

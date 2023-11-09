@@ -23,6 +23,10 @@ class GroupPoliciesArgs:
         :param pulumi.Input[str] group_id: Group ID to assign policies to.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to assign to the group
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
+               
+               If `true`, this resource will take exclusive control of the policies assigned to the group and will set it equal to what is specified in the resource.
+               
+               If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the group. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -64,6 +68,10 @@ class GroupPoliciesArgs:
     def exclusive(self) -> Optional[pulumi.Input[bool]]:
         """
         Defaults to `true`.
+
+        If `true`, this resource will take exclusive control of the policies assigned to the group and will set it equal to what is specified in the resource.
+
+        If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the group. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
         """
         return pulumi.get(self, "exclusive")
 
@@ -98,6 +106,10 @@ class _GroupPoliciesState:
         """
         Input properties used for looking up and filtering GroupPolicies resources.
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
+               
+               If `true`, this resource will take exclusive control of the policies assigned to the group and will set it equal to what is specified in the resource.
+               
+               If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the group. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
         :param pulumi.Input[str] group_id: Group ID to assign policies to.
         :param pulumi.Input[str] group_name: The name of the group that are assigned the policies.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -122,6 +134,10 @@ class _GroupPoliciesState:
     def exclusive(self) -> Optional[pulumi.Input[bool]]:
         """
         Defaults to `true`.
+
+        If `true`, this resource will take exclusive control of the policies assigned to the group and will set it equal to what is specified in the resource.
+
+        If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the group. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
         """
         return pulumi.get(self, "exclusive")
 
@@ -243,6 +259,10 @@ class GroupPolicies(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
+               
+               If `true`, this resource will take exclusive control of the policies assigned to the group and will set it equal to what is specified in the resource.
+               
+               If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the group. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
         :param pulumi.Input[str] group_id: Group ID to assign policies to.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -365,6 +385,10 @@ class GroupPolicies(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
+               
+               If `true`, this resource will take exclusive control of the policies assigned to the group and will set it equal to what is specified in the resource.
+               
+               If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the group. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
         :param pulumi.Input[str] group_id: Group ID to assign policies to.
         :param pulumi.Input[str] group_name: The name of the group that are assigned the policies.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -389,6 +413,10 @@ class GroupPolicies(pulumi.CustomResource):
     def exclusive(self) -> pulumi.Output[Optional[bool]]:
         """
         Defaults to `true`.
+
+        If `true`, this resource will take exclusive control of the policies assigned to the group and will set it equal to what is specified in the resource.
+
+        If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the group. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
         """
         return pulumi.get(self, "exclusive")
 

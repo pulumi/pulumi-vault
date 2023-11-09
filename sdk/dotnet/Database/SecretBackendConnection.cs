@@ -14,6 +14,7 @@ namespace Pulumi.Vault.Database
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -185,6 +186,8 @@ namespace Pulumi.Vault.Database
 
         /// <summary>
         /// A nested block containing configuration options for Redis ElastiCache connections.
+        /// 
+        /// Exactly one of the nested blocks of configuration options must be supplied.
         /// </summary>
         [Output("redisElasticache")]
         public Output<Outputs.SecretBackendConnectionRedisElasticache?> RedisElasticache { get; private set; } = null!;
@@ -404,6 +407,8 @@ namespace Pulumi.Vault.Database
 
         /// <summary>
         /// A nested block containing configuration options for Redis ElastiCache connections.
+        /// 
+        /// Exactly one of the nested blocks of configuration options must be supplied.
         /// </summary>
         [Input("redisElasticache")]
         public Input<Inputs.SecretBackendConnectionRedisElasticacheArgs>? RedisElasticache { get; set; }
@@ -591,6 +596,8 @@ namespace Pulumi.Vault.Database
 
         /// <summary>
         /// A nested block containing configuration options for Redis ElastiCache connections.
+        /// 
+        /// Exactly one of the nested blocks of configuration options must be supplied.
         /// </summary>
         [Input("redisElasticache")]
         public Input<Inputs.SecretBackendConnectionRedisElasticacheGetArgs>? RedisElasticache { get; set; }

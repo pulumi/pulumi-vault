@@ -11,9 +11,9 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const group = pulumi.output(vault.identity.getGroup({
+ * const group = vault.identity.getGroup({
  *     groupName: "user",
- * }));
+ * });
  * ```
  * ## Required Vault Capabilities
  *
@@ -21,11 +21,8 @@ import * as utilities from "../utilities";
  */
 export function getGroup(args?: GetGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetGroupResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:identity/getGroup:getGroup", {
         "aliasId": args.aliasId,
         "aliasMountAccessor": args.aliasMountAccessor,
@@ -47,6 +44,9 @@ export interface GetGroupArgs {
     /**
      * Accessor of the mount to which the alias belongs to.
      * This should be supplied in conjunction with `aliasName`.
+     *
+     * The lookup criteria can be `groupName`, `groupId`, `aliasId`, or a combination of
+     * `aliasName` and `aliasMountAccessor`.
      */
     aliasMountAccessor?: string;
     /**
@@ -159,9 +159,23 @@ export interface GetGroupResult {
      */
     readonly type: string;
 }
-
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const group = vault.identity.getGroup({
+ *     groupName: "user",
+ * });
+ * ```
+ * ## Required Vault Capabilities
+ *
+ * Use of this resource requires the `create` capability on `/identity/lookup/group`.
+ */
 export function getGroupOutput(args?: GetGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetGroupResult> {
-    return pulumi.output(args).apply(a => getGroup(a, opts))
+    return pulumi.output(args).apply((a: any) => getGroup(a, opts))
 }
 
 /**
@@ -175,6 +189,9 @@ export interface GetGroupOutputArgs {
     /**
      * Accessor of the mount to which the alias belongs to.
      * This should be supplied in conjunction with `aliasName`.
+     *
+     * The lookup criteria can be `groupName`, `groupId`, `aliasId`, or a combination of
+     * `aliasName` and `aliasMountAccessor`.
      */
     aliasMountAccessor?: pulumi.Input<string>;
     /**

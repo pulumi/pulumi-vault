@@ -44,7 +44,7 @@ export class SecretBackend extends pulumi.CustomResource {
     }
 
     /**
-     * The GCP service account credentials in JSON format.
+     * JSON-encoded credentials to use to connect to GCP
      */
     public readonly credentials!: pulumi.Output<string | undefined>;
     /**
@@ -127,7 +127,7 @@ export class SecretBackend extends pulumi.CustomResource {
  */
 export interface SecretBackendState {
     /**
-     * The GCP service account credentials in JSON format.
+     * JSON-encoded credentials to use to connect to GCP
      */
     credentials?: pulumi.Input<string>;
     /**
@@ -172,7 +172,7 @@ export interface SecretBackendState {
  */
 export interface SecretBackendArgs {
     /**
-     * The GCP service account credentials in JSON format.
+     * JSON-encoded credentials to use to connect to GCP
      */
     credentials?: pulumi.Input<string>;
     /**

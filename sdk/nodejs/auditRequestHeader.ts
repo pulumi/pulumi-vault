@@ -18,9 +18,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const xForwardedFor = new vault.AuditRequestHeader("x_forwarded_for", {
- *     hmac: false,
- * });
+ * const xForwardedFor = new vault.AuditRequestHeader("xForwardedFor", {hmac: false});
  * ```
  */
 export class AuditRequestHeader extends pulumi.CustomResource {

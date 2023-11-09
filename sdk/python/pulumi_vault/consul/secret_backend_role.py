@@ -249,6 +249,9 @@ class SecretBackendRoleArgs:
         Specifies the type of token to create when using this role. Valid values are "client" or "management".
         *Deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.*
         """
+        warnings.warn("""Consul 1.11 and later removed the legacy ACL system which supported this field.""", DeprecationWarning)
+        pulumi.log.warn("""token_type is deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.""")
+
         return pulumi.get(self, "token_type")
 
     @token_type.setter
@@ -506,6 +509,9 @@ class _SecretBackendRoleState:
         Specifies the type of token to create when using this role. Valid values are "client" or "management".
         *Deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.*
         """
+        warnings.warn("""Consul 1.11 and later removed the legacy ACL system which supported this field.""", DeprecationWarning)
+        pulumi.log.warn("""token_type is deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.""")
+
         return pulumi.get(self, "token_type")
 
     @token_type.setter
@@ -693,9 +699,6 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__.__dict__["partition"] = partition
             __props__.__dict__["policies"] = policies
             __props__.__dict__["service_identities"] = service_identities
-            if token_type is not None and not opts.urn:
-                warnings.warn("""Consul 1.11 and later removed the legacy ACL system which supported this field.""", DeprecationWarning)
-                pulumi.log.warn("""token_type is deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.""")
             __props__.__dict__["token_type"] = token_type
             __props__.__dict__["ttl"] = ttl
         super(SecretBackendRole, __self__).__init__(
@@ -888,6 +891,9 @@ class SecretBackendRole(pulumi.CustomResource):
         Specifies the type of token to create when using this role. Valid values are "client" or "management".
         *Deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.*
         """
+        warnings.warn("""Consul 1.11 and later removed the legacy ACL system which supported this field.""", DeprecationWarning)
+        pulumi.log.warn("""token_type is deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.""")
+
         return pulumi.get(self, "token_type")
 
     @property

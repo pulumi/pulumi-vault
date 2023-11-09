@@ -18,6 +18,7 @@ namespace Pulumi.Vault.GitHub
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -168,6 +169,8 @@ namespace Pulumi.Vault.GitHub
 
         /// <summary>
         /// Extra configuration block. Structure is documented below.
+        /// 
+        /// The `tune` block is used to tune the auth backend:
         /// </summary>
         [Output("tune")]
         public Output<Outputs.AuthBackendTune> Tune { get; private set; } = null!;
@@ -350,6 +353,8 @@ namespace Pulumi.Vault.GitHub
 
         /// <summary>
         /// Extra configuration block. Structure is documented below.
+        /// 
+        /// The `tune` block is used to tune the auth backend:
         /// </summary>
         [Input("tune")]
         public Input<Inputs.AuthBackendTuneArgs>? Tune { get; set; }
@@ -500,6 +505,8 @@ namespace Pulumi.Vault.GitHub
 
         /// <summary>
         /// Extra configuration block. Structure is documented below.
+        /// 
+        /// The `tune` block is used to tune the auth backend:
         /// </summary>
         [Input("tune")]
         public Input<Inputs.AuthBackendTuneGetArgs>? Tune { get; set; }

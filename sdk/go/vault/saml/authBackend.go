@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages a SAML Auth mount in a Vault server. See the [Vault
@@ -107,6 +109,7 @@ func NewAuthBackend(ctx *pulumi.Context,
 	if args.EntityId == nil {
 		return nil, errors.New("invalid value for required argument 'EntityId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AuthBackend
 	err := ctx.RegisterResource("vault:saml/authBackend:AuthBackend", name, args, &resource, opts...)
 	if err != nil {
@@ -300,6 +303,12 @@ func (i *AuthBackend) ToAuthBackendOutputWithContext(ctx context.Context) AuthBa
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendOutput)
 }
 
+func (i *AuthBackend) ToOutput(ctx context.Context) pulumix.Output[*AuthBackend] {
+	return pulumix.Output[*AuthBackend]{
+		OutputState: i.ToAuthBackendOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AuthBackendArrayInput is an input type that accepts AuthBackendArray and AuthBackendArrayOutput values.
 // You can construct a concrete instance of `AuthBackendArrayInput` via:
 //
@@ -323,6 +332,12 @@ func (i AuthBackendArray) ToAuthBackendArrayOutput() AuthBackendArrayOutput {
 
 func (i AuthBackendArray) ToAuthBackendArrayOutputWithContext(ctx context.Context) AuthBackendArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendArrayOutput)
+}
+
+func (i AuthBackendArray) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackend] {
+	return pulumix.Output[[]*AuthBackend]{
+		OutputState: i.ToAuthBackendArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AuthBackendMapInput is an input type that accepts AuthBackendMap and AuthBackendMapOutput values.
@@ -350,6 +365,12 @@ func (i AuthBackendMap) ToAuthBackendMapOutputWithContext(ctx context.Context) A
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendMapOutput)
 }
 
+func (i AuthBackendMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackend] {
+	return pulumix.Output[map[string]*AuthBackend]{
+		OutputState: i.ToAuthBackendMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AuthBackendOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendOutput) ElementType() reflect.Type {
@@ -362,6 +383,12 @@ func (o AuthBackendOutput) ToAuthBackendOutput() AuthBackendOutput {
 
 func (o AuthBackendOutput) ToAuthBackendOutputWithContext(ctx context.Context) AuthBackendOutput {
 	return o
+}
+
+func (o AuthBackendOutput) ToOutput(ctx context.Context) pulumix.Output[*AuthBackend] {
+	return pulumix.Output[*AuthBackend]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The well-formatted URLs of your Assertion Consumer Service (ACS)
@@ -444,6 +471,12 @@ func (o AuthBackendArrayOutput) ToAuthBackendArrayOutputWithContext(ctx context.
 	return o
 }
 
+func (o AuthBackendArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackend] {
+	return pulumix.Output[[]*AuthBackend]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AuthBackendArrayOutput) Index(i pulumi.IntInput) AuthBackendOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AuthBackend {
 		return vs[0].([]*AuthBackend)[vs[1].(int)]
@@ -462,6 +495,12 @@ func (o AuthBackendMapOutput) ToAuthBackendMapOutput() AuthBackendMapOutput {
 
 func (o AuthBackendMapOutput) ToAuthBackendMapOutputWithContext(ctx context.Context) AuthBackendMapOutput {
 	return o
+}
+
+func (o AuthBackendMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackend] {
+	return pulumix.Output[map[string]*AuthBackend]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuthBackendMapOutput) MapIndex(k pulumi.StringInput) AuthBackendOutput {

@@ -23,6 +23,8 @@ class AuditArgs:
         """
         The set of arguments for constructing a Audit resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Configuration options to pass to the audit device itself.
+               
+               For a reference of the device types and their options, consult the [Vault documentation.](https://www.vaultproject.io/docs/audit/index.html)
         :param pulumi.Input[str] type: Type of the audit device, such as 'file'.
         :param pulumi.Input[str] description: Human-friendly description of the audit device.
         :param pulumi.Input[bool] local: Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
@@ -48,6 +50,8 @@ class AuditArgs:
     def options(self) -> pulumi.Input[Mapping[str, pulumi.Input[str]]]:
         """
         Configuration options to pass to the audit device itself.
+
+        For a reference of the device types and their options, consult the [Vault documentation.](https://www.vaultproject.io/docs/audit/index.html)
         """
         return pulumi.get(self, "options")
 
@@ -137,6 +141,8 @@ class _AuditState:
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Configuration options to pass to the audit device itself.
+               
+               For a reference of the device types and their options, consult the [Vault documentation.](https://www.vaultproject.io/docs/audit/index.html)
         :param pulumi.Input[str] path: The path to mount the audit device. This defaults to the type.
         :param pulumi.Input[str] type: Type of the audit device, such as 'file'.
         """
@@ -197,6 +203,8 @@ class _AuditState:
     def options(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Configuration options to pass to the audit device itself.
+
+        For a reference of the device types and their options, consult the [Vault documentation.](https://www.vaultproject.io/docs/audit/index.html)
         """
         return pulumi.get(self, "options")
 
@@ -289,6 +297,8 @@ class Audit(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Configuration options to pass to the audit device itself.
+               
+               For a reference of the device types and their options, consult the [Vault documentation.](https://www.vaultproject.io/docs/audit/index.html)
         :param pulumi.Input[str] path: The path to mount the audit device. This defaults to the type.
         :param pulumi.Input[str] type: Type of the audit device, such as 'file'.
         """
@@ -407,6 +417,8 @@ class Audit(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Configuration options to pass to the audit device itself.
+               
+               For a reference of the device types and their options, consult the [Vault documentation.](https://www.vaultproject.io/docs/audit/index.html)
         :param pulumi.Input[str] path: The path to mount the audit device. This defaults to the type.
         :param pulumi.Input[str] type: Type of the audit device, such as 'file'.
         """
@@ -454,6 +466,8 @@ class Audit(pulumi.CustomResource):
     def options(self) -> pulumi.Output[Mapping[str, str]]:
         """
         Configuration options to pass to the audit device itself.
+
+        For a reference of the device types and their options, consult the [Vault documentation.](https://www.vaultproject.io/docs/audit/index.html)
         """
         return pulumi.get(self, "options")
 

@@ -35,11 +35,8 @@ import * as utilities from "../utilities";
  * Use of this resource requires the `read` capability on the given path.
  */
 export function getSecret(args: GetSecretArgs, opts?: pulumi.InvokeOptions): Promise<GetSecretResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:kv/getSecret:getSecret", {
         "namespace": args.namespace,
         "path": args.path,
@@ -100,9 +97,38 @@ export interface GetSecretResult {
     readonly namespace?: string;
     readonly path: string;
 }
-
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const kvv1 = new vault.Mount("kvv1", {
+ *     path: "kvv1",
+ *     type: "kv",
+ *     options: {
+ *         version: "1",
+ *     },
+ *     description: "KV Version 1 secret engine mount",
+ * });
+ * const secret = new vault.kv.Secret("secret", {
+ *     path: pulumi.interpolate`${kvv1.path}/secret`,
+ *     dataJson: JSON.stringify({
+ *         zip: "zap",
+ *         foo: "bar",
+ *     }),
+ * });
+ * const secretData = vault.kv.getSecretOutput({
+ *     path: secret.path,
+ * });
+ * ```
+ * ## Required Vault Capabilities
+ *
+ * Use of this resource requires the `read` capability on the given path.
+ */
 export function getSecretOutput(args: GetSecretOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretResult> {
-    return pulumi.output(args).apply(a => getSecret(a, opts))
+    return pulumi.output(args).apply((a: any) => getSecret(a, opts))
 }
 
 /**

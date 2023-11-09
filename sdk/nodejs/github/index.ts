@@ -8,18 +8,18 @@ import * as utilities from "../utilities";
 export { AuthBackendArgs, AuthBackendState } from "./authBackend";
 export type AuthBackend = import("./authBackend").AuthBackend;
 export const AuthBackend: typeof import("./authBackend").AuthBackend = null as any;
+utilities.lazyLoad(exports, ["AuthBackend"], () => require("./authBackend"));
 
 export { TeamArgs, TeamState } from "./team";
 export type Team = import("./team").Team;
 export const Team: typeof import("./team").Team = null as any;
+utilities.lazyLoad(exports, ["Team"], () => require("./team"));
 
 export { UserArgs, UserState } from "./user";
 export type User = import("./user").User;
 export const User: typeof import("./user").User = null as any;
-
-utilities.lazyLoad(exports, ["AuthBackend"], () => require("./authBackend"));
-utilities.lazyLoad(exports, ["Team"], () => require("./team"));
 utilities.lazyLoad(exports, ["User"], () => require("./user"));
+
 
 const _module = {
     version: utilities.getVersion(),

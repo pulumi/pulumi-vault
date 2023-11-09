@@ -131,6 +131,8 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
      * environments. Requires Vault 1.11+.
      * 
+     * Overrides are set at the subdomain level using the following keys:
+     * 
      */
     @Export(name="customEndpoint", refs={AuthBackendCustomEndpoint.class}, tree="[0]")
     private Output</* @Nullable */ AuthBackendCustomEndpoint> customEndpoint;
@@ -141,6 +143,8 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * used when making API requests. This allows specific requests made during authentication
      * to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
      * environments. Requires Vault 1.11+.
+     * 
+     * Overrides are set at the subdomain level using the following keys:
      * 
      */
     public Output<Optional<AuthBackendCustomEndpoint>> customEndpoint() {

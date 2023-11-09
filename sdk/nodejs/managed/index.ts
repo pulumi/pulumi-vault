@@ -8,8 +8,8 @@ import * as utilities from "../utilities";
 export { KeysArgs, KeysState } from "./keys";
 export type Keys = import("./keys").Keys;
 export const Keys: typeof import("./keys").Keys = null as any;
-
 utilities.lazyLoad(exports, ["Keys"], () => require("./keys"));
+
 
 const _module = {
     version: utilities.getVersion(),

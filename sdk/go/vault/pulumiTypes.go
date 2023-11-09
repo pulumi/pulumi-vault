@@ -7,8 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
+
+var _ = internal.GetEnvOrDefault
 
 type AuthBackendTune struct {
 	// List of headers to whitelist and allowing
@@ -91,6 +95,12 @@ func (i AuthBackendTuneArgs) ToAuthBackendTuneOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendTuneOutput)
 }
 
+func (i AuthBackendTuneArgs) ToOutput(ctx context.Context) pulumix.Output[AuthBackendTune] {
+	return pulumix.Output[AuthBackendTune]{
+		OutputState: i.ToAuthBackendTuneOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i AuthBackendTuneArgs) ToAuthBackendTunePtrOutput() AuthBackendTunePtrOutput {
 	return i.ToAuthBackendTunePtrOutputWithContext(context.Background())
 }
@@ -132,6 +142,12 @@ func (i *authBackendTunePtrType) ToAuthBackendTunePtrOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendTunePtrOutput)
 }
 
+func (i *authBackendTunePtrType) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendTune] {
+	return pulumix.Output[*AuthBackendTune]{
+		OutputState: i.ToAuthBackendTunePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AuthBackendTuneOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendTuneOutput) ElementType() reflect.Type {
@@ -154,6 +170,12 @@ func (o AuthBackendTuneOutput) ToAuthBackendTunePtrOutputWithContext(ctx context
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v AuthBackendTune) *AuthBackendTune {
 		return &v
 	}).(AuthBackendTunePtrOutput)
+}
+
+func (o AuthBackendTuneOutput) ToOutput(ctx context.Context) pulumix.Output[AuthBackendTune] {
+	return pulumix.Output[AuthBackendTune]{
+		OutputState: o.OutputState,
+	}
 }
 
 // List of headers to whitelist and allowing
@@ -218,6 +240,12 @@ func (o AuthBackendTunePtrOutput) ToAuthBackendTunePtrOutput() AuthBackendTunePt
 
 func (o AuthBackendTunePtrOutput) ToAuthBackendTunePtrOutputWithContext(ctx context.Context) AuthBackendTunePtrOutput {
 	return o
+}
+
+func (o AuthBackendTunePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendTune] {
+	return pulumix.Output[*AuthBackendTune]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuthBackendTunePtrOutput) Elem() AuthBackendTuneOutput {
@@ -359,6 +387,12 @@ func (i ProviderAuthLoginArgs) ToProviderAuthLoginOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginOutput)
 }
 
+func (i ProviderAuthLoginArgs) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLogin] {
+	return pulumix.Output[ProviderAuthLogin]{
+		OutputState: i.ToProviderAuthLoginOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i ProviderAuthLoginArgs) ToProviderAuthLoginPtrOutput() ProviderAuthLoginPtrOutput {
 	return i.ToProviderAuthLoginPtrOutputWithContext(context.Background())
 }
@@ -400,6 +434,12 @@ func (i *providerAuthLoginPtrType) ToProviderAuthLoginPtrOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginPtrOutput)
 }
 
+func (i *providerAuthLoginPtrType) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLogin] {
+	return pulumix.Output[*ProviderAuthLogin]{
+		OutputState: i.ToProviderAuthLoginPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderAuthLoginOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginOutput) ElementType() reflect.Type {
@@ -422,6 +462,12 @@ func (o ProviderAuthLoginOutput) ToProviderAuthLoginPtrOutputWithContext(ctx con
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProviderAuthLogin) *ProviderAuthLogin {
 		return &v
 	}).(ProviderAuthLoginPtrOutput)
+}
+
+func (o ProviderAuthLoginOutput) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLogin] {
+	return pulumix.Output[ProviderAuthLogin]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginOutput) Method() pulumi.StringPtrOutput {
@@ -456,6 +502,12 @@ func (o ProviderAuthLoginPtrOutput) ToProviderAuthLoginPtrOutput() ProviderAuthL
 
 func (o ProviderAuthLoginPtrOutput) ToProviderAuthLoginPtrOutputWithContext(ctx context.Context) ProviderAuthLoginPtrOutput {
 	return o
+}
+
+func (o ProviderAuthLoginPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLogin] {
+	return pulumix.Output[*ProviderAuthLogin]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginPtrOutput) Elem() ProviderAuthLoginOutput {
@@ -574,6 +626,12 @@ func (i ProviderAuthLoginAwsArgs) ToProviderAuthLoginAwsOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginAwsOutput)
 }
 
+func (i ProviderAuthLoginAwsArgs) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginAws] {
+	return pulumix.Output[ProviderAuthLoginAws]{
+		OutputState: i.ToProviderAuthLoginAwsOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i ProviderAuthLoginAwsArgs) ToProviderAuthLoginAwsPtrOutput() ProviderAuthLoginAwsPtrOutput {
 	return i.ToProviderAuthLoginAwsPtrOutputWithContext(context.Background())
 }
@@ -615,6 +673,12 @@ func (i *providerAuthLoginAwsPtrType) ToProviderAuthLoginAwsPtrOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginAwsPtrOutput)
 }
 
+func (i *providerAuthLoginAwsPtrType) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginAws] {
+	return pulumix.Output[*ProviderAuthLoginAws]{
+		OutputState: i.ToProviderAuthLoginAwsPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderAuthLoginAwsOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginAwsOutput) ElementType() reflect.Type {
@@ -637,6 +701,12 @@ func (o ProviderAuthLoginAwsOutput) ToProviderAuthLoginAwsPtrOutputWithContext(c
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProviderAuthLoginAws) *ProviderAuthLoginAws {
 		return &v
 	}).(ProviderAuthLoginAwsPtrOutput)
+}
+
+func (o ProviderAuthLoginAwsOutput) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginAws] {
+	return pulumix.Output[ProviderAuthLoginAws]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginAwsOutput) AwsAccessKeyId() pulumi.StringPtrOutput {
@@ -715,6 +785,12 @@ func (o ProviderAuthLoginAwsPtrOutput) ToProviderAuthLoginAwsPtrOutput() Provide
 
 func (o ProviderAuthLoginAwsPtrOutput) ToProviderAuthLoginAwsPtrOutputWithContext(ctx context.Context) ProviderAuthLoginAwsPtrOutput {
 	return o
+}
+
+func (o ProviderAuthLoginAwsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginAws] {
+	return pulumix.Output[*ProviderAuthLoginAws]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginAwsPtrOutput) Elem() ProviderAuthLoginAwsOutput {
@@ -924,6 +1000,12 @@ func (i ProviderAuthLoginAzureArgs) ToProviderAuthLoginAzureOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginAzureOutput)
 }
 
+func (i ProviderAuthLoginAzureArgs) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginAzure] {
+	return pulumix.Output[ProviderAuthLoginAzure]{
+		OutputState: i.ToProviderAuthLoginAzureOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i ProviderAuthLoginAzureArgs) ToProviderAuthLoginAzurePtrOutput() ProviderAuthLoginAzurePtrOutput {
 	return i.ToProviderAuthLoginAzurePtrOutputWithContext(context.Background())
 }
@@ -965,6 +1047,12 @@ func (i *providerAuthLoginAzurePtrType) ToProviderAuthLoginAzurePtrOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginAzurePtrOutput)
 }
 
+func (i *providerAuthLoginAzurePtrType) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginAzure] {
+	return pulumix.Output[*ProviderAuthLoginAzure]{
+		OutputState: i.ToProviderAuthLoginAzurePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderAuthLoginAzureOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginAzureOutput) ElementType() reflect.Type {
@@ -987,6 +1075,12 @@ func (o ProviderAuthLoginAzureOutput) ToProviderAuthLoginAzurePtrOutputWithConte
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProviderAuthLoginAzure) *ProviderAuthLoginAzure {
 		return &v
 	}).(ProviderAuthLoginAzurePtrOutput)
+}
+
+func (o ProviderAuthLoginAzureOutput) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginAzure] {
+	return pulumix.Output[ProviderAuthLoginAzure]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginAzureOutput) ClientId() pulumi.StringPtrOutput {
@@ -1049,6 +1143,12 @@ func (o ProviderAuthLoginAzurePtrOutput) ToProviderAuthLoginAzurePtrOutput() Pro
 
 func (o ProviderAuthLoginAzurePtrOutput) ToProviderAuthLoginAzurePtrOutputWithContext(ctx context.Context) ProviderAuthLoginAzurePtrOutput {
 	return o
+}
+
+func (o ProviderAuthLoginAzurePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginAzure] {
+	return pulumix.Output[*ProviderAuthLoginAzure]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginAzurePtrOutput) Elem() ProviderAuthLoginAzureOutput {
@@ -1210,6 +1310,12 @@ func (i ProviderAuthLoginCertArgs) ToProviderAuthLoginCertOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginCertOutput)
 }
 
+func (i ProviderAuthLoginCertArgs) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginCert] {
+	return pulumix.Output[ProviderAuthLoginCert]{
+		OutputState: i.ToProviderAuthLoginCertOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i ProviderAuthLoginCertArgs) ToProviderAuthLoginCertPtrOutput() ProviderAuthLoginCertPtrOutput {
 	return i.ToProviderAuthLoginCertPtrOutputWithContext(context.Background())
 }
@@ -1251,6 +1357,12 @@ func (i *providerAuthLoginCertPtrType) ToProviderAuthLoginCertPtrOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginCertPtrOutput)
 }
 
+func (i *providerAuthLoginCertPtrType) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginCert] {
+	return pulumix.Output[*ProviderAuthLoginCert]{
+		OutputState: i.ToProviderAuthLoginCertPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderAuthLoginCertOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginCertOutput) ElementType() reflect.Type {
@@ -1273,6 +1385,12 @@ func (o ProviderAuthLoginCertOutput) ToProviderAuthLoginCertPtrOutputWithContext
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProviderAuthLoginCert) *ProviderAuthLoginCert {
 		return &v
 	}).(ProviderAuthLoginCertPtrOutput)
+}
+
+func (o ProviderAuthLoginCertOutput) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginCert] {
+	return pulumix.Output[ProviderAuthLoginCert]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginCertOutput) CertFile() pulumi.StringOutput {
@@ -1311,6 +1429,12 @@ func (o ProviderAuthLoginCertPtrOutput) ToProviderAuthLoginCertPtrOutput() Provi
 
 func (o ProviderAuthLoginCertPtrOutput) ToProviderAuthLoginCertPtrOutputWithContext(ctx context.Context) ProviderAuthLoginCertPtrOutput {
 	return o
+}
+
+func (o ProviderAuthLoginCertPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginCert] {
+	return pulumix.Output[*ProviderAuthLoginCert]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginCertPtrOutput) Elem() ProviderAuthLoginCertOutput {
@@ -1420,6 +1544,12 @@ func (i ProviderAuthLoginGcpArgs) ToProviderAuthLoginGcpOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginGcpOutput)
 }
 
+func (i ProviderAuthLoginGcpArgs) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginGcp] {
+	return pulumix.Output[ProviderAuthLoginGcp]{
+		OutputState: i.ToProviderAuthLoginGcpOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i ProviderAuthLoginGcpArgs) ToProviderAuthLoginGcpPtrOutput() ProviderAuthLoginGcpPtrOutput {
 	return i.ToProviderAuthLoginGcpPtrOutputWithContext(context.Background())
 }
@@ -1461,6 +1591,12 @@ func (i *providerAuthLoginGcpPtrType) ToProviderAuthLoginGcpPtrOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginGcpPtrOutput)
 }
 
+func (i *providerAuthLoginGcpPtrType) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginGcp] {
+	return pulumix.Output[*ProviderAuthLoginGcp]{
+		OutputState: i.ToProviderAuthLoginGcpPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderAuthLoginGcpOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginGcpOutput) ElementType() reflect.Type {
@@ -1483,6 +1619,12 @@ func (o ProviderAuthLoginGcpOutput) ToProviderAuthLoginGcpPtrOutputWithContext(c
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProviderAuthLoginGcp) *ProviderAuthLoginGcp {
 		return &v
 	}).(ProviderAuthLoginGcpPtrOutput)
+}
+
+func (o ProviderAuthLoginGcpOutput) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginGcp] {
+	return pulumix.Output[ProviderAuthLoginGcp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginGcpOutput) Credentials() pulumi.StringPtrOutput {
@@ -1525,6 +1667,12 @@ func (o ProviderAuthLoginGcpPtrOutput) ToProviderAuthLoginGcpPtrOutput() Provide
 
 func (o ProviderAuthLoginGcpPtrOutput) ToProviderAuthLoginGcpPtrOutputWithContext(ctx context.Context) ProviderAuthLoginGcpPtrOutput {
 	return o
+}
+
+func (o ProviderAuthLoginGcpPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginGcp] {
+	return pulumix.Output[*ProviderAuthLoginGcp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginGcpPtrOutput) Elem() ProviderAuthLoginGcpOutput {
@@ -1639,6 +1787,12 @@ func (i ProviderAuthLoginJwtArgs) ToProviderAuthLoginJwtOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginJwtOutput)
 }
 
+func (i ProviderAuthLoginJwtArgs) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginJwt] {
+	return pulumix.Output[ProviderAuthLoginJwt]{
+		OutputState: i.ToProviderAuthLoginJwtOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i ProviderAuthLoginJwtArgs) ToProviderAuthLoginJwtPtrOutput() ProviderAuthLoginJwtPtrOutput {
 	return i.ToProviderAuthLoginJwtPtrOutputWithContext(context.Background())
 }
@@ -1680,6 +1834,12 @@ func (i *providerAuthLoginJwtPtrType) ToProviderAuthLoginJwtPtrOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginJwtPtrOutput)
 }
 
+func (i *providerAuthLoginJwtPtrType) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginJwt] {
+	return pulumix.Output[*ProviderAuthLoginJwt]{
+		OutputState: i.ToProviderAuthLoginJwtPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderAuthLoginJwtOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginJwtOutput) ElementType() reflect.Type {
@@ -1702,6 +1862,12 @@ func (o ProviderAuthLoginJwtOutput) ToProviderAuthLoginJwtPtrOutputWithContext(c
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProviderAuthLoginJwt) *ProviderAuthLoginJwt {
 		return &v
 	}).(ProviderAuthLoginJwtPtrOutput)
+}
+
+func (o ProviderAuthLoginJwtOutput) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginJwt] {
+	return pulumix.Output[ProviderAuthLoginJwt]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginJwtOutput) Jwt() pulumi.StringOutput {
@@ -1736,6 +1902,12 @@ func (o ProviderAuthLoginJwtPtrOutput) ToProviderAuthLoginJwtPtrOutput() Provide
 
 func (o ProviderAuthLoginJwtPtrOutput) ToProviderAuthLoginJwtPtrOutputWithContext(ctx context.Context) ProviderAuthLoginJwtPtrOutput {
 	return o
+}
+
+func (o ProviderAuthLoginJwtPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginJwt] {
+	return pulumix.Output[*ProviderAuthLoginJwt]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginJwtPtrOutput) Elem() ProviderAuthLoginJwtOutput {
@@ -1844,6 +2016,12 @@ func (i ProviderAuthLoginKerberosArgs) ToProviderAuthLoginKerberosOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginKerberosOutput)
 }
 
+func (i ProviderAuthLoginKerberosArgs) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginKerberos] {
+	return pulumix.Output[ProviderAuthLoginKerberos]{
+		OutputState: i.ToProviderAuthLoginKerberosOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i ProviderAuthLoginKerberosArgs) ToProviderAuthLoginKerberosPtrOutput() ProviderAuthLoginKerberosPtrOutput {
 	return i.ToProviderAuthLoginKerberosPtrOutputWithContext(context.Background())
 }
@@ -1885,6 +2063,12 @@ func (i *providerAuthLoginKerberosPtrType) ToProviderAuthLoginKerberosPtrOutputW
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginKerberosPtrOutput)
 }
 
+func (i *providerAuthLoginKerberosPtrType) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginKerberos] {
+	return pulumix.Output[*ProviderAuthLoginKerberos]{
+		OutputState: i.ToProviderAuthLoginKerberosPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderAuthLoginKerberosOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginKerberosOutput) ElementType() reflect.Type {
@@ -1907,6 +2091,12 @@ func (o ProviderAuthLoginKerberosOutput) ToProviderAuthLoginKerberosPtrOutputWit
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProviderAuthLoginKerberos) *ProviderAuthLoginKerberos {
 		return &v
 	}).(ProviderAuthLoginKerberosPtrOutput)
+}
+
+func (o ProviderAuthLoginKerberosOutput) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginKerberos] {
+	return pulumix.Output[ProviderAuthLoginKerberos]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginKerberosOutput) DisableFastNegotiation() pulumi.BoolPtrOutput {
@@ -1965,6 +2155,12 @@ func (o ProviderAuthLoginKerberosPtrOutput) ToProviderAuthLoginKerberosPtrOutput
 
 func (o ProviderAuthLoginKerberosPtrOutput) ToProviderAuthLoginKerberosPtrOutputWithContext(ctx context.Context) ProviderAuthLoginKerberosPtrOutput {
 	return o
+}
+
+func (o ProviderAuthLoginKerberosPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginKerberos] {
+	return pulumix.Output[*ProviderAuthLoginKerberos]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginKerberosPtrOutput) Elem() ProviderAuthLoginKerberosOutput {
@@ -2115,6 +2311,12 @@ func (i ProviderAuthLoginOciArgs) ToProviderAuthLoginOciOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginOciOutput)
 }
 
+func (i ProviderAuthLoginOciArgs) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginOci] {
+	return pulumix.Output[ProviderAuthLoginOci]{
+		OutputState: i.ToProviderAuthLoginOciOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i ProviderAuthLoginOciArgs) ToProviderAuthLoginOciPtrOutput() ProviderAuthLoginOciPtrOutput {
 	return i.ToProviderAuthLoginOciPtrOutputWithContext(context.Background())
 }
@@ -2156,6 +2358,12 @@ func (i *providerAuthLoginOciPtrType) ToProviderAuthLoginOciPtrOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginOciPtrOutput)
 }
 
+func (i *providerAuthLoginOciPtrType) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginOci] {
+	return pulumix.Output[*ProviderAuthLoginOci]{
+		OutputState: i.ToProviderAuthLoginOciPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderAuthLoginOciOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginOciOutput) ElementType() reflect.Type {
@@ -2178,6 +2386,12 @@ func (o ProviderAuthLoginOciOutput) ToProviderAuthLoginOciPtrOutputWithContext(c
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProviderAuthLoginOci) *ProviderAuthLoginOci {
 		return &v
 	}).(ProviderAuthLoginOciPtrOutput)
+}
+
+func (o ProviderAuthLoginOciOutput) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginOci] {
+	return pulumix.Output[ProviderAuthLoginOci]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginOciOutput) AuthType() pulumi.StringOutput {
@@ -2212,6 +2426,12 @@ func (o ProviderAuthLoginOciPtrOutput) ToProviderAuthLoginOciPtrOutput() Provide
 
 func (o ProviderAuthLoginOciPtrOutput) ToProviderAuthLoginOciPtrOutputWithContext(ctx context.Context) ProviderAuthLoginOciPtrOutput {
 	return o
+}
+
+func (o ProviderAuthLoginOciPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginOci] {
+	return pulumix.Output[*ProviderAuthLoginOci]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginOciPtrOutput) Elem() ProviderAuthLoginOciOutput {
@@ -2310,6 +2530,12 @@ func (i ProviderAuthLoginOidcArgs) ToProviderAuthLoginOidcOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginOidcOutput)
 }
 
+func (i ProviderAuthLoginOidcArgs) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginOidc] {
+	return pulumix.Output[ProviderAuthLoginOidc]{
+		OutputState: i.ToProviderAuthLoginOidcOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i ProviderAuthLoginOidcArgs) ToProviderAuthLoginOidcPtrOutput() ProviderAuthLoginOidcPtrOutput {
 	return i.ToProviderAuthLoginOidcPtrOutputWithContext(context.Background())
 }
@@ -2351,6 +2577,12 @@ func (i *providerAuthLoginOidcPtrType) ToProviderAuthLoginOidcPtrOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginOidcPtrOutput)
 }
 
+func (i *providerAuthLoginOidcPtrType) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginOidc] {
+	return pulumix.Output[*ProviderAuthLoginOidc]{
+		OutputState: i.ToProviderAuthLoginOidcPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderAuthLoginOidcOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginOidcOutput) ElementType() reflect.Type {
@@ -2373,6 +2605,12 @@ func (o ProviderAuthLoginOidcOutput) ToProviderAuthLoginOidcPtrOutputWithContext
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProviderAuthLoginOidc) *ProviderAuthLoginOidc {
 		return &v
 	}).(ProviderAuthLoginOidcPtrOutput)
+}
+
+func (o ProviderAuthLoginOidcOutput) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginOidc] {
+	return pulumix.Output[ProviderAuthLoginOidc]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginOidcOutput) CallbackAddress() pulumi.StringPtrOutput {
@@ -2411,6 +2649,12 @@ func (o ProviderAuthLoginOidcPtrOutput) ToProviderAuthLoginOidcPtrOutput() Provi
 
 func (o ProviderAuthLoginOidcPtrOutput) ToProviderAuthLoginOidcPtrOutputWithContext(ctx context.Context) ProviderAuthLoginOidcPtrOutput {
 	return o
+}
+
+func (o ProviderAuthLoginOidcPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginOidc] {
+	return pulumix.Output[*ProviderAuthLoginOidc]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginOidcPtrOutput) Elem() ProviderAuthLoginOidcOutput {
@@ -2516,6 +2760,12 @@ func (i ProviderAuthLoginRadiusArgs) ToProviderAuthLoginRadiusOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginRadiusOutput)
 }
 
+func (i ProviderAuthLoginRadiusArgs) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginRadius] {
+	return pulumix.Output[ProviderAuthLoginRadius]{
+		OutputState: i.ToProviderAuthLoginRadiusOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i ProviderAuthLoginRadiusArgs) ToProviderAuthLoginRadiusPtrOutput() ProviderAuthLoginRadiusPtrOutput {
 	return i.ToProviderAuthLoginRadiusPtrOutputWithContext(context.Background())
 }
@@ -2557,6 +2807,12 @@ func (i *providerAuthLoginRadiusPtrType) ToProviderAuthLoginRadiusPtrOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginRadiusPtrOutput)
 }
 
+func (i *providerAuthLoginRadiusPtrType) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginRadius] {
+	return pulumix.Output[*ProviderAuthLoginRadius]{
+		OutputState: i.ToProviderAuthLoginRadiusPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderAuthLoginRadiusOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginRadiusOutput) ElementType() reflect.Type {
@@ -2579,6 +2835,12 @@ func (o ProviderAuthLoginRadiusOutput) ToProviderAuthLoginRadiusPtrOutputWithCon
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProviderAuthLoginRadius) *ProviderAuthLoginRadius {
 		return &v
 	}).(ProviderAuthLoginRadiusPtrOutput)
+}
+
+func (o ProviderAuthLoginRadiusOutput) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginRadius] {
+	return pulumix.Output[ProviderAuthLoginRadius]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginRadiusOutput) Mount() pulumi.StringPtrOutput {
@@ -2613,6 +2875,12 @@ func (o ProviderAuthLoginRadiusPtrOutput) ToProviderAuthLoginRadiusPtrOutput() P
 
 func (o ProviderAuthLoginRadiusPtrOutput) ToProviderAuthLoginRadiusPtrOutputWithContext(ctx context.Context) ProviderAuthLoginRadiusPtrOutput {
 	return o
+}
+
+func (o ProviderAuthLoginRadiusPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginRadius] {
+	return pulumix.Output[*ProviderAuthLoginRadius]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginRadiusPtrOutput) Elem() ProviderAuthLoginRadiusOutput {
@@ -2705,6 +2973,12 @@ func (i ProviderAuthLoginTokenFileArgs) ToProviderAuthLoginTokenFileOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginTokenFileOutput)
 }
 
+func (i ProviderAuthLoginTokenFileArgs) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginTokenFile] {
+	return pulumix.Output[ProviderAuthLoginTokenFile]{
+		OutputState: i.ToProviderAuthLoginTokenFileOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i ProviderAuthLoginTokenFileArgs) ToProviderAuthLoginTokenFilePtrOutput() ProviderAuthLoginTokenFilePtrOutput {
 	return i.ToProviderAuthLoginTokenFilePtrOutputWithContext(context.Background())
 }
@@ -2746,6 +3020,12 @@ func (i *providerAuthLoginTokenFilePtrType) ToProviderAuthLoginTokenFilePtrOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginTokenFilePtrOutput)
 }
 
+func (i *providerAuthLoginTokenFilePtrType) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginTokenFile] {
+	return pulumix.Output[*ProviderAuthLoginTokenFile]{
+		OutputState: i.ToProviderAuthLoginTokenFilePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderAuthLoginTokenFileOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginTokenFileOutput) ElementType() reflect.Type {
@@ -2768,6 +3048,12 @@ func (o ProviderAuthLoginTokenFileOutput) ToProviderAuthLoginTokenFilePtrOutputW
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProviderAuthLoginTokenFile) *ProviderAuthLoginTokenFile {
 		return &v
 	}).(ProviderAuthLoginTokenFilePtrOutput)
+}
+
+func (o ProviderAuthLoginTokenFileOutput) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginTokenFile] {
+	return pulumix.Output[ProviderAuthLoginTokenFile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginTokenFileOutput) Filename() pulumi.StringOutput {
@@ -2794,6 +3080,12 @@ func (o ProviderAuthLoginTokenFilePtrOutput) ToProviderAuthLoginTokenFilePtrOutp
 
 func (o ProviderAuthLoginTokenFilePtrOutput) ToProviderAuthLoginTokenFilePtrOutputWithContext(ctx context.Context) ProviderAuthLoginTokenFilePtrOutput {
 	return o
+}
+
+func (o ProviderAuthLoginTokenFilePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginTokenFile] {
+	return pulumix.Output[*ProviderAuthLoginTokenFile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginTokenFilePtrOutput) Elem() ProviderAuthLoginTokenFileOutput {
@@ -2874,6 +3166,12 @@ func (i ProviderAuthLoginUserpassArgs) ToProviderAuthLoginUserpassOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginUserpassOutput)
 }
 
+func (i ProviderAuthLoginUserpassArgs) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginUserpass] {
+	return pulumix.Output[ProviderAuthLoginUserpass]{
+		OutputState: i.ToProviderAuthLoginUserpassOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i ProviderAuthLoginUserpassArgs) ToProviderAuthLoginUserpassPtrOutput() ProviderAuthLoginUserpassPtrOutput {
 	return i.ToProviderAuthLoginUserpassPtrOutputWithContext(context.Background())
 }
@@ -2915,6 +3213,12 @@ func (i *providerAuthLoginUserpassPtrType) ToProviderAuthLoginUserpassPtrOutputW
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginUserpassPtrOutput)
 }
 
+func (i *providerAuthLoginUserpassPtrType) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginUserpass] {
+	return pulumix.Output[*ProviderAuthLoginUserpass]{
+		OutputState: i.ToProviderAuthLoginUserpassPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderAuthLoginUserpassOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginUserpassOutput) ElementType() reflect.Type {
@@ -2937,6 +3241,12 @@ func (o ProviderAuthLoginUserpassOutput) ToProviderAuthLoginUserpassPtrOutputWit
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProviderAuthLoginUserpass) *ProviderAuthLoginUserpass {
 		return &v
 	}).(ProviderAuthLoginUserpassPtrOutput)
+}
+
+func (o ProviderAuthLoginUserpassOutput) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginUserpass] {
+	return pulumix.Output[ProviderAuthLoginUserpass]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginUserpassOutput) Mount() pulumi.StringPtrOutput {
@@ -2975,6 +3285,12 @@ func (o ProviderAuthLoginUserpassPtrOutput) ToProviderAuthLoginUserpassPtrOutput
 
 func (o ProviderAuthLoginUserpassPtrOutput) ToProviderAuthLoginUserpassPtrOutputWithContext(ctx context.Context) ProviderAuthLoginUserpassPtrOutput {
 	return o
+}
+
+func (o ProviderAuthLoginUserpassPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginUserpass] {
+	return pulumix.Output[*ProviderAuthLoginUserpass]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginUserpassPtrOutput) Elem() ProviderAuthLoginUserpassOutput {
@@ -3074,6 +3390,12 @@ func (i ProviderClientAuthArgs) ToProviderClientAuthOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderClientAuthOutput)
 }
 
+func (i ProviderClientAuthArgs) ToOutput(ctx context.Context) pulumix.Output[ProviderClientAuth] {
+	return pulumix.Output[ProviderClientAuth]{
+		OutputState: i.ToProviderClientAuthOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i ProviderClientAuthArgs) ToProviderClientAuthPtrOutput() ProviderClientAuthPtrOutput {
 	return i.ToProviderClientAuthPtrOutputWithContext(context.Background())
 }
@@ -3115,6 +3437,12 @@ func (i *providerClientAuthPtrType) ToProviderClientAuthPtrOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderClientAuthPtrOutput)
 }
 
+func (i *providerClientAuthPtrType) ToOutput(ctx context.Context) pulumix.Output[*ProviderClientAuth] {
+	return pulumix.Output[*ProviderClientAuth]{
+		OutputState: i.ToProviderClientAuthPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderClientAuthOutput struct{ *pulumi.OutputState }
 
 func (ProviderClientAuthOutput) ElementType() reflect.Type {
@@ -3139,6 +3467,12 @@ func (o ProviderClientAuthOutput) ToProviderClientAuthPtrOutputWithContext(ctx c
 	}).(ProviderClientAuthPtrOutput)
 }
 
+func (o ProviderClientAuthOutput) ToOutput(ctx context.Context) pulumix.Output[ProviderClientAuth] {
+	return pulumix.Output[ProviderClientAuth]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ProviderClientAuthOutput) CertFile() pulumi.StringOutput {
 	return o.ApplyT(func(v ProviderClientAuth) string { return v.CertFile }).(pulumi.StringOutput)
 }
@@ -3159,6 +3493,12 @@ func (o ProviderClientAuthPtrOutput) ToProviderClientAuthPtrOutput() ProviderCli
 
 func (o ProviderClientAuthPtrOutput) ToProviderClientAuthPtrOutputWithContext(ctx context.Context) ProviderClientAuthPtrOutput {
 	return o
+}
+
+func (o ProviderClientAuthPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ProviderClientAuth] {
+	return pulumix.Output[*ProviderClientAuth]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderClientAuthPtrOutput) Elem() ProviderClientAuthOutput {
@@ -3222,6 +3562,12 @@ func (i ProviderHeaderArgs) ToProviderHeaderOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderHeaderOutput)
 }
 
+func (i ProviderHeaderArgs) ToOutput(ctx context.Context) pulumix.Output[ProviderHeader] {
+	return pulumix.Output[ProviderHeader]{
+		OutputState: i.ToProviderHeaderOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ProviderHeaderArrayInput is an input type that accepts ProviderHeaderArray and ProviderHeaderArrayOutput values.
 // You can construct a concrete instance of `ProviderHeaderArrayInput` via:
 //
@@ -3247,6 +3593,12 @@ func (i ProviderHeaderArray) ToProviderHeaderArrayOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderHeaderArrayOutput)
 }
 
+func (i ProviderHeaderArray) ToOutput(ctx context.Context) pulumix.Output[[]ProviderHeader] {
+	return pulumix.Output[[]ProviderHeader]{
+		OutputState: i.ToProviderHeaderArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderHeaderOutput struct{ *pulumi.OutputState }
 
 func (ProviderHeaderOutput) ElementType() reflect.Type {
@@ -3259,6 +3611,12 @@ func (o ProviderHeaderOutput) ToProviderHeaderOutput() ProviderHeaderOutput {
 
 func (o ProviderHeaderOutput) ToProviderHeaderOutputWithContext(ctx context.Context) ProviderHeaderOutput {
 	return o
+}
+
+func (o ProviderHeaderOutput) ToOutput(ctx context.Context) pulumix.Output[ProviderHeader] {
+	return pulumix.Output[ProviderHeader]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderHeaderOutput) Name() pulumi.StringOutput {
@@ -3281,6 +3639,12 @@ func (o ProviderHeaderArrayOutput) ToProviderHeaderArrayOutput() ProviderHeaderA
 
 func (o ProviderHeaderArrayOutput) ToProviderHeaderArrayOutputWithContext(ctx context.Context) ProviderHeaderArrayOutput {
 	return o
+}
+
+func (o ProviderHeaderArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ProviderHeader] {
+	return pulumix.Output[[]ProviderHeader]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderHeaderArrayOutput) Index(i pulumi.IntInput) ProviderHeaderOutput {
@@ -3350,6 +3714,12 @@ func (i GetPolicyDocumentRuleArgs) ToGetPolicyDocumentRuleOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(GetPolicyDocumentRuleOutput)
 }
 
+func (i GetPolicyDocumentRuleArgs) ToOutput(ctx context.Context) pulumix.Output[GetPolicyDocumentRule] {
+	return pulumix.Output[GetPolicyDocumentRule]{
+		OutputState: i.ToGetPolicyDocumentRuleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetPolicyDocumentRuleArrayInput is an input type that accepts GetPolicyDocumentRuleArray and GetPolicyDocumentRuleArrayOutput values.
 // You can construct a concrete instance of `GetPolicyDocumentRuleArrayInput` via:
 //
@@ -3375,6 +3745,12 @@ func (i GetPolicyDocumentRuleArray) ToGetPolicyDocumentRuleArrayOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(GetPolicyDocumentRuleArrayOutput)
 }
 
+func (i GetPolicyDocumentRuleArray) ToOutput(ctx context.Context) pulumix.Output[[]GetPolicyDocumentRule] {
+	return pulumix.Output[[]GetPolicyDocumentRule]{
+		OutputState: i.ToGetPolicyDocumentRuleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetPolicyDocumentRuleOutput struct{ *pulumi.OutputState }
 
 func (GetPolicyDocumentRuleOutput) ElementType() reflect.Type {
@@ -3387,6 +3763,12 @@ func (o GetPolicyDocumentRuleOutput) ToGetPolicyDocumentRuleOutput() GetPolicyDo
 
 func (o GetPolicyDocumentRuleOutput) ToGetPolicyDocumentRuleOutputWithContext(ctx context.Context) GetPolicyDocumentRuleOutput {
 	return o
+}
+
+func (o GetPolicyDocumentRuleOutput) ToOutput(ctx context.Context) pulumix.Output[GetPolicyDocumentRule] {
+	return pulumix.Output[GetPolicyDocumentRule]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Whitelists a list of keys and values that are permitted on the given path. See Parameters below.
@@ -3443,6 +3825,12 @@ func (o GetPolicyDocumentRuleArrayOutput) ToGetPolicyDocumentRuleArrayOutputWith
 	return o
 }
 
+func (o GetPolicyDocumentRuleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetPolicyDocumentRule] {
+	return pulumix.Output[[]GetPolicyDocumentRule]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GetPolicyDocumentRuleArrayOutput) Index(i pulumi.IntInput) GetPolicyDocumentRuleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPolicyDocumentRule {
 		return vs[0].([]GetPolicyDocumentRule)[vs[1].(int)]
@@ -3486,6 +3874,12 @@ func (i GetPolicyDocumentRuleAllowedParameterArgs) ToGetPolicyDocumentRuleAllowe
 	return pulumi.ToOutputWithContext(ctx, i).(GetPolicyDocumentRuleAllowedParameterOutput)
 }
 
+func (i GetPolicyDocumentRuleAllowedParameterArgs) ToOutput(ctx context.Context) pulumix.Output[GetPolicyDocumentRuleAllowedParameter] {
+	return pulumix.Output[GetPolicyDocumentRuleAllowedParameter]{
+		OutputState: i.ToGetPolicyDocumentRuleAllowedParameterOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetPolicyDocumentRuleAllowedParameterArrayInput is an input type that accepts GetPolicyDocumentRuleAllowedParameterArray and GetPolicyDocumentRuleAllowedParameterArrayOutput values.
 // You can construct a concrete instance of `GetPolicyDocumentRuleAllowedParameterArrayInput` via:
 //
@@ -3511,6 +3905,12 @@ func (i GetPolicyDocumentRuleAllowedParameterArray) ToGetPolicyDocumentRuleAllow
 	return pulumi.ToOutputWithContext(ctx, i).(GetPolicyDocumentRuleAllowedParameterArrayOutput)
 }
 
+func (i GetPolicyDocumentRuleAllowedParameterArray) ToOutput(ctx context.Context) pulumix.Output[[]GetPolicyDocumentRuleAllowedParameter] {
+	return pulumix.Output[[]GetPolicyDocumentRuleAllowedParameter]{
+		OutputState: i.ToGetPolicyDocumentRuleAllowedParameterArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetPolicyDocumentRuleAllowedParameterOutput struct{ *pulumi.OutputState }
 
 func (GetPolicyDocumentRuleAllowedParameterOutput) ElementType() reflect.Type {
@@ -3523,6 +3923,12 @@ func (o GetPolicyDocumentRuleAllowedParameterOutput) ToGetPolicyDocumentRuleAllo
 
 func (o GetPolicyDocumentRuleAllowedParameterOutput) ToGetPolicyDocumentRuleAllowedParameterOutputWithContext(ctx context.Context) GetPolicyDocumentRuleAllowedParameterOutput {
 	return o
+}
+
+func (o GetPolicyDocumentRuleAllowedParameterOutput) ToOutput(ctx context.Context) pulumix.Output[GetPolicyDocumentRuleAllowedParameter] {
+	return pulumix.Output[GetPolicyDocumentRuleAllowedParameter]{
+		OutputState: o.OutputState,
+	}
 }
 
 // name of permitted or denied parameter.
@@ -3547,6 +3953,12 @@ func (o GetPolicyDocumentRuleAllowedParameterArrayOutput) ToGetPolicyDocumentRul
 
 func (o GetPolicyDocumentRuleAllowedParameterArrayOutput) ToGetPolicyDocumentRuleAllowedParameterArrayOutputWithContext(ctx context.Context) GetPolicyDocumentRuleAllowedParameterArrayOutput {
 	return o
+}
+
+func (o GetPolicyDocumentRuleAllowedParameterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetPolicyDocumentRuleAllowedParameter] {
+	return pulumix.Output[[]GetPolicyDocumentRuleAllowedParameter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetPolicyDocumentRuleAllowedParameterArrayOutput) Index(i pulumi.IntInput) GetPolicyDocumentRuleAllowedParameterOutput {
@@ -3592,6 +4004,12 @@ func (i GetPolicyDocumentRuleDeniedParameterArgs) ToGetPolicyDocumentRuleDeniedP
 	return pulumi.ToOutputWithContext(ctx, i).(GetPolicyDocumentRuleDeniedParameterOutput)
 }
 
+func (i GetPolicyDocumentRuleDeniedParameterArgs) ToOutput(ctx context.Context) pulumix.Output[GetPolicyDocumentRuleDeniedParameter] {
+	return pulumix.Output[GetPolicyDocumentRuleDeniedParameter]{
+		OutputState: i.ToGetPolicyDocumentRuleDeniedParameterOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetPolicyDocumentRuleDeniedParameterArrayInput is an input type that accepts GetPolicyDocumentRuleDeniedParameterArray and GetPolicyDocumentRuleDeniedParameterArrayOutput values.
 // You can construct a concrete instance of `GetPolicyDocumentRuleDeniedParameterArrayInput` via:
 //
@@ -3617,6 +4035,12 @@ func (i GetPolicyDocumentRuleDeniedParameterArray) ToGetPolicyDocumentRuleDenied
 	return pulumi.ToOutputWithContext(ctx, i).(GetPolicyDocumentRuleDeniedParameterArrayOutput)
 }
 
+func (i GetPolicyDocumentRuleDeniedParameterArray) ToOutput(ctx context.Context) pulumix.Output[[]GetPolicyDocumentRuleDeniedParameter] {
+	return pulumix.Output[[]GetPolicyDocumentRuleDeniedParameter]{
+		OutputState: i.ToGetPolicyDocumentRuleDeniedParameterArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetPolicyDocumentRuleDeniedParameterOutput struct{ *pulumi.OutputState }
 
 func (GetPolicyDocumentRuleDeniedParameterOutput) ElementType() reflect.Type {
@@ -3629,6 +4053,12 @@ func (o GetPolicyDocumentRuleDeniedParameterOutput) ToGetPolicyDocumentRuleDenie
 
 func (o GetPolicyDocumentRuleDeniedParameterOutput) ToGetPolicyDocumentRuleDeniedParameterOutputWithContext(ctx context.Context) GetPolicyDocumentRuleDeniedParameterOutput {
 	return o
+}
+
+func (o GetPolicyDocumentRuleDeniedParameterOutput) ToOutput(ctx context.Context) pulumix.Output[GetPolicyDocumentRuleDeniedParameter] {
+	return pulumix.Output[GetPolicyDocumentRuleDeniedParameter]{
+		OutputState: o.OutputState,
+	}
 }
 
 // name of permitted or denied parameter.
@@ -3653,6 +4083,12 @@ func (o GetPolicyDocumentRuleDeniedParameterArrayOutput) ToGetPolicyDocumentRule
 
 func (o GetPolicyDocumentRuleDeniedParameterArrayOutput) ToGetPolicyDocumentRuleDeniedParameterArrayOutputWithContext(ctx context.Context) GetPolicyDocumentRuleDeniedParameterArrayOutput {
 	return o
+}
+
+func (o GetPolicyDocumentRuleDeniedParameterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetPolicyDocumentRuleDeniedParameter] {
+	return pulumix.Output[[]GetPolicyDocumentRuleDeniedParameter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetPolicyDocumentRuleDeniedParameterArrayOutput) Index(i pulumi.IntInput) GetPolicyDocumentRuleDeniedParameterOutput {

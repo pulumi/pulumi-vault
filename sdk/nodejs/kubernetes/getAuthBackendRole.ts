@@ -10,11 +10,8 @@ import * as utilities from "../utilities";
  * information.
  */
 export function getAuthBackendRole(args: GetAuthBackendRoleArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthBackendRoleResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", {
         "audience": args.audience,
         "backend": args.backend,
@@ -194,9 +191,13 @@ export interface GetAuthBackendRoleResult {
      */
     readonly tokenType?: string;
 }
-
+/**
+ * Reads the Role of an Kubernetes from a Vault server. See the [Vault
+ * documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-role) for more
+ * information.
+ */
 export function getAuthBackendRoleOutput(args: GetAuthBackendRoleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthBackendRoleResult> {
-    return pulumi.output(args).apply(a => getAuthBackendRole(a, opts))
+    return pulumi.output(args).apply((a: any) => getAuthBackendRole(a, opts))
 }
 
 /**

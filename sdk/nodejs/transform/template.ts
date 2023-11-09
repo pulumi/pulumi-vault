@@ -4,6 +4,48 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * This resource supports the `/transform/template/{name}` Vault endpoint.
+ *
+ * It creates or updates a template with the given name. If a template with the name does not exist,
+ * it will be created. If the template exists, it will be updated with the new attributes.
+ *
+ * > Requires _Vault Enterprise with the Advanced Data Protection Transform Module_.
+ * See [Transform Secrets Engine](https://www.vaultproject.io/docs/secrets/transform)
+ * for more information.
+ *
+ * ## Example Usage
+ *
+ * Please note that the `pattern` below holds a regex. The regex shown
+ * is identical to the one in our [Setup](https://www.vaultproject.io/docs/secrets/transform#setup)
+ * docs, `(\d{4})-(\d{4})-(\d{4})-(\d{4})`. However, due to HCL, the
+ * backslashes must be escaped to appear correctly in Vault. For further
+ * assistance escaping your own custom regex, see String Literals.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const transform = new vault.Mount("transform", {
+ *     path: "transform",
+ *     type: "transform",
+ * });
+ * const numerics = new vault.transform.Alphabet("numerics", {
+ *     path: transform.path,
+ *     alphabet: "0123456789",
+ * });
+ * const test = new vault.transform.Template("test", {
+ *     path: numerics.path,
+ *     type: "regex",
+ *     pattern: "(\\d{4})[- ](\\d{4})[- ](\\d{4})[- ](\\d{4})",
+ *     alphabet: "numerics",
+ *     encodeFormat: "$1-$2-$3-$4",
+ *     decodeFormats: {
+ *         "last-four-digits": "$4",
+ *     },
+ * });
+ * ```
+ */
 export class Template extends pulumi.CustomResource {
     /**
      * Get an existing Template resource's state with the given name, ID, and optional extra
@@ -37,12 +79,12 @@ export class Template extends pulumi.CustomResource {
      */
     public readonly alphabet!: pulumi.Output<string | undefined>;
     /**
-     * - Optional mapping of name to regular expression template, used to customize
+     * Optional mapping of name to regular expression template, used to customize
      * the decoded output. (requires Vault Enterprise 1.9+)
      */
     public readonly decodeFormats!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
-     * - The regular expression template used to format encoded values.
+     * The regular expression template used to format encoded values.
      * (requires Vault Enterprise 1.9+)
      */
     public readonly encodeFormat!: pulumi.Output<string | undefined>;
@@ -119,12 +161,12 @@ export interface TemplateState {
      */
     alphabet?: pulumi.Input<string>;
     /**
-     * - Optional mapping of name to regular expression template, used to customize
+     * Optional mapping of name to regular expression template, used to customize
      * the decoded output. (requires Vault Enterprise 1.9+)
      */
     decodeFormats?: pulumi.Input<{[key: string]: any}>;
     /**
-     * - The regular expression template used to format encoded values.
+     * The regular expression template used to format encoded values.
      * (requires Vault Enterprise 1.9+)
      */
     encodeFormat?: pulumi.Input<string>;
@@ -162,12 +204,12 @@ export interface TemplateArgs {
      */
     alphabet?: pulumi.Input<string>;
     /**
-     * - Optional mapping of name to regular expression template, used to customize
+     * Optional mapping of name to regular expression template, used to customize
      * the decoded output. (requires Vault Enterprise 1.9+)
      */
     decodeFormats?: pulumi.Input<{[key: string]: any}>;
     /**
-     * - The regular expression template used to format encoded values.
+     * The regular expression template used to format encoded values.
      * (requires Vault Enterprise 1.9+)
      */
     encodeFormat?: pulumi.Input<string>;

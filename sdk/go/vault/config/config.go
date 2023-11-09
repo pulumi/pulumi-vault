@@ -4,9 +4,12 @@
 package config
 
 import (
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
+
+var _ = internal.GetEnvOrDefault
 
 // If true, adds the value of the `address` argument to the Terraform process environment.
 func GetAddAddressToEnv(ctx *pulumi.Context) string {
@@ -106,7 +109,11 @@ func GetMaxLeaseTtlSeconds(ctx *pulumi.Context) int {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault(1200, parseEnvInt, "TERRAFORM_VAULT_MAX_TTL").(int)
+	var value int
+	if d := internal.GetEnvOrDefault(1200, internal.ParseEnvInt, "TERRAFORM_VAULT_MAX_TTL"); d != nil {
+		value = d.(int)
+	}
+	return value
 }
 
 // Maximum number of retries when a 5xx error code is encountered.
@@ -115,7 +122,11 @@ func GetMaxRetries(ctx *pulumi.Context) int {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault(2, parseEnvInt, "VAULT_MAX_RETRIES").(int)
+	var value int
+	if d := internal.GetEnvOrDefault(2, internal.ParseEnvInt, "VAULT_MAX_RETRIES"); d != nil {
+		value = d.(int)
+	}
+	return value
 }
 
 // Maximum number of retries for Client Controlled Consistency related operations
@@ -150,7 +161,11 @@ func GetSkipTlsVerify(ctx *pulumi.Context) bool {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault(false, parseEnvBool, "VAULT_SKIP_VERIFY").(bool)
+	var value bool
+	if d := internal.GetEnvOrDefault(nil, internal.ParseEnvBool, "VAULT_SKIP_VERIFY"); d != nil {
+		value = d.(bool)
+	}
+	return value
 }
 
 // Name to use as the SNI host when connecting via TLS.

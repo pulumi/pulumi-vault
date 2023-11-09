@@ -180,12 +180,20 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
      * 
+     * * tune - (Optional) Extra configuration block. Structure is documented below.
+     * 
+     * The `tune` block is used to tune the auth backend:
+     * 
      */
     @Import(name="namespaceInState")
     private @Nullable Output<Boolean> namespaceInState;
 
     /**
      * @return Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
+     * 
+     * * tune - (Optional) Extra configuration block. Structure is documented below.
+     * 
+     * The `tune` block is used to tune the auth backend:
      * 
      */
     public Optional<Output<Boolean>> namespaceInState() {
@@ -619,6 +627,10 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param namespaceInState Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
          * 
+         * * tune - (Optional) Extra configuration block. Structure is documented below.
+         * 
+         * The `tune` block is used to tune the auth backend:
+         * 
          * @return builder
          * 
          */
@@ -629,6 +641,10 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param namespaceInState Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
+         * 
+         * * tune - (Optional) Extra configuration block. Structure is documented below.
+         * 
+         * The `tune` block is used to tune the auth backend:
          * 
          * @return builder
          * 

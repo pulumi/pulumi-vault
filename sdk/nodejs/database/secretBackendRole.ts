@@ -80,6 +80,8 @@ export class SecretBackendRole extends pulumi.CustomResource {
     /**
      * Specifies the configuration
      * for the given `credentialType`.
+     *
+     * The following options are available for each `credentialType` value:
      */
     public readonly credentialConfig!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
@@ -200,6 +202,8 @@ export interface SecretBackendRoleState {
     /**
      * Specifies the configuration
      * for the given `credentialType`.
+     *
+     * The following options are available for each `credentialType` value:
      */
     credentialConfig?: pulumi.Input<{[key: string]: any}>;
     /**
@@ -267,6 +271,8 @@ export interface SecretBackendRoleArgs {
     /**
      * Specifies the configuration
      * for the given `credentialType`.
+     *
+     * The following options are available for each `credentialType` value:
      */
     credentialConfig?: pulumi.Input<{[key: string]: any}>;
     /**

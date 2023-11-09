@@ -20,6 +20,18 @@ namespace Pulumi.Vault.Ssh.Inputs
         /// For key types that do not support setting the length a value of `[0]` should be used.
         /// Setting multiple lengths is only supported on Vault 1.10+. For prior releases `length`
         /// must be set to a single element list.
+        /// 
+        /// Example configuration blocks that might be included in the `vault.ssh.SecretBackendRole`
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        /// });
+        /// ```
         /// </summary>
         public InputList<int> Lengths
         {

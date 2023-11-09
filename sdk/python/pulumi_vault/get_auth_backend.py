@@ -173,16 +173,16 @@ def get_auth_backend(namespace: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('vault:index/getAuthBackend:getAuthBackend', __args__, opts=opts, typ=GetAuthBackendResult).value
 
     return AwaitableGetAuthBackendResult(
-        accessor=__ret__.accessor,
-        default_lease_ttl_seconds=__ret__.default_lease_ttl_seconds,
-        description=__ret__.description,
-        id=__ret__.id,
-        listing_visibility=__ret__.listing_visibility,
-        local=__ret__.local,
-        max_lease_ttl_seconds=__ret__.max_lease_ttl_seconds,
-        namespace=__ret__.namespace,
-        path=__ret__.path,
-        type=__ret__.type)
+        accessor=pulumi.get(__ret__, 'accessor'),
+        default_lease_ttl_seconds=pulumi.get(__ret__, 'default_lease_ttl_seconds'),
+        description=pulumi.get(__ret__, 'description'),
+        id=pulumi.get(__ret__, 'id'),
+        listing_visibility=pulumi.get(__ret__, 'listing_visibility'),
+        local=pulumi.get(__ret__, 'local'),
+        max_lease_ttl_seconds=pulumi.get(__ret__, 'max_lease_ttl_seconds'),
+        namespace=pulumi.get(__ret__, 'namespace'),
+        path=pulumi.get(__ret__, 'path'),
+        type=pulumi.get(__ret__, 'type'))
 
 
 @_utilities.lift_output_func(get_auth_backend)

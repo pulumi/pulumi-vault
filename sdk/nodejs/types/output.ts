@@ -265,7 +265,7 @@ export namespace database {
          */
         connectTimeout?: number;
         /**
-         * A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+         * The hosts to connect to.
          */
         hosts?: string[];
         /**
@@ -274,7 +274,7 @@ export namespace database {
          */
         insecureTls?: boolean;
         /**
-         * The root credential password used in the connection URL.
+         * The password to authenticate with.
          */
         password?: string;
         /**
@@ -296,11 +296,11 @@ export namespace database {
          */
         protocolVersion?: number;
         /**
-         * Whether to use TLS when connecting to Redis.
+         * Whether to use TLS when connecting to Cassandra.
          */
         tls?: boolean;
         /**
-         * The root credential username used in the connection URL.
+         * The username to authenticate with.
          */
         username?: string;
     }
@@ -315,7 +315,7 @@ export namespace database {
          */
         bucketName?: string;
         /**
-         * A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+         * The hosts to connect to.
          */
         hosts: string[];
         /**
@@ -324,19 +324,19 @@ export namespace database {
          */
         insecureTls?: boolean;
         /**
-         * The root credential password used in the connection URL.
+         * The password to authenticate with.
          */
         password: string;
         /**
-         * Whether to use TLS when connecting to Redis.
+         * Whether to use TLS when connecting to Cassandra.
          */
         tls?: boolean;
         /**
-         * The root credential username used in the connection URL.
+         * The username to authenticate with.
          */
         username: string;
         /**
-         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * Template describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
     }
@@ -363,7 +363,7 @@ export namespace database {
          */
         insecure?: boolean;
         /**
-         * The root credential password used in the connection URL.
+         * The password to authenticate with.
          */
         password: string;
         /**
@@ -376,20 +376,20 @@ export namespace database {
          */
         url: string;
         /**
-         * The root credential username used in the connection URL.
+         * The username to authenticate with.
          */
         username: string;
         /**
-         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * Template describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
     }
 
     export interface SecretBackendConnectionHana {
         /**
-         * Specifies the Redshift DSN. See
+         * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
@@ -398,25 +398,26 @@ export namespace database {
          */
         disableEscaping?: boolean;
         /**
-         * The maximum amount of time a connection may be reused.
+         * The maximum number of seconds to keep
+         * a connection alive for.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * the database.
+         * maintain.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * the database.
+         * use.
          */
         maxOpenConnections?: number;
         /**
-         * The root credential password used in the connection URL.
+         * The password to authenticate with.
          */
         password?: string;
         /**
-         * The root credential username used in the connection URL.
+         * The username to authenticate with.
          */
         username?: string;
     }
@@ -437,7 +438,7 @@ export namespace database {
          */
         insecureTls?: boolean;
         /**
-         * The root credential password used in the connection URL.
+         * The password to authenticate with.
          */
         password: string;
         /**
@@ -455,51 +456,52 @@ export namespace database {
          */
         port?: number;
         /**
-         * Whether to use TLS when connecting to Redis.
+         * Whether to use TLS when connecting to Cassandra.
          */
         tls?: boolean;
         /**
-         * The root credential username used in the connection URL.
+         * The username to authenticate with.
          */
         username: string;
         /**
-         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * Template describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
     }
 
     export interface SecretBackendConnectionMongodb {
         /**
-         * Specifies the Redshift DSN. See
+         * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
         /**
-         * The maximum amount of time a connection may be reused.
+         * The maximum number of seconds to keep
+         * a connection alive for.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * the database.
+         * maintain.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * the database.
+         * use.
          */
         maxOpenConnections?: number;
         /**
-         * The root credential password used in the connection URL.
+         * The password to authenticate with.
          */
         password?: string;
         /**
-         * The root credential username used in the connection URL.
+         * The username to authenticate with.
          */
         username?: string;
         /**
-         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * Template describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
     }
@@ -521,9 +523,9 @@ export namespace database {
 
     export interface SecretBackendConnectionMssql {
         /**
-         * Specifies the Redshift DSN. See
+         * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
@@ -539,29 +541,30 @@ export namespace database {
          */
         disableEscaping?: boolean;
         /**
-         * The maximum amount of time a connection may be reused.
+         * The maximum number of seconds to keep
+         * a connection alive for.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * the database.
+         * maintain.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * the database.
+         * use.
          */
         maxOpenConnections?: number;
         /**
-         * The root credential password used in the connection URL.
+         * The password to authenticate with.
          */
         password?: string;
         /**
-         * The root credential username used in the connection URL.
+         * The username to authenticate with.
          */
         username?: string;
         /**
-         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * Template describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
     }
@@ -572,28 +575,29 @@ export namespace database {
          */
         authType?: string;
         /**
-         * Specifies the Redshift DSN. See
+         * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
         /**
-         * The maximum amount of time a connection may be reused.
+         * The maximum number of seconds to keep
+         * a connection alive for.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * the database.
+         * maintain.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * the database.
+         * use.
          */
         maxOpenConnections?: number;
         /**
-         * The root credential password used in the connection URL.
+         * The password to authenticate with.
          */
         password?: string;
         /**
@@ -609,155 +613,159 @@ export namespace database {
          */
         tlsCertificateKey?: string;
         /**
-         * The root credential username used in the connection URL.
+         * The username to authenticate with.
          */
         username?: string;
         /**
-         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * Template describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
     }
 
     export interface SecretBackendConnectionMysqlAurora {
         /**
-         * Specifies the Redshift DSN. See
+         * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
         /**
-         * The maximum amount of time a connection may be reused.
+         * The maximum number of seconds to keep
+         * a connection alive for.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * the database.
+         * maintain.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * the database.
+         * use.
          */
         maxOpenConnections?: number;
         /**
-         * The root credential password used in the connection URL.
+         * The password to authenticate with.
          */
         password?: string;
         /**
-         * The root credential username used in the connection URL.
+         * The username to authenticate with.
          */
         username?: string;
         /**
-         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * Template describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
     }
 
     export interface SecretBackendConnectionMysqlLegacy {
         /**
-         * Specifies the Redshift DSN. See
+         * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
         /**
-         * The maximum amount of time a connection may be reused.
+         * The maximum number of seconds to keep
+         * a connection alive for.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * the database.
+         * maintain.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * the database.
+         * use.
          */
         maxOpenConnections?: number;
         /**
-         * The root credential password used in the connection URL.
+         * The password to authenticate with.
          */
         password?: string;
         /**
-         * The root credential username used in the connection URL.
+         * The username to authenticate with.
          */
         username?: string;
         /**
-         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * Template describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
     }
 
     export interface SecretBackendConnectionMysqlRds {
         /**
-         * Specifies the Redshift DSN. See
+         * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
         /**
-         * The maximum amount of time a connection may be reused.
+         * The maximum number of seconds to keep
+         * a connection alive for.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * the database.
+         * maintain.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * the database.
+         * use.
          */
         maxOpenConnections?: number;
         /**
-         * The root credential password used in the connection URL.
+         * The password to authenticate with.
          */
         password?: string;
         /**
-         * The root credential username used in the connection URL.
+         * The username to authenticate with.
          */
         username?: string;
         /**
-         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * Template describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
     }
 
     export interface SecretBackendConnectionOracle {
         /**
-         * Specifies the Redshift DSN. See
+         * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
         /**
-         * The maximum amount of time a connection may be reused.
+         * The maximum number of seconds to keep
+         * a connection alive for.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * the database.
+         * maintain.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * the database.
+         * use.
          */
         maxOpenConnections?: number;
         /**
-         * The root credential password used in the connection URL.
+         * The password to authenticate with.
          */
         password?: string;
         /**
-         * The root credential username used in the connection URL.
+         * The username to authenticate with.
          */
         username?: string;
         /**
-         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * Template describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
     }
@@ -768,9 +776,9 @@ export namespace database {
          */
         authType?: string;
         /**
-         * Specifies the Redshift DSN. See
+         * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
@@ -779,21 +787,22 @@ export namespace database {
          */
         disableEscaping?: boolean;
         /**
-         * The maximum amount of time a connection may be reused.
+         * The maximum number of seconds to keep
+         * a connection alive for.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * the database.
+         * maintain.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * the database.
+         * use.
          */
         maxOpenConnections?: number;
         /**
-         * The root credential password used in the connection URL.
+         * The password to authenticate with.
          */
         password?: string;
         /**
@@ -801,11 +810,11 @@ export namespace database {
          */
         serviceAccountJson?: string;
         /**
-         * The root credential username used in the connection URL.
+         * The username to authenticate with.
          */
         username?: string;
         /**
-         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * Template describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
     }
@@ -825,7 +834,7 @@ export namespace database {
          */
         insecureTls?: boolean;
         /**
-         * The root credential password used in the connection URL.
+         * The password to authenticate with.
          */
         password: string;
         /**
@@ -834,18 +843,18 @@ export namespace database {
          */
         port?: number;
         /**
-         * Whether to use TLS when connecting to Redis.
+         * Whether to use TLS when connecting to Cassandra.
          */
         tls?: boolean;
         /**
-         * The root credential username used in the connection URL.
+         * The username to authenticate with.
          */
         username: string;
     }
 
     export interface SecretBackendConnectionRedisElasticache {
         /**
-         * The root credential password used in the connection URL.
+         * The password to authenticate with.
          */
         password?: string;
         /**
@@ -858,16 +867,16 @@ export namespace database {
          */
         url: string;
         /**
-         * The root credential username used in the connection URL.
+         * The username to authenticate with.
          */
         username?: string;
     }
 
     export interface SecretBackendConnectionRedshift {
         /**
-         * Specifies the Redshift DSN. See
+         * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
@@ -876,65 +885,67 @@ export namespace database {
          */
         disableEscaping?: boolean;
         /**
-         * The maximum amount of time a connection may be reused.
+         * The maximum number of seconds to keep
+         * a connection alive for.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * the database.
+         * maintain.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * the database.
+         * use.
          */
         maxOpenConnections?: number;
         /**
-         * The root credential password used in the connection URL.
+         * The password to authenticate with.
          */
         password?: string;
         /**
-         * The root credential username used in the connection URL.
+         * The username to authenticate with.
          */
         username?: string;
         /**
-         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * Template describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
     }
 
     export interface SecretBackendConnectionSnowflake {
         /**
-         * Specifies the Redshift DSN. See
+         * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
         /**
-         * The maximum amount of time a connection may be reused.
+         * The maximum number of seconds to keep
+         * a connection alive for.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * the database.
+         * maintain.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * the database.
+         * use.
          */
         maxOpenConnections?: number;
         /**
-         * The root credential password used in the connection URL.
+         * The password to authenticate with.
          */
         password?: string;
         /**
-         * The root credential username used in the connection URL.
+         * The username to authenticate with.
          */
         username?: string;
         /**
-         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * Template describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
     }
@@ -952,10 +963,12 @@ export namespace database {
         connectTimeout?: number;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         *
+         * Supported list of database secrets engines that can be configured:
          */
         data?: {[key: string]: any};
         /**
-         * A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+         * The hosts to connect to.
          */
         hosts?: string[];
         /**
@@ -965,7 +978,7 @@ export namespace database {
         insecureTls?: boolean;
         name: string;
         /**
-         * The password to be used in the connection.
+         * The root credential password used in the connection URL.
          */
         password?: string;
         /**
@@ -995,11 +1008,11 @@ export namespace database {
          */
         rootRotationStatements?: string[];
         /**
-         * Whether to use TLS when connecting to Redis.
+         * Whether to use TLS when connecting to Cassandra.
          */
         tls?: boolean;
         /**
-         * The username to be used in the connection (the account admin level).
+         * The root credential username used in the connection URL.
          */
         username?: string;
         /**
@@ -1025,10 +1038,12 @@ export namespace database {
         bucketName?: string;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         *
+         * Supported list of database secrets engines that can be configured:
          */
         data?: {[key: string]: any};
         /**
-         * A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+         * The hosts to connect to.
          */
         hosts: string[];
         /**
@@ -1038,7 +1053,7 @@ export namespace database {
         insecureTls?: boolean;
         name: string;
         /**
-         * The password to be used in the connection.
+         * The root credential password used in the connection URL.
          */
         password: string;
         /**
@@ -1050,15 +1065,15 @@ export namespace database {
          */
         rootRotationStatements?: string[];
         /**
-         * Whether to use TLS when connecting to Redis.
+         * Whether to use TLS when connecting to Cassandra.
          */
         tls?: boolean;
         /**
-         * The username to be used in the connection (the account admin level).
+         * The root credential username used in the connection URL.
          */
         username: string;
         /**
-         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
         /**
@@ -1075,7 +1090,7 @@ export namespace database {
          */
         allowedRoles?: string[];
         /**
-         * The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
+         * The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
          */
         caCert?: string;
         /**
@@ -1092,6 +1107,8 @@ export namespace database {
         clientKey?: string;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         *
+         * Supported list of database secrets engines that can be configured:
          */
         data?: {[key: string]: any};
         /**
@@ -1100,7 +1117,7 @@ export namespace database {
         insecure?: boolean;
         name: string;
         /**
-         * The password to be used in the connection.
+         * The root credential password used in the connection URL.
          */
         password: string;
         /**
@@ -1116,15 +1133,16 @@ export namespace database {
          */
         tlsServerName?: string;
         /**
-         * The configuration endpoint for the ElastiCache cluster to connect to.
+         * The URL for Elasticsearch's API. https requires certificate
+         * by trusted CA if used.
          */
         url: string;
         /**
-         * The username to be used in the connection (the account admin level).
+         * The root credential username used in the connection URL.
          */
         username: string;
         /**
-         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
         /**
@@ -1141,12 +1159,14 @@ export namespace database {
          */
         allowedRoles?: string[];
         /**
-         * A URL containing connection information.  
-         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         * Specifies the Redshift DSN. 
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
          */
         connectionUrl?: string;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         *
+         * Supported list of database secrets engines that can be configured:
          */
         data?: {[key: string]: any};
         /**
@@ -1154,23 +1174,22 @@ export namespace database {
          */
         disableEscaping?: boolean;
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * The maximum amount of time a connection may be reused.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * maintain.
+         * the database.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * use.
+         * the database.
          */
         maxOpenConnections?: number;
         name: string;
         /**
-         * The password to be used in the connection.
+         * The root credential password used in the connection URL.
          */
         password?: string;
         /**
@@ -1182,7 +1201,7 @@ export namespace database {
          */
         rootRotationStatements?: string[];
         /**
-         * The username to be used in the connection (the account admin level).
+         * The root credential username used in the connection URL.
          */
         username?: string;
         /**
@@ -1205,6 +1224,8 @@ export namespace database {
         connectTimeout?: number;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         *
+         * Supported list of database secrets engines that can be configured:
          */
         data?: {[key: string]: any};
         /**
@@ -1218,7 +1239,7 @@ export namespace database {
         insecureTls?: boolean;
         name: string;
         /**
-         * The password to be used in the connection.
+         * The root credential password used in the connection URL.
          */
         password: string;
         /**
@@ -1244,15 +1265,15 @@ export namespace database {
          */
         rootRotationStatements?: string[];
         /**
-         * Whether to use TLS when connecting to Redis.
+         * Whether to use TLS when connecting to Cassandra.
          */
         tls?: boolean;
         /**
-         * The username to be used in the connection (the account admin level).
+         * The root credential username used in the connection URL.
          */
         username: string;
         /**
-         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
         /**
@@ -1269,32 +1290,33 @@ export namespace database {
          */
         allowedRoles?: string[];
         /**
-         * A URL containing connection information.  
-         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         * Specifies the Redshift DSN. 
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
          */
         connectionUrl?: string;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         *
+         * Supported list of database secrets engines that can be configured:
          */
         data?: {[key: string]: any};
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * The maximum amount of time a connection may be reused.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * maintain.
+         * the database.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * use.
+         * the database.
          */
         maxOpenConnections?: number;
         name: string;
         /**
-         * The password to be used in the connection.
+         * The root credential password used in the connection URL.
          */
         password?: string;
         /**
@@ -1306,11 +1328,11 @@ export namespace database {
          */
         rootRotationStatements?: string[];
         /**
-         * The username to be used in the connection (the account admin level).
+         * The root credential username used in the connection URL.
          */
         username?: string;
         /**
-         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
         /**
@@ -1328,6 +1350,8 @@ export namespace database {
         allowedRoles?: string[];
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         *
+         * Supported list of database secrets engines that can be configured:
          */
         data?: {[key: string]: any};
         name: string;
@@ -1365,8 +1389,8 @@ export namespace database {
          */
         allowedRoles?: string[];
         /**
-         * A URL containing connection information.  
-         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         * Specifies the Redshift DSN. 
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
          */
         connectionUrl?: string;
         /**
@@ -1377,6 +1401,8 @@ export namespace database {
         containedDb?: boolean;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         *
+         * Supported list of database secrets engines that can be configured:
          */
         data?: {[key: string]: any};
         /**
@@ -1384,23 +1410,22 @@ export namespace database {
          */
         disableEscaping?: boolean;
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * The maximum amount of time a connection may be reused.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * maintain.
+         * the database.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * use.
+         * the database.
          */
         maxOpenConnections?: number;
         name: string;
         /**
-         * The password to be used in the connection.
+         * The root credential password used in the connection URL.
          */
         password?: string;
         /**
@@ -1412,11 +1437,11 @@ export namespace database {
          */
         rootRotationStatements?: string[];
         /**
-         * The username to be used in the connection (the account admin level).
+         * The root credential username used in the connection URL.
          */
         username?: string;
         /**
-         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
         /**
@@ -1434,32 +1459,33 @@ export namespace database {
         allowedRoles?: string[];
         authType?: string;
         /**
-         * A URL containing connection information.  
-         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         * Specifies the Redshift DSN. 
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
          */
         connectionUrl?: string;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         *
+         * Supported list of database secrets engines that can be configured:
          */
         data?: {[key: string]: any};
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * The maximum amount of time a connection may be reused.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * maintain.
+         * the database.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * use.
+         * the database.
          */
         maxOpenConnections?: number;
         name: string;
         /**
-         * The password to be used in the connection.
+         * The root credential password used in the connection URL.
          */
         password?: string;
         /**
@@ -1480,11 +1506,11 @@ export namespace database {
          */
         tlsCertificateKey?: string;
         /**
-         * The username to be used in the connection (the account admin level).
+         * The root credential username used in the connection URL.
          */
         username?: string;
         /**
-         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
         /**
@@ -1501,32 +1527,33 @@ export namespace database {
          */
         allowedRoles?: string[];
         /**
-         * A URL containing connection information.  
-         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         * Specifies the Redshift DSN. 
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
          */
         connectionUrl?: string;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         *
+         * Supported list of database secrets engines that can be configured:
          */
         data?: {[key: string]: any};
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * The maximum amount of time a connection may be reused.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * maintain.
+         * the database.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * use.
+         * the database.
          */
         maxOpenConnections?: number;
         name: string;
         /**
-         * The password to be used in the connection.
+         * The root credential password used in the connection URL.
          */
         password?: string;
         /**
@@ -1538,11 +1565,11 @@ export namespace database {
          */
         rootRotationStatements?: string[];
         /**
-         * The username to be used in the connection (the account admin level).
+         * The root credential username used in the connection URL.
          */
         username?: string;
         /**
-         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
         /**
@@ -1559,32 +1586,33 @@ export namespace database {
          */
         allowedRoles?: string[];
         /**
-         * A URL containing connection information.  
-         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         * Specifies the Redshift DSN. 
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
          */
         connectionUrl?: string;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         *
+         * Supported list of database secrets engines that can be configured:
          */
         data?: {[key: string]: any};
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * The maximum amount of time a connection may be reused.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * maintain.
+         * the database.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * use.
+         * the database.
          */
         maxOpenConnections?: number;
         name: string;
         /**
-         * The password to be used in the connection.
+         * The root credential password used in the connection URL.
          */
         password?: string;
         /**
@@ -1596,11 +1624,11 @@ export namespace database {
          */
         rootRotationStatements?: string[];
         /**
-         * The username to be used in the connection (the account admin level).
+         * The root credential username used in the connection URL.
          */
         username?: string;
         /**
-         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
         /**
@@ -1617,32 +1645,33 @@ export namespace database {
          */
         allowedRoles?: string[];
         /**
-         * A URL containing connection information.  
-         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         * Specifies the Redshift DSN. 
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
          */
         connectionUrl?: string;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         *
+         * Supported list of database secrets engines that can be configured:
          */
         data?: {[key: string]: any};
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * The maximum amount of time a connection may be reused.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * maintain.
+         * the database.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * use.
+         * the database.
          */
         maxOpenConnections?: number;
         name: string;
         /**
-         * The password to be used in the connection.
+         * The root credential password used in the connection URL.
          */
         password?: string;
         /**
@@ -1654,11 +1683,11 @@ export namespace database {
          */
         rootRotationStatements?: string[];
         /**
-         * The username to be used in the connection (the account admin level).
+         * The root credential username used in the connection URL.
          */
         username?: string;
         /**
-         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
         /**
@@ -1675,32 +1704,33 @@ export namespace database {
          */
         allowedRoles?: string[];
         /**
-         * A URL containing connection information.  
-         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         * Specifies the Redshift DSN. 
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
          */
         connectionUrl?: string;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         *
+         * Supported list of database secrets engines that can be configured:
          */
         data?: {[key: string]: any};
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * The maximum amount of time a connection may be reused.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * maintain.
+         * the database.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * use.
+         * the database.
          */
         maxOpenConnections?: number;
         name: string;
         /**
-         * The password to be used in the connection.
+         * The root credential password used in the connection URL.
          */
         password?: string;
         /**
@@ -1712,11 +1742,11 @@ export namespace database {
          */
         rootRotationStatements?: string[];
         /**
-         * The username to be used in the connection (the account admin level).
+         * The root credential username used in the connection URL.
          */
         username?: string;
         /**
-         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
         /**
@@ -1734,12 +1764,14 @@ export namespace database {
         allowedRoles?: string[];
         authType?: string;
         /**
-         * A URL containing connection information.  
-         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         * Specifies the Redshift DSN. 
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
          */
         connectionUrl?: string;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         *
+         * Supported list of database secrets engines that can be configured:
          */
         data?: {[key: string]: any};
         /**
@@ -1747,23 +1779,22 @@ export namespace database {
          */
         disableEscaping?: boolean;
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * The maximum amount of time a connection may be reused.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * maintain.
+         * the database.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * use.
+         * the database.
          */
         maxOpenConnections?: number;
         name: string;
         /**
-         * The password to be used in the connection.
+         * The root credential password used in the connection URL.
          */
         password?: string;
         /**
@@ -1776,11 +1807,11 @@ export namespace database {
         rootRotationStatements?: string[];
         serviceAccountJson?: string;
         /**
-         * The username to be used in the connection (the account admin level).
+         * The root credential username used in the connection URL.
          */
         username?: string;
         /**
-         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
         /**
@@ -1797,11 +1828,13 @@ export namespace database {
          */
         allowedRoles?: string[];
         /**
-         * The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
+         * The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
          */
         caCert?: string;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         *
+         * Supported list of database secrets engines that can be configured:
          */
         data?: {[key: string]: any};
         /**
@@ -1815,7 +1848,7 @@ export namespace database {
         insecureTls?: boolean;
         name: string;
         /**
-         * The password to be used in the connection.
+         * The root credential password used in the connection URL.
          */
         password: string;
         /**
@@ -1832,11 +1865,11 @@ export namespace database {
          */
         rootRotationStatements?: string[];
         /**
-         * Whether to use TLS when connecting to Redis.
+         * Whether to use TLS when connecting to Cassandra.
          */
         tls?: boolean;
         /**
-         * The username to be used in the connection (the account admin level).
+         * The root credential username used in the connection URL.
          */
         username: string;
         /**
@@ -1854,11 +1887,13 @@ export namespace database {
         allowedRoles?: string[];
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         *
+         * Supported list of database secrets engines that can be configured:
          */
         data?: {[key: string]: any};
         name: string;
         /**
-         * The password to be used in the connection.
+         * The root credential password used in the connection URL.
          */
         password?: string;
         /**
@@ -1875,11 +1910,12 @@ export namespace database {
          */
         rootRotationStatements?: string[];
         /**
-         * The configuration endpoint for the ElastiCache cluster to connect to.
+         * The URL for Elasticsearch's API. https requires certificate
+         * by trusted CA if used.
          */
         url: string;
         /**
-         * The username to be used in the connection (the account admin level).
+         * The root credential username used in the connection URL.
          */
         username?: string;
         /**
@@ -1896,12 +1932,14 @@ export namespace database {
          */
         allowedRoles?: string[];
         /**
-         * A URL containing connection information.  
-         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         * Specifies the Redshift DSN. 
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
          */
         connectionUrl?: string;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         *
+         * Supported list of database secrets engines that can be configured:
          */
         data?: {[key: string]: any};
         /**
@@ -1909,23 +1947,22 @@ export namespace database {
          */
         disableEscaping?: boolean;
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * The maximum amount of time a connection may be reused.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * maintain.
+         * the database.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * use.
+         * the database.
          */
         maxOpenConnections?: number;
         name: string;
         /**
-         * The password to be used in the connection.
+         * The root credential password used in the connection URL.
          */
         password?: string;
         /**
@@ -1937,11 +1974,11 @@ export namespace database {
          */
         rootRotationStatements?: string[];
         /**
-         * The username to be used in the connection (the account admin level).
+         * The root credential username used in the connection URL.
          */
         username?: string;
         /**
-         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
         /**
@@ -1958,32 +1995,33 @@ export namespace database {
          */
         allowedRoles?: string[];
         /**
-         * A URL containing connection information.  
-         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         * Specifies the Redshift DSN. 
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
          */
         connectionUrl?: string;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         *
+         * Supported list of database secrets engines that can be configured:
          */
         data?: {[key: string]: any};
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * The maximum amount of time a connection may be reused.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * maintain.
+         * the database.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * use.
+         * the database.
          */
         maxOpenConnections?: number;
         name: string;
         /**
-         * The password to be used in the connection.
+         * The root credential password used in the connection URL.
          */
         password?: string;
         /**
@@ -1995,11 +2033,11 @@ export namespace database {
          */
         rootRotationStatements?: string[];
         /**
-         * The username to be used in the connection (the account admin level).
+         * The root credential username used in the connection URL.
          */
         username?: string;
         /**
-         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
         /**
@@ -2019,6 +2057,11 @@ export namespace gcp {
         api?: string;
         /**
          * Replaces the service endpoint used in API requests to `https://compute.googleapis.com`.
+         *
+         * The endpoint value provided for a given key has the form of `scheme://host:port`.
+         * The `scheme://` and `:port` portions of the endpoint value are optional.
+         *
+         * For more details on the usage of each argument consult the [Vault GCP API documentation](https://www.vaultproject.io/api-docs/auth/gcp#configure).
          */
         compute?: string;
         /**
@@ -2242,8 +2285,8 @@ export namespace managed {
          */
         anyMount: boolean;
         /**
-         * Supplies the curve value when using the `CKM_ECDSA` mechanism.
-         * Required if `allowGenerateKey` is `true`.
+         * The curve to use for an ECDSA key. Used when `keyType` 
+         * is `ECDSA`. Required if `allowGenerateKey` is `true`.
          */
         curve?: string;
         /**
@@ -2251,9 +2294,7 @@ export namespace managed {
          */
         endpoint?: string;
         /**
-         * Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
-         * `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
-         * `allowGenerateKey` is `true`.
+         * The size in bits for an RSA key.
          */
         keyBits: string;
         /**
@@ -2315,9 +2356,7 @@ export namespace managed {
          */
         environment: string;
         /**
-         * Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
-         * `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
-         * `allowGenerateKey` is `true`.
+         * The size in bits for an RSA key.
          */
         keyBits?: string;
         /**
@@ -2371,8 +2410,8 @@ export namespace managed {
          */
         anyMount: boolean;
         /**
-         * Supplies the curve value when using the `CKM_ECDSA` mechanism.
-         * Required if `allowGenerateKey` is `true`.
+         * The curve to use for an ECDSA key. Used when `keyType` 
+         * is `ECDSA`. Required if `allowGenerateKey` is `true`.
          */
         curve?: string;
         /**
@@ -2381,9 +2420,7 @@ export namespace managed {
          */
         forceRwSession?: string;
         /**
-         * Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
-         * `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
-         * `allowGenerateKey` is `true`.
+         * The size in bits for an RSA key.
          */
         keyBits?: string;
         /**
@@ -2433,7 +2470,7 @@ export namespace okta {
          */
         groupName: string;
         /**
-         * List of Vault policies to associate with this user
+         * Vault policies to associate with this group
          */
         policies: string[];
     }
@@ -2444,7 +2481,7 @@ export namespace okta {
          */
         groups?: string[];
         /**
-         * List of Vault policies to associate with this user
+         * Vault policies to associate with this group
          */
         policies?: string[];
         /**
@@ -2456,6 +2493,23 @@ export namespace okta {
 }
 
 export namespace pkiSecret {
+    export interface SecretBackendRolePolicyIdentifier {
+        /**
+         * The URL of the CPS for the policy identifier
+         *
+         * Example usage:
+         */
+        cps?: string;
+        /**
+         * A notice for the policy identifier
+         */
+        notice?: string;
+        /**
+         * The OID for the policy identifier
+         */
+        oid: string;
+    }
+
 }
 
 export namespace rabbitMq {
@@ -2489,6 +2543,12 @@ export namespace ssh {
          * For key types that do not support setting the length a value of `[0]` should be used.
          * Setting multiple lengths is only supported on Vault 1.10+. For prior releases `length`
          * must be set to a single element list.
+         *
+         * Example configuration blocks that might be included in the `vault.ssh.SecretBackendRole`
+         *
+         * ```typescript
+         * import * as pulumi from "@pulumi/pulumi";
+         * ```
          */
         lengths: number[];
         /**

@@ -30,6 +30,8 @@ namespace Pulumi.Vault.Database.Inputs
 
         /// <summary>
         /// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        /// 
+        /// Supported list of database secrets engines that can be configured:
         /// </summary>
         public InputMap<object> Data
         {

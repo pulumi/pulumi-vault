@@ -51,7 +51,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const internalIdentityGroup = new vault.identity.Group("internal", {
+ * const internalIdentity_groupGroup = new vault.identity.Group("internalIdentity/groupGroup", {
  *     metadata: {
  *         version: "2",
  *     },
@@ -61,7 +61,7 @@ import * as utilities from "../utilities";
  *     ],
  *     type: "internal",
  * });
- * const internalGroup = new vault.identity.Group("Internal", {
+ * const internalGroup = new vault.identity.Group("internalGroup", {
  *     metadata: {
  *         version: "2",
  *     },

@@ -280,23 +280,23 @@ def get_access_credentials(backend: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('vault:azure/getAccessCredentials:getAccessCredentials', __args__, opts=opts, typ=GetAccessCredentialsResult).value
 
     return AwaitableGetAccessCredentialsResult(
-        backend=__ret__.backend,
-        client_id=__ret__.client_id,
-        client_secret=__ret__.client_secret,
-        environment=__ret__.environment,
-        id=__ret__.id,
-        lease_duration=__ret__.lease_duration,
-        lease_id=__ret__.lease_id,
-        lease_renewable=__ret__.lease_renewable,
-        lease_start_time=__ret__.lease_start_time,
-        max_cred_validation_seconds=__ret__.max_cred_validation_seconds,
-        namespace=__ret__.namespace,
-        num_seconds_between_tests=__ret__.num_seconds_between_tests,
-        num_sequential_successes=__ret__.num_sequential_successes,
-        role=__ret__.role,
-        subscription_id=__ret__.subscription_id,
-        tenant_id=__ret__.tenant_id,
-        validate_creds=__ret__.validate_creds)
+        backend=pulumi.get(__ret__, 'backend'),
+        client_id=pulumi.get(__ret__, 'client_id'),
+        client_secret=pulumi.get(__ret__, 'client_secret'),
+        environment=pulumi.get(__ret__, 'environment'),
+        id=pulumi.get(__ret__, 'id'),
+        lease_duration=pulumi.get(__ret__, 'lease_duration'),
+        lease_id=pulumi.get(__ret__, 'lease_id'),
+        lease_renewable=pulumi.get(__ret__, 'lease_renewable'),
+        lease_start_time=pulumi.get(__ret__, 'lease_start_time'),
+        max_cred_validation_seconds=pulumi.get(__ret__, 'max_cred_validation_seconds'),
+        namespace=pulumi.get(__ret__, 'namespace'),
+        num_seconds_between_tests=pulumi.get(__ret__, 'num_seconds_between_tests'),
+        num_sequential_successes=pulumi.get(__ret__, 'num_sequential_successes'),
+        role=pulumi.get(__ret__, 'role'),
+        subscription_id=pulumi.get(__ret__, 'subscription_id'),
+        tenant_id=pulumi.get(__ret__, 'tenant_id'),
+        validate_creds=pulumi.get(__ret__, 'validate_creds'))
 
 
 @_utilities.lift_output_func(get_access_credentials)

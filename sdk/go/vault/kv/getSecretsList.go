@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -31,7 +33,7 @@ import (
 //			kvv1, err := vault.NewMount(ctx, "kvv1", &vault.MountArgs{
 //				Path: pulumi.String("kvv1"),
 //				Type: pulumi.String("kv"),
-//				Options: pulumi.AnyMap{
+//				Options: pulumi.Map{
 //					"version": pulumi.Any("1"),
 //				},
 //				Description: pulumi.String("KV Version 1 secret engine mount"),
@@ -83,6 +85,7 @@ import (
 //
 // Use of this resource requires the `read` capability on the given path.
 func GetSecretsList(ctx *pulumi.Context, args *GetSecretsListArgs, opts ...pulumi.InvokeOption) (*GetSecretsListResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSecretsListResult
 	err := ctx.Invoke("vault:kv/getSecretsList:getSecretsList", args, &rv, opts...)
 	if err != nil {
@@ -153,6 +156,12 @@ func (o GetSecretsListResultOutput) ToGetSecretsListResultOutput() GetSecretsLis
 
 func (o GetSecretsListResultOutput) ToGetSecretsListResultOutputWithContext(ctx context.Context) GetSecretsListResultOutput {
 	return o
+}
+
+func (o GetSecretsListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSecretsListResult] {
+	return pulumix.Output[GetSecretsListResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages policies for an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
@@ -108,6 +110,10 @@ type GroupPolicies struct {
 	pulumi.CustomResourceState
 
 	// Defaults to `true`.
+	//
+	// If `true`, this resource will take exclusive control of the policies assigned to the group and will set it equal to what is specified in the resource.
+	//
+	// If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the group. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
 	Exclusive pulumi.BoolPtrOutput `pulumi:"exclusive"`
 	// Group ID to assign policies to.
 	GroupId pulumi.StringOutput `pulumi:"groupId"`
@@ -135,6 +141,7 @@ func NewGroupPolicies(ctx *pulumi.Context,
 	if args.Policies == nil {
 		return nil, errors.New("invalid value for required argument 'Policies'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource GroupPolicies
 	err := ctx.RegisterResource("vault:identity/groupPolicies:GroupPolicies", name, args, &resource, opts...)
 	if err != nil {
@@ -158,6 +165,10 @@ func GetGroupPolicies(ctx *pulumi.Context,
 // Input properties used for looking up and filtering GroupPolicies resources.
 type groupPoliciesState struct {
 	// Defaults to `true`.
+	//
+	// If `true`, this resource will take exclusive control of the policies assigned to the group and will set it equal to what is specified in the resource.
+	//
+	// If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the group. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
 	Exclusive *bool `pulumi:"exclusive"`
 	// Group ID to assign policies to.
 	GroupId *string `pulumi:"groupId"`
@@ -174,6 +185,10 @@ type groupPoliciesState struct {
 
 type GroupPoliciesState struct {
 	// Defaults to `true`.
+	//
+	// If `true`, this resource will take exclusive control of the policies assigned to the group and will set it equal to what is specified in the resource.
+	//
+	// If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the group. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
 	Exclusive pulumi.BoolPtrInput
 	// Group ID to assign policies to.
 	GroupId pulumi.StringPtrInput
@@ -194,6 +209,10 @@ func (GroupPoliciesState) ElementType() reflect.Type {
 
 type groupPoliciesArgs struct {
 	// Defaults to `true`.
+	//
+	// If `true`, this resource will take exclusive control of the policies assigned to the group and will set it equal to what is specified in the resource.
+	//
+	// If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the group. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
 	Exclusive *bool `pulumi:"exclusive"`
 	// Group ID to assign policies to.
 	GroupId string `pulumi:"groupId"`
@@ -209,6 +228,10 @@ type groupPoliciesArgs struct {
 // The set of arguments for constructing a GroupPolicies resource.
 type GroupPoliciesArgs struct {
 	// Defaults to `true`.
+	//
+	// If `true`, this resource will take exclusive control of the policies assigned to the group and will set it equal to what is specified in the resource.
+	//
+	// If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the group. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
 	Exclusive pulumi.BoolPtrInput
 	// Group ID to assign policies to.
 	GroupId pulumi.StringInput
@@ -244,6 +267,12 @@ func (i *GroupPolicies) ToGroupPoliciesOutputWithContext(ctx context.Context) Gr
 	return pulumi.ToOutputWithContext(ctx, i).(GroupPoliciesOutput)
 }
 
+func (i *GroupPolicies) ToOutput(ctx context.Context) pulumix.Output[*GroupPolicies] {
+	return pulumix.Output[*GroupPolicies]{
+		OutputState: i.ToGroupPoliciesOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GroupPoliciesArrayInput is an input type that accepts GroupPoliciesArray and GroupPoliciesArrayOutput values.
 // You can construct a concrete instance of `GroupPoliciesArrayInput` via:
 //
@@ -267,6 +296,12 @@ func (i GroupPoliciesArray) ToGroupPoliciesArrayOutput() GroupPoliciesArrayOutpu
 
 func (i GroupPoliciesArray) ToGroupPoliciesArrayOutputWithContext(ctx context.Context) GroupPoliciesArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GroupPoliciesArrayOutput)
+}
+
+func (i GroupPoliciesArray) ToOutput(ctx context.Context) pulumix.Output[[]*GroupPolicies] {
+	return pulumix.Output[[]*GroupPolicies]{
+		OutputState: i.ToGroupPoliciesArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // GroupPoliciesMapInput is an input type that accepts GroupPoliciesMap and GroupPoliciesMapOutput values.
@@ -294,6 +329,12 @@ func (i GroupPoliciesMap) ToGroupPoliciesMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(GroupPoliciesMapOutput)
 }
 
+func (i GroupPoliciesMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*GroupPolicies] {
+	return pulumix.Output[map[string]*GroupPolicies]{
+		OutputState: i.ToGroupPoliciesMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GroupPoliciesOutput struct{ *pulumi.OutputState }
 
 func (GroupPoliciesOutput) ElementType() reflect.Type {
@@ -308,7 +349,17 @@ func (o GroupPoliciesOutput) ToGroupPoliciesOutputWithContext(ctx context.Contex
 	return o
 }
 
+func (o GroupPoliciesOutput) ToOutput(ctx context.Context) pulumix.Output[*GroupPolicies] {
+	return pulumix.Output[*GroupPolicies]{
+		OutputState: o.OutputState,
+	}
+}
+
 // Defaults to `true`.
+//
+// If `true`, this resource will take exclusive control of the policies assigned to the group and will set it equal to what is specified in the resource.
+//
+// If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the group. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
 func (o GroupPoliciesOutput) Exclusive() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *GroupPolicies) pulumi.BoolPtrOutput { return v.Exclusive }).(pulumi.BoolPtrOutput)
 }
@@ -350,6 +401,12 @@ func (o GroupPoliciesArrayOutput) ToGroupPoliciesArrayOutputWithContext(ctx cont
 	return o
 }
 
+func (o GroupPoliciesArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*GroupPolicies] {
+	return pulumix.Output[[]*GroupPolicies]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GroupPoliciesArrayOutput) Index(i pulumi.IntInput) GroupPoliciesOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *GroupPolicies {
 		return vs[0].([]*GroupPolicies)[vs[1].(int)]
@@ -368,6 +425,12 @@ func (o GroupPoliciesMapOutput) ToGroupPoliciesMapOutput() GroupPoliciesMapOutpu
 
 func (o GroupPoliciesMapOutput) ToGroupPoliciesMapOutputWithContext(ctx context.Context) GroupPoliciesMapOutput {
 	return o
+}
+
+func (o GroupPoliciesMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*GroupPolicies] {
+	return pulumix.Output[map[string]*GroupPolicies]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GroupPoliciesMapOutput) MapIndex(k pulumi.StringInput) GroupPoliciesOutput {

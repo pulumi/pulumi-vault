@@ -48,9 +48,7 @@ namespace Pulumi.Vault.Managed.Outputs
         /// </summary>
         public readonly string? Environment;
         /// <summary>
-        /// Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
-        /// `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
-        /// `allow_generate_key` is `true`.
+        /// The size in bits for an RSA key.
         /// </summary>
         public readonly string? KeyBits;
         /// <summary>

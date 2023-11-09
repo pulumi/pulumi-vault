@@ -80,9 +80,21 @@ public final class GetSecretArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.version);
     }
 
+    /**
+     * If set to true, stores `lease_start_time` in the TF state.
+     * Note that storing the `lease_start_time` in the TF state will cause a persistent drift
+     * on every `pulumi preview` and will require a `pulumi up`.
+     * 
+     */
     @Import(name="withLeaseStartTime")
     private @Nullable Output<Boolean> withLeaseStartTime;
 
+    /**
+     * @return If set to true, stores `lease_start_time` in the TF state.
+     * Note that storing the `lease_start_time` in the TF state will cause a persistent drift
+     * on every `pulumi preview` and will require a `pulumi up`.
+     * 
+     */
     public Optional<Output<Boolean>> withLeaseStartTime() {
         return Optional.ofNullable(this.withLeaseStartTime);
     }
@@ -195,11 +207,27 @@ public final class GetSecretArgs extends com.pulumi.resources.InvokeArgs {
             return version(Output.of(version));
         }
 
+        /**
+         * @param withLeaseStartTime If set to true, stores `lease_start_time` in the TF state.
+         * Note that storing the `lease_start_time` in the TF state will cause a persistent drift
+         * on every `pulumi preview` and will require a `pulumi up`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder withLeaseStartTime(@Nullable Output<Boolean> withLeaseStartTime) {
             $.withLeaseStartTime = withLeaseStartTime;
             return this;
         }
 
+        /**
+         * @param withLeaseStartTime If set to true, stores `lease_start_time` in the TF state.
+         * Note that storing the `lease_start_time` in the TF state will cause a persistent drift
+         * on every `pulumi preview` and will require a `pulumi up`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder withLeaseStartTime(Boolean withLeaseStartTime) {
             return withLeaseStartTime(Output.of(withLeaseStartTime));
         }

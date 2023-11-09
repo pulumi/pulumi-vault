@@ -143,7 +143,6 @@ import javax.annotation.Nullable;
  * ```sh
  *  $ pulumi import vault:jwt/authBackend:AuthBackend oidc oidc
  * ```
- * 
  *  or
  * 
  * ```sh
@@ -318,12 +317,20 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
     /**
      * Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
      * 
+     * * tune - (Optional) Extra configuration block. Structure is documented below.
+     * 
+     * The `tune` block is used to tune the auth backend:
+     * 
      */
     @Export(name="namespaceInState", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> namespaceInState;
 
     /**
      * @return Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
+     * 
+     * * tune - (Optional) Extra configuration block. Structure is documented below.
+     * 
+     * The `tune` block is used to tune the auth backend:
      * 
      */
     public Output<Optional<Boolean>> namespaceInState() {

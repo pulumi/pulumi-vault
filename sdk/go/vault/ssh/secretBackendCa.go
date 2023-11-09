@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Provides a resource to manage CA information in an SSH secret backend
@@ -67,7 +69,7 @@ type SecretBackendCa struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
-	// The private key part the SSH CA key pair; required if generateSigningKey is false.
+	// Private key part the SSH CA key pair; required if generate_signing_key is false.
 	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
 	// The public key part the SSH CA key pair; required if generateSigningKey is false.
 	PublicKey pulumi.StringOutput `pulumi:"publicKey"`
@@ -81,12 +83,13 @@ func NewSecretBackendCa(ctx *pulumi.Context,
 	}
 
 	if args.PrivateKey != nil {
-		args.PrivateKey = pulumi.ToSecret(args.PrivateKey).(pulumi.StringPtrOutput)
+		args.PrivateKey = pulumi.ToSecret(args.PrivateKey).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"privateKey",
 	})
 	opts = append(opts, secrets)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SecretBackendCa
 	err := ctx.RegisterResource("vault:ssh/secretBackendCa:SecretBackendCa", name, args, &resource, opts...)
 	if err != nil {
@@ -118,7 +121,7 @@ type secretBackendCaState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
-	// The private key part the SSH CA key pair; required if generateSigningKey is false.
+	// Private key part the SSH CA key pair; required if generate_signing_key is false.
 	PrivateKey *string `pulumi:"privateKey"`
 	// The public key part the SSH CA key pair; required if generateSigningKey is false.
 	PublicKey *string `pulumi:"publicKey"`
@@ -134,7 +137,7 @@ type SecretBackendCaState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
-	// The private key part the SSH CA key pair; required if generateSigningKey is false.
+	// Private key part the SSH CA key pair; required if generate_signing_key is false.
 	PrivateKey pulumi.StringPtrInput
 	// The public key part the SSH CA key pair; required if generateSigningKey is false.
 	PublicKey pulumi.StringPtrInput
@@ -154,7 +157,7 @@ type secretBackendCaArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
-	// The private key part the SSH CA key pair; required if generateSigningKey is false.
+	// Private key part the SSH CA key pair; required if generate_signing_key is false.
 	PrivateKey *string `pulumi:"privateKey"`
 	// The public key part the SSH CA key pair; required if generateSigningKey is false.
 	PublicKey *string `pulumi:"publicKey"`
@@ -171,7 +174,7 @@ type SecretBackendCaArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
-	// The private key part the SSH CA key pair; required if generateSigningKey is false.
+	// Private key part the SSH CA key pair; required if generate_signing_key is false.
 	PrivateKey pulumi.StringPtrInput
 	// The public key part the SSH CA key pair; required if generateSigningKey is false.
 	PublicKey pulumi.StringPtrInput
@@ -200,6 +203,12 @@ func (i *SecretBackendCa) ToSecretBackendCaOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendCaOutput)
 }
 
+func (i *SecretBackendCa) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendCa] {
+	return pulumix.Output[*SecretBackendCa]{
+		OutputState: i.ToSecretBackendCaOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SecretBackendCaArrayInput is an input type that accepts SecretBackendCaArray and SecretBackendCaArrayOutput values.
 // You can construct a concrete instance of `SecretBackendCaArrayInput` via:
 //
@@ -223,6 +232,12 @@ func (i SecretBackendCaArray) ToSecretBackendCaArrayOutput() SecretBackendCaArra
 
 func (i SecretBackendCaArray) ToSecretBackendCaArrayOutputWithContext(ctx context.Context) SecretBackendCaArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendCaArrayOutput)
+}
+
+func (i SecretBackendCaArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendCa] {
+	return pulumix.Output[[]*SecretBackendCa]{
+		OutputState: i.ToSecretBackendCaArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SecretBackendCaMapInput is an input type that accepts SecretBackendCaMap and SecretBackendCaMapOutput values.
@@ -250,6 +265,12 @@ func (i SecretBackendCaMap) ToSecretBackendCaMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendCaMapOutput)
 }
 
+func (i SecretBackendCaMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendCa] {
+	return pulumix.Output[map[string]*SecretBackendCa]{
+		OutputState: i.ToSecretBackendCaMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SecretBackendCaOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendCaOutput) ElementType() reflect.Type {
@@ -262,6 +283,12 @@ func (o SecretBackendCaOutput) ToSecretBackendCaOutput() SecretBackendCaOutput {
 
 func (o SecretBackendCaOutput) ToSecretBackendCaOutputWithContext(ctx context.Context) SecretBackendCaOutput {
 	return o
+}
+
+func (o SecretBackendCaOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendCa] {
+	return pulumix.Output[*SecretBackendCa]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The path where the SSH secret backend is mounted. Defaults to 'ssh'
@@ -282,7 +309,7 @@ func (o SecretBackendCaOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendCa) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
-// The private key part the SSH CA key pair; required if generateSigningKey is false.
+// Private key part the SSH CA key pair; required if generate_signing_key is false.
 func (o SecretBackendCaOutput) PrivateKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendCa) pulumi.StringOutput { return v.PrivateKey }).(pulumi.StringOutput)
 }
@@ -306,6 +333,12 @@ func (o SecretBackendCaArrayOutput) ToSecretBackendCaArrayOutputWithContext(ctx 
 	return o
 }
 
+func (o SecretBackendCaArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendCa] {
+	return pulumix.Output[[]*SecretBackendCa]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SecretBackendCaArrayOutput) Index(i pulumi.IntInput) SecretBackendCaOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackendCa {
 		return vs[0].([]*SecretBackendCa)[vs[1].(int)]
@@ -324,6 +357,12 @@ func (o SecretBackendCaMapOutput) ToSecretBackendCaMapOutput() SecretBackendCaMa
 
 func (o SecretBackendCaMapOutput) ToSecretBackendCaMapOutputWithContext(ctx context.Context) SecretBackendCaMapOutput {
 	return o
+}
+
+func (o SecretBackendCaMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendCa] {
+	return pulumix.Output[map[string]*SecretBackendCa]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SecretBackendCaMapOutput) MapIndex(k pulumi.StringInput) SecretBackendCaOutput {

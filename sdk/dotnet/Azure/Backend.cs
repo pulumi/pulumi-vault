@@ -15,6 +15,7 @@ namespace Pulumi.Vault.Azure
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -36,6 +37,7 @@ namespace Pulumi.Vault.Azure
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -58,13 +60,13 @@ namespace Pulumi.Vault.Azure
     public partial class Backend : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// - The OAuth2 client id to connect to Azure.
+        /// The OAuth2 client id to connect to Azure.
         /// </summary>
         [Output("clientId")]
         public Output<string?> ClientId { get; private set; } = null!;
 
         /// <summary>
-        /// - The OAuth2 client secret to connect to Azure.
+        /// The OAuth2 client secret to connect to Azure.
         /// </summary>
         [Output("clientSecret")]
         public Output<string?> ClientSecret { get; private set; } = null!;
@@ -83,7 +85,7 @@ namespace Pulumi.Vault.Azure
         public Output<bool?> DisableRemount { get; private set; } = null!;
 
         /// <summary>
-        /// - The Azure environment.
+        /// The Azure environment.
         /// </summary>
         [Output("environment")]
         public Output<string?> Environment { get; private set; } = null!;
@@ -98,25 +100,25 @@ namespace Pulumi.Vault.Azure
         public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
-        /// - The unique path this backend should be mounted at. Defaults to `azure`.
+        /// The unique path this backend should be mounted at. Defaults to `azure`.
         /// </summary>
         [Output("path")]
         public Output<string?> Path { get; private set; } = null!;
 
         /// <summary>
-        /// - The subscription id for the Azure Active Directory.
+        /// The subscription id for the Azure Active Directory.
         /// </summary>
         [Output("subscriptionId")]
         public Output<string> SubscriptionId { get; private set; } = null!;
 
         /// <summary>
-        /// - The tenant id for the Azure Active Directory.
+        /// The tenant id for the Azure Active Directory.
         /// </summary>
         [Output("tenantId")]
         public Output<string> TenantId { get; private set; } = null!;
 
         /// <summary>
-        /// - Indicates whether the secrets engine should use 
+        /// Indicates whether the secrets engine should use 
         /// the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
         /// For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
         /// </summary>
@@ -180,7 +182,7 @@ namespace Pulumi.Vault.Azure
         private Input<string>? _clientId;
 
         /// <summary>
-        /// - The OAuth2 client id to connect to Azure.
+        /// The OAuth2 client id to connect to Azure.
         /// </summary>
         public Input<string>? ClientId
         {
@@ -196,7 +198,7 @@ namespace Pulumi.Vault.Azure
         private Input<string>? _clientSecret;
 
         /// <summary>
-        /// - The OAuth2 client secret to connect to Azure.
+        /// The OAuth2 client secret to connect to Azure.
         /// </summary>
         public Input<string>? ClientSecret
         {
@@ -222,7 +224,7 @@ namespace Pulumi.Vault.Azure
         public Input<bool>? DisableRemount { get; set; }
 
         /// <summary>
-        /// - The Azure environment.
+        /// The Azure environment.
         /// </summary>
         [Input("environment")]
         public Input<string>? Environment { get; set; }
@@ -237,7 +239,7 @@ namespace Pulumi.Vault.Azure
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// - The unique path this backend should be mounted at. Defaults to `azure`.
+        /// The unique path this backend should be mounted at. Defaults to `azure`.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
@@ -246,7 +248,7 @@ namespace Pulumi.Vault.Azure
         private Input<string>? _subscriptionId;
 
         /// <summary>
-        /// - The subscription id for the Azure Active Directory.
+        /// The subscription id for the Azure Active Directory.
         /// </summary>
         public Input<string>? SubscriptionId
         {
@@ -262,7 +264,7 @@ namespace Pulumi.Vault.Azure
         private Input<string>? _tenantId;
 
         /// <summary>
-        /// - The tenant id for the Azure Active Directory.
+        /// The tenant id for the Azure Active Directory.
         /// </summary>
         public Input<string>? TenantId
         {
@@ -275,7 +277,7 @@ namespace Pulumi.Vault.Azure
         }
 
         /// <summary>
-        /// - Indicates whether the secrets engine should use 
+        /// Indicates whether the secrets engine should use 
         /// the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
         /// For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
         /// </summary>
@@ -294,7 +296,7 @@ namespace Pulumi.Vault.Azure
         private Input<string>? _clientId;
 
         /// <summary>
-        /// - The OAuth2 client id to connect to Azure.
+        /// The OAuth2 client id to connect to Azure.
         /// </summary>
         public Input<string>? ClientId
         {
@@ -310,7 +312,7 @@ namespace Pulumi.Vault.Azure
         private Input<string>? _clientSecret;
 
         /// <summary>
-        /// - The OAuth2 client secret to connect to Azure.
+        /// The OAuth2 client secret to connect to Azure.
         /// </summary>
         public Input<string>? ClientSecret
         {
@@ -336,7 +338,7 @@ namespace Pulumi.Vault.Azure
         public Input<bool>? DisableRemount { get; set; }
 
         /// <summary>
-        /// - The Azure environment.
+        /// The Azure environment.
         /// </summary>
         [Input("environment")]
         public Input<string>? Environment { get; set; }
@@ -351,7 +353,7 @@ namespace Pulumi.Vault.Azure
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// - The unique path this backend should be mounted at. Defaults to `azure`.
+        /// The unique path this backend should be mounted at. Defaults to `azure`.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
@@ -360,7 +362,7 @@ namespace Pulumi.Vault.Azure
         private Input<string>? _subscriptionId;
 
         /// <summary>
-        /// - The subscription id for the Azure Active Directory.
+        /// The subscription id for the Azure Active Directory.
         /// </summary>
         public Input<string>? SubscriptionId
         {
@@ -376,7 +378,7 @@ namespace Pulumi.Vault.Azure
         private Input<string>? _tenantId;
 
         /// <summary>
-        /// - The tenant id for the Azure Active Directory.
+        /// The tenant id for the Azure Active Directory.
         /// </summary>
         public Input<string>? TenantId
         {
@@ -389,7 +391,7 @@ namespace Pulumi.Vault.Azure
         }
 
         /// <summary>
-        /// - Indicates whether the secrets engine should use 
+        /// Indicates whether the secrets engine should use 
         /// the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
         /// For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
         /// </summary>

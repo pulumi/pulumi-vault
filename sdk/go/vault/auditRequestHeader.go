@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages additional request headers that appear in audited requests.
@@ -60,6 +62,7 @@ func NewAuditRequestHeader(ctx *pulumi.Context,
 		args = &AuditRequestHeaderArgs{}
 	}
 
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AuditRequestHeader
 	err := ctx.RegisterResource("vault:index/auditRequestHeader:AuditRequestHeader", name, args, &resource, opts...)
 	if err != nil {
@@ -145,6 +148,12 @@ func (i *AuditRequestHeader) ToAuditRequestHeaderOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(AuditRequestHeaderOutput)
 }
 
+func (i *AuditRequestHeader) ToOutput(ctx context.Context) pulumix.Output[*AuditRequestHeader] {
+	return pulumix.Output[*AuditRequestHeader]{
+		OutputState: i.ToAuditRequestHeaderOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AuditRequestHeaderArrayInput is an input type that accepts AuditRequestHeaderArray and AuditRequestHeaderArrayOutput values.
 // You can construct a concrete instance of `AuditRequestHeaderArrayInput` via:
 //
@@ -168,6 +177,12 @@ func (i AuditRequestHeaderArray) ToAuditRequestHeaderArrayOutput() AuditRequestH
 
 func (i AuditRequestHeaderArray) ToAuditRequestHeaderArrayOutputWithContext(ctx context.Context) AuditRequestHeaderArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuditRequestHeaderArrayOutput)
+}
+
+func (i AuditRequestHeaderArray) ToOutput(ctx context.Context) pulumix.Output[[]*AuditRequestHeader] {
+	return pulumix.Output[[]*AuditRequestHeader]{
+		OutputState: i.ToAuditRequestHeaderArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AuditRequestHeaderMapInput is an input type that accepts AuditRequestHeaderMap and AuditRequestHeaderMapOutput values.
@@ -195,6 +210,12 @@ func (i AuditRequestHeaderMap) ToAuditRequestHeaderMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(AuditRequestHeaderMapOutput)
 }
 
+func (i AuditRequestHeaderMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuditRequestHeader] {
+	return pulumix.Output[map[string]*AuditRequestHeader]{
+		OutputState: i.ToAuditRequestHeaderMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AuditRequestHeaderOutput struct{ *pulumi.OutputState }
 
 func (AuditRequestHeaderOutput) ElementType() reflect.Type {
@@ -207,6 +228,12 @@ func (o AuditRequestHeaderOutput) ToAuditRequestHeaderOutput() AuditRequestHeade
 
 func (o AuditRequestHeaderOutput) ToAuditRequestHeaderOutputWithContext(ctx context.Context) AuditRequestHeaderOutput {
 	return o
+}
+
+func (o AuditRequestHeaderOutput) ToOutput(ctx context.Context) pulumix.Output[*AuditRequestHeader] {
+	return pulumix.Output[*AuditRequestHeader]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Whether this header's value should be HMAC'd in the audit logs.
@@ -238,6 +265,12 @@ func (o AuditRequestHeaderArrayOutput) ToAuditRequestHeaderArrayOutputWithContex
 	return o
 }
 
+func (o AuditRequestHeaderArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AuditRequestHeader] {
+	return pulumix.Output[[]*AuditRequestHeader]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AuditRequestHeaderArrayOutput) Index(i pulumi.IntInput) AuditRequestHeaderOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AuditRequestHeader {
 		return vs[0].([]*AuditRequestHeader)[vs[1].(int)]
@@ -256,6 +289,12 @@ func (o AuditRequestHeaderMapOutput) ToAuditRequestHeaderMapOutput() AuditReques
 
 func (o AuditRequestHeaderMapOutput) ToAuditRequestHeaderMapOutputWithContext(ctx context.Context) AuditRequestHeaderMapOutput {
 	return o
+}
+
+func (o AuditRequestHeaderMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuditRequestHeader] {
+	return pulumix.Output[map[string]*AuditRequestHeader]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuditRequestHeaderMapOutput) MapIndex(k pulumi.StringInput) AuditRequestHeaderOutput {

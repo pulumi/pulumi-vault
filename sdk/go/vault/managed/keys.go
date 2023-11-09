@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -42,6 +44,7 @@ func NewKeys(ctx *pulumi.Context,
 		args = &KeysArgs{}
 	}
 
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Keys
 	err := ctx.RegisterResource("vault:managed/keys:Keys", name, args, &resource, opts...)
 	if err != nil {
@@ -147,6 +150,12 @@ func (i *Keys) ToKeysOutputWithContext(ctx context.Context) KeysOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(KeysOutput)
 }
 
+func (i *Keys) ToOutput(ctx context.Context) pulumix.Output[*Keys] {
+	return pulumix.Output[*Keys]{
+		OutputState: i.ToKeysOutputWithContext(ctx).OutputState,
+	}
+}
+
 // KeysArrayInput is an input type that accepts KeysArray and KeysArrayOutput values.
 // You can construct a concrete instance of `KeysArrayInput` via:
 //
@@ -170,6 +179,12 @@ func (i KeysArray) ToKeysArrayOutput() KeysArrayOutput {
 
 func (i KeysArray) ToKeysArrayOutputWithContext(ctx context.Context) KeysArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(KeysArrayOutput)
+}
+
+func (i KeysArray) ToOutput(ctx context.Context) pulumix.Output[[]*Keys] {
+	return pulumix.Output[[]*Keys]{
+		OutputState: i.ToKeysArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // KeysMapInput is an input type that accepts KeysMap and KeysMapOutput values.
@@ -197,6 +212,12 @@ func (i KeysMap) ToKeysMapOutputWithContext(ctx context.Context) KeysMapOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(KeysMapOutput)
 }
 
+func (i KeysMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Keys] {
+	return pulumix.Output[map[string]*Keys]{
+		OutputState: i.ToKeysMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type KeysOutput struct{ *pulumi.OutputState }
 
 func (KeysOutput) ElementType() reflect.Type {
@@ -209,6 +230,12 @@ func (o KeysOutput) ToKeysOutput() KeysOutput {
 
 func (o KeysOutput) ToKeysOutputWithContext(ctx context.Context) KeysOutput {
 	return o
+}
+
+func (o KeysOutput) ToOutput(ctx context.Context) pulumix.Output[*Keys] {
+	return pulumix.Output[*Keys]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Configuration block for AWS Managed Keys
@@ -248,6 +275,12 @@ func (o KeysArrayOutput) ToKeysArrayOutputWithContext(ctx context.Context) KeysA
 	return o
 }
 
+func (o KeysArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Keys] {
+	return pulumix.Output[[]*Keys]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o KeysArrayOutput) Index(i pulumi.IntInput) KeysOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Keys {
 		return vs[0].([]*Keys)[vs[1].(int)]
@@ -266,6 +299,12 @@ func (o KeysMapOutput) ToKeysMapOutput() KeysMapOutput {
 
 func (o KeysMapOutput) ToKeysMapOutputWithContext(ctx context.Context) KeysMapOutput {
 	return o
+}
+
+func (o KeysMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Keys] {
+	return pulumix.Output[map[string]*Keys]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o KeysMapOutput) MapIndex(k pulumi.StringInput) KeysOutput {

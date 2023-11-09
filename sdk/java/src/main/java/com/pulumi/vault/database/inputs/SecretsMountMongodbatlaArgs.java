@@ -39,12 +39,16 @@ public final class SecretsMountMongodbatlaArgs extends com.pulumi.resources.Reso
     /**
      * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
+     * Supported list of database secrets engines that can be configured:
+     * 
      */
     @Import(name="data")
     private @Nullable Output<Map<String,Object>> data;
 
     /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+     * 
+     * Supported list of database secrets engines that can be configured:
      * 
      */
     public Optional<Output<Map<String,Object>>> data() {
@@ -219,6 +223,8 @@ public final class SecretsMountMongodbatlaArgs extends com.pulumi.resources.Reso
         /**
          * @param data A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          * 
+         * Supported list of database secrets engines that can be configured:
+         * 
          * @return builder
          * 
          */
@@ -229,6 +235,8 @@ public final class SecretsMountMongodbatlaArgs extends com.pulumi.resources.Reso
 
         /**
          * @param data A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         * 
+         * Supported list of database secrets engines that can be configured:
          * 
          * @return builder
          * 

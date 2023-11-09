@@ -17,6 +17,7 @@ namespace Pulumi.Vault.Identity
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -50,6 +51,7 @@ namespace Pulumi.Vault.Identity
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -100,6 +102,10 @@ namespace Pulumi.Vault.Identity
     {
         /// <summary>
         /// Defaults to `true`.
+        /// 
+        /// If `true`, this resource will take exclusive control of the member entities that belong to the group and will set it equal to what is specified in the resource.
+        /// 
+        /// If set to `false`, this resource will simply ensure that the member entities specified in the resource are present in the group. When destroying the resource, the resource will ensure that the member entities specified in the resource are removed.
         /// </summary>
         [Output("exclusive")]
         public Output<bool?> Exclusive { get; private set; } = null!;
@@ -181,6 +187,10 @@ namespace Pulumi.Vault.Identity
     {
         /// <summary>
         /// Defaults to `true`.
+        /// 
+        /// If `true`, this resource will take exclusive control of the member entities that belong to the group and will set it equal to what is specified in the resource.
+        /// 
+        /// If set to `false`, this resource will simply ensure that the member entities specified in the resource are present in the group. When destroying the resource, the resource will ensure that the member entities specified in the resource are removed.
         /// </summary>
         [Input("exclusive")]
         public Input<bool>? Exclusive { get; set; }
@@ -222,6 +232,10 @@ namespace Pulumi.Vault.Identity
     {
         /// <summary>
         /// Defaults to `true`.
+        /// 
+        /// If `true`, this resource will take exclusive control of the member entities that belong to the group and will set it equal to what is specified in the resource.
+        /// 
+        /// If set to `false`, this resource will simply ensure that the member entities specified in the resource are present in the group. When destroying the resource, the resource will ensure that the member entities specified in the resource are removed.
         /// </summary>
         [Input("exclusive")]
         public Input<bool>? Exclusive { get; set; }

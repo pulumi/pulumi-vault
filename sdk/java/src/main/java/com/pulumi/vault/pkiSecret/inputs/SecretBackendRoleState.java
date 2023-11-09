@@ -5,6 +5,7 @@ package com.pulumi.vault.pkiSecret.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.vault.pkiSecret.inputs.SecretBackendRolePolicyIdentifierArgs;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -562,6 +563,21 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
     }
 
     /**
+     * (Vault 1.11+ only) A block for specifying policy identifers. The `policy_identifier` block can be repeated, and supports the following arguments:
+     * 
+     */
+    @Import(name="policyIdentifier")
+    private @Nullable Output<List<SecretBackendRolePolicyIdentifierArgs>> policyIdentifier;
+
+    /**
+     * @return (Vault 1.11+ only) A block for specifying policy identifers. The `policy_identifier` block can be repeated, and supports the following arguments:
+     * 
+     */
+    public Optional<Output<List<SecretBackendRolePolicyIdentifierArgs>>> policyIdentifier() {
+        return Optional.ofNullable(this.policyIdentifier);
+    }
+
+    /**
      * Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
      * 
      */
@@ -734,6 +750,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         this.notBeforeDuration = $.notBeforeDuration;
         this.organizationUnit = $.organizationUnit;
         this.organizations = $.organizations;
+        this.policyIdentifier = $.policyIdentifier;
         this.policyIdentifiers = $.policyIdentifiers;
         this.postalCodes = $.postalCodes;
         this.provinces = $.provinces;
@@ -1626,6 +1643,37 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
          */
         public Builder organizations(String... organizations) {
             return organizations(List.of(organizations));
+        }
+
+        /**
+         * @param policyIdentifier (Vault 1.11+ only) A block for specifying policy identifers. The `policy_identifier` block can be repeated, and supports the following arguments:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder policyIdentifier(@Nullable Output<List<SecretBackendRolePolicyIdentifierArgs>> policyIdentifier) {
+            $.policyIdentifier = policyIdentifier;
+            return this;
+        }
+
+        /**
+         * @param policyIdentifier (Vault 1.11+ only) A block for specifying policy identifers. The `policy_identifier` block can be repeated, and supports the following arguments:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder policyIdentifier(List<SecretBackendRolePolicyIdentifierArgs> policyIdentifier) {
+            return policyIdentifier(Output.of(policyIdentifier));
+        }
+
+        /**
+         * @param policyIdentifier (Vault 1.11+ only) A block for specifying policy identifers. The `policy_identifier` block can be repeated, and supports the following arguments:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder policyIdentifier(SecretBackendRolePolicyIdentifierArgs... policyIdentifier) {
+            return policyIdentifier(List.of(policyIdentifier));
         }
 
         /**

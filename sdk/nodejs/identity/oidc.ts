@@ -18,9 +18,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const server = new vault.identity.Oidc("server", {
- *     issuer: "https://www.acme.com",
- * });
+ * const server = new vault.identity.Oidc("server", {issuer: "https://www.acme.com"});
  * ```
  */
 export class Oidc extends pulumi.CustomResource {

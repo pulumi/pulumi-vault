@@ -147,12 +147,16 @@ public class Audit extends com.pulumi.resources.CustomResource {
     /**
      * Configuration options to pass to the audit device itself.
      * 
+     * For a reference of the device types and their options, consult the [Vault documentation.](https://www.vaultproject.io/docs/audit/index.html)
+     * 
      */
     @Export(name="options", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output<Map<String,String>> options;
 
     /**
      * @return Configuration options to pass to the audit device itself.
+     * 
+     * For a reference of the device types and their options, consult the [Vault documentation.](https://www.vaultproject.io/docs/audit/index.html)
      * 
      */
     public Output<Map<String,String>> options() {

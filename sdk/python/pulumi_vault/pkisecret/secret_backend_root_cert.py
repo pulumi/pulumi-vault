@@ -987,6 +987,9 @@ class _SecretBackendRootCertState:
         """
         Deprecated, use `serial_number` instead.
         """
+        warnings.warn("""Use serial_number instead""", DeprecationWarning)
+        pulumi.log.warn("""serial is deprecated: Use serial_number instead""")
+
         return pulumi.get(self, "serial")
 
     @serial.setter
@@ -1644,6 +1647,9 @@ class SecretBackendRootCert(pulumi.CustomResource):
         """
         Deprecated, use `serial_number` instead.
         """
+        warnings.warn("""Use serial_number instead""", DeprecationWarning)
+        pulumi.log.warn("""serial is deprecated: Use serial_number instead""")
+
         return pulumi.get(self, "serial")
 
     @property

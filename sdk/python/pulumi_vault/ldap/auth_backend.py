@@ -58,9 +58,11 @@ class AuthBackendArgs:
         :param pulumi.Input[str] bindpass: Password to use with `binddn` when performing user search
         :param pulumi.Input[bool] case_sensitive_names: Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
         :param pulumi.Input[str] certificate: Trusted CA to validate TLS certificate
+        :param pulumi.Input[bool] deny_null_bind: Prevents users from bypassing authentication when providing an empty password.
         :param pulumi.Input[str] description: Description for the LDAP auth backend mount
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        :param pulumi.Input[bool] discoverdn: Use anonymous bind to discover the bind DN of a user.
         :param pulumi.Input[str] groupattr: LDAP attribute to follow on objects returned by groupfilter
         :param pulumi.Input[str] groupdn: Base DN under which to perform group search
         :param pulumi.Input[str] groupfilter: Go template used to construct group membership query
@@ -97,12 +99,8 @@ class AuthBackendArgs:
                on the auth method, this list may be supplemented by user/group/other values.
         :param pulumi.Input[int] token_ttl: The incremental lifetime for generated tokens in number of seconds.
                Its current value will be referenced at renewal time.
-        :param pulumi.Input[str] token_type: The type of token that should be generated. Can be `service`,
-               `batch`, or `default` to use the mount's tuned default (which unless changed will be
-               `service` tokens). For token store roles, there are two additional possibilities:
-               `default-service` and `default-batch` which specify the type to return unless the client
-               requests a different type at generation time.
-        :param pulumi.Input[str] upndomain: The userPrincipalDomain used to construct UPN string
+        :param pulumi.Input[str] token_type: The type of token to generate, service or batch
+        :param pulumi.Input[str] upndomain: The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
         :param pulumi.Input[bool] use_token_groups: Use the Active Directory tokenGroups constructed attribute of the user to find the group memberships
         :param pulumi.Input[str] userattr: Attribute on user object matching username passed in
         :param pulumi.Input[str] userdn: Base DN under which to perform user search
@@ -264,6 +262,9 @@ class AuthBackendArgs:
     @property
     @pulumi.getter(name="denyNullBind")
     def deny_null_bind(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Prevents users from bypassing authentication when providing an empty password.
+        """
         return pulumi.get(self, "deny_null_bind")
 
     @deny_null_bind.setter
@@ -298,6 +299,9 @@ class AuthBackendArgs:
     @property
     @pulumi.getter
     def discoverdn(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Use anonymous bind to discover the bind DN of a user.
+        """
         return pulumi.get(self, "discoverdn")
 
     @discoverdn.setter
@@ -553,11 +557,7 @@ class AuthBackendArgs:
     @pulumi.getter(name="tokenType")
     def token_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of token that should be generated. Can be `service`,
-        `batch`, or `default` to use the mount's tuned default (which unless changed will be
-        `service` tokens). For token store roles, there are two additional possibilities:
-        `default-service` and `default-batch` which specify the type to return unless the client
-        requests a different type at generation time.
+        The type of token to generate, service or batch
         """
         return pulumi.get(self, "token_type")
 
@@ -569,7 +569,7 @@ class AuthBackendArgs:
     @pulumi.getter
     def upndomain(self) -> Optional[pulumi.Input[str]]:
         """
-        The userPrincipalDomain used to construct UPN string
+        The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
         """
         return pulumi.get(self, "upndomain")
 
@@ -686,9 +686,11 @@ class _AuthBackendState:
         :param pulumi.Input[str] bindpass: Password to use with `binddn` when performing user search
         :param pulumi.Input[bool] case_sensitive_names: Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
         :param pulumi.Input[str] certificate: Trusted CA to validate TLS certificate
+        :param pulumi.Input[bool] deny_null_bind: Prevents users from bypassing authentication when providing an empty password.
         :param pulumi.Input[str] description: Description for the LDAP auth backend mount
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        :param pulumi.Input[bool] discoverdn: Use anonymous bind to discover the bind DN of a user.
         :param pulumi.Input[str] groupattr: LDAP attribute to follow on objects returned by groupfilter
         :param pulumi.Input[str] groupdn: Base DN under which to perform group search
         :param pulumi.Input[str] groupfilter: Go template used to construct group membership query
@@ -725,12 +727,8 @@ class _AuthBackendState:
                on the auth method, this list may be supplemented by user/group/other values.
         :param pulumi.Input[int] token_ttl: The incremental lifetime for generated tokens in number of seconds.
                Its current value will be referenced at renewal time.
-        :param pulumi.Input[str] token_type: The type of token that should be generated. Can be `service`,
-               `batch`, or `default` to use the mount's tuned default (which unless changed will be
-               `service` tokens). For token store roles, there are two additional possibilities:
-               `default-service` and `default-batch` which specify the type to return unless the client
-               requests a different type at generation time.
-        :param pulumi.Input[str] upndomain: The userPrincipalDomain used to construct UPN string
+        :param pulumi.Input[str] token_type: The type of token to generate, service or batch
+        :param pulumi.Input[str] upndomain: The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
         :param pulumi.Input[str] url: The URL of the LDAP server
         :param pulumi.Input[bool] use_token_groups: Use the Active Directory tokenGroups constructed attribute of the user to find the group memberships
         :param pulumi.Input[str] userattr: Attribute on user object matching username passed in
@@ -896,6 +894,9 @@ class _AuthBackendState:
     @property
     @pulumi.getter(name="denyNullBind")
     def deny_null_bind(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Prevents users from bypassing authentication when providing an empty password.
+        """
         return pulumi.get(self, "deny_null_bind")
 
     @deny_null_bind.setter
@@ -930,6 +931,9 @@ class _AuthBackendState:
     @property
     @pulumi.getter
     def discoverdn(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Use anonymous bind to discover the bind DN of a user.
+        """
         return pulumi.get(self, "discoverdn")
 
     @discoverdn.setter
@@ -1185,11 +1189,7 @@ class _AuthBackendState:
     @pulumi.getter(name="tokenType")
     def token_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of token that should be generated. Can be `service`,
-        `batch`, or `default` to use the mount's tuned default (which unless changed will be
-        `service` tokens). For token store roles, there are two additional possibilities:
-        `default-service` and `default-batch` which specify the type to return unless the client
-        requests a different type at generation time.
+        The type of token to generate, service or batch
         """
         return pulumi.get(self, "token_type")
 
@@ -1201,7 +1201,7 @@ class _AuthBackendState:
     @pulumi.getter
     def upndomain(self) -> Optional[pulumi.Input[str]]:
         """
-        The userPrincipalDomain used to construct UPN string
+        The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
         """
         return pulumi.get(self, "upndomain")
 
@@ -1359,9 +1359,11 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] bindpass: Password to use with `binddn` when performing user search
         :param pulumi.Input[bool] case_sensitive_names: Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
         :param pulumi.Input[str] certificate: Trusted CA to validate TLS certificate
+        :param pulumi.Input[bool] deny_null_bind: Prevents users from bypassing authentication when providing an empty password.
         :param pulumi.Input[str] description: Description for the LDAP auth backend mount
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        :param pulumi.Input[bool] discoverdn: Use anonymous bind to discover the bind DN of a user.
         :param pulumi.Input[str] groupattr: LDAP attribute to follow on objects returned by groupfilter
         :param pulumi.Input[str] groupdn: Base DN under which to perform group search
         :param pulumi.Input[str] groupfilter: Go template used to construct group membership query
@@ -1398,12 +1400,8 @@ class AuthBackend(pulumi.CustomResource):
                on the auth method, this list may be supplemented by user/group/other values.
         :param pulumi.Input[int] token_ttl: The incremental lifetime for generated tokens in number of seconds.
                Its current value will be referenced at renewal time.
-        :param pulumi.Input[str] token_type: The type of token that should be generated. Can be `service`,
-               `batch`, or `default` to use the mount's tuned default (which unless changed will be
-               `service` tokens). For token store roles, there are two additional possibilities:
-               `default-service` and `default-batch` which specify the type to return unless the client
-               requests a different type at generation time.
-        :param pulumi.Input[str] upndomain: The userPrincipalDomain used to construct UPN string
+        :param pulumi.Input[str] token_type: The type of token to generate, service or batch
+        :param pulumi.Input[str] upndomain: The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
         :param pulumi.Input[str] url: The URL of the LDAP server
         :param pulumi.Input[bool] use_token_groups: Use the Active Directory tokenGroups constructed attribute of the user to find the group memberships
         :param pulumi.Input[str] userattr: Attribute on user object matching username passed in
@@ -1608,9 +1606,11 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] bindpass: Password to use with `binddn` when performing user search
         :param pulumi.Input[bool] case_sensitive_names: Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
         :param pulumi.Input[str] certificate: Trusted CA to validate TLS certificate
+        :param pulumi.Input[bool] deny_null_bind: Prevents users from bypassing authentication when providing an empty password.
         :param pulumi.Input[str] description: Description for the LDAP auth backend mount
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        :param pulumi.Input[bool] discoverdn: Use anonymous bind to discover the bind DN of a user.
         :param pulumi.Input[str] groupattr: LDAP attribute to follow on objects returned by groupfilter
         :param pulumi.Input[str] groupdn: Base DN under which to perform group search
         :param pulumi.Input[str] groupfilter: Go template used to construct group membership query
@@ -1647,12 +1647,8 @@ class AuthBackend(pulumi.CustomResource):
                on the auth method, this list may be supplemented by user/group/other values.
         :param pulumi.Input[int] token_ttl: The incremental lifetime for generated tokens in number of seconds.
                Its current value will be referenced at renewal time.
-        :param pulumi.Input[str] token_type: The type of token that should be generated. Can be `service`,
-               `batch`, or `default` to use the mount's tuned default (which unless changed will be
-               `service` tokens). For token store roles, there are two additional possibilities:
-               `default-service` and `default-batch` which specify the type to return unless the client
-               requests a different type at generation time.
-        :param pulumi.Input[str] upndomain: The userPrincipalDomain used to construct UPN string
+        :param pulumi.Input[str] token_type: The type of token to generate, service or batch
+        :param pulumi.Input[str] upndomain: The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
         :param pulumi.Input[str] url: The URL of the LDAP server
         :param pulumi.Input[bool] use_token_groups: Use the Active Directory tokenGroups constructed attribute of the user to find the group memberships
         :param pulumi.Input[str] userattr: Attribute on user object matching username passed in
@@ -1757,6 +1753,9 @@ class AuthBackend(pulumi.CustomResource):
     @property
     @pulumi.getter(name="denyNullBind")
     def deny_null_bind(self) -> pulumi.Output[bool]:
+        """
+        Prevents users from bypassing authentication when providing an empty password.
+        """
         return pulumi.get(self, "deny_null_bind")
 
     @property
@@ -1779,6 +1778,9 @@ class AuthBackend(pulumi.CustomResource):
     @property
     @pulumi.getter
     def discoverdn(self) -> pulumi.Output[bool]:
+        """
+        Use anonymous bind to discover the bind DN of a user.
+        """
         return pulumi.get(self, "discoverdn")
 
     @property
@@ -1954,11 +1956,7 @@ class AuthBackend(pulumi.CustomResource):
     @pulumi.getter(name="tokenType")
     def token_type(self) -> pulumi.Output[Optional[str]]:
         """
-        The type of token that should be generated. Can be `service`,
-        `batch`, or `default` to use the mount's tuned default (which unless changed will be
-        `service` tokens). For token store roles, there are two additional possibilities:
-        `default-service` and `default-batch` which specify the type to return unless the client
-        requests a different type at generation time.
+        The type of token to generate, service or batch
         """
         return pulumi.get(self, "token_type")
 
@@ -1966,7 +1964,7 @@ class AuthBackend(pulumi.CustomResource):
     @pulumi.getter
     def upndomain(self) -> pulumi.Output[str]:
         """
-        The userPrincipalDomain used to construct UPN string
+        The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
         """
         return pulumi.get(self, "upndomain")
 

@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -102,6 +104,7 @@ func NewSecretRole(ctx *pulumi.Context,
 	if args.ServiceAccountName == nil {
 		return nil, errors.New("invalid value for required argument 'ServiceAccountName'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SecretRole
 	err := ctx.RegisterResource("vault:ad/secretRole:SecretRole", name, args, &resource, opts...)
 	if err != nil {
@@ -239,6 +242,12 @@ func (i *SecretRole) ToSecretRoleOutputWithContext(ctx context.Context) SecretRo
 	return pulumi.ToOutputWithContext(ctx, i).(SecretRoleOutput)
 }
 
+func (i *SecretRole) ToOutput(ctx context.Context) pulumix.Output[*SecretRole] {
+	return pulumix.Output[*SecretRole]{
+		OutputState: i.ToSecretRoleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SecretRoleArrayInput is an input type that accepts SecretRoleArray and SecretRoleArrayOutput values.
 // You can construct a concrete instance of `SecretRoleArrayInput` via:
 //
@@ -262,6 +271,12 @@ func (i SecretRoleArray) ToSecretRoleArrayOutput() SecretRoleArrayOutput {
 
 func (i SecretRoleArray) ToSecretRoleArrayOutputWithContext(ctx context.Context) SecretRoleArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretRoleArrayOutput)
+}
+
+func (i SecretRoleArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretRole] {
+	return pulumix.Output[[]*SecretRole]{
+		OutputState: i.ToSecretRoleArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SecretRoleMapInput is an input type that accepts SecretRoleMap and SecretRoleMapOutput values.
@@ -289,6 +304,12 @@ func (i SecretRoleMap) ToSecretRoleMapOutputWithContext(ctx context.Context) Sec
 	return pulumi.ToOutputWithContext(ctx, i).(SecretRoleMapOutput)
 }
 
+func (i SecretRoleMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretRole] {
+	return pulumix.Output[map[string]*SecretRole]{
+		OutputState: i.ToSecretRoleMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SecretRoleOutput struct{ *pulumi.OutputState }
 
 func (SecretRoleOutput) ElementType() reflect.Type {
@@ -301,6 +322,12 @@ func (o SecretRoleOutput) ToSecretRoleOutput() SecretRoleOutput {
 
 func (o SecretRoleOutput) ToSecretRoleOutputWithContext(ctx context.Context) SecretRoleOutput {
 	return o
+}
+
+func (o SecretRoleOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretRole] {
+	return pulumix.Output[*SecretRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The path the AD secret backend is mounted at,
@@ -359,6 +386,12 @@ func (o SecretRoleArrayOutput) ToSecretRoleArrayOutputWithContext(ctx context.Co
 	return o
 }
 
+func (o SecretRoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretRole] {
+	return pulumix.Output[[]*SecretRole]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SecretRoleArrayOutput) Index(i pulumi.IntInput) SecretRoleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretRole {
 		return vs[0].([]*SecretRole)[vs[1].(int)]
@@ -377,6 +410,12 @@ func (o SecretRoleMapOutput) ToSecretRoleMapOutput() SecretRoleMapOutput {
 
 func (o SecretRoleMapOutput) ToSecretRoleMapOutputWithContext(ctx context.Context) SecretRoleMapOutput {
 	return o
+}
+
+func (o SecretRoleMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretRole] {
+	return pulumix.Output[map[string]*SecretRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SecretRoleMapOutput) MapIndex(k pulumi.StringInput) SecretRoleOutput {

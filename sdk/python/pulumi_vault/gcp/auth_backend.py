@@ -37,6 +37,8 @@ class AuthBackendArgs:
                used when making API requests. This allows specific requests made during authentication
                to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
                environments. Requires Vault 1.11+.
+               
+               Overrides are set at the subdomain level using the following keys:
         :param pulumi.Input[str] description: A description of the auth method.
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
@@ -117,6 +119,8 @@ class AuthBackendArgs:
         used when making API requests. This allows specific requests made during authentication
         to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
         environments. Requires Vault 1.11+.
+
+        Overrides are set at the subdomain level using the following keys:
         """
         return pulumi.get(self, "custom_endpoint")
 
@@ -239,6 +243,8 @@ class _AuthBackendState:
                used when making API requests. This allows specific requests made during authentication
                to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
                environments. Requires Vault 1.11+.
+               
+               Overrides are set at the subdomain level using the following keys:
         :param pulumi.Input[str] description: A description of the auth method.
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
@@ -333,6 +339,8 @@ class _AuthBackendState:
         used when making API requests. This allows specific requests made during authentication
         to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
         environments. Requires Vault 1.11+.
+
+        Overrides are set at the subdomain level using the following keys:
         """
         return pulumi.get(self, "custom_endpoint")
 
@@ -483,6 +491,8 @@ class AuthBackend(pulumi.CustomResource):
                used when making API requests. This allows specific requests made during authentication
                to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
                environments. Requires Vault 1.11+.
+               
+               Overrides are set at the subdomain level using the following keys:
         :param pulumi.Input[str] description: A description of the auth method.
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
@@ -615,6 +625,8 @@ class AuthBackend(pulumi.CustomResource):
                used when making API requests. This allows specific requests made during authentication
                to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
                environments. Requires Vault 1.11+.
+               
+               Overrides are set at the subdomain level using the following keys:
         :param pulumi.Input[str] description: A description of the auth method.
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
@@ -686,6 +698,8 @@ class AuthBackend(pulumi.CustomResource):
         used when making API requests. This allows specific requests made during authentication
         to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
         environments. Requires Vault 1.11+.
+
+        Overrides are set at the subdomain level using the following keys:
         """
         return pulumi.get(self, "custom_endpoint")
 

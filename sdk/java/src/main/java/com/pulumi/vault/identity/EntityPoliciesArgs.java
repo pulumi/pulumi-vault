@@ -35,12 +35,20 @@ public final class EntityPoliciesArgs extends com.pulumi.resources.ResourceArgs 
     /**
      * Defaults to `true`.
      * 
+     * If `true`, this resource will take exclusive control of the policies assigned to the entity and will set it equal to what is specified in the resource.
+     * 
+     * If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the entity. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
+     * 
      */
     @Import(name="exclusive")
     private @Nullable Output<Boolean> exclusive;
 
     /**
      * @return Defaults to `true`.
+     * 
+     * If `true`, this resource will take exclusive control of the policies assigned to the entity and will set it equal to what is specified in the resource.
+     * 
+     * If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the entity. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
      * 
      */
     public Optional<Output<Boolean>> exclusive() {
@@ -134,6 +142,10 @@ public final class EntityPoliciesArgs extends com.pulumi.resources.ResourceArgs 
         /**
          * @param exclusive Defaults to `true`.
          * 
+         * If `true`, this resource will take exclusive control of the policies assigned to the entity and will set it equal to what is specified in the resource.
+         * 
+         * If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the entity. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
+         * 
          * @return builder
          * 
          */
@@ -144,6 +156,10 @@ public final class EntityPoliciesArgs extends com.pulumi.resources.ResourceArgs 
 
         /**
          * @param exclusive Defaults to `true`.
+         * 
+         * If `true`, this resource will take exclusive control of the policies assigned to the entity and will set it equal to what is specified in the resource.
+         * 
+         * If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the entity. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
          * 
          * @return builder
          * 

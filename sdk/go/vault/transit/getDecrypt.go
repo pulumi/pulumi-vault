@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // This is a data source which can be used to decrypt ciphertext using a Vault Transit key.
@@ -40,6 +42,7 @@ import (
 //
 // ```
 func GetDecrypt(ctx *pulumi.Context, args *GetDecryptArgs, opts ...pulumi.InvokeOption) (*GetDecryptResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetDecryptResult
 	err := ctx.Invoke("vault:transit/getDecrypt:getDecrypt", args, &rv, opts...)
 	if err != nil {
@@ -117,6 +120,12 @@ func (o GetDecryptResultOutput) ToGetDecryptResultOutput() GetDecryptResultOutpu
 
 func (o GetDecryptResultOutput) ToGetDecryptResultOutputWithContext(ctx context.Context) GetDecryptResultOutput {
 	return o
+}
+
+func (o GetDecryptResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetDecryptResult] {
+	return pulumix.Output[GetDecryptResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetDecryptResultOutput) Backend() pulumi.StringOutput {

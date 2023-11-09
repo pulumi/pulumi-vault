@@ -167,15 +167,15 @@ def get_auth_backend_config(backend: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig', __args__, opts=opts, typ=GetAuthBackendConfigResult).value
 
     return AwaitableGetAuthBackendConfigResult(
-        backend=__ret__.backend,
-        disable_iss_validation=__ret__.disable_iss_validation,
-        disable_local_ca_jwt=__ret__.disable_local_ca_jwt,
-        id=__ret__.id,
-        issuer=__ret__.issuer,
-        kubernetes_ca_cert=__ret__.kubernetes_ca_cert,
-        kubernetes_host=__ret__.kubernetes_host,
-        namespace=__ret__.namespace,
-        pem_keys=__ret__.pem_keys)
+        backend=pulumi.get(__ret__, 'backend'),
+        disable_iss_validation=pulumi.get(__ret__, 'disable_iss_validation'),
+        disable_local_ca_jwt=pulumi.get(__ret__, 'disable_local_ca_jwt'),
+        id=pulumi.get(__ret__, 'id'),
+        issuer=pulumi.get(__ret__, 'issuer'),
+        kubernetes_ca_cert=pulumi.get(__ret__, 'kubernetes_ca_cert'),
+        kubernetes_host=pulumi.get(__ret__, 'kubernetes_host'),
+        namespace=pulumi.get(__ret__, 'namespace'),
+        pem_keys=pulumi.get(__ret__, 'pem_keys'))
 
 
 @_utilities.lift_output_func(get_auth_backend_config)

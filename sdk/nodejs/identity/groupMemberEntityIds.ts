@@ -89,6 +89,10 @@ export class GroupMemberEntityIds extends pulumi.CustomResource {
 
     /**
      * Defaults to `true`.
+     *
+     * If `true`, this resource will take exclusive control of the member entities that belong to the group and will set it equal to what is specified in the resource.
+     *
+     * If set to `false`, this resource will simply ensure that the member entities specified in the resource are present in the group. When destroying the resource, the resource will ensure that the member entities specified in the resource are removed.
      */
     public readonly exclusive!: pulumi.Output<boolean | undefined>;
     /**
@@ -156,6 +160,10 @@ use "data.vault_identity_group.*.group_name", "vault_identity_group.*.group_name
 export interface GroupMemberEntityIdsState {
     /**
      * Defaults to `true`.
+     *
+     * If `true`, this resource will take exclusive control of the member entities that belong to the group and will set it equal to what is specified in the resource.
+     *
+     * If set to `false`, this resource will simply ensure that the member entities specified in the resource are present in the group. When destroying the resource, the resource will ensure that the member entities specified in the resource are removed.
      */
     exclusive?: pulumi.Input<boolean>;
     /**
@@ -190,6 +198,10 @@ use "data.vault_identity_group.*.group_name", "vault_identity_group.*.group_name
 export interface GroupMemberEntityIdsArgs {
     /**
      * Defaults to `true`.
+     *
+     * If `true`, this resource will take exclusive control of the member entities that belong to the group and will set it equal to what is specified in the resource.
+     *
+     * If set to `false`, this resource will simply ensure that the member entities specified in the resource are present in the group. When destroying the resource, the resource will ensure that the member entities specified in the resource are removed.
      */
     exclusive?: pulumi.Input<boolean>;
     /**

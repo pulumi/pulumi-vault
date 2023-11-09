@@ -62,7 +62,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * The key can be imported with the key name, for example
+ * The key can be imported with the key name, for example:
  * 
  * ```sh
  *  $ pulumi import vault:identity/oidcKey:OidcKey key key
@@ -88,16 +88,16 @@ public class OidcKey extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.algorithm);
     }
     /**
-     * Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If &#34;*&#34;, all roles are
-     * allowed.
+     * Array of role client ID allowed to use this key for signing. If
+     * empty, no roles are allowed. If `[&#34;*&#34;]`, all roles are allowed.
      * 
      */
     @Export(name="allowedClientIds", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> allowedClientIds;
 
     /**
-     * @return Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If &#34;*&#34;, all roles are
-     * allowed.
+     * @return Array of role client ID allowed to use this key for signing. If
+     * empty, no roles are allowed. If `[&#34;*&#34;]`, all roles are allowed.
      * 
      */
     public Output<List<String>> allowedClientIds() {

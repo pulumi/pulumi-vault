@@ -16,6 +16,7 @@ namespace Pulumi.Vault.Gcp
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -92,7 +93,7 @@ namespace Pulumi.Vault.Gcp
         public Output<ImmutableArray<string>> BoundLabels { get; private set; } = null!;
 
         /// <summary>
-        /// GCP Projects that the role exists within
+        /// An array of GCP project IDs. Only entities belonging to this project can authenticate under the role.
         /// </summary>
         [Output("boundProjects")]
         public Output<ImmutableArray<string>> BoundProjects { get; private set; } = null!;
@@ -302,7 +303,7 @@ namespace Pulumi.Vault.Gcp
         private InputList<string>? _boundProjects;
 
         /// <summary>
-        /// GCP Projects that the role exists within
+        /// An array of GCP project IDs. Only entities belonging to this project can authenticate under the role.
         /// </summary>
         public InputList<string> BoundProjects
         {
@@ -507,7 +508,7 @@ namespace Pulumi.Vault.Gcp
         private InputList<string>? _boundProjects;
 
         /// <summary>
-        /// GCP Projects that the role exists within
+        /// An array of GCP project IDs. Only entities belonging to this project can authenticate under the role.
         /// </summary>
         public InputList<string> BoundProjects
         {

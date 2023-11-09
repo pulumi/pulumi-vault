@@ -52,14 +52,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="vault:gcp/secretBackend:SecretBackend")
 public class SecretBackend extends com.pulumi.resources.CustomResource {
     /**
-     * The GCP service account credentials in JSON format.
+     * JSON-encoded credentials to use to connect to GCP
      * 
      */
     @Export(name="credentials", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> credentials;
 
     /**
-     * @return The GCP service account credentials in JSON format.
+     * @return JSON-encoded credentials to use to connect to GCP
      * 
      */
     public Output<Optional<String>> credentials() {

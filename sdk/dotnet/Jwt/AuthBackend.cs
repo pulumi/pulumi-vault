@@ -19,6 +19,7 @@ namespace Pulumi.Vault.Jwt
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -39,6 +40,7 @@ namespace Pulumi.Vault.Jwt
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -66,6 +68,7 @@ namespace Pulumi.Vault.Jwt
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -96,7 +99,6 @@ namespace Pulumi.Vault.Jwt
     /// ```sh
     ///  $ pulumi import vault:jwt/authBackend:AuthBackend oidc oidc
     /// ```
-    /// 
     ///  or
     /// 
     /// ```sh
@@ -178,6 +180,10 @@ namespace Pulumi.Vault.Jwt
 
         /// <summary>
         /// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
+        /// 
+        /// * tune - (Optional) Extra configuration block. Structure is documented below.
+        /// 
+        /// The `tune` block is used to tune the auth backend:
         /// </summary>
         [Output("namespaceInState")]
         public Output<bool?> NamespaceInState { get; private set; } = null!;
@@ -367,6 +373,10 @@ namespace Pulumi.Vault.Jwt
 
         /// <summary>
         /// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
+        /// 
+        /// * tune - (Optional) Extra configuration block. Structure is documented below.
+        /// 
+        /// The `tune` block is used to tune the auth backend:
         /// </summary>
         [Input("namespaceInState")]
         public Input<bool>? NamespaceInState { get; set; }
@@ -542,6 +552,10 @@ namespace Pulumi.Vault.Jwt
 
         /// <summary>
         /// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
+        /// 
+        /// * tune - (Optional) Extra configuration block. Structure is documented below.
+        /// 
+        /// The `tune` block is used to tune the auth backend:
         /// </summary>
         [Input("namespaceInState")]
         public Input<bool>? NamespaceInState { get; set; }

@@ -16,7 +16,7 @@ namespace Pulumi.Vault.Database.Inputs
         private Input<string>? _password;
 
         /// <summary>
-        /// The root credential password used in the connection URL.
+        /// The password to authenticate with.
         /// </summary>
         public Input<string>? Password
         {
@@ -45,7 +45,7 @@ namespace Pulumi.Vault.Database.Inputs
         private Input<string>? _username;
 
         /// <summary>
-        /// The root credential username used in the connection URL.
+        /// The username to authenticate with.
         /// </summary>
         public Input<string>? Username
         {

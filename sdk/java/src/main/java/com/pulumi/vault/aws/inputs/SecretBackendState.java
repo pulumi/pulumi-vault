@@ -169,14 +169,14 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * The AWS region for API calls. Defaults to `us-east-1`.
+     * The AWS region to make API calls against. Defaults to us-east-1.
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return The AWS region for API calls. Defaults to `us-east-1`.
+     * @return The AWS region to make API calls against. Defaults to us-east-1.
      * 
      */
     public Optional<Output<String>> region() {
@@ -184,16 +184,14 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * The AWS Secret Key this backend should use to
-     * issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+     * The AWS Secret Access Key to use when generating new credentials.
      * 
      */
     @Import(name="secretKey")
     private @Nullable Output<String> secretKey;
 
     /**
-     * @return The AWS Secret Key this backend should use to
-     * issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+     * @return The AWS Secret Access Key to use when generating new credentials.
      * 
      */
     public Optional<Output<String>> secretKey() {
@@ -472,7 +470,7 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param region The AWS region for API calls. Defaults to `us-east-1`.
+         * @param region The AWS region to make API calls against. Defaults to us-east-1.
          * 
          * @return builder
          * 
@@ -483,7 +481,7 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param region The AWS region for API calls. Defaults to `us-east-1`.
+         * @param region The AWS region to make API calls against. Defaults to us-east-1.
          * 
          * @return builder
          * 
@@ -493,8 +491,7 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param secretKey The AWS Secret Key this backend should use to
-         * issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+         * @param secretKey The AWS Secret Access Key to use when generating new credentials.
          * 
          * @return builder
          * 
@@ -505,8 +502,7 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param secretKey The AWS Secret Key this backend should use to
-         * issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+         * @param secretKey The AWS Secret Access Key to use when generating new credentials.
          * 
          * @return builder
          * 

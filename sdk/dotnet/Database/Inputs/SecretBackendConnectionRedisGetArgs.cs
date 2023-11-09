@@ -35,7 +35,7 @@ namespace Pulumi.Vault.Database.Inputs
         private Input<string>? _password;
 
         /// <summary>
-        /// The root credential password used in the connection URL.
+        /// The password to authenticate with.
         /// </summary>
         public Input<string>? Password
         {
@@ -55,13 +55,13 @@ namespace Pulumi.Vault.Database.Inputs
         public Input<int>? Port { get; set; }
 
         /// <summary>
-        /// Whether to use TLS when connecting to Redis.
+        /// Whether to use TLS when connecting to Cassandra.
         /// </summary>
         [Input("tls")]
         public Input<bool>? Tls { get; set; }
 
         /// <summary>
-        /// The root credential username used in the connection URL.
+        /// The username to authenticate with.
         /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;

@@ -33,11 +33,8 @@ import * as utilities from "./utilities";
  */
 export function getPolicyDocument(args?: GetPolicyDocumentArgs, opts?: pulumi.InvokeOptions): Promise<GetPolicyDocumentResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:index/getPolicyDocument:getPolicyDocument", {
         "namespace": args.namespace,
         "rules": args.rules,
@@ -67,9 +64,33 @@ export interface GetPolicyDocumentResult {
     readonly namespace?: string;
     readonly rules: outputs.GetPolicyDocumentRule[];
 }
-
+/**
+ * This is a data source which can be used to construct a HCL representation of an Vault policy document, for use with resources which expect policy documents, such as the `vault.Policy` resource.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const examplePolicyDocument = vault.getPolicyDocument({
+ *     rules: [{
+ *         path: "secret/*",
+ *         capabilities: [
+ *             "create",
+ *             "read",
+ *             "update",
+ *             "delete",
+ *             "list",
+ *         ],
+ *         description: "allow all on secrets",
+ *     }],
+ * });
+ * const examplePolicy = new vault.Policy("examplePolicy", {policy: examplePolicyDocument.then(examplePolicyDocument => examplePolicyDocument.hcl)});
+ * ```
+ */
 export function getPolicyDocumentOutput(args?: GetPolicyDocumentOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPolicyDocumentResult> {
-    return pulumi.output(args).apply(a => getPolicyDocument(a, opts))
+    return pulumi.output(args).apply((a: any) => getPolicyDocument(a, opts))
 }
 
 /**

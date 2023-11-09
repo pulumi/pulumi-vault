@@ -24,7 +24,7 @@ class SecretBackendArgs:
                  path: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SecretBackend resource.
-        :param pulumi.Input[str] credentials: The GCP service account credentials in JSON format.
+        :param pulumi.Input[str] credentials: JSON-encoded credentials to use to connect to GCP
         :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials
                issued by this backend. Defaults to '0'.
         :param pulumi.Input[str] description: A human-friendly description for this backend.
@@ -61,7 +61,7 @@ class SecretBackendArgs:
     @pulumi.getter
     def credentials(self) -> Optional[pulumi.Input[str]]:
         """
-        The GCP service account credentials in JSON format.
+        JSON-encoded credentials to use to connect to GCP
         """
         return pulumi.get(self, "credentials")
 
@@ -174,7 +174,7 @@ class _SecretBackendState:
                  path: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SecretBackend resources.
-        :param pulumi.Input[str] credentials: The GCP service account credentials in JSON format.
+        :param pulumi.Input[str] credentials: JSON-encoded credentials to use to connect to GCP
         :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials
                issued by this backend. Defaults to '0'.
         :param pulumi.Input[str] description: A human-friendly description for this backend.
@@ -211,7 +211,7 @@ class _SecretBackendState:
     @pulumi.getter
     def credentials(self) -> Optional[pulumi.Input[str]]:
         """
-        The GCP service account credentials in JSON format.
+        JSON-encoded credentials to use to connect to GCP
         """
         return pulumi.get(self, "credentials")
 
@@ -337,7 +337,7 @@ class SecretBackend(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] credentials: The GCP service account credentials in JSON format.
+        :param pulumi.Input[str] credentials: JSON-encoded credentials to use to connect to GCP
         :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials
                issued by this backend. Defaults to '0'.
         :param pulumi.Input[str] description: A human-friendly description for this backend.
@@ -436,7 +436,7 @@ class SecretBackend(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] credentials: The GCP service account credentials in JSON format.
+        :param pulumi.Input[str] credentials: JSON-encoded credentials to use to connect to GCP
         :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials
                issued by this backend. Defaults to '0'.
         :param pulumi.Input[str] description: A human-friendly description for this backend.
@@ -470,7 +470,7 @@ class SecretBackend(pulumi.CustomResource):
     @pulumi.getter
     def credentials(self) -> pulumi.Output[Optional[str]]:
         """
-        The GCP service account credentials in JSON format.
+        JSON-encoded credentials to use to connect to GCP
         """
         return pulumi.get(self, "credentials")
 

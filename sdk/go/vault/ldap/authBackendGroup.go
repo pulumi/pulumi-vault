@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Provides a resource to create a group in an [LDAP auth backend within Vault](https://www.vaultproject.io/docs/auth/ldap.html).
@@ -69,6 +71,8 @@ type AuthBackendGroup struct {
 	pulumi.CustomResourceState
 
 	// Path to the authentication backend
+	//
+	// For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api-docs/auth/ldap).
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
 	// The LDAP groupname
 	Groupname pulumi.StringOutput `pulumi:"groupname"`
@@ -91,6 +95,7 @@ func NewAuthBackendGroup(ctx *pulumi.Context,
 	if args.Groupname == nil {
 		return nil, errors.New("invalid value for required argument 'Groupname'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AuthBackendGroup
 	err := ctx.RegisterResource("vault:ldap/authBackendGroup:AuthBackendGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -114,6 +119,8 @@ func GetAuthBackendGroup(ctx *pulumi.Context,
 // Input properties used for looking up and filtering AuthBackendGroup resources.
 type authBackendGroupState struct {
 	// Path to the authentication backend
+	//
+	// For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api-docs/auth/ldap).
 	Backend *string `pulumi:"backend"`
 	// The LDAP groupname
 	Groupname *string `pulumi:"groupname"`
@@ -128,6 +135,8 @@ type authBackendGroupState struct {
 
 type AuthBackendGroupState struct {
 	// Path to the authentication backend
+	//
+	// For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api-docs/auth/ldap).
 	Backend pulumi.StringPtrInput
 	// The LDAP groupname
 	Groupname pulumi.StringPtrInput
@@ -146,6 +155,8 @@ func (AuthBackendGroupState) ElementType() reflect.Type {
 
 type authBackendGroupArgs struct {
 	// Path to the authentication backend
+	//
+	// For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api-docs/auth/ldap).
 	Backend *string `pulumi:"backend"`
 	// The LDAP groupname
 	Groupname string `pulumi:"groupname"`
@@ -161,6 +172,8 @@ type authBackendGroupArgs struct {
 // The set of arguments for constructing a AuthBackendGroup resource.
 type AuthBackendGroupArgs struct {
 	// Path to the authentication backend
+	//
+	// For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api-docs/auth/ldap).
 	Backend pulumi.StringPtrInput
 	// The LDAP groupname
 	Groupname pulumi.StringInput
@@ -196,6 +209,12 @@ func (i *AuthBackendGroup) ToAuthBackendGroupOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendGroupOutput)
 }
 
+func (i *AuthBackendGroup) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendGroup] {
+	return pulumix.Output[*AuthBackendGroup]{
+		OutputState: i.ToAuthBackendGroupOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AuthBackendGroupArrayInput is an input type that accepts AuthBackendGroupArray and AuthBackendGroupArrayOutput values.
 // You can construct a concrete instance of `AuthBackendGroupArrayInput` via:
 //
@@ -219,6 +238,12 @@ func (i AuthBackendGroupArray) ToAuthBackendGroupArrayOutput() AuthBackendGroupA
 
 func (i AuthBackendGroupArray) ToAuthBackendGroupArrayOutputWithContext(ctx context.Context) AuthBackendGroupArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendGroupArrayOutput)
+}
+
+func (i AuthBackendGroupArray) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackendGroup] {
+	return pulumix.Output[[]*AuthBackendGroup]{
+		OutputState: i.ToAuthBackendGroupArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AuthBackendGroupMapInput is an input type that accepts AuthBackendGroupMap and AuthBackendGroupMapOutput values.
@@ -246,6 +271,12 @@ func (i AuthBackendGroupMap) ToAuthBackendGroupMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendGroupMapOutput)
 }
 
+func (i AuthBackendGroupMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackendGroup] {
+	return pulumix.Output[map[string]*AuthBackendGroup]{
+		OutputState: i.ToAuthBackendGroupMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AuthBackendGroupOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendGroupOutput) ElementType() reflect.Type {
@@ -260,7 +291,15 @@ func (o AuthBackendGroupOutput) ToAuthBackendGroupOutputWithContext(ctx context.
 	return o
 }
 
+func (o AuthBackendGroupOutput) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendGroup] {
+	return pulumix.Output[*AuthBackendGroup]{
+		OutputState: o.OutputState,
+	}
+}
+
 // Path to the authentication backend
+//
+// For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api-docs/auth/ldap).
 func (o AuthBackendGroupOutput) Backend() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendGroup) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
 }
@@ -297,6 +336,12 @@ func (o AuthBackendGroupArrayOutput) ToAuthBackendGroupArrayOutputWithContext(ct
 	return o
 }
 
+func (o AuthBackendGroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackendGroup] {
+	return pulumix.Output[[]*AuthBackendGroup]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AuthBackendGroupArrayOutput) Index(i pulumi.IntInput) AuthBackendGroupOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AuthBackendGroup {
 		return vs[0].([]*AuthBackendGroup)[vs[1].(int)]
@@ -315,6 +360,12 @@ func (o AuthBackendGroupMapOutput) ToAuthBackendGroupMapOutput() AuthBackendGrou
 
 func (o AuthBackendGroupMapOutput) ToAuthBackendGroupMapOutputWithContext(ctx context.Context) AuthBackendGroupMapOutput {
 	return o
+}
+
+func (o AuthBackendGroupMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackendGroup] {
+	return pulumix.Output[map[string]*AuthBackendGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuthBackendGroupMapOutput) MapIndex(k pulumi.StringInput) AuthBackendGroupOutput {

@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Writes a KV-V2 secret to a given path in Vault.
@@ -36,7 +38,7 @@ import (
 //			kvv2, err := vault.NewMount(ctx, "kvv2", &vault.MountArgs{
 //				Path: pulumi.String("kvv2"),
 //				Type: pulumi.String("kv"),
-//				Options: pulumi.AnyMap{
+//				Options: pulumi.Map{
 //					"version": pulumi.Any("2"),
 //				},
 //				Description: pulumi.String("KV Version 2 secret engine mount"),
@@ -59,7 +61,7 @@ import (
 //				DataJson:          pulumi.String(json0),
 //				CustomMetadata: &kv.SecretV2CustomMetadataArgs{
 //					MaxVersions: pulumi.Int(5),
-//					Data: pulumi.AnyMap{
+//					Data: pulumi.Map{
 //						"foo": pulumi.Any("vault@example.com"),
 //						"bar": pulumi.Any("12345"),
 //					},
@@ -161,13 +163,14 @@ func NewSecretV2(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'Mount'")
 	}
 	if args.DataJson != nil {
-		args.DataJson = pulumi.ToSecret(args.DataJson).(pulumi.StringOutput)
+		args.DataJson = pulumi.ToSecret(args.DataJson).(pulumi.StringInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"data",
 		"dataJson",
 	})
 	opts = append(opts, secrets)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SecretV2
 	err := ctx.RegisterResource("vault:kv/secretV2:SecretV2", name, args, &resource, opts...)
 	if err != nil {
@@ -375,6 +378,12 @@ func (i *SecretV2) ToSecretV2OutputWithContext(ctx context.Context) SecretV2Outp
 	return pulumi.ToOutputWithContext(ctx, i).(SecretV2Output)
 }
 
+func (i *SecretV2) ToOutput(ctx context.Context) pulumix.Output[*SecretV2] {
+	return pulumix.Output[*SecretV2]{
+		OutputState: i.ToSecretV2OutputWithContext(ctx).OutputState,
+	}
+}
+
 // SecretV2ArrayInput is an input type that accepts SecretV2Array and SecretV2ArrayOutput values.
 // You can construct a concrete instance of `SecretV2ArrayInput` via:
 //
@@ -398,6 +407,12 @@ func (i SecretV2Array) ToSecretV2ArrayOutput() SecretV2ArrayOutput {
 
 func (i SecretV2Array) ToSecretV2ArrayOutputWithContext(ctx context.Context) SecretV2ArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretV2ArrayOutput)
+}
+
+func (i SecretV2Array) ToOutput(ctx context.Context) pulumix.Output[[]*SecretV2] {
+	return pulumix.Output[[]*SecretV2]{
+		OutputState: i.ToSecretV2ArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SecretV2MapInput is an input type that accepts SecretV2Map and SecretV2MapOutput values.
@@ -425,6 +440,12 @@ func (i SecretV2Map) ToSecretV2MapOutputWithContext(ctx context.Context) SecretV
 	return pulumi.ToOutputWithContext(ctx, i).(SecretV2MapOutput)
 }
 
+func (i SecretV2Map) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretV2] {
+	return pulumix.Output[map[string]*SecretV2]{
+		OutputState: i.ToSecretV2MapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SecretV2Output struct{ *pulumi.OutputState }
 
 func (SecretV2Output) ElementType() reflect.Type {
@@ -437,6 +458,12 @@ func (o SecretV2Output) ToSecretV2Output() SecretV2Output {
 
 func (o SecretV2Output) ToSecretV2OutputWithContext(ctx context.Context) SecretV2Output {
 	return o
+}
+
+func (o SecretV2Output) ToOutput(ctx context.Context) pulumix.Output[*SecretV2] {
+	return pulumix.Output[*SecretV2]{
+		OutputState: o.OutputState,
+	}
 }
 
 // This flag is required if `casRequired` is set to true
@@ -530,6 +557,12 @@ func (o SecretV2ArrayOutput) ToSecretV2ArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
+func (o SecretV2ArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretV2] {
+	return pulumix.Output[[]*SecretV2]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SecretV2ArrayOutput) Index(i pulumi.IntInput) SecretV2Output {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretV2 {
 		return vs[0].([]*SecretV2)[vs[1].(int)]
@@ -548,6 +581,12 @@ func (o SecretV2MapOutput) ToSecretV2MapOutput() SecretV2MapOutput {
 
 func (o SecretV2MapOutput) ToSecretV2MapOutputWithContext(ctx context.Context) SecretV2MapOutput {
 	return o
+}
+
+func (o SecretV2MapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretV2] {
+	return pulumix.Output[map[string]*SecretV2]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SecretV2MapOutput) MapIndex(k pulumi.StringInput) SecretV2Output {

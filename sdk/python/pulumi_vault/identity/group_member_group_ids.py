@@ -22,6 +22,13 @@ class GroupMemberGroupIdsArgs:
         The set of arguments for constructing a GroupMemberGroupIds resource.
         :param pulumi.Input[str] group_id: Group ID to assign member entities to.
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
+               
+               If `true`, this resource will take exclusive control of the member groups that belong to the group and will set
+               it equal to what is specified in the resource.
+               
+               If set to `false`, this resource will simply ensure that the member groups specified in the resource are present
+               in the group. When destroying the resource, the resource will ensure that the member groups specified in the resource
+               are removed.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] member_group_ids: List of member groups that belong to the group
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -53,6 +60,13 @@ class GroupMemberGroupIdsArgs:
     def exclusive(self) -> Optional[pulumi.Input[bool]]:
         """
         Defaults to `true`.
+
+        If `true`, this resource will take exclusive control of the member groups that belong to the group and will set
+        it equal to what is specified in the resource.
+
+        If set to `false`, this resource will simply ensure that the member groups specified in the resource are present
+        in the group. When destroying the resource, the resource will ensure that the member groups specified in the resource
+        are removed.
         """
         return pulumi.get(self, "exclusive")
 
@@ -98,6 +112,13 @@ class _GroupMemberGroupIdsState:
         """
         Input properties used for looking up and filtering GroupMemberGroupIds resources.
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
+               
+               If `true`, this resource will take exclusive control of the member groups that belong to the group and will set
+               it equal to what is specified in the resource.
+               
+               If set to `false`, this resource will simply ensure that the member groups specified in the resource are present
+               in the group. When destroying the resource, the resource will ensure that the member groups specified in the resource
+               are removed.
         :param pulumi.Input[str] group_id: Group ID to assign member entities to.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] member_group_ids: List of member groups that belong to the group
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -119,6 +140,13 @@ class _GroupMemberGroupIdsState:
     def exclusive(self) -> Optional[pulumi.Input[bool]]:
         """
         Defaults to `true`.
+
+        If `true`, this resource will take exclusive control of the member groups that belong to the group and will set
+        it equal to what is specified in the resource.
+
+        If set to `false`, this resource will simply ensure that the member groups specified in the resource are present
+        in the group. When destroying the resource, the resource will ensure that the member groups specified in the resource
+        are removed.
         """
         return pulumi.get(self, "exclusive")
 
@@ -226,6 +254,13 @@ class GroupMemberGroupIds(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
+               
+               If `true`, this resource will take exclusive control of the member groups that belong to the group and will set
+               it equal to what is specified in the resource.
+               
+               If set to `false`, this resource will simply ensure that the member groups specified in the resource are present
+               in the group. When destroying the resource, the resource will ensure that the member groups specified in the resource
+               are removed.
         :param pulumi.Input[str] group_id: Group ID to assign member entities to.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] member_group_ids: List of member groups that belong to the group
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -342,6 +377,13 @@ class GroupMemberGroupIds(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
+               
+               If `true`, this resource will take exclusive control of the member groups that belong to the group and will set
+               it equal to what is specified in the resource.
+               
+               If set to `false`, this resource will simply ensure that the member groups specified in the resource are present
+               in the group. When destroying the resource, the resource will ensure that the member groups specified in the resource
+               are removed.
         :param pulumi.Input[str] group_id: Group ID to assign member entities to.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] member_group_ids: List of member groups that belong to the group
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -364,6 +406,13 @@ class GroupMemberGroupIds(pulumi.CustomResource):
     def exclusive(self) -> pulumi.Output[Optional[bool]]:
         """
         Defaults to `true`.
+
+        If `true`, this resource will take exclusive control of the member groups that belong to the group and will set
+        it equal to what is specified in the resource.
+
+        If set to `false`, this resource will simply ensure that the member groups specified in the resource are present
+        in the group. When destroying the resource, the resource will ensure that the member groups specified in the resource
+        are removed.
         """
         return pulumi.get(self, "exclusive")
 

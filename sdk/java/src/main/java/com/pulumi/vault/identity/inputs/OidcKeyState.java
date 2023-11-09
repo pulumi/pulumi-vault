@@ -35,16 +35,16 @@ public final class OidcKeyState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If &#34;*&#34;, all roles are
-     * allowed.
+     * Array of role client ID allowed to use this key for signing. If
+     * empty, no roles are allowed. If `[&#34;*&#34;]`, all roles are allowed.
      * 
      */
     @Import(name="allowedClientIds")
     private @Nullable Output<List<String>> allowedClientIds;
 
     /**
-     * @return Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If &#34;*&#34;, all roles are
-     * allowed.
+     * @return Array of role client ID allowed to use this key for signing. If
+     * empty, no roles are allowed. If `[&#34;*&#34;]`, all roles are allowed.
      * 
      */
     public Optional<Output<List<String>>> allowedClientIds() {
@@ -172,8 +172,8 @@ public final class OidcKeyState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param allowedClientIds Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If &#34;*&#34;, all roles are
-         * allowed.
+         * @param allowedClientIds Array of role client ID allowed to use this key for signing. If
+         * empty, no roles are allowed. If `[&#34;*&#34;]`, all roles are allowed.
          * 
          * @return builder
          * 
@@ -184,8 +184,8 @@ public final class OidcKeyState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param allowedClientIds Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If &#34;*&#34;, all roles are
-         * allowed.
+         * @param allowedClientIds Array of role client ID allowed to use this key for signing. If
+         * empty, no roles are allowed. If `[&#34;*&#34;]`, all roles are allowed.
          * 
          * @return builder
          * 
@@ -195,8 +195,8 @@ public final class OidcKeyState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param allowedClientIds Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If &#34;*&#34;, all roles are
-         * allowed.
+         * @param allowedClientIds Array of role client ID allowed to use this key for signing. If
+         * empty, no roles are allowed. If `[&#34;*&#34;]`, all roles are allowed.
          * 
          * @return builder
          * 

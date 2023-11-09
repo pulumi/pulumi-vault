@@ -27,7 +27,7 @@ class SecretBackendCaArgs:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[str] private_key: The private key part the SSH CA key pair; required if generate_signing_key is false.
+        :param pulumi.Input[str] private_key: Private key part the SSH CA key pair; required if generate_signing_key is false.
         :param pulumi.Input[str] public_key: The public key part the SSH CA key pair; required if generate_signing_key is false.
         """
         if backend is not None:
@@ -84,7 +84,7 @@ class SecretBackendCaArgs:
     @pulumi.getter(name="privateKey")
     def private_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The private key part the SSH CA key pair; required if generate_signing_key is false.
+        Private key part the SSH CA key pair; required if generate_signing_key is false.
         """
         return pulumi.get(self, "private_key")
 
@@ -121,7 +121,7 @@ class _SecretBackendCaState:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[str] private_key: The private key part the SSH CA key pair; required if generate_signing_key is false.
+        :param pulumi.Input[str] private_key: Private key part the SSH CA key pair; required if generate_signing_key is false.
         :param pulumi.Input[str] public_key: The public key part the SSH CA key pair; required if generate_signing_key is false.
         """
         if backend is not None:
@@ -178,7 +178,7 @@ class _SecretBackendCaState:
     @pulumi.getter(name="privateKey")
     def private_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The private key part the SSH CA key pair; required if generate_signing_key is false.
+        Private key part the SSH CA key pair; required if generate_signing_key is false.
         """
         return pulumi.get(self, "private_key")
 
@@ -240,7 +240,7 @@ class SecretBackendCa(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[str] private_key: The private key part the SSH CA key pair; required if generate_signing_key is false.
+        :param pulumi.Input[str] private_key: Private key part the SSH CA key pair; required if generate_signing_key is false.
         :param pulumi.Input[str] public_key: The public key part the SSH CA key pair; required if generate_signing_key is false.
         """
         ...
@@ -335,7 +335,7 @@ class SecretBackendCa(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[str] private_key: The private key part the SSH CA key pair; required if generate_signing_key is false.
+        :param pulumi.Input[str] private_key: Private key part the SSH CA key pair; required if generate_signing_key is false.
         :param pulumi.Input[str] public_key: The public key part the SSH CA key pair; required if generate_signing_key is false.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -380,7 +380,7 @@ class SecretBackendCa(pulumi.CustomResource):
     @pulumi.getter(name="privateKey")
     def private_key(self) -> pulumi.Output[str]:
         """
-        The private key part the SSH CA key pair; required if generate_signing_key is false.
+        Private key part the SSH CA key pair; required if generate_signing_key is false.
         """
         return pulumi.get(self, "private_key")
 

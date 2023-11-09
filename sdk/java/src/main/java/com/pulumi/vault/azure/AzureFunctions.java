@@ -23,7 +23,7 @@ public final class AzureFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.azure.AzureFunctions;
-     * import com.pulumi.vault.ad.inputs.GetAccessCredentialsArgs;
+     * import com.pulumi.vault.azure.inputs.GetAccessCredentialsArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -67,7 +67,7 @@ public final class AzureFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.azure.AzureFunctions;
-     * import com.pulumi.vault.ad.inputs.GetAccessCredentialsArgs;
+     * import com.pulumi.vault.azure.inputs.GetAccessCredentialsArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -111,7 +111,7 @@ public final class AzureFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.azure.AzureFunctions;
-     * import com.pulumi.vault.ad.inputs.GetAccessCredentialsArgs;
+     * import com.pulumi.vault.azure.inputs.GetAccessCredentialsArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -155,7 +155,7 @@ public final class AzureFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.azure.AzureFunctions;
-     * import com.pulumi.vault.ad.inputs.GetAccessCredentialsArgs;
+     * import com.pulumi.vault.azure.inputs.GetAccessCredentialsArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;

@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates a Impersonated Account in the [GCP Secrets Engine](https://www.vaultproject.io/docs/secrets/gcp/index.html) for Vault.
@@ -23,7 +25,7 @@ import (
 //
 // import (
 //
-//	"io/ioutil"
+//	"os"
 //
 //	"github.com/pulumi/pulumi-gcp/sdk/v6/go/gcp/serviceAccount"
 //	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/gcp"
@@ -32,7 +34,7 @@ import (
 // )
 //
 //	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := ioutil.ReadFile(path)
+//		data, err := os.ReadFile(path)
 //		if err != nil {
 //			panic(err.Error())
 //		}
@@ -113,6 +115,7 @@ func NewSecretImpersonatedAccount(ctx *pulumi.Context,
 	if args.ServiceAccountEmail == nil {
 		return nil, errors.New("invalid value for required argument 'ServiceAccountEmail'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SecretImpersonatedAccount
 	err := ctx.RegisterResource("vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount", name, args, &resource, opts...)
 	if err != nil {
@@ -218,6 +221,12 @@ func (i *SecretImpersonatedAccount) ToSecretImpersonatedAccountOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(SecretImpersonatedAccountOutput)
 }
 
+func (i *SecretImpersonatedAccount) ToOutput(ctx context.Context) pulumix.Output[*SecretImpersonatedAccount] {
+	return pulumix.Output[*SecretImpersonatedAccount]{
+		OutputState: i.ToSecretImpersonatedAccountOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SecretImpersonatedAccountArrayInput is an input type that accepts SecretImpersonatedAccountArray and SecretImpersonatedAccountArrayOutput values.
 // You can construct a concrete instance of `SecretImpersonatedAccountArrayInput` via:
 //
@@ -241,6 +250,12 @@ func (i SecretImpersonatedAccountArray) ToSecretImpersonatedAccountArrayOutput()
 
 func (i SecretImpersonatedAccountArray) ToSecretImpersonatedAccountArrayOutputWithContext(ctx context.Context) SecretImpersonatedAccountArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretImpersonatedAccountArrayOutput)
+}
+
+func (i SecretImpersonatedAccountArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretImpersonatedAccount] {
+	return pulumix.Output[[]*SecretImpersonatedAccount]{
+		OutputState: i.ToSecretImpersonatedAccountArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SecretImpersonatedAccountMapInput is an input type that accepts SecretImpersonatedAccountMap and SecretImpersonatedAccountMapOutput values.
@@ -268,6 +283,12 @@ func (i SecretImpersonatedAccountMap) ToSecretImpersonatedAccountMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(SecretImpersonatedAccountMapOutput)
 }
 
+func (i SecretImpersonatedAccountMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretImpersonatedAccount] {
+	return pulumix.Output[map[string]*SecretImpersonatedAccount]{
+		OutputState: i.ToSecretImpersonatedAccountMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SecretImpersonatedAccountOutput struct{ *pulumi.OutputState }
 
 func (SecretImpersonatedAccountOutput) ElementType() reflect.Type {
@@ -280,6 +301,12 @@ func (o SecretImpersonatedAccountOutput) ToSecretImpersonatedAccountOutput() Sec
 
 func (o SecretImpersonatedAccountOutput) ToSecretImpersonatedAccountOutputWithContext(ctx context.Context) SecretImpersonatedAccountOutput {
 	return o
+}
+
+func (o SecretImpersonatedAccountOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretImpersonatedAccount] {
+	return pulumix.Output[*SecretImpersonatedAccount]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Path where the GCP Secrets Engine is mounted
@@ -326,6 +353,12 @@ func (o SecretImpersonatedAccountArrayOutput) ToSecretImpersonatedAccountArrayOu
 	return o
 }
 
+func (o SecretImpersonatedAccountArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretImpersonatedAccount] {
+	return pulumix.Output[[]*SecretImpersonatedAccount]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SecretImpersonatedAccountArrayOutput) Index(i pulumi.IntInput) SecretImpersonatedAccountOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretImpersonatedAccount {
 		return vs[0].([]*SecretImpersonatedAccount)[vs[1].(int)]
@@ -344,6 +377,12 @@ func (o SecretImpersonatedAccountMapOutput) ToSecretImpersonatedAccountMapOutput
 
 func (o SecretImpersonatedAccountMapOutput) ToSecretImpersonatedAccountMapOutputWithContext(ctx context.Context) SecretImpersonatedAccountMapOutput {
 	return o
+}
+
+func (o SecretImpersonatedAccountMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretImpersonatedAccount] {
+	return pulumix.Output[map[string]*SecretImpersonatedAccount]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SecretImpersonatedAccountMapOutput) MapIndex(k pulumi.StringInput) SecretImpersonatedAccountOutput {

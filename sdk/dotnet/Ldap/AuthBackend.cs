@@ -16,6 +16,7 @@ namespace Pulumi.Vault.Ldap
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -83,6 +84,9 @@ namespace Pulumi.Vault.Ldap
         [Output("clientTlsKey")]
         public Output<string> ClientTlsKey { get; private set; } = null!;
 
+        /// <summary>
+        /// Prevents users from bypassing authentication when providing an empty password.
+        /// </summary>
         [Output("denyNullBind")]
         public Output<bool> DenyNullBind { get; private set; } = null!;
 
@@ -99,6 +103,9 @@ namespace Pulumi.Vault.Ldap
         [Output("disableRemount")]
         public Output<bool?> DisableRemount { get; private set; } = null!;
 
+        /// <summary>
+        /// Use anonymous bind to discover the bind DN of a user.
+        /// </summary>
         [Output("discoverdn")]
         public Output<bool> Discoverdn { get; private set; } = null!;
 
@@ -234,17 +241,13 @@ namespace Pulumi.Vault.Ldap
         public Output<int?> TokenTtl { get; private set; } = null!;
 
         /// <summary>
-        /// The type of token that should be generated. Can be `service`,
-        /// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-        /// `service` tokens). For token store roles, there are two additional possibilities:
-        /// `default-service` and `default-batch` which specify the type to return unless the client
-        /// requests a different type at generation time.
+        /// The type of token to generate, service or batch
         /// </summary>
         [Output("tokenType")]
         public Output<string?> TokenType { get; private set; } = null!;
 
         /// <summary>
-        /// The userPrincipalDomain used to construct UPN string
+        /// The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
         /// </summary>
         [Output("upndomain")]
         public Output<string> Upndomain { get; private set; } = null!;
@@ -385,6 +388,9 @@ namespace Pulumi.Vault.Ldap
             }
         }
 
+        /// <summary>
+        /// Prevents users from bypassing authentication when providing an empty password.
+        /// </summary>
         [Input("denyNullBind")]
         public Input<bool>? DenyNullBind { get; set; }
 
@@ -401,6 +407,9 @@ namespace Pulumi.Vault.Ldap
         [Input("disableRemount")]
         public Input<bool>? DisableRemount { get; set; }
 
+        /// <summary>
+        /// Use anonymous bind to discover the bind DN of a user.
+        /// </summary>
         [Input("discoverdn")]
         public Input<bool>? Discoverdn { get; set; }
 
@@ -548,17 +557,13 @@ namespace Pulumi.Vault.Ldap
         public Input<int>? TokenTtl { get; set; }
 
         /// <summary>
-        /// The type of token that should be generated. Can be `service`,
-        /// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-        /// `service` tokens). For token store roles, there are two additional possibilities:
-        /// `default-service` and `default-batch` which specify the type to return unless the client
-        /// requests a different type at generation time.
+        /// The type of token to generate, service or batch
         /// </summary>
         [Input("tokenType")]
         public Input<string>? TokenType { get; set; }
 
         /// <summary>
-        /// The userPrincipalDomain used to construct UPN string
+        /// The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
         /// </summary>
         [Input("upndomain")]
         public Input<string>? Upndomain { get; set; }
@@ -662,6 +667,9 @@ namespace Pulumi.Vault.Ldap
             }
         }
 
+        /// <summary>
+        /// Prevents users from bypassing authentication when providing an empty password.
+        /// </summary>
         [Input("denyNullBind")]
         public Input<bool>? DenyNullBind { get; set; }
 
@@ -678,6 +686,9 @@ namespace Pulumi.Vault.Ldap
         [Input("disableRemount")]
         public Input<bool>? DisableRemount { get; set; }
 
+        /// <summary>
+        /// Use anonymous bind to discover the bind DN of a user.
+        /// </summary>
         [Input("discoverdn")]
         public Input<bool>? Discoverdn { get; set; }
 
@@ -825,17 +836,13 @@ namespace Pulumi.Vault.Ldap
         public Input<int>? TokenTtl { get; set; }
 
         /// <summary>
-        /// The type of token that should be generated. Can be `service`,
-        /// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-        /// `service` tokens). For token store roles, there are two additional possibilities:
-        /// `default-service` and `default-batch` which specify the type to return unless the client
-        /// requests a different type at generation time.
+        /// The type of token to generate, service or batch
         /// </summary>
         [Input("tokenType")]
         public Input<string>? TokenType { get; set; }
 
         /// <summary>
-        /// The userPrincipalDomain used to construct UPN string
+        /// The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
         /// </summary>
         [Input("upndomain")]
         public Input<string>? Upndomain { get; set; }

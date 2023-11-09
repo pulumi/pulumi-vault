@@ -184,6 +184,9 @@ def get_secret(namespace: Optional[str] = None,
     :param int version: The version of the secret to read. This is used by the
            Vault KV secrets engine - version 2 to indicate which version of the secret
            to read.
+    :param bool with_lease_start_time: If set to true, stores `lease_start_time` in the TF state.
+           Note that storing the `lease_start_time` in the TF state will cause a persistent drift
+           on every `pulumi preview` and will require a `pulumi up`.
     """
     __args__ = dict()
     __args__['namespace'] = namespace
@@ -194,17 +197,17 @@ def get_secret(namespace: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('vault:generic/getSecret:getSecret', __args__, opts=opts, typ=GetSecretResult).value
 
     return AwaitableGetSecretResult(
-        data=__ret__.data,
-        data_json=__ret__.data_json,
-        id=__ret__.id,
-        lease_duration=__ret__.lease_duration,
-        lease_id=__ret__.lease_id,
-        lease_renewable=__ret__.lease_renewable,
-        lease_start_time=__ret__.lease_start_time,
-        namespace=__ret__.namespace,
-        path=__ret__.path,
-        version=__ret__.version,
-        with_lease_start_time=__ret__.with_lease_start_time)
+        data=pulumi.get(__ret__, 'data'),
+        data_json=pulumi.get(__ret__, 'data_json'),
+        id=pulumi.get(__ret__, 'id'),
+        lease_duration=pulumi.get(__ret__, 'lease_duration'),
+        lease_id=pulumi.get(__ret__, 'lease_id'),
+        lease_renewable=pulumi.get(__ret__, 'lease_renewable'),
+        lease_start_time=pulumi.get(__ret__, 'lease_start_time'),
+        namespace=pulumi.get(__ret__, 'namespace'),
+        path=pulumi.get(__ret__, 'path'),
+        version=pulumi.get(__ret__, 'version'),
+        with_lease_start_time=pulumi.get(__ret__, 'with_lease_start_time'))
 
 
 @_utilities.lift_output_func(get_secret)
@@ -240,5 +243,8 @@ def get_secret_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
     :param int version: The version of the secret to read. This is used by the
            Vault KV secrets engine - version 2 to indicate which version of the secret
            to read.
+    :param bool with_lease_start_time: If set to true, stores `lease_start_time` in the TF state.
+           Note that storing the `lease_start_time` in the TF state will cause a persistent drift
+           on every `pulumi preview` and will require a `pulumi up`.
     """
     ...

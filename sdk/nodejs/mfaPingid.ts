@@ -65,15 +65,15 @@ export class MfaPingid extends pulumi.CustomResource {
     }
 
     /**
-     * Admin URL computed by Vault.
+     * `(string)` – Admin URL computed by Vault
      */
     public /*out*/ readonly adminUrl!: pulumi.Output<string>;
     /**
-     * Authenticator URL computed by Vault.
+     * `(string)` – Authenticator URL computed by Vault
      */
     public /*out*/ readonly authenticatorUrl!: pulumi.Output<string>;
     /**
-     * IDP URL computed by Vault.
+     * `(string)` – IDP URL computed by Vault
      */
     public /*out*/ readonly idpUrl!: pulumi.Output<string>;
     /**
@@ -93,11 +93,11 @@ export class MfaPingid extends pulumi.CustomResource {
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
     /**
-     * Namespace ID computed by Vault.
+     * `(string)` – Namespace ID computed by Vault
      */
     public /*out*/ readonly namespaceId!: pulumi.Output<string>;
     /**
-     * Org Alias computed by Vault.
+     * `(string)` – Org Alias computed by Vault
      */
     public /*out*/ readonly orgAlias!: pulumi.Output<string>;
     /**
@@ -106,11 +106,11 @@ export class MfaPingid extends pulumi.CustomResource {
      */
     public readonly settingsFileBase64!: pulumi.Output<string>;
     /**
-     * Type of configuration computed by Vault.
+     * `(string)` – Type of configuration computed by Vault
      */
     public /*out*/ readonly type!: pulumi.Output<string>;
     /**
-     * If set, enables use of PingID signature. Computed by Vault
+     * `(string)` – If set to true, enables use of PingID signature. Computed by Vault
      */
     public /*out*/ readonly useSignature!: pulumi.Output<boolean>;
     /**
@@ -180,15 +180,15 @@ export class MfaPingid extends pulumi.CustomResource {
  */
 export interface MfaPingidState {
     /**
-     * Admin URL computed by Vault.
+     * `(string)` – Admin URL computed by Vault
      */
     adminUrl?: pulumi.Input<string>;
     /**
-     * Authenticator URL computed by Vault.
+     * `(string)` – Authenticator URL computed by Vault
      */
     authenticatorUrl?: pulumi.Input<string>;
     /**
-     * IDP URL computed by Vault.
+     * `(string)` – IDP URL computed by Vault
      */
     idpUrl?: pulumi.Input<string>;
     /**
@@ -208,11 +208,11 @@ export interface MfaPingidState {
      */
     namespace?: pulumi.Input<string>;
     /**
-     * Namespace ID computed by Vault.
+     * `(string)` – Namespace ID computed by Vault
      */
     namespaceId?: pulumi.Input<string>;
     /**
-     * Org Alias computed by Vault.
+     * `(string)` – Org Alias computed by Vault
      */
     orgAlias?: pulumi.Input<string>;
     /**
@@ -221,11 +221,11 @@ export interface MfaPingidState {
      */
     settingsFileBase64?: pulumi.Input<string>;
     /**
-     * Type of configuration computed by Vault.
+     * `(string)` – Type of configuration computed by Vault
      */
     type?: pulumi.Input<string>;
     /**
-     * If set, enables use of PingID signature. Computed by Vault
+     * `(string)` – If set to true, enables use of PingID signature. Computed by Vault
      */
     useSignature?: pulumi.Input<boolean>;
     /**

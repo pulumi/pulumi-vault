@@ -104,16 +104,16 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Supplies the curve value when using the `CKM_ECDSA` mechanism.
-     * Required if `allow_generate_key` is `true`.
+     * The curve to use for an ECDSA key. Used when `key_type`
+     * is `ECDSA`. Required if `allow_generate_key` is `true`.
      * 
      */
     @Import(name="curve")
     private @Nullable Output<String> curve;
 
     /**
-     * @return Supplies the curve value when using the `CKM_ECDSA` mechanism.
-     * Required if `allow_generate_key` is `true`.
+     * @return The curve to use for an ECDSA key. Used when `key_type`
+     * is `ECDSA`. Required if `allow_generate_key` is `true`.
      * 
      */
     public Optional<Output<String>> curve() {
@@ -136,18 +136,14 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
-     * `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
-     * `allow_generate_key` is `true`.
+     * The size in bits for an RSA key.
      * 
      */
     @Import(name="keyBits", required=true)
     private Output<String> keyBits;
 
     /**
-     * @return Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
-     * `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
-     * `allow_generate_key` is `true`.
+     * @return The size in bits for an RSA key.
      * 
      */
     public Output<String> keyBits() {
@@ -391,8 +387,8 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param curve Supplies the curve value when using the `CKM_ECDSA` mechanism.
-         * Required if `allow_generate_key` is `true`.
+         * @param curve The curve to use for an ECDSA key. Used when `key_type`
+         * is `ECDSA`. Required if `allow_generate_key` is `true`.
          * 
          * @return builder
          * 
@@ -403,8 +399,8 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param curve Supplies the curve value when using the `CKM_ECDSA` mechanism.
-         * Required if `allow_generate_key` is `true`.
+         * @param curve The curve to use for an ECDSA key. Used when `key_type`
+         * is `ECDSA`. Required if `allow_generate_key` is `true`.
          * 
          * @return builder
          * 
@@ -435,9 +431,7 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param keyBits Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
-         * `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
-         * `allow_generate_key` is `true`.
+         * @param keyBits The size in bits for an RSA key.
          * 
          * @return builder
          * 
@@ -448,9 +442,7 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param keyBits Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
-         * `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
-         * `allow_generate_key` is `true`.
+         * @param keyBits The size in bits for an RSA key.
          * 
          * @return builder
          * 

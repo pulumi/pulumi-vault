@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const myTotp = new vault.MfaTotp("my_totp", {
+ * const myTotp = new vault.MfaTotp("myTotp", {
  *     algorithm: "SHA256",
  *     digits: 8,
  *     issuer: "hashicorp",

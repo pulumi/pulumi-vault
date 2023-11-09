@@ -199,18 +199,18 @@ def get_secret_v2(mount: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('vault:kv/getSecretV2:getSecretV2', __args__, opts=opts, typ=GetSecretV2Result).value
 
     return AwaitableGetSecretV2Result(
-        created_time=__ret__.created_time,
-        custom_metadata=__ret__.custom_metadata,
-        data=__ret__.data,
-        data_json=__ret__.data_json,
-        deletion_time=__ret__.deletion_time,
-        destroyed=__ret__.destroyed,
-        id=__ret__.id,
-        mount=__ret__.mount,
-        name=__ret__.name,
-        namespace=__ret__.namespace,
-        path=__ret__.path,
-        version=__ret__.version)
+        created_time=pulumi.get(__ret__, 'created_time'),
+        custom_metadata=pulumi.get(__ret__, 'custom_metadata'),
+        data=pulumi.get(__ret__, 'data'),
+        data_json=pulumi.get(__ret__, 'data_json'),
+        deletion_time=pulumi.get(__ret__, 'deletion_time'),
+        destroyed=pulumi.get(__ret__, 'destroyed'),
+        id=pulumi.get(__ret__, 'id'),
+        mount=pulumi.get(__ret__, 'mount'),
+        name=pulumi.get(__ret__, 'name'),
+        namespace=pulumi.get(__ret__, 'namespace'),
+        path=pulumi.get(__ret__, 'path'),
+        version=pulumi.get(__ret__, 'version'))
 
 
 @_utilities.lift_output_func(get_secret_v2)

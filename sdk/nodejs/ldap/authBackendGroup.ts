@@ -68,6 +68,8 @@ export class AuthBackendGroup extends pulumi.CustomResource {
 
     /**
      * Path to the authentication backend
+     *
+     * For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api-docs/auth/ldap).
      */
     public readonly backend!: pulumi.Output<string | undefined>;
     /**
@@ -124,6 +126,8 @@ export class AuthBackendGroup extends pulumi.CustomResource {
 export interface AuthBackendGroupState {
     /**
      * Path to the authentication backend
+     *
+     * For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api-docs/auth/ldap).
      */
     backend?: pulumi.Input<string>;
     /**
@@ -149,6 +153,8 @@ export interface AuthBackendGroupState {
 export interface AuthBackendGroupArgs {
     /**
      * Path to the authentication backend
+     *
+     * For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api-docs/auth/ldap).
      */
     backend?: pulumi.Input<string>;
     /**

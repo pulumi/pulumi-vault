@@ -23,6 +23,8 @@ class AuthBackendUserArgs:
         The set of arguments for constructing a AuthBackendUser resource.
         :param pulumi.Input[str] username: The LDAP username
         :param pulumi.Input[str] backend: Path to the authentication backend
+               
+               For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api-docs/auth/ldap).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: Override LDAP groups which should be granted to user
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -57,6 +59,8 @@ class AuthBackendUserArgs:
     def backend(self) -> Optional[pulumi.Input[str]]:
         """
         Path to the authentication backend
+
+        For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api-docs/auth/ldap).
         """
         return pulumi.get(self, "backend")
 
@@ -115,6 +119,8 @@ class _AuthBackendUserState:
         """
         Input properties used for looking up and filtering AuthBackendUser resources.
         :param pulumi.Input[str] backend: Path to the authentication backend
+               
+               For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api-docs/auth/ldap).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: Override LDAP groups which should be granted to user
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -139,6 +145,8 @@ class _AuthBackendUserState:
     def backend(self) -> Optional[pulumi.Input[str]]:
         """
         Path to the authentication backend
+
+        For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api-docs/auth/ldap).
         """
         return pulumi.get(self, "backend")
 
@@ -247,6 +255,8 @@ class AuthBackendUser(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Path to the authentication backend
+               
+               For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api-docs/auth/ldap).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: Override LDAP groups which should be granted to user
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -355,6 +365,8 @@ class AuthBackendUser(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Path to the authentication backend
+               
+               For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api-docs/auth/ldap).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: Override LDAP groups which should be granted to user
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -379,6 +391,8 @@ class AuthBackendUser(pulumi.CustomResource):
     def backend(self) -> pulumi.Output[Optional[str]]:
         """
         Path to the authentication backend
+
+        For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api-docs/auth/ldap).
         """
         return pulumi.get(self, "backend")
 

@@ -19,11 +19,13 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly ImmutableArray<string> AllowedRoles;
         /// <summary>
-        /// The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
+        /// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
         /// </summary>
         public readonly string? CaCert;
         /// <summary>
         /// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        /// 
+        /// Supported list of database secrets engines that can be configured:
         /// </summary>
         public readonly ImmutableDictionary<string, object>? Data;
         /// <summary>
@@ -37,7 +39,7 @@ namespace Pulumi.Vault.Database.Outputs
         public readonly bool? InsecureTls;
         public readonly string Name;
         /// <summary>
-        /// The password to be used in the connection.
+        /// The root credential password used in the connection URL.
         /// </summary>
         public readonly string Password;
         /// <summary>
@@ -54,11 +56,11 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly ImmutableArray<string> RootRotationStatements;
         /// <summary>
-        /// Whether to use TLS when connecting to Redis.
+        /// Whether to use TLS when connecting to Cassandra.
         /// </summary>
         public readonly bool? Tls;
         /// <summary>
-        /// The username to be used in the connection (the account admin level).
+        /// The root credential username used in the connection URL.
         /// </summary>
         public readonly string Username;
         /// <summary>

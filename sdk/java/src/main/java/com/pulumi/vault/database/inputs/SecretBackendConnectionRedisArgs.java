@@ -65,14 +65,14 @@ public final class SecretBackendConnectionRedisArgs extends com.pulumi.resources
     }
 
     /**
-     * The root credential password used in the connection URL.
+     * The password to authenticate with.
      * 
      */
     @Import(name="password", required=true)
     private Output<String> password;
 
     /**
-     * @return The root credential password used in the connection URL.
+     * @return The password to authenticate with.
      * 
      */
     public Output<String> password() {
@@ -97,14 +97,14 @@ public final class SecretBackendConnectionRedisArgs extends com.pulumi.resources
     }
 
     /**
-     * Whether to use TLS when connecting to Redis.
+     * Whether to use TLS when connecting to Cassandra.
      * 
      */
     @Import(name="tls")
     private @Nullable Output<Boolean> tls;
 
     /**
-     * @return Whether to use TLS when connecting to Redis.
+     * @return Whether to use TLS when connecting to Cassandra.
      * 
      */
     public Optional<Output<Boolean>> tls() {
@@ -112,14 +112,14 @@ public final class SecretBackendConnectionRedisArgs extends com.pulumi.resources
     }
 
     /**
-     * The root credential username used in the connection URL.
+     * The username to authenticate with.
      * 
      */
     @Import(name="username", required=true)
     private Output<String> username;
 
     /**
-     * @return The root credential username used in the connection URL.
+     * @return The username to authenticate with.
      * 
      */
     public Output<String> username() {
@@ -222,7 +222,7 @@ public final class SecretBackendConnectionRedisArgs extends com.pulumi.resources
         }
 
         /**
-         * @param password The root credential password used in the connection URL.
+         * @param password The password to authenticate with.
          * 
          * @return builder
          * 
@@ -233,7 +233,7 @@ public final class SecretBackendConnectionRedisArgs extends com.pulumi.resources
         }
 
         /**
-         * @param password The root credential password used in the connection URL.
+         * @param password The password to authenticate with.
          * 
          * @return builder
          * 
@@ -266,7 +266,7 @@ public final class SecretBackendConnectionRedisArgs extends com.pulumi.resources
         }
 
         /**
-         * @param tls Whether to use TLS when connecting to Redis.
+         * @param tls Whether to use TLS when connecting to Cassandra.
          * 
          * @return builder
          * 
@@ -277,7 +277,7 @@ public final class SecretBackendConnectionRedisArgs extends com.pulumi.resources
         }
 
         /**
-         * @param tls Whether to use TLS when connecting to Redis.
+         * @param tls Whether to use TLS when connecting to Cassandra.
          * 
          * @return builder
          * 
@@ -287,7 +287,7 @@ public final class SecretBackendConnectionRedisArgs extends com.pulumi.resources
         }
 
         /**
-         * @param username The root credential username used in the connection URL.
+         * @param username The username to authenticate with.
          * 
          * @return builder
          * 
@@ -298,7 +298,7 @@ public final class SecretBackendConnectionRedisArgs extends com.pulumi.resources
         }
 
         /**
-         * @param username The root credential username used in the connection URL.
+         * @param username The username to authenticate with.
          * 
          * @return builder
          * 

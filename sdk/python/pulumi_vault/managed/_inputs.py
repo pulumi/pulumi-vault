@@ -34,9 +34,7 @@ class KeysAwArgs:
                  uuid: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] access_key: The AWS access key to use.
-        :param pulumi.Input[str] key_bits: Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
-               `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
-               `allow_generate_key` is `true`.
+        :param pulumi.Input[str] key_bits: The size in bits for an RSA key.
         :param pulumi.Input[str] key_type: The type of key to use.
         :param pulumi.Input[str] kms_key: An identifier for the key.
         :param pulumi.Input[str] name: A unique lowercase name that serves as identifying the key.
@@ -51,8 +49,8 @@ class KeysAwArgs:
                configured backend, if `false`, those operations will be forbidden.
         :param pulumi.Input[bool] any_mount: If `true`, allows usage from any mount point within the
                namespace.
-        :param pulumi.Input[str] curve: Supplies the curve value when using the `CKM_ECDSA` mechanism.
-               Required if `allow_generate_key` is `true`.
+        :param pulumi.Input[str] curve: The curve to use for an ECDSA key. Used when `key_type` 
+               is `ECDSA`. Required if `allow_generate_key` is `true`.
         :param pulumi.Input[str] endpoint: Used to specify a custom AWS endpoint.
         :param pulumi.Input[str] region: The AWS region where the keys are stored (or will be stored).
         """
@@ -95,9 +93,7 @@ class KeysAwArgs:
     @pulumi.getter(name="keyBits")
     def key_bits(self) -> pulumi.Input[str]:
         """
-        Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
-        `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
-        `allow_generate_key` is `true`.
+        The size in bits for an RSA key.
         """
         return pulumi.get(self, "key_bits")
 
@@ -211,8 +207,8 @@ class KeysAwArgs:
     @pulumi.getter
     def curve(self) -> Optional[pulumi.Input[str]]:
         """
-        Supplies the curve value when using the `CKM_ECDSA` mechanism.
-        Required if `allow_generate_key` is `true`.
+        The curve to use for an ECDSA key. Used when `key_type` 
+        is `ECDSA`. Required if `allow_generate_key` is `true`.
         """
         return pulumi.get(self, "curve")
 
@@ -291,9 +287,7 @@ class KeysAzureArgs:
         :param pulumi.Input[bool] any_mount: If `true`, allows usage from any mount point within the
                namespace.
         :param pulumi.Input[str] environment: The Azure Cloud environment API endpoints to use.
-        :param pulumi.Input[str] key_bits: Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
-               `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
-               `allow_generate_key` is `true`.
+        :param pulumi.Input[str] key_bits: The size in bits for an RSA key.
         :param pulumi.Input[str] resource: The Azure Key Vault resource's DNS Suffix to connect to.
         """
         pulumi.set(__self__, "client_id", client_id)
@@ -474,9 +468,7 @@ class KeysAzureArgs:
     @pulumi.getter(name="keyBits")
     def key_bits(self) -> Optional[pulumi.Input[str]]:
         """
-        Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
-        `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
-        `allow_generate_key` is `true`.
+        The size in bits for an RSA key.
         """
         return pulumi.get(self, "key_bits")
 
@@ -544,13 +536,11 @@ class KeysPkcArgs:
                configured backend, if `false`, those operations will be forbidden.
         :param pulumi.Input[bool] any_mount: If `true`, allows usage from any mount point within the
                namespace.
-        :param pulumi.Input[str] curve: Supplies the curve value when using the `CKM_ECDSA` mechanism.
-               Required if `allow_generate_key` is `true`.
+        :param pulumi.Input[str] curve: The curve to use for an ECDSA key. Used when `key_type` 
+               is `ECDSA`. Required if `allow_generate_key` is `true`.
         :param pulumi.Input[str] force_rw_session: Force all operations to open up a read-write session to
                the HSM.
-        :param pulumi.Input[str] key_bits: Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
-               `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
-               `allow_generate_key` is `true`.
+        :param pulumi.Input[str] key_bits: The size in bits for an RSA key.
         :param pulumi.Input[str] slot: The slot number to use, specified as a string in a decimal format
                (e.g. `2305843009213693953`).
         :param pulumi.Input[str] token_label: The slot token label to use.
@@ -714,8 +704,8 @@ class KeysPkcArgs:
     @pulumi.getter
     def curve(self) -> Optional[pulumi.Input[str]]:
         """
-        Supplies the curve value when using the `CKM_ECDSA` mechanism.
-        Required if `allow_generate_key` is `true`.
+        The curve to use for an ECDSA key. Used when `key_type` 
+        is `ECDSA`. Required if `allow_generate_key` is `true`.
         """
         return pulumi.get(self, "curve")
 
@@ -740,9 +730,7 @@ class KeysPkcArgs:
     @pulumi.getter(name="keyBits")
     def key_bits(self) -> Optional[pulumi.Input[str]]:
         """
-        Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
-        `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
-        `allow_generate_key` is `true`.
+        The size in bits for an RSA key.
         """
         return pulumi.get(self, "key_bits")
 

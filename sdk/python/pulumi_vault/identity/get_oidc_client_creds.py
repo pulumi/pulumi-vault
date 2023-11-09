@@ -122,11 +122,11 @@ def get_oidc_client_creds(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('vault:identity/getOidcClientCreds:getOidcClientCreds', __args__, opts=opts, typ=GetOidcClientCredsResult).value
 
     return AwaitableGetOidcClientCredsResult(
-        client_id=__ret__.client_id,
-        client_secret=__ret__.client_secret,
-        id=__ret__.id,
-        name=__ret__.name,
-        namespace=__ret__.namespace)
+        client_id=pulumi.get(__ret__, 'client_id'),
+        client_secret=pulumi.get(__ret__, 'client_secret'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        namespace=pulumi.get(__ret__, 'namespace'))
 
 
 @_utilities.lift_output_func(get_oidc_client_creds)

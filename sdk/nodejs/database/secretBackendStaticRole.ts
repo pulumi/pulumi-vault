@@ -108,6 +108,9 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
     /**
      * A cron-style string that will define the schedule on which rotations should occur.
      * Mutually exclusive with `rotationPeriod`.
+     *
+     * **Warning**: The `rotationPeriod` and `rotationSchedule` fields are
+     * mutually exclusive. One of them must be set but not both.
      */
     public readonly rotationSchedule!: pulumi.Output<string | undefined>;
     /**
@@ -203,6 +206,9 @@ export interface SecretBackendStaticRoleState {
     /**
      * A cron-style string that will define the schedule on which rotations should occur.
      * Mutually exclusive with `rotationPeriod`.
+     *
+     * **Warning**: The `rotationPeriod` and `rotationSchedule` fields are
+     * mutually exclusive. One of them must be set but not both.
      */
     rotationSchedule?: pulumi.Input<string>;
     /**
@@ -251,6 +257,9 @@ export interface SecretBackendStaticRoleArgs {
     /**
      * A cron-style string that will define the schedule on which rotations should occur.
      * Mutually exclusive with `rotationPeriod`.
+     *
+     * **Warning**: The `rotationPeriod` and `rotationSchedule` fields are
+     * mutually exclusive. One of them must be set but not both.
      */
     rotationSchedule?: pulumi.Input<string>;
     /**

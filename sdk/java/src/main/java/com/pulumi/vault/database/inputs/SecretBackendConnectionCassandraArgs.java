@@ -36,14 +36,14 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
     }
 
     /**
-     * A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+     * The hosts to connect to.
      * 
      */
     @Import(name="hosts")
     private @Nullable Output<List<String>> hosts;
 
     /**
-     * @return A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+     * @return The hosts to connect to.
      * 
      */
     public Optional<Output<List<String>>> hosts() {
@@ -68,14 +68,14 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
     }
 
     /**
-     * The root credential password used in the connection URL.
+     * The password to authenticate with.
      * 
      */
     @Import(name="password")
     private @Nullable Output<String> password;
 
     /**
-     * @return The root credential password used in the connection URL.
+     * @return The password to authenticate with.
      * 
      */
     public Optional<Output<String>> password() {
@@ -147,14 +147,14 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
     }
 
     /**
-     * Whether to use TLS when connecting to Redis.
+     * Whether to use TLS when connecting to Cassandra.
      * 
      */
     @Import(name="tls")
     private @Nullable Output<Boolean> tls;
 
     /**
-     * @return Whether to use TLS when connecting to Redis.
+     * @return Whether to use TLS when connecting to Cassandra.
      * 
      */
     public Optional<Output<Boolean>> tls() {
@@ -162,14 +162,14 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
     }
 
     /**
-     * The root credential username used in the connection URL.
+     * The username to authenticate with.
      * 
      */
     @Import(name="username")
     private @Nullable Output<String> username;
 
     /**
-     * @return The root credential username used in the connection URL.
+     * @return The username to authenticate with.
      * 
      */
     public Optional<Output<String>> username() {
@@ -233,7 +233,7 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
         }
 
         /**
-         * @param hosts A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+         * @param hosts The hosts to connect to.
          * 
          * @return builder
          * 
@@ -244,7 +244,7 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
         }
 
         /**
-         * @param hosts A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+         * @param hosts The hosts to connect to.
          * 
          * @return builder
          * 
@@ -254,7 +254,7 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
         }
 
         /**
-         * @param hosts A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+         * @param hosts The hosts to connect to.
          * 
          * @return builder
          * 
@@ -287,7 +287,7 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
         }
 
         /**
-         * @param password The root credential password used in the connection URL.
+         * @param password The password to authenticate with.
          * 
          * @return builder
          * 
@@ -298,7 +298,7 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
         }
 
         /**
-         * @param password The root credential password used in the connection URL.
+         * @param password The password to authenticate with.
          * 
          * @return builder
          * 
@@ -396,7 +396,7 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
         }
 
         /**
-         * @param tls Whether to use TLS when connecting to Redis.
+         * @param tls Whether to use TLS when connecting to Cassandra.
          * 
          * @return builder
          * 
@@ -407,7 +407,7 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
         }
 
         /**
-         * @param tls Whether to use TLS when connecting to Redis.
+         * @param tls Whether to use TLS when connecting to Cassandra.
          * 
          * @return builder
          * 
@@ -417,7 +417,7 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
         }
 
         /**
-         * @param username The root credential username used in the connection URL.
+         * @param username The username to authenticate with.
          * 
          * @return builder
          * 
@@ -428,7 +428,7 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
         }
 
         /**
-         * @param username The root credential username used in the connection URL.
+         * @param username The username to authenticate with.
          * 
          * @return builder
          * 

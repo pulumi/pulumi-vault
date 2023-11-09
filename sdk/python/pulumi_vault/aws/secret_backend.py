@@ -46,9 +46,8 @@ class SecretBackendArgs:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `aws`.
-        :param pulumi.Input[str] region: The AWS region for API calls. Defaults to `us-east-1`.
-        :param pulumi.Input[str] secret_key: The AWS Secret Key this backend should use to
-               issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+        :param pulumi.Input[str] region: The AWS region to make API calls against. Defaults to us-east-1.
+        :param pulumi.Input[str] secret_key: The AWS Secret Access Key to use when generating new credentials.
         :param pulumi.Input[str] sts_endpoint: Specifies a custom HTTP STS endpoint to use.
         :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
         """
@@ -199,7 +198,7 @@ class SecretBackendArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The AWS region for API calls. Defaults to `us-east-1`.
+        The AWS region to make API calls against. Defaults to us-east-1.
         """
         return pulumi.get(self, "region")
 
@@ -211,8 +210,7 @@ class SecretBackendArgs:
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The AWS Secret Key this backend should use to
-        issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+        The AWS Secret Access Key to use when generating new credentials.
         """
         return pulumi.get(self, "secret_key")
 
@@ -280,9 +278,8 @@ class _SecretBackendState:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `aws`.
-        :param pulumi.Input[str] region: The AWS region for API calls. Defaults to `us-east-1`.
-        :param pulumi.Input[str] secret_key: The AWS Secret Key this backend should use to
-               issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+        :param pulumi.Input[str] region: The AWS region to make API calls against. Defaults to us-east-1.
+        :param pulumi.Input[str] secret_key: The AWS Secret Access Key to use when generating new credentials.
         :param pulumi.Input[str] sts_endpoint: Specifies a custom HTTP STS endpoint to use.
         :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
         """
@@ -433,7 +430,7 @@ class _SecretBackendState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The AWS region for API calls. Defaults to `us-east-1`.
+        The AWS region to make API calls against. Defaults to us-east-1.
         """
         return pulumi.get(self, "region")
 
@@ -445,8 +442,7 @@ class _SecretBackendState:
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The AWS Secret Key this backend should use to
-        issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+        The AWS Secret Access Key to use when generating new credentials.
         """
         return pulumi.get(self, "secret_key")
 
@@ -526,9 +522,8 @@ class SecretBackend(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `aws`.
-        :param pulumi.Input[str] region: The AWS region for API calls. Defaults to `us-east-1`.
-        :param pulumi.Input[str] secret_key: The AWS Secret Key this backend should use to
-               issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+        :param pulumi.Input[str] region: The AWS region to make API calls against. Defaults to us-east-1.
+        :param pulumi.Input[str] secret_key: The AWS Secret Access Key to use when generating new credentials.
         :param pulumi.Input[str] sts_endpoint: Specifies a custom HTTP STS endpoint to use.
         :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
         """
@@ -646,9 +641,8 @@ class SecretBackend(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `aws`.
-        :param pulumi.Input[str] region: The AWS region for API calls. Defaults to `us-east-1`.
-        :param pulumi.Input[str] secret_key: The AWS Secret Key this backend should use to
-               issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+        :param pulumi.Input[str] region: The AWS region to make API calls against. Defaults to us-east-1.
+        :param pulumi.Input[str] secret_key: The AWS Secret Access Key to use when generating new credentials.
         :param pulumi.Input[str] sts_endpoint: Specifies a custom HTTP STS endpoint to use.
         :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
         """
@@ -755,7 +749,7 @@ class SecretBackend(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        The AWS region for API calls. Defaults to `us-east-1`.
+        The AWS region to make API calls against. Defaults to us-east-1.
         """
         return pulumi.get(self, "region")
 
@@ -763,8 +757,7 @@ class SecretBackend(pulumi.CustomResource):
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> pulumi.Output[Optional[str]]:
         """
-        The AWS Secret Key this backend should use to
-        issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+        The AWS Secret Access Key to use when generating new credentials.
         """
         return pulumi.get(self, "secret_key")
 

@@ -85,6 +85,10 @@ class RaftSnapshotAgentConfigArgs:
         :param pulumi.Input[str] google_gcs_bucket: `<required>` - GCS bucket to write snapshots to.
         :param pulumi.Input[str] google_service_account_key: Google service account key in JSON format. 
                The raw value looks like this:
+               
+               ```python
+               import pulumi
+               ```
         :param pulumi.Input[int] local_max_space: For `storage_type = local`, the maximum
                space, in bytes, to use for snapshots. Snapshot attempts will fail if there is not enough
                space left in this allowance.
@@ -449,6 +453,10 @@ class RaftSnapshotAgentConfigArgs:
         """
         Google service account key in JSON format. 
         The raw value looks like this:
+
+        ```python
+        import pulumi
+        ```
         """
         return pulumi.get(self, "google_service_account_key")
 
@@ -578,6 +586,10 @@ class _RaftSnapshotAgentConfigState:
         :param pulumi.Input[str] google_gcs_bucket: `<required>` - GCS bucket to write snapshots to.
         :param pulumi.Input[str] google_service_account_key: Google service account key in JSON format. 
                The raw value looks like this:
+               
+               ```python
+               import pulumi
+               ```
         :param pulumi.Input[int] interval_seconds: `<required>` - Time (in seconds) between snapshots.
         :param pulumi.Input[int] local_max_space: For `storage_type = local`, the maximum
                space, in bytes, to use for snapshots. Snapshot attempts will fail if there is not enough
@@ -912,6 +924,10 @@ class _RaftSnapshotAgentConfigState:
         """
         Google service account key in JSON format. 
         The raw value looks like this:
+
+        ```python
+        import pulumi
+        ```
         """
         return pulumi.get(self, "google_service_account_key")
 
@@ -1147,6 +1163,10 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         :param pulumi.Input[str] google_gcs_bucket: `<required>` - GCS bucket to write snapshots to.
         :param pulumi.Input[str] google_service_account_key: Google service account key in JSON format. 
                The raw value looks like this:
+               
+               ```python
+               import pulumi
+               ```
         :param pulumi.Input[int] interval_seconds: `<required>` - Time (in seconds) between snapshots.
         :param pulumi.Input[int] local_max_space: For `storage_type = local`, the maximum
                space, in bytes, to use for snapshots. Snapshot attempts will fail if there is not enough
@@ -1399,6 +1419,10 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         :param pulumi.Input[str] google_gcs_bucket: `<required>` - GCS bucket to write snapshots to.
         :param pulumi.Input[str] google_service_account_key: Google service account key in JSON format. 
                The raw value looks like this:
+               
+               ```python
+               import pulumi
+               ```
         :param pulumi.Input[int] interval_seconds: `<required>` - Time (in seconds) between snapshots.
         :param pulumi.Input[int] local_max_space: For `storage_type = local`, the maximum
                space, in bytes, to use for snapshots. Snapshot attempts will fail if there is not enough
@@ -1630,6 +1654,10 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         """
         Google service account key in JSON format. 
         The raw value looks like this:
+
+        ```python
+        import pulumi
+        ```
         """
         return pulumi.get(self, "google_service_account_key")
 

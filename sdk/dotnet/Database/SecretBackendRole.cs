@@ -14,6 +14,7 @@ namespace Pulumi.Vault.Database
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -79,6 +80,8 @@ namespace Pulumi.Vault.Database
         /// <summary>
         /// Specifies the configuration
         /// for the given `credential_type`.
+        /// 
+        /// The following options are available for each `credential_type` value:
         /// </summary>
         [Output("credentialConfig")]
         public Output<ImmutableDictionary<string, object>?> CredentialConfig { get; private set; } = null!;
@@ -219,6 +222,8 @@ namespace Pulumi.Vault.Database
         /// <summary>
         /// Specifies the configuration
         /// for the given `credential_type`.
+        /// 
+        /// The following options are available for each `credential_type` value:
         /// </summary>
         public InputMap<object> CredentialConfig
         {
@@ -342,6 +347,8 @@ namespace Pulumi.Vault.Database
         /// <summary>
         /// Specifies the configuration
         /// for the given `credential_type`.
+        /// 
+        /// The following options are available for each `credential_type` value:
         /// </summary>
         public InputMap<object> CredentialConfig
         {

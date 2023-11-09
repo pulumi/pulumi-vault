@@ -18,6 +18,7 @@ namespace Pulumi.Vault.Database
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -120,6 +121,9 @@ namespace Pulumi.Vault.Database
         /// <summary>
         /// A cron-style string that will define the schedule on which rotations should occur.
         /// Mutually exclusive with `rotation_period`.
+        /// 
+        /// **Warning**: The `rotation_period` and `rotation_schedule` fields are
+        /// mutually exclusive. One of them must be set but not both.
         /// </summary>
         [Output("rotationSchedule")]
         public Output<string?> RotationSchedule { get; private set; } = null!;
@@ -226,6 +230,9 @@ namespace Pulumi.Vault.Database
         /// <summary>
         /// A cron-style string that will define the schedule on which rotations should occur.
         /// Mutually exclusive with `rotation_period`.
+        /// 
+        /// **Warning**: The `rotation_period` and `rotation_schedule` fields are
+        /// mutually exclusive. One of them must be set but not both.
         /// </summary>
         [Input("rotationSchedule")]
         public Input<string>? RotationSchedule { get; set; }
@@ -300,6 +307,9 @@ namespace Pulumi.Vault.Database
         /// <summary>
         /// A cron-style string that will define the schedule on which rotations should occur.
         /// Mutually exclusive with `rotation_period`.
+        /// 
+        /// **Warning**: The `rotation_period` and `rotation_schedule` fields are
+        /// mutually exclusive. One of them must be set but not both.
         /// </summary>
         [Input("rotationSchedule")]
         public Input<string>? RotationSchedule { get; set; }

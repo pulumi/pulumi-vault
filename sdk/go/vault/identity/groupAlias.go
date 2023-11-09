@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates an Identity Group Alias for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
@@ -109,6 +111,7 @@ func NewGroupAlias(ctx *pulumi.Context,
 	if args.Name == nil {
 		return nil, errors.New("invalid value for required argument 'Name'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource GroupAlias
 	err := ctx.RegisterResource("vault:identity/groupAlias:GroupAlias", name, args, &resource, opts...)
 	if err != nil {
@@ -214,6 +217,12 @@ func (i *GroupAlias) ToGroupAliasOutputWithContext(ctx context.Context) GroupAli
 	return pulumi.ToOutputWithContext(ctx, i).(GroupAliasOutput)
 }
 
+func (i *GroupAlias) ToOutput(ctx context.Context) pulumix.Output[*GroupAlias] {
+	return pulumix.Output[*GroupAlias]{
+		OutputState: i.ToGroupAliasOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GroupAliasArrayInput is an input type that accepts GroupAliasArray and GroupAliasArrayOutput values.
 // You can construct a concrete instance of `GroupAliasArrayInput` via:
 //
@@ -237,6 +246,12 @@ func (i GroupAliasArray) ToGroupAliasArrayOutput() GroupAliasArrayOutput {
 
 func (i GroupAliasArray) ToGroupAliasArrayOutputWithContext(ctx context.Context) GroupAliasArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GroupAliasArrayOutput)
+}
+
+func (i GroupAliasArray) ToOutput(ctx context.Context) pulumix.Output[[]*GroupAlias] {
+	return pulumix.Output[[]*GroupAlias]{
+		OutputState: i.ToGroupAliasArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // GroupAliasMapInput is an input type that accepts GroupAliasMap and GroupAliasMapOutput values.
@@ -264,6 +279,12 @@ func (i GroupAliasMap) ToGroupAliasMapOutputWithContext(ctx context.Context) Gro
 	return pulumi.ToOutputWithContext(ctx, i).(GroupAliasMapOutput)
 }
 
+func (i GroupAliasMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*GroupAlias] {
+	return pulumix.Output[map[string]*GroupAlias]{
+		OutputState: i.ToGroupAliasMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GroupAliasOutput struct{ *pulumi.OutputState }
 
 func (GroupAliasOutput) ElementType() reflect.Type {
@@ -276,6 +297,12 @@ func (o GroupAliasOutput) ToGroupAliasOutput() GroupAliasOutput {
 
 func (o GroupAliasOutput) ToGroupAliasOutputWithContext(ctx context.Context) GroupAliasOutput {
 	return o
+}
+
+func (o GroupAliasOutput) ToOutput(ctx context.Context) pulumix.Output[*GroupAlias] {
+	return pulumix.Output[*GroupAlias]{
+		OutputState: o.OutputState,
+	}
 }
 
 // ID of the group to which this is an alias.
@@ -315,6 +342,12 @@ func (o GroupAliasArrayOutput) ToGroupAliasArrayOutputWithContext(ctx context.Co
 	return o
 }
 
+func (o GroupAliasArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*GroupAlias] {
+	return pulumix.Output[[]*GroupAlias]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GroupAliasArrayOutput) Index(i pulumi.IntInput) GroupAliasOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *GroupAlias {
 		return vs[0].([]*GroupAlias)[vs[1].(int)]
@@ -333,6 +366,12 @@ func (o GroupAliasMapOutput) ToGroupAliasMapOutput() GroupAliasMapOutput {
 
 func (o GroupAliasMapOutput) ToGroupAliasMapOutputWithContext(ctx context.Context) GroupAliasMapOutput {
 	return o
+}
+
+func (o GroupAliasMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*GroupAlias] {
+	return pulumix.Output[map[string]*GroupAlias]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GroupAliasMapOutput) MapIndex(k pulumi.StringInput) GroupAliasOutput {

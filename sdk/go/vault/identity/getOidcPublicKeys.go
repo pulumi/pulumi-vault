@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -49,7 +51,7 @@ import (
 //			}
 //			provider, err := identity.NewOidcProvider(ctx, "provider", &identity.OidcProviderArgs{
 //				AllowedClientIds: pulumi.StringArray{
-//					pulumi.Any(vault_identity_oidc_client.Test.Client_id),
+//					vault_identity_oidc_client.Test.Client_id,
 //				},
 //			})
 //			if err != nil {
@@ -64,6 +66,7 @@ import (
 //
 // ```
 func GetOidcPublicKeys(ctx *pulumi.Context, args *GetOidcPublicKeysArgs, opts ...pulumi.InvokeOption) (*GetOidcPublicKeysResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetOidcPublicKeysResult
 	err := ctx.Invoke("vault:identity/getOidcPublicKeys:getOidcPublicKeys", args, &rv, opts...)
 	if err != nil {
@@ -135,6 +138,12 @@ func (o GetOidcPublicKeysResultOutput) ToGetOidcPublicKeysResultOutput() GetOidc
 
 func (o GetOidcPublicKeysResultOutput) ToGetOidcPublicKeysResultOutputWithContext(ctx context.Context) GetOidcPublicKeysResultOutput {
 	return o
+}
+
+func (o GetOidcPublicKeysResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetOidcPublicKeysResult] {
+	return pulumix.Output[GetOidcPublicKeysResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

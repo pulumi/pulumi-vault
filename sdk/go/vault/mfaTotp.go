@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Provides a resource to manage [TOTP MFA](https://www.vaultproject.io/docs/enterprise/mfa/mfa-totp).
@@ -93,6 +95,7 @@ func NewMfaTotp(ctx *pulumi.Context,
 	if args.Issuer == nil {
 		return nil, errors.New("invalid value for required argument 'Issuer'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource MfaTotp
 	err := ctx.RegisterResource("vault:index/mfaTotp:MfaTotp", name, args, &resource, opts...)
 	if err != nil {
@@ -250,6 +253,12 @@ func (i *MfaTotp) ToMfaTotpOutputWithContext(ctx context.Context) MfaTotpOutput 
 	return pulumi.ToOutputWithContext(ctx, i).(MfaTotpOutput)
 }
 
+func (i *MfaTotp) ToOutput(ctx context.Context) pulumix.Output[*MfaTotp] {
+	return pulumix.Output[*MfaTotp]{
+		OutputState: i.ToMfaTotpOutputWithContext(ctx).OutputState,
+	}
+}
+
 // MfaTotpArrayInput is an input type that accepts MfaTotpArray and MfaTotpArrayOutput values.
 // You can construct a concrete instance of `MfaTotpArrayInput` via:
 //
@@ -273,6 +282,12 @@ func (i MfaTotpArray) ToMfaTotpArrayOutput() MfaTotpArrayOutput {
 
 func (i MfaTotpArray) ToMfaTotpArrayOutputWithContext(ctx context.Context) MfaTotpArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MfaTotpArrayOutput)
+}
+
+func (i MfaTotpArray) ToOutput(ctx context.Context) pulumix.Output[[]*MfaTotp] {
+	return pulumix.Output[[]*MfaTotp]{
+		OutputState: i.ToMfaTotpArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // MfaTotpMapInput is an input type that accepts MfaTotpMap and MfaTotpMapOutput values.
@@ -300,6 +315,12 @@ func (i MfaTotpMap) ToMfaTotpMapOutputWithContext(ctx context.Context) MfaTotpMa
 	return pulumi.ToOutputWithContext(ctx, i).(MfaTotpMapOutput)
 }
 
+func (i MfaTotpMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*MfaTotp] {
+	return pulumix.Output[map[string]*MfaTotp]{
+		OutputState: i.ToMfaTotpMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type MfaTotpOutput struct{ *pulumi.OutputState }
 
 func (MfaTotpOutput) ElementType() reflect.Type {
@@ -312,6 +333,12 @@ func (o MfaTotpOutput) ToMfaTotpOutput() MfaTotpOutput {
 
 func (o MfaTotpOutput) ToMfaTotpOutputWithContext(ctx context.Context) MfaTotpOutput {
 	return o
+}
+
+func (o MfaTotpOutput) ToOutput(ctx context.Context) pulumix.Output[*MfaTotp] {
+	return pulumix.Output[*MfaTotp]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(string)` - Specifies the hashing algorithm used to generate the TOTP code.
@@ -379,6 +406,12 @@ func (o MfaTotpArrayOutput) ToMfaTotpArrayOutputWithContext(ctx context.Context)
 	return o
 }
 
+func (o MfaTotpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*MfaTotp] {
+	return pulumix.Output[[]*MfaTotp]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o MfaTotpArrayOutput) Index(i pulumi.IntInput) MfaTotpOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *MfaTotp {
 		return vs[0].([]*MfaTotp)[vs[1].(int)]
@@ -397,6 +430,12 @@ func (o MfaTotpMapOutput) ToMfaTotpMapOutput() MfaTotpMapOutput {
 
 func (o MfaTotpMapOutput) ToMfaTotpMapOutputWithContext(ctx context.Context) MfaTotpMapOutput {
 	return o
+}
+
+func (o MfaTotpMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*MfaTotp] {
+	return pulumix.Output[map[string]*MfaTotp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o MfaTotpMapOutput) MapIndex(k pulumi.StringInput) MfaTotpOutput {

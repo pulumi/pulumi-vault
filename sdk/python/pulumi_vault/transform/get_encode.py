@@ -193,16 +193,16 @@ def get_encode(batch_inputs: Optional[Sequence[Mapping[str, Any]]] = None,
     __ret__ = pulumi.runtime.invoke('vault:transform/getEncode:getEncode', __args__, opts=opts, typ=GetEncodeResult).value
 
     return AwaitableGetEncodeResult(
-        batch_inputs=__ret__.batch_inputs,
-        batch_results=__ret__.batch_results,
-        encoded_value=__ret__.encoded_value,
-        id=__ret__.id,
-        namespace=__ret__.namespace,
-        path=__ret__.path,
-        role_name=__ret__.role_name,
-        transformation=__ret__.transformation,
-        tweak=__ret__.tweak,
-        value=__ret__.value)
+        batch_inputs=pulumi.get(__ret__, 'batch_inputs'),
+        batch_results=pulumi.get(__ret__, 'batch_results'),
+        encoded_value=pulumi.get(__ret__, 'encoded_value'),
+        id=pulumi.get(__ret__, 'id'),
+        namespace=pulumi.get(__ret__, 'namespace'),
+        path=pulumi.get(__ret__, 'path'),
+        role_name=pulumi.get(__ret__, 'role_name'),
+        transformation=pulumi.get(__ret__, 'transformation'),
+        tweak=pulumi.get(__ret__, 'tweak'),
+        value=pulumi.get(__ret__, 'value'))
 
 
 @_utilities.lift_output_func(get_encode)

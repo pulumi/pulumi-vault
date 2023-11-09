@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -219,6 +221,10 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly organizations!: pulumi.Output<string[] | undefined>;
     /**
+     * (Vault 1.11+ only) A block for specifying policy identifers. The `policyIdentifier` block can be repeated, and supports the following arguments:
+     */
+    public readonly policyIdentifier!: pulumi.Output<outputs.pkiSecret.SecretBackendRolePolicyIdentifier[] | undefined>;
+    /**
      * Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policyIdentifier` blocks instead
      */
     public readonly policyIdentifiers!: pulumi.Output<string[] | undefined>;
@@ -303,6 +309,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["notBeforeDuration"] = state ? state.notBeforeDuration : undefined;
             resourceInputs["organizationUnit"] = state ? state.organizationUnit : undefined;
             resourceInputs["organizations"] = state ? state.organizations : undefined;
+            resourceInputs["policyIdentifier"] = state ? state.policyIdentifier : undefined;
             resourceInputs["policyIdentifiers"] = state ? state.policyIdentifiers : undefined;
             resourceInputs["postalCodes"] = state ? state.postalCodes : undefined;
             resourceInputs["provinces"] = state ? state.provinces : undefined;
@@ -352,6 +359,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["notBeforeDuration"] = args ? args.notBeforeDuration : undefined;
             resourceInputs["organizationUnit"] = args ? args.organizationUnit : undefined;
             resourceInputs["organizations"] = args ? args.organizations : undefined;
+            resourceInputs["policyIdentifier"] = args ? args.policyIdentifier : undefined;
             resourceInputs["policyIdentifiers"] = args ? args.policyIdentifiers : undefined;
             resourceInputs["postalCodes"] = args ? args.postalCodes : undefined;
             resourceInputs["provinces"] = args ? args.provinces : undefined;
@@ -520,6 +528,10 @@ export interface SecretBackendRoleState {
      * The organization of generated certificates
      */
     organizations?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * (Vault 1.11+ only) A block for specifying policy identifers. The `policyIdentifier` block can be repeated, and supports the following arguments:
+     */
+    policyIdentifier?: pulumi.Input<pulumi.Input<inputs.pkiSecret.SecretBackendRolePolicyIdentifier>[]>;
     /**
      * Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policyIdentifier` blocks instead
      */
@@ -711,6 +723,10 @@ export interface SecretBackendRoleArgs {
      * The organization of generated certificates
      */
     organizations?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * (Vault 1.11+ only) A block for specifying policy identifers. The `policyIdentifier` block can be repeated, and supports the following arguments:
+     */
+    policyIdentifier?: pulumi.Input<pulumi.Input<inputs.pkiSecret.SecretBackendRolePolicyIdentifier>[]>;
     /**
      * Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policyIdentifier` blocks instead
      */

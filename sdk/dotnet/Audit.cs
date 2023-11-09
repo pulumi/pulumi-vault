@@ -15,6 +15,7 @@ namespace Pulumi.Vault
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -35,6 +36,7 @@ namespace Pulumi.Vault
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -90,6 +92,8 @@ namespace Pulumi.Vault
 
         /// <summary>
         /// Configuration options to pass to the audit device itself.
+        /// 
+        /// For a reference of the device types and their options, consult the [Vault documentation.](https://www.vaultproject.io/docs/audit/index.html)
         /// </summary>
         [Output("options")]
         public Output<ImmutableDictionary<string, string>> Options { get; private set; } = null!;
@@ -178,6 +182,8 @@ namespace Pulumi.Vault
 
         /// <summary>
         /// Configuration options to pass to the audit device itself.
+        /// 
+        /// For a reference of the device types and their options, consult the [Vault documentation.](https://www.vaultproject.io/docs/audit/index.html)
         /// </summary>
         public InputMap<string> Options
         {
@@ -231,6 +237,8 @@ namespace Pulumi.Vault
 
         /// <summary>
         /// Configuration options to pass to the audit device itself.
+        /// 
+        /// For a reference of the device types and their options, consult the [Vault documentation.](https://www.vaultproject.io/docs/audit/index.html)
         /// </summary>
         public InputMap<string> Options
         {

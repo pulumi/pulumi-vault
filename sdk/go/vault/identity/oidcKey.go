@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -51,7 +53,7 @@ import (
 //
 // ## Import
 //
-// # The key can be imported with the key name, for example
+// The key can be imported with the key name, for example:
 //
 // ```sh
 //
@@ -64,8 +66,8 @@ type OidcKey struct {
 	// Signing algorithm to use. Signing algorithm to use.
 	// Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
 	Algorithm pulumi.StringPtrOutput `pulumi:"algorithm"`
-	// Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
-	// allowed.
+	// Array of role client ID allowed to use this key for signing. If
+	// empty, no roles are allowed. If `["*"]`, all roles are allowed.
 	AllowedClientIds pulumi.StringArrayOutput `pulumi:"allowedClientIds"`
 	// Name of the OIDC Key to create.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -88,6 +90,7 @@ func NewOidcKey(ctx *pulumi.Context,
 		args = &OidcKeyArgs{}
 	}
 
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource OidcKey
 	err := ctx.RegisterResource("vault:identity/oidcKey:OidcKey", name, args, &resource, opts...)
 	if err != nil {
@@ -113,8 +116,8 @@ type oidcKeyState struct {
 	// Signing algorithm to use. Signing algorithm to use.
 	// Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
 	Algorithm *string `pulumi:"algorithm"`
-	// Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
-	// allowed.
+	// Array of role client ID allowed to use this key for signing. If
+	// empty, no roles are allowed. If `["*"]`, all roles are allowed.
 	AllowedClientIds []string `pulumi:"allowedClientIds"`
 	// Name of the OIDC Key to create.
 	Name *string `pulumi:"name"`
@@ -134,8 +137,8 @@ type OidcKeyState struct {
 	// Signing algorithm to use. Signing algorithm to use.
 	// Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
 	Algorithm pulumi.StringPtrInput
-	// Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
-	// allowed.
+	// Array of role client ID allowed to use this key for signing. If
+	// empty, no roles are allowed. If `["*"]`, all roles are allowed.
 	AllowedClientIds pulumi.StringArrayInput
 	// Name of the OIDC Key to create.
 	Name pulumi.StringPtrInput
@@ -159,8 +162,8 @@ type oidcKeyArgs struct {
 	// Signing algorithm to use. Signing algorithm to use.
 	// Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
 	Algorithm *string `pulumi:"algorithm"`
-	// Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
-	// allowed.
+	// Array of role client ID allowed to use this key for signing. If
+	// empty, no roles are allowed. If `["*"]`, all roles are allowed.
 	AllowedClientIds []string `pulumi:"allowedClientIds"`
 	// Name of the OIDC Key to create.
 	Name *string `pulumi:"name"`
@@ -181,8 +184,8 @@ type OidcKeyArgs struct {
 	// Signing algorithm to use. Signing algorithm to use.
 	// Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
 	Algorithm pulumi.StringPtrInput
-	// Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
-	// allowed.
+	// Array of role client ID allowed to use this key for signing. If
+	// empty, no roles are allowed. If `["*"]`, all roles are allowed.
 	AllowedClientIds pulumi.StringArrayInput
 	// Name of the OIDC Key to create.
 	Name pulumi.StringPtrInput
@@ -221,6 +224,12 @@ func (i *OidcKey) ToOidcKeyOutputWithContext(ctx context.Context) OidcKeyOutput 
 	return pulumi.ToOutputWithContext(ctx, i).(OidcKeyOutput)
 }
 
+func (i *OidcKey) ToOutput(ctx context.Context) pulumix.Output[*OidcKey] {
+	return pulumix.Output[*OidcKey]{
+		OutputState: i.ToOidcKeyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // OidcKeyArrayInput is an input type that accepts OidcKeyArray and OidcKeyArrayOutput values.
 // You can construct a concrete instance of `OidcKeyArrayInput` via:
 //
@@ -244,6 +253,12 @@ func (i OidcKeyArray) ToOidcKeyArrayOutput() OidcKeyArrayOutput {
 
 func (i OidcKeyArray) ToOidcKeyArrayOutputWithContext(ctx context.Context) OidcKeyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OidcKeyArrayOutput)
+}
+
+func (i OidcKeyArray) ToOutput(ctx context.Context) pulumix.Output[[]*OidcKey] {
+	return pulumix.Output[[]*OidcKey]{
+		OutputState: i.ToOidcKeyArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // OidcKeyMapInput is an input type that accepts OidcKeyMap and OidcKeyMapOutput values.
@@ -271,6 +286,12 @@ func (i OidcKeyMap) ToOidcKeyMapOutputWithContext(ctx context.Context) OidcKeyMa
 	return pulumi.ToOutputWithContext(ctx, i).(OidcKeyMapOutput)
 }
 
+func (i OidcKeyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*OidcKey] {
+	return pulumix.Output[map[string]*OidcKey]{
+		OutputState: i.ToOidcKeyMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type OidcKeyOutput struct{ *pulumi.OutputState }
 
 func (OidcKeyOutput) ElementType() reflect.Type {
@@ -285,14 +306,20 @@ func (o OidcKeyOutput) ToOidcKeyOutputWithContext(ctx context.Context) OidcKeyOu
 	return o
 }
 
+func (o OidcKeyOutput) ToOutput(ctx context.Context) pulumix.Output[*OidcKey] {
+	return pulumix.Output[*OidcKey]{
+		OutputState: o.OutputState,
+	}
+}
+
 // Signing algorithm to use. Signing algorithm to use.
 // Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
 func (o OidcKeyOutput) Algorithm() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OidcKey) pulumi.StringPtrOutput { return v.Algorithm }).(pulumi.StringPtrOutput)
 }
 
-// Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
-// allowed.
+// Array of role client ID allowed to use this key for signing. If
+// empty, no roles are allowed. If `["*"]`, all roles are allowed.
 func (o OidcKeyOutput) AllowedClientIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *OidcKey) pulumi.StringArrayOutput { return v.AllowedClientIds }).(pulumi.StringArrayOutput)
 }
@@ -335,6 +362,12 @@ func (o OidcKeyArrayOutput) ToOidcKeyArrayOutputWithContext(ctx context.Context)
 	return o
 }
 
+func (o OidcKeyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*OidcKey] {
+	return pulumix.Output[[]*OidcKey]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o OidcKeyArrayOutput) Index(i pulumi.IntInput) OidcKeyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *OidcKey {
 		return vs[0].([]*OidcKey)[vs[1].(int)]
@@ -353,6 +386,12 @@ func (o OidcKeyMapOutput) ToOidcKeyMapOutput() OidcKeyMapOutput {
 
 func (o OidcKeyMapOutput) ToOidcKeyMapOutputWithContext(ctx context.Context) OidcKeyMapOutput {
 	return o
+}
+
+func (o OidcKeyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*OidcKey] {
+	return pulumix.Output[map[string]*OidcKey]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o OidcKeyMapOutput) MapIndex(k pulumi.StringInput) OidcKeyOutput {

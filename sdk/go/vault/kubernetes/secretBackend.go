@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -18,7 +20,7 @@ import (
 //
 // import (
 //
-//	"io/ioutil"
+//	"os"
 //
 //	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kubernetes"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -26,7 +28,7 @@ import (
 // )
 //
 //	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := ioutil.ReadFile(path)
+//		data, err := os.ReadFile(path)
 //		if err != nil {
 //			panic(err.Error())
 //		}
@@ -124,12 +126,13 @@ func NewSecretBackend(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'Path'")
 	}
 	if args.ServiceAccountJwt != nil {
-		args.ServiceAccountJwt = pulumi.ToSecret(args.ServiceAccountJwt).(pulumi.StringPtrOutput)
+		args.ServiceAccountJwt = pulumi.ToSecret(args.ServiceAccountJwt).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"serviceAccountJwt",
 	})
 	opts = append(opts, secrets)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SecretBackend
 	err := ctx.RegisterResource("vault:kubernetes/secretBackend:SecretBackend", name, args, &resource, opts...)
 	if err != nil {
@@ -367,6 +370,12 @@ func (i *SecretBackend) ToSecretBackendOutputWithContext(ctx context.Context) Se
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendOutput)
 }
 
+func (i *SecretBackend) ToOutput(ctx context.Context) pulumix.Output[*SecretBackend] {
+	return pulumix.Output[*SecretBackend]{
+		OutputState: i.ToSecretBackendOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SecretBackendArrayInput is an input type that accepts SecretBackendArray and SecretBackendArrayOutput values.
 // You can construct a concrete instance of `SecretBackendArrayInput` via:
 //
@@ -390,6 +399,12 @@ func (i SecretBackendArray) ToSecretBackendArrayOutput() SecretBackendArrayOutpu
 
 func (i SecretBackendArray) ToSecretBackendArrayOutputWithContext(ctx context.Context) SecretBackendArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendArrayOutput)
+}
+
+func (i SecretBackendArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackend] {
+	return pulumix.Output[[]*SecretBackend]{
+		OutputState: i.ToSecretBackendArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SecretBackendMapInput is an input type that accepts SecretBackendMap and SecretBackendMapOutput values.
@@ -417,6 +432,12 @@ func (i SecretBackendMap) ToSecretBackendMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendMapOutput)
 }
 
+func (i SecretBackendMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackend] {
+	return pulumix.Output[map[string]*SecretBackend]{
+		OutputState: i.ToSecretBackendMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SecretBackendOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendOutput) ElementType() reflect.Type {
@@ -429,6 +450,12 @@ func (o SecretBackendOutput) ToSecretBackendOutput() SecretBackendOutput {
 
 func (o SecretBackendOutput) ToSecretBackendOutputWithContext(ctx context.Context) SecretBackendOutput {
 	return o
+}
+
+func (o SecretBackendOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackend] {
+	return pulumix.Output[*SecretBackend]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Accessor of the mount
@@ -541,6 +568,12 @@ func (o SecretBackendArrayOutput) ToSecretBackendArrayOutputWithContext(ctx cont
 	return o
 }
 
+func (o SecretBackendArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackend] {
+	return pulumix.Output[[]*SecretBackend]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SecretBackendArrayOutput) Index(i pulumi.IntInput) SecretBackendOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackend {
 		return vs[0].([]*SecretBackend)[vs[1].(int)]
@@ -559,6 +592,12 @@ func (o SecretBackendMapOutput) ToSecretBackendMapOutput() SecretBackendMapOutpu
 
 func (o SecretBackendMapOutput) ToSecretBackendMapOutputWithContext(ctx context.Context) SecretBackendMapOutput {
 	return o
+}
+
+func (o SecretBackendMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackend] {
+	return pulumix.Output[map[string]*SecretBackend]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SecretBackendMapOutput) MapIndex(k pulumi.StringInput) SecretBackendOutput {

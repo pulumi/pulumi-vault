@@ -17,9 +17,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const example = new vault.github.AuthBackend("example", {
- *     organization: "myorg",
- * });
+ * const example = new vault.github.AuthBackend("example", {organization: "myorg"});
  * ```
  *
  * ## Import
@@ -150,6 +148,8 @@ export class AuthBackend extends pulumi.CustomResource {
     public readonly tokenType!: pulumi.Output<string | undefined>;
     /**
      * Extra configuration block. Structure is documented below.
+     *
+     * The `tune` block is used to tune the auth backend:
      */
     public readonly tune!: pulumi.Output<outputs.github.AuthBackendTune>;
 
@@ -309,6 +309,8 @@ export interface AuthBackendState {
     tokenType?: pulumi.Input<string>;
     /**
      * Extra configuration block. Structure is documented below.
+     *
+     * The `tune` block is used to tune the auth backend:
      */
     tune?: pulumi.Input<inputs.github.AuthBackendTune>;
 }
@@ -405,6 +407,8 @@ export interface AuthBackendArgs {
     tokenType?: pulumi.Input<string>;
     /**
      * Extra configuration block. Structure is documented below.
+     *
+     * The `tune` block is used to tune the auth backend:
      */
     tune?: pulumi.Input<inputs.github.AuthBackendTune>;
 }

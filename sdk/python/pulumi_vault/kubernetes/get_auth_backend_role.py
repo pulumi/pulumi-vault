@@ -319,23 +319,23 @@ def get_auth_backend_role(audience: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('vault:kubernetes/getAuthBackendRole:getAuthBackendRole', __args__, opts=opts, typ=GetAuthBackendRoleResult).value
 
     return AwaitableGetAuthBackendRoleResult(
-        alias_name_source=__ret__.alias_name_source,
-        audience=__ret__.audience,
-        backend=__ret__.backend,
-        bound_service_account_names=__ret__.bound_service_account_names,
-        bound_service_account_namespaces=__ret__.bound_service_account_namespaces,
-        id=__ret__.id,
-        namespace=__ret__.namespace,
-        role_name=__ret__.role_name,
-        token_bound_cidrs=__ret__.token_bound_cidrs,
-        token_explicit_max_ttl=__ret__.token_explicit_max_ttl,
-        token_max_ttl=__ret__.token_max_ttl,
-        token_no_default_policy=__ret__.token_no_default_policy,
-        token_num_uses=__ret__.token_num_uses,
-        token_period=__ret__.token_period,
-        token_policies=__ret__.token_policies,
-        token_ttl=__ret__.token_ttl,
-        token_type=__ret__.token_type)
+        alias_name_source=pulumi.get(__ret__, 'alias_name_source'),
+        audience=pulumi.get(__ret__, 'audience'),
+        backend=pulumi.get(__ret__, 'backend'),
+        bound_service_account_names=pulumi.get(__ret__, 'bound_service_account_names'),
+        bound_service_account_namespaces=pulumi.get(__ret__, 'bound_service_account_namespaces'),
+        id=pulumi.get(__ret__, 'id'),
+        namespace=pulumi.get(__ret__, 'namespace'),
+        role_name=pulumi.get(__ret__, 'role_name'),
+        token_bound_cidrs=pulumi.get(__ret__, 'token_bound_cidrs'),
+        token_explicit_max_ttl=pulumi.get(__ret__, 'token_explicit_max_ttl'),
+        token_max_ttl=pulumi.get(__ret__, 'token_max_ttl'),
+        token_no_default_policy=pulumi.get(__ret__, 'token_no_default_policy'),
+        token_num_uses=pulumi.get(__ret__, 'token_num_uses'),
+        token_period=pulumi.get(__ret__, 'token_period'),
+        token_policies=pulumi.get(__ret__, 'token_policies'),
+        token_ttl=pulumi.get(__ret__, 'token_ttl'),
+        token_type=pulumi.get(__ret__, 'token_type'))
 
 
 @_utilities.lift_output_func(get_auth_backend_role)

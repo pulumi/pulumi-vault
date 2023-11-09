@@ -21,7 +21,7 @@ import * as utilities from "../utilities";
  *
  * ## Import
  *
- * The key can be imported with the key name, for example
+ * The key can be imported with the key name, for example:
  *
  * ```sh
  *  $ pulumi import vault:identity/oidcKey:OidcKey key key
@@ -61,8 +61,8 @@ export class OidcKey extends pulumi.CustomResource {
      */
     public readonly algorithm!: pulumi.Output<string | undefined>;
     /**
-     * Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
-     * allowed.
+     * Array of role client ID allowed to use this key for signing. If
+     * empty, no roles are allowed. If `["*"]`, all roles are allowed.
      */
     public readonly allowedClientIds!: pulumi.Output<string[]>;
     /**
@@ -129,8 +129,8 @@ export interface OidcKeyState {
      */
     algorithm?: pulumi.Input<string>;
     /**
-     * Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
-     * allowed.
+     * Array of role client ID allowed to use this key for signing. If
+     * empty, no roles are allowed. If `["*"]`, all roles are allowed.
      */
     allowedClientIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -165,8 +165,8 @@ export interface OidcKeyArgs {
      */
     algorithm?: pulumi.Input<string>;
     /**
-     * Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
-     * allowed.
+     * Array of role client ID allowed to use this key for signing. If
+     * empty, no roles are allowed. If `["*"]`, all roles are allowed.
      */
     allowedClientIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**

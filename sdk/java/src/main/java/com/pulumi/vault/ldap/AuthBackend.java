@@ -150,9 +150,17 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
     public Output<String> clientTlsKey() {
         return this.clientTlsKey;
     }
+    /**
+     * Prevents users from bypassing authentication when providing an empty password.
+     * 
+     */
     @Export(name="denyNullBind", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> denyNullBind;
 
+    /**
+     * @return Prevents users from bypassing authentication when providing an empty password.
+     * 
+     */
     public Output<Boolean> denyNullBind() {
         return this.denyNullBind;
     }
@@ -186,9 +194,17 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
     public Output<Optional<Boolean>> disableRemount() {
         return Codegen.optional(this.disableRemount);
     }
+    /**
+     * Use anonymous bind to discover the bind DN of a user.
+     * 
+     */
     @Export(name="discoverdn", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> discoverdn;
 
+    /**
+     * @return Use anonymous bind to discover the bind DN of a user.
+     * 
+     */
     public Output<Boolean> discoverdn() {
         return this.discoverdn;
     }
@@ -493,36 +509,28 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.tokenTtl);
     }
     /**
-     * The type of token that should be generated. Can be `service`,
-     * `batch`, or `default` to use the mount&#39;s tuned default (which unless changed will be
-     * `service` tokens). For token store roles, there are two additional possibilities:
-     * `default-service` and `default-batch` which specify the type to return unless the client
-     * requests a different type at generation time.
+     * The type of token to generate, service or batch
      * 
      */
     @Export(name="tokenType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tokenType;
 
     /**
-     * @return The type of token that should be generated. Can be `service`,
-     * `batch`, or `default` to use the mount&#39;s tuned default (which unless changed will be
-     * `service` tokens). For token store roles, there are two additional possibilities:
-     * `default-service` and `default-batch` which specify the type to return unless the client
-     * requests a different type at generation time.
+     * @return The type of token to generate, service or batch
      * 
      */
     public Output<Optional<String>> tokenType() {
         return Codegen.optional(this.tokenType);
     }
     /**
-     * The userPrincipalDomain used to construct UPN string
+     * The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
      * 
      */
     @Export(name="upndomain", refs={String.class}, tree="[0]")
     private Output<String> upndomain;
 
     /**
-     * @return The userPrincipalDomain used to construct UPN string
+     * @return The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
      * 
      */
     public Output<String> upndomain() {

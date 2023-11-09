@@ -21,6 +21,30 @@ public final class SecretBackendRoleAllowedUserKeyConfigArgs extends com.pulumi.
      * Setting multiple lengths is only supported on Vault 1.10+. For prior releases `length`
      * must be set to a single element list.
      * 
+     * Example configuration blocks that might be included in the `vault.ssh.SecretBackendRole`
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *     }
+     * }
+     * ```
+     * 
      */
     @Import(name="lengths", required=true)
     private Output<List<Integer>> lengths;
@@ -30,6 +54,30 @@ public final class SecretBackendRoleAllowedUserKeyConfigArgs extends com.pulumi.
      * For key types that do not support setting the length a value of `[0]` should be used.
      * Setting multiple lengths is only supported on Vault 1.10+. For prior releases `length`
      * must be set to a single element list.
+     * 
+     * Example configuration blocks that might be included in the `vault.ssh.SecretBackendRole`
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *     }
+     * }
+     * ```
      * 
      */
     public Output<List<Integer>> lengths() {
@@ -88,6 +136,30 @@ public final class SecretBackendRoleAllowedUserKeyConfigArgs extends com.pulumi.
          * Setting multiple lengths is only supported on Vault 1.10+. For prior releases `length`
          * must be set to a single element list.
          * 
+         * Example configuration blocks that might be included in the `vault.ssh.SecretBackendRole`
+         * ```java
+         * package generated_program;
+         * 
+         * import com.pulumi.Context;
+         * import com.pulumi.Pulumi;
+         * import com.pulumi.core.Output;
+         * import java.util.List;
+         * import java.util.ArrayList;
+         * import java.util.Map;
+         * import java.io.File;
+         * import java.nio.file.Files;
+         * import java.nio.file.Paths;
+         * 
+         * public class App {
+         *     public static void main(String[] args) {
+         *         Pulumi.run(App::stack);
+         *     }
+         * 
+         *     public static void stack(Context ctx) {
+         *     }
+         * }
+         * ```
+         * 
          * @return builder
          * 
          */
@@ -102,6 +174,30 @@ public final class SecretBackendRoleAllowedUserKeyConfigArgs extends com.pulumi.
          * Setting multiple lengths is only supported on Vault 1.10+. For prior releases `length`
          * must be set to a single element list.
          * 
+         * Example configuration blocks that might be included in the `vault.ssh.SecretBackendRole`
+         * ```java
+         * package generated_program;
+         * 
+         * import com.pulumi.Context;
+         * import com.pulumi.Pulumi;
+         * import com.pulumi.core.Output;
+         * import java.util.List;
+         * import java.util.ArrayList;
+         * import java.util.Map;
+         * import java.io.File;
+         * import java.nio.file.Files;
+         * import java.nio.file.Paths;
+         * 
+         * public class App {
+         *     public static void main(String[] args) {
+         *         Pulumi.run(App::stack);
+         *     }
+         * 
+         *     public static void stack(Context ctx) {
+         *     }
+         * }
+         * ```
+         * 
          * @return builder
          * 
          */
@@ -114,6 +210,30 @@ public final class SecretBackendRoleAllowedUserKeyConfigArgs extends com.pulumi.
          * For key types that do not support setting the length a value of `[0]` should be used.
          * Setting multiple lengths is only supported on Vault 1.10+. For prior releases `length`
          * must be set to a single element list.
+         * 
+         * Example configuration blocks that might be included in the `vault.ssh.SecretBackendRole`
+         * ```java
+         * package generated_program;
+         * 
+         * import com.pulumi.Context;
+         * import com.pulumi.Pulumi;
+         * import com.pulumi.core.Output;
+         * import java.util.List;
+         * import java.util.ArrayList;
+         * import java.util.Map;
+         * import java.io.File;
+         * import java.nio.file.Files;
+         * import java.nio.file.Paths;
+         * 
+         * public class App {
+         *     public static void main(String[] args) {
+         *         Pulumi.run(App::stack);
+         *     }
+         * 
+         *     public static void stack(Context ctx) {
+         *     }
+         * }
+         * ```
          * 
          * @return builder
          * 

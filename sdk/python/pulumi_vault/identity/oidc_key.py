@@ -24,8 +24,8 @@ class OidcKeyArgs:
         The set of arguments for constructing a OidcKey resource.
         :param pulumi.Input[str] algorithm: Signing algorithm to use. Signing algorithm to use.
                Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_client_ids: Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
-               allowed.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_client_ids: Array of role client ID allowed to use this key for signing. If
+               empty, no roles are allowed. If `["*"]`, all roles are allowed.
         :param pulumi.Input[str] name: Name of the OIDC Key to create.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -65,8 +65,8 @@ class OidcKeyArgs:
     @pulumi.getter(name="allowedClientIds")
     def allowed_client_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
-        allowed.
+        Array of role client ID allowed to use this key for signing. If
+        empty, no roles are allowed. If `["*"]`, all roles are allowed.
         """
         return pulumi.get(self, "allowed_client_ids")
 
@@ -140,8 +140,8 @@ class _OidcKeyState:
         Input properties used for looking up and filtering OidcKey resources.
         :param pulumi.Input[str] algorithm: Signing algorithm to use. Signing algorithm to use.
                Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_client_ids: Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
-               allowed.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_client_ids: Array of role client ID allowed to use this key for signing. If
+               empty, no roles are allowed. If `["*"]`, all roles are allowed.
         :param pulumi.Input[str] name: Name of the OIDC Key to create.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -181,8 +181,8 @@ class _OidcKeyState:
     @pulumi.getter(name="allowedClientIds")
     def allowed_client_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
-        allowed.
+        Array of role client ID allowed to use this key for signing. If
+        empty, no roles are allowed. If `["*"]`, all roles are allowed.
         """
         return pulumi.get(self, "allowed_client_ids")
 
@@ -271,7 +271,7 @@ class OidcKey(pulumi.CustomResource):
 
         ## Import
 
-        The key can be imported with the key name, for example
+        The key can be imported with the key name, for example:
 
         ```sh
          $ pulumi import vault:identity/oidcKey:OidcKey key key
@@ -281,8 +281,8 @@ class OidcKey(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] algorithm: Signing algorithm to use. Signing algorithm to use.
                Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_client_ids: Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
-               allowed.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_client_ids: Array of role client ID allowed to use this key for signing. If
+               empty, no roles are allowed. If `["*"]`, all roles are allowed.
         :param pulumi.Input[str] name: Name of the OIDC Key to create.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -314,7 +314,7 @@ class OidcKey(pulumi.CustomResource):
 
         ## Import
 
-        The key can be imported with the key name, for example
+        The key can be imported with the key name, for example:
 
         ```sh
          $ pulumi import vault:identity/oidcKey:OidcKey key key
@@ -381,8 +381,8 @@ class OidcKey(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] algorithm: Signing algorithm to use. Signing algorithm to use.
                Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_client_ids: Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
-               allowed.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_client_ids: Array of role client ID allowed to use this key for signing. If
+               empty, no roles are allowed. If `["*"]`, all roles are allowed.
         :param pulumi.Input[str] name: Name of the OIDC Key to create.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -417,8 +417,8 @@ class OidcKey(pulumi.CustomResource):
     @pulumi.getter(name="allowedClientIds")
     def allowed_client_ids(self) -> pulumi.Output[Sequence[str]]:
         """
-        Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
-        allowed.
+        Array of role client ID allowed to use this key for signing. If
+        empty, no roles are allowed. If `["*"]`, all roles are allowed.
         """
         return pulumi.get(self, "allowed_client_ids")
 

@@ -88,6 +88,10 @@ export class GroupPolicies extends pulumi.CustomResource {
 
     /**
      * Defaults to `true`.
+     *
+     * If `true`, this resource will take exclusive control of the policies assigned to the group and will set it equal to what is specified in the resource.
+     *
+     * If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the group. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
      */
     public readonly exclusive!: pulumi.Output<boolean | undefined>;
     /**
@@ -153,6 +157,10 @@ export class GroupPolicies extends pulumi.CustomResource {
 export interface GroupPoliciesState {
     /**
      * Defaults to `true`.
+     *
+     * If `true`, this resource will take exclusive control of the policies assigned to the group and will set it equal to what is specified in the resource.
+     *
+     * If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the group. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
      */
     exclusive?: pulumi.Input<boolean>;
     /**
@@ -182,6 +190,10 @@ export interface GroupPoliciesState {
 export interface GroupPoliciesArgs {
     /**
      * Defaults to `true`.
+     *
+     * If `true`, this resource will take exclusive control of the policies assigned to the group and will set it equal to what is specified in the resource.
+     *
+     * If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the group. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
      */
     exclusive?: pulumi.Input<boolean>;
     /**

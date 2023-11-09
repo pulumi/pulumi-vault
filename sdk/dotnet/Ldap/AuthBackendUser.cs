@@ -16,6 +16,7 @@ namespace Pulumi.Vault.Ldap
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -60,6 +61,8 @@ namespace Pulumi.Vault.Ldap
     {
         /// <summary>
         /// Path to the authentication backend
+        /// 
+        /// For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api-docs/auth/ldap).
         /// </summary>
         [Output("backend")]
         public Output<string?> Backend { get; private set; } = null!;
@@ -139,6 +142,8 @@ namespace Pulumi.Vault.Ldap
     {
         /// <summary>
         /// Path to the authentication backend
+        /// 
+        /// For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api-docs/auth/ldap).
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
@@ -192,6 +197,8 @@ namespace Pulumi.Vault.Ldap
     {
         /// <summary>
         /// Path to the authentication backend
+        /// 
+        /// For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api-docs/auth/ldap).
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }

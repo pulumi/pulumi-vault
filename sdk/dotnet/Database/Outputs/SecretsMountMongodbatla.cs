@@ -20,6 +20,8 @@ namespace Pulumi.Vault.Database.Outputs
         public readonly ImmutableArray<string> AllowedRoles;
         /// <summary>
         /// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        /// 
+        /// Supported list of database secrets engines that can be configured:
         /// </summary>
         public readonly ImmutableDictionary<string, object>? Data;
         public readonly string Name;

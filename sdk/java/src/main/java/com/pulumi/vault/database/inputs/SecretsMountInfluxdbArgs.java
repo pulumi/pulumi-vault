@@ -57,12 +57,16 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
     /**
      * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
+     * Supported list of database secrets engines that can be configured:
+     * 
      */
     @Import(name="data")
     private @Nullable Output<Map<String,Object>> data;
 
     /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+     * 
+     * Supported list of database secrets engines that can be configured:
      * 
      */
     public Optional<Output<Map<String,Object>>> data() {
@@ -109,14 +113,14 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * The password to be used in the connection.
+     * The root credential password used in the connection URL.
      * 
      */
     @Import(name="password", required=true)
     private Output<String> password;
 
     /**
-     * @return The password to be used in the connection.
+     * @return The root credential password used in the connection URL.
      * 
      */
     public Output<String> password() {
@@ -203,14 +207,14 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Whether to use TLS when connecting to Redis.
+     * Whether to use TLS when connecting to Cassandra.
      * 
      */
     @Import(name="tls")
     private @Nullable Output<Boolean> tls;
 
     /**
-     * @return Whether to use TLS when connecting to Redis.
+     * @return Whether to use TLS when connecting to Cassandra.
      * 
      */
     public Optional<Output<Boolean>> tls() {
@@ -218,14 +222,14 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * The username to be used in the connection (the account admin level).
+     * The root credential username used in the connection URL.
      * 
      */
     @Import(name="username", required=true)
     private Output<String> username;
 
     /**
-     * @return The username to be used in the connection (the account admin level).
+     * @return The root credential username used in the connection URL.
      * 
      */
     public Output<String> username() {
@@ -233,14 +237,14 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
      * 
      */
     @Import(name="usernameTemplate")
     private @Nullable Output<String> usernameTemplate;
 
     /**
-     * @return - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * @return [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
      * 
      */
     public Optional<Output<String>> usernameTemplate() {
@@ -363,6 +367,8 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
         /**
          * @param data A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          * 
+         * Supported list of database secrets engines that can be configured:
+         * 
          * @return builder
          * 
          */
@@ -373,6 +379,8 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
 
         /**
          * @param data A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         * 
+         * Supported list of database secrets engines that can be configured:
          * 
          * @return builder
          * 
@@ -435,7 +443,7 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param password The password to be used in the connection.
+         * @param password The root credential password used in the connection URL.
          * 
          * @return builder
          * 
@@ -446,7 +454,7 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param password The password to be used in the connection.
+         * @param password The root credential password used in the connection URL.
          * 
          * @return builder
          * 
@@ -575,7 +583,7 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param tls Whether to use TLS when connecting to Redis.
+         * @param tls Whether to use TLS when connecting to Cassandra.
          * 
          * @return builder
          * 
@@ -586,7 +594,7 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param tls Whether to use TLS when connecting to Redis.
+         * @param tls Whether to use TLS when connecting to Cassandra.
          * 
          * @return builder
          * 
@@ -596,7 +604,7 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param username The username to be used in the connection (the account admin level).
+         * @param username The root credential username used in the connection URL.
          * 
          * @return builder
          * 
@@ -607,7 +615,7 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param username The username to be used in the connection (the account admin level).
+         * @param username The root credential username used in the connection URL.
          * 
          * @return builder
          * 
@@ -617,7 +625,7 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param usernameTemplate - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * @param usernameTemplate [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          * 
          * @return builder
          * 
@@ -628,7 +636,7 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param usernameTemplate - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * @param usernameTemplate [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          * 
          * @return builder
          * 

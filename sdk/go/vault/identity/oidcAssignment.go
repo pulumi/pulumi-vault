@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages OIDC Assignments in a Vault server. See the [Vault documentation](https://www.vaultproject.io/api-docs/secret/identity/oidc-provider#create-or-update-an-assignment)
@@ -94,6 +96,7 @@ func NewOidcAssignment(ctx *pulumi.Context,
 		args = &OidcAssignmentArgs{}
 	}
 
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource OidcAssignment
 	err := ctx.RegisterResource("vault:identity/oidcAssignment:OidcAssignment", name, args, &resource, opts...)
 	if err != nil {
@@ -199,6 +202,12 @@ func (i *OidcAssignment) ToOidcAssignmentOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(OidcAssignmentOutput)
 }
 
+func (i *OidcAssignment) ToOutput(ctx context.Context) pulumix.Output[*OidcAssignment] {
+	return pulumix.Output[*OidcAssignment]{
+		OutputState: i.ToOidcAssignmentOutputWithContext(ctx).OutputState,
+	}
+}
+
 // OidcAssignmentArrayInput is an input type that accepts OidcAssignmentArray and OidcAssignmentArrayOutput values.
 // You can construct a concrete instance of `OidcAssignmentArrayInput` via:
 //
@@ -222,6 +231,12 @@ func (i OidcAssignmentArray) ToOidcAssignmentArrayOutput() OidcAssignmentArrayOu
 
 func (i OidcAssignmentArray) ToOidcAssignmentArrayOutputWithContext(ctx context.Context) OidcAssignmentArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OidcAssignmentArrayOutput)
+}
+
+func (i OidcAssignmentArray) ToOutput(ctx context.Context) pulumix.Output[[]*OidcAssignment] {
+	return pulumix.Output[[]*OidcAssignment]{
+		OutputState: i.ToOidcAssignmentArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // OidcAssignmentMapInput is an input type that accepts OidcAssignmentMap and OidcAssignmentMapOutput values.
@@ -249,6 +264,12 @@ func (i OidcAssignmentMap) ToOidcAssignmentMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(OidcAssignmentMapOutput)
 }
 
+func (i OidcAssignmentMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*OidcAssignment] {
+	return pulumix.Output[map[string]*OidcAssignment]{
+		OutputState: i.ToOidcAssignmentMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type OidcAssignmentOutput struct{ *pulumi.OutputState }
 
 func (OidcAssignmentOutput) ElementType() reflect.Type {
@@ -261,6 +282,12 @@ func (o OidcAssignmentOutput) ToOidcAssignmentOutput() OidcAssignmentOutput {
 
 func (o OidcAssignmentOutput) ToOidcAssignmentOutputWithContext(ctx context.Context) OidcAssignmentOutput {
 	return o
+}
+
+func (o OidcAssignmentOutput) ToOutput(ctx context.Context) pulumix.Output[*OidcAssignment] {
+	return pulumix.Output[*OidcAssignment]{
+		OutputState: o.OutputState,
+	}
 }
 
 // A set of Vault entity IDs.
@@ -300,6 +327,12 @@ func (o OidcAssignmentArrayOutput) ToOidcAssignmentArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o OidcAssignmentArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*OidcAssignment] {
+	return pulumix.Output[[]*OidcAssignment]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o OidcAssignmentArrayOutput) Index(i pulumi.IntInput) OidcAssignmentOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *OidcAssignment {
 		return vs[0].([]*OidcAssignment)[vs[1].(int)]
@@ -318,6 +351,12 @@ func (o OidcAssignmentMapOutput) ToOidcAssignmentMapOutput() OidcAssignmentMapOu
 
 func (o OidcAssignmentMapOutput) ToOidcAssignmentMapOutputWithContext(ctx context.Context) OidcAssignmentMapOutput {
 	return o
+}
+
+func (o OidcAssignmentMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*OidcAssignment] {
+	return pulumix.Output[map[string]*OidcAssignment]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o OidcAssignmentMapOutput) MapIndex(k pulumi.StringInput) OidcAssignmentOutput {

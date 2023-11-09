@@ -116,6 +116,8 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * Specifies the configuration
      * for the given `credential_type`.
      * 
+     * The following options are available for each `credential_type` value:
+     * 
      */
     @Export(name="credentialConfig", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> credentialConfig;
@@ -123,6 +125,8 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * @return Specifies the configuration
      * for the given `credential_type`.
+     * 
+     * The following options are available for each `credential_type` value:
      * 
      */
     public Output<Optional<Map<String,Object>>> credentialConfig() {

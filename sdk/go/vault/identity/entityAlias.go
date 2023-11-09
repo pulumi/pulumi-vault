@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -78,6 +80,7 @@ func NewEntityAlias(ctx *pulumi.Context,
 	if args.MountAccessor == nil {
 		return nil, errors.New("invalid value for required argument 'MountAccessor'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource EntityAlias
 	err := ctx.RegisterResource("vault:identity/entityAlias:EntityAlias", name, args, &resource, opts...)
 	if err != nil {
@@ -191,6 +194,12 @@ func (i *EntityAlias) ToEntityAliasOutputWithContext(ctx context.Context) Entity
 	return pulumi.ToOutputWithContext(ctx, i).(EntityAliasOutput)
 }
 
+func (i *EntityAlias) ToOutput(ctx context.Context) pulumix.Output[*EntityAlias] {
+	return pulumix.Output[*EntityAlias]{
+		OutputState: i.ToEntityAliasOutputWithContext(ctx).OutputState,
+	}
+}
+
 // EntityAliasArrayInput is an input type that accepts EntityAliasArray and EntityAliasArrayOutput values.
 // You can construct a concrete instance of `EntityAliasArrayInput` via:
 //
@@ -214,6 +223,12 @@ func (i EntityAliasArray) ToEntityAliasArrayOutput() EntityAliasArrayOutput {
 
 func (i EntityAliasArray) ToEntityAliasArrayOutputWithContext(ctx context.Context) EntityAliasArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EntityAliasArrayOutput)
+}
+
+func (i EntityAliasArray) ToOutput(ctx context.Context) pulumix.Output[[]*EntityAlias] {
+	return pulumix.Output[[]*EntityAlias]{
+		OutputState: i.ToEntityAliasArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // EntityAliasMapInput is an input type that accepts EntityAliasMap and EntityAliasMapOutput values.
@@ -241,6 +256,12 @@ func (i EntityAliasMap) ToEntityAliasMapOutputWithContext(ctx context.Context) E
 	return pulumi.ToOutputWithContext(ctx, i).(EntityAliasMapOutput)
 }
 
+func (i EntityAliasMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*EntityAlias] {
+	return pulumix.Output[map[string]*EntityAlias]{
+		OutputState: i.ToEntityAliasMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type EntityAliasOutput struct{ *pulumi.OutputState }
 
 func (EntityAliasOutput) ElementType() reflect.Type {
@@ -253,6 +274,12 @@ func (o EntityAliasOutput) ToEntityAliasOutput() EntityAliasOutput {
 
 func (o EntityAliasOutput) ToEntityAliasOutputWithContext(ctx context.Context) EntityAliasOutput {
 	return o
+}
+
+func (o EntityAliasOutput) ToOutput(ctx context.Context) pulumix.Output[*EntityAlias] {
+	return pulumix.Output[*EntityAlias]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Entity ID to which this alias belongs to.
@@ -297,6 +324,12 @@ func (o EntityAliasArrayOutput) ToEntityAliasArrayOutputWithContext(ctx context.
 	return o
 }
 
+func (o EntityAliasArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*EntityAlias] {
+	return pulumix.Output[[]*EntityAlias]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o EntityAliasArrayOutput) Index(i pulumi.IntInput) EntityAliasOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EntityAlias {
 		return vs[0].([]*EntityAlias)[vs[1].(int)]
@@ -315,6 +348,12 @@ func (o EntityAliasMapOutput) ToEntityAliasMapOutput() EntityAliasMapOutput {
 
 func (o EntityAliasMapOutput) ToEntityAliasMapOutputWithContext(ctx context.Context) EntityAliasMapOutput {
 	return o
+}
+
+func (o EntityAliasMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*EntityAlias] {
+	return pulumix.Output[map[string]*EntityAlias]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o EntityAliasMapOutput) MapIndex(k pulumi.StringInput) EntityAliasOutput {

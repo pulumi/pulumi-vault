@@ -29,18 +29,32 @@ class EndpointArgs:
                data. Consult each backend's documentation to see which endpoints
                support the `PUT` methods and to determine whether they also support
                `DELETE` and `GET`.
-        :param pulumi.Input[bool] disable_delete: Don't attempt to delete the path from Vault if true
+        :param pulumi.Input[bool] disable_delete: - (Optional) True/false. Set this to true if your
+               vault authentication is not able to delete the data or if the endpoint
+               does not support the `DELETE` method. Defaults to false.
         :param pulumi.Input[bool] disable_read: True/false. Set this to true if your vault
                authentication is not able to read the data or if the endpoint does
                not support the `GET` method. Setting this to `true` will break drift
                detection. You should set this to `true` for endpoints that are
                write-only. Defaults to false.
-        :param pulumi.Input[bool] ignore_absent_fields: When reading, disregard fields not present in data_json
+        :param pulumi.Input[bool] ignore_absent_fields: - (Optional) True/false. If set to true,
+               ignore any fields present when the endpoint is read but that were not
+               in `data_json`. Also, if a field that was written is not returned when
+               the endpoint is read, treat that field as being up to date. You should
+               set this to `true` when writing to endpoint that, when read, returns a
+               different set of fields from the ones you wrote, as is common with
+               many configuration endpoints. Defaults to false.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] write_fields: Top-level fields returned by write to persist in state
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] write_fields: - (Optional). A list of fields that should be returned
+               in `write_data_json` and `write_data`. If omitted, data returned by
+               the write operation is not available to the resource or included in
+               state. This helps to avoid accidental storage of sensitive values in
+               state. Some endpoints, such as many dynamic secrets endpoints, return
+               data from writing to an endpoint rather than reading it. You should
+               use `write_fields` if you need information returned in this way.
         """
         pulumi.set(__self__, "data_json", data_json)
         pulumi.set(__self__, "path", path)
@@ -87,7 +101,9 @@ class EndpointArgs:
     @pulumi.getter(name="disableDelete")
     def disable_delete(self) -> Optional[pulumi.Input[bool]]:
         """
-        Don't attempt to delete the path from Vault if true
+        - (Optional) True/false. Set this to true if your
+        vault authentication is not able to delete the data or if the endpoint
+        does not support the `DELETE` method. Defaults to false.
         """
         return pulumi.get(self, "disable_delete")
 
@@ -115,7 +131,13 @@ class EndpointArgs:
     @pulumi.getter(name="ignoreAbsentFields")
     def ignore_absent_fields(self) -> Optional[pulumi.Input[bool]]:
         """
-        When reading, disregard fields not present in data_json
+        - (Optional) True/false. If set to true,
+        ignore any fields present when the endpoint is read but that were not
+        in `data_json`. Also, if a field that was written is not returned when
+        the endpoint is read, treat that field as being up to date. You should
+        set this to `true` when writing to endpoint that, when read, returns a
+        different set of fields from the ones you wrote, as is common with
+        many configuration endpoints. Defaults to false.
         """
         return pulumi.get(self, "ignore_absent_fields")
 
@@ -142,7 +164,13 @@ class EndpointArgs:
     @pulumi.getter(name="writeFields")
     def write_fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Top-level fields returned by write to persist in state
+        - (Optional). A list of fields that should be returned
+        in `write_data_json` and `write_data`. If omitted, data returned by
+        the write operation is not available to the resource or included in
+        state. This helps to avoid accidental storage of sensitive values in
+        state. Some endpoints, such as many dynamic secrets endpoints, return
+        data from writing to an endpoint rather than reading it. You should
+        use `write_fields` if you need information returned in this way.
         """
         return pulumi.get(self, "write_fields")
 
@@ -167,13 +195,21 @@ class _EndpointState:
         Input properties used for looking up and filtering Endpoint resources.
         :param pulumi.Input[str] data_json: String containing a JSON-encoded object that will be
                written to the given path as the secret data.
-        :param pulumi.Input[bool] disable_delete: Don't attempt to delete the path from Vault if true
+        :param pulumi.Input[bool] disable_delete: - (Optional) True/false. Set this to true if your
+               vault authentication is not able to delete the data or if the endpoint
+               does not support the `DELETE` method. Defaults to false.
         :param pulumi.Input[bool] disable_read: True/false. Set this to true if your vault
                authentication is not able to read the data or if the endpoint does
                not support the `GET` method. Setting this to `true` will break drift
                detection. You should set this to `true` for endpoints that are
                write-only. Defaults to false.
-        :param pulumi.Input[bool] ignore_absent_fields: When reading, disregard fields not present in data_json
+        :param pulumi.Input[bool] ignore_absent_fields: - (Optional) True/false. If set to true,
+               ignore any fields present when the endpoint is read but that were not
+               in `data_json`. Also, if a field that was written is not returned when
+               the endpoint is read, treat that field as being up to date. You should
+               set this to `true` when writing to endpoint that, when read, returns a
+               different set of fields from the ones you wrote, as is common with
+               many configuration endpoints. Defaults to false.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -182,9 +218,20 @@ class _EndpointState:
                data. Consult each backend's documentation to see which endpoints
                support the `PUT` methods and to determine whether they also support
                `DELETE` and `GET`.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] write_data: Map of strings returned by write operation
-        :param pulumi.Input[str] write_data_json: JSON data returned by write operation
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] write_fields: Top-level fields returned by write to persist in state
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] write_data: - A map whose keys are the top-level data keys
+               returned from Vault by the write operation and whose values are the
+               corresponding values. This map can only represent string data, so
+               any non-string values returned from Vault are serialized as JSON.
+               Only fields set in `write_fields` are present in the JSON data.
+        :param pulumi.Input[str] write_data_json: - The JSON data returned by the write operation.
+               Only fields set in `write_fields` are present in the JSON data.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] write_fields: - (Optional). A list of fields that should be returned
+               in `write_data_json` and `write_data`. If omitted, data returned by
+               the write operation is not available to the resource or included in
+               state. This helps to avoid accidental storage of sensitive values in
+               state. Some endpoints, such as many dynamic secrets endpoints, return
+               data from writing to an endpoint rather than reading it. You should
+               use `write_fields` if you need information returned in this way.
         """
         if data_json is not None:
             pulumi.set(__self__, "data_json", data_json)
@@ -222,7 +269,9 @@ class _EndpointState:
     @pulumi.getter(name="disableDelete")
     def disable_delete(self) -> Optional[pulumi.Input[bool]]:
         """
-        Don't attempt to delete the path from Vault if true
+        - (Optional) True/false. Set this to true if your
+        vault authentication is not able to delete the data or if the endpoint
+        does not support the `DELETE` method. Defaults to false.
         """
         return pulumi.get(self, "disable_delete")
 
@@ -250,7 +299,13 @@ class _EndpointState:
     @pulumi.getter(name="ignoreAbsentFields")
     def ignore_absent_fields(self) -> Optional[pulumi.Input[bool]]:
         """
-        When reading, disregard fields not present in data_json
+        - (Optional) True/false. If set to true,
+        ignore any fields present when the endpoint is read but that were not
+        in `data_json`. Also, if a field that was written is not returned when
+        the endpoint is read, treat that field as being up to date. You should
+        set this to `true` when writing to endpoint that, when read, returns a
+        different set of fields from the ones you wrote, as is common with
+        many configuration endpoints. Defaults to false.
         """
         return pulumi.get(self, "ignore_absent_fields")
 
@@ -292,7 +347,11 @@ class _EndpointState:
     @pulumi.getter(name="writeData")
     def write_data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Map of strings returned by write operation
+        - A map whose keys are the top-level data keys
+        returned from Vault by the write operation and whose values are the
+        corresponding values. This map can only represent string data, so
+        any non-string values returned from Vault are serialized as JSON.
+        Only fields set in `write_fields` are present in the JSON data.
         """
         return pulumi.get(self, "write_data")
 
@@ -304,7 +363,8 @@ class _EndpointState:
     @pulumi.getter(name="writeDataJson")
     def write_data_json(self) -> Optional[pulumi.Input[str]]:
         """
-        JSON data returned by write operation
+        - The JSON data returned by the write operation.
+        Only fields set in `write_fields` are present in the JSON data.
         """
         return pulumi.get(self, "write_data_json")
 
@@ -316,7 +376,13 @@ class _EndpointState:
     @pulumi.getter(name="writeFields")
     def write_fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Top-level fields returned by write to persist in state
+        - (Optional). A list of fields that should be returned
+        in `write_data_json` and `write_data`. If omitted, data returned by
+        the write operation is not available to the resource or included in
+        state. This helps to avoid accidental storage of sensitive values in
+        state. Some endpoints, such as many dynamic secrets endpoints, return
+        data from writing to an endpoint rather than reading it. You should
+        use `write_fields` if you need information returned in this way.
         """
         return pulumi.get(self, "write_fields")
 
@@ -339,6 +405,45 @@ class Endpoint(pulumi.CustomResource):
                  write_fields: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        userpass = vault.AuthBackend("userpass", type="userpass")
+        u1 = vault.generic.Endpoint("u1",
+            path="auth/userpass/users/u1",
+            ignore_absent_fields=True,
+            data_json=\"\"\"{
+          "policies": ["p1"],
+          "password": "changeme"
+        }
+        \"\"\",
+            opts=pulumi.ResourceOptions(depends_on=[userpass]))
+        u1_token = vault.generic.Endpoint("u1Token",
+            path="auth/userpass/login/u1",
+            disable_read=True,
+            disable_delete=True,
+            data_json=\"\"\"{
+          "password": "changeme"
+        }
+        \"\"\",
+            opts=pulumi.ResourceOptions(depends_on=[u1]))
+        u1_entity = vault.generic.Endpoint("u1Entity",
+            disable_read=True,
+            disable_delete=True,
+            path="identity/lookup/entity",
+            ignore_absent_fields=True,
+            write_fields=["id"],
+            data_json=\"\"\"{
+          "alias_name": "u1",
+          "alias_mount_accessor": vault_auth_backend.userpass.accessor
+        }
+        \"\"\",
+            opts=pulumi.ResourceOptions(depends_on=[u1_token]))
+        pulumi.export("u1Id", u1_entity.write_data["id"])
+        ```
         ## Required Vault Capabilities
 
         Use of this resource requires the `create` or `update` capability
@@ -354,13 +459,21 @@ class Endpoint(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] data_json: String containing a JSON-encoded object that will be
                written to the given path as the secret data.
-        :param pulumi.Input[bool] disable_delete: Don't attempt to delete the path from Vault if true
+        :param pulumi.Input[bool] disable_delete: - (Optional) True/false. Set this to true if your
+               vault authentication is not able to delete the data or if the endpoint
+               does not support the `DELETE` method. Defaults to false.
         :param pulumi.Input[bool] disable_read: True/false. Set this to true if your vault
                authentication is not able to read the data or if the endpoint does
                not support the `GET` method. Setting this to `true` will break drift
                detection. You should set this to `true` for endpoints that are
                write-only. Defaults to false.
-        :param pulumi.Input[bool] ignore_absent_fields: When reading, disregard fields not present in data_json
+        :param pulumi.Input[bool] ignore_absent_fields: - (Optional) True/false. If set to true,
+               ignore any fields present when the endpoint is read but that were not
+               in `data_json`. Also, if a field that was written is not returned when
+               the endpoint is read, treat that field as being up to date. You should
+               set this to `true` when writing to endpoint that, when read, returns a
+               different set of fields from the ones you wrote, as is common with
+               many configuration endpoints. Defaults to false.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -369,7 +482,13 @@ class Endpoint(pulumi.CustomResource):
                data. Consult each backend's documentation to see which endpoints
                support the `PUT` methods and to determine whether they also support
                `DELETE` and `GET`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] write_fields: Top-level fields returned by write to persist in state
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] write_fields: - (Optional). A list of fields that should be returned
+               in `write_data_json` and `write_data`. If omitted, data returned by
+               the write operation is not available to the resource or included in
+               state. This helps to avoid accidental storage of sensitive values in
+               state. Some endpoints, such as many dynamic secrets endpoints, return
+               data from writing to an endpoint rather than reading it. You should
+               use `write_fields` if you need information returned in this way.
         """
         ...
     @overload
@@ -378,6 +497,45 @@ class Endpoint(pulumi.CustomResource):
                  args: EndpointArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        userpass = vault.AuthBackend("userpass", type="userpass")
+        u1 = vault.generic.Endpoint("u1",
+            path="auth/userpass/users/u1",
+            ignore_absent_fields=True,
+            data_json=\"\"\"{
+          "policies": ["p1"],
+          "password": "changeme"
+        }
+        \"\"\",
+            opts=pulumi.ResourceOptions(depends_on=[userpass]))
+        u1_token = vault.generic.Endpoint("u1Token",
+            path="auth/userpass/login/u1",
+            disable_read=True,
+            disable_delete=True,
+            data_json=\"\"\"{
+          "password": "changeme"
+        }
+        \"\"\",
+            opts=pulumi.ResourceOptions(depends_on=[u1]))
+        u1_entity = vault.generic.Endpoint("u1Entity",
+            disable_read=True,
+            disable_delete=True,
+            path="identity/lookup/entity",
+            ignore_absent_fields=True,
+            write_fields=["id"],
+            data_json=\"\"\"{
+          "alias_name": "u1",
+          "alias_mount_accessor": vault_auth_backend.userpass.accessor
+        }
+        \"\"\",
+            opts=pulumi.ResourceOptions(depends_on=[u1_token]))
+        pulumi.export("u1Id", u1_entity.write_data["id"])
+        ```
         ## Required Vault Capabilities
 
         Use of this resource requires the `create` or `update` capability
@@ -463,13 +621,21 @@ class Endpoint(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] data_json: String containing a JSON-encoded object that will be
                written to the given path as the secret data.
-        :param pulumi.Input[bool] disable_delete: Don't attempt to delete the path from Vault if true
+        :param pulumi.Input[bool] disable_delete: - (Optional) True/false. Set this to true if your
+               vault authentication is not able to delete the data or if the endpoint
+               does not support the `DELETE` method. Defaults to false.
         :param pulumi.Input[bool] disable_read: True/false. Set this to true if your vault
                authentication is not able to read the data or if the endpoint does
                not support the `GET` method. Setting this to `true` will break drift
                detection. You should set this to `true` for endpoints that are
                write-only. Defaults to false.
-        :param pulumi.Input[bool] ignore_absent_fields: When reading, disregard fields not present in data_json
+        :param pulumi.Input[bool] ignore_absent_fields: - (Optional) True/false. If set to true,
+               ignore any fields present when the endpoint is read but that were not
+               in `data_json`. Also, if a field that was written is not returned when
+               the endpoint is read, treat that field as being up to date. You should
+               set this to `true` when writing to endpoint that, when read, returns a
+               different set of fields from the ones you wrote, as is common with
+               many configuration endpoints. Defaults to false.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -478,9 +644,20 @@ class Endpoint(pulumi.CustomResource):
                data. Consult each backend's documentation to see which endpoints
                support the `PUT` methods and to determine whether they also support
                `DELETE` and `GET`.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] write_data: Map of strings returned by write operation
-        :param pulumi.Input[str] write_data_json: JSON data returned by write operation
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] write_fields: Top-level fields returned by write to persist in state
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] write_data: - A map whose keys are the top-level data keys
+               returned from Vault by the write operation and whose values are the
+               corresponding values. This map can only represent string data, so
+               any non-string values returned from Vault are serialized as JSON.
+               Only fields set in `write_fields` are present in the JSON data.
+        :param pulumi.Input[str] write_data_json: - The JSON data returned by the write operation.
+               Only fields set in `write_fields` are present in the JSON data.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] write_fields: - (Optional). A list of fields that should be returned
+               in `write_data_json` and `write_data`. If omitted, data returned by
+               the write operation is not available to the resource or included in
+               state. This helps to avoid accidental storage of sensitive values in
+               state. Some endpoints, such as many dynamic secrets endpoints, return
+               data from writing to an endpoint rather than reading it. You should
+               use `write_fields` if you need information returned in this way.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -510,7 +687,9 @@ class Endpoint(pulumi.CustomResource):
     @pulumi.getter(name="disableDelete")
     def disable_delete(self) -> pulumi.Output[Optional[bool]]:
         """
-        Don't attempt to delete the path from Vault if true
+        - (Optional) True/false. Set this to true if your
+        vault authentication is not able to delete the data or if the endpoint
+        does not support the `DELETE` method. Defaults to false.
         """
         return pulumi.get(self, "disable_delete")
 
@@ -530,7 +709,13 @@ class Endpoint(pulumi.CustomResource):
     @pulumi.getter(name="ignoreAbsentFields")
     def ignore_absent_fields(self) -> pulumi.Output[Optional[bool]]:
         """
-        When reading, disregard fields not present in data_json
+        - (Optional) True/false. If set to true,
+        ignore any fields present when the endpoint is read but that were not
+        in `data_json`. Also, if a field that was written is not returned when
+        the endpoint is read, treat that field as being up to date. You should
+        set this to `true` when writing to endpoint that, when read, returns a
+        different set of fields from the ones you wrote, as is common with
+        many configuration endpoints. Defaults to false.
         """
         return pulumi.get(self, "ignore_absent_fields")
 
@@ -560,7 +745,11 @@ class Endpoint(pulumi.CustomResource):
     @pulumi.getter(name="writeData")
     def write_data(self) -> pulumi.Output[Mapping[str, str]]:
         """
-        Map of strings returned by write operation
+        - A map whose keys are the top-level data keys
+        returned from Vault by the write operation and whose values are the
+        corresponding values. This map can only represent string data, so
+        any non-string values returned from Vault are serialized as JSON.
+        Only fields set in `write_fields` are present in the JSON data.
         """
         return pulumi.get(self, "write_data")
 
@@ -568,7 +757,8 @@ class Endpoint(pulumi.CustomResource):
     @pulumi.getter(name="writeDataJson")
     def write_data_json(self) -> pulumi.Output[str]:
         """
-        JSON data returned by write operation
+        - The JSON data returned by the write operation.
+        Only fields set in `write_fields` are present in the JSON data.
         """
         return pulumi.get(self, "write_data_json")
 
@@ -576,7 +766,13 @@ class Endpoint(pulumi.CustomResource):
     @pulumi.getter(name="writeFields")
     def write_fields(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        Top-level fields returned by write to persist in state
+        - (Optional). A list of fields that should be returned
+        in `write_data_json` and `write_data`. If omitted, data returned by
+        the write operation is not available to the resource or included in
+        state. This helps to avoid accidental storage of sensitive values in
+        state. Some endpoints, such as many dynamic secrets endpoints, return
+        data from writing to an endpoint rather than reading it. You should
+        use `write_fields` if you need information returned in this way.
         """
         return pulumi.get(self, "write_fields")
 

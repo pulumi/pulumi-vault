@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -45,6 +47,7 @@ import (
 //
 // ```
 func GetOidcClientCreds(ctx *pulumi.Context, args *GetOidcClientCredsArgs, opts ...pulumi.InvokeOption) (*GetOidcClientCredsResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetOidcClientCredsResult
 	err := ctx.Invoke("vault:identity/getOidcClientCreds:getOidcClientCreds", args, &rv, opts...)
 	if err != nil {
@@ -118,6 +121,12 @@ func (o GetOidcClientCredsResultOutput) ToGetOidcClientCredsResultOutput() GetOi
 
 func (o GetOidcClientCredsResultOutput) ToGetOidcClientCredsResultOutputWithContext(ctx context.Context) GetOidcClientCredsResultOutput {
 	return o
+}
+
+func (o GetOidcClientCredsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetOidcClientCredsResult] {
+	return pulumix.Output[GetOidcClientCredsResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The Client ID returned by Vault.

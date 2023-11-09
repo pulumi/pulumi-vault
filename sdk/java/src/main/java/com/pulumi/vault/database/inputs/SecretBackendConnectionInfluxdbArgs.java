@@ -67,14 +67,14 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
     }
 
     /**
-     * The root credential password used in the connection URL.
+     * The password to authenticate with.
      * 
      */
     @Import(name="password", required=true)
     private Output<String> password;
 
     /**
-     * @return The root credential password used in the connection URL.
+     * @return The password to authenticate with.
      * 
      */
     public Output<String> password() {
@@ -131,14 +131,14 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
     }
 
     /**
-     * Whether to use TLS when connecting to Redis.
+     * Whether to use TLS when connecting to Cassandra.
      * 
      */
     @Import(name="tls")
     private @Nullable Output<Boolean> tls;
 
     /**
-     * @return Whether to use TLS when connecting to Redis.
+     * @return Whether to use TLS when connecting to Cassandra.
      * 
      */
     public Optional<Output<Boolean>> tls() {
@@ -146,14 +146,14 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
     }
 
     /**
-     * The root credential username used in the connection URL.
+     * The username to authenticate with.
      * 
      */
     @Import(name="username", required=true)
     private Output<String> username;
 
     /**
-     * @return The root credential username used in the connection URL.
+     * @return The username to authenticate with.
      * 
      */
     public Output<String> username() {
@@ -161,14 +161,14 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
     }
 
     /**
-     * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * Template describing how dynamic usernames are generated.
      * 
      */
     @Import(name="usernameTemplate")
     private @Nullable Output<String> usernameTemplate;
 
     /**
-     * @return - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * @return Template describing how dynamic usernames are generated.
      * 
      */
     public Optional<Output<String>> usernameTemplate() {
@@ -276,7 +276,7 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
         }
 
         /**
-         * @param password The root credential password used in the connection URL.
+         * @param password The password to authenticate with.
          * 
          * @return builder
          * 
@@ -287,7 +287,7 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
         }
 
         /**
-         * @param password The root credential password used in the connection URL.
+         * @param password The password to authenticate with.
          * 
          * @return builder
          * 
@@ -364,7 +364,7 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
         }
 
         /**
-         * @param tls Whether to use TLS when connecting to Redis.
+         * @param tls Whether to use TLS when connecting to Cassandra.
          * 
          * @return builder
          * 
@@ -375,7 +375,7 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
         }
 
         /**
-         * @param tls Whether to use TLS when connecting to Redis.
+         * @param tls Whether to use TLS when connecting to Cassandra.
          * 
          * @return builder
          * 
@@ -385,7 +385,7 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
         }
 
         /**
-         * @param username The root credential username used in the connection URL.
+         * @param username The username to authenticate with.
          * 
          * @return builder
          * 
@@ -396,7 +396,7 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
         }
 
         /**
-         * @param username The root credential username used in the connection URL.
+         * @param username The username to authenticate with.
          * 
          * @return builder
          * 
@@ -406,7 +406,7 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
         }
 
         /**
-         * @param usernameTemplate - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * @param usernameTemplate Template describing how dynamic usernames are generated.
          * 
          * @return builder
          * 
@@ -417,7 +417,7 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
         }
 
         /**
-         * @param usernameTemplate - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * @param usernameTemplate Template describing how dynamic usernames are generated.
          * 
          * @return builder
          * 

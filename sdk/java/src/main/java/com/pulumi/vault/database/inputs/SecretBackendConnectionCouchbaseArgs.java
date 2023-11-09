@@ -48,14 +48,14 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
     }
 
     /**
-     * A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+     * The hosts to connect to.
      * 
      */
     @Import(name="hosts", required=true)
     private Output<List<String>> hosts;
 
     /**
-     * @return A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+     * @return The hosts to connect to.
      * 
      */
     public Output<List<String>> hosts() {
@@ -80,14 +80,14 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
     }
 
     /**
-     * The root credential password used in the connection URL.
+     * The password to authenticate with.
      * 
      */
     @Import(name="password", required=true)
     private Output<String> password;
 
     /**
-     * @return The root credential password used in the connection URL.
+     * @return The password to authenticate with.
      * 
      */
     public Output<String> password() {
@@ -95,14 +95,14 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
     }
 
     /**
-     * Whether to use TLS when connecting to Redis.
+     * Whether to use TLS when connecting to Cassandra.
      * 
      */
     @Import(name="tls")
     private @Nullable Output<Boolean> tls;
 
     /**
-     * @return Whether to use TLS when connecting to Redis.
+     * @return Whether to use TLS when connecting to Cassandra.
      * 
      */
     public Optional<Output<Boolean>> tls() {
@@ -110,14 +110,14 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
     }
 
     /**
-     * The root credential username used in the connection URL.
+     * The username to authenticate with.
      * 
      */
     @Import(name="username", required=true)
     private Output<String> username;
 
     /**
-     * @return The root credential username used in the connection URL.
+     * @return The username to authenticate with.
      * 
      */
     public Output<String> username() {
@@ -125,14 +125,14 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
     }
 
     /**
-     * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * Template describing how dynamic usernames are generated.
      * 
      */
     @Import(name="usernameTemplate")
     private @Nullable Output<String> usernameTemplate;
 
     /**
-     * @return - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * @return Template describing how dynamic usernames are generated.
      * 
      */
     public Optional<Output<String>> usernameTemplate() {
@@ -213,7 +213,7 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
         }
 
         /**
-         * @param hosts A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+         * @param hosts The hosts to connect to.
          * 
          * @return builder
          * 
@@ -224,7 +224,7 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
         }
 
         /**
-         * @param hosts A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+         * @param hosts The hosts to connect to.
          * 
          * @return builder
          * 
@@ -234,7 +234,7 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
         }
 
         /**
-         * @param hosts A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+         * @param hosts The hosts to connect to.
          * 
          * @return builder
          * 
@@ -267,7 +267,7 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
         }
 
         /**
-         * @param password The root credential password used in the connection URL.
+         * @param password The password to authenticate with.
          * 
          * @return builder
          * 
@@ -278,7 +278,7 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
         }
 
         /**
-         * @param password The root credential password used in the connection URL.
+         * @param password The password to authenticate with.
          * 
          * @return builder
          * 
@@ -288,7 +288,7 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
         }
 
         /**
-         * @param tls Whether to use TLS when connecting to Redis.
+         * @param tls Whether to use TLS when connecting to Cassandra.
          * 
          * @return builder
          * 
@@ -299,7 +299,7 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
         }
 
         /**
-         * @param tls Whether to use TLS when connecting to Redis.
+         * @param tls Whether to use TLS when connecting to Cassandra.
          * 
          * @return builder
          * 
@@ -309,7 +309,7 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
         }
 
         /**
-         * @param username The root credential username used in the connection URL.
+         * @param username The username to authenticate with.
          * 
          * @return builder
          * 
@@ -320,7 +320,7 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
         }
 
         /**
-         * @param username The root credential username used in the connection URL.
+         * @param username The username to authenticate with.
          * 
          * @return builder
          * 
@@ -330,7 +330,7 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
         }
 
         /**
-         * @param usernameTemplate - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * @param usernameTemplate Template describing how dynamic usernames are generated.
          * 
          * @return builder
          * 
@@ -341,7 +341,7 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
         }
 
         /**
-         * @param usernameTemplate - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * @param usernameTemplate Template describing how dynamic usernames are generated.
          * 
          * @return builder
          * 

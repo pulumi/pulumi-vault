@@ -172,14 +172,14 @@ def get_secret(namespace: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('vault:kv/getSecret:getSecret', __args__, opts=opts, typ=GetSecretResult).value
 
     return AwaitableGetSecretResult(
-        data=__ret__.data,
-        data_json=__ret__.data_json,
-        id=__ret__.id,
-        lease_duration=__ret__.lease_duration,
-        lease_id=__ret__.lease_id,
-        lease_renewable=__ret__.lease_renewable,
-        namespace=__ret__.namespace,
-        path=__ret__.path)
+        data=pulumi.get(__ret__, 'data'),
+        data_json=pulumi.get(__ret__, 'data_json'),
+        id=pulumi.get(__ret__, 'id'),
+        lease_duration=pulumi.get(__ret__, 'lease_duration'),
+        lease_id=pulumi.get(__ret__, 'lease_id'),
+        lease_renewable=pulumi.get(__ret__, 'lease_renewable'),
+        namespace=pulumi.get(__ret__, 'namespace'),
+        path=pulumi.get(__ret__, 'path'))
 
 
 @_utilities.lift_output_func(get_secret)

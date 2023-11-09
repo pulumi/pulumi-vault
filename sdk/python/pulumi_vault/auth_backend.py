@@ -36,6 +36,8 @@ class AuthBackendArgs:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The path to mount the auth method — this defaults to the name of the type.
         :param pulumi.Input['AuthBackendTuneArgs'] tune: Extra configuration block. Structure is documented below.
+               
+               The `tune` block is used to tune the auth backend:
         """
         pulumi.set(__self__, "type", type)
         if description is not None:
@@ -132,6 +134,8 @@ class AuthBackendArgs:
     def tune(self) -> Optional[pulumi.Input['AuthBackendTuneArgs']]:
         """
         Extra configuration block. Structure is documented below.
+
+        The `tune` block is used to tune the auth backend:
         """
         return pulumi.get(self, "tune")
 
@@ -164,6 +168,8 @@ class _AuthBackendState:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The path to mount the auth method — this defaults to the name of the type.
         :param pulumi.Input['AuthBackendTuneArgs'] tune: Extra configuration block. Structure is documented below.
+               
+               The `tune` block is used to tune the auth backend:
         :param pulumi.Input[str] type: The name of the auth method type.
         """
         if accessor is not None:
@@ -264,6 +270,8 @@ class _AuthBackendState:
     def tune(self) -> Optional[pulumi.Input['AuthBackendTuneArgs']]:
         """
         Extra configuration block. Structure is documented below.
+
+        The `tune` block is used to tune the auth backend:
         """
         return pulumi.get(self, "tune")
 
@@ -318,6 +326,8 @@ class AuthBackend(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The path to mount the auth method — this defaults to the name of the type.
         :param pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']] tune: Extra configuration block. Structure is documented below.
+               
+               The `tune` block is used to tune the auth backend:
         :param pulumi.Input[str] type: The name of the auth method type.
         """
         ...
@@ -412,6 +422,8 @@ class AuthBackend(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The path to mount the auth method — this defaults to the name of the type.
         :param pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']] tune: Extra configuration block. Structure is documented below.
+               
+               The `tune` block is used to tune the auth backend:
         :param pulumi.Input[str] type: The name of the auth method type.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -485,6 +497,8 @@ class AuthBackend(pulumi.CustomResource):
     def tune(self) -> pulumi.Output['outputs.AuthBackendTune']:
         """
         Extra configuration block. Structure is documented below.
+
+        The `tune` block is used to tune the auth backend:
         """
         return pulumi.get(self, "tune")
 

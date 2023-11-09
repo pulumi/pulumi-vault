@@ -61,13 +61,13 @@ class CertAuthBackendRoleArgs:
         :param pulumi.Input[str] ocsp_ca_certificates: Any additional CA certificates
                needed to verify OCSP responses. Provided as base64 encoded PEM data.
                Requires Vault version 1.13+.
-        :param pulumi.Input[bool] ocsp_enabled: - If enabled, validate certificates'
+        :param pulumi.Input[bool] ocsp_enabled: If enabled, validate certificates'
                revocation status using OCSP. Requires Vault version 1.13+.
-        :param pulumi.Input[bool] ocsp_fail_open: - If true and an OCSP response cannot
+        :param pulumi.Input[bool] ocsp_fail_open: If true and an OCSP response cannot
                be fetched or is of an unknown status, the login will proceed as if the
                certificate has not been revoked.
                Requires Vault version 1.13+.
-        :param pulumi.Input[bool] ocsp_query_all_servers: - If set to true, rather than
+        :param pulumi.Input[bool] ocsp_query_all_servers: If set to true, rather than
                accepting the first successful OCSP response, query all servers and consider
                the certificate valid only if all servers agree.
                Requires Vault version 1.13+.
@@ -103,6 +103,8 @@ class CertAuthBackendRoleArgs:
                `service` tokens). For token store roles, there are two additional possibilities:
                `default-service` and `default-batch` which specify the type to return unless the client
                requests a different type at generation time.
+               
+               For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
         """
         pulumi.set(__self__, "certificate", certificate)
         if allowed_common_names is not None:
@@ -224,6 +226,9 @@ class CertAuthBackendRoleArgs:
     @property
     @pulumi.getter(name="allowedOrganizationUnits")
     def allowed_organization_units(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        warnings.warn("""Use allowed_organizational_units""", DeprecationWarning)
+        pulumi.log.warn("""allowed_organization_units is deprecated: Use allowed_organizational_units""")
+
         return pulumi.get(self, "allowed_organization_units")
 
     @allowed_organization_units.setter
@@ -324,7 +329,7 @@ class CertAuthBackendRoleArgs:
     @pulumi.getter(name="ocspEnabled")
     def ocsp_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        - If enabled, validate certificates'
+        If enabled, validate certificates'
         revocation status using OCSP. Requires Vault version 1.13+.
         """
         return pulumi.get(self, "ocsp_enabled")
@@ -337,7 +342,7 @@ class CertAuthBackendRoleArgs:
     @pulumi.getter(name="ocspFailOpen")
     def ocsp_fail_open(self) -> Optional[pulumi.Input[bool]]:
         """
-        - If true and an OCSP response cannot
+        If true and an OCSP response cannot
         be fetched or is of an unknown status, the login will proceed as if the
         certificate has not been revoked.
         Requires Vault version 1.13+.
@@ -352,7 +357,7 @@ class CertAuthBackendRoleArgs:
     @pulumi.getter(name="ocspQueryAllServers")
     def ocsp_query_all_servers(self) -> Optional[pulumi.Input[bool]]:
         """
-        - If set to true, rather than
+        If set to true, rather than
         accepting the first successful OCSP response, query all servers and consider
         the certificate valid only if all servers agree.
         Requires Vault version 1.13+.
@@ -509,6 +514,8 @@ class CertAuthBackendRoleArgs:
         `service` tokens). For token store roles, there are two additional possibilities:
         `default-service` and `default-batch` which specify the type to return unless the client
         requests a different type at generation time.
+
+        For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
         """
         return pulumi.get(self, "token_type")
 
@@ -567,13 +574,13 @@ class _CertAuthBackendRoleState:
         :param pulumi.Input[str] ocsp_ca_certificates: Any additional CA certificates
                needed to verify OCSP responses. Provided as base64 encoded PEM data.
                Requires Vault version 1.13+.
-        :param pulumi.Input[bool] ocsp_enabled: - If enabled, validate certificates'
+        :param pulumi.Input[bool] ocsp_enabled: If enabled, validate certificates'
                revocation status using OCSP. Requires Vault version 1.13+.
-        :param pulumi.Input[bool] ocsp_fail_open: - If true and an OCSP response cannot
+        :param pulumi.Input[bool] ocsp_fail_open: If true and an OCSP response cannot
                be fetched or is of an unknown status, the login will proceed as if the
                certificate has not been revoked.
                Requires Vault version 1.13+.
-        :param pulumi.Input[bool] ocsp_query_all_servers: - If set to true, rather than
+        :param pulumi.Input[bool] ocsp_query_all_servers: If set to true, rather than
                accepting the first successful OCSP response, query all servers and consider
                the certificate valid only if all servers agree.
                Requires Vault version 1.13+.
@@ -609,6 +616,8 @@ class _CertAuthBackendRoleState:
                `service` tokens). For token store roles, there are two additional possibilities:
                `default-service` and `default-batch` which specify the type to return unless the client
                requests a different type at generation time.
+               
+               For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
         """
         if allowed_common_names is not None:
             pulumi.set(__self__, "allowed_common_names", allowed_common_names)
@@ -719,6 +728,9 @@ class _CertAuthBackendRoleState:
     @property
     @pulumi.getter(name="allowedOrganizationUnits")
     def allowed_organization_units(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        warnings.warn("""Use allowed_organizational_units""", DeprecationWarning)
+        pulumi.log.warn("""allowed_organization_units is deprecated: Use allowed_organizational_units""")
+
         return pulumi.get(self, "allowed_organization_units")
 
     @allowed_organization_units.setter
@@ -831,7 +843,7 @@ class _CertAuthBackendRoleState:
     @pulumi.getter(name="ocspEnabled")
     def ocsp_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        - If enabled, validate certificates'
+        If enabled, validate certificates'
         revocation status using OCSP. Requires Vault version 1.13+.
         """
         return pulumi.get(self, "ocsp_enabled")
@@ -844,7 +856,7 @@ class _CertAuthBackendRoleState:
     @pulumi.getter(name="ocspFailOpen")
     def ocsp_fail_open(self) -> Optional[pulumi.Input[bool]]:
         """
-        - If true and an OCSP response cannot
+        If true and an OCSP response cannot
         be fetched or is of an unknown status, the login will proceed as if the
         certificate has not been revoked.
         Requires Vault version 1.13+.
@@ -859,7 +871,7 @@ class _CertAuthBackendRoleState:
     @pulumi.getter(name="ocspQueryAllServers")
     def ocsp_query_all_servers(self) -> Optional[pulumi.Input[bool]]:
         """
-        - If set to true, rather than
+        If set to true, rather than
         accepting the first successful OCSP response, query all servers and consider
         the certificate valid only if all servers agree.
         Requires Vault version 1.13+.
@@ -1016,6 +1028,8 @@ class _CertAuthBackendRoleState:
         `service` tokens). For token store roles, there are two additional possibilities:
         `default-service` and `default-batch` which specify the type to return unless the client
         requests a different type at generation time.
+
+        For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
         """
         return pulumi.get(self, "token_type")
 
@@ -1101,13 +1115,13 @@ class CertAuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] ocsp_ca_certificates: Any additional CA certificates
                needed to verify OCSP responses. Provided as base64 encoded PEM data.
                Requires Vault version 1.13+.
-        :param pulumi.Input[bool] ocsp_enabled: - If enabled, validate certificates'
+        :param pulumi.Input[bool] ocsp_enabled: If enabled, validate certificates'
                revocation status using OCSP. Requires Vault version 1.13+.
-        :param pulumi.Input[bool] ocsp_fail_open: - If true and an OCSP response cannot
+        :param pulumi.Input[bool] ocsp_fail_open: If true and an OCSP response cannot
                be fetched or is of an unknown status, the login will proceed as if the
                certificate has not been revoked.
                Requires Vault version 1.13+.
-        :param pulumi.Input[bool] ocsp_query_all_servers: - If set to true, rather than
+        :param pulumi.Input[bool] ocsp_query_all_servers: If set to true, rather than
                accepting the first successful OCSP response, query all servers and consider
                the certificate valid only if all servers agree.
                Requires Vault version 1.13+.
@@ -1143,6 +1157,8 @@ class CertAuthBackendRole(pulumi.CustomResource):
                `service` tokens). For token store roles, there are two additional possibilities:
                `default-service` and `default-batch` which specify the type to return unless the client
                requests a different type at generation time.
+               
+               For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
         """
         ...
     @overload
@@ -1229,9 +1245,6 @@ class CertAuthBackendRole(pulumi.CustomResource):
             __props__.__dict__["allowed_dns_sans"] = allowed_dns_sans
             __props__.__dict__["allowed_email_sans"] = allowed_email_sans
             __props__.__dict__["allowed_names"] = allowed_names
-            if allowed_organization_units is not None and not opts.urn:
-                warnings.warn("""Use allowed_organizational_units""", DeprecationWarning)
-                pulumi.log.warn("""allowed_organization_units is deprecated: Use allowed_organizational_units""")
             __props__.__dict__["allowed_organization_units"] = allowed_organization_units
             __props__.__dict__["allowed_organizational_units"] = allowed_organizational_units
             __props__.__dict__["allowed_uri_sans"] = allowed_uri_sans
@@ -1319,13 +1332,13 @@ class CertAuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] ocsp_ca_certificates: Any additional CA certificates
                needed to verify OCSP responses. Provided as base64 encoded PEM data.
                Requires Vault version 1.13+.
-        :param pulumi.Input[bool] ocsp_enabled: - If enabled, validate certificates'
+        :param pulumi.Input[bool] ocsp_enabled: If enabled, validate certificates'
                revocation status using OCSP. Requires Vault version 1.13+.
-        :param pulumi.Input[bool] ocsp_fail_open: - If true and an OCSP response cannot
+        :param pulumi.Input[bool] ocsp_fail_open: If true and an OCSP response cannot
                be fetched or is of an unknown status, the login will proceed as if the
                certificate has not been revoked.
                Requires Vault version 1.13+.
-        :param pulumi.Input[bool] ocsp_query_all_servers: - If set to true, rather than
+        :param pulumi.Input[bool] ocsp_query_all_servers: If set to true, rather than
                accepting the first successful OCSP response, query all servers and consider
                the certificate valid only if all servers agree.
                Requires Vault version 1.13+.
@@ -1361,6 +1374,8 @@ class CertAuthBackendRole(pulumi.CustomResource):
                `service` tokens). For token store roles, there are two additional possibilities:
                `default-service` and `default-batch` which specify the type to return unless the client
                requests a different type at generation time.
+               
+               For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1430,6 +1445,9 @@ class CertAuthBackendRole(pulumi.CustomResource):
     @property
     @pulumi.getter(name="allowedOrganizationUnits")
     def allowed_organization_units(self) -> pulumi.Output[Sequence[str]]:
+        warnings.warn("""Use allowed_organizational_units""", DeprecationWarning)
+        pulumi.log.warn("""allowed_organization_units is deprecated: Use allowed_organizational_units""")
+
         return pulumi.get(self, "allowed_organization_units")
 
     @property
@@ -1506,7 +1524,7 @@ class CertAuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="ocspEnabled")
     def ocsp_enabled(self) -> pulumi.Output[bool]:
         """
-        - If enabled, validate certificates'
+        If enabled, validate certificates'
         revocation status using OCSP. Requires Vault version 1.13+.
         """
         return pulumi.get(self, "ocsp_enabled")
@@ -1515,7 +1533,7 @@ class CertAuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="ocspFailOpen")
     def ocsp_fail_open(self) -> pulumi.Output[bool]:
         """
-        - If true and an OCSP response cannot
+        If true and an OCSP response cannot
         be fetched or is of an unknown status, the login will proceed as if the
         certificate has not been revoked.
         Requires Vault version 1.13+.
@@ -1526,7 +1544,7 @@ class CertAuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="ocspQueryAllServers")
     def ocsp_query_all_servers(self) -> pulumi.Output[bool]:
         """
-        - If set to true, rather than
+        If set to true, rather than
         accepting the first successful OCSP response, query all servers and consider
         the certificate valid only if all servers agree.
         Requires Vault version 1.13+.
@@ -1639,6 +1657,8 @@ class CertAuthBackendRole(pulumi.CustomResource):
         `service` tokens). For token store roles, there are two additional possibilities:
         `default-service` and `default-batch` which specify the type to return unless the client
         requests a different type at generation time.
+
+        For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
         """
         return pulumi.get(self, "token_type")
 

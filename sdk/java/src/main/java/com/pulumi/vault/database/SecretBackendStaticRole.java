@@ -175,6 +175,9 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      * A cron-style string that will define the schedule on which rotations should occur.
      * Mutually exclusive with `rotation_period`.
      * 
+     * **Warning**: The `rotation_period` and `rotation_schedule` fields are
+     * mutually exclusive. One of them must be set but not both.
+     * 
      */
     @Export(name="rotationSchedule", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> rotationSchedule;
@@ -182,6 +185,9 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
     /**
      * @return A cron-style string that will define the schedule on which rotations should occur.
      * Mutually exclusive with `rotation_period`.
+     * 
+     * **Warning**: The `rotation_period` and `rotation_schedule` fields are
+     * mutually exclusive. One of them must be set but not both.
      * 
      */
     public Output<Optional<String>> rotationSchedule() {

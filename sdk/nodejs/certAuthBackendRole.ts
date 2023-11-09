@@ -118,19 +118,19 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
      */
     public readonly ocspCaCertificates!: pulumi.Output<string | undefined>;
     /**
-     * - If enabled, validate certificates'
+     * If enabled, validate certificates'
      * revocation status using OCSP. Requires Vault version 1.13+.
      */
     public readonly ocspEnabled!: pulumi.Output<boolean>;
     /**
-     * - If true and an OCSP response cannot
+     * If true and an OCSP response cannot
      * be fetched or is of an unknown status, the login will proceed as if the
      * certificate has not been revoked.
      * Requires Vault version 1.13+.
      */
     public readonly ocspFailOpen!: pulumi.Output<boolean>;
     /**
-     * - If set to true, rather than
+     * If set to true, rather than
      * accepting the first successful OCSP response, query all servers and consider
      * the certificate valid only if all servers agree.
      * Requires Vault version 1.13+.
@@ -199,6 +199,8 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
      * `service` tokens). For token store roles, there are two additional possibilities:
      * `default-service` and `default-batch` which specify the type to return unless the client
      * requests a different type at generation time.
+     *
+     * For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
      */
     public readonly tokenType!: pulumi.Output<string | undefined>;
 
@@ -343,19 +345,19 @@ export interface CertAuthBackendRoleState {
      */
     ocspCaCertificates?: pulumi.Input<string>;
     /**
-     * - If enabled, validate certificates'
+     * If enabled, validate certificates'
      * revocation status using OCSP. Requires Vault version 1.13+.
      */
     ocspEnabled?: pulumi.Input<boolean>;
     /**
-     * - If true and an OCSP response cannot
+     * If true and an OCSP response cannot
      * be fetched or is of an unknown status, the login will proceed as if the
      * certificate has not been revoked.
      * Requires Vault version 1.13+.
      */
     ocspFailOpen?: pulumi.Input<boolean>;
     /**
-     * - If set to true, rather than
+     * If set to true, rather than
      * accepting the first successful OCSP response, query all servers and consider
      * the certificate valid only if all servers agree.
      * Requires Vault version 1.13+.
@@ -424,6 +426,8 @@ export interface CertAuthBackendRoleState {
      * `service` tokens). For token store roles, there are two additional possibilities:
      * `default-service` and `default-batch` which specify the type to return unless the client
      * requests a different type at generation time.
+     *
+     * For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
      */
     tokenType?: pulumi.Input<string>;
 }
@@ -491,19 +495,19 @@ export interface CertAuthBackendRoleArgs {
      */
     ocspCaCertificates?: pulumi.Input<string>;
     /**
-     * - If enabled, validate certificates'
+     * If enabled, validate certificates'
      * revocation status using OCSP. Requires Vault version 1.13+.
      */
     ocspEnabled?: pulumi.Input<boolean>;
     /**
-     * - If true and an OCSP response cannot
+     * If true and an OCSP response cannot
      * be fetched or is of an unknown status, the login will proceed as if the
      * certificate has not been revoked.
      * Requires Vault version 1.13+.
      */
     ocspFailOpen?: pulumi.Input<boolean>;
     /**
-     * - If set to true, rather than
+     * If set to true, rather than
      * accepting the first successful OCSP response, query all servers and consider
      * the certificate valid only if all servers agree.
      * Requires Vault version 1.13+.
@@ -572,6 +576,8 @@ export interface CertAuthBackendRoleArgs {
      * `service` tokens). For token store roles, there are two additional possibilities:
      * `default-service` and `default-batch` which specify the type to return unless the client
      * requests a different type at generation time.
+     *
+     * For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
      */
     tokenType?: pulumi.Input<string>;
 }

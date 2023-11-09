@@ -40,11 +40,8 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getEncode(args: GetEncodeArgs, opts?: pulumi.InvokeOptions): Promise<GetEncodeResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:transform/getEncode:getEncode", {
         "batchInputs": args.batchInputs,
         "batchResults": args.batchResults,
@@ -121,9 +118,43 @@ export interface GetEncodeResult {
     readonly tweak?: string;
     readonly value?: string;
 }
-
+/**
+ * This data source supports the "/transform/encode/{role_name}" Vault endpoint.
+ *
+ * It encodes the provided value using a named role.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const transform = new vault.Mount("transform", {
+ *     path: "transform",
+ *     type: "transform",
+ * });
+ * const ccn_fpe = new vault.transform.Transformation("ccn-fpe", {
+ *     path: transform.path,
+ *     type: "fpe",
+ *     template: "builtin/creditcardnumber",
+ *     tweakSource: "internal",
+ *     allowedRoles: ["payments"],
+ * });
+ * const payments = new vault.transform.Role("payments", {
+ *     path: ccn_fpe.path,
+ *     transformations: ["ccn-fpe"],
+ * });
+ * const test = vault.transform.getEncodeOutput({
+ *     path: payments.path,
+ *     roleName: "payments",
+ *     batchInputs: [{
+ *         value: "1111-2222-3333-4444",
+ *     }],
+ * });
+ * ```
+ */
 export function getEncodeOutput(args: GetEncodeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEncodeResult> {
-    return pulumi.output(args).apply(a => getEncode(a, opts))
+    return pulumi.output(args).apply((a: any) => getEncode(a, opts))
 }
 
 /**

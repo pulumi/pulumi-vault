@@ -18,32 +18,33 @@ public final class SecretBackendConnectionMysql {
      */
     private @Nullable String authType;
     /**
-     * @return Specifies the Redshift DSN. See
+     * @return A URL containing connection information. See
      * the [Vault
-     * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+     * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
      * for an example.
      * 
      */
     private @Nullable String connectionUrl;
     /**
-     * @return The maximum amount of time a connection may be reused.
+     * @return The maximum number of seconds to keep
+     * a connection alive for.
      * 
      */
     private @Nullable Integer maxConnectionLifetime;
     /**
      * @return The maximum number of idle connections to
-     * the database.
+     * maintain.
      * 
      */
     private @Nullable Integer maxIdleConnections;
     /**
      * @return The maximum number of open connections to
-     * the database.
+     * use.
      * 
      */
     private @Nullable Integer maxOpenConnections;
     /**
-     * @return The root credential password used in the connection URL.
+     * @return The password to authenticate with.
      * 
      */
     private @Nullable String password;
@@ -63,12 +64,12 @@ public final class SecretBackendConnectionMysql {
      */
     private @Nullable String tlsCertificateKey;
     /**
-     * @return The root credential username used in the connection URL.
+     * @return The username to authenticate with.
      * 
      */
     private @Nullable String username;
     /**
-     * @return - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * @return Template describing how dynamic usernames are generated.
      * 
      */
     private @Nullable String usernameTemplate;
@@ -82,9 +83,9 @@ public final class SecretBackendConnectionMysql {
         return Optional.ofNullable(this.authType);
     }
     /**
-     * @return Specifies the Redshift DSN. See
+     * @return A URL containing connection information. See
      * the [Vault
-     * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+     * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
      * for an example.
      * 
      */
@@ -92,7 +93,8 @@ public final class SecretBackendConnectionMysql {
         return Optional.ofNullable(this.connectionUrl);
     }
     /**
-     * @return The maximum amount of time a connection may be reused.
+     * @return The maximum number of seconds to keep
+     * a connection alive for.
      * 
      */
     public Optional<Integer> maxConnectionLifetime() {
@@ -100,7 +102,7 @@ public final class SecretBackendConnectionMysql {
     }
     /**
      * @return The maximum number of idle connections to
-     * the database.
+     * maintain.
      * 
      */
     public Optional<Integer> maxIdleConnections() {
@@ -108,14 +110,14 @@ public final class SecretBackendConnectionMysql {
     }
     /**
      * @return The maximum number of open connections to
-     * the database.
+     * use.
      * 
      */
     public Optional<Integer> maxOpenConnections() {
         return Optional.ofNullable(this.maxOpenConnections);
     }
     /**
-     * @return The root credential password used in the connection URL.
+     * @return The password to authenticate with.
      * 
      */
     public Optional<String> password() {
@@ -143,14 +145,14 @@ public final class SecretBackendConnectionMysql {
         return Optional.ofNullable(this.tlsCertificateKey);
     }
     /**
-     * @return The root credential username used in the connection URL.
+     * @return The username to authenticate with.
      * 
      */
     public Optional<String> username() {
         return Optional.ofNullable(this.username);
     }
     /**
-     * @return - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * @return Template describing how dynamic usernames are generated.
      * 
      */
     public Optional<String> usernameTemplate() {

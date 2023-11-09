@@ -31,10 +31,12 @@ public final class SecretsMountCassandra {
     /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
+     * Supported list of database secrets engines that can be configured:
+     * 
      */
     private @Nullable Map<String,Object> data;
     /**
-     * @return A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+     * @return The hosts to connect to.
      * 
      */
     private @Nullable List<String> hosts;
@@ -46,7 +48,7 @@ public final class SecretsMountCassandra {
     private @Nullable Boolean insecureTls;
     private String name;
     /**
-     * @return The password to be used in the connection.
+     * @return The root credential password used in the connection URL.
      * 
      */
     private @Nullable String password;
@@ -83,12 +85,12 @@ public final class SecretsMountCassandra {
      */
     private @Nullable List<String> rootRotationStatements;
     /**
-     * @return Whether to use TLS when connecting to Redis.
+     * @return Whether to use TLS when connecting to Cassandra.
      * 
      */
     private @Nullable Boolean tls;
     /**
-     * @return The username to be used in the connection (the account admin level).
+     * @return The root credential username used in the connection URL.
      * 
      */
     private @Nullable String username;
@@ -119,12 +121,14 @@ public final class SecretsMountCassandra {
     /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
+     * Supported list of database secrets engines that can be configured:
+     * 
      */
     public Map<String,Object> data() {
         return this.data == null ? Map.of() : this.data;
     }
     /**
-     * @return A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+     * @return The hosts to connect to.
      * 
      */
     public List<String> hosts() {
@@ -142,7 +146,7 @@ public final class SecretsMountCassandra {
         return this.name;
     }
     /**
-     * @return The password to be used in the connection.
+     * @return The root credential password used in the connection URL.
      * 
      */
     public Optional<String> password() {
@@ -193,14 +197,14 @@ public final class SecretsMountCassandra {
         return this.rootRotationStatements == null ? List.of() : this.rootRotationStatements;
     }
     /**
-     * @return Whether to use TLS when connecting to Redis.
+     * @return Whether to use TLS when connecting to Cassandra.
      * 
      */
     public Optional<Boolean> tls() {
         return Optional.ofNullable(this.tls);
     }
     /**
-     * @return The username to be used in the connection (the account admin level).
+     * @return The root credential username used in the connection URL.
      * 
      */
     public Optional<String> username() {

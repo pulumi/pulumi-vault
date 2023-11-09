@@ -24,6 +24,8 @@ public final class SecretsMountMongodbatla {
     /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
+     * Supported list of database secrets engines that can be configured:
+     * 
      */
     private @Nullable Map<String,Object> data;
     private String name;
@@ -70,6 +72,8 @@ public final class SecretsMountMongodbatla {
     }
     /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+     * 
+     * Supported list of database secrets engines that can be configured:
      * 
      */
     public Map<String,Object> data() {

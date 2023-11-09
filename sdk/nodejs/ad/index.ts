@@ -8,23 +8,23 @@ import * as utilities from "../utilities";
 export { GetAccessCredentialsArgs, GetAccessCredentialsResult, GetAccessCredentialsOutputArgs } from "./getAccessCredentials";
 export const getAccessCredentials: typeof import("./getAccessCredentials").getAccessCredentials = null as any;
 export const getAccessCredentialsOutput: typeof import("./getAccessCredentials").getAccessCredentialsOutput = null as any;
+utilities.lazyLoad(exports, ["getAccessCredentials","getAccessCredentialsOutput"], () => require("./getAccessCredentials"));
 
 export { SecretBackendArgs, SecretBackendState } from "./secretBackend";
 export type SecretBackend = import("./secretBackend").SecretBackend;
 export const SecretBackend: typeof import("./secretBackend").SecretBackend = null as any;
+utilities.lazyLoad(exports, ["SecretBackend"], () => require("./secretBackend"));
 
 export { SecretLibraryArgs, SecretLibraryState } from "./secretLibrary";
 export type SecretLibrary = import("./secretLibrary").SecretLibrary;
 export const SecretLibrary: typeof import("./secretLibrary").SecretLibrary = null as any;
+utilities.lazyLoad(exports, ["SecretLibrary"], () => require("./secretLibrary"));
 
 export { SecretRoleArgs, SecretRoleState } from "./secretRole";
 export type SecretRole = import("./secretRole").SecretRole;
 export const SecretRole: typeof import("./secretRole").SecretRole = null as any;
-
-utilities.lazyLoad(exports, ["getAccessCredentials","getAccessCredentialsOutput"], () => require("./getAccessCredentials"));
-utilities.lazyLoad(exports, ["SecretBackend"], () => require("./secretBackend"));
-utilities.lazyLoad(exports, ["SecretLibrary"], () => require("./secretLibrary"));
 utilities.lazyLoad(exports, ["SecretRole"], () => require("./secretRole"));
+
 
 const _module = {
     version: utilities.getVersion(),

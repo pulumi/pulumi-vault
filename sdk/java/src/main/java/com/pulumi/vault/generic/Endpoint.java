@@ -124,14 +124,18 @@ public class Endpoint extends com.pulumi.resources.CustomResource {
         return this.dataJson;
     }
     /**
-     * Don&#39;t attempt to delete the path from Vault if true
+     * - (Optional) True/false. Set this to true if your
+     *   vault authentication is not able to delete the data or if the endpoint
+     *   does not support the `DELETE` method. Defaults to false.
      * 
      */
     @Export(name="disableDelete", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> disableDelete;
 
     /**
-     * @return Don&#39;t attempt to delete the path from Vault if true
+     * @return - (Optional) True/false. Set this to true if your
+     * vault authentication is not able to delete the data or if the endpoint
+     * does not support the `DELETE` method. Defaults to false.
      * 
      */
     public Output<Optional<Boolean>> disableDelete() {
@@ -160,14 +164,26 @@ public class Endpoint extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.disableRead);
     }
     /**
-     * When reading, disregard fields not present in data_json
+     * - (Optional) True/false. If set to true,
+     *   ignore any fields present when the endpoint is read but that were not
+     *   in `data_json`. Also, if a field that was written is not returned when
+     *   the endpoint is read, treat that field as being up to date. You should
+     *   set this to `true` when writing to endpoint that, when read, returns a
+     *   different set of fields from the ones you wrote, as is common with
+     *   many configuration endpoints. Defaults to false.
      * 
      */
     @Export(name="ignoreAbsentFields", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> ignoreAbsentFields;
 
     /**
-     * @return When reading, disregard fields not present in data_json
+     * @return - (Optional) True/false. If set to true,
+     * ignore any fields present when the endpoint is read but that were not
+     * in `data_json`. Also, if a field that was written is not returned when
+     * the endpoint is read, treat that field as being up to date. You should
+     * set this to `true` when writing to endpoint that, when read, returns a
+     * different set of fields from the ones you wrote, as is common with
+     * many configuration endpoints. Defaults to false.
      * 
      */
     public Output<Optional<Boolean>> ignoreAbsentFields() {
@@ -214,42 +230,64 @@ public class Endpoint extends com.pulumi.resources.CustomResource {
         return this.path;
     }
     /**
-     * Map of strings returned by write operation
+     * - A map whose keys are the top-level data keys
+     *   returned from Vault by the write operation and whose values are the
+     *   corresponding values. This map can only represent string data, so
+     *   any non-string values returned from Vault are serialized as JSON.
+     *   Only fields set in `write_fields` are present in the JSON data.
      * 
      */
     @Export(name="writeData", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output<Map<String,String>> writeData;
 
     /**
-     * @return Map of strings returned by write operation
+     * @return - A map whose keys are the top-level data keys
+     * returned from Vault by the write operation and whose values are the
+     * corresponding values. This map can only represent string data, so
+     * any non-string values returned from Vault are serialized as JSON.
+     * Only fields set in `write_fields` are present in the JSON data.
      * 
      */
     public Output<Map<String,String>> writeData() {
         return this.writeData;
     }
     /**
-     * JSON data returned by write operation
+     * - The JSON data returned by the write operation.
+     *   Only fields set in `write_fields` are present in the JSON data.
      * 
      */
     @Export(name="writeDataJson", refs={String.class}, tree="[0]")
     private Output<String> writeDataJson;
 
     /**
-     * @return JSON data returned by write operation
+     * @return - The JSON data returned by the write operation.
+     * Only fields set in `write_fields` are present in the JSON data.
      * 
      */
     public Output<String> writeDataJson() {
         return this.writeDataJson;
     }
     /**
-     * Top-level fields returned by write to persist in state
+     * - (Optional). A list of fields that should be returned
+     *   in `write_data_json` and `write_data`. If omitted, data returned by
+     *   the write operation is not available to the resource or included in
+     *   state. This helps to avoid accidental storage of sensitive values in
+     *   state. Some endpoints, such as many dynamic secrets endpoints, return
+     *   data from writing to an endpoint rather than reading it. You should
+     *   use `write_fields` if you need information returned in this way.
      * 
      */
     @Export(name="writeFields", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> writeFields;
 
     /**
-     * @return Top-level fields returned by write to persist in state
+     * @return - (Optional). A list of fields that should be returned
+     * in `write_data_json` and `write_data`. If omitted, data returned by
+     * the write operation is not available to the resource or included in
+     * state. This helps to avoid accidental storage of sensitive values in
+     * state. Some endpoints, such as many dynamic secrets endpoints, return
+     * data from writing to an endpoint rather than reading it. You should
+     * use `write_fields` if you need information returned in this way.
      * 
      */
     public Output<Optional<List<String>>> writeFields() {

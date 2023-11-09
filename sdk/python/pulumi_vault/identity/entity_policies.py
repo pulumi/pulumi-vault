@@ -23,6 +23,10 @@ class EntityPoliciesArgs:
         :param pulumi.Input[str] entity_id: Entity ID to assign policies to.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to assign to the entity
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
+               
+               If `true`, this resource will take exclusive control of the policies assigned to the entity and will set it equal to what is specified in the resource.
+               
+               If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the entity. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -64,6 +68,10 @@ class EntityPoliciesArgs:
     def exclusive(self) -> Optional[pulumi.Input[bool]]:
         """
         Defaults to `true`.
+
+        If `true`, this resource will take exclusive control of the policies assigned to the entity and will set it equal to what is specified in the resource.
+
+        If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the entity. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
         """
         return pulumi.get(self, "exclusive")
 
@@ -100,6 +108,10 @@ class _EntityPoliciesState:
         :param pulumi.Input[str] entity_id: Entity ID to assign policies to.
         :param pulumi.Input[str] entity_name: The name of the entity that are assigned the policies.
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
+               
+               If `true`, this resource will take exclusive control of the policies assigned to the entity and will set it equal to what is specified in the resource.
+               
+               If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the entity. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -146,6 +158,10 @@ class _EntityPoliciesState:
     def exclusive(self) -> Optional[pulumi.Input[bool]]:
         """
         Defaults to `true`.
+
+        If `true`, this resource will take exclusive control of the policies assigned to the entity and will set it equal to what is specified in the resource.
+
+        If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the entity. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
         """
         return pulumi.get(self, "exclusive")
 
@@ -234,6 +250,10 @@ class EntityPolicies(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] entity_id: Entity ID to assign policies to.
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
+               
+               If `true`, this resource will take exclusive control of the policies assigned to the entity and will set it equal to what is specified in the resource.
+               
+               If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the entity. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -347,6 +367,10 @@ class EntityPolicies(pulumi.CustomResource):
         :param pulumi.Input[str] entity_id: Entity ID to assign policies to.
         :param pulumi.Input[str] entity_name: The name of the entity that are assigned the policies.
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
+               
+               If `true`, this resource will take exclusive control of the policies assigned to the entity and will set it equal to what is specified in the resource.
+               
+               If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the entity. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -385,6 +409,10 @@ class EntityPolicies(pulumi.CustomResource):
     def exclusive(self) -> pulumi.Output[Optional[bool]]:
         """
         Defaults to `true`.
+
+        If `true`, this resource will take exclusive control of the policies assigned to the entity and will set it equal to what is specified in the resource.
+
+        If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the entity. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
         """
         return pulumi.get(self, "exclusive")
 

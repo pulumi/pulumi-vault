@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates a role on an PKI Secret Backend for Vault.
@@ -149,6 +151,8 @@ type SecretBackendRole struct {
 	OrganizationUnit pulumi.StringArrayOutput `pulumi:"organizationUnit"`
 	// The organization of generated certificates
 	Organizations pulumi.StringArrayOutput `pulumi:"organizations"`
+	// (Vault 1.11+ only) A block for specifying policy identifers. The `policyIdentifier` block can be repeated, and supports the following arguments:
+	PolicyIdentifier SecretBackendRolePolicyIdentifierArrayOutput `pulumi:"policyIdentifier"`
 	// Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policyIdentifier` blocks instead
 	PolicyIdentifiers pulumi.StringArrayOutput `pulumi:"policyIdentifiers"`
 	// The postal code of generated certificates
@@ -179,6 +183,7 @@ func NewSecretBackendRole(ctx *pulumi.Context,
 	if args.Backend == nil {
 		return nil, errors.New("invalid value for required argument 'Backend'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SecretBackendRole
 	err := ctx.RegisterResource("vault:pkiSecret/secretBackendRole:SecretBackendRole", name, args, &resource, opts...)
 	if err != nil {
@@ -280,6 +285,8 @@ type secretBackendRoleState struct {
 	OrganizationUnit []string `pulumi:"organizationUnit"`
 	// The organization of generated certificates
 	Organizations []string `pulumi:"organizations"`
+	// (Vault 1.11+ only) A block for specifying policy identifers. The `policyIdentifier` block can be repeated, and supports the following arguments:
+	PolicyIdentifier []SecretBackendRolePolicyIdentifier `pulumi:"policyIdentifier"`
 	// Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policyIdentifier` blocks instead
 	PolicyIdentifiers []string `pulumi:"policyIdentifiers"`
 	// The postal code of generated certificates
@@ -380,6 +387,8 @@ type SecretBackendRoleState struct {
 	OrganizationUnit pulumi.StringArrayInput
 	// The organization of generated certificates
 	Organizations pulumi.StringArrayInput
+	// (Vault 1.11+ only) A block for specifying policy identifers. The `policyIdentifier` block can be repeated, and supports the following arguments:
+	PolicyIdentifier SecretBackendRolePolicyIdentifierArrayInput
 	// Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policyIdentifier` blocks instead
 	PolicyIdentifiers pulumi.StringArrayInput
 	// The postal code of generated certificates
@@ -484,6 +493,8 @@ type secretBackendRoleArgs struct {
 	OrganizationUnit []string `pulumi:"organizationUnit"`
 	// The organization of generated certificates
 	Organizations []string `pulumi:"organizations"`
+	// (Vault 1.11+ only) A block for specifying policy identifers. The `policyIdentifier` block can be repeated, and supports the following arguments:
+	PolicyIdentifier []SecretBackendRolePolicyIdentifier `pulumi:"policyIdentifier"`
 	// Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policyIdentifier` blocks instead
 	PolicyIdentifiers []string `pulumi:"policyIdentifiers"`
 	// The postal code of generated certificates
@@ -585,6 +596,8 @@ type SecretBackendRoleArgs struct {
 	OrganizationUnit pulumi.StringArrayInput
 	// The organization of generated certificates
 	Organizations pulumi.StringArrayInput
+	// (Vault 1.11+ only) A block for specifying policy identifers. The `policyIdentifier` block can be repeated, and supports the following arguments:
+	PolicyIdentifier SecretBackendRolePolicyIdentifierArrayInput
 	// Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policyIdentifier` blocks instead
 	PolicyIdentifiers pulumi.StringArrayInput
 	// The postal code of generated certificates
@@ -628,6 +641,12 @@ func (i *SecretBackendRole) ToSecretBackendRoleOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRoleOutput)
 }
 
+func (i *SecretBackendRole) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendRole] {
+	return pulumix.Output[*SecretBackendRole]{
+		OutputState: i.ToSecretBackendRoleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SecretBackendRoleArrayInput is an input type that accepts SecretBackendRoleArray and SecretBackendRoleArrayOutput values.
 // You can construct a concrete instance of `SecretBackendRoleArrayInput` via:
 //
@@ -651,6 +670,12 @@ func (i SecretBackendRoleArray) ToSecretBackendRoleArrayOutput() SecretBackendRo
 
 func (i SecretBackendRoleArray) ToSecretBackendRoleArrayOutputWithContext(ctx context.Context) SecretBackendRoleArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRoleArrayOutput)
+}
+
+func (i SecretBackendRoleArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendRole] {
+	return pulumix.Output[[]*SecretBackendRole]{
+		OutputState: i.ToSecretBackendRoleArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SecretBackendRoleMapInput is an input type that accepts SecretBackendRoleMap and SecretBackendRoleMapOutput values.
@@ -678,6 +703,12 @@ func (i SecretBackendRoleMap) ToSecretBackendRoleMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRoleMapOutput)
 }
 
+func (i SecretBackendRoleMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendRole] {
+	return pulumix.Output[map[string]*SecretBackendRole]{
+		OutputState: i.ToSecretBackendRoleMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SecretBackendRoleOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendRoleOutput) ElementType() reflect.Type {
@@ -690,6 +721,12 @@ func (o SecretBackendRoleOutput) ToSecretBackendRoleOutput() SecretBackendRoleOu
 
 func (o SecretBackendRoleOutput) ToSecretBackendRoleOutputWithContext(ctx context.Context) SecretBackendRoleOutput {
 	return o
+}
+
+func (o SecretBackendRoleOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendRole] {
+	return pulumix.Output[*SecretBackendRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Flag to allow any name
@@ -876,6 +913,11 @@ func (o SecretBackendRoleOutput) Organizations() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.Organizations }).(pulumi.StringArrayOutput)
 }
 
+// (Vault 1.11+ only) A block for specifying policy identifers. The `policyIdentifier` block can be repeated, and supports the following arguments:
+func (o SecretBackendRoleOutput) PolicyIdentifier() SecretBackendRolePolicyIdentifierArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRole) SecretBackendRolePolicyIdentifierArrayOutput { return v.PolicyIdentifier }).(SecretBackendRolePolicyIdentifierArrayOutput)
+}
+
 // Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policyIdentifier` blocks instead
 func (o SecretBackendRoleOutput) PolicyIdentifiers() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.PolicyIdentifiers }).(pulumi.StringArrayOutput)
@@ -935,6 +977,12 @@ func (o SecretBackendRoleArrayOutput) ToSecretBackendRoleArrayOutputWithContext(
 	return o
 }
 
+func (o SecretBackendRoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendRole] {
+	return pulumix.Output[[]*SecretBackendRole]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SecretBackendRoleArrayOutput) Index(i pulumi.IntInput) SecretBackendRoleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackendRole {
 		return vs[0].([]*SecretBackendRole)[vs[1].(int)]
@@ -953,6 +1001,12 @@ func (o SecretBackendRoleMapOutput) ToSecretBackendRoleMapOutput() SecretBackend
 
 func (o SecretBackendRoleMapOutput) ToSecretBackendRoleMapOutputWithContext(ctx context.Context) SecretBackendRoleMapOutput {
 	return o
+}
+
+func (o SecretBackendRoleMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendRole] {
+	return pulumix.Output[map[string]*SecretBackendRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SecretBackendRoleMapOutput) MapIndex(k pulumi.StringInput) SecretBackendRoleOutput {

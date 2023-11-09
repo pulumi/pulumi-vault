@@ -239,19 +239,19 @@ def get_service_account_token(backend: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('vault:kubernetes/getServiceAccountToken:getServiceAccountToken', __args__, opts=opts, typ=GetServiceAccountTokenResult).value
 
     return AwaitableGetServiceAccountTokenResult(
-        backend=__ret__.backend,
-        cluster_role_binding=__ret__.cluster_role_binding,
-        id=__ret__.id,
-        kubernetes_namespace=__ret__.kubernetes_namespace,
-        lease_duration=__ret__.lease_duration,
-        lease_id=__ret__.lease_id,
-        lease_renewable=__ret__.lease_renewable,
-        namespace=__ret__.namespace,
-        role=__ret__.role,
-        service_account_name=__ret__.service_account_name,
-        service_account_namespace=__ret__.service_account_namespace,
-        service_account_token=__ret__.service_account_token,
-        ttl=__ret__.ttl)
+        backend=pulumi.get(__ret__, 'backend'),
+        cluster_role_binding=pulumi.get(__ret__, 'cluster_role_binding'),
+        id=pulumi.get(__ret__, 'id'),
+        kubernetes_namespace=pulumi.get(__ret__, 'kubernetes_namespace'),
+        lease_duration=pulumi.get(__ret__, 'lease_duration'),
+        lease_id=pulumi.get(__ret__, 'lease_id'),
+        lease_renewable=pulumi.get(__ret__, 'lease_renewable'),
+        namespace=pulumi.get(__ret__, 'namespace'),
+        role=pulumi.get(__ret__, 'role'),
+        service_account_name=pulumi.get(__ret__, 'service_account_name'),
+        service_account_namespace=pulumi.get(__ret__, 'service_account_namespace'),
+        service_account_token=pulumi.get(__ret__, 'service_account_token'),
+        ttl=pulumi.get(__ret__, 'ttl'))
 
 
 @_utilities.lift_output_func(get_service_account_token)

@@ -16,6 +16,72 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * This resource supports the `/transform/template/{name}` Vault endpoint.
+ * 
+ * It creates or updates a template with the given name. If a template with the name does not exist,
+ * it will be created. If the template exists, it will be updated with the new attributes.
+ * 
+ * &gt; Requires _Vault Enterprise with the Advanced Data Protection Transform Module_.
+ * See [Transform Secrets Engine](https://www.vaultproject.io/docs/secrets/transform)
+ * for more information.
+ * 
+ * ## Example Usage
+ * 
+ * Please note that the `pattern` below holds a regex. The regex shown
+ * is identical to the one in our [Setup](https://www.vaultproject.io/docs/secrets/transform#setup)
+ * docs, `(\d{4})-(\d{4})-(\d{4})-(\d{4})`. However, due to HCL, the
+ * backslashes must be escaped to appear correctly in Vault. For further
+ * assistance escaping your own custom regex, see String Literals.
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.Mount;
+ * import com.pulumi.vault.MountArgs;
+ * import com.pulumi.vault.transform.Alphabet;
+ * import com.pulumi.vault.transform.AlphabetArgs;
+ * import com.pulumi.vault.transform.Template;
+ * import com.pulumi.vault.transform.TemplateArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var transform = new Mount(&#34;transform&#34;, MountArgs.builder()        
+ *             .path(&#34;transform&#34;)
+ *             .type(&#34;transform&#34;)
+ *             .build());
+ * 
+ *         var numerics = new Alphabet(&#34;numerics&#34;, AlphabetArgs.builder()        
+ *             .path(transform.path())
+ *             .alphabet(&#34;0123456789&#34;)
+ *             .build());
+ * 
+ *         var test = new Template(&#34;test&#34;, TemplateArgs.builder()        
+ *             .path(numerics.path())
+ *             .type(&#34;regex&#34;)
+ *             .pattern(&#34;(\\d{4})[- ](\\d{4})[- ](\\d{4})[- ](\\d{4})&#34;)
+ *             .alphabet(&#34;numerics&#34;)
+ *             .encodeFormat(&#34;$1-$2-$3-$4&#34;)
+ *             .decodeFormats(Map.of(&#34;last-four-digits&#34;, &#34;$4&#34;))
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ */
 @ResourceType(type="vault:transform/template:Template")
 public class Template extends com.pulumi.resources.CustomResource {
     /**
@@ -33,15 +99,15 @@ public class Template extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.alphabet);
     }
     /**
-     * - Optional mapping of name to regular expression template, used to customize
-     *   the decoded output. (requires Vault Enterprise 1.9+)
+     * Optional mapping of name to regular expression template, used to customize
+     * the decoded output. (requires Vault Enterprise 1.9+)
      * 
      */
     @Export(name="decodeFormats", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> decodeFormats;
 
     /**
-     * @return - Optional mapping of name to regular expression template, used to customize
+     * @return Optional mapping of name to regular expression template, used to customize
      * the decoded output. (requires Vault Enterprise 1.9+)
      * 
      */
@@ -49,15 +115,15 @@ public class Template extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.decodeFormats);
     }
     /**
-     * - The regular expression template used to format encoded values.
-     *   (requires Vault Enterprise 1.9+)
+     * The regular expression template used to format encoded values.
+     * (requires Vault Enterprise 1.9+)
      * 
      */
     @Export(name="encodeFormat", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> encodeFormat;
 
     /**
-     * @return - The regular expression template used to format encoded values.
+     * @return The regular expression template used to format encoded values.
      * (requires Vault Enterprise 1.9+)
      * 
      */

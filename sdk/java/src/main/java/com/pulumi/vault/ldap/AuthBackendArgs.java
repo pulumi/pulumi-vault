@@ -92,9 +92,17 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.clientTlsKey);
     }
 
+    /**
+     * Prevents users from bypassing authentication when providing an empty password.
+     * 
+     */
     @Import(name="denyNullBind")
     private @Nullable Output<Boolean> denyNullBind;
 
+    /**
+     * @return Prevents users from bypassing authentication when providing an empty password.
+     * 
+     */
     public Optional<Output<Boolean>> denyNullBind() {
         return Optional.ofNullable(this.denyNullBind);
     }
@@ -131,9 +139,17 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.disableRemount);
     }
 
+    /**
+     * Use anonymous bind to discover the bind DN of a user.
+     * 
+     */
     @Import(name="discoverdn")
     private @Nullable Output<Boolean> discoverdn;
 
+    /**
+     * @return Use anonymous bind to discover the bind DN of a user.
+     * 
+     */
     public Optional<Output<Boolean>> discoverdn() {
         return Optional.ofNullable(this.discoverdn);
     }
@@ -458,22 +474,14 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The type of token that should be generated. Can be `service`,
-     * `batch`, or `default` to use the mount&#39;s tuned default (which unless changed will be
-     * `service` tokens). For token store roles, there are two additional possibilities:
-     * `default-service` and `default-batch` which specify the type to return unless the client
-     * requests a different type at generation time.
+     * The type of token to generate, service or batch
      * 
      */
     @Import(name="tokenType")
     private @Nullable Output<String> tokenType;
 
     /**
-     * @return The type of token that should be generated. Can be `service`,
-     * `batch`, or `default` to use the mount&#39;s tuned default (which unless changed will be
-     * `service` tokens). For token store roles, there are two additional possibilities:
-     * `default-service` and `default-batch` which specify the type to return unless the client
-     * requests a different type at generation time.
+     * @return The type of token to generate, service or batch
      * 
      */
     public Optional<Output<String>> tokenType() {
@@ -481,14 +489,14 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The userPrincipalDomain used to construct UPN string
+     * The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
      * 
      */
     @Import(name="upndomain")
     private @Nullable Output<String> upndomain;
 
     /**
-     * @return The userPrincipalDomain used to construct UPN string
+     * @return The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
      * 
      */
     public Optional<Output<String>> upndomain() {
@@ -747,11 +755,23 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
             return clientTlsKey(Output.of(clientTlsKey));
         }
 
+        /**
+         * @param denyNullBind Prevents users from bypassing authentication when providing an empty password.
+         * 
+         * @return builder
+         * 
+         */
         public Builder denyNullBind(@Nullable Output<Boolean> denyNullBind) {
             $.denyNullBind = denyNullBind;
             return this;
         }
 
+        /**
+         * @param denyNullBind Prevents users from bypassing authentication when providing an empty password.
+         * 
+         * @return builder
+         * 
+         */
         public Builder denyNullBind(Boolean denyNullBind) {
             return denyNullBind(Output.of(denyNullBind));
         }
@@ -800,11 +820,23 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
             return disableRemount(Output.of(disableRemount));
         }
 
+        /**
+         * @param discoverdn Use anonymous bind to discover the bind DN of a user.
+         * 
+         * @return builder
+         * 
+         */
         public Builder discoverdn(@Nullable Output<Boolean> discoverdn) {
             $.discoverdn = discoverdn;
             return this;
         }
 
+        /**
+         * @param discoverdn Use anonymous bind to discover the bind DN of a user.
+         * 
+         * @return builder
+         * 
+         */
         public Builder discoverdn(Boolean discoverdn) {
             return discoverdn(Output.of(discoverdn));
         }
@@ -1266,11 +1298,7 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tokenType The type of token that should be generated. Can be `service`,
-         * `batch`, or `default` to use the mount&#39;s tuned default (which unless changed will be
-         * `service` tokens). For token store roles, there are two additional possibilities:
-         * `default-service` and `default-batch` which specify the type to return unless the client
-         * requests a different type at generation time.
+         * @param tokenType The type of token to generate, service or batch
          * 
          * @return builder
          * 
@@ -1281,11 +1309,7 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tokenType The type of token that should be generated. Can be `service`,
-         * `batch`, or `default` to use the mount&#39;s tuned default (which unless changed will be
-         * `service` tokens). For token store roles, there are two additional possibilities:
-         * `default-service` and `default-batch` which specify the type to return unless the client
-         * requests a different type at generation time.
+         * @param tokenType The type of token to generate, service or batch
          * 
          * @return builder
          * 
@@ -1295,7 +1319,7 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param upndomain The userPrincipalDomain used to construct UPN string
+         * @param upndomain The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
          * 
          * @return builder
          * 
@@ -1306,7 +1330,7 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param upndomain The userPrincipalDomain used to construct UPN string
+         * @param upndomain The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
          * 
          * @return builder
          * 

@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -82,6 +84,10 @@ type SecretBackend struct {
 	// Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
 	Address pulumi.StringOutput `pulumi:"address"`
 	// Denotes that the resource is used to bootstrap the Consul ACL system.
+	//
+	// > **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
+	// this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
+	// and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
 	Bootstrap pulumi.BoolPtrOutput `pulumi:"bootstrap"`
 	// CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
 	CaCert pulumi.StringPtrOutput `pulumi:"caCert"`
@@ -113,8 +119,7 @@ type SecretBackend struct {
 	Path pulumi.StringPtrOutput `pulumi:"path"`
 	// Specifies the URL scheme to use. Defaults to `http`.
 	Scheme pulumi.StringPtrOutput `pulumi:"scheme"`
-	// The Consul management token this backend should use to issue new tokens. This field is required
-	// when `bootstrap` is false.
+	// Specifies the Consul token to use when managing or issuing new tokens.
 	Token pulumi.StringPtrOutput `pulumi:"token"`
 }
 
@@ -129,13 +134,13 @@ func NewSecretBackend(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'Address'")
 	}
 	if args.ClientCert != nil {
-		args.ClientCert = pulumi.ToSecret(args.ClientCert).(pulumi.StringPtrOutput)
+		args.ClientCert = pulumi.ToSecret(args.ClientCert).(pulumi.StringPtrInput)
 	}
 	if args.ClientKey != nil {
-		args.ClientKey = pulumi.ToSecret(args.ClientKey).(pulumi.StringPtrOutput)
+		args.ClientKey = pulumi.ToSecret(args.ClientKey).(pulumi.StringPtrInput)
 	}
 	if args.Token != nil {
-		args.Token = pulumi.ToSecret(args.Token).(pulumi.StringPtrOutput)
+		args.Token = pulumi.ToSecret(args.Token).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"clientCert",
@@ -143,6 +148,7 @@ func NewSecretBackend(ctx *pulumi.Context,
 		"token",
 	})
 	opts = append(opts, secrets)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SecretBackend
 	err := ctx.RegisterResource("vault:consul/secretBackend:SecretBackend", name, args, &resource, opts...)
 	if err != nil {
@@ -168,6 +174,10 @@ type secretBackendState struct {
 	// Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
 	Address *string `pulumi:"address"`
 	// Denotes that the resource is used to bootstrap the Consul ACL system.
+	//
+	// > **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
+	// this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
+	// and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
 	Bootstrap *bool `pulumi:"bootstrap"`
 	// CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
 	CaCert *string `pulumi:"caCert"`
@@ -199,8 +209,7 @@ type secretBackendState struct {
 	Path *string `pulumi:"path"`
 	// Specifies the URL scheme to use. Defaults to `http`.
 	Scheme *string `pulumi:"scheme"`
-	// The Consul management token this backend should use to issue new tokens. This field is required
-	// when `bootstrap` is false.
+	// Specifies the Consul token to use when managing or issuing new tokens.
 	Token *string `pulumi:"token"`
 }
 
@@ -208,6 +217,10 @@ type SecretBackendState struct {
 	// Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
 	Address pulumi.StringPtrInput
 	// Denotes that the resource is used to bootstrap the Consul ACL system.
+	//
+	// > **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
+	// this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
+	// and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
 	Bootstrap pulumi.BoolPtrInput
 	// CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
 	CaCert pulumi.StringPtrInput
@@ -239,8 +252,7 @@ type SecretBackendState struct {
 	Path pulumi.StringPtrInput
 	// Specifies the URL scheme to use. Defaults to `http`.
 	Scheme pulumi.StringPtrInput
-	// The Consul management token this backend should use to issue new tokens. This field is required
-	// when `bootstrap` is false.
+	// Specifies the Consul token to use when managing or issuing new tokens.
 	Token pulumi.StringPtrInput
 }
 
@@ -252,6 +264,10 @@ type secretBackendArgs struct {
 	// Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
 	Address string `pulumi:"address"`
 	// Denotes that the resource is used to bootstrap the Consul ACL system.
+	//
+	// > **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
+	// this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
+	// and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
 	Bootstrap *bool `pulumi:"bootstrap"`
 	// CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
 	CaCert *string `pulumi:"caCert"`
@@ -283,8 +299,7 @@ type secretBackendArgs struct {
 	Path *string `pulumi:"path"`
 	// Specifies the URL scheme to use. Defaults to `http`.
 	Scheme *string `pulumi:"scheme"`
-	// The Consul management token this backend should use to issue new tokens. This field is required
-	// when `bootstrap` is false.
+	// Specifies the Consul token to use when managing or issuing new tokens.
 	Token *string `pulumi:"token"`
 }
 
@@ -293,6 +308,10 @@ type SecretBackendArgs struct {
 	// Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
 	Address pulumi.StringInput
 	// Denotes that the resource is used to bootstrap the Consul ACL system.
+	//
+	// > **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
+	// this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
+	// and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
 	Bootstrap pulumi.BoolPtrInput
 	// CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
 	CaCert pulumi.StringPtrInput
@@ -324,8 +343,7 @@ type SecretBackendArgs struct {
 	Path pulumi.StringPtrInput
 	// Specifies the URL scheme to use. Defaults to `http`.
 	Scheme pulumi.StringPtrInput
-	// The Consul management token this backend should use to issue new tokens. This field is required
-	// when `bootstrap` is false.
+	// Specifies the Consul token to use when managing or issuing new tokens.
 	Token pulumi.StringPtrInput
 }
 
@@ -350,6 +368,12 @@ func (i *SecretBackend) ToSecretBackendOutput() SecretBackendOutput {
 
 func (i *SecretBackend) ToSecretBackendOutputWithContext(ctx context.Context) SecretBackendOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendOutput)
+}
+
+func (i *SecretBackend) ToOutput(ctx context.Context) pulumix.Output[*SecretBackend] {
+	return pulumix.Output[*SecretBackend]{
+		OutputState: i.ToSecretBackendOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SecretBackendArrayInput is an input type that accepts SecretBackendArray and SecretBackendArrayOutput values.
@@ -377,6 +401,12 @@ func (i SecretBackendArray) ToSecretBackendArrayOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendArrayOutput)
 }
 
+func (i SecretBackendArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackend] {
+	return pulumix.Output[[]*SecretBackend]{
+		OutputState: i.ToSecretBackendArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SecretBackendMapInput is an input type that accepts SecretBackendMap and SecretBackendMapOutput values.
 // You can construct a concrete instance of `SecretBackendMapInput` via:
 //
@@ -402,6 +432,12 @@ func (i SecretBackendMap) ToSecretBackendMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendMapOutput)
 }
 
+func (i SecretBackendMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackend] {
+	return pulumix.Output[map[string]*SecretBackend]{
+		OutputState: i.ToSecretBackendMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SecretBackendOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendOutput) ElementType() reflect.Type {
@@ -416,12 +452,22 @@ func (o SecretBackendOutput) ToSecretBackendOutputWithContext(ctx context.Contex
 	return o
 }
 
+func (o SecretBackendOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackend] {
+	return pulumix.Output[*SecretBackend]{
+		OutputState: o.OutputState,
+	}
+}
+
 // Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
 func (o SecretBackendOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringOutput { return v.Address }).(pulumi.StringOutput)
 }
 
 // Denotes that the resource is used to bootstrap the Consul ACL system.
+//
+// > **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
+// this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
+// and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
 func (o SecretBackendOutput) Bootstrap() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.Bootstrap }).(pulumi.BoolPtrOutput)
 }
@@ -489,8 +535,7 @@ func (o SecretBackendOutput) Scheme() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Scheme }).(pulumi.StringPtrOutput)
 }
 
-// The Consul management token this backend should use to issue new tokens. This field is required
-// when `bootstrap` is false.
+// Specifies the Consul token to use when managing or issuing new tokens.
 func (o SecretBackendOutput) Token() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Token }).(pulumi.StringPtrOutput)
 }
@@ -507,6 +552,12 @@ func (o SecretBackendArrayOutput) ToSecretBackendArrayOutput() SecretBackendArra
 
 func (o SecretBackendArrayOutput) ToSecretBackendArrayOutputWithContext(ctx context.Context) SecretBackendArrayOutput {
 	return o
+}
+
+func (o SecretBackendArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackend] {
+	return pulumix.Output[[]*SecretBackend]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SecretBackendArrayOutput) Index(i pulumi.IntInput) SecretBackendOutput {
@@ -527,6 +578,12 @@ func (o SecretBackendMapOutput) ToSecretBackendMapOutput() SecretBackendMapOutpu
 
 func (o SecretBackendMapOutput) ToSecretBackendMapOutputWithContext(ctx context.Context) SecretBackendMapOutput {
 	return o
+}
+
+func (o SecretBackendMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackend] {
+	return pulumix.Output[map[string]*SecretBackend]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SecretBackendMapOutput) MapIndex(k pulumi.StringInput) SecretBackendOutput {

@@ -357,6 +357,9 @@ class ProviderArgs:
         """
         Client authentication credentials.
         """
+        warnings.warn("""Use auth_login_cert instead""", DeprecationWarning)
+        pulumi.log.warn("""client_auth is deprecated: Use auth_login_cert instead""")
+
         return pulumi.get(self, "client_auth")
 
     @client_auth.setter
@@ -669,9 +672,6 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["auth_login_userpass"] = pulumi.Output.from_input(auth_login_userpass).apply(pulumi.runtime.to_json) if auth_login_userpass is not None else None
             __props__.__dict__["ca_cert_dir"] = ca_cert_dir
             __props__.__dict__["ca_cert_file"] = ca_cert_file
-            if client_auth is not None and not opts.urn:
-                warnings.warn("""Use auth_login_cert instead""", DeprecationWarning)
-                pulumi.log.warn("""client_auth is deprecated: Use auth_login_cert instead""")
             __props__.__dict__["client_auth"] = pulumi.Output.from_input(client_auth).apply(pulumi.runtime.to_json) if client_auth is not None else None
             __props__.__dict__["headers"] = pulumi.Output.from_input(headers).apply(pulumi.runtime.to_json) if headers is not None else None
             if max_lease_ttl_seconds is None:

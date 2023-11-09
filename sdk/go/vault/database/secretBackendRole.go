@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -81,6 +83,8 @@ type SecretBackendRole struct {
 	CreationStatements pulumi.StringArrayOutput `pulumi:"creationStatements"`
 	// Specifies the configuration
 	// for the given `credentialType`.
+	//
+	// The following options are available for each `credentialType` value:
 	CredentialConfig pulumi.MapOutput `pulumi:"credentialConfig"`
 	// Specifies the type of credential that
 	// will be generated for the role. Options include: `password`, `rsaPrivateKey`, `clientCertificate`.
@@ -129,6 +133,7 @@ func NewSecretBackendRole(ctx *pulumi.Context,
 	if args.DbName == nil {
 		return nil, errors.New("invalid value for required argument 'DbName'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SecretBackendRole
 	err := ctx.RegisterResource("vault:database/secretBackendRole:SecretBackendRole", name, args, &resource, opts...)
 	if err != nil {
@@ -158,6 +163,8 @@ type secretBackendRoleState struct {
 	CreationStatements []string `pulumi:"creationStatements"`
 	// Specifies the configuration
 	// for the given `credentialType`.
+	//
+	// The following options are available for each `credentialType` value:
 	CredentialConfig map[string]interface{} `pulumi:"credentialConfig"`
 	// Specifies the type of credential that
 	// will be generated for the role. Options include: `password`, `rsaPrivateKey`, `clientCertificate`.
@@ -198,6 +205,8 @@ type SecretBackendRoleState struct {
 	CreationStatements pulumi.StringArrayInput
 	// Specifies the configuration
 	// for the given `credentialType`.
+	//
+	// The following options are available for each `credentialType` value:
 	CredentialConfig pulumi.MapInput
 	// Specifies the type of credential that
 	// will be generated for the role. Options include: `password`, `rsaPrivateKey`, `clientCertificate`.
@@ -242,6 +251,8 @@ type secretBackendRoleArgs struct {
 	CreationStatements []string `pulumi:"creationStatements"`
 	// Specifies the configuration
 	// for the given `credentialType`.
+	//
+	// The following options are available for each `credentialType` value:
 	CredentialConfig map[string]interface{} `pulumi:"credentialConfig"`
 	// Specifies the type of credential that
 	// will be generated for the role. Options include: `password`, `rsaPrivateKey`, `clientCertificate`.
@@ -283,6 +294,8 @@ type SecretBackendRoleArgs struct {
 	CreationStatements pulumi.StringArrayInput
 	// Specifies the configuration
 	// for the given `credentialType`.
+	//
+	// The following options are available for each `credentialType` value:
 	CredentialConfig pulumi.MapInput
 	// Specifies the type of credential that
 	// will be generated for the role. Options include: `password`, `rsaPrivateKey`, `clientCertificate`.
@@ -338,6 +351,12 @@ func (i *SecretBackendRole) ToSecretBackendRoleOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRoleOutput)
 }
 
+func (i *SecretBackendRole) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendRole] {
+	return pulumix.Output[*SecretBackendRole]{
+		OutputState: i.ToSecretBackendRoleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SecretBackendRoleArrayInput is an input type that accepts SecretBackendRoleArray and SecretBackendRoleArrayOutput values.
 // You can construct a concrete instance of `SecretBackendRoleArrayInput` via:
 //
@@ -361,6 +380,12 @@ func (i SecretBackendRoleArray) ToSecretBackendRoleArrayOutput() SecretBackendRo
 
 func (i SecretBackendRoleArray) ToSecretBackendRoleArrayOutputWithContext(ctx context.Context) SecretBackendRoleArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRoleArrayOutput)
+}
+
+func (i SecretBackendRoleArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendRole] {
+	return pulumix.Output[[]*SecretBackendRole]{
+		OutputState: i.ToSecretBackendRoleArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SecretBackendRoleMapInput is an input type that accepts SecretBackendRoleMap and SecretBackendRoleMapOutput values.
@@ -388,6 +413,12 @@ func (i SecretBackendRoleMap) ToSecretBackendRoleMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRoleMapOutput)
 }
 
+func (i SecretBackendRoleMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendRole] {
+	return pulumix.Output[map[string]*SecretBackendRole]{
+		OutputState: i.ToSecretBackendRoleMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SecretBackendRoleOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendRoleOutput) ElementType() reflect.Type {
@@ -400,6 +431,12 @@ func (o SecretBackendRoleOutput) ToSecretBackendRoleOutput() SecretBackendRoleOu
 
 func (o SecretBackendRoleOutput) ToSecretBackendRoleOutputWithContext(ctx context.Context) SecretBackendRoleOutput {
 	return o
+}
+
+func (o SecretBackendRoleOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendRole] {
+	return pulumix.Output[*SecretBackendRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The unique name of the Vault mount to configure.
@@ -415,6 +452,8 @@ func (o SecretBackendRoleOutput) CreationStatements() pulumi.StringArrayOutput {
 
 // Specifies the configuration
 // for the given `credentialType`.
+//
+// The following options are available for each `credentialType` value:
 func (o SecretBackendRoleOutput) CredentialConfig() pulumi.MapOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.MapOutput { return v.CredentialConfig }).(pulumi.MapOutput)
 }
@@ -489,6 +528,12 @@ func (o SecretBackendRoleArrayOutput) ToSecretBackendRoleArrayOutputWithContext(
 	return o
 }
 
+func (o SecretBackendRoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendRole] {
+	return pulumix.Output[[]*SecretBackendRole]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SecretBackendRoleArrayOutput) Index(i pulumi.IntInput) SecretBackendRoleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackendRole {
 		return vs[0].([]*SecretBackendRole)[vs[1].(int)]
@@ -507,6 +552,12 @@ func (o SecretBackendRoleMapOutput) ToSecretBackendRoleMapOutput() SecretBackend
 
 func (o SecretBackendRoleMapOutput) ToSecretBackendRoleMapOutputWithContext(ctx context.Context) SecretBackendRoleMapOutput {
 	return o
+}
+
+func (o SecretBackendRoleMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendRole] {
+	return pulumix.Output[map[string]*SecretBackendRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SecretBackendRoleMapOutput) MapIndex(k pulumi.StringInput) SecretBackendRoleOutput {

@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -39,6 +41,7 @@ import (
 //
 // Use of this resource requires the `create` capability on `/identity/lookup/entity`.
 func LookupEntity(ctx *pulumi.Context, args *LookupEntityArgs, opts ...pulumi.InvokeOption) (*LookupEntityResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupEntityResult
 	err := ctx.Invoke("vault:identity/getEntity:getEntity", args, &rv, opts...)
 	if err != nil {
@@ -53,6 +56,9 @@ type LookupEntityArgs struct {
 	AliasId *string `pulumi:"aliasId"`
 	// Accessor of the mount to which the alias belongs to.
 	// This should be supplied in conjunction with `aliasName`.
+	//
+	// The lookup criteria can be `entityName`, `entityId`, `aliasId`, or a combination of
+	// `aliasName` and `aliasMountAccessor`.
 	AliasMountAccessor *string `pulumi:"aliasMountAccessor"`
 	// Name of the alias. This should be supplied in conjunction with
 	// `aliasMountAccessor`.
@@ -124,6 +130,9 @@ type LookupEntityOutputArgs struct {
 	AliasId pulumi.StringPtrInput `pulumi:"aliasId"`
 	// Accessor of the mount to which the alias belongs to.
 	// This should be supplied in conjunction with `aliasName`.
+	//
+	// The lookup criteria can be `entityName`, `entityId`, `aliasId`, or a combination of
+	// `aliasName` and `aliasMountAccessor`.
 	AliasMountAccessor pulumi.StringPtrInput `pulumi:"aliasMountAccessor"`
 	// Name of the alias. This should be supplied in conjunction with
 	// `aliasMountAccessor`.
@@ -156,6 +165,12 @@ func (o LookupEntityResultOutput) ToLookupEntityResultOutput() LookupEntityResul
 
 func (o LookupEntityResultOutput) ToLookupEntityResultOutputWithContext(ctx context.Context) LookupEntityResultOutput {
 	return o
+}
+
+func (o LookupEntityResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupEntityResult] {
+	return pulumix.Output[LookupEntityResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupEntityResultOutput) AliasId() pulumi.StringOutput {

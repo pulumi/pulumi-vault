@@ -26,11 +26,8 @@ import * as utilities from "../utilities";
  * are required to be set for: `subscriptionId`, `tenantId`, `environment`.
  */
 export function getAccessCredentials(args: GetAccessCredentialsArgs, opts?: pulumi.InvokeOptions): Promise<GetAccessCredentialsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:azure/getAccessCredentials:getAccessCredentials", {
         "backend": args.backend,
         "environment": args.environment,
@@ -151,9 +148,29 @@ export interface GetAccessCredentialsResult {
     readonly tenantId?: string;
     readonly validateCreds?: boolean;
 }
-
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const creds = vault.azure.getAccessCredentials({
+ *     role: "my-role",
+ *     validateCreds: true,
+ *     numSequentialSuccesses: 8,
+ *     numSecondsBetweenTests: 1,
+ *     maxCredValidationSeconds: 300,
+ * });
+ * ```
+ * ## Caveats
+ *
+ * The `validateCreds` option requires read-access to the `backend` config endpoint.
+ * If the effective Vault role does not have the required permissions then valid values
+ * are required to be set for: `subscriptionId`, `tenantId`, `environment`.
+ */
 export function getAccessCredentialsOutput(args: GetAccessCredentialsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAccessCredentialsResult> {
-    return pulumi.output(args).apply(a => getAccessCredentials(a, opts))
+    return pulumi.output(args).apply((a: any) => getAccessCredentials(a, opts))
 }
 
 /**

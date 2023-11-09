@@ -363,12 +363,16 @@ public final class SecretBackendConnectionState extends com.pulumi.resources.Res
     /**
      * A nested block containing configuration options for Redis ElastiCache connections.
      * 
+     * Exactly one of the nested blocks of configuration options must be supplied.
+     * 
      */
     @Import(name="redisElasticache")
     private @Nullable Output<SecretBackendConnectionRedisElasticacheArgs> redisElasticache;
 
     /**
      * @return A nested block containing configuration options for Redis ElastiCache connections.
+     * 
+     * Exactly one of the nested blocks of configuration options must be supplied.
      * 
      */
     public Optional<Output<SecretBackendConnectionRedisElasticacheArgs>> redisElasticache() {
@@ -949,6 +953,8 @@ public final class SecretBackendConnectionState extends com.pulumi.resources.Res
         /**
          * @param redisElasticache A nested block containing configuration options for Redis ElastiCache connections.
          * 
+         * Exactly one of the nested blocks of configuration options must be supplied.
+         * 
          * @return builder
          * 
          */
@@ -959,6 +965,8 @@ public final class SecretBackendConnectionState extends com.pulumi.resources.Res
 
         /**
          * @param redisElasticache A nested block containing configuration options for Redis ElastiCache connections.
+         * 
+         * Exactly one of the nested blocks of configuration options must be supplied.
          * 
          * @return builder
          * 

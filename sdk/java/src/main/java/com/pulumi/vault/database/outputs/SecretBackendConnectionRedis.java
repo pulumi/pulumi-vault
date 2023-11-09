@@ -30,7 +30,7 @@ public final class SecretBackendConnectionRedis {
      */
     private @Nullable Boolean insecureTls;
     /**
-     * @return The root credential password used in the connection URL.
+     * @return The password to authenticate with.
      * 
      */
     private String password;
@@ -41,12 +41,12 @@ public final class SecretBackendConnectionRedis {
      */
     private @Nullable Integer port;
     /**
-     * @return Whether to use TLS when connecting to Redis.
+     * @return Whether to use TLS when connecting to Cassandra.
      * 
      */
     private @Nullable Boolean tls;
     /**
-     * @return The root credential username used in the connection URL.
+     * @return The username to authenticate with.
      * 
      */
     private String username;
@@ -75,7 +75,7 @@ public final class SecretBackendConnectionRedis {
         return Optional.ofNullable(this.insecureTls);
     }
     /**
-     * @return The root credential password used in the connection URL.
+     * @return The password to authenticate with.
      * 
      */
     public String password() {
@@ -90,14 +90,14 @@ public final class SecretBackendConnectionRedis {
         return Optional.ofNullable(this.port);
     }
     /**
-     * @return Whether to use TLS when connecting to Redis.
+     * @return Whether to use TLS when connecting to Cassandra.
      * 
      */
     public Optional<Boolean> tls() {
         return Optional.ofNullable(this.tls);
     }
     /**
-     * @return The root credential username used in the connection URL.
+     * @return The username to authenticate with.
      * 
      */
     public String username() {

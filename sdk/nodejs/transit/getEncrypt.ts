@@ -8,11 +8,8 @@ import * as utilities from "../utilities";
  * This is a data source which can be used to encrypt plaintext using a Vault Transit key.
  */
 export function getEncrypt(args: GetEncryptArgs, opts?: pulumi.InvokeOptions): Promise<GetEncryptResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:transit/getEncrypt:getEncrypt", {
         "backend": args.backend,
         "context": args.context,
@@ -69,9 +66,11 @@ export interface GetEncryptResult {
     readonly namespace?: string;
     readonly plaintext: string;
 }
-
+/**
+ * This is a data source which can be used to encrypt plaintext using a Vault Transit key.
+ */
 export function getEncryptOutput(args: GetEncryptOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEncryptResult> {
-    return pulumi.output(args).apply(a => getEncrypt(a, opts))
+    return pulumi.output(args).apply((a: any) => getEncrypt(a, opts))
 }
 
 /**

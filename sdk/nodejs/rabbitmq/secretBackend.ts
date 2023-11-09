@@ -11,7 +11,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const rabbitmq = new vault.rabbitMq.SecretBackend("rabbitmq", {
+ * const rabbitmq = new vault.rabbitmq.SecretBackend("rabbitmq", {
  *     connectionUri: "https://.....",
  *     password: "password",
  *     username: "user",

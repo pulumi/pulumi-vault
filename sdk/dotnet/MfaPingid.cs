@@ -18,6 +18,7 @@ namespace Pulumi.Vault
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -53,19 +54,19 @@ namespace Pulumi.Vault
     public partial class MfaPingid : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Admin URL computed by Vault.
+        /// `(string)` – Admin URL computed by Vault
         /// </summary>
         [Output("adminUrl")]
         public Output<string> AdminUrl { get; private set; } = null!;
 
         /// <summary>
-        /// Authenticator URL computed by Vault.
+        /// `(string)` – Authenticator URL computed by Vault
         /// </summary>
         [Output("authenticatorUrl")]
         public Output<string> AuthenticatorUrl { get; private set; } = null!;
 
         /// <summary>
-        /// IDP URL computed by Vault.
+        /// `(string)` – IDP URL computed by Vault
         /// </summary>
         [Output("idpUrl")]
         public Output<string> IdpUrl { get; private set; } = null!;
@@ -93,13 +94,13 @@ namespace Pulumi.Vault
         public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
-        /// Namespace ID computed by Vault.
+        /// `(string)` – Namespace ID computed by Vault
         /// </summary>
         [Output("namespaceId")]
         public Output<string> NamespaceId { get; private set; } = null!;
 
         /// <summary>
-        /// Org Alias computed by Vault.
+        /// `(string)` – Org Alias computed by Vault
         /// </summary>
         [Output("orgAlias")]
         public Output<string> OrgAlias { get; private set; } = null!;
@@ -112,13 +113,13 @@ namespace Pulumi.Vault
         public Output<string> SettingsFileBase64 { get; private set; } = null!;
 
         /// <summary>
-        /// Type of configuration computed by Vault.
+        /// `(string)` – Type of configuration computed by Vault
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// If set, enables use of PingID signature. Computed by Vault
+        /// `(string)` – If set to true, enables use of PingID signature. Computed by Vault
         /// </summary>
         [Output("useSignature")]
         public Output<bool> UseSignature { get; private set; } = null!;
@@ -231,19 +232,19 @@ namespace Pulumi.Vault
     public sealed class MfaPingidState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Admin URL computed by Vault.
+        /// `(string)` – Admin URL computed by Vault
         /// </summary>
         [Input("adminUrl")]
         public Input<string>? AdminUrl { get; set; }
 
         /// <summary>
-        /// Authenticator URL computed by Vault.
+        /// `(string)` – Authenticator URL computed by Vault
         /// </summary>
         [Input("authenticatorUrl")]
         public Input<string>? AuthenticatorUrl { get; set; }
 
         /// <summary>
-        /// IDP URL computed by Vault.
+        /// `(string)` – IDP URL computed by Vault
         /// </summary>
         [Input("idpUrl")]
         public Input<string>? IdpUrl { get; set; }
@@ -271,13 +272,13 @@ namespace Pulumi.Vault
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// Namespace ID computed by Vault.
+        /// `(string)` – Namespace ID computed by Vault
         /// </summary>
         [Input("namespaceId")]
         public Input<string>? NamespaceId { get; set; }
 
         /// <summary>
-        /// Org Alias computed by Vault.
+        /// `(string)` – Org Alias computed by Vault
         /// </summary>
         [Input("orgAlias")]
         public Input<string>? OrgAlias { get; set; }
@@ -290,13 +291,13 @@ namespace Pulumi.Vault
         public Input<string>? SettingsFileBase64 { get; set; }
 
         /// <summary>
-        /// Type of configuration computed by Vault.
+        /// `(string)` – Type of configuration computed by Vault
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// If set, enables use of PingID signature. Computed by Vault
+        /// `(string)` – If set to true, enables use of PingID signature. Computed by Vault
         /// </summary>
         [Input("useSignature")]
         public Input<bool>? UseSignature { get; set; }

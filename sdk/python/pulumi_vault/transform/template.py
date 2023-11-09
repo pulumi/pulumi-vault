@@ -26,9 +26,9 @@ class TemplateArgs:
         The set of arguments for constructing a Template resource.
         :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
         :param pulumi.Input[str] alphabet: The alphabet to use for this template. This is only used during FPE transformations.
-        :param pulumi.Input[Mapping[str, Any]] decode_formats: - Optional mapping of name to regular expression template, used to customize
+        :param pulumi.Input[Mapping[str, Any]] decode_formats: Optional mapping of name to regular expression template, used to customize
                the decoded output. (requires Vault Enterprise 1.9+)
-        :param pulumi.Input[str] encode_format: - The regular expression template used to format encoded values.
+        :param pulumi.Input[str] encode_format: The regular expression template used to format encoded values.
                (requires Vault Enterprise 1.9+)
         :param pulumi.Input[str] name: The name of the template.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -82,7 +82,7 @@ class TemplateArgs:
     @pulumi.getter(name="decodeFormats")
     def decode_formats(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
         """
-        - Optional mapping of name to regular expression template, used to customize
+        Optional mapping of name to regular expression template, used to customize
         the decoded output. (requires Vault Enterprise 1.9+)
         """
         return pulumi.get(self, "decode_formats")
@@ -95,7 +95,7 @@ class TemplateArgs:
     @pulumi.getter(name="encodeFormat")
     def encode_format(self) -> Optional[pulumi.Input[str]]:
         """
-        - The regular expression template used to format encoded values.
+        The regular expression template used to format encoded values.
         (requires Vault Enterprise 1.9+)
         """
         return pulumi.get(self, "encode_format")
@@ -170,9 +170,9 @@ class _TemplateState:
         """
         Input properties used for looking up and filtering Template resources.
         :param pulumi.Input[str] alphabet: The alphabet to use for this template. This is only used during FPE transformations.
-        :param pulumi.Input[Mapping[str, Any]] decode_formats: - Optional mapping of name to regular expression template, used to customize
+        :param pulumi.Input[Mapping[str, Any]] decode_formats: Optional mapping of name to regular expression template, used to customize
                the decoded output. (requires Vault Enterprise 1.9+)
-        :param pulumi.Input[str] encode_format: - The regular expression template used to format encoded values.
+        :param pulumi.Input[str] encode_format: The regular expression template used to format encoded values.
                (requires Vault Enterprise 1.9+)
         :param pulumi.Input[str] name: The name of the template.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -216,7 +216,7 @@ class _TemplateState:
     @pulumi.getter(name="decodeFormats")
     def decode_formats(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
         """
-        - Optional mapping of name to regular expression template, used to customize
+        Optional mapping of name to regular expression template, used to customize
         the decoded output. (requires Vault Enterprise 1.9+)
         """
         return pulumi.get(self, "decode_formats")
@@ -229,7 +229,7 @@ class _TemplateState:
     @pulumi.getter(name="encodeFormat")
     def encode_format(self) -> Optional[pulumi.Input[str]]:
         """
-        - The regular expression template used to format encoded values.
+        The regular expression template used to format encoded values.
         (requires Vault Enterprise 1.9+)
         """
         return pulumi.get(self, "encode_format")
@@ -317,13 +317,50 @@ class Template(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a Template resource with the given unique name, props, and options.
+        This resource supports the `/transform/template/{name}` Vault endpoint.
+
+        It creates or updates a template with the given name. If a template with the name does not exist,
+        it will be created. If the template exists, it will be updated with the new attributes.
+
+        > Requires _Vault Enterprise with the Advanced Data Protection Transform Module_.
+        See [Transform Secrets Engine](https://www.vaultproject.io/docs/secrets/transform)
+        for more information.
+
+        ## Example Usage
+
+        Please note that the `pattern` below holds a regex. The regex shown
+        is identical to the one in our [Setup](https://www.vaultproject.io/docs/secrets/transform#setup)
+        docs, `(\\d{4})-(\\d{4})-(\\d{4})-(\\d{4})`. However, due to HCL, the
+        backslashes must be escaped to appear correctly in Vault. For further
+        assistance escaping your own custom regex, see String Literals.
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        transform = vault.Mount("transform",
+            path="transform",
+            type="transform")
+        numerics = vault.transform.Alphabet("numerics",
+            path=transform.path,
+            alphabet="0123456789")
+        test = vault.transform.Template("test",
+            path=numerics.path,
+            type="regex",
+            pattern="(\\\\d{4})[- ](\\\\d{4})[- ](\\\\d{4})[- ](\\\\d{4})",
+            alphabet="numerics",
+            encode_format="$1-$2-$3-$4",
+            decode_formats={
+                "last-four-digits": "$4",
+            })
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] alphabet: The alphabet to use for this template. This is only used during FPE transformations.
-        :param pulumi.Input[Mapping[str, Any]] decode_formats: - Optional mapping of name to regular expression template, used to customize
+        :param pulumi.Input[Mapping[str, Any]] decode_formats: Optional mapping of name to regular expression template, used to customize
                the decoded output. (requires Vault Enterprise 1.9+)
-        :param pulumi.Input[str] encode_format: - The regular expression template used to format encoded values.
+        :param pulumi.Input[str] encode_format: The regular expression template used to format encoded values.
                (requires Vault Enterprise 1.9+)
         :param pulumi.Input[str] name: The name of the template.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -341,7 +378,44 @@ class Template(pulumi.CustomResource):
                  args: TemplateArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Template resource with the given unique name, props, and options.
+        This resource supports the `/transform/template/{name}` Vault endpoint.
+
+        It creates or updates a template with the given name. If a template with the name does not exist,
+        it will be created. If the template exists, it will be updated with the new attributes.
+
+        > Requires _Vault Enterprise with the Advanced Data Protection Transform Module_.
+        See [Transform Secrets Engine](https://www.vaultproject.io/docs/secrets/transform)
+        for more information.
+
+        ## Example Usage
+
+        Please note that the `pattern` below holds a regex. The regex shown
+        is identical to the one in our [Setup](https://www.vaultproject.io/docs/secrets/transform#setup)
+        docs, `(\\d{4})-(\\d{4})-(\\d{4})-(\\d{4})`. However, due to HCL, the
+        backslashes must be escaped to appear correctly in Vault. For further
+        assistance escaping your own custom regex, see String Literals.
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        transform = vault.Mount("transform",
+            path="transform",
+            type="transform")
+        numerics = vault.transform.Alphabet("numerics",
+            path=transform.path,
+            alphabet="0123456789")
+        test = vault.transform.Template("test",
+            path=numerics.path,
+            type="regex",
+            pattern="(\\\\d{4})[- ](\\\\d{4})[- ](\\\\d{4})[- ](\\\\d{4})",
+            alphabet="numerics",
+            encode_format="$1-$2-$3-$4",
+            decode_formats={
+                "last-four-digits": "$4",
+            })
+        ```
+
         :param str resource_name: The name of the resource.
         :param TemplateArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -410,9 +484,9 @@ class Template(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] alphabet: The alphabet to use for this template. This is only used during FPE transformations.
-        :param pulumi.Input[Mapping[str, Any]] decode_formats: - Optional mapping of name to regular expression template, used to customize
+        :param pulumi.Input[Mapping[str, Any]] decode_formats: Optional mapping of name to regular expression template, used to customize
                the decoded output. (requires Vault Enterprise 1.9+)
-        :param pulumi.Input[str] encode_format: - The regular expression template used to format encoded values.
+        :param pulumi.Input[str] encode_format: The regular expression template used to format encoded values.
                (requires Vault Enterprise 1.9+)
         :param pulumi.Input[str] name: The name of the template.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -449,7 +523,7 @@ class Template(pulumi.CustomResource):
     @pulumi.getter(name="decodeFormats")
     def decode_formats(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         """
-        - Optional mapping of name to regular expression template, used to customize
+        Optional mapping of name to regular expression template, used to customize
         the decoded output. (requires Vault Enterprise 1.9+)
         """
         return pulumi.get(self, "decode_formats")
@@ -458,7 +532,7 @@ class Template(pulumi.CustomResource):
     @pulumi.getter(name="encodeFormat")
     def encode_format(self) -> pulumi.Output[Optional[str]]:
         """
-        - The regular expression template used to format encoded values.
+        The regular expression template used to format encoded values.
         (requires Vault Enterprise 1.9+)
         """
         return pulumi.get(self, "encode_format")

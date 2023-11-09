@@ -40,11 +40,8 @@ import * as utilities from "../utilities";
  * Use of this resource requires the `read` capability on the given path.
  */
 export function getSecretsList(args: GetSecretsListArgs, opts?: pulumi.InvokeOptions): Promise<GetSecretsListResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:kv/getSecretsList:getSecretsList", {
         "namespace": args.namespace,
         "path": args.path,
@@ -83,9 +80,43 @@ export interface GetSecretsListResult {
     readonly namespace?: string;
     readonly path: string;
 }
-
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const kvv1 = new vault.Mount("kvv1", {
+ *     path: "kvv1",
+ *     type: "kv",
+ *     options: {
+ *         version: "1",
+ *     },
+ *     description: "KV Version 1 secret engine mount",
+ * });
+ * const awsSecret = new vault.kv.Secret("awsSecret", {
+ *     path: pulumi.interpolate`${kvv1.path}/aws-secret`,
+ *     dataJson: JSON.stringify({
+ *         zip: "zap",
+ *     }),
+ * });
+ * const azureSecret = new vault.kv.Secret("azureSecret", {
+ *     path: pulumi.interpolate`${kvv1.path}/azure-secret`,
+ *     dataJson: JSON.stringify({
+ *         foo: "bar",
+ *     }),
+ * });
+ * const secrets = vault.kv.getSecretsListOutput({
+ *     path: kvv1.path,
+ * });
+ * ```
+ * ## Required Vault Capabilities
+ *
+ * Use of this resource requires the `read` capability on the given path.
+ */
 export function getSecretsListOutput(args: GetSecretsListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretsListResult> {
-    return pulumi.output(args).apply(a => getSecretsList(a, opts))
+    return pulumi.output(args).apply((a: any) => getSecretsList(a, opts))
 }
 
 /**

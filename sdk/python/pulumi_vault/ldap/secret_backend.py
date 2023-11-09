@@ -324,6 +324,9 @@ class SecretBackendArgs:
         **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
         *Mutually exclusive with `password_policy` on vault-1.11+*
         """
+        warnings.warn("""Length is deprecated and password_policy should be used with Vault >= 1.5.""", DeprecationWarning)
+        pulumi.log.warn("""length is deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.""")
+
         return pulumi.get(self, "length")
 
     @length.setter
@@ -837,6 +840,9 @@ class _SecretBackendState:
         **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
         *Mutually exclusive with `password_policy` on vault-1.11+*
         """
+        warnings.warn("""Length is deprecated and password_policy should be used with Vault >= 1.5.""", DeprecationWarning)
+        pulumi.log.warn("""length is deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.""")
+
         return pulumi.get(self, "length")
 
     @length.setter
@@ -1222,9 +1228,6 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["disable_remount"] = disable_remount
             __props__.__dict__["external_entropy_access"] = external_entropy_access
             __props__.__dict__["insecure_tls"] = insecure_tls
-            if length is not None and not opts.urn:
-                warnings.warn("""Length is deprecated and password_policy should be used with Vault >= 1.5.""", DeprecationWarning)
-                pulumi.log.warn("""length is deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.""")
             __props__.__dict__["length"] = length
             __props__.__dict__["local"] = local
             __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
@@ -1498,6 +1501,9 @@ class SecretBackend(pulumi.CustomResource):
         **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
         *Mutually exclusive with `password_policy` on vault-1.11+*
         """
+        warnings.warn("""Length is deprecated and password_policy should be used with Vault >= 1.5.""", DeprecationWarning)
+        pulumi.log.warn("""length is deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.""")
+
         return pulumi.get(self, "length")
 
     @property

@@ -5,6 +5,10 @@
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .get_backend_issuer import *
+from .get_backend_issuers import *
+from .get_backend_key import *
+from .get_backend_keys import *
 from .secret_backend_cert import *
 from .secret_backend_config_ca import *
 from .secret_backend_config_issuers import *
@@ -18,3 +22,5 @@ from .secret_backend_role import *
 from .secret_backend_root_cert import *
 from .secret_backend_root_sign_intermediate import *
 from .secret_backend_sign import *
+from ._inputs import *
+from . import outputs

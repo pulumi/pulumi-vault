@@ -86,12 +86,11 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly path!: pulumi.Output<string | undefined>;
     /**
-     * The AWS region for API calls. Defaults to `us-east-1`.
+     * The AWS region to make API calls against. Defaults to us-east-1.
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * The AWS Secret Key this backend should use to
-     * issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+     * The AWS Secret Access Key to use when generating new credentials.
      */
     public readonly secretKey!: pulumi.Output<string | undefined>;
     /**
@@ -201,12 +200,11 @@ export interface SecretBackendState {
      */
     path?: pulumi.Input<string>;
     /**
-     * The AWS region for API calls. Defaults to `us-east-1`.
+     * The AWS region to make API calls against. Defaults to us-east-1.
      */
     region?: pulumi.Input<string>;
     /**
-     * The AWS Secret Key this backend should use to
-     * issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+     * The AWS Secret Access Key to use when generating new credentials.
      */
     secretKey?: pulumi.Input<string>;
     /**
@@ -268,12 +266,11 @@ export interface SecretBackendArgs {
      */
     path?: pulumi.Input<string>;
     /**
-     * The AWS region for API calls. Defaults to `us-east-1`.
+     * The AWS region to make API calls against. Defaults to us-east-1.
      */
     region?: pulumi.Input<string>;
     /**
-     * The AWS Secret Key this backend should use to
-     * issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+     * The AWS Secret Access Key to use when generating new credentials.
      */
     secretKey?: pulumi.Input<string>;
     /**

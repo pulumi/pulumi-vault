@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Provides a resource for managing an [LDAP auth backend within Vault](https://www.vaultproject.io/docs/auth/ldap.html).
@@ -70,13 +72,15 @@ type AuthBackend struct {
 	Certificate   pulumi.StringOutput `pulumi:"certificate"`
 	ClientTlsCert pulumi.StringOutput `pulumi:"clientTlsCert"`
 	ClientTlsKey  pulumi.StringOutput `pulumi:"clientTlsKey"`
-	DenyNullBind  pulumi.BoolOutput   `pulumi:"denyNullBind"`
+	// Prevents users from bypassing authentication when providing an empty password.
+	DenyNullBind pulumi.BoolOutput `pulumi:"denyNullBind"`
 	// Description for the LDAP auth backend mount
 	Description pulumi.StringOutput `pulumi:"description"`
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
-	Discoverdn     pulumi.BoolOutput    `pulumi:"discoverdn"`
+	// Use anonymous bind to discover the bind DN of a user.
+	Discoverdn pulumi.BoolOutput `pulumi:"discoverdn"`
 	// LDAP attribute to follow on objects returned by groupfilter
 	Groupattr pulumi.StringOutput `pulumi:"groupattr"`
 	// Base DN under which to perform group search
@@ -132,13 +136,9 @@ type AuthBackend struct {
 	// The incremental lifetime for generated tokens in number of seconds.
 	// Its current value will be referenced at renewal time.
 	TokenTtl pulumi.IntPtrOutput `pulumi:"tokenTtl"`
-	// The type of token that should be generated. Can be `service`,
-	// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-	// `service` tokens). For token store roles, there are two additional possibilities:
-	// `default-service` and `default-batch` which specify the type to return unless the client
-	// requests a different type at generation time.
+	// The type of token to generate, service or batch
 	TokenType pulumi.StringPtrOutput `pulumi:"tokenType"`
-	// The userPrincipalDomain used to construct UPN string
+	// The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
 	Upndomain pulumi.StringOutput `pulumi:"upndomain"`
 	// The URL of the LDAP server
 	Url pulumi.StringOutput `pulumi:"url"`
@@ -165,16 +165,17 @@ func NewAuthBackend(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'Url'")
 	}
 	if args.Bindpass != nil {
-		args.Bindpass = pulumi.ToSecret(args.Bindpass).(pulumi.StringPtrOutput)
+		args.Bindpass = pulumi.ToSecret(args.Bindpass).(pulumi.StringPtrInput)
 	}
 	if args.ClientTlsKey != nil {
-		args.ClientTlsKey = pulumi.ToSecret(args.ClientTlsKey).(pulumi.StringPtrOutput)
+		args.ClientTlsKey = pulumi.ToSecret(args.ClientTlsKey).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"bindpass",
 		"clientTlsKey",
 	})
 	opts = append(opts, secrets)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AuthBackend
 	err := ctx.RegisterResource("vault:ldap/authBackend:AuthBackend", name, args, &resource, opts...)
 	if err != nil {
@@ -209,13 +210,15 @@ type authBackendState struct {
 	Certificate   *string `pulumi:"certificate"`
 	ClientTlsCert *string `pulumi:"clientTlsCert"`
 	ClientTlsKey  *string `pulumi:"clientTlsKey"`
-	DenyNullBind  *bool   `pulumi:"denyNullBind"`
+	// Prevents users from bypassing authentication when providing an empty password.
+	DenyNullBind *bool `pulumi:"denyNullBind"`
 	// Description for the LDAP auth backend mount
 	Description *string `pulumi:"description"`
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount *bool `pulumi:"disableRemount"`
-	Discoverdn     *bool `pulumi:"discoverdn"`
+	// Use anonymous bind to discover the bind DN of a user.
+	Discoverdn *bool `pulumi:"discoverdn"`
 	// LDAP attribute to follow on objects returned by groupfilter
 	Groupattr *string `pulumi:"groupattr"`
 	// Base DN under which to perform group search
@@ -271,13 +274,9 @@ type authBackendState struct {
 	// The incremental lifetime for generated tokens in number of seconds.
 	// Its current value will be referenced at renewal time.
 	TokenTtl *int `pulumi:"tokenTtl"`
-	// The type of token that should be generated. Can be `service`,
-	// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-	// `service` tokens). For token store roles, there are two additional possibilities:
-	// `default-service` and `default-batch` which specify the type to return unless the client
-	// requests a different type at generation time.
+	// The type of token to generate, service or batch
 	TokenType *string `pulumi:"tokenType"`
-	// The userPrincipalDomain used to construct UPN string
+	// The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
 	Upndomain *string `pulumi:"upndomain"`
 	// The URL of the LDAP server
 	Url *string `pulumi:"url"`
@@ -306,13 +305,15 @@ type AuthBackendState struct {
 	Certificate   pulumi.StringPtrInput
 	ClientTlsCert pulumi.StringPtrInput
 	ClientTlsKey  pulumi.StringPtrInput
-	DenyNullBind  pulumi.BoolPtrInput
+	// Prevents users from bypassing authentication when providing an empty password.
+	DenyNullBind pulumi.BoolPtrInput
 	// Description for the LDAP auth backend mount
 	Description pulumi.StringPtrInput
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrInput
-	Discoverdn     pulumi.BoolPtrInput
+	// Use anonymous bind to discover the bind DN of a user.
+	Discoverdn pulumi.BoolPtrInput
 	// LDAP attribute to follow on objects returned by groupfilter
 	Groupattr pulumi.StringPtrInput
 	// Base DN under which to perform group search
@@ -368,13 +369,9 @@ type AuthBackendState struct {
 	// The incremental lifetime for generated tokens in number of seconds.
 	// Its current value will be referenced at renewal time.
 	TokenTtl pulumi.IntPtrInput
-	// The type of token that should be generated. Can be `service`,
-	// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-	// `service` tokens). For token store roles, there are two additional possibilities:
-	// `default-service` and `default-batch` which specify the type to return unless the client
-	// requests a different type at generation time.
+	// The type of token to generate, service or batch
 	TokenType pulumi.StringPtrInput
-	// The userPrincipalDomain used to construct UPN string
+	// The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
 	Upndomain pulumi.StringPtrInput
 	// The URL of the LDAP server
 	Url pulumi.StringPtrInput
@@ -405,13 +402,15 @@ type authBackendArgs struct {
 	Certificate   *string `pulumi:"certificate"`
 	ClientTlsCert *string `pulumi:"clientTlsCert"`
 	ClientTlsKey  *string `pulumi:"clientTlsKey"`
-	DenyNullBind  *bool   `pulumi:"denyNullBind"`
+	// Prevents users from bypassing authentication when providing an empty password.
+	DenyNullBind *bool `pulumi:"denyNullBind"`
 	// Description for the LDAP auth backend mount
 	Description *string `pulumi:"description"`
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount *bool `pulumi:"disableRemount"`
-	Discoverdn     *bool `pulumi:"discoverdn"`
+	// Use anonymous bind to discover the bind DN of a user.
+	Discoverdn *bool `pulumi:"discoverdn"`
 	// LDAP attribute to follow on objects returned by groupfilter
 	Groupattr *string `pulumi:"groupattr"`
 	// Base DN under which to perform group search
@@ -467,13 +466,9 @@ type authBackendArgs struct {
 	// The incremental lifetime for generated tokens in number of seconds.
 	// Its current value will be referenced at renewal time.
 	TokenTtl *int `pulumi:"tokenTtl"`
-	// The type of token that should be generated. Can be `service`,
-	// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-	// `service` tokens). For token store roles, there are two additional possibilities:
-	// `default-service` and `default-batch` which specify the type to return unless the client
-	// requests a different type at generation time.
+	// The type of token to generate, service or batch
 	TokenType *string `pulumi:"tokenType"`
-	// The userPrincipalDomain used to construct UPN string
+	// The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
 	Upndomain *string `pulumi:"upndomain"`
 	// The URL of the LDAP server
 	Url string `pulumi:"url"`
@@ -501,13 +496,15 @@ type AuthBackendArgs struct {
 	Certificate   pulumi.StringPtrInput
 	ClientTlsCert pulumi.StringPtrInput
 	ClientTlsKey  pulumi.StringPtrInput
-	DenyNullBind  pulumi.BoolPtrInput
+	// Prevents users from bypassing authentication when providing an empty password.
+	DenyNullBind pulumi.BoolPtrInput
 	// Description for the LDAP auth backend mount
 	Description pulumi.StringPtrInput
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrInput
-	Discoverdn     pulumi.BoolPtrInput
+	// Use anonymous bind to discover the bind DN of a user.
+	Discoverdn pulumi.BoolPtrInput
 	// LDAP attribute to follow on objects returned by groupfilter
 	Groupattr pulumi.StringPtrInput
 	// Base DN under which to perform group search
@@ -563,13 +560,9 @@ type AuthBackendArgs struct {
 	// The incremental lifetime for generated tokens in number of seconds.
 	// Its current value will be referenced at renewal time.
 	TokenTtl pulumi.IntPtrInput
-	// The type of token that should be generated. Can be `service`,
-	// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-	// `service` tokens). For token store roles, there are two additional possibilities:
-	// `default-service` and `default-batch` which specify the type to return unless the client
-	// requests a different type at generation time.
+	// The type of token to generate, service or batch
 	TokenType pulumi.StringPtrInput
-	// The userPrincipalDomain used to construct UPN string
+	// The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
 	Upndomain pulumi.StringPtrInput
 	// The URL of the LDAP server
 	Url pulumi.StringInput
@@ -608,6 +601,12 @@ func (i *AuthBackend) ToAuthBackendOutputWithContext(ctx context.Context) AuthBa
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendOutput)
 }
 
+func (i *AuthBackend) ToOutput(ctx context.Context) pulumix.Output[*AuthBackend] {
+	return pulumix.Output[*AuthBackend]{
+		OutputState: i.ToAuthBackendOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AuthBackendArrayInput is an input type that accepts AuthBackendArray and AuthBackendArrayOutput values.
 // You can construct a concrete instance of `AuthBackendArrayInput` via:
 //
@@ -631,6 +630,12 @@ func (i AuthBackendArray) ToAuthBackendArrayOutput() AuthBackendArrayOutput {
 
 func (i AuthBackendArray) ToAuthBackendArrayOutputWithContext(ctx context.Context) AuthBackendArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendArrayOutput)
+}
+
+func (i AuthBackendArray) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackend] {
+	return pulumix.Output[[]*AuthBackend]{
+		OutputState: i.ToAuthBackendArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AuthBackendMapInput is an input type that accepts AuthBackendMap and AuthBackendMapOutput values.
@@ -658,6 +663,12 @@ func (i AuthBackendMap) ToAuthBackendMapOutputWithContext(ctx context.Context) A
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendMapOutput)
 }
 
+func (i AuthBackendMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackend] {
+	return pulumix.Output[map[string]*AuthBackend]{
+		OutputState: i.ToAuthBackendMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AuthBackendOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendOutput) ElementType() reflect.Type {
@@ -670,6 +681,12 @@ func (o AuthBackendOutput) ToAuthBackendOutput() AuthBackendOutput {
 
 func (o AuthBackendOutput) ToAuthBackendOutputWithContext(ctx context.Context) AuthBackendOutput {
 	return o
+}
+
+func (o AuthBackendOutput) ToOutput(ctx context.Context) pulumix.Output[*AuthBackend] {
+	return pulumix.Output[*AuthBackend]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The accessor for this auth mount.
@@ -705,6 +722,7 @@ func (o AuthBackendOutput) ClientTlsKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.ClientTlsKey }).(pulumi.StringOutput)
 }
 
+// Prevents users from bypassing authentication when providing an empty password.
 func (o AuthBackendOutput) DenyNullBind() pulumi.BoolOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.BoolOutput { return v.DenyNullBind }).(pulumi.BoolOutput)
 }
@@ -720,6 +738,7 @@ func (o AuthBackendOutput) DisableRemount() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.BoolPtrOutput { return v.DisableRemount }).(pulumi.BoolPtrOutput)
 }
 
+// Use anonymous bind to discover the bind DN of a user.
 func (o AuthBackendOutput) Discoverdn() pulumi.BoolOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.BoolOutput { return v.Discoverdn }).(pulumi.BoolOutput)
 }
@@ -836,16 +855,12 @@ func (o AuthBackendOutput) TokenTtl() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.IntPtrOutput { return v.TokenTtl }).(pulumi.IntPtrOutput)
 }
 
-// The type of token that should be generated. Can be `service`,
-// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-// `service` tokens). For token store roles, there are two additional possibilities:
-// `default-service` and `default-batch` which specify the type to return unless the client
-// requests a different type at generation time.
+// The type of token to generate, service or batch
 func (o AuthBackendOutput) TokenType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.TokenType }).(pulumi.StringPtrOutput)
 }
 
-// The userPrincipalDomain used to construct UPN string
+// The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
 func (o AuthBackendOutput) Upndomain() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Upndomain }).(pulumi.StringOutput)
 }
@@ -894,6 +909,12 @@ func (o AuthBackendArrayOutput) ToAuthBackendArrayOutputWithContext(ctx context.
 	return o
 }
 
+func (o AuthBackendArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackend] {
+	return pulumix.Output[[]*AuthBackend]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AuthBackendArrayOutput) Index(i pulumi.IntInput) AuthBackendOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AuthBackend {
 		return vs[0].([]*AuthBackend)[vs[1].(int)]
@@ -912,6 +933,12 @@ func (o AuthBackendMapOutput) ToAuthBackendMapOutput() AuthBackendMapOutput {
 
 func (o AuthBackendMapOutput) ToAuthBackendMapOutputWithContext(ctx context.Context) AuthBackendMapOutput {
 	return o
+}
+
+func (o AuthBackendMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackend] {
+	return pulumix.Output[map[string]*AuthBackend]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuthBackendMapOutput) MapIndex(k pulumi.StringInput) AuthBackendOutput {

@@ -19,6 +19,7 @@ namespace Pulumi.Vault.Identity
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -49,6 +50,7 @@ namespace Pulumi.Vault.Identity
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -75,7 +77,7 @@ namespace Pulumi.Vault.Identity
     /// 
     /// ## Import
     /// 
-    /// The key can be imported with the role name, for example
+    /// The key can be imported with the role name, for example:
     /// 
     /// ```sh
     ///  $ pulumi import vault:identity/oidcRole:OidcRole role role

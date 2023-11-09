@@ -8,18 +8,18 @@ import * as utilities from "../utilities";
 export { SecretBackendArgs, SecretBackendState } from "./secretBackend";
 export type SecretBackend = import("./secretBackend").SecretBackend;
 export const SecretBackend: typeof import("./secretBackend").SecretBackend = null as any;
+utilities.lazyLoad(exports, ["SecretBackend"], () => require("./secretBackend"));
 
 export { SecretCredsArgs, SecretCredsState } from "./secretCreds";
 export type SecretCreds = import("./secretCreds").SecretCreds;
 export const SecretCreds: typeof import("./secretCreds").SecretCreds = null as any;
+utilities.lazyLoad(exports, ["SecretCreds"], () => require("./secretCreds"));
 
 export { SecretRoleArgs, SecretRoleState } from "./secretRole";
 export type SecretRole = import("./secretRole").SecretRole;
 export const SecretRole: typeof import("./secretRole").SecretRole = null as any;
-
-utilities.lazyLoad(exports, ["SecretBackend"], () => require("./secretBackend"));
-utilities.lazyLoad(exports, ["SecretCreds"], () => require("./secretCreds"));
 utilities.lazyLoad(exports, ["SecretRole"], () => require("./secretRole"));
+
 
 const _module = {
     version: utilities.getVersion(),

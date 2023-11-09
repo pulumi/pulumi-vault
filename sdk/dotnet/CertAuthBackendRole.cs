@@ -17,6 +17,7 @@ namespace Pulumi.Vault
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.IO;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -133,14 +134,14 @@ namespace Pulumi.Vault
         public Output<string?> OcspCaCertificates { get; private set; } = null!;
 
         /// <summary>
-        /// - If enabled, validate certificates'
+        /// If enabled, validate certificates'
         /// revocation status using OCSP. Requires Vault version 1.13+.
         /// </summary>
         [Output("ocspEnabled")]
         public Output<bool> OcspEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// - If true and an OCSP response cannot
+        /// If true and an OCSP response cannot
         /// be fetched or is of an unknown status, the login will proceed as if the
         /// certificate has not been revoked.
         /// Requires Vault version 1.13+.
@@ -149,7 +150,7 @@ namespace Pulumi.Vault
         public Output<bool> OcspFailOpen { get; private set; } = null!;
 
         /// <summary>
-        /// - If set to true, rather than
+        /// If set to true, rather than
         /// accepting the first successful OCSP response, query all servers and consider
         /// the certificate valid only if all servers agree.
         /// Requires Vault version 1.13+.
@@ -240,6 +241,8 @@ namespace Pulumi.Vault
         /// `service` tokens). For token store roles, there are two additional possibilities:
         /// `default-service` and `default-batch` which specify the type to return unless the client
         /// requests a different type at generation time.
+        /// 
+        /// For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
         /// </summary>
         [Output("tokenType")]
         public Output<string?> TokenType { get; private set; } = null!;
@@ -414,14 +417,14 @@ namespace Pulumi.Vault
         public Input<string>? OcspCaCertificates { get; set; }
 
         /// <summary>
-        /// - If enabled, validate certificates'
+        /// If enabled, validate certificates'
         /// revocation status using OCSP. Requires Vault version 1.13+.
         /// </summary>
         [Input("ocspEnabled")]
         public Input<bool>? OcspEnabled { get; set; }
 
         /// <summary>
-        /// - If true and an OCSP response cannot
+        /// If true and an OCSP response cannot
         /// be fetched or is of an unknown status, the login will proceed as if the
         /// certificate has not been revoked.
         /// Requires Vault version 1.13+.
@@ -430,7 +433,7 @@ namespace Pulumi.Vault
         public Input<bool>? OcspFailOpen { get; set; }
 
         /// <summary>
-        /// - If set to true, rather than
+        /// If set to true, rather than
         /// accepting the first successful OCSP response, query all servers and consider
         /// the certificate valid only if all servers agree.
         /// Requires Vault version 1.13+.
@@ -545,6 +548,8 @@ namespace Pulumi.Vault
         /// `service` tokens). For token store roles, there are two additional possibilities:
         /// `default-service` and `default-batch` which specify the type to return unless the client
         /// requests a different type at generation time.
+        /// 
+        /// For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
         /// </summary>
         [Input("tokenType")]
         public Input<string>? TokenType { get; set; }
@@ -681,14 +686,14 @@ namespace Pulumi.Vault
         public Input<string>? OcspCaCertificates { get; set; }
 
         /// <summary>
-        /// - If enabled, validate certificates'
+        /// If enabled, validate certificates'
         /// revocation status using OCSP. Requires Vault version 1.13+.
         /// </summary>
         [Input("ocspEnabled")]
         public Input<bool>? OcspEnabled { get; set; }
 
         /// <summary>
-        /// - If true and an OCSP response cannot
+        /// If true and an OCSP response cannot
         /// be fetched or is of an unknown status, the login will proceed as if the
         /// certificate has not been revoked.
         /// Requires Vault version 1.13+.
@@ -697,7 +702,7 @@ namespace Pulumi.Vault
         public Input<bool>? OcspFailOpen { get; set; }
 
         /// <summary>
-        /// - If set to true, rather than
+        /// If set to true, rather than
         /// accepting the first successful OCSP response, query all servers and consider
         /// the certificate valid only if all servers agree.
         /// Requires Vault version 1.13+.
@@ -812,6 +817,8 @@ namespace Pulumi.Vault
         /// `service` tokens). For token store roles, there are two additional possibilities:
         /// `default-service` and `default-batch` which specify the type to return unless the client
         /// requests a different type at generation time.
+        /// 
+        /// For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
         /// </summary>
         [Input("tokenType")]
         public Input<string>? TokenType { get; set; }

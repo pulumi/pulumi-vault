@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Reads role tag information from an AWS auth backend in Vault.
@@ -52,6 +54,7 @@ func NewAuthBackendRoleTag(ctx *pulumi.Context,
 	if args.Role == nil {
 		return nil, errors.New("invalid value for required argument 'Role'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AuthBackendRoleTag
 	err := ctx.RegisterResource("vault:aws/authBackendRoleTag:AuthBackendRoleTag", name, args, &resource, opts...)
 	if err != nil {
@@ -205,6 +208,12 @@ func (i *AuthBackendRoleTag) ToAuthBackendRoleTagOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleTagOutput)
 }
 
+func (i *AuthBackendRoleTag) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendRoleTag] {
+	return pulumix.Output[*AuthBackendRoleTag]{
+		OutputState: i.ToAuthBackendRoleTagOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AuthBackendRoleTagArrayInput is an input type that accepts AuthBackendRoleTagArray and AuthBackendRoleTagArrayOutput values.
 // You can construct a concrete instance of `AuthBackendRoleTagArrayInput` via:
 //
@@ -228,6 +237,12 @@ func (i AuthBackendRoleTagArray) ToAuthBackendRoleTagArrayOutput() AuthBackendRo
 
 func (i AuthBackendRoleTagArray) ToAuthBackendRoleTagArrayOutputWithContext(ctx context.Context) AuthBackendRoleTagArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleTagArrayOutput)
+}
+
+func (i AuthBackendRoleTagArray) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackendRoleTag] {
+	return pulumix.Output[[]*AuthBackendRoleTag]{
+		OutputState: i.ToAuthBackendRoleTagArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AuthBackendRoleTagMapInput is an input type that accepts AuthBackendRoleTagMap and AuthBackendRoleTagMapOutput values.
@@ -255,6 +270,12 @@ func (i AuthBackendRoleTagMap) ToAuthBackendRoleTagMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleTagMapOutput)
 }
 
+func (i AuthBackendRoleTagMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackendRoleTag] {
+	return pulumix.Output[map[string]*AuthBackendRoleTag]{
+		OutputState: i.ToAuthBackendRoleTagMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AuthBackendRoleTagOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendRoleTagOutput) ElementType() reflect.Type {
@@ -267,6 +288,12 @@ func (o AuthBackendRoleTagOutput) ToAuthBackendRoleTagOutput() AuthBackendRoleTa
 
 func (o AuthBackendRoleTagOutput) ToAuthBackendRoleTagOutputWithContext(ctx context.Context) AuthBackendRoleTagOutput {
 	return o
+}
+
+func (o AuthBackendRoleTagOutput) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendRoleTag] {
+	return pulumix.Output[*AuthBackendRoleTag]{
+		OutputState: o.OutputState,
+	}
 }
 
 // If set, allows migration of the underlying instances where the client resides. Use with caution.
@@ -338,6 +365,12 @@ func (o AuthBackendRoleTagArrayOutput) ToAuthBackendRoleTagArrayOutputWithContex
 	return o
 }
 
+func (o AuthBackendRoleTagArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackendRoleTag] {
+	return pulumix.Output[[]*AuthBackendRoleTag]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AuthBackendRoleTagArrayOutput) Index(i pulumi.IntInput) AuthBackendRoleTagOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AuthBackendRoleTag {
 		return vs[0].([]*AuthBackendRoleTag)[vs[1].(int)]
@@ -356,6 +389,12 @@ func (o AuthBackendRoleTagMapOutput) ToAuthBackendRoleTagMapOutput() AuthBackend
 
 func (o AuthBackendRoleTagMapOutput) ToAuthBackendRoleTagMapOutputWithContext(ctx context.Context) AuthBackendRoleTagMapOutput {
 	return o
+}
+
+func (o AuthBackendRoleTagMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackendRoleTag] {
+	return pulumix.Output[map[string]*AuthBackendRoleTag]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuthBackendRoleTagMapOutput) MapIndex(k pulumi.StringInput) AuthBackendRoleTagOutput {

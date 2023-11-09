@@ -14,6 +14,7 @@ namespace Pulumi.Vault.Database
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -98,6 +99,8 @@ namespace Pulumi.Vault.Database
 
         /// <summary>
         /// Set of managed key registry entry names that the mount in question is allowed to access
+        /// 
+        /// The following arguments are common to all database engines:
         /// </summary>
         [Output("allowedManagedKeys")]
         public Output<ImmutableArray<string>> AllowedManagedKeys { get; private set; } = null!;
@@ -351,6 +354,8 @@ namespace Pulumi.Vault.Database
 
         /// <summary>
         /// Set of managed key registry entry names that the mount in question is allowed to access
+        /// 
+        /// The following arguments are common to all database engines:
         /// </summary>
         public InputList<string> AllowedManagedKeys
         {
@@ -695,6 +700,8 @@ namespace Pulumi.Vault.Database
 
         /// <summary>
         /// Set of managed key registry entry names that the mount in question is allowed to access
+        /// 
+        /// The following arguments are common to all database engines:
         /// </summary>
         public InputList<string> AllowedManagedKeys
         {

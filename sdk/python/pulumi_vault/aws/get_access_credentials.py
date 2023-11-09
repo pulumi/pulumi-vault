@@ -230,21 +230,21 @@ def get_access_credentials(backend: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('vault:aws/getAccessCredentials:getAccessCredentials', __args__, opts=opts, typ=GetAccessCredentialsResult).value
 
     return AwaitableGetAccessCredentialsResult(
-        access_key=__ret__.access_key,
-        backend=__ret__.backend,
-        id=__ret__.id,
-        lease_duration=__ret__.lease_duration,
-        lease_id=__ret__.lease_id,
-        lease_renewable=__ret__.lease_renewable,
-        lease_start_time=__ret__.lease_start_time,
-        namespace=__ret__.namespace,
-        region=__ret__.region,
-        role=__ret__.role,
-        role_arn=__ret__.role_arn,
-        secret_key=__ret__.secret_key,
-        security_token=__ret__.security_token,
-        ttl=__ret__.ttl,
-        type=__ret__.type)
+        access_key=pulumi.get(__ret__, 'access_key'),
+        backend=pulumi.get(__ret__, 'backend'),
+        id=pulumi.get(__ret__, 'id'),
+        lease_duration=pulumi.get(__ret__, 'lease_duration'),
+        lease_id=pulumi.get(__ret__, 'lease_id'),
+        lease_renewable=pulumi.get(__ret__, 'lease_renewable'),
+        lease_start_time=pulumi.get(__ret__, 'lease_start_time'),
+        namespace=pulumi.get(__ret__, 'namespace'),
+        region=pulumi.get(__ret__, 'region'),
+        role=pulumi.get(__ret__, 'role'),
+        role_arn=pulumi.get(__ret__, 'role_arn'),
+        secret_key=pulumi.get(__ret__, 'secret_key'),
+        security_token=pulumi.get(__ret__, 'security_token'),
+        ttl=pulumi.get(__ret__, 'ttl'),
+        type=pulumi.get(__ret__, 'type'))
 
 
 @_utilities.lift_output_func(get_access_credentials)

@@ -7,13 +7,16 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Required Vault Capabilities
 //
 // Use of this resource requires the `read` capability on the given path.
 func LookupSecretV2(ctx *pulumi.Context, args *LookupSecretV2Args, opts ...pulumi.InvokeOption) (*LookupSecretV2Result, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSecretV2Result
 	err := ctx.Invoke("vault:kv/getSecretV2:getSecretV2", args, &rv, opts...)
 	if err != nil {
@@ -116,6 +119,12 @@ func (o LookupSecretV2ResultOutput) ToLookupSecretV2ResultOutput() LookupSecretV
 
 func (o LookupSecretV2ResultOutput) ToLookupSecretV2ResultOutputWithContext(ctx context.Context) LookupSecretV2ResultOutput {
 	return o
+}
+
+func (o LookupSecretV2ResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSecretV2Result] {
+	return pulumix.Output[LookupSecretV2Result]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Time at which secret was created.

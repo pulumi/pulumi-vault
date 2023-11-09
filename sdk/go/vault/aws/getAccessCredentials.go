@@ -7,10 +7,13 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetAccessCredentials(ctx *pulumi.Context, args *GetAccessCredentialsArgs, opts ...pulumi.InvokeOption) (*GetAccessCredentialsResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAccessCredentialsResult
 	err := ctx.Invoke("vault:aws/getAccessCredentials:getAccessCredentials", args, &rv, opts...)
 	if err != nil {
@@ -136,6 +139,12 @@ func (o GetAccessCredentialsResultOutput) ToGetAccessCredentialsResultOutput() G
 
 func (o GetAccessCredentialsResultOutput) ToGetAccessCredentialsResultOutputWithContext(ctx context.Context) GetAccessCredentialsResultOutput {
 	return o
+}
+
+func (o GetAccessCredentialsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetAccessCredentialsResult] {
+	return pulumix.Output[GetAccessCredentialsResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The AWS Access Key ID returned by Vault.

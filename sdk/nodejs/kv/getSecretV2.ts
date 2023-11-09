@@ -10,11 +10,8 @@ import * as utilities from "../utilities";
  * Use of this resource requires the `read` capability on the given path.
  */
 export function getSecretV2(args: GetSecretV2Args, opts?: pulumi.InvokeOptions): Promise<GetSecretV2Result> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:kv/getSecretV2:getSecretV2", {
         "mount": args.mount,
         "name": args.name,
@@ -96,9 +93,13 @@ export interface GetSecretV2Result {
     readonly path: string;
     readonly version?: number;
 }
-
+/**
+ * ## Required Vault Capabilities
+ *
+ * Use of this resource requires the `read` capability on the given path.
+ */
 export function getSecretV2Output(args: GetSecretV2OutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretV2Result> {
-    return pulumi.output(args).apply(a => getSecretV2(a, opts))
+    return pulumi.output(args).apply((a: any) => getSecretV2(a, opts))
 }
 
 /**

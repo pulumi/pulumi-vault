@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages policies for an Identity Entity for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
@@ -104,6 +106,10 @@ type EntityPolicies struct {
 	// The name of the entity that are assigned the policies.
 	EntityName pulumi.StringOutput `pulumi:"entityName"`
 	// Defaults to `true`.
+	//
+	// If `true`, this resource will take exclusive control of the policies assigned to the entity and will set it equal to what is specified in the resource.
+	//
+	// If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the entity. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
 	Exclusive pulumi.BoolPtrOutput `pulumi:"exclusive"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
@@ -127,6 +133,7 @@ func NewEntityPolicies(ctx *pulumi.Context,
 	if args.Policies == nil {
 		return nil, errors.New("invalid value for required argument 'Policies'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource EntityPolicies
 	err := ctx.RegisterResource("vault:identity/entityPolicies:EntityPolicies", name, args, &resource, opts...)
 	if err != nil {
@@ -154,6 +161,10 @@ type entityPoliciesState struct {
 	// The name of the entity that are assigned the policies.
 	EntityName *string `pulumi:"entityName"`
 	// Defaults to `true`.
+	//
+	// If `true`, this resource will take exclusive control of the policies assigned to the entity and will set it equal to what is specified in the resource.
+	//
+	// If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the entity. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
 	Exclusive *bool `pulumi:"exclusive"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
@@ -170,6 +181,10 @@ type EntityPoliciesState struct {
 	// The name of the entity that are assigned the policies.
 	EntityName pulumi.StringPtrInput
 	// Defaults to `true`.
+	//
+	// If `true`, this resource will take exclusive control of the policies assigned to the entity and will set it equal to what is specified in the resource.
+	//
+	// If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the entity. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
 	Exclusive pulumi.BoolPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
@@ -188,6 +203,10 @@ type entityPoliciesArgs struct {
 	// Entity ID to assign policies to.
 	EntityId string `pulumi:"entityId"`
 	// Defaults to `true`.
+	//
+	// If `true`, this resource will take exclusive control of the policies assigned to the entity and will set it equal to what is specified in the resource.
+	//
+	// If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the entity. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
 	Exclusive *bool `pulumi:"exclusive"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
@@ -203,6 +222,10 @@ type EntityPoliciesArgs struct {
 	// Entity ID to assign policies to.
 	EntityId pulumi.StringInput
 	// Defaults to `true`.
+	//
+	// If `true`, this resource will take exclusive control of the policies assigned to the entity and will set it equal to what is specified in the resource.
+	//
+	// If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the entity. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
 	Exclusive pulumi.BoolPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
@@ -236,6 +259,12 @@ func (i *EntityPolicies) ToEntityPoliciesOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(EntityPoliciesOutput)
 }
 
+func (i *EntityPolicies) ToOutput(ctx context.Context) pulumix.Output[*EntityPolicies] {
+	return pulumix.Output[*EntityPolicies]{
+		OutputState: i.ToEntityPoliciesOutputWithContext(ctx).OutputState,
+	}
+}
+
 // EntityPoliciesArrayInput is an input type that accepts EntityPoliciesArray and EntityPoliciesArrayOutput values.
 // You can construct a concrete instance of `EntityPoliciesArrayInput` via:
 //
@@ -259,6 +288,12 @@ func (i EntityPoliciesArray) ToEntityPoliciesArrayOutput() EntityPoliciesArrayOu
 
 func (i EntityPoliciesArray) ToEntityPoliciesArrayOutputWithContext(ctx context.Context) EntityPoliciesArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EntityPoliciesArrayOutput)
+}
+
+func (i EntityPoliciesArray) ToOutput(ctx context.Context) pulumix.Output[[]*EntityPolicies] {
+	return pulumix.Output[[]*EntityPolicies]{
+		OutputState: i.ToEntityPoliciesArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // EntityPoliciesMapInput is an input type that accepts EntityPoliciesMap and EntityPoliciesMapOutput values.
@@ -286,6 +321,12 @@ func (i EntityPoliciesMap) ToEntityPoliciesMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(EntityPoliciesMapOutput)
 }
 
+func (i EntityPoliciesMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*EntityPolicies] {
+	return pulumix.Output[map[string]*EntityPolicies]{
+		OutputState: i.ToEntityPoliciesMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type EntityPoliciesOutput struct{ *pulumi.OutputState }
 
 func (EntityPoliciesOutput) ElementType() reflect.Type {
@@ -300,6 +341,12 @@ func (o EntityPoliciesOutput) ToEntityPoliciesOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o EntityPoliciesOutput) ToOutput(ctx context.Context) pulumix.Output[*EntityPolicies] {
+	return pulumix.Output[*EntityPolicies]{
+		OutputState: o.OutputState,
+	}
+}
+
 // Entity ID to assign policies to.
 func (o EntityPoliciesOutput) EntityId() pulumi.StringOutput {
 	return o.ApplyT(func(v *EntityPolicies) pulumi.StringOutput { return v.EntityId }).(pulumi.StringOutput)
@@ -311,6 +358,10 @@ func (o EntityPoliciesOutput) EntityName() pulumi.StringOutput {
 }
 
 // Defaults to `true`.
+//
+// If `true`, this resource will take exclusive control of the policies assigned to the entity and will set it equal to what is specified in the resource.
+//
+// If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the entity. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
 func (o EntityPoliciesOutput) Exclusive() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *EntityPolicies) pulumi.BoolPtrOutput { return v.Exclusive }).(pulumi.BoolPtrOutput)
 }
@@ -342,6 +393,12 @@ func (o EntityPoliciesArrayOutput) ToEntityPoliciesArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o EntityPoliciesArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*EntityPolicies] {
+	return pulumix.Output[[]*EntityPolicies]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o EntityPoliciesArrayOutput) Index(i pulumi.IntInput) EntityPoliciesOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EntityPolicies {
 		return vs[0].([]*EntityPolicies)[vs[1].(int)]
@@ -360,6 +417,12 @@ func (o EntityPoliciesMapOutput) ToEntityPoliciesMapOutput() EntityPoliciesMapOu
 
 func (o EntityPoliciesMapOutput) ToEntityPoliciesMapOutputWithContext(ctx context.Context) EntityPoliciesMapOutput {
 	return o
+}
+
+func (o EntityPoliciesMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*EntityPolicies] {
+	return pulumix.Output[map[string]*EntityPolicies]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o EntityPoliciesMapOutput) MapIndex(k pulumi.StringInput) EntityPoliciesOutput {

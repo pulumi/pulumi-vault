@@ -39,12 +39,16 @@ public final class SecretsMountRedisElasticachArgs extends com.pulumi.resources.
     /**
      * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
+     * Supported list of database secrets engines that can be configured:
+     * 
      */
     @Import(name="data")
     private @Nullable Output<Map<String,Object>> data;
 
     /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+     * 
+     * Supported list of database secrets engines that can be configured:
      * 
      */
     public Optional<Output<Map<String,Object>>> data() {
@@ -59,14 +63,14 @@ public final class SecretsMountRedisElasticachArgs extends com.pulumi.resources.
     }
 
     /**
-     * The password to be used in the connection.
+     * The root credential password used in the connection URL.
      * 
      */
     @Import(name="password")
     private @Nullable Output<String> password;
 
     /**
-     * @return The password to be used in the connection.
+     * @return The root credential password used in the connection URL.
      * 
      */
     public Optional<Output<String>> password() {
@@ -121,14 +125,16 @@ public final class SecretsMountRedisElasticachArgs extends com.pulumi.resources.
     }
 
     /**
-     * The configuration endpoint for the ElastiCache cluster to connect to.
+     * The URL for Elasticsearch&#39;s API. https requires certificate
+     * by trusted CA if used.
      * 
      */
     @Import(name="url", required=true)
     private Output<String> url;
 
     /**
-     * @return The configuration endpoint for the ElastiCache cluster to connect to.
+     * @return The URL for Elasticsearch&#39;s API. https requires certificate
+     * by trusted CA if used.
      * 
      */
     public Output<String> url() {
@@ -136,14 +142,14 @@ public final class SecretsMountRedisElasticachArgs extends com.pulumi.resources.
     }
 
     /**
-     * The username to be used in the connection (the account admin level).
+     * The root credential username used in the connection URL.
      * 
      */
     @Import(name="username")
     private @Nullable Output<String> username;
 
     /**
-     * @return The username to be used in the connection (the account admin level).
+     * @return The root credential username used in the connection URL.
      * 
      */
     public Optional<Output<String>> username() {
@@ -237,6 +243,8 @@ public final class SecretsMountRedisElasticachArgs extends com.pulumi.resources.
         /**
          * @param data A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          * 
+         * Supported list of database secrets engines that can be configured:
+         * 
          * @return builder
          * 
          */
@@ -247,6 +255,8 @@ public final class SecretsMountRedisElasticachArgs extends com.pulumi.resources.
 
         /**
          * @param data A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         * 
+         * Supported list of database secrets engines that can be configured:
          * 
          * @return builder
          * 
@@ -265,7 +275,7 @@ public final class SecretsMountRedisElasticachArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param password The password to be used in the connection.
+         * @param password The root credential password used in the connection URL.
          * 
          * @return builder
          * 
@@ -276,7 +286,7 @@ public final class SecretsMountRedisElasticachArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param password The password to be used in the connection.
+         * @param password The root credential password used in the connection URL.
          * 
          * @return builder
          * 
@@ -361,7 +371,8 @@ public final class SecretsMountRedisElasticachArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param url The configuration endpoint for the ElastiCache cluster to connect to.
+         * @param url The URL for Elasticsearch&#39;s API. https requires certificate
+         * by trusted CA if used.
          * 
          * @return builder
          * 
@@ -372,7 +383,8 @@ public final class SecretsMountRedisElasticachArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param url The configuration endpoint for the ElastiCache cluster to connect to.
+         * @param url The URL for Elasticsearch&#39;s API. https requires certificate
+         * by trusted CA if used.
          * 
          * @return builder
          * 
@@ -382,7 +394,7 @@ public final class SecretsMountRedisElasticachArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param username The username to be used in the connection (the account admin level).
+         * @param username The root credential username used in the connection URL.
          * 
          * @return builder
          * 
@@ -393,7 +405,7 @@ public final class SecretsMountRedisElasticachArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param username The username to be used in the connection (the account admin level).
+         * @param username The root credential username used in the connection URL.
          * 
          * @return builder
          * 

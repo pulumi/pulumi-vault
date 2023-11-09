@@ -818,6 +818,9 @@ class _SecretBackendRootSignIntermediateState:
         """
         The serial number.
         """
+        warnings.warn("""Use serial_number instead""", DeprecationWarning)
+        pulumi.log.warn("""serial is deprecated: Use serial_number instead""")
+
         return pulumi.get(self, "serial")
 
     @serial.setter
@@ -1393,6 +1396,9 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         """
         The serial number.
         """
+        warnings.warn("""Use serial_number instead""", DeprecationWarning)
+        pulumi.log.warn("""serial is deprecated: Use serial_number instead""")
+
         return pulumi.get(self, "serial")
 
     @property

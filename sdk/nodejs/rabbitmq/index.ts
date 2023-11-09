@@ -8,13 +8,13 @@ import * as utilities from "../utilities";
 export { SecretBackendArgs, SecretBackendState } from "./secretBackend";
 export type SecretBackend = import("./secretBackend").SecretBackend;
 export const SecretBackend: typeof import("./secretBackend").SecretBackend = null as any;
+utilities.lazyLoad(exports, ["SecretBackend"], () => require("./secretBackend"));
 
 export { SecretBackendRoleArgs, SecretBackendRoleState } from "./secretBackendRole";
 export type SecretBackendRole = import("./secretBackendRole").SecretBackendRole;
 export const SecretBackendRole: typeof import("./secretBackendRole").SecretBackendRole = null as any;
-
-utilities.lazyLoad(exports, ["SecretBackend"], () => require("./secretBackend"));
 utilities.lazyLoad(exports, ["SecretBackendRole"], () => require("./secretBackendRole"));
+
 
 const _module = {
     version: utilities.getVersion(),

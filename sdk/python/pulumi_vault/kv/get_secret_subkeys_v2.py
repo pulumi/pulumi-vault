@@ -186,15 +186,15 @@ def get_secret_subkeys_v2(depth: Optional[int] = None,
     __ret__ = pulumi.runtime.invoke('vault:kv/getSecretSubkeysV2:getSecretSubkeysV2', __args__, opts=opts, typ=GetSecretSubkeysV2Result).value
 
     return AwaitableGetSecretSubkeysV2Result(
-        data=__ret__.data,
-        data_json=__ret__.data_json,
-        depth=__ret__.depth,
-        id=__ret__.id,
-        mount=__ret__.mount,
-        name=__ret__.name,
-        namespace=__ret__.namespace,
-        path=__ret__.path,
-        version=__ret__.version)
+        data=pulumi.get(__ret__, 'data'),
+        data_json=pulumi.get(__ret__, 'data_json'),
+        depth=pulumi.get(__ret__, 'depth'),
+        id=pulumi.get(__ret__, 'id'),
+        mount=pulumi.get(__ret__, 'mount'),
+        name=pulumi.get(__ret__, 'name'),
+        namespace=pulumi.get(__ret__, 'namespace'),
+        path=pulumi.get(__ret__, 'path'),
+        version=pulumi.get(__ret__, 'version'))
 
 
 @_utilities.lift_output_func(get_secret_subkeys_v2)

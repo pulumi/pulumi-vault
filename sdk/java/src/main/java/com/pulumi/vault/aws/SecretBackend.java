@@ -172,30 +172,28 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.path);
     }
     /**
-     * The AWS region for API calls. Defaults to `us-east-1`.
+     * The AWS region to make API calls against. Defaults to us-east-1.
      * 
      */
     @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
-     * @return The AWS region for API calls. Defaults to `us-east-1`.
+     * @return The AWS region to make API calls against. Defaults to us-east-1.
      * 
      */
     public Output<String> region() {
         return this.region;
     }
     /**
-     * The AWS Secret Key this backend should use to
-     * issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+     * The AWS Secret Access Key to use when generating new credentials.
      * 
      */
     @Export(name="secretKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> secretKey;
 
     /**
-     * @return The AWS Secret Key this backend should use to
-     * issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+     * @return The AWS Secret Access Key to use when generating new credentials.
      * 
      */
     public Output<Optional<String>> secretKey() {

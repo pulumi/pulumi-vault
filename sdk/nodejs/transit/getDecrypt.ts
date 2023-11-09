@@ -13,19 +13,16 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const test = pulumi.output(vault.transit.getDecrypt({
+ * const test = vault.transit.getDecrypt({
  *     backend: "transit",
  *     ciphertext: "vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==",
  *     key: "test",
- * }));
+ * });
  * ```
  */
 export function getDecrypt(args: GetDecryptArgs, opts?: pulumi.InvokeOptions): Promise<GetDecryptResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:transit/getDecrypt:getDecrypt", {
         "backend": args.backend,
         "ciphertext": args.ciphertext,
@@ -76,9 +73,24 @@ export interface GetDecryptResult {
      */
     readonly plaintext: string;
 }
-
+/**
+ * This is a data source which can be used to decrypt ciphertext using a Vault Transit key.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const test = vault.transit.getDecrypt({
+ *     backend: "transit",
+ *     ciphertext: "vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==",
+ *     key: "test",
+ * });
+ * ```
+ */
 export function getDecryptOutput(args: GetDecryptOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDecryptResult> {
-    return pulumi.output(args).apply(a => getDecrypt(a, opts))
+    return pulumi.output(args).apply((a: any) => getDecrypt(a, opts))
 }
 
 /**

@@ -14,6 +14,7 @@ namespace Pulumi.Vault
     /// ### Local Storage
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -33,6 +34,7 @@ namespace Pulumi.Vault
     /// ### AWS S3
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Aws = Pulumi.Aws;
     /// using Vault = Pulumi.Vault;
@@ -63,6 +65,7 @@ namespace Pulumi.Vault
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -230,6 +233,16 @@ namespace Pulumi.Vault
         /// <summary>
         /// Google service account key in JSON format. 
         /// The raw value looks like this:
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        /// });
+        /// ```
         /// </summary>
         [Output("googleServiceAccountKey")]
         public Output<string?> GoogleServiceAccountKey { get; private set; } = null!;
@@ -468,6 +481,16 @@ namespace Pulumi.Vault
         /// <summary>
         /// Google service account key in JSON format. 
         /// The raw value looks like this:
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        /// });
+        /// ```
         /// </summary>
         [Input("googleServiceAccountKey")]
         public Input<string>? GoogleServiceAccountKey { get; set; }
@@ -668,6 +691,16 @@ namespace Pulumi.Vault
         /// <summary>
         /// Google service account key in JSON format. 
         /// The raw value looks like this:
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        /// });
+        /// ```
         /// </summary>
         [Input("googleServiceAccountKey")]
         public Input<string>? GoogleServiceAccountKey { get; set; }

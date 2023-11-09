@@ -26,20 +26,20 @@ class BackendArgs:
                  use_microsoft_graph_api: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a Backend resource.
-        :param pulumi.Input[str] subscription_id: - The subscription id for the Azure Active Directory.
-        :param pulumi.Input[str] tenant_id: - The tenant id for the Azure Active Directory.
-        :param pulumi.Input[str] client_id: - The OAuth2 client id to connect to Azure.
-        :param pulumi.Input[str] client_secret: - The OAuth2 client secret to connect to Azure.
+        :param pulumi.Input[str] subscription_id: The subscription id for the Azure Active Directory.
+        :param pulumi.Input[str] tenant_id: The tenant id for the Azure Active Directory.
+        :param pulumi.Input[str] client_id: The OAuth2 client id to connect to Azure.
+        :param pulumi.Input[str] client_secret: The OAuth2 client secret to connect to Azure.
         :param pulumi.Input[str] description: Human-friendly description of the mount for the backend.
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
-        :param pulumi.Input[str] environment: - The Azure environment.
+        :param pulumi.Input[str] environment: The Azure environment.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[str] path: - The unique path this backend should be mounted at. Defaults to `azure`.
-        :param pulumi.Input[bool] use_microsoft_graph_api: - Indicates whether the secrets engine should use 
+        :param pulumi.Input[str] path: The unique path this backend should be mounted at. Defaults to `azure`.
+        :param pulumi.Input[bool] use_microsoft_graph_api: Indicates whether the secrets engine should use 
                the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
                For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
         """
@@ -66,7 +66,7 @@ class BackendArgs:
     @pulumi.getter(name="subscriptionId")
     def subscription_id(self) -> pulumi.Input[str]:
         """
-        - The subscription id for the Azure Active Directory.
+        The subscription id for the Azure Active Directory.
         """
         return pulumi.get(self, "subscription_id")
 
@@ -78,7 +78,7 @@ class BackendArgs:
     @pulumi.getter(name="tenantId")
     def tenant_id(self) -> pulumi.Input[str]:
         """
-        - The tenant id for the Azure Active Directory.
+        The tenant id for the Azure Active Directory.
         """
         return pulumi.get(self, "tenant_id")
 
@@ -90,7 +90,7 @@ class BackendArgs:
     @pulumi.getter(name="clientId")
     def client_id(self) -> Optional[pulumi.Input[str]]:
         """
-        - The OAuth2 client id to connect to Azure.
+        The OAuth2 client id to connect to Azure.
         """
         return pulumi.get(self, "client_id")
 
@@ -102,7 +102,7 @@ class BackendArgs:
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> Optional[pulumi.Input[str]]:
         """
-        - The OAuth2 client secret to connect to Azure.
+        The OAuth2 client secret to connect to Azure.
         """
         return pulumi.get(self, "client_secret")
 
@@ -139,7 +139,7 @@ class BackendArgs:
     @pulumi.getter
     def environment(self) -> Optional[pulumi.Input[str]]:
         """
-        - The Azure environment.
+        The Azure environment.
         """
         return pulumi.get(self, "environment")
 
@@ -166,7 +166,7 @@ class BackendArgs:
     @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
         """
-        - The unique path this backend should be mounted at. Defaults to `azure`.
+        The unique path this backend should be mounted at. Defaults to `azure`.
         """
         return pulumi.get(self, "path")
 
@@ -178,7 +178,7 @@ class BackendArgs:
     @pulumi.getter(name="useMicrosoftGraphApi")
     def use_microsoft_graph_api(self) -> Optional[pulumi.Input[bool]]:
         """
-        - Indicates whether the secrets engine should use 
+        Indicates whether the secrets engine should use 
         the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
         For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
         """
@@ -204,20 +204,20 @@ class _BackendState:
                  use_microsoft_graph_api: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering Backend resources.
-        :param pulumi.Input[str] client_id: - The OAuth2 client id to connect to Azure.
-        :param pulumi.Input[str] client_secret: - The OAuth2 client secret to connect to Azure.
+        :param pulumi.Input[str] client_id: The OAuth2 client id to connect to Azure.
+        :param pulumi.Input[str] client_secret: The OAuth2 client secret to connect to Azure.
         :param pulumi.Input[str] description: Human-friendly description of the mount for the backend.
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
-        :param pulumi.Input[str] environment: - The Azure environment.
+        :param pulumi.Input[str] environment: The Azure environment.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[str] path: - The unique path this backend should be mounted at. Defaults to `azure`.
-        :param pulumi.Input[str] subscription_id: - The subscription id for the Azure Active Directory.
-        :param pulumi.Input[str] tenant_id: - The tenant id for the Azure Active Directory.
-        :param pulumi.Input[bool] use_microsoft_graph_api: - Indicates whether the secrets engine should use 
+        :param pulumi.Input[str] path: The unique path this backend should be mounted at. Defaults to `azure`.
+        :param pulumi.Input[str] subscription_id: The subscription id for the Azure Active Directory.
+        :param pulumi.Input[str] tenant_id: The tenant id for the Azure Active Directory.
+        :param pulumi.Input[bool] use_microsoft_graph_api: Indicates whether the secrets engine should use 
                the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
                For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
         """
@@ -246,7 +246,7 @@ class _BackendState:
     @pulumi.getter(name="clientId")
     def client_id(self) -> Optional[pulumi.Input[str]]:
         """
-        - The OAuth2 client id to connect to Azure.
+        The OAuth2 client id to connect to Azure.
         """
         return pulumi.get(self, "client_id")
 
@@ -258,7 +258,7 @@ class _BackendState:
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> Optional[pulumi.Input[str]]:
         """
-        - The OAuth2 client secret to connect to Azure.
+        The OAuth2 client secret to connect to Azure.
         """
         return pulumi.get(self, "client_secret")
 
@@ -295,7 +295,7 @@ class _BackendState:
     @pulumi.getter
     def environment(self) -> Optional[pulumi.Input[str]]:
         """
-        - The Azure environment.
+        The Azure environment.
         """
         return pulumi.get(self, "environment")
 
@@ -322,7 +322,7 @@ class _BackendState:
     @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
         """
-        - The unique path this backend should be mounted at. Defaults to `azure`.
+        The unique path this backend should be mounted at. Defaults to `azure`.
         """
         return pulumi.get(self, "path")
 
@@ -334,7 +334,7 @@ class _BackendState:
     @pulumi.getter(name="subscriptionId")
     def subscription_id(self) -> Optional[pulumi.Input[str]]:
         """
-        - The subscription id for the Azure Active Directory.
+        The subscription id for the Azure Active Directory.
         """
         return pulumi.get(self, "subscription_id")
 
@@ -346,7 +346,7 @@ class _BackendState:
     @pulumi.getter(name="tenantId")
     def tenant_id(self) -> Optional[pulumi.Input[str]]:
         """
-        - The tenant id for the Azure Active Directory.
+        The tenant id for the Azure Active Directory.
         """
         return pulumi.get(self, "tenant_id")
 
@@ -358,7 +358,7 @@ class _BackendState:
     @pulumi.getter(name="useMicrosoftGraphApi")
     def use_microsoft_graph_api(self) -> Optional[pulumi.Input[bool]]:
         """
-        - Indicates whether the secrets engine should use 
+        Indicates whether the secrets engine should use 
         the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
         For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
         """
@@ -418,20 +418,20 @@ class Backend(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] client_id: - The OAuth2 client id to connect to Azure.
-        :param pulumi.Input[str] client_secret: - The OAuth2 client secret to connect to Azure.
+        :param pulumi.Input[str] client_id: The OAuth2 client id to connect to Azure.
+        :param pulumi.Input[str] client_secret: The OAuth2 client secret to connect to Azure.
         :param pulumi.Input[str] description: Human-friendly description of the mount for the backend.
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
-        :param pulumi.Input[str] environment: - The Azure environment.
+        :param pulumi.Input[str] environment: The Azure environment.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[str] path: - The unique path this backend should be mounted at. Defaults to `azure`.
-        :param pulumi.Input[str] subscription_id: - The subscription id for the Azure Active Directory.
-        :param pulumi.Input[str] tenant_id: - The tenant id for the Azure Active Directory.
-        :param pulumi.Input[bool] use_microsoft_graph_api: - Indicates whether the secrets engine should use 
+        :param pulumi.Input[str] path: The unique path this backend should be mounted at. Defaults to `azure`.
+        :param pulumi.Input[str] subscription_id: The subscription id for the Azure Active Directory.
+        :param pulumi.Input[str] tenant_id: The tenant id for the Azure Active Directory.
+        :param pulumi.Input[bool] use_microsoft_graph_api: Indicates whether the secrets engine should use 
                the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
                For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
         """
@@ -549,20 +549,20 @@ class Backend(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] client_id: - The OAuth2 client id to connect to Azure.
-        :param pulumi.Input[str] client_secret: - The OAuth2 client secret to connect to Azure.
+        :param pulumi.Input[str] client_id: The OAuth2 client id to connect to Azure.
+        :param pulumi.Input[str] client_secret: The OAuth2 client secret to connect to Azure.
         :param pulumi.Input[str] description: Human-friendly description of the mount for the backend.
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
-        :param pulumi.Input[str] environment: - The Azure environment.
+        :param pulumi.Input[str] environment: The Azure environment.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[str] path: - The unique path this backend should be mounted at. Defaults to `azure`.
-        :param pulumi.Input[str] subscription_id: - The subscription id for the Azure Active Directory.
-        :param pulumi.Input[str] tenant_id: - The tenant id for the Azure Active Directory.
-        :param pulumi.Input[bool] use_microsoft_graph_api: - Indicates whether the secrets engine should use 
+        :param pulumi.Input[str] path: The unique path this backend should be mounted at. Defaults to `azure`.
+        :param pulumi.Input[str] subscription_id: The subscription id for the Azure Active Directory.
+        :param pulumi.Input[str] tenant_id: The tenant id for the Azure Active Directory.
+        :param pulumi.Input[bool] use_microsoft_graph_api: Indicates whether the secrets engine should use 
                the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
                For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
         """
@@ -586,7 +586,7 @@ class Backend(pulumi.CustomResource):
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Output[Optional[str]]:
         """
-        - The OAuth2 client id to connect to Azure.
+        The OAuth2 client id to connect to Azure.
         """
         return pulumi.get(self, "client_id")
 
@@ -594,7 +594,7 @@ class Backend(pulumi.CustomResource):
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> pulumi.Output[Optional[str]]:
         """
-        - The OAuth2 client secret to connect to Azure.
+        The OAuth2 client secret to connect to Azure.
         """
         return pulumi.get(self, "client_secret")
 
@@ -619,7 +619,7 @@ class Backend(pulumi.CustomResource):
     @pulumi.getter
     def environment(self) -> pulumi.Output[Optional[str]]:
         """
-        - The Azure environment.
+        The Azure environment.
         """
         return pulumi.get(self, "environment")
 
@@ -638,7 +638,7 @@ class Backend(pulumi.CustomResource):
     @pulumi.getter
     def path(self) -> pulumi.Output[Optional[str]]:
         """
-        - The unique path this backend should be mounted at. Defaults to `azure`.
+        The unique path this backend should be mounted at. Defaults to `azure`.
         """
         return pulumi.get(self, "path")
 
@@ -646,7 +646,7 @@ class Backend(pulumi.CustomResource):
     @pulumi.getter(name="subscriptionId")
     def subscription_id(self) -> pulumi.Output[str]:
         """
-        - The subscription id for the Azure Active Directory.
+        The subscription id for the Azure Active Directory.
         """
         return pulumi.get(self, "subscription_id")
 
@@ -654,7 +654,7 @@ class Backend(pulumi.CustomResource):
     @pulumi.getter(name="tenantId")
     def tenant_id(self) -> pulumi.Output[str]:
         """
-        - The tenant id for the Azure Active Directory.
+        The tenant id for the Azure Active Directory.
         """
         return pulumi.get(self, "tenant_id")
 
@@ -662,7 +662,7 @@ class Backend(pulumi.CustomResource):
     @pulumi.getter(name="useMicrosoftGraphApi")
     def use_microsoft_graph_api(self) -> pulumi.Output[bool]:
         """
-        - Indicates whether the secrets engine should use 
+        Indicates whether the secrets engine should use 
         the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
         For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
         """

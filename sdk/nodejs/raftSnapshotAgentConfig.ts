@@ -11,9 +11,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const localBackups = new vault.RaftSnapshotAgentConfig("local_backups", {
- *     intervalSeconds: 86400, // 24h
- *     // Storage Type Configuration
+ * const localBackups = new vault.RaftSnapshotAgentConfig("localBackups", {
+ *     intervalSeconds: 86400,
  *     localMaxSpace: 10000000,
  *     pathPrefix: "/opt/vault/snapshots/",
  *     retain: 7,
@@ -192,6 +191,10 @@ export class RaftSnapshotAgentConfig extends pulumi.CustomResource {
     /**
      * Google service account key in JSON format. 
      * The raw value looks like this:
+     *
+     * ```typescript
+     * import * as pulumi from "@pulumi/pulumi";
+     * ```
      */
     public readonly googleServiceAccountKey!: pulumi.Output<string | undefined>;
     /**
@@ -419,6 +422,10 @@ export interface RaftSnapshotAgentConfigState {
     /**
      * Google service account key in JSON format. 
      * The raw value looks like this:
+     *
+     * ```typescript
+     * import * as pulumi from "@pulumi/pulumi";
+     * ```
      */
     googleServiceAccountKey?: pulumi.Input<string>;
     /**
@@ -561,6 +568,10 @@ export interface RaftSnapshotAgentConfigArgs {
     /**
      * Google service account key in JSON format. 
      * The raw value looks like this:
+     *
+     * ```typescript
+     * import * as pulumi from "@pulumi/pulumi";
+     * ```
      */
     googleServiceAccountKey?: pulumi.Input<string>;
     /**

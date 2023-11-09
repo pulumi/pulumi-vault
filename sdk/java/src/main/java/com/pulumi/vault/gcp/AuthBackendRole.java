@@ -141,14 +141,14 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
         return this.boundLabels;
     }
     /**
-     * GCP Projects that the role exists within
+     * An array of GCP project IDs. Only entities belonging to this project can authenticate under the role.
      * 
      */
     @Export(name="boundProjects", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> boundProjects;
 
     /**
-     * @return GCP Projects that the role exists within
+     * @return An array of GCP project IDs. Only entities belonging to this project can authenticate under the role.
      * 
      */
     public Output<Optional<List<String>>> boundProjects() {

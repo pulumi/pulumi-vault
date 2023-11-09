@@ -18,6 +18,7 @@ namespace Pulumi.Vault.TokenAuth
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -107,6 +108,8 @@ namespace Pulumi.Vault.TokenAuth
 
         /// <summary>
         /// Tokens created against this role will have the given suffix as part of their path in addition to the role name.
+        /// 
+        /// &gt; Due to a bug the resource. This *will* cause all existing tokens issued by this role to be revoked.
         /// </summary>
         [Output("pathSuffix")]
         public Output<string?> PathSuffix { get; private set; } = null!;
@@ -316,6 +319,8 @@ namespace Pulumi.Vault.TokenAuth
 
         /// <summary>
         /// Tokens created against this role will have the given suffix as part of their path in addition to the role name.
+        /// 
+        /// &gt; Due to a bug the resource. This *will* cause all existing tokens issued by this role to be revoked.
         /// </summary>
         [Input("pathSuffix")]
         public Input<string>? PathSuffix { get; set; }
@@ -499,6 +504,8 @@ namespace Pulumi.Vault.TokenAuth
 
         /// <summary>
         /// Tokens created against this role will have the given suffix as part of their path in addition to the role name.
+        /// 
+        /// &gt; Due to a bug the resource. This *will* cause all existing tokens issued by this role to be revoked.
         /// </summary>
         [Input("pathSuffix")]
         public Input<string>? PathSuffix { get; set; }

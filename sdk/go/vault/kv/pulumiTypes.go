@@ -7,8 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
+
+var _ = internal.GetEnvOrDefault
 
 type SecretV2CustomMetadata struct {
 	CasRequired *bool `pulumi:"casRequired"`
@@ -55,6 +59,12 @@ func (i SecretV2CustomMetadataArgs) ToSecretV2CustomMetadataOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(SecretV2CustomMetadataOutput)
 }
 
+func (i SecretV2CustomMetadataArgs) ToOutput(ctx context.Context) pulumix.Output[SecretV2CustomMetadata] {
+	return pulumix.Output[SecretV2CustomMetadata]{
+		OutputState: i.ToSecretV2CustomMetadataOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i SecretV2CustomMetadataArgs) ToSecretV2CustomMetadataPtrOutput() SecretV2CustomMetadataPtrOutput {
 	return i.ToSecretV2CustomMetadataPtrOutputWithContext(context.Background())
 }
@@ -96,6 +106,12 @@ func (i *secretV2CustomMetadataPtrType) ToSecretV2CustomMetadataPtrOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(SecretV2CustomMetadataPtrOutput)
 }
 
+func (i *secretV2CustomMetadataPtrType) ToOutput(ctx context.Context) pulumix.Output[*SecretV2CustomMetadata] {
+	return pulumix.Output[*SecretV2CustomMetadata]{
+		OutputState: i.ToSecretV2CustomMetadataPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SecretV2CustomMetadataOutput struct{ *pulumi.OutputState }
 
 func (SecretV2CustomMetadataOutput) ElementType() reflect.Type {
@@ -118,6 +134,12 @@ func (o SecretV2CustomMetadataOutput) ToSecretV2CustomMetadataPtrOutputWithConte
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretV2CustomMetadata) *SecretV2CustomMetadata {
 		return &v
 	}).(SecretV2CustomMetadataPtrOutput)
+}
+
+func (o SecretV2CustomMetadataOutput) ToOutput(ctx context.Context) pulumix.Output[SecretV2CustomMetadata] {
+	return pulumix.Output[SecretV2CustomMetadata]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SecretV2CustomMetadataOutput) CasRequired() pulumi.BoolPtrOutput {
@@ -152,6 +174,12 @@ func (o SecretV2CustomMetadataPtrOutput) ToSecretV2CustomMetadataPtrOutput() Sec
 
 func (o SecretV2CustomMetadataPtrOutput) ToSecretV2CustomMetadataPtrOutputWithContext(ctx context.Context) SecretV2CustomMetadataPtrOutput {
 	return o
+}
+
+func (o SecretV2CustomMetadataPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretV2CustomMetadata] {
+	return pulumix.Output[*SecretV2CustomMetadata]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SecretV2CustomMetadataPtrOutput) Elem() SecretV2CustomMetadataOutput {

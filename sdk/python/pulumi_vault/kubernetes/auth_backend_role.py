@@ -38,6 +38,10 @@ class AuthBackendRoleArgs:
         :param pulumi.Input[str] alias_name_source: Configures how identity aliases are generated.
                Valid choices are: `serviceaccount_uid`, `serviceaccount_name`. (vault-1.9+)
         :param pulumi.Input[str] audience: Audience claim to verify in the JWT.
+               
+               > Please see [alias_name_source](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
+               before setting this to something other its default value. There are **important** security
+               implications to be aware of.
         :param pulumi.Input[str] backend: Unique name of the kubernetes backend to configure.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -153,6 +157,10 @@ class AuthBackendRoleArgs:
     def audience(self) -> Optional[pulumi.Input[str]]:
         """
         Audience claim to verify in the JWT.
+
+        > Please see [alias_name_source](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
+        before setting this to something other its default value. There are **important** security
+        implications to be aware of.
         """
         return pulumi.get(self, "audience")
 
@@ -336,6 +344,10 @@ class _AuthBackendRoleState:
         :param pulumi.Input[str] alias_name_source: Configures how identity aliases are generated.
                Valid choices are: `serviceaccount_uid`, `serviceaccount_name`. (vault-1.9+)
         :param pulumi.Input[str] audience: Audience claim to verify in the JWT.
+               
+               > Please see [alias_name_source](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
+               before setting this to something other its default value. There are **important** security
+               implications to be aware of.
         :param pulumi.Input[str] backend: Unique name of the kubernetes backend to configure.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_service_account_names: List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and bound_service_account_namespaces can not be "*".
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_service_account_namespaces: List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and bound_service_account_names can not be set to "*".
@@ -421,6 +433,10 @@ class _AuthBackendRoleState:
     def audience(self) -> Optional[pulumi.Input[str]]:
         """
         Audience claim to verify in the JWT.
+
+        > Please see [alias_name_source](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
+        before setting this to something other its default value. There are **important** security
+        implications to be aware of.
         """
         return pulumi.get(self, "audience")
 
@@ -677,6 +693,10 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] alias_name_source: Configures how identity aliases are generated.
                Valid choices are: `serviceaccount_uid`, `serviceaccount_name`. (vault-1.9+)
         :param pulumi.Input[str] audience: Audience claim to verify in the JWT.
+               
+               > Please see [alias_name_source](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
+               before setting this to something other its default value. There are **important** security
+               implications to be aware of.
         :param pulumi.Input[str] backend: Unique name of the kubernetes backend to configure.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_service_account_names: List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and bound_service_account_namespaces can not be "*".
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_service_account_namespaces: List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and bound_service_account_names can not be set to "*".
@@ -849,6 +869,10 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] alias_name_source: Configures how identity aliases are generated.
                Valid choices are: `serviceaccount_uid`, `serviceaccount_name`. (vault-1.9+)
         :param pulumi.Input[str] audience: Audience claim to verify in the JWT.
+               
+               > Please see [alias_name_source](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
+               before setting this to something other its default value. There are **important** security
+               implications to be aware of.
         :param pulumi.Input[str] backend: Unique name of the kubernetes backend to configure.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_service_account_names: List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and bound_service_account_namespaces can not be "*".
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_service_account_namespaces: List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and bound_service_account_names can not be set to "*".
@@ -919,6 +943,10 @@ class AuthBackendRole(pulumi.CustomResource):
     def audience(self) -> pulumi.Output[Optional[str]]:
         """
         Audience claim to verify in the JWT.
+
+        > Please see [alias_name_source](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
+        before setting this to something other its default value. There are **important** security
+        implications to be aware of.
         """
         return pulumi.get(self, "audience")
 

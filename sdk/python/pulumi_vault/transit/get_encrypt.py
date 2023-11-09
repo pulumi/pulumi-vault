@@ -138,14 +138,14 @@ def get_encrypt(backend: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('vault:transit/getEncrypt:getEncrypt', __args__, opts=opts, typ=GetEncryptResult).value
 
     return AwaitableGetEncryptResult(
-        backend=__ret__.backend,
-        ciphertext=__ret__.ciphertext,
-        context=__ret__.context,
-        id=__ret__.id,
-        key=__ret__.key,
-        key_version=__ret__.key_version,
-        namespace=__ret__.namespace,
-        plaintext=__ret__.plaintext)
+        backend=pulumi.get(__ret__, 'backend'),
+        ciphertext=pulumi.get(__ret__, 'ciphertext'),
+        context=pulumi.get(__ret__, 'context'),
+        id=pulumi.get(__ret__, 'id'),
+        key=pulumi.get(__ret__, 'key'),
+        key_version=pulumi.get(__ret__, 'key_version'),
+        namespace=pulumi.get(__ret__, 'namespace'),
+        plaintext=pulumi.get(__ret__, 'plaintext'))
 
 
 @_utilities.lift_output_func(get_encrypt)

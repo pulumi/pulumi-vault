@@ -7,13 +7,16 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Reads the Role of an Kubernetes from a Vault server. See the [Vault
 // documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-config) for more
 // information.
 func LookupAuthBackendConfig(ctx *pulumi.Context, args *LookupAuthBackendConfigArgs, opts ...pulumi.InvokeOption) (*LookupAuthBackendConfigResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAuthBackendConfigResult
 	err := ctx.Invoke("vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig", args, &rv, opts...)
 	if err != nil {
@@ -114,6 +117,12 @@ func (o LookupAuthBackendConfigResultOutput) ToLookupAuthBackendConfigResultOutp
 
 func (o LookupAuthBackendConfigResultOutput) ToLookupAuthBackendConfigResultOutputWithContext(ctx context.Context) LookupAuthBackendConfigResultOutput {
 	return o
+}
+
+func (o LookupAuthBackendConfigResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupAuthBackendConfigResult] {
+	return pulumix.Output[LookupAuthBackendConfigResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupAuthBackendConfigResultOutput) Backend() pulumi.StringPtrOutput {

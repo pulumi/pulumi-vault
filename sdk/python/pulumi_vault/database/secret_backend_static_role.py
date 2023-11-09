@@ -37,6 +37,9 @@ class SecretBackendStaticRoleArgs:
                Mutually exclusive with `rotation_schedule`.
         :param pulumi.Input[str] rotation_schedule: A cron-style string that will define the schedule on which rotations should occur.
                Mutually exclusive with `rotation_period`.
+               
+               **Warning**: The `rotation_period` and `rotation_schedule` fields are
+               mutually exclusive. One of them must be set but not both.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] rotation_statements: Database statements to execute to rotate the password for the configured database user.
         :param pulumi.Input[int] rotation_window: The amount of time, in seconds, in which rotations are allowed to occur starting
                from a given `rotation_schedule`.
@@ -139,6 +142,9 @@ class SecretBackendStaticRoleArgs:
         """
         A cron-style string that will define the schedule on which rotations should occur.
         Mutually exclusive with `rotation_period`.
+
+        **Warning**: The `rotation_period` and `rotation_schedule` fields are
+        mutually exclusive. One of them must be set but not both.
         """
         return pulumi.get(self, "rotation_schedule")
 
@@ -197,6 +203,9 @@ class _SecretBackendStaticRoleState:
                Mutually exclusive with `rotation_schedule`.
         :param pulumi.Input[str] rotation_schedule: A cron-style string that will define the schedule on which rotations should occur.
                Mutually exclusive with `rotation_period`.
+               
+               **Warning**: The `rotation_period` and `rotation_schedule` fields are
+               mutually exclusive. One of them must be set but not both.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] rotation_statements: Database statements to execute to rotate the password for the configured database user.
         :param pulumi.Input[int] rotation_window: The amount of time, in seconds, in which rotations are allowed to occur starting
                from a given `rotation_schedule`.
@@ -291,6 +300,9 @@ class _SecretBackendStaticRoleState:
         """
         A cron-style string that will define the schedule on which rotations should occur.
         Mutually exclusive with `rotation_period`.
+
+        **Warning**: The `rotation_period` and `rotation_schedule` fields are
+        mutually exclusive. One of them must be set but not both.
         """
         return pulumi.get(self, "rotation_schedule")
 
@@ -409,6 +421,9 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                Mutually exclusive with `rotation_schedule`.
         :param pulumi.Input[str] rotation_schedule: A cron-style string that will define the schedule on which rotations should occur.
                Mutually exclusive with `rotation_period`.
+               
+               **Warning**: The `rotation_period` and `rotation_schedule` fields are
+               mutually exclusive. One of them must be set but not both.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] rotation_statements: Database statements to execute to rotate the password for the configured database user.
         :param pulumi.Input[int] rotation_window: The amount of time, in seconds, in which rotations are allowed to occur starting
                from a given `rotation_schedule`.
@@ -550,6 +565,9 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                Mutually exclusive with `rotation_schedule`.
         :param pulumi.Input[str] rotation_schedule: A cron-style string that will define the schedule on which rotations should occur.
                Mutually exclusive with `rotation_period`.
+               
+               **Warning**: The `rotation_period` and `rotation_schedule` fields are
+               mutually exclusive. One of them must be set but not both.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] rotation_statements: Database statements to execute to rotate the password for the configured database user.
         :param pulumi.Input[int] rotation_window: The amount of time, in seconds, in which rotations are allowed to occur starting
                from a given `rotation_schedule`.
@@ -620,6 +638,9 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         """
         A cron-style string that will define the schedule on which rotations should occur.
         Mutually exclusive with `rotation_period`.
+
+        **Warning**: The `rotation_period` and `rotation_schedule` fields are
+        mutually exclusive. One of them must be set but not both.
         """
         return pulumi.get(self, "rotation_schedule")
 

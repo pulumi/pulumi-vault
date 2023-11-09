@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -68,7 +70,7 @@ import (
 //				PathPrefix:         pulumi.String("/path/in/bucket"),
 //				StorageType:        pulumi.String("aws-s3"),
 //				AwsS3Bucket:        pulumi.String("my-bucket"),
-//				AwsS3Region:        pulumi.String(current.Name),
+//				AwsS3Region:        *pulumi.String(current.Name),
 //				AwsAccessKeyId:     pulumi.Any(awsAccessKeyId),
 //				AwsSecretAccessKey: pulumi.Any(awsSecretAccessKey),
 //				AwsS3EnableKms:     pulumi.Bool(true),
@@ -182,6 +184,20 @@ type RaftSnapshotAgentConfig struct {
 	GoogleGcsBucket pulumi.StringPtrOutput `pulumi:"googleGcsBucket"`
 	// Google service account key in JSON format.
 	// The raw value looks like this:
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		return nil
+	// 	})
+	// }
+	// ```
 	GoogleServiceAccountKey pulumi.StringPtrOutput `pulumi:"googleServiceAccountKey"`
 	// `<required>` - Time (in seconds) between snapshots.
 	IntervalSeconds pulumi.IntOutput `pulumi:"intervalSeconds"`
@@ -227,6 +243,7 @@ func NewRaftSnapshotAgentConfig(ctx *pulumi.Context,
 	if args.StorageType == nil {
 		return nil, errors.New("invalid value for required argument 'StorageType'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RaftSnapshotAgentConfig
 	err := ctx.RegisterResource("vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig", name, args, &resource, opts...)
 	if err != nil {
@@ -302,6 +319,20 @@ type raftSnapshotAgentConfigState struct {
 	GoogleGcsBucket *string `pulumi:"googleGcsBucket"`
 	// Google service account key in JSON format.
 	// The raw value looks like this:
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		return nil
+	// 	})
+	// }
+	// ```
 	GoogleServiceAccountKey *string `pulumi:"googleServiceAccountKey"`
 	// `<required>` - Time (in seconds) between snapshots.
 	IntervalSeconds *int `pulumi:"intervalSeconds"`
@@ -385,6 +416,20 @@ type RaftSnapshotAgentConfigState struct {
 	GoogleGcsBucket pulumi.StringPtrInput
 	// Google service account key in JSON format.
 	// The raw value looks like this:
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		return nil
+	// 	})
+	// }
+	// ```
 	GoogleServiceAccountKey pulumi.StringPtrInput
 	// `<required>` - Time (in seconds) between snapshots.
 	IntervalSeconds pulumi.IntPtrInput
@@ -472,6 +517,20 @@ type raftSnapshotAgentConfigArgs struct {
 	GoogleGcsBucket *string `pulumi:"googleGcsBucket"`
 	// Google service account key in JSON format.
 	// The raw value looks like this:
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		return nil
+	// 	})
+	// }
+	// ```
 	GoogleServiceAccountKey *string `pulumi:"googleServiceAccountKey"`
 	// `<required>` - Time (in seconds) between snapshots.
 	IntervalSeconds int `pulumi:"intervalSeconds"`
@@ -556,6 +615,20 @@ type RaftSnapshotAgentConfigArgs struct {
 	GoogleGcsBucket pulumi.StringPtrInput
 	// Google service account key in JSON format.
 	// The raw value looks like this:
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		return nil
+	// 	})
+	// }
+	// ```
 	GoogleServiceAccountKey pulumi.StringPtrInput
 	// `<required>` - Time (in seconds) between snapshots.
 	IntervalSeconds pulumi.IntInput
@@ -608,6 +681,12 @@ func (i *RaftSnapshotAgentConfig) ToRaftSnapshotAgentConfigOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(RaftSnapshotAgentConfigOutput)
 }
 
+func (i *RaftSnapshotAgentConfig) ToOutput(ctx context.Context) pulumix.Output[*RaftSnapshotAgentConfig] {
+	return pulumix.Output[*RaftSnapshotAgentConfig]{
+		OutputState: i.ToRaftSnapshotAgentConfigOutputWithContext(ctx).OutputState,
+	}
+}
+
 // RaftSnapshotAgentConfigArrayInput is an input type that accepts RaftSnapshotAgentConfigArray and RaftSnapshotAgentConfigArrayOutput values.
 // You can construct a concrete instance of `RaftSnapshotAgentConfigArrayInput` via:
 //
@@ -631,6 +710,12 @@ func (i RaftSnapshotAgentConfigArray) ToRaftSnapshotAgentConfigArrayOutput() Raf
 
 func (i RaftSnapshotAgentConfigArray) ToRaftSnapshotAgentConfigArrayOutputWithContext(ctx context.Context) RaftSnapshotAgentConfigArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RaftSnapshotAgentConfigArrayOutput)
+}
+
+func (i RaftSnapshotAgentConfigArray) ToOutput(ctx context.Context) pulumix.Output[[]*RaftSnapshotAgentConfig] {
+	return pulumix.Output[[]*RaftSnapshotAgentConfig]{
+		OutputState: i.ToRaftSnapshotAgentConfigArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // RaftSnapshotAgentConfigMapInput is an input type that accepts RaftSnapshotAgentConfigMap and RaftSnapshotAgentConfigMapOutput values.
@@ -658,6 +743,12 @@ func (i RaftSnapshotAgentConfigMap) ToRaftSnapshotAgentConfigMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(RaftSnapshotAgentConfigMapOutput)
 }
 
+func (i RaftSnapshotAgentConfigMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RaftSnapshotAgentConfig] {
+	return pulumix.Output[map[string]*RaftSnapshotAgentConfig]{
+		OutputState: i.ToRaftSnapshotAgentConfigMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RaftSnapshotAgentConfigOutput struct{ *pulumi.OutputState }
 
 func (RaftSnapshotAgentConfigOutput) ElementType() reflect.Type {
@@ -670,6 +761,12 @@ func (o RaftSnapshotAgentConfigOutput) ToRaftSnapshotAgentConfigOutput() RaftSna
 
 func (o RaftSnapshotAgentConfigOutput) ToRaftSnapshotAgentConfigOutputWithContext(ctx context.Context) RaftSnapshotAgentConfigOutput {
 	return o
+}
+
+func (o RaftSnapshotAgentConfigOutput) ToOutput(ctx context.Context) pulumix.Output[*RaftSnapshotAgentConfig] {
+	return pulumix.Output[*RaftSnapshotAgentConfig]{
+		OutputState: o.OutputState,
+	}
 }
 
 // AWS access key ID.
@@ -785,6 +882,23 @@ func (o RaftSnapshotAgentConfigOutput) GoogleGcsBucket() pulumi.StringPtrOutput 
 
 // Google service account key in JSON format.
 // The raw value looks like this:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			return nil
+//		})
+//	}
+//
+// ```
 func (o RaftSnapshotAgentConfigOutput) GoogleServiceAccountKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.StringPtrOutput { return v.GoogleServiceAccountKey }).(pulumi.StringPtrOutput)
 }
@@ -850,6 +964,12 @@ func (o RaftSnapshotAgentConfigArrayOutput) ToRaftSnapshotAgentConfigArrayOutput
 	return o
 }
 
+func (o RaftSnapshotAgentConfigArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RaftSnapshotAgentConfig] {
+	return pulumix.Output[[]*RaftSnapshotAgentConfig]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o RaftSnapshotAgentConfigArrayOutput) Index(i pulumi.IntInput) RaftSnapshotAgentConfigOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RaftSnapshotAgentConfig {
 		return vs[0].([]*RaftSnapshotAgentConfig)[vs[1].(int)]
@@ -868,6 +988,12 @@ func (o RaftSnapshotAgentConfigMapOutput) ToRaftSnapshotAgentConfigMapOutput() R
 
 func (o RaftSnapshotAgentConfigMapOutput) ToRaftSnapshotAgentConfigMapOutputWithContext(ctx context.Context) RaftSnapshotAgentConfigMapOutput {
 	return o
+}
+
+func (o RaftSnapshotAgentConfigMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RaftSnapshotAgentConfig] {
+	return pulumix.Output[map[string]*RaftSnapshotAgentConfig]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RaftSnapshotAgentConfigMapOutput) MapIndex(k pulumi.StringInput) RaftSnapshotAgentConfigOutput {

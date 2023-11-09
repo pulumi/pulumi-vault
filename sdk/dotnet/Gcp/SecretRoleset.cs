@@ -19,6 +19,7 @@ namespace Pulumi.Vault.Gcp
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.IO;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -109,7 +110,7 @@ namespace Pulumi.Vault.Gcp
         public Output<string> SecretType { get; private set; } = null!;
 
         /// <summary>
-        /// Email of the service account created by Vault for this Roleset
+        /// Email of the service account created by Vault for this Roleset.
         /// </summary>
         [Output("serviceAccountEmail")]
         public Output<string> ServiceAccountEmail { get; private set; } = null!;
@@ -277,7 +278,7 @@ namespace Pulumi.Vault.Gcp
         public Input<string>? SecretType { get; set; }
 
         /// <summary>
-        /// Email of the service account created by Vault for this Roleset
+        /// Email of the service account created by Vault for this Roleset.
         /// </summary>
         [Input("serviceAccountEmail")]
         public Input<string>? ServiceAccountEmail { get; set; }

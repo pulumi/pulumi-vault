@@ -68,14 +68,14 @@ public final class SecretBackendCaState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The private key part the SSH CA key pair; required if generate_signing_key is false.
+     * Private key part the SSH CA key pair; required if generate_signing_key is false.
      * 
      */
     @Import(name="privateKey")
     private @Nullable Output<String> privateKey;
 
     /**
-     * @return The private key part the SSH CA key pair; required if generate_signing_key is false.
+     * @return Private key part the SSH CA key pair; required if generate_signing_key is false.
      * 
      */
     public Optional<Output<String>> privateKey() {
@@ -195,7 +195,7 @@ public final class SecretBackendCaState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param privateKey The private key part the SSH CA key pair; required if generate_signing_key is false.
+         * @param privateKey Private key part the SSH CA key pair; required if generate_signing_key is false.
          * 
          * @return builder
          * 
@@ -206,7 +206,7 @@ public final class SecretBackendCaState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param privateKey The private key part the SSH CA key pair; required if generate_signing_key is false.
+         * @param privateKey Private key part the SSH CA key pair; required if generate_signing_key is false.
          * 
          * @return builder
          * 

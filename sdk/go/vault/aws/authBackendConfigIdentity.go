@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages an AWS auth backend identity configuration in a Vault server. This configuration defines how Vault interacts
@@ -92,6 +94,7 @@ func NewAuthBackendConfigIdentity(ctx *pulumi.Context,
 		args = &AuthBackendConfigIdentityArgs{}
 	}
 
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AuthBackendConfigIdentity
 	err := ctx.RegisterResource("vault:aws/authBackendConfigIdentity:AuthBackendConfigIdentity", name, args, &resource, opts...)
 	if err != nil {
@@ -229,6 +232,12 @@ func (i *AuthBackendConfigIdentity) ToAuthBackendConfigIdentityOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendConfigIdentityOutput)
 }
 
+func (i *AuthBackendConfigIdentity) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendConfigIdentity] {
+	return pulumix.Output[*AuthBackendConfigIdentity]{
+		OutputState: i.ToAuthBackendConfigIdentityOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AuthBackendConfigIdentityArrayInput is an input type that accepts AuthBackendConfigIdentityArray and AuthBackendConfigIdentityArrayOutput values.
 // You can construct a concrete instance of `AuthBackendConfigIdentityArrayInput` via:
 //
@@ -252,6 +261,12 @@ func (i AuthBackendConfigIdentityArray) ToAuthBackendConfigIdentityArrayOutput()
 
 func (i AuthBackendConfigIdentityArray) ToAuthBackendConfigIdentityArrayOutputWithContext(ctx context.Context) AuthBackendConfigIdentityArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendConfigIdentityArrayOutput)
+}
+
+func (i AuthBackendConfigIdentityArray) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackendConfigIdentity] {
+	return pulumix.Output[[]*AuthBackendConfigIdentity]{
+		OutputState: i.ToAuthBackendConfigIdentityArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AuthBackendConfigIdentityMapInput is an input type that accepts AuthBackendConfigIdentityMap and AuthBackendConfigIdentityMapOutput values.
@@ -279,6 +294,12 @@ func (i AuthBackendConfigIdentityMap) ToAuthBackendConfigIdentityMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendConfigIdentityMapOutput)
 }
 
+func (i AuthBackendConfigIdentityMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackendConfigIdentity] {
+	return pulumix.Output[map[string]*AuthBackendConfigIdentity]{
+		OutputState: i.ToAuthBackendConfigIdentityMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AuthBackendConfigIdentityOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendConfigIdentityOutput) ElementType() reflect.Type {
@@ -291,6 +312,12 @@ func (o AuthBackendConfigIdentityOutput) ToAuthBackendConfigIdentityOutput() Aut
 
 func (o AuthBackendConfigIdentityOutput) ToAuthBackendConfigIdentityOutputWithContext(ctx context.Context) AuthBackendConfigIdentityOutput {
 	return o
+}
+
+func (o AuthBackendConfigIdentityOutput) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendConfigIdentity] {
+	return pulumix.Output[*AuthBackendConfigIdentity]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Unique name of the auth backend to configure.
@@ -344,6 +371,12 @@ func (o AuthBackendConfigIdentityArrayOutput) ToAuthBackendConfigIdentityArrayOu
 	return o
 }
 
+func (o AuthBackendConfigIdentityArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackendConfigIdentity] {
+	return pulumix.Output[[]*AuthBackendConfigIdentity]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AuthBackendConfigIdentityArrayOutput) Index(i pulumi.IntInput) AuthBackendConfigIdentityOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AuthBackendConfigIdentity {
 		return vs[0].([]*AuthBackendConfigIdentity)[vs[1].(int)]
@@ -362,6 +395,12 @@ func (o AuthBackendConfigIdentityMapOutput) ToAuthBackendConfigIdentityMapOutput
 
 func (o AuthBackendConfigIdentityMapOutput) ToAuthBackendConfigIdentityMapOutputWithContext(ctx context.Context) AuthBackendConfigIdentityMapOutput {
 	return o
+}
+
+func (o AuthBackendConfigIdentityMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackendConfigIdentity] {
+	return pulumix.Output[map[string]*AuthBackendConfigIdentity]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuthBackendConfigIdentityMapOutput) MapIndex(k pulumi.StringInput) AuthBackendConfigIdentityOutput {

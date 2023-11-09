@@ -30,6 +30,8 @@ namespace Pulumi.Vault.Database.Inputs
 
         /// <summary>
         /// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        /// 
+        /// Supported list of database secrets engines that can be configured:
         /// </summary>
         public InputMap<object> Data
         {
@@ -44,7 +46,7 @@ namespace Pulumi.Vault.Database.Inputs
         private Input<string>? _password;
 
         /// <summary>
-        /// The password to be used in the connection.
+        /// The root credential password used in the connection URL.
         /// </summary>
         public Input<string>? Password
         {
@@ -82,7 +84,8 @@ namespace Pulumi.Vault.Database.Inputs
         }
 
         /// <summary>
-        /// The configuration endpoint for the ElastiCache cluster to connect to.
+        /// The URL for Elasticsearch's API. https requires certificate
+        /// by trusted CA if used.
         /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;
@@ -91,7 +94,7 @@ namespace Pulumi.Vault.Database.Inputs
         private Input<string>? _username;
 
         /// <summary>
-        /// The username to be used in the connection (the account admin level).
+        /// The root credential username used in the connection URL.
         /// </summary>
         public Input<string>? Username
         {

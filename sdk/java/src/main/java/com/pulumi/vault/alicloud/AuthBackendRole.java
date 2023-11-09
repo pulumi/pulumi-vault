@@ -88,6 +88,8 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * Path to the mounted AliCloud auth backend.
      * Defaults to `alicloud`
      * 
+     * For more details on the usage of each argument consult the [Vault AliCloud API documentation](https://www.vaultproject.io/api-docs/auth/alicloud).
+     * 
      */
     @Export(name="backend", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backend;
@@ -95,6 +97,8 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * @return Path to the mounted AliCloud auth backend.
      * Defaults to `alicloud`
+     * 
+     * For more details on the usage of each argument consult the [Vault AliCloud API documentation](https://www.vaultproject.io/api-docs/auth/alicloud).
      * 
      */
     public Output<Optional<String>> backend() {

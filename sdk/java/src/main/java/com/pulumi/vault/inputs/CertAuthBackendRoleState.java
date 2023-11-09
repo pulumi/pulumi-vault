@@ -230,15 +230,15 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * - If enabled, validate certificates&#39;
-     *   revocation status using OCSP. Requires Vault version 1.13+.
+     * If enabled, validate certificates&#39;
+     * revocation status using OCSP. Requires Vault version 1.13+.
      * 
      */
     @Import(name="ocspEnabled")
     private @Nullable Output<Boolean> ocspEnabled;
 
     /**
-     * @return - If enabled, validate certificates&#39;
+     * @return If enabled, validate certificates&#39;
      * revocation status using OCSP. Requires Vault version 1.13+.
      * 
      */
@@ -247,17 +247,17 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * - If true and an OCSP response cannot
-     *   be fetched or is of an unknown status, the login will proceed as if the
-     *   certificate has not been revoked.
-     *   Requires Vault version 1.13+.
+     * If true and an OCSP response cannot
+     * be fetched or is of an unknown status, the login will proceed as if the
+     * certificate has not been revoked.
+     * Requires Vault version 1.13+.
      * 
      */
     @Import(name="ocspFailOpen")
     private @Nullable Output<Boolean> ocspFailOpen;
 
     /**
-     * @return - If true and an OCSP response cannot
+     * @return If true and an OCSP response cannot
      * be fetched or is of an unknown status, the login will proceed as if the
      * certificate has not been revoked.
      * Requires Vault version 1.13+.
@@ -268,17 +268,17 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * - If set to true, rather than
-     *   accepting the first successful OCSP response, query all servers and consider
-     *   the certificate valid only if all servers agree.
-     *   Requires Vault version 1.13+.
+     * If set to true, rather than
+     * accepting the first successful OCSP response, query all servers and consider
+     * the certificate valid only if all servers agree.
+     * Requires Vault version 1.13+.
      * 
      */
     @Import(name="ocspQueryAllServers")
     private @Nullable Output<Boolean> ocspQueryAllServers;
 
     /**
-     * @return - If set to true, rather than
+     * @return If set to true, rather than
      * accepting the first successful OCSP response, query all servers and consider
      * the certificate valid only if all servers agree.
      * Requires Vault version 1.13+.
@@ -479,6 +479,8 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
      * `default-service` and `default-batch` which specify the type to return unless the client
      * requests a different type at generation time.
      * 
+     * For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
+     * 
      */
     @Import(name="tokenType")
     private @Nullable Output<String> tokenType;
@@ -489,6 +491,8 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
      * `service` tokens). For token store roles, there are two additional possibilities:
      * `default-service` and `default-batch` which specify the type to return unless the client
      * requests a different type at generation time.
+     * 
+     * For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
      * 
      */
     public Optional<Output<String>> tokenType() {
@@ -908,7 +912,7 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param ocspEnabled - If enabled, validate certificates&#39;
+         * @param ocspEnabled If enabled, validate certificates&#39;
          * revocation status using OCSP. Requires Vault version 1.13+.
          * 
          * @return builder
@@ -920,7 +924,7 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param ocspEnabled - If enabled, validate certificates&#39;
+         * @param ocspEnabled If enabled, validate certificates&#39;
          * revocation status using OCSP. Requires Vault version 1.13+.
          * 
          * @return builder
@@ -931,7 +935,7 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param ocspFailOpen - If true and an OCSP response cannot
+         * @param ocspFailOpen If true and an OCSP response cannot
          * be fetched or is of an unknown status, the login will proceed as if the
          * certificate has not been revoked.
          * Requires Vault version 1.13+.
@@ -945,7 +949,7 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param ocspFailOpen - If true and an OCSP response cannot
+         * @param ocspFailOpen If true and an OCSP response cannot
          * be fetched or is of an unknown status, the login will proceed as if the
          * certificate has not been revoked.
          * Requires Vault version 1.13+.
@@ -958,7 +962,7 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param ocspQueryAllServers - If set to true, rather than
+         * @param ocspQueryAllServers If set to true, rather than
          * accepting the first successful OCSP response, query all servers and consider
          * the certificate valid only if all servers agree.
          * Requires Vault version 1.13+.
@@ -972,7 +976,7 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param ocspQueryAllServers - If set to true, rather than
+         * @param ocspQueryAllServers If set to true, rather than
          * accepting the first successful OCSP response, query all servers and consider
          * the certificate valid only if all servers agree.
          * Requires Vault version 1.13+.
@@ -1282,6 +1286,8 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
          * `default-service` and `default-batch` which specify the type to return unless the client
          * requests a different type at generation time.
          * 
+         * For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
+         * 
          * @return builder
          * 
          */
@@ -1296,6 +1302,8 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
          * `service` tokens). For token store roles, there are two additional possibilities:
          * `default-service` and `default-batch` which specify the type to return unless the client
          * requests a different type at generation time.
+         * 
+         * For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
          * 
          * @return builder
          * 

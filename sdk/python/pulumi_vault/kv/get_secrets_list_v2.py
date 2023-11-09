@@ -156,12 +156,12 @@ def get_secrets_list_v2(mount: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('vault:kv/getSecretsListV2:getSecretsListV2', __args__, opts=opts, typ=GetSecretsListV2Result).value
 
     return AwaitableGetSecretsListV2Result(
-        id=__ret__.id,
-        mount=__ret__.mount,
-        name=__ret__.name,
-        names=__ret__.names,
-        namespace=__ret__.namespace,
-        path=__ret__.path)
+        id=pulumi.get(__ret__, 'id'),
+        mount=pulumi.get(__ret__, 'mount'),
+        name=pulumi.get(__ret__, 'name'),
+        names=pulumi.get(__ret__, 'names'),
+        namespace=pulumi.get(__ret__, 'namespace'),
+        path=pulumi.get(__ret__, 'path'))
 
 
 @_utilities.lift_output_func(get_secrets_list_v2)

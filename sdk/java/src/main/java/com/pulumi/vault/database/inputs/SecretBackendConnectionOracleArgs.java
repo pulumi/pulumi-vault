@@ -17,9 +17,9 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
     public static final SecretBackendConnectionOracleArgs Empty = new SecretBackendConnectionOracleArgs();
 
     /**
-     * Specifies the Redshift DSN. See
+     * A URL containing connection information. See
      * the [Vault
-     * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+     * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
      * for an example.
      * 
      */
@@ -27,9 +27,9 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
     private @Nullable Output<String> connectionUrl;
 
     /**
-     * @return Specifies the Redshift DSN. See
+     * @return A URL containing connection information. See
      * the [Vault
-     * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+     * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
      * for an example.
      * 
      */
@@ -38,14 +38,16 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
     }
 
     /**
-     * The maximum amount of time a connection may be reused.
+     * The maximum number of seconds to keep
+     * a connection alive for.
      * 
      */
     @Import(name="maxConnectionLifetime")
     private @Nullable Output<Integer> maxConnectionLifetime;
 
     /**
-     * @return The maximum amount of time a connection may be reused.
+     * @return The maximum number of seconds to keep
+     * a connection alive for.
      * 
      */
     public Optional<Output<Integer>> maxConnectionLifetime() {
@@ -54,7 +56,7 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
 
     /**
      * The maximum number of idle connections to
-     * the database.
+     * maintain.
      * 
      */
     @Import(name="maxIdleConnections")
@@ -62,7 +64,7 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
 
     /**
      * @return The maximum number of idle connections to
-     * the database.
+     * maintain.
      * 
      */
     public Optional<Output<Integer>> maxIdleConnections() {
@@ -71,7 +73,7 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
 
     /**
      * The maximum number of open connections to
-     * the database.
+     * use.
      * 
      */
     @Import(name="maxOpenConnections")
@@ -79,7 +81,7 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
 
     /**
      * @return The maximum number of open connections to
-     * the database.
+     * use.
      * 
      */
     public Optional<Output<Integer>> maxOpenConnections() {
@@ -87,14 +89,14 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
     }
 
     /**
-     * The root credential password used in the connection URL.
+     * The password to authenticate with.
      * 
      */
     @Import(name="password")
     private @Nullable Output<String> password;
 
     /**
-     * @return The root credential password used in the connection URL.
+     * @return The password to authenticate with.
      * 
      */
     public Optional<Output<String>> password() {
@@ -102,14 +104,14 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
     }
 
     /**
-     * The root credential username used in the connection URL.
+     * The username to authenticate with.
      * 
      */
     @Import(name="username")
     private @Nullable Output<String> username;
 
     /**
-     * @return The root credential username used in the connection URL.
+     * @return The username to authenticate with.
      * 
      */
     public Optional<Output<String>> username() {
@@ -117,14 +119,14 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
     }
 
     /**
-     * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * Template describing how dynamic usernames are generated.
      * 
      */
     @Import(name="usernameTemplate")
     private @Nullable Output<String> usernameTemplate;
 
     /**
-     * @return - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * @return Template describing how dynamic usernames are generated.
      * 
      */
     public Optional<Output<String>> usernameTemplate() {
@@ -162,9 +164,9 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
         }
 
         /**
-         * @param connectionUrl Specifies the Redshift DSN. See
+         * @param connectionUrl A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
          * for an example.
          * 
          * @return builder
@@ -176,9 +178,9 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
         }
 
         /**
-         * @param connectionUrl Specifies the Redshift DSN. See
+         * @param connectionUrl A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
          * for an example.
          * 
          * @return builder
@@ -189,7 +191,8 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
         }
 
         /**
-         * @param maxConnectionLifetime The maximum amount of time a connection may be reused.
+         * @param maxConnectionLifetime The maximum number of seconds to keep
+         * a connection alive for.
          * 
          * @return builder
          * 
@@ -200,7 +203,8 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
         }
 
         /**
-         * @param maxConnectionLifetime The maximum amount of time a connection may be reused.
+         * @param maxConnectionLifetime The maximum number of seconds to keep
+         * a connection alive for.
          * 
          * @return builder
          * 
@@ -211,7 +215,7 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
 
         /**
          * @param maxIdleConnections The maximum number of idle connections to
-         * the database.
+         * maintain.
          * 
          * @return builder
          * 
@@ -223,7 +227,7 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
 
         /**
          * @param maxIdleConnections The maximum number of idle connections to
-         * the database.
+         * maintain.
          * 
          * @return builder
          * 
@@ -234,7 +238,7 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
 
         /**
          * @param maxOpenConnections The maximum number of open connections to
-         * the database.
+         * use.
          * 
          * @return builder
          * 
@@ -246,7 +250,7 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
 
         /**
          * @param maxOpenConnections The maximum number of open connections to
-         * the database.
+         * use.
          * 
          * @return builder
          * 
@@ -256,7 +260,7 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
         }
 
         /**
-         * @param password The root credential password used in the connection URL.
+         * @param password The password to authenticate with.
          * 
          * @return builder
          * 
@@ -267,7 +271,7 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
         }
 
         /**
-         * @param password The root credential password used in the connection URL.
+         * @param password The password to authenticate with.
          * 
          * @return builder
          * 
@@ -277,7 +281,7 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
         }
 
         /**
-         * @param username The root credential username used in the connection URL.
+         * @param username The username to authenticate with.
          * 
          * @return builder
          * 
@@ -288,7 +292,7 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
         }
 
         /**
-         * @param username The root credential username used in the connection URL.
+         * @param username The username to authenticate with.
          * 
          * @return builder
          * 
@@ -298,7 +302,7 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
         }
 
         /**
-         * @param usernameTemplate - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * @param usernameTemplate Template describing how dynamic usernames are generated.
          * 
          * @return builder
          * 
@@ -309,7 +313,7 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
         }
 
         /**
-         * @param usernameTemplate - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * @param usernameTemplate Template describing how dynamic usernames are generated.
          * 
          * @return builder
          * 

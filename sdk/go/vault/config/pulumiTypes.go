@@ -7,8 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
+
+var _ = internal.GetEnvOrDefault
 
 type AuthLogin struct {
 	Method           *string           `pulumi:"method"`
@@ -49,6 +53,12 @@ func (i AuthLoginArgs) ToAuthLoginOutputWithContext(ctx context.Context) AuthLog
 	return pulumi.ToOutputWithContext(ctx, i).(AuthLoginOutput)
 }
 
+func (i AuthLoginArgs) ToOutput(ctx context.Context) pulumix.Output[AuthLogin] {
+	return pulumix.Output[AuthLogin]{
+		OutputState: i.ToAuthLoginOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AuthLoginOutput struct{ *pulumi.OutputState }
 
 func (AuthLoginOutput) ElementType() reflect.Type {
@@ -61,6 +71,12 @@ func (o AuthLoginOutput) ToAuthLoginOutput() AuthLoginOutput {
 
 func (o AuthLoginOutput) ToAuthLoginOutputWithContext(ctx context.Context) AuthLoginOutput {
 	return o
+}
+
+func (o AuthLoginOutput) ToOutput(ctx context.Context) pulumix.Output[AuthLogin] {
+	return pulumix.Output[AuthLogin]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuthLoginOutput) Method() pulumi.StringPtrOutput {
@@ -144,6 +160,12 @@ func (i AuthLoginAwsArgs) ToAuthLoginAwsOutputWithContext(ctx context.Context) A
 	return pulumi.ToOutputWithContext(ctx, i).(AuthLoginAwsOutput)
 }
 
+func (i AuthLoginAwsArgs) ToOutput(ctx context.Context) pulumix.Output[AuthLoginAws] {
+	return pulumix.Output[AuthLoginAws]{
+		OutputState: i.ToAuthLoginAwsOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AuthLoginAwsOutput struct{ *pulumi.OutputState }
 
 func (AuthLoginAwsOutput) ElementType() reflect.Type {
@@ -156,6 +178,12 @@ func (o AuthLoginAwsOutput) ToAuthLoginAwsOutput() AuthLoginAwsOutput {
 
 func (o AuthLoginAwsOutput) ToAuthLoginAwsOutputWithContext(ctx context.Context) AuthLoginAwsOutput {
 	return o
+}
+
+func (o AuthLoginAwsOutput) ToOutput(ctx context.Context) pulumix.Output[AuthLoginAws] {
+	return pulumix.Output[AuthLoginAws]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuthLoginAwsOutput) AwsAccessKeyId() pulumi.StringPtrOutput {
@@ -275,6 +303,12 @@ func (i AuthLoginAzureArgs) ToAuthLoginAzureOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(AuthLoginAzureOutput)
 }
 
+func (i AuthLoginAzureArgs) ToOutput(ctx context.Context) pulumix.Output[AuthLoginAzure] {
+	return pulumix.Output[AuthLoginAzure]{
+		OutputState: i.ToAuthLoginAzureOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AuthLoginAzureOutput struct{ *pulumi.OutputState }
 
 func (AuthLoginAzureOutput) ElementType() reflect.Type {
@@ -287,6 +321,12 @@ func (o AuthLoginAzureOutput) ToAuthLoginAzureOutput() AuthLoginAzureOutput {
 
 func (o AuthLoginAzureOutput) ToAuthLoginAzureOutputWithContext(ctx context.Context) AuthLoginAzureOutput {
 	return o
+}
+
+func (o AuthLoginAzureOutput) ToOutput(ctx context.Context) pulumix.Output[AuthLoginAzure] {
+	return pulumix.Output[AuthLoginAzure]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuthLoginAzureOutput) ClientId() pulumi.StringPtrOutput {
@@ -378,6 +418,12 @@ func (i AuthLoginCertArgs) ToAuthLoginCertOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(AuthLoginCertOutput)
 }
 
+func (i AuthLoginCertArgs) ToOutput(ctx context.Context) pulumix.Output[AuthLoginCert] {
+	return pulumix.Output[AuthLoginCert]{
+		OutputState: i.ToAuthLoginCertOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AuthLoginCertOutput struct{ *pulumi.OutputState }
 
 func (AuthLoginCertOutput) ElementType() reflect.Type {
@@ -390,6 +436,12 @@ func (o AuthLoginCertOutput) ToAuthLoginCertOutput() AuthLoginCertOutput {
 
 func (o AuthLoginCertOutput) ToAuthLoginCertOutputWithContext(ctx context.Context) AuthLoginCertOutput {
 	return o
+}
+
+func (o AuthLoginCertOutput) ToOutput(ctx context.Context) pulumix.Output[AuthLoginCert] {
+	return pulumix.Output[AuthLoginCert]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuthLoginCertOutput) CertFile() pulumi.StringOutput {
@@ -459,6 +511,12 @@ func (i AuthLoginGcpArgs) ToAuthLoginGcpOutputWithContext(ctx context.Context) A
 	return pulumi.ToOutputWithContext(ctx, i).(AuthLoginGcpOutput)
 }
 
+func (i AuthLoginGcpArgs) ToOutput(ctx context.Context) pulumix.Output[AuthLoginGcp] {
+	return pulumix.Output[AuthLoginGcp]{
+		OutputState: i.ToAuthLoginGcpOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AuthLoginGcpOutput struct{ *pulumi.OutputState }
 
 func (AuthLoginGcpOutput) ElementType() reflect.Type {
@@ -471,6 +529,12 @@ func (o AuthLoginGcpOutput) ToAuthLoginGcpOutput() AuthLoginGcpOutput {
 
 func (o AuthLoginGcpOutput) ToAuthLoginGcpOutputWithContext(ctx context.Context) AuthLoginGcpOutput {
 	return o
+}
+
+func (o AuthLoginGcpOutput) ToOutput(ctx context.Context) pulumix.Output[AuthLoginGcp] {
+	return pulumix.Output[AuthLoginGcp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuthLoginGcpOutput) Credentials() pulumi.StringPtrOutput {
@@ -540,6 +604,12 @@ func (i AuthLoginJwtArgs) ToAuthLoginJwtOutputWithContext(ctx context.Context) A
 	return pulumi.ToOutputWithContext(ctx, i).(AuthLoginJwtOutput)
 }
 
+func (i AuthLoginJwtArgs) ToOutput(ctx context.Context) pulumix.Output[AuthLoginJwt] {
+	return pulumix.Output[AuthLoginJwt]{
+		OutputState: i.ToAuthLoginJwtOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AuthLoginJwtOutput struct{ *pulumi.OutputState }
 
 func (AuthLoginJwtOutput) ElementType() reflect.Type {
@@ -552,6 +622,12 @@ func (o AuthLoginJwtOutput) ToAuthLoginJwtOutput() AuthLoginJwtOutput {
 
 func (o AuthLoginJwtOutput) ToAuthLoginJwtOutputWithContext(ctx context.Context) AuthLoginJwtOutput {
 	return o
+}
+
+func (o AuthLoginJwtOutput) ToOutput(ctx context.Context) pulumix.Output[AuthLoginJwt] {
+	return pulumix.Output[AuthLoginJwt]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuthLoginJwtOutput) Jwt() pulumi.StringOutput {
@@ -625,6 +701,12 @@ func (i AuthLoginKerberosArgs) ToAuthLoginKerberosOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(AuthLoginKerberosOutput)
 }
 
+func (i AuthLoginKerberosArgs) ToOutput(ctx context.Context) pulumix.Output[AuthLoginKerberos] {
+	return pulumix.Output[AuthLoginKerberos]{
+		OutputState: i.ToAuthLoginKerberosOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AuthLoginKerberosOutput struct{ *pulumi.OutputState }
 
 func (AuthLoginKerberosOutput) ElementType() reflect.Type {
@@ -637,6 +719,12 @@ func (o AuthLoginKerberosOutput) ToAuthLoginKerberosOutput() AuthLoginKerberosOu
 
 func (o AuthLoginKerberosOutput) ToAuthLoginKerberosOutputWithContext(ctx context.Context) AuthLoginKerberosOutput {
 	return o
+}
+
+func (o AuthLoginKerberosOutput) ToOutput(ctx context.Context) pulumix.Output[AuthLoginKerberos] {
+	return pulumix.Output[AuthLoginKerberos]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuthLoginKerberosOutput) DisableFastNegotiation() pulumi.BoolPtrOutput {
@@ -722,6 +810,12 @@ func (i AuthLoginOciArgs) ToAuthLoginOciOutputWithContext(ctx context.Context) A
 	return pulumi.ToOutputWithContext(ctx, i).(AuthLoginOciOutput)
 }
 
+func (i AuthLoginOciArgs) ToOutput(ctx context.Context) pulumix.Output[AuthLoginOci] {
+	return pulumix.Output[AuthLoginOci]{
+		OutputState: i.ToAuthLoginOciOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AuthLoginOciOutput struct{ *pulumi.OutputState }
 
 func (AuthLoginOciOutput) ElementType() reflect.Type {
@@ -734,6 +828,12 @@ func (o AuthLoginOciOutput) ToAuthLoginOciOutput() AuthLoginOciOutput {
 
 func (o AuthLoginOciOutput) ToAuthLoginOciOutputWithContext(ctx context.Context) AuthLoginOciOutput {
 	return o
+}
+
+func (o AuthLoginOciOutput) ToOutput(ctx context.Context) pulumix.Output[AuthLoginOci] {
+	return pulumix.Output[AuthLoginOci]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuthLoginOciOutput) AuthType() pulumi.StringOutput {
@@ -797,6 +897,12 @@ func (i AuthLoginOidcArgs) ToAuthLoginOidcOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(AuthLoginOidcOutput)
 }
 
+func (i AuthLoginOidcArgs) ToOutput(ctx context.Context) pulumix.Output[AuthLoginOidc] {
+	return pulumix.Output[AuthLoginOidc]{
+		OutputState: i.ToAuthLoginOidcOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AuthLoginOidcOutput struct{ *pulumi.OutputState }
 
 func (AuthLoginOidcOutput) ElementType() reflect.Type {
@@ -809,6 +915,12 @@ func (o AuthLoginOidcOutput) ToAuthLoginOidcOutput() AuthLoginOidcOutput {
 
 func (o AuthLoginOidcOutput) ToAuthLoginOidcOutputWithContext(ctx context.Context) AuthLoginOidcOutput {
 	return o
+}
+
+func (o AuthLoginOidcOutput) ToOutput(ctx context.Context) pulumix.Output[AuthLoginOidc] {
+	return pulumix.Output[AuthLoginOidc]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuthLoginOidcOutput) CallbackAddress() pulumi.StringPtrOutput {
@@ -874,6 +986,12 @@ func (i AuthLoginRadiusArgs) ToAuthLoginRadiusOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(AuthLoginRadiusOutput)
 }
 
+func (i AuthLoginRadiusArgs) ToOutput(ctx context.Context) pulumix.Output[AuthLoginRadius] {
+	return pulumix.Output[AuthLoginRadius]{
+		OutputState: i.ToAuthLoginRadiusOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AuthLoginRadiusOutput struct{ *pulumi.OutputState }
 
 func (AuthLoginRadiusOutput) ElementType() reflect.Type {
@@ -886,6 +1004,12 @@ func (o AuthLoginRadiusOutput) ToAuthLoginRadiusOutput() AuthLoginRadiusOutput {
 
 func (o AuthLoginRadiusOutput) ToAuthLoginRadiusOutputWithContext(ctx context.Context) AuthLoginRadiusOutput {
 	return o
+}
+
+func (o AuthLoginRadiusOutput) ToOutput(ctx context.Context) pulumix.Output[AuthLoginRadius] {
+	return pulumix.Output[AuthLoginRadius]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuthLoginRadiusOutput) Mount() pulumi.StringPtrOutput {
@@ -943,6 +1067,12 @@ func (i AuthLoginTokenFileArgs) ToAuthLoginTokenFileOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(AuthLoginTokenFileOutput)
 }
 
+func (i AuthLoginTokenFileArgs) ToOutput(ctx context.Context) pulumix.Output[AuthLoginTokenFile] {
+	return pulumix.Output[AuthLoginTokenFile]{
+		OutputState: i.ToAuthLoginTokenFileOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AuthLoginTokenFileOutput struct{ *pulumi.OutputState }
 
 func (AuthLoginTokenFileOutput) ElementType() reflect.Type {
@@ -955,6 +1085,12 @@ func (o AuthLoginTokenFileOutput) ToAuthLoginTokenFileOutput() AuthLoginTokenFil
 
 func (o AuthLoginTokenFileOutput) ToAuthLoginTokenFileOutputWithContext(ctx context.Context) AuthLoginTokenFileOutput {
 	return o
+}
+
+func (o AuthLoginTokenFileOutput) ToOutput(ctx context.Context) pulumix.Output[AuthLoginTokenFile] {
+	return pulumix.Output[AuthLoginTokenFile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuthLoginTokenFileOutput) Filename() pulumi.StringOutput {
@@ -1010,6 +1146,12 @@ func (i AuthLoginUserpassArgs) ToAuthLoginUserpassOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(AuthLoginUserpassOutput)
 }
 
+func (i AuthLoginUserpassArgs) ToOutput(ctx context.Context) pulumix.Output[AuthLoginUserpass] {
+	return pulumix.Output[AuthLoginUserpass]{
+		OutputState: i.ToAuthLoginUserpassOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AuthLoginUserpassOutput struct{ *pulumi.OutputState }
 
 func (AuthLoginUserpassOutput) ElementType() reflect.Type {
@@ -1022,6 +1164,12 @@ func (o AuthLoginUserpassOutput) ToAuthLoginUserpassOutput() AuthLoginUserpassOu
 
 func (o AuthLoginUserpassOutput) ToAuthLoginUserpassOutputWithContext(ctx context.Context) AuthLoginUserpassOutput {
 	return o
+}
+
+func (o AuthLoginUserpassOutput) ToOutput(ctx context.Context) pulumix.Output[AuthLoginUserpass] {
+	return pulumix.Output[AuthLoginUserpass]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuthLoginUserpassOutput) Mount() pulumi.StringPtrOutput {
@@ -1081,6 +1229,12 @@ func (i ClientAuthArgs) ToClientAuthOutputWithContext(ctx context.Context) Clien
 	return pulumi.ToOutputWithContext(ctx, i).(ClientAuthOutput)
 }
 
+func (i ClientAuthArgs) ToOutput(ctx context.Context) pulumix.Output[ClientAuth] {
+	return pulumix.Output[ClientAuth]{
+		OutputState: i.ToClientAuthOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ClientAuthOutput struct{ *pulumi.OutputState }
 
 func (ClientAuthOutput) ElementType() reflect.Type {
@@ -1093,6 +1247,12 @@ func (o ClientAuthOutput) ToClientAuthOutput() ClientAuthOutput {
 
 func (o ClientAuthOutput) ToClientAuthOutputWithContext(ctx context.Context) ClientAuthOutput {
 	return o
+}
+
+func (o ClientAuthOutput) ToOutput(ctx context.Context) pulumix.Output[ClientAuth] {
+	return pulumix.Output[ClientAuth]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ClientAuthOutput) CertFile() pulumi.StringOutput {
@@ -1136,6 +1296,12 @@ func (i HeadersArgs) ToHeadersOutputWithContext(ctx context.Context) HeadersOutp
 	return pulumi.ToOutputWithContext(ctx, i).(HeadersOutput)
 }
 
+func (i HeadersArgs) ToOutput(ctx context.Context) pulumix.Output[Headers] {
+	return pulumix.Output[Headers]{
+		OutputState: i.ToHeadersOutputWithContext(ctx).OutputState,
+	}
+}
+
 // HeadersArrayInput is an input type that accepts HeadersArray and HeadersArrayOutput values.
 // You can construct a concrete instance of `HeadersArrayInput` via:
 //
@@ -1161,6 +1327,12 @@ func (i HeadersArray) ToHeadersArrayOutputWithContext(ctx context.Context) Heade
 	return pulumi.ToOutputWithContext(ctx, i).(HeadersArrayOutput)
 }
 
+func (i HeadersArray) ToOutput(ctx context.Context) pulumix.Output[[]Headers] {
+	return pulumix.Output[[]Headers]{
+		OutputState: i.ToHeadersArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type HeadersOutput struct{ *pulumi.OutputState }
 
 func (HeadersOutput) ElementType() reflect.Type {
@@ -1173,6 +1345,12 @@ func (o HeadersOutput) ToHeadersOutput() HeadersOutput {
 
 func (o HeadersOutput) ToHeadersOutputWithContext(ctx context.Context) HeadersOutput {
 	return o
+}
+
+func (o HeadersOutput) ToOutput(ctx context.Context) pulumix.Output[Headers] {
+	return pulumix.Output[Headers]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o HeadersOutput) Name() pulumi.StringOutput {
@@ -1195,6 +1373,12 @@ func (o HeadersArrayOutput) ToHeadersArrayOutput() HeadersArrayOutput {
 
 func (o HeadersArrayOutput) ToHeadersArrayOutputWithContext(ctx context.Context) HeadersArrayOutput {
 	return o
+}
+
+func (o HeadersArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]Headers] {
+	return pulumix.Output[[]Headers]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o HeadersArrayOutput) Index(i pulumi.IntInput) HeadersOutput {

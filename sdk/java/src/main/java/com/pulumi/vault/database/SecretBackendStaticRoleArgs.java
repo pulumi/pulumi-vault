@@ -104,6 +104,9 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
      * A cron-style string that will define the schedule on which rotations should occur.
      * Mutually exclusive with `rotation_period`.
      * 
+     * **Warning**: The `rotation_period` and `rotation_schedule` fields are
+     * mutually exclusive. One of them must be set but not both.
+     * 
      */
     @Import(name="rotationSchedule")
     private @Nullable Output<String> rotationSchedule;
@@ -111,6 +114,9 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
     /**
      * @return A cron-style string that will define the schedule on which rotations should occur.
      * Mutually exclusive with `rotation_period`.
+     * 
+     * **Warning**: The `rotation_period` and `rotation_schedule` fields are
+     * mutually exclusive. One of them must be set but not both.
      * 
      */
     public Optional<Output<String>> rotationSchedule() {
@@ -313,6 +319,9 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
          * @param rotationSchedule A cron-style string that will define the schedule on which rotations should occur.
          * Mutually exclusive with `rotation_period`.
          * 
+         * **Warning**: The `rotation_period` and `rotation_schedule` fields are
+         * mutually exclusive. One of them must be set but not both.
+         * 
          * @return builder
          * 
          */
@@ -324,6 +333,9 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
         /**
          * @param rotationSchedule A cron-style string that will define the schedule on which rotations should occur.
          * Mutually exclusive with `rotation_period`.
+         * 
+         * **Warning**: The `rotation_period` and `rotation_schedule` fields are
+         * mutually exclusive. One of them must be set but not both.
          * 
          * @return builder
          * 

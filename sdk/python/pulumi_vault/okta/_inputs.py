@@ -21,7 +21,7 @@ class AuthBackendGroupArgs:
                  policies: pulumi.Input[Sequence[pulumi.Input[str]]]):
         """
         :param pulumi.Input[str] group_name: Name of the group within the Okta
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of Vault policies to associate with this user
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: Vault policies to associate with this group
         """
         pulumi.set(__self__, "group_name", group_name)
         pulumi.set(__self__, "policies", policies)
@@ -42,7 +42,7 @@ class AuthBackendGroupArgs:
     @pulumi.getter
     def policies(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        List of Vault policies to associate with this user
+        Vault policies to associate with this group
         """
         return pulumi.get(self, "policies")
 
@@ -60,7 +60,7 @@ class AuthBackendUserArgs:
         """
         :param pulumi.Input[str] username: Name of the user within Okta
         :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: List of Okta groups to associate with this user
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of Vault policies to associate with this user
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: Vault policies to associate with this group
         """
         pulumi.set(__self__, "username", username)
         if groups is not None:
@@ -96,7 +96,7 @@ class AuthBackendUserArgs:
     @pulumi.getter
     def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        List of Vault policies to associate with this user
+        Vault policies to associate with this group
         """
         return pulumi.get(self, "policies")
 

@@ -11,17 +11,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const example = pulumi.output(vault.getAuthBackend({
+ * const example = vault.getAuthBackend({
  *     path: "userpass",
- * }));
+ * });
  * ```
  */
 export function getAuthBackend(args: GetAuthBackendArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthBackendResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:index/getAuthBackend:getAuthBackend", {
         "namespace": args.namespace,
         "path": args.path,
@@ -84,9 +81,20 @@ export interface GetAuthBackendResult {
      */
     readonly type: string;
 }
-
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const example = vault.getAuthBackend({
+ *     path: "userpass",
+ * });
+ * ```
+ */
 export function getAuthBackendOutput(args: GetAuthBackendOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthBackendResult> {
-    return pulumi.output(args).apply(a => getAuthBackend(a, opts))
+    return pulumi.output(args).apply((a: any) => getAuthBackend(a, opts))
 }
 
 /**

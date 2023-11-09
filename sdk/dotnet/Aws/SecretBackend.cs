@@ -84,14 +84,13 @@ namespace Pulumi.Vault.Aws
         public Output<string?> Path { get; private set; } = null!;
 
         /// <summary>
-        /// The AWS region for API calls. Defaults to `us-east-1`.
+        /// The AWS region to make API calls against. Defaults to us-east-1.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The AWS Secret Key this backend should use to
-        /// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+        /// The AWS Secret Access Key to use when generating new credentials.
         /// </summary>
         [Output("secretKey")]
         public Output<string?> SecretKey { get; private set; } = null!;
@@ -232,7 +231,7 @@ namespace Pulumi.Vault.Aws
         public Input<string>? Path { get; set; }
 
         /// <summary>
-        /// The AWS region for API calls. Defaults to `us-east-1`.
+        /// The AWS region to make API calls against. Defaults to us-east-1.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -241,8 +240,7 @@ namespace Pulumi.Vault.Aws
         private Input<string>? _secretKey;
 
         /// <summary>
-        /// The AWS Secret Key this backend should use to
-        /// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+        /// The AWS Secret Access Key to use when generating new credentials.
         /// </summary>
         public Input<string>? SecretKey
         {
@@ -347,7 +345,7 @@ namespace Pulumi.Vault.Aws
         public Input<string>? Path { get; set; }
 
         /// <summary>
-        /// The AWS region for API calls. Defaults to `us-east-1`.
+        /// The AWS region to make API calls against. Defaults to us-east-1.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -356,8 +354,7 @@ namespace Pulumi.Vault.Aws
         private Input<string>? _secretKey;
 
         /// <summary>
-        /// The AWS Secret Key this backend should use to
-        /// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+        /// The AWS Secret Access Key to use when generating new credentials.
         /// </summary>
         public Input<string>? SecretKey
         {

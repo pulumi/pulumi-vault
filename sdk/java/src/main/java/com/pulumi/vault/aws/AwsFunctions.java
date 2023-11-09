@@ -10,7 +10,10 @@ import com.pulumi.deployment.InvokeOptions;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.aws.inputs.GetAccessCredentialsArgs;
 import com.pulumi.vault.aws.inputs.GetAccessCredentialsPlainArgs;
+import com.pulumi.vault.aws.inputs.GetStaticAccessCredentialsArgs;
+import com.pulumi.vault.aws.inputs.GetStaticAccessCredentialsPlainArgs;
 import com.pulumi.vault.aws.outputs.GetAccessCredentialsResult;
+import com.pulumi.vault.aws.outputs.GetStaticAccessCredentialsResult;
 import java.util.concurrent.CompletableFuture;
 
 public final class AwsFunctions {
@@ -28,7 +31,7 @@ public final class AwsFunctions {
      * import com.pulumi.vault.aws.SecretBackendRole;
      * import com.pulumi.vault.aws.SecretBackendRoleArgs;
      * import com.pulumi.vault.aws.AwsFunctions;
-     * import com.pulumi.vault.ad.inputs.GetAccessCredentialsArgs;
+     * import com.pulumi.vault.aws.inputs.GetAccessCredentialsArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -90,7 +93,7 @@ public final class AwsFunctions {
      * import com.pulumi.vault.aws.SecretBackendRole;
      * import com.pulumi.vault.aws.SecretBackendRoleArgs;
      * import com.pulumi.vault.aws.AwsFunctions;
-     * import com.pulumi.vault.ad.inputs.GetAccessCredentialsArgs;
+     * import com.pulumi.vault.aws.inputs.GetAccessCredentialsArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -152,7 +155,7 @@ public final class AwsFunctions {
      * import com.pulumi.vault.aws.SecretBackendRole;
      * import com.pulumi.vault.aws.SecretBackendRoleArgs;
      * import com.pulumi.vault.aws.AwsFunctions;
-     * import com.pulumi.vault.ad.inputs.GetAccessCredentialsArgs;
+     * import com.pulumi.vault.aws.inputs.GetAccessCredentialsArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -214,7 +217,7 @@ public final class AwsFunctions {
      * import com.pulumi.vault.aws.SecretBackendRole;
      * import com.pulumi.vault.aws.SecretBackendRoleArgs;
      * import com.pulumi.vault.aws.AwsFunctions;
-     * import com.pulumi.vault.ad.inputs.GetAccessCredentialsArgs;
+     * import com.pulumi.vault.aws.inputs.GetAccessCredentialsArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -261,5 +264,17 @@ public final class AwsFunctions {
      */
     public static CompletableFuture<GetAccessCredentialsResult> getAccessCredentialsPlain(GetAccessCredentialsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("vault:aws/getAccessCredentials:getAccessCredentials", TypeShape.of(GetAccessCredentialsResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetStaticAccessCredentialsResult> getStaticAccessCredentials(GetStaticAccessCredentialsArgs args) {
+        return getStaticAccessCredentials(args, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetStaticAccessCredentialsResult> getStaticAccessCredentialsPlain(GetStaticAccessCredentialsPlainArgs args) {
+        return getStaticAccessCredentialsPlain(args, InvokeOptions.Empty);
+    }
+    public static Output<GetStaticAccessCredentialsResult> getStaticAccessCredentials(GetStaticAccessCredentialsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:aws/getStaticAccessCredentials:getStaticAccessCredentials", TypeShape.of(GetStaticAccessCredentialsResult.class), args, Utilities.withVersion(options));
+    }
+    public static CompletableFuture<GetStaticAccessCredentialsResult> getStaticAccessCredentialsPlain(GetStaticAccessCredentialsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("vault:aws/getStaticAccessCredentials:getStaticAccessCredentials", TypeShape.of(GetStaticAccessCredentialsResult.class), args, Utilities.withVersion(options));
     }
 }

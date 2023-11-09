@@ -8,43 +8,43 @@ import * as utilities from "../utilities";
 export { GetSecretArgs, GetSecretResult, GetSecretOutputArgs } from "./getSecret";
 export const getSecret: typeof import("./getSecret").getSecret = null as any;
 export const getSecretOutput: typeof import("./getSecret").getSecretOutput = null as any;
+utilities.lazyLoad(exports, ["getSecret","getSecretOutput"], () => require("./getSecret"));
 
 export { GetSecretSubkeysV2Args, GetSecretSubkeysV2Result, GetSecretSubkeysV2OutputArgs } from "./getSecretSubkeysV2";
 export const getSecretSubkeysV2: typeof import("./getSecretSubkeysV2").getSecretSubkeysV2 = null as any;
 export const getSecretSubkeysV2Output: typeof import("./getSecretSubkeysV2").getSecretSubkeysV2Output = null as any;
+utilities.lazyLoad(exports, ["getSecretSubkeysV2","getSecretSubkeysV2Output"], () => require("./getSecretSubkeysV2"));
 
 export { GetSecretV2Args, GetSecretV2Result, GetSecretV2OutputArgs } from "./getSecretV2";
 export const getSecretV2: typeof import("./getSecretV2").getSecretV2 = null as any;
 export const getSecretV2Output: typeof import("./getSecretV2").getSecretV2Output = null as any;
+utilities.lazyLoad(exports, ["getSecretV2","getSecretV2Output"], () => require("./getSecretV2"));
 
 export { GetSecretsListArgs, GetSecretsListResult, GetSecretsListOutputArgs } from "./getSecretsList";
 export const getSecretsList: typeof import("./getSecretsList").getSecretsList = null as any;
 export const getSecretsListOutput: typeof import("./getSecretsList").getSecretsListOutput = null as any;
+utilities.lazyLoad(exports, ["getSecretsList","getSecretsListOutput"], () => require("./getSecretsList"));
 
 export { GetSecretsListV2Args, GetSecretsListV2Result, GetSecretsListV2OutputArgs } from "./getSecretsListV2";
 export const getSecretsListV2: typeof import("./getSecretsListV2").getSecretsListV2 = null as any;
 export const getSecretsListV2Output: typeof import("./getSecretsListV2").getSecretsListV2Output = null as any;
+utilities.lazyLoad(exports, ["getSecretsListV2","getSecretsListV2Output"], () => require("./getSecretsListV2"));
 
 export { SecretArgs, SecretState } from "./secret";
 export type Secret = import("./secret").Secret;
 export const Secret: typeof import("./secret").Secret = null as any;
+utilities.lazyLoad(exports, ["Secret"], () => require("./secret"));
 
 export { SecretBackendV2Args, SecretBackendV2State } from "./secretBackendV2";
 export type SecretBackendV2 = import("./secretBackendV2").SecretBackendV2;
 export const SecretBackendV2: typeof import("./secretBackendV2").SecretBackendV2 = null as any;
+utilities.lazyLoad(exports, ["SecretBackendV2"], () => require("./secretBackendV2"));
 
 export { SecretV2Args, SecretV2State } from "./secretV2";
 export type SecretV2 = import("./secretV2").SecretV2;
 export const SecretV2: typeof import("./secretV2").SecretV2 = null as any;
-
-utilities.lazyLoad(exports, ["getSecret","getSecretOutput"], () => require("./getSecret"));
-utilities.lazyLoad(exports, ["getSecretSubkeysV2","getSecretSubkeysV2Output"], () => require("./getSecretSubkeysV2"));
-utilities.lazyLoad(exports, ["getSecretV2","getSecretV2Output"], () => require("./getSecretV2"));
-utilities.lazyLoad(exports, ["getSecretsList","getSecretsListOutput"], () => require("./getSecretsList"));
-utilities.lazyLoad(exports, ["getSecretsListV2","getSecretsListV2Output"], () => require("./getSecretsListV2"));
-utilities.lazyLoad(exports, ["Secret"], () => require("./secret"));
-utilities.lazyLoad(exports, ["SecretBackendV2"], () => require("./secretBackendV2"));
 utilities.lazyLoad(exports, ["SecretV2"], () => require("./secretV2"));
+
 
 const _module = {
     version: utilities.getVersion(),

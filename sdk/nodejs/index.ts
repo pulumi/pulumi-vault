@@ -8,128 +8,138 @@ import * as utilities from "./utilities";
 export { AuditArgs, AuditState } from "./audit";
 export type Audit = import("./audit").Audit;
 export const Audit: typeof import("./audit").Audit = null as any;
+utilities.lazyLoad(exports, ["Audit"], () => require("./audit"));
 
 export { AuditRequestHeaderArgs, AuditRequestHeaderState } from "./auditRequestHeader";
 export type AuditRequestHeader = import("./auditRequestHeader").AuditRequestHeader;
 export const AuditRequestHeader: typeof import("./auditRequestHeader").AuditRequestHeader = null as any;
+utilities.lazyLoad(exports, ["AuditRequestHeader"], () => require("./auditRequestHeader"));
 
 export { AuthBackendArgs, AuthBackendState } from "./authBackend";
 export type AuthBackend = import("./authBackend").AuthBackend;
 export const AuthBackend: typeof import("./authBackend").AuthBackend = null as any;
+utilities.lazyLoad(exports, ["AuthBackend"], () => require("./authBackend"));
 
 export { CertAuthBackendRoleArgs, CertAuthBackendRoleState } from "./certAuthBackendRole";
 export type CertAuthBackendRole = import("./certAuthBackendRole").CertAuthBackendRole;
 export const CertAuthBackendRole: typeof import("./certAuthBackendRole").CertAuthBackendRole = null as any;
+utilities.lazyLoad(exports, ["CertAuthBackendRole"], () => require("./certAuthBackendRole"));
 
 export { EgpPolicyArgs, EgpPolicyState } from "./egpPolicy";
 export type EgpPolicy = import("./egpPolicy").EgpPolicy;
 export const EgpPolicy: typeof import("./egpPolicy").EgpPolicy = null as any;
+utilities.lazyLoad(exports, ["EgpPolicy"], () => require("./egpPolicy"));
 
 export { GetAuthBackendArgs, GetAuthBackendResult, GetAuthBackendOutputArgs } from "./getAuthBackend";
 export const getAuthBackend: typeof import("./getAuthBackend").getAuthBackend = null as any;
 export const getAuthBackendOutput: typeof import("./getAuthBackend").getAuthBackendOutput = null as any;
+utilities.lazyLoad(exports, ["getAuthBackend","getAuthBackendOutput"], () => require("./getAuthBackend"));
+
+export { GetAuthBackendsArgs, GetAuthBackendsResult, GetAuthBackendsOutputArgs } from "./getAuthBackends";
+export const getAuthBackends: typeof import("./getAuthBackends").getAuthBackends = null as any;
+export const getAuthBackendsOutput: typeof import("./getAuthBackends").getAuthBackendsOutput = null as any;
+utilities.lazyLoad(exports, ["getAuthBackends","getAuthBackendsOutput"], () => require("./getAuthBackends"));
 
 export { GetNomadAccessTokenArgs, GetNomadAccessTokenResult, GetNomadAccessTokenOutputArgs } from "./getNomadAccessToken";
 export const getNomadAccessToken: typeof import("./getNomadAccessToken").getNomadAccessToken = null as any;
 export const getNomadAccessTokenOutput: typeof import("./getNomadAccessToken").getNomadAccessTokenOutput = null as any;
+utilities.lazyLoad(exports, ["getNomadAccessToken","getNomadAccessTokenOutput"], () => require("./getNomadAccessToken"));
 
 export { GetPolicyDocumentArgs, GetPolicyDocumentResult, GetPolicyDocumentOutputArgs } from "./getPolicyDocument";
 export const getPolicyDocument: typeof import("./getPolicyDocument").getPolicyDocument = null as any;
 export const getPolicyDocumentOutput: typeof import("./getPolicyDocument").getPolicyDocumentOutput = null as any;
+utilities.lazyLoad(exports, ["getPolicyDocument","getPolicyDocumentOutput"], () => require("./getPolicyDocument"));
+
+export { GetRaftAutopilotStateArgs, GetRaftAutopilotStateResult, GetRaftAutopilotStateOutputArgs } from "./getRaftAutopilotState";
+export const getRaftAutopilotState: typeof import("./getRaftAutopilotState").getRaftAutopilotState = null as any;
+export const getRaftAutopilotStateOutput: typeof import("./getRaftAutopilotState").getRaftAutopilotStateOutput = null as any;
+utilities.lazyLoad(exports, ["getRaftAutopilotState","getRaftAutopilotStateOutput"], () => require("./getRaftAutopilotState"));
 
 export { MfaDuoArgs, MfaDuoState } from "./mfaDuo";
 export type MfaDuo = import("./mfaDuo").MfaDuo;
 export const MfaDuo: typeof import("./mfaDuo").MfaDuo = null as any;
+utilities.lazyLoad(exports, ["MfaDuo"], () => require("./mfaDuo"));
 
 export { MfaOktaArgs, MfaOktaState } from "./mfaOkta";
 export type MfaOkta = import("./mfaOkta").MfaOkta;
 export const MfaOkta: typeof import("./mfaOkta").MfaOkta = null as any;
+utilities.lazyLoad(exports, ["MfaOkta"], () => require("./mfaOkta"));
 
 export { MfaPingidArgs, MfaPingidState } from "./mfaPingid";
 export type MfaPingid = import("./mfaPingid").MfaPingid;
 export const MfaPingid: typeof import("./mfaPingid").MfaPingid = null as any;
+utilities.lazyLoad(exports, ["MfaPingid"], () => require("./mfaPingid"));
 
 export { MfaTotpArgs, MfaTotpState } from "./mfaTotp";
 export type MfaTotp = import("./mfaTotp").MfaTotp;
 export const MfaTotp: typeof import("./mfaTotp").MfaTotp = null as any;
+utilities.lazyLoad(exports, ["MfaTotp"], () => require("./mfaTotp"));
 
 export { MountArgs, MountState } from "./mount";
 export type Mount = import("./mount").Mount;
 export const Mount: typeof import("./mount").Mount = null as any;
+utilities.lazyLoad(exports, ["Mount"], () => require("./mount"));
 
 export { NamespaceArgs, NamespaceState } from "./namespace";
 export type Namespace = import("./namespace").Namespace;
 export const Namespace: typeof import("./namespace").Namespace = null as any;
+utilities.lazyLoad(exports, ["Namespace"], () => require("./namespace"));
 
 export { NomadSecretBackendArgs, NomadSecretBackendState } from "./nomadSecretBackend";
 export type NomadSecretBackend = import("./nomadSecretBackend").NomadSecretBackend;
 export const NomadSecretBackend: typeof import("./nomadSecretBackend").NomadSecretBackend = null as any;
+utilities.lazyLoad(exports, ["NomadSecretBackend"], () => require("./nomadSecretBackend"));
 
 export { NomadSecretRoleArgs, NomadSecretRoleState } from "./nomadSecretRole";
 export type NomadSecretRole = import("./nomadSecretRole").NomadSecretRole;
 export const NomadSecretRole: typeof import("./nomadSecretRole").NomadSecretRole = null as any;
+utilities.lazyLoad(exports, ["NomadSecretRole"], () => require("./nomadSecretRole"));
 
 export { PasswordPolicyArgs, PasswordPolicyState } from "./passwordPolicy";
 export type PasswordPolicy = import("./passwordPolicy").PasswordPolicy;
 export const PasswordPolicy: typeof import("./passwordPolicy").PasswordPolicy = null as any;
+utilities.lazyLoad(exports, ["PasswordPolicy"], () => require("./passwordPolicy"));
 
 export { PolicyArgs, PolicyState } from "./policy";
 export type Policy = import("./policy").Policy;
 export const Policy: typeof import("./policy").Policy = null as any;
+utilities.lazyLoad(exports, ["Policy"], () => require("./policy"));
 
 export { ProviderArgs } from "./provider";
 export type Provider = import("./provider").Provider;
 export const Provider: typeof import("./provider").Provider = null as any;
+utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
 
 export { QuotaLeaseCountArgs, QuotaLeaseCountState } from "./quotaLeaseCount";
 export type QuotaLeaseCount = import("./quotaLeaseCount").QuotaLeaseCount;
 export const QuotaLeaseCount: typeof import("./quotaLeaseCount").QuotaLeaseCount = null as any;
+utilities.lazyLoad(exports, ["QuotaLeaseCount"], () => require("./quotaLeaseCount"));
 
 export { QuotaRateLimitArgs, QuotaRateLimitState } from "./quotaRateLimit";
 export type QuotaRateLimit = import("./quotaRateLimit").QuotaRateLimit;
 export const QuotaRateLimit: typeof import("./quotaRateLimit").QuotaRateLimit = null as any;
+utilities.lazyLoad(exports, ["QuotaRateLimit"], () => require("./quotaRateLimit"));
 
 export { RaftAutopilotArgs, RaftAutopilotState } from "./raftAutopilot";
 export type RaftAutopilot = import("./raftAutopilot").RaftAutopilot;
 export const RaftAutopilot: typeof import("./raftAutopilot").RaftAutopilot = null as any;
+utilities.lazyLoad(exports, ["RaftAutopilot"], () => require("./raftAutopilot"));
 
 export { RaftSnapshotAgentConfigArgs, RaftSnapshotAgentConfigState } from "./raftSnapshotAgentConfig";
 export type RaftSnapshotAgentConfig = import("./raftSnapshotAgentConfig").RaftSnapshotAgentConfig;
 export const RaftSnapshotAgentConfig: typeof import("./raftSnapshotAgentConfig").RaftSnapshotAgentConfig = null as any;
+utilities.lazyLoad(exports, ["RaftSnapshotAgentConfig"], () => require("./raftSnapshotAgentConfig"));
 
 export { RgpPolicyArgs, RgpPolicyState } from "./rgpPolicy";
 export type RgpPolicy = import("./rgpPolicy").RgpPolicy;
 export const RgpPolicy: typeof import("./rgpPolicy").RgpPolicy = null as any;
+utilities.lazyLoad(exports, ["RgpPolicy"], () => require("./rgpPolicy"));
 
 export { TokenArgs, TokenState } from "./token";
 export type Token = import("./token").Token;
 export const Token: typeof import("./token").Token = null as any;
-
-utilities.lazyLoad(exports, ["Audit"], () => require("./audit"));
-utilities.lazyLoad(exports, ["AuditRequestHeader"], () => require("./auditRequestHeader"));
-utilities.lazyLoad(exports, ["AuthBackend"], () => require("./authBackend"));
-utilities.lazyLoad(exports, ["CertAuthBackendRole"], () => require("./certAuthBackendRole"));
-utilities.lazyLoad(exports, ["EgpPolicy"], () => require("./egpPolicy"));
-utilities.lazyLoad(exports, ["getAuthBackend","getAuthBackendOutput"], () => require("./getAuthBackend"));
-utilities.lazyLoad(exports, ["getNomadAccessToken","getNomadAccessTokenOutput"], () => require("./getNomadAccessToken"));
-utilities.lazyLoad(exports, ["getPolicyDocument","getPolicyDocumentOutput"], () => require("./getPolicyDocument"));
-utilities.lazyLoad(exports, ["MfaDuo"], () => require("./mfaDuo"));
-utilities.lazyLoad(exports, ["MfaOkta"], () => require("./mfaOkta"));
-utilities.lazyLoad(exports, ["MfaPingid"], () => require("./mfaPingid"));
-utilities.lazyLoad(exports, ["MfaTotp"], () => require("./mfaTotp"));
-utilities.lazyLoad(exports, ["Mount"], () => require("./mount"));
-utilities.lazyLoad(exports, ["Namespace"], () => require("./namespace"));
-utilities.lazyLoad(exports, ["NomadSecretBackend"], () => require("./nomadSecretBackend"));
-utilities.lazyLoad(exports, ["NomadSecretRole"], () => require("./nomadSecretRole"));
-utilities.lazyLoad(exports, ["PasswordPolicy"], () => require("./passwordPolicy"));
-utilities.lazyLoad(exports, ["Policy"], () => require("./policy"));
-utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
-utilities.lazyLoad(exports, ["QuotaLeaseCount"], () => require("./quotaLeaseCount"));
-utilities.lazyLoad(exports, ["QuotaRateLimit"], () => require("./quotaRateLimit"));
-utilities.lazyLoad(exports, ["RaftAutopilot"], () => require("./raftAutopilot"));
-utilities.lazyLoad(exports, ["RaftSnapshotAgentConfig"], () => require("./raftSnapshotAgentConfig"));
-utilities.lazyLoad(exports, ["RgpPolicy"], () => require("./rgpPolicy"));
 utilities.lazyLoad(exports, ["Token"], () => require("./token"));
+
 
 // Export sub-modules:
 import * as ad from "./ad";

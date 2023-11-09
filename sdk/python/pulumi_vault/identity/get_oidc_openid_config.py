@@ -249,21 +249,21 @@ def get_oidc_openid_config(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('vault:identity/getOidcOpenidConfig:getOidcOpenidConfig', __args__, opts=opts, typ=GetOidcOpenidConfigResult).value
 
     return AwaitableGetOidcOpenidConfigResult(
-        authorization_endpoint=__ret__.authorization_endpoint,
-        grant_types_supporteds=__ret__.grant_types_supporteds,
-        id=__ret__.id,
-        id_token_signing_alg_values_supporteds=__ret__.id_token_signing_alg_values_supporteds,
-        issuer=__ret__.issuer,
-        jwks_uri=__ret__.jwks_uri,
-        name=__ret__.name,
-        namespace=__ret__.namespace,
-        request_uri_parameter_supported=__ret__.request_uri_parameter_supported,
-        response_types_supporteds=__ret__.response_types_supporteds,
-        scopes_supporteds=__ret__.scopes_supporteds,
-        subject_types_supporteds=__ret__.subject_types_supporteds,
-        token_endpoint=__ret__.token_endpoint,
-        token_endpoint_auth_methods_supporteds=__ret__.token_endpoint_auth_methods_supporteds,
-        userinfo_endpoint=__ret__.userinfo_endpoint)
+        authorization_endpoint=pulumi.get(__ret__, 'authorization_endpoint'),
+        grant_types_supporteds=pulumi.get(__ret__, 'grant_types_supporteds'),
+        id=pulumi.get(__ret__, 'id'),
+        id_token_signing_alg_values_supporteds=pulumi.get(__ret__, 'id_token_signing_alg_values_supporteds'),
+        issuer=pulumi.get(__ret__, 'issuer'),
+        jwks_uri=pulumi.get(__ret__, 'jwks_uri'),
+        name=pulumi.get(__ret__, 'name'),
+        namespace=pulumi.get(__ret__, 'namespace'),
+        request_uri_parameter_supported=pulumi.get(__ret__, 'request_uri_parameter_supported'),
+        response_types_supporteds=pulumi.get(__ret__, 'response_types_supporteds'),
+        scopes_supporteds=pulumi.get(__ret__, 'scopes_supporteds'),
+        subject_types_supporteds=pulumi.get(__ret__, 'subject_types_supporteds'),
+        token_endpoint=pulumi.get(__ret__, 'token_endpoint'),
+        token_endpoint_auth_methods_supporteds=pulumi.get(__ret__, 'token_endpoint_auth_methods_supporteds'),
+        userinfo_endpoint=pulumi.get(__ret__, 'userinfo_endpoint'))
 
 
 @_utilities.lift_output_func(get_oidc_openid_config)

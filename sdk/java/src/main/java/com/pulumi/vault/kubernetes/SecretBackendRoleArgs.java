@@ -73,6 +73,8 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
      * Additional labels to apply to all generated Kubernetes
      * objects.
      * 
+     * This resource also directly accepts all vault.Mount fields.
+     * 
      */
     @Import(name="extraLabels")
     private @Nullable Output<Map<String,String>> extraLabels;
@@ -80,6 +82,8 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
     /**
      * @return Additional labels to apply to all generated Kubernetes
      * objects.
+     * 
+     * This resource also directly accepts all vault.Mount fields.
      * 
      */
     public Optional<Output<Map<String,String>>> extraLabels() {
@@ -367,6 +371,8 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
          * @param extraLabels Additional labels to apply to all generated Kubernetes
          * objects.
          * 
+         * This resource also directly accepts all vault.Mount fields.
+         * 
          * @return builder
          * 
          */
@@ -378,6 +384,8 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         /**
          * @param extraLabels Additional labels to apply to all generated Kubernetes
          * objects.
+         * 
+         * This resource also directly accepts all vault.Mount fields.
          * 
          * @return builder
          * 

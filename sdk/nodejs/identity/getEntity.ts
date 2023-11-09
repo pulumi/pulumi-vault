@@ -13,9 +13,9 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const entity = pulumi.output(vault.identity.getEntity({
+ * const entity = vault.identity.getEntity({
  *     entityName: "entity_12345",
- * }));
+ * });
  * ```
  * ## Required Vault Capabilities
  *
@@ -23,11 +23,8 @@ import * as utilities from "../utilities";
  */
 export function getEntity(args?: GetEntityArgs, opts?: pulumi.InvokeOptions): Promise<GetEntityResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:identity/getEntity:getEntity", {
         "aliasId": args.aliasId,
         "aliasMountAccessor": args.aliasMountAccessor,
@@ -49,6 +46,9 @@ export interface GetEntityArgs {
     /**
      * Accessor of the mount to which the alias belongs to.
      * This should be supplied in conjunction with `aliasName`.
+     *
+     * The lookup criteria can be `entityName`, `entityId`, `aliasId`, or a combination of
+     * `aliasName` and `aliasMountAccessor`.
      */
     aliasMountAccessor?: string;
     /**
@@ -137,9 +137,23 @@ export interface GetEntityResult {
      */
     readonly policies: string[];
 }
-
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const entity = vault.identity.getEntity({
+ *     entityName: "entity_12345",
+ * });
+ * ```
+ * ## Required Vault Capabilities
+ *
+ * Use of this resource requires the `create` capability on `/identity/lookup/entity`.
+ */
 export function getEntityOutput(args?: GetEntityOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEntityResult> {
-    return pulumi.output(args).apply(a => getEntity(a, opts))
+    return pulumi.output(args).apply((a: any) => getEntity(a, opts))
 }
 
 /**
@@ -153,6 +167,9 @@ export interface GetEntityOutputArgs {
     /**
      * Accessor of the mount to which the alias belongs to.
      * This should be supplied in conjunction with `aliasName`.
+     *
+     * The lookup criteria can be `entityName`, `entityId`, `aliasId`, or a combination of
+     * `aliasName` and `aliasMountAccessor`.
      */
     aliasMountAccessor?: pulumi.Input<string>;
     /**
