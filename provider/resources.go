@@ -223,32 +223,9 @@ func Provider() tfbridge.ProviderInfo {
 				},
 			},
 
-			// AliCloud
-			"vault_alicloud_auth_backend_role": {Tok: makeResource(aliCloudMod, "AuthBackendRole")},
-
-			// AWS
-			"vault_aws_auth_backend_cert":               {Tok: makeResource(awsMod, "AuthBackendCert")},
-			"vault_aws_auth_backend_client":             {Tok: makeResource(awsMod, "AuthBackendClient")},
-			"vault_aws_auth_backend_config_identity":    {Tok: makeResource(awsMod, "AuthBackendConfigIdentity")},
-			"vault_aws_auth_backend_identity_whitelist": {Tok: makeResource(awsMod, "AuthBackendIdentityWhitelist")},
-			"vault_aws_auth_backend_login":              {Tok: makeResource(awsMod, "AuthBackendLogin")},
-			"vault_aws_auth_backend_role":               {Tok: makeResource(awsMod, "AuthBackendRole")},
-			"vault_aws_auth_backend_role_tag":           {Tok: makeResource(awsMod, "AuthBackendRoleTag")},
-			"vault_aws_auth_backend_roletag_blacklist":  {Tok: makeResource(awsMod, "AuthBackendRoletagBlacklist")},
-			"vault_aws_auth_backend_sts_role":           {Tok: makeResource(awsMod, "AuthBackendStsRole")},
-			"vault_aws_secret_backend":                  {Tok: makeResource(awsMod, "SecretBackend")},
-			"vault_aws_secret_backend_role":             {Tok: makeResource(awsMod, "SecretBackendRole")},
-			"vault_aws_secret_backend_static_role":      {Tok: makeResource(awsMod, "SecretBackendStaticRole")},
-
 			// Azure
-			"vault_azure_auth_backend_config": {Tok: makeResource(azureMod, "AuthBackendConfig")},
-			"vault_azure_auth_backend_role":   {Tok: makeResource(azureMod, "AuthBackendRole")},
 			"vault_azure_secret_backend":      {Tok: makeResource(azureMod, "Backend")},
 			"vault_azure_secret_backend_role": {Tok: makeResource(azureMod, "BackendRole")},
-
-			// Consul
-			"vault_consul_secret_backend":      {Tok: makeResource(consulMod, "SecretBackend")},
-			"vault_consul_secret_backend_role": {Tok: makeResource(consulMod, "SecretBackendRole")},
 
 			// Database
 			"vault_database_secret_backend_connection": {
@@ -431,22 +408,6 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_pki_secret_backend_sign":       {Tok: makeResource(pkiSecretMod, "SecretBackendSign")},
 			"vault_pki_secret_backend_crl_config": {Tok: makeResource(pkiSecretMod, "SecretBackendCrlConfig")},
 
-			// Token
-			"vault_token_auth_backend_role": {Tok: makeResource(tokenMod, "AuthBackendRole")},
-
-			// SSH
-			"vault_ssh_secret_backend_ca":   {Tok: makeResource(sshMod, "SecretBackendCa")},
-			"vault_ssh_secret_backend_role": {Tok: makeResource(sshMod, "SecretBackendRole")},
-
-			// RabbitMQ
-			"vault_rabbitmq_secret_backend":      {Tok: makeResource(rabbitMqMod, "SecretBackend")},
-			"vault_rabbitmq_secret_backend_role": {Tok: makeResource(rabbitMqMod, "SecretBackendRole")},
-
-			// Terraform Cloud
-			"vault_terraform_cloud_secret_backend": {Tok: makeResource(terraformCloudMod, "SecretBackend")},
-			"vault_terraform_cloud_secret_creds":   {Tok: makeResource(terraformCloudMod, "SecretCreds")},
-			"vault_terraform_cloud_secret_role":    {Tok: makeResource(terraformCloudMod, "SecretRole")},
-
 			// Transform
 			"vault_transform_alphabet": {
 				Tok: makeResource(transformMod, "Alphabet"),
@@ -456,14 +417,9 @@ func Provider() tfbridge.ProviderInfo {
 					},
 				},
 			},
-			"vault_transform_role":           {Tok: makeResource(transformMod, "Role")},
-			"vault_transform_template":       {Tok: makeResource(transformMod, "Template")},
-			"vault_transform_transformation": {Tok: makeResource(transformMod, "Transformation")},
 
 			// Transit
-			"vault_transit_secret_backend_key": {Tok: makeResource(transitMod, "SecretBackendKey")},
 			"vault_transit_secret_cache_config": {
-				Tok: makeResource(transitMod, "SecretCacheConfig"),
 				Docs: &tfbridge.DocInfo{
 					Source: "transit_secret_backend_cache_config.html.md",
 				},
@@ -487,75 +443,30 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_auth_backends":        {Tok: makeDataSource(mainMod, "getAuthBackends")},
 			"vault_raft_autopilot_state": {Tok: makeDataSource(mainMod, "getRaftAutopilotState")},
 
-			// AD
-			"vault_ad_access_credentials": {Tok: makeDataSource(adMod, "getAccessCredentials")},
-
 			// AppRole
 			"vault_approle_auth_backend_role_id": {
-				Tok: makeDataSource(appRoleMod, "getAuthBackendRoleId"),
-				Docs: &tfbridge.DocInfo{
-					Source: "approle_auth_backend_role_id.md",
-				},
+				Docs: &tfbridge.DocInfo{Source: "approle_auth_backend_role_id.md"},
 			},
-
-			// AWS
-			"vault_aws_access_credentials": {Tok: makeDataSource(awsMod, "getAccessCredentials")},
-
-			// Azure
-			"vault_azure_access_credentials": {Tok: makeDataSource(azureMod, "getAccessCredentials")},
-
-			// Generic
-			"vault_generic_secret": {Tok: makeDataSource(genericMod, "getSecret")},
-
-			// GCP
-			"vault_gcp_auth_backend_role": {Tok: makeDataSource(gcpMod, "getAuthBackendRole")},
-
-			// Identity
-			"vault_identity_group":              {Tok: makeDataSource(identityMod, "getGroup")},
-			"vault_identity_entity":             {Tok: makeDataSource(identityMod, "getEntity")},
-			"vault_identity_oidc_client_creds":  {Tok: makeDataSource(identityMod, "getOidcClientCreds")},
-			"vault_identity_oidc_openid_config": {Tok: makeDataSource(identityMod, "getOidcOpenidConfig")},
-			"vault_identity_oidc_public_keys":   {Tok: makeDataSource(identityMod, "getOidcPublicKeys")},
 
 			// Kubernetes
 			"vault_kubernetes_auth_backend_config": {
-				Tok: makeDataSource(kubernetesMod, "getAuthBackendConfig"),
 				Docs: &tfbridge.DocInfo{
 					Source: "kubernetes_auth_backend_config.md",
 				},
 			},
 			"vault_kubernetes_auth_backend_role": {
-				Tok: makeDataSource(kubernetesMod, "getAuthBackendRole"),
 				Docs: &tfbridge.DocInfo{
 					Source: "kubernetes_auth_backend_role.md",
 				},
 			},
 			"vault_kubernetes_service_account_token": {
-				Tok: makeDataSource(kubernetesMod, "getServiceAccountToken"),
-				Docs: &tfbridge.DocInfo{
-					Source: "kubernetes_credentials.html.md",
-				},
+				Docs: &tfbridge.DocInfo{Source: "kubernetes_credentials.html.md"},
 			},
 
 			// KV
-			"vault_kv_secret": {Tok: makeDataSource(kvMod, "getSecret")},
 			"vault_kv_secret_subkeys_v2": {
-				Tok: makeDataSource(kvMod, "getSecretSubkeysV2"),
-				Docs: &tfbridge.DocInfo{
-					Source: "kv_subkeys_v2.html.md",
-				},
+				Docs: &tfbridge.DocInfo{Source: "kv_subkeys_v2.html.md"},
 			},
-			"vault_kv_secret_v2":       {Tok: makeDataSource(kvMod, "getSecretV2")},
-			"vault_kv_secrets_list":    {Tok: makeDataSource(kvMod, "getSecretsList")},
-			"vault_kv_secrets_list_v2": {Tok: makeDataSource(kvMod, "getSecretsListV2")},
-
-			// Transform
-			"vault_transform_encode": {Tok: makeDataSource(transformMod, "getEncode")},
-			"vault_transform_decode": {Tok: makeDataSource(transformMod, "getDecode")},
-
-			// Transit
-			"vault_transit_decrypt": {Tok: makeDataSource(transitMod, "getDecrypt")},
-			"vault_transit_encrypt": {Tok: makeDataSource(transitMod, "getEncrypt")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			Dependencies: map[string]string{
