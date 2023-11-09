@@ -23,6 +23,7 @@ import (
 	"github.com/hashicorp/terraform-provider-vault/schema"
 	"github.com/hashicorp/terraform-provider-vault/vault"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi-vault/provider/v5/pkg/version"
@@ -65,6 +66,36 @@ const (
 	transformMod      = "Transform"
 	transitMod        = "Transit"
 )
+
+var moduleMap = map[string]string{
+	"ad":              adMod,
+	"alicloud":        aliCloudMod,
+	"approle":         appRoleMod,
+	"aws":             awsMod,
+	"azure":           azureMod,
+	"consul":          consulMod,
+	"database":        databaseMod,
+	"gcp":             gcpMod,
+	"generic":         genericMod,
+	"github":          githubMod,
+	"identity":        identityMod,
+	"jwt":             jwtMod,
+	"kmip":            kmipMod,
+	"kubernetes":      kubernetesMod,
+	"kv":              kvMod,
+	"ldap":            ldapMod,
+	"managed":         managedMod,
+	"mongodbatlas":    mongoDBAtlasMod,
+	"okta":            oktaMod,
+	"pki_secret":      pkiSecretMod,
+	"rabbitmq":        rabbitMqMod,
+	"saml":            samlMod,
+	"ssh":             sshMod,
+	"terraform_cloud": terraformCloudMod,
+	"token":           tokenMod,
+	"transform":       transformMod,
+	"transit":         transitMod,
+}
 
 var namespaceMap = map[string]string{
 	mainPkg: "Vault",
@@ -469,7 +500,9 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "auth_backend.html.md",
 				},
 			},
-			"vault_nomad_access_token": {Tok: makeDataSource(mainMod, "getNomadAccessToken")},
+			"vault_nomad_access_token":   {Tok: makeDataSource(mainMod, "getNomadAccessToken")},
+			"vault_auth_backends":        {Tok: makeDataSource(mainMod, "getAuthBackends")},
+			"vault_raft_autopilot_state": {Tok: makeDataSource(mainMod, "getRaftAutopilotState")},
 
 			// AD
 			"vault_ad_access_credentials": {Tok: makeDataSource(adMod, "getAccessCredentials")},
@@ -572,6 +605,10 @@ func Provider() tfbridge.ProviderInfo {
 		},
 	}
 
+	prov.MustComputeTokens(tks.MappedModules("vault_", "", moduleMap,
+		func(module, name string) (string, error) {
+			return string(makeResource(module, name)), nil
+		}))
 	prov.SetAutonaming(255, "-")
 
 	return prov
