@@ -211,7 +211,11 @@ namespace Pulumi.Vault
         public InputList<Inputs.ProviderHeaderArgs> Headers
         {
             get => _headers ?? (_headers = new InputList<Inputs.ProviderHeaderArgs>());
-            set => _headers = value;
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableArray.Create<Inputs.ProviderHeaderArgs>());
+                _headers = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
         }
 
         /// <summary>

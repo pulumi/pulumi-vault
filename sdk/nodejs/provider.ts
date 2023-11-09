@@ -98,7 +98,7 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["caCertDir"] = args ? args.caCertDir : undefined;
             resourceInputs["caCertFile"] = args ? args.caCertFile : undefined;
             resourceInputs["clientAuth"] = pulumi.output(args ? args.clientAuth : undefined).apply(JSON.stringify);
-            resourceInputs["headers"] = pulumi.output(args ? args.headers : undefined).apply(JSON.stringify);
+            resourceInputs["headers"] = pulumi.output(args?.headers ? pulumi.secret(args.headers) : undefined).apply(JSON.stringify);
             resourceInputs["maxLeaseTtlSeconds"] = pulumi.output((args ? args.maxLeaseTtlSeconds : undefined) ?? (utilities.getEnvNumber("TERRAFORM_VAULT_MAX_TTL") || 1200)).apply(JSON.stringify);
             resourceInputs["maxRetries"] = pulumi.output((args ? args.maxRetries : undefined) ?? (utilities.getEnvNumber("VAULT_MAX_RETRIES") || 2)).apply(JSON.stringify);
             resourceInputs["maxRetriesCcc"] = pulumi.output(args ? args.maxRetriesCcc : undefined).apply(JSON.stringify);

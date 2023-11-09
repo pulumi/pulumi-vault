@@ -24,10 +24,8 @@ import (
 	"github.com/hashicorp/terraform-provider-vault/vault"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
-	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi-vault/provider/v5/pkg/version"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 )
 
@@ -131,23 +129,12 @@ func makeResource(mod string, res string) tokens.Type {
 	return makeType(mod, res)
 }
 
-func preConfigureCallback(vars resource.PropertyMap, c shim.ResourceConfig) error {
-	return nil
-}
-
-func stringRef(s string) *string {
-	return &s
-}
+func ref[T any](v T) *T { return &v }
 
 // Provider returns additional overlaid schema and metadata associated with the provider.
 func Provider() tfbridge.ProviderInfo {
-	p := shimv2.NewProvider(schema.NewProvider(vault.Provider()).SchemaProvider())
-
-	// Temporarily override the secretness of `headers` field.
-	// https://github.com/pulumi/pulumi/issues/11278
-	overrideSecretFlagForHeaders := false
 	prov := tfbridge.ProviderInfo{
-		P:           p,
+		P:           shimv2.NewProvider(schema.NewProvider(vault.Provider()).SchemaProvider()),
 		Name:        "vault",
 		DisplayName: "HashiCorp Vault",
 		Description: "A Pulumi package for creating and managing HashiCorp Vault cloud resources.",
@@ -180,11 +167,7 @@ func Provider() tfbridge.ProviderInfo {
 					Value: 2,
 				},
 			},
-			"headers": {
-				Secret: &overrideSecretFlagForHeaders,
-			},
 		},
-		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
 			// Main
 			"vault_audit":                  {Tok: makeResource(mainMod, "Audit")},
@@ -236,7 +219,7 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_approle_auth_backend_role_secret_id": {
 				Tok: makeResource(appRoleMod, "AuthBackendRoleSecretId"),
 				Aliases: []tfbridge.AliasInfo{
-					{Type: stringRef(makeResource(appRoleMod, "AuthBackendRoleSecretID").String())},
+					{Type: ref(makeResource(appRoleMod, "AuthBackendRoleSecretID").String())},
 				},
 			},
 

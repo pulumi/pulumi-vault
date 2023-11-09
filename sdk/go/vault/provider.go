@@ -68,6 +68,9 @@ func NewProvider(ctx *pulumi.Context,
 			args.SkipTlsVerify = pulumi.BoolPtr(d.(bool))
 		}
 	}
+	if args.Headers != nil {
+		args.Headers = pulumi.ToSecret(args.Headers).(ProviderHeaderArrayInput)
+	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:vault", name, args, &resource, opts...)
