@@ -53,6 +53,11 @@ jobs:
             sdk/go.sum
         go-version: 1.21.x
     - run: make upstream
+
+    # Work around https://github.com/google/go-licenses/issues/244
+    - run: cd upstream && go mod edit -go=1.21 && go mod tidy
+    - run: cd provider && go mod edit -go=1.21 && go mod tidy
+
     - uses: pulumi/license-check-action@main
       with:
         module-path: provider
