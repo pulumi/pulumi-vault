@@ -20,7 +20,6 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/hashicorp/terraform-provider-vault/generated"
 	"github.com/hashicorp/terraform-provider-vault/schema"
 	"github.com/hashicorp/terraform-provider-vault/vault"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
@@ -38,9 +37,9 @@ const (
 
 	// modules:
 	mainMod           = "index"
-	appRoleMod        = "AppRole"
 	adMod             = "AD"
 	aliCloudMod       = "AliCloud"
+	appRoleMod        = "AppRole"
 	awsMod            = "Aws"
 	azureMod          = "Azure"
 	consulMod         = "Consul"
@@ -59,6 +58,7 @@ const (
 	oktaMod           = "Okta"
 	pkiSecretMod      = "PkiSecret"
 	rabbitMqMod       = "RabbitMQ"
+	samlMod           = "Saml"
 	sshMod            = "Ssh"
 	terraformCloudMod = "TerraformCloud"
 	tokenMod          = "TokenAuth"
@@ -110,15 +110,7 @@ func stringRef(s string) *string {
 
 // Provider returns additional overlaid schema and metadata associated with the provider.
 func Provider() tfbridge.ProviderInfo {
-	provider := vault.Provider()
-	generatedProvider := schema.NewProvider(provider)
-	for name, resource := range generated.DataSourceRegistry {
-		generatedProvider.RegisterDataSource(name, resource)
-	}
-	for name, resource := range generated.ResourceRegistry {
-		generatedProvider.RegisterResource(name, resource)
-	}
-	p := shimv2.NewProvider(generatedProvider.SchemaProvider())
+	p := shimv2.NewProvider(schema.NewProvider(vault.Provider()).SchemaProvider())
 
 	// Temporarily override the secretness of `headers` field.
 	// https://github.com/pulumi/pulumi/issues/11278
@@ -295,6 +287,10 @@ func Provider() tfbridge.ProviderInfo {
 					},
 				},
 			},
+
+			// SAML
+			"vault_saml_auth_backend":      {Tok: makeResource(samlMod, "AuthBackend")},
+			"vault_saml_auth_backend_role": {Tok: makeResource(samlMod, "AuthBackendRole")},
 
 			// Identity
 			"vault_identity_entity":       {Tok: makeResource(identityMod, "Entity")},

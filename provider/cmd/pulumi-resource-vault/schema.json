@@ -39,6 +39,7 @@
                 "okta": "Okta",
                 "pkiSecret": "PkiSecret",
                 "rabbitMq": "RabbitMQ",
+                "saml": "Saml",
                 "ssh": "Ssh",
                 "terraformcloud": "TerraformCloud",
                 "tokenauth": "TokenAuth",
@@ -184,6 +185,10 @@
                 "type": "string",
                 "description": "The namespace to use. Available only for Vault Enterprise.\n"
             },
+            "setNamespaceFromToken": {
+                "type": "boolean",
+                "description": "In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the\ntoken namespace as the root namespace for all resources.\n"
+            },
             "skipChildToken": {
                 "type": "boolean",
                 "description": "Set this to true to prevent the creation of ephemeral child token used by this provider.\n"
@@ -309,10 +314,14 @@
                     "type": "object",
                     "additionalProperties": {
                         "type": "string"
-                    }
+                    },
+                    "secret": true
                 },
                 "path": {
                     "type": "string"
+                },
+                "useRootNamespace": {
+                    "type": "boolean"
                 }
             },
             "type": "object",
@@ -371,6 +380,9 @@
                 },
                 "role": {
                     "type": "string"
+                },
+                "useRootNamespace": {
+                    "type": "boolean"
                 }
             },
             "type": "object",
@@ -412,6 +424,9 @@
                 "tenantId": {
                     "type": "string"
                 },
+                "useRootNamespace": {
+                    "type": "boolean"
+                },
                 "vmName": {
                     "type": "string"
                 },
@@ -447,6 +462,9 @@
                 },
                 "namespace": {
                     "type": "string"
+                },
+                "useRootNamespace": {
+                    "type": "boolean"
                 }
             },
             "type": "object",
@@ -479,6 +497,9 @@
                 },
                 "serviceAccount": {
                     "type": "string"
+                },
+                "useRootNamespace": {
+                    "type": "boolean"
                 }
             },
             "type": "object",
@@ -504,6 +525,9 @@
                 },
                 "role": {
                     "type": "string"
+                },
+                "useRootNamespace": {
+                    "type": "boolean"
                 }
             },
             "type": "object",
@@ -546,6 +570,9 @@
                 "token": {
                     "type": "string"
                 },
+                "useRootNamespace": {
+                    "type": "boolean"
+                },
                 "username": {
                     "type": "string"
                 }
@@ -565,6 +592,9 @@
                 },
                 "role": {
                     "type": "string"
+                },
+                "useRootNamespace": {
+                    "type": "boolean"
                 }
             },
             "type": "object",
@@ -594,6 +624,9 @@
                 },
                 "role": {
                     "type": "string"
+                },
+                "useRootNamespace": {
+                    "type": "boolean"
                 }
             },
             "type": "object",
@@ -617,6 +650,9 @@
                 "password": {
                     "type": "string"
                 },
+                "useRootNamespace": {
+                    "type": "boolean"
+                },
                 "username": {
                     "type": "string"
                 }
@@ -639,6 +675,9 @@
                 },
                 "namespace": {
                     "type": "string"
+                },
+                "useRootNamespace": {
+                    "type": "boolean"
                 }
             },
             "type": "object",
@@ -664,6 +703,9 @@
                 },
                 "passwordFile": {
                     "type": "string"
+                },
+                "useRootNamespace": {
+                    "type": "boolean"
                 },
                 "username": {
                     "type": "string"
@@ -5261,10 +5303,19 @@
                         "python": {
                             "mapCase": false
                         }
-                    }
+                    },
+                    "secret": true
                 },
                 "path": {
                     "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "useRootNamespace": {
+                    "type": "boolean",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -5403,6 +5454,14 @@
                             "mapCase": false
                         }
                     }
+                },
+                "useRootNamespace": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
                 }
             },
             "type": "object",
@@ -5489,6 +5548,14 @@
                         }
                     }
                 },
+                "useRootNamespace": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "vmName": {
                     "type": "string",
                     "language": {
@@ -5559,6 +5626,14 @@
                             "mapCase": false
                         }
                     }
+                },
+                "useRootNamespace": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
                 }
             },
             "type": "object",
@@ -5621,6 +5696,14 @@
                             "mapCase": false
                         }
                     }
+                },
+                "useRootNamespace": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
                 }
             },
             "type": "object",
@@ -5661,6 +5744,14 @@
                 },
                 "role": {
                     "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "useRootNamespace": {
+                    "type": "boolean",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -5753,6 +5844,14 @@
                         }
                     }
                 },
+                "useRootNamespace": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "username": {
                     "type": "string",
                     "language": {
@@ -5792,6 +5891,14 @@
                 },
                 "role": {
                     "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "useRootNamespace": {
+                    "type": "boolean",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -5851,6 +5958,14 @@
                             "mapCase": false
                         }
                     }
+                },
+                "useRootNamespace": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
                 }
             },
             "type": "object",
@@ -5889,6 +6004,14 @@
                         }
                     }
                 },
+                "useRootNamespace": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "username": {
                     "type": "string",
                     "language": {
@@ -5921,6 +6044,14 @@
                 },
                 "namespace": {
                     "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "useRootNamespace": {
+                    "type": "boolean",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -5966,6 +6097,14 @@
                 },
                 "passwordFile": {
                     "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "useRootNamespace": {
+                    "type": "boolean",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -7168,6 +7307,10 @@
                 "type": "string",
                 "description": "The namespace to use. Available only for Vault Enterprise.\n"
             },
+            "setNamespaceFromToken": {
+                "type": "boolean",
+                "description": "In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the\ntoken namespace as the root namespace for all resources.\n"
+            },
             "skipChildToken": {
                 "type": "boolean",
                 "description": "Set this to true to prevent the creation of ephemeral child token used by this provider.\n"
@@ -7305,6 +7448,10 @@
             "namespace": {
                 "type": "string",
                 "description": "The namespace to use. Available only for Vault Enterprise.\n"
+            },
+            "setNamespaceFromToken": {
+                "type": "boolean",
+                "description": "In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the\ntoken namespace as the root namespace for all resources.\n"
             },
             "skipChildToken": {
                 "type": "boolean",
@@ -13962,7 +14109,7 @@
             }
         },
         "vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount": {
-            "description": "Creates a Impersonated Account in the [GCP Secrets Engine](https://www.vaultproject.io/docs/secrets/gcp/index.html) for Vault.\n\nEach [impersonated account](https://www.vaultproject.io/docs/secrets/gcp/index.html#impersonated-accounts) is tied to a separately managed\nService Account.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fs from \"fs\";\nimport * as gcp from \"@pulumi/gcp\";\nimport * as vault from \"@pulumi/vault\";\n\nconst _this = new gcp.serviceaccount.Account(\"this\", {accountId: \"my-awesome-account\"});\nconst gcp = new vault.gcp.SecretBackend(\"gcp\", {\n    path: \"gcp\",\n    credentials: fs.readFileSync(\"credentials.json\"),\n});\nconst impersonatedAccount = new vault.gcp.SecretImpersonatedAccount(\"impersonatedAccount\", {\n    backend: gcp.path,\n    impersonatedAccount: \"this\",\n    serviceAccountEmail: _this.email,\n    tokenScopes: [\"https://www.googleapis.com/auth/cloud-platform\"],\n});\n```\n```python\nimport pulumi\nimport pulumi_gcp as gcp\nimport pulumi_vault as vault\n\nthis = gcp.service_account.Account(\"this\", account_id=\"my-awesome-account\")\ngcp = vault.gcp.SecretBackend(\"gcp\",\n    path=\"gcp\",\n    credentials=(lambda path: open(path).read())(\"credentials.json\"))\nimpersonated_account = vault.gcp.SecretImpersonatedAccount(\"impersonatedAccount\",\n    backend=gcp.path,\n    impersonated_account=\"this\",\n    service_account_email=this.email,\n    token_scopes=[\"https://www.googleapis.com/auth/cloud-platform\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.IO;\nusing Pulumi;\nusing Gcp = Pulumi.Gcp;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var @this = new Gcp.ServiceAccount.Account(\"this\", new()\n    {\n        AccountId = \"my-awesome-account\",\n    });\n\n    var gcp = new Vault.Gcp.SecretBackend(\"gcp\", new()\n    {\n        Path = \"gcp\",\n        Credentials = File.ReadAllText(\"credentials.json\"),\n    });\n\n    var impersonatedAccount = new Vault.Gcp.SecretImpersonatedAccount(\"impersonatedAccount\", new()\n    {\n        Backend = gcp.Path,\n        ImpersonatedAccount = \"this\",\n        ServiceAccountEmail = @this.Email,\n        TokenScopes = new[]\n        {\n            \"https://www.googleapis.com/auth/cloud-platform\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"io/ioutil\"\n\n\t\"github.com/pulumi/pulumi-gcp/sdk/v5/go/gcp/serviceAccount\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/gcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc readFileOrPanic(path string) pulumi.StringPtrInput {\n\tdata, err := ioutil.ReadFile(path)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\treturn pulumi.String(string(data))\n}\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tthis, err := serviceAccount.NewAccount(ctx, \"this\", \u0026serviceAccount.AccountArgs{\n\t\t\tAccountId: pulumi.String(\"my-awesome-account\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tgcp, err := gcp.NewSecretBackend(ctx, \"gcp\", \u0026gcp.SecretBackendArgs{\n\t\t\tPath:        pulumi.String(\"gcp\"),\n\t\t\tCredentials: readFileOrPanic(\"credentials.json\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = gcp.NewSecretImpersonatedAccount(ctx, \"impersonatedAccount\", \u0026gcp.SecretImpersonatedAccountArgs{\n\t\t\tBackend:             gcp.Path,\n\t\t\tImpersonatedAccount: pulumi.String(\"this\"),\n\t\t\tServiceAccountEmail: this.Email,\n\t\t\tTokenScopes: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"https://www.googleapis.com/auth/cloud-platform\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.gcp.serviceAccount.Account;\nimport com.pulumi.gcp.serviceAccount.AccountArgs;\nimport com.pulumi.vault.gcp.SecretBackend;\nimport com.pulumi.vault.gcp.SecretBackendArgs;\nimport com.pulumi.vault.gcp.SecretImpersonatedAccount;\nimport com.pulumi.vault.gcp.SecretImpersonatedAccountArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var this_ = new Account(\"this\", AccountArgs.builder()        \n            .accountId(\"my-awesome-account\")\n            .build());\n\n        var gcp = new SecretBackend(\"gcp\", SecretBackendArgs.builder()        \n            .path(\"gcp\")\n            .credentials(Files.readString(Paths.get(\"credentials.json\")))\n            .build());\n\n        var impersonatedAccount = new SecretImpersonatedAccount(\"impersonatedAccount\", SecretImpersonatedAccountArgs.builder()        \n            .backend(gcp.path())\n            .impersonatedAccount(\"this\")\n            .serviceAccountEmail(this_.email())\n            .tokenScopes(\"https://www.googleapis.com/auth/cloud-platform\")\n            .build());\n\n    }\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nA impersonated account can be imported using its Vault Path. For example, referencing the example above,\n\n```sh\n $ pulumi import vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount impersonated_account gcp/impersonated-account/project_viewer\n```\n\n ",
+            "description": "Creates a Impersonated Account in the [GCP Secrets Engine](https://www.vaultproject.io/docs/secrets/gcp/index.html) for Vault.\n\nEach [impersonated account](https://www.vaultproject.io/docs/secrets/gcp/index.html#impersonated-accounts) is tied to a separately managed\nService Account.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fs from \"fs\";\nimport * as gcp from \"@pulumi/gcp\";\nimport * as vault from \"@pulumi/vault\";\n\nconst _this = new gcp.serviceaccount.Account(\"this\", {accountId: \"my-awesome-account\"});\nconst gcp = new vault.gcp.SecretBackend(\"gcp\", {\n    path: \"gcp\",\n    credentials: fs.readFileSync(\"credentials.json\"),\n});\nconst impersonatedAccount = new vault.gcp.SecretImpersonatedAccount(\"impersonatedAccount\", {\n    backend: gcp.path,\n    impersonatedAccount: \"this\",\n    serviceAccountEmail: _this.email,\n    tokenScopes: [\"https://www.googleapis.com/auth/cloud-platform\"],\n});\n```\n```python\nimport pulumi\nimport pulumi_gcp as gcp\nimport pulumi_vault as vault\n\nthis = gcp.service_account.Account(\"this\", account_id=\"my-awesome-account\")\ngcp = vault.gcp.SecretBackend(\"gcp\",\n    path=\"gcp\",\n    credentials=(lambda path: open(path).read())(\"credentials.json\"))\nimpersonated_account = vault.gcp.SecretImpersonatedAccount(\"impersonatedAccount\",\n    backend=gcp.path,\n    impersonated_account=\"this\",\n    service_account_email=this.email,\n    token_scopes=[\"https://www.googleapis.com/auth/cloud-platform\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.IO;\nusing Pulumi;\nusing Gcp = Pulumi.Gcp;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var @this = new Gcp.ServiceAccount.Account(\"this\", new()\n    {\n        AccountId = \"my-awesome-account\",\n    });\n\n    var gcp = new Vault.Gcp.SecretBackend(\"gcp\", new()\n    {\n        Path = \"gcp\",\n        Credentials = File.ReadAllText(\"credentials.json\"),\n    });\n\n    var impersonatedAccount = new Vault.Gcp.SecretImpersonatedAccount(\"impersonatedAccount\", new()\n    {\n        Backend = gcp.Path,\n        ImpersonatedAccount = \"this\",\n        ServiceAccountEmail = @this.Email,\n        TokenScopes = new[]\n        {\n            \"https://www.googleapis.com/auth/cloud-platform\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"io/ioutil\"\n\n\t\"github.com/pulumi/pulumi-gcp/sdk/v6/go/gcp/serviceAccount\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/gcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc readFileOrPanic(path string) pulumi.StringPtrInput {\n\tdata, err := ioutil.ReadFile(path)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\treturn pulumi.String(string(data))\n}\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tthis, err := serviceAccount.NewAccount(ctx, \"this\", \u0026serviceAccount.AccountArgs{\n\t\t\tAccountId: pulumi.String(\"my-awesome-account\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tgcp, err := gcp.NewSecretBackend(ctx, \"gcp\", \u0026gcp.SecretBackendArgs{\n\t\t\tPath:        pulumi.String(\"gcp\"),\n\t\t\tCredentials: readFileOrPanic(\"credentials.json\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = gcp.NewSecretImpersonatedAccount(ctx, \"impersonatedAccount\", \u0026gcp.SecretImpersonatedAccountArgs{\n\t\t\tBackend:             gcp.Path,\n\t\t\tImpersonatedAccount: pulumi.String(\"this\"),\n\t\t\tServiceAccountEmail: this.Email,\n\t\t\tTokenScopes: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"https://www.googleapis.com/auth/cloud-platform\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.gcp.serviceAccount.Account;\nimport com.pulumi.gcp.serviceAccount.AccountArgs;\nimport com.pulumi.vault.gcp.SecretBackend;\nimport com.pulumi.vault.gcp.SecretBackendArgs;\nimport com.pulumi.vault.gcp.SecretImpersonatedAccount;\nimport com.pulumi.vault.gcp.SecretImpersonatedAccountArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var this_ = new Account(\"this\", AccountArgs.builder()        \n            .accountId(\"my-awesome-account\")\n            .build());\n\n        var gcp = new SecretBackend(\"gcp\", SecretBackendArgs.builder()        \n            .path(\"gcp\")\n            .credentials(Files.readString(Paths.get(\"credentials.json\")))\n            .build());\n\n        var impersonatedAccount = new SecretImpersonatedAccount(\"impersonatedAccount\", SecretImpersonatedAccountArgs.builder()        \n            .backend(gcp.path())\n            .impersonatedAccount(\"this\")\n            .serviceAccountEmail(this_.email())\n            .tokenScopes(\"https://www.googleapis.com/auth/cloud-platform\")\n            .build());\n\n    }\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nA impersonated account can be imported using its Vault Path. For example, referencing the example above,\n\n```sh\n $ pulumi import vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount impersonated_account gcp/impersonated-account/project_viewer\n```\n\n ",
             "properties": {
                 "backend": {
                     "type": "string",
@@ -14218,7 +14365,7 @@
             }
         },
         "vault:gcp/secretStaticAccount:SecretStaticAccount": {
-            "description": "Creates a Static Account in the [GCP Secrets Engine](https://www.vaultproject.io/docs/secrets/gcp/index.html) for Vault.\n\nEach [static account](https://www.vaultproject.io/docs/secrets/gcp/index.html#static-accounts) is tied to a separately managed\nService Account, and can have one or more [bindings](https://www.vaultproject.io/docs/secrets/gcp/index.html#bindings) associated with it.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fs from \"fs\";\nimport * as gcp from \"@pulumi/gcp\";\nimport * as vault from \"@pulumi/vault\";\n\nconst _this = new gcp.serviceaccount.Account(\"this\", {accountId: \"my-awesome-account\"});\nconst gcp = new vault.gcp.SecretBackend(\"gcp\", {\n    path: \"gcp\",\n    credentials: fs.readFileSync(\"credentials.json\"),\n});\nconst staticAccount = new vault.gcp.SecretStaticAccount(\"staticAccount\", {\n    backend: gcp.path,\n    staticAccount: \"project_viewer\",\n    secretType: \"access_token\",\n    tokenScopes: [\"https://www.googleapis.com/auth/cloud-platform\"],\n    serviceAccountEmail: _this.email,\n    bindings: [{\n        resource: pulumi.interpolate`//cloudresourcemanager.googleapis.com/projects/${_this.project}`,\n        roles: [\"roles/viewer\"],\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_gcp as gcp\nimport pulumi_vault as vault\n\nthis = gcp.service_account.Account(\"this\", account_id=\"my-awesome-account\")\ngcp = vault.gcp.SecretBackend(\"gcp\",\n    path=\"gcp\",\n    credentials=(lambda path: open(path).read())(\"credentials.json\"))\nstatic_account = vault.gcp.SecretStaticAccount(\"staticAccount\",\n    backend=gcp.path,\n    static_account=\"project_viewer\",\n    secret_type=\"access_token\",\n    token_scopes=[\"https://www.googleapis.com/auth/cloud-platform\"],\n    service_account_email=this.email,\n    bindings=[vault.gcp.SecretStaticAccountBindingArgs(\n        resource=this.project.apply(lambda project: f\"//cloudresourcemanager.googleapis.com/projects/{project}\"),\n        roles=[\"roles/viewer\"],\n    )])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.IO;\nusing Pulumi;\nusing Gcp = Pulumi.Gcp;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var @this = new Gcp.ServiceAccount.Account(\"this\", new()\n    {\n        AccountId = \"my-awesome-account\",\n    });\n\n    var gcp = new Vault.Gcp.SecretBackend(\"gcp\", new()\n    {\n        Path = \"gcp\",\n        Credentials = File.ReadAllText(\"credentials.json\"),\n    });\n\n    var staticAccount = new Vault.Gcp.SecretStaticAccount(\"staticAccount\", new()\n    {\n        Backend = gcp.Path,\n        StaticAccount = \"project_viewer\",\n        SecretType = \"access_token\",\n        TokenScopes = new[]\n        {\n            \"https://www.googleapis.com/auth/cloud-platform\",\n        },\n        ServiceAccountEmail = @this.Email,\n        Bindings = new[]\n        {\n            new Vault.Gcp.Inputs.SecretStaticAccountBindingArgs\n            {\n                Resource = @this.Project.Apply(project =\u003e $\"//cloudresourcemanager.googleapis.com/projects/{project}\"),\n                Roles = new[]\n                {\n                    \"roles/viewer\",\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"io/ioutil\"\n\n\t\"github.com/pulumi/pulumi-gcp/sdk/v5/go/gcp/serviceAccount\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/gcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc readFileOrPanic(path string) pulumi.StringPtrInput {\n\tdata, err := ioutil.ReadFile(path)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\treturn pulumi.String(string(data))\n}\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tthis, err := serviceAccount.NewAccount(ctx, \"this\", \u0026serviceAccount.AccountArgs{\n\t\t\tAccountId: pulumi.String(\"my-awesome-account\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tgcp, err := gcp.NewSecretBackend(ctx, \"gcp\", \u0026gcp.SecretBackendArgs{\n\t\t\tPath:        pulumi.String(\"gcp\"),\n\t\t\tCredentials: readFileOrPanic(\"credentials.json\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = gcp.NewSecretStaticAccount(ctx, \"staticAccount\", \u0026gcp.SecretStaticAccountArgs{\n\t\t\tBackend:       gcp.Path,\n\t\t\tStaticAccount: pulumi.String(\"project_viewer\"),\n\t\t\tSecretType:    pulumi.String(\"access_token\"),\n\t\t\tTokenScopes: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"https://www.googleapis.com/auth/cloud-platform\"),\n\t\t\t},\n\t\t\tServiceAccountEmail: this.Email,\n\t\t\tBindings: gcp.SecretStaticAccountBindingArray{\n\t\t\t\t\u0026gcp.SecretStaticAccountBindingArgs{\n\t\t\t\t\tResource: this.Project.ApplyT(func(project string) (string, error) {\n\t\t\t\t\t\treturn fmt.Sprintf(\"//cloudresourcemanager.googleapis.com/projects/%v\", project), nil\n\t\t\t\t\t}).(pulumi.StringOutput),\n\t\t\t\t\tRoles: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"roles/viewer\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.gcp.serviceAccount.Account;\nimport com.pulumi.gcp.serviceAccount.AccountArgs;\nimport com.pulumi.vault.gcp.SecretBackend;\nimport com.pulumi.vault.gcp.SecretBackendArgs;\nimport com.pulumi.vault.gcp.SecretStaticAccount;\nimport com.pulumi.vault.gcp.SecretStaticAccountArgs;\nimport com.pulumi.vault.gcp.inputs.SecretStaticAccountBindingArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var this_ = new Account(\"this\", AccountArgs.builder()        \n            .accountId(\"my-awesome-account\")\n            .build());\n\n        var gcp = new SecretBackend(\"gcp\", SecretBackendArgs.builder()        \n            .path(\"gcp\")\n            .credentials(Files.readString(Paths.get(\"credentials.json\")))\n            .build());\n\n        var staticAccount = new SecretStaticAccount(\"staticAccount\", SecretStaticAccountArgs.builder()        \n            .backend(gcp.path())\n            .staticAccount(\"project_viewer\")\n            .secretType(\"access_token\")\n            .tokenScopes(\"https://www.googleapis.com/auth/cloud-platform\")\n            .serviceAccountEmail(this_.email())\n            .bindings(SecretStaticAccountBindingArgs.builder()\n                .resource(this_.project().applyValue(project -\u003e String.format(\"//cloudresourcemanager.googleapis.com/projects/%s\", project)))\n                .roles(\"roles/viewer\")\n                .build())\n            .build());\n\n    }\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nA static account can be imported using its Vault Path. For example, referencing the example above,\n\n```sh\n $ pulumi import vault:gcp/secretStaticAccount:SecretStaticAccount static_account gcp/static-account/project_viewer\n```\n\n ",
+            "description": "Creates a Static Account in the [GCP Secrets Engine](https://www.vaultproject.io/docs/secrets/gcp/index.html) for Vault.\n\nEach [static account](https://www.vaultproject.io/docs/secrets/gcp/index.html#static-accounts) is tied to a separately managed\nService Account, and can have one or more [bindings](https://www.vaultproject.io/docs/secrets/gcp/index.html#bindings) associated with it.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fs from \"fs\";\nimport * as gcp from \"@pulumi/gcp\";\nimport * as vault from \"@pulumi/vault\";\n\nconst _this = new gcp.serviceaccount.Account(\"this\", {accountId: \"my-awesome-account\"});\nconst gcp = new vault.gcp.SecretBackend(\"gcp\", {\n    path: \"gcp\",\n    credentials: fs.readFileSync(\"credentials.json\"),\n});\nconst staticAccount = new vault.gcp.SecretStaticAccount(\"staticAccount\", {\n    backend: gcp.path,\n    staticAccount: \"project_viewer\",\n    secretType: \"access_token\",\n    tokenScopes: [\"https://www.googleapis.com/auth/cloud-platform\"],\n    serviceAccountEmail: _this.email,\n    bindings: [{\n        resource: pulumi.interpolate`//cloudresourcemanager.googleapis.com/projects/${_this.project}`,\n        roles: [\"roles/viewer\"],\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_gcp as gcp\nimport pulumi_vault as vault\n\nthis = gcp.service_account.Account(\"this\", account_id=\"my-awesome-account\")\ngcp = vault.gcp.SecretBackend(\"gcp\",\n    path=\"gcp\",\n    credentials=(lambda path: open(path).read())(\"credentials.json\"))\nstatic_account = vault.gcp.SecretStaticAccount(\"staticAccount\",\n    backend=gcp.path,\n    static_account=\"project_viewer\",\n    secret_type=\"access_token\",\n    token_scopes=[\"https://www.googleapis.com/auth/cloud-platform\"],\n    service_account_email=this.email,\n    bindings=[vault.gcp.SecretStaticAccountBindingArgs(\n        resource=this.project.apply(lambda project: f\"//cloudresourcemanager.googleapis.com/projects/{project}\"),\n        roles=[\"roles/viewer\"],\n    )])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.IO;\nusing Pulumi;\nusing Gcp = Pulumi.Gcp;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var @this = new Gcp.ServiceAccount.Account(\"this\", new()\n    {\n        AccountId = \"my-awesome-account\",\n    });\n\n    var gcp = new Vault.Gcp.SecretBackend(\"gcp\", new()\n    {\n        Path = \"gcp\",\n        Credentials = File.ReadAllText(\"credentials.json\"),\n    });\n\n    var staticAccount = new Vault.Gcp.SecretStaticAccount(\"staticAccount\", new()\n    {\n        Backend = gcp.Path,\n        StaticAccount = \"project_viewer\",\n        SecretType = \"access_token\",\n        TokenScopes = new[]\n        {\n            \"https://www.googleapis.com/auth/cloud-platform\",\n        },\n        ServiceAccountEmail = @this.Email,\n        Bindings = new[]\n        {\n            new Vault.Gcp.Inputs.SecretStaticAccountBindingArgs\n            {\n                Resource = @this.Project.Apply(project =\u003e $\"//cloudresourcemanager.googleapis.com/projects/{project}\"),\n                Roles = new[]\n                {\n                    \"roles/viewer\",\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"io/ioutil\"\n\n\t\"github.com/pulumi/pulumi-gcp/sdk/v6/go/gcp/serviceAccount\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/gcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc readFileOrPanic(path string) pulumi.StringPtrInput {\n\tdata, err := ioutil.ReadFile(path)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\treturn pulumi.String(string(data))\n}\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tthis, err := serviceAccount.NewAccount(ctx, \"this\", \u0026serviceAccount.AccountArgs{\n\t\t\tAccountId: pulumi.String(\"my-awesome-account\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tgcp, err := gcp.NewSecretBackend(ctx, \"gcp\", \u0026gcp.SecretBackendArgs{\n\t\t\tPath:        pulumi.String(\"gcp\"),\n\t\t\tCredentials: readFileOrPanic(\"credentials.json\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = gcp.NewSecretStaticAccount(ctx, \"staticAccount\", \u0026gcp.SecretStaticAccountArgs{\n\t\t\tBackend:       gcp.Path,\n\t\t\tStaticAccount: pulumi.String(\"project_viewer\"),\n\t\t\tSecretType:    pulumi.String(\"access_token\"),\n\t\t\tTokenScopes: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"https://www.googleapis.com/auth/cloud-platform\"),\n\t\t\t},\n\t\t\tServiceAccountEmail: this.Email,\n\t\t\tBindings: gcp.SecretStaticAccountBindingArray{\n\t\t\t\t\u0026gcp.SecretStaticAccountBindingArgs{\n\t\t\t\t\tResource: this.Project.ApplyT(func(project string) (string, error) {\n\t\t\t\t\t\treturn fmt.Sprintf(\"//cloudresourcemanager.googleapis.com/projects/%v\", project), nil\n\t\t\t\t\t}).(pulumi.StringOutput),\n\t\t\t\t\tRoles: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"roles/viewer\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.gcp.serviceAccount.Account;\nimport com.pulumi.gcp.serviceAccount.AccountArgs;\nimport com.pulumi.vault.gcp.SecretBackend;\nimport com.pulumi.vault.gcp.SecretBackendArgs;\nimport com.pulumi.vault.gcp.SecretStaticAccount;\nimport com.pulumi.vault.gcp.SecretStaticAccountArgs;\nimport com.pulumi.vault.gcp.inputs.SecretStaticAccountBindingArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var this_ = new Account(\"this\", AccountArgs.builder()        \n            .accountId(\"my-awesome-account\")\n            .build());\n\n        var gcp = new SecretBackend(\"gcp\", SecretBackendArgs.builder()        \n            .path(\"gcp\")\n            .credentials(Files.readString(Paths.get(\"credentials.json\")))\n            .build());\n\n        var staticAccount = new SecretStaticAccount(\"staticAccount\", SecretStaticAccountArgs.builder()        \n            .backend(gcp.path())\n            .staticAccount(\"project_viewer\")\n            .secretType(\"access_token\")\n            .tokenScopes(\"https://www.googleapis.com/auth/cloud-platform\")\n            .serviceAccountEmail(this_.email())\n            .bindings(SecretStaticAccountBindingArgs.builder()\n                .resource(this_.project().applyValue(project -\u003e String.format(\"//cloudresourcemanager.googleapis.com/projects/%s\", project)))\n                .roles(\"roles/viewer\")\n                .build())\n            .build());\n\n    }\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nA static account can be imported using its Vault Path. For example, referencing the example above,\n\n```sh\n $ pulumi import vault:gcp/secretStaticAccount:SecretStaticAccount static_account gcp/static-account/project_viewer\n```\n\n ",
             "properties": {
                 "backend": {
                     "type": "string",
@@ -17844,12 +17991,35 @@
                     "type": "string",
                     "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n"
                 },
+                "ocspCaCertificates": {
+                    "type": "string",
+                    "description": "Any additional CA certificates\nneeded to verify OCSP responses. Provided as base64 encoded PEM data.\nRequires Vault version 1.13+.\n"
+                },
+                "ocspEnabled": {
+                    "type": "boolean",
+                    "description": "- If enabled, validate certificates'\nrevocation status using OCSP. Requires Vault version 1.13+.\n"
+                },
+                "ocspFailOpen": {
+                    "type": "boolean",
+                    "description": "- If true and an OCSP response cannot\nbe fetched or is of an unknown status, the login will proceed as if the\ncertificate has not been revoked.\nRequires Vault version 1.13+.\n"
+                },
+                "ocspQueryAllServers": {
+                    "type": "boolean",
+                    "description": "- If set to true, rather than\naccepting the first successful OCSP response, query all servers and consider\nthe certificate valid only if all servers agree.\nRequires Vault version 1.13+.\n"
+                },
+                "ocspServersOverrides": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": ": A comma-separated list of OCSP\nserver addresses. If unset, the OCSP server is determined from the\nAuthorityInformationAccess extension on the certificate being inspected.\nRequires Vault version 1.13+.\n"
+                },
                 "requiredExtensions": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "TLS extensions required on client certificates\n"
+                    "description": "TLS extensions required on\nclient certificates\n"
                 },
                 "tokenBoundCidrs": {
                     "type": "array",
@@ -17904,6 +18074,9 @@
                 "certificate",
                 "displayName",
                 "name",
+                "ocspEnabled",
+                "ocspFailOpen",
+                "ocspQueryAllServers",
                 "requiredExtensions"
             ],
             "inputProperties": {
@@ -17980,12 +18153,35 @@
                     "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
                     "willReplaceOnChanges": true
                 },
+                "ocspCaCertificates": {
+                    "type": "string",
+                    "description": "Any additional CA certificates\nneeded to verify OCSP responses. Provided as base64 encoded PEM data.\nRequires Vault version 1.13+.\n"
+                },
+                "ocspEnabled": {
+                    "type": "boolean",
+                    "description": "- If enabled, validate certificates'\nrevocation status using OCSP. Requires Vault version 1.13+.\n"
+                },
+                "ocspFailOpen": {
+                    "type": "boolean",
+                    "description": "- If true and an OCSP response cannot\nbe fetched or is of an unknown status, the login will proceed as if the\ncertificate has not been revoked.\nRequires Vault version 1.13+.\n"
+                },
+                "ocspQueryAllServers": {
+                    "type": "boolean",
+                    "description": "- If set to true, rather than\naccepting the first successful OCSP response, query all servers and consider\nthe certificate valid only if all servers agree.\nRequires Vault version 1.13+.\n"
+                },
+                "ocspServersOverrides": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": ": A comma-separated list of OCSP\nserver addresses. If unset, the OCSP server is determined from the\nAuthorityInformationAccess extension on the certificate being inspected.\nRequires Vault version 1.13+.\n"
+                },
                 "requiredExtensions": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "TLS extensions required on client certificates\n"
+                    "description": "TLS extensions required on\nclient certificates\n"
                 },
                 "tokenBoundCidrs": {
                     "type": "array",
@@ -18109,12 +18305,35 @@
                         "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
                         "willReplaceOnChanges": true
                     },
+                    "ocspCaCertificates": {
+                        "type": "string",
+                        "description": "Any additional CA certificates\nneeded to verify OCSP responses. Provided as base64 encoded PEM data.\nRequires Vault version 1.13+.\n"
+                    },
+                    "ocspEnabled": {
+                        "type": "boolean",
+                        "description": "- If enabled, validate certificates'\nrevocation status using OCSP. Requires Vault version 1.13+.\n"
+                    },
+                    "ocspFailOpen": {
+                        "type": "boolean",
+                        "description": "- If true and an OCSP response cannot\nbe fetched or is of an unknown status, the login will proceed as if the\ncertificate has not been revoked.\nRequires Vault version 1.13+.\n"
+                    },
+                    "ocspQueryAllServers": {
+                        "type": "boolean",
+                        "description": "- If set to true, rather than\naccepting the first successful OCSP response, query all servers and consider\nthe certificate valid only if all servers agree.\nRequires Vault version 1.13+.\n"
+                    },
+                    "ocspServersOverrides": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": ": A comma-separated list of OCSP\nserver addresses. If unset, the OCSP server is determined from the\nAuthorityInformationAccess extension on the certificate being inspected.\nRequires Vault version 1.13+.\n"
+                    },
                     "requiredExtensions": {
                         "type": "array",
                         "items": {
                             "type": "string"
                         },
-                        "description": "TLS extensions required on client certificates\n"
+                        "description": "TLS extensions required on\nclient certificates\n"
                     },
                     "tokenBoundCidrs": {
                         "type": "array",
@@ -19071,6 +19290,13 @@
         "vault:index/namespace:Namespace": {
             "description": "\n\n\n## Import\n\nNamespaces can be imported using its `name` as accessor id\n\n```sh\n $ pulumi import vault:index/namespace:Namespace example \u003cname\u003e\n```\n\n If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path. hcl provider \"vault\" {\n\n # Configuration options\n\n namespace = \"example\"\n\n alias\n\n\n\n = \"example\" } resource \"vault_namespace\" \"example2\" {\n\n provider = vault.example\n\n path\n\n\n\n = \"example2\" }\n\n```sh\n $ pulumi import vault:index/namespace:Namespace example2 example2\n```\n\n $ terraform state show vault_namespace.example2 vault_namespace.example2resource \"vault_namespace\" \"example2\" {\n\n\n\n id\n\n\n\n\n\n\n\n\n\n = \"example/example2/\"\n\n\n\n namespace_id = \u003cknown after import\u003e\n\n\n\n path\n\n\n\n\n\n\n\n = \"example2\"\n\n\n\n path_fq\n\n\n\n\n\n= \"example2\" } ",
             "properties": {
+                "customMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "description": "Custom metadata describing this namespace. Value type\nis `map[string]string`. Requires Vault version 1.12+.\n"
+                },
                 "namespace": {
                     "type": "string",
                     "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
@@ -19094,11 +19320,19 @@
                 }
             },
             "required": [
+                "customMetadata",
                 "namespaceId",
                 "path",
                 "pathFq"
             ],
             "inputProperties": {
+                "customMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "description": "Custom metadata describing this namespace. Value type\nis `map[string]string`. Requires Vault version 1.12+.\n"
+                },
                 "namespace": {
                     "type": "string",
                     "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
@@ -19125,6 +19359,13 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering Namespace resources.\n",
                 "properties": {
+                    "customMetadata": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        },
+                        "description": "Custom metadata describing this namespace. Value type\nis `map[string]string`. Requires Vault version 1.12+.\n"
+                    },
                     "namespace": {
                         "type": "string",
                         "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
@@ -19916,7 +20157,7 @@
             }
         },
         "vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig": {
-            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n### Local Storage\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst localBackups = new vault.RaftSnapshotAgentConfig(\"local_backups\", {\n    intervalSeconds: 86400, // 24h\n    // Storage Type Configuration\n    localMaxSpace: 10000000,\n    pathPrefix: \"/opt/vault/snapshots/\",\n    retain: 7,\n    storageType: \"local\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nlocal_backups = vault.RaftSnapshotAgentConfig(\"localBackups\",\n    interval_seconds=86400,\n    local_max_space=10000000,\n    path_prefix=\"/opt/vault/snapshots/\",\n    retain=7,\n    storage_type=\"local\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var localBackups = new Vault.RaftSnapshotAgentConfig(\"localBackups\", new()\n    {\n        IntervalSeconds = 86400,\n        LocalMaxSpace = 10000000,\n        PathPrefix = \"/opt/vault/snapshots/\",\n        Retain = 7,\n        StorageType = \"local\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewRaftSnapshotAgentConfig(ctx, \"localBackups\", \u0026vault.RaftSnapshotAgentConfigArgs{\n\t\t\tIntervalSeconds: pulumi.Int(86400),\n\t\t\tLocalMaxSpace:   pulumi.Int(10000000),\n\t\t\tPathPrefix:      pulumi.String(\"/opt/vault/snapshots/\"),\n\t\t\tRetain:          pulumi.Int(7),\n\t\t\tStorageType:     pulumi.String(\"local\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.RaftSnapshotAgentConfig;\nimport com.pulumi.vault.RaftSnapshotAgentConfigArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var localBackups = new RaftSnapshotAgentConfig(\"localBackups\", RaftSnapshotAgentConfigArgs.builder()        \n            .intervalSeconds(86400)\n            .localMaxSpace(10000000)\n            .pathPrefix(\"/opt/vault/snapshots/\")\n            .retain(7)\n            .storageType(\"local\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  localBackups:\n    type: vault:RaftSnapshotAgentConfig\n    properties:\n      intervalSeconds: 86400\n      # 24h\n      #     // Storage Type Configuration\n      localMaxSpace: 1e+07\n      pathPrefix: /opt/vault/snapshots/\n      retain: 7\n      storageType: local\n```\n{{% /example %}}\n{{% example %}}\n### AWS S3\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as vault from \"@pulumi/vault\";\n\nconst config = new pulumi.Config();\nconst awsAccessKeyId = config.requireObject(\"awsAccessKeyId\");\nconst awsSecretAccessKey = config.requireObject(\"awsSecretAccessKey\");\nconst current = aws.getRegion({});\nconst s3Backups = new vault.RaftSnapshotAgentConfig(\"s3Backups\", {\n    intervalSeconds: 86400,\n    retain: 7,\n    pathPrefix: \"/path/in/bucket\",\n    storageType: \"aws-s3\",\n    awsS3Bucket: \"my-bucket\",\n    awsS3Region: current.then(current =\u003e current.name),\n    awsAccessKeyId: awsAccessKeyId,\n    awsSecretAccessKey: awsSecretAccessKey,\n    awsS3EnableKms: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_vault as vault\n\nconfig = pulumi.Config()\naws_access_key_id = config.require_object(\"awsAccessKeyId\")\naws_secret_access_key = config.require_object(\"awsSecretAccessKey\")\ncurrent = aws.get_region()\ns3_backups = vault.RaftSnapshotAgentConfig(\"s3Backups\",\n    interval_seconds=86400,\n    retain=7,\n    path_prefix=\"/path/in/bucket\",\n    storage_type=\"aws-s3\",\n    aws_s3_bucket=\"my-bucket\",\n    aws_s3_region=current.name,\n    aws_access_key_id=aws_access_key_id,\n    aws_secret_access_key=aws_secret_access_key,\n    aws_s3_enable_kms=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Config();\n    var awsAccessKeyId = config.RequireObject\u003cdynamic\u003e(\"awsAccessKeyId\");\n    var awsSecretAccessKey = config.RequireObject\u003cdynamic\u003e(\"awsSecretAccessKey\");\n    var current = Aws.GetRegion.Invoke();\n\n    var s3Backups = new Vault.RaftSnapshotAgentConfig(\"s3Backups\", new()\n    {\n        IntervalSeconds = 86400,\n        Retain = 7,\n        PathPrefix = \"/path/in/bucket\",\n        StorageType = \"aws-s3\",\n        AwsS3Bucket = \"my-bucket\",\n        AwsS3Region = current.Apply(getRegionResult =\u003e getRegionResult.Name),\n        AwsAccessKeyId = awsAccessKeyId,\n        AwsSecretAccessKey = awsSecretAccessKey,\n        AwsS3EnableKms = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-aws/sdk/v5/go/aws\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcfg := config.New(ctx, \"\")\n\t\tawsAccessKeyId := cfg.RequireObject(\"awsAccessKeyId\")\n\t\tawsSecretAccessKey := cfg.RequireObject(\"awsSecretAccessKey\")\n\t\tcurrent, err := aws.GetRegion(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = vault.NewRaftSnapshotAgentConfig(ctx, \"s3Backups\", \u0026vault.RaftSnapshotAgentConfigArgs{\n\t\t\tIntervalSeconds:    pulumi.Int(86400),\n\t\t\tRetain:             pulumi.Int(7),\n\t\t\tPathPrefix:         pulumi.String(\"/path/in/bucket\"),\n\t\t\tStorageType:        pulumi.String(\"aws-s3\"),\n\t\t\tAwsS3Bucket:        pulumi.String(\"my-bucket\"),\n\t\t\tAwsS3Region:        pulumi.String(current.Name),\n\t\t\tAwsAccessKeyId:     pulumi.Any(awsAccessKeyId),\n\t\t\tAwsSecretAccessKey: pulumi.Any(awsSecretAccessKey),\n\t\t\tAwsS3EnableKms:     pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.aws.AwsFunctions;\nimport com.pulumi.aws.inputs.GetRegionArgs;\nimport com.pulumi.vault.RaftSnapshotAgentConfig;\nimport com.pulumi.vault.RaftSnapshotAgentConfigArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var config = ctx.config();\n        final var awsAccessKeyId = config.get(\"awsAccessKeyId\");\n        final var awsSecretAccessKey = config.get(\"awsSecretAccessKey\");\n        final var current = AwsFunctions.getRegion();\n\n        var s3Backups = new RaftSnapshotAgentConfig(\"s3Backups\", RaftSnapshotAgentConfigArgs.builder()        \n            .intervalSeconds(86400)\n            .retain(7)\n            .pathPrefix(\"/path/in/bucket\")\n            .storageType(\"aws-s3\")\n            .awsS3Bucket(\"my-bucket\")\n            .awsS3Region(current.applyValue(getRegionResult -\u003e getRegionResult.name()))\n            .awsAccessKeyId(awsAccessKeyId)\n            .awsSecretAccessKey(awsSecretAccessKey)\n            .awsS3EnableKms(true)\n            .build());\n\n    }\n}\n```\n```yaml\nconfiguration:\n  awsAccessKeyId:\n    type: dynamic\n  awsSecretAccessKey:\n    type: dynamic\nresources:\n  s3Backups:\n    type: vault:RaftSnapshotAgentConfig\n    properties:\n      intervalSeconds: 86400\n      # 24h\n      retain: 7\n      pathPrefix: /path/in/bucket\n      storageType: aws-s3\n      # Storage Type Configuration\n      awsS3Bucket: my-bucket\n      awsS3Region: ${current.name}\n      awsAccessKeyId: ${awsAccessKeyId}\n      awsSecretAccessKey: ${awsSecretAccessKey}\n      awsS3EnableKms: true\nvariables:\n  current:\n    Fn::Invoke:\n      Function: aws:getRegion\n      Arguments: {}\n```\n{{% /example %}}\n{{% example %}}\n### Azure BLOB\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst config = new pulumi.Config();\nconst azureAccountName = config.requireObject(\"azureAccountName\");\nconst azureAccountKey = config.requireObject(\"azureAccountKey\");\nconst azureBackups = new vault.RaftSnapshotAgentConfig(\"azureBackups\", {\n    intervalSeconds: 86400,\n    retain: 7,\n    pathPrefix: \"/\",\n    storageType: \"azure-blob\",\n    azureContainerName: \"vault-blob\",\n    azureAccountName: azureAccountName,\n    azureAccountKey: azureAccountKey,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nconfig = pulumi.Config()\nazure_account_name = config.require_object(\"azureAccountName\")\nazure_account_key = config.require_object(\"azureAccountKey\")\nazure_backups = vault.RaftSnapshotAgentConfig(\"azureBackups\",\n    interval_seconds=86400,\n    retain=7,\n    path_prefix=\"/\",\n    storage_type=\"azure-blob\",\n    azure_container_name=\"vault-blob\",\n    azure_account_name=azure_account_name,\n    azure_account_key=azure_account_key)\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Config();\n    var azureAccountName = config.RequireObject\u003cdynamic\u003e(\"azureAccountName\");\n    var azureAccountKey = config.RequireObject\u003cdynamic\u003e(\"azureAccountKey\");\n    var azureBackups = new Vault.RaftSnapshotAgentConfig(\"azureBackups\", new()\n    {\n        IntervalSeconds = 86400,\n        Retain = 7,\n        PathPrefix = \"/\",\n        StorageType = \"azure-blob\",\n        AzureContainerName = \"vault-blob\",\n        AzureAccountName = azureAccountName,\n        AzureAccountKey = azureAccountKey,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcfg := config.New(ctx, \"\")\n\t\tazureAccountName := cfg.RequireObject(\"azureAccountName\")\n\t\tazureAccountKey := cfg.RequireObject(\"azureAccountKey\")\n\t\t_, err := vault.NewRaftSnapshotAgentConfig(ctx, \"azureBackups\", \u0026vault.RaftSnapshotAgentConfigArgs{\n\t\t\tIntervalSeconds:    pulumi.Int(86400),\n\t\t\tRetain:             pulumi.Int(7),\n\t\t\tPathPrefix:         pulumi.String(\"/\"),\n\t\t\tStorageType:        pulumi.String(\"azure-blob\"),\n\t\t\tAzureContainerName: pulumi.String(\"vault-blob\"),\n\t\t\tAzureAccountName:   pulumi.Any(azureAccountName),\n\t\t\tAzureAccountKey:    pulumi.Any(azureAccountKey),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.RaftSnapshotAgentConfig;\nimport com.pulumi.vault.RaftSnapshotAgentConfigArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var config = ctx.config();\n        final var azureAccountName = config.get(\"azureAccountName\");\n        final var azureAccountKey = config.get(\"azureAccountKey\");\n        var azureBackups = new RaftSnapshotAgentConfig(\"azureBackups\", RaftSnapshotAgentConfigArgs.builder()        \n            .intervalSeconds(86400)\n            .retain(7)\n            .pathPrefix(\"/\")\n            .storageType(\"azure-blob\")\n            .azureContainerName(\"vault-blob\")\n            .azureAccountName(azureAccountName)\n            .azureAccountKey(azureAccountKey)\n            .build());\n\n    }\n}\n```\n```yaml\nconfiguration:\n  azureAccountName:\n    type: dynamic\n  azureAccountKey:\n    type: dynamic\nresources:\n  azureBackups:\n    type: vault:RaftSnapshotAgentConfig\n    properties:\n      intervalSeconds: 86400\n      # 24h\n      retain: 7\n      pathPrefix: /\n      storageType: azure-blob\n      # Storage Type Configuration\n      azureContainerName: vault-blob\n      azureAccountName: ${azureAccountName}\n      azureAccountKey: ${azureAccountKey}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nRaft Snapshot Agent Configurations can be imported using the `name`, e.g.\n\n```sh\n $ pulumi import vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig local local\n```\n\n ",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n### Local Storage\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst localBackups = new vault.RaftSnapshotAgentConfig(\"local_backups\", {\n    intervalSeconds: 86400, // 24h\n    // Storage Type Configuration\n    localMaxSpace: 10000000,\n    pathPrefix: \"/opt/vault/snapshots/\",\n    retain: 7,\n    storageType: \"local\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nlocal_backups = vault.RaftSnapshotAgentConfig(\"localBackups\",\n    interval_seconds=86400,\n    local_max_space=10000000,\n    path_prefix=\"/opt/vault/snapshots/\",\n    retain=7,\n    storage_type=\"local\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var localBackups = new Vault.RaftSnapshotAgentConfig(\"localBackups\", new()\n    {\n        IntervalSeconds = 86400,\n        LocalMaxSpace = 10000000,\n        PathPrefix = \"/opt/vault/snapshots/\",\n        Retain = 7,\n        StorageType = \"local\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewRaftSnapshotAgentConfig(ctx, \"localBackups\", \u0026vault.RaftSnapshotAgentConfigArgs{\n\t\t\tIntervalSeconds: pulumi.Int(86400),\n\t\t\tLocalMaxSpace:   pulumi.Int(10000000),\n\t\t\tPathPrefix:      pulumi.String(\"/opt/vault/snapshots/\"),\n\t\t\tRetain:          pulumi.Int(7),\n\t\t\tStorageType:     pulumi.String(\"local\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.RaftSnapshotAgentConfig;\nimport com.pulumi.vault.RaftSnapshotAgentConfigArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var localBackups = new RaftSnapshotAgentConfig(\"localBackups\", RaftSnapshotAgentConfigArgs.builder()        \n            .intervalSeconds(86400)\n            .localMaxSpace(10000000)\n            .pathPrefix(\"/opt/vault/snapshots/\")\n            .retain(7)\n            .storageType(\"local\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  localBackups:\n    type: vault:RaftSnapshotAgentConfig\n    properties:\n      intervalSeconds: 86400\n      # 24h\n      #     // Storage Type Configuration\n      localMaxSpace: 1e+07\n      pathPrefix: /opt/vault/snapshots/\n      retain: 7\n      storageType: local\n```\n{{% /example %}}\n{{% example %}}\n### AWS S3\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as vault from \"@pulumi/vault\";\n\nconst config = new pulumi.Config();\nconst awsAccessKeyId = config.requireObject(\"awsAccessKeyId\");\nconst awsSecretAccessKey = config.requireObject(\"awsSecretAccessKey\");\nconst current = aws.getRegion({});\nconst s3Backups = new vault.RaftSnapshotAgentConfig(\"s3Backups\", {\n    intervalSeconds: 86400,\n    retain: 7,\n    pathPrefix: \"/path/in/bucket\",\n    storageType: \"aws-s3\",\n    awsS3Bucket: \"my-bucket\",\n    awsS3Region: current.then(current =\u003e current.name),\n    awsAccessKeyId: awsAccessKeyId,\n    awsSecretAccessKey: awsSecretAccessKey,\n    awsS3EnableKms: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_vault as vault\n\nconfig = pulumi.Config()\naws_access_key_id = config.require_object(\"awsAccessKeyId\")\naws_secret_access_key = config.require_object(\"awsSecretAccessKey\")\ncurrent = aws.get_region()\ns3_backups = vault.RaftSnapshotAgentConfig(\"s3Backups\",\n    interval_seconds=86400,\n    retain=7,\n    path_prefix=\"/path/in/bucket\",\n    storage_type=\"aws-s3\",\n    aws_s3_bucket=\"my-bucket\",\n    aws_s3_region=current.name,\n    aws_access_key_id=aws_access_key_id,\n    aws_secret_access_key=aws_secret_access_key,\n    aws_s3_enable_kms=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Config();\n    var awsAccessKeyId = config.RequireObject\u003cdynamic\u003e(\"awsAccessKeyId\");\n    var awsSecretAccessKey = config.RequireObject\u003cdynamic\u003e(\"awsSecretAccessKey\");\n    var current = Aws.GetRegion.Invoke();\n\n    var s3Backups = new Vault.RaftSnapshotAgentConfig(\"s3Backups\", new()\n    {\n        IntervalSeconds = 86400,\n        Retain = 7,\n        PathPrefix = \"/path/in/bucket\",\n        StorageType = \"aws-s3\",\n        AwsS3Bucket = \"my-bucket\",\n        AwsS3Region = current.Apply(getRegionResult =\u003e getRegionResult.Name),\n        AwsAccessKeyId = awsAccessKeyId,\n        AwsSecretAccessKey = awsSecretAccessKey,\n        AwsS3EnableKms = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-aws/sdk/v6/go/aws\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcfg := config.New(ctx, \"\")\n\t\tawsAccessKeyId := cfg.RequireObject(\"awsAccessKeyId\")\n\t\tawsSecretAccessKey := cfg.RequireObject(\"awsSecretAccessKey\")\n\t\tcurrent, err := aws.GetRegion(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = vault.NewRaftSnapshotAgentConfig(ctx, \"s3Backups\", \u0026vault.RaftSnapshotAgentConfigArgs{\n\t\t\tIntervalSeconds:    pulumi.Int(86400),\n\t\t\tRetain:             pulumi.Int(7),\n\t\t\tPathPrefix:         pulumi.String(\"/path/in/bucket\"),\n\t\t\tStorageType:        pulumi.String(\"aws-s3\"),\n\t\t\tAwsS3Bucket:        pulumi.String(\"my-bucket\"),\n\t\t\tAwsS3Region:        pulumi.String(current.Name),\n\t\t\tAwsAccessKeyId:     pulumi.Any(awsAccessKeyId),\n\t\t\tAwsSecretAccessKey: pulumi.Any(awsSecretAccessKey),\n\t\t\tAwsS3EnableKms:     pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.aws.AwsFunctions;\nimport com.pulumi.aws.inputs.GetRegionArgs;\nimport com.pulumi.vault.RaftSnapshotAgentConfig;\nimport com.pulumi.vault.RaftSnapshotAgentConfigArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var config = ctx.config();\n        final var awsAccessKeyId = config.get(\"awsAccessKeyId\");\n        final var awsSecretAccessKey = config.get(\"awsSecretAccessKey\");\n        final var current = AwsFunctions.getRegion();\n\n        var s3Backups = new RaftSnapshotAgentConfig(\"s3Backups\", RaftSnapshotAgentConfigArgs.builder()        \n            .intervalSeconds(86400)\n            .retain(7)\n            .pathPrefix(\"/path/in/bucket\")\n            .storageType(\"aws-s3\")\n            .awsS3Bucket(\"my-bucket\")\n            .awsS3Region(current.applyValue(getRegionResult -\u003e getRegionResult.name()))\n            .awsAccessKeyId(awsAccessKeyId)\n            .awsSecretAccessKey(awsSecretAccessKey)\n            .awsS3EnableKms(true)\n            .build());\n\n    }\n}\n```\n```yaml\nconfiguration:\n  awsAccessKeyId:\n    type: dynamic\n  awsSecretAccessKey:\n    type: dynamic\nresources:\n  s3Backups:\n    type: vault:RaftSnapshotAgentConfig\n    properties:\n      intervalSeconds: 86400\n      # 24h\n      retain: 7\n      pathPrefix: /path/in/bucket\n      storageType: aws-s3\n      # Storage Type Configuration\n      awsS3Bucket: my-bucket\n      awsS3Region: ${current.name}\n      awsAccessKeyId: ${awsAccessKeyId}\n      awsSecretAccessKey: ${awsSecretAccessKey}\n      awsS3EnableKms: true\nvariables:\n  current:\n    Fn::Invoke:\n      Function: aws:getRegion\n      Arguments: {}\n```\n{{% /example %}}\n{{% example %}}\n### Azure BLOB\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst config = new pulumi.Config();\nconst azureAccountName = config.requireObject(\"azureAccountName\");\nconst azureAccountKey = config.requireObject(\"azureAccountKey\");\nconst azureBackups = new vault.RaftSnapshotAgentConfig(\"azureBackups\", {\n    intervalSeconds: 86400,\n    retain: 7,\n    pathPrefix: \"/\",\n    storageType: \"azure-blob\",\n    azureContainerName: \"vault-blob\",\n    azureAccountName: azureAccountName,\n    azureAccountKey: azureAccountKey,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nconfig = pulumi.Config()\nazure_account_name = config.require_object(\"azureAccountName\")\nazure_account_key = config.require_object(\"azureAccountKey\")\nazure_backups = vault.RaftSnapshotAgentConfig(\"azureBackups\",\n    interval_seconds=86400,\n    retain=7,\n    path_prefix=\"/\",\n    storage_type=\"azure-blob\",\n    azure_container_name=\"vault-blob\",\n    azure_account_name=azure_account_name,\n    azure_account_key=azure_account_key)\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Config();\n    var azureAccountName = config.RequireObject\u003cdynamic\u003e(\"azureAccountName\");\n    var azureAccountKey = config.RequireObject\u003cdynamic\u003e(\"azureAccountKey\");\n    var azureBackups = new Vault.RaftSnapshotAgentConfig(\"azureBackups\", new()\n    {\n        IntervalSeconds = 86400,\n        Retain = 7,\n        PathPrefix = \"/\",\n        StorageType = \"azure-blob\",\n        AzureContainerName = \"vault-blob\",\n        AzureAccountName = azureAccountName,\n        AzureAccountKey = azureAccountKey,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcfg := config.New(ctx, \"\")\n\t\tazureAccountName := cfg.RequireObject(\"azureAccountName\")\n\t\tazureAccountKey := cfg.RequireObject(\"azureAccountKey\")\n\t\t_, err := vault.NewRaftSnapshotAgentConfig(ctx, \"azureBackups\", \u0026vault.RaftSnapshotAgentConfigArgs{\n\t\t\tIntervalSeconds:    pulumi.Int(86400),\n\t\t\tRetain:             pulumi.Int(7),\n\t\t\tPathPrefix:         pulumi.String(\"/\"),\n\t\t\tStorageType:        pulumi.String(\"azure-blob\"),\n\t\t\tAzureContainerName: pulumi.String(\"vault-blob\"),\n\t\t\tAzureAccountName:   pulumi.Any(azureAccountName),\n\t\t\tAzureAccountKey:    pulumi.Any(azureAccountKey),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.RaftSnapshotAgentConfig;\nimport com.pulumi.vault.RaftSnapshotAgentConfigArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var config = ctx.config();\n        final var azureAccountName = config.get(\"azureAccountName\");\n        final var azureAccountKey = config.get(\"azureAccountKey\");\n        var azureBackups = new RaftSnapshotAgentConfig(\"azureBackups\", RaftSnapshotAgentConfigArgs.builder()        \n            .intervalSeconds(86400)\n            .retain(7)\n            .pathPrefix(\"/\")\n            .storageType(\"azure-blob\")\n            .azureContainerName(\"vault-blob\")\n            .azureAccountName(azureAccountName)\n            .azureAccountKey(azureAccountKey)\n            .build());\n\n    }\n}\n```\n```yaml\nconfiguration:\n  azureAccountName:\n    type: dynamic\n  azureAccountKey:\n    type: dynamic\nresources:\n  azureBackups:\n    type: vault:RaftSnapshotAgentConfig\n    properties:\n      intervalSeconds: 86400\n      # 24h\n      retain: 7\n      pathPrefix: /\n      storageType: azure-blob\n      # Storage Type Configuration\n      azureContainerName: vault-blob\n      azureAccountName: ${azureAccountName}\n      azureAccountKey: ${azureAccountKey}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nRaft Snapshot Agent Configurations can be imported using the `name`, e.g.\n\n```sh\n $ pulumi import vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig local local\n```\n\n ",
             "properties": {
                 "awsAccessKeyId": {
                     "type": "string",
@@ -29472,6 +29713,441 @@
                 "type": "object"
             }
         },
+        "vault:saml/authBackend:AuthBackend": {
+            "description": "Manages a SAML Auth mount in a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/saml/) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst test = new vault.saml.AuthBackend(\"test\", {\n    acsUrls: [\"https://my.vault.primary/v1/auth/saml/callback\"],\n    defaultRole: \"admin\",\n    entityId: \"https://my.vault/v1/auth/saml\",\n    idpMetadataUrl: \"https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata\",\n    path: \"saml\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ntest = vault.saml.AuthBackend(\"test\",\n    acs_urls=[\"https://my.vault.primary/v1/auth/saml/callback\"],\n    default_role=\"admin\",\n    entity_id=\"https://my.vault/v1/auth/saml\",\n    idp_metadata_url=\"https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata\",\n    path=\"saml\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Vault.Saml.AuthBackend(\"test\", new()\n    {\n        AcsUrls = new[]\n        {\n            \"https://my.vault.primary/v1/auth/saml/callback\",\n        },\n        DefaultRole = \"admin\",\n        EntityId = \"https://my.vault/v1/auth/saml\",\n        IdpMetadataUrl = \"https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata\",\n        Path = \"saml\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/saml\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := saml.NewAuthBackend(ctx, \"test\", \u0026saml.AuthBackendArgs{\n\t\t\tAcsUrls: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"https://my.vault.primary/v1/auth/saml/callback\"),\n\t\t\t},\n\t\t\tDefaultRole:    pulumi.String(\"admin\"),\n\t\t\tEntityId:       pulumi.String(\"https://my.vault/v1/auth/saml\"),\n\t\t\tIdpMetadataUrl: pulumi.String(\"https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata\"),\n\t\t\tPath:           pulumi.String(\"saml\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.saml.AuthBackend;\nimport com.pulumi.vault.saml.AuthBackendArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new AuthBackend(\"test\", AuthBackendArgs.builder()        \n            .acsUrls(\"https://my.vault.primary/v1/auth/saml/callback\")\n            .defaultRole(\"admin\")\n            .entityId(\"https://my.vault/v1/auth/saml\")\n            .idpMetadataUrl(\"https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata\")\n            .path(\"saml\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: vault:saml:AuthBackend\n    properties:\n      acsUrls:\n        - https://my.vault.primary/v1/auth/saml/callback\n      defaultRole: admin\n      entityId: https://my.vault/v1/auth/saml\n      idpMetadataUrl: https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata\n      path: saml\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSAML authentication mounts can be imported using the `path`, e.g.\n\n```sh\n $ pulumi import vault:saml/authBackend:AuthBackend example saml\n```\n\n ",
+            "properties": {
+                "acsUrls": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The well-formatted URLs of your Assertion Consumer Service (ACS)\nthat should receive a response from the identity provider.\n"
+                },
+                "defaultRole": {
+                    "type": "string",
+                    "description": "The role to use if no role is provided during login.\n"
+                },
+                "disableRemount": {
+                    "type": "boolean",
+                    "description": "If set to `true`, opts out of mount migration on path updates.\nSee here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)\n"
+                },
+                "entityId": {
+                    "type": "string",
+                    "description": "The entity ID of the SAML authentication service provider.\n"
+                },
+                "idpCert": {
+                    "type": "string",
+                    "description": "The PEM encoded certificate of the identity provider. Mutually exclusive\nwith `idp_metadata_url`.\n"
+                },
+                "idpEntityId": {
+                    "type": "string",
+                    "description": "The entity ID of the identity provider. Mutually exclusive with\n`idp_metadata_url`.\n"
+                },
+                "idpMetadataUrl": {
+                    "type": "string",
+                    "description": "The metadata URL of the identity provider.\n"
+                },
+                "idpSsoUrl": {
+                    "type": "string",
+                    "description": "The SSO URL of the identity provider. Mutually exclusive with \n`idp_metadata_url`.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "Path where the auth backend will be mounted. Defaults to `auth/saml`\nif not specified.\n"
+                },
+                "verboseLogging": {
+                    "type": "boolean",
+                    "description": "If set to `true`, logs additional, potentially sensitive\ninformation during the SAML exchange according to the current logging level. Not\nrecommended for production.\n"
+                }
+            },
+            "required": [
+                "acsUrls",
+                "entityId",
+                "verboseLogging"
+            ],
+            "inputProperties": {
+                "acsUrls": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The well-formatted URLs of your Assertion Consumer Service (ACS)\nthat should receive a response from the identity provider.\n"
+                },
+                "defaultRole": {
+                    "type": "string",
+                    "description": "The role to use if no role is provided during login.\n"
+                },
+                "disableRemount": {
+                    "type": "boolean",
+                    "description": "If set to `true`, opts out of mount migration on path updates.\nSee here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)\n"
+                },
+                "entityId": {
+                    "type": "string",
+                    "description": "The entity ID of the SAML authentication service provider.\n"
+                },
+                "idpCert": {
+                    "type": "string",
+                    "description": "The PEM encoded certificate of the identity provider. Mutually exclusive\nwith `idp_metadata_url`.\n"
+                },
+                "idpEntityId": {
+                    "type": "string",
+                    "description": "The entity ID of the identity provider. Mutually exclusive with\n`idp_metadata_url`.\n"
+                },
+                "idpMetadataUrl": {
+                    "type": "string",
+                    "description": "The metadata URL of the identity provider.\n"
+                },
+                "idpSsoUrl": {
+                    "type": "string",
+                    "description": "The SSO URL of the identity provider. Mutually exclusive with \n`idp_metadata_url`.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
+                    "willReplaceOnChanges": true
+                },
+                "path": {
+                    "type": "string",
+                    "description": "Path where the auth backend will be mounted. Defaults to `auth/saml`\nif not specified.\n",
+                    "willReplaceOnChanges": true
+                },
+                "verboseLogging": {
+                    "type": "boolean",
+                    "description": "If set to `true`, logs additional, potentially sensitive\ninformation during the SAML exchange according to the current logging level. Not\nrecommended for production.\n"
+                }
+            },
+            "requiredInputs": [
+                "acsUrls",
+                "entityId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering AuthBackend resources.\n",
+                "properties": {
+                    "acsUrls": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The well-formatted URLs of your Assertion Consumer Service (ACS)\nthat should receive a response from the identity provider.\n"
+                    },
+                    "defaultRole": {
+                        "type": "string",
+                        "description": "The role to use if no role is provided during login.\n"
+                    },
+                    "disableRemount": {
+                        "type": "boolean",
+                        "description": "If set to `true`, opts out of mount migration on path updates.\nSee here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)\n"
+                    },
+                    "entityId": {
+                        "type": "string",
+                        "description": "The entity ID of the SAML authentication service provider.\n"
+                    },
+                    "idpCert": {
+                        "type": "string",
+                        "description": "The PEM encoded certificate of the identity provider. Mutually exclusive\nwith `idp_metadata_url`.\n"
+                    },
+                    "idpEntityId": {
+                        "type": "string",
+                        "description": "The entity ID of the identity provider. Mutually exclusive with\n`idp_metadata_url`.\n"
+                    },
+                    "idpMetadataUrl": {
+                        "type": "string",
+                        "description": "The metadata URL of the identity provider.\n"
+                    },
+                    "idpSsoUrl": {
+                        "type": "string",
+                        "description": "The SSO URL of the identity provider. Mutually exclusive with \n`idp_metadata_url`.\n"
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "path": {
+                        "type": "string",
+                        "description": "Path where the auth backend will be mounted. Defaults to `auth/saml`\nif not specified.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "verboseLogging": {
+                        "type": "boolean",
+                        "description": "If set to `true`, logs additional, potentially sensitive\ninformation during the SAML exchange according to the current logging level. Not\nrecommended for production.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "vault:saml/authBackendRole:AuthBackendRole": {
+            "description": "Manages an SAML auth backend role in a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/saml.html) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst exampleAuthBackend = new vault.saml.AuthBackend(\"exampleAuthBackend\", {\n    path: \"saml\",\n    idpMetadataUrl: \"https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata\",\n    entityId: \"https://my.vault/v1/auth/saml\",\n    acsUrls: [\"https://my.vault.primary/v1/auth/saml/callback\"],\n    defaultRole: \"default-role\",\n});\nconst exampleAuthBackendRole = new vault.saml.AuthBackendRole(\"exampleAuthBackendRole\", {\n    path: exampleAuthBackend.path,\n    groupsAttribute: \"groups\",\n    boundAttributes: {\n        group: \"admin\",\n    },\n    boundSubjects: [\"*example.com\"],\n    tokenPolicies: [\"writer\"],\n    tokenTtl: 86400,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample_auth_backend = vault.saml.AuthBackend(\"exampleAuthBackend\",\n    path=\"saml\",\n    idp_metadata_url=\"https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata\",\n    entity_id=\"https://my.vault/v1/auth/saml\",\n    acs_urls=[\"https://my.vault.primary/v1/auth/saml/callback\"],\n    default_role=\"default-role\")\nexample_auth_backend_role = vault.saml.AuthBackendRole(\"exampleAuthBackendRole\",\n    path=example_auth_backend.path,\n    groups_attribute=\"groups\",\n    bound_attributes={\n        \"group\": \"admin\",\n    },\n    bound_subjects=[\"*example.com\"],\n    token_policies=[\"writer\"],\n    token_ttl=86400)\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleAuthBackend = new Vault.Saml.AuthBackend(\"exampleAuthBackend\", new()\n    {\n        Path = \"saml\",\n        IdpMetadataUrl = \"https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata\",\n        EntityId = \"https://my.vault/v1/auth/saml\",\n        AcsUrls = new[]\n        {\n            \"https://my.vault.primary/v1/auth/saml/callback\",\n        },\n        DefaultRole = \"default-role\",\n    });\n\n    var exampleAuthBackendRole = new Vault.Saml.AuthBackendRole(\"exampleAuthBackendRole\", new()\n    {\n        Path = exampleAuthBackend.Path,\n        GroupsAttribute = \"groups\",\n        BoundAttributes = \n        {\n            { \"group\", \"admin\" },\n        },\n        BoundSubjects = new[]\n        {\n            \"*example.com\",\n        },\n        TokenPolicies = new[]\n        {\n            \"writer\",\n        },\n        TokenTtl = 86400,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/saml\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleAuthBackend, err := saml.NewAuthBackend(ctx, \"exampleAuthBackend\", \u0026saml.AuthBackendArgs{\n\t\t\tPath:           pulumi.String(\"saml\"),\n\t\t\tIdpMetadataUrl: pulumi.String(\"https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata\"),\n\t\t\tEntityId:       pulumi.String(\"https://my.vault/v1/auth/saml\"),\n\t\t\tAcsUrls: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"https://my.vault.primary/v1/auth/saml/callback\"),\n\t\t\t},\n\t\t\tDefaultRole: pulumi.String(\"default-role\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = saml.NewAuthBackendRole(ctx, \"exampleAuthBackendRole\", \u0026saml.AuthBackendRoleArgs{\n\t\t\tPath:            exampleAuthBackend.Path,\n\t\t\tGroupsAttribute: pulumi.String(\"groups\"),\n\t\t\tBoundAttributes: pulumi.AnyMap{\n\t\t\t\t\"group\": pulumi.Any(\"admin\"),\n\t\t\t},\n\t\t\tBoundSubjects: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"*example.com\"),\n\t\t\t},\n\t\t\tTokenPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"writer\"),\n\t\t\t},\n\t\t\tTokenTtl: pulumi.Int(86400),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.saml.AuthBackend;\nimport com.pulumi.vault.saml.AuthBackendArgs;\nimport com.pulumi.vault.saml.AuthBackendRole;\nimport com.pulumi.vault.saml.AuthBackendRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleAuthBackend = new AuthBackend(\"exampleAuthBackend\", AuthBackendArgs.builder()        \n            .path(\"saml\")\n            .idpMetadataUrl(\"https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata\")\n            .entityId(\"https://my.vault/v1/auth/saml\")\n            .acsUrls(\"https://my.vault.primary/v1/auth/saml/callback\")\n            .defaultRole(\"default-role\")\n            .build());\n\n        var exampleAuthBackendRole = new AuthBackendRole(\"exampleAuthBackendRole\", AuthBackendRoleArgs.builder()        \n            .path(exampleAuthBackend.path())\n            .groupsAttribute(\"groups\")\n            .boundAttributes(Map.of(\"group\", \"admin\"))\n            .boundSubjects(\"*example.com\")\n            .tokenPolicies(\"writer\")\n            .tokenTtl(86400)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleAuthBackend:\n    type: vault:saml:AuthBackend\n    properties:\n      path: saml\n      idpMetadataUrl: https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata\n      entityId: https://my.vault/v1/auth/saml\n      acsUrls:\n        - https://my.vault.primary/v1/auth/saml/callback\n      defaultRole: default-role\n  exampleAuthBackendRole:\n    type: vault:saml:AuthBackendRole\n    properties:\n      path: ${exampleAuthBackend.path}\n      groupsAttribute: groups\n      boundAttributes:\n        group: admin\n      boundSubjects:\n        - '*example.com'\n      tokenPolicies:\n        - writer\n      tokenTtl: 86400\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSAML authentication backend roles can be imported using the `path`, e.g.\n\n```sh\n $ pulumi import vault:saml/authBackendRole:AuthBackendRole example auth/saml/role/my-role\n```\n\n ",
+            "properties": {
+                "boundAttributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "description": "Mapping of attribute names to values that are expected to\nexist in the SAML assertion.\n"
+                },
+                "boundAttributesType": {
+                    "type": "string",
+                    "description": "The type of matching assertion to perform on\n`bound_attributes_type`.\n"
+                },
+                "boundSubjects": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of subjects being asserted for SAML authentication.\n"
+                },
+                "boundSubjectsType": {
+                    "type": "string",
+                    "description": "The type of matching assertion to perform on `bound_subjects`.\n"
+                },
+                "groupsAttribute": {
+                    "type": "string",
+                    "description": "The attribute to use to identify the set of groups to which the\nuser belongs.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Unique name of the role.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "Path where the auth backend is mounted.\n"
+                },
+                "tokenBoundCidrs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of CIDR blocks; if set, specifies blocks of IP\naddresses which can authenticate successfully, and ties the resulting token to these blocks\nas well.\n"
+                },
+                "tokenExplicitMaxTtl": {
+                    "type": "integer",
+                    "description": "If set, will encode an\n[explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)\nonto the token in number of seconds. This is a hard cap even if `token_ttl` and\n`token_max_ttl` would otherwise allow a renewal.\n"
+                },
+                "tokenMaxTtl": {
+                    "type": "integer",
+                    "description": "The maximum lifetime for generated tokens in number of seconds.\nIts current value will be referenced at renewal time.\n"
+                },
+                "tokenNoDefaultPolicy": {
+                    "type": "boolean",
+                    "description": "If set, the default policy will not be set on\ngenerated tokens; otherwise it will be added to the policies set in token_policies.\n"
+                },
+                "tokenNumUses": {
+                    "type": "integer",
+                    "description": "The [maximum number](https://developer.hashicorp.com/vault/api-docs/auth/saml#token_num_uses)\nof times a generated token may be used (within its lifetime); 0 means unlimited.\n"
+                },
+                "tokenPeriod": {
+                    "type": "integer",
+                    "description": "If set, indicates that the\ntoken generated using this role should never expire. The token should be renewed within the\nduration specified by this value. At each renewal, the token's TTL will be set to the\nvalue of this field. Specified in seconds.\n"
+                },
+                "tokenPolicies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of policies to encode onto generated tokens. Depending\non the auth method, this list may be supplemented by user/group/other values.\n"
+                },
+                "tokenTtl": {
+                    "type": "integer",
+                    "description": "The incremental lifetime for generated tokens in number of seconds.\nIts current value will be referenced at renewal time.\n"
+                },
+                "tokenType": {
+                    "type": "string",
+                    "description": "The type of token that should be generated. Can be `service`,\n`batch`, or `default` to use the mount's tuned default (which unless changed will be\n`service` tokens). For token store roles, there are two additional possibilities:\n`default-service` and `default-batch` which specify the type to return unless the client\nrequests a different type at generation time.\n"
+                }
+            },
+            "required": [
+                "boundAttributesType",
+                "boundSubjectsType",
+                "name",
+                "path"
+            ],
+            "inputProperties": {
+                "boundAttributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "description": "Mapping of attribute names to values that are expected to\nexist in the SAML assertion.\n"
+                },
+                "boundAttributesType": {
+                    "type": "string",
+                    "description": "The type of matching assertion to perform on\n`bound_attributes_type`.\n"
+                },
+                "boundSubjects": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of subjects being asserted for SAML authentication.\n"
+                },
+                "boundSubjectsType": {
+                    "type": "string",
+                    "description": "The type of matching assertion to perform on `bound_subjects`.\n"
+                },
+                "groupsAttribute": {
+                    "type": "string",
+                    "description": "The attribute to use to identify the set of groups to which the\nuser belongs.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Unique name of the role.\n",
+                    "willReplaceOnChanges": true
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
+                    "willReplaceOnChanges": true
+                },
+                "path": {
+                    "type": "string",
+                    "description": "Path where the auth backend is mounted.\n",
+                    "willReplaceOnChanges": true
+                },
+                "tokenBoundCidrs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of CIDR blocks; if set, specifies blocks of IP\naddresses which can authenticate successfully, and ties the resulting token to these blocks\nas well.\n"
+                },
+                "tokenExplicitMaxTtl": {
+                    "type": "integer",
+                    "description": "If set, will encode an\n[explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)\nonto the token in number of seconds. This is a hard cap even if `token_ttl` and\n`token_max_ttl` would otherwise allow a renewal.\n"
+                },
+                "tokenMaxTtl": {
+                    "type": "integer",
+                    "description": "The maximum lifetime for generated tokens in number of seconds.\nIts current value will be referenced at renewal time.\n"
+                },
+                "tokenNoDefaultPolicy": {
+                    "type": "boolean",
+                    "description": "If set, the default policy will not be set on\ngenerated tokens; otherwise it will be added to the policies set in token_policies.\n"
+                },
+                "tokenNumUses": {
+                    "type": "integer",
+                    "description": "The [maximum number](https://developer.hashicorp.com/vault/api-docs/auth/saml#token_num_uses)\nof times a generated token may be used (within its lifetime); 0 means unlimited.\n"
+                },
+                "tokenPeriod": {
+                    "type": "integer",
+                    "description": "If set, indicates that the\ntoken generated using this role should never expire. The token should be renewed within the\nduration specified by this value. At each renewal, the token's TTL will be set to the\nvalue of this field. Specified in seconds.\n"
+                },
+                "tokenPolicies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of policies to encode onto generated tokens. Depending\non the auth method, this list may be supplemented by user/group/other values.\n"
+                },
+                "tokenTtl": {
+                    "type": "integer",
+                    "description": "The incremental lifetime for generated tokens in number of seconds.\nIts current value will be referenced at renewal time.\n"
+                },
+                "tokenType": {
+                    "type": "string",
+                    "description": "The type of token that should be generated. Can be `service`,\n`batch`, or `default` to use the mount's tuned default (which unless changed will be\n`service` tokens). For token store roles, there are two additional possibilities:\n`default-service` and `default-batch` which specify the type to return unless the client\nrequests a different type at generation time.\n"
+                }
+            },
+            "requiredInputs": [
+                "path"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering AuthBackendRole resources.\n",
+                "properties": {
+                    "boundAttributes": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        },
+                        "description": "Mapping of attribute names to values that are expected to\nexist in the SAML assertion.\n"
+                    },
+                    "boundAttributesType": {
+                        "type": "string",
+                        "description": "The type of matching assertion to perform on\n`bound_attributes_type`.\n"
+                    },
+                    "boundSubjects": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of subjects being asserted for SAML authentication.\n"
+                    },
+                    "boundSubjectsType": {
+                        "type": "string",
+                        "description": "The type of matching assertion to perform on `bound_subjects`.\n"
+                    },
+                    "groupsAttribute": {
+                        "type": "string",
+                        "description": "The attribute to use to identify the set of groups to which the\nuser belongs.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Unique name of the role.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "path": {
+                        "type": "string",
+                        "description": "Path where the auth backend is mounted.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "tokenBoundCidrs": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of CIDR blocks; if set, specifies blocks of IP\naddresses which can authenticate successfully, and ties the resulting token to these blocks\nas well.\n"
+                    },
+                    "tokenExplicitMaxTtl": {
+                        "type": "integer",
+                        "description": "If set, will encode an\n[explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)\nonto the token in number of seconds. This is a hard cap even if `token_ttl` and\n`token_max_ttl` would otherwise allow a renewal.\n"
+                    },
+                    "tokenMaxTtl": {
+                        "type": "integer",
+                        "description": "The maximum lifetime for generated tokens in number of seconds.\nIts current value will be referenced at renewal time.\n"
+                    },
+                    "tokenNoDefaultPolicy": {
+                        "type": "boolean",
+                        "description": "If set, the default policy will not be set on\ngenerated tokens; otherwise it will be added to the policies set in token_policies.\n"
+                    },
+                    "tokenNumUses": {
+                        "type": "integer",
+                        "description": "The [maximum number](https://developer.hashicorp.com/vault/api-docs/auth/saml#token_num_uses)\nof times a generated token may be used (within its lifetime); 0 means unlimited.\n"
+                    },
+                    "tokenPeriod": {
+                        "type": "integer",
+                        "description": "If set, indicates that the\ntoken generated using this role should never expire. The token should be renewed within the\nduration specified by this value. At each renewal, the token's TTL will be set to the\nvalue of this field. Specified in seconds.\n"
+                    },
+                    "tokenPolicies": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of policies to encode onto generated tokens. Depending\non the auth method, this list may be supplemented by user/group/other values.\n"
+                    },
+                    "tokenTtl": {
+                        "type": "integer",
+                        "description": "The incremental lifetime for generated tokens in number of seconds.\nIts current value will be referenced at renewal time.\n"
+                    },
+                    "tokenType": {
+                        "type": "string",
+                        "description": "The type of token that should be generated. Can be `service`,\n`batch`, or `default` to use the mount's tuned default (which unless changed will be\n`service` tokens). For token store roles, there are two additional possibilities:\n`default-service` and `default-batch` which specify the type to return unless the client\nrequests a different type at generation time.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "vault:ssh/secretBackendCa:SecretBackendCa": {
             "description": "Provides a resource to manage CA information in an SSH secret backend\n[SSH secret backend within Vault](https://www.vaultproject.io/docs/secrets/ssh/index.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.Mount(\"example\", {type: \"ssh\"});\nconst foo = new vault.ssh.SecretBackendCa(\"foo\", {backend: example.path});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.Mount(\"example\", type=\"ssh\")\nfoo = vault.ssh.SecretBackendCa(\"foo\", backend=example.path)\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Vault.Mount(\"example\", new()\n    {\n        Type = \"ssh\",\n    });\n\n    var foo = new Vault.Ssh.SecretBackendCa(\"foo\", new()\n    {\n        Backend = example.Path,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ssh\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texample, err := vault.NewMount(ctx, \"example\", \u0026vault.MountArgs{\n\t\t\tType: pulumi.String(\"ssh\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ssh.NewSecretBackendCa(ctx, \"foo\", \u0026ssh.SecretBackendCaArgs{\n\t\t\tBackend: example.Path,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.ssh.SecretBackendCa;\nimport com.pulumi.vault.ssh.SecretBackendCaArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Mount(\"example\", MountArgs.builder()        \n            .type(\"ssh\")\n            .build());\n\n        var foo = new SecretBackendCa(\"foo\", SecretBackendCaArgs.builder()        \n            .backend(example.path())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: vault:Mount\n    properties:\n      type: ssh\n  foo:\n    type: vault:ssh:SecretBackendCa\n    properties:\n      backend: ${example.path}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSSH secret backend CAs can be imported using the `path`, e.g.\n\n```sh\n $ pulumi import vault:ssh/secretBackendCa:SecretBackendCa foo ssh\n```\n\n ",
             "properties": {
@@ -30642,6 +31318,10 @@
                     "type": "string",
                     "description": "The name of the alphabet.\n"
                 },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n"
+                },
                 "path": {
                     "type": "string",
                     "description": "Path to where the back-end is mounted within Vault.\n"
@@ -30664,6 +31344,11 @@
                 "name": {
                     "type": "string",
                     "description": "The name of the alphabet.\n",
+                    "willReplaceOnChanges": true
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
                     "willReplaceOnChanges": true
                 },
                 "path": {
@@ -30692,6 +31377,11 @@
                         "description": "The name of the alphabet.\n",
                         "willReplaceOnChanges": true
                     },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "path": {
                         "type": "string",
                         "description": "Path to where the back-end is mounted within Vault.\n",
@@ -30707,6 +31397,10 @@
                 "name": {
                     "type": "string",
                     "description": "The name of the role.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n"
                 },
                 "path": {
                     "type": "string",
@@ -30728,6 +31422,11 @@
                 "name": {
                     "type": "string",
                     "description": "The name of the role.\n",
+                    "willReplaceOnChanges": true
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
                     "willReplaceOnChanges": true
                 },
                 "path": {
@@ -30752,6 +31451,11 @@
                     "name": {
                         "type": "string",
                         "description": "The name of the role.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
                         "willReplaceOnChanges": true
                     },
                     "path": {
@@ -30791,6 +31495,10 @@
                     "type": "string",
                     "description": "The name of the template.\n"
                 },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n"
+                },
                 "path": {
                     "type": "string",
                     "description": "Path to where the back-end is mounted within Vault.\n"
@@ -30827,6 +31535,11 @@
                 "name": {
                     "type": "string",
                     "description": "The name of the template.\n",
+                    "willReplaceOnChanges": true
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
                     "willReplaceOnChanges": true
                 },
                 "path": {
@@ -30869,6 +31582,11 @@
                         "description": "The name of the template.\n",
                         "willReplaceOnChanges": true
                     },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "path": {
                         "type": "string",
                         "description": "Path to where the back-end is mounted within Vault.\n",
@@ -30906,6 +31624,10 @@
                 "name": {
                     "type": "string",
                     "description": "The name of the transformation.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n"
                 },
                 "path": {
                     "type": "string",
@@ -30957,6 +31679,11 @@
                     "description": "The name of the transformation.\n",
                     "willReplaceOnChanges": true
                 },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
+                    "willReplaceOnChanges": true
+                },
                 "path": {
                     "type": "string",
                     "description": "Path to where the back-end is mounted within Vault.\n",
@@ -31006,6 +31733,11 @@
                     "name": {
                         "type": "string",
                         "description": "The name of the transformation.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
                         "willReplaceOnChanges": true
                     },
                     "path": {
@@ -32383,7 +33115,7 @@
                     },
                     "clientSecret": {
                         "type": "string",
-                        "description": "The Client Secret Key returned by Vault.\n",
+                        "description": "The Client Secret Key returned by Vault.\nFor public OpenID Clients `client_secret` is set to an empty string `\"\"`\n",
                         "secret": true
                     },
                     "id": {
@@ -33491,7 +34223,7 @@
             }
         },
         "vault:transform/getDecode:getDecode": {
-            "description": "This data source supports the \"/transform/decode/{role_name}\" Vault endpoint.\n\nIt decodes the provided value using a named role.\n",
+            "description": "This data source supports the \"/transform/decode/{role_name}\" Vault endpoint.\n\nIt decodes the provided value using a named role.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst transform = new vault.Mount(\"transform\", {\n    path: \"transform\",\n    type: \"transform\",\n});\nconst ccn_fpe = new vault.transform.Transformation(\"ccn-fpe\", {\n    path: transform.path,\n    type: \"fpe\",\n    template: \"builtin/creditcardnumber\",\n    tweakSource: \"internal\",\n    allowedRoles: [\"payments\"],\n});\nconst payments = new vault.transform.Role(\"payments\", {\n    path: ccn_fpe.path,\n    transformations: [\"ccn-fpe\"],\n});\nconst test = vault.transform.getDecodeOutput({\n    path: payments.path,\n    roleName: \"payments\",\n    value: \"9300-3376-4943-8903\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ntransform = vault.Mount(\"transform\",\n    path=\"transform\",\n    type=\"transform\")\nccn_fpe = vault.transform.Transformation(\"ccn-fpe\",\n    path=transform.path,\n    type=\"fpe\",\n    template=\"builtin/creditcardnumber\",\n    tweak_source=\"internal\",\n    allowed_roles=[\"payments\"])\npayments = vault.transform.Role(\"payments\",\n    path=ccn_fpe.path,\n    transformations=[\"ccn-fpe\"])\ntest = vault.transform.get_decode_output(path=payments.path,\n    role_name=\"payments\",\n    value=\"9300-3376-4943-8903\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var transform = new Vault.Mount(\"transform\", new()\n    {\n        Path = \"transform\",\n        Type = \"transform\",\n    });\n\n    var ccn_fpe = new Vault.Transform.Transformation(\"ccn-fpe\", new()\n    {\n        Path = transform.Path,\n        Type = \"fpe\",\n        Template = \"builtin/creditcardnumber\",\n        TweakSource = \"internal\",\n        AllowedRoles = new[]\n        {\n            \"payments\",\n        },\n    });\n\n    var payments = new Vault.Transform.Role(\"payments\", new()\n    {\n        Path = ccn_fpe.Path,\n        Transformations = new[]\n        {\n            \"ccn-fpe\",\n        },\n    });\n\n    var test = Vault.Transform.GetDecode.Invoke(new()\n    {\n        Path = payments.Path,\n        RoleName = \"payments\",\n        Value = \"9300-3376-4943-8903\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/transform\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttransform, err := vault.NewMount(ctx, \"transform\", \u0026vault.MountArgs{\n\t\t\tPath: pulumi.String(\"transform\"),\n\t\t\tType: pulumi.String(\"transform\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = transform.NewTransformation(ctx, \"ccn-fpe\", \u0026transform.TransformationArgs{\n\t\t\tPath:        transform.Path,\n\t\t\tType:        pulumi.String(\"fpe\"),\n\t\t\tTemplate:    pulumi.String(\"builtin/creditcardnumber\"),\n\t\t\tTweakSource: pulumi.String(\"internal\"),\n\t\t\tAllowedRoles: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"payments\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tpayments, err := transform.NewRole(ctx, \"payments\", \u0026transform.RoleArgs{\n\t\t\tPath: ccn_fpe.Path,\n\t\t\tTransformations: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"ccn-fpe\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = transform.GetDecodeOutput(ctx, transform.GetDecodeOutputArgs{\n\t\t\tPath:     payments.Path,\n\t\t\tRoleName: pulumi.String(\"payments\"),\n\t\t\tValue:    pulumi.String(\"9300-3376-4943-8903\"),\n\t\t}, nil)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.transform.Transformation;\nimport com.pulumi.vault.transform.TransformationArgs;\nimport com.pulumi.vault.transform.Role;\nimport com.pulumi.vault.transform.RoleArgs;\nimport com.pulumi.vault.transform.TransformFunctions;\nimport com.pulumi.vault.transform.inputs.GetDecodeArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var transform = new Mount(\"transform\", MountArgs.builder()        \n            .path(\"transform\")\n            .type(\"transform\")\n            .build());\n\n        var ccn_fpe = new Transformation(\"ccn-fpe\", TransformationArgs.builder()        \n            .path(transform.path())\n            .type(\"fpe\")\n            .template(\"builtin/creditcardnumber\")\n            .tweakSource(\"internal\")\n            .allowedRoles(\"payments\")\n            .build());\n\n        var payments = new Role(\"payments\", RoleArgs.builder()        \n            .path(ccn_fpe.path())\n            .transformations(\"ccn-fpe\")\n            .build());\n\n        final var test = TransformFunctions.getDecode(GetDecodeArgs.builder()\n            .path(payments.path())\n            .roleName(\"payments\")\n            .value(\"9300-3376-4943-8903\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  transform:\n    type: vault:Mount\n    properties:\n      path: transform\n      type: transform\n  ccn-fpe:\n    type: vault:transform:Transformation\n    properties:\n      path: ${transform.path}\n      type: fpe\n      template: builtin/creditcardnumber\n      tweakSource: internal\n      allowedRoles:\n        - payments\n  payments:\n    type: vault:transform:Role\n    properties:\n      path: ${[\"ccn-fpe\"].path}\n      transformations:\n        - ccn-fpe\nvariables:\n  test:\n    Fn::Invoke:\n      Function: vault:transform:getDecode\n      Arguments:\n        path: ${payments.path}\n        roleName: payments\n        value: 9300-3376-4943-8903\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getDecode.\n",
                 "properties": {
@@ -33518,6 +34250,11 @@
                     "decodedValue": {
                         "type": "string",
                         "description": "The result of decoding a value.\n"
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace of the target resource.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
+                        "willReplaceOnChanges": true
                     },
                     "path": {
                         "type": "string",
@@ -33576,6 +34313,9 @@
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
                     },
+                    "namespace": {
+                        "type": "string"
+                    },
                     "path": {
                         "type": "string"
                     },
@@ -33603,7 +34343,7 @@
             }
         },
         "vault:transform/getEncode:getEncode": {
-            "description": "This data source supports the \"/transform/encode/{role_name}\" Vault endpoint.\n\nIt encodes the provided value using a named role.\n",
+            "description": "This data source supports the \"/transform/encode/{role_name}\" Vault endpoint.\n\nIt encodes the provided value using a named role.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst transform = new vault.Mount(\"transform\", {\n    path: \"transform\",\n    type: \"transform\",\n});\nconst ccn_fpe = new vault.transform.Transformation(\"ccn-fpe\", {\n    path: transform.path,\n    type: \"fpe\",\n    template: \"builtin/creditcardnumber\",\n    tweakSource: \"internal\",\n    allowedRoles: [\"payments\"],\n});\nconst payments = new vault.transform.Role(\"payments\", {\n    path: ccn_fpe.path,\n    transformations: [\"ccn-fpe\"],\n});\nconst test = vault.transform.getEncodeOutput({\n    path: payments.path,\n    roleName: \"payments\",\n    batchInputs: [{\n        value: \"1111-2222-3333-4444\",\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ntransform = vault.Mount(\"transform\",\n    path=\"transform\",\n    type=\"transform\")\nccn_fpe = vault.transform.Transformation(\"ccn-fpe\",\n    path=transform.path,\n    type=\"fpe\",\n    template=\"builtin/creditcardnumber\",\n    tweak_source=\"internal\",\n    allowed_roles=[\"payments\"])\npayments = vault.transform.Role(\"payments\",\n    path=ccn_fpe.path,\n    transformations=[\"ccn-fpe\"])\ntest = vault.transform.get_encode_output(path=payments.path,\n    role_name=\"payments\",\n    batch_inputs=[{\n        \"value\": \"1111-2222-3333-4444\",\n    }])\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var transform = new Vault.Mount(\"transform\", new()\n    {\n        Path = \"transform\",\n        Type = \"transform\",\n    });\n\n    var ccn_fpe = new Vault.Transform.Transformation(\"ccn-fpe\", new()\n    {\n        Path = transform.Path,\n        Type = \"fpe\",\n        Template = \"builtin/creditcardnumber\",\n        TweakSource = \"internal\",\n        AllowedRoles = new[]\n        {\n            \"payments\",\n        },\n    });\n\n    var payments = new Vault.Transform.Role(\"payments\", new()\n    {\n        Path = ccn_fpe.Path,\n        Transformations = new[]\n        {\n            \"ccn-fpe\",\n        },\n    });\n\n    var test = Vault.Transform.GetEncode.Invoke(new()\n    {\n        Path = payments.Path,\n        RoleName = \"payments\",\n        BatchInputs = new[]\n        {\n            \n            {\n                { \"value\", \"1111-2222-3333-4444\" },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/transform\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttransform, err := vault.NewMount(ctx, \"transform\", \u0026vault.MountArgs{\n\t\t\tPath: pulumi.String(\"transform\"),\n\t\t\tType: pulumi.String(\"transform\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = transform.NewTransformation(ctx, \"ccn-fpe\", \u0026transform.TransformationArgs{\n\t\t\tPath:        transform.Path,\n\t\t\tType:        pulumi.String(\"fpe\"),\n\t\t\tTemplate:    pulumi.String(\"builtin/creditcardnumber\"),\n\t\t\tTweakSource: pulumi.String(\"internal\"),\n\t\t\tAllowedRoles: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"payments\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tpayments, err := transform.NewRole(ctx, \"payments\", \u0026transform.RoleArgs{\n\t\t\tPath: ccn_fpe.Path,\n\t\t\tTransformations: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"ccn-fpe\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = transform.GetEncodeOutput(ctx, transform.GetEncodeOutputArgs{\n\t\t\tPath:     payments.Path,\n\t\t\tRoleName: pulumi.String(\"payments\"),\n\t\t\tBatchInputs: pulumi.AnyMapArray{\n\t\t\t\tpulumi.AnyMap{\n\t\t\t\t\t\"value\": pulumi.Any(\"1111-2222-3333-4444\"),\n\t\t\t\t},\n\t\t\t},\n\t\t}, nil)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.transform.Transformation;\nimport com.pulumi.vault.transform.TransformationArgs;\nimport com.pulumi.vault.transform.Role;\nimport com.pulumi.vault.transform.RoleArgs;\nimport com.pulumi.vault.transform.TransformFunctions;\nimport com.pulumi.vault.transform.inputs.GetEncodeArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var transform = new Mount(\"transform\", MountArgs.builder()        \n            .path(\"transform\")\n            .type(\"transform\")\n            .build());\n\n        var ccn_fpe = new Transformation(\"ccn-fpe\", TransformationArgs.builder()        \n            .path(transform.path())\n            .type(\"fpe\")\n            .template(\"builtin/creditcardnumber\")\n            .tweakSource(\"internal\")\n            .allowedRoles(\"payments\")\n            .build());\n\n        var payments = new Role(\"payments\", RoleArgs.builder()        \n            .path(ccn_fpe.path())\n            .transformations(\"ccn-fpe\")\n            .build());\n\n        final var test = TransformFunctions.getEncode(GetEncodeArgs.builder()\n            .path(payments.path())\n            .roleName(\"payments\")\n            .batchInputs(Map.of(\"value\", \"1111-2222-3333-4444\"))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  transform:\n    type: vault:Mount\n    properties:\n      path: transform\n      type: transform\n  ccn-fpe:\n    type: vault:transform:Transformation\n    properties:\n      path: ${transform.path}\n      type: fpe\n      template: builtin/creditcardnumber\n      tweakSource: internal\n      allowedRoles:\n        - payments\n  payments:\n    type: vault:transform:Role\n    properties:\n      path: ${[\"ccn-fpe\"].path}\n      transformations:\n        - ccn-fpe\nvariables:\n  test:\n    Fn::Invoke:\n      Function: vault:transform:getEncode\n      Arguments:\n        path: ${payments.path}\n        roleName: payments\n        batchInputs:\n          - value: 1111-2222-3333-4444\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getEncode.\n",
                 "properties": {
@@ -33630,6 +34370,11 @@
                     "encodedValue": {
                         "type": "string",
                         "description": "The result of encoding a value.\n"
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace of the target resource.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
+                        "willReplaceOnChanges": true
                     },
                     "path": {
                         "type": "string",
@@ -33687,6 +34432,9 @@
                     "id": {
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "namespace": {
+                        "type": "string"
                     },
                     "path": {
                         "type": "string"
