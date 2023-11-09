@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -61,6 +63,9 @@ import (
 type Namespace struct {
 	pulumi.CustomResourceState
 
+	// Custom metadata describing this namespace. Value type
+	// is `map[string]string`. Requires Vault version 1.12+.
+	CustomMetadata pulumi.MapOutput `pulumi:"customMetadata"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -85,6 +90,7 @@ func NewNamespace(ctx *pulumi.Context,
 	if args.Path == nil {
 		return nil, errors.New("invalid value for required argument 'Path'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Namespace
 	err := ctx.RegisterResource("vault:index/namespace:Namespace", name, args, &resource, opts...)
 	if err != nil {
@@ -107,6 +113,9 @@ func GetNamespace(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Namespace resources.
 type namespaceState struct {
+	// Custom metadata describing this namespace. Value type
+	// is `map[string]string`. Requires Vault version 1.12+.
+	CustomMetadata map[string]interface{} `pulumi:"customMetadata"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -122,6 +131,9 @@ type namespaceState struct {
 }
 
 type NamespaceState struct {
+	// Custom metadata describing this namespace. Value type
+	// is `map[string]string`. Requires Vault version 1.12+.
+	CustomMetadata pulumi.MapInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -141,6 +153,9 @@ func (NamespaceState) ElementType() reflect.Type {
 }
 
 type namespaceArgs struct {
+	// Custom metadata describing this namespace. Value type
+	// is `map[string]string`. Requires Vault version 1.12+.
+	CustomMetadata map[string]interface{} `pulumi:"customMetadata"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -155,6 +170,9 @@ type namespaceArgs struct {
 
 // The set of arguments for constructing a Namespace resource.
 type NamespaceArgs struct {
+	// Custom metadata describing this namespace. Value type
+	// is `map[string]string`. Requires Vault version 1.12+.
+	CustomMetadata pulumi.MapInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -190,6 +208,12 @@ func (i *Namespace) ToNamespaceOutputWithContext(ctx context.Context) NamespaceO
 	return pulumi.ToOutputWithContext(ctx, i).(NamespaceOutput)
 }
 
+func (i *Namespace) ToOutput(ctx context.Context) pulumix.Output[*Namespace] {
+	return pulumix.Output[*Namespace]{
+		OutputState: i.ToNamespaceOutputWithContext(ctx).OutputState,
+	}
+}
+
 // NamespaceArrayInput is an input type that accepts NamespaceArray and NamespaceArrayOutput values.
 // You can construct a concrete instance of `NamespaceArrayInput` via:
 //
@@ -213,6 +237,12 @@ func (i NamespaceArray) ToNamespaceArrayOutput() NamespaceArrayOutput {
 
 func (i NamespaceArray) ToNamespaceArrayOutputWithContext(ctx context.Context) NamespaceArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NamespaceArrayOutput)
+}
+
+func (i NamespaceArray) ToOutput(ctx context.Context) pulumix.Output[[]*Namespace] {
+	return pulumix.Output[[]*Namespace]{
+		OutputState: i.ToNamespaceArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // NamespaceMapInput is an input type that accepts NamespaceMap and NamespaceMapOutput values.
@@ -240,6 +270,12 @@ func (i NamespaceMap) ToNamespaceMapOutputWithContext(ctx context.Context) Names
 	return pulumi.ToOutputWithContext(ctx, i).(NamespaceMapOutput)
 }
 
+func (i NamespaceMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Namespace] {
+	return pulumix.Output[map[string]*Namespace]{
+		OutputState: i.ToNamespaceMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type NamespaceOutput struct{ *pulumi.OutputState }
 
 func (NamespaceOutput) ElementType() reflect.Type {
@@ -252,6 +288,18 @@ func (o NamespaceOutput) ToNamespaceOutput() NamespaceOutput {
 
 func (o NamespaceOutput) ToNamespaceOutputWithContext(ctx context.Context) NamespaceOutput {
 	return o
+}
+
+func (o NamespaceOutput) ToOutput(ctx context.Context) pulumix.Output[*Namespace] {
+	return pulumix.Output[*Namespace]{
+		OutputState: o.OutputState,
+	}
+}
+
+// Custom metadata describing this namespace. Value type
+// is `map[string]string`. Requires Vault version 1.12+.
+func (o NamespaceOutput) CustomMetadata() pulumi.MapOutput {
+	return o.ApplyT(func(v *Namespace) pulumi.MapOutput { return v.CustomMetadata }).(pulumi.MapOutput)
 }
 
 // The namespace to provision the resource in.
@@ -292,6 +340,12 @@ func (o NamespaceArrayOutput) ToNamespaceArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o NamespaceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Namespace] {
+	return pulumix.Output[[]*Namespace]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o NamespaceArrayOutput) Index(i pulumi.IntInput) NamespaceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Namespace {
 		return vs[0].([]*Namespace)[vs[1].(int)]
@@ -310,6 +364,12 @@ func (o NamespaceMapOutput) ToNamespaceMapOutput() NamespaceMapOutput {
 
 func (o NamespaceMapOutput) ToNamespaceMapOutputWithContext(ctx context.Context) NamespaceMapOutput {
 	return o
+}
+
+func (o NamespaceMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Namespace] {
+	return pulumix.Output[map[string]*Namespace]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o NamespaceMapOutput) MapIndex(k pulumi.StringInput) NamespaceOutput {

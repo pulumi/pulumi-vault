@@ -7,13 +7,17 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
+
+var _ = internal.GetEnvOrDefault
 
 type AuthBackendGroupType struct {
 	// Name of the group within the Okta
 	GroupName string `pulumi:"groupName"`
-	// List of Vault policies to associate with this user
+	// Vault policies to associate with this group
 	Policies []string `pulumi:"policies"`
 }
 
@@ -31,7 +35,7 @@ type AuthBackendGroupTypeInput interface {
 type AuthBackendGroupTypeArgs struct {
 	// Name of the group within the Okta
 	GroupName pulumi.StringInput `pulumi:"groupName"`
-	// List of Vault policies to associate with this user
+	// Vault policies to associate with this group
 	Policies pulumi.StringArrayInput `pulumi:"policies"`
 }
 
@@ -45,6 +49,12 @@ func (i AuthBackendGroupTypeArgs) ToAuthBackendGroupTypeOutput() AuthBackendGrou
 
 func (i AuthBackendGroupTypeArgs) ToAuthBackendGroupTypeOutputWithContext(ctx context.Context) AuthBackendGroupTypeOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendGroupTypeOutput)
+}
+
+func (i AuthBackendGroupTypeArgs) ToOutput(ctx context.Context) pulumix.Output[AuthBackendGroupType] {
+	return pulumix.Output[AuthBackendGroupType]{
+		OutputState: i.ToAuthBackendGroupTypeOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AuthBackendGroupTypeArrayInput is an input type that accepts AuthBackendGroupTypeArray and AuthBackendGroupTypeArrayOutput values.
@@ -72,6 +82,12 @@ func (i AuthBackendGroupTypeArray) ToAuthBackendGroupTypeArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendGroupTypeArrayOutput)
 }
 
+func (i AuthBackendGroupTypeArray) ToOutput(ctx context.Context) pulumix.Output[[]AuthBackendGroupType] {
+	return pulumix.Output[[]AuthBackendGroupType]{
+		OutputState: i.ToAuthBackendGroupTypeArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AuthBackendGroupTypeOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendGroupTypeOutput) ElementType() reflect.Type {
@@ -86,12 +102,18 @@ func (o AuthBackendGroupTypeOutput) ToAuthBackendGroupTypeOutputWithContext(ctx 
 	return o
 }
 
+func (o AuthBackendGroupTypeOutput) ToOutput(ctx context.Context) pulumix.Output[AuthBackendGroupType] {
+	return pulumix.Output[AuthBackendGroupType]{
+		OutputState: o.OutputState,
+	}
+}
+
 // Name of the group within the Okta
 func (o AuthBackendGroupTypeOutput) GroupName() pulumi.StringOutput {
 	return o.ApplyT(func(v AuthBackendGroupType) string { return v.GroupName }).(pulumi.StringOutput)
 }
 
-// List of Vault policies to associate with this user
+// Vault policies to associate with this group
 func (o AuthBackendGroupTypeOutput) Policies() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AuthBackendGroupType) []string { return v.Policies }).(pulumi.StringArrayOutput)
 }
@@ -110,6 +132,12 @@ func (o AuthBackendGroupTypeArrayOutput) ToAuthBackendGroupTypeArrayOutputWithCo
 	return o
 }
 
+func (o AuthBackendGroupTypeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]AuthBackendGroupType] {
+	return pulumix.Output[[]AuthBackendGroupType]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AuthBackendGroupTypeArrayOutput) Index(i pulumi.IntInput) AuthBackendGroupTypeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AuthBackendGroupType {
 		return vs[0].([]AuthBackendGroupType)[vs[1].(int)]
@@ -119,7 +147,7 @@ func (o AuthBackendGroupTypeArrayOutput) Index(i pulumi.IntInput) AuthBackendGro
 type AuthBackendUserType struct {
 	// List of Okta groups to associate with this user
 	Groups []string `pulumi:"groups"`
-	// List of Vault policies to associate with this user
+	// Vault policies to associate with this group
 	Policies []string `pulumi:"policies"`
 	// Name of the user within Okta
 	Username string `pulumi:"username"`
@@ -139,7 +167,7 @@ type AuthBackendUserTypeInput interface {
 type AuthBackendUserTypeArgs struct {
 	// List of Okta groups to associate with this user
 	Groups pulumi.StringArrayInput `pulumi:"groups"`
-	// List of Vault policies to associate with this user
+	// Vault policies to associate with this group
 	Policies pulumi.StringArrayInput `pulumi:"policies"`
 	// Name of the user within Okta
 	Username pulumi.StringInput `pulumi:"username"`
@@ -155,6 +183,12 @@ func (i AuthBackendUserTypeArgs) ToAuthBackendUserTypeOutput() AuthBackendUserTy
 
 func (i AuthBackendUserTypeArgs) ToAuthBackendUserTypeOutputWithContext(ctx context.Context) AuthBackendUserTypeOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendUserTypeOutput)
+}
+
+func (i AuthBackendUserTypeArgs) ToOutput(ctx context.Context) pulumix.Output[AuthBackendUserType] {
+	return pulumix.Output[AuthBackendUserType]{
+		OutputState: i.ToAuthBackendUserTypeOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AuthBackendUserTypeArrayInput is an input type that accepts AuthBackendUserTypeArray and AuthBackendUserTypeArrayOutput values.
@@ -182,6 +216,12 @@ func (i AuthBackendUserTypeArray) ToAuthBackendUserTypeArrayOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendUserTypeArrayOutput)
 }
 
+func (i AuthBackendUserTypeArray) ToOutput(ctx context.Context) pulumix.Output[[]AuthBackendUserType] {
+	return pulumix.Output[[]AuthBackendUserType]{
+		OutputState: i.ToAuthBackendUserTypeArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AuthBackendUserTypeOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendUserTypeOutput) ElementType() reflect.Type {
@@ -196,12 +236,18 @@ func (o AuthBackendUserTypeOutput) ToAuthBackendUserTypeOutputWithContext(ctx co
 	return o
 }
 
+func (o AuthBackendUserTypeOutput) ToOutput(ctx context.Context) pulumix.Output[AuthBackendUserType] {
+	return pulumix.Output[AuthBackendUserType]{
+		OutputState: o.OutputState,
+	}
+}
+
 // List of Okta groups to associate with this user
 func (o AuthBackendUserTypeOutput) Groups() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AuthBackendUserType) []string { return v.Groups }).(pulumi.StringArrayOutput)
 }
 
-// List of Vault policies to associate with this user
+// Vault policies to associate with this group
 func (o AuthBackendUserTypeOutput) Policies() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AuthBackendUserType) []string { return v.Policies }).(pulumi.StringArrayOutput)
 }
@@ -223,6 +269,12 @@ func (o AuthBackendUserTypeArrayOutput) ToAuthBackendUserTypeArrayOutput() AuthB
 
 func (o AuthBackendUserTypeArrayOutput) ToAuthBackendUserTypeArrayOutputWithContext(ctx context.Context) AuthBackendUserTypeArrayOutput {
 	return o
+}
+
+func (o AuthBackendUserTypeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]AuthBackendUserType] {
+	return pulumix.Output[[]AuthBackendUserType]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuthBackendUserTypeArrayOutput) Index(i pulumi.IntInput) AuthBackendUserTypeOutput {

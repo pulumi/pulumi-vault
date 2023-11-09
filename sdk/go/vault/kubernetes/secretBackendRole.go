@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -20,7 +22,7 @@ import (
 //
 // import (
 //
-//	"io/ioutil"
+//	"os"
 //
 //	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kubernetes"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -28,7 +30,7 @@ import (
 // )
 //
 //	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := ioutil.ReadFile(path)
+//		data, err := os.ReadFile(path)
 //		if err != nil {
 //			panic(err.Error())
 //		}
@@ -81,7 +83,7 @@ import (
 //
 // import (
 //
-//	"io/ioutil"
+//	"os"
 //
 //	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kubernetes"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -89,7 +91,7 @@ import (
 // )
 //
 //	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := ioutil.ReadFile(path)
+//		data, err := os.ReadFile(path)
 //		if err != nil {
 //			panic(err.Error())
 //		}
@@ -142,7 +144,7 @@ import (
 //
 // import (
 //
-//	"io/ioutil"
+//	"os"
 //
 //	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kubernetes"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -150,7 +152,7 @@ import (
 // )
 //
 //	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := ioutil.ReadFile(path)
+//		data, err := os.ReadFile(path)
 //		if err != nil {
 //			panic(err.Error())
 //		}
@@ -220,6 +222,8 @@ type SecretBackendRole struct {
 	ExtraAnnotations pulumi.StringMapOutput `pulumi:"extraAnnotations"`
 	// Additional labels to apply to all generated Kubernetes
 	// objects.
+	//
+	// This resource also directly accepts all Mount fields.
 	ExtraLabels pulumi.StringMapOutput `pulumi:"extraLabels"`
 	// The Role or ClusterRole rules to use when generating
 	// a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `serviceAccountName`
@@ -267,6 +271,7 @@ func NewSecretBackendRole(ctx *pulumi.Context,
 	if args.Backend == nil {
 		return nil, errors.New("invalid value for required argument 'Backend'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SecretBackendRole
 	err := ctx.RegisterResource("vault:kubernetes/secretBackendRole:SecretBackendRole", name, args, &resource, opts...)
 	if err != nil {
@@ -300,6 +305,8 @@ type secretBackendRoleState struct {
 	ExtraAnnotations map[string]string `pulumi:"extraAnnotations"`
 	// Additional labels to apply to all generated Kubernetes
 	// objects.
+	//
+	// This resource also directly accepts all Mount fields.
 	ExtraLabels map[string]string `pulumi:"extraLabels"`
 	// The Role or ClusterRole rules to use when generating
 	// a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `serviceAccountName`
@@ -346,6 +353,8 @@ type SecretBackendRoleState struct {
 	ExtraAnnotations pulumi.StringMapInput
 	// Additional labels to apply to all generated Kubernetes
 	// objects.
+	//
+	// This resource also directly accepts all Mount fields.
 	ExtraLabels pulumi.StringMapInput
 	// The Role or ClusterRole rules to use when generating
 	// a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `serviceAccountName`
@@ -396,6 +405,8 @@ type secretBackendRoleArgs struct {
 	ExtraAnnotations map[string]string `pulumi:"extraAnnotations"`
 	// Additional labels to apply to all generated Kubernetes
 	// objects.
+	//
+	// This resource also directly accepts all Mount fields.
 	ExtraLabels map[string]string `pulumi:"extraLabels"`
 	// The Role or ClusterRole rules to use when generating
 	// a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `serviceAccountName`
@@ -443,6 +454,8 @@ type SecretBackendRoleArgs struct {
 	ExtraAnnotations pulumi.StringMapInput
 	// Additional labels to apply to all generated Kubernetes
 	// objects.
+	//
+	// This resource also directly accepts all Mount fields.
 	ExtraLabels pulumi.StringMapInput
 	// The Role or ClusterRole rules to use when generating
 	// a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `serviceAccountName`
@@ -500,6 +513,12 @@ func (i *SecretBackendRole) ToSecretBackendRoleOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRoleOutput)
 }
 
+func (i *SecretBackendRole) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendRole] {
+	return pulumix.Output[*SecretBackendRole]{
+		OutputState: i.ToSecretBackendRoleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SecretBackendRoleArrayInput is an input type that accepts SecretBackendRoleArray and SecretBackendRoleArrayOutput values.
 // You can construct a concrete instance of `SecretBackendRoleArrayInput` via:
 //
@@ -523,6 +542,12 @@ func (i SecretBackendRoleArray) ToSecretBackendRoleArrayOutput() SecretBackendRo
 
 func (i SecretBackendRoleArray) ToSecretBackendRoleArrayOutputWithContext(ctx context.Context) SecretBackendRoleArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRoleArrayOutput)
+}
+
+func (i SecretBackendRoleArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendRole] {
+	return pulumix.Output[[]*SecretBackendRole]{
+		OutputState: i.ToSecretBackendRoleArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SecretBackendRoleMapInput is an input type that accepts SecretBackendRoleMap and SecretBackendRoleMapOutput values.
@@ -550,6 +575,12 @@ func (i SecretBackendRoleMap) ToSecretBackendRoleMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRoleMapOutput)
 }
 
+func (i SecretBackendRoleMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendRole] {
+	return pulumix.Output[map[string]*SecretBackendRole]{
+		OutputState: i.ToSecretBackendRoleMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SecretBackendRoleOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendRoleOutput) ElementType() reflect.Type {
@@ -562,6 +593,12 @@ func (o SecretBackendRoleOutput) ToSecretBackendRoleOutput() SecretBackendRoleOu
 
 func (o SecretBackendRoleOutput) ToSecretBackendRoleOutputWithContext(ctx context.Context) SecretBackendRoleOutput {
 	return o
+}
+
+func (o SecretBackendRoleOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendRole] {
+	return pulumix.Output[*SecretBackendRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The list of Kubernetes namespaces this role
@@ -584,6 +621,8 @@ func (o SecretBackendRoleOutput) ExtraAnnotations() pulumi.StringMapOutput {
 
 // Additional labels to apply to all generated Kubernetes
 // objects.
+//
+// This resource also directly accepts all Mount fields.
 func (o SecretBackendRoleOutput) ExtraLabels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringMapOutput { return v.ExtraLabels }).(pulumi.StringMapOutput)
 }
@@ -660,6 +699,12 @@ func (o SecretBackendRoleArrayOutput) ToSecretBackendRoleArrayOutputWithContext(
 	return o
 }
 
+func (o SecretBackendRoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendRole] {
+	return pulumix.Output[[]*SecretBackendRole]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SecretBackendRoleArrayOutput) Index(i pulumi.IntInput) SecretBackendRoleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackendRole {
 		return vs[0].([]*SecretBackendRole)[vs[1].(int)]
@@ -678,6 +723,12 @@ func (o SecretBackendRoleMapOutput) ToSecretBackendRoleMapOutput() SecretBackend
 
 func (o SecretBackendRoleMapOutput) ToSecretBackendRoleMapOutputWithContext(ctx context.Context) SecretBackendRoleMapOutput {
 	return o
+}
+
+func (o SecretBackendRoleMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendRole] {
+	return pulumix.Output[map[string]*SecretBackendRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SecretBackendRoleMapOutput) MapIndex(k pulumi.StringInput) SecretBackendRoleOutput {

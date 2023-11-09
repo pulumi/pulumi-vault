@@ -73,6 +73,8 @@ export class AuthBackend extends pulumi.CustomResource {
     public readonly path!: pulumi.Output<string>;
     /**
      * Extra configuration block. Structure is documented below.
+     *
+     * The `tune` block is used to tune the auth backend:
      */
     public readonly tune!: pulumi.Output<outputs.AuthBackendTune>;
     /**
@@ -154,6 +156,8 @@ export interface AuthBackendState {
     path?: pulumi.Input<string>;
     /**
      * Extra configuration block. Structure is documented below.
+     *
+     * The `tune` block is used to tune the auth backend:
      */
     tune?: pulumi.Input<inputs.AuthBackendTune>;
     /**
@@ -192,6 +196,8 @@ export interface AuthBackendArgs {
     path?: pulumi.Input<string>;
     /**
      * Extra configuration block. Structure is documented below.
+     *
+     * The `tune` block is used to tune the auth backend:
      */
     tune?: pulumi.Input<inputs.AuthBackendTune>;
     /**

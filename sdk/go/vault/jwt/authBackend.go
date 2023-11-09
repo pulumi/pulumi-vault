@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Provides a resource for managing an
@@ -161,6 +163,10 @@ type AuthBackend struct {
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
+	//
+	// * tune - (Optional) Extra configuration block. Structure is documented below.
+	//
+	// The `tune` block is used to tune the auth backend:
 	NamespaceInState pulumi.BoolPtrOutput `pulumi:"namespaceInState"`
 	// Client ID used for OIDC backends
 	OidcClientId pulumi.StringPtrOutput `pulumi:"oidcClientId"`
@@ -191,12 +197,13 @@ func NewAuthBackend(ctx *pulumi.Context,
 	}
 
 	if args.OidcClientSecret != nil {
-		args.OidcClientSecret = pulumi.ToSecret(args.OidcClientSecret).(pulumi.StringPtrOutput)
+		args.OidcClientSecret = pulumi.ToSecret(args.OidcClientSecret).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"oidcClientSecret",
 	})
 	opts = append(opts, secrets)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AuthBackend
 	err := ctx.RegisterResource("vault:jwt/authBackend:AuthBackend", name, args, &resource, opts...)
 	if err != nil {
@@ -246,6 +253,10 @@ type authBackendState struct {
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
+	//
+	// * tune - (Optional) Extra configuration block. Structure is documented below.
+	//
+	// The `tune` block is used to tune the auth backend:
 	NamespaceInState *bool `pulumi:"namespaceInState"`
 	// Client ID used for OIDC backends
 	OidcClientId *string `pulumi:"oidcClientId"`
@@ -296,6 +307,10 @@ type AuthBackendState struct {
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
+	//
+	// * tune - (Optional) Extra configuration block. Structure is documented below.
+	//
+	// The `tune` block is used to tune the auth backend:
 	NamespaceInState pulumi.BoolPtrInput
 	// Client ID used for OIDC backends
 	OidcClientId pulumi.StringPtrInput
@@ -348,6 +363,10 @@ type authBackendArgs struct {
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
+	//
+	// * tune - (Optional) Extra configuration block. Structure is documented below.
+	//
+	// The `tune` block is used to tune the auth backend:
 	NamespaceInState *bool `pulumi:"namespaceInState"`
 	// Client ID used for OIDC backends
 	OidcClientId *string `pulumi:"oidcClientId"`
@@ -397,6 +416,10 @@ type AuthBackendArgs struct {
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
+	//
+	// * tune - (Optional) Extra configuration block. Structure is documented below.
+	//
+	// The `tune` block is used to tune the auth backend:
 	NamespaceInState pulumi.BoolPtrInput
 	// Client ID used for OIDC backends
 	OidcClientId pulumi.StringPtrInput
@@ -442,6 +465,12 @@ func (i *AuthBackend) ToAuthBackendOutputWithContext(ctx context.Context) AuthBa
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendOutput)
 }
 
+func (i *AuthBackend) ToOutput(ctx context.Context) pulumix.Output[*AuthBackend] {
+	return pulumix.Output[*AuthBackend]{
+		OutputState: i.ToAuthBackendOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AuthBackendArrayInput is an input type that accepts AuthBackendArray and AuthBackendArrayOutput values.
 // You can construct a concrete instance of `AuthBackendArrayInput` via:
 //
@@ -465,6 +494,12 @@ func (i AuthBackendArray) ToAuthBackendArrayOutput() AuthBackendArrayOutput {
 
 func (i AuthBackendArray) ToAuthBackendArrayOutputWithContext(ctx context.Context) AuthBackendArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendArrayOutput)
+}
+
+func (i AuthBackendArray) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackend] {
+	return pulumix.Output[[]*AuthBackend]{
+		OutputState: i.ToAuthBackendArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AuthBackendMapInput is an input type that accepts AuthBackendMap and AuthBackendMapOutput values.
@@ -492,6 +527,12 @@ func (i AuthBackendMap) ToAuthBackendMapOutputWithContext(ctx context.Context) A
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendMapOutput)
 }
 
+func (i AuthBackendMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackend] {
+	return pulumix.Output[map[string]*AuthBackend]{
+		OutputState: i.ToAuthBackendMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AuthBackendOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendOutput) ElementType() reflect.Type {
@@ -504,6 +545,12 @@ func (o AuthBackendOutput) ToAuthBackendOutput() AuthBackendOutput {
 
 func (o AuthBackendOutput) ToAuthBackendOutputWithContext(ctx context.Context) AuthBackendOutput {
 	return o
+}
+
+func (o AuthBackendOutput) ToOutput(ctx context.Context) pulumix.Output[*AuthBackend] {
+	return pulumix.Output[*AuthBackend]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The accessor for this auth method
@@ -566,6 +613,10 @@ func (o AuthBackendOutput) Namespace() pulumi.StringPtrOutput {
 }
 
 // Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
+//
+// * tune - (Optional) Extra configuration block. Structure is documented below.
+//
+// The `tune` block is used to tune the auth backend:
 func (o AuthBackendOutput) NamespaceInState() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.BoolPtrOutput { return v.NamespaceInState }).(pulumi.BoolPtrOutput)
 }
@@ -633,6 +684,12 @@ func (o AuthBackendArrayOutput) ToAuthBackendArrayOutputWithContext(ctx context.
 	return o
 }
 
+func (o AuthBackendArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackend] {
+	return pulumix.Output[[]*AuthBackend]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AuthBackendArrayOutput) Index(i pulumi.IntInput) AuthBackendOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AuthBackend {
 		return vs[0].([]*AuthBackend)[vs[1].(int)]
@@ -651,6 +708,12 @@ func (o AuthBackendMapOutput) ToAuthBackendMapOutput() AuthBackendMapOutput {
 
 func (o AuthBackendMapOutput) ToAuthBackendMapOutputWithContext(ctx context.Context) AuthBackendMapOutput {
 	return o
+}
+
+func (o AuthBackendMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackend] {
+	return pulumix.Output[map[string]*AuthBackend]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuthBackendMapOutput) MapIndex(k pulumi.StringInput) AuthBackendOutput {

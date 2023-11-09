@@ -7,8 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
+
+var _ = internal.GetEnvOrDefault
 
 type AuthBackendTune struct {
 	// List of headers to whitelist and allowing
@@ -91,6 +95,12 @@ func (i AuthBackendTuneArgs) ToAuthBackendTuneOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendTuneOutput)
 }
 
+func (i AuthBackendTuneArgs) ToOutput(ctx context.Context) pulumix.Output[AuthBackendTune] {
+	return pulumix.Output[AuthBackendTune]{
+		OutputState: i.ToAuthBackendTuneOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i AuthBackendTuneArgs) ToAuthBackendTunePtrOutput() AuthBackendTunePtrOutput {
 	return i.ToAuthBackendTunePtrOutputWithContext(context.Background())
 }
@@ -132,6 +142,12 @@ func (i *authBackendTunePtrType) ToAuthBackendTunePtrOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendTunePtrOutput)
 }
 
+func (i *authBackendTunePtrType) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendTune] {
+	return pulumix.Output[*AuthBackendTune]{
+		OutputState: i.ToAuthBackendTunePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AuthBackendTuneOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendTuneOutput) ElementType() reflect.Type {
@@ -154,6 +170,12 @@ func (o AuthBackendTuneOutput) ToAuthBackendTunePtrOutputWithContext(ctx context
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v AuthBackendTune) *AuthBackendTune {
 		return &v
 	}).(AuthBackendTunePtrOutput)
+}
+
+func (o AuthBackendTuneOutput) ToOutput(ctx context.Context) pulumix.Output[AuthBackendTune] {
+	return pulumix.Output[AuthBackendTune]{
+		OutputState: o.OutputState,
+	}
 }
 
 // List of headers to whitelist and allowing
@@ -218,6 +240,12 @@ func (o AuthBackendTunePtrOutput) ToAuthBackendTunePtrOutput() AuthBackendTunePt
 
 func (o AuthBackendTunePtrOutput) ToAuthBackendTunePtrOutputWithContext(ctx context.Context) AuthBackendTunePtrOutput {
 	return o
+}
+
+func (o AuthBackendTunePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendTune] {
+	return pulumix.Output[*AuthBackendTune]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuthBackendTunePtrOutput) Elem() AuthBackendTuneOutput {
@@ -321,10 +349,11 @@ func (o AuthBackendTunePtrOutput) TokenType() pulumi.StringPtrOutput {
 }
 
 type ProviderAuthLogin struct {
-	Method     *string           `pulumi:"method"`
-	Namespace  *string           `pulumi:"namespace"`
-	Parameters map[string]string `pulumi:"parameters"`
-	Path       string            `pulumi:"path"`
+	Method           *string           `pulumi:"method"`
+	Namespace        *string           `pulumi:"namespace"`
+	Parameters       map[string]string `pulumi:"parameters"`
+	Path             string            `pulumi:"path"`
+	UseRootNamespace *bool             `pulumi:"useRootNamespace"`
 }
 
 // ProviderAuthLoginInput is an input type that accepts ProviderAuthLoginArgs and ProviderAuthLoginOutput values.
@@ -339,10 +368,11 @@ type ProviderAuthLoginInput interface {
 }
 
 type ProviderAuthLoginArgs struct {
-	Method     pulumi.StringPtrInput `pulumi:"method"`
-	Namespace  pulumi.StringPtrInput `pulumi:"namespace"`
-	Parameters pulumi.StringMapInput `pulumi:"parameters"`
-	Path       pulumi.StringInput    `pulumi:"path"`
+	Method           pulumi.StringPtrInput `pulumi:"method"`
+	Namespace        pulumi.StringPtrInput `pulumi:"namespace"`
+	Parameters       pulumi.StringMapInput `pulumi:"parameters"`
+	Path             pulumi.StringInput    `pulumi:"path"`
+	UseRootNamespace pulumi.BoolPtrInput   `pulumi:"useRootNamespace"`
 }
 
 func (ProviderAuthLoginArgs) ElementType() reflect.Type {
@@ -355,6 +385,12 @@ func (i ProviderAuthLoginArgs) ToProviderAuthLoginOutput() ProviderAuthLoginOutp
 
 func (i ProviderAuthLoginArgs) ToProviderAuthLoginOutputWithContext(ctx context.Context) ProviderAuthLoginOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginOutput)
+}
+
+func (i ProviderAuthLoginArgs) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLogin] {
+	return pulumix.Output[ProviderAuthLogin]{
+		OutputState: i.ToProviderAuthLoginOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i ProviderAuthLoginArgs) ToProviderAuthLoginPtrOutput() ProviderAuthLoginPtrOutput {
@@ -398,6 +434,12 @@ func (i *providerAuthLoginPtrType) ToProviderAuthLoginPtrOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginPtrOutput)
 }
 
+func (i *providerAuthLoginPtrType) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLogin] {
+	return pulumix.Output[*ProviderAuthLogin]{
+		OutputState: i.ToProviderAuthLoginPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderAuthLoginOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginOutput) ElementType() reflect.Type {
@@ -422,6 +464,12 @@ func (o ProviderAuthLoginOutput) ToProviderAuthLoginPtrOutputWithContext(ctx con
 	}).(ProviderAuthLoginPtrOutput)
 }
 
+func (o ProviderAuthLoginOutput) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLogin] {
+	return pulumix.Output[ProviderAuthLogin]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ProviderAuthLoginOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProviderAuthLogin) *string { return v.Method }).(pulumi.StringPtrOutput)
 }
@@ -438,6 +486,10 @@ func (o ProviderAuthLoginOutput) Path() pulumi.StringOutput {
 	return o.ApplyT(func(v ProviderAuthLogin) string { return v.Path }).(pulumi.StringOutput)
 }
 
+func (o ProviderAuthLoginOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLogin) *bool { return v.UseRootNamespace }).(pulumi.BoolPtrOutput)
+}
+
 type ProviderAuthLoginPtrOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginPtrOutput) ElementType() reflect.Type {
@@ -450,6 +502,12 @@ func (o ProviderAuthLoginPtrOutput) ToProviderAuthLoginPtrOutput() ProviderAuthL
 
 func (o ProviderAuthLoginPtrOutput) ToProviderAuthLoginPtrOutputWithContext(ctx context.Context) ProviderAuthLoginPtrOutput {
 	return o
+}
+
+func (o ProviderAuthLoginPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLogin] {
+	return pulumix.Output[*ProviderAuthLogin]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginPtrOutput) Elem() ProviderAuthLoginOutput {
@@ -498,6 +556,15 @@ func (o ProviderAuthLoginPtrOutput) Path() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginPtrOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProviderAuthLogin) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseRootNamespace
+	}).(pulumi.BoolPtrOutput)
+}
+
 type ProviderAuthLoginAws struct {
 	AwsAccessKeyId           *string `pulumi:"awsAccessKeyId"`
 	AwsIamEndpoint           *string `pulumi:"awsIamEndpoint"`
@@ -514,6 +581,7 @@ type ProviderAuthLoginAws struct {
 	Mount                    *string `pulumi:"mount"`
 	Namespace                *string `pulumi:"namespace"`
 	Role                     string  `pulumi:"role"`
+	UseRootNamespace         *bool   `pulumi:"useRootNamespace"`
 }
 
 // ProviderAuthLoginAwsInput is an input type that accepts ProviderAuthLoginAwsArgs and ProviderAuthLoginAwsOutput values.
@@ -543,6 +611,7 @@ type ProviderAuthLoginAwsArgs struct {
 	Mount                    pulumi.StringPtrInput `pulumi:"mount"`
 	Namespace                pulumi.StringPtrInput `pulumi:"namespace"`
 	Role                     pulumi.StringInput    `pulumi:"role"`
+	UseRootNamespace         pulumi.BoolPtrInput   `pulumi:"useRootNamespace"`
 }
 
 func (ProviderAuthLoginAwsArgs) ElementType() reflect.Type {
@@ -555,6 +624,12 @@ func (i ProviderAuthLoginAwsArgs) ToProviderAuthLoginAwsOutput() ProviderAuthLog
 
 func (i ProviderAuthLoginAwsArgs) ToProviderAuthLoginAwsOutputWithContext(ctx context.Context) ProviderAuthLoginAwsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginAwsOutput)
+}
+
+func (i ProviderAuthLoginAwsArgs) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginAws] {
+	return pulumix.Output[ProviderAuthLoginAws]{
+		OutputState: i.ToProviderAuthLoginAwsOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i ProviderAuthLoginAwsArgs) ToProviderAuthLoginAwsPtrOutput() ProviderAuthLoginAwsPtrOutput {
@@ -598,6 +673,12 @@ func (i *providerAuthLoginAwsPtrType) ToProviderAuthLoginAwsPtrOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginAwsPtrOutput)
 }
 
+func (i *providerAuthLoginAwsPtrType) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginAws] {
+	return pulumix.Output[*ProviderAuthLoginAws]{
+		OutputState: i.ToProviderAuthLoginAwsPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderAuthLoginAwsOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginAwsOutput) ElementType() reflect.Type {
@@ -620,6 +701,12 @@ func (o ProviderAuthLoginAwsOutput) ToProviderAuthLoginAwsPtrOutputWithContext(c
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProviderAuthLoginAws) *ProviderAuthLoginAws {
 		return &v
 	}).(ProviderAuthLoginAwsPtrOutput)
+}
+
+func (o ProviderAuthLoginAwsOutput) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginAws] {
+	return pulumix.Output[ProviderAuthLoginAws]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginAwsOutput) AwsAccessKeyId() pulumi.StringPtrOutput {
@@ -682,6 +769,10 @@ func (o ProviderAuthLoginAwsOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v ProviderAuthLoginAws) string { return v.Role }).(pulumi.StringOutput)
 }
 
+func (o ProviderAuthLoginAwsOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLoginAws) *bool { return v.UseRootNamespace }).(pulumi.BoolPtrOutput)
+}
+
 type ProviderAuthLoginAwsPtrOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginAwsPtrOutput) ElementType() reflect.Type {
@@ -694,6 +785,12 @@ func (o ProviderAuthLoginAwsPtrOutput) ToProviderAuthLoginAwsPtrOutput() Provide
 
 func (o ProviderAuthLoginAwsPtrOutput) ToProviderAuthLoginAwsPtrOutputWithContext(ctx context.Context) ProviderAuthLoginAwsPtrOutput {
 	return o
+}
+
+func (o ProviderAuthLoginAwsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginAws] {
+	return pulumix.Output[*ProviderAuthLoginAws]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginAwsPtrOutput) Elem() ProviderAuthLoginAwsOutput {
@@ -841,6 +938,15 @@ func (o ProviderAuthLoginAwsPtrOutput) Role() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginAwsPtrOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProviderAuthLoginAws) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseRootNamespace
+	}).(pulumi.BoolPtrOutput)
+}
+
 type ProviderAuthLoginAzure struct {
 	ClientId          *string `pulumi:"clientId"`
 	Jwt               *string `pulumi:"jwt"`
@@ -851,6 +957,7 @@ type ProviderAuthLoginAzure struct {
 	Scope             *string `pulumi:"scope"`
 	SubscriptionId    string  `pulumi:"subscriptionId"`
 	TenantId          *string `pulumi:"tenantId"`
+	UseRootNamespace  *bool   `pulumi:"useRootNamespace"`
 	VmName            *string `pulumi:"vmName"`
 	VmssName          *string `pulumi:"vmssName"`
 }
@@ -876,6 +983,7 @@ type ProviderAuthLoginAzureArgs struct {
 	Scope             pulumi.StringPtrInput `pulumi:"scope"`
 	SubscriptionId    pulumi.StringInput    `pulumi:"subscriptionId"`
 	TenantId          pulumi.StringPtrInput `pulumi:"tenantId"`
+	UseRootNamespace  pulumi.BoolPtrInput   `pulumi:"useRootNamespace"`
 	VmName            pulumi.StringPtrInput `pulumi:"vmName"`
 	VmssName          pulumi.StringPtrInput `pulumi:"vmssName"`
 }
@@ -890,6 +998,12 @@ func (i ProviderAuthLoginAzureArgs) ToProviderAuthLoginAzureOutput() ProviderAut
 
 func (i ProviderAuthLoginAzureArgs) ToProviderAuthLoginAzureOutputWithContext(ctx context.Context) ProviderAuthLoginAzureOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginAzureOutput)
+}
+
+func (i ProviderAuthLoginAzureArgs) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginAzure] {
+	return pulumix.Output[ProviderAuthLoginAzure]{
+		OutputState: i.ToProviderAuthLoginAzureOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i ProviderAuthLoginAzureArgs) ToProviderAuthLoginAzurePtrOutput() ProviderAuthLoginAzurePtrOutput {
@@ -933,6 +1047,12 @@ func (i *providerAuthLoginAzurePtrType) ToProviderAuthLoginAzurePtrOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginAzurePtrOutput)
 }
 
+func (i *providerAuthLoginAzurePtrType) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginAzure] {
+	return pulumix.Output[*ProviderAuthLoginAzure]{
+		OutputState: i.ToProviderAuthLoginAzurePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderAuthLoginAzureOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginAzureOutput) ElementType() reflect.Type {
@@ -955,6 +1075,12 @@ func (o ProviderAuthLoginAzureOutput) ToProviderAuthLoginAzurePtrOutputWithConte
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProviderAuthLoginAzure) *ProviderAuthLoginAzure {
 		return &v
 	}).(ProviderAuthLoginAzurePtrOutput)
+}
+
+func (o ProviderAuthLoginAzureOutput) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginAzure] {
+	return pulumix.Output[ProviderAuthLoginAzure]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginAzureOutput) ClientId() pulumi.StringPtrOutput {
@@ -993,6 +1119,10 @@ func (o ProviderAuthLoginAzureOutput) TenantId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProviderAuthLoginAzure) *string { return v.TenantId }).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginAzureOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLoginAzure) *bool { return v.UseRootNamespace }).(pulumi.BoolPtrOutput)
+}
+
 func (o ProviderAuthLoginAzureOutput) VmName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProviderAuthLoginAzure) *string { return v.VmName }).(pulumi.StringPtrOutput)
 }
@@ -1013,6 +1143,12 @@ func (o ProviderAuthLoginAzurePtrOutput) ToProviderAuthLoginAzurePtrOutput() Pro
 
 func (o ProviderAuthLoginAzurePtrOutput) ToProviderAuthLoginAzurePtrOutputWithContext(ctx context.Context) ProviderAuthLoginAzurePtrOutput {
 	return o
+}
+
+func (o ProviderAuthLoginAzurePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginAzure] {
+	return pulumix.Output[*ProviderAuthLoginAzure]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginAzurePtrOutput) Elem() ProviderAuthLoginAzureOutput {
@@ -1106,6 +1242,15 @@ func (o ProviderAuthLoginAzurePtrOutput) TenantId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginAzurePtrOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProviderAuthLoginAzure) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseRootNamespace
+	}).(pulumi.BoolPtrOutput)
+}
+
 func (o ProviderAuthLoginAzurePtrOutput) VmName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProviderAuthLoginAzure) *string {
 		if v == nil {
@@ -1125,11 +1270,12 @@ func (o ProviderAuthLoginAzurePtrOutput) VmssName() pulumi.StringPtrOutput {
 }
 
 type ProviderAuthLoginCert struct {
-	CertFile  string  `pulumi:"certFile"`
-	KeyFile   string  `pulumi:"keyFile"`
-	Mount     *string `pulumi:"mount"`
-	Name      *string `pulumi:"name"`
-	Namespace *string `pulumi:"namespace"`
+	CertFile         string  `pulumi:"certFile"`
+	KeyFile          string  `pulumi:"keyFile"`
+	Mount            *string `pulumi:"mount"`
+	Name             *string `pulumi:"name"`
+	Namespace        *string `pulumi:"namespace"`
+	UseRootNamespace *bool   `pulumi:"useRootNamespace"`
 }
 
 // ProviderAuthLoginCertInput is an input type that accepts ProviderAuthLoginCertArgs and ProviderAuthLoginCertOutput values.
@@ -1144,11 +1290,12 @@ type ProviderAuthLoginCertInput interface {
 }
 
 type ProviderAuthLoginCertArgs struct {
-	CertFile  pulumi.StringInput    `pulumi:"certFile"`
-	KeyFile   pulumi.StringInput    `pulumi:"keyFile"`
-	Mount     pulumi.StringPtrInput `pulumi:"mount"`
-	Name      pulumi.StringPtrInput `pulumi:"name"`
-	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
+	CertFile         pulumi.StringInput    `pulumi:"certFile"`
+	KeyFile          pulumi.StringInput    `pulumi:"keyFile"`
+	Mount            pulumi.StringPtrInput `pulumi:"mount"`
+	Name             pulumi.StringPtrInput `pulumi:"name"`
+	Namespace        pulumi.StringPtrInput `pulumi:"namespace"`
+	UseRootNamespace pulumi.BoolPtrInput   `pulumi:"useRootNamespace"`
 }
 
 func (ProviderAuthLoginCertArgs) ElementType() reflect.Type {
@@ -1161,6 +1308,12 @@ func (i ProviderAuthLoginCertArgs) ToProviderAuthLoginCertOutput() ProviderAuthL
 
 func (i ProviderAuthLoginCertArgs) ToProviderAuthLoginCertOutputWithContext(ctx context.Context) ProviderAuthLoginCertOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginCertOutput)
+}
+
+func (i ProviderAuthLoginCertArgs) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginCert] {
+	return pulumix.Output[ProviderAuthLoginCert]{
+		OutputState: i.ToProviderAuthLoginCertOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i ProviderAuthLoginCertArgs) ToProviderAuthLoginCertPtrOutput() ProviderAuthLoginCertPtrOutput {
@@ -1204,6 +1357,12 @@ func (i *providerAuthLoginCertPtrType) ToProviderAuthLoginCertPtrOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginCertPtrOutput)
 }
 
+func (i *providerAuthLoginCertPtrType) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginCert] {
+	return pulumix.Output[*ProviderAuthLoginCert]{
+		OutputState: i.ToProviderAuthLoginCertPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderAuthLoginCertOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginCertOutput) ElementType() reflect.Type {
@@ -1228,6 +1387,12 @@ func (o ProviderAuthLoginCertOutput) ToProviderAuthLoginCertPtrOutputWithContext
 	}).(ProviderAuthLoginCertPtrOutput)
 }
 
+func (o ProviderAuthLoginCertOutput) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginCert] {
+	return pulumix.Output[ProviderAuthLoginCert]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ProviderAuthLoginCertOutput) CertFile() pulumi.StringOutput {
 	return o.ApplyT(func(v ProviderAuthLoginCert) string { return v.CertFile }).(pulumi.StringOutput)
 }
@@ -1248,6 +1413,10 @@ func (o ProviderAuthLoginCertOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProviderAuthLoginCert) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginCertOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLoginCert) *bool { return v.UseRootNamespace }).(pulumi.BoolPtrOutput)
+}
+
 type ProviderAuthLoginCertPtrOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginCertPtrOutput) ElementType() reflect.Type {
@@ -1260,6 +1429,12 @@ func (o ProviderAuthLoginCertPtrOutput) ToProviderAuthLoginCertPtrOutput() Provi
 
 func (o ProviderAuthLoginCertPtrOutput) ToProviderAuthLoginCertPtrOutputWithContext(ctx context.Context) ProviderAuthLoginCertPtrOutput {
 	return o
+}
+
+func (o ProviderAuthLoginCertPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginCert] {
+	return pulumix.Output[*ProviderAuthLoginCert]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginCertPtrOutput) Elem() ProviderAuthLoginCertOutput {
@@ -1317,13 +1492,23 @@ func (o ProviderAuthLoginCertPtrOutput) Namespace() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginCertPtrOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProviderAuthLoginCert) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseRootNamespace
+	}).(pulumi.BoolPtrOutput)
+}
+
 type ProviderAuthLoginGcp struct {
-	Credentials    *string `pulumi:"credentials"`
-	Jwt            *string `pulumi:"jwt"`
-	Mount          *string `pulumi:"mount"`
-	Namespace      *string `pulumi:"namespace"`
-	Role           string  `pulumi:"role"`
-	ServiceAccount *string `pulumi:"serviceAccount"`
+	Credentials      *string `pulumi:"credentials"`
+	Jwt              *string `pulumi:"jwt"`
+	Mount            *string `pulumi:"mount"`
+	Namespace        *string `pulumi:"namespace"`
+	Role             string  `pulumi:"role"`
+	ServiceAccount   *string `pulumi:"serviceAccount"`
+	UseRootNamespace *bool   `pulumi:"useRootNamespace"`
 }
 
 // ProviderAuthLoginGcpInput is an input type that accepts ProviderAuthLoginGcpArgs and ProviderAuthLoginGcpOutput values.
@@ -1338,12 +1523,13 @@ type ProviderAuthLoginGcpInput interface {
 }
 
 type ProviderAuthLoginGcpArgs struct {
-	Credentials    pulumi.StringPtrInput `pulumi:"credentials"`
-	Jwt            pulumi.StringPtrInput `pulumi:"jwt"`
-	Mount          pulumi.StringPtrInput `pulumi:"mount"`
-	Namespace      pulumi.StringPtrInput `pulumi:"namespace"`
-	Role           pulumi.StringInput    `pulumi:"role"`
-	ServiceAccount pulumi.StringPtrInput `pulumi:"serviceAccount"`
+	Credentials      pulumi.StringPtrInput `pulumi:"credentials"`
+	Jwt              pulumi.StringPtrInput `pulumi:"jwt"`
+	Mount            pulumi.StringPtrInput `pulumi:"mount"`
+	Namespace        pulumi.StringPtrInput `pulumi:"namespace"`
+	Role             pulumi.StringInput    `pulumi:"role"`
+	ServiceAccount   pulumi.StringPtrInput `pulumi:"serviceAccount"`
+	UseRootNamespace pulumi.BoolPtrInput   `pulumi:"useRootNamespace"`
 }
 
 func (ProviderAuthLoginGcpArgs) ElementType() reflect.Type {
@@ -1356,6 +1542,12 @@ func (i ProviderAuthLoginGcpArgs) ToProviderAuthLoginGcpOutput() ProviderAuthLog
 
 func (i ProviderAuthLoginGcpArgs) ToProviderAuthLoginGcpOutputWithContext(ctx context.Context) ProviderAuthLoginGcpOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginGcpOutput)
+}
+
+func (i ProviderAuthLoginGcpArgs) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginGcp] {
+	return pulumix.Output[ProviderAuthLoginGcp]{
+		OutputState: i.ToProviderAuthLoginGcpOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i ProviderAuthLoginGcpArgs) ToProviderAuthLoginGcpPtrOutput() ProviderAuthLoginGcpPtrOutput {
@@ -1399,6 +1591,12 @@ func (i *providerAuthLoginGcpPtrType) ToProviderAuthLoginGcpPtrOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginGcpPtrOutput)
 }
 
+func (i *providerAuthLoginGcpPtrType) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginGcp] {
+	return pulumix.Output[*ProviderAuthLoginGcp]{
+		OutputState: i.ToProviderAuthLoginGcpPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderAuthLoginGcpOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginGcpOutput) ElementType() reflect.Type {
@@ -1421,6 +1619,12 @@ func (o ProviderAuthLoginGcpOutput) ToProviderAuthLoginGcpPtrOutputWithContext(c
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProviderAuthLoginGcp) *ProviderAuthLoginGcp {
 		return &v
 	}).(ProviderAuthLoginGcpPtrOutput)
+}
+
+func (o ProviderAuthLoginGcpOutput) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginGcp] {
+	return pulumix.Output[ProviderAuthLoginGcp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginGcpOutput) Credentials() pulumi.StringPtrOutput {
@@ -1447,6 +1651,10 @@ func (o ProviderAuthLoginGcpOutput) ServiceAccount() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProviderAuthLoginGcp) *string { return v.ServiceAccount }).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginGcpOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLoginGcp) *bool { return v.UseRootNamespace }).(pulumi.BoolPtrOutput)
+}
+
 type ProviderAuthLoginGcpPtrOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginGcpPtrOutput) ElementType() reflect.Type {
@@ -1459,6 +1667,12 @@ func (o ProviderAuthLoginGcpPtrOutput) ToProviderAuthLoginGcpPtrOutput() Provide
 
 func (o ProviderAuthLoginGcpPtrOutput) ToProviderAuthLoginGcpPtrOutputWithContext(ctx context.Context) ProviderAuthLoginGcpPtrOutput {
 	return o
+}
+
+func (o ProviderAuthLoginGcpPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginGcp] {
+	return pulumix.Output[*ProviderAuthLoginGcp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginGcpPtrOutput) Elem() ProviderAuthLoginGcpOutput {
@@ -1525,11 +1739,21 @@ func (o ProviderAuthLoginGcpPtrOutput) ServiceAccount() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginGcpPtrOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProviderAuthLoginGcp) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseRootNamespace
+	}).(pulumi.BoolPtrOutput)
+}
+
 type ProviderAuthLoginJwt struct {
-	Jwt       string  `pulumi:"jwt"`
-	Mount     *string `pulumi:"mount"`
-	Namespace *string `pulumi:"namespace"`
-	Role      string  `pulumi:"role"`
+	Jwt              string  `pulumi:"jwt"`
+	Mount            *string `pulumi:"mount"`
+	Namespace        *string `pulumi:"namespace"`
+	Role             string  `pulumi:"role"`
+	UseRootNamespace *bool   `pulumi:"useRootNamespace"`
 }
 
 // ProviderAuthLoginJwtInput is an input type that accepts ProviderAuthLoginJwtArgs and ProviderAuthLoginJwtOutput values.
@@ -1544,10 +1768,11 @@ type ProviderAuthLoginJwtInput interface {
 }
 
 type ProviderAuthLoginJwtArgs struct {
-	Jwt       pulumi.StringInput    `pulumi:"jwt"`
-	Mount     pulumi.StringPtrInput `pulumi:"mount"`
-	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
-	Role      pulumi.StringInput    `pulumi:"role"`
+	Jwt              pulumi.StringInput    `pulumi:"jwt"`
+	Mount            pulumi.StringPtrInput `pulumi:"mount"`
+	Namespace        pulumi.StringPtrInput `pulumi:"namespace"`
+	Role             pulumi.StringInput    `pulumi:"role"`
+	UseRootNamespace pulumi.BoolPtrInput   `pulumi:"useRootNamespace"`
 }
 
 func (ProviderAuthLoginJwtArgs) ElementType() reflect.Type {
@@ -1560,6 +1785,12 @@ func (i ProviderAuthLoginJwtArgs) ToProviderAuthLoginJwtOutput() ProviderAuthLog
 
 func (i ProviderAuthLoginJwtArgs) ToProviderAuthLoginJwtOutputWithContext(ctx context.Context) ProviderAuthLoginJwtOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginJwtOutput)
+}
+
+func (i ProviderAuthLoginJwtArgs) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginJwt] {
+	return pulumix.Output[ProviderAuthLoginJwt]{
+		OutputState: i.ToProviderAuthLoginJwtOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i ProviderAuthLoginJwtArgs) ToProviderAuthLoginJwtPtrOutput() ProviderAuthLoginJwtPtrOutput {
@@ -1603,6 +1834,12 @@ func (i *providerAuthLoginJwtPtrType) ToProviderAuthLoginJwtPtrOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginJwtPtrOutput)
 }
 
+func (i *providerAuthLoginJwtPtrType) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginJwt] {
+	return pulumix.Output[*ProviderAuthLoginJwt]{
+		OutputState: i.ToProviderAuthLoginJwtPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderAuthLoginJwtOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginJwtOutput) ElementType() reflect.Type {
@@ -1627,6 +1864,12 @@ func (o ProviderAuthLoginJwtOutput) ToProviderAuthLoginJwtPtrOutputWithContext(c
 	}).(ProviderAuthLoginJwtPtrOutput)
 }
 
+func (o ProviderAuthLoginJwtOutput) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginJwt] {
+	return pulumix.Output[ProviderAuthLoginJwt]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ProviderAuthLoginJwtOutput) Jwt() pulumi.StringOutput {
 	return o.ApplyT(func(v ProviderAuthLoginJwt) string { return v.Jwt }).(pulumi.StringOutput)
 }
@@ -1643,6 +1886,10 @@ func (o ProviderAuthLoginJwtOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v ProviderAuthLoginJwt) string { return v.Role }).(pulumi.StringOutput)
 }
 
+func (o ProviderAuthLoginJwtOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLoginJwt) *bool { return v.UseRootNamespace }).(pulumi.BoolPtrOutput)
+}
+
 type ProviderAuthLoginJwtPtrOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginJwtPtrOutput) ElementType() reflect.Type {
@@ -1655,6 +1902,12 @@ func (o ProviderAuthLoginJwtPtrOutput) ToProviderAuthLoginJwtPtrOutput() Provide
 
 func (o ProviderAuthLoginJwtPtrOutput) ToProviderAuthLoginJwtPtrOutputWithContext(ctx context.Context) ProviderAuthLoginJwtPtrOutput {
 	return o
+}
+
+func (o ProviderAuthLoginJwtPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginJwt] {
+	return pulumix.Output[*ProviderAuthLoginJwt]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginJwtPtrOutput) Elem() ProviderAuthLoginJwtOutput {
@@ -1703,6 +1956,15 @@ func (o ProviderAuthLoginJwtPtrOutput) Role() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginJwtPtrOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProviderAuthLoginJwt) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseRootNamespace
+	}).(pulumi.BoolPtrOutput)
+}
+
 type ProviderAuthLoginKerberos struct {
 	DisableFastNegotiation *bool   `pulumi:"disableFastNegotiation"`
 	KeytabPath             *string `pulumi:"keytabPath"`
@@ -1713,6 +1975,7 @@ type ProviderAuthLoginKerberos struct {
 	RemoveInstanceName     *bool   `pulumi:"removeInstanceName"`
 	Service                *string `pulumi:"service"`
 	Token                  *string `pulumi:"token"`
+	UseRootNamespace       *bool   `pulumi:"useRootNamespace"`
 	Username               *string `pulumi:"username"`
 }
 
@@ -1737,6 +2000,7 @@ type ProviderAuthLoginKerberosArgs struct {
 	RemoveInstanceName     pulumi.BoolPtrInput   `pulumi:"removeInstanceName"`
 	Service                pulumi.StringPtrInput `pulumi:"service"`
 	Token                  pulumi.StringPtrInput `pulumi:"token"`
+	UseRootNamespace       pulumi.BoolPtrInput   `pulumi:"useRootNamespace"`
 	Username               pulumi.StringPtrInput `pulumi:"username"`
 }
 
@@ -1750,6 +2014,12 @@ func (i ProviderAuthLoginKerberosArgs) ToProviderAuthLoginKerberosOutput() Provi
 
 func (i ProviderAuthLoginKerberosArgs) ToProviderAuthLoginKerberosOutputWithContext(ctx context.Context) ProviderAuthLoginKerberosOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginKerberosOutput)
+}
+
+func (i ProviderAuthLoginKerberosArgs) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginKerberos] {
+	return pulumix.Output[ProviderAuthLoginKerberos]{
+		OutputState: i.ToProviderAuthLoginKerberosOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i ProviderAuthLoginKerberosArgs) ToProviderAuthLoginKerberosPtrOutput() ProviderAuthLoginKerberosPtrOutput {
@@ -1793,6 +2063,12 @@ func (i *providerAuthLoginKerberosPtrType) ToProviderAuthLoginKerberosPtrOutputW
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginKerberosPtrOutput)
 }
 
+func (i *providerAuthLoginKerberosPtrType) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginKerberos] {
+	return pulumix.Output[*ProviderAuthLoginKerberos]{
+		OutputState: i.ToProviderAuthLoginKerberosPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderAuthLoginKerberosOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginKerberosOutput) ElementType() reflect.Type {
@@ -1815,6 +2091,12 @@ func (o ProviderAuthLoginKerberosOutput) ToProviderAuthLoginKerberosPtrOutputWit
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProviderAuthLoginKerberos) *ProviderAuthLoginKerberos {
 		return &v
 	}).(ProviderAuthLoginKerberosPtrOutput)
+}
+
+func (o ProviderAuthLoginKerberosOutput) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginKerberos] {
+	return pulumix.Output[ProviderAuthLoginKerberos]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginKerberosOutput) DisableFastNegotiation() pulumi.BoolPtrOutput {
@@ -1853,6 +2135,10 @@ func (o ProviderAuthLoginKerberosOutput) Token() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProviderAuthLoginKerberos) *string { return v.Token }).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginKerberosOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLoginKerberos) *bool { return v.UseRootNamespace }).(pulumi.BoolPtrOutput)
+}
+
 func (o ProviderAuthLoginKerberosOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProviderAuthLoginKerberos) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
@@ -1869,6 +2155,12 @@ func (o ProviderAuthLoginKerberosPtrOutput) ToProviderAuthLoginKerberosPtrOutput
 
 func (o ProviderAuthLoginKerberosPtrOutput) ToProviderAuthLoginKerberosPtrOutputWithContext(ctx context.Context) ProviderAuthLoginKerberosPtrOutput {
 	return o
+}
+
+func (o ProviderAuthLoginKerberosPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginKerberos] {
+	return pulumix.Output[*ProviderAuthLoginKerberos]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginKerberosPtrOutput) Elem() ProviderAuthLoginKerberosOutput {
@@ -1962,6 +2254,15 @@ func (o ProviderAuthLoginKerberosPtrOutput) Token() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginKerberosPtrOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProviderAuthLoginKerberos) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseRootNamespace
+	}).(pulumi.BoolPtrOutput)
+}
+
 func (o ProviderAuthLoginKerberosPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProviderAuthLoginKerberos) *string {
 		if v == nil {
@@ -1972,10 +2273,11 @@ func (o ProviderAuthLoginKerberosPtrOutput) Username() pulumi.StringPtrOutput {
 }
 
 type ProviderAuthLoginOci struct {
-	AuthType  string  `pulumi:"authType"`
-	Mount     *string `pulumi:"mount"`
-	Namespace *string `pulumi:"namespace"`
-	Role      string  `pulumi:"role"`
+	AuthType         string  `pulumi:"authType"`
+	Mount            *string `pulumi:"mount"`
+	Namespace        *string `pulumi:"namespace"`
+	Role             string  `pulumi:"role"`
+	UseRootNamespace *bool   `pulumi:"useRootNamespace"`
 }
 
 // ProviderAuthLoginOciInput is an input type that accepts ProviderAuthLoginOciArgs and ProviderAuthLoginOciOutput values.
@@ -1990,10 +2292,11 @@ type ProviderAuthLoginOciInput interface {
 }
 
 type ProviderAuthLoginOciArgs struct {
-	AuthType  pulumi.StringInput    `pulumi:"authType"`
-	Mount     pulumi.StringPtrInput `pulumi:"mount"`
-	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
-	Role      pulumi.StringInput    `pulumi:"role"`
+	AuthType         pulumi.StringInput    `pulumi:"authType"`
+	Mount            pulumi.StringPtrInput `pulumi:"mount"`
+	Namespace        pulumi.StringPtrInput `pulumi:"namespace"`
+	Role             pulumi.StringInput    `pulumi:"role"`
+	UseRootNamespace pulumi.BoolPtrInput   `pulumi:"useRootNamespace"`
 }
 
 func (ProviderAuthLoginOciArgs) ElementType() reflect.Type {
@@ -2006,6 +2309,12 @@ func (i ProviderAuthLoginOciArgs) ToProviderAuthLoginOciOutput() ProviderAuthLog
 
 func (i ProviderAuthLoginOciArgs) ToProviderAuthLoginOciOutputWithContext(ctx context.Context) ProviderAuthLoginOciOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginOciOutput)
+}
+
+func (i ProviderAuthLoginOciArgs) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginOci] {
+	return pulumix.Output[ProviderAuthLoginOci]{
+		OutputState: i.ToProviderAuthLoginOciOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i ProviderAuthLoginOciArgs) ToProviderAuthLoginOciPtrOutput() ProviderAuthLoginOciPtrOutput {
@@ -2049,6 +2358,12 @@ func (i *providerAuthLoginOciPtrType) ToProviderAuthLoginOciPtrOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginOciPtrOutput)
 }
 
+func (i *providerAuthLoginOciPtrType) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginOci] {
+	return pulumix.Output[*ProviderAuthLoginOci]{
+		OutputState: i.ToProviderAuthLoginOciPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderAuthLoginOciOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginOciOutput) ElementType() reflect.Type {
@@ -2073,6 +2388,12 @@ func (o ProviderAuthLoginOciOutput) ToProviderAuthLoginOciPtrOutputWithContext(c
 	}).(ProviderAuthLoginOciPtrOutput)
 }
 
+func (o ProviderAuthLoginOciOutput) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginOci] {
+	return pulumix.Output[ProviderAuthLoginOci]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ProviderAuthLoginOciOutput) AuthType() pulumi.StringOutput {
 	return o.ApplyT(func(v ProviderAuthLoginOci) string { return v.AuthType }).(pulumi.StringOutput)
 }
@@ -2089,6 +2410,10 @@ func (o ProviderAuthLoginOciOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v ProviderAuthLoginOci) string { return v.Role }).(pulumi.StringOutput)
 }
 
+func (o ProviderAuthLoginOciOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLoginOci) *bool { return v.UseRootNamespace }).(pulumi.BoolPtrOutput)
+}
+
 type ProviderAuthLoginOciPtrOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginOciPtrOutput) ElementType() reflect.Type {
@@ -2101,6 +2426,12 @@ func (o ProviderAuthLoginOciPtrOutput) ToProviderAuthLoginOciPtrOutput() Provide
 
 func (o ProviderAuthLoginOciPtrOutput) ToProviderAuthLoginOciPtrOutputWithContext(ctx context.Context) ProviderAuthLoginOciPtrOutput {
 	return o
+}
+
+func (o ProviderAuthLoginOciPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginOci] {
+	return pulumix.Output[*ProviderAuthLoginOci]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginOciPtrOutput) Elem() ProviderAuthLoginOciOutput {
@@ -2149,12 +2480,22 @@ func (o ProviderAuthLoginOciPtrOutput) Role() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginOciPtrOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProviderAuthLoginOci) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseRootNamespace
+	}).(pulumi.BoolPtrOutput)
+}
+
 type ProviderAuthLoginOidc struct {
 	CallbackAddress         *string `pulumi:"callbackAddress"`
 	CallbackListenerAddress *string `pulumi:"callbackListenerAddress"`
 	Mount                   *string `pulumi:"mount"`
 	Namespace               *string `pulumi:"namespace"`
 	Role                    string  `pulumi:"role"`
+	UseRootNamespace        *bool   `pulumi:"useRootNamespace"`
 }
 
 // ProviderAuthLoginOidcInput is an input type that accepts ProviderAuthLoginOidcArgs and ProviderAuthLoginOidcOutput values.
@@ -2174,6 +2515,7 @@ type ProviderAuthLoginOidcArgs struct {
 	Mount                   pulumi.StringPtrInput `pulumi:"mount"`
 	Namespace               pulumi.StringPtrInput `pulumi:"namespace"`
 	Role                    pulumi.StringInput    `pulumi:"role"`
+	UseRootNamespace        pulumi.BoolPtrInput   `pulumi:"useRootNamespace"`
 }
 
 func (ProviderAuthLoginOidcArgs) ElementType() reflect.Type {
@@ -2186,6 +2528,12 @@ func (i ProviderAuthLoginOidcArgs) ToProviderAuthLoginOidcOutput() ProviderAuthL
 
 func (i ProviderAuthLoginOidcArgs) ToProviderAuthLoginOidcOutputWithContext(ctx context.Context) ProviderAuthLoginOidcOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginOidcOutput)
+}
+
+func (i ProviderAuthLoginOidcArgs) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginOidc] {
+	return pulumix.Output[ProviderAuthLoginOidc]{
+		OutputState: i.ToProviderAuthLoginOidcOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i ProviderAuthLoginOidcArgs) ToProviderAuthLoginOidcPtrOutput() ProviderAuthLoginOidcPtrOutput {
@@ -2229,6 +2577,12 @@ func (i *providerAuthLoginOidcPtrType) ToProviderAuthLoginOidcPtrOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginOidcPtrOutput)
 }
 
+func (i *providerAuthLoginOidcPtrType) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginOidc] {
+	return pulumix.Output[*ProviderAuthLoginOidc]{
+		OutputState: i.ToProviderAuthLoginOidcPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderAuthLoginOidcOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginOidcOutput) ElementType() reflect.Type {
@@ -2253,6 +2607,12 @@ func (o ProviderAuthLoginOidcOutput) ToProviderAuthLoginOidcPtrOutputWithContext
 	}).(ProviderAuthLoginOidcPtrOutput)
 }
 
+func (o ProviderAuthLoginOidcOutput) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginOidc] {
+	return pulumix.Output[ProviderAuthLoginOidc]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ProviderAuthLoginOidcOutput) CallbackAddress() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProviderAuthLoginOidc) *string { return v.CallbackAddress }).(pulumi.StringPtrOutput)
 }
@@ -2273,6 +2633,10 @@ func (o ProviderAuthLoginOidcOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v ProviderAuthLoginOidc) string { return v.Role }).(pulumi.StringOutput)
 }
 
+func (o ProviderAuthLoginOidcOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLoginOidc) *bool { return v.UseRootNamespace }).(pulumi.BoolPtrOutput)
+}
+
 type ProviderAuthLoginOidcPtrOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginOidcPtrOutput) ElementType() reflect.Type {
@@ -2285,6 +2649,12 @@ func (o ProviderAuthLoginOidcPtrOutput) ToProviderAuthLoginOidcPtrOutput() Provi
 
 func (o ProviderAuthLoginOidcPtrOutput) ToProviderAuthLoginOidcPtrOutputWithContext(ctx context.Context) ProviderAuthLoginOidcPtrOutput {
 	return o
+}
+
+func (o ProviderAuthLoginOidcPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginOidc] {
+	return pulumix.Output[*ProviderAuthLoginOidc]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginOidcPtrOutput) Elem() ProviderAuthLoginOidcOutput {
@@ -2342,11 +2712,21 @@ func (o ProviderAuthLoginOidcPtrOutput) Role() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginOidcPtrOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProviderAuthLoginOidc) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseRootNamespace
+	}).(pulumi.BoolPtrOutput)
+}
+
 type ProviderAuthLoginRadius struct {
-	Mount     *string `pulumi:"mount"`
-	Namespace *string `pulumi:"namespace"`
-	Password  string  `pulumi:"password"`
-	Username  string  `pulumi:"username"`
+	Mount            *string `pulumi:"mount"`
+	Namespace        *string `pulumi:"namespace"`
+	Password         string  `pulumi:"password"`
+	UseRootNamespace *bool   `pulumi:"useRootNamespace"`
+	Username         string  `pulumi:"username"`
 }
 
 // ProviderAuthLoginRadiusInput is an input type that accepts ProviderAuthLoginRadiusArgs and ProviderAuthLoginRadiusOutput values.
@@ -2361,10 +2741,11 @@ type ProviderAuthLoginRadiusInput interface {
 }
 
 type ProviderAuthLoginRadiusArgs struct {
-	Mount     pulumi.StringPtrInput `pulumi:"mount"`
-	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
-	Password  pulumi.StringInput    `pulumi:"password"`
-	Username  pulumi.StringInput    `pulumi:"username"`
+	Mount            pulumi.StringPtrInput `pulumi:"mount"`
+	Namespace        pulumi.StringPtrInput `pulumi:"namespace"`
+	Password         pulumi.StringInput    `pulumi:"password"`
+	UseRootNamespace pulumi.BoolPtrInput   `pulumi:"useRootNamespace"`
+	Username         pulumi.StringInput    `pulumi:"username"`
 }
 
 func (ProviderAuthLoginRadiusArgs) ElementType() reflect.Type {
@@ -2377,6 +2758,12 @@ func (i ProviderAuthLoginRadiusArgs) ToProviderAuthLoginRadiusOutput() ProviderA
 
 func (i ProviderAuthLoginRadiusArgs) ToProviderAuthLoginRadiusOutputWithContext(ctx context.Context) ProviderAuthLoginRadiusOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginRadiusOutput)
+}
+
+func (i ProviderAuthLoginRadiusArgs) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginRadius] {
+	return pulumix.Output[ProviderAuthLoginRadius]{
+		OutputState: i.ToProviderAuthLoginRadiusOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i ProviderAuthLoginRadiusArgs) ToProviderAuthLoginRadiusPtrOutput() ProviderAuthLoginRadiusPtrOutput {
@@ -2420,6 +2807,12 @@ func (i *providerAuthLoginRadiusPtrType) ToProviderAuthLoginRadiusPtrOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginRadiusPtrOutput)
 }
 
+func (i *providerAuthLoginRadiusPtrType) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginRadius] {
+	return pulumix.Output[*ProviderAuthLoginRadius]{
+		OutputState: i.ToProviderAuthLoginRadiusPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderAuthLoginRadiusOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginRadiusOutput) ElementType() reflect.Type {
@@ -2444,6 +2837,12 @@ func (o ProviderAuthLoginRadiusOutput) ToProviderAuthLoginRadiusPtrOutputWithCon
 	}).(ProviderAuthLoginRadiusPtrOutput)
 }
 
+func (o ProviderAuthLoginRadiusOutput) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginRadius] {
+	return pulumix.Output[ProviderAuthLoginRadius]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ProviderAuthLoginRadiusOutput) Mount() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProviderAuthLoginRadius) *string { return v.Mount }).(pulumi.StringPtrOutput)
 }
@@ -2454,6 +2853,10 @@ func (o ProviderAuthLoginRadiusOutput) Namespace() pulumi.StringPtrOutput {
 
 func (o ProviderAuthLoginRadiusOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v ProviderAuthLoginRadius) string { return v.Password }).(pulumi.StringOutput)
+}
+
+func (o ProviderAuthLoginRadiusOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLoginRadius) *bool { return v.UseRootNamespace }).(pulumi.BoolPtrOutput)
 }
 
 func (o ProviderAuthLoginRadiusOutput) Username() pulumi.StringOutput {
@@ -2472,6 +2875,12 @@ func (o ProviderAuthLoginRadiusPtrOutput) ToProviderAuthLoginRadiusPtrOutput() P
 
 func (o ProviderAuthLoginRadiusPtrOutput) ToProviderAuthLoginRadiusPtrOutputWithContext(ctx context.Context) ProviderAuthLoginRadiusPtrOutput {
 	return o
+}
+
+func (o ProviderAuthLoginRadiusPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginRadius] {
+	return pulumix.Output[*ProviderAuthLoginRadius]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginRadiusPtrOutput) Elem() ProviderAuthLoginRadiusOutput {
@@ -2511,6 +2920,15 @@ func (o ProviderAuthLoginRadiusPtrOutput) Password() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginRadiusPtrOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProviderAuthLoginRadius) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseRootNamespace
+	}).(pulumi.BoolPtrOutput)
+}
+
 func (o ProviderAuthLoginRadiusPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProviderAuthLoginRadius) *string {
 		if v == nil {
@@ -2521,8 +2939,9 @@ func (o ProviderAuthLoginRadiusPtrOutput) Username() pulumi.StringPtrOutput {
 }
 
 type ProviderAuthLoginTokenFile struct {
-	Filename  string  `pulumi:"filename"`
-	Namespace *string `pulumi:"namespace"`
+	Filename         string  `pulumi:"filename"`
+	Namespace        *string `pulumi:"namespace"`
+	UseRootNamespace *bool   `pulumi:"useRootNamespace"`
 }
 
 // ProviderAuthLoginTokenFileInput is an input type that accepts ProviderAuthLoginTokenFileArgs and ProviderAuthLoginTokenFileOutput values.
@@ -2537,8 +2956,9 @@ type ProviderAuthLoginTokenFileInput interface {
 }
 
 type ProviderAuthLoginTokenFileArgs struct {
-	Filename  pulumi.StringInput    `pulumi:"filename"`
-	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
+	Filename         pulumi.StringInput    `pulumi:"filename"`
+	Namespace        pulumi.StringPtrInput `pulumi:"namespace"`
+	UseRootNamespace pulumi.BoolPtrInput   `pulumi:"useRootNamespace"`
 }
 
 func (ProviderAuthLoginTokenFileArgs) ElementType() reflect.Type {
@@ -2551,6 +2971,12 @@ func (i ProviderAuthLoginTokenFileArgs) ToProviderAuthLoginTokenFileOutput() Pro
 
 func (i ProviderAuthLoginTokenFileArgs) ToProviderAuthLoginTokenFileOutputWithContext(ctx context.Context) ProviderAuthLoginTokenFileOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginTokenFileOutput)
+}
+
+func (i ProviderAuthLoginTokenFileArgs) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginTokenFile] {
+	return pulumix.Output[ProviderAuthLoginTokenFile]{
+		OutputState: i.ToProviderAuthLoginTokenFileOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i ProviderAuthLoginTokenFileArgs) ToProviderAuthLoginTokenFilePtrOutput() ProviderAuthLoginTokenFilePtrOutput {
@@ -2594,6 +3020,12 @@ func (i *providerAuthLoginTokenFilePtrType) ToProviderAuthLoginTokenFilePtrOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginTokenFilePtrOutput)
 }
 
+func (i *providerAuthLoginTokenFilePtrType) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginTokenFile] {
+	return pulumix.Output[*ProviderAuthLoginTokenFile]{
+		OutputState: i.ToProviderAuthLoginTokenFilePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderAuthLoginTokenFileOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginTokenFileOutput) ElementType() reflect.Type {
@@ -2618,12 +3050,22 @@ func (o ProviderAuthLoginTokenFileOutput) ToProviderAuthLoginTokenFilePtrOutputW
 	}).(ProviderAuthLoginTokenFilePtrOutput)
 }
 
+func (o ProviderAuthLoginTokenFileOutput) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginTokenFile] {
+	return pulumix.Output[ProviderAuthLoginTokenFile]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ProviderAuthLoginTokenFileOutput) Filename() pulumi.StringOutput {
 	return o.ApplyT(func(v ProviderAuthLoginTokenFile) string { return v.Filename }).(pulumi.StringOutput)
 }
 
 func (o ProviderAuthLoginTokenFileOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProviderAuthLoginTokenFile) *string { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+func (o ProviderAuthLoginTokenFileOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLoginTokenFile) *bool { return v.UseRootNamespace }).(pulumi.BoolPtrOutput)
 }
 
 type ProviderAuthLoginTokenFilePtrOutput struct{ *pulumi.OutputState }
@@ -2638,6 +3080,12 @@ func (o ProviderAuthLoginTokenFilePtrOutput) ToProviderAuthLoginTokenFilePtrOutp
 
 func (o ProviderAuthLoginTokenFilePtrOutput) ToProviderAuthLoginTokenFilePtrOutputWithContext(ctx context.Context) ProviderAuthLoginTokenFilePtrOutput {
 	return o
+}
+
+func (o ProviderAuthLoginTokenFilePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginTokenFile] {
+	return pulumix.Output[*ProviderAuthLoginTokenFile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginTokenFilePtrOutput) Elem() ProviderAuthLoginTokenFileOutput {
@@ -2668,12 +3116,22 @@ func (o ProviderAuthLoginTokenFilePtrOutput) Namespace() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginTokenFilePtrOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProviderAuthLoginTokenFile) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseRootNamespace
+	}).(pulumi.BoolPtrOutput)
+}
+
 type ProviderAuthLoginUserpass struct {
-	Mount        *string `pulumi:"mount"`
-	Namespace    *string `pulumi:"namespace"`
-	Password     *string `pulumi:"password"`
-	PasswordFile *string `pulumi:"passwordFile"`
-	Username     string  `pulumi:"username"`
+	Mount            *string `pulumi:"mount"`
+	Namespace        *string `pulumi:"namespace"`
+	Password         *string `pulumi:"password"`
+	PasswordFile     *string `pulumi:"passwordFile"`
+	UseRootNamespace *bool   `pulumi:"useRootNamespace"`
+	Username         string  `pulumi:"username"`
 }
 
 // ProviderAuthLoginUserpassInput is an input type that accepts ProviderAuthLoginUserpassArgs and ProviderAuthLoginUserpassOutput values.
@@ -2688,11 +3146,12 @@ type ProviderAuthLoginUserpassInput interface {
 }
 
 type ProviderAuthLoginUserpassArgs struct {
-	Mount        pulumi.StringPtrInput `pulumi:"mount"`
-	Namespace    pulumi.StringPtrInput `pulumi:"namespace"`
-	Password     pulumi.StringPtrInput `pulumi:"password"`
-	PasswordFile pulumi.StringPtrInput `pulumi:"passwordFile"`
-	Username     pulumi.StringInput    `pulumi:"username"`
+	Mount            pulumi.StringPtrInput `pulumi:"mount"`
+	Namespace        pulumi.StringPtrInput `pulumi:"namespace"`
+	Password         pulumi.StringPtrInput `pulumi:"password"`
+	PasswordFile     pulumi.StringPtrInput `pulumi:"passwordFile"`
+	UseRootNamespace pulumi.BoolPtrInput   `pulumi:"useRootNamespace"`
+	Username         pulumi.StringInput    `pulumi:"username"`
 }
 
 func (ProviderAuthLoginUserpassArgs) ElementType() reflect.Type {
@@ -2705,6 +3164,12 @@ func (i ProviderAuthLoginUserpassArgs) ToProviderAuthLoginUserpassOutput() Provi
 
 func (i ProviderAuthLoginUserpassArgs) ToProviderAuthLoginUserpassOutputWithContext(ctx context.Context) ProviderAuthLoginUserpassOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginUserpassOutput)
+}
+
+func (i ProviderAuthLoginUserpassArgs) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginUserpass] {
+	return pulumix.Output[ProviderAuthLoginUserpass]{
+		OutputState: i.ToProviderAuthLoginUserpassOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i ProviderAuthLoginUserpassArgs) ToProviderAuthLoginUserpassPtrOutput() ProviderAuthLoginUserpassPtrOutput {
@@ -2748,6 +3213,12 @@ func (i *providerAuthLoginUserpassPtrType) ToProviderAuthLoginUserpassPtrOutputW
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginUserpassPtrOutput)
 }
 
+func (i *providerAuthLoginUserpassPtrType) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginUserpass] {
+	return pulumix.Output[*ProviderAuthLoginUserpass]{
+		OutputState: i.ToProviderAuthLoginUserpassPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderAuthLoginUserpassOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginUserpassOutput) ElementType() reflect.Type {
@@ -2772,6 +3243,12 @@ func (o ProviderAuthLoginUserpassOutput) ToProviderAuthLoginUserpassPtrOutputWit
 	}).(ProviderAuthLoginUserpassPtrOutput)
 }
 
+func (o ProviderAuthLoginUserpassOutput) ToOutput(ctx context.Context) pulumix.Output[ProviderAuthLoginUserpass] {
+	return pulumix.Output[ProviderAuthLoginUserpass]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ProviderAuthLoginUserpassOutput) Mount() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProviderAuthLoginUserpass) *string { return v.Mount }).(pulumi.StringPtrOutput)
 }
@@ -2786,6 +3263,10 @@ func (o ProviderAuthLoginUserpassOutput) Password() pulumi.StringPtrOutput {
 
 func (o ProviderAuthLoginUserpassOutput) PasswordFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProviderAuthLoginUserpass) *string { return v.PasswordFile }).(pulumi.StringPtrOutput)
+}
+
+func (o ProviderAuthLoginUserpassOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLoginUserpass) *bool { return v.UseRootNamespace }).(pulumi.BoolPtrOutput)
 }
 
 func (o ProviderAuthLoginUserpassOutput) Username() pulumi.StringOutput {
@@ -2804,6 +3285,12 @@ func (o ProviderAuthLoginUserpassPtrOutput) ToProviderAuthLoginUserpassPtrOutput
 
 func (o ProviderAuthLoginUserpassPtrOutput) ToProviderAuthLoginUserpassPtrOutputWithContext(ctx context.Context) ProviderAuthLoginUserpassPtrOutput {
 	return o
+}
+
+func (o ProviderAuthLoginUserpassPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ProviderAuthLoginUserpass] {
+	return pulumix.Output[*ProviderAuthLoginUserpass]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderAuthLoginUserpassPtrOutput) Elem() ProviderAuthLoginUserpassOutput {
@@ -2852,6 +3339,15 @@ func (o ProviderAuthLoginUserpassPtrOutput) PasswordFile() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginUserpassPtrOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProviderAuthLoginUserpass) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseRootNamespace
+	}).(pulumi.BoolPtrOutput)
+}
+
 func (o ProviderAuthLoginUserpassPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProviderAuthLoginUserpass) *string {
 		if v == nil {
@@ -2892,6 +3388,12 @@ func (i ProviderClientAuthArgs) ToProviderClientAuthOutput() ProviderClientAuthO
 
 func (i ProviderClientAuthArgs) ToProviderClientAuthOutputWithContext(ctx context.Context) ProviderClientAuthOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderClientAuthOutput)
+}
+
+func (i ProviderClientAuthArgs) ToOutput(ctx context.Context) pulumix.Output[ProviderClientAuth] {
+	return pulumix.Output[ProviderClientAuth]{
+		OutputState: i.ToProviderClientAuthOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i ProviderClientAuthArgs) ToProviderClientAuthPtrOutput() ProviderClientAuthPtrOutput {
@@ -2935,6 +3437,12 @@ func (i *providerClientAuthPtrType) ToProviderClientAuthPtrOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderClientAuthPtrOutput)
 }
 
+func (i *providerClientAuthPtrType) ToOutput(ctx context.Context) pulumix.Output[*ProviderClientAuth] {
+	return pulumix.Output[*ProviderClientAuth]{
+		OutputState: i.ToProviderClientAuthPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderClientAuthOutput struct{ *pulumi.OutputState }
 
 func (ProviderClientAuthOutput) ElementType() reflect.Type {
@@ -2959,6 +3467,12 @@ func (o ProviderClientAuthOutput) ToProviderClientAuthPtrOutputWithContext(ctx c
 	}).(ProviderClientAuthPtrOutput)
 }
 
+func (o ProviderClientAuthOutput) ToOutput(ctx context.Context) pulumix.Output[ProviderClientAuth] {
+	return pulumix.Output[ProviderClientAuth]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ProviderClientAuthOutput) CertFile() pulumi.StringOutput {
 	return o.ApplyT(func(v ProviderClientAuth) string { return v.CertFile }).(pulumi.StringOutput)
 }
@@ -2979,6 +3493,12 @@ func (o ProviderClientAuthPtrOutput) ToProviderClientAuthPtrOutput() ProviderCli
 
 func (o ProviderClientAuthPtrOutput) ToProviderClientAuthPtrOutputWithContext(ctx context.Context) ProviderClientAuthPtrOutput {
 	return o
+}
+
+func (o ProviderClientAuthPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ProviderClientAuth] {
+	return pulumix.Output[*ProviderClientAuth]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderClientAuthPtrOutput) Elem() ProviderClientAuthOutput {
@@ -3042,6 +3562,12 @@ func (i ProviderHeaderArgs) ToProviderHeaderOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderHeaderOutput)
 }
 
+func (i ProviderHeaderArgs) ToOutput(ctx context.Context) pulumix.Output[ProviderHeader] {
+	return pulumix.Output[ProviderHeader]{
+		OutputState: i.ToProviderHeaderOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ProviderHeaderArrayInput is an input type that accepts ProviderHeaderArray and ProviderHeaderArrayOutput values.
 // You can construct a concrete instance of `ProviderHeaderArrayInput` via:
 //
@@ -3067,6 +3593,12 @@ func (i ProviderHeaderArray) ToProviderHeaderArrayOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderHeaderArrayOutput)
 }
 
+func (i ProviderHeaderArray) ToOutput(ctx context.Context) pulumix.Output[[]ProviderHeader] {
+	return pulumix.Output[[]ProviderHeader]{
+		OutputState: i.ToProviderHeaderArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderHeaderOutput struct{ *pulumi.OutputState }
 
 func (ProviderHeaderOutput) ElementType() reflect.Type {
@@ -3079,6 +3611,12 @@ func (o ProviderHeaderOutput) ToProviderHeaderOutput() ProviderHeaderOutput {
 
 func (o ProviderHeaderOutput) ToProviderHeaderOutputWithContext(ctx context.Context) ProviderHeaderOutput {
 	return o
+}
+
+func (o ProviderHeaderOutput) ToOutput(ctx context.Context) pulumix.Output[ProviderHeader] {
+	return pulumix.Output[ProviderHeader]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderHeaderOutput) Name() pulumi.StringOutput {
@@ -3101,6 +3639,12 @@ func (o ProviderHeaderArrayOutput) ToProviderHeaderArrayOutput() ProviderHeaderA
 
 func (o ProviderHeaderArrayOutput) ToProviderHeaderArrayOutputWithContext(ctx context.Context) ProviderHeaderArrayOutput {
 	return o
+}
+
+func (o ProviderHeaderArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ProviderHeader] {
+	return pulumix.Output[[]ProviderHeader]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderHeaderArrayOutput) Index(i pulumi.IntInput) ProviderHeaderOutput {
@@ -3170,6 +3714,12 @@ func (i GetPolicyDocumentRuleArgs) ToGetPolicyDocumentRuleOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(GetPolicyDocumentRuleOutput)
 }
 
+func (i GetPolicyDocumentRuleArgs) ToOutput(ctx context.Context) pulumix.Output[GetPolicyDocumentRule] {
+	return pulumix.Output[GetPolicyDocumentRule]{
+		OutputState: i.ToGetPolicyDocumentRuleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetPolicyDocumentRuleArrayInput is an input type that accepts GetPolicyDocumentRuleArray and GetPolicyDocumentRuleArrayOutput values.
 // You can construct a concrete instance of `GetPolicyDocumentRuleArrayInput` via:
 //
@@ -3195,6 +3745,12 @@ func (i GetPolicyDocumentRuleArray) ToGetPolicyDocumentRuleArrayOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(GetPolicyDocumentRuleArrayOutput)
 }
 
+func (i GetPolicyDocumentRuleArray) ToOutput(ctx context.Context) pulumix.Output[[]GetPolicyDocumentRule] {
+	return pulumix.Output[[]GetPolicyDocumentRule]{
+		OutputState: i.ToGetPolicyDocumentRuleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetPolicyDocumentRuleOutput struct{ *pulumi.OutputState }
 
 func (GetPolicyDocumentRuleOutput) ElementType() reflect.Type {
@@ -3207,6 +3763,12 @@ func (o GetPolicyDocumentRuleOutput) ToGetPolicyDocumentRuleOutput() GetPolicyDo
 
 func (o GetPolicyDocumentRuleOutput) ToGetPolicyDocumentRuleOutputWithContext(ctx context.Context) GetPolicyDocumentRuleOutput {
 	return o
+}
+
+func (o GetPolicyDocumentRuleOutput) ToOutput(ctx context.Context) pulumix.Output[GetPolicyDocumentRule] {
+	return pulumix.Output[GetPolicyDocumentRule]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Whitelists a list of keys and values that are permitted on the given path. See Parameters below.
@@ -3263,6 +3825,12 @@ func (o GetPolicyDocumentRuleArrayOutput) ToGetPolicyDocumentRuleArrayOutputWith
 	return o
 }
 
+func (o GetPolicyDocumentRuleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetPolicyDocumentRule] {
+	return pulumix.Output[[]GetPolicyDocumentRule]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GetPolicyDocumentRuleArrayOutput) Index(i pulumi.IntInput) GetPolicyDocumentRuleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPolicyDocumentRule {
 		return vs[0].([]GetPolicyDocumentRule)[vs[1].(int)]
@@ -3306,6 +3874,12 @@ func (i GetPolicyDocumentRuleAllowedParameterArgs) ToGetPolicyDocumentRuleAllowe
 	return pulumi.ToOutputWithContext(ctx, i).(GetPolicyDocumentRuleAllowedParameterOutput)
 }
 
+func (i GetPolicyDocumentRuleAllowedParameterArgs) ToOutput(ctx context.Context) pulumix.Output[GetPolicyDocumentRuleAllowedParameter] {
+	return pulumix.Output[GetPolicyDocumentRuleAllowedParameter]{
+		OutputState: i.ToGetPolicyDocumentRuleAllowedParameterOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetPolicyDocumentRuleAllowedParameterArrayInput is an input type that accepts GetPolicyDocumentRuleAllowedParameterArray and GetPolicyDocumentRuleAllowedParameterArrayOutput values.
 // You can construct a concrete instance of `GetPolicyDocumentRuleAllowedParameterArrayInput` via:
 //
@@ -3331,6 +3905,12 @@ func (i GetPolicyDocumentRuleAllowedParameterArray) ToGetPolicyDocumentRuleAllow
 	return pulumi.ToOutputWithContext(ctx, i).(GetPolicyDocumentRuleAllowedParameterArrayOutput)
 }
 
+func (i GetPolicyDocumentRuleAllowedParameterArray) ToOutput(ctx context.Context) pulumix.Output[[]GetPolicyDocumentRuleAllowedParameter] {
+	return pulumix.Output[[]GetPolicyDocumentRuleAllowedParameter]{
+		OutputState: i.ToGetPolicyDocumentRuleAllowedParameterArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetPolicyDocumentRuleAllowedParameterOutput struct{ *pulumi.OutputState }
 
 func (GetPolicyDocumentRuleAllowedParameterOutput) ElementType() reflect.Type {
@@ -3343,6 +3923,12 @@ func (o GetPolicyDocumentRuleAllowedParameterOutput) ToGetPolicyDocumentRuleAllo
 
 func (o GetPolicyDocumentRuleAllowedParameterOutput) ToGetPolicyDocumentRuleAllowedParameterOutputWithContext(ctx context.Context) GetPolicyDocumentRuleAllowedParameterOutput {
 	return o
+}
+
+func (o GetPolicyDocumentRuleAllowedParameterOutput) ToOutput(ctx context.Context) pulumix.Output[GetPolicyDocumentRuleAllowedParameter] {
+	return pulumix.Output[GetPolicyDocumentRuleAllowedParameter]{
+		OutputState: o.OutputState,
+	}
 }
 
 // name of permitted or denied parameter.
@@ -3367,6 +3953,12 @@ func (o GetPolicyDocumentRuleAllowedParameterArrayOutput) ToGetPolicyDocumentRul
 
 func (o GetPolicyDocumentRuleAllowedParameterArrayOutput) ToGetPolicyDocumentRuleAllowedParameterArrayOutputWithContext(ctx context.Context) GetPolicyDocumentRuleAllowedParameterArrayOutput {
 	return o
+}
+
+func (o GetPolicyDocumentRuleAllowedParameterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetPolicyDocumentRuleAllowedParameter] {
+	return pulumix.Output[[]GetPolicyDocumentRuleAllowedParameter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetPolicyDocumentRuleAllowedParameterArrayOutput) Index(i pulumi.IntInput) GetPolicyDocumentRuleAllowedParameterOutput {
@@ -3412,6 +4004,12 @@ func (i GetPolicyDocumentRuleDeniedParameterArgs) ToGetPolicyDocumentRuleDeniedP
 	return pulumi.ToOutputWithContext(ctx, i).(GetPolicyDocumentRuleDeniedParameterOutput)
 }
 
+func (i GetPolicyDocumentRuleDeniedParameterArgs) ToOutput(ctx context.Context) pulumix.Output[GetPolicyDocumentRuleDeniedParameter] {
+	return pulumix.Output[GetPolicyDocumentRuleDeniedParameter]{
+		OutputState: i.ToGetPolicyDocumentRuleDeniedParameterOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetPolicyDocumentRuleDeniedParameterArrayInput is an input type that accepts GetPolicyDocumentRuleDeniedParameterArray and GetPolicyDocumentRuleDeniedParameterArrayOutput values.
 // You can construct a concrete instance of `GetPolicyDocumentRuleDeniedParameterArrayInput` via:
 //
@@ -3437,6 +4035,12 @@ func (i GetPolicyDocumentRuleDeniedParameterArray) ToGetPolicyDocumentRuleDenied
 	return pulumi.ToOutputWithContext(ctx, i).(GetPolicyDocumentRuleDeniedParameterArrayOutput)
 }
 
+func (i GetPolicyDocumentRuleDeniedParameterArray) ToOutput(ctx context.Context) pulumix.Output[[]GetPolicyDocumentRuleDeniedParameter] {
+	return pulumix.Output[[]GetPolicyDocumentRuleDeniedParameter]{
+		OutputState: i.ToGetPolicyDocumentRuleDeniedParameterArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetPolicyDocumentRuleDeniedParameterOutput struct{ *pulumi.OutputState }
 
 func (GetPolicyDocumentRuleDeniedParameterOutput) ElementType() reflect.Type {
@@ -3449,6 +4053,12 @@ func (o GetPolicyDocumentRuleDeniedParameterOutput) ToGetPolicyDocumentRuleDenie
 
 func (o GetPolicyDocumentRuleDeniedParameterOutput) ToGetPolicyDocumentRuleDeniedParameterOutputWithContext(ctx context.Context) GetPolicyDocumentRuleDeniedParameterOutput {
 	return o
+}
+
+func (o GetPolicyDocumentRuleDeniedParameterOutput) ToOutput(ctx context.Context) pulumix.Output[GetPolicyDocumentRuleDeniedParameter] {
+	return pulumix.Output[GetPolicyDocumentRuleDeniedParameter]{
+		OutputState: o.OutputState,
+	}
 }
 
 // name of permitted or denied parameter.
@@ -3473,6 +4083,12 @@ func (o GetPolicyDocumentRuleDeniedParameterArrayOutput) ToGetPolicyDocumentRule
 
 func (o GetPolicyDocumentRuleDeniedParameterArrayOutput) ToGetPolicyDocumentRuleDeniedParameterArrayOutputWithContext(ctx context.Context) GetPolicyDocumentRuleDeniedParameterArrayOutput {
 	return o
+}
+
+func (o GetPolicyDocumentRuleDeniedParameterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetPolicyDocumentRuleDeniedParameter] {
+	return pulumix.Output[[]GetPolicyDocumentRuleDeniedParameter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetPolicyDocumentRuleDeniedParameterArrayOutput) Index(i pulumi.IntInput) GetPolicyDocumentRuleDeniedParameterOutput {

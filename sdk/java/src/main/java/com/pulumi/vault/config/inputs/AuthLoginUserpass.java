@@ -4,6 +4,7 @@
 package com.pulumi.vault.config.inputs;
 
 import com.pulumi.core.annotations.CustomType;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -15,6 +16,7 @@ public final class AuthLoginUserpass {
     private @Nullable String namespace;
     private @Nullable String password;
     private @Nullable String passwordFile;
+    private @Nullable Boolean useRootNamespace;
     private String username;
 
     private AuthLoginUserpass() {}
@@ -29,6 +31,9 @@ public final class AuthLoginUserpass {
     }
     public Optional<String> passwordFile() {
         return Optional.ofNullable(this.passwordFile);
+    }
+    public Optional<Boolean> useRootNamespace() {
+        return Optional.ofNullable(this.useRootNamespace);
     }
     public String username() {
         return this.username;
@@ -47,6 +52,7 @@ public final class AuthLoginUserpass {
         private @Nullable String namespace;
         private @Nullable String password;
         private @Nullable String passwordFile;
+        private @Nullable Boolean useRootNamespace;
         private String username;
         public Builder() {}
         public Builder(AuthLoginUserpass defaults) {
@@ -55,6 +61,7 @@ public final class AuthLoginUserpass {
     	      this.namespace = defaults.namespace;
     	      this.password = defaults.password;
     	      this.passwordFile = defaults.passwordFile;
+    	      this.useRootNamespace = defaults.useRootNamespace;
     	      this.username = defaults.username;
         }
 
@@ -79,6 +86,11 @@ public final class AuthLoginUserpass {
             return this;
         }
         @CustomType.Setter
+        public Builder useRootNamespace(@Nullable Boolean useRootNamespace) {
+            this.useRootNamespace = useRootNamespace;
+            return this;
+        }
+        @CustomType.Setter
         public Builder username(String username) {
             this.username = Objects.requireNonNull(username);
             return this;
@@ -89,6 +101,7 @@ public final class AuthLoginUserpass {
             o.namespace = namespace;
             o.password = password;
             o.passwordFile = passwordFile;
+            o.useRootNamespace = useRootNamespace;
             o.username = username;
             return o;
         }

@@ -8,17 +8,45 @@ import * as utilities from "../utilities";
  * This data source supports the "/transform/encode/{role_name}" Vault endpoint.
  *
  * It encodes the provided value using a named role.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const transform = new vault.Mount("transform", {
+ *     path: "transform",
+ *     type: "transform",
+ * });
+ * const ccn_fpe = new vault.transform.Transformation("ccn-fpe", {
+ *     path: transform.path,
+ *     type: "fpe",
+ *     template: "builtin/creditcardnumber",
+ *     tweakSource: "internal",
+ *     allowedRoles: ["payments"],
+ * });
+ * const payments = new vault.transform.Role("payments", {
+ *     path: ccn_fpe.path,
+ *     transformations: ["ccn-fpe"],
+ * });
+ * const test = vault.transform.getEncodeOutput({
+ *     path: payments.path,
+ *     roleName: "payments",
+ *     batchInputs: [{
+ *         value: "1111-2222-3333-4444",
+ *     }],
+ * });
+ * ```
  */
 export function getEncode(args: GetEncodeArgs, opts?: pulumi.InvokeOptions): Promise<GetEncodeResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:transform/getEncode:getEncode", {
         "batchInputs": args.batchInputs,
         "batchResults": args.batchResults,
         "encodedValue": args.encodedValue,
+        "namespace": args.namespace,
         "path": args.path,
         "roleName": args.roleName,
         "transformation": args.transformation,
@@ -43,6 +71,13 @@ export interface GetEncodeArgs {
      * The result of encoding a value.
      */
     encodedValue?: string;
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: string;
     /**
      * Path to where the back-end is mounted within Vault.
      */
@@ -76,15 +111,50 @@ export interface GetEncodeResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly namespace?: string;
     readonly path: string;
     readonly roleName: string;
     readonly transformation?: string;
     readonly tweak?: string;
     readonly value?: string;
 }
-
+/**
+ * This data source supports the "/transform/encode/{role_name}" Vault endpoint.
+ *
+ * It encodes the provided value using a named role.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const transform = new vault.Mount("transform", {
+ *     path: "transform",
+ *     type: "transform",
+ * });
+ * const ccn_fpe = new vault.transform.Transformation("ccn-fpe", {
+ *     path: transform.path,
+ *     type: "fpe",
+ *     template: "builtin/creditcardnumber",
+ *     tweakSource: "internal",
+ *     allowedRoles: ["payments"],
+ * });
+ * const payments = new vault.transform.Role("payments", {
+ *     path: ccn_fpe.path,
+ *     transformations: ["ccn-fpe"],
+ * });
+ * const test = vault.transform.getEncodeOutput({
+ *     path: payments.path,
+ *     roleName: "payments",
+ *     batchInputs: [{
+ *         value: "1111-2222-3333-4444",
+ *     }],
+ * });
+ * ```
+ */
 export function getEncodeOutput(args: GetEncodeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEncodeResult> {
-    return pulumi.output(args).apply(a => getEncode(a, opts))
+    return pulumi.output(args).apply((a: any) => getEncode(a, opts))
 }
 
 /**
@@ -103,6 +173,13 @@ export interface GetEncodeOutputArgs {
      * The result of encoding a value.
      */
     encodedValue?: pulumi.Input<string>;
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Path to where the back-end is mounted within Vault.
      */

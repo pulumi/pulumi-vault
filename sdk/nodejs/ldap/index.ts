@@ -8,38 +8,48 @@ import * as utilities from "../utilities";
 export { AuthBackendArgs, AuthBackendState } from "./authBackend";
 export type AuthBackend = import("./authBackend").AuthBackend;
 export const AuthBackend: typeof import("./authBackend").AuthBackend = null as any;
+utilities.lazyLoad(exports, ["AuthBackend"], () => require("./authBackend"));
 
 export { AuthBackendGroupArgs, AuthBackendGroupState } from "./authBackendGroup";
 export type AuthBackendGroup = import("./authBackendGroup").AuthBackendGroup;
 export const AuthBackendGroup: typeof import("./authBackendGroup").AuthBackendGroup = null as any;
+utilities.lazyLoad(exports, ["AuthBackendGroup"], () => require("./authBackendGroup"));
 
 export { AuthBackendUserArgs, AuthBackendUserState } from "./authBackendUser";
 export type AuthBackendUser = import("./authBackendUser").AuthBackendUser;
 export const AuthBackendUser: typeof import("./authBackendUser").AuthBackendUser = null as any;
+utilities.lazyLoad(exports, ["AuthBackendUser"], () => require("./authBackendUser"));
+
+export { GetDynamicCredentialsArgs, GetDynamicCredentialsResult, GetDynamicCredentialsOutputArgs } from "./getDynamicCredentials";
+export const getDynamicCredentials: typeof import("./getDynamicCredentials").getDynamicCredentials = null as any;
+export const getDynamicCredentialsOutput: typeof import("./getDynamicCredentials").getDynamicCredentialsOutput = null as any;
+utilities.lazyLoad(exports, ["getDynamicCredentials","getDynamicCredentialsOutput"], () => require("./getDynamicCredentials"));
+
+export { GetStaticCredentialsArgs, GetStaticCredentialsResult, GetStaticCredentialsOutputArgs } from "./getStaticCredentials";
+export const getStaticCredentials: typeof import("./getStaticCredentials").getStaticCredentials = null as any;
+export const getStaticCredentialsOutput: typeof import("./getStaticCredentials").getStaticCredentialsOutput = null as any;
+utilities.lazyLoad(exports, ["getStaticCredentials","getStaticCredentialsOutput"], () => require("./getStaticCredentials"));
 
 export { SecretBackendArgs, SecretBackendState } from "./secretBackend";
 export type SecretBackend = import("./secretBackend").SecretBackend;
 export const SecretBackend: typeof import("./secretBackend").SecretBackend = null as any;
+utilities.lazyLoad(exports, ["SecretBackend"], () => require("./secretBackend"));
 
 export { SecretBackendDynamicRoleArgs, SecretBackendDynamicRoleState } from "./secretBackendDynamicRole";
 export type SecretBackendDynamicRole = import("./secretBackendDynamicRole").SecretBackendDynamicRole;
 export const SecretBackendDynamicRole: typeof import("./secretBackendDynamicRole").SecretBackendDynamicRole = null as any;
+utilities.lazyLoad(exports, ["SecretBackendDynamicRole"], () => require("./secretBackendDynamicRole"));
 
 export { SecretBackendLibrarySetArgs, SecretBackendLibrarySetState } from "./secretBackendLibrarySet";
 export type SecretBackendLibrarySet = import("./secretBackendLibrarySet").SecretBackendLibrarySet;
 export const SecretBackendLibrarySet: typeof import("./secretBackendLibrarySet").SecretBackendLibrarySet = null as any;
+utilities.lazyLoad(exports, ["SecretBackendLibrarySet"], () => require("./secretBackendLibrarySet"));
 
 export { SecretBackendStaticRoleArgs, SecretBackendStaticRoleState } from "./secretBackendStaticRole";
 export type SecretBackendStaticRole = import("./secretBackendStaticRole").SecretBackendStaticRole;
 export const SecretBackendStaticRole: typeof import("./secretBackendStaticRole").SecretBackendStaticRole = null as any;
-
-utilities.lazyLoad(exports, ["AuthBackend"], () => require("./authBackend"));
-utilities.lazyLoad(exports, ["AuthBackendGroup"], () => require("./authBackendGroup"));
-utilities.lazyLoad(exports, ["AuthBackendUser"], () => require("./authBackendUser"));
-utilities.lazyLoad(exports, ["SecretBackend"], () => require("./secretBackend"));
-utilities.lazyLoad(exports, ["SecretBackendDynamicRole"], () => require("./secretBackendDynamicRole"));
-utilities.lazyLoad(exports, ["SecretBackendLibrarySet"], () => require("./secretBackendLibrarySet"));
 utilities.lazyLoad(exports, ["SecretBackendStaticRole"], () => require("./secretBackendStaticRole"));
+
 
 const _module = {
     version: utilities.getVersion(),

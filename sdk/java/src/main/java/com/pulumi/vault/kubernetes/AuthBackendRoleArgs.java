@@ -38,12 +38,20 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
     /**
      * Audience claim to verify in the JWT.
      * 
+     * &gt; Please see [alias_name_source](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
+     * before setting this to something other its default value. There are **important** security
+     * implications to be aware of.
+     * 
      */
     @Import(name="audience")
     private @Nullable Output<String> audience;
 
     /**
      * @return Audience claim to verify in the JWT.
+     * 
+     * &gt; Please see [alias_name_source](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
+     * before setting this to something other its default value. There are **important** security
+     * implications to be aware of.
      * 
      */
     public Optional<Output<String>> audience() {
@@ -363,6 +371,10 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
         /**
          * @param audience Audience claim to verify in the JWT.
          * 
+         * &gt; Please see [alias_name_source](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
+         * before setting this to something other its default value. There are **important** security
+         * implications to be aware of.
+         * 
          * @return builder
          * 
          */
@@ -373,6 +385,10 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
 
         /**
          * @param audience Audience claim to verify in the JWT.
+         * 
+         * &gt; Please see [alias_name_source](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
+         * before setting this to something other its default value. There are **important** security
+         * implications to be aware of.
          * 
          * @return builder
          * 

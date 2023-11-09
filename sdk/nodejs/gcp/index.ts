@@ -8,38 +8,38 @@ import * as utilities from "../utilities";
 export { AuthBackendArgs, AuthBackendState } from "./authBackend";
 export type AuthBackend = import("./authBackend").AuthBackend;
 export const AuthBackend: typeof import("./authBackend").AuthBackend = null as any;
+utilities.lazyLoad(exports, ["AuthBackend"], () => require("./authBackend"));
 
 export { AuthBackendRoleArgs, AuthBackendRoleState } from "./authBackendRole";
 export type AuthBackendRole = import("./authBackendRole").AuthBackendRole;
 export const AuthBackendRole: typeof import("./authBackendRole").AuthBackendRole = null as any;
+utilities.lazyLoad(exports, ["AuthBackendRole"], () => require("./authBackendRole"));
 
 export { GetAuthBackendRoleArgs, GetAuthBackendRoleResult, GetAuthBackendRoleOutputArgs } from "./getAuthBackendRole";
 export const getAuthBackendRole: typeof import("./getAuthBackendRole").getAuthBackendRole = null as any;
 export const getAuthBackendRoleOutput: typeof import("./getAuthBackendRole").getAuthBackendRoleOutput = null as any;
+utilities.lazyLoad(exports, ["getAuthBackendRole","getAuthBackendRoleOutput"], () => require("./getAuthBackendRole"));
 
 export { SecretBackendArgs, SecretBackendState } from "./secretBackend";
 export type SecretBackend = import("./secretBackend").SecretBackend;
 export const SecretBackend: typeof import("./secretBackend").SecretBackend = null as any;
+utilities.lazyLoad(exports, ["SecretBackend"], () => require("./secretBackend"));
 
 export { SecretImpersonatedAccountArgs, SecretImpersonatedAccountState } from "./secretImpersonatedAccount";
 export type SecretImpersonatedAccount = import("./secretImpersonatedAccount").SecretImpersonatedAccount;
 export const SecretImpersonatedAccount: typeof import("./secretImpersonatedAccount").SecretImpersonatedAccount = null as any;
+utilities.lazyLoad(exports, ["SecretImpersonatedAccount"], () => require("./secretImpersonatedAccount"));
 
 export { SecretRolesetArgs, SecretRolesetState } from "./secretRoleset";
 export type SecretRoleset = import("./secretRoleset").SecretRoleset;
 export const SecretRoleset: typeof import("./secretRoleset").SecretRoleset = null as any;
+utilities.lazyLoad(exports, ["SecretRoleset"], () => require("./secretRoleset"));
 
 export { SecretStaticAccountArgs, SecretStaticAccountState } from "./secretStaticAccount";
 export type SecretStaticAccount = import("./secretStaticAccount").SecretStaticAccount;
 export const SecretStaticAccount: typeof import("./secretStaticAccount").SecretStaticAccount = null as any;
-
-utilities.lazyLoad(exports, ["AuthBackend"], () => require("./authBackend"));
-utilities.lazyLoad(exports, ["AuthBackendRole"], () => require("./authBackendRole"));
-utilities.lazyLoad(exports, ["getAuthBackendRole","getAuthBackendRoleOutput"], () => require("./getAuthBackendRole"));
-utilities.lazyLoad(exports, ["SecretBackend"], () => require("./secretBackend"));
-utilities.lazyLoad(exports, ["SecretImpersonatedAccount"], () => require("./secretImpersonatedAccount"));
-utilities.lazyLoad(exports, ["SecretRoleset"], () => require("./secretRoleset"));
 utilities.lazyLoad(exports, ["SecretStaticAccount"], () => require("./secretStaticAccount"));
+
 
 const _module = {
     version: utilities.getVersion(),

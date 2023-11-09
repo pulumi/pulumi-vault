@@ -131,13 +131,13 @@ def get_access_credentials(backend: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('vault:ad/getAccessCredentials:getAccessCredentials', __args__, opts=opts, typ=GetAccessCredentialsResult).value
 
     return AwaitableGetAccessCredentialsResult(
-        backend=__ret__.backend,
-        current_password=__ret__.current_password,
-        id=__ret__.id,
-        last_password=__ret__.last_password,
-        namespace=__ret__.namespace,
-        role=__ret__.role,
-        username=__ret__.username)
+        backend=pulumi.get(__ret__, 'backend'),
+        current_password=pulumi.get(__ret__, 'current_password'),
+        id=pulumi.get(__ret__, 'id'),
+        last_password=pulumi.get(__ret__, 'last_password'),
+        namespace=pulumi.get(__ret__, 'namespace'),
+        role=pulumi.get(__ret__, 'role'),
+        username=pulumi.get(__ret__, 'username'))
 
 
 @_utilities.lift_output_func(get_access_credentials)

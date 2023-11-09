@@ -83,6 +83,9 @@ export class AuthBackend extends pulumi.CustomResource {
     public readonly certificate!: pulumi.Output<string>;
     public readonly clientTlsCert!: pulumi.Output<string>;
     public readonly clientTlsKey!: pulumi.Output<string>;
+    /**
+     * Prevents users from bypassing authentication when providing an empty password.
+     */
     public readonly denyNullBind!: pulumi.Output<boolean>;
     /**
      * Description for the LDAP auth backend mount
@@ -93,6 +96,9 @@ export class AuthBackend extends pulumi.CustomResource {
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
     public readonly disableRemount!: pulumi.Output<boolean | undefined>;
+    /**
+     * Use anonymous bind to discover the bind DN of a user.
+     */
     public readonly discoverdn!: pulumi.Output<boolean>;
     /**
      * LDAP attribute to follow on objects returned by groupfilter
@@ -188,15 +194,11 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public readonly tokenTtl!: pulumi.Output<number | undefined>;
     /**
-     * The type of token that should be generated. Can be `service`,
-     * `batch`, or `default` to use the mount's tuned default (which unless changed will be
-     * `service` tokens). For token store roles, there are two additional possibilities:
-     * `default-service` and `default-batch` which specify the type to return unless the client
-     * requests a different type at generation time.
+     * The type of token to generate, service or batch
      */
     public readonly tokenType!: pulumi.Output<string | undefined>;
     /**
-     * The userPrincipalDomain used to construct UPN string
+     * The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
      */
     public readonly upndomain!: pulumi.Output<string>;
     /**
@@ -352,6 +354,9 @@ export interface AuthBackendState {
     certificate?: pulumi.Input<string>;
     clientTlsCert?: pulumi.Input<string>;
     clientTlsKey?: pulumi.Input<string>;
+    /**
+     * Prevents users from bypassing authentication when providing an empty password.
+     */
     denyNullBind?: pulumi.Input<boolean>;
     /**
      * Description for the LDAP auth backend mount
@@ -362,6 +367,9 @@ export interface AuthBackendState {
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
     disableRemount?: pulumi.Input<boolean>;
+    /**
+     * Use anonymous bind to discover the bind DN of a user.
+     */
     discoverdn?: pulumi.Input<boolean>;
     /**
      * LDAP attribute to follow on objects returned by groupfilter
@@ -457,15 +465,11 @@ export interface AuthBackendState {
      */
     tokenTtl?: pulumi.Input<number>;
     /**
-     * The type of token that should be generated. Can be `service`,
-     * `batch`, or `default` to use the mount's tuned default (which unless changed will be
-     * `service` tokens). For token store roles, there are two additional possibilities:
-     * `default-service` and `default-batch` which specify the type to return unless the client
-     * requests a different type at generation time.
+     * The type of token to generate, service or batch
      */
     tokenType?: pulumi.Input<string>;
     /**
-     * The userPrincipalDomain used to construct UPN string
+     * The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
      */
     upndomain?: pulumi.Input<string>;
     /**
@@ -516,6 +520,9 @@ export interface AuthBackendArgs {
     certificate?: pulumi.Input<string>;
     clientTlsCert?: pulumi.Input<string>;
     clientTlsKey?: pulumi.Input<string>;
+    /**
+     * Prevents users from bypassing authentication when providing an empty password.
+     */
     denyNullBind?: pulumi.Input<boolean>;
     /**
      * Description for the LDAP auth backend mount
@@ -526,6 +533,9 @@ export interface AuthBackendArgs {
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
     disableRemount?: pulumi.Input<boolean>;
+    /**
+     * Use anonymous bind to discover the bind DN of a user.
+     */
     discoverdn?: pulumi.Input<boolean>;
     /**
      * LDAP attribute to follow on objects returned by groupfilter
@@ -621,15 +631,11 @@ export interface AuthBackendArgs {
      */
     tokenTtl?: pulumi.Input<number>;
     /**
-     * The type of token that should be generated. Can be `service`,
-     * `batch`, or `default` to use the mount's tuned default (which unless changed will be
-     * `service` tokens). For token store roles, there are two additional possibilities:
-     * `default-service` and `default-batch` which specify the type to return unless the client
-     * requests a different type at generation time.
+     * The type of token to generate, service or batch
      */
     tokenType?: pulumi.Input<string>;
     /**
-     * The userPrincipalDomain used to construct UPN string
+     * The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
      */
     upndomain?: pulumi.Input<string>;
     /**

@@ -4,6 +4,48 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * This resource supports the `/transform/template/{name}` Vault endpoint.
+ *
+ * It creates or updates a template with the given name. If a template with the name does not exist,
+ * it will be created. If the template exists, it will be updated with the new attributes.
+ *
+ * > Requires _Vault Enterprise with the Advanced Data Protection Transform Module_.
+ * See [Transform Secrets Engine](https://www.vaultproject.io/docs/secrets/transform)
+ * for more information.
+ *
+ * ## Example Usage
+ *
+ * Please note that the `pattern` below holds a regex. The regex shown
+ * is identical to the one in our [Setup](https://www.vaultproject.io/docs/secrets/transform#setup)
+ * docs, `(\d{4})-(\d{4})-(\d{4})-(\d{4})`. However, due to HCL, the
+ * backslashes must be escaped to appear correctly in Vault. For further
+ * assistance escaping your own custom regex, see String Literals.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const transform = new vault.Mount("transform", {
+ *     path: "transform",
+ *     type: "transform",
+ * });
+ * const numerics = new vault.transform.Alphabet("numerics", {
+ *     path: transform.path,
+ *     alphabet: "0123456789",
+ * });
+ * const test = new vault.transform.Template("test", {
+ *     path: numerics.path,
+ *     type: "regex",
+ *     pattern: "(\\d{4})[- ](\\d{4})[- ](\\d{4})[- ](\\d{4})",
+ *     alphabet: "numerics",
+ *     encodeFormat: "$1-$2-$3-$4",
+ *     decodeFormats: {
+ *         "last-four-digits": "$4",
+ *     },
+ * });
+ * ```
+ */
 export class Template extends pulumi.CustomResource {
     /**
      * Get an existing Template resource's state with the given name, ID, and optional extra
@@ -37,12 +79,12 @@ export class Template extends pulumi.CustomResource {
      */
     public readonly alphabet!: pulumi.Output<string | undefined>;
     /**
-     * - Optional mapping of name to regular expression template, used to customize
+     * Optional mapping of name to regular expression template, used to customize
      * the decoded output. (requires Vault Enterprise 1.9+)
      */
     public readonly decodeFormats!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
-     * - The regular expression template used to format encoded values.
+     * The regular expression template used to format encoded values.
      * (requires Vault Enterprise 1.9+)
      */
     public readonly encodeFormat!: pulumi.Output<string | undefined>;
@@ -50,6 +92,13 @@ export class Template extends pulumi.CustomResource {
      * The name of the template.
      */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
     /**
      * Path to where the back-end is mounted within Vault.
      */
@@ -80,6 +129,7 @@ export class Template extends pulumi.CustomResource {
             resourceInputs["decodeFormats"] = state ? state.decodeFormats : undefined;
             resourceInputs["encodeFormat"] = state ? state.encodeFormat : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
             resourceInputs["pattern"] = state ? state.pattern : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
@@ -92,6 +142,7 @@ export class Template extends pulumi.CustomResource {
             resourceInputs["decodeFormats"] = args ? args.decodeFormats : undefined;
             resourceInputs["encodeFormat"] = args ? args.encodeFormat : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["pattern"] = args ? args.pattern : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
@@ -110,12 +161,12 @@ export interface TemplateState {
      */
     alphabet?: pulumi.Input<string>;
     /**
-     * - Optional mapping of name to regular expression template, used to customize
+     * Optional mapping of name to regular expression template, used to customize
      * the decoded output. (requires Vault Enterprise 1.9+)
      */
     decodeFormats?: pulumi.Input<{[key: string]: any}>;
     /**
-     * - The regular expression template used to format encoded values.
+     * The regular expression template used to format encoded values.
      * (requires Vault Enterprise 1.9+)
      */
     encodeFormat?: pulumi.Input<string>;
@@ -123,6 +174,13 @@ export interface TemplateState {
      * The name of the template.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Path to where the back-end is mounted within Vault.
      */
@@ -146,12 +204,12 @@ export interface TemplateArgs {
      */
     alphabet?: pulumi.Input<string>;
     /**
-     * - Optional mapping of name to regular expression template, used to customize
+     * Optional mapping of name to regular expression template, used to customize
      * the decoded output. (requires Vault Enterprise 1.9+)
      */
     decodeFormats?: pulumi.Input<{[key: string]: any}>;
     /**
-     * - The regular expression template used to format encoded values.
+     * The regular expression template used to format encoded values.
      * (requires Vault Enterprise 1.9+)
      */
     encodeFormat?: pulumi.Input<string>;
@@ -159,6 +217,13 @@ export interface TemplateArgs {
      * The name of the template.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Path to where the back-end is mounted within Vault.
      */

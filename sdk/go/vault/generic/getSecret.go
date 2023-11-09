@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -40,6 +42,7 @@ import (
 //
 // Use of this resource requires the `read` capability on the given path.
 func LookupSecret(ctx *pulumi.Context, args *LookupSecretArgs, opts ...pulumi.InvokeOption) (*LookupSecretResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSecretResult
 	err := ctx.Invoke("vault:generic/getSecret:getSecret", args, &rv, opts...)
 	if err != nil {
@@ -64,7 +67,10 @@ type LookupSecretArgs struct {
 	// The version of the secret to read. This is used by the
 	// Vault KV secrets engine - version 2 to indicate which version of the secret
 	// to read.
-	Version            *int  `pulumi:"version"`
+	Version *int `pulumi:"version"`
+	// If set to true, stores `leaseStartTime` in the TF state.
+	// Note that storing the `leaseStartTime` in the TF state will cause a persistent drift
+	// on every `pulumi preview` and will require a `pulumi up`.
 	WithLeaseStartTime *bool `pulumi:"withLeaseStartTime"`
 }
 
@@ -123,7 +129,10 @@ type LookupSecretOutputArgs struct {
 	// The version of the secret to read. This is used by the
 	// Vault KV secrets engine - version 2 to indicate which version of the secret
 	// to read.
-	Version            pulumi.IntPtrInput  `pulumi:"version"`
+	Version pulumi.IntPtrInput `pulumi:"version"`
+	// If set to true, stores `leaseStartTime` in the TF state.
+	// Note that storing the `leaseStartTime` in the TF state will cause a persistent drift
+	// on every `pulumi preview` and will require a `pulumi up`.
 	WithLeaseStartTime pulumi.BoolPtrInput `pulumi:"withLeaseStartTime"`
 }
 
@@ -144,6 +153,12 @@ func (o LookupSecretResultOutput) ToLookupSecretResultOutput() LookupSecretResul
 
 func (o LookupSecretResultOutput) ToLookupSecretResultOutputWithContext(ctx context.Context) LookupSecretResultOutput {
 	return o
+}
+
+func (o LookupSecretResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSecretResult] {
+	return pulumix.Output[LookupSecretResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // A mapping whose keys are the top-level data keys returned from

@@ -17,6 +17,7 @@ namespace Pulumi.Vault
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.IO;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -125,7 +126,50 @@ namespace Pulumi.Vault
         public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
-        /// TLS extensions required on client certificates
+        /// Any additional CA certificates
+        /// needed to verify OCSP responses. Provided as base64 encoded PEM data.
+        /// Requires Vault version 1.13+.
+        /// </summary>
+        [Output("ocspCaCertificates")]
+        public Output<string?> OcspCaCertificates { get; private set; } = null!;
+
+        /// <summary>
+        /// If enabled, validate certificates'
+        /// revocation status using OCSP. Requires Vault version 1.13+.
+        /// </summary>
+        [Output("ocspEnabled")]
+        public Output<bool> OcspEnabled { get; private set; } = null!;
+
+        /// <summary>
+        /// If true and an OCSP response cannot
+        /// be fetched or is of an unknown status, the login will proceed as if the
+        /// certificate has not been revoked.
+        /// Requires Vault version 1.13+.
+        /// </summary>
+        [Output("ocspFailOpen")]
+        public Output<bool> OcspFailOpen { get; private set; } = null!;
+
+        /// <summary>
+        /// If set to true, rather than
+        /// accepting the first successful OCSP response, query all servers and consider
+        /// the certificate valid only if all servers agree.
+        /// Requires Vault version 1.13+.
+        /// </summary>
+        [Output("ocspQueryAllServers")]
+        public Output<bool> OcspQueryAllServers { get; private set; } = null!;
+
+        /// <summary>
+        /// : A comma-separated list of OCSP
+        /// server addresses. If unset, the OCSP server is determined from the
+        /// AuthorityInformationAccess extension on the certificate being inspected.
+        /// Requires Vault version 1.13+.
+        /// </summary>
+        [Output("ocspServersOverrides")]
+        public Output<ImmutableArray<string>> OcspServersOverrides { get; private set; } = null!;
+
+        /// <summary>
+        /// TLS extensions required on
+        /// client certificates
         /// </summary>
         [Output("requiredExtensions")]
         public Output<ImmutableArray<string>> RequiredExtensions { get; private set; } = null!;
@@ -197,6 +241,8 @@ namespace Pulumi.Vault
         /// `service` tokens). For token store roles, there are two additional possibilities:
         /// `default-service` and `default-batch` which specify the type to return unless the client
         /// requests a different type at generation time.
+        /// 
+        /// For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
         /// </summary>
         [Output("tokenType")]
         public Output<string?> TokenType { get; private set; } = null!;
@@ -362,11 +408,60 @@ namespace Pulumi.Vault
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
+        /// <summary>
+        /// Any additional CA certificates
+        /// needed to verify OCSP responses. Provided as base64 encoded PEM data.
+        /// Requires Vault version 1.13+.
+        /// </summary>
+        [Input("ocspCaCertificates")]
+        public Input<string>? OcspCaCertificates { get; set; }
+
+        /// <summary>
+        /// If enabled, validate certificates'
+        /// revocation status using OCSP. Requires Vault version 1.13+.
+        /// </summary>
+        [Input("ocspEnabled")]
+        public Input<bool>? OcspEnabled { get; set; }
+
+        /// <summary>
+        /// If true and an OCSP response cannot
+        /// be fetched or is of an unknown status, the login will proceed as if the
+        /// certificate has not been revoked.
+        /// Requires Vault version 1.13+.
+        /// </summary>
+        [Input("ocspFailOpen")]
+        public Input<bool>? OcspFailOpen { get; set; }
+
+        /// <summary>
+        /// If set to true, rather than
+        /// accepting the first successful OCSP response, query all servers and consider
+        /// the certificate valid only if all servers agree.
+        /// Requires Vault version 1.13+.
+        /// </summary>
+        [Input("ocspQueryAllServers")]
+        public Input<bool>? OcspQueryAllServers { get; set; }
+
+        [Input("ocspServersOverrides")]
+        private InputList<string>? _ocspServersOverrides;
+
+        /// <summary>
+        /// : A comma-separated list of OCSP
+        /// server addresses. If unset, the OCSP server is determined from the
+        /// AuthorityInformationAccess extension on the certificate being inspected.
+        /// Requires Vault version 1.13+.
+        /// </summary>
+        public InputList<string> OcspServersOverrides
+        {
+            get => _ocspServersOverrides ?? (_ocspServersOverrides = new InputList<string>());
+            set => _ocspServersOverrides = value;
+        }
+
         [Input("requiredExtensions")]
         private InputList<string>? _requiredExtensions;
 
         /// <summary>
-        /// TLS extensions required on client certificates
+        /// TLS extensions required on
+        /// client certificates
         /// </summary>
         public InputList<string> RequiredExtensions
         {
@@ -453,6 +548,8 @@ namespace Pulumi.Vault
         /// `service` tokens). For token store roles, there are two additional possibilities:
         /// `default-service` and `default-batch` which specify the type to return unless the client
         /// requests a different type at generation time.
+        /// 
+        /// For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
         /// </summary>
         [Input("tokenType")]
         public Input<string>? TokenType { get; set; }
@@ -580,11 +677,60 @@ namespace Pulumi.Vault
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
+        /// <summary>
+        /// Any additional CA certificates
+        /// needed to verify OCSP responses. Provided as base64 encoded PEM data.
+        /// Requires Vault version 1.13+.
+        /// </summary>
+        [Input("ocspCaCertificates")]
+        public Input<string>? OcspCaCertificates { get; set; }
+
+        /// <summary>
+        /// If enabled, validate certificates'
+        /// revocation status using OCSP. Requires Vault version 1.13+.
+        /// </summary>
+        [Input("ocspEnabled")]
+        public Input<bool>? OcspEnabled { get; set; }
+
+        /// <summary>
+        /// If true and an OCSP response cannot
+        /// be fetched or is of an unknown status, the login will proceed as if the
+        /// certificate has not been revoked.
+        /// Requires Vault version 1.13+.
+        /// </summary>
+        [Input("ocspFailOpen")]
+        public Input<bool>? OcspFailOpen { get; set; }
+
+        /// <summary>
+        /// If set to true, rather than
+        /// accepting the first successful OCSP response, query all servers and consider
+        /// the certificate valid only if all servers agree.
+        /// Requires Vault version 1.13+.
+        /// </summary>
+        [Input("ocspQueryAllServers")]
+        public Input<bool>? OcspQueryAllServers { get; set; }
+
+        [Input("ocspServersOverrides")]
+        private InputList<string>? _ocspServersOverrides;
+
+        /// <summary>
+        /// : A comma-separated list of OCSP
+        /// server addresses. If unset, the OCSP server is determined from the
+        /// AuthorityInformationAccess extension on the certificate being inspected.
+        /// Requires Vault version 1.13+.
+        /// </summary>
+        public InputList<string> OcspServersOverrides
+        {
+            get => _ocspServersOverrides ?? (_ocspServersOverrides = new InputList<string>());
+            set => _ocspServersOverrides = value;
+        }
+
         [Input("requiredExtensions")]
         private InputList<string>? _requiredExtensions;
 
         /// <summary>
-        /// TLS extensions required on client certificates
+        /// TLS extensions required on
+        /// client certificates
         /// </summary>
         public InputList<string> RequiredExtensions
         {
@@ -671,6 +817,8 @@ namespace Pulumi.Vault
         /// `service` tokens). For token store roles, there are two additional possibilities:
         /// `default-service` and `default-batch` which specify the type to return unless the client
         /// requests a different type at generation time.
+        /// 
+        /// For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
         /// </summary>
         [Input("tokenType")]
         public Input<string>? TokenType { get; set; }

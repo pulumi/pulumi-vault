@@ -27,7 +27,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly bool? InsecureTls;
         /// <summary>
-        /// The root credential password used in the connection URL.
+        /// The password to authenticate with.
         /// </summary>
         public readonly string Password;
         /// <summary>
@@ -36,11 +36,11 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly int? Port;
         /// <summary>
-        /// Whether to use TLS when connecting to Redis.
+        /// Whether to use TLS when connecting to Cassandra.
         /// </summary>
         public readonly bool? Tls;
         /// <summary>
-        /// The root credential username used in the connection URL.
+        /// The username to authenticate with.
         /// </summary>
         public readonly string Username;
 

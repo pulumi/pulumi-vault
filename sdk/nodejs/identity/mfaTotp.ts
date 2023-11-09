@@ -13,9 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const example = new vault.identity.MfaTotp("example", {
- *     issuer: "issuer1",
- * });
+ * const example = new vault.identity.MfaTotp("example", {issuer: "issuer1"});
  * ```
  *
  * ## Import

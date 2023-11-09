@@ -252,6 +252,18 @@ Object.defineProperty(exports, "namespace", {
 });
 
 /**
+ * In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the
+ * token namespace as the root namespace for all resources.
+ */
+export declare const setNamespaceFromToken: boolean | undefined;
+Object.defineProperty(exports, "setNamespaceFromToken", {
+    get() {
+        return __config.getObject<boolean>("setNamespaceFromToken");
+    },
+    enumerable: true,
+});
+
+/**
  * Set this to true to prevent the creation of ephemeral child token used by this provider.
  */
 export declare const skipChildToken: boolean | undefined;

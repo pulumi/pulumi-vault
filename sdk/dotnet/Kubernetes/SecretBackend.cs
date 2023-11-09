@@ -15,6 +15,7 @@ namespace Pulumi.Vault.Kubernetes
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.IO;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 

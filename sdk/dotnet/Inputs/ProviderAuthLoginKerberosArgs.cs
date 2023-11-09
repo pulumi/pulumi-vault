@@ -39,6 +39,9 @@ namespace Pulumi.Vault.Inputs
         [Input("token")]
         public Input<string>? Token { get; set; }
 
+        [Input("useRootNamespace")]
+        public Input<bool>? UseRootNamespace { get; set; }
+
         [Input("username")]
         public Input<string>? Username { get; set; }
 

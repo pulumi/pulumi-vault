@@ -38,7 +38,7 @@ public final class SecretBackendConnectionElasticsearch {
      */
     private @Nullable Boolean insecure;
     /**
-     * @return The root credential password used in the connection URL.
+     * @return The password to authenticate with.
      * 
      */
     private String password;
@@ -54,12 +54,12 @@ public final class SecretBackendConnectionElasticsearch {
      */
     private String url;
     /**
-     * @return The root credential username used in the connection URL.
+     * @return The username to authenticate with.
      * 
      */
     private String username;
     /**
-     * @return - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * @return Template describing how dynamic usernames are generated.
      * 
      */
     private @Nullable String usernameTemplate;
@@ -101,7 +101,7 @@ public final class SecretBackendConnectionElasticsearch {
         return Optional.ofNullable(this.insecure);
     }
     /**
-     * @return The root credential password used in the connection URL.
+     * @return The password to authenticate with.
      * 
      */
     public String password() {
@@ -123,14 +123,14 @@ public final class SecretBackendConnectionElasticsearch {
         return this.url;
     }
     /**
-     * @return The root credential username used in the connection URL.
+     * @return The username to authenticate with.
      * 
      */
     public String username() {
         return this.username;
     }
     /**
-     * @return - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * @return Template describing how dynamic usernames are generated.
      * 
      */
     public Optional<String> usernameTemplate() {

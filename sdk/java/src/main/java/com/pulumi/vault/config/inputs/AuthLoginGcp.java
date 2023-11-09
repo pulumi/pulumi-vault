@@ -4,6 +4,7 @@
 package com.pulumi.vault.config.inputs;
 
 import com.pulumi.core.annotations.CustomType;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -17,6 +18,7 @@ public final class AuthLoginGcp {
     private @Nullable String namespace;
     private String role;
     private @Nullable String serviceAccount;
+    private @Nullable Boolean useRootNamespace;
 
     private AuthLoginGcp() {}
     public Optional<String> credentials() {
@@ -37,6 +39,9 @@ public final class AuthLoginGcp {
     public Optional<String> serviceAccount() {
         return Optional.ofNullable(this.serviceAccount);
     }
+    public Optional<Boolean> useRootNamespace() {
+        return Optional.ofNullable(this.useRootNamespace);
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -53,6 +58,7 @@ public final class AuthLoginGcp {
         private @Nullable String namespace;
         private String role;
         private @Nullable String serviceAccount;
+        private @Nullable Boolean useRootNamespace;
         public Builder() {}
         public Builder(AuthLoginGcp defaults) {
     	      Objects.requireNonNull(defaults);
@@ -62,6 +68,7 @@ public final class AuthLoginGcp {
     	      this.namespace = defaults.namespace;
     	      this.role = defaults.role;
     	      this.serviceAccount = defaults.serviceAccount;
+    	      this.useRootNamespace = defaults.useRootNamespace;
         }
 
         @CustomType.Setter
@@ -94,6 +101,11 @@ public final class AuthLoginGcp {
             this.serviceAccount = serviceAccount;
             return this;
         }
+        @CustomType.Setter
+        public Builder useRootNamespace(@Nullable Boolean useRootNamespace) {
+            this.useRootNamespace = useRootNamespace;
+            return this;
+        }
         public AuthLoginGcp build() {
             final var o = new AuthLoginGcp();
             o.credentials = credentials;
@@ -102,6 +114,7 @@ public final class AuthLoginGcp {
             o.namespace = namespace;
             o.role = role;
             o.serviceAccount = serviceAccount;
+            o.useRootNamespace = useRootNamespace;
             return o;
         }
     }

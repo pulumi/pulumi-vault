@@ -8,133 +8,133 @@ import * as utilities from "../utilities";
 export { EntityArgs, EntityState } from "./entity";
 export type Entity = import("./entity").Entity;
 export const Entity: typeof import("./entity").Entity = null as any;
+utilities.lazyLoad(exports, ["Entity"], () => require("./entity"));
 
 export { EntityAliasArgs, EntityAliasState } from "./entityAlias";
 export type EntityAlias = import("./entityAlias").EntityAlias;
 export const EntityAlias: typeof import("./entityAlias").EntityAlias = null as any;
+utilities.lazyLoad(exports, ["EntityAlias"], () => require("./entityAlias"));
 
 export { EntityPoliciesArgs, EntityPoliciesState } from "./entityPolicies";
 export type EntityPolicies = import("./entityPolicies").EntityPolicies;
 export const EntityPolicies: typeof import("./entityPolicies").EntityPolicies = null as any;
+utilities.lazyLoad(exports, ["EntityPolicies"], () => require("./entityPolicies"));
 
 export { GetEntityArgs, GetEntityResult, GetEntityOutputArgs } from "./getEntity";
 export const getEntity: typeof import("./getEntity").getEntity = null as any;
 export const getEntityOutput: typeof import("./getEntity").getEntityOutput = null as any;
+utilities.lazyLoad(exports, ["getEntity","getEntityOutput"], () => require("./getEntity"));
 
 export { GetGroupArgs, GetGroupResult, GetGroupOutputArgs } from "./getGroup";
 export const getGroup: typeof import("./getGroup").getGroup = null as any;
 export const getGroupOutput: typeof import("./getGroup").getGroupOutput = null as any;
+utilities.lazyLoad(exports, ["getGroup","getGroupOutput"], () => require("./getGroup"));
 
 export { GetOidcClientCredsArgs, GetOidcClientCredsResult, GetOidcClientCredsOutputArgs } from "./getOidcClientCreds";
 export const getOidcClientCreds: typeof import("./getOidcClientCreds").getOidcClientCreds = null as any;
 export const getOidcClientCredsOutput: typeof import("./getOidcClientCreds").getOidcClientCredsOutput = null as any;
+utilities.lazyLoad(exports, ["getOidcClientCreds","getOidcClientCredsOutput"], () => require("./getOidcClientCreds"));
 
 export { GetOidcOpenidConfigArgs, GetOidcOpenidConfigResult, GetOidcOpenidConfigOutputArgs } from "./getOidcOpenidConfig";
 export const getOidcOpenidConfig: typeof import("./getOidcOpenidConfig").getOidcOpenidConfig = null as any;
 export const getOidcOpenidConfigOutput: typeof import("./getOidcOpenidConfig").getOidcOpenidConfigOutput = null as any;
+utilities.lazyLoad(exports, ["getOidcOpenidConfig","getOidcOpenidConfigOutput"], () => require("./getOidcOpenidConfig"));
 
 export { GetOidcPublicKeysArgs, GetOidcPublicKeysResult, GetOidcPublicKeysOutputArgs } from "./getOidcPublicKeys";
 export const getOidcPublicKeys: typeof import("./getOidcPublicKeys").getOidcPublicKeys = null as any;
 export const getOidcPublicKeysOutput: typeof import("./getOidcPublicKeys").getOidcPublicKeysOutput = null as any;
+utilities.lazyLoad(exports, ["getOidcPublicKeys","getOidcPublicKeysOutput"], () => require("./getOidcPublicKeys"));
 
 export { GroupArgs, GroupState } from "./group";
 export type Group = import("./group").Group;
 export const Group: typeof import("./group").Group = null as any;
+utilities.lazyLoad(exports, ["Group"], () => require("./group"));
 
 export { GroupAliasArgs, GroupAliasState } from "./groupAlias";
 export type GroupAlias = import("./groupAlias").GroupAlias;
 export const GroupAlias: typeof import("./groupAlias").GroupAlias = null as any;
+utilities.lazyLoad(exports, ["GroupAlias"], () => require("./groupAlias"));
 
 export { GroupMemberEntityIdsArgs, GroupMemberEntityIdsState } from "./groupMemberEntityIds";
 export type GroupMemberEntityIds = import("./groupMemberEntityIds").GroupMemberEntityIds;
 export const GroupMemberEntityIds: typeof import("./groupMemberEntityIds").GroupMemberEntityIds = null as any;
+utilities.lazyLoad(exports, ["GroupMemberEntityIds"], () => require("./groupMemberEntityIds"));
 
 export { GroupMemberGroupIdsArgs, GroupMemberGroupIdsState } from "./groupMemberGroupIds";
 export type GroupMemberGroupIds = import("./groupMemberGroupIds").GroupMemberGroupIds;
 export const GroupMemberGroupIds: typeof import("./groupMemberGroupIds").GroupMemberGroupIds = null as any;
+utilities.lazyLoad(exports, ["GroupMemberGroupIds"], () => require("./groupMemberGroupIds"));
 
 export { GroupPoliciesArgs, GroupPoliciesState } from "./groupPolicies";
 export type GroupPolicies = import("./groupPolicies").GroupPolicies;
 export const GroupPolicies: typeof import("./groupPolicies").GroupPolicies = null as any;
+utilities.lazyLoad(exports, ["GroupPolicies"], () => require("./groupPolicies"));
 
 export { MfaDuoArgs, MfaDuoState } from "./mfaDuo";
 export type MfaDuo = import("./mfaDuo").MfaDuo;
 export const MfaDuo: typeof import("./mfaDuo").MfaDuo = null as any;
+utilities.lazyLoad(exports, ["MfaDuo"], () => require("./mfaDuo"));
 
 export { MfaLoginEnforcementArgs, MfaLoginEnforcementState } from "./mfaLoginEnforcement";
 export type MfaLoginEnforcement = import("./mfaLoginEnforcement").MfaLoginEnforcement;
 export const MfaLoginEnforcement: typeof import("./mfaLoginEnforcement").MfaLoginEnforcement = null as any;
+utilities.lazyLoad(exports, ["MfaLoginEnforcement"], () => require("./mfaLoginEnforcement"));
 
 export { MfaOktaArgs, MfaOktaState } from "./mfaOkta";
 export type MfaOkta = import("./mfaOkta").MfaOkta;
 export const MfaOkta: typeof import("./mfaOkta").MfaOkta = null as any;
+utilities.lazyLoad(exports, ["MfaOkta"], () => require("./mfaOkta"));
 
 export { MfaPingidArgs, MfaPingidState } from "./mfaPingid";
 export type MfaPingid = import("./mfaPingid").MfaPingid;
 export const MfaPingid: typeof import("./mfaPingid").MfaPingid = null as any;
+utilities.lazyLoad(exports, ["MfaPingid"], () => require("./mfaPingid"));
 
 export { MfaTotpArgs, MfaTotpState } from "./mfaTotp";
 export type MfaTotp = import("./mfaTotp").MfaTotp;
 export const MfaTotp: typeof import("./mfaTotp").MfaTotp = null as any;
+utilities.lazyLoad(exports, ["MfaTotp"], () => require("./mfaTotp"));
 
 export { OidcArgs, OidcState } from "./oidc";
 export type Oidc = import("./oidc").Oidc;
 export const Oidc: typeof import("./oidc").Oidc = null as any;
+utilities.lazyLoad(exports, ["Oidc"], () => require("./oidc"));
 
 export { OidcAssignmentArgs, OidcAssignmentState } from "./oidcAssignment";
 export type OidcAssignment = import("./oidcAssignment").OidcAssignment;
 export const OidcAssignment: typeof import("./oidcAssignment").OidcAssignment = null as any;
+utilities.lazyLoad(exports, ["OidcAssignment"], () => require("./oidcAssignment"));
 
 export { OidcClientArgs, OidcClientState } from "./oidcClient";
 export type OidcClient = import("./oidcClient").OidcClient;
 export const OidcClient: typeof import("./oidcClient").OidcClient = null as any;
+utilities.lazyLoad(exports, ["OidcClient"], () => require("./oidcClient"));
 
 export { OidcKeyArgs, OidcKeyState } from "./oidcKey";
 export type OidcKey = import("./oidcKey").OidcKey;
 export const OidcKey: typeof import("./oidcKey").OidcKey = null as any;
+utilities.lazyLoad(exports, ["OidcKey"], () => require("./oidcKey"));
 
 export { OidcKeyAllowedClientIDArgs, OidcKeyAllowedClientIDState } from "./oidcKeyAllowedClientID";
 export type OidcKeyAllowedClientID = import("./oidcKeyAllowedClientID").OidcKeyAllowedClientID;
 export const OidcKeyAllowedClientID: typeof import("./oidcKeyAllowedClientID").OidcKeyAllowedClientID = null as any;
+utilities.lazyLoad(exports, ["OidcKeyAllowedClientID"], () => require("./oidcKeyAllowedClientID"));
 
 export { OidcProviderArgs, OidcProviderState } from "./oidcProvider";
 export type OidcProvider = import("./oidcProvider").OidcProvider;
 export const OidcProvider: typeof import("./oidcProvider").OidcProvider = null as any;
+utilities.lazyLoad(exports, ["OidcProvider"], () => require("./oidcProvider"));
 
 export { OidcRoleArgs, OidcRoleState } from "./oidcRole";
 export type OidcRole = import("./oidcRole").OidcRole;
 export const OidcRole: typeof import("./oidcRole").OidcRole = null as any;
+utilities.lazyLoad(exports, ["OidcRole"], () => require("./oidcRole"));
 
 export { OidcScopeArgs, OidcScopeState } from "./oidcScope";
 export type OidcScope = import("./oidcScope").OidcScope;
 export const OidcScope: typeof import("./oidcScope").OidcScope = null as any;
-
-utilities.lazyLoad(exports, ["Entity"], () => require("./entity"));
-utilities.lazyLoad(exports, ["EntityAlias"], () => require("./entityAlias"));
-utilities.lazyLoad(exports, ["EntityPolicies"], () => require("./entityPolicies"));
-utilities.lazyLoad(exports, ["getEntity","getEntityOutput"], () => require("./getEntity"));
-utilities.lazyLoad(exports, ["getGroup","getGroupOutput"], () => require("./getGroup"));
-utilities.lazyLoad(exports, ["getOidcClientCreds","getOidcClientCredsOutput"], () => require("./getOidcClientCreds"));
-utilities.lazyLoad(exports, ["getOidcOpenidConfig","getOidcOpenidConfigOutput"], () => require("./getOidcOpenidConfig"));
-utilities.lazyLoad(exports, ["getOidcPublicKeys","getOidcPublicKeysOutput"], () => require("./getOidcPublicKeys"));
-utilities.lazyLoad(exports, ["Group"], () => require("./group"));
-utilities.lazyLoad(exports, ["GroupAlias"], () => require("./groupAlias"));
-utilities.lazyLoad(exports, ["GroupMemberEntityIds"], () => require("./groupMemberEntityIds"));
-utilities.lazyLoad(exports, ["GroupMemberGroupIds"], () => require("./groupMemberGroupIds"));
-utilities.lazyLoad(exports, ["GroupPolicies"], () => require("./groupPolicies"));
-utilities.lazyLoad(exports, ["MfaDuo"], () => require("./mfaDuo"));
-utilities.lazyLoad(exports, ["MfaLoginEnforcement"], () => require("./mfaLoginEnforcement"));
-utilities.lazyLoad(exports, ["MfaOkta"], () => require("./mfaOkta"));
-utilities.lazyLoad(exports, ["MfaPingid"], () => require("./mfaPingid"));
-utilities.lazyLoad(exports, ["MfaTotp"], () => require("./mfaTotp"));
-utilities.lazyLoad(exports, ["Oidc"], () => require("./oidc"));
-utilities.lazyLoad(exports, ["OidcAssignment"], () => require("./oidcAssignment"));
-utilities.lazyLoad(exports, ["OidcClient"], () => require("./oidcClient"));
-utilities.lazyLoad(exports, ["OidcKey"], () => require("./oidcKey"));
-utilities.lazyLoad(exports, ["OidcKeyAllowedClientID"], () => require("./oidcKeyAllowedClientID"));
-utilities.lazyLoad(exports, ["OidcProvider"], () => require("./oidcProvider"));
-utilities.lazyLoad(exports, ["OidcRole"], () => require("./oidcRole"));
 utilities.lazyLoad(exports, ["OidcScope"], () => require("./oidcScope"));
+
 
 const _module = {
     version: utilities.getVersion(),

@@ -69,6 +69,8 @@ public final class SecretsMountCouchbaseArgs extends com.pulumi.resources.Resour
     /**
      * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
+     * Supported list of database secrets engines that can be configured:
+     * 
      */
     @Import(name="data")
     private @Nullable Output<Map<String,Object>> data;
@@ -76,20 +78,22 @@ public final class SecretsMountCouchbaseArgs extends com.pulumi.resources.Resour
     /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
+     * Supported list of database secrets engines that can be configured:
+     * 
      */
     public Optional<Output<Map<String,Object>>> data() {
         return Optional.ofNullable(this.data);
     }
 
     /**
-     * A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+     * The hosts to connect to.
      * 
      */
     @Import(name="hosts", required=true)
     private Output<List<String>> hosts;
 
     /**
-     * @return A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+     * @return The hosts to connect to.
      * 
      */
     public Output<List<String>> hosts() {
@@ -121,14 +125,14 @@ public final class SecretsMountCouchbaseArgs extends com.pulumi.resources.Resour
     }
 
     /**
-     * The password to be used in the connection.
+     * The root credential password used in the connection URL.
      * 
      */
     @Import(name="password", required=true)
     private Output<String> password;
 
     /**
-     * @return The password to be used in the connection.
+     * @return The root credential password used in the connection URL.
      * 
      */
     public Output<String> password() {
@@ -166,14 +170,14 @@ public final class SecretsMountCouchbaseArgs extends com.pulumi.resources.Resour
     }
 
     /**
-     * Whether to use TLS when connecting to Redis.
+     * Whether to use TLS when connecting to Cassandra.
      * 
      */
     @Import(name="tls")
     private @Nullable Output<Boolean> tls;
 
     /**
-     * @return Whether to use TLS when connecting to Redis.
+     * @return Whether to use TLS when connecting to Cassandra.
      * 
      */
     public Optional<Output<Boolean>> tls() {
@@ -181,14 +185,14 @@ public final class SecretsMountCouchbaseArgs extends com.pulumi.resources.Resour
     }
 
     /**
-     * The username to be used in the connection (the account admin level).
+     * The root credential username used in the connection URL.
      * 
      */
     @Import(name="username", required=true)
     private Output<String> username;
 
     /**
-     * @return The username to be used in the connection (the account admin level).
+     * @return The root credential username used in the connection URL.
      * 
      */
     public Output<String> username() {
@@ -196,14 +200,14 @@ public final class SecretsMountCouchbaseArgs extends com.pulumi.resources.Resour
     }
 
     /**
-     * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
      * 
      */
     @Import(name="usernameTemplate")
     private @Nullable Output<String> usernameTemplate;
 
     /**
-     * @return - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * @return [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
      * 
      */
     public Optional<Output<String>> usernameTemplate() {
@@ -343,6 +347,8 @@ public final class SecretsMountCouchbaseArgs extends com.pulumi.resources.Resour
         /**
          * @param data A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          * 
+         * Supported list of database secrets engines that can be configured:
+         * 
          * @return builder
          * 
          */
@@ -354,6 +360,8 @@ public final class SecretsMountCouchbaseArgs extends com.pulumi.resources.Resour
         /**
          * @param data A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          * 
+         * Supported list of database secrets engines that can be configured:
+         * 
          * @return builder
          * 
          */
@@ -362,7 +370,7 @@ public final class SecretsMountCouchbaseArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param hosts A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+         * @param hosts The hosts to connect to.
          * 
          * @return builder
          * 
@@ -373,7 +381,7 @@ public final class SecretsMountCouchbaseArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param hosts A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+         * @param hosts The hosts to connect to.
          * 
          * @return builder
          * 
@@ -383,7 +391,7 @@ public final class SecretsMountCouchbaseArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param hosts A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+         * @param hosts The hosts to connect to.
          * 
          * @return builder
          * 
@@ -425,7 +433,7 @@ public final class SecretsMountCouchbaseArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param password The password to be used in the connection.
+         * @param password The root credential password used in the connection URL.
          * 
          * @return builder
          * 
@@ -436,7 +444,7 @@ public final class SecretsMountCouchbaseArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param password The password to be used in the connection.
+         * @param password The root credential password used in the connection URL.
          * 
          * @return builder
          * 
@@ -498,7 +506,7 @@ public final class SecretsMountCouchbaseArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param tls Whether to use TLS when connecting to Redis.
+         * @param tls Whether to use TLS when connecting to Cassandra.
          * 
          * @return builder
          * 
@@ -509,7 +517,7 @@ public final class SecretsMountCouchbaseArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param tls Whether to use TLS when connecting to Redis.
+         * @param tls Whether to use TLS when connecting to Cassandra.
          * 
          * @return builder
          * 
@@ -519,7 +527,7 @@ public final class SecretsMountCouchbaseArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param username The username to be used in the connection (the account admin level).
+         * @param username The root credential username used in the connection URL.
          * 
          * @return builder
          * 
@@ -530,7 +538,7 @@ public final class SecretsMountCouchbaseArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param username The username to be used in the connection (the account admin level).
+         * @param username The root credential username used in the connection URL.
          * 
          * @return builder
          * 
@@ -540,7 +548,7 @@ public final class SecretsMountCouchbaseArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param usernameTemplate - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * @param usernameTemplate [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          * 
          * @return builder
          * 
@@ -551,7 +559,7 @@ public final class SecretsMountCouchbaseArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param usernameTemplate - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * @param usernameTemplate [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          * 
          * @return builder
          * 

@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates a Roleset in the [GCP Secrets Engine](https://www.vaultproject.io/docs/secrets/gcp/index.html) for Vault.
@@ -23,7 +25,7 @@ import (
 // import (
 //
 //	"fmt"
-//	"io/ioutil"
+//	"os"
 //
 //	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/gcp"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -31,7 +33,7 @@ import (
 // )
 //
 //	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := ioutil.ReadFile(path)
+//		data, err := os.ReadFile(path)
 //		if err != nil {
 //			panic(err.Error())
 //		}
@@ -101,7 +103,7 @@ type SecretRoleset struct {
 	Roleset pulumi.StringOutput `pulumi:"roleset"`
 	// Type of secret generated for this role set. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
 	SecretType pulumi.StringOutput `pulumi:"secretType"`
-	// Email of the service account created by Vault for this Roleset
+	// Email of the service account created by Vault for this Roleset.
 	ServiceAccountEmail pulumi.StringOutput `pulumi:"serviceAccountEmail"`
 	// List of OAuth scopes to assign to `accessToken` secrets generated under this role set (`accessToken` role sets only).
 	TokenScopes pulumi.StringArrayOutput `pulumi:"tokenScopes"`
@@ -126,6 +128,7 @@ func NewSecretRoleset(ctx *pulumi.Context,
 	if args.Roleset == nil {
 		return nil, errors.New("invalid value for required argument 'Roleset'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SecretRoleset
 	err := ctx.RegisterResource("vault:gcp/secretRoleset:SecretRoleset", name, args, &resource, opts...)
 	if err != nil {
@@ -163,7 +166,7 @@ type secretRolesetState struct {
 	Roleset *string `pulumi:"roleset"`
 	// Type of secret generated for this role set. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
 	SecretType *string `pulumi:"secretType"`
-	// Email of the service account created by Vault for this Roleset
+	// Email of the service account created by Vault for this Roleset.
 	ServiceAccountEmail *string `pulumi:"serviceAccountEmail"`
 	// List of OAuth scopes to assign to `accessToken` secrets generated under this role set (`accessToken` role sets only).
 	TokenScopes []string `pulumi:"tokenScopes"`
@@ -185,7 +188,7 @@ type SecretRolesetState struct {
 	Roleset pulumi.StringPtrInput
 	// Type of secret generated for this role set. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
 	SecretType pulumi.StringPtrInput
-	// Email of the service account created by Vault for this Roleset
+	// Email of the service account created by Vault for this Roleset.
 	ServiceAccountEmail pulumi.StringPtrInput
 	// List of OAuth scopes to assign to `accessToken` secrets generated under this role set (`accessToken` role sets only).
 	TokenScopes pulumi.StringArrayInput
@@ -259,6 +262,12 @@ func (i *SecretRoleset) ToSecretRolesetOutputWithContext(ctx context.Context) Se
 	return pulumi.ToOutputWithContext(ctx, i).(SecretRolesetOutput)
 }
 
+func (i *SecretRoleset) ToOutput(ctx context.Context) pulumix.Output[*SecretRoleset] {
+	return pulumix.Output[*SecretRoleset]{
+		OutputState: i.ToSecretRolesetOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SecretRolesetArrayInput is an input type that accepts SecretRolesetArray and SecretRolesetArrayOutput values.
 // You can construct a concrete instance of `SecretRolesetArrayInput` via:
 //
@@ -282,6 +291,12 @@ func (i SecretRolesetArray) ToSecretRolesetArrayOutput() SecretRolesetArrayOutpu
 
 func (i SecretRolesetArray) ToSecretRolesetArrayOutputWithContext(ctx context.Context) SecretRolesetArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretRolesetArrayOutput)
+}
+
+func (i SecretRolesetArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretRoleset] {
+	return pulumix.Output[[]*SecretRoleset]{
+		OutputState: i.ToSecretRolesetArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SecretRolesetMapInput is an input type that accepts SecretRolesetMap and SecretRolesetMapOutput values.
@@ -309,6 +324,12 @@ func (i SecretRolesetMap) ToSecretRolesetMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(SecretRolesetMapOutput)
 }
 
+func (i SecretRolesetMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretRoleset] {
+	return pulumix.Output[map[string]*SecretRoleset]{
+		OutputState: i.ToSecretRolesetMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SecretRolesetOutput struct{ *pulumi.OutputState }
 
 func (SecretRolesetOutput) ElementType() reflect.Type {
@@ -321,6 +342,12 @@ func (o SecretRolesetOutput) ToSecretRolesetOutput() SecretRolesetOutput {
 
 func (o SecretRolesetOutput) ToSecretRolesetOutputWithContext(ctx context.Context) SecretRolesetOutput {
 	return o
+}
+
+func (o SecretRolesetOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretRoleset] {
+	return pulumix.Output[*SecretRoleset]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Path where the GCP Secrets Engine is mounted
@@ -356,7 +383,7 @@ func (o SecretRolesetOutput) SecretType() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretRoleset) pulumi.StringOutput { return v.SecretType }).(pulumi.StringOutput)
 }
 
-// Email of the service account created by Vault for this Roleset
+// Email of the service account created by Vault for this Roleset.
 func (o SecretRolesetOutput) ServiceAccountEmail() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretRoleset) pulumi.StringOutput { return v.ServiceAccountEmail }).(pulumi.StringOutput)
 }
@@ -380,6 +407,12 @@ func (o SecretRolesetArrayOutput) ToSecretRolesetArrayOutputWithContext(ctx cont
 	return o
 }
 
+func (o SecretRolesetArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretRoleset] {
+	return pulumix.Output[[]*SecretRoleset]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SecretRolesetArrayOutput) Index(i pulumi.IntInput) SecretRolesetOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretRoleset {
 		return vs[0].([]*SecretRoleset)[vs[1].(int)]
@@ -398,6 +431,12 @@ func (o SecretRolesetMapOutput) ToSecretRolesetMapOutput() SecretRolesetMapOutpu
 
 func (o SecretRolesetMapOutput) ToSecretRolesetMapOutputWithContext(ctx context.Context) SecretRolesetMapOutput {
 	return o
+}
+
+func (o SecretRolesetMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretRoleset] {
+	return pulumix.Output[map[string]*SecretRoleset]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SecretRolesetMapOutput) MapIndex(k pulumi.StringInput) SecretRolesetOutput {

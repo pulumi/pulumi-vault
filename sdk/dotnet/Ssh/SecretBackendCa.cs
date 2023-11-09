@@ -17,6 +17,7 @@ namespace Pulumi.Vault.Ssh
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -68,7 +69,7 @@ namespace Pulumi.Vault.Ssh
         public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
-        /// The private key part the SSH CA key pair; required if generate_signing_key is false.
+        /// Private key part the SSH CA key pair; required if generate_signing_key is false.
         /// </summary>
         [Output("privateKey")]
         public Output<string> PrivateKey { get; private set; } = null!;
@@ -154,7 +155,7 @@ namespace Pulumi.Vault.Ssh
         private Input<string>? _privateKey;
 
         /// <summary>
-        /// The private key part the SSH CA key pair; required if generate_signing_key is false.
+        /// Private key part the SSH CA key pair; required if generate_signing_key is false.
         /// </summary>
         public Input<string>? PrivateKey
         {
@@ -205,7 +206,7 @@ namespace Pulumi.Vault.Ssh
         private Input<string>? _privateKey;
 
         /// <summary>
-        /// The private key part the SSH CA key pair; required if generate_signing_key is false.
+        /// Private key part the SSH CA key pair; required if generate_signing_key is false.
         /// </summary>
         public Input<string>? PrivateKey
         {

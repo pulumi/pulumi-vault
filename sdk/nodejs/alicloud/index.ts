@@ -8,8 +8,8 @@ import * as utilities from "../utilities";
 export { AuthBackendRoleArgs, AuthBackendRoleState } from "./authBackendRole";
 export type AuthBackendRole = import("./authBackendRole").AuthBackendRole;
 export const AuthBackendRole: typeof import("./authBackendRole").AuthBackendRole = null as any;
-
 utilities.lazyLoad(exports, ["AuthBackendRole"], () => require("./authBackendRole"));
+
 
 const _module = {
     version: utilities.getVersion(),

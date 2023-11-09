@@ -71,6 +71,8 @@ export class AuthBackendUser extends pulumi.CustomResource {
 
     /**
      * Path to the authentication backend
+     *
+     * For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api-docs/auth/ldap).
      */
     public readonly backend!: pulumi.Output<string | undefined>;
     /**
@@ -133,6 +135,8 @@ export class AuthBackendUser extends pulumi.CustomResource {
 export interface AuthBackendUserState {
     /**
      * Path to the authentication backend
+     *
+     * For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api-docs/auth/ldap).
      */
     backend?: pulumi.Input<string>;
     /**
@@ -162,6 +166,8 @@ export interface AuthBackendUserState {
 export interface AuthBackendUserArgs {
     /**
      * Path to the authentication backend
+     *
+     * For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api-docs/auth/ldap).
      */
     backend?: pulumi.Input<string>;
     /**

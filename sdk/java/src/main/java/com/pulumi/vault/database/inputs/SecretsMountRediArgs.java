@@ -38,14 +38,14 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The contents of a PEM-encoded CA cert file to use to verify the Redis server&#39;s identity.
+     * The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity.
      * 
      */
     @Import(name="caCert")
     private @Nullable Output<String> caCert;
 
     /**
-     * @return The contents of a PEM-encoded CA cert file to use to verify the Redis server&#39;s identity.
+     * @return The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity.
      * 
      */
     public Optional<Output<String>> caCert() {
@@ -55,12 +55,16 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
     /**
      * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
+     * Supported list of database secrets engines that can be configured:
+     * 
      */
     @Import(name="data")
     private @Nullable Output<Map<String,Object>> data;
 
     /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+     * 
+     * Supported list of database secrets engines that can be configured:
      * 
      */
     public Optional<Output<Map<String,Object>>> data() {
@@ -107,14 +111,14 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The password to be used in the connection.
+     * The root credential password used in the connection URL.
      * 
      */
     @Import(name="password", required=true)
     private Output<String> password;
 
     /**
-     * @return The password to be used in the connection.
+     * @return The root credential password used in the connection URL.
      * 
      */
     public Output<String> password() {
@@ -169,14 +173,14 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Whether to use TLS when connecting to Redis.
+     * Whether to use TLS when connecting to Cassandra.
      * 
      */
     @Import(name="tls")
     private @Nullable Output<Boolean> tls;
 
     /**
-     * @return Whether to use TLS when connecting to Redis.
+     * @return Whether to use TLS when connecting to Cassandra.
      * 
      */
     public Optional<Output<Boolean>> tls() {
@@ -184,14 +188,14 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The username to be used in the connection (the account admin level).
+     * The root credential username used in the connection URL.
      * 
      */
     @Import(name="username", required=true)
     private Output<String> username;
 
     /**
-     * @return The username to be used in the connection (the account admin level).
+     * @return The root credential username used in the connection URL.
      * 
      */
     public Output<String> username() {
@@ -286,7 +290,7 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param caCert The contents of a PEM-encoded CA cert file to use to verify the Redis server&#39;s identity.
+         * @param caCert The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity.
          * 
          * @return builder
          * 
@@ -297,7 +301,7 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param caCert The contents of a PEM-encoded CA cert file to use to verify the Redis server&#39;s identity.
+         * @param caCert The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity.
          * 
          * @return builder
          * 
@@ -309,6 +313,8 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
         /**
          * @param data A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          * 
+         * Supported list of database secrets engines that can be configured:
+         * 
          * @return builder
          * 
          */
@@ -319,6 +325,8 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
 
         /**
          * @param data A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         * 
+         * Supported list of database secrets engines that can be configured:
          * 
          * @return builder
          * 
@@ -381,7 +389,7 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param password The password to be used in the connection.
+         * @param password The root credential password used in the connection URL.
          * 
          * @return builder
          * 
@@ -392,7 +400,7 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param password The password to be used in the connection.
+         * @param password The root credential password used in the connection URL.
          * 
          * @return builder
          * 
@@ -477,7 +485,7 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param tls Whether to use TLS when connecting to Redis.
+         * @param tls Whether to use TLS when connecting to Cassandra.
          * 
          * @return builder
          * 
@@ -488,7 +496,7 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param tls Whether to use TLS when connecting to Redis.
+         * @param tls Whether to use TLS when connecting to Cassandra.
          * 
          * @return builder
          * 
@@ -498,7 +506,7 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param username The username to be used in the connection (the account admin level).
+         * @param username The root credential username used in the connection URL.
          * 
          * @return builder
          * 
@@ -509,7 +517,7 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param username The username to be used in the connection (the account admin level).
+         * @param username The root credential username used in the connection URL.
          * 
          * @return builder
          * 

@@ -15,6 +15,57 @@ namespace Pulumi.Vault.Transform
         /// This data source supports the "/transform/decode/{role_name}" Vault endpoint.
         /// 
         /// It decodes the provided value using a named role.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var transform = new Vault.Mount("transform", new()
+        ///     {
+        ///         Path = "transform",
+        ///         Type = "transform",
+        ///     });
+        /// 
+        ///     var ccn_fpe = new Vault.Transform.Transformation("ccn-fpe", new()
+        ///     {
+        ///         Path = transform.Path,
+        ///         Type = "fpe",
+        ///         Template = "builtin/creditcardnumber",
+        ///         TweakSource = "internal",
+        ///         AllowedRoles = new[]
+        ///         {
+        ///             "payments",
+        ///         },
+        ///     });
+        /// 
+        ///     var payments = new Vault.Transform.Role("payments", new()
+        ///     {
+        ///         Path = ccn_fpe.Path,
+        ///         Transformations = new[]
+        ///         {
+        ///             "ccn-fpe",
+        ///         },
+        ///     });
+        /// 
+        ///     var test = Vault.Transform.GetDecode.Invoke(new()
+        ///     {
+        ///         Path = payments.Path,
+        ///         RoleName = "payments",
+        ///         Value = "9300-3376-4943-8903",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetDecodeResult> InvokeAsync(GetDecodeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDecodeResult>("vault:transform/getDecode:getDecode", args ?? new GetDecodeArgs(), options.WithDefaults());
@@ -23,6 +74,57 @@ namespace Pulumi.Vault.Transform
         /// This data source supports the "/transform/decode/{role_name}" Vault endpoint.
         /// 
         /// It decodes the provided value using a named role.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var transform = new Vault.Mount("transform", new()
+        ///     {
+        ///         Path = "transform",
+        ///         Type = "transform",
+        ///     });
+        /// 
+        ///     var ccn_fpe = new Vault.Transform.Transformation("ccn-fpe", new()
+        ///     {
+        ///         Path = transform.Path,
+        ///         Type = "fpe",
+        ///         Template = "builtin/creditcardnumber",
+        ///         TweakSource = "internal",
+        ///         AllowedRoles = new[]
+        ///         {
+        ///             "payments",
+        ///         },
+        ///     });
+        /// 
+        ///     var payments = new Vault.Transform.Role("payments", new()
+        ///     {
+        ///         Path = ccn_fpe.Path,
+        ///         Transformations = new[]
+        ///         {
+        ///             "ccn-fpe",
+        ///         },
+        ///     });
+        /// 
+        ///     var test = Vault.Transform.GetDecode.Invoke(new()
+        ///     {
+        ///         Path = payments.Path,
+        ///         RoleName = "payments",
+        ///         Value = "9300-3376-4943-8903",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Output<GetDecodeResult> Invoke(GetDecodeInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDecodeResult>("vault:transform/getDecode:getDecode", args ?? new GetDecodeInvokeArgs(), options.WithDefaults());
@@ -60,6 +162,15 @@ namespace Pulumi.Vault.Transform
         /// </summary>
         [Input("decodedValue")]
         public string? DecodedValue { get; set; }
+
+        /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public string? Namespace { get; set; }
 
         /// <summary>
         /// Path to where the back-end is mounted within Vault.
@@ -130,6 +241,15 @@ namespace Pulumi.Vault.Transform
         public Input<string>? DecodedValue { get; set; }
 
         /// <summary>
+        /// The namespace of the target resource.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        /// <summary>
         /// Path to where the back-end is mounted within Vault.
         /// </summary>
         [Input("path", required: true)]
@@ -176,6 +296,7 @@ namespace Pulumi.Vault.Transform
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly string? Namespace;
         public readonly string Path;
         public readonly string RoleName;
         public readonly string? Transformation;
@@ -192,6 +313,8 @@ namespace Pulumi.Vault.Transform
 
             string id,
 
+            string? @namespace,
+
             string path,
 
             string roleName,
@@ -206,6 +329,7 @@ namespace Pulumi.Vault.Transform
             BatchResults = batchResults;
             DecodedValue = decodedValue;
             Id = id;
+            Namespace = @namespace;
             Path = path;
             RoleName = roleName;
             Transformation = transformation;

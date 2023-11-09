@@ -84,6 +84,10 @@ export class EntityPolicies extends pulumi.CustomResource {
     public /*out*/ readonly entityName!: pulumi.Output<string>;
     /**
      * Defaults to `true`.
+     *
+     * If `true`, this resource will take exclusive control of the policies assigned to the entity and will set it equal to what is specified in the resource.
+     *
+     * If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the entity. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
      */
     public readonly exclusive!: pulumi.Output<boolean | undefined>;
     /**
@@ -149,6 +153,10 @@ export interface EntityPoliciesState {
     entityName?: pulumi.Input<string>;
     /**
      * Defaults to `true`.
+     *
+     * If `true`, this resource will take exclusive control of the policies assigned to the entity and will set it equal to what is specified in the resource.
+     *
+     * If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the entity. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
      */
     exclusive?: pulumi.Input<boolean>;
     /**
@@ -174,6 +182,10 @@ export interface EntityPoliciesArgs {
     entityId: pulumi.Input<string>;
     /**
      * Defaults to `true`.
+     *
+     * If `true`, this resource will take exclusive control of the policies assigned to the entity and will set it equal to what is specified in the resource.
+     *
+     * If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the entity. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
      */
     exclusive?: pulumi.Input<boolean>;
     /**

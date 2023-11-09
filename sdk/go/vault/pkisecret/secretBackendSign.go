@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -26,8 +28,37 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := pkiSecret.NewSecretBackendSign(ctx, "test", &pkiSecret.SecretBackendSignArgs{
-//				Backend:    pulumi.Any(vault_mount.Pki.Path),
-//				Csr:        pulumi.String("-----BEGIN CERTIFICATE REQUEST-----\nMIIEqDCCApACAQAwYzELMAkGA1UEBhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUx\nITAfBgNVBAoMGEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZDEcMBoGA1UEAwwTY2Vy\ndC50ZXN0Lm15LmRvbWFpbjCCAiIwDQYJKoZIhvcNAQEBBQADggIPADCCAgoCggIB\nAJupYCQ8UVCWII1Zof1c6YcSSaM9hEaDU78cfKP5RoSeH10BvrWRfT+mzCONVpNP\nCW9Iabtvk6hm0ot6ilnndEyVJbc0g7hdDLBX5BM25D+DGZGJRKUz1V+uBrWmXtIt\nVonj7JTDTe7ViH0GDsB7CvqXFGXO2a2cDYBchLkL6vQiFPshxvUsLtwxuy/qdYgy\nX6ya+AUoZcoQGy1XxNjfH6cPtWSWQGEp1oPR6vL9hU3laTZb3C+VV4jZem+he8/0\nV+qV6fLG92WTXm2hmf8nrtUqqJ+C7mW/RJod+TviviBadIX0OHXW7k5HVsZood01\nte8vMRUNJNiZfa9EMIK5oncbQn0LcM3Wo9VrjpL7jREb/4HCS2gswYGv7hzk9cCS\nkVY4rDucchKbApuI3kfzmO7GFOF5eiSkYZpY/czNn7VVM3WCu6dpOX4+3rhgrZQw\nkY14L930DaLVRUgve/zKVP2D2GHdEOs+MbV7s96UgigT9pXly/yHPj+1sSYqmnaD\n5b7jSeJusmzO/nrwXVGLsnezR87VzHl9Ux9g5s6zh+R+PrZuVxYsLvoUpaasH47O\ngIcBzSb/6pSGZKAUizmYsHsR1k88dAvsQ+FsUDaNokdi9VndEB4QPmiFmjyLV+0I\n1TFoXop4sW11NPz1YCq+IxnYrEaIN3PyhY0GvBJDFY1/AgMBAAGgADANBgkqhkiG\n9w0BAQsFAAOCAgEActuqnqS8Y9UF7e08w7tR3FPzGecWreuvxILrlFEZJxiLPFqL\nIt7uJvtypCVQvz6UQzKdBYO7tMpRaWViB8DrWzXNZjLMrg+QHcpveg8C0Ett4scG\nfnvLk6fTDFYrnGvwHTqiHos5i0y3bFLyS1BGwSpdLAykGtvC+VM8mRyw/Y7CPcKN\n77kebY/9xduW1g2uxWLr0x90RuQDv9psPojT+59tRLGSp5Kt0IeD3QtnAZEFE4aN\nvt+Pd69eg3BgZ8ZeDgoqAw3yppvOkpAFiE5pw2qPZaM4SRphl4d2Lek2zNIMyZqv\ndo5zh356HOgXtDaSg0POnRGrN/Ua+LMCRTg6GEPUnx9uQb/zt8Zu0hIexDGyykp1\nOGqtWlv/Nc8UYuS38v0BeB6bMPeoqQUjkqs8nHlAEFn0KlgYdtDC+7SdQx6wS4te\ndBKRNDfC4lS3jYJgs55jHqonZgkpSi3bamlxpfpW0ukGBcmq91wRe4bOw/4uD/vf\nUwqMWOdCYcU3mdYNjTWy22ORW3SGFQxMBwpUEURCSoeqWr6aJeQ7KAYkx1PrB5T8\nOTEc13lWf+B0PU9UJuGTsmpIuImPDVd0EVDayr3mT5dDbqTVDbe8ppf2IswABmf0\no3DybUeUmknYjl109rdSf+76nuREICHatxXgN3xCMFuBaN4WLO+ksd6Y1Ys=\n-----END CERTIFICATE REQUEST-----\n"),
+//				Backend: pulumi.Any(vault_mount.Pki.Path),
+//				Csr: pulumi.String(`-----BEGIN CERTIFICATE REQUEST-----
+//
+// MIIEqDCCApACAQAwYzELMAkGA1UEBhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUx
+// ITAfBgNVBAoMGEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZDEcMBoGA1UEAwwTY2Vy
+// dC50ZXN0Lm15LmRvbWFpbjCCAiIwDQYJKoZIhvcNAQEBBQADggIPADCCAgoCggIB
+// AJupYCQ8UVCWII1Zof1c6YcSSaM9hEaDU78cfKP5RoSeH10BvrWRfT+mzCONVpNP
+// CW9Iabtvk6hm0ot6ilnndEyVJbc0g7hdDLBX5BM25D+DGZGJRKUz1V+uBrWmXtIt
+// Vonj7JTDTe7ViH0GDsB7CvqXFGXO2a2cDYBchLkL6vQiFPshxvUsLtwxuy/qdYgy
+// X6ya+AUoZcoQGy1XxNjfH6cPtWSWQGEp1oPR6vL9hU3laTZb3C+VV4jZem+he8/0
+// V+qV6fLG92WTXm2hmf8nrtUqqJ+C7mW/RJod+TviviBadIX0OHXW7k5HVsZood01
+// te8vMRUNJNiZfa9EMIK5oncbQn0LcM3Wo9VrjpL7jREb/4HCS2gswYGv7hzk9cCS
+// kVY4rDucchKbApuI3kfzmO7GFOF5eiSkYZpY/czNn7VVM3WCu6dpOX4+3rhgrZQw
+// kY14L930DaLVRUgve/zKVP2D2GHdEOs+MbV7s96UgigT9pXly/yHPj+1sSYqmnaD
+// 5b7jSeJusmzO/nrwXVGLsnezR87VzHl9Ux9g5s6zh+R+PrZuVxYsLvoUpaasH47O
+// gIcBzSb/6pSGZKAUizmYsHsR1k88dAvsQ+FsUDaNokdi9VndEB4QPmiFmjyLV+0I
+// 1TFoXop4sW11NPz1YCq+IxnYrEaIN3PyhY0GvBJDFY1/AgMBAAGgADANBgkqhkiG
+// 9w0BAQsFAAOCAgEActuqnqS8Y9UF7e08w7tR3FPzGecWreuvxILrlFEZJxiLPFqL
+// It7uJvtypCVQvz6UQzKdBYO7tMpRaWViB8DrWzXNZjLMrg+QHcpveg8C0Ett4scG
+// fnvLk6fTDFYrnGvwHTqiHos5i0y3bFLyS1BGwSpdLAykGtvC+VM8mRyw/Y7CPcKN
+// 77kebY/9xduW1g2uxWLr0x90RuQDv9psPojT+59tRLGSp5Kt0IeD3QtnAZEFE4aN
+// vt+Pd69eg3BgZ8ZeDgoqAw3yppvOkpAFiE5pw2qPZaM4SRphl4d2Lek2zNIMyZqv
+// do5zh356HOgXtDaSg0POnRGrN/Ua+LMCRTg6GEPUnx9uQb/zt8Zu0hIexDGyykp1
+// OGqtWlv/Nc8UYuS38v0BeB6bMPeoqQUjkqs8nHlAEFn0KlgYdtDC+7SdQx6wS4te
+// dBKRNDfC4lS3jYJgs55jHqonZgkpSi3bamlxpfpW0ukGBcmq91wRe4bOw/4uD/vf
+// UwqMWOdCYcU3mdYNjTWy22ORW3SGFQxMBwpUEURCSoeqWr6aJeQ7KAYkx1PrB5T8
+// OTEc13lWf+B0PU9UJuGTsmpIuImPDVd0EVDayr3mT5dDbqTVDbe8ppf2IswABmf0
+// o3DybUeUmknYjl109rdSf+76nuREICHatxXgN3xCMFuBaN4WLO+ksd6Y1Ys=
+// -----END CERTIFICATE REQUEST-----
+// `),
+//
 //				CommonName: pulumi.String("test.my.domain"),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				vault_pki_secret_backend_role.Admin,
@@ -116,6 +147,7 @@ func NewSecretBackendSign(ctx *pulumi.Context,
 	if args.Csr == nil {
 		return nil, errors.New("invalid value for required argument 'Csr'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SecretBackendSign
 	err := ctx.RegisterResource("vault:pkiSecret/secretBackendSign:SecretBackendSign", name, args, &resource, opts...)
 	if err != nil {
@@ -353,6 +385,12 @@ func (i *SecretBackendSign) ToSecretBackendSignOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendSignOutput)
 }
 
+func (i *SecretBackendSign) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendSign] {
+	return pulumix.Output[*SecretBackendSign]{
+		OutputState: i.ToSecretBackendSignOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SecretBackendSignArrayInput is an input type that accepts SecretBackendSignArray and SecretBackendSignArrayOutput values.
 // You can construct a concrete instance of `SecretBackendSignArrayInput` via:
 //
@@ -376,6 +414,12 @@ func (i SecretBackendSignArray) ToSecretBackendSignArrayOutput() SecretBackendSi
 
 func (i SecretBackendSignArray) ToSecretBackendSignArrayOutputWithContext(ctx context.Context) SecretBackendSignArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendSignArrayOutput)
+}
+
+func (i SecretBackendSignArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendSign] {
+	return pulumix.Output[[]*SecretBackendSign]{
+		OutputState: i.ToSecretBackendSignArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SecretBackendSignMapInput is an input type that accepts SecretBackendSignMap and SecretBackendSignMapOutput values.
@@ -403,6 +447,12 @@ func (i SecretBackendSignMap) ToSecretBackendSignMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendSignMapOutput)
 }
 
+func (i SecretBackendSignMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendSign] {
+	return pulumix.Output[map[string]*SecretBackendSign]{
+		OutputState: i.ToSecretBackendSignMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SecretBackendSignOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendSignOutput) ElementType() reflect.Type {
@@ -415,6 +465,12 @@ func (o SecretBackendSignOutput) ToSecretBackendSignOutput() SecretBackendSignOu
 
 func (o SecretBackendSignOutput) ToSecretBackendSignOutputWithContext(ctx context.Context) SecretBackendSignOutput {
 	return o
+}
+
+func (o SecretBackendSignOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendSign] {
+	return pulumix.Output[*SecretBackendSign]{
+		OutputState: o.OutputState,
+	}
 }
 
 // List of alternative names
@@ -549,6 +605,12 @@ func (o SecretBackendSignArrayOutput) ToSecretBackendSignArrayOutputWithContext(
 	return o
 }
 
+func (o SecretBackendSignArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendSign] {
+	return pulumix.Output[[]*SecretBackendSign]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SecretBackendSignArrayOutput) Index(i pulumi.IntInput) SecretBackendSignOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackendSign {
 		return vs[0].([]*SecretBackendSign)[vs[1].(int)]
@@ -567,6 +629,12 @@ func (o SecretBackendSignMapOutput) ToSecretBackendSignMapOutput() SecretBackend
 
 func (o SecretBackendSignMapOutput) ToSecretBackendSignMapOutputWithContext(ctx context.Context) SecretBackendSignMapOutput {
 	return o
+}
+
+func (o SecretBackendSignMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendSign] {
+	return pulumix.Output[map[string]*SecretBackendSign]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SecretBackendSignMapOutput) MapIndex(k pulumi.StringInput) SecretBackendSignOutput {

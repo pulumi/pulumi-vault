@@ -268,6 +268,9 @@ def get_entity(alias_id: Optional[str] = None,
     :param str alias_id: ID of the alias.
     :param str alias_mount_accessor: Accessor of the mount to which the alias belongs to.
            This should be supplied in conjunction with `alias_name`.
+           
+           The lookup criteria can be `entity_name`, `entity_id`, `alias_id`, or a combination of
+           `alias_name` and `alias_mount_accessor`.
     :param str alias_name: Name of the alias. This should be supplied in conjunction with
            `alias_mount_accessor`.
     :param str entity_id: ID of the entity.
@@ -288,25 +291,25 @@ def get_entity(alias_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('vault:identity/getEntity:getEntity', __args__, opts=opts, typ=GetEntityResult).value
 
     return AwaitableGetEntityResult(
-        alias_id=__ret__.alias_id,
-        alias_mount_accessor=__ret__.alias_mount_accessor,
-        alias_name=__ret__.alias_name,
-        aliases=__ret__.aliases,
-        creation_time=__ret__.creation_time,
-        data_json=__ret__.data_json,
-        direct_group_ids=__ret__.direct_group_ids,
-        disabled=__ret__.disabled,
-        entity_id=__ret__.entity_id,
-        entity_name=__ret__.entity_name,
-        group_ids=__ret__.group_ids,
-        id=__ret__.id,
-        inherited_group_ids=__ret__.inherited_group_ids,
-        last_update_time=__ret__.last_update_time,
-        merged_entity_ids=__ret__.merged_entity_ids,
-        metadata=__ret__.metadata,
-        namespace=__ret__.namespace,
-        namespace_id=__ret__.namespace_id,
-        policies=__ret__.policies)
+        alias_id=pulumi.get(__ret__, 'alias_id'),
+        alias_mount_accessor=pulumi.get(__ret__, 'alias_mount_accessor'),
+        alias_name=pulumi.get(__ret__, 'alias_name'),
+        aliases=pulumi.get(__ret__, 'aliases'),
+        creation_time=pulumi.get(__ret__, 'creation_time'),
+        data_json=pulumi.get(__ret__, 'data_json'),
+        direct_group_ids=pulumi.get(__ret__, 'direct_group_ids'),
+        disabled=pulumi.get(__ret__, 'disabled'),
+        entity_id=pulumi.get(__ret__, 'entity_id'),
+        entity_name=pulumi.get(__ret__, 'entity_name'),
+        group_ids=pulumi.get(__ret__, 'group_ids'),
+        id=pulumi.get(__ret__, 'id'),
+        inherited_group_ids=pulumi.get(__ret__, 'inherited_group_ids'),
+        last_update_time=pulumi.get(__ret__, 'last_update_time'),
+        merged_entity_ids=pulumi.get(__ret__, 'merged_entity_ids'),
+        metadata=pulumi.get(__ret__, 'metadata'),
+        namespace=pulumi.get(__ret__, 'namespace'),
+        namespace_id=pulumi.get(__ret__, 'namespace_id'),
+        policies=pulumi.get(__ret__, 'policies'))
 
 
 @_utilities.lift_output_func(get_entity)
@@ -334,6 +337,9 @@ def get_entity_output(alias_id: Optional[pulumi.Input[Optional[str]]] = None,
     :param str alias_id: ID of the alias.
     :param str alias_mount_accessor: Accessor of the mount to which the alias belongs to.
            This should be supplied in conjunction with `alias_name`.
+           
+           The lookup criteria can be `entity_name`, `entity_id`, `alias_id`, or a combination of
+           `alias_name` and `alias_mount_accessor`.
     :param str alias_name: Name of the alias. This should be supplied in conjunction with
            `alias_mount_accessor`.
     :param str entity_id: ID of the entity.

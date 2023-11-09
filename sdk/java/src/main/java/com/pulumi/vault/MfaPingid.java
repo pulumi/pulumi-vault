@@ -73,42 +73,42 @@ import javax.annotation.Nullable;
 @ResourceType(type="vault:index/mfaPingid:MfaPingid")
 public class MfaPingid extends com.pulumi.resources.CustomResource {
     /**
-     * Admin URL computed by Vault.
+     * `(string)` – Admin URL computed by Vault
      * 
      */
     @Export(name="adminUrl", refs={String.class}, tree="[0]")
     private Output<String> adminUrl;
 
     /**
-     * @return Admin URL computed by Vault.
+     * @return `(string)` – Admin URL computed by Vault
      * 
      */
     public Output<String> adminUrl() {
         return this.adminUrl;
     }
     /**
-     * Authenticator URL computed by Vault.
+     * `(string)` – Authenticator URL computed by Vault
      * 
      */
     @Export(name="authenticatorUrl", refs={String.class}, tree="[0]")
     private Output<String> authenticatorUrl;
 
     /**
-     * @return Authenticator URL computed by Vault.
+     * @return `(string)` – Authenticator URL computed by Vault
      * 
      */
     public Output<String> authenticatorUrl() {
         return this.authenticatorUrl;
     }
     /**
-     * IDP URL computed by Vault.
+     * `(string)` – IDP URL computed by Vault
      * 
      */
     @Export(name="idpUrl", refs={String.class}, tree="[0]")
     private Output<String> idpUrl;
 
     /**
-     * @return IDP URL computed by Vault.
+     * @return `(string)` – IDP URL computed by Vault
      * 
      */
     public Output<String> idpUrl() {
@@ -165,28 +165,28 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.namespace);
     }
     /**
-     * Namespace ID computed by Vault.
+     * `(string)` – Namespace ID computed by Vault
      * 
      */
     @Export(name="namespaceId", refs={String.class}, tree="[0]")
     private Output<String> namespaceId;
 
     /**
-     * @return Namespace ID computed by Vault.
+     * @return `(string)` – Namespace ID computed by Vault
      * 
      */
     public Output<String> namespaceId() {
         return this.namespaceId;
     }
     /**
-     * Org Alias computed by Vault.
+     * `(string)` – Org Alias computed by Vault
      * 
      */
     @Export(name="orgAlias", refs={String.class}, tree="[0]")
     private Output<String> orgAlias;
 
     /**
-     * @return Org Alias computed by Vault.
+     * @return `(string)` – Org Alias computed by Vault
      * 
      */
     public Output<String> orgAlias() {
@@ -209,28 +209,28 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
         return this.settingsFileBase64;
     }
     /**
-     * Type of configuration computed by Vault.
+     * `(string)` – Type of configuration computed by Vault
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
-     * @return Type of configuration computed by Vault.
+     * @return `(string)` – Type of configuration computed by Vault
      * 
      */
     public Output<String> type() {
         return this.type;
     }
     /**
-     * If set, enables use of PingID signature. Computed by Vault
+     * `(string)` – If set to true, enables use of PingID signature. Computed by Vault
      * 
      */
     @Export(name="useSignature", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> useSignature;
 
     /**
-     * @return If set, enables use of PingID signature. Computed by Vault
+     * @return `(string)` – If set to true, enables use of PingID signature. Computed by Vault
      * 
      */
     public Output<Boolean> useSignature() {

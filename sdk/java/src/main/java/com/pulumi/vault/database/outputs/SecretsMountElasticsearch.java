@@ -22,7 +22,7 @@ public final class SecretsMountElasticsearch {
      */
     private @Nullable List<String> allowedRoles;
     /**
-     * @return The contents of a PEM-encoded CA cert file to use to verify the Redis server&#39;s identity.
+     * @return The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity.
      * 
      */
     private @Nullable String caCert;
@@ -44,6 +44,8 @@ public final class SecretsMountElasticsearch {
     /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
+     * Supported list of database secrets engines that can be configured:
+     * 
      */
     private @Nullable Map<String,Object> data;
     /**
@@ -53,7 +55,7 @@ public final class SecretsMountElasticsearch {
     private @Nullable Boolean insecure;
     private String name;
     /**
-     * @return The password to be used in the connection.
+     * @return The root credential password used in the connection URL.
      * 
      */
     private String password;
@@ -73,17 +75,18 @@ public final class SecretsMountElasticsearch {
      */
     private @Nullable String tlsServerName;
     /**
-     * @return The configuration endpoint for the ElastiCache cluster to connect to.
+     * @return The URL for Elasticsearch&#39;s API. https requires certificate
+     * by trusted CA if used.
      * 
      */
     private String url;
     /**
-     * @return The username to be used in the connection (the account admin level).
+     * @return The root credential username used in the connection URL.
      * 
      */
     private String username;
     /**
-     * @return - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * @return [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
      * 
      */
     private @Nullable String usernameTemplate;
@@ -104,7 +107,7 @@ public final class SecretsMountElasticsearch {
         return this.allowedRoles == null ? List.of() : this.allowedRoles;
     }
     /**
-     * @return The contents of a PEM-encoded CA cert file to use to verify the Redis server&#39;s identity.
+     * @return The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity.
      * 
      */
     public Optional<String> caCert() {
@@ -134,6 +137,8 @@ public final class SecretsMountElasticsearch {
     /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
+     * Supported list of database secrets engines that can be configured:
+     * 
      */
     public Map<String,Object> data() {
         return this.data == null ? Map.of() : this.data;
@@ -149,7 +154,7 @@ public final class SecretsMountElasticsearch {
         return this.name;
     }
     /**
-     * @return The password to be used in the connection.
+     * @return The root credential password used in the connection URL.
      * 
      */
     public String password() {
@@ -177,21 +182,22 @@ public final class SecretsMountElasticsearch {
         return Optional.ofNullable(this.tlsServerName);
     }
     /**
-     * @return The configuration endpoint for the ElastiCache cluster to connect to.
+     * @return The URL for Elasticsearch&#39;s API. https requires certificate
+     * by trusted CA if used.
      * 
      */
     public String url() {
         return this.url;
     }
     /**
-     * @return The username to be used in the connection (the account admin level).
+     * @return The root credential username used in the connection URL.
      * 
      */
     public String username() {
         return this.username;
     }
     /**
-     * @return - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * @return [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
      * 
      */
     public Optional<String> usernameTemplate() {

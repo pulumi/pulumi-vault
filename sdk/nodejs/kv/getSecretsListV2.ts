@@ -50,11 +50,8 @@ import * as utilities from "../utilities";
  * Use of this resource requires the `read` capability on the given path.
  */
 export function getSecretsListV2(args: GetSecretsListV2Args, opts?: pulumi.InvokeOptions): Promise<GetSecretsListV2Result> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:kv/getSecretsListV2:getSecretsListV2", {
         "mount": args.mount,
         "name": args.name,
@@ -106,9 +103,53 @@ export interface GetSecretsListV2Result {
      */
     readonly path: string;
 }
-
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const kvv2 = new vault.Mount("kvv2", {
+ *     path: "kvv2",
+ *     type: "kv",
+ *     options: {
+ *         version: "2",
+ *     },
+ *     description: "KV Version 2 secret engine mount",
+ * });
+ * const awsSecret = new vault.kv.SecretV2("awsSecret", {
+ *     mount: kvv2.path,
+ *     dataJson: JSON.stringify({
+ *         zip: "zap",
+ *     }),
+ * });
+ * const azureSecret = new vault.kv.SecretV2("azureSecret", {
+ *     mount: kvv2.path,
+ *     dataJson: JSON.stringify({
+ *         foo: "bar",
+ *     }),
+ * });
+ * const nestedSecret = new vault.kv.SecretV2("nestedSecret", {
+ *     mount: kvv2.path,
+ *     dataJson: JSON.stringify({
+ *         password: "test",
+ *     }),
+ * });
+ * const secrets = vault.kv.getSecretsListV2Output({
+ *     mount: kvv2.path,
+ * });
+ * const nestedSecrets = kvv2.path.apply(path => vault.kv.getSecretsListV2Output({
+ *     mount: path,
+ *     name: vault_kv_secret_v2.test_2.name,
+ * }));
+ * ```
+ * ## Required Vault Capabilities
+ *
+ * Use of this resource requires the `read` capability on the given path.
+ */
 export function getSecretsListV2Output(args: GetSecretsListV2OutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretsListV2Result> {
-    return pulumi.output(args).apply(a => getSecretsListV2(a, opts))
+    return pulumi.output(args).apply((a: any) => getSecretsListV2(a, opts))
 }
 
 /**

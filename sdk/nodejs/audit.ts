@@ -90,6 +90,8 @@ export class Audit extends pulumi.CustomResource {
     public readonly namespace!: pulumi.Output<string | undefined>;
     /**
      * Configuration options to pass to the audit device itself.
+     *
+     * For a reference of the device types and their options, consult the [Vault documentation.](https://www.vaultproject.io/docs/audit/index.html)
      */
     public readonly options!: pulumi.Output<{[key: string]: string}>;
     /**
@@ -161,6 +163,8 @@ export interface AuditState {
     namespace?: pulumi.Input<string>;
     /**
      * Configuration options to pass to the audit device itself.
+     *
+     * For a reference of the device types and their options, consult the [Vault documentation.](https://www.vaultproject.io/docs/audit/index.html)
      */
     options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -194,6 +198,8 @@ export interface AuditArgs {
     namespace?: pulumi.Input<string>;
     /**
      * Configuration options to pass to the audit device itself.
+     *
+     * For a reference of the device types and their options, consult the [Vault documentation.](https://www.vaultproject.io/docs/audit/index.html)
      */
     options: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**

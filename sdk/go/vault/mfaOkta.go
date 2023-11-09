@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Provides a resource to manage [Okta MFA](https://www.vaultproject.io/docs/enterprise/mfa/mfa-okta).
@@ -110,12 +112,13 @@ func NewMfaOkta(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'OrgName'")
 	}
 	if args.ApiToken != nil {
-		args.ApiToken = pulumi.ToSecret(args.ApiToken).(pulumi.StringOutput)
+		args.ApiToken = pulumi.ToSecret(args.ApiToken).(pulumi.StringInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"apiToken",
 	})
 	opts = append(opts, secrets)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource MfaOkta
 	err := ctx.RegisterResource("vault:index/mfaOkta:MfaOkta", name, args, &resource, opts...)
 	if err != nil {
@@ -289,6 +292,12 @@ func (i *MfaOkta) ToMfaOktaOutputWithContext(ctx context.Context) MfaOktaOutput 
 	return pulumi.ToOutputWithContext(ctx, i).(MfaOktaOutput)
 }
 
+func (i *MfaOkta) ToOutput(ctx context.Context) pulumix.Output[*MfaOkta] {
+	return pulumix.Output[*MfaOkta]{
+		OutputState: i.ToMfaOktaOutputWithContext(ctx).OutputState,
+	}
+}
+
 // MfaOktaArrayInput is an input type that accepts MfaOktaArray and MfaOktaArrayOutput values.
 // You can construct a concrete instance of `MfaOktaArrayInput` via:
 //
@@ -312,6 +321,12 @@ func (i MfaOktaArray) ToMfaOktaArrayOutput() MfaOktaArrayOutput {
 
 func (i MfaOktaArray) ToMfaOktaArrayOutputWithContext(ctx context.Context) MfaOktaArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MfaOktaArrayOutput)
+}
+
+func (i MfaOktaArray) ToOutput(ctx context.Context) pulumix.Output[[]*MfaOkta] {
+	return pulumix.Output[[]*MfaOkta]{
+		OutputState: i.ToMfaOktaArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // MfaOktaMapInput is an input type that accepts MfaOktaMap and MfaOktaMapOutput values.
@@ -339,6 +354,12 @@ func (i MfaOktaMap) ToMfaOktaMapOutputWithContext(ctx context.Context) MfaOktaMa
 	return pulumi.ToOutputWithContext(ctx, i).(MfaOktaMapOutput)
 }
 
+func (i MfaOktaMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*MfaOkta] {
+	return pulumix.Output[map[string]*MfaOkta]{
+		OutputState: i.ToMfaOktaMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type MfaOktaOutput struct{ *pulumi.OutputState }
 
 func (MfaOktaOutput) ElementType() reflect.Type {
@@ -351,6 +372,12 @@ func (o MfaOktaOutput) ToMfaOktaOutput() MfaOktaOutput {
 
 func (o MfaOktaOutput) ToMfaOktaOutputWithContext(ctx context.Context) MfaOktaOutput {
 	return o
+}
+
+func (o MfaOktaOutput) ToOutput(ctx context.Context) pulumix.Output[*MfaOkta] {
+	return pulumix.Output[*MfaOkta]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(string: <required>)` - Okta API key.
@@ -419,6 +446,12 @@ func (o MfaOktaArrayOutput) ToMfaOktaArrayOutputWithContext(ctx context.Context)
 	return o
 }
 
+func (o MfaOktaArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*MfaOkta] {
+	return pulumix.Output[[]*MfaOkta]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o MfaOktaArrayOutput) Index(i pulumi.IntInput) MfaOktaOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *MfaOkta {
 		return vs[0].([]*MfaOkta)[vs[1].(int)]
@@ -437,6 +470,12 @@ func (o MfaOktaMapOutput) ToMfaOktaMapOutput() MfaOktaMapOutput {
 
 func (o MfaOktaMapOutput) ToMfaOktaMapOutputWithContext(ctx context.Context) MfaOktaMapOutput {
 	return o
+}
+
+func (o MfaOktaMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*MfaOkta] {
+	return pulumix.Output[map[string]*MfaOkta]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o MfaOktaMapOutput) MapIndex(k pulumi.StringInput) MfaOktaOutput {

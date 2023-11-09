@@ -45,16 +45,16 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * A URL containing connection information.\
-     * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+     * Specifies the Redshift DSN.
+     * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
      * 
      */
     @Import(name="connectionUrl")
     private @Nullable Output<String> connectionUrl;
 
     /**
-     * @return A URL containing connection information.\
-     * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+     * @return Specifies the Redshift DSN.
+     * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
      * 
      */
     public Optional<Output<String>> connectionUrl() {
@@ -64,6 +64,8 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
     /**
      * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
+     * Supported list of database secrets engines that can be configured:
+     * 
      */
     @Import(name="data")
     private @Nullable Output<Map<String,Object>> data;
@@ -71,22 +73,22 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
     /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
+     * Supported list of database secrets engines that can be configured:
+     * 
      */
     public Optional<Output<Map<String,Object>>> data() {
         return Optional.ofNullable(this.data);
     }
 
     /**
-     * The maximum number of seconds to keep
-     * a connection alive for.
+     * The maximum amount of time a connection may be reused.
      * 
      */
     @Import(name="maxConnectionLifetime")
     private @Nullable Output<Integer> maxConnectionLifetime;
 
     /**
-     * @return The maximum number of seconds to keep
-     * a connection alive for.
+     * @return The maximum amount of time a connection may be reused.
      * 
      */
     public Optional<Output<Integer>> maxConnectionLifetime() {
@@ -95,7 +97,7 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
 
     /**
      * The maximum number of idle connections to
-     * maintain.
+     * the database.
      * 
      */
     @Import(name="maxIdleConnections")
@@ -103,7 +105,7 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
 
     /**
      * @return The maximum number of idle connections to
-     * maintain.
+     * the database.
      * 
      */
     public Optional<Output<Integer>> maxIdleConnections() {
@@ -112,7 +114,7 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
 
     /**
      * The maximum number of open connections to
-     * use.
+     * the database.
      * 
      */
     @Import(name="maxOpenConnections")
@@ -120,7 +122,7 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
 
     /**
      * @return The maximum number of open connections to
-     * use.
+     * the database.
      * 
      */
     public Optional<Output<Integer>> maxOpenConnections() {
@@ -135,14 +137,14 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The password to be used in the connection.
+     * The root credential password used in the connection URL.
      * 
      */
     @Import(name="password")
     private @Nullable Output<String> password;
 
     /**
-     * @return The password to be used in the connection.
+     * @return The root credential password used in the connection URL.
      * 
      */
     public Optional<Output<String>> password() {
@@ -217,14 +219,14 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The username to be used in the connection (the account admin level).
+     * The root credential username used in the connection URL.
      * 
      */
     @Import(name="username")
     private @Nullable Output<String> username;
 
     /**
-     * @return The username to be used in the connection (the account admin level).
+     * @return The root credential username used in the connection URL.
      * 
      */
     public Optional<Output<String>> username() {
@@ -232,14 +234,14 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
      * 
      */
     @Import(name="usernameTemplate")
     private @Nullable Output<String> usernameTemplate;
 
     /**
-     * @return - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * @return [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
      * 
      */
     public Optional<Output<String>> usernameTemplate() {
@@ -347,8 +349,8 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param connectionUrl A URL containing connection information.\
-         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         * @param connectionUrl Specifies the Redshift DSN.
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
          * 
          * @return builder
          * 
@@ -359,8 +361,8 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param connectionUrl A URL containing connection information.\
-         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         * @param connectionUrl Specifies the Redshift DSN.
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
          * 
          * @return builder
          * 
@@ -371,6 +373,8 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
 
         /**
          * @param data A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         * 
+         * Supported list of database secrets engines that can be configured:
          * 
          * @return builder
          * 
@@ -383,6 +387,8 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
         /**
          * @param data A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          * 
+         * Supported list of database secrets engines that can be configured:
+         * 
          * @return builder
          * 
          */
@@ -391,8 +397,7 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param maxConnectionLifetime The maximum number of seconds to keep
-         * a connection alive for.
+         * @param maxConnectionLifetime The maximum amount of time a connection may be reused.
          * 
          * @return builder
          * 
@@ -403,8 +408,7 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param maxConnectionLifetime The maximum number of seconds to keep
-         * a connection alive for.
+         * @param maxConnectionLifetime The maximum amount of time a connection may be reused.
          * 
          * @return builder
          * 
@@ -415,7 +419,7 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
 
         /**
          * @param maxIdleConnections The maximum number of idle connections to
-         * maintain.
+         * the database.
          * 
          * @return builder
          * 
@@ -427,7 +431,7 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
 
         /**
          * @param maxIdleConnections The maximum number of idle connections to
-         * maintain.
+         * the database.
          * 
          * @return builder
          * 
@@ -438,7 +442,7 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
 
         /**
          * @param maxOpenConnections The maximum number of open connections to
-         * use.
+         * the database.
          * 
          * @return builder
          * 
@@ -450,7 +454,7 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
 
         /**
          * @param maxOpenConnections The maximum number of open connections to
-         * use.
+         * the database.
          * 
          * @return builder
          * 
@@ -469,7 +473,7 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param password The password to be used in the connection.
+         * @param password The root credential password used in the connection URL.
          * 
          * @return builder
          * 
@@ -480,7 +484,7 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param password The password to be used in the connection.
+         * @param password The root credential password used in the connection URL.
          * 
          * @return builder
          * 
@@ -593,7 +597,7 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param username The username to be used in the connection (the account admin level).
+         * @param username The root credential username used in the connection URL.
          * 
          * @return builder
          * 
@@ -604,7 +608,7 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param username The username to be used in the connection (the account admin level).
+         * @param username The root credential username used in the connection URL.
          * 
          * @return builder
          * 
@@ -614,7 +618,7 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param usernameTemplate - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * @param usernameTemplate [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          * 
          * @return builder
          * 
@@ -625,7 +629,7 @@ public final class SecretsMountMysqlArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param usernameTemplate - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * @param usernameTemplate [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          * 
          * @return builder
          * 

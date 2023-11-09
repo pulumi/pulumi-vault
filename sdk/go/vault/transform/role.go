@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // This resource supports the "/transform/role/{name}" Vault endpoint.
@@ -57,6 +59,11 @@ type Role struct {
 
 	// The name of the role.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringOutput `pulumi:"path"`
 	// A comma separated string or slice of transformations to use.
@@ -73,6 +80,7 @@ func NewRole(ctx *pulumi.Context,
 	if args.Path == nil {
 		return nil, errors.New("invalid value for required argument 'Path'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Role
 	err := ctx.RegisterResource("vault:transform/role:Role", name, args, &resource, opts...)
 	if err != nil {
@@ -97,6 +105,11 @@ func GetRole(ctx *pulumi.Context,
 type roleState struct {
 	// The name of the role.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Path to where the back-end is mounted within Vault.
 	Path *string `pulumi:"path"`
 	// A comma separated string or slice of transformations to use.
@@ -106,6 +119,11 @@ type roleState struct {
 type RoleState struct {
 	// The name of the role.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringPtrInput
 	// A comma separated string or slice of transformations to use.
@@ -119,6 +137,11 @@ func (RoleState) ElementType() reflect.Type {
 type roleArgs struct {
 	// The name of the role.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Path to where the back-end is mounted within Vault.
 	Path string `pulumi:"path"`
 	// A comma separated string or slice of transformations to use.
@@ -129,6 +152,11 @@ type roleArgs struct {
 type RoleArgs struct {
 	// The name of the role.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringInput
 	// A comma separated string or slice of transformations to use.
@@ -158,6 +186,12 @@ func (i *Role) ToRoleOutputWithContext(ctx context.Context) RoleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RoleOutput)
 }
 
+func (i *Role) ToOutput(ctx context.Context) pulumix.Output[*Role] {
+	return pulumix.Output[*Role]{
+		OutputState: i.ToRoleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // RoleArrayInput is an input type that accepts RoleArray and RoleArrayOutput values.
 // You can construct a concrete instance of `RoleArrayInput` via:
 //
@@ -181,6 +215,12 @@ func (i RoleArray) ToRoleArrayOutput() RoleArrayOutput {
 
 func (i RoleArray) ToRoleArrayOutputWithContext(ctx context.Context) RoleArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RoleArrayOutput)
+}
+
+func (i RoleArray) ToOutput(ctx context.Context) pulumix.Output[[]*Role] {
+	return pulumix.Output[[]*Role]{
+		OutputState: i.ToRoleArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // RoleMapInput is an input type that accepts RoleMap and RoleMapOutput values.
@@ -208,6 +248,12 @@ func (i RoleMap) ToRoleMapOutputWithContext(ctx context.Context) RoleMapOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RoleMapOutput)
 }
 
+func (i RoleMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Role] {
+	return pulumix.Output[map[string]*Role]{
+		OutputState: i.ToRoleMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RoleOutput struct{ *pulumi.OutputState }
 
 func (RoleOutput) ElementType() reflect.Type {
@@ -222,9 +268,23 @@ func (o RoleOutput) ToRoleOutputWithContext(ctx context.Context) RoleOutput {
 	return o
 }
 
+func (o RoleOutput) ToOutput(ctx context.Context) pulumix.Output[*Role] {
+	return pulumix.Output[*Role]{
+		OutputState: o.OutputState,
+	}
+}
+
 // The name of the role.
 func (o RoleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Role) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o RoleOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Role) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Path to where the back-end is mounted within Vault.
@@ -251,6 +311,12 @@ func (o RoleArrayOutput) ToRoleArrayOutputWithContext(ctx context.Context) RoleA
 	return o
 }
 
+func (o RoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Role] {
+	return pulumix.Output[[]*Role]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o RoleArrayOutput) Index(i pulumi.IntInput) RoleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Role {
 		return vs[0].([]*Role)[vs[1].(int)]
@@ -269,6 +335,12 @@ func (o RoleMapOutput) ToRoleMapOutput() RoleMapOutput {
 
 func (o RoleMapOutput) ToRoleMapOutputWithContext(ctx context.Context) RoleMapOutput {
 	return o
+}
+
+func (o RoleMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Role] {
+	return pulumix.Output[map[string]*Role]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RoleMapOutput) MapIndex(k pulumi.StringInput) RoleOutput {

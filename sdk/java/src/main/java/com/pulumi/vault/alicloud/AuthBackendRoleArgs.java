@@ -37,6 +37,8 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
      * Path to the mounted AliCloud auth backend.
      * Defaults to `alicloud`
      * 
+     * For more details on the usage of each argument consult the [Vault AliCloud API documentation](https://www.vaultproject.io/api-docs/auth/alicloud).
+     * 
      */
     @Import(name="backend")
     private @Nullable Output<String> backend;
@@ -44,6 +46,8 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
     /**
      * @return Path to the mounted AliCloud auth backend.
      * Defaults to `alicloud`
+     * 
+     * For more details on the usage of each argument consult the [Vault AliCloud API documentation](https://www.vaultproject.io/api-docs/auth/alicloud).
      * 
      */
     public Optional<Output<String>> backend() {
@@ -318,6 +322,8 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
          * @param backend Path to the mounted AliCloud auth backend.
          * Defaults to `alicloud`
          * 
+         * For more details on the usage of each argument consult the [Vault AliCloud API documentation](https://www.vaultproject.io/api-docs/auth/alicloud).
+         * 
          * @return builder
          * 
          */
@@ -329,6 +335,8 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
         /**
          * @param backend Path to the mounted AliCloud auth backend.
          * Defaults to `alicloud`
+         * 
+         * For more details on the usage of each argument consult the [Vault AliCloud API documentation](https://www.vaultproject.io/api-docs/auth/alicloud).
          * 
          * @return builder
          * 

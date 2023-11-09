@@ -397,12 +397,16 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
     /**
      * A nested block containing configuration options for Redis ElastiCache connections.
      * 
+     * Exactly one of the nested blocks of configuration options must be supplied.
+     * 
      */
     @Export(name="redisElasticache", refs={SecretBackendConnectionRedisElasticache.class}, tree="[0]")
     private Output</* @Nullable */ SecretBackendConnectionRedisElasticache> redisElasticache;
 
     /**
      * @return A nested block containing configuration options for Redis ElastiCache connections.
+     * 
+     * Exactly one of the nested blocks of configuration options must be supplied.
      * 
      */
     public Output<Optional<SecretBackendConnectionRedisElasticache>> redisElasticache() {

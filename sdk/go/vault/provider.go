@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // The provider type for the vault package. By default, resources use package-wide configuration
@@ -51,15 +53,25 @@ func NewProvider(ctx *pulumi.Context,
 	if args.Token == nil {
 		return nil, errors.New("invalid value for required argument 'Token'")
 	}
-	if isZero(args.MaxLeaseTtlSeconds) {
-		args.MaxLeaseTtlSeconds = pulumi.IntPtr(getEnvOrDefault(1200, parseEnvInt, "TERRAFORM_VAULT_MAX_TTL").(int))
+	if args.MaxLeaseTtlSeconds == nil {
+		if d := internal.GetEnvOrDefault(1200, internal.ParseEnvInt, "TERRAFORM_VAULT_MAX_TTL"); d != nil {
+			args.MaxLeaseTtlSeconds = pulumi.IntPtr(d.(int))
+		}
 	}
-	if isZero(args.MaxRetries) {
-		args.MaxRetries = pulumi.IntPtr(getEnvOrDefault(2, parseEnvInt, "VAULT_MAX_RETRIES").(int))
+	if args.MaxRetries == nil {
+		if d := internal.GetEnvOrDefault(2, internal.ParseEnvInt, "VAULT_MAX_RETRIES"); d != nil {
+			args.MaxRetries = pulumi.IntPtr(d.(int))
+		}
 	}
-	if isZero(args.SkipTlsVerify) {
-		args.SkipTlsVerify = pulumi.BoolPtr(getEnvOrDefault(false, parseEnvBool, "VAULT_SKIP_VERIFY").(bool))
+	if args.SkipTlsVerify == nil {
+		if d := internal.GetEnvOrDefault(nil, internal.ParseEnvBool, "VAULT_SKIP_VERIFY"); d != nil {
+			args.SkipTlsVerify = pulumi.BoolPtr(d.(bool))
+		}
 	}
+	if args.Headers != nil {
+		args.Headers = pulumi.ToSecret(args.Headers).(ProviderHeaderArrayInput)
+	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:vault", name, args, &resource, opts...)
 	if err != nil {
@@ -115,6 +127,9 @@ type providerArgs struct {
 	MaxRetriesCcc *int `pulumi:"maxRetriesCcc"`
 	// The namespace to use. Available only for Vault Enterprise.
 	Namespace *string `pulumi:"namespace"`
+	// In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the
+	// token namespace as the root namespace for all resources.
+	SetNamespaceFromToken *bool `pulumi:"setNamespaceFromToken"`
 	// Set this to true to prevent the creation of ephemeral child token used by this provider.
 	SkipChildToken *bool `pulumi:"skipChildToken"`
 	// Skip the dynamic fetching of the Vault server version.
@@ -179,6 +194,9 @@ type ProviderArgs struct {
 	MaxRetriesCcc pulumi.IntPtrInput
 	// The namespace to use. Available only for Vault Enterprise.
 	Namespace pulumi.StringPtrInput
+	// In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the
+	// token namespace as the root namespace for all resources.
+	SetNamespaceFromToken pulumi.BoolPtrInput
 	// Set this to true to prevent the creation of ephemeral child token used by this provider.
 	SkipChildToken pulumi.BoolPtrInput
 	// Skip the dynamic fetching of the Vault server version.
@@ -218,6 +236,12 @@ func (i *Provider) ToProviderOutputWithContext(ctx context.Context) ProviderOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderOutput)
 }
 
+func (i *Provider) ToOutput(ctx context.Context) pulumix.Output[*Provider] {
+	return pulumix.Output[*Provider]{
+		OutputState: i.ToProviderOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderOutput struct{ *pulumi.OutputState }
 
 func (ProviderOutput) ElementType() reflect.Type {
@@ -230,6 +254,12 @@ func (o ProviderOutput) ToProviderOutput() ProviderOutput {
 
 func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) ProviderOutput {
 	return o
+}
+
+func (o ProviderOutput) ToOutput(ctx context.Context) pulumix.Output[*Provider] {
+	return pulumix.Output[*Provider]{
+		OutputState: o.OutputState,
+	}
 }
 
 // If true, adds the value of the `address` argument to the Terraform process environment.

@@ -4,6 +4,7 @@
 package com.pulumi.vault.config.inputs;
 
 import com.pulumi.core.annotations.CustomType;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -14,6 +15,7 @@ public final class AuthLoginRadius {
     private @Nullable String mount;
     private @Nullable String namespace;
     private String password;
+    private @Nullable Boolean useRootNamespace;
     private String username;
 
     private AuthLoginRadius() {}
@@ -25,6 +27,9 @@ public final class AuthLoginRadius {
     }
     public String password() {
         return this.password;
+    }
+    public Optional<Boolean> useRootNamespace() {
+        return Optional.ofNullable(this.useRootNamespace);
     }
     public String username() {
         return this.username;
@@ -42,6 +47,7 @@ public final class AuthLoginRadius {
         private @Nullable String mount;
         private @Nullable String namespace;
         private String password;
+        private @Nullable Boolean useRootNamespace;
         private String username;
         public Builder() {}
         public Builder(AuthLoginRadius defaults) {
@@ -49,6 +55,7 @@ public final class AuthLoginRadius {
     	      this.mount = defaults.mount;
     	      this.namespace = defaults.namespace;
     	      this.password = defaults.password;
+    	      this.useRootNamespace = defaults.useRootNamespace;
     	      this.username = defaults.username;
         }
 
@@ -68,6 +75,11 @@ public final class AuthLoginRadius {
             return this;
         }
         @CustomType.Setter
+        public Builder useRootNamespace(@Nullable Boolean useRootNamespace) {
+            this.useRootNamespace = useRootNamespace;
+            return this;
+        }
+        @CustomType.Setter
         public Builder username(String username) {
             this.username = Objects.requireNonNull(username);
             return this;
@@ -77,6 +89,7 @@ public final class AuthLoginRadius {
             o.mount = mount;
             o.namespace = namespace;
             o.password = password;
+            o.useRootNamespace = useRootNamespace;
             o.username = username;
             return o;
         }

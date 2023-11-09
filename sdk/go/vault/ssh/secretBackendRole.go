@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Provides a resource to manage roles in an SSH secret backend
@@ -151,6 +153,7 @@ func NewSecretBackendRole(ctx *pulumi.Context,
 	if args.KeyType == nil {
 		return nil, errors.New("invalid value for required argument 'KeyType'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SecretBackendRole
 	err := ctx.RegisterResource("vault:ssh/secretBackendRole:SecretBackendRole", name, args, &resource, opts...)
 	if err != nil {
@@ -472,6 +475,12 @@ func (i *SecretBackendRole) ToSecretBackendRoleOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRoleOutput)
 }
 
+func (i *SecretBackendRole) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendRole] {
+	return pulumix.Output[*SecretBackendRole]{
+		OutputState: i.ToSecretBackendRoleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SecretBackendRoleArrayInput is an input type that accepts SecretBackendRoleArray and SecretBackendRoleArrayOutput values.
 // You can construct a concrete instance of `SecretBackendRoleArrayInput` via:
 //
@@ -495,6 +504,12 @@ func (i SecretBackendRoleArray) ToSecretBackendRoleArrayOutput() SecretBackendRo
 
 func (i SecretBackendRoleArray) ToSecretBackendRoleArrayOutputWithContext(ctx context.Context) SecretBackendRoleArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRoleArrayOutput)
+}
+
+func (i SecretBackendRoleArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendRole] {
+	return pulumix.Output[[]*SecretBackendRole]{
+		OutputState: i.ToSecretBackendRoleArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SecretBackendRoleMapInput is an input type that accepts SecretBackendRoleMap and SecretBackendRoleMapOutput values.
@@ -522,6 +537,12 @@ func (i SecretBackendRoleMap) ToSecretBackendRoleMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRoleMapOutput)
 }
 
+func (i SecretBackendRoleMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendRole] {
+	return pulumix.Output[map[string]*SecretBackendRole]{
+		OutputState: i.ToSecretBackendRoleMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SecretBackendRoleOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendRoleOutput) ElementType() reflect.Type {
@@ -534,6 +555,12 @@ func (o SecretBackendRoleOutput) ToSecretBackendRoleOutput() SecretBackendRoleOu
 
 func (o SecretBackendRoleOutput) ToSecretBackendRoleOutputWithContext(ctx context.Context) SecretBackendRoleOutput {
 	return o
+}
+
+func (o SecretBackendRoleOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendRole] {
+	return pulumix.Output[*SecretBackendRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 // When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
@@ -698,6 +725,12 @@ func (o SecretBackendRoleArrayOutput) ToSecretBackendRoleArrayOutputWithContext(
 	return o
 }
 
+func (o SecretBackendRoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendRole] {
+	return pulumix.Output[[]*SecretBackendRole]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SecretBackendRoleArrayOutput) Index(i pulumi.IntInput) SecretBackendRoleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackendRole {
 		return vs[0].([]*SecretBackendRole)[vs[1].(int)]
@@ -716,6 +749,12 @@ func (o SecretBackendRoleMapOutput) ToSecretBackendRoleMapOutput() SecretBackend
 
 func (o SecretBackendRoleMapOutput) ToSecretBackendRoleMapOutputWithContext(ctx context.Context) SecretBackendRoleMapOutput {
 	return o
+}
+
+func (o SecretBackendRoleMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendRole] {
+	return pulumix.Output[map[string]*SecretBackendRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SecretBackendRoleMapOutput) MapIndex(k pulumi.StringInput) SecretBackendRoleOutput {

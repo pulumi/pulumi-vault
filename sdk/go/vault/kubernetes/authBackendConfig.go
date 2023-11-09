@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages an Kubernetes auth backend config in a Vault server. See the [Vault
@@ -99,12 +101,13 @@ func NewAuthBackendConfig(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'KubernetesHost'")
 	}
 	if args.TokenReviewerJwt != nil {
-		args.TokenReviewerJwt = pulumi.ToSecret(args.TokenReviewerJwt).(pulumi.StringPtrOutput)
+		args.TokenReviewerJwt = pulumi.ToSecret(args.TokenReviewerJwt).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"tokenReviewerJwt",
 	})
 	opts = append(opts, secrets)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AuthBackendConfig
 	err := ctx.RegisterResource("vault:kubernetes/authBackendConfig:AuthBackendConfig", name, args, &resource, opts...)
 	if err != nil {
@@ -250,6 +253,12 @@ func (i *AuthBackendConfig) ToAuthBackendConfigOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendConfigOutput)
 }
 
+func (i *AuthBackendConfig) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendConfig] {
+	return pulumix.Output[*AuthBackendConfig]{
+		OutputState: i.ToAuthBackendConfigOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AuthBackendConfigArrayInput is an input type that accepts AuthBackendConfigArray and AuthBackendConfigArrayOutput values.
 // You can construct a concrete instance of `AuthBackendConfigArrayInput` via:
 //
@@ -273,6 +282,12 @@ func (i AuthBackendConfigArray) ToAuthBackendConfigArrayOutput() AuthBackendConf
 
 func (i AuthBackendConfigArray) ToAuthBackendConfigArrayOutputWithContext(ctx context.Context) AuthBackendConfigArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendConfigArrayOutput)
+}
+
+func (i AuthBackendConfigArray) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackendConfig] {
+	return pulumix.Output[[]*AuthBackendConfig]{
+		OutputState: i.ToAuthBackendConfigArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AuthBackendConfigMapInput is an input type that accepts AuthBackendConfigMap and AuthBackendConfigMapOutput values.
@@ -300,6 +315,12 @@ func (i AuthBackendConfigMap) ToAuthBackendConfigMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendConfigMapOutput)
 }
 
+func (i AuthBackendConfigMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackendConfig] {
+	return pulumix.Output[map[string]*AuthBackendConfig]{
+		OutputState: i.ToAuthBackendConfigMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AuthBackendConfigOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendConfigOutput) ElementType() reflect.Type {
@@ -312,6 +333,12 @@ func (o AuthBackendConfigOutput) ToAuthBackendConfigOutput() AuthBackendConfigOu
 
 func (o AuthBackendConfigOutput) ToAuthBackendConfigOutputWithContext(ctx context.Context) AuthBackendConfigOutput {
 	return o
+}
+
+func (o AuthBackendConfigOutput) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendConfig] {
+	return pulumix.Output[*AuthBackendConfig]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Unique name of the kubernetes backend to configure.
@@ -376,6 +403,12 @@ func (o AuthBackendConfigArrayOutput) ToAuthBackendConfigArrayOutputWithContext(
 	return o
 }
 
+func (o AuthBackendConfigArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackendConfig] {
+	return pulumix.Output[[]*AuthBackendConfig]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AuthBackendConfigArrayOutput) Index(i pulumi.IntInput) AuthBackendConfigOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AuthBackendConfig {
 		return vs[0].([]*AuthBackendConfig)[vs[1].(int)]
@@ -394,6 +427,12 @@ func (o AuthBackendConfigMapOutput) ToAuthBackendConfigMapOutput() AuthBackendCo
 
 func (o AuthBackendConfigMapOutput) ToAuthBackendConfigMapOutputWithContext(ctx context.Context) AuthBackendConfigMapOutput {
 	return o
+}
+
+func (o AuthBackendConfigMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackendConfig] {
+	return pulumix.Output[map[string]*AuthBackendConfig]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuthBackendConfigMapOutput) MapIndex(k pulumi.StringInput) AuthBackendConfigOutput {

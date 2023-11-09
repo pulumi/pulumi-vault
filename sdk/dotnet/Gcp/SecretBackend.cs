@@ -15,6 +15,7 @@ namespace Pulumi.Vault.Gcp
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.IO;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -32,7 +33,7 @@ namespace Pulumi.Vault.Gcp
     public partial class SecretBackend : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The GCP service account credentials in JSON format.
+        /// JSON-encoded credentials to use to connect to GCP
         /// </summary>
         [Output("credentials")]
         public Output<string?> Credentials { get; private set; } = null!;
@@ -140,7 +141,7 @@ namespace Pulumi.Vault.Gcp
         private Input<string>? _credentials;
 
         /// <summary>
-        /// The GCP service account credentials in JSON format.
+        /// JSON-encoded credentials to use to connect to GCP
         /// </summary>
         public Input<string>? Credentials
         {
@@ -213,7 +214,7 @@ namespace Pulumi.Vault.Gcp
         private Input<string>? _credentials;
 
         /// <summary>
-        /// The GCP service account credentials in JSON format.
+        /// JSON-encoded credentials to use to connect to GCP
         /// </summary>
         public Input<string>? Credentials
         {

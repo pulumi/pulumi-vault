@@ -162,6 +162,8 @@ export class SecretBackendRole extends pulumi.CustomResource {
     /**
      * Additional labels to apply to all generated Kubernetes 
      * objects.
+     *
+     * This resource also directly accepts all vault.Mount fields.
      */
     public readonly extraLabels!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
@@ -289,6 +291,8 @@ export interface SecretBackendRoleState {
     /**
      * Additional labels to apply to all generated Kubernetes 
      * objects.
+     *
+     * This resource also directly accepts all vault.Mount fields.
      */
     extraLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -364,6 +368,8 @@ export interface SecretBackendRoleArgs {
     /**
      * Additional labels to apply to all generated Kubernetes 
      * objects.
+     *
+     * This resource also directly accepts all vault.Mount fields.
      */
     extraLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**

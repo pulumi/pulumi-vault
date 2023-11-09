@@ -13,9 +13,9 @@ namespace Pulumi.Vault.Database.Inputs
     public sealed class SecretBackendConnectionRedshiftArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Specifies the Redshift DSN. See
+        /// A URL containing connection information. See
         /// the [Vault
-        /// docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+        /// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
         /// for an example.
         /// </summary>
         [Input("connectionUrl")]
@@ -28,21 +28,22 @@ namespace Pulumi.Vault.Database.Inputs
         public Input<bool>? DisableEscaping { get; set; }
 
         /// <summary>
-        /// The maximum amount of time a connection may be reused.
+        /// The maximum number of seconds to keep
+        /// a connection alive for.
         /// </summary>
         [Input("maxConnectionLifetime")]
         public Input<int>? MaxConnectionLifetime { get; set; }
 
         /// <summary>
         /// The maximum number of idle connections to
-        /// the database.
+        /// maintain.
         /// </summary>
         [Input("maxIdleConnections")]
         public Input<int>? MaxIdleConnections { get; set; }
 
         /// <summary>
         /// The maximum number of open connections to
-        /// the database.
+        /// use.
         /// </summary>
         [Input("maxOpenConnections")]
         public Input<int>? MaxOpenConnections { get; set; }
@@ -51,7 +52,7 @@ namespace Pulumi.Vault.Database.Inputs
         private Input<string>? _password;
 
         /// <summary>
-        /// The root credential password used in the connection URL.
+        /// The password to authenticate with.
         /// </summary>
         public Input<string>? Password
         {
@@ -64,13 +65,13 @@ namespace Pulumi.Vault.Database.Inputs
         }
 
         /// <summary>
-        /// The root credential username used in the connection URL.
+        /// The username to authenticate with.
         /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }
 
         /// <summary>
-        /// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        /// Template describing how dynamic usernames are generated.
         /// </summary>
         [Input("usernameTemplate")]
         public Input<string>? UsernameTemplate { get; set; }

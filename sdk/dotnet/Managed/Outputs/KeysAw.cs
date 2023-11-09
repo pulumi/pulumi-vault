@@ -40,8 +40,8 @@ namespace Pulumi.Vault.Managed.Outputs
         /// </summary>
         public readonly bool? AnyMount;
         /// <summary>
-        /// Supplies the curve value when using the `CKM_ECDSA` mechanism.
-        /// Required if `allow_generate_key` is `true`.
+        /// The curve to use for an ECDSA key. Used when `key_type` 
+        /// is `ECDSA`. Required if `allow_generate_key` is `true`.
         /// </summary>
         public readonly string? Curve;
         /// <summary>
@@ -49,9 +49,7 @@ namespace Pulumi.Vault.Managed.Outputs
         /// </summary>
         public readonly string? Endpoint;
         /// <summary>
-        /// Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
-        /// `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
-        /// `allow_generate_key` is `true`.
+        /// The size in bits for an RSA key.
         /// </summary>
         public readonly string KeyBits;
         /// <summary>

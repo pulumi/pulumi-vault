@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Provides a resource to create a role in an [Cert auth backend within Vault](https://www.vaultproject.io/docs/auth/cert.html).
@@ -20,7 +22,7 @@ import (
 //
 // import (
 //
-//	"io/ioutil"
+//	"os"
 //
 //	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -28,7 +30,7 @@ import (
 // )
 //
 //	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := ioutil.ReadFile(path)
+//		data, err := os.ReadFile(path)
 //		if err != nil {
 //			panic(err.Error())
 //		}
@@ -96,7 +98,30 @@ type CertAuthBackendRole struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
-	// TLS extensions required on client certificates
+	// Any additional CA certificates
+	// needed to verify OCSP responses. Provided as base64 encoded PEM data.
+	// Requires Vault version 1.13+.
+	OcspCaCertificates pulumi.StringPtrOutput `pulumi:"ocspCaCertificates"`
+	// If enabled, validate certificates'
+	// revocation status using OCSP. Requires Vault version 1.13+.
+	OcspEnabled pulumi.BoolOutput `pulumi:"ocspEnabled"`
+	// If true and an OCSP response cannot
+	// be fetched or is of an unknown status, the login will proceed as if the
+	// certificate has not been revoked.
+	// Requires Vault version 1.13+.
+	OcspFailOpen pulumi.BoolOutput `pulumi:"ocspFailOpen"`
+	// If set to true, rather than
+	// accepting the first successful OCSP response, query all servers and consider
+	// the certificate valid only if all servers agree.
+	// Requires Vault version 1.13+.
+	OcspQueryAllServers pulumi.BoolOutput `pulumi:"ocspQueryAllServers"`
+	// : A comma-separated list of OCSP
+	// server addresses. If unset, the OCSP server is determined from the
+	// AuthorityInformationAccess extension on the certificate being inspected.
+	// Requires Vault version 1.13+.
+	OcspServersOverrides pulumi.StringArrayOutput `pulumi:"ocspServersOverrides"`
+	// TLS extensions required on
+	// client certificates
 	RequiredExtensions pulumi.StringArrayOutput `pulumi:"requiredExtensions"`
 	// List of CIDR blocks; if set, specifies blocks of IP
 	// addresses which can authenticate successfully, and ties the resulting token to these blocks
@@ -132,6 +157,8 @@ type CertAuthBackendRole struct {
 	// `service` tokens). For token store roles, there are two additional possibilities:
 	// `default-service` and `default-batch` which specify the type to return unless the client
 	// requests a different type at generation time.
+	//
+	// For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
 	TokenType pulumi.StringPtrOutput `pulumi:"tokenType"`
 }
 
@@ -145,6 +172,7 @@ func NewCertAuthBackendRole(ctx *pulumi.Context,
 	if args.Certificate == nil {
 		return nil, errors.New("invalid value for required argument 'Certificate'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource CertAuthBackendRole
 	err := ctx.RegisterResource("vault:index/certAuthBackendRole:CertAuthBackendRole", name, args, &resource, opts...)
 	if err != nil {
@@ -195,7 +223,30 @@ type certAuthBackendRoleState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
-	// TLS extensions required on client certificates
+	// Any additional CA certificates
+	// needed to verify OCSP responses. Provided as base64 encoded PEM data.
+	// Requires Vault version 1.13+.
+	OcspCaCertificates *string `pulumi:"ocspCaCertificates"`
+	// If enabled, validate certificates'
+	// revocation status using OCSP. Requires Vault version 1.13+.
+	OcspEnabled *bool `pulumi:"ocspEnabled"`
+	// If true and an OCSP response cannot
+	// be fetched or is of an unknown status, the login will proceed as if the
+	// certificate has not been revoked.
+	// Requires Vault version 1.13+.
+	OcspFailOpen *bool `pulumi:"ocspFailOpen"`
+	// If set to true, rather than
+	// accepting the first successful OCSP response, query all servers and consider
+	// the certificate valid only if all servers agree.
+	// Requires Vault version 1.13+.
+	OcspQueryAllServers *bool `pulumi:"ocspQueryAllServers"`
+	// : A comma-separated list of OCSP
+	// server addresses. If unset, the OCSP server is determined from the
+	// AuthorityInformationAccess extension on the certificate being inspected.
+	// Requires Vault version 1.13+.
+	OcspServersOverrides []string `pulumi:"ocspServersOverrides"`
+	// TLS extensions required on
+	// client certificates
 	RequiredExtensions []string `pulumi:"requiredExtensions"`
 	// List of CIDR blocks; if set, specifies blocks of IP
 	// addresses which can authenticate successfully, and ties the resulting token to these blocks
@@ -231,6 +282,8 @@ type certAuthBackendRoleState struct {
 	// `service` tokens). For token store roles, there are two additional possibilities:
 	// `default-service` and `default-batch` which specify the type to return unless the client
 	// requests a different type at generation time.
+	//
+	// For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
 	TokenType *string `pulumi:"tokenType"`
 }
 
@@ -263,7 +316,30 @@ type CertAuthBackendRoleState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
-	// TLS extensions required on client certificates
+	// Any additional CA certificates
+	// needed to verify OCSP responses. Provided as base64 encoded PEM data.
+	// Requires Vault version 1.13+.
+	OcspCaCertificates pulumi.StringPtrInput
+	// If enabled, validate certificates'
+	// revocation status using OCSP. Requires Vault version 1.13+.
+	OcspEnabled pulumi.BoolPtrInput
+	// If true and an OCSP response cannot
+	// be fetched or is of an unknown status, the login will proceed as if the
+	// certificate has not been revoked.
+	// Requires Vault version 1.13+.
+	OcspFailOpen pulumi.BoolPtrInput
+	// If set to true, rather than
+	// accepting the first successful OCSP response, query all servers and consider
+	// the certificate valid only if all servers agree.
+	// Requires Vault version 1.13+.
+	OcspQueryAllServers pulumi.BoolPtrInput
+	// : A comma-separated list of OCSP
+	// server addresses. If unset, the OCSP server is determined from the
+	// AuthorityInformationAccess extension on the certificate being inspected.
+	// Requires Vault version 1.13+.
+	OcspServersOverrides pulumi.StringArrayInput
+	// TLS extensions required on
+	// client certificates
 	RequiredExtensions pulumi.StringArrayInput
 	// List of CIDR blocks; if set, specifies blocks of IP
 	// addresses which can authenticate successfully, and ties the resulting token to these blocks
@@ -299,6 +375,8 @@ type CertAuthBackendRoleState struct {
 	// `service` tokens). For token store roles, there are two additional possibilities:
 	// `default-service` and `default-batch` which specify the type to return unless the client
 	// requests a different type at generation time.
+	//
+	// For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
 	TokenType pulumi.StringPtrInput
 }
 
@@ -335,7 +413,30 @@ type certAuthBackendRoleArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
-	// TLS extensions required on client certificates
+	// Any additional CA certificates
+	// needed to verify OCSP responses. Provided as base64 encoded PEM data.
+	// Requires Vault version 1.13+.
+	OcspCaCertificates *string `pulumi:"ocspCaCertificates"`
+	// If enabled, validate certificates'
+	// revocation status using OCSP. Requires Vault version 1.13+.
+	OcspEnabled *bool `pulumi:"ocspEnabled"`
+	// If true and an OCSP response cannot
+	// be fetched or is of an unknown status, the login will proceed as if the
+	// certificate has not been revoked.
+	// Requires Vault version 1.13+.
+	OcspFailOpen *bool `pulumi:"ocspFailOpen"`
+	// If set to true, rather than
+	// accepting the first successful OCSP response, query all servers and consider
+	// the certificate valid only if all servers agree.
+	// Requires Vault version 1.13+.
+	OcspQueryAllServers *bool `pulumi:"ocspQueryAllServers"`
+	// : A comma-separated list of OCSP
+	// server addresses. If unset, the OCSP server is determined from the
+	// AuthorityInformationAccess extension on the certificate being inspected.
+	// Requires Vault version 1.13+.
+	OcspServersOverrides []string `pulumi:"ocspServersOverrides"`
+	// TLS extensions required on
+	// client certificates
 	RequiredExtensions []string `pulumi:"requiredExtensions"`
 	// List of CIDR blocks; if set, specifies blocks of IP
 	// addresses which can authenticate successfully, and ties the resulting token to these blocks
@@ -371,6 +472,8 @@ type certAuthBackendRoleArgs struct {
 	// `service` tokens). For token store roles, there are two additional possibilities:
 	// `default-service` and `default-batch` which specify the type to return unless the client
 	// requests a different type at generation time.
+	//
+	// For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
 	TokenType *string `pulumi:"tokenType"`
 }
 
@@ -404,7 +507,30 @@ type CertAuthBackendRoleArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
-	// TLS extensions required on client certificates
+	// Any additional CA certificates
+	// needed to verify OCSP responses. Provided as base64 encoded PEM data.
+	// Requires Vault version 1.13+.
+	OcspCaCertificates pulumi.StringPtrInput
+	// If enabled, validate certificates'
+	// revocation status using OCSP. Requires Vault version 1.13+.
+	OcspEnabled pulumi.BoolPtrInput
+	// If true and an OCSP response cannot
+	// be fetched or is of an unknown status, the login will proceed as if the
+	// certificate has not been revoked.
+	// Requires Vault version 1.13+.
+	OcspFailOpen pulumi.BoolPtrInput
+	// If set to true, rather than
+	// accepting the first successful OCSP response, query all servers and consider
+	// the certificate valid only if all servers agree.
+	// Requires Vault version 1.13+.
+	OcspQueryAllServers pulumi.BoolPtrInput
+	// : A comma-separated list of OCSP
+	// server addresses. If unset, the OCSP server is determined from the
+	// AuthorityInformationAccess extension on the certificate being inspected.
+	// Requires Vault version 1.13+.
+	OcspServersOverrides pulumi.StringArrayInput
+	// TLS extensions required on
+	// client certificates
 	RequiredExtensions pulumi.StringArrayInput
 	// List of CIDR blocks; if set, specifies blocks of IP
 	// addresses which can authenticate successfully, and ties the resulting token to these blocks
@@ -440,6 +566,8 @@ type CertAuthBackendRoleArgs struct {
 	// `service` tokens). For token store roles, there are two additional possibilities:
 	// `default-service` and `default-batch` which specify the type to return unless the client
 	// requests a different type at generation time.
+	//
+	// For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
 	TokenType pulumi.StringPtrInput
 }
 
@@ -464,6 +592,12 @@ func (i *CertAuthBackendRole) ToCertAuthBackendRoleOutput() CertAuthBackendRoleO
 
 func (i *CertAuthBackendRole) ToCertAuthBackendRoleOutputWithContext(ctx context.Context) CertAuthBackendRoleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CertAuthBackendRoleOutput)
+}
+
+func (i *CertAuthBackendRole) ToOutput(ctx context.Context) pulumix.Output[*CertAuthBackendRole] {
+	return pulumix.Output[*CertAuthBackendRole]{
+		OutputState: i.ToCertAuthBackendRoleOutputWithContext(ctx).OutputState,
+	}
 }
 
 // CertAuthBackendRoleArrayInput is an input type that accepts CertAuthBackendRoleArray and CertAuthBackendRoleArrayOutput values.
@@ -491,6 +625,12 @@ func (i CertAuthBackendRoleArray) ToCertAuthBackendRoleArrayOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(CertAuthBackendRoleArrayOutput)
 }
 
+func (i CertAuthBackendRoleArray) ToOutput(ctx context.Context) pulumix.Output[[]*CertAuthBackendRole] {
+	return pulumix.Output[[]*CertAuthBackendRole]{
+		OutputState: i.ToCertAuthBackendRoleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 // CertAuthBackendRoleMapInput is an input type that accepts CertAuthBackendRoleMap and CertAuthBackendRoleMapOutput values.
 // You can construct a concrete instance of `CertAuthBackendRoleMapInput` via:
 //
@@ -516,6 +656,12 @@ func (i CertAuthBackendRoleMap) ToCertAuthBackendRoleMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(CertAuthBackendRoleMapOutput)
 }
 
+func (i CertAuthBackendRoleMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CertAuthBackendRole] {
+	return pulumix.Output[map[string]*CertAuthBackendRole]{
+		OutputState: i.ToCertAuthBackendRoleMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type CertAuthBackendRoleOutput struct{ *pulumi.OutputState }
 
 func (CertAuthBackendRoleOutput) ElementType() reflect.Type {
@@ -528,6 +674,12 @@ func (o CertAuthBackendRoleOutput) ToCertAuthBackendRoleOutput() CertAuthBackend
 
 func (o CertAuthBackendRoleOutput) ToCertAuthBackendRoleOutputWithContext(ctx context.Context) CertAuthBackendRoleOutput {
 	return o
+}
+
+func (o CertAuthBackendRoleOutput) ToOutput(ctx context.Context) pulumix.Output[*CertAuthBackendRole] {
+	return pulumix.Output[*CertAuthBackendRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Allowed the common names for authenticated client certificates
@@ -594,7 +746,45 @@ func (o CertAuthBackendRoleOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
-// TLS extensions required on client certificates
+// Any additional CA certificates
+// needed to verify OCSP responses. Provided as base64 encoded PEM data.
+// Requires Vault version 1.13+.
+func (o CertAuthBackendRoleOutput) OcspCaCertificates() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringPtrOutput { return v.OcspCaCertificates }).(pulumi.StringPtrOutput)
+}
+
+// If enabled, validate certificates'
+// revocation status using OCSP. Requires Vault version 1.13+.
+func (o CertAuthBackendRoleOutput) OcspEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.BoolOutput { return v.OcspEnabled }).(pulumi.BoolOutput)
+}
+
+// If true and an OCSP response cannot
+// be fetched or is of an unknown status, the login will proceed as if the
+// certificate has not been revoked.
+// Requires Vault version 1.13+.
+func (o CertAuthBackendRoleOutput) OcspFailOpen() pulumi.BoolOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.BoolOutput { return v.OcspFailOpen }).(pulumi.BoolOutput)
+}
+
+// If set to true, rather than
+// accepting the first successful OCSP response, query all servers and consider
+// the certificate valid only if all servers agree.
+// Requires Vault version 1.13+.
+func (o CertAuthBackendRoleOutput) OcspQueryAllServers() pulumi.BoolOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.BoolOutput { return v.OcspQueryAllServers }).(pulumi.BoolOutput)
+}
+
+// : A comma-separated list of OCSP
+// server addresses. If unset, the OCSP server is determined from the
+// AuthorityInformationAccess extension on the certificate being inspected.
+// Requires Vault version 1.13+.
+func (o CertAuthBackendRoleOutput) OcspServersOverrides() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringArrayOutput { return v.OcspServersOverrides }).(pulumi.StringArrayOutput)
+}
+
+// TLS extensions required on
+// client certificates
 func (o CertAuthBackendRoleOutput) RequiredExtensions() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringArrayOutput { return v.RequiredExtensions }).(pulumi.StringArrayOutput)
 }
@@ -657,6 +847,8 @@ func (o CertAuthBackendRoleOutput) TokenTtl() pulumi.IntPtrOutput {
 // `service` tokens). For token store roles, there are two additional possibilities:
 // `default-service` and `default-batch` which specify the type to return unless the client
 // requests a different type at generation time.
+//
+// For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
 func (o CertAuthBackendRoleOutput) TokenType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringPtrOutput { return v.TokenType }).(pulumi.StringPtrOutput)
 }
@@ -673,6 +865,12 @@ func (o CertAuthBackendRoleArrayOutput) ToCertAuthBackendRoleArrayOutput() CertA
 
 func (o CertAuthBackendRoleArrayOutput) ToCertAuthBackendRoleArrayOutputWithContext(ctx context.Context) CertAuthBackendRoleArrayOutput {
 	return o
+}
+
+func (o CertAuthBackendRoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CertAuthBackendRole] {
+	return pulumix.Output[[]*CertAuthBackendRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CertAuthBackendRoleArrayOutput) Index(i pulumi.IntInput) CertAuthBackendRoleOutput {
@@ -693,6 +891,12 @@ func (o CertAuthBackendRoleMapOutput) ToCertAuthBackendRoleMapOutput() CertAuthB
 
 func (o CertAuthBackendRoleMapOutput) ToCertAuthBackendRoleMapOutputWithContext(ctx context.Context) CertAuthBackendRoleMapOutput {
 	return o
+}
+
+func (o CertAuthBackendRoleMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CertAuthBackendRole] {
+	return pulumix.Output[map[string]*CertAuthBackendRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CertAuthBackendRoleMapOutput) MapIndex(k pulumi.StringInput) CertAuthBackendRoleOutput {

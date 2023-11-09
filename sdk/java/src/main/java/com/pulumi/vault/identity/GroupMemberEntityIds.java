@@ -123,12 +123,20 @@ public class GroupMemberEntityIds extends com.pulumi.resources.CustomResource {
     /**
      * Defaults to `true`.
      * 
+     * If `true`, this resource will take exclusive control of the member entities that belong to the group and will set it equal to what is specified in the resource.
+     * 
+     * If set to `false`, this resource will simply ensure that the member entities specified in the resource are present in the group. When destroying the resource, the resource will ensure that the member entities specified in the resource are removed.
+     * 
      */
     @Export(name="exclusive", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> exclusive;
 
     /**
      * @return Defaults to `true`.
+     * 
+     * If `true`, this resource will take exclusive control of the member entities that belong to the group and will set it equal to what is specified in the resource.
+     * 
+     * If set to `false`, this resource will simply ensure that the member entities specified in the resource are present in the group. When destroying the resource, the resource will ensure that the member entities specified in the resource are removed.
      * 
      */
     public Output<Optional<Boolean>> exclusive() {

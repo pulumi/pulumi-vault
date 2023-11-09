@@ -95,7 +95,9 @@ export class Endpoint extends pulumi.CustomResource {
      */
     public readonly dataJson!: pulumi.Output<string>;
     /**
-     * Don't attempt to delete the path from Vault if true
+     * - (Optional) True/false. Set this to true if your
+     * vault authentication is not able to delete the data or if the endpoint
+     * does not support the `DELETE` method. Defaults to false.
      */
     public readonly disableDelete!: pulumi.Output<boolean | undefined>;
     /**
@@ -107,7 +109,13 @@ export class Endpoint extends pulumi.CustomResource {
      */
     public readonly disableRead!: pulumi.Output<boolean | undefined>;
     /**
-     * When reading, disregard fields not present in data_json
+     * - (Optional) True/false. If set to true,
+     * ignore any fields present when the endpoint is read but that were not
+     * in `dataJson`. Also, if a field that was written is not returned when
+     * the endpoint is read, treat that field as being up to date. You should
+     * set this to `true` when writing to endpoint that, when read, returns a
+     * different set of fields from the ones you wrote, as is common with
+     * many configuration endpoints. Defaults to false.
      */
     public readonly ignoreAbsentFields!: pulumi.Output<boolean | undefined>;
     /**
@@ -125,15 +133,26 @@ export class Endpoint extends pulumi.CustomResource {
      */
     public readonly path!: pulumi.Output<string>;
     /**
-     * Map of strings returned by write operation
+     * - A map whose keys are the top-level data keys
+     * returned from Vault by the write operation and whose values are the
+     * corresponding values. This map can only represent string data, so
+     * any non-string values returned from Vault are serialized as JSON.
+     * Only fields set in `writeFields` are present in the JSON data.
      */
     public /*out*/ readonly writeData!: pulumi.Output<{[key: string]: string}>;
     /**
-     * JSON data returned by write operation
+     * - The JSON data returned by the write operation.
+     * Only fields set in `writeFields` are present in the JSON data.
      */
     public /*out*/ readonly writeDataJson!: pulumi.Output<string>;
     /**
-     * Top-level fields returned by write to persist in state
+     * - (Optional). A list of fields that should be returned
+     * in `writeDataJson` and `writeData`. If omitted, data returned by
+     * the write operation is not available to the resource or included in
+     * state. This helps to avoid accidental storage of sensitive values in
+     * state. Some endpoints, such as many dynamic secrets endpoints, return
+     * data from writing to an endpoint rather than reading it. You should
+     * use `writeFields` if you need information returned in this way.
      */
     public readonly writeFields!: pulumi.Output<string[] | undefined>;
 
@@ -194,7 +213,9 @@ export interface EndpointState {
      */
     dataJson?: pulumi.Input<string>;
     /**
-     * Don't attempt to delete the path from Vault if true
+     * - (Optional) True/false. Set this to true if your
+     * vault authentication is not able to delete the data or if the endpoint
+     * does not support the `DELETE` method. Defaults to false.
      */
     disableDelete?: pulumi.Input<boolean>;
     /**
@@ -206,7 +227,13 @@ export interface EndpointState {
      */
     disableRead?: pulumi.Input<boolean>;
     /**
-     * When reading, disregard fields not present in data_json
+     * - (Optional) True/false. If set to true,
+     * ignore any fields present when the endpoint is read but that were not
+     * in `dataJson`. Also, if a field that was written is not returned when
+     * the endpoint is read, treat that field as being up to date. You should
+     * set this to `true` when writing to endpoint that, when read, returns a
+     * different set of fields from the ones you wrote, as is common with
+     * many configuration endpoints. Defaults to false.
      */
     ignoreAbsentFields?: pulumi.Input<boolean>;
     /**
@@ -224,15 +251,26 @@ export interface EndpointState {
      */
     path?: pulumi.Input<string>;
     /**
-     * Map of strings returned by write operation
+     * - A map whose keys are the top-level data keys
+     * returned from Vault by the write operation and whose values are the
+     * corresponding values. This map can only represent string data, so
+     * any non-string values returned from Vault are serialized as JSON.
+     * Only fields set in `writeFields` are present in the JSON data.
      */
     writeData?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * JSON data returned by write operation
+     * - The JSON data returned by the write operation.
+     * Only fields set in `writeFields` are present in the JSON data.
      */
     writeDataJson?: pulumi.Input<string>;
     /**
-     * Top-level fields returned by write to persist in state
+     * - (Optional). A list of fields that should be returned
+     * in `writeDataJson` and `writeData`. If omitted, data returned by
+     * the write operation is not available to the resource or included in
+     * state. This helps to avoid accidental storage of sensitive values in
+     * state. Some endpoints, such as many dynamic secrets endpoints, return
+     * data from writing to an endpoint rather than reading it. You should
+     * use `writeFields` if you need information returned in this way.
      */
     writeFields?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -247,7 +285,9 @@ export interface EndpointArgs {
      */
     dataJson: pulumi.Input<string>;
     /**
-     * Don't attempt to delete the path from Vault if true
+     * - (Optional) True/false. Set this to true if your
+     * vault authentication is not able to delete the data or if the endpoint
+     * does not support the `DELETE` method. Defaults to false.
      */
     disableDelete?: pulumi.Input<boolean>;
     /**
@@ -259,7 +299,13 @@ export interface EndpointArgs {
      */
     disableRead?: pulumi.Input<boolean>;
     /**
-     * When reading, disregard fields not present in data_json
+     * - (Optional) True/false. If set to true,
+     * ignore any fields present when the endpoint is read but that were not
+     * in `dataJson`. Also, if a field that was written is not returned when
+     * the endpoint is read, treat that field as being up to date. You should
+     * set this to `true` when writing to endpoint that, when read, returns a
+     * different set of fields from the ones you wrote, as is common with
+     * many configuration endpoints. Defaults to false.
      */
     ignoreAbsentFields?: pulumi.Input<boolean>;
     /**
@@ -277,7 +323,13 @@ export interface EndpointArgs {
      */
     path: pulumi.Input<string>;
     /**
-     * Top-level fields returned by write to persist in state
+     * - (Optional). A list of fields that should be returned
+     * in `writeDataJson` and `writeData`. If omitted, data returned by
+     * the write operation is not available to the resource or included in
+     * state. This helps to avoid accidental storage of sensitive values in
+     * state. Some endpoints, such as many dynamic secrets endpoints, return
+     * data from writing to an endpoint rather than reading it. You should
+     * use `writeFields` if you need information returned in this way.
      */
     writeFields?: pulumi.Input<pulumi.Input<string>[]>;
 }

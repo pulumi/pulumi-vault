@@ -19,6 +19,7 @@ class TransformationArgs:
                  deletion_allowed: Optional[pulumi.Input[bool]] = None,
                  masking_character: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  template: Optional[pulumi.Input[str]] = None,
                  templates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tweak_source: Optional[pulumi.Input[str]] = None,
@@ -32,6 +33,10 @@ class TransformationArgs:
                *Only supported on vault-1.12+*
         :param pulumi.Input[str] masking_character: The character used to replace data when in masking mode
         :param pulumi.Input[str] name: The name of the transformation.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] template: The name of the template to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] templates: Templates configured for transformation.
         :param pulumi.Input[str] tweak_source: The source of where the tweak value comes from. Only valid when in FPE mode.
@@ -46,6 +51,8 @@ class TransformationArgs:
             pulumi.set(__self__, "masking_character", masking_character)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if template is not None:
             pulumi.set(__self__, "template", template)
         if templates is not None:
@@ -119,6 +126,21 @@ class TransformationArgs:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def template(self) -> Optional[pulumi.Input[str]]:
         """
         The name of the template to use.
@@ -173,6 +195,7 @@ class _TransformationState:
                  deletion_allowed: Optional[pulumi.Input[bool]] = None,
                  masking_character: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  template: Optional[pulumi.Input[str]] = None,
                  templates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -186,6 +209,10 @@ class _TransformationState:
                *Only supported on vault-1.12+*
         :param pulumi.Input[str] masking_character: The character used to replace data when in masking mode
         :param pulumi.Input[str] name: The name of the transformation.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
         :param pulumi.Input[str] template: The name of the template to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] templates: Templates configured for transformation.
@@ -200,6 +227,8 @@ class _TransformationState:
             pulumi.set(__self__, "masking_character", masking_character)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if path is not None:
             pulumi.set(__self__, "path", path)
         if template is not None:
@@ -260,6 +289,21 @@ class _TransformationState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -331,6 +375,7 @@ class Transformation(pulumi.CustomResource):
                  deletion_allowed: Optional[pulumi.Input[bool]] = None,
                  masking_character: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  template: Optional[pulumi.Input[str]] = None,
                  templates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -347,6 +392,10 @@ class Transformation(pulumi.CustomResource):
                *Only supported on vault-1.12+*
         :param pulumi.Input[str] masking_character: The character used to replace data when in masking mode
         :param pulumi.Input[str] name: The name of the transformation.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
         :param pulumi.Input[str] template: The name of the template to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] templates: Templates configured for transformation.
@@ -380,6 +429,7 @@ class Transformation(pulumi.CustomResource):
                  deletion_allowed: Optional[pulumi.Input[bool]] = None,
                  masking_character: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  template: Optional[pulumi.Input[str]] = None,
                  templates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -398,6 +448,7 @@ class Transformation(pulumi.CustomResource):
             __props__.__dict__["deletion_allowed"] = deletion_allowed
             __props__.__dict__["masking_character"] = masking_character
             __props__.__dict__["name"] = name
+            __props__.__dict__["namespace"] = namespace
             if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
             __props__.__dict__["path"] = path
@@ -419,6 +470,7 @@ class Transformation(pulumi.CustomResource):
             deletion_allowed: Optional[pulumi.Input[bool]] = None,
             masking_character: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
             template: Optional[pulumi.Input[str]] = None,
             templates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -437,6 +489,10 @@ class Transformation(pulumi.CustomResource):
                *Only supported on vault-1.12+*
         :param pulumi.Input[str] masking_character: The character used to replace data when in masking mode
         :param pulumi.Input[str] name: The name of the transformation.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
         :param pulumi.Input[str] template: The name of the template to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] templates: Templates configured for transformation.
@@ -451,6 +507,7 @@ class Transformation(pulumi.CustomResource):
         __props__.__dict__["deletion_allowed"] = deletion_allowed
         __props__.__dict__["masking_character"] = masking_character
         __props__.__dict__["name"] = name
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["path"] = path
         __props__.__dict__["template"] = template
         __props__.__dict__["templates"] = templates
@@ -491,6 +548,17 @@ class Transformation(pulumi.CustomResource):
         The name of the transformation.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

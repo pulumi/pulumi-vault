@@ -8,28 +8,28 @@ import * as utilities from "../utilities";
 export { AuthBackendConfigArgs, AuthBackendConfigState } from "./authBackendConfig";
 export type AuthBackendConfig = import("./authBackendConfig").AuthBackendConfig;
 export const AuthBackendConfig: typeof import("./authBackendConfig").AuthBackendConfig = null as any;
+utilities.lazyLoad(exports, ["AuthBackendConfig"], () => require("./authBackendConfig"));
 
 export { AuthBackendRoleArgs, AuthBackendRoleState } from "./authBackendRole";
 export type AuthBackendRole = import("./authBackendRole").AuthBackendRole;
 export const AuthBackendRole: typeof import("./authBackendRole").AuthBackendRole = null as any;
+utilities.lazyLoad(exports, ["AuthBackendRole"], () => require("./authBackendRole"));
 
 export { BackendArgs, BackendState } from "./backend";
 export type Backend = import("./backend").Backend;
 export const Backend: typeof import("./backend").Backend = null as any;
+utilities.lazyLoad(exports, ["Backend"], () => require("./backend"));
 
 export { BackendRoleArgs, BackendRoleState } from "./backendRole";
 export type BackendRole = import("./backendRole").BackendRole;
 export const BackendRole: typeof import("./backendRole").BackendRole = null as any;
+utilities.lazyLoad(exports, ["BackendRole"], () => require("./backendRole"));
 
 export { GetAccessCredentialsArgs, GetAccessCredentialsResult, GetAccessCredentialsOutputArgs } from "./getAccessCredentials";
 export const getAccessCredentials: typeof import("./getAccessCredentials").getAccessCredentials = null as any;
 export const getAccessCredentialsOutput: typeof import("./getAccessCredentials").getAccessCredentialsOutput = null as any;
-
-utilities.lazyLoad(exports, ["AuthBackendConfig"], () => require("./authBackendConfig"));
-utilities.lazyLoad(exports, ["AuthBackendRole"], () => require("./authBackendRole"));
-utilities.lazyLoad(exports, ["Backend"], () => require("./backend"));
-utilities.lazyLoad(exports, ["BackendRole"], () => require("./backendRole"));
 utilities.lazyLoad(exports, ["getAccessCredentials","getAccessCredentialsOutput"], () => require("./getAccessCredentials"));
+
 
 const _module = {
     version: utilities.getVersion(),

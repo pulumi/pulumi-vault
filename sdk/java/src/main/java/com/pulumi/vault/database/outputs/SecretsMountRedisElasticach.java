@@ -24,11 +24,13 @@ public final class SecretsMountRedisElasticach {
     /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
+     * Supported list of database secrets engines that can be configured:
+     * 
      */
     private @Nullable Map<String,Object> data;
     private String name;
     /**
-     * @return The password to be used in the connection.
+     * @return The root credential password used in the connection URL.
      * 
      */
     private @Nullable String password;
@@ -49,12 +51,13 @@ public final class SecretsMountRedisElasticach {
      */
     private @Nullable List<String> rootRotationStatements;
     /**
-     * @return The configuration endpoint for the ElastiCache cluster to connect to.
+     * @return The URL for Elasticsearch&#39;s API. https requires certificate
+     * by trusted CA if used.
      * 
      */
     private String url;
     /**
-     * @return The username to be used in the connection (the account admin level).
+     * @return The root credential username used in the connection URL.
      * 
      */
     private @Nullable String username;
@@ -77,6 +80,8 @@ public final class SecretsMountRedisElasticach {
     /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
+     * Supported list of database secrets engines that can be configured:
+     * 
      */
     public Map<String,Object> data() {
         return this.data == null ? Map.of() : this.data;
@@ -85,7 +90,7 @@ public final class SecretsMountRedisElasticach {
         return this.name;
     }
     /**
-     * @return The password to be used in the connection.
+     * @return The root credential password used in the connection URL.
      * 
      */
     public Optional<String> password() {
@@ -114,14 +119,15 @@ public final class SecretsMountRedisElasticach {
         return this.rootRotationStatements == null ? List.of() : this.rootRotationStatements;
     }
     /**
-     * @return The configuration endpoint for the ElastiCache cluster to connect to.
+     * @return The URL for Elasticsearch&#39;s API. https requires certificate
+     * by trusted CA if used.
      * 
      */
     public String url() {
         return this.url;
     }
     /**
-     * @return The username to be used in the connection (the account admin level).
+     * @return The root credential username used in the connection URL.
      * 
      */
     public Optional<String> username() {

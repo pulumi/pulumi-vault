@@ -116,14 +116,14 @@ public class SecretBackendCa extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.namespace);
     }
     /**
-     * The private key part the SSH CA key pair; required if generate_signing_key is false.
+     * Private key part the SSH CA key pair; required if generate_signing_key is false.
      * 
      */
     @Export(name="privateKey", refs={String.class}, tree="[0]")
     private Output<String> privateKey;
 
     /**
-     * @return The private key part the SSH CA key pair; required if generate_signing_key is false.
+     * @return Private key part the SSH CA key pair; required if generate_signing_key is false.
      * 
      */
     public Output<String> privateKey() {

@@ -19,7 +19,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly ImmutableArray<string> AllowedRoles;
         /// <summary>
-        /// The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
+        /// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
         /// </summary>
         public readonly string? CaCert;
         /// <summary>
@@ -36,6 +36,8 @@ namespace Pulumi.Vault.Database.Outputs
         public readonly string? ClientKey;
         /// <summary>
         /// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        /// 
+        /// Supported list of database secrets engines that can be configured:
         /// </summary>
         public readonly ImmutableDictionary<string, object>? Data;
         /// <summary>
@@ -44,7 +46,7 @@ namespace Pulumi.Vault.Database.Outputs
         public readonly bool? Insecure;
         public readonly string Name;
         /// <summary>
-        /// The password to be used in the connection.
+        /// The root credential password used in the connection URL.
         /// </summary>
         public readonly string Password;
         /// <summary>
@@ -60,15 +62,16 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string? TlsServerName;
         /// <summary>
-        /// The configuration endpoint for the ElastiCache cluster to connect to.
+        /// The URL for Elasticsearch's API. https requires certificate
+        /// by trusted CA if used.
         /// </summary>
         public readonly string Url;
         /// <summary>
-        /// The username to be used in the connection (the account admin level).
+        /// The root credential username used in the connection URL.
         /// </summary>
         public readonly string Username;
         /// <summary>
-        /// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        /// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         /// </summary>
         public readonly string? UsernameTemplate;
         /// <summary>

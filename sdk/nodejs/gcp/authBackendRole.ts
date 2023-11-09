@@ -87,7 +87,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly boundLabels!: pulumi.Output<string[]>;
     /**
-     * GCP Projects that the role exists within
+     * An array of GCP project IDs. Only entities belonging to this project can authenticate under the role.
      */
     public readonly boundProjects!: pulumi.Output<string[] | undefined>;
     /**
@@ -268,7 +268,7 @@ export interface AuthBackendRoleState {
      */
     boundLabels?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * GCP Projects that the role exists within
+     * An array of GCP project IDs. Only entities belonging to this project can authenticate under the role.
      */
     boundProjects?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -379,7 +379,7 @@ export interface AuthBackendRoleArgs {
      */
     boundLabels?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * GCP Projects that the role exists within
+     * An array of GCP project IDs. Only entities belonging to this project can authenticate under the role.
      */
     boundProjects?: pulumi.Input<pulumi.Input<string>[]>;
     /**

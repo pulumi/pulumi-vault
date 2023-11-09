@@ -26,6 +26,11 @@ class CertAuthBackendRoleArgs:
                  display_name: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 ocsp_ca_certificates: Optional[pulumi.Input[str]] = None,
+                 ocsp_enabled: Optional[pulumi.Input[bool]] = None,
+                 ocsp_fail_open: Optional[pulumi.Input[bool]] = None,
+                 ocsp_query_all_servers: Optional[pulumi.Input[bool]] = None,
+                 ocsp_servers_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  required_extensions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -53,7 +58,25 @@ class CertAuthBackendRoleArgs:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] required_extensions: TLS extensions required on client certificates
+        :param pulumi.Input[str] ocsp_ca_certificates: Any additional CA certificates
+               needed to verify OCSP responses. Provided as base64 encoded PEM data.
+               Requires Vault version 1.13+.
+        :param pulumi.Input[bool] ocsp_enabled: If enabled, validate certificates'
+               revocation status using OCSP. Requires Vault version 1.13+.
+        :param pulumi.Input[bool] ocsp_fail_open: If true and an OCSP response cannot
+               be fetched or is of an unknown status, the login will proceed as if the
+               certificate has not been revoked.
+               Requires Vault version 1.13+.
+        :param pulumi.Input[bool] ocsp_query_all_servers: If set to true, rather than
+               accepting the first successful OCSP response, query all servers and consider
+               the certificate valid only if all servers agree.
+               Requires Vault version 1.13+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ocsp_servers_overrides: : A comma-separated list of OCSP
+               server addresses. If unset, the OCSP server is determined from the
+               AuthorityInformationAccess extension on the certificate being inspected.
+               Requires Vault version 1.13+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] required_extensions: TLS extensions required on
+               client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
                addresses which can authenticate successfully, and ties the resulting token to these blocks
                as well.
@@ -80,6 +103,8 @@ class CertAuthBackendRoleArgs:
                `service` tokens). For token store roles, there are two additional possibilities:
                `default-service` and `default-batch` which specify the type to return unless the client
                requests a different type at generation time.
+               
+               For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
         """
         pulumi.set(__self__, "certificate", certificate)
         if allowed_common_names is not None:
@@ -107,6 +132,16 @@ class CertAuthBackendRoleArgs:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if ocsp_ca_certificates is not None:
+            pulumi.set(__self__, "ocsp_ca_certificates", ocsp_ca_certificates)
+        if ocsp_enabled is not None:
+            pulumi.set(__self__, "ocsp_enabled", ocsp_enabled)
+        if ocsp_fail_open is not None:
+            pulumi.set(__self__, "ocsp_fail_open", ocsp_fail_open)
+        if ocsp_query_all_servers is not None:
+            pulumi.set(__self__, "ocsp_query_all_servers", ocsp_query_all_servers)
+        if ocsp_servers_overrides is not None:
+            pulumi.set(__self__, "ocsp_servers_overrides", ocsp_servers_overrides)
         if required_extensions is not None:
             pulumi.set(__self__, "required_extensions", required_extensions)
         if token_bound_cidrs is not None:
@@ -191,6 +226,9 @@ class CertAuthBackendRoleArgs:
     @property
     @pulumi.getter(name="allowedOrganizationUnits")
     def allowed_organization_units(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        warnings.warn("""Use allowed_organizational_units""", DeprecationWarning)
+        pulumi.log.warn("""allowed_organization_units is deprecated: Use allowed_organizational_units""")
+
         return pulumi.get(self, "allowed_organization_units")
 
     @allowed_organization_units.setter
@@ -274,10 +312,83 @@ class CertAuthBackendRoleArgs:
         pulumi.set(self, "namespace", value)
 
     @property
+    @pulumi.getter(name="ocspCaCertificates")
+    def ocsp_ca_certificates(self) -> Optional[pulumi.Input[str]]:
+        """
+        Any additional CA certificates
+        needed to verify OCSP responses. Provided as base64 encoded PEM data.
+        Requires Vault version 1.13+.
+        """
+        return pulumi.get(self, "ocsp_ca_certificates")
+
+    @ocsp_ca_certificates.setter
+    def ocsp_ca_certificates(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ocsp_ca_certificates", value)
+
+    @property
+    @pulumi.getter(name="ocspEnabled")
+    def ocsp_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If enabled, validate certificates'
+        revocation status using OCSP. Requires Vault version 1.13+.
+        """
+        return pulumi.get(self, "ocsp_enabled")
+
+    @ocsp_enabled.setter
+    def ocsp_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "ocsp_enabled", value)
+
+    @property
+    @pulumi.getter(name="ocspFailOpen")
+    def ocsp_fail_open(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true and an OCSP response cannot
+        be fetched or is of an unknown status, the login will proceed as if the
+        certificate has not been revoked.
+        Requires Vault version 1.13+.
+        """
+        return pulumi.get(self, "ocsp_fail_open")
+
+    @ocsp_fail_open.setter
+    def ocsp_fail_open(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "ocsp_fail_open", value)
+
+    @property
+    @pulumi.getter(name="ocspQueryAllServers")
+    def ocsp_query_all_servers(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set to true, rather than
+        accepting the first successful OCSP response, query all servers and consider
+        the certificate valid only if all servers agree.
+        Requires Vault version 1.13+.
+        """
+        return pulumi.get(self, "ocsp_query_all_servers")
+
+    @ocsp_query_all_servers.setter
+    def ocsp_query_all_servers(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "ocsp_query_all_servers", value)
+
+    @property
+    @pulumi.getter(name="ocspServersOverrides")
+    def ocsp_servers_overrides(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        : A comma-separated list of OCSP
+        server addresses. If unset, the OCSP server is determined from the
+        AuthorityInformationAccess extension on the certificate being inspected.
+        Requires Vault version 1.13+.
+        """
+        return pulumi.get(self, "ocsp_servers_overrides")
+
+    @ocsp_servers_overrides.setter
+    def ocsp_servers_overrides(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "ocsp_servers_overrides", value)
+
+    @property
     @pulumi.getter(name="requiredExtensions")
     def required_extensions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        TLS extensions required on client certificates
+        TLS extensions required on
+        client certificates
         """
         return pulumi.get(self, "required_extensions")
 
@@ -403,6 +514,8 @@ class CertAuthBackendRoleArgs:
         `service` tokens). For token store roles, there are two additional possibilities:
         `default-service` and `default-batch` which specify the type to return unless the client
         requests a different type at generation time.
+
+        For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
         """
         return pulumi.get(self, "token_type")
 
@@ -426,6 +539,11 @@ class _CertAuthBackendRoleState:
                  display_name: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 ocsp_ca_certificates: Optional[pulumi.Input[str]] = None,
+                 ocsp_enabled: Optional[pulumi.Input[bool]] = None,
+                 ocsp_fail_open: Optional[pulumi.Input[bool]] = None,
+                 ocsp_query_all_servers: Optional[pulumi.Input[bool]] = None,
+                 ocsp_servers_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  required_extensions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -453,7 +571,25 @@ class _CertAuthBackendRoleState:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] required_extensions: TLS extensions required on client certificates
+        :param pulumi.Input[str] ocsp_ca_certificates: Any additional CA certificates
+               needed to verify OCSP responses. Provided as base64 encoded PEM data.
+               Requires Vault version 1.13+.
+        :param pulumi.Input[bool] ocsp_enabled: If enabled, validate certificates'
+               revocation status using OCSP. Requires Vault version 1.13+.
+        :param pulumi.Input[bool] ocsp_fail_open: If true and an OCSP response cannot
+               be fetched or is of an unknown status, the login will proceed as if the
+               certificate has not been revoked.
+               Requires Vault version 1.13+.
+        :param pulumi.Input[bool] ocsp_query_all_servers: If set to true, rather than
+               accepting the first successful OCSP response, query all servers and consider
+               the certificate valid only if all servers agree.
+               Requires Vault version 1.13+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ocsp_servers_overrides: : A comma-separated list of OCSP
+               server addresses. If unset, the OCSP server is determined from the
+               AuthorityInformationAccess extension on the certificate being inspected.
+               Requires Vault version 1.13+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] required_extensions: TLS extensions required on
+               client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
                addresses which can authenticate successfully, and ties the resulting token to these blocks
                as well.
@@ -480,6 +616,8 @@ class _CertAuthBackendRoleState:
                `service` tokens). For token store roles, there are two additional possibilities:
                `default-service` and `default-batch` which specify the type to return unless the client
                requests a different type at generation time.
+               
+               For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
         """
         if allowed_common_names is not None:
             pulumi.set(__self__, "allowed_common_names", allowed_common_names)
@@ -508,6 +646,16 @@ class _CertAuthBackendRoleState:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if ocsp_ca_certificates is not None:
+            pulumi.set(__self__, "ocsp_ca_certificates", ocsp_ca_certificates)
+        if ocsp_enabled is not None:
+            pulumi.set(__self__, "ocsp_enabled", ocsp_enabled)
+        if ocsp_fail_open is not None:
+            pulumi.set(__self__, "ocsp_fail_open", ocsp_fail_open)
+        if ocsp_query_all_servers is not None:
+            pulumi.set(__self__, "ocsp_query_all_servers", ocsp_query_all_servers)
+        if ocsp_servers_overrides is not None:
+            pulumi.set(__self__, "ocsp_servers_overrides", ocsp_servers_overrides)
         if required_extensions is not None:
             pulumi.set(__self__, "required_extensions", required_extensions)
         if token_bound_cidrs is not None:
@@ -580,6 +728,9 @@ class _CertAuthBackendRoleState:
     @property
     @pulumi.getter(name="allowedOrganizationUnits")
     def allowed_organization_units(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        warnings.warn("""Use allowed_organizational_units""", DeprecationWarning)
+        pulumi.log.warn("""allowed_organization_units is deprecated: Use allowed_organizational_units""")
+
         return pulumi.get(self, "allowed_organization_units")
 
     @allowed_organization_units.setter
@@ -675,10 +826,83 @@ class _CertAuthBackendRoleState:
         pulumi.set(self, "namespace", value)
 
     @property
+    @pulumi.getter(name="ocspCaCertificates")
+    def ocsp_ca_certificates(self) -> Optional[pulumi.Input[str]]:
+        """
+        Any additional CA certificates
+        needed to verify OCSP responses. Provided as base64 encoded PEM data.
+        Requires Vault version 1.13+.
+        """
+        return pulumi.get(self, "ocsp_ca_certificates")
+
+    @ocsp_ca_certificates.setter
+    def ocsp_ca_certificates(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ocsp_ca_certificates", value)
+
+    @property
+    @pulumi.getter(name="ocspEnabled")
+    def ocsp_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If enabled, validate certificates'
+        revocation status using OCSP. Requires Vault version 1.13+.
+        """
+        return pulumi.get(self, "ocsp_enabled")
+
+    @ocsp_enabled.setter
+    def ocsp_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "ocsp_enabled", value)
+
+    @property
+    @pulumi.getter(name="ocspFailOpen")
+    def ocsp_fail_open(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true and an OCSP response cannot
+        be fetched or is of an unknown status, the login will proceed as if the
+        certificate has not been revoked.
+        Requires Vault version 1.13+.
+        """
+        return pulumi.get(self, "ocsp_fail_open")
+
+    @ocsp_fail_open.setter
+    def ocsp_fail_open(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "ocsp_fail_open", value)
+
+    @property
+    @pulumi.getter(name="ocspQueryAllServers")
+    def ocsp_query_all_servers(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set to true, rather than
+        accepting the first successful OCSP response, query all servers and consider
+        the certificate valid only if all servers agree.
+        Requires Vault version 1.13+.
+        """
+        return pulumi.get(self, "ocsp_query_all_servers")
+
+    @ocsp_query_all_servers.setter
+    def ocsp_query_all_servers(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "ocsp_query_all_servers", value)
+
+    @property
+    @pulumi.getter(name="ocspServersOverrides")
+    def ocsp_servers_overrides(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        : A comma-separated list of OCSP
+        server addresses. If unset, the OCSP server is determined from the
+        AuthorityInformationAccess extension on the certificate being inspected.
+        Requires Vault version 1.13+.
+        """
+        return pulumi.get(self, "ocsp_servers_overrides")
+
+    @ocsp_servers_overrides.setter
+    def ocsp_servers_overrides(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "ocsp_servers_overrides", value)
+
+    @property
     @pulumi.getter(name="requiredExtensions")
     def required_extensions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        TLS extensions required on client certificates
+        TLS extensions required on
+        client certificates
         """
         return pulumi.get(self, "required_extensions")
 
@@ -804,6 +1028,8 @@ class _CertAuthBackendRoleState:
         `service` tokens). For token store roles, there are two additional possibilities:
         `default-service` and `default-batch` which specify the type to return unless the client
         requests a different type at generation time.
+
+        For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
         """
         return pulumi.get(self, "token_type")
 
@@ -829,6 +1055,11 @@ class CertAuthBackendRole(pulumi.CustomResource):
                  display_name: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 ocsp_ca_certificates: Optional[pulumi.Input[str]] = None,
+                 ocsp_enabled: Optional[pulumi.Input[bool]] = None,
+                 ocsp_fail_open: Optional[pulumi.Input[bool]] = None,
+                 ocsp_query_all_servers: Optional[pulumi.Input[bool]] = None,
+                 ocsp_servers_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  required_extensions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -881,7 +1112,25 @@ class CertAuthBackendRole(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] required_extensions: TLS extensions required on client certificates
+        :param pulumi.Input[str] ocsp_ca_certificates: Any additional CA certificates
+               needed to verify OCSP responses. Provided as base64 encoded PEM data.
+               Requires Vault version 1.13+.
+        :param pulumi.Input[bool] ocsp_enabled: If enabled, validate certificates'
+               revocation status using OCSP. Requires Vault version 1.13+.
+        :param pulumi.Input[bool] ocsp_fail_open: If true and an OCSP response cannot
+               be fetched or is of an unknown status, the login will proceed as if the
+               certificate has not been revoked.
+               Requires Vault version 1.13+.
+        :param pulumi.Input[bool] ocsp_query_all_servers: If set to true, rather than
+               accepting the first successful OCSP response, query all servers and consider
+               the certificate valid only if all servers agree.
+               Requires Vault version 1.13+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ocsp_servers_overrides: : A comma-separated list of OCSP
+               server addresses. If unset, the OCSP server is determined from the
+               AuthorityInformationAccess extension on the certificate being inspected.
+               Requires Vault version 1.13+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] required_extensions: TLS extensions required on
+               client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
                addresses which can authenticate successfully, and ties the resulting token to these blocks
                as well.
@@ -908,6 +1157,8 @@ class CertAuthBackendRole(pulumi.CustomResource):
                `service` tokens). For token store roles, there are two additional possibilities:
                `default-service` and `default-batch` which specify the type to return unless the client
                requests a different type at generation time.
+               
+               For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
         """
         ...
     @overload
@@ -966,6 +1217,11 @@ class CertAuthBackendRole(pulumi.CustomResource):
                  display_name: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 ocsp_ca_certificates: Optional[pulumi.Input[str]] = None,
+                 ocsp_enabled: Optional[pulumi.Input[bool]] = None,
+                 ocsp_fail_open: Optional[pulumi.Input[bool]] = None,
+                 ocsp_query_all_servers: Optional[pulumi.Input[bool]] = None,
+                 ocsp_servers_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  required_extensions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -989,9 +1245,6 @@ class CertAuthBackendRole(pulumi.CustomResource):
             __props__.__dict__["allowed_dns_sans"] = allowed_dns_sans
             __props__.__dict__["allowed_email_sans"] = allowed_email_sans
             __props__.__dict__["allowed_names"] = allowed_names
-            if allowed_organization_units is not None and not opts.urn:
-                warnings.warn("""Use allowed_organizational_units""", DeprecationWarning)
-                pulumi.log.warn("""allowed_organization_units is deprecated: Use allowed_organizational_units""")
             __props__.__dict__["allowed_organization_units"] = allowed_organization_units
             __props__.__dict__["allowed_organizational_units"] = allowed_organizational_units
             __props__.__dict__["allowed_uri_sans"] = allowed_uri_sans
@@ -1002,6 +1255,11 @@ class CertAuthBackendRole(pulumi.CustomResource):
             __props__.__dict__["display_name"] = display_name
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
+            __props__.__dict__["ocsp_ca_certificates"] = ocsp_ca_certificates
+            __props__.__dict__["ocsp_enabled"] = ocsp_enabled
+            __props__.__dict__["ocsp_fail_open"] = ocsp_fail_open
+            __props__.__dict__["ocsp_query_all_servers"] = ocsp_query_all_servers
+            __props__.__dict__["ocsp_servers_overrides"] = ocsp_servers_overrides
             __props__.__dict__["required_extensions"] = required_extensions
             __props__.__dict__["token_bound_cidrs"] = token_bound_cidrs
             __props__.__dict__["token_explicit_max_ttl"] = token_explicit_max_ttl
@@ -1034,6 +1292,11 @@ class CertAuthBackendRole(pulumi.CustomResource):
             display_name: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
+            ocsp_ca_certificates: Optional[pulumi.Input[str]] = None,
+            ocsp_enabled: Optional[pulumi.Input[bool]] = None,
+            ocsp_fail_open: Optional[pulumi.Input[bool]] = None,
+            ocsp_query_all_servers: Optional[pulumi.Input[bool]] = None,
+            ocsp_servers_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             required_extensions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -1066,7 +1329,25 @@ class CertAuthBackendRole(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] required_extensions: TLS extensions required on client certificates
+        :param pulumi.Input[str] ocsp_ca_certificates: Any additional CA certificates
+               needed to verify OCSP responses. Provided as base64 encoded PEM data.
+               Requires Vault version 1.13+.
+        :param pulumi.Input[bool] ocsp_enabled: If enabled, validate certificates'
+               revocation status using OCSP. Requires Vault version 1.13+.
+        :param pulumi.Input[bool] ocsp_fail_open: If true and an OCSP response cannot
+               be fetched or is of an unknown status, the login will proceed as if the
+               certificate has not been revoked.
+               Requires Vault version 1.13+.
+        :param pulumi.Input[bool] ocsp_query_all_servers: If set to true, rather than
+               accepting the first successful OCSP response, query all servers and consider
+               the certificate valid only if all servers agree.
+               Requires Vault version 1.13+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ocsp_servers_overrides: : A comma-separated list of OCSP
+               server addresses. If unset, the OCSP server is determined from the
+               AuthorityInformationAccess extension on the certificate being inspected.
+               Requires Vault version 1.13+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] required_extensions: TLS extensions required on
+               client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
                addresses which can authenticate successfully, and ties the resulting token to these blocks
                as well.
@@ -1093,6 +1374,8 @@ class CertAuthBackendRole(pulumi.CustomResource):
                `service` tokens). For token store roles, there are two additional possibilities:
                `default-service` and `default-batch` which specify the type to return unless the client
                requests a different type at generation time.
+               
+               For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1110,6 +1393,11 @@ class CertAuthBackendRole(pulumi.CustomResource):
         __props__.__dict__["display_name"] = display_name
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
+        __props__.__dict__["ocsp_ca_certificates"] = ocsp_ca_certificates
+        __props__.__dict__["ocsp_enabled"] = ocsp_enabled
+        __props__.__dict__["ocsp_fail_open"] = ocsp_fail_open
+        __props__.__dict__["ocsp_query_all_servers"] = ocsp_query_all_servers
+        __props__.__dict__["ocsp_servers_overrides"] = ocsp_servers_overrides
         __props__.__dict__["required_extensions"] = required_extensions
         __props__.__dict__["token_bound_cidrs"] = token_bound_cidrs
         __props__.__dict__["token_explicit_max_ttl"] = token_explicit_max_ttl
@@ -1157,6 +1445,9 @@ class CertAuthBackendRole(pulumi.CustomResource):
     @property
     @pulumi.getter(name="allowedOrganizationUnits")
     def allowed_organization_units(self) -> pulumi.Output[Sequence[str]]:
+        warnings.warn("""Use allowed_organizational_units""", DeprecationWarning)
+        pulumi.log.warn("""allowed_organization_units is deprecated: Use allowed_organizational_units""")
+
         return pulumi.get(self, "allowed_organization_units")
 
     @property
@@ -1220,10 +1511,63 @@ class CertAuthBackendRole(pulumi.CustomResource):
         return pulumi.get(self, "namespace")
 
     @property
+    @pulumi.getter(name="ocspCaCertificates")
+    def ocsp_ca_certificates(self) -> pulumi.Output[Optional[str]]:
+        """
+        Any additional CA certificates
+        needed to verify OCSP responses. Provided as base64 encoded PEM data.
+        Requires Vault version 1.13+.
+        """
+        return pulumi.get(self, "ocsp_ca_certificates")
+
+    @property
+    @pulumi.getter(name="ocspEnabled")
+    def ocsp_enabled(self) -> pulumi.Output[bool]:
+        """
+        If enabled, validate certificates'
+        revocation status using OCSP. Requires Vault version 1.13+.
+        """
+        return pulumi.get(self, "ocsp_enabled")
+
+    @property
+    @pulumi.getter(name="ocspFailOpen")
+    def ocsp_fail_open(self) -> pulumi.Output[bool]:
+        """
+        If true and an OCSP response cannot
+        be fetched or is of an unknown status, the login will proceed as if the
+        certificate has not been revoked.
+        Requires Vault version 1.13+.
+        """
+        return pulumi.get(self, "ocsp_fail_open")
+
+    @property
+    @pulumi.getter(name="ocspQueryAllServers")
+    def ocsp_query_all_servers(self) -> pulumi.Output[bool]:
+        """
+        If set to true, rather than
+        accepting the first successful OCSP response, query all servers and consider
+        the certificate valid only if all servers agree.
+        Requires Vault version 1.13+.
+        """
+        return pulumi.get(self, "ocsp_query_all_servers")
+
+    @property
+    @pulumi.getter(name="ocspServersOverrides")
+    def ocsp_servers_overrides(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        : A comma-separated list of OCSP
+        server addresses. If unset, the OCSP server is determined from the
+        AuthorityInformationAccess extension on the certificate being inspected.
+        Requires Vault version 1.13+.
+        """
+        return pulumi.get(self, "ocsp_servers_overrides")
+
+    @property
     @pulumi.getter(name="requiredExtensions")
     def required_extensions(self) -> pulumi.Output[Sequence[str]]:
         """
-        TLS extensions required on client certificates
+        TLS extensions required on
+        client certificates
         """
         return pulumi.get(self, "required_extensions")
 
@@ -1313,6 +1657,8 @@ class CertAuthBackendRole(pulumi.CustomResource):
         `service` tokens). For token store roles, there are two additional possibilities:
         `default-service` and `default-batch` which specify the type to return unless the client
         requests a different type at generation time.
+
+        For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
         """
         return pulumi.get(self, "token_type")
 

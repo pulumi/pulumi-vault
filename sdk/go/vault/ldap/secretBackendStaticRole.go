@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -100,6 +102,7 @@ func NewSecretBackendStaticRole(ctx *pulumi.Context,
 	if args.Username == nil {
 		return nil, errors.New("invalid value for required argument 'Username'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SecretBackendStaticRole
 	err := ctx.RegisterResource("vault:ldap/secretBackendStaticRole:SecretBackendStaticRole", name, args, &resource, opts...)
 	if err != nil {
@@ -233,6 +236,12 @@ func (i *SecretBackendStaticRole) ToSecretBackendStaticRoleOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendStaticRoleOutput)
 }
 
+func (i *SecretBackendStaticRole) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendStaticRole] {
+	return pulumix.Output[*SecretBackendStaticRole]{
+		OutputState: i.ToSecretBackendStaticRoleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SecretBackendStaticRoleArrayInput is an input type that accepts SecretBackendStaticRoleArray and SecretBackendStaticRoleArrayOutput values.
 // You can construct a concrete instance of `SecretBackendStaticRoleArrayInput` via:
 //
@@ -256,6 +265,12 @@ func (i SecretBackendStaticRoleArray) ToSecretBackendStaticRoleArrayOutput() Sec
 
 func (i SecretBackendStaticRoleArray) ToSecretBackendStaticRoleArrayOutputWithContext(ctx context.Context) SecretBackendStaticRoleArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendStaticRoleArrayOutput)
+}
+
+func (i SecretBackendStaticRoleArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendStaticRole] {
+	return pulumix.Output[[]*SecretBackendStaticRole]{
+		OutputState: i.ToSecretBackendStaticRoleArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SecretBackendStaticRoleMapInput is an input type that accepts SecretBackendStaticRoleMap and SecretBackendStaticRoleMapOutput values.
@@ -283,6 +298,12 @@ func (i SecretBackendStaticRoleMap) ToSecretBackendStaticRoleMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendStaticRoleMapOutput)
 }
 
+func (i SecretBackendStaticRoleMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendStaticRole] {
+	return pulumix.Output[map[string]*SecretBackendStaticRole]{
+		OutputState: i.ToSecretBackendStaticRoleMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SecretBackendStaticRoleOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendStaticRoleOutput) ElementType() reflect.Type {
@@ -295,6 +316,12 @@ func (o SecretBackendStaticRoleOutput) ToSecretBackendStaticRoleOutput() SecretB
 
 func (o SecretBackendStaticRoleOutput) ToSecretBackendStaticRoleOutputWithContext(ctx context.Context) SecretBackendStaticRoleOutput {
 	return o
+}
+
+func (o SecretBackendStaticRoleOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendStaticRole] {
+	return pulumix.Output[*SecretBackendStaticRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Distinguished name (DN) of the existing LDAP entry to manage
@@ -347,6 +374,12 @@ func (o SecretBackendStaticRoleArrayOutput) ToSecretBackendStaticRoleArrayOutput
 	return o
 }
 
+func (o SecretBackendStaticRoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendStaticRole] {
+	return pulumix.Output[[]*SecretBackendStaticRole]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SecretBackendStaticRoleArrayOutput) Index(i pulumi.IntInput) SecretBackendStaticRoleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackendStaticRole {
 		return vs[0].([]*SecretBackendStaticRole)[vs[1].(int)]
@@ -365,6 +398,12 @@ func (o SecretBackendStaticRoleMapOutput) ToSecretBackendStaticRoleMapOutput() S
 
 func (o SecretBackendStaticRoleMapOutput) ToSecretBackendStaticRoleMapOutputWithContext(ctx context.Context) SecretBackendStaticRoleMapOutput {
 	return o
+}
+
+func (o SecretBackendStaticRoleMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendStaticRole] {
+	return pulumix.Output[map[string]*SecretBackendStaticRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SecretBackendStaticRoleMapOutput) MapIndex(k pulumi.StringInput) SecretBackendStaticRoleOutput {

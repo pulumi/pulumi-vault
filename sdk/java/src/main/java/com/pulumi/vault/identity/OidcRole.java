@@ -107,7 +107,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * The key can be imported with the role name, for example
+ * The key can be imported with the role name, for example:
  * 
  * ```sh
  *  $ pulumi import vault:identity/oidcRole:OidcRole role role

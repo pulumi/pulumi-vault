@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages OIDC Clients in a Vault server. See the [Vault documentation](https://www.vaultproject.io/api-docs/secret/identity/oidc-provider#create-or-update-an-assignment)
@@ -113,6 +115,7 @@ func NewOidcClient(ctx *pulumi.Context,
 		"clientSecret",
 	})
 	opts = append(opts, secrets)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource OidcClient
 	err := ctx.RegisterResource("vault:identity/oidcClient:OidcClient", name, args, &resource, opts...)
 	if err != nil {
@@ -282,6 +285,12 @@ func (i *OidcClient) ToOidcClientOutputWithContext(ctx context.Context) OidcClie
 	return pulumi.ToOutputWithContext(ctx, i).(OidcClientOutput)
 }
 
+func (i *OidcClient) ToOutput(ctx context.Context) pulumix.Output[*OidcClient] {
+	return pulumix.Output[*OidcClient]{
+		OutputState: i.ToOidcClientOutputWithContext(ctx).OutputState,
+	}
+}
+
 // OidcClientArrayInput is an input type that accepts OidcClientArray and OidcClientArrayOutput values.
 // You can construct a concrete instance of `OidcClientArrayInput` via:
 //
@@ -305,6 +314,12 @@ func (i OidcClientArray) ToOidcClientArrayOutput() OidcClientArrayOutput {
 
 func (i OidcClientArray) ToOidcClientArrayOutputWithContext(ctx context.Context) OidcClientArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OidcClientArrayOutput)
+}
+
+func (i OidcClientArray) ToOutput(ctx context.Context) pulumix.Output[[]*OidcClient] {
+	return pulumix.Output[[]*OidcClient]{
+		OutputState: i.ToOidcClientArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // OidcClientMapInput is an input type that accepts OidcClientMap and OidcClientMapOutput values.
@@ -332,6 +347,12 @@ func (i OidcClientMap) ToOidcClientMapOutputWithContext(ctx context.Context) Oid
 	return pulumi.ToOutputWithContext(ctx, i).(OidcClientMapOutput)
 }
 
+func (i OidcClientMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*OidcClient] {
+	return pulumix.Output[map[string]*OidcClient]{
+		OutputState: i.ToOidcClientMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type OidcClientOutput struct{ *pulumi.OutputState }
 
 func (OidcClientOutput) ElementType() reflect.Type {
@@ -344,6 +365,12 @@ func (o OidcClientOutput) ToOidcClientOutput() OidcClientOutput {
 
 func (o OidcClientOutput) ToOidcClientOutputWithContext(ctx context.Context) OidcClientOutput {
 	return o
+}
+
+func (o OidcClientOutput) ToOutput(ctx context.Context) pulumix.Output[*OidcClient] {
+	return pulumix.Output[*OidcClient]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The time-to-live for access tokens obtained by the client.
@@ -419,6 +446,12 @@ func (o OidcClientArrayOutput) ToOidcClientArrayOutputWithContext(ctx context.Co
 	return o
 }
 
+func (o OidcClientArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*OidcClient] {
+	return pulumix.Output[[]*OidcClient]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o OidcClientArrayOutput) Index(i pulumi.IntInput) OidcClientOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *OidcClient {
 		return vs[0].([]*OidcClient)[vs[1].(int)]
@@ -437,6 +470,12 @@ func (o OidcClientMapOutput) ToOidcClientMapOutput() OidcClientMapOutput {
 
 func (o OidcClientMapOutput) ToOidcClientMapOutputWithContext(ctx context.Context) OidcClientMapOutput {
 	return o
+}
+
+func (o OidcClientMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*OidcClient] {
+	return pulumix.Output[map[string]*OidcClient]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o OidcClientMapOutput) MapIndex(k pulumi.StringInput) OidcClientOutput {

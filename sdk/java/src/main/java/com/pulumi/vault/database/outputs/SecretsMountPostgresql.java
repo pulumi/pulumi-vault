@@ -24,13 +24,15 @@ public final class SecretsMountPostgresql {
     private @Nullable List<String> allowedRoles;
     private @Nullable String authType;
     /**
-     * @return A URL containing connection information.\
-     * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+     * @return Specifies the Redshift DSN.
+     * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
      * 
      */
     private @Nullable String connectionUrl;
     /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+     * 
+     * Supported list of database secrets engines that can be configured:
      * 
      */
     private @Nullable Map<String,Object> data;
@@ -40,26 +42,25 @@ public final class SecretsMountPostgresql {
      */
     private @Nullable Boolean disableEscaping;
     /**
-     * @return The maximum number of seconds to keep
-     * a connection alive for.
+     * @return The maximum amount of time a connection may be reused.
      * 
      */
     private @Nullable Integer maxConnectionLifetime;
     /**
      * @return The maximum number of idle connections to
-     * maintain.
+     * the database.
      * 
      */
     private @Nullable Integer maxIdleConnections;
     /**
      * @return The maximum number of open connections to
-     * use.
+     * the database.
      * 
      */
     private @Nullable Integer maxOpenConnections;
     private String name;
     /**
-     * @return The password to be used in the connection.
+     * @return The root credential password used in the connection URL.
      * 
      */
     private @Nullable String password;
@@ -75,12 +76,12 @@ public final class SecretsMountPostgresql {
     private @Nullable List<String> rootRotationStatements;
     private @Nullable String serviceAccountJson;
     /**
-     * @return The username to be used in the connection (the account admin level).
+     * @return The root credential username used in the connection URL.
      * 
      */
     private @Nullable String username;
     /**
-     * @return - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * @return [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
      * 
      */
     private @Nullable String usernameTemplate;
@@ -104,8 +105,8 @@ public final class SecretsMountPostgresql {
         return Optional.ofNullable(this.authType);
     }
     /**
-     * @return A URL containing connection information.\
-     * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+     * @return Specifies the Redshift DSN.
+     * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
      * 
      */
     public Optional<String> connectionUrl() {
@@ -113,6 +114,8 @@ public final class SecretsMountPostgresql {
     }
     /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+     * 
+     * Supported list of database secrets engines that can be configured:
      * 
      */
     public Map<String,Object> data() {
@@ -126,8 +129,7 @@ public final class SecretsMountPostgresql {
         return Optional.ofNullable(this.disableEscaping);
     }
     /**
-     * @return The maximum number of seconds to keep
-     * a connection alive for.
+     * @return The maximum amount of time a connection may be reused.
      * 
      */
     public Optional<Integer> maxConnectionLifetime() {
@@ -135,7 +137,7 @@ public final class SecretsMountPostgresql {
     }
     /**
      * @return The maximum number of idle connections to
-     * maintain.
+     * the database.
      * 
      */
     public Optional<Integer> maxIdleConnections() {
@@ -143,7 +145,7 @@ public final class SecretsMountPostgresql {
     }
     /**
      * @return The maximum number of open connections to
-     * use.
+     * the database.
      * 
      */
     public Optional<Integer> maxOpenConnections() {
@@ -153,7 +155,7 @@ public final class SecretsMountPostgresql {
         return this.name;
     }
     /**
-     * @return The password to be used in the connection.
+     * @return The root credential password used in the connection URL.
      * 
      */
     public Optional<String> password() {
@@ -177,14 +179,14 @@ public final class SecretsMountPostgresql {
         return Optional.ofNullable(this.serviceAccountJson);
     }
     /**
-     * @return The username to be used in the connection (the account admin level).
+     * @return The root credential username used in the connection URL.
      * 
      */
     public Optional<String> username() {
         return Optional.ofNullable(this.username);
     }
     /**
-     * @return - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * @return [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
      * 
      */
     public Optional<String> usernameTemplate() {

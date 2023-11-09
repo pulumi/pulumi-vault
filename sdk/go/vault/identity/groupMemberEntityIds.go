@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages member entities for an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
@@ -123,6 +125,10 @@ type GroupMemberEntityIds struct {
 	pulumi.CustomResourceState
 
 	// Defaults to `true`.
+	//
+	// If `true`, this resource will take exclusive control of the member entities that belong to the group and will set it equal to what is specified in the resource.
+	//
+	// If set to `false`, this resource will simply ensure that the member entities specified in the resource are present in the group. When destroying the resource, the resource will ensure that the member entities specified in the resource are removed.
 	Exclusive pulumi.BoolPtrOutput `pulumi:"exclusive"`
 	// Group ID to assign member entities to.
 	GroupId pulumi.StringOutput `pulumi:"groupId"`
@@ -152,6 +158,7 @@ func NewGroupMemberEntityIds(ctx *pulumi.Context,
 	if args.GroupId == nil {
 		return nil, errors.New("invalid value for required argument 'GroupId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource GroupMemberEntityIds
 	err := ctx.RegisterResource("vault:identity/groupMemberEntityIds:GroupMemberEntityIds", name, args, &resource, opts...)
 	if err != nil {
@@ -175,6 +182,10 @@ func GetGroupMemberEntityIds(ctx *pulumi.Context,
 // Input properties used for looking up and filtering GroupMemberEntityIds resources.
 type groupMemberEntityIdsState struct {
 	// Defaults to `true`.
+	//
+	// If `true`, this resource will take exclusive control of the member entities that belong to the group and will set it equal to what is specified in the resource.
+	//
+	// If set to `false`, this resource will simply ensure that the member entities specified in the resource are present in the group. When destroying the resource, the resource will ensure that the member entities specified in the resource are removed.
 	Exclusive *bool `pulumi:"exclusive"`
 	// Group ID to assign member entities to.
 	GroupId *string `pulumi:"groupId"`
@@ -196,6 +207,10 @@ type groupMemberEntityIdsState struct {
 
 type GroupMemberEntityIdsState struct {
 	// Defaults to `true`.
+	//
+	// If `true`, this resource will take exclusive control of the member entities that belong to the group and will set it equal to what is specified in the resource.
+	//
+	// If set to `false`, this resource will simply ensure that the member entities specified in the resource are present in the group. When destroying the resource, the resource will ensure that the member entities specified in the resource are removed.
 	Exclusive pulumi.BoolPtrInput
 	// Group ID to assign member entities to.
 	GroupId pulumi.StringPtrInput
@@ -221,6 +236,10 @@ func (GroupMemberEntityIdsState) ElementType() reflect.Type {
 
 type groupMemberEntityIdsArgs struct {
 	// Defaults to `true`.
+	//
+	// If `true`, this resource will take exclusive control of the member entities that belong to the group and will set it equal to what is specified in the resource.
+	//
+	// If set to `false`, this resource will simply ensure that the member entities specified in the resource are present in the group. When destroying the resource, the resource will ensure that the member entities specified in the resource are removed.
 	Exclusive *bool `pulumi:"exclusive"`
 	// Group ID to assign member entities to.
 	GroupId string `pulumi:"groupId"`
@@ -236,6 +255,10 @@ type groupMemberEntityIdsArgs struct {
 // The set of arguments for constructing a GroupMemberEntityIds resource.
 type GroupMemberEntityIdsArgs struct {
 	// Defaults to `true`.
+	//
+	// If `true`, this resource will take exclusive control of the member entities that belong to the group and will set it equal to what is specified in the resource.
+	//
+	// If set to `false`, this resource will simply ensure that the member entities specified in the resource are present in the group. When destroying the resource, the resource will ensure that the member entities specified in the resource are removed.
 	Exclusive pulumi.BoolPtrInput
 	// Group ID to assign member entities to.
 	GroupId pulumi.StringInput
@@ -271,6 +294,12 @@ func (i *GroupMemberEntityIds) ToGroupMemberEntityIdsOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(GroupMemberEntityIdsOutput)
 }
 
+func (i *GroupMemberEntityIds) ToOutput(ctx context.Context) pulumix.Output[*GroupMemberEntityIds] {
+	return pulumix.Output[*GroupMemberEntityIds]{
+		OutputState: i.ToGroupMemberEntityIdsOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GroupMemberEntityIdsArrayInput is an input type that accepts GroupMemberEntityIdsArray and GroupMemberEntityIdsArrayOutput values.
 // You can construct a concrete instance of `GroupMemberEntityIdsArrayInput` via:
 //
@@ -294,6 +323,12 @@ func (i GroupMemberEntityIdsArray) ToGroupMemberEntityIdsArrayOutput() GroupMemb
 
 func (i GroupMemberEntityIdsArray) ToGroupMemberEntityIdsArrayOutputWithContext(ctx context.Context) GroupMemberEntityIdsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GroupMemberEntityIdsArrayOutput)
+}
+
+func (i GroupMemberEntityIdsArray) ToOutput(ctx context.Context) pulumix.Output[[]*GroupMemberEntityIds] {
+	return pulumix.Output[[]*GroupMemberEntityIds]{
+		OutputState: i.ToGroupMemberEntityIdsArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // GroupMemberEntityIdsMapInput is an input type that accepts GroupMemberEntityIdsMap and GroupMemberEntityIdsMapOutput values.
@@ -321,6 +356,12 @@ func (i GroupMemberEntityIdsMap) ToGroupMemberEntityIdsMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(GroupMemberEntityIdsMapOutput)
 }
 
+func (i GroupMemberEntityIdsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*GroupMemberEntityIds] {
+	return pulumix.Output[map[string]*GroupMemberEntityIds]{
+		OutputState: i.ToGroupMemberEntityIdsMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GroupMemberEntityIdsOutput struct{ *pulumi.OutputState }
 
 func (GroupMemberEntityIdsOutput) ElementType() reflect.Type {
@@ -335,7 +376,17 @@ func (o GroupMemberEntityIdsOutput) ToGroupMemberEntityIdsOutputWithContext(ctx 
 	return o
 }
 
+func (o GroupMemberEntityIdsOutput) ToOutput(ctx context.Context) pulumix.Output[*GroupMemberEntityIds] {
+	return pulumix.Output[*GroupMemberEntityIds]{
+		OutputState: o.OutputState,
+	}
+}
+
 // Defaults to `true`.
+//
+// If `true`, this resource will take exclusive control of the member entities that belong to the group and will set it equal to what is specified in the resource.
+//
+// If set to `false`, this resource will simply ensure that the member entities specified in the resource are present in the group. When destroying the resource, the resource will ensure that the member entities specified in the resource are removed.
 func (o GroupMemberEntityIdsOutput) Exclusive() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *GroupMemberEntityIds) pulumi.BoolPtrOutput { return v.Exclusive }).(pulumi.BoolPtrOutput)
 }
@@ -382,6 +433,12 @@ func (o GroupMemberEntityIdsArrayOutput) ToGroupMemberEntityIdsArrayOutputWithCo
 	return o
 }
 
+func (o GroupMemberEntityIdsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*GroupMemberEntityIds] {
+	return pulumix.Output[[]*GroupMemberEntityIds]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GroupMemberEntityIdsArrayOutput) Index(i pulumi.IntInput) GroupMemberEntityIdsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *GroupMemberEntityIds {
 		return vs[0].([]*GroupMemberEntityIds)[vs[1].(int)]
@@ -400,6 +457,12 @@ func (o GroupMemberEntityIdsMapOutput) ToGroupMemberEntityIdsMapOutput() GroupMe
 
 func (o GroupMemberEntityIdsMapOutput) ToGroupMemberEntityIdsMapOutputWithContext(ctx context.Context) GroupMemberEntityIdsMapOutput {
 	return o
+}
+
+func (o GroupMemberEntityIdsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*GroupMemberEntityIds] {
+	return pulumix.Output[map[string]*GroupMemberEntityIds]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GroupMemberEntityIdsMapOutput) MapIndex(k pulumi.StringInput) GroupMemberEntityIdsOutput {

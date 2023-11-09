@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -36,10 +38,28 @@ import (
 //				return err
 //			}
 //			_, err = ldap.NewSecretBackendDynamicRole(ctx, "role", &ldap.SecretBackendDynamicRoleArgs{
-//				Mount:        config.Path,
-//				RoleName:     pulumi.String("alice"),
-//				CreationLdif: pulumi.String("dn: cn={{.Username}},ou=users,dc=learn,dc=example\nobjectClass: person\nobjectClass: top\ncn: learn\nsn: {{.Password | utf16le | base64}}\nmemberOf: cn=dev,ou=groups,dc=learn,dc=example\nuserPassword: {{.Password}}\n"),
-//				DeletionLdif: pulumi.String("dn: cn={{.Username}},ou=users,dc=learn,dc=example\nchangetype: delete\n  rollback_ldif = <<EOT\ndn: cn={{.Username}},ou=users,dc=learn,dc=example\nchangetype: delete\n"),
+//				Mount:    config.Path,
+//				RoleName: pulumi.String("alice"),
+//				CreationLdif: pulumi.String(`dn: cn={{.Username}},ou=users,dc=learn,dc=example
+//
+// objectClass: person
+// objectClass: top
+// cn: learn
+// sn: {{.Password | utf16le | base64}}
+// memberOf: cn=dev,ou=groups,dc=learn,dc=example
+// userPassword: {{.Password}}
+// `),
+//
+//	DeletionLdif: pulumi.String(`dn: cn={{.Username}},ou=users,dc=learn,dc=example
+//
+// changetype: delete
+//
+//	rollback_ldif = <<EOT
+//
+// dn: cn={{.Username}},ou=users,dc=learn,dc=example
+// changetype: delete
+// `),
+//
 //			})
 //			if err != nil {
 //				return err
@@ -121,6 +141,7 @@ func NewSecretBackendDynamicRole(ctx *pulumi.Context,
 	if args.RoleName == nil {
 		return nil, errors.New("invalid value for required argument 'RoleName'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SecretBackendDynamicRole
 	err := ctx.RegisterResource("vault:ldap/secretBackendDynamicRole:SecretBackendDynamicRole", name, args, &resource, opts...)
 	if err != nil {
@@ -346,6 +367,12 @@ func (i *SecretBackendDynamicRole) ToSecretBackendDynamicRoleOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendDynamicRoleOutput)
 }
 
+func (i *SecretBackendDynamicRole) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendDynamicRole] {
+	return pulumix.Output[*SecretBackendDynamicRole]{
+		OutputState: i.ToSecretBackendDynamicRoleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SecretBackendDynamicRoleArrayInput is an input type that accepts SecretBackendDynamicRoleArray and SecretBackendDynamicRoleArrayOutput values.
 // You can construct a concrete instance of `SecretBackendDynamicRoleArrayInput` via:
 //
@@ -369,6 +396,12 @@ func (i SecretBackendDynamicRoleArray) ToSecretBackendDynamicRoleArrayOutput() S
 
 func (i SecretBackendDynamicRoleArray) ToSecretBackendDynamicRoleArrayOutputWithContext(ctx context.Context) SecretBackendDynamicRoleArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendDynamicRoleArrayOutput)
+}
+
+func (i SecretBackendDynamicRoleArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendDynamicRole] {
+	return pulumix.Output[[]*SecretBackendDynamicRole]{
+		OutputState: i.ToSecretBackendDynamicRoleArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SecretBackendDynamicRoleMapInput is an input type that accepts SecretBackendDynamicRoleMap and SecretBackendDynamicRoleMapOutput values.
@@ -396,6 +429,12 @@ func (i SecretBackendDynamicRoleMap) ToSecretBackendDynamicRoleMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendDynamicRoleMapOutput)
 }
 
+func (i SecretBackendDynamicRoleMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendDynamicRole] {
+	return pulumix.Output[map[string]*SecretBackendDynamicRole]{
+		OutputState: i.ToSecretBackendDynamicRoleMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SecretBackendDynamicRoleOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendDynamicRoleOutput) ElementType() reflect.Type {
@@ -408,6 +447,12 @@ func (o SecretBackendDynamicRoleOutput) ToSecretBackendDynamicRoleOutput() Secre
 
 func (o SecretBackendDynamicRoleOutput) ToSecretBackendDynamicRoleOutputWithContext(ctx context.Context) SecretBackendDynamicRoleOutput {
 	return o
+}
+
+func (o SecretBackendDynamicRoleOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendDynamicRole] {
+	return pulumix.Output[*SecretBackendDynamicRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 // A templatized LDIF string used to create a user
@@ -492,6 +537,12 @@ func (o SecretBackendDynamicRoleArrayOutput) ToSecretBackendDynamicRoleArrayOutp
 	return o
 }
 
+func (o SecretBackendDynamicRoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendDynamicRole] {
+	return pulumix.Output[[]*SecretBackendDynamicRole]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SecretBackendDynamicRoleArrayOutput) Index(i pulumi.IntInput) SecretBackendDynamicRoleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackendDynamicRole {
 		return vs[0].([]*SecretBackendDynamicRole)[vs[1].(int)]
@@ -510,6 +561,12 @@ func (o SecretBackendDynamicRoleMapOutput) ToSecretBackendDynamicRoleMapOutput()
 
 func (o SecretBackendDynamicRoleMapOutput) ToSecretBackendDynamicRoleMapOutputWithContext(ctx context.Context) SecretBackendDynamicRoleMapOutput {
 	return o
+}
+
+func (o SecretBackendDynamicRoleMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendDynamicRole] {
+	return pulumix.Output[map[string]*SecretBackendDynamicRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SecretBackendDynamicRoleMapOutput) MapIndex(k pulumi.StringInput) SecretBackendDynamicRoleOutput {

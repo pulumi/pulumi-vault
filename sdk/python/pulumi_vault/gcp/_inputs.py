@@ -25,6 +25,11 @@ class AuthBackendCustomEndpointArgs:
         """
         :param pulumi.Input[str] api: Replaces the service endpoint used in API requests to `https://www.googleapis.com`.
         :param pulumi.Input[str] compute: Replaces the service endpoint used in API requests to `https://compute.googleapis.com`.
+               
+               The endpoint value provided for a given key has the form of `scheme://host:port`.
+               The `scheme://` and `:port` portions of the endpoint value are optional.
+               
+               For more details on the usage of each argument consult the [Vault GCP API documentation](https://www.vaultproject.io/api-docs/auth/gcp#configure).
         :param pulumi.Input[str] crm: Replaces the service endpoint used in API requests to `https://cloudresourcemanager.googleapis.com`.
         :param pulumi.Input[str] iam: Replaces the service endpoint used in API requests to `https://iam.googleapis.com`.
         """
@@ -54,6 +59,11 @@ class AuthBackendCustomEndpointArgs:
     def compute(self) -> Optional[pulumi.Input[str]]:
         """
         Replaces the service endpoint used in API requests to `https://compute.googleapis.com`.
+
+        The endpoint value provided for a given key has the form of `scheme://host:port`.
+        The `scheme://` and `:port` portions of the endpoint value are optional.
+
+        For more details on the usage of each argument consult the [Vault GCP API documentation](https://www.vaultproject.io/api-docs/auth/gcp#configure).
         """
         return pulumi.get(self, "compute")
 

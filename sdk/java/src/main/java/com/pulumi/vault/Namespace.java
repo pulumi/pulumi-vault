@@ -10,7 +10,9 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.vault.NamespaceArgs;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.inputs.NamespaceState;
+import java.lang.Object;
 import java.lang.String;
+import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -62,6 +64,22 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="vault:index/namespace:Namespace")
 public class Namespace extends com.pulumi.resources.CustomResource {
+    /**
+     * Custom metadata describing this namespace. Value type
+     * is `map[string]string`. Requires Vault version 1.12+.
+     * 
+     */
+    @Export(name="customMetadata", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
+    private Output<Map<String,Object>> customMetadata;
+
+    /**
+     * @return Custom metadata describing this namespace. Value type
+     * is `map[string]string`. Requires Vault version 1.12+.
+     * 
+     */
+    public Output<Map<String,Object>> customMetadata() {
+        return this.customMetadata;
+    }
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.

@@ -27,6 +27,9 @@ namespace Pulumi.Vault.Inputs
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
+        [Input("useRootNamespace")]
+        public Input<bool>? UseRootNamespace { get; set; }
+
         public ProviderAuthLoginCertArgs()
         {
         }

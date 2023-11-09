@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -17,7 +19,7 @@ import (
 //
 // import (
 //
-//	"io/ioutil"
+//	"os"
 //
 //	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/gcp"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -25,7 +27,7 @@ import (
 // )
 //
 //	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := ioutil.ReadFile(path)
+//		data, err := os.ReadFile(path)
 //		if err != nil {
 //			panic(err.Error())
 //		}
@@ -48,7 +50,7 @@ import (
 type SecretBackend struct {
 	pulumi.CustomResourceState
 
-	// The GCP service account credentials in JSON format.
+	// JSON-encoded credentials to use to connect to GCP
 	Credentials pulumi.StringPtrOutput `pulumi:"credentials"`
 	// The default TTL for credentials
 	// issued by this backend. Defaults to '0'.
@@ -81,12 +83,13 @@ func NewSecretBackend(ctx *pulumi.Context,
 	}
 
 	if args.Credentials != nil {
-		args.Credentials = pulumi.ToSecret(args.Credentials).(pulumi.StringPtrOutput)
+		args.Credentials = pulumi.ToSecret(args.Credentials).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"credentials",
 	})
 	opts = append(opts, secrets)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SecretBackend
 	err := ctx.RegisterResource("vault:gcp/secretBackend:SecretBackend", name, args, &resource, opts...)
 	if err != nil {
@@ -109,7 +112,7 @@ func GetSecretBackend(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SecretBackend resources.
 type secretBackendState struct {
-	// The GCP service account credentials in JSON format.
+	// JSON-encoded credentials to use to connect to GCP
 	Credentials *string `pulumi:"credentials"`
 	// The default TTL for credentials
 	// issued by this backend. Defaults to '0'.
@@ -135,7 +138,7 @@ type secretBackendState struct {
 }
 
 type SecretBackendState struct {
-	// The GCP service account credentials in JSON format.
+	// JSON-encoded credentials to use to connect to GCP
 	Credentials pulumi.StringPtrInput
 	// The default TTL for credentials
 	// issued by this backend. Defaults to '0'.
@@ -165,7 +168,7 @@ func (SecretBackendState) ElementType() reflect.Type {
 }
 
 type secretBackendArgs struct {
-	// The GCP service account credentials in JSON format.
+	// JSON-encoded credentials to use to connect to GCP
 	Credentials *string `pulumi:"credentials"`
 	// The default TTL for credentials
 	// issued by this backend. Defaults to '0'.
@@ -192,7 +195,7 @@ type secretBackendArgs struct {
 
 // The set of arguments for constructing a SecretBackend resource.
 type SecretBackendArgs struct {
-	// The GCP service account credentials in JSON format.
+	// JSON-encoded credentials to use to connect to GCP
 	Credentials pulumi.StringPtrInput
 	// The default TTL for credentials
 	// issued by this backend. Defaults to '0'.
@@ -240,6 +243,12 @@ func (i *SecretBackend) ToSecretBackendOutputWithContext(ctx context.Context) Se
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendOutput)
 }
 
+func (i *SecretBackend) ToOutput(ctx context.Context) pulumix.Output[*SecretBackend] {
+	return pulumix.Output[*SecretBackend]{
+		OutputState: i.ToSecretBackendOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SecretBackendArrayInput is an input type that accepts SecretBackendArray and SecretBackendArrayOutput values.
 // You can construct a concrete instance of `SecretBackendArrayInput` via:
 //
@@ -263,6 +272,12 @@ func (i SecretBackendArray) ToSecretBackendArrayOutput() SecretBackendArrayOutpu
 
 func (i SecretBackendArray) ToSecretBackendArrayOutputWithContext(ctx context.Context) SecretBackendArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendArrayOutput)
+}
+
+func (i SecretBackendArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackend] {
+	return pulumix.Output[[]*SecretBackend]{
+		OutputState: i.ToSecretBackendArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SecretBackendMapInput is an input type that accepts SecretBackendMap and SecretBackendMapOutput values.
@@ -290,6 +305,12 @@ func (i SecretBackendMap) ToSecretBackendMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendMapOutput)
 }
 
+func (i SecretBackendMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackend] {
+	return pulumix.Output[map[string]*SecretBackend]{
+		OutputState: i.ToSecretBackendMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SecretBackendOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendOutput) ElementType() reflect.Type {
@@ -304,7 +325,13 @@ func (o SecretBackendOutput) ToSecretBackendOutputWithContext(ctx context.Contex
 	return o
 }
 
-// The GCP service account credentials in JSON format.
+func (o SecretBackendOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackend] {
+	return pulumix.Output[*SecretBackend]{
+		OutputState: o.OutputState,
+	}
+}
+
+// JSON-encoded credentials to use to connect to GCP
 func (o SecretBackendOutput) Credentials() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Credentials }).(pulumi.StringPtrOutput)
 }
@@ -365,6 +392,12 @@ func (o SecretBackendArrayOutput) ToSecretBackendArrayOutputWithContext(ctx cont
 	return o
 }
 
+func (o SecretBackendArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackend] {
+	return pulumix.Output[[]*SecretBackend]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SecretBackendArrayOutput) Index(i pulumi.IntInput) SecretBackendOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackend {
 		return vs[0].([]*SecretBackend)[vs[1].(int)]
@@ -383,6 +416,12 @@ func (o SecretBackendMapOutput) ToSecretBackendMapOutput() SecretBackendMapOutpu
 
 func (o SecretBackendMapOutput) ToSecretBackendMapOutputWithContext(ctx context.Context) SecretBackendMapOutput {
 	return o
+}
+
+func (o SecretBackendMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackend] {
+	return pulumix.Output[map[string]*SecretBackend]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SecretBackendMapOutput) MapIndex(k pulumi.StringInput) SecretBackendOutput {

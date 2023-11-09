@@ -116,10 +116,10 @@ def get_oidc_public_keys(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('vault:identity/getOidcPublicKeys:getOidcPublicKeys', __args__, opts=opts, typ=GetOidcPublicKeysResult).value
 
     return AwaitableGetOidcPublicKeysResult(
-        id=__ret__.id,
-        keys=__ret__.keys,
-        name=__ret__.name,
-        namespace=__ret__.namespace)
+        id=pulumi.get(__ret__, 'id'),
+        keys=pulumi.get(__ret__, 'keys'),
+        name=pulumi.get(__ret__, 'name'),
+        namespace=pulumi.get(__ret__, 'namespace'))
 
 
 @_utilities.lift_output_func(get_oidc_public_keys)

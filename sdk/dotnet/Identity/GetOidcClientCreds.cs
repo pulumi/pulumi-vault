@@ -18,6 +18,7 @@ namespace Pulumi.Vault.Identity
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Vault = Pulumi.Vault;
         /// 
@@ -55,6 +56,7 @@ namespace Pulumi.Vault.Identity
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Vault = Pulumi.Vault;
         /// 
@@ -143,6 +145,7 @@ namespace Pulumi.Vault.Identity
         public readonly string ClientId;
         /// <summary>
         /// The Client Secret Key returned by Vault.
+        /// For public OpenID Clients `client_secret` is set to an empty string `""`
         /// </summary>
         public readonly string ClientSecret;
         /// <summary>

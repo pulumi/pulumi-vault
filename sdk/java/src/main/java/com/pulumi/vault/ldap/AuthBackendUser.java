@@ -79,12 +79,16 @@ public class AuthBackendUser extends com.pulumi.resources.CustomResource {
     /**
      * Path to the authentication backend
      * 
+     * For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api-docs/auth/ldap).
+     * 
      */
     @Export(name="backend", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backend;
 
     /**
      * @return Path to the authentication backend
+     * 
+     * For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api-docs/auth/ldap).
      * 
      */
     public Output<Optional<String>> backend() {

@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type Transformation struct {
@@ -24,6 +26,11 @@ type Transformation struct {
 	MaskingCharacter pulumi.StringPtrOutput `pulumi:"maskingCharacter"`
 	// The name of the transformation.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringOutput `pulumi:"path"`
 	// The name of the template to use.
@@ -46,6 +53,7 @@ func NewTransformation(ctx *pulumi.Context,
 	if args.Path == nil {
 		return nil, errors.New("invalid value for required argument 'Path'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Transformation
 	err := ctx.RegisterResource("vault:transform/transformation:Transformation", name, args, &resource, opts...)
 	if err != nil {
@@ -78,6 +86,11 @@ type transformationState struct {
 	MaskingCharacter *string `pulumi:"maskingCharacter"`
 	// The name of the transformation.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Path to where the back-end is mounted within Vault.
 	Path *string `pulumi:"path"`
 	// The name of the template to use.
@@ -101,6 +114,11 @@ type TransformationState struct {
 	MaskingCharacter pulumi.StringPtrInput
 	// The name of the transformation.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringPtrInput
 	// The name of the template to use.
@@ -128,6 +146,11 @@ type transformationArgs struct {
 	MaskingCharacter *string `pulumi:"maskingCharacter"`
 	// The name of the transformation.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Path to where the back-end is mounted within Vault.
 	Path string `pulumi:"path"`
 	// The name of the template to use.
@@ -152,6 +175,11 @@ type TransformationArgs struct {
 	MaskingCharacter pulumi.StringPtrInput
 	// The name of the transformation.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringInput
 	// The name of the template to use.
@@ -187,6 +215,12 @@ func (i *Transformation) ToTransformationOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(TransformationOutput)
 }
 
+func (i *Transformation) ToOutput(ctx context.Context) pulumix.Output[*Transformation] {
+	return pulumix.Output[*Transformation]{
+		OutputState: i.ToTransformationOutputWithContext(ctx).OutputState,
+	}
+}
+
 // TransformationArrayInput is an input type that accepts TransformationArray and TransformationArrayOutput values.
 // You can construct a concrete instance of `TransformationArrayInput` via:
 //
@@ -210,6 +244,12 @@ func (i TransformationArray) ToTransformationArrayOutput() TransformationArrayOu
 
 func (i TransformationArray) ToTransformationArrayOutputWithContext(ctx context.Context) TransformationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TransformationArrayOutput)
+}
+
+func (i TransformationArray) ToOutput(ctx context.Context) pulumix.Output[[]*Transformation] {
+	return pulumix.Output[[]*Transformation]{
+		OutputState: i.ToTransformationArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // TransformationMapInput is an input type that accepts TransformationMap and TransformationMapOutput values.
@@ -237,6 +277,12 @@ func (i TransformationMap) ToTransformationMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(TransformationMapOutput)
 }
 
+func (i TransformationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Transformation] {
+	return pulumix.Output[map[string]*Transformation]{
+		OutputState: i.ToTransformationMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type TransformationOutput struct{ *pulumi.OutputState }
 
 func (TransformationOutput) ElementType() reflect.Type {
@@ -249,6 +295,12 @@ func (o TransformationOutput) ToTransformationOutput() TransformationOutput {
 
 func (o TransformationOutput) ToTransformationOutputWithContext(ctx context.Context) TransformationOutput {
 	return o
+}
+
+func (o TransformationOutput) ToOutput(ctx context.Context) pulumix.Output[*Transformation] {
+	return pulumix.Output[*Transformation]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The set of roles allowed to perform this transformation.
@@ -271,6 +323,14 @@ func (o TransformationOutput) MaskingCharacter() pulumi.StringPtrOutput {
 // The name of the transformation.
 func (o TransformationOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Transformation) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o TransformationOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Transformation) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Path to where the back-end is mounted within Vault.
@@ -312,6 +372,12 @@ func (o TransformationArrayOutput) ToTransformationArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o TransformationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Transformation] {
+	return pulumix.Output[[]*Transformation]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o TransformationArrayOutput) Index(i pulumi.IntInput) TransformationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Transformation {
 		return vs[0].([]*Transformation)[vs[1].(int)]
@@ -330,6 +396,12 @@ func (o TransformationMapOutput) ToTransformationMapOutput() TransformationMapOu
 
 func (o TransformationMapOutput) ToTransformationMapOutputWithContext(ctx context.Context) TransformationMapOutput {
 	return o
+}
+
+func (o TransformationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Transformation] {
+	return pulumix.Output[map[string]*Transformation]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o TransformationMapOutput) MapIndex(k pulumi.StringInput) TransformationOutput {

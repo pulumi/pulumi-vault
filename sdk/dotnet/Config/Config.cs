@@ -8,7 +8,7 @@ namespace Pulumi.Vault
 {
     public static class Config
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "IDE1006", Justification = 
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "IDE1006", Justification = 
         "Double underscore prefix used to avoid conflicts with variable names.")]
         private sealed class __Value<T>
         {
@@ -252,6 +252,17 @@ namespace Pulumi.Vault
             set => _namespace.Set(value);
         }
 
+        private static readonly __Value<bool?> _setNamespaceFromToken = new __Value<bool?>(() => __config.GetBoolean("setNamespaceFromToken"));
+        /// <summary>
+        /// In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the
+        /// token namespace as the root namespace for all resources.
+        /// </summary>
+        public static bool? SetNamespaceFromToken
+        {
+            get => _setNamespaceFromToken.Get();
+            set => _setNamespaceFromToken.Set(value);
+        }
+
         private static readonly __Value<bool?> _skipChildToken = new __Value<bool?>(() => __config.GetBoolean("skipChildToken"));
         /// <summary>
         /// Set this to true to prevent the creation of ephemeral child token used by this provider.
@@ -331,6 +342,7 @@ namespace Pulumi.Vault
                 public string? Namespace { get; set; } = null!;
                 public ImmutableDictionary<string, string>? Parameters { get; set; } = null!;
                 public string Path { get; set; }
+                public bool? UseRootNamespace { get; set; }
             }
 
              public class AuthLoginAws
@@ -350,6 +362,7 @@ namespace Pulumi.Vault
                 public string? Mount { get; set; } = null!;
                 public string? Namespace { get; set; } = null!;
                 public string Role { get; set; }
+                public bool? UseRootNamespace { get; set; }
             }
 
              public class AuthLoginAzure
@@ -363,6 +376,7 @@ namespace Pulumi.Vault
                 public string? Scope { get; set; } = null!;
                 public string SubscriptionId { get; set; }
                 public string? TenantId { get; set; } = null!;
+                public bool? UseRootNamespace { get; set; }
                 public string? VmName { get; set; } = null!;
                 public string? VmssName { get; set; } = null!;
             }
@@ -374,6 +388,7 @@ namespace Pulumi.Vault
                 public string? Mount { get; set; } = null!;
                 public string? Name { get; set; } = null!;
                 public string? Namespace { get; set; } = null!;
+                public bool? UseRootNamespace { get; set; }
             }
 
              public class AuthLoginGcp
@@ -384,6 +399,7 @@ namespace Pulumi.Vault
                 public string? Namespace { get; set; } = null!;
                 public string Role { get; set; }
                 public string? ServiceAccount { get; set; } = null!;
+                public bool? UseRootNamespace { get; set; }
             }
 
              public class AuthLoginJwt
@@ -392,6 +408,7 @@ namespace Pulumi.Vault
                 public string? Mount { get; set; } = null!;
                 public string? Namespace { get; set; } = null!;
                 public string Role { get; set; }
+                public bool? UseRootNamespace { get; set; }
             }
 
              public class AuthLoginKerberos
@@ -405,6 +422,7 @@ namespace Pulumi.Vault
                 public bool? RemoveInstanceName { get; set; }
                 public string? Service { get; set; } = null!;
                 public string? Token { get; set; } = null!;
+                public bool? UseRootNamespace { get; set; }
                 public string? Username { get; set; } = null!;
             }
 
@@ -414,6 +432,7 @@ namespace Pulumi.Vault
                 public string? Mount { get; set; } = null!;
                 public string? Namespace { get; set; } = null!;
                 public string Role { get; set; }
+                public bool? UseRootNamespace { get; set; }
             }
 
              public class AuthLoginOidc
@@ -423,6 +442,7 @@ namespace Pulumi.Vault
                 public string? Mount { get; set; } = null!;
                 public string? Namespace { get; set; } = null!;
                 public string Role { get; set; }
+                public bool? UseRootNamespace { get; set; }
             }
 
              public class AuthLoginRadius
@@ -430,6 +450,7 @@ namespace Pulumi.Vault
                 public string? Mount { get; set; } = null!;
                 public string? Namespace { get; set; } = null!;
                 public string Password { get; set; }
+                public bool? UseRootNamespace { get; set; }
                 public string Username { get; set; }
             }
 
@@ -437,6 +458,7 @@ namespace Pulumi.Vault
              {
                 public string Filename { get; set; }
                 public string? Namespace { get; set; } = null!;
+                public bool? UseRootNamespace { get; set; }
             }
 
              public class AuthLoginUserpass
@@ -445,6 +467,7 @@ namespace Pulumi.Vault
                 public string? Namespace { get; set; } = null!;
                 public string? Password { get; set; } = null!;
                 public string? PasswordFile { get; set; } = null!;
+                public bool? UseRootNamespace { get; set; }
                 public string Username { get; set; }
             }
 

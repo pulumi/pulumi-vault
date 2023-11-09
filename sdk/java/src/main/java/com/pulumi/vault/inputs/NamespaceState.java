@@ -5,7 +5,9 @@ package com.pulumi.vault.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Object;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -14,6 +16,23 @@ import javax.annotation.Nullable;
 public final class NamespaceState extends com.pulumi.resources.ResourceArgs {
 
     public static final NamespaceState Empty = new NamespaceState();
+
+    /**
+     * Custom metadata describing this namespace. Value type
+     * is `map[string]string`. Requires Vault version 1.12+.
+     * 
+     */
+    @Import(name="customMetadata")
+    private @Nullable Output<Map<String,Object>> customMetadata;
+
+    /**
+     * @return Custom metadata describing this namespace. Value type
+     * is `map[string]string`. Requires Vault version 1.12+.
+     * 
+     */
+    public Optional<Output<Map<String,Object>>> customMetadata() {
+        return Optional.ofNullable(this.customMetadata);
+    }
 
     /**
      * The namespace to provision the resource in.
@@ -86,6 +105,7 @@ public final class NamespaceState extends com.pulumi.resources.ResourceArgs {
     private NamespaceState() {}
 
     private NamespaceState(NamespaceState $) {
+        this.customMetadata = $.customMetadata;
         this.namespace = $.namespace;
         this.namespaceId = $.namespaceId;
         this.path = $.path;
@@ -108,6 +128,29 @@ public final class NamespaceState extends com.pulumi.resources.ResourceArgs {
 
         public Builder(NamespaceState defaults) {
             $ = new NamespaceState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param customMetadata Custom metadata describing this namespace. Value type
+         * is `map[string]string`. Requires Vault version 1.12+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customMetadata(@Nullable Output<Map<String,Object>> customMetadata) {
+            $.customMetadata = customMetadata;
+            return this;
+        }
+
+        /**
+         * @param customMetadata Custom metadata describing this namespace. Value type
+         * is `map[string]string`. Requires Vault version 1.12+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customMetadata(Map<String,Object> customMetadata) {
+            return customMetadata(Output.of(customMetadata));
         }
 
         /**

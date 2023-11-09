@@ -78,6 +78,11 @@ export class Namespace extends pulumi.CustomResource {
     }
 
     /**
+     * Custom metadata describing this namespace. Value type
+     * is `map[string]string`. Requires Vault version 1.12+.
+     */
+    public readonly customMetadata!: pulumi.Output<{[key: string]: any}>;
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -111,6 +116,7 @@ export class Namespace extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as NamespaceState | undefined;
+            resourceInputs["customMetadata"] = state ? state.customMetadata : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["namespaceId"] = state ? state.namespaceId : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
@@ -120,6 +126,7 @@ export class Namespace extends pulumi.CustomResource {
             if ((!args || args.path === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
+            resourceInputs["customMetadata"] = args ? args.customMetadata : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["pathFq"] = args ? args.pathFq : undefined;
@@ -134,6 +141,11 @@ export class Namespace extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Namespace resources.
  */
 export interface NamespaceState {
+    /**
+     * Custom metadata describing this namespace. Value type
+     * is `map[string]string`. Requires Vault version 1.12+.
+     */
+    customMetadata?: pulumi.Input<{[key: string]: any}>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
@@ -160,6 +172,11 @@ export interface NamespaceState {
  * The set of arguments for constructing a Namespace resource.
  */
 export interface NamespaceArgs {
+    /**
+     * Custom metadata describing this namespace. Value type
+     * is `map[string]string`. Requires Vault version 1.12+.
+     */
+    customMetadata?: pulumi.Input<{[key: string]: any}>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.

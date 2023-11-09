@@ -26,8 +26,8 @@ namespace Pulumi.Vault.Database.Inputs
         }
 
         /// <summary>
-        /// A URL containing connection information.  
-        /// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        /// Specifies the Redshift DSN. 
+        /// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
         /// </summary>
         [Input("connectionUrl")]
         public Input<string>? ConnectionUrl { get; set; }
@@ -37,6 +37,8 @@ namespace Pulumi.Vault.Database.Inputs
 
         /// <summary>
         /// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        /// 
+        /// Supported list of database secrets engines that can be configured:
         /// </summary>
         public InputMap<object> Data
         {
@@ -45,22 +47,21 @@ namespace Pulumi.Vault.Database.Inputs
         }
 
         /// <summary>
-        /// The maximum number of seconds to keep
-        /// a connection alive for.
+        /// The maximum amount of time a connection may be reused.
         /// </summary>
         [Input("maxConnectionLifetime")]
         public Input<int>? MaxConnectionLifetime { get; set; }
 
         /// <summary>
         /// The maximum number of idle connections to
-        /// maintain.
+        /// the database.
         /// </summary>
         [Input("maxIdleConnections")]
         public Input<int>? MaxIdleConnections { get; set; }
 
         /// <summary>
         /// The maximum number of open connections to
-        /// use.
+        /// the database.
         /// </summary>
         [Input("maxOpenConnections")]
         public Input<int>? MaxOpenConnections { get; set; }
@@ -72,7 +73,7 @@ namespace Pulumi.Vault.Database.Inputs
         private Input<string>? _password;
 
         /// <summary>
-        /// The password to be used in the connection.
+        /// The root credential password used in the connection URL.
         /// </summary>
         public Input<string>? Password
         {
@@ -103,13 +104,13 @@ namespace Pulumi.Vault.Database.Inputs
         }
 
         /// <summary>
-        /// The username to be used in the connection (the account admin level).
+        /// The root credential username used in the connection URL.
         /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }
 
         /// <summary>
-        /// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        /// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         /// </summary>
         [Input("usernameTemplate")]
         public Input<string>? UsernameTemplate { get; set; }

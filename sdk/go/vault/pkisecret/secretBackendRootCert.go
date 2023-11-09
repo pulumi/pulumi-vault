@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -148,6 +150,7 @@ func NewSecretBackendRootCert(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SecretBackendRootCert
 	err := ctx.RegisterResource("vault:pkiSecret/secretBackendRootCert:SecretBackendRootCert", name, args, &resource, opts...)
 	if err != nil {
@@ -497,6 +500,12 @@ func (i *SecretBackendRootCert) ToSecretBackendRootCertOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRootCertOutput)
 }
 
+func (i *SecretBackendRootCert) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendRootCert] {
+	return pulumix.Output[*SecretBackendRootCert]{
+		OutputState: i.ToSecretBackendRootCertOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SecretBackendRootCertArrayInput is an input type that accepts SecretBackendRootCertArray and SecretBackendRootCertArrayOutput values.
 // You can construct a concrete instance of `SecretBackendRootCertArrayInput` via:
 //
@@ -520,6 +529,12 @@ func (i SecretBackendRootCertArray) ToSecretBackendRootCertArrayOutput() SecretB
 
 func (i SecretBackendRootCertArray) ToSecretBackendRootCertArrayOutputWithContext(ctx context.Context) SecretBackendRootCertArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRootCertArrayOutput)
+}
+
+func (i SecretBackendRootCertArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendRootCert] {
+	return pulumix.Output[[]*SecretBackendRootCert]{
+		OutputState: i.ToSecretBackendRootCertArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SecretBackendRootCertMapInput is an input type that accepts SecretBackendRootCertMap and SecretBackendRootCertMapOutput values.
@@ -547,6 +562,12 @@ func (i SecretBackendRootCertMap) ToSecretBackendRootCertMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRootCertMapOutput)
 }
 
+func (i SecretBackendRootCertMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendRootCert] {
+	return pulumix.Output[map[string]*SecretBackendRootCert]{
+		OutputState: i.ToSecretBackendRootCertMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SecretBackendRootCertOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendRootCertOutput) ElementType() reflect.Type {
@@ -559,6 +580,12 @@ func (o SecretBackendRootCertOutput) ToSecretBackendRootCertOutput() SecretBacke
 
 func (o SecretBackendRootCertOutput) ToSecretBackendRootCertOutputWithContext(ctx context.Context) SecretBackendRootCertOutput {
 	return o
+}
+
+func (o SecretBackendRootCertOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendRootCert] {
+	return pulumix.Output[*SecretBackendRootCert]{
+		OutputState: o.OutputState,
+	}
 }
 
 // List of alternative names
@@ -756,6 +783,12 @@ func (o SecretBackendRootCertArrayOutput) ToSecretBackendRootCertArrayOutputWith
 	return o
 }
 
+func (o SecretBackendRootCertArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendRootCert] {
+	return pulumix.Output[[]*SecretBackendRootCert]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SecretBackendRootCertArrayOutput) Index(i pulumi.IntInput) SecretBackendRootCertOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackendRootCert {
 		return vs[0].([]*SecretBackendRootCert)[vs[1].(int)]
@@ -774,6 +807,12 @@ func (o SecretBackendRootCertMapOutput) ToSecretBackendRootCertMapOutput() Secre
 
 func (o SecretBackendRootCertMapOutput) ToSecretBackendRootCertMapOutputWithContext(ctx context.Context) SecretBackendRootCertMapOutput {
 	return o
+}
+
+func (o SecretBackendRootCertMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendRootCert] {
+	return pulumix.Output[map[string]*SecretBackendRootCert]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SecretBackendRootCertMapOutput) MapIndex(k pulumi.StringInput) SecretBackendRootCertOutput {

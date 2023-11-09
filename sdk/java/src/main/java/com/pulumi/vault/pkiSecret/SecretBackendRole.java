@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.pkiSecret.SecretBackendRoleArgs;
 import com.pulumi.vault.pkiSecret.inputs.SecretBackendRoleState;
+import com.pulumi.vault.pkiSecret.outputs.SecretBackendRolePolicyIdentifier;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -585,6 +586,20 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<List<String>>> organizations() {
         return Codegen.optional(this.organizations);
+    }
+    /**
+     * (Vault 1.11+ only) A block for specifying policy identifers. The `policy_identifier` block can be repeated, and supports the following arguments:
+     * 
+     */
+    @Export(name="policyIdentifier", refs={List.class,SecretBackendRolePolicyIdentifier.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<SecretBackendRolePolicyIdentifier>> policyIdentifier;
+
+    /**
+     * @return (Vault 1.11+ only) A block for specifying policy identifers. The `policy_identifier` block can be repeated, and supports the following arguments:
+     * 
+     */
+    public Output<Optional<List<SecretBackendRolePolicyIdentifier>>> policyIdentifier() {
+        return Codegen.optional(this.policyIdentifier);
     }
     /**
      * Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead

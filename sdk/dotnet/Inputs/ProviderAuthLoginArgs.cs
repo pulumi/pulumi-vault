@@ -23,11 +23,18 @@ namespace Pulumi.Vault.Inputs
         public InputMap<string> Parameters
         {
             get => _parameters ?? (_parameters = new InputMap<string>());
-            set => _parameters = value;
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
+                _parameters = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
         }
 
         [Input("path", required: true)]
         public Input<string> Path { get; set; } = null!;
+
+        [Input("useRootNamespace")]
+        public Input<bool>? UseRootNamespace { get; set; }
 
         public ProviderAuthLoginArgs()
         {

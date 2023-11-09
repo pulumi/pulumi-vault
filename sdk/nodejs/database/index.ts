@@ -8,23 +8,23 @@ import * as utilities from "../utilities";
 export { SecretBackendConnectionArgs, SecretBackendConnectionState } from "./secretBackendConnection";
 export type SecretBackendConnection = import("./secretBackendConnection").SecretBackendConnection;
 export const SecretBackendConnection: typeof import("./secretBackendConnection").SecretBackendConnection = null as any;
+utilities.lazyLoad(exports, ["SecretBackendConnection"], () => require("./secretBackendConnection"));
 
 export { SecretBackendRoleArgs, SecretBackendRoleState } from "./secretBackendRole";
 export type SecretBackendRole = import("./secretBackendRole").SecretBackendRole;
 export const SecretBackendRole: typeof import("./secretBackendRole").SecretBackendRole = null as any;
+utilities.lazyLoad(exports, ["SecretBackendRole"], () => require("./secretBackendRole"));
 
 export { SecretBackendStaticRoleArgs, SecretBackendStaticRoleState } from "./secretBackendStaticRole";
 export type SecretBackendStaticRole = import("./secretBackendStaticRole").SecretBackendStaticRole;
 export const SecretBackendStaticRole: typeof import("./secretBackendStaticRole").SecretBackendStaticRole = null as any;
+utilities.lazyLoad(exports, ["SecretBackendStaticRole"], () => require("./secretBackendStaticRole"));
 
 export { SecretsMountArgs, SecretsMountState } from "./secretsMount";
 export type SecretsMount = import("./secretsMount").SecretsMount;
 export const SecretsMount: typeof import("./secretsMount").SecretsMount = null as any;
-
-utilities.lazyLoad(exports, ["SecretBackendConnection"], () => require("./secretBackendConnection"));
-utilities.lazyLoad(exports, ["SecretBackendRole"], () => require("./secretBackendRole"));
-utilities.lazyLoad(exports, ["SecretBackendStaticRole"], () => require("./secretBackendStaticRole"));
 utilities.lazyLoad(exports, ["SecretsMount"], () => require("./secretsMount"));
+
 
 const _module = {
     version: utilities.getVersion(),

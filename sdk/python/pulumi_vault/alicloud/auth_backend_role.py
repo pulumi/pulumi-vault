@@ -34,6 +34,8 @@ class AuthBackendRoleArgs:
                the role reflected in the arn.
         :param pulumi.Input[str] backend: Path to the mounted AliCloud auth backend.
                Defaults to `alicloud`
+               
+               For more details on the usage of each argument consult the [Vault AliCloud API documentation](https://www.vaultproject.io/api-docs/auth/alicloud).
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured namespace.
@@ -121,6 +123,8 @@ class AuthBackendRoleArgs:
         """
         Path to the mounted AliCloud auth backend.
         Defaults to `alicloud`
+
+        For more details on the usage of each argument consult the [Vault AliCloud API documentation](https://www.vaultproject.io/api-docs/auth/alicloud).
         """
         return pulumi.get(self, "backend")
 
@@ -290,6 +294,8 @@ class _AuthBackendRoleState:
         :param pulumi.Input[str] arn: The role's arn.
         :param pulumi.Input[str] backend: Path to the mounted AliCloud auth backend.
                Defaults to `alicloud`
+               
+               For more details on the usage of each argument consult the [Vault AliCloud API documentation](https://www.vaultproject.io/api-docs/auth/alicloud).
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured namespace.
@@ -368,6 +374,8 @@ class _AuthBackendRoleState:
         """
         Path to the mounted AliCloud auth backend.
         Defaults to `alicloud`
+
+        For more details on the usage of each argument consult the [Vault AliCloud API documentation](https://www.vaultproject.io/api-docs/auth/alicloud).
         """
         return pulumi.get(self, "backend")
 
@@ -579,6 +587,8 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] arn: The role's arn.
         :param pulumi.Input[str] backend: Path to the mounted AliCloud auth backend.
                Defaults to `alicloud`
+               
+               For more details on the usage of each argument consult the [Vault AliCloud API documentation](https://www.vaultproject.io/api-docs/auth/alicloud).
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured namespace.
@@ -731,6 +741,8 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] arn: The role's arn.
         :param pulumi.Input[str] backend: Path to the mounted AliCloud auth backend.
                Defaults to `alicloud`
+               
+               For more details on the usage of each argument consult the [Vault AliCloud API documentation](https://www.vaultproject.io/api-docs/auth/alicloud).
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured namespace.
@@ -797,6 +809,8 @@ class AuthBackendRole(pulumi.CustomResource):
         """
         Path to the mounted AliCloud auth backend.
         Defaults to `alicloud`
+
+        For more details on the usage of each argument consult the [Vault AliCloud API documentation](https://www.vaultproject.io/api-docs/auth/alicloud).
         """
         return pulumi.get(self, "backend")
 

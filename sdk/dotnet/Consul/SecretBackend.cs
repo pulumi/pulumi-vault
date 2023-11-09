@@ -14,6 +14,7 @@ namespace Pulumi.Vault.Consul
     /// ### Creating a standard backend resource:
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -32,6 +33,7 @@ namespace Pulumi.Vault.Consul
     /// ### Creating a backend resource to bootstrap a new Consul instance:
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -67,6 +69,10 @@ namespace Pulumi.Vault.Consul
 
         /// <summary>
         /// Denotes that the resource is used to bootstrap the Consul ACL system.
+        /// 
+        /// &gt; **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
+        /// this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
+        /// and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
         /// </summary>
         [Output("bootstrap")]
         public Output<bool?> Bootstrap { get; private set; } = null!;
@@ -146,8 +152,7 @@ namespace Pulumi.Vault.Consul
         public Output<string?> Scheme { get; private set; } = null!;
 
         /// <summary>
-        /// The Consul management token this backend should use to issue new tokens. This field is required
-        /// when `bootstrap` is false.
+        /// Specifies the Consul token to use when managing or issuing new tokens.
         /// </summary>
         [Output("token")]
         public Output<string?> Token { get; private set; } = null!;
@@ -212,6 +217,10 @@ namespace Pulumi.Vault.Consul
 
         /// <summary>
         /// Denotes that the resource is used to bootstrap the Consul ACL system.
+        /// 
+        /// &gt; **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
+        /// this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
+        /// and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
         /// </summary>
         [Input("bootstrap")]
         public Input<bool>? Bootstrap { get; set; }
@@ -314,8 +323,7 @@ namespace Pulumi.Vault.Consul
         private Input<string>? _token;
 
         /// <summary>
-        /// The Consul management token this backend should use to issue new tokens. This field is required
-        /// when `bootstrap` is false.
+        /// Specifies the Consul token to use when managing or issuing new tokens.
         /// </summary>
         public Input<string>? Token
         {
@@ -343,6 +351,10 @@ namespace Pulumi.Vault.Consul
 
         /// <summary>
         /// Denotes that the resource is used to bootstrap the Consul ACL system.
+        /// 
+        /// &gt; **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
+        /// this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
+        /// and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
         /// </summary>
         [Input("bootstrap")]
         public Input<bool>? Bootstrap { get; set; }
@@ -445,8 +457,7 @@ namespace Pulumi.Vault.Consul
         private Input<string>? _token;
 
         /// <summary>
-        /// The Consul management token this backend should use to issue new tokens. This field is required
-        /// when `bootstrap` is false.
+        /// Specifies the Consul token to use when managing or issuing new tokens.
         /// </summary>
         public Input<string>? Token
         {

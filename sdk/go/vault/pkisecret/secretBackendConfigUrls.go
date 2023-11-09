@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows setting the issuing certificate endpoints, CRL distribution points, and OCSP server endpoints that will be encoded into issued certificates.
@@ -55,11 +57,7 @@ import (
 //
 // ## Import
 //
-// The PKI config URLs can be imported using the resource's `id`.
-//
-// In the case of the example above the `id` would be `pki-root/config/urls`,
-//
-// where the `pki-root` component is the resource's `backend`, e.g.
+// The PKI config URLs can be imported using the resource's `id`. In the case of the example above the `id` would be `pki-root/config/urls`, where the `pki-root` component is the resource's `backend`, e.g.
 //
 // ```sh
 //
@@ -94,6 +92,7 @@ func NewSecretBackendConfigUrls(ctx *pulumi.Context,
 	if args.Backend == nil {
 		return nil, errors.New("invalid value for required argument 'Backend'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SecretBackendConfigUrls
 	err := ctx.RegisterResource("vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls", name, args, &resource, opts...)
 	if err != nil {
@@ -207,6 +206,12 @@ func (i *SecretBackendConfigUrls) ToSecretBackendConfigUrlsOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConfigUrlsOutput)
 }
 
+func (i *SecretBackendConfigUrls) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConfigUrls] {
+	return pulumix.Output[*SecretBackendConfigUrls]{
+		OutputState: i.ToSecretBackendConfigUrlsOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SecretBackendConfigUrlsArrayInput is an input type that accepts SecretBackendConfigUrlsArray and SecretBackendConfigUrlsArrayOutput values.
 // You can construct a concrete instance of `SecretBackendConfigUrlsArrayInput` via:
 //
@@ -230,6 +235,12 @@ func (i SecretBackendConfigUrlsArray) ToSecretBackendConfigUrlsArrayOutput() Sec
 
 func (i SecretBackendConfigUrlsArray) ToSecretBackendConfigUrlsArrayOutputWithContext(ctx context.Context) SecretBackendConfigUrlsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConfigUrlsArrayOutput)
+}
+
+func (i SecretBackendConfigUrlsArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendConfigUrls] {
+	return pulumix.Output[[]*SecretBackendConfigUrls]{
+		OutputState: i.ToSecretBackendConfigUrlsArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SecretBackendConfigUrlsMapInput is an input type that accepts SecretBackendConfigUrlsMap and SecretBackendConfigUrlsMapOutput values.
@@ -257,6 +268,12 @@ func (i SecretBackendConfigUrlsMap) ToSecretBackendConfigUrlsMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConfigUrlsMapOutput)
 }
 
+func (i SecretBackendConfigUrlsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendConfigUrls] {
+	return pulumix.Output[map[string]*SecretBackendConfigUrls]{
+		OutputState: i.ToSecretBackendConfigUrlsMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SecretBackendConfigUrlsOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConfigUrlsOutput) ElementType() reflect.Type {
@@ -269,6 +286,12 @@ func (o SecretBackendConfigUrlsOutput) ToSecretBackendConfigUrlsOutput() SecretB
 
 func (o SecretBackendConfigUrlsOutput) ToSecretBackendConfigUrlsOutputWithContext(ctx context.Context) SecretBackendConfigUrlsOutput {
 	return o
+}
+
+func (o SecretBackendConfigUrlsOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConfigUrls] {
+	return pulumix.Output[*SecretBackendConfigUrls]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
@@ -313,6 +336,12 @@ func (o SecretBackendConfigUrlsArrayOutput) ToSecretBackendConfigUrlsArrayOutput
 	return o
 }
 
+func (o SecretBackendConfigUrlsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendConfigUrls] {
+	return pulumix.Output[[]*SecretBackendConfigUrls]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SecretBackendConfigUrlsArrayOutput) Index(i pulumi.IntInput) SecretBackendConfigUrlsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackendConfigUrls {
 		return vs[0].([]*SecretBackendConfigUrls)[vs[1].(int)]
@@ -331,6 +360,12 @@ func (o SecretBackendConfigUrlsMapOutput) ToSecretBackendConfigUrlsMapOutput() S
 
 func (o SecretBackendConfigUrlsMapOutput) ToSecretBackendConfigUrlsMapOutputWithContext(ctx context.Context) SecretBackendConfigUrlsMapOutput {
 	return o
+}
+
+func (o SecretBackendConfigUrlsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendConfigUrls] {
+	return pulumix.Output[map[string]*SecretBackendConfigUrls]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SecretBackendConfigUrlsMapOutput) MapIndex(k pulumi.StringInput) SecretBackendConfigUrlsOutput {

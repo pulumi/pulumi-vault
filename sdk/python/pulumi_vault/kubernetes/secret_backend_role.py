@@ -37,6 +37,8 @@ class SecretBackendRoleArgs:
                Kubernetes objects.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_labels: Additional labels to apply to all generated Kubernetes 
                objects.
+               
+               This resource also directly accepts all Mount fields.
         :param pulumi.Input[str] generated_role_rules: The Role or ClusterRole rules to use when generating 
                a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name`
                and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated
@@ -130,6 +132,8 @@ class SecretBackendRoleArgs:
         """
         Additional labels to apply to all generated Kubernetes 
         objects.
+
+        This resource also directly accepts all Mount fields.
         """
         return pulumi.get(self, "extra_labels")
 
@@ -285,6 +289,8 @@ class _SecretBackendRoleState:
                Kubernetes objects.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_labels: Additional labels to apply to all generated Kubernetes 
                objects.
+               
+               This resource also directly accepts all Mount fields.
         :param pulumi.Input[str] generated_role_rules: The Role or ClusterRole rules to use when generating 
                a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name`
                and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated
@@ -380,6 +386,8 @@ class _SecretBackendRoleState:
         """
         Additional labels to apply to all generated Kubernetes 
         objects.
+
+        This resource also directly accepts all Mount fields.
         """
         return pulumi.get(self, "extra_labels")
 
@@ -641,6 +649,8 @@ class SecretBackendRole(pulumi.CustomResource):
                Kubernetes objects.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_labels: Additional labels to apply to all generated Kubernetes 
                objects.
+               
+               This resource also directly accepts all Mount fields.
         :param pulumi.Input[str] generated_role_rules: The Role or ClusterRole rules to use when generating 
                a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name`
                and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated
@@ -865,6 +875,8 @@ class SecretBackendRole(pulumi.CustomResource):
                Kubernetes objects.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_labels: Additional labels to apply to all generated Kubernetes 
                objects.
+               
+               This resource also directly accepts all Mount fields.
         :param pulumi.Input[str] generated_role_rules: The Role or ClusterRole rules to use when generating 
                a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name`
                and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated
@@ -940,6 +952,8 @@ class SecretBackendRole(pulumi.CustomResource):
         """
         Additional labels to apply to all generated Kubernetes 
         objects.
+
+        This resource also directly accepts all Mount fields.
         """
         return pulumi.get(self, "extra_labels")
 

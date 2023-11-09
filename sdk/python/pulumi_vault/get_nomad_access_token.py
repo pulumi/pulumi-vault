@@ -141,12 +141,12 @@ def get_nomad_access_token(backend: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('vault:index/getNomadAccessToken:getNomadAccessToken', __args__, opts=opts, typ=GetNomadAccessTokenResult).value
 
     return AwaitableGetNomadAccessTokenResult(
-        accessor_id=__ret__.accessor_id,
-        backend=__ret__.backend,
-        id=__ret__.id,
-        namespace=__ret__.namespace,
-        role=__ret__.role,
-        secret_id=__ret__.secret_id)
+        accessor_id=pulumi.get(__ret__, 'accessor_id'),
+        backend=pulumi.get(__ret__, 'backend'),
+        id=pulumi.get(__ret__, 'id'),
+        namespace=pulumi.get(__ret__, 'namespace'),
+        role=pulumi.get(__ret__, 'role'),
+        secret_id=pulumi.get(__ret__, 'secret_id'))
 
 
 @_utilities.lift_output_func(get_nomad_access_token)

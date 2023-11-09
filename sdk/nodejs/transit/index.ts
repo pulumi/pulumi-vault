@@ -8,23 +8,23 @@ import * as utilities from "../utilities";
 export { GetDecryptArgs, GetDecryptResult, GetDecryptOutputArgs } from "./getDecrypt";
 export const getDecrypt: typeof import("./getDecrypt").getDecrypt = null as any;
 export const getDecryptOutput: typeof import("./getDecrypt").getDecryptOutput = null as any;
+utilities.lazyLoad(exports, ["getDecrypt","getDecryptOutput"], () => require("./getDecrypt"));
 
 export { GetEncryptArgs, GetEncryptResult, GetEncryptOutputArgs } from "./getEncrypt";
 export const getEncrypt: typeof import("./getEncrypt").getEncrypt = null as any;
 export const getEncryptOutput: typeof import("./getEncrypt").getEncryptOutput = null as any;
+utilities.lazyLoad(exports, ["getEncrypt","getEncryptOutput"], () => require("./getEncrypt"));
 
 export { SecretBackendKeyArgs, SecretBackendKeyState } from "./secretBackendKey";
 export type SecretBackendKey = import("./secretBackendKey").SecretBackendKey;
 export const SecretBackendKey: typeof import("./secretBackendKey").SecretBackendKey = null as any;
+utilities.lazyLoad(exports, ["SecretBackendKey"], () => require("./secretBackendKey"));
 
 export { SecretCacheConfigArgs, SecretCacheConfigState } from "./secretCacheConfig";
 export type SecretCacheConfig = import("./secretCacheConfig").SecretCacheConfig;
 export const SecretCacheConfig: typeof import("./secretCacheConfig").SecretCacheConfig = null as any;
-
-utilities.lazyLoad(exports, ["getDecrypt","getDecryptOutput"], () => require("./getDecrypt"));
-utilities.lazyLoad(exports, ["getEncrypt","getEncryptOutput"], () => require("./getEncrypt"));
-utilities.lazyLoad(exports, ["SecretBackendKey"], () => require("./secretBackendKey"));
 utilities.lazyLoad(exports, ["SecretCacheConfig"], () => require("./secretCacheConfig"));
+
 
 const _module = {
     version: utilities.getVersion(),

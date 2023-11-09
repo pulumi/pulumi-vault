@@ -12,7 +12,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class SecretBackendConnectionRedisElasticache {
     /**
-     * @return The root credential password used in the connection URL.
+     * @return The password to authenticate with.
      * 
      */
     private @Nullable String password;
@@ -28,14 +28,14 @@ public final class SecretBackendConnectionRedisElasticache {
      */
     private String url;
     /**
-     * @return The root credential username used in the connection URL.
+     * @return The username to authenticate with.
      * 
      */
     private @Nullable String username;
 
     private SecretBackendConnectionRedisElasticache() {}
     /**
-     * @return The root credential password used in the connection URL.
+     * @return The password to authenticate with.
      * 
      */
     public Optional<String> password() {
@@ -57,7 +57,7 @@ public final class SecretBackendConnectionRedisElasticache {
         return this.url;
     }
     /**
-     * @return The root credential username used in the connection URL.
+     * @return The username to authenticate with.
      * 
      */
     public Optional<String> username() {

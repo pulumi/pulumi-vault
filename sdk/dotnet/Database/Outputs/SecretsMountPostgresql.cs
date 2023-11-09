@@ -20,12 +20,14 @@ namespace Pulumi.Vault.Database.Outputs
         public readonly ImmutableArray<string> AllowedRoles;
         public readonly string? AuthType;
         /// <summary>
-        /// A URL containing connection information.  
-        /// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        /// Specifies the Redshift DSN. 
+        /// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
         /// </summary>
         public readonly string? ConnectionUrl;
         /// <summary>
         /// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        /// 
+        /// Supported list of database secrets engines that can be configured:
         /// </summary>
         public readonly ImmutableDictionary<string, object>? Data;
         /// <summary>
@@ -33,23 +35,22 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly bool? DisableEscaping;
         /// <summary>
-        /// The maximum number of seconds to keep
-        /// a connection alive for.
+        /// The maximum amount of time a connection may be reused.
         /// </summary>
         public readonly int? MaxConnectionLifetime;
         /// <summary>
         /// The maximum number of idle connections to
-        /// maintain.
+        /// the database.
         /// </summary>
         public readonly int? MaxIdleConnections;
         /// <summary>
         /// The maximum number of open connections to
-        /// use.
+        /// the database.
         /// </summary>
         public readonly int? MaxOpenConnections;
         public readonly string Name;
         /// <summary>
-        /// The password to be used in the connection.
+        /// The root credential password used in the connection URL.
         /// </summary>
         public readonly string? Password;
         /// <summary>
@@ -62,11 +63,11 @@ namespace Pulumi.Vault.Database.Outputs
         public readonly ImmutableArray<string> RootRotationStatements;
         public readonly string? ServiceAccountJson;
         /// <summary>
-        /// The username to be used in the connection (the account admin level).
+        /// The root credential username used in the connection URL.
         /// </summary>
         public readonly string? Username;
         /// <summary>
-        /// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        /// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         /// </summary>
         public readonly string? UsernameTemplate;
         /// <summary>

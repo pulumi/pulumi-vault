@@ -62,6 +62,13 @@ export class Alphabet extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * Path to where the back-end is mounted within Vault.
      */
     public readonly path!: pulumi.Output<string>;
@@ -81,6 +88,7 @@ export class Alphabet extends pulumi.CustomResource {
             const state = argsOrState as AlphabetState | undefined;
             resourceInputs["alphabet"] = state ? state.alphabet : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
         } else {
             const args = argsOrState as AlphabetArgs | undefined;
@@ -89,6 +97,7 @@ export class Alphabet extends pulumi.CustomResource {
             }
             resourceInputs["alphabet"] = args ? args.alphabet : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -109,6 +118,13 @@ export interface AlphabetState {
      */
     name?: pulumi.Input<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
+    /**
      * Path to where the back-end is mounted within Vault.
      */
     path?: pulumi.Input<string>;
@@ -126,6 +142,13 @@ export interface AlphabetArgs {
      * The name of the alphabet.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Path to where the back-end is mounted within Vault.
      */

@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -46,12 +48,21 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			_ = pulumi.All(config.Backend, test.Role).ApplyT(func(_args []interface{}) (vault.GetNomadAccessTokenResult, error) {
+//				backend := _args[0].(*string)
+//				role := _args[1].(string)
+//				return vault.GetNomadAccessTokenOutput(ctx, vault.GetNomadAccessTokenOutputArgs{
+//					Backend: backend,
+//					Role:    role,
+//				}, nil), nil
+//			}).(vault.GetNomadAccessTokenResultOutput)
 //			return nil
 //		})
 //	}
 //
 // ```
 func GetNomadAccessToken(ctx *pulumi.Context, args *GetNomadAccessTokenArgs, opts ...pulumi.InvokeOption) (*GetNomadAccessTokenResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetNomadAccessTokenResult
 	err := ctx.Invoke("vault:index/getNomadAccessToken:getNomadAccessToken", args, &rv, opts...)
 	if err != nil {
@@ -134,6 +145,12 @@ func (o GetNomadAccessTokenResultOutput) ToGetNomadAccessTokenResultOutput() Get
 
 func (o GetNomadAccessTokenResultOutput) ToGetNomadAccessTokenResultOutputWithContext(ctx context.Context) GetNomadAccessTokenResultOutput {
 	return o
+}
+
+func (o GetNomadAccessTokenResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetNomadAccessTokenResult] {
+	return pulumix.Output[GetNomadAccessTokenResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The public identifier for a specific token. It can be used

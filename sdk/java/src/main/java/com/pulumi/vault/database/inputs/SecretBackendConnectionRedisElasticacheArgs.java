@@ -16,14 +16,14 @@ public final class SecretBackendConnectionRedisElasticacheArgs extends com.pulum
     public static final SecretBackendConnectionRedisElasticacheArgs Empty = new SecretBackendConnectionRedisElasticacheArgs();
 
     /**
-     * The root credential password used in the connection URL.
+     * The password to authenticate with.
      * 
      */
     @Import(name="password")
     private @Nullable Output<String> password;
 
     /**
-     * @return The root credential password used in the connection URL.
+     * @return The password to authenticate with.
      * 
      */
     public Optional<Output<String>> password() {
@@ -63,14 +63,14 @@ public final class SecretBackendConnectionRedisElasticacheArgs extends com.pulum
     }
 
     /**
-     * The root credential username used in the connection URL.
+     * The username to authenticate with.
      * 
      */
     @Import(name="username")
     private @Nullable Output<String> username;
 
     /**
-     * @return The root credential username used in the connection URL.
+     * @return The username to authenticate with.
      * 
      */
     public Optional<Output<String>> username() {
@@ -105,7 +105,7 @@ public final class SecretBackendConnectionRedisElasticacheArgs extends com.pulum
         }
 
         /**
-         * @param password The root credential password used in the connection URL.
+         * @param password The password to authenticate with.
          * 
          * @return builder
          * 
@@ -116,7 +116,7 @@ public final class SecretBackendConnectionRedisElasticacheArgs extends com.pulum
         }
 
         /**
-         * @param password The root credential password used in the connection URL.
+         * @param password The password to authenticate with.
          * 
          * @return builder
          * 
@@ -170,7 +170,7 @@ public final class SecretBackendConnectionRedisElasticacheArgs extends com.pulum
         }
 
         /**
-         * @param username The root credential username used in the connection URL.
+         * @param username The username to authenticate with.
          * 
          * @return builder
          * 
@@ -181,7 +181,7 @@ public final class SecretBackendConnectionRedisElasticacheArgs extends com.pulum
         }
 
         /**
-         * @param username The root credential username used in the connection URL.
+         * @param username The username to authenticate with.
          * 
          * @return builder
          * 

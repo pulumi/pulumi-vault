@@ -7,8 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
+
+var _ = internal.GetEnvOrDefault
 
 type GetEntityAliasType struct {
 	// Canonical ID of the Alias
@@ -79,6 +83,12 @@ func (i GetEntityAliasTypeArgs) ToGetEntityAliasTypeOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(GetEntityAliasTypeOutput)
 }
 
+func (i GetEntityAliasTypeArgs) ToOutput(ctx context.Context) pulumix.Output[GetEntityAliasType] {
+	return pulumix.Output[GetEntityAliasType]{
+		OutputState: i.ToGetEntityAliasTypeOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetEntityAliasTypeArrayInput is an input type that accepts GetEntityAliasTypeArray and GetEntityAliasTypeArrayOutput values.
 // You can construct a concrete instance of `GetEntityAliasTypeArrayInput` via:
 //
@@ -104,6 +114,12 @@ func (i GetEntityAliasTypeArray) ToGetEntityAliasTypeArrayOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(GetEntityAliasTypeArrayOutput)
 }
 
+func (i GetEntityAliasTypeArray) ToOutput(ctx context.Context) pulumix.Output[[]GetEntityAliasType] {
+	return pulumix.Output[[]GetEntityAliasType]{
+		OutputState: i.ToGetEntityAliasTypeArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetEntityAliasTypeOutput struct{ *pulumi.OutputState }
 
 func (GetEntityAliasTypeOutput) ElementType() reflect.Type {
@@ -116,6 +132,12 @@ func (o GetEntityAliasTypeOutput) ToGetEntityAliasTypeOutput() GetEntityAliasTyp
 
 func (o GetEntityAliasTypeOutput) ToGetEntityAliasTypeOutputWithContext(ctx context.Context) GetEntityAliasTypeOutput {
 	return o
+}
+
+func (o GetEntityAliasTypeOutput) ToOutput(ctx context.Context) pulumix.Output[GetEntityAliasType] {
+	return pulumix.Output[GetEntityAliasType]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Canonical ID of the Alias
@@ -180,6 +202,12 @@ func (o GetEntityAliasTypeArrayOutput) ToGetEntityAliasTypeArrayOutput() GetEnti
 
 func (o GetEntityAliasTypeArrayOutput) ToGetEntityAliasTypeArrayOutputWithContext(ctx context.Context) GetEntityAliasTypeArrayOutput {
 	return o
+}
+
+func (o GetEntityAliasTypeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetEntityAliasType] {
+	return pulumix.Output[[]GetEntityAliasType]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetEntityAliasTypeArrayOutput) Index(i pulumi.IntInput) GetEntityAliasTypeOutput {

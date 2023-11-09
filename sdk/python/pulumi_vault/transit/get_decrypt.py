@@ -137,13 +137,13 @@ def get_decrypt(backend: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('vault:transit/getDecrypt:getDecrypt', __args__, opts=opts, typ=GetDecryptResult).value
 
     return AwaitableGetDecryptResult(
-        backend=__ret__.backend,
-        ciphertext=__ret__.ciphertext,
-        context=__ret__.context,
-        id=__ret__.id,
-        key=__ret__.key,
-        namespace=__ret__.namespace,
-        plaintext=__ret__.plaintext)
+        backend=pulumi.get(__ret__, 'backend'),
+        ciphertext=pulumi.get(__ret__, 'ciphertext'),
+        context=pulumi.get(__ret__, 'context'),
+        id=pulumi.get(__ret__, 'id'),
+        key=pulumi.get(__ret__, 'key'),
+        namespace=pulumi.get(__ret__, 'namespace'),
+        plaintext=pulumi.get(__ret__, 'plaintext'))
 
 
 @_utilities.lift_output_func(get_decrypt)

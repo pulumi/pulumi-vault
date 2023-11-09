@@ -61,11 +61,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * The PKI config URLs can be imported using the resource&#39;s `id`.
- * 
- * In the case of the example above the `id` would be `pki-root/config/urls`,
- * 
- * where the `pki-root` component is the resource&#39;s `backend`, e.g.
+ * The PKI config URLs can be imported using the resource&#39;s `id`. In the case of the example above the `id` would be `pki-root/config/urls`, where the `pki-root` component is the resource&#39;s `backend`, e.g.
  * 
  * ```sh
  *  $ pulumi import vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls example pki-root/config/urls

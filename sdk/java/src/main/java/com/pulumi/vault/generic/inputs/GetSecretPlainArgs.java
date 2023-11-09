@@ -79,9 +79,21 @@ public final class GetSecretPlainArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.version);
     }
 
+    /**
+     * If set to true, stores `lease_start_time` in the TF state.
+     * Note that storing the `lease_start_time` in the TF state will cause a persistent drift
+     * on every `pulumi preview` and will require a `pulumi up`.
+     * 
+     */
     @Import(name="withLeaseStartTime")
     private @Nullable Boolean withLeaseStartTime;
 
+    /**
+     * @return If set to true, stores `lease_start_time` in the TF state.
+     * Note that storing the `lease_start_time` in the TF state will cause a persistent drift
+     * on every `pulumi preview` and will require a `pulumi up`.
+     * 
+     */
     public Optional<Boolean> withLeaseStartTime() {
         return Optional.ofNullable(this.withLeaseStartTime);
     }
@@ -155,6 +167,14 @@ public final class GetSecretPlainArgs extends com.pulumi.resources.InvokeArgs {
             return this;
         }
 
+        /**
+         * @param withLeaseStartTime If set to true, stores `lease_start_time` in the TF state.
+         * Note that storing the `lease_start_time` in the TF state will cause a persistent drift
+         * on every `pulumi preview` and will require a `pulumi up`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder withLeaseStartTime(@Nullable Boolean withLeaseStartTime) {
             $.withLeaseStartTime = withLeaseStartTime;
             return this;

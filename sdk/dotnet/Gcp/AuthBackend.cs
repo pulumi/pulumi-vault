@@ -17,6 +17,7 @@ namespace Pulumi.Vault.Gcp
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.IO;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -78,6 +79,8 @@ namespace Pulumi.Vault.Gcp
         /// used when making API requests. This allows specific requests made during authentication
         /// to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
         /// environments. Requires Vault 1.11+.
+        /// 
+        /// Overrides are set at the subdomain level using the following keys:
         /// </summary>
         [Output("customEndpoint")]
         public Output<Outputs.AuthBackendCustomEndpoint?> CustomEndpoint { get; private set; } = null!;
@@ -212,6 +215,8 @@ namespace Pulumi.Vault.Gcp
         /// used when making API requests. This allows specific requests made during authentication
         /// to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
         /// environments. Requires Vault 1.11+.
+        /// 
+        /// Overrides are set at the subdomain level using the following keys:
         /// </summary>
         [Input("customEndpoint")]
         public Input<Inputs.AuthBackendCustomEndpointArgs>? CustomEndpoint { get; set; }
@@ -310,6 +315,8 @@ namespace Pulumi.Vault.Gcp
         /// used when making API requests. This allows specific requests made during authentication
         /// to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
         /// environments. Requires Vault 1.11+.
+        /// 
+        /// Overrides are set at the subdomain level using the following keys:
         /// </summary>
         [Input("customEndpoint")]
         public Input<Inputs.AuthBackendCustomEndpointGetArgs>? CustomEndpoint { get; set; }

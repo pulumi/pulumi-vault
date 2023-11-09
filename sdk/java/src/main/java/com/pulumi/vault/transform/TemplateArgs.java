@@ -33,15 +33,15 @@ public final class TemplateArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * - Optional mapping of name to regular expression template, used to customize
-     *   the decoded output. (requires Vault Enterprise 1.9+)
+     * Optional mapping of name to regular expression template, used to customize
+     * the decoded output. (requires Vault Enterprise 1.9+)
      * 
      */
     @Import(name="decodeFormats")
     private @Nullable Output<Map<String,Object>> decodeFormats;
 
     /**
-     * @return - Optional mapping of name to regular expression template, used to customize
+     * @return Optional mapping of name to regular expression template, used to customize
      * the decoded output. (requires Vault Enterprise 1.9+)
      * 
      */
@@ -50,15 +50,15 @@ public final class TemplateArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * - The regular expression template used to format encoded values.
-     *   (requires Vault Enterprise 1.9+)
+     * The regular expression template used to format encoded values.
+     * (requires Vault Enterprise 1.9+)
      * 
      */
     @Import(name="encodeFormat")
     private @Nullable Output<String> encodeFormat;
 
     /**
-     * @return - The regular expression template used to format encoded values.
+     * @return The regular expression template used to format encoded values.
      * (requires Vault Enterprise 1.9+)
      * 
      */
@@ -79,6 +79,27 @@ public final class TemplateArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
+    }
+
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable Output<String> namespace;
+
+    /**
+     * @return The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> namespace() {
+        return Optional.ofNullable(this.namespace);
     }
 
     /**
@@ -133,6 +154,7 @@ public final class TemplateArgs extends com.pulumi.resources.ResourceArgs {
         this.decodeFormats = $.decodeFormats;
         this.encodeFormat = $.encodeFormat;
         this.name = $.name;
+        this.namespace = $.namespace;
         this.path = $.path;
         this.pattern = $.pattern;
         this.type = $.type;
@@ -178,7 +200,7 @@ public final class TemplateArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param decodeFormats - Optional mapping of name to regular expression template, used to customize
+         * @param decodeFormats Optional mapping of name to regular expression template, used to customize
          * the decoded output. (requires Vault Enterprise 1.9+)
          * 
          * @return builder
@@ -190,7 +212,7 @@ public final class TemplateArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param decodeFormats - Optional mapping of name to regular expression template, used to customize
+         * @param decodeFormats Optional mapping of name to regular expression template, used to customize
          * the decoded output. (requires Vault Enterprise 1.9+)
          * 
          * @return builder
@@ -201,7 +223,7 @@ public final class TemplateArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param encodeFormat - The regular expression template used to format encoded values.
+         * @param encodeFormat The regular expression template used to format encoded values.
          * (requires Vault Enterprise 1.9+)
          * 
          * @return builder
@@ -213,7 +235,7 @@ public final class TemplateArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param encodeFormat - The regular expression template used to format encoded values.
+         * @param encodeFormat The regular expression template used to format encoded values.
          * (requires Vault Enterprise 1.9+)
          * 
          * @return builder
@@ -242,6 +264,33 @@ public final class TemplateArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable Output<String> namespace) {
+            $.namespace = namespace;
+            return this;
+        }
+
+        /**
+         * @param namespace The namespace to provision the resource in.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(String namespace) {
+            return namespace(Output.of(namespace));
         }
 
         /**

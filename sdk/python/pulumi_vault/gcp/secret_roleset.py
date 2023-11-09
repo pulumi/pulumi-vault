@@ -157,7 +157,7 @@ class _SecretRolesetState:
         :param pulumi.Input[str] project: Name of the GCP project that this roleset's service account will belong to.
         :param pulumi.Input[str] roleset: Name of the Roleset to create
         :param pulumi.Input[str] secret_type: Type of secret generated for this role set. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
-        :param pulumi.Input[str] service_account_email: Email of the service account created by Vault for this Roleset
+        :param pulumi.Input[str] service_account_email: Email of the service account created by Vault for this Roleset.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_scopes: List of OAuth scopes to assign to `access_token` secrets generated under this role set (`access_token` role sets only).
         """
         if backend is not None:
@@ -256,7 +256,7 @@ class _SecretRolesetState:
     @pulumi.getter(name="serviceAccountEmail")
     def service_account_email(self) -> Optional[pulumi.Input[str]]:
         """
-        Email of the service account created by Vault for this Roleset
+        Email of the service account created by Vault for this Roleset.
         """
         return pulumi.get(self, "service_account_email")
 
@@ -460,7 +460,7 @@ class SecretRoleset(pulumi.CustomResource):
         :param pulumi.Input[str] project: Name of the GCP project that this roleset's service account will belong to.
         :param pulumi.Input[str] roleset: Name of the Roleset to create
         :param pulumi.Input[str] secret_type: Type of secret generated for this role set. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
-        :param pulumi.Input[str] service_account_email: Email of the service account created by Vault for this Roleset
+        :param pulumi.Input[str] service_account_email: Email of the service account created by Vault for this Roleset.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_scopes: List of OAuth scopes to assign to `access_token` secrets generated under this role set (`access_token` role sets only).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -532,7 +532,7 @@ class SecretRoleset(pulumi.CustomResource):
     @pulumi.getter(name="serviceAccountEmail")
     def service_account_email(self) -> pulumi.Output[str]:
         """
-        Email of the service account created by Vault for this Roleset
+        Email of the service account created by Vault for this Roleset.
         """
         return pulumi.get(self, "service_account_email")
 

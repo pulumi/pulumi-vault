@@ -248,6 +248,8 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * Additional labels to apply to all generated Kubernetes
      * objects.
      * 
+     * This resource also directly accepts all vault.Mount fields.
+     * 
      */
     @Export(name="extraLabels", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> extraLabels;
@@ -255,6 +257,8 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * @return Additional labels to apply to all generated Kubernetes
      * objects.
+     * 
+     * This resource also directly accepts all vault.Mount fields.
      * 
      */
     public Output<Optional<Map<String,String>>> extraLabels() {

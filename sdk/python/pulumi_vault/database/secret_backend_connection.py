@@ -70,6 +70,8 @@ class SecretBackendConnectionArgs:
         :param pulumi.Input['SecretBackendConnectionPostgresqlArgs'] postgresql: A nested block containing configuration options for PostgreSQL connections.
         :param pulumi.Input['SecretBackendConnectionRedisArgs'] redis: A nested block containing configuration options for Redis connections.
         :param pulumi.Input['SecretBackendConnectionRedisElasticacheArgs'] redis_elasticache: A nested block containing configuration options for Redis ElastiCache connections.
+               
+               Exactly one of the nested blocks of configuration options must be supplied.
         :param pulumi.Input['SecretBackendConnectionRedshiftArgs'] redshift: Connection parameters for the redshift-database-plugin plugin.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input['SecretBackendConnectionSnowflakeArgs'] snowflake: A nested block containing configuration options for Snowflake connections.
@@ -389,6 +391,8 @@ class SecretBackendConnectionArgs:
     def redis_elasticache(self) -> Optional[pulumi.Input['SecretBackendConnectionRedisElasticacheArgs']]:
         """
         A nested block containing configuration options for Redis ElastiCache connections.
+
+        Exactly one of the nested blocks of configuration options must be supplied.
         """
         return pulumi.get(self, "redis_elasticache")
 
@@ -503,6 +507,8 @@ class _SecretBackendConnectionState:
         :param pulumi.Input['SecretBackendConnectionPostgresqlArgs'] postgresql: A nested block containing configuration options for PostgreSQL connections.
         :param pulumi.Input['SecretBackendConnectionRedisArgs'] redis: A nested block containing configuration options for Redis connections.
         :param pulumi.Input['SecretBackendConnectionRedisElasticacheArgs'] redis_elasticache: A nested block containing configuration options for Redis ElastiCache connections.
+               
+               Exactly one of the nested blocks of configuration options must be supplied.
         :param pulumi.Input['SecretBackendConnectionRedshiftArgs'] redshift: Connection parameters for the redshift-database-plugin plugin.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input['SecretBackendConnectionSnowflakeArgs'] snowflake: A nested block containing configuration options for Snowflake connections.
@@ -823,6 +829,8 @@ class _SecretBackendConnectionState:
     def redis_elasticache(self) -> Optional[pulumi.Input['SecretBackendConnectionRedisElasticacheArgs']]:
         """
         A nested block containing configuration options for Redis ElastiCache connections.
+
+        Exactly one of the nested blocks of configuration options must be supplied.
         """
         return pulumi.get(self, "redis_elasticache")
 
@@ -969,6 +977,8 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']] postgresql: A nested block containing configuration options for PostgreSQL connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionRedisArgs']] redis: A nested block containing configuration options for Redis connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionRedisElasticacheArgs']] redis_elasticache: A nested block containing configuration options for Redis ElastiCache connections.
+               
+               Exactly one of the nested blocks of configuration options must be supplied.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionRedshiftArgs']] redshift: Connection parameters for the redshift-database-plugin plugin.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionSnowflakeArgs']] snowflake: A nested block containing configuration options for Snowflake connections.
@@ -1157,6 +1167,8 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']] postgresql: A nested block containing configuration options for PostgreSQL connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionRedisArgs']] redis: A nested block containing configuration options for Redis connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionRedisElasticacheArgs']] redis_elasticache: A nested block containing configuration options for Redis ElastiCache connections.
+               
+               Exactly one of the nested blocks of configuration options must be supplied.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionRedshiftArgs']] redshift: Connection parameters for the redshift-database-plugin plugin.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionSnowflakeArgs']] snowflake: A nested block containing configuration options for Snowflake connections.
@@ -1372,6 +1384,8 @@ class SecretBackendConnection(pulumi.CustomResource):
     def redis_elasticache(self) -> pulumi.Output[Optional['outputs.SecretBackendConnectionRedisElasticache']]:
         """
         A nested block containing configuration options for Redis ElastiCache connections.
+
+        Exactly one of the nested blocks of configuration options must be supplied.
         """
         return pulumi.get(self, "redis_elasticache")
 

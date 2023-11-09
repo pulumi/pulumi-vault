@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const defaultSecretBackend = new vault.kmip.SecretBackend("default", {
+ * const _default = new vault.kmip.SecretBackend("default", {
  *     defaultTlsClientKeyBits: 4096,
  *     defaultTlsClientKeyType: "rsa",
  *     defaultTlsClientTtl: 86400,

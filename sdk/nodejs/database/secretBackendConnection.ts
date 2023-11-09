@@ -155,6 +155,8 @@ export class SecretBackendConnection extends pulumi.CustomResource {
     public readonly redis!: pulumi.Output<outputs.database.SecretBackendConnectionRedis | undefined>;
     /**
      * A nested block containing configuration options for Redis ElastiCache connections.
+     *
+     * Exactly one of the nested blocks of configuration options must be supplied.
      */
     public readonly redisElasticache!: pulumi.Output<outputs.database.SecretBackendConnectionRedisElasticache | undefined>;
     /**
@@ -345,6 +347,8 @@ export interface SecretBackendConnectionState {
     redis?: pulumi.Input<inputs.database.SecretBackendConnectionRedis>;
     /**
      * A nested block containing configuration options for Redis ElastiCache connections.
+     *
+     * Exactly one of the nested blocks of configuration options must be supplied.
      */
     redisElasticache?: pulumi.Input<inputs.database.SecretBackendConnectionRedisElasticache>;
     /**
@@ -460,6 +464,8 @@ export interface SecretBackendConnectionArgs {
     redis?: pulumi.Input<inputs.database.SecretBackendConnectionRedis>;
     /**
      * A nested block containing configuration options for Redis ElastiCache connections.
+     *
+     * Exactly one of the nested blocks of configuration options must be supplied.
      */
     redisElasticache?: pulumi.Input<inputs.database.SecretBackendConnectionRedisElasticache>;
     /**

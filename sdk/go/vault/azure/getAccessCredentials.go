@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -45,6 +47,7 @@ import (
 // If the effective Vault role does not have the required permissions then valid values
 // are required to be set for: `subscriptionId`, `tenantId`, `environment`.
 func GetAccessCredentials(ctx *pulumi.Context, args *GetAccessCredentialsArgs, opts ...pulumi.InvokeOption) (*GetAccessCredentialsResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAccessCredentialsResult
 	err := ctx.Invoke("vault:azure/getAccessCredentials:getAccessCredentials", args, &rv, opts...)
 	if err != nil {
@@ -201,6 +204,12 @@ func (o GetAccessCredentialsResultOutput) ToGetAccessCredentialsResultOutput() G
 
 func (o GetAccessCredentialsResultOutput) ToGetAccessCredentialsResultOutputWithContext(ctx context.Context) GetAccessCredentialsResultOutput {
 	return o
+}
+
+func (o GetAccessCredentialsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetAccessCredentialsResult] {
+	return pulumix.Output[GetAccessCredentialsResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetAccessCredentialsResultOutput) Backend() pulumi.StringOutput {

@@ -55,6 +55,8 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
      * Specifies the configuration
      * for the given `credential_type`.
      * 
+     * The following options are available for each `credential_type` value:
+     * 
      */
     @Import(name="credentialConfig")
     private @Nullable Output<Map<String,Object>> credentialConfig;
@@ -62,6 +64,8 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
     /**
      * @return Specifies the configuration
      * for the given `credential_type`.
+     * 
+     * The following options are available for each `credential_type` value:
      * 
      */
     public Optional<Output<Map<String,Object>>> credentialConfig() {
@@ -319,6 +323,8 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
          * @param credentialConfig Specifies the configuration
          * for the given `credential_type`.
          * 
+         * The following options are available for each `credential_type` value:
+         * 
          * @return builder
          * 
          */
@@ -330,6 +336,8 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         /**
          * @param credentialConfig Specifies the configuration
          * for the given `credential_type`.
+         * 
+         * The following options are available for each `credential_type` value:
          * 
          * @return builder
          * 

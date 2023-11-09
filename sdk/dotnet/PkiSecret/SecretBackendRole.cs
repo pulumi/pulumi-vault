@@ -16,6 +16,7 @@ namespace Pulumi.Vault.PkiSecret
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -276,6 +277,12 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Output("organizations")]
         public Output<ImmutableArray<string>> Organizations { get; private set; } = null!;
+
+        /// <summary>
+        /// (Vault 1.11+ only) A block for specifying policy identifers. The `policy_identifier` block can be repeated, and supports the following arguments:
+        /// </summary>
+        [Output("policyIdentifier")]
+        public Output<ImmutableArray<Outputs.SecretBackendRolePolicyIdentifier>> PolicyIdentifier { get; private set; } = null!;
 
         /// <summary>
         /// Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
@@ -662,6 +669,18 @@ namespace Pulumi.Vault.PkiSecret
             set => _organizations = value;
         }
 
+        [Input("policyIdentifier")]
+        private InputList<Inputs.SecretBackendRolePolicyIdentifierArgs>? _policyIdentifier;
+
+        /// <summary>
+        /// (Vault 1.11+ only) A block for specifying policy identifers. The `policy_identifier` block can be repeated, and supports the following arguments:
+        /// </summary>
+        public InputList<Inputs.SecretBackendRolePolicyIdentifierArgs> PolicyIdentifier
+        {
+            get => _policyIdentifier ?? (_policyIdentifier = new InputList<Inputs.SecretBackendRolePolicyIdentifierArgs>());
+            set => _policyIdentifier = value;
+        }
+
         [Input("policyIdentifiers")]
         private InputList<string>? _policyIdentifiers;
 
@@ -1031,6 +1050,18 @@ namespace Pulumi.Vault.PkiSecret
         {
             get => _organizations ?? (_organizations = new InputList<string>());
             set => _organizations = value;
+        }
+
+        [Input("policyIdentifier")]
+        private InputList<Inputs.SecretBackendRolePolicyIdentifierGetArgs>? _policyIdentifier;
+
+        /// <summary>
+        /// (Vault 1.11+ only) A block for specifying policy identifers. The `policy_identifier` block can be repeated, and supports the following arguments:
+        /// </summary>
+        public InputList<Inputs.SecretBackendRolePolicyIdentifierGetArgs> PolicyIdentifier
+        {
+            get => _policyIdentifier ?? (_policyIdentifier = new InputList<Inputs.SecretBackendRolePolicyIdentifierGetArgs>());
+            set => _policyIdentifier = value;
         }
 
         [Input("policyIdentifiers")]

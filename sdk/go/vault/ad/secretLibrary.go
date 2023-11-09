@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -103,6 +105,7 @@ func NewSecretLibrary(ctx *pulumi.Context,
 	if args.ServiceAccountNames == nil {
 		return nil, errors.New("invalid value for required argument 'ServiceAccountNames'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SecretLibrary
 	err := ctx.RegisterResource("vault:ad/secretLibrary:SecretLibrary", name, args, &resource, opts...)
 	if err != nil {
@@ -248,6 +251,12 @@ func (i *SecretLibrary) ToSecretLibraryOutputWithContext(ctx context.Context) Se
 	return pulumi.ToOutputWithContext(ctx, i).(SecretLibraryOutput)
 }
 
+func (i *SecretLibrary) ToOutput(ctx context.Context) pulumix.Output[*SecretLibrary] {
+	return pulumix.Output[*SecretLibrary]{
+		OutputState: i.ToSecretLibraryOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SecretLibraryArrayInput is an input type that accepts SecretLibraryArray and SecretLibraryArrayOutput values.
 // You can construct a concrete instance of `SecretLibraryArrayInput` via:
 //
@@ -271,6 +280,12 @@ func (i SecretLibraryArray) ToSecretLibraryArrayOutput() SecretLibraryArrayOutpu
 
 func (i SecretLibraryArray) ToSecretLibraryArrayOutputWithContext(ctx context.Context) SecretLibraryArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretLibraryArrayOutput)
+}
+
+func (i SecretLibraryArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretLibrary] {
+	return pulumix.Output[[]*SecretLibrary]{
+		OutputState: i.ToSecretLibraryArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SecretLibraryMapInput is an input type that accepts SecretLibraryMap and SecretLibraryMapOutput values.
@@ -298,6 +313,12 @@ func (i SecretLibraryMap) ToSecretLibraryMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(SecretLibraryMapOutput)
 }
 
+func (i SecretLibraryMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretLibrary] {
+	return pulumix.Output[map[string]*SecretLibrary]{
+		OutputState: i.ToSecretLibraryMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SecretLibraryOutput struct{ *pulumi.OutputState }
 
 func (SecretLibraryOutput) ElementType() reflect.Type {
@@ -310,6 +331,12 @@ func (o SecretLibraryOutput) ToSecretLibraryOutput() SecretLibraryOutput {
 
 func (o SecretLibraryOutput) ToSecretLibraryOutputWithContext(ctx context.Context) SecretLibraryOutput {
 	return o
+}
+
+func (o SecretLibraryOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretLibrary] {
+	return pulumix.Output[*SecretLibrary]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The path the AD secret backend is mounted at,
@@ -368,6 +395,12 @@ func (o SecretLibraryArrayOutput) ToSecretLibraryArrayOutputWithContext(ctx cont
 	return o
 }
 
+func (o SecretLibraryArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretLibrary] {
+	return pulumix.Output[[]*SecretLibrary]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SecretLibraryArrayOutput) Index(i pulumi.IntInput) SecretLibraryOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretLibrary {
 		return vs[0].([]*SecretLibrary)[vs[1].(int)]
@@ -386,6 +419,12 @@ func (o SecretLibraryMapOutput) ToSecretLibraryMapOutput() SecretLibraryMapOutpu
 
 func (o SecretLibraryMapOutput) ToSecretLibraryMapOutputWithContext(ctx context.Context) SecretLibraryMapOutput {
 	return o
+}
+
+func (o SecretLibraryMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretLibrary] {
+	return pulumix.Output[map[string]*SecretLibrary]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SecretLibraryMapOutput) MapIndex(k pulumi.StringInput) SecretLibraryOutput {

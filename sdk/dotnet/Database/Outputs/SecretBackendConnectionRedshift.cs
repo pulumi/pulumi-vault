@@ -14,9 +14,9 @@ namespace Pulumi.Vault.Database.Outputs
     public sealed class SecretBackendConnectionRedshift
     {
         /// <summary>
-        /// Specifies the Redshift DSN. See
+        /// A URL containing connection information. See
         /// the [Vault
-        /// docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+        /// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
         /// for an example.
         /// </summary>
         public readonly string? ConnectionUrl;
@@ -25,29 +25,30 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly bool? DisableEscaping;
         /// <summary>
-        /// The maximum amount of time a connection may be reused.
+        /// The maximum number of seconds to keep
+        /// a connection alive for.
         /// </summary>
         public readonly int? MaxConnectionLifetime;
         /// <summary>
         /// The maximum number of idle connections to
-        /// the database.
+        /// maintain.
         /// </summary>
         public readonly int? MaxIdleConnections;
         /// <summary>
         /// The maximum number of open connections to
-        /// the database.
+        /// use.
         /// </summary>
         public readonly int? MaxOpenConnections;
         /// <summary>
-        /// The root credential password used in the connection URL.
+        /// The password to authenticate with.
         /// </summary>
         public readonly string? Password;
         /// <summary>
-        /// The root credential username used in the connection URL.
+        /// The username to authenticate with.
         /// </summary>
         public readonly string? Username;
         /// <summary>
-        /// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        /// Template describing how dynamic usernames are generated.
         /// </summary>
         public readonly string? UsernameTemplate;
 

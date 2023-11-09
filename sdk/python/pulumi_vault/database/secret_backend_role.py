@@ -35,6 +35,8 @@ class SecretBackendRoleArgs:
                the role.
         :param pulumi.Input[Mapping[str, Any]] credential_config: Specifies the configuration
                for the given `credential_type`.
+               
+               The following options are available for each `credential_type` value:
         :param pulumi.Input[str] credential_type: Specifies the type of credential that
                will be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.
                See the plugin's API page for credential types supported by individual databases.
@@ -120,6 +122,8 @@ class SecretBackendRoleArgs:
         """
         Specifies the configuration
         for the given `credential_type`.
+
+        The following options are available for each `credential_type` value:
         """
         return pulumi.get(self, "credential_config")
 
@@ -256,6 +260,8 @@ class _SecretBackendRoleState:
                creating a user.
         :param pulumi.Input[Mapping[str, Any]] credential_config: Specifies the configuration
                for the given `credential_type`.
+               
+               The following options are available for each `credential_type` value:
         :param pulumi.Input[str] credential_type: Specifies the type of credential that
                will be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.
                See the plugin's API page for credential types supported by individual databases.
@@ -333,6 +339,8 @@ class _SecretBackendRoleState:
         """
         Specifies the configuration
         for the given `credential_type`.
+
+        The following options are available for each `credential_type` value:
         """
         return pulumi.get(self, "credential_config")
 
@@ -518,6 +526,8 @@ class SecretBackendRole(pulumi.CustomResource):
                creating a user.
         :param pulumi.Input[Mapping[str, Any]] credential_config: Specifies the configuration
                for the given `credential_type`.
+               
+               The following options are available for each `credential_type` value:
         :param pulumi.Input[str] credential_type: Specifies the type of credential that
                will be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.
                See the plugin's API page for credential types supported by individual databases.
@@ -666,6 +676,8 @@ class SecretBackendRole(pulumi.CustomResource):
                creating a user.
         :param pulumi.Input[Mapping[str, Any]] credential_config: Specifies the configuration
                for the given `credential_type`.
+               
+               The following options are available for each `credential_type` value:
         :param pulumi.Input[str] credential_type: Specifies the type of credential that
                will be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.
                See the plugin's API page for credential types supported by individual databases.
@@ -728,6 +740,8 @@ class SecretBackendRole(pulumi.CustomResource):
         """
         Specifies the configuration
         for the given `credential_type`.
+
+        The following options are available for each `credential_type` value:
         """
         return pulumi.get(self, "credential_config")
 

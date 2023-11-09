@@ -14,6 +14,7 @@ namespace Pulumi.Vault.Identity
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -40,7 +41,7 @@ namespace Pulumi.Vault.Identity
     /// 
     /// ## Import
     /// 
-    /// The key can be imported with the key name, for example
+    /// The key can be imported with the key name, for example:
     /// 
     /// ```sh
     ///  $ pulumi import vault:identity/oidcKey:OidcKey key key
@@ -57,8 +58,8 @@ namespace Pulumi.Vault.Identity
         public Output<string?> Algorithm { get; private set; } = null!;
 
         /// <summary>
-        /// Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
-        /// allowed.
+        /// Array of role client ID allowed to use this key for signing. If
+        /// empty, no roles are allowed. If `["*"]`, all roles are allowed.
         /// </summary>
         [Output("allowedClientIds")]
         public Output<ImmutableArray<string>> AllowedClientIds { get; private set; } = null!;
@@ -148,8 +149,8 @@ namespace Pulumi.Vault.Identity
         private InputList<string>? _allowedClientIds;
 
         /// <summary>
-        /// Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
-        /// allowed.
+        /// Array of role client ID allowed to use this key for signing. If
+        /// empty, no roles are allowed. If `["*"]`, all roles are allowed.
         /// </summary>
         public InputList<string> AllowedClientIds
         {
@@ -204,8 +205,8 @@ namespace Pulumi.Vault.Identity
         private InputList<string>? _allowedClientIds;
 
         /// <summary>
-        /// Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
-        /// allowed.
+        /// Array of role client ID allowed to use this key for signing. If
+        /// empty, no roles are allowed. If `["*"]`, all roles are allowed.
         /// </summary>
         public InputList<string> AllowedClientIds
         {

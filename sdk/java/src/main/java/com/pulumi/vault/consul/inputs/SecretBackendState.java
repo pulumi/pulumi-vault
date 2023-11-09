@@ -35,12 +35,20 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     /**
      * Denotes that the resource is used to bootstrap the Consul ACL system.
      * 
+     * &gt; **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
+     * this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
+     * and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
+     * 
      */
     @Import(name="bootstrap")
     private @Nullable Output<Boolean> bootstrap;
 
     /**
      * @return Denotes that the resource is used to bootstrap the Consul ACL system.
+     * 
+     * &gt; **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
+     * this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
+     * and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
      * 
      */
     public Optional<Output<Boolean>> bootstrap() {
@@ -229,16 +237,14 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * The Consul management token this backend should use to issue new tokens. This field is required
-     * when `bootstrap` is false.
+     * Specifies the Consul token to use when managing or issuing new tokens.
      * 
      */
     @Import(name="token")
     private @Nullable Output<String> token;
 
     /**
-     * @return The Consul management token this backend should use to issue new tokens. This field is required
-     * when `bootstrap` is false.
+     * @return Specifies the Consul token to use when managing or issuing new tokens.
      * 
      */
     public Optional<Output<String>> token() {
@@ -306,6 +312,10 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         /**
          * @param bootstrap Denotes that the resource is used to bootstrap the Consul ACL system.
          * 
+         * &gt; **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
+         * this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
+         * and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
+         * 
          * @return builder
          * 
          */
@@ -316,6 +326,10 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
 
         /**
          * @param bootstrap Denotes that the resource is used to bootstrap the Consul ACL system.
+         * 
+         * &gt; **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
+         * this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
+         * and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
          * 
          * @return builder
          * 
@@ -572,8 +586,7 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param token The Consul management token this backend should use to issue new tokens. This field is required
-         * when `bootstrap` is false.
+         * @param token Specifies the Consul token to use when managing or issuing new tokens.
          * 
          * @return builder
          * 
@@ -584,8 +597,7 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param token The Consul management token this backend should use to issue new tokens. This field is required
-         * when `bootstrap` is false.
+         * @param token Specifies the Consul token to use when managing or issuing new tokens.
          * 
          * @return builder
          * 

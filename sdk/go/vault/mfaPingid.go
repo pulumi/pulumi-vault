@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Provides a resource to manage [PingID MFA](https://www.vaultproject.io/docs/enterprise/mfa/mfa-pingid).
@@ -65,11 +67,11 @@ import (
 type MfaPingid struct {
 	pulumi.CustomResourceState
 
-	// Admin URL computed by Vault.
+	// `(string)` – Admin URL computed by Vault
 	AdminUrl pulumi.StringOutput `pulumi:"adminUrl"`
-	// Authenticator URL computed by Vault.
+	// `(string)` – Authenticator URL computed by Vault
 	AuthenticatorUrl pulumi.StringOutput `pulumi:"authenticatorUrl"`
-	// IDP URL computed by Vault.
+	// `(string)` – IDP URL computed by Vault
 	IdpUrl pulumi.StringOutput `pulumi:"idpUrl"`
 	// `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
 	// The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
@@ -81,16 +83,16 @@ type MfaPingid struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
-	// Namespace ID computed by Vault.
+	// `(string)` – Namespace ID computed by Vault
 	NamespaceId pulumi.StringOutput `pulumi:"namespaceId"`
-	// Org Alias computed by Vault.
+	// `(string)` – Org Alias computed by Vault
 	OrgAlias pulumi.StringOutput `pulumi:"orgAlias"`
 	// `(string: <required>)` - A base64-encoded third-party settings file retrieved
 	// from PingID's configuration page.
 	SettingsFileBase64 pulumi.StringOutput `pulumi:"settingsFileBase64"`
-	// Type of configuration computed by Vault.
+	// `(string)` – Type of configuration computed by Vault
 	Type pulumi.StringOutput `pulumi:"type"`
-	// If set, enables use of PingID signature. Computed by Vault
+	// `(string)` – If set to true, enables use of PingID signature. Computed by Vault
 	UseSignature pulumi.BoolOutput `pulumi:"useSignature"`
 	// `(string)` - A format string for mapping Identity names to MFA method names.
 	// Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
@@ -115,6 +117,7 @@ func NewMfaPingid(ctx *pulumi.Context,
 	if args.SettingsFileBase64 == nil {
 		return nil, errors.New("invalid value for required argument 'SettingsFileBase64'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource MfaPingid
 	err := ctx.RegisterResource("vault:index/mfaPingid:MfaPingid", name, args, &resource, opts...)
 	if err != nil {
@@ -137,11 +140,11 @@ func GetMfaPingid(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering MfaPingid resources.
 type mfaPingidState struct {
-	// Admin URL computed by Vault.
+	// `(string)` – Admin URL computed by Vault
 	AdminUrl *string `pulumi:"adminUrl"`
-	// Authenticator URL computed by Vault.
+	// `(string)` – Authenticator URL computed by Vault
 	AuthenticatorUrl *string `pulumi:"authenticatorUrl"`
-	// IDP URL computed by Vault.
+	// `(string)` – IDP URL computed by Vault
 	IdpUrl *string `pulumi:"idpUrl"`
 	// `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
 	// The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
@@ -153,16 +156,16 @@ type mfaPingidState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
-	// Namespace ID computed by Vault.
+	// `(string)` – Namespace ID computed by Vault
 	NamespaceId *string `pulumi:"namespaceId"`
-	// Org Alias computed by Vault.
+	// `(string)` – Org Alias computed by Vault
 	OrgAlias *string `pulumi:"orgAlias"`
 	// `(string: <required>)` - A base64-encoded third-party settings file retrieved
 	// from PingID's configuration page.
 	SettingsFileBase64 *string `pulumi:"settingsFileBase64"`
-	// Type of configuration computed by Vault.
+	// `(string)` – Type of configuration computed by Vault
 	Type *string `pulumi:"type"`
-	// If set, enables use of PingID signature. Computed by Vault
+	// `(string)` – If set to true, enables use of PingID signature. Computed by Vault
 	UseSignature *bool `pulumi:"useSignature"`
 	// `(string)` - A format string for mapping Identity names to MFA method names.
 	// Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
@@ -175,11 +178,11 @@ type mfaPingidState struct {
 }
 
 type MfaPingidState struct {
-	// Admin URL computed by Vault.
+	// `(string)` – Admin URL computed by Vault
 	AdminUrl pulumi.StringPtrInput
-	// Authenticator URL computed by Vault.
+	// `(string)` – Authenticator URL computed by Vault
 	AuthenticatorUrl pulumi.StringPtrInput
-	// IDP URL computed by Vault.
+	// `(string)` – IDP URL computed by Vault
 	IdpUrl pulumi.StringPtrInput
 	// `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
 	// The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
@@ -191,16 +194,16 @@ type MfaPingidState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
-	// Namespace ID computed by Vault.
+	// `(string)` – Namespace ID computed by Vault
 	NamespaceId pulumi.StringPtrInput
-	// Org Alias computed by Vault.
+	// `(string)` – Org Alias computed by Vault
 	OrgAlias pulumi.StringPtrInput
 	// `(string: <required>)` - A base64-encoded third-party settings file retrieved
 	// from PingID's configuration page.
 	SettingsFileBase64 pulumi.StringPtrInput
-	// Type of configuration computed by Vault.
+	// `(string)` – Type of configuration computed by Vault
 	Type pulumi.StringPtrInput
-	// If set, enables use of PingID signature. Computed by Vault
+	// `(string)` – If set to true, enables use of PingID signature. Computed by Vault
 	UseSignature pulumi.BoolPtrInput
 	// `(string)` - A format string for mapping Identity names to MFA method names.
 	// Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
@@ -288,6 +291,12 @@ func (i *MfaPingid) ToMfaPingidOutputWithContext(ctx context.Context) MfaPingidO
 	return pulumi.ToOutputWithContext(ctx, i).(MfaPingidOutput)
 }
 
+func (i *MfaPingid) ToOutput(ctx context.Context) pulumix.Output[*MfaPingid] {
+	return pulumix.Output[*MfaPingid]{
+		OutputState: i.ToMfaPingidOutputWithContext(ctx).OutputState,
+	}
+}
+
 // MfaPingidArrayInput is an input type that accepts MfaPingidArray and MfaPingidArrayOutput values.
 // You can construct a concrete instance of `MfaPingidArrayInput` via:
 //
@@ -311,6 +320,12 @@ func (i MfaPingidArray) ToMfaPingidArrayOutput() MfaPingidArrayOutput {
 
 func (i MfaPingidArray) ToMfaPingidArrayOutputWithContext(ctx context.Context) MfaPingidArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MfaPingidArrayOutput)
+}
+
+func (i MfaPingidArray) ToOutput(ctx context.Context) pulumix.Output[[]*MfaPingid] {
+	return pulumix.Output[[]*MfaPingid]{
+		OutputState: i.ToMfaPingidArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // MfaPingidMapInput is an input type that accepts MfaPingidMap and MfaPingidMapOutput values.
@@ -338,6 +353,12 @@ func (i MfaPingidMap) ToMfaPingidMapOutputWithContext(ctx context.Context) MfaPi
 	return pulumi.ToOutputWithContext(ctx, i).(MfaPingidMapOutput)
 }
 
+func (i MfaPingidMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*MfaPingid] {
+	return pulumix.Output[map[string]*MfaPingid]{
+		OutputState: i.ToMfaPingidMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type MfaPingidOutput struct{ *pulumi.OutputState }
 
 func (MfaPingidOutput) ElementType() reflect.Type {
@@ -352,17 +373,23 @@ func (o MfaPingidOutput) ToMfaPingidOutputWithContext(ctx context.Context) MfaPi
 	return o
 }
 
-// Admin URL computed by Vault.
+func (o MfaPingidOutput) ToOutput(ctx context.Context) pulumix.Output[*MfaPingid] {
+	return pulumix.Output[*MfaPingid]{
+		OutputState: o.OutputState,
+	}
+}
+
+// `(string)` – Admin URL computed by Vault
 func (o MfaPingidOutput) AdminUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v *MfaPingid) pulumi.StringOutput { return v.AdminUrl }).(pulumi.StringOutput)
 }
 
-// Authenticator URL computed by Vault.
+// `(string)` – Authenticator URL computed by Vault
 func (o MfaPingidOutput) AuthenticatorUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v *MfaPingid) pulumi.StringOutput { return v.AuthenticatorUrl }).(pulumi.StringOutput)
 }
 
-// IDP URL computed by Vault.
+// `(string)` – IDP URL computed by Vault
 func (o MfaPingidOutput) IdpUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v *MfaPingid) pulumi.StringOutput { return v.IdpUrl }).(pulumi.StringOutput)
 }
@@ -386,12 +413,12 @@ func (o MfaPingidOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MfaPingid) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
-// Namespace ID computed by Vault.
+// `(string)` – Namespace ID computed by Vault
 func (o MfaPingidOutput) NamespaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MfaPingid) pulumi.StringOutput { return v.NamespaceId }).(pulumi.StringOutput)
 }
 
-// Org Alias computed by Vault.
+// `(string)` – Org Alias computed by Vault
 func (o MfaPingidOutput) OrgAlias() pulumi.StringOutput {
 	return o.ApplyT(func(v *MfaPingid) pulumi.StringOutput { return v.OrgAlias }).(pulumi.StringOutput)
 }
@@ -402,12 +429,12 @@ func (o MfaPingidOutput) SettingsFileBase64() pulumi.StringOutput {
 	return o.ApplyT(func(v *MfaPingid) pulumi.StringOutput { return v.SettingsFileBase64 }).(pulumi.StringOutput)
 }
 
-// Type of configuration computed by Vault.
+// `(string)` – Type of configuration computed by Vault
 func (o MfaPingidOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *MfaPingid) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
-// If set, enables use of PingID signature. Computed by Vault
+// `(string)` – If set to true, enables use of PingID signature. Computed by Vault
 func (o MfaPingidOutput) UseSignature() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MfaPingid) pulumi.BoolOutput { return v.UseSignature }).(pulumi.BoolOutput)
 }
@@ -437,6 +464,12 @@ func (o MfaPingidArrayOutput) ToMfaPingidArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o MfaPingidArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*MfaPingid] {
+	return pulumix.Output[[]*MfaPingid]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o MfaPingidArrayOutput) Index(i pulumi.IntInput) MfaPingidOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *MfaPingid {
 		return vs[0].([]*MfaPingid)[vs[1].(int)]
@@ -455,6 +488,12 @@ func (o MfaPingidMapOutput) ToMfaPingidMapOutput() MfaPingidMapOutput {
 
 func (o MfaPingidMapOutput) ToMfaPingidMapOutputWithContext(ctx context.Context) MfaPingidMapOutput {
 	return o
+}
+
+func (o MfaPingidMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*MfaPingid] {
+	return pulumix.Output[map[string]*MfaPingid]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o MfaPingidMapOutput) MapIndex(k pulumi.StringInput) MfaPingidOutput {

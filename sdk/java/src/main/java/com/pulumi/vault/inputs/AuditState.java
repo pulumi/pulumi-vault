@@ -71,12 +71,16 @@ public final class AuditState extends com.pulumi.resources.ResourceArgs {
     /**
      * Configuration options to pass to the audit device itself.
      * 
+     * For a reference of the device types and their options, consult the [Vault documentation.](https://www.vaultproject.io/docs/audit/index.html)
+     * 
      */
     @Import(name="options")
     private @Nullable Output<Map<String,String>> options;
 
     /**
      * @return Configuration options to pass to the audit device itself.
+     * 
+     * For a reference of the device types and their options, consult the [Vault documentation.](https://www.vaultproject.io/docs/audit/index.html)
      * 
      */
     public Optional<Output<Map<String,String>>> options() {
@@ -214,6 +218,8 @@ public final class AuditState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param options Configuration options to pass to the audit device itself.
          * 
+         * For a reference of the device types and their options, consult the [Vault documentation.](https://www.vaultproject.io/docs/audit/index.html)
+         * 
          * @return builder
          * 
          */
@@ -224,6 +230,8 @@ public final class AuditState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param options Configuration options to pass to the audit device itself.
+         * 
+         * For a reference of the device types and their options, consult the [Vault documentation.](https://www.vaultproject.io/docs/audit/index.html)
          * 
          * @return builder
          * 

@@ -7,13 +7,16 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Reads the Role of an Kubernetes from a Vault server. See the [Vault
 // documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-role) for more
 // information.
 func LookupAuthBackendRole(ctx *pulumi.Context, args *LookupAuthBackendRoleArgs, opts ...pulumi.InvokeOption) (*LookupAuthBackendRoleResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAuthBackendRoleResult
 	err := ctx.Invoke("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", args, &rv, opts...)
 	if err != nil {
@@ -209,6 +212,12 @@ func (o LookupAuthBackendRoleResultOutput) ToLookupAuthBackendRoleResultOutput()
 
 func (o LookupAuthBackendRoleResultOutput) ToLookupAuthBackendRoleResultOutputWithContext(ctx context.Context) LookupAuthBackendRoleResultOutput {
 	return o
+}
+
+func (o LookupAuthBackendRoleResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupAuthBackendRoleResult] {
+	return pulumix.Output[LookupAuthBackendRoleResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Method used for generating identity aliases. (vault-1.9+)

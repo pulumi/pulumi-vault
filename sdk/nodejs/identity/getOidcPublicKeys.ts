@@ -33,11 +33,8 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getOidcPublicKeys(args: GetOidcPublicKeysArgs, opts?: pulumi.InvokeOptions): Promise<GetOidcPublicKeysResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:identity/getOidcPublicKeys:getOidcPublicKeys", {
         "name": args.name,
         "namespace": args.namespace,
@@ -77,9 +74,36 @@ export interface GetOidcPublicKeysResult {
     readonly name: string;
     readonly namespace?: string;
 }
-
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const key = new vault.identity.OidcKey("key", {
+ *     allowedClientIds: ["*"],
+ *     rotationPeriod: 3600,
+ *     verificationTtl: 3600,
+ * });
+ * const app = new vault.identity.OidcClient("app", {
+ *     key: key.name,
+ *     redirectUris: [
+ *         "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+ *         "http://127.0.0.1:8251/callback",
+ *         "http://127.0.0.1:8080/callback",
+ *     ],
+ *     idTokenTtl: 2400,
+ *     accessTokenTtl: 7200,
+ * });
+ * const provider = new vault.identity.OidcProvider("provider", {allowedClientIds: [vault_identity_oidc_client.test.client_id]});
+ * const publicKeys = vault.identity.getOidcPublicKeysOutput({
+ *     name: provider.name,
+ * });
+ * ```
+ */
 export function getOidcPublicKeysOutput(args: GetOidcPublicKeysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOidcPublicKeysResult> {
-    return pulumi.output(args).apply(a => getOidcPublicKeys(a, opts))
+    return pulumi.output(args).apply((a: any) => getOidcPublicKeys(a, opts))
 }
 
 /**

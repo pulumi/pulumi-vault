@@ -100,7 +100,7 @@ export class SecretRoleset extends pulumi.CustomResource {
      */
     public readonly secretType!: pulumi.Output<string>;
     /**
-     * Email of the service account created by Vault for this Roleset
+     * Email of the service account created by Vault for this Roleset.
      */
     public /*out*/ readonly serviceAccountEmail!: pulumi.Output<string>;
     /**
@@ -189,7 +189,7 @@ export interface SecretRolesetState {
      */
     secretType?: pulumi.Input<string>;
     /**
-     * Email of the service account created by Vault for this Roleset
+     * Email of the service account created by Vault for this Roleset.
      */
     serviceAccountEmail?: pulumi.Input<string>;
     /**

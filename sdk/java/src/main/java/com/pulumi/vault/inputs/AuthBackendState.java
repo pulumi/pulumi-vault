@@ -118,12 +118,16 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
     /**
      * Extra configuration block. Structure is documented below.
      * 
+     * The `tune` block is used to tune the auth backend:
+     * 
      */
     @Import(name="tune")
     private @Nullable Output<AuthBackendTuneArgs> tune;
 
     /**
      * @return Extra configuration block. Structure is documented below.
+     * 
+     * The `tune` block is used to tune the auth backend:
      * 
      */
     public Optional<Output<AuthBackendTuneArgs>> tune() {
@@ -313,6 +317,8 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param tune Extra configuration block. Structure is documented below.
          * 
+         * The `tune` block is used to tune the auth backend:
+         * 
          * @return builder
          * 
          */
@@ -323,6 +329,8 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param tune Extra configuration block. Structure is documented below.
+         * 
+         * The `tune` block is used to tune the auth backend:
          * 
          * @return builder
          * 

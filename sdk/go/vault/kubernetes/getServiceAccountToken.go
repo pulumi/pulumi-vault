@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -17,7 +19,7 @@ import (
 //
 // import (
 //
-//	"io/ioutil"
+//	"os"
 //
 //	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kubernetes"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -25,7 +27,7 @@ import (
 // )
 //
 //	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := ioutil.ReadFile(path)
+//		data, err := os.ReadFile(path)
 //		if err != nil {
 //			panic(err.Error())
 //		}
@@ -78,6 +80,7 @@ import (
 //
 // ```
 func GetServiceAccountToken(ctx *pulumi.Context, args *GetServiceAccountTokenArgs, opts ...pulumi.InvokeOption) (*GetServiceAccountTokenResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetServiceAccountTokenResult
 	err := ctx.Invoke("vault:kubernetes/getServiceAccountToken:getServiceAccountToken", args, &rv, opts...)
 	if err != nil {
@@ -188,6 +191,12 @@ func (o GetServiceAccountTokenResultOutput) ToGetServiceAccountTokenResultOutput
 
 func (o GetServiceAccountTokenResultOutput) ToGetServiceAccountTokenResultOutputWithContext(ctx context.Context) GetServiceAccountTokenResultOutput {
 	return o
+}
+
+func (o GetServiceAccountTokenResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetServiceAccountTokenResult] {
+	return pulumix.Output[GetServiceAccountTokenResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetServiceAccountTokenResultOutput) Backend() pulumi.StringOutput {

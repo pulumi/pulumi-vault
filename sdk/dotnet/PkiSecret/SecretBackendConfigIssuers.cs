@@ -17,6 +17,7 @@ namespace Pulumi.Vault.PkiSecret
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 

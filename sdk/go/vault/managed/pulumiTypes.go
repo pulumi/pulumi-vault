@@ -7,8 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
+
+var _ = internal.GetEnvOrDefault
 
 type KeysAw struct {
 	// The AWS access key to use.
@@ -27,14 +31,12 @@ type KeysAw struct {
 	// If `true`, allows usage from any mount point within the
 	// namespace.
 	AnyMount *bool `pulumi:"anyMount"`
-	// Supplies the curve value when using the `CKM_ECDSA` mechanism.
-	// Required if `allowGenerateKey` is `true`.
+	// The curve to use for an ECDSA key. Used when `keyType`
+	// is `ECDSA`. Required if `allowGenerateKey` is `true`.
 	Curve *string `pulumi:"curve"`
 	// Used to specify a custom AWS endpoint.
 	Endpoint *string `pulumi:"endpoint"`
-	// Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
-	// `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
-	// `allowGenerateKey` is `true`.
+	// The size in bits for an RSA key.
 	KeyBits string `pulumi:"keyBits"`
 	// The type of key to use.
 	KeyType string `pulumi:"keyType"`
@@ -77,14 +79,12 @@ type KeysAwArgs struct {
 	// If `true`, allows usage from any mount point within the
 	// namespace.
 	AnyMount pulumi.BoolPtrInput `pulumi:"anyMount"`
-	// Supplies the curve value when using the `CKM_ECDSA` mechanism.
-	// Required if `allowGenerateKey` is `true`.
+	// The curve to use for an ECDSA key. Used when `keyType`
+	// is `ECDSA`. Required if `allowGenerateKey` is `true`.
 	Curve pulumi.StringPtrInput `pulumi:"curve"`
 	// Used to specify a custom AWS endpoint.
 	Endpoint pulumi.StringPtrInput `pulumi:"endpoint"`
-	// Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
-	// `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
-	// `allowGenerateKey` is `true`.
+	// The size in bits for an RSA key.
 	KeyBits pulumi.StringInput `pulumi:"keyBits"`
 	// The type of key to use.
 	KeyType pulumi.StringInput `pulumi:"keyType"`
@@ -109,6 +109,12 @@ func (i KeysAwArgs) ToKeysAwOutput() KeysAwOutput {
 
 func (i KeysAwArgs) ToKeysAwOutputWithContext(ctx context.Context) KeysAwOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(KeysAwOutput)
+}
+
+func (i KeysAwArgs) ToOutput(ctx context.Context) pulumix.Output[KeysAw] {
+	return pulumix.Output[KeysAw]{
+		OutputState: i.ToKeysAwOutputWithContext(ctx).OutputState,
+	}
 }
 
 // KeysAwArrayInput is an input type that accepts KeysAwArray and KeysAwArrayOutput values.
@@ -136,6 +142,12 @@ func (i KeysAwArray) ToKeysAwArrayOutputWithContext(ctx context.Context) KeysAwA
 	return pulumi.ToOutputWithContext(ctx, i).(KeysAwArrayOutput)
 }
 
+func (i KeysAwArray) ToOutput(ctx context.Context) pulumix.Output[[]KeysAw] {
+	return pulumix.Output[[]KeysAw]{
+		OutputState: i.ToKeysAwArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type KeysAwOutput struct{ *pulumi.OutputState }
 
 func (KeysAwOutput) ElementType() reflect.Type {
@@ -148,6 +160,12 @@ func (o KeysAwOutput) ToKeysAwOutput() KeysAwOutput {
 
 func (o KeysAwOutput) ToKeysAwOutputWithContext(ctx context.Context) KeysAwOutput {
 	return o
+}
+
+func (o KeysAwOutput) ToOutput(ctx context.Context) pulumix.Output[KeysAw] {
+	return pulumix.Output[KeysAw]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The AWS access key to use.
@@ -181,8 +199,8 @@ func (o KeysAwOutput) AnyMount() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v KeysAw) *bool { return v.AnyMount }).(pulumi.BoolPtrOutput)
 }
 
-// Supplies the curve value when using the `CKM_ECDSA` mechanism.
-// Required if `allowGenerateKey` is `true`.
+// The curve to use for an ECDSA key. Used when `keyType`
+// is `ECDSA`. Required if `allowGenerateKey` is `true`.
 func (o KeysAwOutput) Curve() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KeysAw) *string { return v.Curve }).(pulumi.StringPtrOutput)
 }
@@ -192,9 +210,7 @@ func (o KeysAwOutput) Endpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KeysAw) *string { return v.Endpoint }).(pulumi.StringPtrOutput)
 }
 
-// Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
-// `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
-// `allowGenerateKey` is `true`.
+// The size in bits for an RSA key.
 func (o KeysAwOutput) KeyBits() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysAw) string { return v.KeyBits }).(pulumi.StringOutput)
 }
@@ -242,6 +258,12 @@ func (o KeysAwArrayOutput) ToKeysAwArrayOutputWithContext(ctx context.Context) K
 	return o
 }
 
+func (o KeysAwArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]KeysAw] {
+	return pulumix.Output[[]KeysAw]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o KeysAwArrayOutput) Index(i pulumi.IntInput) KeysAwOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) KeysAw {
 		return vs[0].([]KeysAw)[vs[1].(int)]
@@ -269,9 +291,7 @@ type KeysAzure struct {
 	ClientSecret string `pulumi:"clientSecret"`
 	// The Azure Cloud environment API endpoints to use.
 	Environment *string `pulumi:"environment"`
-	// Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
-	// `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
-	// `allowGenerateKey` is `true`.
+	// The size in bits for an RSA key.
 	KeyBits *string `pulumi:"keyBits"`
 	// The Key Vault key to use for encryption and decryption.
 	KeyName string `pulumi:"keyName"`
@@ -320,9 +340,7 @@ type KeysAzureArgs struct {
 	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
 	// The Azure Cloud environment API endpoints to use.
 	Environment pulumi.StringPtrInput `pulumi:"environment"`
-	// Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
-	// `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
-	// `allowGenerateKey` is `true`.
+	// The size in bits for an RSA key.
 	KeyBits pulumi.StringPtrInput `pulumi:"keyBits"`
 	// The Key Vault key to use for encryption and decryption.
 	KeyName pulumi.StringInput `pulumi:"keyName"`
@@ -351,6 +369,12 @@ func (i KeysAzureArgs) ToKeysAzureOutputWithContext(ctx context.Context) KeysAzu
 	return pulumi.ToOutputWithContext(ctx, i).(KeysAzureOutput)
 }
 
+func (i KeysAzureArgs) ToOutput(ctx context.Context) pulumix.Output[KeysAzure] {
+	return pulumix.Output[KeysAzure]{
+		OutputState: i.ToKeysAzureOutputWithContext(ctx).OutputState,
+	}
+}
+
 // KeysAzureArrayInput is an input type that accepts KeysAzureArray and KeysAzureArrayOutput values.
 // You can construct a concrete instance of `KeysAzureArrayInput` via:
 //
@@ -376,6 +400,12 @@ func (i KeysAzureArray) ToKeysAzureArrayOutputWithContext(ctx context.Context) K
 	return pulumi.ToOutputWithContext(ctx, i).(KeysAzureArrayOutput)
 }
 
+func (i KeysAzureArray) ToOutput(ctx context.Context) pulumix.Output[[]KeysAzure] {
+	return pulumix.Output[[]KeysAzure]{
+		OutputState: i.ToKeysAzureArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type KeysAzureOutput struct{ *pulumi.OutputState }
 
 func (KeysAzureOutput) ElementType() reflect.Type {
@@ -388,6 +418,12 @@ func (o KeysAzureOutput) ToKeysAzureOutput() KeysAzureOutput {
 
 func (o KeysAzureOutput) ToKeysAzureOutputWithContext(ctx context.Context) KeysAzureOutput {
 	return o
+}
+
+func (o KeysAzureOutput) ToOutput(ctx context.Context) pulumix.Output[KeysAzure] {
+	return pulumix.Output[KeysAzure]{
+		OutputState: o.OutputState,
+	}
 }
 
 // If no existing key can be found in
@@ -431,9 +467,7 @@ func (o KeysAzureOutput) Environment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KeysAzure) *string { return v.Environment }).(pulumi.StringPtrOutput)
 }
 
-// Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
-// `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
-// `allowGenerateKey` is `true`.
+// The size in bits for an RSA key.
 func (o KeysAzureOutput) KeyBits() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KeysAzure) *string { return v.KeyBits }).(pulumi.StringPtrOutput)
 }
@@ -486,6 +520,12 @@ func (o KeysAzureArrayOutput) ToKeysAzureArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o KeysAzureArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]KeysAzure] {
+	return pulumix.Output[[]KeysAzure]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o KeysAzureArrayOutput) Index(i pulumi.IntInput) KeysAzureOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) KeysAzure {
 		return vs[0].([]KeysAzure)[vs[1].(int)]
@@ -507,15 +547,13 @@ type KeysPkc struct {
 	// If `true`, allows usage from any mount point within the
 	// namespace.
 	AnyMount *bool `pulumi:"anyMount"`
-	// Supplies the curve value when using the `CKM_ECDSA` mechanism.
-	// Required if `allowGenerateKey` is `true`.
+	// The curve to use for an ECDSA key. Used when `keyType`
+	// is `ECDSA`. Required if `allowGenerateKey` is `true`.
 	Curve *string `pulumi:"curve"`
 	// Force all operations to open up a read-write session to
 	// the HSM.
 	ForceRwSession *string `pulumi:"forceRwSession"`
-	// Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
-	// `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
-	// `allowGenerateKey` is `true`.
+	// The size in bits for an RSA key.
 	KeyBits *string `pulumi:"keyBits"`
 	// The id of a PKCS#11 key to use.
 	KeyId string `pulumi:"keyId"`
@@ -565,15 +603,13 @@ type KeysPkcArgs struct {
 	// If `true`, allows usage from any mount point within the
 	// namespace.
 	AnyMount pulumi.BoolPtrInput `pulumi:"anyMount"`
-	// Supplies the curve value when using the `CKM_ECDSA` mechanism.
-	// Required if `allowGenerateKey` is `true`.
+	// The curve to use for an ECDSA key. Used when `keyType`
+	// is `ECDSA`. Required if `allowGenerateKey` is `true`.
 	Curve pulumi.StringPtrInput `pulumi:"curve"`
 	// Force all operations to open up a read-write session to
 	// the HSM.
 	ForceRwSession pulumi.StringPtrInput `pulumi:"forceRwSession"`
-	// Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
-	// `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
-	// `allowGenerateKey` is `true`.
+	// The size in bits for an RSA key.
 	KeyBits pulumi.StringPtrInput `pulumi:"keyBits"`
 	// The id of a PKCS#11 key to use.
 	KeyId pulumi.StringInput `pulumi:"keyId"`
@@ -609,6 +645,12 @@ func (i KeysPkcArgs) ToKeysPkcOutputWithContext(ctx context.Context) KeysPkcOutp
 	return pulumi.ToOutputWithContext(ctx, i).(KeysPkcOutput)
 }
 
+func (i KeysPkcArgs) ToOutput(ctx context.Context) pulumix.Output[KeysPkc] {
+	return pulumix.Output[KeysPkc]{
+		OutputState: i.ToKeysPkcOutputWithContext(ctx).OutputState,
+	}
+}
+
 // KeysPkcArrayInput is an input type that accepts KeysPkcArray and KeysPkcArrayOutput values.
 // You can construct a concrete instance of `KeysPkcArrayInput` via:
 //
@@ -634,6 +676,12 @@ func (i KeysPkcArray) ToKeysPkcArrayOutputWithContext(ctx context.Context) KeysP
 	return pulumi.ToOutputWithContext(ctx, i).(KeysPkcArrayOutput)
 }
 
+func (i KeysPkcArray) ToOutput(ctx context.Context) pulumix.Output[[]KeysPkc] {
+	return pulumix.Output[[]KeysPkc]{
+		OutputState: i.ToKeysPkcArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type KeysPkcOutput struct{ *pulumi.OutputState }
 
 func (KeysPkcOutput) ElementType() reflect.Type {
@@ -646,6 +694,12 @@ func (o KeysPkcOutput) ToKeysPkcOutput() KeysPkcOutput {
 
 func (o KeysPkcOutput) ToKeysPkcOutputWithContext(ctx context.Context) KeysPkcOutput {
 	return o
+}
+
+func (o KeysPkcOutput) ToOutput(ctx context.Context) pulumix.Output[KeysPkc] {
+	return pulumix.Output[KeysPkc]{
+		OutputState: o.OutputState,
+	}
 }
 
 // If no existing key can be found in
@@ -674,8 +728,8 @@ func (o KeysPkcOutput) AnyMount() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v KeysPkc) *bool { return v.AnyMount }).(pulumi.BoolPtrOutput)
 }
 
-// Supplies the curve value when using the `CKM_ECDSA` mechanism.
-// Required if `allowGenerateKey` is `true`.
+// The curve to use for an ECDSA key. Used when `keyType`
+// is `ECDSA`. Required if `allowGenerateKey` is `true`.
 func (o KeysPkcOutput) Curve() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KeysPkc) *string { return v.Curve }).(pulumi.StringPtrOutput)
 }
@@ -686,9 +740,7 @@ func (o KeysPkcOutput) ForceRwSession() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KeysPkc) *string { return v.ForceRwSession }).(pulumi.StringPtrOutput)
 }
 
-// Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
-// `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
-// `allowGenerateKey` is `true`.
+// The size in bits for an RSA key.
 func (o KeysPkcOutput) KeyBits() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KeysPkc) *string { return v.KeyBits }).(pulumi.StringPtrOutput)
 }
@@ -752,6 +804,12 @@ func (o KeysPkcArrayOutput) ToKeysPkcArrayOutput() KeysPkcArrayOutput {
 
 func (o KeysPkcArrayOutput) ToKeysPkcArrayOutputWithContext(ctx context.Context) KeysPkcArrayOutput {
 	return o
+}
+
+func (o KeysPkcArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]KeysPkc] {
+	return pulumix.Output[[]KeysPkc]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o KeysPkcArrayOutput) Index(i pulumi.IntInput) KeysPkcOutput {

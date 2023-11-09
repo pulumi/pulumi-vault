@@ -79,6 +79,13 @@ public final class ProviderAuthLoginKerberosArgs extends com.pulumi.resources.Re
         return Optional.ofNullable(this.token);
     }
 
+    @Import(name="useRootNamespace")
+    private @Nullable Output<Boolean> useRootNamespace;
+
+    public Optional<Output<Boolean>> useRootNamespace() {
+        return Optional.ofNullable(this.useRootNamespace);
+    }
+
     @Import(name="username")
     private @Nullable Output<String> username;
 
@@ -98,6 +105,7 @@ public final class ProviderAuthLoginKerberosArgs extends com.pulumi.resources.Re
         this.removeInstanceName = $.removeInstanceName;
         this.service = $.service;
         this.token = $.token;
+        this.useRootNamespace = $.useRootNamespace;
         this.username = $.username;
     }
 
@@ -198,6 +206,15 @@ public final class ProviderAuthLoginKerberosArgs extends com.pulumi.resources.Re
 
         public Builder token(String token) {
             return token(Output.of(token));
+        }
+
+        public Builder useRootNamespace(@Nullable Output<Boolean> useRootNamespace) {
+            $.useRootNamespace = useRootNamespace;
+            return this;
+        }
+
+        public Builder useRootNamespace(Boolean useRootNamespace) {
+            return useRootNamespace(Output.of(useRootNamespace));
         }
 
         public Builder username(@Nullable Output<String> username) {

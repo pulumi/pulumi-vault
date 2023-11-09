@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -45,6 +47,7 @@ import (
 //
 // ```
 func GetOidcClientCreds(ctx *pulumi.Context, args *GetOidcClientCredsArgs, opts ...pulumi.InvokeOption) (*GetOidcClientCredsResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetOidcClientCredsResult
 	err := ctx.Invoke("vault:identity/getOidcClientCreds:getOidcClientCreds", args, &rv, opts...)
 	if err != nil {
@@ -69,6 +72,7 @@ type GetOidcClientCredsResult struct {
 	// The Client ID returned by Vault.
 	ClientId string `pulumi:"clientId"`
 	// The Client Secret Key returned by Vault.
+	// For public OpenID Clients `clientSecret` is set to an empty string `""`
 	ClientSecret string `pulumi:"clientSecret"`
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
@@ -119,12 +123,19 @@ func (o GetOidcClientCredsResultOutput) ToGetOidcClientCredsResultOutputWithCont
 	return o
 }
 
+func (o GetOidcClientCredsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetOidcClientCredsResult] {
+	return pulumix.Output[GetOidcClientCredsResult]{
+		OutputState: o.OutputState,
+	}
+}
+
 // The Client ID returned by Vault.
 func (o GetOidcClientCredsResultOutput) ClientId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOidcClientCredsResult) string { return v.ClientId }).(pulumi.StringOutput)
 }
 
 // The Client Secret Key returned by Vault.
+// For public OpenID Clients `clientSecret` is set to an empty string `""`
 func (o GetOidcClientCredsResultOutput) ClientSecret() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOidcClientCredsResult) string { return v.ClientSecret }).(pulumi.StringOutput)
 }

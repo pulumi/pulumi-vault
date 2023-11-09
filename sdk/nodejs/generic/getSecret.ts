@@ -21,11 +21,8 @@ import * as utilities from "../utilities";
  * Use of this resource requires the `read` capability on the given path.
  */
 export function getSecret(args: GetSecretArgs, opts?: pulumi.InvokeOptions): Promise<GetSecretResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:generic/getSecret:getSecret", {
         "namespace": args.namespace,
         "path": args.path,
@@ -59,6 +56,11 @@ export interface GetSecretArgs {
      * to read.
      */
     version?: number;
+    /**
+     * If set to true, stores `leaseStartTime` in the TF state.
+     * Note that storing the `leaseStartTime` in the TF state will cause a persistent drift
+     * on every `pulumi preview` and will require a `pulumi up`.
+     */
     withLeaseStartTime?: boolean;
 }
 
@@ -99,9 +101,24 @@ export interface GetSecretResult {
     readonly version?: number;
     readonly withLeaseStartTime?: boolean;
 }
-
+/**
+ * ## Example Usage
+ * ### Generic secret
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const rundeckAuth = vault.generic.getSecret({
+ *     path: "secret/rundeck_auth",
+ * });
+ * ```
+ * ## Required Vault Capabilities
+ *
+ * Use of this resource requires the `read` capability on the given path.
+ */
 export function getSecretOutput(args: GetSecretOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretResult> {
-    return pulumi.output(args).apply(a => getSecret(a, opts))
+    return pulumi.output(args).apply((a: any) => getSecret(a, opts))
 }
 
 /**
@@ -129,5 +146,10 @@ export interface GetSecretOutputArgs {
      * to read.
      */
     version?: pulumi.Input<number>;
+    /**
+     * If set to true, stores `leaseStartTime` in the TF state.
+     * Note that storing the `leaseStartTime` in the TF state will cause a persistent drift
+     * on every `pulumi preview` and will require a `pulumi up`.
+     */
     withLeaseStartTime?: pulumi.Input<boolean>;
 }

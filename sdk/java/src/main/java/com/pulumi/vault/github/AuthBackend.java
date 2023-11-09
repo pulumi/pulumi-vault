@@ -349,12 +349,16 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
     /**
      * Extra configuration block. Structure is documented below.
      * 
+     * The `tune` block is used to tune the auth backend:
+     * 
      */
     @Export(name="tune", refs={AuthBackendTune.class}, tree="[0]")
     private Output<AuthBackendTune> tune;
 
     /**
      * @return Extra configuration block. Structure is documented below.
+     * 
+     * The `tune` block is used to tune the auth backend:
      * 
      */
     public Output<AuthBackendTune> tune() {

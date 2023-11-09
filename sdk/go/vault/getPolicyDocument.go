@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // This is a data source which can be used to construct a HCL representation of an Vault policy document, for use with resources which expect policy documents, such as the `Policy` resource.
@@ -26,9 +28,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			examplePolicyDocument, err := vault.GetPolicyDocument(ctx, &GetPolicyDocumentArgs{
-//				Rules: []GetPolicyDocumentRule{
-//					GetPolicyDocumentRule{
+//			examplePolicyDocument, err := vault.GetPolicyDocument(ctx, &vault.GetPolicyDocumentArgs{
+//				Rules: []vault.GetPolicyDocumentRule{
+//					{
 //						Path: "secret/*",
 //						Capabilities: []string{
 //							"create",
@@ -45,7 +47,7 @@ import (
 //				return err
 //			}
 //			_, err = vault.NewPolicy(ctx, "examplePolicy", &vault.PolicyArgs{
-//				Policy: pulumi.String(examplePolicyDocument.Hcl),
+//				Policy: *pulumi.String(examplePolicyDocument.Hcl),
 //			})
 //			if err != nil {
 //				return err
@@ -56,6 +58,7 @@ import (
 //
 // ```
 func GetPolicyDocument(ctx *pulumi.Context, args *GetPolicyDocumentArgs, opts ...pulumi.InvokeOption) (*GetPolicyDocumentResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetPolicyDocumentResult
 	err := ctx.Invoke("vault:index/getPolicyDocument:getPolicyDocument", args, &rv, opts...)
 	if err != nil {
@@ -116,6 +119,12 @@ func (o GetPolicyDocumentResultOutput) ToGetPolicyDocumentResultOutput() GetPoli
 
 func (o GetPolicyDocumentResultOutput) ToGetPolicyDocumentResultOutputWithContext(ctx context.Context) GetPolicyDocumentResultOutput {
 	return o
+}
+
+func (o GetPolicyDocumentResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetPolicyDocumentResult] {
+	return pulumix.Output[GetPolicyDocumentResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The above arguments serialized as a standard Vault HCL policy document.

@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -49,7 +51,7 @@ import (
 //			}
 //			provider, err := identity.NewOidcProvider(ctx, "provider", &identity.OidcProviderArgs{
 //				AllowedClientIds: pulumi.StringArray{
-//					pulumi.Any(vault_identity_oidc_client.Test.Client_id),
+//					vault_identity_oidc_client.Test.Client_id,
 //				},
 //			})
 //			if err != nil {
@@ -64,6 +66,7 @@ import (
 //
 // ```
 func GetOidcOpenidConfig(ctx *pulumi.Context, args *GetOidcOpenidConfigArgs, opts ...pulumi.InvokeOption) (*GetOidcOpenidConfigResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetOidcOpenidConfigResult
 	err := ctx.Invoke("vault:identity/getOidcOpenidConfig:getOidcOpenidConfig", args, &rv, opts...)
 	if err != nil {
@@ -158,6 +161,12 @@ func (o GetOidcOpenidConfigResultOutput) ToGetOidcOpenidConfigResultOutput() Get
 
 func (o GetOidcOpenidConfigResultOutput) ToGetOidcOpenidConfigResultOutputWithContext(ctx context.Context) GetOidcOpenidConfigResultOutput {
 	return o
+}
+
+func (o GetOidcOpenidConfigResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetOidcOpenidConfigResult] {
+	return pulumix.Output[GetOidcOpenidConfigResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The Authorization Endpoint for the provider.

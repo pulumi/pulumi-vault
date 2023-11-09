@@ -132,12 +132,16 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
     /**
      * Set of managed key registry entry names that the mount in question is allowed to access
      * 
+     * The following arguments are common to all database engines:
+     * 
      */
     @Export(name="allowedManagedKeys", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> allowedManagedKeys;
 
     /**
      * @return Set of managed key registry entry names that the mount in question is allowed to access
+     * 
+     * The following arguments are common to all database engines:
      * 
      */
     public Output<Optional<List<String>>> allowedManagedKeys() {

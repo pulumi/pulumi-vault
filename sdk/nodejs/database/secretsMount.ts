@@ -33,7 +33,7 @@ import * as utilities from "../utilities";
  * });
  * const dev1 = new vault.database.SecretBackendRole("dev1", {
  *     backend: db.path,
- *     dbName: db.mssqls.apply(mssqls => mssqls?[0]?.name),
+ *     dbName: db.mssqls.apply(mssqls => mssqls?.[0]?.name),
  *     creationStatements: [
  *         "CREATE LOGIN [{{name}}] WITH PASSWORD = '{{password}}';",
  *         "CREATE USER [{{name}}] FOR LOGIN [{{name}}];",
@@ -42,7 +42,7 @@ import * as utilities from "../utilities";
  * });
  * const dev2 = new vault.database.SecretBackendRole("dev2", {
  *     backend: db.path,
- *     dbName: db.postgresqls.apply(postgresqls => postgresqls?[0]?.name),
+ *     dbName: db.postgresqls.apply(postgresqls => postgresqls?.[0]?.name),
  *     creationStatements: [
  *         "CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';",
  *         "GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"{{name}}\";",
@@ -92,6 +92,8 @@ export class SecretsMount extends pulumi.CustomResource {
     public /*out*/ readonly accessor!: pulumi.Output<string>;
     /**
      * Set of managed key registry entry names that the mount in question is allowed to access
+     *
+     * The following arguments are common to all database engines:
      */
     public readonly allowedManagedKeys!: pulumi.Output<string[] | undefined>;
     /**
@@ -331,6 +333,8 @@ export interface SecretsMountState {
     accessor?: pulumi.Input<string>;
     /**
      * Set of managed key registry entry names that the mount in question is allowed to access
+     *
+     * The following arguments are common to all database engines:
      */
     allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -479,6 +483,8 @@ export interface SecretsMountState {
 export interface SecretsMountArgs {
     /**
      * Set of managed key registry entry names that the mount in question is allowed to access
+     *
+     * The following arguments are common to all database engines:
      */
     allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[]>;
     /**

@@ -136,9 +136,9 @@ class _MfaPingidState:
                  username_format: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering MfaPingid resources.
-        :param pulumi.Input[str] admin_url: Admin URL computed by Vault.
-        :param pulumi.Input[str] authenticator_url: Authenticator URL computed by Vault.
-        :param pulumi.Input[str] idp_url: IDP URL computed by Vault.
+        :param pulumi.Input[str] admin_url: `(string)` – Admin URL computed by Vault
+        :param pulumi.Input[str] authenticator_url: `(string)` – Authenticator URL computed by Vault
+        :param pulumi.Input[str] idp_url: `(string)` – IDP URL computed by Vault
         :param pulumi.Input[str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
                The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
@@ -146,12 +146,12 @@ class _MfaPingidState:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[str] namespace_id: Namespace ID computed by Vault.
-        :param pulumi.Input[str] org_alias: Org Alias computed by Vault.
+        :param pulumi.Input[str] namespace_id: `(string)` – Namespace ID computed by Vault
+        :param pulumi.Input[str] org_alias: `(string)` – Org Alias computed by Vault
         :param pulumi.Input[str] settings_file_base64: `(string: <required>)` - A base64-encoded third-party settings file retrieved
                from PingID's configuration page.
-        :param pulumi.Input[str] type: Type of configuration computed by Vault.
-        :param pulumi.Input[bool] use_signature: If set, enables use of PingID signature. Computed by Vault
+        :param pulumi.Input[str] type: `(string)` – Type of configuration computed by Vault
+        :param pulumi.Input[bool] use_signature: `(string)` – If set to true, enables use of PingID signature. Computed by Vault
         :param pulumi.Input[str] username_format: `(string)` - A format string for mapping Identity names to MFA method names. 
                Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
                If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
@@ -189,7 +189,7 @@ class _MfaPingidState:
     @pulumi.getter(name="adminUrl")
     def admin_url(self) -> Optional[pulumi.Input[str]]:
         """
-        Admin URL computed by Vault.
+        `(string)` – Admin URL computed by Vault
         """
         return pulumi.get(self, "admin_url")
 
@@ -201,7 +201,7 @@ class _MfaPingidState:
     @pulumi.getter(name="authenticatorUrl")
     def authenticator_url(self) -> Optional[pulumi.Input[str]]:
         """
-        Authenticator URL computed by Vault.
+        `(string)` – Authenticator URL computed by Vault
         """
         return pulumi.get(self, "authenticator_url")
 
@@ -213,7 +213,7 @@ class _MfaPingidState:
     @pulumi.getter(name="idpUrl")
     def idp_url(self) -> Optional[pulumi.Input[str]]:
         """
-        IDP URL computed by Vault.
+        `(string)` – IDP URL computed by Vault
         """
         return pulumi.get(self, "idp_url")
 
@@ -265,7 +265,7 @@ class _MfaPingidState:
     @pulumi.getter(name="namespaceId")
     def namespace_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Namespace ID computed by Vault.
+        `(string)` – Namespace ID computed by Vault
         """
         return pulumi.get(self, "namespace_id")
 
@@ -277,7 +277,7 @@ class _MfaPingidState:
     @pulumi.getter(name="orgAlias")
     def org_alias(self) -> Optional[pulumi.Input[str]]:
         """
-        Org Alias computed by Vault.
+        `(string)` – Org Alias computed by Vault
         """
         return pulumi.get(self, "org_alias")
 
@@ -302,7 +302,7 @@ class _MfaPingidState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        Type of configuration computed by Vault.
+        `(string)` – Type of configuration computed by Vault
         """
         return pulumi.get(self, "type")
 
@@ -314,7 +314,7 @@ class _MfaPingidState:
     @pulumi.getter(name="useSignature")
     def use_signature(self) -> Optional[pulumi.Input[bool]]:
         """
-        If set, enables use of PingID signature. Computed by Vault
+        `(string)` – If set to true, enables use of PingID signature. Computed by Vault
         """
         return pulumi.get(self, "use_signature")
 
@@ -511,9 +511,9 @@ class MfaPingid(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] admin_url: Admin URL computed by Vault.
-        :param pulumi.Input[str] authenticator_url: Authenticator URL computed by Vault.
-        :param pulumi.Input[str] idp_url: IDP URL computed by Vault.
+        :param pulumi.Input[str] admin_url: `(string)` – Admin URL computed by Vault
+        :param pulumi.Input[str] authenticator_url: `(string)` – Authenticator URL computed by Vault
+        :param pulumi.Input[str] idp_url: `(string)` – IDP URL computed by Vault
         :param pulumi.Input[str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
                The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
@@ -521,12 +521,12 @@ class MfaPingid(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[str] namespace_id: Namespace ID computed by Vault.
-        :param pulumi.Input[str] org_alias: Org Alias computed by Vault.
+        :param pulumi.Input[str] namespace_id: `(string)` – Namespace ID computed by Vault
+        :param pulumi.Input[str] org_alias: `(string)` – Org Alias computed by Vault
         :param pulumi.Input[str] settings_file_base64: `(string: <required>)` - A base64-encoded third-party settings file retrieved
                from PingID's configuration page.
-        :param pulumi.Input[str] type: Type of configuration computed by Vault.
-        :param pulumi.Input[bool] use_signature: If set, enables use of PingID signature. Computed by Vault
+        :param pulumi.Input[str] type: `(string)` – Type of configuration computed by Vault
+        :param pulumi.Input[bool] use_signature: `(string)` – If set to true, enables use of PingID signature. Computed by Vault
         :param pulumi.Input[str] username_format: `(string)` - A format string for mapping Identity names to MFA method names. 
                Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
                If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
@@ -557,7 +557,7 @@ class MfaPingid(pulumi.CustomResource):
     @pulumi.getter(name="adminUrl")
     def admin_url(self) -> pulumi.Output[str]:
         """
-        Admin URL computed by Vault.
+        `(string)` – Admin URL computed by Vault
         """
         return pulumi.get(self, "admin_url")
 
@@ -565,7 +565,7 @@ class MfaPingid(pulumi.CustomResource):
     @pulumi.getter(name="authenticatorUrl")
     def authenticator_url(self) -> pulumi.Output[str]:
         """
-        Authenticator URL computed by Vault.
+        `(string)` – Authenticator URL computed by Vault
         """
         return pulumi.get(self, "authenticator_url")
 
@@ -573,7 +573,7 @@ class MfaPingid(pulumi.CustomResource):
     @pulumi.getter(name="idpUrl")
     def idp_url(self) -> pulumi.Output[str]:
         """
-        IDP URL computed by Vault.
+        `(string)` – IDP URL computed by Vault
         """
         return pulumi.get(self, "idp_url")
 
@@ -609,7 +609,7 @@ class MfaPingid(pulumi.CustomResource):
     @pulumi.getter(name="namespaceId")
     def namespace_id(self) -> pulumi.Output[str]:
         """
-        Namespace ID computed by Vault.
+        `(string)` – Namespace ID computed by Vault
         """
         return pulumi.get(self, "namespace_id")
 
@@ -617,7 +617,7 @@ class MfaPingid(pulumi.CustomResource):
     @pulumi.getter(name="orgAlias")
     def org_alias(self) -> pulumi.Output[str]:
         """
-        Org Alias computed by Vault.
+        `(string)` – Org Alias computed by Vault
         """
         return pulumi.get(self, "org_alias")
 
@@ -634,7 +634,7 @@ class MfaPingid(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        Type of configuration computed by Vault.
+        `(string)` – Type of configuration computed by Vault
         """
         return pulumi.get(self, "type")
 
@@ -642,7 +642,7 @@ class MfaPingid(pulumi.CustomResource):
     @pulumi.getter(name="useSignature")
     def use_signature(self) -> pulumi.Output[bool]:
         """
-        If set, enables use of PingID signature. Computed by Vault
+        `(string)` – If set to true, enables use of PingID signature. Computed by Vault
         """
         return pulumi.get(self, "use_signature")
 

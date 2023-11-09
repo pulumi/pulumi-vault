@@ -32,14 +32,14 @@ public final class AuthBackendUserArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * List of Vault policies to associate with this user
+     * Vault policies to associate with this group
      * 
      */
     @Import(name="policies")
     private @Nullable Output<List<String>> policies;
 
     /**
-     * @return List of Vault policies to associate with this user
+     * @return Vault policies to associate with this group
      * 
      */
     public Optional<Output<List<String>>> policies() {
@@ -119,7 +119,7 @@ public final class AuthBackendUserArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param policies List of Vault policies to associate with this user
+         * @param policies Vault policies to associate with this group
          * 
          * @return builder
          * 
@@ -130,7 +130,7 @@ public final class AuthBackendUserArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param policies List of Vault policies to associate with this user
+         * @param policies Vault policies to associate with this group
          * 
          * @return builder
          * 
@@ -140,7 +140,7 @@ public final class AuthBackendUserArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param policies List of Vault policies to associate with this user
+         * @param policies Vault policies to associate with this group
          * 
          * @return builder
          * 

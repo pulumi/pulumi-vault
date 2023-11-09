@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Resource for configuring MFA login-enforcement
@@ -94,6 +96,7 @@ func NewMfaLoginEnforcement(ctx *pulumi.Context,
 	if args.MfaMethodIds == nil {
 		return nil, errors.New("invalid value for required argument 'MfaMethodIds'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource MfaLoginEnforcement
 	err := ctx.RegisterResource("vault:identity/mfaLoginEnforcement:MfaLoginEnforcement", name, args, &resource, opts...)
 	if err != nil {
@@ -223,6 +226,12 @@ func (i *MfaLoginEnforcement) ToMfaLoginEnforcementOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(MfaLoginEnforcementOutput)
 }
 
+func (i *MfaLoginEnforcement) ToOutput(ctx context.Context) pulumix.Output[*MfaLoginEnforcement] {
+	return pulumix.Output[*MfaLoginEnforcement]{
+		OutputState: i.ToMfaLoginEnforcementOutputWithContext(ctx).OutputState,
+	}
+}
+
 // MfaLoginEnforcementArrayInput is an input type that accepts MfaLoginEnforcementArray and MfaLoginEnforcementArrayOutput values.
 // You can construct a concrete instance of `MfaLoginEnforcementArrayInput` via:
 //
@@ -246,6 +255,12 @@ func (i MfaLoginEnforcementArray) ToMfaLoginEnforcementArrayOutput() MfaLoginEnf
 
 func (i MfaLoginEnforcementArray) ToMfaLoginEnforcementArrayOutputWithContext(ctx context.Context) MfaLoginEnforcementArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MfaLoginEnforcementArrayOutput)
+}
+
+func (i MfaLoginEnforcementArray) ToOutput(ctx context.Context) pulumix.Output[[]*MfaLoginEnforcement] {
+	return pulumix.Output[[]*MfaLoginEnforcement]{
+		OutputState: i.ToMfaLoginEnforcementArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // MfaLoginEnforcementMapInput is an input type that accepts MfaLoginEnforcementMap and MfaLoginEnforcementMapOutput values.
@@ -273,6 +288,12 @@ func (i MfaLoginEnforcementMap) ToMfaLoginEnforcementMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(MfaLoginEnforcementMapOutput)
 }
 
+func (i MfaLoginEnforcementMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*MfaLoginEnforcement] {
+	return pulumix.Output[map[string]*MfaLoginEnforcement]{
+		OutputState: i.ToMfaLoginEnforcementMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type MfaLoginEnforcementOutput struct{ *pulumi.OutputState }
 
 func (MfaLoginEnforcementOutput) ElementType() reflect.Type {
@@ -285,6 +306,12 @@ func (o MfaLoginEnforcementOutput) ToMfaLoginEnforcementOutput() MfaLoginEnforce
 
 func (o MfaLoginEnforcementOutput) ToMfaLoginEnforcementOutputWithContext(ctx context.Context) MfaLoginEnforcementOutput {
 	return o
+}
+
+func (o MfaLoginEnforcementOutput) ToOutput(ctx context.Context) pulumix.Output[*MfaLoginEnforcement] {
+	return pulumix.Output[*MfaLoginEnforcement]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Set of auth method accessor IDs.
@@ -351,6 +378,12 @@ func (o MfaLoginEnforcementArrayOutput) ToMfaLoginEnforcementArrayOutputWithCont
 	return o
 }
 
+func (o MfaLoginEnforcementArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*MfaLoginEnforcement] {
+	return pulumix.Output[[]*MfaLoginEnforcement]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o MfaLoginEnforcementArrayOutput) Index(i pulumi.IntInput) MfaLoginEnforcementOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *MfaLoginEnforcement {
 		return vs[0].([]*MfaLoginEnforcement)[vs[1].(int)]
@@ -369,6 +402,12 @@ func (o MfaLoginEnforcementMapOutput) ToMfaLoginEnforcementMapOutput() MfaLoginE
 
 func (o MfaLoginEnforcementMapOutput) ToMfaLoginEnforcementMapOutputWithContext(ctx context.Context) MfaLoginEnforcementMapOutput {
 	return o
+}
+
+func (o MfaLoginEnforcementMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*MfaLoginEnforcement] {
+	return pulumix.Output[map[string]*MfaLoginEnforcement]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o MfaLoginEnforcementMapOutput) MapIndex(k pulumi.StringInput) MfaLoginEnforcementOutput {

@@ -21,7 +21,7 @@ public final class SecretBackendConnectionCassandra {
      */
     private @Nullable Integer connectTimeout;
     /**
-     * @return A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+     * @return The hosts to connect to.
      * 
      */
     private @Nullable List<String> hosts;
@@ -32,7 +32,7 @@ public final class SecretBackendConnectionCassandra {
      */
     private @Nullable Boolean insecureTls;
     /**
-     * @return The root credential password used in the connection URL.
+     * @return The password to authenticate with.
      * 
      */
     private @Nullable String password;
@@ -59,12 +59,12 @@ public final class SecretBackendConnectionCassandra {
      */
     private @Nullable Integer protocolVersion;
     /**
-     * @return Whether to use TLS when connecting to Redis.
+     * @return Whether to use TLS when connecting to Cassandra.
      * 
      */
     private @Nullable Boolean tls;
     /**
-     * @return The root credential username used in the connection URL.
+     * @return The username to authenticate with.
      * 
      */
     private @Nullable String username;
@@ -79,7 +79,7 @@ public final class SecretBackendConnectionCassandra {
         return Optional.ofNullable(this.connectTimeout);
     }
     /**
-     * @return A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+     * @return The hosts to connect to.
      * 
      */
     public List<String> hosts() {
@@ -94,7 +94,7 @@ public final class SecretBackendConnectionCassandra {
         return Optional.ofNullable(this.insecureTls);
     }
     /**
-     * @return The root credential password used in the connection URL.
+     * @return The password to authenticate with.
      * 
      */
     public Optional<String> password() {
@@ -131,14 +131,14 @@ public final class SecretBackendConnectionCassandra {
         return Optional.ofNullable(this.protocolVersion);
     }
     /**
-     * @return Whether to use TLS when connecting to Redis.
+     * @return Whether to use TLS when connecting to Cassandra.
      * 
      */
     public Optional<Boolean> tls() {
         return Optional.ofNullable(this.tls);
     }
     /**
-     * @return The root credential username used in the connection URL.
+     * @return The username to authenticate with.
      * 
      */
     public Optional<String> username() {

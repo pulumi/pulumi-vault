@@ -28,7 +28,7 @@ namespace Pulumi.Vault.Okta.Inputs
         private InputList<string>? _policies;
 
         /// <summary>
-        /// List of Vault policies to associate with this user
+        /// Vault policies to associate with this group
         /// </summary>
         public InputList<string> Policies
         {

@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -30,7 +32,7 @@ import (
 //			kvv2, err := vault.NewMount(ctx, "kvv2", &vault.MountArgs{
 //				Path: pulumi.String("kvv2"),
 //				Type: pulumi.String("kv"),
-//				Options: pulumi.AnyMap{
+//				Options: pulumi.Map{
 //					"version": pulumi.Any("2"),
 //				},
 //				Description: pulumi.String("KV Version 2 secret engine mount"),
@@ -66,6 +68,7 @@ import (
 //
 // Use of this resource requires the `read` capability on the given path.
 func GetSecretSubkeysV2(ctx *pulumi.Context, args *GetSecretSubkeysV2Args, opts ...pulumi.InvokeOption) (*GetSecretSubkeysV2Result, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSecretSubkeysV2Result
 	err := ctx.Invoke("vault:kv/getSecretSubkeysV2:getSecretSubkeysV2", args, &rv, opts...)
 	if err != nil {
@@ -169,6 +172,12 @@ func (o GetSecretSubkeysV2ResultOutput) ToGetSecretSubkeysV2ResultOutput() GetSe
 
 func (o GetSecretSubkeysV2ResultOutput) ToGetSecretSubkeysV2ResultOutputWithContext(ctx context.Context) GetSecretSubkeysV2ResultOutput {
 	return o
+}
+
+func (o GetSecretSubkeysV2ResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSecretSubkeysV2Result] {
+	return pulumix.Output[GetSecretSubkeysV2Result]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Subkeys for the KV-V2 secret stored as a serialized map of strings.

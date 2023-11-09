@@ -47,6 +47,8 @@ class AuthBackendRoleArgs:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] orphan: If true, tokens created against this policy will be orphan tokens.
         :param pulumi.Input[str] path_suffix: Tokens created against this role will have the given suffix as part of their path in addition to the role name.
+               
+               > Due to a bug the resource. This *will* cause all existing tokens issued by this role to be revoked.
         :param pulumi.Input[bool] renewable: Whether to disable the ability of the token to be renewed past its initial TTL.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
                addresses which can authenticate successfully, and ties the resulting token to these blocks
@@ -216,6 +218,8 @@ class AuthBackendRoleArgs:
     def path_suffix(self) -> Optional[pulumi.Input[str]]:
         """
         Tokens created against this role will have the given suffix as part of their path in addition to the role name.
+
+        > Due to a bug the resource. This *will* cause all existing tokens issued by this role to be revoked.
         """
         return pulumi.get(self, "path_suffix")
 
@@ -395,6 +399,8 @@ class _AuthBackendRoleState:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] orphan: If true, tokens created against this policy will be orphan tokens.
         :param pulumi.Input[str] path_suffix: Tokens created against this role will have the given suffix as part of their path in addition to the role name.
+               
+               > Due to a bug the resource. This *will* cause all existing tokens issued by this role to be revoked.
         :param pulumi.Input[bool] renewable: Whether to disable the ability of the token to be renewed past its initial TTL.
         :param pulumi.Input[str] role_name: The name of the role.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
@@ -554,6 +560,8 @@ class _AuthBackendRoleState:
     def path_suffix(self) -> Optional[pulumi.Input[str]]:
         """
         Tokens created against this role will have the given suffix as part of their path in addition to the role name.
+
+        > Due to a bug the resource. This *will* cause all existing tokens issued by this role to be revoked.
         """
         return pulumi.get(self, "path_suffix")
 
@@ -782,6 +790,8 @@ class AuthBackendRole(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] orphan: If true, tokens created against this policy will be orphan tokens.
         :param pulumi.Input[str] path_suffix: Tokens created against this role will have the given suffix as part of their path in addition to the role name.
+               
+               > Due to a bug the resource. This *will* cause all existing tokens issued by this role to be revoked.
         :param pulumi.Input[bool] renewable: Whether to disable the ability of the token to be renewed past its initial TTL.
         :param pulumi.Input[str] role_name: The name of the role.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
@@ -961,6 +971,8 @@ class AuthBackendRole(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] orphan: If true, tokens created against this policy will be orphan tokens.
         :param pulumi.Input[str] path_suffix: Tokens created against this role will have the given suffix as part of their path in addition to the role name.
+               
+               > Due to a bug the resource. This *will* cause all existing tokens issued by this role to be revoked.
         :param pulumi.Input[bool] renewable: Whether to disable the ability of the token to be renewed past its initial TTL.
         :param pulumi.Input[str] role_name: The name of the role.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
@@ -1078,6 +1090,8 @@ class AuthBackendRole(pulumi.CustomResource):
     def path_suffix(self) -> pulumi.Output[Optional[str]]:
         """
         Tokens created against this role will have the given suffix as part of their path in addition to the role name.
+
+        > Due to a bug the resource. This *will* cause all existing tokens issued by this role to be revoked.
         """
         return pulumi.get(self, "path_suffix")
 

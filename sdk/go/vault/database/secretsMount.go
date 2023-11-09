@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -56,9 +58,9 @@ import (
 //			}
 //			_, err = database.NewSecretBackendRole(ctx, "dev1", &database.SecretBackendRoleArgs{
 //				Backend: db.Path,
-//				DbName: db.Mssqls.ApplyT(func(mssqls []database.SecretsMountMssql) (string, error) {
-//					return mssqls[0].Name, nil
-//				}).(pulumi.StringOutput),
+//				DbName: db.Mssqls.ApplyT(func(mssqls []database.SecretsMountMssql) (*string, error) {
+//					return &mssqls[0].Name, nil
+//				}).(pulumi.StringPtrOutput),
 //				CreationStatements: pulumi.StringArray{
 //					pulumi.String("CREATE LOGIN [{{name}}] WITH PASSWORD = '{{password}}';"),
 //					pulumi.String("CREATE USER [{{name}}] FOR LOGIN [{{name}}];"),
@@ -70,9 +72,9 @@ import (
 //			}
 //			_, err = database.NewSecretBackendRole(ctx, "dev2", &database.SecretBackendRoleArgs{
 //				Backend: db.Path,
-//				DbName: db.Postgresqls.ApplyT(func(postgresqls []database.SecretsMountPostgresql) (string, error) {
-//					return postgresqls[0].Name, nil
-//				}).(pulumi.StringOutput),
+//				DbName: db.Postgresqls.ApplyT(func(postgresqls []database.SecretsMountPostgresql) (*string, error) {
+//					return &postgresqls[0].Name, nil
+//				}).(pulumi.StringPtrOutput),
 //				CreationStatements: pulumi.StringArray{
 //					pulumi.String("CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';"),
 //					pulumi.String("GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"{{name}}\";"),
@@ -102,6 +104,8 @@ type SecretsMount struct {
 	// Accessor of the mount
 	Accessor pulumi.StringOutput `pulumi:"accessor"`
 	// Set of managed key registry entry names that the mount in question is allowed to access
+	//
+	// The following arguments are common to all database engines:
 	AllowedManagedKeys pulumi.StringArrayOutput `pulumi:"allowedManagedKeys"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys pulumi.StringArrayOutput `pulumi:"auditNonHmacRequestKeys"`
@@ -193,6 +197,7 @@ func NewSecretsMount(ctx *pulumi.Context,
 	if args.Path == nil {
 		return nil, errors.New("invalid value for required argument 'Path'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SecretsMount
 	err := ctx.RegisterResource("vault:database/secretsMount:SecretsMount", name, args, &resource, opts...)
 	if err != nil {
@@ -218,6 +223,8 @@ type secretsMountState struct {
 	// Accessor of the mount
 	Accessor *string `pulumi:"accessor"`
 	// Set of managed key registry entry names that the mount in question is allowed to access
+	//
+	// The following arguments are common to all database engines:
 	AllowedManagedKeys []string `pulumi:"allowedManagedKeys"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys []string `pulumi:"auditNonHmacRequestKeys"`
@@ -303,6 +310,8 @@ type SecretsMountState struct {
 	// Accessor of the mount
 	Accessor pulumi.StringPtrInput
 	// Set of managed key registry entry names that the mount in question is allowed to access
+	//
+	// The following arguments are common to all database engines:
 	AllowedManagedKeys pulumi.StringArrayInput
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys pulumi.StringArrayInput
@@ -390,6 +399,8 @@ func (SecretsMountState) ElementType() reflect.Type {
 
 type secretsMountArgs struct {
 	// Set of managed key registry entry names that the mount in question is allowed to access
+	//
+	// The following arguments are common to all database engines:
 	AllowedManagedKeys []string `pulumi:"allowedManagedKeys"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys []string `pulumi:"auditNonHmacRequestKeys"`
@@ -472,6 +483,8 @@ type secretsMountArgs struct {
 // The set of arguments for constructing a SecretsMount resource.
 type SecretsMountArgs struct {
 	// Set of managed key registry entry names that the mount in question is allowed to access
+	//
+	// The following arguments are common to all database engines:
 	AllowedManagedKeys pulumi.StringArrayInput
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys pulumi.StringArrayInput
@@ -574,6 +587,12 @@ func (i *SecretsMount) ToSecretsMountOutputWithContext(ctx context.Context) Secr
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountOutput)
 }
 
+func (i *SecretsMount) ToOutput(ctx context.Context) pulumix.Output[*SecretsMount] {
+	return pulumix.Output[*SecretsMount]{
+		OutputState: i.ToSecretsMountOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SecretsMountArrayInput is an input type that accepts SecretsMountArray and SecretsMountArrayOutput values.
 // You can construct a concrete instance of `SecretsMountArrayInput` via:
 //
@@ -597,6 +616,12 @@ func (i SecretsMountArray) ToSecretsMountArrayOutput() SecretsMountArrayOutput {
 
 func (i SecretsMountArray) ToSecretsMountArrayOutputWithContext(ctx context.Context) SecretsMountArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountArrayOutput)
+}
+
+func (i SecretsMountArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretsMount] {
+	return pulumix.Output[[]*SecretsMount]{
+		OutputState: i.ToSecretsMountArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SecretsMountMapInput is an input type that accepts SecretsMountMap and SecretsMountMapOutput values.
@@ -624,6 +649,12 @@ func (i SecretsMountMap) ToSecretsMountMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountMapOutput)
 }
 
+func (i SecretsMountMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretsMount] {
+	return pulumix.Output[map[string]*SecretsMount]{
+		OutputState: i.ToSecretsMountMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SecretsMountOutput struct{ *pulumi.OutputState }
 
 func (SecretsMountOutput) ElementType() reflect.Type {
@@ -638,12 +669,20 @@ func (o SecretsMountOutput) ToSecretsMountOutputWithContext(ctx context.Context)
 	return o
 }
 
+func (o SecretsMountOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretsMount] {
+	return pulumix.Output[*SecretsMount]{
+		OutputState: o.OutputState,
+	}
+}
+
 // Accessor of the mount
 func (o SecretsMountOutput) Accessor() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretsMount) pulumi.StringOutput { return v.Accessor }).(pulumi.StringOutput)
 }
 
 // Set of managed key registry entry names that the mount in question is allowed to access
+//
+// The following arguments are common to all database engines:
 func (o SecretsMountOutput) AllowedManagedKeys() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretsMount) pulumi.StringArrayOutput { return v.AllowedManagedKeys }).(pulumi.StringArrayOutput)
 }
@@ -830,6 +869,12 @@ func (o SecretsMountArrayOutput) ToSecretsMountArrayOutputWithContext(ctx contex
 	return o
 }
 
+func (o SecretsMountArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretsMount] {
+	return pulumix.Output[[]*SecretsMount]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SecretsMountArrayOutput) Index(i pulumi.IntInput) SecretsMountOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretsMount {
 		return vs[0].([]*SecretsMount)[vs[1].(int)]
@@ -848,6 +893,12 @@ func (o SecretsMountMapOutput) ToSecretsMountMapOutput() SecretsMountMapOutput {
 
 func (o SecretsMountMapOutput) ToSecretsMountMapOutputWithContext(ctx context.Context) SecretsMountMapOutput {
 	return o
+}
+
+func (o SecretsMountMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretsMount] {
+	return pulumix.Output[map[string]*SecretsMount]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SecretsMountMapOutput) MapIndex(k pulumi.StringInput) SecretsMountOutput {

@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -24,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vault.LookupAuthBackend(ctx, &GetAuthBackendArgs{
+//			_, err := vault.LookupAuthBackend(ctx, &vault.LookupAuthBackendArgs{
 //				Path: "userpass",
 //			}, nil)
 //			if err != nil {
@@ -36,6 +38,7 @@ import (
 //
 // ```
 func LookupAuthBackend(ctx *pulumi.Context, args *LookupAuthBackendArgs, opts ...pulumi.InvokeOption) (*LookupAuthBackendResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAuthBackendResult
 	err := ctx.Invoke("vault:index/getAuthBackend:getAuthBackend", args, &rv, opts...)
 	if err != nil {
@@ -118,6 +121,12 @@ func (o LookupAuthBackendResultOutput) ToLookupAuthBackendResultOutput() LookupA
 
 func (o LookupAuthBackendResultOutput) ToLookupAuthBackendResultOutputWithContext(ctx context.Context) LookupAuthBackendResultOutput {
 	return o
+}
+
+func (o LookupAuthBackendResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupAuthBackendResult] {
+	return pulumix.Output[LookupAuthBackendResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The accessor for this auth method.

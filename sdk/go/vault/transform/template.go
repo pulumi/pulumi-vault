@@ -7,23 +7,92 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
+// This resource supports the `/transform/template/{name}` Vault endpoint.
+//
+// It creates or updates a template with the given name. If a template with the name does not exist,
+// it will be created. If the template exists, it will be updated with the new attributes.
+//
+// > Requires _Vault Enterprise with the Advanced Data Protection Transform Module_.
+// See [Transform Secrets Engine](https://www.vaultproject.io/docs/secrets/transform)
+// for more information.
+//
+// ## Example Usage
+//
+// Please note that the `pattern` below holds a regex. The regex shown
+// is identical to the one in our [Setup](https://www.vaultproject.io/docs/secrets/transform#setup)
+// docs, `(\d{4})-(\d{4})-(\d{4})-(\d{4})`. However, due to HCL, the
+// backslashes must be escaped to appear correctly in Vault. For further
+// assistance escaping your own custom regex, see String Literals.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/transform"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			transform, err := vault.NewMount(ctx, "transform", &vault.MountArgs{
+//				Path: pulumi.String("transform"),
+//				Type: pulumi.String("transform"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			numerics, err := transform.NewAlphabet(ctx, "numerics", &transform.AlphabetArgs{
+//				Path:     transform.Path,
+//				Alphabet: pulumi.String("0123456789"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = transform.NewTemplate(ctx, "test", &transform.TemplateArgs{
+//				Path:         numerics.Path,
+//				Type:         pulumi.String("regex"),
+//				Pattern:      pulumi.String("(\\d{4})[- ](\\d{4})[- ](\\d{4})[- ](\\d{4})"),
+//				Alphabet:     pulumi.String("numerics"),
+//				EncodeFormat: pulumi.String("$1-$2-$3-$4"),
+//				DecodeFormats: pulumi.Map{
+//					"last-four-digits": pulumi.Any("$4"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type Template struct {
 	pulumi.CustomResourceState
 
 	// The alphabet to use for this template. This is only used during FPE transformations.
 	Alphabet pulumi.StringPtrOutput `pulumi:"alphabet"`
-	// - Optional mapping of name to regular expression template, used to customize
-	//   the decoded output. (requires Vault Enterprise 1.9+)
+	// Optional mapping of name to regular expression template, used to customize
+	// the decoded output. (requires Vault Enterprise 1.9+)
 	DecodeFormats pulumi.MapOutput `pulumi:"decodeFormats"`
-	// - The regular expression template used to format encoded values.
-	//   (requires Vault Enterprise 1.9+)
+	// The regular expression template used to format encoded values.
+	// (requires Vault Enterprise 1.9+)
 	EncodeFormat pulumi.StringPtrOutput `pulumi:"encodeFormat"`
 	// The name of the template.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringOutput `pulumi:"path"`
 	// The pattern used for matching. Currently, only regular expression pattern is supported.
@@ -42,6 +111,7 @@ func NewTemplate(ctx *pulumi.Context,
 	if args.Path == nil {
 		return nil, errors.New("invalid value for required argument 'Path'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Template
 	err := ctx.RegisterResource("vault:transform/template:Template", name, args, &resource, opts...)
 	if err != nil {
@@ -66,14 +136,19 @@ func GetTemplate(ctx *pulumi.Context,
 type templateState struct {
 	// The alphabet to use for this template. This is only used during FPE transformations.
 	Alphabet *string `pulumi:"alphabet"`
-	// - Optional mapping of name to regular expression template, used to customize
-	//   the decoded output. (requires Vault Enterprise 1.9+)
+	// Optional mapping of name to regular expression template, used to customize
+	// the decoded output. (requires Vault Enterprise 1.9+)
 	DecodeFormats map[string]interface{} `pulumi:"decodeFormats"`
-	// - The regular expression template used to format encoded values.
-	//   (requires Vault Enterprise 1.9+)
+	// The regular expression template used to format encoded values.
+	// (requires Vault Enterprise 1.9+)
 	EncodeFormat *string `pulumi:"encodeFormat"`
 	// The name of the template.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Path to where the back-end is mounted within Vault.
 	Path *string `pulumi:"path"`
 	// The pattern used for matching. Currently, only regular expression pattern is supported.
@@ -85,14 +160,19 @@ type templateState struct {
 type TemplateState struct {
 	// The alphabet to use for this template. This is only used during FPE transformations.
 	Alphabet pulumi.StringPtrInput
-	// - Optional mapping of name to regular expression template, used to customize
-	//   the decoded output. (requires Vault Enterprise 1.9+)
+	// Optional mapping of name to regular expression template, used to customize
+	// the decoded output. (requires Vault Enterprise 1.9+)
 	DecodeFormats pulumi.MapInput
-	// - The regular expression template used to format encoded values.
-	//   (requires Vault Enterprise 1.9+)
+	// The regular expression template used to format encoded values.
+	// (requires Vault Enterprise 1.9+)
 	EncodeFormat pulumi.StringPtrInput
 	// The name of the template.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringPtrInput
 	// The pattern used for matching. Currently, only regular expression pattern is supported.
@@ -108,14 +188,19 @@ func (TemplateState) ElementType() reflect.Type {
 type templateArgs struct {
 	// The alphabet to use for this template. This is only used during FPE transformations.
 	Alphabet *string `pulumi:"alphabet"`
-	// - Optional mapping of name to regular expression template, used to customize
-	//   the decoded output. (requires Vault Enterprise 1.9+)
+	// Optional mapping of name to regular expression template, used to customize
+	// the decoded output. (requires Vault Enterprise 1.9+)
 	DecodeFormats map[string]interface{} `pulumi:"decodeFormats"`
-	// - The regular expression template used to format encoded values.
-	//   (requires Vault Enterprise 1.9+)
+	// The regular expression template used to format encoded values.
+	// (requires Vault Enterprise 1.9+)
 	EncodeFormat *string `pulumi:"encodeFormat"`
 	// The name of the template.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Path to where the back-end is mounted within Vault.
 	Path string `pulumi:"path"`
 	// The pattern used for matching. Currently, only regular expression pattern is supported.
@@ -128,14 +213,19 @@ type templateArgs struct {
 type TemplateArgs struct {
 	// The alphabet to use for this template. This is only used during FPE transformations.
 	Alphabet pulumi.StringPtrInput
-	// - Optional mapping of name to regular expression template, used to customize
-	//   the decoded output. (requires Vault Enterprise 1.9+)
+	// Optional mapping of name to regular expression template, used to customize
+	// the decoded output. (requires Vault Enterprise 1.9+)
 	DecodeFormats pulumi.MapInput
-	// - The regular expression template used to format encoded values.
-	//   (requires Vault Enterprise 1.9+)
+	// The regular expression template used to format encoded values.
+	// (requires Vault Enterprise 1.9+)
 	EncodeFormat pulumi.StringPtrInput
 	// The name of the template.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringInput
 	// The pattern used for matching. Currently, only regular expression pattern is supported.
@@ -167,6 +257,12 @@ func (i *Template) ToTemplateOutputWithContext(ctx context.Context) TemplateOutp
 	return pulumi.ToOutputWithContext(ctx, i).(TemplateOutput)
 }
 
+func (i *Template) ToOutput(ctx context.Context) pulumix.Output[*Template] {
+	return pulumix.Output[*Template]{
+		OutputState: i.ToTemplateOutputWithContext(ctx).OutputState,
+	}
+}
+
 // TemplateArrayInput is an input type that accepts TemplateArray and TemplateArrayOutput values.
 // You can construct a concrete instance of `TemplateArrayInput` via:
 //
@@ -190,6 +286,12 @@ func (i TemplateArray) ToTemplateArrayOutput() TemplateArrayOutput {
 
 func (i TemplateArray) ToTemplateArrayOutputWithContext(ctx context.Context) TemplateArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TemplateArrayOutput)
+}
+
+func (i TemplateArray) ToOutput(ctx context.Context) pulumix.Output[[]*Template] {
+	return pulumix.Output[[]*Template]{
+		OutputState: i.ToTemplateArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // TemplateMapInput is an input type that accepts TemplateMap and TemplateMapOutput values.
@@ -217,6 +319,12 @@ func (i TemplateMap) ToTemplateMapOutputWithContext(ctx context.Context) Templat
 	return pulumi.ToOutputWithContext(ctx, i).(TemplateMapOutput)
 }
 
+func (i TemplateMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Template] {
+	return pulumix.Output[map[string]*Template]{
+		OutputState: i.ToTemplateMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type TemplateOutput struct{ *pulumi.OutputState }
 
 func (TemplateOutput) ElementType() reflect.Type {
@@ -231,19 +339,25 @@ func (o TemplateOutput) ToTemplateOutputWithContext(ctx context.Context) Templat
 	return o
 }
 
+func (o TemplateOutput) ToOutput(ctx context.Context) pulumix.Output[*Template] {
+	return pulumix.Output[*Template]{
+		OutputState: o.OutputState,
+	}
+}
+
 // The alphabet to use for this template. This is only used during FPE transformations.
 func (o TemplateOutput) Alphabet() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Template) pulumi.StringPtrOutput { return v.Alphabet }).(pulumi.StringPtrOutput)
 }
 
-//   - Optional mapping of name to regular expression template, used to customize
-//     the decoded output. (requires Vault Enterprise 1.9+)
+// Optional mapping of name to regular expression template, used to customize
+// the decoded output. (requires Vault Enterprise 1.9+)
 func (o TemplateOutput) DecodeFormats() pulumi.MapOutput {
 	return o.ApplyT(func(v *Template) pulumi.MapOutput { return v.DecodeFormats }).(pulumi.MapOutput)
 }
 
-//   - The regular expression template used to format encoded values.
-//     (requires Vault Enterprise 1.9+)
+// The regular expression template used to format encoded values.
+// (requires Vault Enterprise 1.9+)
 func (o TemplateOutput) EncodeFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Template) pulumi.StringPtrOutput { return v.EncodeFormat }).(pulumi.StringPtrOutput)
 }
@@ -251,6 +365,14 @@ func (o TemplateOutput) EncodeFormat() pulumi.StringPtrOutput {
 // The name of the template.
 func (o TemplateOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Template) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o TemplateOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Template) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Path to where the back-end is mounted within Vault.
@@ -282,6 +404,12 @@ func (o TemplateArrayOutput) ToTemplateArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
+func (o TemplateArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Template] {
+	return pulumix.Output[[]*Template]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o TemplateArrayOutput) Index(i pulumi.IntInput) TemplateOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Template {
 		return vs[0].([]*Template)[vs[1].(int)]
@@ -300,6 +428,12 @@ func (o TemplateMapOutput) ToTemplateMapOutput() TemplateMapOutput {
 
 func (o TemplateMapOutput) ToTemplateMapOutputWithContext(ctx context.Context) TemplateMapOutput {
 	return o
+}
+
+func (o TemplateMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Template] {
+	return pulumix.Output[map[string]*Template]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o TemplateMapOutput) MapIndex(k pulumi.StringInput) TemplateOutput {

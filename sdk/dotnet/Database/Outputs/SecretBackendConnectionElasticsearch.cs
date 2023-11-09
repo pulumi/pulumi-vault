@@ -34,7 +34,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly bool? Insecure;
         /// <summary>
-        /// The root credential password used in the connection URL.
+        /// The password to authenticate with.
         /// </summary>
         public readonly string Password;
         /// <summary>
@@ -47,11 +47,11 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string Url;
         /// <summary>
-        /// The root credential username used in the connection URL.
+        /// The username to authenticate with.
         /// </summary>
         public readonly string Username;
         /// <summary>
-        /// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        /// Template describing how dynamic usernames are generated.
         /// </summary>
         public readonly string? UsernameTemplate;
 

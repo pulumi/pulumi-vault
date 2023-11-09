@@ -9,6 +9,60 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Transform
 {
+    /// <summary>
+    /// This resource supports the `/transform/template/{name}` Vault endpoint.
+    /// 
+    /// It creates or updates a template with the given name. If a template with the name does not exist,
+    /// it will be created. If the template exists, it will be updated with the new attributes.
+    /// 
+    /// &gt; Requires _Vault Enterprise with the Advanced Data Protection Transform Module_.
+    /// See [Transform Secrets Engine](https://www.vaultproject.io/docs/secrets/transform)
+    /// for more information.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// Please note that the `pattern` below holds a regex. The regex shown
+    /// is identical to the one in our [Setup](https://www.vaultproject.io/docs/secrets/transform#setup)
+    /// docs, `(\d{4})-(\d{4})-(\d{4})-(\d{4})`. However, due to HCL, the
+    /// backslashes must be escaped to appear correctly in Vault. For further
+    /// assistance escaping your own custom regex, see String Literals.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var transform = new Vault.Mount("transform", new()
+    ///     {
+    ///         Path = "transform",
+    ///         Type = "transform",
+    ///     });
+    /// 
+    ///     var numerics = new Vault.Transform.Alphabet("numerics", new()
+    ///     {
+    ///         Path = transform.Path,
+    ///         AlphabetSet = "0123456789",
+    ///     });
+    /// 
+    ///     var test = new Vault.Transform.Template("test", new()
+    ///     {
+    ///         Path = numerics.Path,
+    ///         Type = "regex",
+    ///         Pattern = "(\\d{4})[- ](\\d{4})[- ](\\d{4})[- ](\\d{4})",
+    ///         Alphabet = "numerics",
+    ///         EncodeFormat = "$1-$2-$3-$4",
+    ///         DecodeFormats = 
+    ///         {
+    ///             { "last-four-digits", "$4" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [VaultResourceType("vault:transform/template:Template")]
     public partial class Template : global::Pulumi.CustomResource
     {
@@ -19,14 +73,14 @@ namespace Pulumi.Vault.Transform
         public Output<string?> Alphabet { get; private set; } = null!;
 
         /// <summary>
-        /// - Optional mapping of name to regular expression template, used to customize
+        /// Optional mapping of name to regular expression template, used to customize
         /// the decoded output. (requires Vault Enterprise 1.9+)
         /// </summary>
         [Output("decodeFormats")]
         public Output<ImmutableDictionary<string, object>?> DecodeFormats { get; private set; } = null!;
 
         /// <summary>
-        /// - The regular expression template used to format encoded values.
+        /// The regular expression template used to format encoded values.
         /// (requires Vault Enterprise 1.9+)
         /// </summary>
         [Output("encodeFormat")]
@@ -37,6 +91,15 @@ namespace Pulumi.Vault.Transform
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
         /// Path to where the back-end is mounted within Vault.
@@ -112,7 +175,7 @@ namespace Pulumi.Vault.Transform
         private InputMap<object>? _decodeFormats;
 
         /// <summary>
-        /// - Optional mapping of name to regular expression template, used to customize
+        /// Optional mapping of name to regular expression template, used to customize
         /// the decoded output. (requires Vault Enterprise 1.9+)
         /// </summary>
         public InputMap<object> DecodeFormats
@@ -122,7 +185,7 @@ namespace Pulumi.Vault.Transform
         }
 
         /// <summary>
-        /// - The regular expression template used to format encoded values.
+        /// The regular expression template used to format encoded values.
         /// (requires Vault Enterprise 1.9+)
         /// </summary>
         [Input("encodeFormat")]
@@ -133,6 +196,15 @@ namespace Pulumi.Vault.Transform
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// Path to where the back-end is mounted within Vault.
@@ -170,7 +242,7 @@ namespace Pulumi.Vault.Transform
         private InputMap<object>? _decodeFormats;
 
         /// <summary>
-        /// - Optional mapping of name to regular expression template, used to customize
+        /// Optional mapping of name to regular expression template, used to customize
         /// the decoded output. (requires Vault Enterprise 1.9+)
         /// </summary>
         public InputMap<object> DecodeFormats
@@ -180,7 +252,7 @@ namespace Pulumi.Vault.Transform
         }
 
         /// <summary>
-        /// - The regular expression template used to format encoded values.
+        /// The regular expression template used to format encoded values.
         /// (requires Vault Enterprise 1.9+)
         /// </summary>
         [Input("encodeFormat")]
@@ -191,6 +263,15 @@ namespace Pulumi.Vault.Transform
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The namespace to provision the resource in.
+        /// The value should not contain leading or trailing forward slashes.
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// Path to where the back-end is mounted within Vault.

@@ -92,14 +92,14 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
     }
 
     /**
-     * The root credential password used in the connection URL.
+     * The password to authenticate with.
      * 
      */
     @Import(name="password", required=true)
     private Output<String> password;
 
     /**
-     * @return The root credential password used in the connection URL.
+     * @return The password to authenticate with.
      * 
      */
     public Output<String> password() {
@@ -139,14 +139,14 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
     }
 
     /**
-     * The root credential username used in the connection URL.
+     * The username to authenticate with.
      * 
      */
     @Import(name="username", required=true)
     private Output<String> username;
 
     /**
-     * @return The root credential username used in the connection URL.
+     * @return The username to authenticate with.
      * 
      */
     public Output<String> username() {
@@ -154,14 +154,14 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
     }
 
     /**
-     * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * Template describing how dynamic usernames are generated.
      * 
      */
     @Import(name="usernameTemplate")
     private @Nullable Output<String> usernameTemplate;
 
     /**
-     * @return - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * @return Template describing how dynamic usernames are generated.
      * 
      */
     public Optional<Output<String>> usernameTemplate() {
@@ -307,7 +307,7 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
         }
 
         /**
-         * @param password The root credential password used in the connection URL.
+         * @param password The password to authenticate with.
          * 
          * @return builder
          * 
@@ -318,7 +318,7 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
         }
 
         /**
-         * @param password The root credential password used in the connection URL.
+         * @param password The password to authenticate with.
          * 
          * @return builder
          * 
@@ -372,7 +372,7 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
         }
 
         /**
-         * @param username The root credential username used in the connection URL.
+         * @param username The username to authenticate with.
          * 
          * @return builder
          * 
@@ -383,7 +383,7 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
         }
 
         /**
-         * @param username The root credential username used in the connection URL.
+         * @param username The username to authenticate with.
          * 
          * @return builder
          * 
@@ -393,7 +393,7 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
         }
 
         /**
-         * @param usernameTemplate - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * @param usernameTemplate Template describing how dynamic usernames are generated.
          * 
          * @return builder
          * 
@@ -404,7 +404,7 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
         }
 
         /**
-         * @param usernameTemplate - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * @param usernameTemplate Template describing how dynamic usernames are generated.
          * 
          * @return builder
          * 

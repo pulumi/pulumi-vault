@@ -24,6 +24,9 @@ namespace Pulumi.Vault.Inputs
         [Input("role", required: true)]
         public Input<string> Role { get; set; } = null!;
 
+        [Input("useRootNamespace")]
+        public Input<bool>? UseRootNamespace { get; set; }
+
         public ProviderAuthLoginJwtArgs()
         {
         }

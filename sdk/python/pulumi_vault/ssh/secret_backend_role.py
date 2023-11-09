@@ -305,6 +305,9 @@ class SecretBackendRoleArgs:
         are allowed to be signed by the CA type.
         *Deprecated: use* allowed_user_key_config *instead*
         """
+        warnings.warn("""Set in allowed_user_key_config""", DeprecationWarning)
+        pulumi.log.warn("""allowed_user_key_lengths is deprecated: Set in allowed_user_key_config""")
+
         return pulumi.get(self, "allowed_user_key_lengths")
 
     @allowed_user_key_lengths.setter
@@ -742,6 +745,9 @@ class _SecretBackendRoleState:
         are allowed to be signed by the CA type.
         *Deprecated: use* allowed_user_key_config *instead*
         """
+        warnings.warn("""Set in allowed_user_key_config""", DeprecationWarning)
+        pulumi.log.warn("""allowed_user_key_lengths is deprecated: Set in allowed_user_key_config""")
+
         return pulumi.get(self, "allowed_user_key_lengths")
 
     @allowed_user_key_lengths.setter
@@ -1135,9 +1141,6 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__.__dict__["allowed_domains_template"] = allowed_domains_template
             __props__.__dict__["allowed_extensions"] = allowed_extensions
             __props__.__dict__["allowed_user_key_configs"] = allowed_user_key_configs
-            if allowed_user_key_lengths is not None and not opts.urn:
-                warnings.warn("""Set in allowed_user_key_config""", DeprecationWarning)
-                pulumi.log.warn("""allowed_user_key_lengths is deprecated: Set in allowed_user_key_config""")
             __props__.__dict__["allowed_user_key_lengths"] = allowed_user_key_lengths
             __props__.__dict__["allowed_users"] = allowed_users
             __props__.__dict__["allowed_users_template"] = allowed_users_template
@@ -1371,6 +1374,9 @@ class SecretBackendRole(pulumi.CustomResource):
         are allowed to be signed by the CA type.
         *Deprecated: use* allowed_user_key_config *instead*
         """
+        warnings.warn("""Set in allowed_user_key_config""", DeprecationWarning)
+        pulumi.log.warn("""allowed_user_key_lengths is deprecated: Set in allowed_user_key_config""")
+
         return pulumi.get(self, "allowed_user_key_lengths")
 
     @property

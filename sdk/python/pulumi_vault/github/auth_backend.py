@@ -74,6 +74,8 @@ class AuthBackendArgs:
         :param pulumi.Input[str] token_type: Specifies the type of tokens that should be returned by
                the mount. Valid values are "default-service", "default-batch", "service", "batch".
         :param pulumi.Input['AuthBackendTuneArgs'] tune: Extra configuration block. Structure is documented below.
+               
+               The `tune` block is used to tune the auth backend:
         """
         pulumi.set(__self__, "organization", organization)
         if base_url is not None:
@@ -328,6 +330,8 @@ class AuthBackendArgs:
     def tune(self) -> Optional[pulumi.Input['AuthBackendTuneArgs']]:
         """
         Extra configuration block. Structure is documented below.
+
+        The `tune` block is used to tune the auth backend:
         """
         return pulumi.get(self, "tune")
 
@@ -399,6 +403,8 @@ class _AuthBackendState:
         :param pulumi.Input[str] token_type: Specifies the type of tokens that should be returned by
                the mount. Valid values are "default-service", "default-batch", "service", "batch".
         :param pulumi.Input['AuthBackendTuneArgs'] tune: Extra configuration block. Structure is documented below.
+               
+               The `tune` block is used to tune the auth backend:
         """
         if accessor is not None:
             pulumi.set(__self__, "accessor", accessor)
@@ -668,6 +674,8 @@ class _AuthBackendState:
     def tune(self) -> Optional[pulumi.Input['AuthBackendTuneArgs']]:
         """
         Extra configuration block. Structure is documented below.
+
+        The `tune` block is used to tune the auth backend:
         """
         return pulumi.get(self, "tune")
 
@@ -762,6 +770,8 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] token_type: Specifies the type of tokens that should be returned by
                the mount. Valid values are "default-service", "default-batch", "service", "batch".
         :param pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']] tune: Extra configuration block. Structure is documented below.
+               
+               The `tune` block is used to tune the auth backend:
         """
         ...
     @overload
@@ -927,6 +937,8 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] token_type: Specifies the type of tokens that should be returned by
                the mount. Valid values are "default-service", "default-batch", "service", "batch".
         :param pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']] tune: Extra configuration block. Structure is documented below.
+               
+               The `tune` block is used to tune the auth backend:
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1115,6 +1127,8 @@ class AuthBackend(pulumi.CustomResource):
     def tune(self) -> pulumi.Output['outputs.AuthBackendTune']:
         """
         Extra configuration block. Structure is documented below.
+
+        The `tune` block is used to tune the auth backend:
         """
         return pulumi.get(self, "tune")
 

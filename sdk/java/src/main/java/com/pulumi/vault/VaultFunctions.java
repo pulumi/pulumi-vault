@@ -10,13 +10,19 @@ import com.pulumi.deployment.InvokeOptions;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.inputs.GetAuthBackendArgs;
 import com.pulumi.vault.inputs.GetAuthBackendPlainArgs;
+import com.pulumi.vault.inputs.GetAuthBackendsArgs;
+import com.pulumi.vault.inputs.GetAuthBackendsPlainArgs;
 import com.pulumi.vault.inputs.GetNomadAccessTokenArgs;
 import com.pulumi.vault.inputs.GetNomadAccessTokenPlainArgs;
 import com.pulumi.vault.inputs.GetPolicyDocumentArgs;
 import com.pulumi.vault.inputs.GetPolicyDocumentPlainArgs;
+import com.pulumi.vault.inputs.GetRaftAutopilotStateArgs;
+import com.pulumi.vault.inputs.GetRaftAutopilotStatePlainArgs;
 import com.pulumi.vault.outputs.GetAuthBackendResult;
+import com.pulumi.vault.outputs.GetAuthBackendsResult;
 import com.pulumi.vault.outputs.GetNomadAccessTokenResult;
 import com.pulumi.vault.outputs.GetPolicyDocumentResult;
+import com.pulumi.vault.outputs.GetRaftAutopilotStateResult;
 import java.util.concurrent.CompletableFuture;
 
 public final class VaultFunctions {
@@ -159,6 +165,24 @@ public final class VaultFunctions {
      */
     public static CompletableFuture<GetAuthBackendResult> getAuthBackendPlain(GetAuthBackendPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("vault:index/getAuthBackend:getAuthBackend", TypeShape.of(GetAuthBackendResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetAuthBackendsResult> getAuthBackends() {
+        return getAuthBackends(GetAuthBackendsArgs.Empty, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetAuthBackendsResult> getAuthBackendsPlain() {
+        return getAuthBackendsPlain(GetAuthBackendsPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    public static Output<GetAuthBackendsResult> getAuthBackends(GetAuthBackendsArgs args) {
+        return getAuthBackends(args, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetAuthBackendsResult> getAuthBackendsPlain(GetAuthBackendsPlainArgs args) {
+        return getAuthBackendsPlain(args, InvokeOptions.Empty);
+    }
+    public static Output<GetAuthBackendsResult> getAuthBackends(GetAuthBackendsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:index/getAuthBackends:getAuthBackends", TypeShape.of(GetAuthBackendsResult.class), args, Utilities.withVersion(options));
+    }
+    public static CompletableFuture<GetAuthBackendsResult> getAuthBackendsPlain(GetAuthBackendsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("vault:index/getAuthBackends:getAuthBackends", TypeShape.of(GetAuthBackendsResult.class), args, Utilities.withVersion(options));
     }
     /**
      * ## Example Usage
@@ -695,5 +719,245 @@ public final class VaultFunctions {
      */
     public static CompletableFuture<GetPolicyDocumentResult> getPolicyDocumentPlain(GetPolicyDocumentPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("vault:index/getPolicyDocument:getPolicyDocument", TypeShape.of(GetPolicyDocumentResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Displays the state of the raft cluster under integrated storage as seen by
+     * autopilot. It shows whether autopilot thinks the cluster is healthy or not, and
+     * how many nodes could fail before the cluster becomes unhealthy (&#34;Failure
+     * Tolerance&#34;). For more information, please refer to the
+     * [Vault documentation](https://developer.hashicorp.com/vault/api-docs/system/storage/raftautopilot#get-cluster-state).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetRaftAutopilotStateArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = VaultFunctions.getRaftAutopilotState();
+     * 
+     *         ctx.export(&#34;failure-tolerance&#34;, main.applyValue(getRaftAutopilotStateResult -&gt; getRaftAutopilotStateResult.failureTolerance()));
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetRaftAutopilotStateResult> getRaftAutopilotState() {
+        return getRaftAutopilotState(GetRaftAutopilotStateArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Displays the state of the raft cluster under integrated storage as seen by
+     * autopilot. It shows whether autopilot thinks the cluster is healthy or not, and
+     * how many nodes could fail before the cluster becomes unhealthy (&#34;Failure
+     * Tolerance&#34;). For more information, please refer to the
+     * [Vault documentation](https://developer.hashicorp.com/vault/api-docs/system/storage/raftautopilot#get-cluster-state).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetRaftAutopilotStateArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = VaultFunctions.getRaftAutopilotState();
+     * 
+     *         ctx.export(&#34;failure-tolerance&#34;, main.applyValue(getRaftAutopilotStateResult -&gt; getRaftAutopilotStateResult.failureTolerance()));
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetRaftAutopilotStateResult> getRaftAutopilotStatePlain() {
+        return getRaftAutopilotStatePlain(GetRaftAutopilotStatePlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Displays the state of the raft cluster under integrated storage as seen by
+     * autopilot. It shows whether autopilot thinks the cluster is healthy or not, and
+     * how many nodes could fail before the cluster becomes unhealthy (&#34;Failure
+     * Tolerance&#34;). For more information, please refer to the
+     * [Vault documentation](https://developer.hashicorp.com/vault/api-docs/system/storage/raftautopilot#get-cluster-state).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetRaftAutopilotStateArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = VaultFunctions.getRaftAutopilotState();
+     * 
+     *         ctx.export(&#34;failure-tolerance&#34;, main.applyValue(getRaftAutopilotStateResult -&gt; getRaftAutopilotStateResult.failureTolerance()));
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetRaftAutopilotStateResult> getRaftAutopilotState(GetRaftAutopilotStateArgs args) {
+        return getRaftAutopilotState(args, InvokeOptions.Empty);
+    }
+    /**
+     * Displays the state of the raft cluster under integrated storage as seen by
+     * autopilot. It shows whether autopilot thinks the cluster is healthy or not, and
+     * how many nodes could fail before the cluster becomes unhealthy (&#34;Failure
+     * Tolerance&#34;). For more information, please refer to the
+     * [Vault documentation](https://developer.hashicorp.com/vault/api-docs/system/storage/raftautopilot#get-cluster-state).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetRaftAutopilotStateArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = VaultFunctions.getRaftAutopilotState();
+     * 
+     *         ctx.export(&#34;failure-tolerance&#34;, main.applyValue(getRaftAutopilotStateResult -&gt; getRaftAutopilotStateResult.failureTolerance()));
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetRaftAutopilotStateResult> getRaftAutopilotStatePlain(GetRaftAutopilotStatePlainArgs args) {
+        return getRaftAutopilotStatePlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Displays the state of the raft cluster under integrated storage as seen by
+     * autopilot. It shows whether autopilot thinks the cluster is healthy or not, and
+     * how many nodes could fail before the cluster becomes unhealthy (&#34;Failure
+     * Tolerance&#34;). For more information, please refer to the
+     * [Vault documentation](https://developer.hashicorp.com/vault/api-docs/system/storage/raftautopilot#get-cluster-state).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetRaftAutopilotStateArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = VaultFunctions.getRaftAutopilotState();
+     * 
+     *         ctx.export(&#34;failure-tolerance&#34;, main.applyValue(getRaftAutopilotStateResult -&gt; getRaftAutopilotStateResult.failureTolerance()));
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetRaftAutopilotStateResult> getRaftAutopilotState(GetRaftAutopilotStateArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:index/getRaftAutopilotState:getRaftAutopilotState", TypeShape.of(GetRaftAutopilotStateResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Displays the state of the raft cluster under integrated storage as seen by
+     * autopilot. It shows whether autopilot thinks the cluster is healthy or not, and
+     * how many nodes could fail before the cluster becomes unhealthy (&#34;Failure
+     * Tolerance&#34;). For more information, please refer to the
+     * [Vault documentation](https://developer.hashicorp.com/vault/api-docs/system/storage/raftautopilot#get-cluster-state).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetRaftAutopilotStateArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = VaultFunctions.getRaftAutopilotState();
+     * 
+     *         ctx.export(&#34;failure-tolerance&#34;, main.applyValue(getRaftAutopilotStateResult -&gt; getRaftAutopilotStateResult.failureTolerance()));
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetRaftAutopilotStateResult> getRaftAutopilotStatePlain(GetRaftAutopilotStatePlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("vault:index/getRaftAutopilotState:getRaftAutopilotState", TypeShape.of(GetRaftAutopilotStateResult.class), args, Utilities.withVersion(options));
     }
 }

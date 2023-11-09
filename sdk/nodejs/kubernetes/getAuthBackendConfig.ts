@@ -11,11 +11,8 @@ import * as utilities from "../utilities";
  */
 export function getAuthBackendConfig(args?: GetAuthBackendConfigArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthBackendConfigResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig", {
         "backend": args.backend,
         "disableIssValidation": args.disableIssValidation,
@@ -93,9 +90,13 @@ export interface GetAuthBackendConfigResult {
      */
     readonly pemKeys: string[];
 }
-
+/**
+ * Reads the Role of an Kubernetes from a Vault server. See the [Vault
+ * documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-config) for more
+ * information.
+ */
 export function getAuthBackendConfigOutput(args?: GetAuthBackendConfigOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthBackendConfigResult> {
-    return pulumi.output(args).apply(a => getAuthBackendConfig(a, opts))
+    return pulumi.output(args).apply((a: any) => getAuthBackendConfig(a, opts))
 }
 
 /**

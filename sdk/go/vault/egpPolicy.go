@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Provides a resource to manage Endpoint Governing Policy (EGP) via [Sentinel](https://www.vaultproject.io/docs/enterprise/sentinel/index.html).
@@ -78,6 +80,7 @@ func NewEgpPolicy(ctx *pulumi.Context,
 	if args.Policy == nil {
 		return nil, errors.New("invalid value for required argument 'Policy'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource EgpPolicy
 	err := ctx.RegisterResource("vault:index/egpPolicy:EgpPolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -191,6 +194,12 @@ func (i *EgpPolicy) ToEgpPolicyOutputWithContext(ctx context.Context) EgpPolicyO
 	return pulumi.ToOutputWithContext(ctx, i).(EgpPolicyOutput)
 }
 
+func (i *EgpPolicy) ToOutput(ctx context.Context) pulumix.Output[*EgpPolicy] {
+	return pulumix.Output[*EgpPolicy]{
+		OutputState: i.ToEgpPolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // EgpPolicyArrayInput is an input type that accepts EgpPolicyArray and EgpPolicyArrayOutput values.
 // You can construct a concrete instance of `EgpPolicyArrayInput` via:
 //
@@ -214,6 +223,12 @@ func (i EgpPolicyArray) ToEgpPolicyArrayOutput() EgpPolicyArrayOutput {
 
 func (i EgpPolicyArray) ToEgpPolicyArrayOutputWithContext(ctx context.Context) EgpPolicyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EgpPolicyArrayOutput)
+}
+
+func (i EgpPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]*EgpPolicy] {
+	return pulumix.Output[[]*EgpPolicy]{
+		OutputState: i.ToEgpPolicyArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // EgpPolicyMapInput is an input type that accepts EgpPolicyMap and EgpPolicyMapOutput values.
@@ -241,6 +256,12 @@ func (i EgpPolicyMap) ToEgpPolicyMapOutputWithContext(ctx context.Context) EgpPo
 	return pulumi.ToOutputWithContext(ctx, i).(EgpPolicyMapOutput)
 }
 
+func (i EgpPolicyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*EgpPolicy] {
+	return pulumix.Output[map[string]*EgpPolicy]{
+		OutputState: i.ToEgpPolicyMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type EgpPolicyOutput struct{ *pulumi.OutputState }
 
 func (EgpPolicyOutput) ElementType() reflect.Type {
@@ -253,6 +274,12 @@ func (o EgpPolicyOutput) ToEgpPolicyOutput() EgpPolicyOutput {
 
 func (o EgpPolicyOutput) ToEgpPolicyOutputWithContext(ctx context.Context) EgpPolicyOutput {
 	return o
+}
+
+func (o EgpPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*EgpPolicy] {
+	return pulumix.Output[*EgpPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
@@ -297,6 +324,12 @@ func (o EgpPolicyArrayOutput) ToEgpPolicyArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o EgpPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*EgpPolicy] {
+	return pulumix.Output[[]*EgpPolicy]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o EgpPolicyArrayOutput) Index(i pulumi.IntInput) EgpPolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EgpPolicy {
 		return vs[0].([]*EgpPolicy)[vs[1].(int)]
@@ -315,6 +348,12 @@ func (o EgpPolicyMapOutput) ToEgpPolicyMapOutput() EgpPolicyMapOutput {
 
 func (o EgpPolicyMapOutput) ToEgpPolicyMapOutputWithContext(ctx context.Context) EgpPolicyMapOutput {
 	return o
+}
+
+func (o EgpPolicyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*EgpPolicy] {
+	return pulumix.Output[map[string]*EgpPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o EgpPolicyMapOutput) MapIndex(k pulumi.StringInput) EgpPolicyOutput {

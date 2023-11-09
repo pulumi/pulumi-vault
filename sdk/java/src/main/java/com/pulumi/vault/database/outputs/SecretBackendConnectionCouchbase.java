@@ -24,7 +24,7 @@ public final class SecretBackendConnectionCouchbase {
      */
     private @Nullable String bucketName;
     /**
-     * @return A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+     * @return The hosts to connect to.
      * 
      */
     private List<String> hosts;
@@ -35,22 +35,22 @@ public final class SecretBackendConnectionCouchbase {
      */
     private @Nullable Boolean insecureTls;
     /**
-     * @return The root credential password used in the connection URL.
+     * @return The password to authenticate with.
      * 
      */
     private String password;
     /**
-     * @return Whether to use TLS when connecting to Redis.
+     * @return Whether to use TLS when connecting to Cassandra.
      * 
      */
     private @Nullable Boolean tls;
     /**
-     * @return The root credential username used in the connection URL.
+     * @return The username to authenticate with.
      * 
      */
     private String username;
     /**
-     * @return - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * @return Template describing how dynamic usernames are generated.
      * 
      */
     private @Nullable String usernameTemplate;
@@ -71,7 +71,7 @@ public final class SecretBackendConnectionCouchbase {
         return Optional.ofNullable(this.bucketName);
     }
     /**
-     * @return A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+     * @return The hosts to connect to.
      * 
      */
     public List<String> hosts() {
@@ -86,28 +86,28 @@ public final class SecretBackendConnectionCouchbase {
         return Optional.ofNullable(this.insecureTls);
     }
     /**
-     * @return The root credential password used in the connection URL.
+     * @return The password to authenticate with.
      * 
      */
     public String password() {
         return this.password;
     }
     /**
-     * @return Whether to use TLS when connecting to Redis.
+     * @return Whether to use TLS when connecting to Cassandra.
      * 
      */
     public Optional<Boolean> tls() {
         return Optional.ofNullable(this.tls);
     }
     /**
-     * @return The root credential username used in the connection URL.
+     * @return The username to authenticate with.
      * 
      */
     public String username() {
         return this.username;
     }
     /**
-     * @return - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * @return Template describing how dynamic usernames are generated.
      * 
      */
     public Optional<String> usernameTemplate() {

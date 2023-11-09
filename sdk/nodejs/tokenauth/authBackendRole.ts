@@ -100,6 +100,8 @@ export class AuthBackendRole extends pulumi.CustomResource {
     public readonly orphan!: pulumi.Output<boolean | undefined>;
     /**
      * Tokens created against this role will have the given suffix as part of their path in addition to the role name.
+     *
+     * > Due to a bug the resource. This *will* cause all existing tokens issued by this role to be revoked.
      */
     public readonly pathSuffix!: pulumi.Output<string | undefined>;
     /**
@@ -262,6 +264,8 @@ export interface AuthBackendRoleState {
     orphan?: pulumi.Input<boolean>;
     /**
      * Tokens created against this role will have the given suffix as part of their path in addition to the role name.
+     *
+     * > Due to a bug the resource. This *will* cause all existing tokens issued by this role to be revoked.
      */
     pathSuffix?: pulumi.Input<string>;
     /**
@@ -363,6 +367,8 @@ export interface AuthBackendRoleArgs {
     orphan?: pulumi.Input<boolean>;
     /**
      * Tokens created against this role will have the given suffix as part of their path in addition to the role name.
+     *
+     * > Due to a bug the resource. This *will* cause all existing tokens issued by this role to be revoked.
      */
     pathSuffix?: pulumi.Input<string>;
     /**

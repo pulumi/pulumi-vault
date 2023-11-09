@@ -38,6 +38,7 @@ class ProviderArgs:
                  max_retries: Optional[pulumi.Input[int]] = None,
                  max_retries_ccc: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 set_namespace_from_token: Optional[pulumi.Input[bool]] = None,
                  skip_child_token: Optional[pulumi.Input[bool]] = None,
                  skip_get_vault_version: Optional[pulumi.Input[bool]] = None,
                  skip_tls_verify: Optional[pulumi.Input[bool]] = None,
@@ -69,6 +70,8 @@ class ProviderArgs:
         :param pulumi.Input[int] max_retries: Maximum number of retries when a 5xx error code is encountered.
         :param pulumi.Input[int] max_retries_ccc: Maximum number of retries for Client Controlled Consistency related operations
         :param pulumi.Input[str] namespace: The namespace to use. Available only for Vault Enterprise.
+        :param pulumi.Input[bool] set_namespace_from_token: In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the
+               token namespace as the root namespace for all resources.
         :param pulumi.Input[bool] skip_child_token: Set this to true to prevent the creation of ephemeral child token used by this provider.
         :param pulumi.Input[bool] skip_get_vault_version: Skip the dynamic fetching of the Vault server version.
         :param pulumi.Input[bool] skip_tls_verify: Set this to true only if the target Vault server is an insecure development instance.
@@ -127,6 +130,8 @@ class ProviderArgs:
             pulumi.set(__self__, "max_retries_ccc", max_retries_ccc)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if set_namespace_from_token is not None:
+            pulumi.set(__self__, "set_namespace_from_token", set_namespace_from_token)
         if skip_child_token is not None:
             pulumi.set(__self__, "skip_child_token", skip_child_token)
         if skip_get_vault_version is not None:
@@ -352,6 +357,9 @@ class ProviderArgs:
         """
         Client authentication credentials.
         """
+        warnings.warn("""Use auth_login_cert instead""", DeprecationWarning)
+        pulumi.log.warn("""client_auth is deprecated: Use auth_login_cert instead""")
+
         return pulumi.get(self, "client_auth")
 
     @client_auth.setter
@@ -417,6 +425,19 @@ class ProviderArgs:
     @namespace.setter
     def namespace(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter(name="setNamespaceFromToken")
+    def set_namespace_from_token(self) -> Optional[pulumi.Input[bool]]:
+        """
+        In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the
+        token namespace as the root namespace for all resources.
+        """
+        return pulumi.get(self, "set_namespace_from_token")
+
+    @set_namespace_from_token.setter
+    def set_namespace_from_token(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "set_namespace_from_token", value)
 
     @property
     @pulumi.getter(name="skipChildToken")
@@ -518,6 +539,7 @@ class Provider(pulumi.ProviderResource):
                  max_retries: Optional[pulumi.Input[int]] = None,
                  max_retries_ccc: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 set_namespace_from_token: Optional[pulumi.Input[bool]] = None,
                  skip_child_token: Optional[pulumi.Input[bool]] = None,
                  skip_get_vault_version: Optional[pulumi.Input[bool]] = None,
                  skip_tls_verify: Optional[pulumi.Input[bool]] = None,
@@ -556,6 +578,8 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[int] max_retries: Maximum number of retries when a 5xx error code is encountered.
         :param pulumi.Input[int] max_retries_ccc: Maximum number of retries for Client Controlled Consistency related operations
         :param pulumi.Input[str] namespace: The namespace to use. Available only for Vault Enterprise.
+        :param pulumi.Input[bool] set_namespace_from_token: In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the
+               token namespace as the root namespace for all resources.
         :param pulumi.Input[bool] skip_child_token: Set this to true to prevent the creation of ephemeral child token used by this provider.
         :param pulumi.Input[bool] skip_get_vault_version: Skip the dynamic fetching of the Vault server version.
         :param pulumi.Input[bool] skip_tls_verify: Set this to true only if the target Vault server is an insecure development instance.
@@ -613,6 +637,7 @@ class Provider(pulumi.ProviderResource):
                  max_retries: Optional[pulumi.Input[int]] = None,
                  max_retries_ccc: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 set_namespace_from_token: Optional[pulumi.Input[bool]] = None,
                  skip_child_token: Optional[pulumi.Input[bool]] = None,
                  skip_get_vault_version: Optional[pulumi.Input[bool]] = None,
                  skip_tls_verify: Optional[pulumi.Input[bool]] = None,
@@ -647,11 +672,8 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["auth_login_userpass"] = pulumi.Output.from_input(auth_login_userpass).apply(pulumi.runtime.to_json) if auth_login_userpass is not None else None
             __props__.__dict__["ca_cert_dir"] = ca_cert_dir
             __props__.__dict__["ca_cert_file"] = ca_cert_file
-            if client_auth is not None and not opts.urn:
-                warnings.warn("""Use auth_login_cert instead""", DeprecationWarning)
-                pulumi.log.warn("""client_auth is deprecated: Use auth_login_cert instead""")
             __props__.__dict__["client_auth"] = pulumi.Output.from_input(client_auth).apply(pulumi.runtime.to_json) if client_auth is not None else None
-            __props__.__dict__["headers"] = pulumi.Output.from_input(headers).apply(pulumi.runtime.to_json) if headers is not None else None
+            __props__.__dict__["headers"] = pulumi.Output.secret(headers).apply(pulumi.runtime.to_json) if headers is not None else None
             if max_lease_ttl_seconds is None:
                 max_lease_ttl_seconds = (_utilities.get_env_int('TERRAFORM_VAULT_MAX_TTL') or 1200)
             __props__.__dict__["max_lease_ttl_seconds"] = pulumi.Output.from_input(max_lease_ttl_seconds).apply(pulumi.runtime.to_json) if max_lease_ttl_seconds is not None else None
@@ -660,6 +682,7 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["max_retries"] = pulumi.Output.from_input(max_retries).apply(pulumi.runtime.to_json) if max_retries is not None else None
             __props__.__dict__["max_retries_ccc"] = pulumi.Output.from_input(max_retries_ccc).apply(pulumi.runtime.to_json) if max_retries_ccc is not None else None
             __props__.__dict__["namespace"] = namespace
+            __props__.__dict__["set_namespace_from_token"] = pulumi.Output.from_input(set_namespace_from_token).apply(pulumi.runtime.to_json) if set_namespace_from_token is not None else None
             __props__.__dict__["skip_child_token"] = pulumi.Output.from_input(skip_child_token).apply(pulumi.runtime.to_json) if skip_child_token is not None else None
             __props__.__dict__["skip_get_vault_version"] = pulumi.Output.from_input(skip_get_vault_version).apply(pulumi.runtime.to_json) if skip_get_vault_version is not None else None
             if skip_tls_verify is None:

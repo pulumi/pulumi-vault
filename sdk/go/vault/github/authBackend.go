@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages a GitHub Auth mount in a Vault server. See the [Vault
@@ -110,6 +112,8 @@ type AuthBackend struct {
 	// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 	TokenType pulumi.StringPtrOutput `pulumi:"tokenType"`
 	// Extra configuration block. Structure is documented below.
+	//
+	// The `tune` block is used to tune the auth backend:
 	Tune AuthBackendTuneOutput `pulumi:"tune"`
 }
 
@@ -123,6 +127,7 @@ func NewAuthBackend(ctx *pulumi.Context,
 	if args.Organization == nil {
 		return nil, errors.New("invalid value for required argument 'Organization'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AuthBackend
 	err := ctx.RegisterResource("vault:github/authBackend:AuthBackend", name, args, &resource, opts...)
 	if err != nil {
@@ -202,6 +207,8 @@ type authBackendState struct {
 	// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 	TokenType *string `pulumi:"tokenType"`
 	// Extra configuration block. Structure is documented below.
+	//
+	// The `tune` block is used to tune the auth backend:
 	Tune *AuthBackendTune `pulumi:"tune"`
 }
 
@@ -263,6 +270,8 @@ type AuthBackendState struct {
 	// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 	TokenType pulumi.StringPtrInput
 	// Extra configuration block. Structure is documented below.
+	//
+	// The `tune` block is used to tune the auth backend:
 	Tune AuthBackendTunePtrInput
 }
 
@@ -326,6 +335,8 @@ type authBackendArgs struct {
 	// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 	TokenType *string `pulumi:"tokenType"`
 	// Extra configuration block. Structure is documented below.
+	//
+	// The `tune` block is used to tune the auth backend:
 	Tune *AuthBackendTune `pulumi:"tune"`
 }
 
@@ -386,6 +397,8 @@ type AuthBackendArgs struct {
 	// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 	TokenType pulumi.StringPtrInput
 	// Extra configuration block. Structure is documented below.
+	//
+	// The `tune` block is used to tune the auth backend:
 	Tune AuthBackendTunePtrInput
 }
 
@@ -410,6 +423,12 @@ func (i *AuthBackend) ToAuthBackendOutput() AuthBackendOutput {
 
 func (i *AuthBackend) ToAuthBackendOutputWithContext(ctx context.Context) AuthBackendOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendOutput)
+}
+
+func (i *AuthBackend) ToOutput(ctx context.Context) pulumix.Output[*AuthBackend] {
+	return pulumix.Output[*AuthBackend]{
+		OutputState: i.ToAuthBackendOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AuthBackendArrayInput is an input type that accepts AuthBackendArray and AuthBackendArrayOutput values.
@@ -437,6 +456,12 @@ func (i AuthBackendArray) ToAuthBackendArrayOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendArrayOutput)
 }
 
+func (i AuthBackendArray) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackend] {
+	return pulumix.Output[[]*AuthBackend]{
+		OutputState: i.ToAuthBackendArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AuthBackendMapInput is an input type that accepts AuthBackendMap and AuthBackendMapOutput values.
 // You can construct a concrete instance of `AuthBackendMapInput` via:
 //
@@ -462,6 +487,12 @@ func (i AuthBackendMap) ToAuthBackendMapOutputWithContext(ctx context.Context) A
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendMapOutput)
 }
 
+func (i AuthBackendMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackend] {
+	return pulumix.Output[map[string]*AuthBackend]{
+		OutputState: i.ToAuthBackendMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AuthBackendOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendOutput) ElementType() reflect.Type {
@@ -474,6 +505,12 @@ func (o AuthBackendOutput) ToAuthBackendOutput() AuthBackendOutput {
 
 func (o AuthBackendOutput) ToAuthBackendOutputWithContext(ctx context.Context) AuthBackendOutput {
 	return o
+}
+
+func (o AuthBackendOutput) ToOutput(ctx context.Context) pulumix.Output[*AuthBackend] {
+	return pulumix.Output[*AuthBackend]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
@@ -584,6 +621,8 @@ func (o AuthBackendOutput) TokenType() pulumi.StringPtrOutput {
 }
 
 // Extra configuration block. Structure is documented below.
+//
+// The `tune` block is used to tune the auth backend:
 func (o AuthBackendOutput) Tune() AuthBackendTuneOutput {
 	return o.ApplyT(func(v *AuthBackend) AuthBackendTuneOutput { return v.Tune }).(AuthBackendTuneOutput)
 }
@@ -600,6 +639,12 @@ func (o AuthBackendArrayOutput) ToAuthBackendArrayOutput() AuthBackendArrayOutpu
 
 func (o AuthBackendArrayOutput) ToAuthBackendArrayOutputWithContext(ctx context.Context) AuthBackendArrayOutput {
 	return o
+}
+
+func (o AuthBackendArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackend] {
+	return pulumix.Output[[]*AuthBackend]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuthBackendArrayOutput) Index(i pulumi.IntInput) AuthBackendOutput {
@@ -620,6 +665,12 @@ func (o AuthBackendMapOutput) ToAuthBackendMapOutput() AuthBackendMapOutput {
 
 func (o AuthBackendMapOutput) ToAuthBackendMapOutputWithContext(ctx context.Context) AuthBackendMapOutput {
 	return o
+}
+
+func (o AuthBackendMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackend] {
+	return pulumix.Output[map[string]*AuthBackend]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuthBackendMapOutput) MapIndex(k pulumi.StringInput) AuthBackendOutput {

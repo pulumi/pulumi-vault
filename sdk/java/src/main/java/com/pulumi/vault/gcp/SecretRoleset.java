@@ -171,14 +171,14 @@ public class SecretRoleset extends com.pulumi.resources.CustomResource {
         return this.secretType;
     }
     /**
-     * Email of the service account created by Vault for this Roleset
+     * Email of the service account created by Vault for this Roleset.
      * 
      */
     @Export(name="serviceAccountEmail", refs={String.class}, tree="[0]")
     private Output<String> serviceAccountEmail;
 
     /**
-     * @return Email of the service account created by Vault for this Roleset
+     * @return Email of the service account created by Vault for this Roleset.
      * 
      */
     public Output<String> serviceAccountEmail() {

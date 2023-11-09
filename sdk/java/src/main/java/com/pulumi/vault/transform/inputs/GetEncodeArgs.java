@@ -64,6 +64,27 @@ public final class GetEncodeArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable Output<String> namespace;
+
+    /**
+     * @return The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
+
+    /**
      * Path to where the back-end is mounted within Vault.
      * 
      */
@@ -144,6 +165,7 @@ public final class GetEncodeArgs extends com.pulumi.resources.InvokeArgs {
         this.batchInputs = $.batchInputs;
         this.batchResults = $.batchResults;
         this.encodedValue = $.encodedValue;
+        this.namespace = $.namespace;
         this.path = $.path;
         this.roleName = $.roleName;
         this.transformation = $.transformation;
@@ -250,6 +272,33 @@ public final class GetEncodeArgs extends com.pulumi.resources.InvokeArgs {
          */
         public Builder encodedValue(String encodedValue) {
             return encodedValue(Output.of(encodedValue));
+        }
+
+        /**
+         * @param namespace The namespace of the target resource.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable Output<String> namespace) {
+            $.namespace = namespace;
+            return this;
+        }
+
+        /**
+         * @param namespace The namespace of the target resource.
+         * The value should not contain leading or trailing forward slashes.
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(String namespace) {
+            return namespace(Output.of(namespace));
         }
 
         /**

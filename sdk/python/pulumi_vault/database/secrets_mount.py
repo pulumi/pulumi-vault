@@ -50,6 +50,8 @@ class SecretsMountArgs:
         The set of arguments for constructing a SecretsMount resource.
         :param pulumi.Input[str] path: Where the secret backend will be mounted
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_managed_keys: Set of managed key registry entry names that the mount in question is allowed to access
+               
+               The following arguments are common to all database engines:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountCassandraArgs']]] cassandras: A nested block containing configuration options for Cassandra connections.  
@@ -174,6 +176,8 @@ class SecretsMountArgs:
     def allowed_managed_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Set of managed key registry entry names that the mount in question is allowed to access
+
+        The following arguments are common to all database engines:
         """
         return pulumi.get(self, "allowed_managed_keys")
 
@@ -575,6 +579,8 @@ class _SecretsMountState:
         Input properties used for looking up and filtering SecretsMount resources.
         :param pulumi.Input[str] accessor: Accessor of the mount
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_managed_keys: Set of managed key registry entry names that the mount in question is allowed to access
+               
+               The following arguments are common to all database engines:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountCassandraArgs']]] cassandras: A nested block containing configuration options for Cassandra connections.  
@@ -706,6 +712,8 @@ class _SecretsMountState:
     def allowed_managed_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Set of managed key registry entry names that the mount in question is allowed to access
+
+        The following arguments are common to all database engines:
         """
         return pulumi.get(self, "allowed_managed_keys")
 
@@ -1180,6 +1188,8 @@ class SecretsMount(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_managed_keys: Set of managed key registry entry names that the mount in question is allowed to access
+               
+               The following arguments are common to all database engines:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountCassandraArgs']]]] cassandras: A nested block containing configuration options for Cassandra connections.  
@@ -1422,6 +1432,8 @@ class SecretsMount(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] accessor: Accessor of the mount
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_managed_keys: Set of managed key registry entry names that the mount in question is allowed to access
+               
+               The following arguments are common to all database engines:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountCassandraArgs']]]] cassandras: A nested block containing configuration options for Cassandra connections.  
@@ -1522,6 +1534,8 @@ class SecretsMount(pulumi.CustomResource):
     def allowed_managed_keys(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         Set of managed key registry entry names that the mount in question is allowed to access
+
+        The following arguments are common to all database engines:
         """
         return pulumi.get(self, "allowed_managed_keys")
 

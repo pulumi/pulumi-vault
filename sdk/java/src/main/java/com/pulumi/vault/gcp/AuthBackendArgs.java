@@ -69,6 +69,8 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
      * to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
      * environments. Requires Vault 1.11+.
      * 
+     * Overrides are set at the subdomain level using the following keys:
+     * 
      */
     @Import(name="customEndpoint")
     private @Nullable Output<AuthBackendCustomEndpointArgs> customEndpoint;
@@ -79,6 +81,8 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
      * used when making API requests. This allows specific requests made during authentication
      * to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
      * environments. Requires Vault 1.11+.
+     * 
+     * Overrides are set at the subdomain level using the following keys:
      * 
      */
     public Optional<Output<AuthBackendCustomEndpointArgs>> customEndpoint() {
@@ -302,6 +306,8 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
          * to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
          * environments. Requires Vault 1.11+.
          * 
+         * Overrides are set at the subdomain level using the following keys:
+         * 
          * @return builder
          * 
          */
@@ -316,6 +322,8 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
          * used when making API requests. This allows specific requests made during authentication
          * to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
          * environments. Requires Vault 1.11+.
+         * 
+         * Overrides are set at the subdomain level using the following keys:
          * 
          * @return builder
          * 

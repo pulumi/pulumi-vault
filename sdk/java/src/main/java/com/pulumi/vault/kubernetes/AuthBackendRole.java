@@ -97,12 +97,20 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * Audience claim to verify in the JWT.
      * 
+     * &gt; Please see [alias_name_source](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
+     * before setting this to something other its default value. There are **important** security
+     * implications to be aware of.
+     * 
      */
     @Export(name="audience", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> audience;
 
     /**
      * @return Audience claim to verify in the JWT.
+     * 
+     * &gt; Please see [alias_name_source](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
+     * before setting this to something other its default value. There are **important** security
+     * implications to be aware of.
      * 
      */
     public Output<Optional<String>> audience() {

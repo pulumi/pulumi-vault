@@ -41,12 +41,16 @@ public final class SecretsMountArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * Set of managed key registry entry names that the mount in question is allowed to access
      * 
+     * The following arguments are common to all database engines:
+     * 
      */
     @Import(name="allowedManagedKeys")
     private @Nullable Output<List<String>> allowedManagedKeys;
 
     /**
      * @return Set of managed key registry entry names that the mount in question is allowed to access
+     * 
+     * The following arguments are common to all database engines:
      * 
      */
     public Optional<Output<List<String>>> allowedManagedKeys() {
@@ -580,6 +584,8 @@ public final class SecretsMountArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param allowedManagedKeys Set of managed key registry entry names that the mount in question is allowed to access
          * 
+         * The following arguments are common to all database engines:
+         * 
          * @return builder
          * 
          */
@@ -591,6 +597,8 @@ public final class SecretsMountArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param allowedManagedKeys Set of managed key registry entry names that the mount in question is allowed to access
          * 
+         * The following arguments are common to all database engines:
+         * 
          * @return builder
          * 
          */
@@ -600,6 +608,8 @@ public final class SecretsMountArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param allowedManagedKeys Set of managed key registry entry names that the mount in question is allowed to access
+         * 
+         * The following arguments are common to all database engines:
          * 
          * @return builder
          * 

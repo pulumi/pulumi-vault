@@ -67,6 +67,8 @@ export class AuthBackendRole extends pulumi.CustomResource {
     /**
      * Path to the mounted AliCloud auth backend.
      * Defaults to `alicloud`
+     *
+     * For more details on the usage of each argument consult the [Vault AliCloud API documentation](https://www.vaultproject.io/api-docs/auth/alicloud).
      */
     public readonly backend!: pulumi.Output<string | undefined>;
     /**
@@ -199,6 +201,8 @@ export interface AuthBackendRoleState {
     /**
      * Path to the mounted AliCloud auth backend.
      * Defaults to `alicloud`
+     *
+     * For more details on the usage of each argument consult the [Vault AliCloud API documentation](https://www.vaultproject.io/api-docs/auth/alicloud).
      */
     backend?: pulumi.Input<string>;
     /**
@@ -279,6 +283,8 @@ export interface AuthBackendRoleArgs {
     /**
      * Path to the mounted AliCloud auth backend.
      * Defaults to `alicloud`
+     *
+     * For more details on the usage of each argument consult the [Vault AliCloud API documentation](https://www.vaultproject.io/api-docs/auth/alicloud).
      */
     backend?: pulumi.Input<string>;
     /**

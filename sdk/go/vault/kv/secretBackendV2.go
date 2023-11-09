@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Configures KV-V2 backend level settings that are applied to
@@ -35,7 +37,7 @@ import (
 //			kvv2, err := vault.NewMount(ctx, "kvv2", &vault.MountArgs{
 //				Path: pulumi.String("kvv2"),
 //				Type: pulumi.String("kv"),
-//				Options: pulumi.AnyMap{
+//				Options: pulumi.Map{
 //					"version": pulumi.Any("2"),
 //				},
 //				Description: pulumi.String("KV Version 2 secret engine mount"),
@@ -103,6 +105,7 @@ func NewSecretBackendV2(ctx *pulumi.Context,
 	if args.Mount == nil {
 		return nil, errors.New("invalid value for required argument 'Mount'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SecretBackendV2
 	err := ctx.RegisterResource("vault:kv/secretBackendV2:SecretBackendV2", name, args, &resource, opts...)
 	if err != nil {
@@ -224,6 +227,12 @@ func (i *SecretBackendV2) ToSecretBackendV2OutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendV2Output)
 }
 
+func (i *SecretBackendV2) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendV2] {
+	return pulumix.Output[*SecretBackendV2]{
+		OutputState: i.ToSecretBackendV2OutputWithContext(ctx).OutputState,
+	}
+}
+
 // SecretBackendV2ArrayInput is an input type that accepts SecretBackendV2Array and SecretBackendV2ArrayOutput values.
 // You can construct a concrete instance of `SecretBackendV2ArrayInput` via:
 //
@@ -247,6 +256,12 @@ func (i SecretBackendV2Array) ToSecretBackendV2ArrayOutput() SecretBackendV2Arra
 
 func (i SecretBackendV2Array) ToSecretBackendV2ArrayOutputWithContext(ctx context.Context) SecretBackendV2ArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendV2ArrayOutput)
+}
+
+func (i SecretBackendV2Array) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendV2] {
+	return pulumix.Output[[]*SecretBackendV2]{
+		OutputState: i.ToSecretBackendV2ArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SecretBackendV2MapInput is an input type that accepts SecretBackendV2Map and SecretBackendV2MapOutput values.
@@ -274,6 +289,12 @@ func (i SecretBackendV2Map) ToSecretBackendV2MapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendV2MapOutput)
 }
 
+func (i SecretBackendV2Map) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendV2] {
+	return pulumix.Output[map[string]*SecretBackendV2]{
+		OutputState: i.ToSecretBackendV2MapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SecretBackendV2Output struct{ *pulumi.OutputState }
 
 func (SecretBackendV2Output) ElementType() reflect.Type {
@@ -286,6 +307,12 @@ func (o SecretBackendV2Output) ToSecretBackendV2Output() SecretBackendV2Output {
 
 func (o SecretBackendV2Output) ToSecretBackendV2OutputWithContext(ctx context.Context) SecretBackendV2Output {
 	return o
+}
+
+func (o SecretBackendV2Output) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendV2] {
+	return pulumix.Output[*SecretBackendV2]{
+		OutputState: o.OutputState,
+	}
 }
 
 // If true, all keys will require the cas
@@ -332,6 +359,12 @@ func (o SecretBackendV2ArrayOutput) ToSecretBackendV2ArrayOutputWithContext(ctx 
 	return o
 }
 
+func (o SecretBackendV2ArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendV2] {
+	return pulumix.Output[[]*SecretBackendV2]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SecretBackendV2ArrayOutput) Index(i pulumi.IntInput) SecretBackendV2Output {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackendV2 {
 		return vs[0].([]*SecretBackendV2)[vs[1].(int)]
@@ -350,6 +383,12 @@ func (o SecretBackendV2MapOutput) ToSecretBackendV2MapOutput() SecretBackendV2Ma
 
 func (o SecretBackendV2MapOutput) ToSecretBackendV2MapOutputWithContext(ctx context.Context) SecretBackendV2MapOutput {
 	return o
+}
+
+func (o SecretBackendV2MapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendV2] {
+	return pulumix.Output[map[string]*SecretBackendV2]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SecretBackendV2MapOutput) MapIndex(k pulumi.StringInput) SecretBackendV2Output {

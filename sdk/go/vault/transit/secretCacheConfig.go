@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Configure the cache for the Transit Secret Backend in Vault.
@@ -77,6 +79,7 @@ func NewSecretCacheConfig(ctx *pulumi.Context,
 	if args.Size == nil {
 		return nil, errors.New("invalid value for required argument 'Size'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SecretCacheConfig
 	err := ctx.RegisterResource("vault:transit/secretCacheConfig:SecretCacheConfig", name, args, &resource, opts...)
 	if err != nil {
@@ -174,6 +177,12 @@ func (i *SecretCacheConfig) ToSecretCacheConfigOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SecretCacheConfigOutput)
 }
 
+func (i *SecretCacheConfig) ToOutput(ctx context.Context) pulumix.Output[*SecretCacheConfig] {
+	return pulumix.Output[*SecretCacheConfig]{
+		OutputState: i.ToSecretCacheConfigOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SecretCacheConfigArrayInput is an input type that accepts SecretCacheConfigArray and SecretCacheConfigArrayOutput values.
 // You can construct a concrete instance of `SecretCacheConfigArrayInput` via:
 //
@@ -197,6 +206,12 @@ func (i SecretCacheConfigArray) ToSecretCacheConfigArrayOutput() SecretCacheConf
 
 func (i SecretCacheConfigArray) ToSecretCacheConfigArrayOutputWithContext(ctx context.Context) SecretCacheConfigArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretCacheConfigArrayOutput)
+}
+
+func (i SecretCacheConfigArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretCacheConfig] {
+	return pulumix.Output[[]*SecretCacheConfig]{
+		OutputState: i.ToSecretCacheConfigArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SecretCacheConfigMapInput is an input type that accepts SecretCacheConfigMap and SecretCacheConfigMapOutput values.
@@ -224,6 +239,12 @@ func (i SecretCacheConfigMap) ToSecretCacheConfigMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SecretCacheConfigMapOutput)
 }
 
+func (i SecretCacheConfigMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretCacheConfig] {
+	return pulumix.Output[map[string]*SecretCacheConfig]{
+		OutputState: i.ToSecretCacheConfigMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SecretCacheConfigOutput struct{ *pulumi.OutputState }
 
 func (SecretCacheConfigOutput) ElementType() reflect.Type {
@@ -236,6 +257,12 @@ func (o SecretCacheConfigOutput) ToSecretCacheConfigOutput() SecretCacheConfigOu
 
 func (o SecretCacheConfigOutput) ToSecretCacheConfigOutputWithContext(ctx context.Context) SecretCacheConfigOutput {
 	return o
+}
+
+func (o SecretCacheConfigOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretCacheConfig] {
+	return pulumix.Output[*SecretCacheConfig]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The path the transit secret backend is mounted at, with no leading or trailing `/`s.
@@ -270,6 +297,12 @@ func (o SecretCacheConfigArrayOutput) ToSecretCacheConfigArrayOutputWithContext(
 	return o
 }
 
+func (o SecretCacheConfigArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretCacheConfig] {
+	return pulumix.Output[[]*SecretCacheConfig]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SecretCacheConfigArrayOutput) Index(i pulumi.IntInput) SecretCacheConfigOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretCacheConfig {
 		return vs[0].([]*SecretCacheConfig)[vs[1].(int)]
@@ -288,6 +321,12 @@ func (o SecretCacheConfigMapOutput) ToSecretCacheConfigMapOutput() SecretCacheCo
 
 func (o SecretCacheConfigMapOutput) ToSecretCacheConfigMapOutputWithContext(ctx context.Context) SecretCacheConfigMapOutput {
 	return o
+}
+
+func (o SecretCacheConfigMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretCacheConfig] {
+	return pulumix.Output[map[string]*SecretCacheConfig]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SecretCacheConfigMapOutput) MapIndex(k pulumi.StringInput) SecretCacheConfigOutput {

@@ -19,6 +19,7 @@ namespace Pulumi.Vault.Generic
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Vault = Pulumi.Vault;
         /// 
@@ -48,6 +49,7 @@ namespace Pulumi.Vault.Generic
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Vault = Pulumi.Vault;
         /// 
@@ -100,6 +102,11 @@ namespace Pulumi.Vault.Generic
         [Input("version")]
         public int? Version { get; set; }
 
+        /// <summary>
+        /// If set to true, stores `lease_start_time` in the TF state.
+        /// Note that storing the `lease_start_time` in the TF state will cause a persistent drift
+        /// on every `pulumi preview` and will require a `pulumi up`.
+        /// </summary>
         [Input("withLeaseStartTime")]
         public bool? WithLeaseStartTime { get; set; }
 
@@ -138,6 +145,11 @@ namespace Pulumi.Vault.Generic
         [Input("version")]
         public Input<int>? Version { get; set; }
 
+        /// <summary>
+        /// If set to true, stores `lease_start_time` in the TF state.
+        /// Note that storing the `lease_start_time` in the TF state will cause a persistent drift
+        /// on every `pulumi preview` and will require a `pulumi up`.
+        /// </summary>
         [Input("withLeaseStartTime")]
         public Input<bool>? WithLeaseStartTime { get; set; }
 

@@ -19,12 +19,16 @@ public final class AuthBackendGroupState extends com.pulumi.resources.ResourceAr
     /**
      * Path to the authentication backend
      * 
+     * For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api-docs/auth/ldap).
+     * 
      */
     @Import(name="backend")
     private @Nullable Output<String> backend;
 
     /**
      * @return Path to the authentication backend
+     * 
+     * For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api-docs/auth/ldap).
      * 
      */
     public Optional<Output<String>> backend() {
@@ -112,6 +116,8 @@ public final class AuthBackendGroupState extends com.pulumi.resources.ResourceAr
         /**
          * @param backend Path to the authentication backend
          * 
+         * For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api-docs/auth/ldap).
+         * 
          * @return builder
          * 
          */
@@ -122,6 +128,8 @@ public final class AuthBackendGroupState extends com.pulumi.resources.ResourceAr
 
         /**
          * @param backend Path to the authentication backend
+         * 
+         * For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api-docs/auth/ldap).
          * 
          * @return builder
          * 

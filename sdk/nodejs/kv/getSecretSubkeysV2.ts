@@ -36,11 +36,8 @@ import * as utilities from "../utilities";
  * Use of this resource requires the `read` capability on the given path.
  */
 export function getSecretSubkeysV2(args: GetSecretSubkeysV2Args, opts?: pulumi.InvokeOptions): Promise<GetSecretSubkeysV2Result> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:kv/getSecretSubkeysV2:getSecretSubkeysV2", {
         "depth": args.depth,
         "mount": args.mount,
@@ -112,9 +109,39 @@ export interface GetSecretSubkeysV2Result {
     readonly path: string;
     readonly version?: number;
 }
-
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const kvv2 = new vault.Mount("kvv2", {
+ *     path: "kvv2",
+ *     type: "kv",
+ *     options: {
+ *         version: "2",
+ *     },
+ *     description: "KV Version 2 secret engine mount",
+ * });
+ * const awsSecret = new vault.kv.SecretV2("awsSecret", {
+ *     mount: kvv2.path,
+ *     dataJson: JSON.stringify({
+ *         zip: "zap",
+ *         foo: "bar",
+ *     }),
+ * });
+ * const test = vault.kv.getSecretSubkeysV2Output({
+ *     mount: kvv2.path,
+ *     name: awsSecret.name,
+ * });
+ * ```
+ * ## Required Vault Capabilities
+ *
+ * Use of this resource requires the `read` capability on the given path.
+ */
 export function getSecretSubkeysV2Output(args: GetSecretSubkeysV2OutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretSubkeysV2Result> {
-    return pulumi.output(args).apply(a => getSecretSubkeysV2(a, opts))
+    return pulumi.output(args).apply((a: any) => getSecretSubkeysV2(a, opts))
 }
 
 /**

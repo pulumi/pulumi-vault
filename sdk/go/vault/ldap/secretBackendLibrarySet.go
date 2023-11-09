@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -101,6 +103,7 @@ func NewSecretBackendLibrarySet(ctx *pulumi.Context,
 	if args.ServiceAccountNames == nil {
 		return nil, errors.New("invalid value for required argument 'ServiceAccountNames'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SecretBackendLibrarySet
 	err := ctx.RegisterResource("vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet", name, args, &resource, opts...)
 	if err != nil {
@@ -250,6 +253,12 @@ func (i *SecretBackendLibrarySet) ToSecretBackendLibrarySetOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendLibrarySetOutput)
 }
 
+func (i *SecretBackendLibrarySet) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendLibrarySet] {
+	return pulumix.Output[*SecretBackendLibrarySet]{
+		OutputState: i.ToSecretBackendLibrarySetOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SecretBackendLibrarySetArrayInput is an input type that accepts SecretBackendLibrarySetArray and SecretBackendLibrarySetArrayOutput values.
 // You can construct a concrete instance of `SecretBackendLibrarySetArrayInput` via:
 //
@@ -273,6 +282,12 @@ func (i SecretBackendLibrarySetArray) ToSecretBackendLibrarySetArrayOutput() Sec
 
 func (i SecretBackendLibrarySetArray) ToSecretBackendLibrarySetArrayOutputWithContext(ctx context.Context) SecretBackendLibrarySetArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendLibrarySetArrayOutput)
+}
+
+func (i SecretBackendLibrarySetArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendLibrarySet] {
+	return pulumix.Output[[]*SecretBackendLibrarySet]{
+		OutputState: i.ToSecretBackendLibrarySetArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SecretBackendLibrarySetMapInput is an input type that accepts SecretBackendLibrarySetMap and SecretBackendLibrarySetMapOutput values.
@@ -300,6 +315,12 @@ func (i SecretBackendLibrarySetMap) ToSecretBackendLibrarySetMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendLibrarySetMapOutput)
 }
 
+func (i SecretBackendLibrarySetMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendLibrarySet] {
+	return pulumix.Output[map[string]*SecretBackendLibrarySet]{
+		OutputState: i.ToSecretBackendLibrarySetMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SecretBackendLibrarySetOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendLibrarySetOutput) ElementType() reflect.Type {
@@ -312,6 +333,12 @@ func (o SecretBackendLibrarySetOutput) ToSecretBackendLibrarySetOutput() SecretB
 
 func (o SecretBackendLibrarySetOutput) ToSecretBackendLibrarySetOutputWithContext(ctx context.Context) SecretBackendLibrarySetOutput {
 	return o
+}
+
+func (o SecretBackendLibrarySetOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendLibrarySet] {
+	return pulumix.Output[*SecretBackendLibrarySet]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Disable enforcing that service
@@ -371,6 +398,12 @@ func (o SecretBackendLibrarySetArrayOutput) ToSecretBackendLibrarySetArrayOutput
 	return o
 }
 
+func (o SecretBackendLibrarySetArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendLibrarySet] {
+	return pulumix.Output[[]*SecretBackendLibrarySet]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SecretBackendLibrarySetArrayOutput) Index(i pulumi.IntInput) SecretBackendLibrarySetOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackendLibrarySet {
 		return vs[0].([]*SecretBackendLibrarySet)[vs[1].(int)]
@@ -389,6 +422,12 @@ func (o SecretBackendLibrarySetMapOutput) ToSecretBackendLibrarySetMapOutput() S
 
 func (o SecretBackendLibrarySetMapOutput) ToSecretBackendLibrarySetMapOutputWithContext(ctx context.Context) SecretBackendLibrarySetMapOutput {
 	return o
+}
+
+func (o SecretBackendLibrarySetMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendLibrarySet] {
+	return pulumix.Output[map[string]*SecretBackendLibrarySet]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SecretBackendLibrarySetMapOutput) MapIndex(k pulumi.StringInput) SecretBackendLibrarySetOutput {

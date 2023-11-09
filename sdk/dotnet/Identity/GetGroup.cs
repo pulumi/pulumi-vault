@@ -18,6 +18,7 @@ namespace Pulumi.Vault.Identity
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Vault = Pulumi.Vault;
         /// 
@@ -46,6 +47,7 @@ namespace Pulumi.Vault.Identity
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Vault = Pulumi.Vault;
         /// 
@@ -80,6 +82,9 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// Accessor of the mount to which the alias belongs to.
         /// This should be supplied in conjunction with `alias_name`.
+        /// 
+        /// The lookup criteria can be `group_name`, `group_id`, `alias_id`, or a combination of
+        /// `alias_name` and `alias_mount_accessor`.
         /// </summary>
         [Input("aliasMountAccessor")]
         public string? AliasMountAccessor { get; set; }
@@ -129,6 +134,9 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// Accessor of the mount to which the alias belongs to.
         /// This should be supplied in conjunction with `alias_name`.
+        /// 
+        /// The lookup criteria can be `group_name`, `group_id`, `alias_id`, or a combination of
+        /// `alias_name` and `alias_mount_accessor`.
         /// </summary>
         [Input("aliasMountAccessor")]
         public Input<string>? AliasMountAccessor { get; set; }

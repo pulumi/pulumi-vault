@@ -86,14 +86,14 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * GCP Projects that the role exists within
+     * An array of GCP project IDs. Only entities belonging to this project can authenticate under the role.
      * 
      */
     @Import(name="boundProjects")
     private @Nullable Output<List<String>> boundProjects;
 
     /**
-     * @return GCP Projects that the role exists within
+     * @return An array of GCP project IDs. Only entities belonging to this project can authenticate under the role.
      * 
      */
     public Optional<Output<List<String>>> boundProjects() {
@@ -539,7 +539,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param boundProjects GCP Projects that the role exists within
+         * @param boundProjects An array of GCP project IDs. Only entities belonging to this project can authenticate under the role.
          * 
          * @return builder
          * 
@@ -550,7 +550,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param boundProjects GCP Projects that the role exists within
+         * @param boundProjects An array of GCP project IDs. Only entities belonging to this project can authenticate under the role.
          * 
          * @return builder
          * 
@@ -560,7 +560,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param boundProjects GCP Projects that the role exists within
+         * @param boundProjects An array of GCP project IDs. Only entities belonging to this project can authenticate under the role.
          * 
          * @return builder
          * 

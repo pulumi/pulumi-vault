@@ -5,71 +5,91 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { GetBackendIssuerArgs, GetBackendIssuerResult, GetBackendIssuerOutputArgs } from "./getBackendIssuer";
+export const getBackendIssuer: typeof import("./getBackendIssuer").getBackendIssuer = null as any;
+export const getBackendIssuerOutput: typeof import("./getBackendIssuer").getBackendIssuerOutput = null as any;
+utilities.lazyLoad(exports, ["getBackendIssuer","getBackendIssuerOutput"], () => require("./getBackendIssuer"));
+
+export { GetBackendIssuersArgs, GetBackendIssuersResult, GetBackendIssuersOutputArgs } from "./getBackendIssuers";
+export const getBackendIssuers: typeof import("./getBackendIssuers").getBackendIssuers = null as any;
+export const getBackendIssuersOutput: typeof import("./getBackendIssuers").getBackendIssuersOutput = null as any;
+utilities.lazyLoad(exports, ["getBackendIssuers","getBackendIssuersOutput"], () => require("./getBackendIssuers"));
+
+export { GetBackendKeyArgs, GetBackendKeyResult, GetBackendKeyOutputArgs } from "./getBackendKey";
+export const getBackendKey: typeof import("./getBackendKey").getBackendKey = null as any;
+export const getBackendKeyOutput: typeof import("./getBackendKey").getBackendKeyOutput = null as any;
+utilities.lazyLoad(exports, ["getBackendKey","getBackendKeyOutput"], () => require("./getBackendKey"));
+
+export { GetBackendKeysArgs, GetBackendKeysResult, GetBackendKeysOutputArgs } from "./getBackendKeys";
+export const getBackendKeys: typeof import("./getBackendKeys").getBackendKeys = null as any;
+export const getBackendKeysOutput: typeof import("./getBackendKeys").getBackendKeysOutput = null as any;
+utilities.lazyLoad(exports, ["getBackendKeys","getBackendKeysOutput"], () => require("./getBackendKeys"));
+
 export { SecretBackendCertArgs, SecretBackendCertState } from "./secretBackendCert";
 export type SecretBackendCert = import("./secretBackendCert").SecretBackendCert;
 export const SecretBackendCert: typeof import("./secretBackendCert").SecretBackendCert = null as any;
+utilities.lazyLoad(exports, ["SecretBackendCert"], () => require("./secretBackendCert"));
 
 export { SecretBackendConfigCaArgs, SecretBackendConfigCaState } from "./secretBackendConfigCa";
 export type SecretBackendConfigCa = import("./secretBackendConfigCa").SecretBackendConfigCa;
 export const SecretBackendConfigCa: typeof import("./secretBackendConfigCa").SecretBackendConfigCa = null as any;
+utilities.lazyLoad(exports, ["SecretBackendConfigCa"], () => require("./secretBackendConfigCa"));
 
 export { SecretBackendConfigIssuersArgs, SecretBackendConfigIssuersState } from "./secretBackendConfigIssuers";
 export type SecretBackendConfigIssuers = import("./secretBackendConfigIssuers").SecretBackendConfigIssuers;
 export const SecretBackendConfigIssuers: typeof import("./secretBackendConfigIssuers").SecretBackendConfigIssuers = null as any;
+utilities.lazyLoad(exports, ["SecretBackendConfigIssuers"], () => require("./secretBackendConfigIssuers"));
 
 export { SecretBackendConfigUrlsArgs, SecretBackendConfigUrlsState } from "./secretBackendConfigUrls";
 export type SecretBackendConfigUrls = import("./secretBackendConfigUrls").SecretBackendConfigUrls;
 export const SecretBackendConfigUrls: typeof import("./secretBackendConfigUrls").SecretBackendConfigUrls = null as any;
+utilities.lazyLoad(exports, ["SecretBackendConfigUrls"], () => require("./secretBackendConfigUrls"));
 
 export { SecretBackendCrlConfigArgs, SecretBackendCrlConfigState } from "./secretBackendCrlConfig";
 export type SecretBackendCrlConfig = import("./secretBackendCrlConfig").SecretBackendCrlConfig;
 export const SecretBackendCrlConfig: typeof import("./secretBackendCrlConfig").SecretBackendCrlConfig = null as any;
+utilities.lazyLoad(exports, ["SecretBackendCrlConfig"], () => require("./secretBackendCrlConfig"));
 
 export { SecretBackendIntermediateCertRequestArgs, SecretBackendIntermediateCertRequestState } from "./secretBackendIntermediateCertRequest";
 export type SecretBackendIntermediateCertRequest = import("./secretBackendIntermediateCertRequest").SecretBackendIntermediateCertRequest;
 export const SecretBackendIntermediateCertRequest: typeof import("./secretBackendIntermediateCertRequest").SecretBackendIntermediateCertRequest = null as any;
+utilities.lazyLoad(exports, ["SecretBackendIntermediateCertRequest"], () => require("./secretBackendIntermediateCertRequest"));
 
 export { SecretBackendIntermediateSetSignedArgs, SecretBackendIntermediateSetSignedState } from "./secretBackendIntermediateSetSigned";
 export type SecretBackendIntermediateSetSigned = import("./secretBackendIntermediateSetSigned").SecretBackendIntermediateSetSigned;
 export const SecretBackendIntermediateSetSigned: typeof import("./secretBackendIntermediateSetSigned").SecretBackendIntermediateSetSigned = null as any;
+utilities.lazyLoad(exports, ["SecretBackendIntermediateSetSigned"], () => require("./secretBackendIntermediateSetSigned"));
 
 export { SecretBackendIssuerArgs, SecretBackendIssuerState } from "./secretBackendIssuer";
 export type SecretBackendIssuer = import("./secretBackendIssuer").SecretBackendIssuer;
 export const SecretBackendIssuer: typeof import("./secretBackendIssuer").SecretBackendIssuer = null as any;
+utilities.lazyLoad(exports, ["SecretBackendIssuer"], () => require("./secretBackendIssuer"));
 
 export { SecretBackendKeyArgs, SecretBackendKeyState } from "./secretBackendKey";
 export type SecretBackendKey = import("./secretBackendKey").SecretBackendKey;
 export const SecretBackendKey: typeof import("./secretBackendKey").SecretBackendKey = null as any;
+utilities.lazyLoad(exports, ["SecretBackendKey"], () => require("./secretBackendKey"));
 
 export { SecretBackendRoleArgs, SecretBackendRoleState } from "./secretBackendRole";
 export type SecretBackendRole = import("./secretBackendRole").SecretBackendRole;
 export const SecretBackendRole: typeof import("./secretBackendRole").SecretBackendRole = null as any;
+utilities.lazyLoad(exports, ["SecretBackendRole"], () => require("./secretBackendRole"));
 
 export { SecretBackendRootCertArgs, SecretBackendRootCertState } from "./secretBackendRootCert";
 export type SecretBackendRootCert = import("./secretBackendRootCert").SecretBackendRootCert;
 export const SecretBackendRootCert: typeof import("./secretBackendRootCert").SecretBackendRootCert = null as any;
+utilities.lazyLoad(exports, ["SecretBackendRootCert"], () => require("./secretBackendRootCert"));
 
 export { SecretBackendRootSignIntermediateArgs, SecretBackendRootSignIntermediateState } from "./secretBackendRootSignIntermediate";
 export type SecretBackendRootSignIntermediate = import("./secretBackendRootSignIntermediate").SecretBackendRootSignIntermediate;
 export const SecretBackendRootSignIntermediate: typeof import("./secretBackendRootSignIntermediate").SecretBackendRootSignIntermediate = null as any;
+utilities.lazyLoad(exports, ["SecretBackendRootSignIntermediate"], () => require("./secretBackendRootSignIntermediate"));
 
 export { SecretBackendSignArgs, SecretBackendSignState } from "./secretBackendSign";
 export type SecretBackendSign = import("./secretBackendSign").SecretBackendSign;
 export const SecretBackendSign: typeof import("./secretBackendSign").SecretBackendSign = null as any;
-
-utilities.lazyLoad(exports, ["SecretBackendCert"], () => require("./secretBackendCert"));
-utilities.lazyLoad(exports, ["SecretBackendConfigCa"], () => require("./secretBackendConfigCa"));
-utilities.lazyLoad(exports, ["SecretBackendConfigIssuers"], () => require("./secretBackendConfigIssuers"));
-utilities.lazyLoad(exports, ["SecretBackendConfigUrls"], () => require("./secretBackendConfigUrls"));
-utilities.lazyLoad(exports, ["SecretBackendCrlConfig"], () => require("./secretBackendCrlConfig"));
-utilities.lazyLoad(exports, ["SecretBackendIntermediateCertRequest"], () => require("./secretBackendIntermediateCertRequest"));
-utilities.lazyLoad(exports, ["SecretBackendIntermediateSetSigned"], () => require("./secretBackendIntermediateSetSigned"));
-utilities.lazyLoad(exports, ["SecretBackendIssuer"], () => require("./secretBackendIssuer"));
-utilities.lazyLoad(exports, ["SecretBackendKey"], () => require("./secretBackendKey"));
-utilities.lazyLoad(exports, ["SecretBackendRole"], () => require("./secretBackendRole"));
-utilities.lazyLoad(exports, ["SecretBackendRootCert"], () => require("./secretBackendRootCert"));
-utilities.lazyLoad(exports, ["SecretBackendRootSignIntermediate"], () => require("./secretBackendRootSignIntermediate"));
 utilities.lazyLoad(exports, ["SecretBackendSign"], () => require("./secretBackendSign"));
+
 
 const _module = {
     version: utilities.getVersion(),

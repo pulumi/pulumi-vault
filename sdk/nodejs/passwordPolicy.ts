@@ -15,13 +15,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const alphanumeric = new vault.PasswordPolicy("alphanumeric", {
- *     policy: `    length = 20
+ * const alphanumeric = new vault.PasswordPolicy("alphanumeric", {policy: `    length = 20
  *     rule "charset" {
  *       charset = "abcdefghijklmnopqrstuvwxyz0123456789"
  *     }
- *   `,
- * });
+ *   
+ * `});
  * ```
  *
  * ## Import

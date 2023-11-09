@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Provides a resource to create a user in an
@@ -92,6 +94,7 @@ func NewAuthBackendUser(ctx *pulumi.Context,
 	if args.Username == nil {
 		return nil, errors.New("invalid value for required argument 'Username'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AuthBackendUser
 	err := ctx.RegisterResource("vault:okta/authBackendUser:AuthBackendUser", name, args, &resource, opts...)
 	if err != nil {
@@ -205,6 +208,12 @@ func (i *AuthBackendUser) ToAuthBackendUserOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendUserOutput)
 }
 
+func (i *AuthBackendUser) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendUser] {
+	return pulumix.Output[*AuthBackendUser]{
+		OutputState: i.ToAuthBackendUserOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AuthBackendUserArrayInput is an input type that accepts AuthBackendUserArray and AuthBackendUserArrayOutput values.
 // You can construct a concrete instance of `AuthBackendUserArrayInput` via:
 //
@@ -228,6 +237,12 @@ func (i AuthBackendUserArray) ToAuthBackendUserArrayOutput() AuthBackendUserArra
 
 func (i AuthBackendUserArray) ToAuthBackendUserArrayOutputWithContext(ctx context.Context) AuthBackendUserArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendUserArrayOutput)
+}
+
+func (i AuthBackendUserArray) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackendUser] {
+	return pulumix.Output[[]*AuthBackendUser]{
+		OutputState: i.ToAuthBackendUserArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AuthBackendUserMapInput is an input type that accepts AuthBackendUserMap and AuthBackendUserMapOutput values.
@@ -255,6 +270,12 @@ func (i AuthBackendUserMap) ToAuthBackendUserMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendUserMapOutput)
 }
 
+func (i AuthBackendUserMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackendUser] {
+	return pulumix.Output[map[string]*AuthBackendUser]{
+		OutputState: i.ToAuthBackendUserMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AuthBackendUserOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendUserOutput) ElementType() reflect.Type {
@@ -267,6 +288,12 @@ func (o AuthBackendUserOutput) ToAuthBackendUserOutput() AuthBackendUserOutput {
 
 func (o AuthBackendUserOutput) ToAuthBackendUserOutputWithContext(ctx context.Context) AuthBackendUserOutput {
 	return o
+}
+
+func (o AuthBackendUserOutput) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendUser] {
+	return pulumix.Output[*AuthBackendUser]{
+		OutputState: o.OutputState,
+	}
 }
 
 // List of Okta groups to associate with this user
@@ -311,6 +338,12 @@ func (o AuthBackendUserArrayOutput) ToAuthBackendUserArrayOutputWithContext(ctx 
 	return o
 }
 
+func (o AuthBackendUserArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackendUser] {
+	return pulumix.Output[[]*AuthBackendUser]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AuthBackendUserArrayOutput) Index(i pulumi.IntInput) AuthBackendUserOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AuthBackendUser {
 		return vs[0].([]*AuthBackendUser)[vs[1].(int)]
@@ -329,6 +362,12 @@ func (o AuthBackendUserMapOutput) ToAuthBackendUserMapOutput() AuthBackendUserMa
 
 func (o AuthBackendUserMapOutput) ToAuthBackendUserMapOutputWithContext(ctx context.Context) AuthBackendUserMapOutput {
 	return o
+}
+
+func (o AuthBackendUserMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackendUser] {
+	return pulumix.Output[map[string]*AuthBackendUser]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuthBackendUserMapOutput) MapIndex(k pulumi.StringInput) AuthBackendUserOutput {

@@ -7,8 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // This resource supports the "/transform/alphabet/{name}" Vault endpoint.
@@ -56,6 +58,11 @@ type Alphabet struct {
 	Alphabet pulumi.StringPtrOutput `pulumi:"alphabet"`
 	// The name of the alphabet.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringOutput `pulumi:"path"`
 }
@@ -70,6 +77,7 @@ func NewAlphabet(ctx *pulumi.Context,
 	if args.Path == nil {
 		return nil, errors.New("invalid value for required argument 'Path'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Alphabet
 	err := ctx.RegisterResource("vault:transform/alphabet:Alphabet", name, args, &resource, opts...)
 	if err != nil {
@@ -96,6 +104,11 @@ type alphabetState struct {
 	Alphabet *string `pulumi:"alphabet"`
 	// The name of the alphabet.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Path to where the back-end is mounted within Vault.
 	Path *string `pulumi:"path"`
 }
@@ -105,6 +118,11 @@ type AlphabetState struct {
 	Alphabet pulumi.StringPtrInput
 	// The name of the alphabet.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringPtrInput
 }
@@ -118,6 +136,11 @@ type alphabetArgs struct {
 	Alphabet *string `pulumi:"alphabet"`
 	// The name of the alphabet.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Path to where the back-end is mounted within Vault.
 	Path string `pulumi:"path"`
 }
@@ -128,6 +151,11 @@ type AlphabetArgs struct {
 	Alphabet pulumi.StringPtrInput
 	// The name of the alphabet.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringInput
 }
@@ -155,6 +183,12 @@ func (i *Alphabet) ToAlphabetOutputWithContext(ctx context.Context) AlphabetOutp
 	return pulumi.ToOutputWithContext(ctx, i).(AlphabetOutput)
 }
 
+func (i *Alphabet) ToOutput(ctx context.Context) pulumix.Output[*Alphabet] {
+	return pulumix.Output[*Alphabet]{
+		OutputState: i.ToAlphabetOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AlphabetArrayInput is an input type that accepts AlphabetArray and AlphabetArrayOutput values.
 // You can construct a concrete instance of `AlphabetArrayInput` via:
 //
@@ -178,6 +212,12 @@ func (i AlphabetArray) ToAlphabetArrayOutput() AlphabetArrayOutput {
 
 func (i AlphabetArray) ToAlphabetArrayOutputWithContext(ctx context.Context) AlphabetArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AlphabetArrayOutput)
+}
+
+func (i AlphabetArray) ToOutput(ctx context.Context) pulumix.Output[[]*Alphabet] {
+	return pulumix.Output[[]*Alphabet]{
+		OutputState: i.ToAlphabetArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AlphabetMapInput is an input type that accepts AlphabetMap and AlphabetMapOutput values.
@@ -205,6 +245,12 @@ func (i AlphabetMap) ToAlphabetMapOutputWithContext(ctx context.Context) Alphabe
 	return pulumi.ToOutputWithContext(ctx, i).(AlphabetMapOutput)
 }
 
+func (i AlphabetMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Alphabet] {
+	return pulumix.Output[map[string]*Alphabet]{
+		OutputState: i.ToAlphabetMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AlphabetOutput struct{ *pulumi.OutputState }
 
 func (AlphabetOutput) ElementType() reflect.Type {
@@ -219,6 +265,12 @@ func (o AlphabetOutput) ToAlphabetOutputWithContext(ctx context.Context) Alphabe
 	return o
 }
 
+func (o AlphabetOutput) ToOutput(ctx context.Context) pulumix.Output[*Alphabet] {
+	return pulumix.Output[*Alphabet]{
+		OutputState: o.OutputState,
+	}
+}
+
 // A string of characters that contains the alphabet set.
 func (o AlphabetOutput) Alphabet() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Alphabet) pulumi.StringPtrOutput { return v.Alphabet }).(pulumi.StringPtrOutput)
@@ -227,6 +279,14 @@ func (o AlphabetOutput) Alphabet() pulumi.StringPtrOutput {
 // The name of the alphabet.
 func (o AlphabetOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Alphabet) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o AlphabetOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Alphabet) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Path to where the back-end is mounted within Vault.
@@ -248,6 +308,12 @@ func (o AlphabetArrayOutput) ToAlphabetArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
+func (o AlphabetArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Alphabet] {
+	return pulumix.Output[[]*Alphabet]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AlphabetArrayOutput) Index(i pulumi.IntInput) AlphabetOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Alphabet {
 		return vs[0].([]*Alphabet)[vs[1].(int)]
@@ -266,6 +332,12 @@ func (o AlphabetMapOutput) ToAlphabetMapOutput() AlphabetMapOutput {
 
 func (o AlphabetMapOutput) ToAlphabetMapOutputWithContext(ctx context.Context) AlphabetMapOutput {
 	return o
+}
+
+func (o AlphabetMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Alphabet] {
+	return pulumix.Output[map[string]*Alphabet]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AlphabetMapOutput) MapIndex(k pulumi.StringInput) AlphabetOutput {

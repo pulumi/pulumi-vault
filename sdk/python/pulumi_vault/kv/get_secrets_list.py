@@ -122,10 +122,10 @@ def get_secrets_list(namespace: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('vault:kv/getSecretsList:getSecretsList', __args__, opts=opts, typ=GetSecretsListResult).value
 
     return AwaitableGetSecretsListResult(
-        id=__ret__.id,
-        names=__ret__.names,
-        namespace=__ret__.namespace,
-        path=__ret__.path)
+        id=pulumi.get(__ret__, 'id'),
+        names=pulumi.get(__ret__, 'names'),
+        namespace=pulumi.get(__ret__, 'namespace'),
+        path=pulumi.get(__ret__, 'path'))
 
 
 @_utilities.lift_output_func(get_secrets_list)

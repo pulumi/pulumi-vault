@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -48,10 +50,9 @@ type SecretBackend struct {
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `aws`.
 	Path pulumi.StringPtrOutput `pulumi:"path"`
-	// The AWS region for API calls. Defaults to `us-east-1`.
+	// The AWS region to make API calls against. Defaults to us-east-1.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// The AWS Secret Key this backend should use to
-	// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+	// The AWS Secret Access Key to use when generating new credentials.
 	SecretKey pulumi.StringPtrOutput `pulumi:"secretKey"`
 	// Specifies a custom HTTP STS endpoint to use.
 	StsEndpoint pulumi.StringPtrOutput `pulumi:"stsEndpoint"`
@@ -67,16 +68,17 @@ func NewSecretBackend(ctx *pulumi.Context,
 	}
 
 	if args.AccessKey != nil {
-		args.AccessKey = pulumi.ToSecret(args.AccessKey).(pulumi.StringPtrOutput)
+		args.AccessKey = pulumi.ToSecret(args.AccessKey).(pulumi.StringPtrInput)
 	}
 	if args.SecretKey != nil {
-		args.SecretKey = pulumi.ToSecret(args.SecretKey).(pulumi.StringPtrOutput)
+		args.SecretKey = pulumi.ToSecret(args.SecretKey).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"accessKey",
 		"secretKey",
 	})
 	opts = append(opts, secrets)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SecretBackend
 	err := ctx.RegisterResource("vault:aws/secretBackend:SecretBackend", name, args, &resource, opts...)
 	if err != nil {
@@ -125,10 +127,9 @@ type secretBackendState struct {
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `aws`.
 	Path *string `pulumi:"path"`
-	// The AWS region for API calls. Defaults to `us-east-1`.
+	// The AWS region to make API calls against. Defaults to us-east-1.
 	Region *string `pulumi:"region"`
-	// The AWS Secret Key this backend should use to
-	// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+	// The AWS Secret Access Key to use when generating new credentials.
 	SecretKey *string `pulumi:"secretKey"`
 	// Specifies a custom HTTP STS endpoint to use.
 	StsEndpoint *string `pulumi:"stsEndpoint"`
@@ -163,10 +164,9 @@ type SecretBackendState struct {
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `aws`.
 	Path pulumi.StringPtrInput
-	// The AWS region for API calls. Defaults to `us-east-1`.
+	// The AWS region to make API calls against. Defaults to us-east-1.
 	Region pulumi.StringPtrInput
-	// The AWS Secret Key this backend should use to
-	// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+	// The AWS Secret Access Key to use when generating new credentials.
 	SecretKey pulumi.StringPtrInput
 	// Specifies a custom HTTP STS endpoint to use.
 	StsEndpoint pulumi.StringPtrInput
@@ -205,10 +205,9 @@ type secretBackendArgs struct {
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `aws`.
 	Path *string `pulumi:"path"`
-	// The AWS region for API calls. Defaults to `us-east-1`.
+	// The AWS region to make API calls against. Defaults to us-east-1.
 	Region *string `pulumi:"region"`
-	// The AWS Secret Key this backend should use to
-	// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+	// The AWS Secret Access Key to use when generating new credentials.
 	SecretKey *string `pulumi:"secretKey"`
 	// Specifies a custom HTTP STS endpoint to use.
 	StsEndpoint *string `pulumi:"stsEndpoint"`
@@ -244,10 +243,9 @@ type SecretBackendArgs struct {
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `aws`.
 	Path pulumi.StringPtrInput
-	// The AWS region for API calls. Defaults to `us-east-1`.
+	// The AWS region to make API calls against. Defaults to us-east-1.
 	Region pulumi.StringPtrInput
-	// The AWS Secret Key this backend should use to
-	// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+	// The AWS Secret Access Key to use when generating new credentials.
 	SecretKey pulumi.StringPtrInput
 	// Specifies a custom HTTP STS endpoint to use.
 	StsEndpoint pulumi.StringPtrInput
@@ -278,6 +276,12 @@ func (i *SecretBackend) ToSecretBackendOutputWithContext(ctx context.Context) Se
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendOutput)
 }
 
+func (i *SecretBackend) ToOutput(ctx context.Context) pulumix.Output[*SecretBackend] {
+	return pulumix.Output[*SecretBackend]{
+		OutputState: i.ToSecretBackendOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SecretBackendArrayInput is an input type that accepts SecretBackendArray and SecretBackendArrayOutput values.
 // You can construct a concrete instance of `SecretBackendArrayInput` via:
 //
@@ -301,6 +305,12 @@ func (i SecretBackendArray) ToSecretBackendArrayOutput() SecretBackendArrayOutpu
 
 func (i SecretBackendArray) ToSecretBackendArrayOutputWithContext(ctx context.Context) SecretBackendArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendArrayOutput)
+}
+
+func (i SecretBackendArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackend] {
+	return pulumix.Output[[]*SecretBackend]{
+		OutputState: i.ToSecretBackendArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SecretBackendMapInput is an input type that accepts SecretBackendMap and SecretBackendMapOutput values.
@@ -328,6 +338,12 @@ func (i SecretBackendMap) ToSecretBackendMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendMapOutput)
 }
 
+func (i SecretBackendMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackend] {
+	return pulumix.Output[map[string]*SecretBackend]{
+		OutputState: i.ToSecretBackendMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SecretBackendOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendOutput) ElementType() reflect.Type {
@@ -340,6 +356,12 @@ func (o SecretBackendOutput) ToSecretBackendOutput() SecretBackendOutput {
 
 func (o SecretBackendOutput) ToSecretBackendOutputWithContext(ctx context.Context) SecretBackendOutput {
 	return o
+}
+
+func (o SecretBackendOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackend] {
+	return pulumix.Output[*SecretBackend]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The AWS Access Key ID this backend should use to
@@ -395,13 +417,12 @@ func (o SecretBackendOutput) Path() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Path }).(pulumi.StringPtrOutput)
 }
 
-// The AWS region for API calls. Defaults to `us-east-1`.
+// The AWS region to make API calls against. Defaults to us-east-1.
 func (o SecretBackendOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// The AWS Secret Key this backend should use to
-// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+// The AWS Secret Access Key to use when generating new credentials.
 func (o SecretBackendOutput) SecretKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.SecretKey }).(pulumi.StringPtrOutput)
 }
@@ -430,6 +451,12 @@ func (o SecretBackendArrayOutput) ToSecretBackendArrayOutputWithContext(ctx cont
 	return o
 }
 
+func (o SecretBackendArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackend] {
+	return pulumix.Output[[]*SecretBackend]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SecretBackendArrayOutput) Index(i pulumi.IntInput) SecretBackendOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackend {
 		return vs[0].([]*SecretBackend)[vs[1].(int)]
@@ -448,6 +475,12 @@ func (o SecretBackendMapOutput) ToSecretBackendMapOutput() SecretBackendMapOutpu
 
 func (o SecretBackendMapOutput) ToSecretBackendMapOutputWithContext(ctx context.Context) SecretBackendMapOutput {
 	return o
+}
+
+func (o SecretBackendMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackend] {
+	return pulumix.Output[map[string]*SecretBackend]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SecretBackendMapOutput) MapIndex(k pulumi.StringInput) SecretBackendOutput {

@@ -18,6 +18,7 @@ namespace Pulumi.Vault.Kubernetes
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -73,6 +74,10 @@ namespace Pulumi.Vault.Kubernetes
 
         /// <summary>
         /// Audience claim to verify in the JWT.
+        /// 
+        /// &gt; Please see [alias_name_source](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
+        /// before setting this to something other its default value. There are **important** security
+        /// implications to be aware of.
         /// </summary>
         [Output("audience")]
         public Output<string?> Audience { get; private set; } = null!;
@@ -235,6 +240,10 @@ namespace Pulumi.Vault.Kubernetes
 
         /// <summary>
         /// Audience claim to verify in the JWT.
+        /// 
+        /// &gt; Please see [alias_name_source](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
+        /// before setting this to something other its default value. There are **important** security
+        /// implications to be aware of.
         /// </summary>
         [Input("audience")]
         public Input<string>? Audience { get; set; }
@@ -383,6 +392,10 @@ namespace Pulumi.Vault.Kubernetes
 
         /// <summary>
         /// Audience claim to verify in the JWT.
+        /// 
+        /// &gt; Please see [alias_name_source](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
+        /// before setting this to something other its default value. There are **important** security
+        /// implications to be aware of.
         /// </summary>
         [Input("audience")]
         public Input<string>? Audience { get; set; }

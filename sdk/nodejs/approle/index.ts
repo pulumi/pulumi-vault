@@ -8,23 +8,23 @@ import * as utilities from "../utilities";
 export { AuthBackendLoginArgs, AuthBackendLoginState } from "./authBackendLogin";
 export type AuthBackendLogin = import("./authBackendLogin").AuthBackendLogin;
 export const AuthBackendLogin: typeof import("./authBackendLogin").AuthBackendLogin = null as any;
+utilities.lazyLoad(exports, ["AuthBackendLogin"], () => require("./authBackendLogin"));
 
 export { AuthBackendRoleArgs, AuthBackendRoleState } from "./authBackendRole";
 export type AuthBackendRole = import("./authBackendRole").AuthBackendRole;
 export const AuthBackendRole: typeof import("./authBackendRole").AuthBackendRole = null as any;
+utilities.lazyLoad(exports, ["AuthBackendRole"], () => require("./authBackendRole"));
 
 export { AuthBackendRoleSecretIdArgs, AuthBackendRoleSecretIdState } from "./authBackendRoleSecretId";
 export type AuthBackendRoleSecretId = import("./authBackendRoleSecretId").AuthBackendRoleSecretId;
 export const AuthBackendRoleSecretId: typeof import("./authBackendRoleSecretId").AuthBackendRoleSecretId = null as any;
+utilities.lazyLoad(exports, ["AuthBackendRoleSecretId"], () => require("./authBackendRoleSecretId"));
 
 export { GetAuthBackendRoleIdArgs, GetAuthBackendRoleIdResult, GetAuthBackendRoleIdOutputArgs } from "./getAuthBackendRoleId";
 export const getAuthBackendRoleId: typeof import("./getAuthBackendRoleId").getAuthBackendRoleId = null as any;
 export const getAuthBackendRoleIdOutput: typeof import("./getAuthBackendRoleId").getAuthBackendRoleIdOutput = null as any;
-
-utilities.lazyLoad(exports, ["AuthBackendLogin"], () => require("./authBackendLogin"));
-utilities.lazyLoad(exports, ["AuthBackendRole"], () => require("./authBackendRole"));
-utilities.lazyLoad(exports, ["AuthBackendRoleSecretId"], () => require("./authBackendRoleSecretId"));
 utilities.lazyLoad(exports, ["getAuthBackendRoleId","getAuthBackendRoleIdOutput"], () => require("./getAuthBackendRoleId"));
+
 
 const _module = {
     version: utilities.getVersion(),

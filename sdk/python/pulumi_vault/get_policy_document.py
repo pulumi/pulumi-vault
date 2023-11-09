@@ -109,10 +109,10 @@ def get_policy_document(namespace: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('vault:index/getPolicyDocument:getPolicyDocument', __args__, opts=opts, typ=GetPolicyDocumentResult).value
 
     return AwaitableGetPolicyDocumentResult(
-        hcl=__ret__.hcl,
-        id=__ret__.id,
-        namespace=__ret__.namespace,
-        rules=__ret__.rules)
+        hcl=pulumi.get(__ret__, 'hcl'),
+        id=pulumi.get(__ret__, 'id'),
+        namespace=pulumi.get(__ret__, 'namespace'),
+        rules=pulumi.get(__ret__, 'rules'))
 
 
 @_utilities.lift_output_func(get_policy_document)

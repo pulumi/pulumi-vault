@@ -171,6 +171,14 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get('namespace')
 
     @property
+    def set_namespace_from_token(self) -> Optional[bool]:
+        """
+        In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the
+        token namespace as the root namespace for all resources.
+        """
+        return __config__.get_bool('setNamespaceFromToken')
+
+    @property
     def skip_child_token(self) -> Optional[bool]:
         """
         Set this to true to prevent the creation of ephemeral child token used by this provider.

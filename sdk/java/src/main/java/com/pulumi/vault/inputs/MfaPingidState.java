@@ -17,14 +17,14 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
     public static final MfaPingidState Empty = new MfaPingidState();
 
     /**
-     * Admin URL computed by Vault.
+     * `(string)` – Admin URL computed by Vault
      * 
      */
     @Import(name="adminUrl")
     private @Nullable Output<String> adminUrl;
 
     /**
-     * @return Admin URL computed by Vault.
+     * @return `(string)` – Admin URL computed by Vault
      * 
      */
     public Optional<Output<String>> adminUrl() {
@@ -32,14 +32,14 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Authenticator URL computed by Vault.
+     * `(string)` – Authenticator URL computed by Vault
      * 
      */
     @Import(name="authenticatorUrl")
     private @Nullable Output<String> authenticatorUrl;
 
     /**
-     * @return Authenticator URL computed by Vault.
+     * @return `(string)` – Authenticator URL computed by Vault
      * 
      */
     public Optional<Output<String>> authenticatorUrl() {
@@ -47,14 +47,14 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * IDP URL computed by Vault.
+     * `(string)` – IDP URL computed by Vault
      * 
      */
     @Import(name="idpUrl")
     private @Nullable Output<String> idpUrl;
 
     /**
-     * @return IDP URL computed by Vault.
+     * @return `(string)` – IDP URL computed by Vault
      * 
      */
     public Optional<Output<String>> idpUrl() {
@@ -115,14 +115,14 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Namespace ID computed by Vault.
+     * `(string)` – Namespace ID computed by Vault
      * 
      */
     @Import(name="namespaceId")
     private @Nullable Output<String> namespaceId;
 
     /**
-     * @return Namespace ID computed by Vault.
+     * @return `(string)` – Namespace ID computed by Vault
      * 
      */
     public Optional<Output<String>> namespaceId() {
@@ -130,14 +130,14 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Org Alias computed by Vault.
+     * `(string)` – Org Alias computed by Vault
      * 
      */
     @Import(name="orgAlias")
     private @Nullable Output<String> orgAlias;
 
     /**
-     * @return Org Alias computed by Vault.
+     * @return `(string)` – Org Alias computed by Vault
      * 
      */
     public Optional<Output<String>> orgAlias() {
@@ -162,14 +162,14 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Type of configuration computed by Vault.
+     * `(string)` – Type of configuration computed by Vault
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return Type of configuration computed by Vault.
+     * @return `(string)` – Type of configuration computed by Vault
      * 
      */
     public Optional<Output<String>> type() {
@@ -177,14 +177,14 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * If set, enables use of PingID signature. Computed by Vault
+     * `(string)` – If set to true, enables use of PingID signature. Computed by Vault
      * 
      */
     @Import(name="useSignature")
     private @Nullable Output<Boolean> useSignature;
 
     /**
-     * @return If set, enables use of PingID signature. Computed by Vault
+     * @return `(string)` – If set to true, enables use of PingID signature. Computed by Vault
      * 
      */
     public Optional<Output<Boolean>> useSignature() {
@@ -254,7 +254,7 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param adminUrl Admin URL computed by Vault.
+         * @param adminUrl `(string)` – Admin URL computed by Vault
          * 
          * @return builder
          * 
@@ -265,7 +265,7 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param adminUrl Admin URL computed by Vault.
+         * @param adminUrl `(string)` – Admin URL computed by Vault
          * 
          * @return builder
          * 
@@ -275,7 +275,7 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param authenticatorUrl Authenticator URL computed by Vault.
+         * @param authenticatorUrl `(string)` – Authenticator URL computed by Vault
          * 
          * @return builder
          * 
@@ -286,7 +286,7 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param authenticatorUrl Authenticator URL computed by Vault.
+         * @param authenticatorUrl `(string)` – Authenticator URL computed by Vault
          * 
          * @return builder
          * 
@@ -296,7 +296,7 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param idpUrl IDP URL computed by Vault.
+         * @param idpUrl `(string)` – IDP URL computed by Vault
          * 
          * @return builder
          * 
@@ -307,7 +307,7 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param idpUrl IDP URL computed by Vault.
+         * @param idpUrl `(string)` – IDP URL computed by Vault
          * 
          * @return builder
          * 
@@ -388,7 +388,7 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param namespaceId Namespace ID computed by Vault.
+         * @param namespaceId `(string)` – Namespace ID computed by Vault
          * 
          * @return builder
          * 
@@ -399,7 +399,7 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param namespaceId Namespace ID computed by Vault.
+         * @param namespaceId `(string)` – Namespace ID computed by Vault
          * 
          * @return builder
          * 
@@ -409,7 +409,7 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param orgAlias Org Alias computed by Vault.
+         * @param orgAlias `(string)` – Org Alias computed by Vault
          * 
          * @return builder
          * 
@@ -420,7 +420,7 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param orgAlias Org Alias computed by Vault.
+         * @param orgAlias `(string)` – Org Alias computed by Vault
          * 
          * @return builder
          * 
@@ -453,7 +453,7 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param type Type of configuration computed by Vault.
+         * @param type `(string)` – Type of configuration computed by Vault
          * 
          * @return builder
          * 
@@ -464,7 +464,7 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param type Type of configuration computed by Vault.
+         * @param type `(string)` – Type of configuration computed by Vault
          * 
          * @return builder
          * 
@@ -474,7 +474,7 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param useSignature If set, enables use of PingID signature. Computed by Vault
+         * @param useSignature `(string)` – If set to true, enables use of PingID signature. Computed by Vault
          * 
          * @return builder
          * 
@@ -485,7 +485,7 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param useSignature If set, enables use of PingID signature. Computed by Vault
+         * @param useSignature `(string)` – If set to true, enables use of PingID signature. Computed by Vault
          * 
          * @return builder
          * 

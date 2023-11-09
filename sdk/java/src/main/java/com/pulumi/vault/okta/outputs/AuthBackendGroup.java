@@ -16,7 +16,7 @@ public final class AuthBackendGroup {
      */
     private String groupName;
     /**
-     * @return List of Vault policies to associate with this user
+     * @return Vault policies to associate with this group
      * 
      */
     private List<String> policies;
@@ -30,7 +30,7 @@ public final class AuthBackendGroup {
         return this.groupName;
     }
     /**
-     * @return List of Vault policies to associate with this user
+     * @return Vault policies to associate with this group
      * 
      */
     public List<String> policies() {

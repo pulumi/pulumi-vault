@@ -26,7 +26,7 @@ namespace Pulumi.Vault.Database.Inputs
         }
 
         /// <summary>
-        /// The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
+        /// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
         /// </summary>
         [Input("caCert")]
         public Input<string>? CaCert { get; set; }
@@ -36,6 +36,8 @@ namespace Pulumi.Vault.Database.Inputs
 
         /// <summary>
         /// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        /// 
+        /// Supported list of database secrets engines that can be configured:
         /// </summary>
         public InputMap<object> Data
         {
@@ -63,7 +65,7 @@ namespace Pulumi.Vault.Database.Inputs
         private Input<string>? _password;
 
         /// <summary>
-        /// The password to be used in the connection.
+        /// The root credential password used in the connection URL.
         /// </summary>
         public Input<string>? Password
         {
@@ -101,13 +103,13 @@ namespace Pulumi.Vault.Database.Inputs
         }
 
         /// <summary>
-        /// Whether to use TLS when connecting to Redis.
+        /// Whether to use TLS when connecting to Cassandra.
         /// </summary>
         [Input("tls")]
         public Input<bool>? Tls { get; set; }
 
         /// <summary>
-        /// The username to be used in the connection (the account admin level).
+        /// The root credential username used in the connection URL.
         /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;

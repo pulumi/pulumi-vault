@@ -4,6 +4,7 @@
 package com.pulumi.vault.config.inputs;
 
 import com.pulumi.core.annotations.CustomType;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -20,6 +21,7 @@ public final class AuthLoginAzure {
     private @Nullable String scope;
     private String subscriptionId;
     private @Nullable String tenantId;
+    private @Nullable Boolean useRootNamespace;
     private @Nullable String vmName;
     private @Nullable String vmssName;
 
@@ -51,6 +53,9 @@ public final class AuthLoginAzure {
     public Optional<String> tenantId() {
         return Optional.ofNullable(this.tenantId);
     }
+    public Optional<Boolean> useRootNamespace() {
+        return Optional.ofNullable(this.useRootNamespace);
+    }
     public Optional<String> vmName() {
         return Optional.ofNullable(this.vmName);
     }
@@ -76,6 +81,7 @@ public final class AuthLoginAzure {
         private @Nullable String scope;
         private String subscriptionId;
         private @Nullable String tenantId;
+        private @Nullable Boolean useRootNamespace;
         private @Nullable String vmName;
         private @Nullable String vmssName;
         public Builder() {}
@@ -90,6 +96,7 @@ public final class AuthLoginAzure {
     	      this.scope = defaults.scope;
     	      this.subscriptionId = defaults.subscriptionId;
     	      this.tenantId = defaults.tenantId;
+    	      this.useRootNamespace = defaults.useRootNamespace;
     	      this.vmName = defaults.vmName;
     	      this.vmssName = defaults.vmssName;
         }
@@ -140,6 +147,11 @@ public final class AuthLoginAzure {
             return this;
         }
         @CustomType.Setter
+        public Builder useRootNamespace(@Nullable Boolean useRootNamespace) {
+            this.useRootNamespace = useRootNamespace;
+            return this;
+        }
+        @CustomType.Setter
         public Builder vmName(@Nullable String vmName) {
             this.vmName = vmName;
             return this;
@@ -160,6 +172,7 @@ public final class AuthLoginAzure {
             o.scope = scope;
             o.subscriptionId = subscriptionId;
             o.tenantId = tenantId;
+            o.useRootNamespace = useRootNamespace;
             o.vmName = vmName;
             o.vmssName = vmssName;
             return o;

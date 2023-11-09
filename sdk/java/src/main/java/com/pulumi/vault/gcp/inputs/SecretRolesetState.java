@@ -114,14 +114,14 @@ public final class SecretRolesetState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Email of the service account created by Vault for this Roleset
+     * Email of the service account created by Vault for this Roleset.
      * 
      */
     @Import(name="serviceAccountEmail")
     private @Nullable Output<String> serviceAccountEmail;
 
     /**
-     * @return Email of the service account created by Vault for this Roleset
+     * @return Email of the service account created by Vault for this Roleset.
      * 
      */
     public Optional<Output<String>> serviceAccountEmail() {
@@ -317,7 +317,7 @@ public final class SecretRolesetState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param serviceAccountEmail Email of the service account created by Vault for this Roleset
+         * @param serviceAccountEmail Email of the service account created by Vault for this Roleset.
          * 
          * @return builder
          * 
@@ -328,7 +328,7 @@ public final class SecretRolesetState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param serviceAccountEmail Email of the service account created by Vault for this Roleset
+         * @param serviceAccountEmail Email of the service account created by Vault for this Roleset.
          * 
          * @return builder
          * 

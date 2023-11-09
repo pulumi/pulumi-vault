@@ -115,6 +115,9 @@ class SecretBackendKeyArgs:
         Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
         key.
         """
+        warnings.warn("""Use auto_rotate_period instead""", DeprecationWarning)
+        pulumi.log.warn("""auto_rotate_interval is deprecated: Use auto_rotate_period instead""")
+
         return pulumi.get(self, "auto_rotate_interval")
 
     @auto_rotate_interval.setter
@@ -382,6 +385,9 @@ class _SecretBackendKeyState:
         Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
         key.
         """
+        warnings.warn("""Use auto_rotate_period instead""", DeprecationWarning)
+        pulumi.log.warn("""auto_rotate_interval is deprecated: Use auto_rotate_period instead""")
+
         return pulumi.get(self, "auto_rotate_interval")
 
     @auto_rotate_interval.setter
@@ -771,9 +777,6 @@ class SecretBackendKey(pulumi.CustomResource):
             __props__ = SecretBackendKeyArgs.__new__(SecretBackendKeyArgs)
 
             __props__.__dict__["allow_plaintext_backup"] = allow_plaintext_backup
-            if auto_rotate_interval is not None and not opts.urn:
-                warnings.warn("""Use auto_rotate_period instead""", DeprecationWarning)
-                pulumi.log.warn("""auto_rotate_interval is deprecated: Use auto_rotate_period instead""")
             __props__.__dict__["auto_rotate_interval"] = auto_rotate_interval
             __props__.__dict__["auto_rotate_period"] = auto_rotate_period
             if backend is None and not opts.urn:
@@ -908,6 +911,9 @@ class SecretBackendKey(pulumi.CustomResource):
         Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
         key.
         """
+        warnings.warn("""Use auto_rotate_period instead""", DeprecationWarning)
+        pulumi.log.warn("""auto_rotate_interval is deprecated: Use auto_rotate_period instead""")
+
         return pulumi.get(self, "auto_rotate_interval")
 
     @property

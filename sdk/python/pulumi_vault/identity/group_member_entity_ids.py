@@ -22,6 +22,10 @@ class GroupMemberEntityIdsArgs:
         The set of arguments for constructing a GroupMemberEntityIds resource.
         :param pulumi.Input[str] group_id: Group ID to assign member entities to.
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
+               
+               If `true`, this resource will take exclusive control of the member entities that belong to the group and will set it equal to what is specified in the resource.
+               
+               If set to `false`, this resource will simply ensure that the member entities specified in the resource are present in the group. When destroying the resource, the resource will ensure that the member entities specified in the resource are removed.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] member_entity_ids: List of member entities that belong to the group
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -53,6 +57,10 @@ class GroupMemberEntityIdsArgs:
     def exclusive(self) -> Optional[pulumi.Input[bool]]:
         """
         Defaults to `true`.
+
+        If `true`, this resource will take exclusive control of the member entities that belong to the group and will set it equal to what is specified in the resource.
+
+        If set to `false`, this resource will simply ensure that the member entities specified in the resource are present in the group. When destroying the resource, the resource will ensure that the member entities specified in the resource are removed.
         """
         return pulumi.get(self, "exclusive")
 
@@ -99,6 +107,10 @@ class _GroupMemberEntityIdsState:
         """
         Input properties used for looking up and filtering GroupMemberEntityIds resources.
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
+               
+               If `true`, this resource will take exclusive control of the member entities that belong to the group and will set it equal to what is specified in the resource.
+               
+               If set to `false`, this resource will simply ensure that the member entities specified in the resource are present in the group. When destroying the resource, the resource will ensure that the member entities specified in the resource are removed.
         :param pulumi.Input[str] group_id: Group ID to assign member entities to.
         :param pulumi.Input[str] group_name: The name of the group that are assigned the member entities.  
                *Deprecated: The value for group_name may not always be accurate*
@@ -130,6 +142,10 @@ use \"data.vault_identity_group.*.group_name\", \"vault_identity_group.*.group_n
     def exclusive(self) -> Optional[pulumi.Input[bool]]:
         """
         Defaults to `true`.
+
+        If `true`, this resource will take exclusive control of the member entities that belong to the group and will set it equal to what is specified in the resource.
+
+        If set to `false`, this resource will simply ensure that the member entities specified in the resource are present in the group. When destroying the resource, the resource will ensure that the member entities specified in the resource are removed.
         """
         return pulumi.get(self, "exclusive")
 
@@ -157,6 +173,11 @@ use \"data.vault_identity_group.*.group_name\", \"vault_identity_group.*.group_n
         *Deprecated: The value for group_name may not always be accurate*
         *use* `data.vault_identity_group.*.group_name`, *or* `vault_identity_group.*.group_name` *instead.*
         """
+        warnings.warn("""The value for group_name may not always be accurate, 
+use \"data.vault_identity_group.*.group_name\", \"vault_identity_group.*.group_name\" instead""", DeprecationWarning)
+        pulumi.log.warn("""group_name is deprecated: The value for group_name may not always be accurate, 
+use \"data.vault_identity_group.*.group_name\", \"vault_identity_group.*.group_name\" instead""")
+
         return pulumi.get(self, "group_name")
 
     @group_name.setter
@@ -254,6 +275,10 @@ class GroupMemberEntityIds(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
+               
+               If `true`, this resource will take exclusive control of the member entities that belong to the group and will set it equal to what is specified in the resource.
+               
+               If set to `false`, this resource will simply ensure that the member entities specified in the resource are present in the group. When destroying the resource, the resource will ensure that the member entities specified in the resource are removed.
         :param pulumi.Input[str] group_id: Group ID to assign member entities to.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] member_entity_ids: List of member entities that belong to the group
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -375,6 +400,10 @@ class GroupMemberEntityIds(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
+               
+               If `true`, this resource will take exclusive control of the member entities that belong to the group and will set it equal to what is specified in the resource.
+               
+               If set to `false`, this resource will simply ensure that the member entities specified in the resource are present in the group. When destroying the resource, the resource will ensure that the member entities specified in the resource are removed.
         :param pulumi.Input[str] group_id: Group ID to assign member entities to.
         :param pulumi.Input[str] group_name: The name of the group that are assigned the member entities.  
                *Deprecated: The value for group_name may not always be accurate*
@@ -401,6 +430,10 @@ class GroupMemberEntityIds(pulumi.CustomResource):
     def exclusive(self) -> pulumi.Output[Optional[bool]]:
         """
         Defaults to `true`.
+
+        If `true`, this resource will take exclusive control of the member entities that belong to the group and will set it equal to what is specified in the resource.
+
+        If set to `false`, this resource will simply ensure that the member entities specified in the resource are present in the group. When destroying the resource, the resource will ensure that the member entities specified in the resource are removed.
         """
         return pulumi.get(self, "exclusive")
 
@@ -420,6 +453,11 @@ class GroupMemberEntityIds(pulumi.CustomResource):
         *Deprecated: The value for group_name may not always be accurate*
         *use* `data.vault_identity_group.*.group_name`, *or* `vault_identity_group.*.group_name` *instead.*
         """
+        warnings.warn("""The value for group_name may not always be accurate, 
+use \"data.vault_identity_group.*.group_name\", \"vault_identity_group.*.group_name\" instead""", DeprecationWarning)
+        pulumi.log.warn("""group_name is deprecated: The value for group_name may not always be accurate, 
+use \"data.vault_identity_group.*.group_name\", \"vault_identity_group.*.group_name\" instead""")
+
         return pulumi.get(self, "group_name")
 
     @property

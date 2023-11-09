@@ -18,7 +18,7 @@ namespace Pulumi.Vault.Okta.Outputs
         /// </summary>
         public readonly ImmutableArray<string> Groups;
         /// <summary>
-        /// List of Vault policies to associate with this user
+        /// Vault policies to associate with this group
         /// </summary>
         public readonly ImmutableArray<string> Policies;
         /// <summary>

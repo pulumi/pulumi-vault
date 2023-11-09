@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -39,6 +41,7 @@ import (
 //
 // Use of this resource requires the `create` capability on `/identity/lookup/group`.
 func LookupGroup(ctx *pulumi.Context, args *LookupGroupArgs, opts ...pulumi.InvokeOption) (*LookupGroupResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupGroupResult
 	err := ctx.Invoke("vault:identity/getGroup:getGroup", args, &rv, opts...)
 	if err != nil {
@@ -53,6 +56,9 @@ type LookupGroupArgs struct {
 	AliasId *string `pulumi:"aliasId"`
 	// Accessor of the mount to which the alias belongs to.
 	// This should be supplied in conjunction with `aliasName`.
+	//
+	// The lookup criteria can be `groupName`, `groupId`, `aliasId`, or a combination of
+	// `aliasName` and `aliasMountAccessor`.
 	AliasMountAccessor *string `pulumi:"aliasMountAccessor"`
 	// Name of the alias. This should be supplied in conjunction with
 	// `aliasMountAccessor`.
@@ -136,6 +142,9 @@ type LookupGroupOutputArgs struct {
 	AliasId pulumi.StringPtrInput `pulumi:"aliasId"`
 	// Accessor of the mount to which the alias belongs to.
 	// This should be supplied in conjunction with `aliasName`.
+	//
+	// The lookup criteria can be `groupName`, `groupId`, `aliasId`, or a combination of
+	// `aliasName` and `aliasMountAccessor`.
 	AliasMountAccessor pulumi.StringPtrInput `pulumi:"aliasMountAccessor"`
 	// Name of the alias. This should be supplied in conjunction with
 	// `aliasMountAccessor`.
@@ -168,6 +177,12 @@ func (o LookupGroupResultOutput) ToLookupGroupResultOutput() LookupGroupResultOu
 
 func (o LookupGroupResultOutput) ToLookupGroupResultOutputWithContext(ctx context.Context) LookupGroupResultOutput {
 	return o
+}
+
+func (o LookupGroupResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupGroupResult] {
+	return pulumix.Output[LookupGroupResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Canonical ID of the Alias

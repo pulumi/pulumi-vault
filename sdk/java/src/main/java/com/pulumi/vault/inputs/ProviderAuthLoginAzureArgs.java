@@ -5,6 +5,7 @@ package com.pulumi.vault.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -78,6 +79,13 @@ public final class ProviderAuthLoginAzureArgs extends com.pulumi.resources.Resou
         return Optional.ofNullable(this.tenantId);
     }
 
+    @Import(name="useRootNamespace")
+    private @Nullable Output<Boolean> useRootNamespace;
+
+    public Optional<Output<Boolean>> useRootNamespace() {
+        return Optional.ofNullable(this.useRootNamespace);
+    }
+
     @Import(name="vmName")
     private @Nullable Output<String> vmName;
 
@@ -104,6 +112,7 @@ public final class ProviderAuthLoginAzureArgs extends com.pulumi.resources.Resou
         this.scope = $.scope;
         this.subscriptionId = $.subscriptionId;
         this.tenantId = $.tenantId;
+        this.useRootNamespace = $.useRootNamespace;
         this.vmName = $.vmName;
         this.vmssName = $.vmssName;
     }
@@ -205,6 +214,15 @@ public final class ProviderAuthLoginAzureArgs extends com.pulumi.resources.Resou
 
         public Builder tenantId(String tenantId) {
             return tenantId(Output.of(tenantId));
+        }
+
+        public Builder useRootNamespace(@Nullable Output<Boolean> useRootNamespace) {
+            $.useRootNamespace = useRootNamespace;
+            return this;
+        }
+
+        public Builder useRootNamespace(Boolean useRootNamespace) {
+            return useRootNamespace(Output.of(useRootNamespace));
         }
 
         public Builder vmName(@Nullable Output<String> vmName) {

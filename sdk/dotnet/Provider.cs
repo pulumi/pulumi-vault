@@ -211,7 +211,11 @@ namespace Pulumi.Vault
         public InputList<Inputs.ProviderHeaderArgs> Headers
         {
             get => _headers ?? (_headers = new InputList<Inputs.ProviderHeaderArgs>());
-            set => _headers = value;
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableArray.Create<Inputs.ProviderHeaderArgs>());
+                _headers = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
         }
 
         /// <summary>
@@ -237,6 +241,13 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
+
+        /// <summary>
+        /// In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the
+        /// token namespace as the root namespace for all resources.
+        /// </summary>
+        [Input("setNamespaceFromToken", json: true)]
+        public Input<bool>? SetNamespaceFromToken { get; set; }
 
         /// <summary>
         /// Set this to true to prevent the creation of ephemeral child token used by this provider.

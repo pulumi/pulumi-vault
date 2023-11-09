@@ -339,6 +339,9 @@ def get_group(alias_id: Optional[str] = None,
     :param str alias_id: ID of the alias.
     :param str alias_mount_accessor: Accessor of the mount to which the alias belongs to.
            This should be supplied in conjunction with `alias_name`.
+           
+           The lookup criteria can be `group_name`, `group_id`, `alias_id`, or a combination of
+           `alias_name` and `alias_mount_accessor`.
     :param str alias_name: Name of the alias. This should be supplied in conjunction with
            `alias_mount_accessor`.
     :param str group_id: ID of the group.
@@ -359,31 +362,31 @@ def get_group(alias_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('vault:identity/getGroup:getGroup', __args__, opts=opts, typ=GetGroupResult).value
 
     return AwaitableGetGroupResult(
-        alias_canonical_id=__ret__.alias_canonical_id,
-        alias_creation_time=__ret__.alias_creation_time,
-        alias_id=__ret__.alias_id,
-        alias_last_update_time=__ret__.alias_last_update_time,
-        alias_merged_from_canonical_ids=__ret__.alias_merged_from_canonical_ids,
-        alias_metadata=__ret__.alias_metadata,
-        alias_mount_accessor=__ret__.alias_mount_accessor,
-        alias_mount_path=__ret__.alias_mount_path,
-        alias_mount_type=__ret__.alias_mount_type,
-        alias_name=__ret__.alias_name,
-        creation_time=__ret__.creation_time,
-        data_json=__ret__.data_json,
-        group_id=__ret__.group_id,
-        group_name=__ret__.group_name,
-        id=__ret__.id,
-        last_update_time=__ret__.last_update_time,
-        member_entity_ids=__ret__.member_entity_ids,
-        member_group_ids=__ret__.member_group_ids,
-        metadata=__ret__.metadata,
-        modify_index=__ret__.modify_index,
-        namespace=__ret__.namespace,
-        namespace_id=__ret__.namespace_id,
-        parent_group_ids=__ret__.parent_group_ids,
-        policies=__ret__.policies,
-        type=__ret__.type)
+        alias_canonical_id=pulumi.get(__ret__, 'alias_canonical_id'),
+        alias_creation_time=pulumi.get(__ret__, 'alias_creation_time'),
+        alias_id=pulumi.get(__ret__, 'alias_id'),
+        alias_last_update_time=pulumi.get(__ret__, 'alias_last_update_time'),
+        alias_merged_from_canonical_ids=pulumi.get(__ret__, 'alias_merged_from_canonical_ids'),
+        alias_metadata=pulumi.get(__ret__, 'alias_metadata'),
+        alias_mount_accessor=pulumi.get(__ret__, 'alias_mount_accessor'),
+        alias_mount_path=pulumi.get(__ret__, 'alias_mount_path'),
+        alias_mount_type=pulumi.get(__ret__, 'alias_mount_type'),
+        alias_name=pulumi.get(__ret__, 'alias_name'),
+        creation_time=pulumi.get(__ret__, 'creation_time'),
+        data_json=pulumi.get(__ret__, 'data_json'),
+        group_id=pulumi.get(__ret__, 'group_id'),
+        group_name=pulumi.get(__ret__, 'group_name'),
+        id=pulumi.get(__ret__, 'id'),
+        last_update_time=pulumi.get(__ret__, 'last_update_time'),
+        member_entity_ids=pulumi.get(__ret__, 'member_entity_ids'),
+        member_group_ids=pulumi.get(__ret__, 'member_group_ids'),
+        metadata=pulumi.get(__ret__, 'metadata'),
+        modify_index=pulumi.get(__ret__, 'modify_index'),
+        namespace=pulumi.get(__ret__, 'namespace'),
+        namespace_id=pulumi.get(__ret__, 'namespace_id'),
+        parent_group_ids=pulumi.get(__ret__, 'parent_group_ids'),
+        policies=pulumi.get(__ret__, 'policies'),
+        type=pulumi.get(__ret__, 'type'))
 
 
 @_utilities.lift_output_func(get_group)
@@ -411,6 +414,9 @@ def get_group_output(alias_id: Optional[pulumi.Input[Optional[str]]] = None,
     :param str alias_id: ID of the alias.
     :param str alias_mount_accessor: Accessor of the mount to which the alias belongs to.
            This should be supplied in conjunction with `alias_name`.
+           
+           The lookup criteria can be `group_name`, `group_id`, `alias_id`, or a combination of
+           `alias_name` and `alias_mount_accessor`.
     :param str alias_name: Name of the alias. This should be supplied in conjunction with
            `alias_mount_accessor`.
     :param str group_id: ID of the group.

@@ -45,11 +45,8 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getServiceAccountToken(args: GetServiceAccountTokenArgs, opts?: pulumi.InvokeOptions): Promise<GetServiceAccountTokenResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:kubernetes/getServiceAccountToken:getServiceAccountToken", {
         "backend": args.backend,
         "clusterRoleBinding": args.clusterRoleBinding,
@@ -137,9 +134,48 @@ export interface GetServiceAccountTokenResult {
     readonly serviceAccountToken: string;
     readonly ttl?: string;
 }
-
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fs from "fs";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const config = new vault.kubernetes.SecretBackend("config", {
+ *     path: "kubernetes",
+ *     description: "kubernetes secrets engine description",
+ *     kubernetesHost: "https://127.0.0.1:61233",
+ *     kubernetesCaCert: fs.readFileSync("/path/to/cert"),
+ *     serviceAccountJwt: fs.readFileSync("/path/to/token"),
+ *     disableLocalCaJwt: false,
+ * });
+ * const role = new vault.kubernetes.SecretBackendRole("role", {
+ *     backend: config.path,
+ *     allowedKubernetesNamespaces: ["*"],
+ *     tokenMaxTtl: 43200,
+ *     tokenDefaultTtl: 21600,
+ *     serviceAccountName: "test-service-account-with-generated-token",
+ *     extraLabels: {
+ *         id: "abc123",
+ *         name: "some_name",
+ *     },
+ *     extraAnnotations: {
+ *         env: "development",
+ *         location: "earth",
+ *     },
+ * });
+ * const token = vault.kubernetes.getServiceAccountTokenOutput({
+ *     backend: config.path,
+ *     role: role.name,
+ *     kubernetesNamespace: "test",
+ *     clusterRoleBinding: false,
+ *     ttl: "1h",
+ * });
+ * ```
+ */
 export function getServiceAccountTokenOutput(args: GetServiceAccountTokenOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetServiceAccountTokenResult> {
-    return pulumi.output(args).apply(a => getServiceAccountToken(a, opts))
+    return pulumi.output(args).apply((a: any) => getServiceAccountToken(a, opts))
 }
 
 /**

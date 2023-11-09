@@ -17,7 +17,7 @@ public final class AuthBackendUser {
      */
     private @Nullable List<String> groups;
     /**
-     * @return List of Vault policies to associate with this user
+     * @return Vault policies to associate with this group
      * 
      */
     private @Nullable List<String> policies;
@@ -36,7 +36,7 @@ public final class AuthBackendUser {
         return this.groups == null ? List.of() : this.groups;
     }
     /**
-     * @return List of Vault policies to associate with this user
+     * @return Vault policies to associate with this group
      * 
      */
     public List<String> policies() {

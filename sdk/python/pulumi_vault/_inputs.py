@@ -191,7 +191,8 @@ class ProviderAuthLoginArgs:
                  path: pulumi.Input[str],
                  method: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
-                 parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
+                 parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 use_root_namespace: Optional[pulumi.Input[bool]] = None):
         pulumi.set(__self__, "path", path)
         if method is not None:
             pulumi.set(__self__, "method", method)
@@ -199,6 +200,8 @@ class ProviderAuthLoginArgs:
             pulumi.set(__self__, "namespace", namespace)
         if parameters is not None:
             pulumi.set(__self__, "parameters", parameters)
+        if use_root_namespace is not None:
+            pulumi.set(__self__, "use_root_namespace", use_root_namespace)
 
     @property
     @pulumi.getter
@@ -236,6 +239,15 @@ class ProviderAuthLoginArgs:
     def parameters(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "parameters", value)
 
+    @property
+    @pulumi.getter(name="useRootNamespace")
+    def use_root_namespace(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "use_root_namespace")
+
+    @use_root_namespace.setter
+    def use_root_namespace(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_root_namespace", value)
+
 
 @pulumi.input_type
 class ProviderAuthLoginAwsArgs:
@@ -254,7 +266,8 @@ class ProviderAuthLoginAwsArgs:
                  aws_web_identity_token_file: Optional[pulumi.Input[str]] = None,
                  header_value: Optional[pulumi.Input[str]] = None,
                  mount: Optional[pulumi.Input[str]] = None,
-                 namespace: Optional[pulumi.Input[str]] = None):
+                 namespace: Optional[pulumi.Input[str]] = None,
+                 use_root_namespace: Optional[pulumi.Input[bool]] = None):
         pulumi.set(__self__, "role", role)
         if aws_access_key_id is not None:
             pulumi.set(__self__, "aws_access_key_id", aws_access_key_id)
@@ -284,6 +297,8 @@ class ProviderAuthLoginAwsArgs:
             pulumi.set(__self__, "mount", mount)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if use_root_namespace is not None:
+            pulumi.set(__self__, "use_root_namespace", use_root_namespace)
 
     @property
     @pulumi.getter
@@ -420,6 +435,15 @@ class ProviderAuthLoginAwsArgs:
     def namespace(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "namespace", value)
 
+    @property
+    @pulumi.getter(name="useRootNamespace")
+    def use_root_namespace(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "use_root_namespace")
+
+    @use_root_namespace.setter
+    def use_root_namespace(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_root_namespace", value)
+
 
 @pulumi.input_type
 class ProviderAuthLoginAzureArgs:
@@ -433,6 +457,7 @@ class ProviderAuthLoginAzureArgs:
                  namespace: Optional[pulumi.Input[str]] = None,
                  scope: Optional[pulumi.Input[str]] = None,
                  tenant_id: Optional[pulumi.Input[str]] = None,
+                 use_root_namespace: Optional[pulumi.Input[bool]] = None,
                  vm_name: Optional[pulumi.Input[str]] = None,
                  vmss_name: Optional[pulumi.Input[str]] = None):
         pulumi.set(__self__, "resource_group_name", resource_group_name)
@@ -450,6 +475,8 @@ class ProviderAuthLoginAzureArgs:
             pulumi.set(__self__, "scope", scope)
         if tenant_id is not None:
             pulumi.set(__self__, "tenant_id", tenant_id)
+        if use_root_namespace is not None:
+            pulumi.set(__self__, "use_root_namespace", use_root_namespace)
         if vm_name is not None:
             pulumi.set(__self__, "vm_name", vm_name)
         if vmss_name is not None:
@@ -537,6 +564,15 @@ class ProviderAuthLoginAzureArgs:
         pulumi.set(self, "tenant_id", value)
 
     @property
+    @pulumi.getter(name="useRootNamespace")
+    def use_root_namespace(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "use_root_namespace")
+
+    @use_root_namespace.setter
+    def use_root_namespace(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_root_namespace", value)
+
+    @property
     @pulumi.getter(name="vmName")
     def vm_name(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "vm_name")
@@ -562,7 +598,8 @@ class ProviderAuthLoginCertArgs:
                  key_file: pulumi.Input[str],
                  mount: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 namespace: Optional[pulumi.Input[str]] = None):
+                 namespace: Optional[pulumi.Input[str]] = None,
+                 use_root_namespace: Optional[pulumi.Input[bool]] = None):
         pulumi.set(__self__, "cert_file", cert_file)
         pulumi.set(__self__, "key_file", key_file)
         if mount is not None:
@@ -571,6 +608,8 @@ class ProviderAuthLoginCertArgs:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if use_root_namespace is not None:
+            pulumi.set(__self__, "use_root_namespace", use_root_namespace)
 
     @property
     @pulumi.getter(name="certFile")
@@ -617,6 +656,15 @@ class ProviderAuthLoginCertArgs:
     def namespace(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "namespace", value)
 
+    @property
+    @pulumi.getter(name="useRootNamespace")
+    def use_root_namespace(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "use_root_namespace")
+
+    @use_root_namespace.setter
+    def use_root_namespace(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_root_namespace", value)
+
 
 @pulumi.input_type
 class ProviderAuthLoginGcpArgs:
@@ -626,7 +674,8 @@ class ProviderAuthLoginGcpArgs:
                  jwt: Optional[pulumi.Input[str]] = None,
                  mount: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
-                 service_account: Optional[pulumi.Input[str]] = None):
+                 service_account: Optional[pulumi.Input[str]] = None,
+                 use_root_namespace: Optional[pulumi.Input[bool]] = None):
         pulumi.set(__self__, "role", role)
         if credentials is not None:
             pulumi.set(__self__, "credentials", credentials)
@@ -638,6 +687,8 @@ class ProviderAuthLoginGcpArgs:
             pulumi.set(__self__, "namespace", namespace)
         if service_account is not None:
             pulumi.set(__self__, "service_account", service_account)
+        if use_root_namespace is not None:
+            pulumi.set(__self__, "use_root_namespace", use_root_namespace)
 
     @property
     @pulumi.getter
@@ -693,6 +744,15 @@ class ProviderAuthLoginGcpArgs:
     def service_account(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "service_account", value)
 
+    @property
+    @pulumi.getter(name="useRootNamespace")
+    def use_root_namespace(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "use_root_namespace")
+
+    @use_root_namespace.setter
+    def use_root_namespace(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_root_namespace", value)
+
 
 @pulumi.input_type
 class ProviderAuthLoginJwtArgs:
@@ -700,13 +760,16 @@ class ProviderAuthLoginJwtArgs:
                  jwt: pulumi.Input[str],
                  role: pulumi.Input[str],
                  mount: Optional[pulumi.Input[str]] = None,
-                 namespace: Optional[pulumi.Input[str]] = None):
+                 namespace: Optional[pulumi.Input[str]] = None,
+                 use_root_namespace: Optional[pulumi.Input[bool]] = None):
         pulumi.set(__self__, "jwt", jwt)
         pulumi.set(__self__, "role", role)
         if mount is not None:
             pulumi.set(__self__, "mount", mount)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if use_root_namespace is not None:
+            pulumi.set(__self__, "use_root_namespace", use_root_namespace)
 
     @property
     @pulumi.getter
@@ -744,6 +807,15 @@ class ProviderAuthLoginJwtArgs:
     def namespace(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "namespace", value)
 
+    @property
+    @pulumi.getter(name="useRootNamespace")
+    def use_root_namespace(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "use_root_namespace")
+
+    @use_root_namespace.setter
+    def use_root_namespace(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_root_namespace", value)
+
 
 @pulumi.input_type
 class ProviderAuthLoginKerberosArgs:
@@ -757,6 +829,7 @@ class ProviderAuthLoginKerberosArgs:
                  remove_instance_name: Optional[pulumi.Input[bool]] = None,
                  service: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
+                 use_root_namespace: Optional[pulumi.Input[bool]] = None,
                  username: Optional[pulumi.Input[str]] = None):
         if disable_fast_negotiation is not None:
             pulumi.set(__self__, "disable_fast_negotiation", disable_fast_negotiation)
@@ -776,6 +849,8 @@ class ProviderAuthLoginKerberosArgs:
             pulumi.set(__self__, "service", service)
         if token is not None:
             pulumi.set(__self__, "token", token)
+        if use_root_namespace is not None:
+            pulumi.set(__self__, "use_root_namespace", use_root_namespace)
         if username is not None:
             pulumi.set(__self__, "username", username)
 
@@ -861,6 +936,15 @@ class ProviderAuthLoginKerberosArgs:
         pulumi.set(self, "token", value)
 
     @property
+    @pulumi.getter(name="useRootNamespace")
+    def use_root_namespace(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "use_root_namespace")
+
+    @use_root_namespace.setter
+    def use_root_namespace(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_root_namespace", value)
+
+    @property
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "username")
@@ -876,13 +960,16 @@ class ProviderAuthLoginOciArgs:
                  auth_type: pulumi.Input[str],
                  role: pulumi.Input[str],
                  mount: Optional[pulumi.Input[str]] = None,
-                 namespace: Optional[pulumi.Input[str]] = None):
+                 namespace: Optional[pulumi.Input[str]] = None,
+                 use_root_namespace: Optional[pulumi.Input[bool]] = None):
         pulumi.set(__self__, "auth_type", auth_type)
         pulumi.set(__self__, "role", role)
         if mount is not None:
             pulumi.set(__self__, "mount", mount)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if use_root_namespace is not None:
+            pulumi.set(__self__, "use_root_namespace", use_root_namespace)
 
     @property
     @pulumi.getter(name="authType")
@@ -920,6 +1007,15 @@ class ProviderAuthLoginOciArgs:
     def namespace(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "namespace", value)
 
+    @property
+    @pulumi.getter(name="useRootNamespace")
+    def use_root_namespace(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "use_root_namespace")
+
+    @use_root_namespace.setter
+    def use_root_namespace(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_root_namespace", value)
+
 
 @pulumi.input_type
 class ProviderAuthLoginOidcArgs:
@@ -928,7 +1024,8 @@ class ProviderAuthLoginOidcArgs:
                  callback_address: Optional[pulumi.Input[str]] = None,
                  callback_listener_address: Optional[pulumi.Input[str]] = None,
                  mount: Optional[pulumi.Input[str]] = None,
-                 namespace: Optional[pulumi.Input[str]] = None):
+                 namespace: Optional[pulumi.Input[str]] = None,
+                 use_root_namespace: Optional[pulumi.Input[bool]] = None):
         pulumi.set(__self__, "role", role)
         if callback_address is not None:
             pulumi.set(__self__, "callback_address", callback_address)
@@ -938,6 +1035,8 @@ class ProviderAuthLoginOidcArgs:
             pulumi.set(__self__, "mount", mount)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if use_root_namespace is not None:
+            pulumi.set(__self__, "use_root_namespace", use_root_namespace)
 
     @property
     @pulumi.getter
@@ -984,6 +1083,15 @@ class ProviderAuthLoginOidcArgs:
     def namespace(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "namespace", value)
 
+    @property
+    @pulumi.getter(name="useRootNamespace")
+    def use_root_namespace(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "use_root_namespace")
+
+    @use_root_namespace.setter
+    def use_root_namespace(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_root_namespace", value)
+
 
 @pulumi.input_type
 class ProviderAuthLoginRadiusArgs:
@@ -991,13 +1099,16 @@ class ProviderAuthLoginRadiusArgs:
                  password: pulumi.Input[str],
                  username: pulumi.Input[str],
                  mount: Optional[pulumi.Input[str]] = None,
-                 namespace: Optional[pulumi.Input[str]] = None):
+                 namespace: Optional[pulumi.Input[str]] = None,
+                 use_root_namespace: Optional[pulumi.Input[bool]] = None):
         pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "username", username)
         if mount is not None:
             pulumi.set(__self__, "mount", mount)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if use_root_namespace is not None:
+            pulumi.set(__self__, "use_root_namespace", use_root_namespace)
 
     @property
     @pulumi.getter
@@ -1035,15 +1146,27 @@ class ProviderAuthLoginRadiusArgs:
     def namespace(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "namespace", value)
 
+    @property
+    @pulumi.getter(name="useRootNamespace")
+    def use_root_namespace(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "use_root_namespace")
+
+    @use_root_namespace.setter
+    def use_root_namespace(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_root_namespace", value)
+
 
 @pulumi.input_type
 class ProviderAuthLoginTokenFileArgs:
     def __init__(__self__, *,
                  filename: pulumi.Input[str],
-                 namespace: Optional[pulumi.Input[str]] = None):
+                 namespace: Optional[pulumi.Input[str]] = None,
+                 use_root_namespace: Optional[pulumi.Input[bool]] = None):
         pulumi.set(__self__, "filename", filename)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if use_root_namespace is not None:
+            pulumi.set(__self__, "use_root_namespace", use_root_namespace)
 
     @property
     @pulumi.getter
@@ -1063,6 +1186,15 @@ class ProviderAuthLoginTokenFileArgs:
     def namespace(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "namespace", value)
 
+    @property
+    @pulumi.getter(name="useRootNamespace")
+    def use_root_namespace(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "use_root_namespace")
+
+    @use_root_namespace.setter
+    def use_root_namespace(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_root_namespace", value)
+
 
 @pulumi.input_type
 class ProviderAuthLoginUserpassArgs:
@@ -1071,7 +1203,8 @@ class ProviderAuthLoginUserpassArgs:
                  mount: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
-                 password_file: Optional[pulumi.Input[str]] = None):
+                 password_file: Optional[pulumi.Input[str]] = None,
+                 use_root_namespace: Optional[pulumi.Input[bool]] = None):
         pulumi.set(__self__, "username", username)
         if mount is not None:
             pulumi.set(__self__, "mount", mount)
@@ -1081,6 +1214,8 @@ class ProviderAuthLoginUserpassArgs:
             pulumi.set(__self__, "password", password)
         if password_file is not None:
             pulumi.set(__self__, "password_file", password_file)
+        if use_root_namespace is not None:
+            pulumi.set(__self__, "use_root_namespace", use_root_namespace)
 
     @property
     @pulumi.getter
@@ -1126,6 +1261,15 @@ class ProviderAuthLoginUserpassArgs:
     @password_file.setter
     def password_file(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "password_file", value)
+
+    @property
+    @pulumi.getter(name="useRootNamespace")
+    def use_root_namespace(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "use_root_namespace")
+
+    @use_root_namespace.setter
+    def use_root_namespace(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_root_namespace", value)
 
 
 @pulumi.input_type

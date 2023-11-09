@@ -54,9 +54,7 @@ public final class KeysAzure {
      */
     private @Nullable String environment;
     /**
-     * @return Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
-     * `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
-     * `allow_generate_key` is `true`.
+     * @return The size in bits for an RSA key.
      * 
      */
     private @Nullable String keyBits;
@@ -149,9 +147,7 @@ public final class KeysAzure {
         return Optional.ofNullable(this.environment);
     }
     /**
-     * @return Supplies the size in bits of the key when using `CKM_RSA_PKCS_PSS`,
-     * `CKM_RSA_PKCS_OAEP` or `CKM_RSA_PKCS` as a value for `mechanism`. Required if
-     * `allow_generate_key` is `true`.
+     * @return The size in bits for an RSA key.
      * 
      */
     public Optional<String> keyBits() {

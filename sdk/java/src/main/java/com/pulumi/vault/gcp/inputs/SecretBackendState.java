@@ -18,14 +18,14 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     public static final SecretBackendState Empty = new SecretBackendState();
 
     /**
-     * The GCP service account credentials in JSON format.
+     * JSON-encoded credentials to use to connect to GCP
      * 
      */
     @Import(name="credentials")
     private @Nullable Output<String> credentials;
 
     /**
-     * @return The GCP service account credentials in JSON format.
+     * @return JSON-encoded credentials to use to connect to GCP
      * 
      */
     public Optional<Output<String>> credentials() {
@@ -183,7 +183,7 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param credentials The GCP service account credentials in JSON format.
+         * @param credentials JSON-encoded credentials to use to connect to GCP
          * 
          * @return builder
          * 
@@ -194,7 +194,7 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param credentials The GCP service account credentials in JSON format.
+         * @param credentials JSON-encoded credentials to use to connect to GCP
          * 
          * @return builder
          * 

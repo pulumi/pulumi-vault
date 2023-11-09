@@ -74,6 +74,10 @@ export class AuthBackendRole extends pulumi.CustomResource {
     public readonly aliasNameSource!: pulumi.Output<string>;
     /**
      * Audience claim to verify in the JWT.
+     *
+     * > Please see [aliasNameSource](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
+     * before setting this to something other its default value. There are **important** security
+     * implications to be aware of.
      */
     public readonly audience!: pulumi.Output<string | undefined>;
     /**
@@ -225,6 +229,10 @@ export interface AuthBackendRoleState {
     aliasNameSource?: pulumi.Input<string>;
     /**
      * Audience claim to verify in the JWT.
+     *
+     * > Please see [aliasNameSource](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
+     * before setting this to something other its default value. There are **important** security
+     * implications to be aware of.
      */
     audience?: pulumi.Input<string>;
     /**
@@ -315,6 +323,10 @@ export interface AuthBackendRoleArgs {
     aliasNameSource?: pulumi.Input<string>;
     /**
      * Audience claim to verify in the JWT.
+     *
+     * > Please see [aliasNameSource](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
+     * before setting this to something other its default value. There are **important** security
+     * implications to be aware of.
      */
     audience?: pulumi.Input<string>;
     /**

@@ -44,7 +44,7 @@ class AuthBackendRoleArgs:
         :param pulumi.Input[str] backend: Path to the mounted GCP auth backend
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_instance_groups: The instance groups that an authorized instance must belong to in order to be authenticated. If specified, either `bound_zones` or `bound_regions` must be set too.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_labels: A comma-separated list of GCP labels formatted as `"key:value"` strings that must be set on authorized GCE instances. Because GCP labels are not currently ACL'd, we recommend that this be used in conjunction with other restrictions.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_projects: GCP Projects that the role exists within
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_projects: An array of GCP project IDs. Only entities belonging to this project can authenticate under the role.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_regions: The list of regions that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a regional group and the group must belong to this region. If bound_zones are provided, this attribute is ignored.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_service_accounts: GCP Service Accounts allowed to issue tokens under this role. (Note: **Required** if role is `iam`)
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_zones: The list of zones that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a zonal group and the group must belong to this zone.
@@ -208,7 +208,7 @@ class AuthBackendRoleArgs:
     @pulumi.getter(name="boundProjects")
     def bound_projects(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        GCP Projects that the role exists within
+        An array of GCP project IDs. Only entities belonging to this project can authenticate under the role.
         """
         return pulumi.get(self, "bound_projects")
 
@@ -436,7 +436,7 @@ class _AuthBackendRoleState:
         :param pulumi.Input[str] backend: Path to the mounted GCP auth backend
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_instance_groups: The instance groups that an authorized instance must belong to in order to be authenticated. If specified, either `bound_zones` or `bound_regions` must be set too.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_labels: A comma-separated list of GCP labels formatted as `"key:value"` strings that must be set on authorized GCE instances. Because GCP labels are not currently ACL'd, we recommend that this be used in conjunction with other restrictions.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_projects: GCP Projects that the role exists within
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_projects: An array of GCP project IDs. Only entities belonging to this project can authenticate under the role.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_regions: The list of regions that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a regional group and the group must belong to this region. If bound_zones are provided, this attribute is ignored.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_service_accounts: GCP Service Accounts allowed to issue tokens under this role. (Note: **Required** if role is `iam`)
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_zones: The list of zones that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a zonal group and the group must belong to this zone.
@@ -580,7 +580,7 @@ class _AuthBackendRoleState:
     @pulumi.getter(name="boundProjects")
     def bound_projects(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        GCP Projects that the role exists within
+        An array of GCP project IDs. Only entities belonging to this project can authenticate under the role.
         """
         return pulumi.get(self, "bound_projects")
 
@@ -870,7 +870,7 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] backend: Path to the mounted GCP auth backend
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_instance_groups: The instance groups that an authorized instance must belong to in order to be authenticated. If specified, either `bound_zones` or `bound_regions` must be set too.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_labels: A comma-separated list of GCP labels formatted as `"key:value"` strings that must be set on authorized GCE instances. Because GCP labels are not currently ACL'd, we recommend that this be used in conjunction with other restrictions.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_projects: GCP Projects that the role exists within
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_projects: An array of GCP project IDs. Only entities belonging to this project can authenticate under the role.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_regions: The list of regions that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a regional group and the group must belong to this region. If bound_zones are provided, this attribute is ignored.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_service_accounts: GCP Service Accounts allowed to issue tokens under this role. (Note: **Required** if role is `iam`)
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_zones: The list of zones that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a zonal group and the group must belong to this zone.
@@ -1064,7 +1064,7 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] backend: Path to the mounted GCP auth backend
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_instance_groups: The instance groups that an authorized instance must belong to in order to be authenticated. If specified, either `bound_zones` or `bound_regions` must be set too.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_labels: A comma-separated list of GCP labels formatted as `"key:value"` strings that must be set on authorized GCE instances. Because GCP labels are not currently ACL'd, we recommend that this be used in conjunction with other restrictions.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_projects: GCP Projects that the role exists within
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_projects: An array of GCP project IDs. Only entities belonging to this project can authenticate under the role.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_regions: The list of regions that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a regional group and the group must belong to this region. If bound_zones are provided, this attribute is ignored.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_service_accounts: GCP Service Accounts allowed to issue tokens under this role. (Note: **Required** if role is `iam`)
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_zones: The list of zones that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a zonal group and the group must belong to this zone.
@@ -1171,7 +1171,7 @@ class AuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="boundProjects")
     def bound_projects(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        GCP Projects that the role exists within
+        An array of GCP project IDs. Only entities belonging to this project can authenticate under the role.
         """
         return pulumi.get(self, "bound_projects")
 

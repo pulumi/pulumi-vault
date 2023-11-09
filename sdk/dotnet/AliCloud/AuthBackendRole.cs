@@ -16,6 +16,7 @@ namespace Pulumi.Vault.AliCloud
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -57,6 +58,8 @@ namespace Pulumi.Vault.AliCloud
         /// <summary>
         /// Path to the mounted AliCloud auth backend.
         /// Defaults to `alicloud`
+        /// 
+        /// For more details on the usage of each argument consult the [Vault AliCloud API documentation](https://www.vaultproject.io/api-docs/auth/alicloud).
         /// </summary>
         [Output("backend")]
         public Output<string?> Backend { get; private set; } = null!;
@@ -203,6 +206,8 @@ namespace Pulumi.Vault.AliCloud
         /// <summary>
         /// Path to the mounted AliCloud auth backend.
         /// Defaults to `alicloud`
+        /// 
+        /// For more details on the usage of each argument consult the [Vault AliCloud API documentation](https://www.vaultproject.io/api-docs/auth/alicloud).
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
@@ -323,6 +328,8 @@ namespace Pulumi.Vault.AliCloud
         /// <summary>
         /// Path to the mounted AliCloud auth backend.
         /// Defaults to `alicloud`
+        /// 
+        /// For more details on the usage of each argument consult the [Vault AliCloud API documentation](https://www.vaultproject.io/api-docs/auth/alicloud).
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }

@@ -17,6 +17,7 @@ namespace Pulumi.Vault.Kubernetes
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.IO;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -62,6 +63,7 @@ namespace Pulumi.Vault.Kubernetes
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.IO;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -107,6 +109,7 @@ namespace Pulumi.Vault.Kubernetes
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.IO;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -187,6 +190,8 @@ namespace Pulumi.Vault.Kubernetes
         /// <summary>
         /// Additional labels to apply to all generated Kubernetes 
         /// objects.
+        /// 
+        /// This resource also directly accepts all vault.Mount fields.
         /// </summary>
         [Output("extraLabels")]
         public Output<ImmutableDictionary<string, string>?> ExtraLabels { get; private set; } = null!;
@@ -343,6 +348,8 @@ namespace Pulumi.Vault.Kubernetes
         /// <summary>
         /// Additional labels to apply to all generated Kubernetes 
         /// objects.
+        /// 
+        /// This resource also directly accepts all vault.Mount fields.
         /// </summary>
         public InputMap<string> ExtraLabels
         {
@@ -464,6 +471,8 @@ namespace Pulumi.Vault.Kubernetes
         /// <summary>
         /// Additional labels to apply to all generated Kubernetes 
         /// objects.
+        /// 
+        /// This resource also directly accepts all vault.Mount fields.
         /// </summary>
         public InputMap<string> ExtraLabels
         {

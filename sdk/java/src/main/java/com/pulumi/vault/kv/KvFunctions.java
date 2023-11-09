@@ -39,7 +39,7 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.Secret;
      * import com.pulumi.vault.kv.SecretArgs;
      * import com.pulumi.vault.kv.KvFunctions;
-     * import com.pulumi.vault.generic.inputs.GetSecretArgs;
+     * import com.pulumi.vault.kv.inputs.GetSecretArgs;
      * import static com.pulumi.codegen.internal.Serialization.*;
      * import java.util.List;
      * import java.util.ArrayList;
@@ -98,7 +98,7 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.Secret;
      * import com.pulumi.vault.kv.SecretArgs;
      * import com.pulumi.vault.kv.KvFunctions;
-     * import com.pulumi.vault.generic.inputs.GetSecretArgs;
+     * import com.pulumi.vault.kv.inputs.GetSecretArgs;
      * import static com.pulumi.codegen.internal.Serialization.*;
      * import java.util.List;
      * import java.util.ArrayList;
@@ -157,7 +157,7 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.Secret;
      * import com.pulumi.vault.kv.SecretArgs;
      * import com.pulumi.vault.kv.KvFunctions;
-     * import com.pulumi.vault.generic.inputs.GetSecretArgs;
+     * import com.pulumi.vault.kv.inputs.GetSecretArgs;
      * import static com.pulumi.codegen.internal.Serialization.*;
      * import java.util.List;
      * import java.util.ArrayList;
@@ -216,7 +216,7 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.Secret;
      * import com.pulumi.vault.kv.SecretArgs;
      * import com.pulumi.vault.kv.KvFunctions;
-     * import com.pulumi.vault.generic.inputs.GetSecretArgs;
+     * import com.pulumi.vault.kv.inputs.GetSecretArgs;
      * import static com.pulumi.codegen.internal.Serialization.*;
      * import java.util.List;
      * import java.util.ArrayList;

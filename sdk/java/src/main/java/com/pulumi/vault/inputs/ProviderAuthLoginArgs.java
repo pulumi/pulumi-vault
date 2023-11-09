@@ -5,6 +5,7 @@ package com.pulumi.vault.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -44,6 +45,13 @@ public final class ProviderAuthLoginArgs extends com.pulumi.resources.ResourceAr
         return this.path;
     }
 
+    @Import(name="useRootNamespace")
+    private @Nullable Output<Boolean> useRootNamespace;
+
+    public Optional<Output<Boolean>> useRootNamespace() {
+        return Optional.ofNullable(this.useRootNamespace);
+    }
+
     private ProviderAuthLoginArgs() {}
 
     private ProviderAuthLoginArgs(ProviderAuthLoginArgs $) {
@@ -51,6 +59,7 @@ public final class ProviderAuthLoginArgs extends com.pulumi.resources.ResourceAr
         this.namespace = $.namespace;
         this.parameters = $.parameters;
         this.path = $.path;
+        this.useRootNamespace = $.useRootNamespace;
     }
 
     public static Builder builder() {
@@ -105,6 +114,15 @@ public final class ProviderAuthLoginArgs extends com.pulumi.resources.ResourceAr
 
         public Builder path(String path) {
             return path(Output.of(path));
+        }
+
+        public Builder useRootNamespace(@Nullable Output<Boolean> useRootNamespace) {
+            $.useRootNamespace = useRootNamespace;
+            return this;
+        }
+
+        public Builder useRootNamespace(Boolean useRootNamespace) {
+            return useRootNamespace(Output.of(useRootNamespace));
         }
 
         public ProviderAuthLoginArgs build() {
