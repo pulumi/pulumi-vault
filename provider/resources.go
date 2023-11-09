@@ -19,6 +19,8 @@ import (
 	"path/filepath"
 	"strings"
 	"unicode"
+	// embed is used to store bridge-metadata.json in the compiled binary
+	_ "embed"
 
 	"github.com/hashicorp/terraform-provider-vault/schema"
 	"github.com/hashicorp/terraform-provider-vault/vault"
@@ -131,18 +133,24 @@ func makeResource(mod string, res string) tokens.Type {
 
 func ref[T any](v T) *T { return &v }
 
+//go:embed cmd/pulumi-resource-vault/bridge-metadata.json
+var metadata []byte
+
 // Provider returns additional overlaid schema and metadata associated with the provider.
 func Provider() tfbridge.ProviderInfo {
 	prov := tfbridge.ProviderInfo{
-		P:           shimv2.NewProvider(schema.NewProvider(vault.Provider()).SchemaProvider()),
-		Name:        "vault",
-		DisplayName: "HashiCorp Vault",
-		Description: "A Pulumi package for creating and managing HashiCorp Vault cloud resources.",
-		Keywords:    []string{"pulumi", "vault"},
-		License:     "Apache-2.0",
-		Homepage:    "https://pulumi.io",
-		GitHubOrg:   "hashicorp",
-		Repository:  "https://github.com/pulumi/pulumi-vault",
+		P:            shimv2.NewProvider(schema.NewProvider(vault.Provider()).SchemaProvider()),
+		Name:         "vault",
+		DisplayName:  "HashiCorp Vault",
+		Description:  "A Pulumi package for creating and managing HashiCorp Vault cloud resources.",
+		Keywords:     []string{"pulumi", "vault"},
+		License:      "Apache-2.0",
+		Homepage:     "https://pulumi.io",
+		GitHubOrg:    "hashicorp",
+		Repository:   "https://github.com/pulumi/pulumi-vault",
+		Version:      version.Version,
+		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
+
 		Config: map[string]*tfbridge.SchemaInfo{
 			"skip_tls_verify": {
 				Default: &tfbridge.DefaultInfo{
@@ -504,6 +512,8 @@ func Provider() tfbridge.ProviderInfo {
 			return string(makeResource(module, name)), nil
 		}))
 	prov.SetAutonaming(255, "-")
+
+	prov.MustApplyAutoAliases()
 
 	return prov
 }
