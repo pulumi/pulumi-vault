@@ -139,17 +139,18 @@ var metadata []byte
 // Provider returns additional overlaid schema and metadata associated with the provider.
 func Provider() tfbridge.ProviderInfo {
 	prov := tfbridge.ProviderInfo{
-		P:            shimv2.NewProvider(schema.NewProvider(vault.Provider()).SchemaProvider()),
-		Name:         "vault",
-		DisplayName:  "HashiCorp Vault",
-		Description:  "A Pulumi package for creating and managing HashiCorp Vault cloud resources.",
-		Keywords:     []string{"pulumi", "vault"},
-		License:      "Apache-2.0",
-		Homepage:     "https://pulumi.io",
-		GitHubOrg:    "hashicorp",
-		Repository:   "https://github.com/pulumi/pulumi-vault",
-		Version:      version.Version,
-		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
+		P:                shimv2.NewProvider(schema.NewProvider(vault.Provider()).SchemaProvider()),
+		Name:             "vault",
+		DisplayName:      "HashiCorp Vault",
+		Description:      "A Pulumi package for creating and managing HashiCorp Vault cloud resources.",
+		Keywords:         []string{"pulumi", "vault"},
+		License:          "Apache-2.0",
+		Homepage:         "https://pulumi.io",
+		GitHubOrg:        "hashicorp",
+		Repository:       "https://github.com/pulumi/pulumi-vault",
+		Version:          version.Version,
+		MetadataInfo:     tfbridge.NewProviderMetadata(metadata),
+		UpstreamRepoPath: "./upstream",
 
 		Config: map[string]*tfbridge.SchemaInfo{
 			"skip_tls_verify": {

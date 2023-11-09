@@ -285,5 +285,5 @@ require (
 replace (
 	github.com/hashicorp/go-getter => github.com/hashicorp/go-getter v1.4.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20230912190043-e6d96b3b8f7e
-	github.com/hashicorp/terraform-provider-vault => github.com/pulumi/terraform-provider-vault v1.9.1-0.20231108235540-710122092170
+	github.com/hashicorp/terraform-provider-vault => ../upstream
 )
