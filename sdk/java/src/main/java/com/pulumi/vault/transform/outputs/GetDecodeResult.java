@@ -22,6 +22,7 @@ public final class GetDecodeResult {
      * 
      */
     private String id;
+    private @Nullable String namespace;
     private String path;
     private String roleName;
     private @Nullable String transformation;
@@ -44,6 +45,9 @@ public final class GetDecodeResult {
      */
     public String id() {
         return this.id;
+    }
+    public Optional<String> namespace() {
+        return Optional.ofNullable(this.namespace);
     }
     public String path() {
         return this.path;
@@ -74,6 +78,7 @@ public final class GetDecodeResult {
         private List<Map<String,Object>> batchResults;
         private String decodedValue;
         private String id;
+        private @Nullable String namespace;
         private String path;
         private String roleName;
         private @Nullable String transformation;
@@ -86,6 +91,7 @@ public final class GetDecodeResult {
     	      this.batchResults = defaults.batchResults;
     	      this.decodedValue = defaults.decodedValue;
     	      this.id = defaults.id;
+    	      this.namespace = defaults.namespace;
     	      this.path = defaults.path;
     	      this.roleName = defaults.roleName;
     	      this.transformation = defaults.transformation;
@@ -111,6 +117,11 @@ public final class GetDecodeResult {
         @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder namespace(@Nullable String namespace) {
+            this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
@@ -144,6 +155,7 @@ public final class GetDecodeResult {
             o.batchResults = batchResults;
             o.decodedValue = decodedValue;
             o.id = id;
+            o.namespace = namespace;
             o.path = path;
             o.roleName = roleName;
             o.transformation = transformation;

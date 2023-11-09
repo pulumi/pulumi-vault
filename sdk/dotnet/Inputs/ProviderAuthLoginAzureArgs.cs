@@ -39,6 +39,9 @@ namespace Pulumi.Vault.Inputs
         [Input("tenantId")]
         public Input<string>? TenantId { get; set; }
 
+        [Input("useRootNamespace")]
+        public Input<bool>? UseRootNamespace { get; set; }
+
         [Input("vmName")]
         public Input<string>? VmName { get; set; }
 

@@ -4,6 +4,7 @@
 package com.pulumi.vault.config.inputs;
 
 import com.pulumi.core.annotations.CustomType;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -13,6 +14,7 @@ import javax.annotation.Nullable;
 public final class AuthLoginTokenFile {
     private String filename;
     private @Nullable String namespace;
+    private @Nullable Boolean useRootNamespace;
 
     private AuthLoginTokenFile() {}
     public String filename() {
@@ -20,6 +22,9 @@ public final class AuthLoginTokenFile {
     }
     public Optional<String> namespace() {
         return Optional.ofNullable(this.namespace);
+    }
+    public Optional<Boolean> useRootNamespace() {
+        return Optional.ofNullable(this.useRootNamespace);
     }
 
     public static Builder builder() {
@@ -33,11 +38,13 @@ public final class AuthLoginTokenFile {
     public static final class Builder {
         private String filename;
         private @Nullable String namespace;
+        private @Nullable Boolean useRootNamespace;
         public Builder() {}
         public Builder(AuthLoginTokenFile defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.filename = defaults.filename;
     	      this.namespace = defaults.namespace;
+    	      this.useRootNamespace = defaults.useRootNamespace;
         }
 
         @CustomType.Setter
@@ -50,10 +57,16 @@ public final class AuthLoginTokenFile {
             this.namespace = namespace;
             return this;
         }
+        @CustomType.Setter
+        public Builder useRootNamespace(@Nullable Boolean useRootNamespace) {
+            this.useRootNamespace = useRootNamespace;
+            return this;
+        }
         public AuthLoginTokenFile build() {
             final var o = new AuthLoginTokenFile();
             o.filename = filename;
             o.namespace = namespace;
+            o.useRootNamespace = useRootNamespace;
             return o;
         }
     }

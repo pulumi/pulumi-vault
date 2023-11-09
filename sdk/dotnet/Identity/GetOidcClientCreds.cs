@@ -143,6 +143,7 @@ namespace Pulumi.Vault.Identity
         public readonly string ClientId;
         /// <summary>
         /// The Client Secret Key returned by Vault.
+        /// For public OpenID Clients `client_secret` is set to an empty string `""`
         /// </summary>
         public readonly string ClientSecret;
         /// <summary>

@@ -69,6 +69,7 @@ type GetOidcClientCredsResult struct {
 	// The Client ID returned by Vault.
 	ClientId string `pulumi:"clientId"`
 	// The Client Secret Key returned by Vault.
+	// For public OpenID Clients `clientSecret` is set to an empty string `""`
 	ClientSecret string `pulumi:"clientSecret"`
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
@@ -125,6 +126,7 @@ func (o GetOidcClientCredsResultOutput) ClientId() pulumi.StringOutput {
 }
 
 // The Client Secret Key returned by Vault.
+// For public OpenID Clients `clientSecret` is set to an empty string `""`
 func (o GetOidcClientCredsResultOutput) ClientSecret() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOidcClientCredsResult) string { return v.ClientSecret }).(pulumi.StringOutput)
 }

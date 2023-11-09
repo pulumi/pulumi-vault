@@ -372,6 +372,23 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the
+     * token namespace as the root namespace for all resources.
+     * 
+     */
+    @Import(name="setNamespaceFromToken", json=true)
+    private @Nullable Output<Boolean> setNamespaceFromToken;
+
+    /**
+     * @return In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the
+     * token namespace as the root namespace for all resources.
+     * 
+     */
+    public Optional<Output<Boolean>> setNamespaceFromToken() {
+        return Optional.ofNullable(this.setNamespaceFromToken);
+    }
+
+    /**
      * Set this to true to prevent the creation of ephemeral child token used by this provider.
      * 
      */
@@ -501,6 +518,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         this.maxRetries = $.maxRetries;
         this.maxRetriesCcc = $.maxRetriesCcc;
         this.namespace = $.namespace;
+        this.setNamespaceFromToken = $.setNamespaceFromToken;
         this.skipChildToken = $.skipChildToken;
         this.skipGetVaultVersion = $.skipGetVaultVersion;
         this.skipTlsVerify = $.skipTlsVerify;
@@ -1006,6 +1024,29 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder namespace(String namespace) {
             return namespace(Output.of(namespace));
+        }
+
+        /**
+         * @param setNamespaceFromToken In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the
+         * token namespace as the root namespace for all resources.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder setNamespaceFromToken(@Nullable Output<Boolean> setNamespaceFromToken) {
+            $.setNamespaceFromToken = setNamespaceFromToken;
+            return this;
+        }
+
+        /**
+         * @param setNamespaceFromToken In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the
+         * token namespace as the root namespace for all resources.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder setNamespaceFromToken(Boolean setNamespaceFromToken) {
+            return setNamespaceFromToken(Output.of(setNamespaceFromToken));
         }
 
         /**

@@ -25,7 +25,7 @@ import (
 //
 //	"io/ioutil"
 //
-//	"github.com/pulumi/pulumi-gcp/sdk/v5/go/gcp/serviceAccount"
+//	"github.com/pulumi/pulumi-gcp/sdk/v6/go/gcp/serviceAccount"
 //	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/gcp"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //

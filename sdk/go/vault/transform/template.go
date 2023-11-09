@@ -24,6 +24,11 @@ type Template struct {
 	EncodeFormat pulumi.StringPtrOutput `pulumi:"encodeFormat"`
 	// The name of the template.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringOutput `pulumi:"path"`
 	// The pattern used for matching. Currently, only regular expression pattern is supported.
@@ -74,6 +79,11 @@ type templateState struct {
 	EncodeFormat *string `pulumi:"encodeFormat"`
 	// The name of the template.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Path to where the back-end is mounted within Vault.
 	Path *string `pulumi:"path"`
 	// The pattern used for matching. Currently, only regular expression pattern is supported.
@@ -93,6 +103,11 @@ type TemplateState struct {
 	EncodeFormat pulumi.StringPtrInput
 	// The name of the template.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringPtrInput
 	// The pattern used for matching. Currently, only regular expression pattern is supported.
@@ -116,6 +131,11 @@ type templateArgs struct {
 	EncodeFormat *string `pulumi:"encodeFormat"`
 	// The name of the template.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Path to where the back-end is mounted within Vault.
 	Path string `pulumi:"path"`
 	// The pattern used for matching. Currently, only regular expression pattern is supported.
@@ -136,6 +156,11 @@ type TemplateArgs struct {
 	EncodeFormat pulumi.StringPtrInput
 	// The name of the template.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringInput
 	// The pattern used for matching. Currently, only regular expression pattern is supported.
@@ -251,6 +276,14 @@ func (o TemplateOutput) EncodeFormat() pulumi.StringPtrOutput {
 // The name of the template.
 func (o TemplateOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Template) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o TemplateOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Template) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Path to where the back-end is mounted within Vault.

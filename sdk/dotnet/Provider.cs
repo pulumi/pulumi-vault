@@ -239,6 +239,13 @@ namespace Pulumi.Vault
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
+        /// In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the
+        /// token namespace as the root namespace for all resources.
+        /// </summary>
+        [Input("setNamespaceFromToken", json: true)]
+        public Input<bool>? SetNamespaceFromToken { get; set; }
+
+        /// <summary>
         /// Set this to true to prevent the creation of ephemeral child token used by this provider.
         /// </summary>
         [Input("skipChildToken", json: true)]

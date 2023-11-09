@@ -58,6 +58,13 @@ namespace Pulumi.Vault
     public partial class Namespace : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Custom metadata describing this namespace. Value type
+        /// is `map[string]string`. Requires Vault version 1.12+.
+        /// </summary>
+        [Output("customMetadata")]
+        public Output<ImmutableDictionary<string, object>> CustomMetadata { get; private set; } = null!;
+
+        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -131,6 +138,19 @@ namespace Pulumi.Vault
 
     public sealed class NamespaceArgs : global::Pulumi.ResourceArgs
     {
+        [Input("customMetadata")]
+        private InputMap<object>? _customMetadata;
+
+        /// <summary>
+        /// Custom metadata describing this namespace. Value type
+        /// is `map[string]string`. Requires Vault version 1.12+.
+        /// </summary>
+        public InputMap<object> CustomMetadata
+        {
+            get => _customMetadata ?? (_customMetadata = new InputMap<object>());
+            set => _customMetadata = value;
+        }
+
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
@@ -161,6 +181,19 @@ namespace Pulumi.Vault
 
     public sealed class NamespaceState : global::Pulumi.ResourceArgs
     {
+        [Input("customMetadata")]
+        private InputMap<object>? _customMetadata;
+
+        /// <summary>
+        /// Custom metadata describing this namespace. Value type
+        /// is `map[string]string`. Requires Vault version 1.12+.
+        /// </summary>
+        public InputMap<object> CustomMetadata
+        {
+            get => _customMetadata ?? (_customMetadata = new InputMap<object>());
+            set => _customMetadata = value;
+        }
+
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.

@@ -51,6 +51,7 @@ class GetOidcClientCredsResult:
     def client_secret(self) -> str:
         """
         The Client Secret Key returned by Vault.
+        For public OpenID Clients `client_secret` is set to an empty string `""`
         """
         return pulumi.get(self, "client_secret")
 

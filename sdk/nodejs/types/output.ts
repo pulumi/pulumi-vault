@@ -127,6 +127,7 @@ export namespace config {
         namespace?: string;
         parameters?: {[key: string]: string};
         path: string;
+        useRootNamespace?: boolean;
     }
 
     export interface AuthLoginAws {
@@ -145,6 +146,7 @@ export namespace config {
         mount?: string;
         namespace?: string;
         role: string;
+        useRootNamespace?: boolean;
     }
 
     export interface AuthLoginAzure {
@@ -157,6 +159,7 @@ export namespace config {
         scope?: string;
         subscriptionId: string;
         tenantId?: string;
+        useRootNamespace?: boolean;
         vmName?: string;
         vmssName?: string;
     }
@@ -167,6 +170,7 @@ export namespace config {
         mount?: string;
         name?: string;
         namespace?: string;
+        useRootNamespace?: boolean;
     }
 
     export interface AuthLoginGcp {
@@ -176,6 +180,7 @@ export namespace config {
         namespace?: string;
         role: string;
         serviceAccount?: string;
+        useRootNamespace?: boolean;
     }
 
     export interface AuthLoginJwt {
@@ -183,6 +188,7 @@ export namespace config {
         mount?: string;
         namespace?: string;
         role: string;
+        useRootNamespace?: boolean;
     }
 
     export interface AuthLoginKerberos {
@@ -195,6 +201,7 @@ export namespace config {
         removeInstanceName?: boolean;
         service?: string;
         token?: string;
+        useRootNamespace?: boolean;
         username?: string;
     }
 
@@ -203,6 +210,7 @@ export namespace config {
         mount?: string;
         namespace?: string;
         role: string;
+        useRootNamespace?: boolean;
     }
 
     export interface AuthLoginOidc {
@@ -211,18 +219,21 @@ export namespace config {
         mount?: string;
         namespace?: string;
         role: string;
+        useRootNamespace?: boolean;
     }
 
     export interface AuthLoginRadius {
         mount?: string;
         namespace?: string;
         password: string;
+        useRootNamespace?: boolean;
         username: string;
     }
 
     export interface AuthLoginTokenFile {
         filename: string;
         namespace?: string;
+        useRootNamespace?: boolean;
     }
 
     export interface AuthLoginUserpass {
@@ -230,6 +241,7 @@ export namespace config {
         namespace?: string;
         password?: string;
         passwordFile?: string;
+        useRootNamespace?: boolean;
         username: string;
     }
 

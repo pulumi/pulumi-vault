@@ -21,6 +21,9 @@ namespace Pulumi.Vault.Inputs
         [Input("password", required: true)]
         public Input<string> Password { get; set; } = null!;
 
+        [Input("useRootNamespace")]
+        public Input<bool>? UseRootNamespace { get; set; }
+
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
 

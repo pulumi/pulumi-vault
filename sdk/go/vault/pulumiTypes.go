@@ -321,10 +321,11 @@ func (o AuthBackendTunePtrOutput) TokenType() pulumi.StringPtrOutput {
 }
 
 type ProviderAuthLogin struct {
-	Method     *string           `pulumi:"method"`
-	Namespace  *string           `pulumi:"namespace"`
-	Parameters map[string]string `pulumi:"parameters"`
-	Path       string            `pulumi:"path"`
+	Method           *string           `pulumi:"method"`
+	Namespace        *string           `pulumi:"namespace"`
+	Parameters       map[string]string `pulumi:"parameters"`
+	Path             string            `pulumi:"path"`
+	UseRootNamespace *bool             `pulumi:"useRootNamespace"`
 }
 
 // ProviderAuthLoginInput is an input type that accepts ProviderAuthLoginArgs and ProviderAuthLoginOutput values.
@@ -339,10 +340,11 @@ type ProviderAuthLoginInput interface {
 }
 
 type ProviderAuthLoginArgs struct {
-	Method     pulumi.StringPtrInput `pulumi:"method"`
-	Namespace  pulumi.StringPtrInput `pulumi:"namespace"`
-	Parameters pulumi.StringMapInput `pulumi:"parameters"`
-	Path       pulumi.StringInput    `pulumi:"path"`
+	Method           pulumi.StringPtrInput `pulumi:"method"`
+	Namespace        pulumi.StringPtrInput `pulumi:"namespace"`
+	Parameters       pulumi.StringMapInput `pulumi:"parameters"`
+	Path             pulumi.StringInput    `pulumi:"path"`
+	UseRootNamespace pulumi.BoolPtrInput   `pulumi:"useRootNamespace"`
 }
 
 func (ProviderAuthLoginArgs) ElementType() reflect.Type {
@@ -438,6 +440,10 @@ func (o ProviderAuthLoginOutput) Path() pulumi.StringOutput {
 	return o.ApplyT(func(v ProviderAuthLogin) string { return v.Path }).(pulumi.StringOutput)
 }
 
+func (o ProviderAuthLoginOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLogin) *bool { return v.UseRootNamespace }).(pulumi.BoolPtrOutput)
+}
+
 type ProviderAuthLoginPtrOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginPtrOutput) ElementType() reflect.Type {
@@ -498,6 +504,15 @@ func (o ProviderAuthLoginPtrOutput) Path() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginPtrOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProviderAuthLogin) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseRootNamespace
+	}).(pulumi.BoolPtrOutput)
+}
+
 type ProviderAuthLoginAws struct {
 	AwsAccessKeyId           *string `pulumi:"awsAccessKeyId"`
 	AwsIamEndpoint           *string `pulumi:"awsIamEndpoint"`
@@ -514,6 +529,7 @@ type ProviderAuthLoginAws struct {
 	Mount                    *string `pulumi:"mount"`
 	Namespace                *string `pulumi:"namespace"`
 	Role                     string  `pulumi:"role"`
+	UseRootNamespace         *bool   `pulumi:"useRootNamespace"`
 }
 
 // ProviderAuthLoginAwsInput is an input type that accepts ProviderAuthLoginAwsArgs and ProviderAuthLoginAwsOutput values.
@@ -543,6 +559,7 @@ type ProviderAuthLoginAwsArgs struct {
 	Mount                    pulumi.StringPtrInput `pulumi:"mount"`
 	Namespace                pulumi.StringPtrInput `pulumi:"namespace"`
 	Role                     pulumi.StringInput    `pulumi:"role"`
+	UseRootNamespace         pulumi.BoolPtrInput   `pulumi:"useRootNamespace"`
 }
 
 func (ProviderAuthLoginAwsArgs) ElementType() reflect.Type {
@@ -680,6 +697,10 @@ func (o ProviderAuthLoginAwsOutput) Namespace() pulumi.StringPtrOutput {
 
 func (o ProviderAuthLoginAwsOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v ProviderAuthLoginAws) string { return v.Role }).(pulumi.StringOutput)
+}
+
+func (o ProviderAuthLoginAwsOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLoginAws) *bool { return v.UseRootNamespace }).(pulumi.BoolPtrOutput)
 }
 
 type ProviderAuthLoginAwsPtrOutput struct{ *pulumi.OutputState }
@@ -841,6 +862,15 @@ func (o ProviderAuthLoginAwsPtrOutput) Role() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginAwsPtrOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProviderAuthLoginAws) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseRootNamespace
+	}).(pulumi.BoolPtrOutput)
+}
+
 type ProviderAuthLoginAzure struct {
 	ClientId          *string `pulumi:"clientId"`
 	Jwt               *string `pulumi:"jwt"`
@@ -851,6 +881,7 @@ type ProviderAuthLoginAzure struct {
 	Scope             *string `pulumi:"scope"`
 	SubscriptionId    string  `pulumi:"subscriptionId"`
 	TenantId          *string `pulumi:"tenantId"`
+	UseRootNamespace  *bool   `pulumi:"useRootNamespace"`
 	VmName            *string `pulumi:"vmName"`
 	VmssName          *string `pulumi:"vmssName"`
 }
@@ -876,6 +907,7 @@ type ProviderAuthLoginAzureArgs struct {
 	Scope             pulumi.StringPtrInput `pulumi:"scope"`
 	SubscriptionId    pulumi.StringInput    `pulumi:"subscriptionId"`
 	TenantId          pulumi.StringPtrInput `pulumi:"tenantId"`
+	UseRootNamespace  pulumi.BoolPtrInput   `pulumi:"useRootNamespace"`
 	VmName            pulumi.StringPtrInput `pulumi:"vmName"`
 	VmssName          pulumi.StringPtrInput `pulumi:"vmssName"`
 }
@@ -993,6 +1025,10 @@ func (o ProviderAuthLoginAzureOutput) TenantId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProviderAuthLoginAzure) *string { return v.TenantId }).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginAzureOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLoginAzure) *bool { return v.UseRootNamespace }).(pulumi.BoolPtrOutput)
+}
+
 func (o ProviderAuthLoginAzureOutput) VmName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProviderAuthLoginAzure) *string { return v.VmName }).(pulumi.StringPtrOutput)
 }
@@ -1106,6 +1142,15 @@ func (o ProviderAuthLoginAzurePtrOutput) TenantId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginAzurePtrOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProviderAuthLoginAzure) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseRootNamespace
+	}).(pulumi.BoolPtrOutput)
+}
+
 func (o ProviderAuthLoginAzurePtrOutput) VmName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProviderAuthLoginAzure) *string {
 		if v == nil {
@@ -1125,11 +1170,12 @@ func (o ProviderAuthLoginAzurePtrOutput) VmssName() pulumi.StringPtrOutput {
 }
 
 type ProviderAuthLoginCert struct {
-	CertFile  string  `pulumi:"certFile"`
-	KeyFile   string  `pulumi:"keyFile"`
-	Mount     *string `pulumi:"mount"`
-	Name      *string `pulumi:"name"`
-	Namespace *string `pulumi:"namespace"`
+	CertFile         string  `pulumi:"certFile"`
+	KeyFile          string  `pulumi:"keyFile"`
+	Mount            *string `pulumi:"mount"`
+	Name             *string `pulumi:"name"`
+	Namespace        *string `pulumi:"namespace"`
+	UseRootNamespace *bool   `pulumi:"useRootNamespace"`
 }
 
 // ProviderAuthLoginCertInput is an input type that accepts ProviderAuthLoginCertArgs and ProviderAuthLoginCertOutput values.
@@ -1144,11 +1190,12 @@ type ProviderAuthLoginCertInput interface {
 }
 
 type ProviderAuthLoginCertArgs struct {
-	CertFile  pulumi.StringInput    `pulumi:"certFile"`
-	KeyFile   pulumi.StringInput    `pulumi:"keyFile"`
-	Mount     pulumi.StringPtrInput `pulumi:"mount"`
-	Name      pulumi.StringPtrInput `pulumi:"name"`
-	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
+	CertFile         pulumi.StringInput    `pulumi:"certFile"`
+	KeyFile          pulumi.StringInput    `pulumi:"keyFile"`
+	Mount            pulumi.StringPtrInput `pulumi:"mount"`
+	Name             pulumi.StringPtrInput `pulumi:"name"`
+	Namespace        pulumi.StringPtrInput `pulumi:"namespace"`
+	UseRootNamespace pulumi.BoolPtrInput   `pulumi:"useRootNamespace"`
 }
 
 func (ProviderAuthLoginCertArgs) ElementType() reflect.Type {
@@ -1248,6 +1295,10 @@ func (o ProviderAuthLoginCertOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProviderAuthLoginCert) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginCertOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLoginCert) *bool { return v.UseRootNamespace }).(pulumi.BoolPtrOutput)
+}
+
 type ProviderAuthLoginCertPtrOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginCertPtrOutput) ElementType() reflect.Type {
@@ -1317,13 +1368,23 @@ func (o ProviderAuthLoginCertPtrOutput) Namespace() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginCertPtrOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProviderAuthLoginCert) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseRootNamespace
+	}).(pulumi.BoolPtrOutput)
+}
+
 type ProviderAuthLoginGcp struct {
-	Credentials    *string `pulumi:"credentials"`
-	Jwt            *string `pulumi:"jwt"`
-	Mount          *string `pulumi:"mount"`
-	Namespace      *string `pulumi:"namespace"`
-	Role           string  `pulumi:"role"`
-	ServiceAccount *string `pulumi:"serviceAccount"`
+	Credentials      *string `pulumi:"credentials"`
+	Jwt              *string `pulumi:"jwt"`
+	Mount            *string `pulumi:"mount"`
+	Namespace        *string `pulumi:"namespace"`
+	Role             string  `pulumi:"role"`
+	ServiceAccount   *string `pulumi:"serviceAccount"`
+	UseRootNamespace *bool   `pulumi:"useRootNamespace"`
 }
 
 // ProviderAuthLoginGcpInput is an input type that accepts ProviderAuthLoginGcpArgs and ProviderAuthLoginGcpOutput values.
@@ -1338,12 +1399,13 @@ type ProviderAuthLoginGcpInput interface {
 }
 
 type ProviderAuthLoginGcpArgs struct {
-	Credentials    pulumi.StringPtrInput `pulumi:"credentials"`
-	Jwt            pulumi.StringPtrInput `pulumi:"jwt"`
-	Mount          pulumi.StringPtrInput `pulumi:"mount"`
-	Namespace      pulumi.StringPtrInput `pulumi:"namespace"`
-	Role           pulumi.StringInput    `pulumi:"role"`
-	ServiceAccount pulumi.StringPtrInput `pulumi:"serviceAccount"`
+	Credentials      pulumi.StringPtrInput `pulumi:"credentials"`
+	Jwt              pulumi.StringPtrInput `pulumi:"jwt"`
+	Mount            pulumi.StringPtrInput `pulumi:"mount"`
+	Namespace        pulumi.StringPtrInput `pulumi:"namespace"`
+	Role             pulumi.StringInput    `pulumi:"role"`
+	ServiceAccount   pulumi.StringPtrInput `pulumi:"serviceAccount"`
+	UseRootNamespace pulumi.BoolPtrInput   `pulumi:"useRootNamespace"`
 }
 
 func (ProviderAuthLoginGcpArgs) ElementType() reflect.Type {
@@ -1447,6 +1509,10 @@ func (o ProviderAuthLoginGcpOutput) ServiceAccount() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProviderAuthLoginGcp) *string { return v.ServiceAccount }).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginGcpOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLoginGcp) *bool { return v.UseRootNamespace }).(pulumi.BoolPtrOutput)
+}
+
 type ProviderAuthLoginGcpPtrOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginGcpPtrOutput) ElementType() reflect.Type {
@@ -1525,11 +1591,21 @@ func (o ProviderAuthLoginGcpPtrOutput) ServiceAccount() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginGcpPtrOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProviderAuthLoginGcp) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseRootNamespace
+	}).(pulumi.BoolPtrOutput)
+}
+
 type ProviderAuthLoginJwt struct {
-	Jwt       string  `pulumi:"jwt"`
-	Mount     *string `pulumi:"mount"`
-	Namespace *string `pulumi:"namespace"`
-	Role      string  `pulumi:"role"`
+	Jwt              string  `pulumi:"jwt"`
+	Mount            *string `pulumi:"mount"`
+	Namespace        *string `pulumi:"namespace"`
+	Role             string  `pulumi:"role"`
+	UseRootNamespace *bool   `pulumi:"useRootNamespace"`
 }
 
 // ProviderAuthLoginJwtInput is an input type that accepts ProviderAuthLoginJwtArgs and ProviderAuthLoginJwtOutput values.
@@ -1544,10 +1620,11 @@ type ProviderAuthLoginJwtInput interface {
 }
 
 type ProviderAuthLoginJwtArgs struct {
-	Jwt       pulumi.StringInput    `pulumi:"jwt"`
-	Mount     pulumi.StringPtrInput `pulumi:"mount"`
-	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
-	Role      pulumi.StringInput    `pulumi:"role"`
+	Jwt              pulumi.StringInput    `pulumi:"jwt"`
+	Mount            pulumi.StringPtrInput `pulumi:"mount"`
+	Namespace        pulumi.StringPtrInput `pulumi:"namespace"`
+	Role             pulumi.StringInput    `pulumi:"role"`
+	UseRootNamespace pulumi.BoolPtrInput   `pulumi:"useRootNamespace"`
 }
 
 func (ProviderAuthLoginJwtArgs) ElementType() reflect.Type {
@@ -1643,6 +1720,10 @@ func (o ProviderAuthLoginJwtOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v ProviderAuthLoginJwt) string { return v.Role }).(pulumi.StringOutput)
 }
 
+func (o ProviderAuthLoginJwtOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLoginJwt) *bool { return v.UseRootNamespace }).(pulumi.BoolPtrOutput)
+}
+
 type ProviderAuthLoginJwtPtrOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginJwtPtrOutput) ElementType() reflect.Type {
@@ -1703,6 +1784,15 @@ func (o ProviderAuthLoginJwtPtrOutput) Role() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginJwtPtrOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProviderAuthLoginJwt) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseRootNamespace
+	}).(pulumi.BoolPtrOutput)
+}
+
 type ProviderAuthLoginKerberos struct {
 	DisableFastNegotiation *bool   `pulumi:"disableFastNegotiation"`
 	KeytabPath             *string `pulumi:"keytabPath"`
@@ -1713,6 +1803,7 @@ type ProviderAuthLoginKerberos struct {
 	RemoveInstanceName     *bool   `pulumi:"removeInstanceName"`
 	Service                *string `pulumi:"service"`
 	Token                  *string `pulumi:"token"`
+	UseRootNamespace       *bool   `pulumi:"useRootNamespace"`
 	Username               *string `pulumi:"username"`
 }
 
@@ -1737,6 +1828,7 @@ type ProviderAuthLoginKerberosArgs struct {
 	RemoveInstanceName     pulumi.BoolPtrInput   `pulumi:"removeInstanceName"`
 	Service                pulumi.StringPtrInput `pulumi:"service"`
 	Token                  pulumi.StringPtrInput `pulumi:"token"`
+	UseRootNamespace       pulumi.BoolPtrInput   `pulumi:"useRootNamespace"`
 	Username               pulumi.StringPtrInput `pulumi:"username"`
 }
 
@@ -1853,6 +1945,10 @@ func (o ProviderAuthLoginKerberosOutput) Token() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProviderAuthLoginKerberos) *string { return v.Token }).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginKerberosOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLoginKerberos) *bool { return v.UseRootNamespace }).(pulumi.BoolPtrOutput)
+}
+
 func (o ProviderAuthLoginKerberosOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProviderAuthLoginKerberos) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
@@ -1962,6 +2058,15 @@ func (o ProviderAuthLoginKerberosPtrOutput) Token() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginKerberosPtrOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProviderAuthLoginKerberos) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseRootNamespace
+	}).(pulumi.BoolPtrOutput)
+}
+
 func (o ProviderAuthLoginKerberosPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProviderAuthLoginKerberos) *string {
 		if v == nil {
@@ -1972,10 +2077,11 @@ func (o ProviderAuthLoginKerberosPtrOutput) Username() pulumi.StringPtrOutput {
 }
 
 type ProviderAuthLoginOci struct {
-	AuthType  string  `pulumi:"authType"`
-	Mount     *string `pulumi:"mount"`
-	Namespace *string `pulumi:"namespace"`
-	Role      string  `pulumi:"role"`
+	AuthType         string  `pulumi:"authType"`
+	Mount            *string `pulumi:"mount"`
+	Namespace        *string `pulumi:"namespace"`
+	Role             string  `pulumi:"role"`
+	UseRootNamespace *bool   `pulumi:"useRootNamespace"`
 }
 
 // ProviderAuthLoginOciInput is an input type that accepts ProviderAuthLoginOciArgs and ProviderAuthLoginOciOutput values.
@@ -1990,10 +2096,11 @@ type ProviderAuthLoginOciInput interface {
 }
 
 type ProviderAuthLoginOciArgs struct {
-	AuthType  pulumi.StringInput    `pulumi:"authType"`
-	Mount     pulumi.StringPtrInput `pulumi:"mount"`
-	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
-	Role      pulumi.StringInput    `pulumi:"role"`
+	AuthType         pulumi.StringInput    `pulumi:"authType"`
+	Mount            pulumi.StringPtrInput `pulumi:"mount"`
+	Namespace        pulumi.StringPtrInput `pulumi:"namespace"`
+	Role             pulumi.StringInput    `pulumi:"role"`
+	UseRootNamespace pulumi.BoolPtrInput   `pulumi:"useRootNamespace"`
 }
 
 func (ProviderAuthLoginOciArgs) ElementType() reflect.Type {
@@ -2089,6 +2196,10 @@ func (o ProviderAuthLoginOciOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v ProviderAuthLoginOci) string { return v.Role }).(pulumi.StringOutput)
 }
 
+func (o ProviderAuthLoginOciOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLoginOci) *bool { return v.UseRootNamespace }).(pulumi.BoolPtrOutput)
+}
+
 type ProviderAuthLoginOciPtrOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginOciPtrOutput) ElementType() reflect.Type {
@@ -2149,12 +2260,22 @@ func (o ProviderAuthLoginOciPtrOutput) Role() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginOciPtrOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProviderAuthLoginOci) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseRootNamespace
+	}).(pulumi.BoolPtrOutput)
+}
+
 type ProviderAuthLoginOidc struct {
 	CallbackAddress         *string `pulumi:"callbackAddress"`
 	CallbackListenerAddress *string `pulumi:"callbackListenerAddress"`
 	Mount                   *string `pulumi:"mount"`
 	Namespace               *string `pulumi:"namespace"`
 	Role                    string  `pulumi:"role"`
+	UseRootNamespace        *bool   `pulumi:"useRootNamespace"`
 }
 
 // ProviderAuthLoginOidcInput is an input type that accepts ProviderAuthLoginOidcArgs and ProviderAuthLoginOidcOutput values.
@@ -2174,6 +2295,7 @@ type ProviderAuthLoginOidcArgs struct {
 	Mount                   pulumi.StringPtrInput `pulumi:"mount"`
 	Namespace               pulumi.StringPtrInput `pulumi:"namespace"`
 	Role                    pulumi.StringInput    `pulumi:"role"`
+	UseRootNamespace        pulumi.BoolPtrInput   `pulumi:"useRootNamespace"`
 }
 
 func (ProviderAuthLoginOidcArgs) ElementType() reflect.Type {
@@ -2273,6 +2395,10 @@ func (o ProviderAuthLoginOidcOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v ProviderAuthLoginOidc) string { return v.Role }).(pulumi.StringOutput)
 }
 
+func (o ProviderAuthLoginOidcOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLoginOidc) *bool { return v.UseRootNamespace }).(pulumi.BoolPtrOutput)
+}
+
 type ProviderAuthLoginOidcPtrOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginOidcPtrOutput) ElementType() reflect.Type {
@@ -2342,11 +2468,21 @@ func (o ProviderAuthLoginOidcPtrOutput) Role() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginOidcPtrOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProviderAuthLoginOidc) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseRootNamespace
+	}).(pulumi.BoolPtrOutput)
+}
+
 type ProviderAuthLoginRadius struct {
-	Mount     *string `pulumi:"mount"`
-	Namespace *string `pulumi:"namespace"`
-	Password  string  `pulumi:"password"`
-	Username  string  `pulumi:"username"`
+	Mount            *string `pulumi:"mount"`
+	Namespace        *string `pulumi:"namespace"`
+	Password         string  `pulumi:"password"`
+	UseRootNamespace *bool   `pulumi:"useRootNamespace"`
+	Username         string  `pulumi:"username"`
 }
 
 // ProviderAuthLoginRadiusInput is an input type that accepts ProviderAuthLoginRadiusArgs and ProviderAuthLoginRadiusOutput values.
@@ -2361,10 +2497,11 @@ type ProviderAuthLoginRadiusInput interface {
 }
 
 type ProviderAuthLoginRadiusArgs struct {
-	Mount     pulumi.StringPtrInput `pulumi:"mount"`
-	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
-	Password  pulumi.StringInput    `pulumi:"password"`
-	Username  pulumi.StringInput    `pulumi:"username"`
+	Mount            pulumi.StringPtrInput `pulumi:"mount"`
+	Namespace        pulumi.StringPtrInput `pulumi:"namespace"`
+	Password         pulumi.StringInput    `pulumi:"password"`
+	UseRootNamespace pulumi.BoolPtrInput   `pulumi:"useRootNamespace"`
+	Username         pulumi.StringInput    `pulumi:"username"`
 }
 
 func (ProviderAuthLoginRadiusArgs) ElementType() reflect.Type {
@@ -2456,6 +2593,10 @@ func (o ProviderAuthLoginRadiusOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v ProviderAuthLoginRadius) string { return v.Password }).(pulumi.StringOutput)
 }
 
+func (o ProviderAuthLoginRadiusOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLoginRadius) *bool { return v.UseRootNamespace }).(pulumi.BoolPtrOutput)
+}
+
 func (o ProviderAuthLoginRadiusOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v ProviderAuthLoginRadius) string { return v.Username }).(pulumi.StringOutput)
 }
@@ -2511,6 +2652,15 @@ func (o ProviderAuthLoginRadiusPtrOutput) Password() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginRadiusPtrOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProviderAuthLoginRadius) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseRootNamespace
+	}).(pulumi.BoolPtrOutput)
+}
+
 func (o ProviderAuthLoginRadiusPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProviderAuthLoginRadius) *string {
 		if v == nil {
@@ -2521,8 +2671,9 @@ func (o ProviderAuthLoginRadiusPtrOutput) Username() pulumi.StringPtrOutput {
 }
 
 type ProviderAuthLoginTokenFile struct {
-	Filename  string  `pulumi:"filename"`
-	Namespace *string `pulumi:"namespace"`
+	Filename         string  `pulumi:"filename"`
+	Namespace        *string `pulumi:"namespace"`
+	UseRootNamespace *bool   `pulumi:"useRootNamespace"`
 }
 
 // ProviderAuthLoginTokenFileInput is an input type that accepts ProviderAuthLoginTokenFileArgs and ProviderAuthLoginTokenFileOutput values.
@@ -2537,8 +2688,9 @@ type ProviderAuthLoginTokenFileInput interface {
 }
 
 type ProviderAuthLoginTokenFileArgs struct {
-	Filename  pulumi.StringInput    `pulumi:"filename"`
-	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
+	Filename         pulumi.StringInput    `pulumi:"filename"`
+	Namespace        pulumi.StringPtrInput `pulumi:"namespace"`
+	UseRootNamespace pulumi.BoolPtrInput   `pulumi:"useRootNamespace"`
 }
 
 func (ProviderAuthLoginTokenFileArgs) ElementType() reflect.Type {
@@ -2626,6 +2778,10 @@ func (o ProviderAuthLoginTokenFileOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProviderAuthLoginTokenFile) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginTokenFileOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLoginTokenFile) *bool { return v.UseRootNamespace }).(pulumi.BoolPtrOutput)
+}
+
 type ProviderAuthLoginTokenFilePtrOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginTokenFilePtrOutput) ElementType() reflect.Type {
@@ -2668,12 +2824,22 @@ func (o ProviderAuthLoginTokenFilePtrOutput) Namespace() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginTokenFilePtrOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProviderAuthLoginTokenFile) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseRootNamespace
+	}).(pulumi.BoolPtrOutput)
+}
+
 type ProviderAuthLoginUserpass struct {
-	Mount        *string `pulumi:"mount"`
-	Namespace    *string `pulumi:"namespace"`
-	Password     *string `pulumi:"password"`
-	PasswordFile *string `pulumi:"passwordFile"`
-	Username     string  `pulumi:"username"`
+	Mount            *string `pulumi:"mount"`
+	Namespace        *string `pulumi:"namespace"`
+	Password         *string `pulumi:"password"`
+	PasswordFile     *string `pulumi:"passwordFile"`
+	UseRootNamespace *bool   `pulumi:"useRootNamespace"`
+	Username         string  `pulumi:"username"`
 }
 
 // ProviderAuthLoginUserpassInput is an input type that accepts ProviderAuthLoginUserpassArgs and ProviderAuthLoginUserpassOutput values.
@@ -2688,11 +2854,12 @@ type ProviderAuthLoginUserpassInput interface {
 }
 
 type ProviderAuthLoginUserpassArgs struct {
-	Mount        pulumi.StringPtrInput `pulumi:"mount"`
-	Namespace    pulumi.StringPtrInput `pulumi:"namespace"`
-	Password     pulumi.StringPtrInput `pulumi:"password"`
-	PasswordFile pulumi.StringPtrInput `pulumi:"passwordFile"`
-	Username     pulumi.StringInput    `pulumi:"username"`
+	Mount            pulumi.StringPtrInput `pulumi:"mount"`
+	Namespace        pulumi.StringPtrInput `pulumi:"namespace"`
+	Password         pulumi.StringPtrInput `pulumi:"password"`
+	PasswordFile     pulumi.StringPtrInput `pulumi:"passwordFile"`
+	UseRootNamespace pulumi.BoolPtrInput   `pulumi:"useRootNamespace"`
+	Username         pulumi.StringInput    `pulumi:"username"`
 }
 
 func (ProviderAuthLoginUserpassArgs) ElementType() reflect.Type {
@@ -2788,6 +2955,10 @@ func (o ProviderAuthLoginUserpassOutput) PasswordFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProviderAuthLoginUserpass) *string { return v.PasswordFile }).(pulumi.StringPtrOutput)
 }
 
+func (o ProviderAuthLoginUserpassOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLoginUserpass) *bool { return v.UseRootNamespace }).(pulumi.BoolPtrOutput)
+}
+
 func (o ProviderAuthLoginUserpassOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v ProviderAuthLoginUserpass) string { return v.Username }).(pulumi.StringOutput)
 }
@@ -2850,6 +3021,15 @@ func (o ProviderAuthLoginUserpassPtrOutput) PasswordFile() pulumi.StringPtrOutpu
 		}
 		return v.PasswordFile
 	}).(pulumi.StringPtrOutput)
+}
+
+func (o ProviderAuthLoginUserpassPtrOutput) UseRootNamespace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProviderAuthLoginUserpass) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseRootNamespace
+	}).(pulumi.BoolPtrOutput)
 }
 
 func (o ProviderAuthLoginUserpassPtrOutput) Username() pulumi.StringPtrOutput {

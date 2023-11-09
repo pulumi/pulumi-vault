@@ -5,6 +5,7 @@ package com.pulumi.vault.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -57,6 +58,13 @@ public final class ProviderAuthLoginGcpArgs extends com.pulumi.resources.Resourc
         return Optional.ofNullable(this.serviceAccount);
     }
 
+    @Import(name="useRootNamespace")
+    private @Nullable Output<Boolean> useRootNamespace;
+
+    public Optional<Output<Boolean>> useRootNamespace() {
+        return Optional.ofNullable(this.useRootNamespace);
+    }
+
     private ProviderAuthLoginGcpArgs() {}
 
     private ProviderAuthLoginGcpArgs(ProviderAuthLoginGcpArgs $) {
@@ -66,6 +74,7 @@ public final class ProviderAuthLoginGcpArgs extends com.pulumi.resources.Resourc
         this.namespace = $.namespace;
         this.role = $.role;
         this.serviceAccount = $.serviceAccount;
+        this.useRootNamespace = $.useRootNamespace;
     }
 
     public static Builder builder() {
@@ -138,6 +147,15 @@ public final class ProviderAuthLoginGcpArgs extends com.pulumi.resources.Resourc
 
         public Builder serviceAccount(String serviceAccount) {
             return serviceAccount(Output.of(serviceAccount));
+        }
+
+        public Builder useRootNamespace(@Nullable Output<Boolean> useRootNamespace) {
+            $.useRootNamespace = useRootNamespace;
+            return this;
+        }
+
+        public Builder useRootNamespace(Boolean useRootNamespace) {
+            return useRootNamespace(Output.of(useRootNamespace));
         }
 
         public ProviderAuthLoginGcpArgs build() {

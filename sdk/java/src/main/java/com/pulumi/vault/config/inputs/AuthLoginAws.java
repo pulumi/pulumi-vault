@@ -4,6 +4,7 @@
 package com.pulumi.vault.config.inputs;
 
 import com.pulumi.core.annotations.CustomType;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -26,6 +27,7 @@ public final class AuthLoginAws {
     private @Nullable String mount;
     private @Nullable String namespace;
     private String role;
+    private @Nullable Boolean useRootNamespace;
 
     private AuthLoginAws() {}
     public Optional<String> awsAccessKeyId() {
@@ -73,6 +75,9 @@ public final class AuthLoginAws {
     public String role() {
         return this.role;
     }
+    public Optional<Boolean> useRootNamespace() {
+        return Optional.ofNullable(this.useRootNamespace);
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -98,6 +103,7 @@ public final class AuthLoginAws {
         private @Nullable String mount;
         private @Nullable String namespace;
         private String role;
+        private @Nullable Boolean useRootNamespace;
         public Builder() {}
         public Builder(AuthLoginAws defaults) {
     	      Objects.requireNonNull(defaults);
@@ -116,6 +122,7 @@ public final class AuthLoginAws {
     	      this.mount = defaults.mount;
     	      this.namespace = defaults.namespace;
     	      this.role = defaults.role;
+    	      this.useRootNamespace = defaults.useRootNamespace;
         }
 
         @CustomType.Setter
@@ -193,6 +200,11 @@ public final class AuthLoginAws {
             this.role = Objects.requireNonNull(role);
             return this;
         }
+        @CustomType.Setter
+        public Builder useRootNamespace(@Nullable Boolean useRootNamespace) {
+            this.useRootNamespace = useRootNamespace;
+            return this;
+        }
         public AuthLoginAws build() {
             final var o = new AuthLoginAws();
             o.awsAccessKeyId = awsAccessKeyId;
@@ -210,6 +222,7 @@ public final class AuthLoginAws {
             o.mount = mount;
             o.namespace = namespace;
             o.role = role;
+            o.useRootNamespace = useRootNamespace;
             return o;
         }
     }

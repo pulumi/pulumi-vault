@@ -30,6 +30,9 @@ namespace Pulumi.Vault.Inputs
         [Input("serviceAccount")]
         public Input<string>? ServiceAccount { get; set; }
 
+        [Input("useRootNamespace")]
+        public Input<bool>? UseRootNamespace { get; set; }
+
         public ProviderAuthLoginGcpArgs()
         {
         }

@@ -4,6 +4,7 @@
 package com.pulumi.vault.config.inputs;
 
 import com.pulumi.core.annotations.CustomType;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -16,6 +17,7 @@ public final class AuthLogin {
     private @Nullable String namespace;
     private @Nullable Map<String,String> parameters;
     private String path;
+    private @Nullable Boolean useRootNamespace;
 
     private AuthLogin() {}
     public Optional<String> method() {
@@ -29,6 +31,9 @@ public final class AuthLogin {
     }
     public String path() {
         return this.path;
+    }
+    public Optional<Boolean> useRootNamespace() {
+        return Optional.ofNullable(this.useRootNamespace);
     }
 
     public static Builder builder() {
@@ -44,6 +49,7 @@ public final class AuthLogin {
         private @Nullable String namespace;
         private @Nullable Map<String,String> parameters;
         private String path;
+        private @Nullable Boolean useRootNamespace;
         public Builder() {}
         public Builder(AuthLogin defaults) {
     	      Objects.requireNonNull(defaults);
@@ -51,6 +57,7 @@ public final class AuthLogin {
     	      this.namespace = defaults.namespace;
     	      this.parameters = defaults.parameters;
     	      this.path = defaults.path;
+    	      this.useRootNamespace = defaults.useRootNamespace;
         }
 
         @CustomType.Setter
@@ -73,12 +80,18 @@ public final class AuthLogin {
             this.path = Objects.requireNonNull(path);
             return this;
         }
+        @CustomType.Setter
+        public Builder useRootNamespace(@Nullable Boolean useRootNamespace) {
+            this.useRootNamespace = useRootNamespace;
+            return this;
+        }
         public AuthLogin build() {
             final var o = new AuthLogin();
             o.method = method;
             o.namespace = namespace;
             o.parameters = parameters;
             o.path = path;
+            o.useRootNamespace = useRootNamespace;
             return o;
         }
     }

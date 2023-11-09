@@ -183,6 +183,14 @@ public final class Config {
         return Codegen.stringProp("namespace").config(config).get();
     }
 /**
+ * In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the
+ * token namespace as the root namespace for all resources.
+ * 
+ */
+    public Optional<Boolean> setNamespaceFromToken() {
+        return Codegen.booleanProp("setNamespaceFromToken").config(config).get();
+    }
+/**
  * Set this to true to prevent the creation of ephemeral child token used by this provider.
  * 
  */

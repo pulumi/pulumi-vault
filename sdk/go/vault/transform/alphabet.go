@@ -56,6 +56,11 @@ type Alphabet struct {
 	Alphabet pulumi.StringPtrOutput `pulumi:"alphabet"`
 	// The name of the alphabet.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringOutput `pulumi:"path"`
 }
@@ -96,6 +101,11 @@ type alphabetState struct {
 	Alphabet *string `pulumi:"alphabet"`
 	// The name of the alphabet.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Path to where the back-end is mounted within Vault.
 	Path *string `pulumi:"path"`
 }
@@ -105,6 +115,11 @@ type AlphabetState struct {
 	Alphabet pulumi.StringPtrInput
 	// The name of the alphabet.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringPtrInput
 }
@@ -118,6 +133,11 @@ type alphabetArgs struct {
 	Alphabet *string `pulumi:"alphabet"`
 	// The name of the alphabet.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Path to where the back-end is mounted within Vault.
 	Path string `pulumi:"path"`
 }
@@ -128,6 +148,11 @@ type AlphabetArgs struct {
 	Alphabet pulumi.StringPtrInput
 	// The name of the alphabet.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringInput
 }
@@ -227,6 +252,14 @@ func (o AlphabetOutput) Alphabet() pulumi.StringPtrOutput {
 // The name of the alphabet.
 func (o AlphabetOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Alphabet) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o AlphabetOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Alphabet) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Path to where the back-end is mounted within Vault.

@@ -19,6 +19,7 @@ class TemplateArgs:
                  decode_formats: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  encode_format: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  pattern: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
@@ -30,6 +31,10 @@ class TemplateArgs:
         :param pulumi.Input[str] encode_format: - The regular expression template used to format encoded values.
                (requires Vault Enterprise 1.9+)
         :param pulumi.Input[str] name: The name of the template.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] pattern: The pattern used for matching. Currently, only regular expression pattern is supported.
         :param pulumi.Input[str] type: The pattern type to use for match detection. Currently, only regex is supported.
         """
@@ -42,6 +47,8 @@ class TemplateArgs:
             pulumi.set(__self__, "encode_format", encode_format)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if pattern is not None:
             pulumi.set(__self__, "pattern", pattern)
         if type is not None:
@@ -111,6 +118,21 @@ class TemplateArgs:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def pattern(self) -> Optional[pulumi.Input[str]]:
         """
         The pattern used for matching. Currently, only regular expression pattern is supported.
@@ -141,6 +163,7 @@ class _TemplateState:
                  decode_formats: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  encode_format: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  pattern: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
@@ -152,6 +175,10 @@ class _TemplateState:
         :param pulumi.Input[str] encode_format: - The regular expression template used to format encoded values.
                (requires Vault Enterprise 1.9+)
         :param pulumi.Input[str] name: The name of the template.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
         :param pulumi.Input[str] pattern: The pattern used for matching. Currently, only regular expression pattern is supported.
         :param pulumi.Input[str] type: The pattern type to use for match detection. Currently, only regex is supported.
@@ -164,6 +191,8 @@ class _TemplateState:
             pulumi.set(__self__, "encode_format", encode_format)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if path is not None:
             pulumi.set(__self__, "path", path)
         if pattern is not None:
@@ -223,6 +252,21 @@ class _TemplateState:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
         """
         Path to where the back-end is mounted within Vault.
@@ -267,6 +311,7 @@ class Template(pulumi.CustomResource):
                  decode_formats: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  encode_format: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  pattern: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -281,6 +326,10 @@ class Template(pulumi.CustomResource):
         :param pulumi.Input[str] encode_format: - The regular expression template used to format encoded values.
                (requires Vault Enterprise 1.9+)
         :param pulumi.Input[str] name: The name of the template.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
         :param pulumi.Input[str] pattern: The pattern used for matching. Currently, only regular expression pattern is supported.
         :param pulumi.Input[str] type: The pattern type to use for match detection. Currently, only regex is supported.
@@ -312,6 +361,7 @@ class Template(pulumi.CustomResource):
                  decode_formats: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  encode_format: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  pattern: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -328,6 +378,7 @@ class Template(pulumi.CustomResource):
             __props__.__dict__["decode_formats"] = decode_formats
             __props__.__dict__["encode_format"] = encode_format
             __props__.__dict__["name"] = name
+            __props__.__dict__["namespace"] = namespace
             if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
             __props__.__dict__["path"] = path
@@ -347,6 +398,7 @@ class Template(pulumi.CustomResource):
             decode_formats: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             encode_format: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
             pattern: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'Template':
@@ -363,6 +415,10 @@ class Template(pulumi.CustomResource):
         :param pulumi.Input[str] encode_format: - The regular expression template used to format encoded values.
                (requires Vault Enterprise 1.9+)
         :param pulumi.Input[str] name: The name of the template.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
         :param pulumi.Input[str] pattern: The pattern used for matching. Currently, only regular expression pattern is supported.
         :param pulumi.Input[str] type: The pattern type to use for match detection. Currently, only regex is supported.
@@ -375,6 +431,7 @@ class Template(pulumi.CustomResource):
         __props__.__dict__["decode_formats"] = decode_formats
         __props__.__dict__["encode_format"] = encode_format
         __props__.__dict__["name"] = name
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["path"] = path
         __props__.__dict__["pattern"] = pattern
         __props__.__dict__["type"] = type
@@ -413,6 +470,17 @@ class Template(pulumi.CustomResource):
         The name of the template.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

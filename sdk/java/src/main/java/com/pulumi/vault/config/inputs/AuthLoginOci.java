@@ -4,6 +4,7 @@
 package com.pulumi.vault.config.inputs;
 
 import com.pulumi.core.annotations.CustomType;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -15,6 +16,7 @@ public final class AuthLoginOci {
     private @Nullable String mount;
     private @Nullable String namespace;
     private String role;
+    private @Nullable Boolean useRootNamespace;
 
     private AuthLoginOci() {}
     public String authType() {
@@ -28,6 +30,9 @@ public final class AuthLoginOci {
     }
     public String role() {
         return this.role;
+    }
+    public Optional<Boolean> useRootNamespace() {
+        return Optional.ofNullable(this.useRootNamespace);
     }
 
     public static Builder builder() {
@@ -43,6 +48,7 @@ public final class AuthLoginOci {
         private @Nullable String mount;
         private @Nullable String namespace;
         private String role;
+        private @Nullable Boolean useRootNamespace;
         public Builder() {}
         public Builder(AuthLoginOci defaults) {
     	      Objects.requireNonNull(defaults);
@@ -50,6 +56,7 @@ public final class AuthLoginOci {
     	      this.mount = defaults.mount;
     	      this.namespace = defaults.namespace;
     	      this.role = defaults.role;
+    	      this.useRootNamespace = defaults.useRootNamespace;
         }
 
         @CustomType.Setter
@@ -72,12 +79,18 @@ public final class AuthLoginOci {
             this.role = Objects.requireNonNull(role);
             return this;
         }
+        @CustomType.Setter
+        public Builder useRootNamespace(@Nullable Boolean useRootNamespace) {
+            this.useRootNamespace = useRootNamespace;
+            return this;
+        }
         public AuthLoginOci build() {
             final var o = new AuthLoginOci();
             o.authType = authType;
             o.mount = mount;
             o.namespace = namespace;
             o.role = role;
+            o.useRootNamespace = useRootNamespace;
             return o;
         }
     }

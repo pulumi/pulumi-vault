@@ -59,6 +59,13 @@ export class Role extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
      * Path to where the back-end is mounted within Vault.
      */
     public readonly path!: pulumi.Output<string>;
@@ -81,6 +88,7 @@ export class Role extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as RoleState | undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
             resourceInputs["transformations"] = state ? state.transformations : undefined;
         } else {
@@ -89,6 +97,7 @@ export class Role extends pulumi.CustomResource {
                 throw new Error("Missing required property 'path'");
             }
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["transformations"] = args ? args.transformations : undefined;
         }
@@ -105,6 +114,13 @@ export interface RoleState {
      * The name of the role.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Path to where the back-end is mounted within Vault.
      */
@@ -123,6 +139,13 @@ export interface RoleArgs {
      * The name of the role.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The namespace to provision the resource in.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Path to where the back-end is mounted within Vault.
      */

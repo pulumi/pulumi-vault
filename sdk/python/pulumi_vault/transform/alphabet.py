@@ -16,18 +16,25 @@ class AlphabetArgs:
     def __init__(__self__, *,
                  path: pulumi.Input[str],
                  alphabet: Optional[pulumi.Input[str]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
+                 name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Alphabet resource.
         :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
         :param pulumi.Input[str] alphabet: A string of characters that contains the alphabet set.
         :param pulumi.Input[str] name: The name of the alphabet.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         """
         pulumi.set(__self__, "path", path)
         if alphabet is not None:
             pulumi.set(__self__, "alphabet", alphabet)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter
@@ -65,23 +72,45 @@ class AlphabetArgs:
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
 
 @pulumi.input_type
 class _AlphabetState:
     def __init__(__self__, *,
                  alphabet: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Alphabet resources.
         :param pulumi.Input[str] alphabet: A string of characters that contains the alphabet set.
         :param pulumi.Input[str] name: The name of the alphabet.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
         """
         if alphabet is not None:
             pulumi.set(__self__, "alphabet", alphabet)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
         if path is not None:
             pulumi.set(__self__, "path", path)
 
@@ -111,6 +140,21 @@ class _AlphabetState:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
         """
         Path to where the back-end is mounted within Vault.
@@ -129,6 +173,7 @@ class Alphabet(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alphabet: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -154,6 +199,10 @@ class Alphabet(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] alphabet: A string of characters that contains the alphabet set.
         :param pulumi.Input[str] name: The name of the alphabet.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
         """
         ...
@@ -198,6 +247,7 @@ class Alphabet(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alphabet: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -210,6 +260,7 @@ class Alphabet(pulumi.CustomResource):
 
             __props__.__dict__["alphabet"] = alphabet
             __props__.__dict__["name"] = name
+            __props__.__dict__["namespace"] = namespace
             if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
             __props__.__dict__["path"] = path
@@ -225,6 +276,7 @@ class Alphabet(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             alphabet: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None) -> 'Alphabet':
         """
         Get an existing Alphabet resource's state with the given name, id, and optional extra
@@ -235,6 +287,10 @@ class Alphabet(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] alphabet: A string of characters that contains the alphabet set.
         :param pulumi.Input[str] name: The name of the alphabet.
+        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
+               The value should not contain leading or trailing forward slashes.
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -243,6 +299,7 @@ class Alphabet(pulumi.CustomResource):
 
         __props__.__dict__["alphabet"] = alphabet
         __props__.__dict__["name"] = name
+        __props__.__dict__["namespace"] = namespace
         __props__.__dict__["path"] = path
         return Alphabet(resource_name, opts=opts, __props__=__props__)
 
@@ -261,6 +318,17 @@ class Alphabet(pulumi.CustomResource):
         The name of the alphabet.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to provision the resource in.
+        The value should not contain leading or trailing forward slashes.
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter

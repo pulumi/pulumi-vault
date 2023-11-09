@@ -8,6 +8,34 @@ import * as utilities from "../utilities";
  * This data source supports the "/transform/decode/{role_name}" Vault endpoint.
  *
  * It decodes the provided value using a named role.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const transform = new vault.Mount("transform", {
+ *     path: "transform",
+ *     type: "transform",
+ * });
+ * const ccn_fpe = new vault.transform.Transformation("ccn-fpe", {
+ *     path: transform.path,
+ *     type: "fpe",
+ *     template: "builtin/creditcardnumber",
+ *     tweakSource: "internal",
+ *     allowedRoles: ["payments"],
+ * });
+ * const payments = new vault.transform.Role("payments", {
+ *     path: ccn_fpe.path,
+ *     transformations: ["ccn-fpe"],
+ * });
+ * const test = vault.transform.getDecodeOutput({
+ *     path: payments.path,
+ *     roleName: "payments",
+ *     value: "9300-3376-4943-8903",
+ * });
+ * ```
  */
 export function getDecode(args: GetDecodeArgs, opts?: pulumi.InvokeOptions): Promise<GetDecodeResult> {
     if (!opts) {
@@ -19,6 +47,7 @@ export function getDecode(args: GetDecodeArgs, opts?: pulumi.InvokeOptions): Pro
         "batchInputs": args.batchInputs,
         "batchResults": args.batchResults,
         "decodedValue": args.decodedValue,
+        "namespace": args.namespace,
         "path": args.path,
         "roleName": args.roleName,
         "transformation": args.transformation,
@@ -43,6 +72,13 @@ export interface GetDecodeArgs {
      * The result of decoding a value.
      */
     decodedValue?: string;
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: string;
     /**
      * Path to where the back-end is mounted within Vault.
      */
@@ -76,6 +112,7 @@ export interface GetDecodeResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly namespace?: string;
     readonly path: string;
     readonly roleName: string;
     readonly transformation?: string;
@@ -103,6 +140,13 @@ export interface GetDecodeOutputArgs {
      * The result of decoding a value.
      */
     decodedValue?: pulumi.Input<string>;
+    /**
+     * The namespace of the target resource.
+     * The value should not contain leading or trailing forward slashes.
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * *Available only for Vault Enterprise*.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * Path to where the back-end is mounted within Vault.
      */

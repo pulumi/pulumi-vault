@@ -22,6 +22,62 @@ public final class TransformFunctions {
      * 
      * It decodes the provided value using a named role.
      * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.transform.Transformation;
+     * import com.pulumi.vault.transform.TransformationArgs;
+     * import com.pulumi.vault.transform.Role;
+     * import com.pulumi.vault.transform.RoleArgs;
+     * import com.pulumi.vault.transform.TransformFunctions;
+     * import com.pulumi.vault.transform.inputs.GetDecodeArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var transform = new Mount(&#34;transform&#34;, MountArgs.builder()        
+     *             .path(&#34;transform&#34;)
+     *             .type(&#34;transform&#34;)
+     *             .build());
+     * 
+     *         var ccn_fpe = new Transformation(&#34;ccn-fpe&#34;, TransformationArgs.builder()        
+     *             .path(transform.path())
+     *             .type(&#34;fpe&#34;)
+     *             .template(&#34;builtin/creditcardnumber&#34;)
+     *             .tweakSource(&#34;internal&#34;)
+     *             .allowedRoles(&#34;payments&#34;)
+     *             .build());
+     * 
+     *         var payments = new Role(&#34;payments&#34;, RoleArgs.builder()        
+     *             .path(ccn_fpe.path())
+     *             .transformations(&#34;ccn-fpe&#34;)
+     *             .build());
+     * 
+     *         final var test = TransformFunctions.getDecode(GetDecodeArgs.builder()
+     *             .path(payments.path())
+     *             .roleName(&#34;payments&#34;)
+     *             .value(&#34;9300-3376-4943-8903&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
      */
     public static Output<GetDecodeResult> getDecode(GetDecodeArgs args) {
         return getDecode(args, InvokeOptions.Empty);
@@ -30,6 +86,62 @@ public final class TransformFunctions {
      * This data source supports the &#34;/transform/decode/{role_name}&#34; Vault endpoint.
      * 
      * It decodes the provided value using a named role.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.transform.Transformation;
+     * import com.pulumi.vault.transform.TransformationArgs;
+     * import com.pulumi.vault.transform.Role;
+     * import com.pulumi.vault.transform.RoleArgs;
+     * import com.pulumi.vault.transform.TransformFunctions;
+     * import com.pulumi.vault.transform.inputs.GetDecodeArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var transform = new Mount(&#34;transform&#34;, MountArgs.builder()        
+     *             .path(&#34;transform&#34;)
+     *             .type(&#34;transform&#34;)
+     *             .build());
+     * 
+     *         var ccn_fpe = new Transformation(&#34;ccn-fpe&#34;, TransformationArgs.builder()        
+     *             .path(transform.path())
+     *             .type(&#34;fpe&#34;)
+     *             .template(&#34;builtin/creditcardnumber&#34;)
+     *             .tweakSource(&#34;internal&#34;)
+     *             .allowedRoles(&#34;payments&#34;)
+     *             .build());
+     * 
+     *         var payments = new Role(&#34;payments&#34;, RoleArgs.builder()        
+     *             .path(ccn_fpe.path())
+     *             .transformations(&#34;ccn-fpe&#34;)
+     *             .build());
+     * 
+     *         final var test = TransformFunctions.getDecode(GetDecodeArgs.builder()
+     *             .path(payments.path())
+     *             .roleName(&#34;payments&#34;)
+     *             .value(&#34;9300-3376-4943-8903&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetDecodeResult> getDecodePlain(GetDecodePlainArgs args) {
@@ -40,6 +152,62 @@ public final class TransformFunctions {
      * 
      * It decodes the provided value using a named role.
      * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.transform.Transformation;
+     * import com.pulumi.vault.transform.TransformationArgs;
+     * import com.pulumi.vault.transform.Role;
+     * import com.pulumi.vault.transform.RoleArgs;
+     * import com.pulumi.vault.transform.TransformFunctions;
+     * import com.pulumi.vault.transform.inputs.GetDecodeArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var transform = new Mount(&#34;transform&#34;, MountArgs.builder()        
+     *             .path(&#34;transform&#34;)
+     *             .type(&#34;transform&#34;)
+     *             .build());
+     * 
+     *         var ccn_fpe = new Transformation(&#34;ccn-fpe&#34;, TransformationArgs.builder()        
+     *             .path(transform.path())
+     *             .type(&#34;fpe&#34;)
+     *             .template(&#34;builtin/creditcardnumber&#34;)
+     *             .tweakSource(&#34;internal&#34;)
+     *             .allowedRoles(&#34;payments&#34;)
+     *             .build());
+     * 
+     *         var payments = new Role(&#34;payments&#34;, RoleArgs.builder()        
+     *             .path(ccn_fpe.path())
+     *             .transformations(&#34;ccn-fpe&#34;)
+     *             .build());
+     * 
+     *         final var test = TransformFunctions.getDecode(GetDecodeArgs.builder()
+     *             .path(payments.path())
+     *             .roleName(&#34;payments&#34;)
+     *             .value(&#34;9300-3376-4943-8903&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
      */
     public static Output<GetDecodeResult> getDecode(GetDecodeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("vault:transform/getDecode:getDecode", TypeShape.of(GetDecodeResult.class), args, Utilities.withVersion(options));
@@ -48,6 +216,62 @@ public final class TransformFunctions {
      * This data source supports the &#34;/transform/decode/{role_name}&#34; Vault endpoint.
      * 
      * It decodes the provided value using a named role.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.transform.Transformation;
+     * import com.pulumi.vault.transform.TransformationArgs;
+     * import com.pulumi.vault.transform.Role;
+     * import com.pulumi.vault.transform.RoleArgs;
+     * import com.pulumi.vault.transform.TransformFunctions;
+     * import com.pulumi.vault.transform.inputs.GetDecodeArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var transform = new Mount(&#34;transform&#34;, MountArgs.builder()        
+     *             .path(&#34;transform&#34;)
+     *             .type(&#34;transform&#34;)
+     *             .build());
+     * 
+     *         var ccn_fpe = new Transformation(&#34;ccn-fpe&#34;, TransformationArgs.builder()        
+     *             .path(transform.path())
+     *             .type(&#34;fpe&#34;)
+     *             .template(&#34;builtin/creditcardnumber&#34;)
+     *             .tweakSource(&#34;internal&#34;)
+     *             .allowedRoles(&#34;payments&#34;)
+     *             .build());
+     * 
+     *         var payments = new Role(&#34;payments&#34;, RoleArgs.builder()        
+     *             .path(ccn_fpe.path())
+     *             .transformations(&#34;ccn-fpe&#34;)
+     *             .build());
+     * 
+     *         final var test = TransformFunctions.getDecode(GetDecodeArgs.builder()
+     *             .path(payments.path())
+     *             .roleName(&#34;payments&#34;)
+     *             .value(&#34;9300-3376-4943-8903&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetDecodeResult> getDecodePlain(GetDecodePlainArgs args, InvokeOptions options) {
@@ -58,6 +282,62 @@ public final class TransformFunctions {
      * 
      * It encodes the provided value using a named role.
      * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.transform.Transformation;
+     * import com.pulumi.vault.transform.TransformationArgs;
+     * import com.pulumi.vault.transform.Role;
+     * import com.pulumi.vault.transform.RoleArgs;
+     * import com.pulumi.vault.transform.TransformFunctions;
+     * import com.pulumi.vault.transform.inputs.GetEncodeArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var transform = new Mount(&#34;transform&#34;, MountArgs.builder()        
+     *             .path(&#34;transform&#34;)
+     *             .type(&#34;transform&#34;)
+     *             .build());
+     * 
+     *         var ccn_fpe = new Transformation(&#34;ccn-fpe&#34;, TransformationArgs.builder()        
+     *             .path(transform.path())
+     *             .type(&#34;fpe&#34;)
+     *             .template(&#34;builtin/creditcardnumber&#34;)
+     *             .tweakSource(&#34;internal&#34;)
+     *             .allowedRoles(&#34;payments&#34;)
+     *             .build());
+     * 
+     *         var payments = new Role(&#34;payments&#34;, RoleArgs.builder()        
+     *             .path(ccn_fpe.path())
+     *             .transformations(&#34;ccn-fpe&#34;)
+     *             .build());
+     * 
+     *         final var test = TransformFunctions.getEncode(GetEncodeArgs.builder()
+     *             .path(payments.path())
+     *             .roleName(&#34;payments&#34;)
+     *             .batchInputs(Map.of(&#34;value&#34;, &#34;1111-2222-3333-4444&#34;))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
      */
     public static Output<GetEncodeResult> getEncode(GetEncodeArgs args) {
         return getEncode(args, InvokeOptions.Empty);
@@ -66,6 +346,62 @@ public final class TransformFunctions {
      * This data source supports the &#34;/transform/encode/{role_name}&#34; Vault endpoint.
      * 
      * It encodes the provided value using a named role.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.transform.Transformation;
+     * import com.pulumi.vault.transform.TransformationArgs;
+     * import com.pulumi.vault.transform.Role;
+     * import com.pulumi.vault.transform.RoleArgs;
+     * import com.pulumi.vault.transform.TransformFunctions;
+     * import com.pulumi.vault.transform.inputs.GetEncodeArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var transform = new Mount(&#34;transform&#34;, MountArgs.builder()        
+     *             .path(&#34;transform&#34;)
+     *             .type(&#34;transform&#34;)
+     *             .build());
+     * 
+     *         var ccn_fpe = new Transformation(&#34;ccn-fpe&#34;, TransformationArgs.builder()        
+     *             .path(transform.path())
+     *             .type(&#34;fpe&#34;)
+     *             .template(&#34;builtin/creditcardnumber&#34;)
+     *             .tweakSource(&#34;internal&#34;)
+     *             .allowedRoles(&#34;payments&#34;)
+     *             .build());
+     * 
+     *         var payments = new Role(&#34;payments&#34;, RoleArgs.builder()        
+     *             .path(ccn_fpe.path())
+     *             .transformations(&#34;ccn-fpe&#34;)
+     *             .build());
+     * 
+     *         final var test = TransformFunctions.getEncode(GetEncodeArgs.builder()
+     *             .path(payments.path())
+     *             .roleName(&#34;payments&#34;)
+     *             .batchInputs(Map.of(&#34;value&#34;, &#34;1111-2222-3333-4444&#34;))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetEncodeResult> getEncodePlain(GetEncodePlainArgs args) {
@@ -76,6 +412,62 @@ public final class TransformFunctions {
      * 
      * It encodes the provided value using a named role.
      * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.transform.Transformation;
+     * import com.pulumi.vault.transform.TransformationArgs;
+     * import com.pulumi.vault.transform.Role;
+     * import com.pulumi.vault.transform.RoleArgs;
+     * import com.pulumi.vault.transform.TransformFunctions;
+     * import com.pulumi.vault.transform.inputs.GetEncodeArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var transform = new Mount(&#34;transform&#34;, MountArgs.builder()        
+     *             .path(&#34;transform&#34;)
+     *             .type(&#34;transform&#34;)
+     *             .build());
+     * 
+     *         var ccn_fpe = new Transformation(&#34;ccn-fpe&#34;, TransformationArgs.builder()        
+     *             .path(transform.path())
+     *             .type(&#34;fpe&#34;)
+     *             .template(&#34;builtin/creditcardnumber&#34;)
+     *             .tweakSource(&#34;internal&#34;)
+     *             .allowedRoles(&#34;payments&#34;)
+     *             .build());
+     * 
+     *         var payments = new Role(&#34;payments&#34;, RoleArgs.builder()        
+     *             .path(ccn_fpe.path())
+     *             .transformations(&#34;ccn-fpe&#34;)
+     *             .build());
+     * 
+     *         final var test = TransformFunctions.getEncode(GetEncodeArgs.builder()
+     *             .path(payments.path())
+     *             .roleName(&#34;payments&#34;)
+     *             .batchInputs(Map.of(&#34;value&#34;, &#34;1111-2222-3333-4444&#34;))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
      */
     public static Output<GetEncodeResult> getEncode(GetEncodeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("vault:transform/getEncode:getEncode", TypeShape.of(GetEncodeResult.class), args, Utilities.withVersion(options));
@@ -84,6 +476,62 @@ public final class TransformFunctions {
      * This data source supports the &#34;/transform/encode/{role_name}&#34; Vault endpoint.
      * 
      * It encodes the provided value using a named role.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.transform.Transformation;
+     * import com.pulumi.vault.transform.TransformationArgs;
+     * import com.pulumi.vault.transform.Role;
+     * import com.pulumi.vault.transform.RoleArgs;
+     * import com.pulumi.vault.transform.TransformFunctions;
+     * import com.pulumi.vault.transform.inputs.GetEncodeArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var transform = new Mount(&#34;transform&#34;, MountArgs.builder()        
+     *             .path(&#34;transform&#34;)
+     *             .type(&#34;transform&#34;)
+     *             .build());
+     * 
+     *         var ccn_fpe = new Transformation(&#34;ccn-fpe&#34;, TransformationArgs.builder()        
+     *             .path(transform.path())
+     *             .type(&#34;fpe&#34;)
+     *             .template(&#34;builtin/creditcardnumber&#34;)
+     *             .tweakSource(&#34;internal&#34;)
+     *             .allowedRoles(&#34;payments&#34;)
+     *             .build());
+     * 
+     *         var payments = new Role(&#34;payments&#34;, RoleArgs.builder()        
+     *             .path(ccn_fpe.path())
+     *             .transformations(&#34;ccn-fpe&#34;)
+     *             .build());
+     * 
+     *         final var test = TransformFunctions.getEncode(GetEncodeArgs.builder()
+     *             .path(payments.path())
+     *             .roleName(&#34;payments&#34;)
+     *             .batchInputs(Map.of(&#34;value&#34;, &#34;1111-2222-3333-4444&#34;))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetEncodeResult> getEncodePlain(GetEncodePlainArgs args, InvokeOptions options) {

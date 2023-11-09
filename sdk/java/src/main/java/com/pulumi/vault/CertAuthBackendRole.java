@@ -242,14 +242,110 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.namespace);
     }
     /**
-     * TLS extensions required on client certificates
+     * Any additional CA certificates
+     * needed to verify OCSP responses. Provided as base64 encoded PEM data.
+     * Requires Vault version 1.13+.
+     * 
+     */
+    @Export(name="ocspCaCertificates", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> ocspCaCertificates;
+
+    /**
+     * @return Any additional CA certificates
+     * needed to verify OCSP responses. Provided as base64 encoded PEM data.
+     * Requires Vault version 1.13+.
+     * 
+     */
+    public Output<Optional<String>> ocspCaCertificates() {
+        return Codegen.optional(this.ocspCaCertificates);
+    }
+    /**
+     * - If enabled, validate certificates&#39;
+     *   revocation status using OCSP. Requires Vault version 1.13+.
+     * 
+     */
+    @Export(name="ocspEnabled", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> ocspEnabled;
+
+    /**
+     * @return - If enabled, validate certificates&#39;
+     * revocation status using OCSP. Requires Vault version 1.13+.
+     * 
+     */
+    public Output<Boolean> ocspEnabled() {
+        return this.ocspEnabled;
+    }
+    /**
+     * - If true and an OCSP response cannot
+     *   be fetched or is of an unknown status, the login will proceed as if the
+     *   certificate has not been revoked.
+     *   Requires Vault version 1.13+.
+     * 
+     */
+    @Export(name="ocspFailOpen", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> ocspFailOpen;
+
+    /**
+     * @return - If true and an OCSP response cannot
+     * be fetched or is of an unknown status, the login will proceed as if the
+     * certificate has not been revoked.
+     * Requires Vault version 1.13+.
+     * 
+     */
+    public Output<Boolean> ocspFailOpen() {
+        return this.ocspFailOpen;
+    }
+    /**
+     * - If set to true, rather than
+     *   accepting the first successful OCSP response, query all servers and consider
+     *   the certificate valid only if all servers agree.
+     *   Requires Vault version 1.13+.
+     * 
+     */
+    @Export(name="ocspQueryAllServers", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> ocspQueryAllServers;
+
+    /**
+     * @return - If set to true, rather than
+     * accepting the first successful OCSP response, query all servers and consider
+     * the certificate valid only if all servers agree.
+     * Requires Vault version 1.13+.
+     * 
+     */
+    public Output<Boolean> ocspQueryAllServers() {
+        return this.ocspQueryAllServers;
+    }
+    /**
+     * : A comma-separated list of OCSP
+     * server addresses. If unset, the OCSP server is determined from the
+     * AuthorityInformationAccess extension on the certificate being inspected.
+     * Requires Vault version 1.13+.
+     * 
+     */
+    @Export(name="ocspServersOverrides", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> ocspServersOverrides;
+
+    /**
+     * @return : A comma-separated list of OCSP
+     * server addresses. If unset, the OCSP server is determined from the
+     * AuthorityInformationAccess extension on the certificate being inspected.
+     * Requires Vault version 1.13+.
+     * 
+     */
+    public Output<Optional<List<String>>> ocspServersOverrides() {
+        return Codegen.optional(this.ocspServersOverrides);
+    }
+    /**
+     * TLS extensions required on
+     * client certificates
      * 
      */
     @Export(name="requiredExtensions", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> requiredExtensions;
 
     /**
-     * @return TLS extensions required on client certificates
+     * @return TLS extensions required on
+     * client certificates
      * 
      */
     public Output<List<String>> requiredExtensions() {

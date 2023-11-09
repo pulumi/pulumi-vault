@@ -211,14 +211,115 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * TLS extensions required on client certificates
+     * Any additional CA certificates
+     * needed to verify OCSP responses. Provided as base64 encoded PEM data.
+     * Requires Vault version 1.13+.
+     * 
+     */
+    @Import(name="ocspCaCertificates")
+    private @Nullable Output<String> ocspCaCertificates;
+
+    /**
+     * @return Any additional CA certificates
+     * needed to verify OCSP responses. Provided as base64 encoded PEM data.
+     * Requires Vault version 1.13+.
+     * 
+     */
+    public Optional<Output<String>> ocspCaCertificates() {
+        return Optional.ofNullable(this.ocspCaCertificates);
+    }
+
+    /**
+     * - If enabled, validate certificates&#39;
+     *   revocation status using OCSP. Requires Vault version 1.13+.
+     * 
+     */
+    @Import(name="ocspEnabled")
+    private @Nullable Output<Boolean> ocspEnabled;
+
+    /**
+     * @return - If enabled, validate certificates&#39;
+     * revocation status using OCSP. Requires Vault version 1.13+.
+     * 
+     */
+    public Optional<Output<Boolean>> ocspEnabled() {
+        return Optional.ofNullable(this.ocspEnabled);
+    }
+
+    /**
+     * - If true and an OCSP response cannot
+     *   be fetched or is of an unknown status, the login will proceed as if the
+     *   certificate has not been revoked.
+     *   Requires Vault version 1.13+.
+     * 
+     */
+    @Import(name="ocspFailOpen")
+    private @Nullable Output<Boolean> ocspFailOpen;
+
+    /**
+     * @return - If true and an OCSP response cannot
+     * be fetched or is of an unknown status, the login will proceed as if the
+     * certificate has not been revoked.
+     * Requires Vault version 1.13+.
+     * 
+     */
+    public Optional<Output<Boolean>> ocspFailOpen() {
+        return Optional.ofNullable(this.ocspFailOpen);
+    }
+
+    /**
+     * - If set to true, rather than
+     *   accepting the first successful OCSP response, query all servers and consider
+     *   the certificate valid only if all servers agree.
+     *   Requires Vault version 1.13+.
+     * 
+     */
+    @Import(name="ocspQueryAllServers")
+    private @Nullable Output<Boolean> ocspQueryAllServers;
+
+    /**
+     * @return - If set to true, rather than
+     * accepting the first successful OCSP response, query all servers and consider
+     * the certificate valid only if all servers agree.
+     * Requires Vault version 1.13+.
+     * 
+     */
+    public Optional<Output<Boolean>> ocspQueryAllServers() {
+        return Optional.ofNullable(this.ocspQueryAllServers);
+    }
+
+    /**
+     * : A comma-separated list of OCSP
+     * server addresses. If unset, the OCSP server is determined from the
+     * AuthorityInformationAccess extension on the certificate being inspected.
+     * Requires Vault version 1.13+.
+     * 
+     */
+    @Import(name="ocspServersOverrides")
+    private @Nullable Output<List<String>> ocspServersOverrides;
+
+    /**
+     * @return : A comma-separated list of OCSP
+     * server addresses. If unset, the OCSP server is determined from the
+     * AuthorityInformationAccess extension on the certificate being inspected.
+     * Requires Vault version 1.13+.
+     * 
+     */
+    public Optional<Output<List<String>>> ocspServersOverrides() {
+        return Optional.ofNullable(this.ocspServersOverrides);
+    }
+
+    /**
+     * TLS extensions required on
+     * client certificates
      * 
      */
     @Import(name="requiredExtensions")
     private @Nullable Output<List<String>> requiredExtensions;
 
     /**
-     * @return TLS extensions required on client certificates
+     * @return TLS extensions required on
+     * client certificates
      * 
      */
     public Optional<Output<List<String>>> requiredExtensions() {
@@ -409,6 +510,11 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
         this.displayName = $.displayName;
         this.name = $.name;
         this.namespace = $.namespace;
+        this.ocspCaCertificates = $.ocspCaCertificates;
+        this.ocspEnabled = $.ocspEnabled;
+        this.ocspFailOpen = $.ocspFailOpen;
+        this.ocspQueryAllServers = $.ocspQueryAllServers;
+        this.ocspServersOverrides = $.ocspServersOverrides;
         this.requiredExtensions = $.requiredExtensions;
         this.tokenBoundCidrs = $.tokenBoundCidrs;
         this.tokenExplicitMaxTtl = $.tokenExplicitMaxTtl;
@@ -777,7 +883,150 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param requiredExtensions TLS extensions required on client certificates
+         * @param ocspCaCertificates Any additional CA certificates
+         * needed to verify OCSP responses. Provided as base64 encoded PEM data.
+         * Requires Vault version 1.13+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ocspCaCertificates(@Nullable Output<String> ocspCaCertificates) {
+            $.ocspCaCertificates = ocspCaCertificates;
+            return this;
+        }
+
+        /**
+         * @param ocspCaCertificates Any additional CA certificates
+         * needed to verify OCSP responses. Provided as base64 encoded PEM data.
+         * Requires Vault version 1.13+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ocspCaCertificates(String ocspCaCertificates) {
+            return ocspCaCertificates(Output.of(ocspCaCertificates));
+        }
+
+        /**
+         * @param ocspEnabled - If enabled, validate certificates&#39;
+         * revocation status using OCSP. Requires Vault version 1.13+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ocspEnabled(@Nullable Output<Boolean> ocspEnabled) {
+            $.ocspEnabled = ocspEnabled;
+            return this;
+        }
+
+        /**
+         * @param ocspEnabled - If enabled, validate certificates&#39;
+         * revocation status using OCSP. Requires Vault version 1.13+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ocspEnabled(Boolean ocspEnabled) {
+            return ocspEnabled(Output.of(ocspEnabled));
+        }
+
+        /**
+         * @param ocspFailOpen - If true and an OCSP response cannot
+         * be fetched or is of an unknown status, the login will proceed as if the
+         * certificate has not been revoked.
+         * Requires Vault version 1.13+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ocspFailOpen(@Nullable Output<Boolean> ocspFailOpen) {
+            $.ocspFailOpen = ocspFailOpen;
+            return this;
+        }
+
+        /**
+         * @param ocspFailOpen - If true and an OCSP response cannot
+         * be fetched or is of an unknown status, the login will proceed as if the
+         * certificate has not been revoked.
+         * Requires Vault version 1.13+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ocspFailOpen(Boolean ocspFailOpen) {
+            return ocspFailOpen(Output.of(ocspFailOpen));
+        }
+
+        /**
+         * @param ocspQueryAllServers - If set to true, rather than
+         * accepting the first successful OCSP response, query all servers and consider
+         * the certificate valid only if all servers agree.
+         * Requires Vault version 1.13+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ocspQueryAllServers(@Nullable Output<Boolean> ocspQueryAllServers) {
+            $.ocspQueryAllServers = ocspQueryAllServers;
+            return this;
+        }
+
+        /**
+         * @param ocspQueryAllServers - If set to true, rather than
+         * accepting the first successful OCSP response, query all servers and consider
+         * the certificate valid only if all servers agree.
+         * Requires Vault version 1.13+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ocspQueryAllServers(Boolean ocspQueryAllServers) {
+            return ocspQueryAllServers(Output.of(ocspQueryAllServers));
+        }
+
+        /**
+         * @param ocspServersOverrides : A comma-separated list of OCSP
+         * server addresses. If unset, the OCSP server is determined from the
+         * AuthorityInformationAccess extension on the certificate being inspected.
+         * Requires Vault version 1.13+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ocspServersOverrides(@Nullable Output<List<String>> ocspServersOverrides) {
+            $.ocspServersOverrides = ocspServersOverrides;
+            return this;
+        }
+
+        /**
+         * @param ocspServersOverrides : A comma-separated list of OCSP
+         * server addresses. If unset, the OCSP server is determined from the
+         * AuthorityInformationAccess extension on the certificate being inspected.
+         * Requires Vault version 1.13+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ocspServersOverrides(List<String> ocspServersOverrides) {
+            return ocspServersOverrides(Output.of(ocspServersOverrides));
+        }
+
+        /**
+         * @param ocspServersOverrides : A comma-separated list of OCSP
+         * server addresses. If unset, the OCSP server is determined from the
+         * AuthorityInformationAccess extension on the certificate being inspected.
+         * Requires Vault version 1.13+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ocspServersOverrides(String... ocspServersOverrides) {
+            return ocspServersOverrides(List.of(ocspServersOverrides));
+        }
+
+        /**
+         * @param requiredExtensions TLS extensions required on
+         * client certificates
          * 
          * @return builder
          * 
@@ -788,7 +1037,8 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param requiredExtensions TLS extensions required on client certificates
+         * @param requiredExtensions TLS extensions required on
+         * client certificates
          * 
          * @return builder
          * 
@@ -798,7 +1048,8 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param requiredExtensions TLS extensions required on client certificates
+         * @param requiredExtensions TLS extensions required on
+         * client certificates
          * 
          * @return builder
          * 

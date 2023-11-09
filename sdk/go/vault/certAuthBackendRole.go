@@ -96,7 +96,30 @@ type CertAuthBackendRole struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
-	// TLS extensions required on client certificates
+	// Any additional CA certificates
+	// needed to verify OCSP responses. Provided as base64 encoded PEM data.
+	// Requires Vault version 1.13+.
+	OcspCaCertificates pulumi.StringPtrOutput `pulumi:"ocspCaCertificates"`
+	// - If enabled, validate certificates'
+	//   revocation status using OCSP. Requires Vault version 1.13+.
+	OcspEnabled pulumi.BoolOutput `pulumi:"ocspEnabled"`
+	// - If true and an OCSP response cannot
+	//   be fetched or is of an unknown status, the login will proceed as if the
+	//   certificate has not been revoked.
+	//   Requires Vault version 1.13+.
+	OcspFailOpen pulumi.BoolOutput `pulumi:"ocspFailOpen"`
+	// - If set to true, rather than
+	//   accepting the first successful OCSP response, query all servers and consider
+	//   the certificate valid only if all servers agree.
+	//   Requires Vault version 1.13+.
+	OcspQueryAllServers pulumi.BoolOutput `pulumi:"ocspQueryAllServers"`
+	// : A comma-separated list of OCSP
+	// server addresses. If unset, the OCSP server is determined from the
+	// AuthorityInformationAccess extension on the certificate being inspected.
+	// Requires Vault version 1.13+.
+	OcspServersOverrides pulumi.StringArrayOutput `pulumi:"ocspServersOverrides"`
+	// TLS extensions required on
+	// client certificates
 	RequiredExtensions pulumi.StringArrayOutput `pulumi:"requiredExtensions"`
 	// List of CIDR blocks; if set, specifies blocks of IP
 	// addresses which can authenticate successfully, and ties the resulting token to these blocks
@@ -195,7 +218,30 @@ type certAuthBackendRoleState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
-	// TLS extensions required on client certificates
+	// Any additional CA certificates
+	// needed to verify OCSP responses. Provided as base64 encoded PEM data.
+	// Requires Vault version 1.13+.
+	OcspCaCertificates *string `pulumi:"ocspCaCertificates"`
+	// - If enabled, validate certificates'
+	//   revocation status using OCSP. Requires Vault version 1.13+.
+	OcspEnabled *bool `pulumi:"ocspEnabled"`
+	// - If true and an OCSP response cannot
+	//   be fetched or is of an unknown status, the login will proceed as if the
+	//   certificate has not been revoked.
+	//   Requires Vault version 1.13+.
+	OcspFailOpen *bool `pulumi:"ocspFailOpen"`
+	// - If set to true, rather than
+	//   accepting the first successful OCSP response, query all servers and consider
+	//   the certificate valid only if all servers agree.
+	//   Requires Vault version 1.13+.
+	OcspQueryAllServers *bool `pulumi:"ocspQueryAllServers"`
+	// : A comma-separated list of OCSP
+	// server addresses. If unset, the OCSP server is determined from the
+	// AuthorityInformationAccess extension on the certificate being inspected.
+	// Requires Vault version 1.13+.
+	OcspServersOverrides []string `pulumi:"ocspServersOverrides"`
+	// TLS extensions required on
+	// client certificates
 	RequiredExtensions []string `pulumi:"requiredExtensions"`
 	// List of CIDR blocks; if set, specifies blocks of IP
 	// addresses which can authenticate successfully, and ties the resulting token to these blocks
@@ -263,7 +309,30 @@ type CertAuthBackendRoleState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
-	// TLS extensions required on client certificates
+	// Any additional CA certificates
+	// needed to verify OCSP responses. Provided as base64 encoded PEM data.
+	// Requires Vault version 1.13+.
+	OcspCaCertificates pulumi.StringPtrInput
+	// - If enabled, validate certificates'
+	//   revocation status using OCSP. Requires Vault version 1.13+.
+	OcspEnabled pulumi.BoolPtrInput
+	// - If true and an OCSP response cannot
+	//   be fetched or is of an unknown status, the login will proceed as if the
+	//   certificate has not been revoked.
+	//   Requires Vault version 1.13+.
+	OcspFailOpen pulumi.BoolPtrInput
+	// - If set to true, rather than
+	//   accepting the first successful OCSP response, query all servers and consider
+	//   the certificate valid only if all servers agree.
+	//   Requires Vault version 1.13+.
+	OcspQueryAllServers pulumi.BoolPtrInput
+	// : A comma-separated list of OCSP
+	// server addresses. If unset, the OCSP server is determined from the
+	// AuthorityInformationAccess extension on the certificate being inspected.
+	// Requires Vault version 1.13+.
+	OcspServersOverrides pulumi.StringArrayInput
+	// TLS extensions required on
+	// client certificates
 	RequiredExtensions pulumi.StringArrayInput
 	// List of CIDR blocks; if set, specifies blocks of IP
 	// addresses which can authenticate successfully, and ties the resulting token to these blocks
@@ -335,7 +404,30 @@ type certAuthBackendRoleArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
-	// TLS extensions required on client certificates
+	// Any additional CA certificates
+	// needed to verify OCSP responses. Provided as base64 encoded PEM data.
+	// Requires Vault version 1.13+.
+	OcspCaCertificates *string `pulumi:"ocspCaCertificates"`
+	// - If enabled, validate certificates'
+	//   revocation status using OCSP. Requires Vault version 1.13+.
+	OcspEnabled *bool `pulumi:"ocspEnabled"`
+	// - If true and an OCSP response cannot
+	//   be fetched or is of an unknown status, the login will proceed as if the
+	//   certificate has not been revoked.
+	//   Requires Vault version 1.13+.
+	OcspFailOpen *bool `pulumi:"ocspFailOpen"`
+	// - If set to true, rather than
+	//   accepting the first successful OCSP response, query all servers and consider
+	//   the certificate valid only if all servers agree.
+	//   Requires Vault version 1.13+.
+	OcspQueryAllServers *bool `pulumi:"ocspQueryAllServers"`
+	// : A comma-separated list of OCSP
+	// server addresses. If unset, the OCSP server is determined from the
+	// AuthorityInformationAccess extension on the certificate being inspected.
+	// Requires Vault version 1.13+.
+	OcspServersOverrides []string `pulumi:"ocspServersOverrides"`
+	// TLS extensions required on
+	// client certificates
 	RequiredExtensions []string `pulumi:"requiredExtensions"`
 	// List of CIDR blocks; if set, specifies blocks of IP
 	// addresses which can authenticate successfully, and ties the resulting token to these blocks
@@ -404,7 +496,30 @@ type CertAuthBackendRoleArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
-	// TLS extensions required on client certificates
+	// Any additional CA certificates
+	// needed to verify OCSP responses. Provided as base64 encoded PEM data.
+	// Requires Vault version 1.13+.
+	OcspCaCertificates pulumi.StringPtrInput
+	// - If enabled, validate certificates'
+	//   revocation status using OCSP. Requires Vault version 1.13+.
+	OcspEnabled pulumi.BoolPtrInput
+	// - If true and an OCSP response cannot
+	//   be fetched or is of an unknown status, the login will proceed as if the
+	//   certificate has not been revoked.
+	//   Requires Vault version 1.13+.
+	OcspFailOpen pulumi.BoolPtrInput
+	// - If set to true, rather than
+	//   accepting the first successful OCSP response, query all servers and consider
+	//   the certificate valid only if all servers agree.
+	//   Requires Vault version 1.13+.
+	OcspQueryAllServers pulumi.BoolPtrInput
+	// : A comma-separated list of OCSP
+	// server addresses. If unset, the OCSP server is determined from the
+	// AuthorityInformationAccess extension on the certificate being inspected.
+	// Requires Vault version 1.13+.
+	OcspServersOverrides pulumi.StringArrayInput
+	// TLS extensions required on
+	// client certificates
 	RequiredExtensions pulumi.StringArrayInput
 	// List of CIDR blocks; if set, specifies blocks of IP
 	// addresses which can authenticate successfully, and ties the resulting token to these blocks
@@ -594,7 +709,45 @@ func (o CertAuthBackendRoleOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
-// TLS extensions required on client certificates
+// Any additional CA certificates
+// needed to verify OCSP responses. Provided as base64 encoded PEM data.
+// Requires Vault version 1.13+.
+func (o CertAuthBackendRoleOutput) OcspCaCertificates() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringPtrOutput { return v.OcspCaCertificates }).(pulumi.StringPtrOutput)
+}
+
+//   - If enabled, validate certificates'
+//     revocation status using OCSP. Requires Vault version 1.13+.
+func (o CertAuthBackendRoleOutput) OcspEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.BoolOutput { return v.OcspEnabled }).(pulumi.BoolOutput)
+}
+
+//   - If true and an OCSP response cannot
+//     be fetched or is of an unknown status, the login will proceed as if the
+//     certificate has not been revoked.
+//     Requires Vault version 1.13+.
+func (o CertAuthBackendRoleOutput) OcspFailOpen() pulumi.BoolOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.BoolOutput { return v.OcspFailOpen }).(pulumi.BoolOutput)
+}
+
+//   - If set to true, rather than
+//     accepting the first successful OCSP response, query all servers and consider
+//     the certificate valid only if all servers agree.
+//     Requires Vault version 1.13+.
+func (o CertAuthBackendRoleOutput) OcspQueryAllServers() pulumi.BoolOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.BoolOutput { return v.OcspQueryAllServers }).(pulumi.BoolOutput)
+}
+
+// : A comma-separated list of OCSP
+// server addresses. If unset, the OCSP server is determined from the
+// AuthorityInformationAccess extension on the certificate being inspected.
+// Requires Vault version 1.13+.
+func (o CertAuthBackendRoleOutput) OcspServersOverrides() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringArrayOutput { return v.OcspServersOverrides }).(pulumi.StringArrayOutput)
+}
+
+// TLS extensions required on
+// client certificates
 func (o CertAuthBackendRoleOutput) RequiredExtensions() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringArrayOutput { return v.RequiredExtensions }).(pulumi.StringArrayOutput)
 }

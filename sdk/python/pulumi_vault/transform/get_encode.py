@@ -21,7 +21,7 @@ class GetEncodeResult:
     """
     A collection of values returned by getEncode.
     """
-    def __init__(__self__, batch_inputs=None, batch_results=None, encoded_value=None, id=None, path=None, role_name=None, transformation=None, tweak=None, value=None):
+    def __init__(__self__, batch_inputs=None, batch_results=None, encoded_value=None, id=None, namespace=None, path=None, role_name=None, transformation=None, tweak=None, value=None):
         if batch_inputs and not isinstance(batch_inputs, list):
             raise TypeError("Expected argument 'batch_inputs' to be a list")
         pulumi.set(__self__, "batch_inputs", batch_inputs)
@@ -34,6 +34,9 @@ class GetEncodeResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if namespace and not isinstance(namespace, str):
+            raise TypeError("Expected argument 'namespace' to be a str")
+        pulumi.set(__self__, "namespace", namespace)
         if path and not isinstance(path, str):
             raise TypeError("Expected argument 'path' to be a str")
         pulumi.set(__self__, "path", path)
@@ -75,6 +78,11 @@ class GetEncodeResult:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[str]:
+        return pulumi.get(self, "namespace")
+
+    @property
+    @pulumi.getter
     def path(self) -> str:
         return pulumi.get(self, "path")
 
@@ -109,6 +117,7 @@ class AwaitableGetEncodeResult(GetEncodeResult):
             batch_results=self.batch_results,
             encoded_value=self.encoded_value,
             id=self.id,
+            namespace=self.namespace,
             path=self.path,
             role_name=self.role_name,
             transformation=self.transformation,
@@ -119,6 +128,7 @@ class AwaitableGetEncodeResult(GetEncodeResult):
 def get_encode(batch_inputs: Optional[Sequence[Mapping[str, Any]]] = None,
                batch_results: Optional[Sequence[Mapping[str, Any]]] = None,
                encoded_value: Optional[str] = None,
+               namespace: Optional[str] = None,
                path: Optional[str] = None,
                role_name: Optional[str] = None,
                transformation: Optional[str] = None,
@@ -130,10 +140,39 @@ def get_encode(batch_inputs: Optional[Sequence[Mapping[str, Any]]] = None,
 
     It encodes the provided value using a named role.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    transform = vault.Mount("transform",
+        path="transform",
+        type="transform")
+    ccn_fpe = vault.transform.Transformation("ccn-fpe",
+        path=transform.path,
+        type="fpe",
+        template="builtin/creditcardnumber",
+        tweak_source="internal",
+        allowed_roles=["payments"])
+    payments = vault.transform.Role("payments",
+        path=ccn_fpe.path,
+        transformations=["ccn-fpe"])
+    test = vault.transform.get_encode_output(path=payments.path,
+        role_name="payments",
+        batch_inputs=[{
+            "value": "1111-2222-3333-4444",
+        }])
+    ```
+
 
     :param Sequence[Mapping[str, Any]] batch_inputs: Specifies a list of items to be encoded in a single batch. If this parameter is set, the parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
     :param Sequence[Mapping[str, Any]] batch_results: The result of encoding a batch.
     :param str encoded_value: The result of encoding a value.
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           *Available only for Vault Enterprise*.
     :param str path: Path to where the back-end is mounted within Vault.
     :param str role_name: The name of the role.
     :param str transformation: The transformation to perform. If no value is provided and the role contains a single transformation, this value will be inferred from the role.
@@ -144,6 +183,7 @@ def get_encode(batch_inputs: Optional[Sequence[Mapping[str, Any]]] = None,
     __args__['batchInputs'] = batch_inputs
     __args__['batchResults'] = batch_results
     __args__['encodedValue'] = encoded_value
+    __args__['namespace'] = namespace
     __args__['path'] = path
     __args__['roleName'] = role_name
     __args__['transformation'] = transformation
@@ -157,6 +197,7 @@ def get_encode(batch_inputs: Optional[Sequence[Mapping[str, Any]]] = None,
         batch_results=__ret__.batch_results,
         encoded_value=__ret__.encoded_value,
         id=__ret__.id,
+        namespace=__ret__.namespace,
         path=__ret__.path,
         role_name=__ret__.role_name,
         transformation=__ret__.transformation,
@@ -168,6 +209,7 @@ def get_encode(batch_inputs: Optional[Sequence[Mapping[str, Any]]] = None,
 def get_encode_output(batch_inputs: Optional[pulumi.Input[Optional[Sequence[Mapping[str, Any]]]]] = None,
                       batch_results: Optional[pulumi.Input[Optional[Sequence[Mapping[str, Any]]]]] = None,
                       encoded_value: Optional[pulumi.Input[Optional[str]]] = None,
+                      namespace: Optional[pulumi.Input[Optional[str]]] = None,
                       path: Optional[pulumi.Input[str]] = None,
                       role_name: Optional[pulumi.Input[str]] = None,
                       transformation: Optional[pulumi.Input[Optional[str]]] = None,
@@ -179,10 +221,39 @@ def get_encode_output(batch_inputs: Optional[pulumi.Input[Optional[Sequence[Mapp
 
     It encodes the provided value using a named role.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    transform = vault.Mount("transform",
+        path="transform",
+        type="transform")
+    ccn_fpe = vault.transform.Transformation("ccn-fpe",
+        path=transform.path,
+        type="fpe",
+        template="builtin/creditcardnumber",
+        tweak_source="internal",
+        allowed_roles=["payments"])
+    payments = vault.transform.Role("payments",
+        path=ccn_fpe.path,
+        transformations=["ccn-fpe"])
+    test = vault.transform.get_encode_output(path=payments.path,
+        role_name="payments",
+        batch_inputs=[{
+            "value": "1111-2222-3333-4444",
+        }])
+    ```
+
 
     :param Sequence[Mapping[str, Any]] batch_inputs: Specifies a list of items to be encoded in a single batch. If this parameter is set, the parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
     :param Sequence[Mapping[str, Any]] batch_results: The result of encoding a batch.
     :param str encoded_value: The result of encoding a value.
+    :param str namespace: The namespace of the target resource.
+           The value should not contain leading or trailing forward slashes.
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           *Available only for Vault Enterprise*.
     :param str path: Path to where the back-end is mounted within Vault.
     :param str role_name: The name of the role.
     :param str transformation: The transformation to perform. If no value is provided and the role contains a single transformation, this value will be inferred from the role.

@@ -5,6 +5,7 @@ package com.pulumi.vault.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -50,6 +51,13 @@ public final class ProviderAuthLoginCertArgs extends com.pulumi.resources.Resour
         return Optional.ofNullable(this.namespace);
     }
 
+    @Import(name="useRootNamespace")
+    private @Nullable Output<Boolean> useRootNamespace;
+
+    public Optional<Output<Boolean>> useRootNamespace() {
+        return Optional.ofNullable(this.useRootNamespace);
+    }
+
     private ProviderAuthLoginCertArgs() {}
 
     private ProviderAuthLoginCertArgs(ProviderAuthLoginCertArgs $) {
@@ -58,6 +66,7 @@ public final class ProviderAuthLoginCertArgs extends com.pulumi.resources.Resour
         this.mount = $.mount;
         this.name = $.name;
         this.namespace = $.namespace;
+        this.useRootNamespace = $.useRootNamespace;
     }
 
     public static Builder builder() {
@@ -121,6 +130,15 @@ public final class ProviderAuthLoginCertArgs extends com.pulumi.resources.Resour
 
         public Builder namespace(String namespace) {
             return namespace(Output.of(namespace));
+        }
+
+        public Builder useRootNamespace(@Nullable Output<Boolean> useRootNamespace) {
+            $.useRootNamespace = useRootNamespace;
+            return this;
+        }
+
+        public Builder useRootNamespace(Boolean useRootNamespace) {
+            return useRootNamespace(Output.of(useRootNamespace));
         }
 
         public ProviderAuthLoginCertArgs build() {

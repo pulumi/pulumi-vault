@@ -13,6 +13,60 @@ import (
 // This data source supports the "/transform/decode/{role_name}" Vault endpoint.
 //
 // It decodes the provided value using a named role.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/transform"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			transform, err := vault.NewMount(ctx, "transform", &vault.MountArgs{
+//				Path: pulumi.String("transform"),
+//				Type: pulumi.String("transform"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = transform.NewTransformation(ctx, "ccn-fpe", &transform.TransformationArgs{
+//				Path:        transform.Path,
+//				Type:        pulumi.String("fpe"),
+//				Template:    pulumi.String("builtin/creditcardnumber"),
+//				TweakSource: pulumi.String("internal"),
+//				AllowedRoles: pulumi.StringArray{
+//					pulumi.String("payments"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			payments, err := transform.NewRole(ctx, "payments", &transform.RoleArgs{
+//				Path: ccn_fpe.Path,
+//				Transformations: pulumi.StringArray{
+//					pulumi.String("ccn-fpe"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = transform.GetDecodeOutput(ctx, transform.GetDecodeOutputArgs{
+//				Path:     payments.Path,
+//				RoleName: pulumi.String("payments"),
+//				Value:    pulumi.String("9300-3376-4943-8903"),
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetDecode(ctx *pulumi.Context, args *GetDecodeArgs, opts ...pulumi.InvokeOption) (*GetDecodeResult, error) {
 	var rv GetDecodeResult
 	err := ctx.Invoke("vault:transform/getDecode:getDecode", args, &rv, opts...)
@@ -30,6 +84,11 @@ type GetDecodeArgs struct {
 	BatchResults []map[string]interface{} `pulumi:"batchResults"`
 	// The result of decoding a value.
 	DecodedValue *string `pulumi:"decodedValue"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Path to where the back-end is mounted within Vault.
 	Path string `pulumi:"path"`
 	// The name of the role.
@@ -49,6 +108,7 @@ type GetDecodeResult struct {
 	DecodedValue string                   `pulumi:"decodedValue"`
 	// The provider-assigned unique ID for this managed resource.
 	Id             string  `pulumi:"id"`
+	Namespace      *string `pulumi:"namespace"`
 	Path           string  `pulumi:"path"`
 	RoleName       string  `pulumi:"roleName"`
 	Transformation *string `pulumi:"transformation"`
@@ -77,6 +137,11 @@ type GetDecodeOutputArgs struct {
 	BatchResults pulumi.MapArrayInput `pulumi:"batchResults"`
 	// The result of decoding a value.
 	DecodedValue pulumi.StringPtrInput `pulumi:"decodedValue"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringInput `pulumi:"path"`
 	// The name of the role.
@@ -123,6 +188,10 @@ func (o GetDecodeResultOutput) DecodedValue() pulumi.StringOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o GetDecodeResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDecodeResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetDecodeResultOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetDecodeResult) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 func (o GetDecodeResultOutput) Path() pulumi.StringOutput {

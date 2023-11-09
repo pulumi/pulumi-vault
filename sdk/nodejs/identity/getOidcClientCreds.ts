@@ -64,6 +64,7 @@ export interface GetOidcClientCredsResult {
     readonly clientId: string;
     /**
      * The Client Secret Key returned by Vault.
+     * For public OpenID Clients `clientSecret` is set to an empty string `""`
      */
     readonly clientSecret: string;
     /**

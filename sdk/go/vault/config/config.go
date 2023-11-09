@@ -128,6 +128,12 @@ func GetNamespace(ctx *pulumi.Context) string {
 	return config.Get(ctx, "vault:namespace")
 }
 
+// In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the
+// token namespace as the root namespace for all resources.
+func GetSetNamespaceFromToken(ctx *pulumi.Context) bool {
+	return config.GetBool(ctx, "vault:setNamespaceFromToken")
+}
+
 // Set this to true to prevent the creation of ephemeral child token used by this provider.
 func GetSkipChildToken(ctx *pulumi.Context) bool {
 	return config.GetBool(ctx, "vault:skipChildToken")

@@ -103,6 +103,7 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["maxRetries"] = pulumi.output((args ? args.maxRetries : undefined) ?? (utilities.getEnvNumber("VAULT_MAX_RETRIES") || 2)).apply(JSON.stringify);
             resourceInputs["maxRetriesCcc"] = pulumi.output(args ? args.maxRetriesCcc : undefined).apply(JSON.stringify);
             resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["setNamespaceFromToken"] = pulumi.output(args ? args.setNamespaceFromToken : undefined).apply(JSON.stringify);
             resourceInputs["skipChildToken"] = pulumi.output(args ? args.skipChildToken : undefined).apply(JSON.stringify);
             resourceInputs["skipGetVaultVersion"] = pulumi.output(args ? args.skipGetVaultVersion : undefined).apply(JSON.stringify);
             resourceInputs["skipTlsVerify"] = pulumi.output((args ? args.skipTlsVerify : undefined) ?? utilities.getEnvBoolean("VAULT_SKIP_VERIFY")).apply(JSON.stringify);
@@ -210,6 +211,11 @@ export interface ProviderArgs {
      * The namespace to use. Available only for Vault Enterprise.
      */
     namespace?: pulumi.Input<string>;
+    /**
+     * In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the
+     * token namespace as the root namespace for all resources.
+     */
+    setNamespaceFromToken?: pulumi.Input<boolean>;
     /**
      * Set this to true to prevent the creation of ephemeral child token used by this provider.
      */

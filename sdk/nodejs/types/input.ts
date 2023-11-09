@@ -169,6 +169,7 @@ export interface ProviderAuthLogin {
     namespace?: pulumi.Input<string>;
     parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     path: pulumi.Input<string>;
+    useRootNamespace?: pulumi.Input<boolean>;
 }
 
 export interface ProviderAuthLoginAws {
@@ -187,6 +188,7 @@ export interface ProviderAuthLoginAws {
     mount?: pulumi.Input<string>;
     namespace?: pulumi.Input<string>;
     role: pulumi.Input<string>;
+    useRootNamespace?: pulumi.Input<boolean>;
 }
 
 export interface ProviderAuthLoginAzure {
@@ -199,6 +201,7 @@ export interface ProviderAuthLoginAzure {
     scope?: pulumi.Input<string>;
     subscriptionId: pulumi.Input<string>;
     tenantId?: pulumi.Input<string>;
+    useRootNamespace?: pulumi.Input<boolean>;
     vmName?: pulumi.Input<string>;
     vmssName?: pulumi.Input<string>;
 }
@@ -209,6 +212,7 @@ export interface ProviderAuthLoginCert {
     mount?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     namespace?: pulumi.Input<string>;
+    useRootNamespace?: pulumi.Input<boolean>;
 }
 
 export interface ProviderAuthLoginGcp {
@@ -218,6 +222,7 @@ export interface ProviderAuthLoginGcp {
     namespace?: pulumi.Input<string>;
     role: pulumi.Input<string>;
     serviceAccount?: pulumi.Input<string>;
+    useRootNamespace?: pulumi.Input<boolean>;
 }
 
 export interface ProviderAuthLoginJwt {
@@ -225,6 +230,7 @@ export interface ProviderAuthLoginJwt {
     mount?: pulumi.Input<string>;
     namespace?: pulumi.Input<string>;
     role: pulumi.Input<string>;
+    useRootNamespace?: pulumi.Input<boolean>;
 }
 
 export interface ProviderAuthLoginKerberos {
@@ -237,6 +243,7 @@ export interface ProviderAuthLoginKerberos {
     removeInstanceName?: pulumi.Input<boolean>;
     service?: pulumi.Input<string>;
     token?: pulumi.Input<string>;
+    useRootNamespace?: pulumi.Input<boolean>;
     username?: pulumi.Input<string>;
 }
 
@@ -245,6 +252,7 @@ export interface ProviderAuthLoginOci {
     mount?: pulumi.Input<string>;
     namespace?: pulumi.Input<string>;
     role: pulumi.Input<string>;
+    useRootNamespace?: pulumi.Input<boolean>;
 }
 
 export interface ProviderAuthLoginOidc {
@@ -253,18 +261,21 @@ export interface ProviderAuthLoginOidc {
     mount?: pulumi.Input<string>;
     namespace?: pulumi.Input<string>;
     role: pulumi.Input<string>;
+    useRootNamespace?: pulumi.Input<boolean>;
 }
 
 export interface ProviderAuthLoginRadius {
     mount?: pulumi.Input<string>;
     namespace?: pulumi.Input<string>;
     password: pulumi.Input<string>;
+    useRootNamespace?: pulumi.Input<boolean>;
     username: pulumi.Input<string>;
 }
 
 export interface ProviderAuthLoginTokenFile {
     filename: pulumi.Input<string>;
     namespace?: pulumi.Input<string>;
+    useRootNamespace?: pulumi.Input<boolean>;
 }
 
 export interface ProviderAuthLoginUserpass {
@@ -272,6 +283,7 @@ export interface ProviderAuthLoginUserpass {
     namespace?: pulumi.Input<string>;
     password?: pulumi.Input<string>;
     passwordFile?: pulumi.Input<string>;
+    useRootNamespace?: pulumi.Input<boolean>;
     username: pulumi.Input<string>;
 }
 

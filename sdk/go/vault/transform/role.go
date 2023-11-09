@@ -57,6 +57,11 @@ type Role struct {
 
 	// The name of the role.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringOutput `pulumi:"path"`
 	// A comma separated string or slice of transformations to use.
@@ -97,6 +102,11 @@ func GetRole(ctx *pulumi.Context,
 type roleState struct {
 	// The name of the role.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Path to where the back-end is mounted within Vault.
 	Path *string `pulumi:"path"`
 	// A comma separated string or slice of transformations to use.
@@ -106,6 +116,11 @@ type roleState struct {
 type RoleState struct {
 	// The name of the role.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringPtrInput
 	// A comma separated string or slice of transformations to use.
@@ -119,6 +134,11 @@ func (RoleState) ElementType() reflect.Type {
 type roleArgs struct {
 	// The name of the role.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Path to where the back-end is mounted within Vault.
 	Path string `pulumi:"path"`
 	// A comma separated string or slice of transformations to use.
@@ -129,6 +149,11 @@ type roleArgs struct {
 type RoleArgs struct {
 	// The name of the role.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringInput
 	// A comma separated string or slice of transformations to use.
@@ -225,6 +250,14 @@ func (o RoleOutput) ToRoleOutputWithContext(ctx context.Context) RoleOutput {
 // The name of the role.
 func (o RoleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Role) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o RoleOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Role) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Path to where the back-end is mounted within Vault.

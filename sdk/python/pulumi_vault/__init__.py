@@ -79,6 +79,8 @@ if typing.TYPE_CHECKING:
     pkisecret = __pkisecret
     import pulumi_vault.rabbitmq as __rabbitmq
     rabbitmq = __rabbitmq
+    import pulumi_vault.saml as __saml
+    saml = __saml
     import pulumi_vault.ssh as __ssh
     ssh = __ssh
     import pulumi_vault.terraformcloud as __terraformcloud
@@ -112,6 +114,7 @@ else:
     okta = _utilities.lazy_import('pulumi_vault.okta')
     pkisecret = _utilities.lazy_import('pulumi_vault.pkisecret')
     rabbitmq = _utilities.lazy_import('pulumi_vault.rabbitmq')
+    saml = _utilities.lazy_import('pulumi_vault.saml')
     ssh = _utilities.lazy_import('pulumi_vault.ssh')
     terraformcloud = _utilities.lazy_import('pulumi_vault.terraformcloud')
     tokenauth = _utilities.lazy_import('pulumi_vault.tokenauth')
@@ -1095,6 +1098,22 @@ _utilities.register(
   "fqn": "pulumi_vault.rabbitmq",
   "classes": {
    "vault:rabbitMq/secretBackendRole:SecretBackendRole": "SecretBackendRole"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "saml/authBackend",
+  "fqn": "pulumi_vault.saml",
+  "classes": {
+   "vault:saml/authBackend:AuthBackend": "AuthBackend"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "saml/authBackendRole",
+  "fqn": "pulumi_vault.saml",
+  "classes": {
+   "vault:saml/authBackendRole:AuthBackendRole": "AuthBackendRole"
   }
  },
  {

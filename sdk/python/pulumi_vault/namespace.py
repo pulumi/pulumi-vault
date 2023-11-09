@@ -15,11 +15,14 @@ __all__ = ['NamespaceArgs', 'Namespace']
 class NamespaceArgs:
     def __init__(__self__, *,
                  path: pulumi.Input[str],
+                 custom_metadata: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path_fq: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Namespace resource.
         :param pulumi.Input[str] path: The path of the namespace. Must not have a trailing `/`.
+        :param pulumi.Input[Mapping[str, Any]] custom_metadata: Custom metadata describing this namespace. Value type
+               is `map[string]string`. Requires Vault version 1.12+.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -28,6 +31,8 @@ class NamespaceArgs:
                The path is relative to the provider's `namespace` argument.
         """
         pulumi.set(__self__, "path", path)
+        if custom_metadata is not None:
+            pulumi.set(__self__, "custom_metadata", custom_metadata)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if path_fq is not None:
@@ -44,6 +49,19 @@ class NamespaceArgs:
     @path.setter
     def path(self, value: pulumi.Input[str]):
         pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter(name="customMetadata")
+    def custom_metadata(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        Custom metadata describing this namespace. Value type
+        is `map[string]string`. Requires Vault version 1.12+.
+        """
+        return pulumi.get(self, "custom_metadata")
+
+    @custom_metadata.setter
+    def custom_metadata(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "custom_metadata", value)
 
     @property
     @pulumi.getter
@@ -77,12 +95,15 @@ class NamespaceArgs:
 @pulumi.input_type
 class _NamespaceState:
     def __init__(__self__, *,
+                 custom_metadata: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  namespace_id: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  path_fq: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Namespace resources.
+        :param pulumi.Input[Mapping[str, Any]] custom_metadata: Custom metadata describing this namespace. Value type
+               is `map[string]string`. Requires Vault version 1.12+.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -92,6 +113,8 @@ class _NamespaceState:
         :param pulumi.Input[str] path_fq: The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
                The path is relative to the provider's `namespace` argument.
         """
+        if custom_metadata is not None:
+            pulumi.set(__self__, "custom_metadata", custom_metadata)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if namespace_id is not None:
@@ -100,6 +123,19 @@ class _NamespaceState:
             pulumi.set(__self__, "path", path)
         if path_fq is not None:
             pulumi.set(__self__, "path_fq", path_fq)
+
+    @property
+    @pulumi.getter(name="customMetadata")
+    def custom_metadata(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        Custom metadata describing this namespace. Value type
+        is `map[string]string`. Requires Vault version 1.12+.
+        """
+        return pulumi.get(self, "custom_metadata")
+
+    @custom_metadata.setter
+    def custom_metadata(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "custom_metadata", value)
 
     @property
     @pulumi.getter
@@ -159,6 +195,7 @@ class Namespace(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 custom_metadata: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  path_fq: Optional[pulumi.Input[str]] = None,
@@ -210,6 +247,8 @@ class Namespace(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, Any]] custom_metadata: Custom metadata describing this namespace. Value type
+               is `map[string]string`. Requires Vault version 1.12+.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -284,6 +323,7 @@ class Namespace(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 custom_metadata: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  path_fq: Optional[pulumi.Input[str]] = None,
@@ -296,6 +336,7 @@ class Namespace(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = NamespaceArgs.__new__(NamespaceArgs)
 
+            __props__.__dict__["custom_metadata"] = custom_metadata
             __props__.__dict__["namespace"] = namespace
             if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
@@ -312,6 +353,7 @@ class Namespace(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            custom_metadata: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             namespace_id: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
@@ -323,6 +365,8 @@ class Namespace(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, Any]] custom_metadata: Custom metadata describing this namespace. Value type
+               is `map[string]string`. Requires Vault version 1.12+.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -336,11 +380,21 @@ class Namespace(pulumi.CustomResource):
 
         __props__ = _NamespaceState.__new__(_NamespaceState)
 
+        __props__.__dict__["custom_metadata"] = custom_metadata
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["namespace_id"] = namespace_id
         __props__.__dict__["path"] = path
         __props__.__dict__["path_fq"] = path_fq
         return Namespace(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="customMetadata")
+    def custom_metadata(self) -> pulumi.Output[Mapping[str, Any]]:
+        """
+        Custom metadata describing this namespace. Value type
+        is `map[string]string`. Requires Vault version 1.12+.
+        """
+        return pulumi.get(self, "custom_metadata")
 
     @property
     @pulumi.getter

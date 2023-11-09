@@ -112,7 +112,40 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
     /**
-     * TLS extensions required on client certificates
+     * Any additional CA certificates
+     * needed to verify OCSP responses. Provided as base64 encoded PEM data.
+     * Requires Vault version 1.13+.
+     */
+    public readonly ocspCaCertificates!: pulumi.Output<string | undefined>;
+    /**
+     * - If enabled, validate certificates'
+     * revocation status using OCSP. Requires Vault version 1.13+.
+     */
+    public readonly ocspEnabled!: pulumi.Output<boolean>;
+    /**
+     * - If true and an OCSP response cannot
+     * be fetched or is of an unknown status, the login will proceed as if the
+     * certificate has not been revoked.
+     * Requires Vault version 1.13+.
+     */
+    public readonly ocspFailOpen!: pulumi.Output<boolean>;
+    /**
+     * - If set to true, rather than
+     * accepting the first successful OCSP response, query all servers and consider
+     * the certificate valid only if all servers agree.
+     * Requires Vault version 1.13+.
+     */
+    public readonly ocspQueryAllServers!: pulumi.Output<boolean>;
+    /**
+     * : A comma-separated list of OCSP
+     * server addresses. If unset, the OCSP server is determined from the
+     * AuthorityInformationAccess extension on the certificate being inspected.
+     * Requires Vault version 1.13+.
+     */
+    public readonly ocspServersOverrides!: pulumi.Output<string[] | undefined>;
+    /**
+     * TLS extensions required on
+     * client certificates
      */
     public readonly requiredExtensions!: pulumi.Output<string[]>;
     /**
@@ -194,6 +227,11 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
             resourceInputs["displayName"] = state ? state.displayName : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
+            resourceInputs["ocspCaCertificates"] = state ? state.ocspCaCertificates : undefined;
+            resourceInputs["ocspEnabled"] = state ? state.ocspEnabled : undefined;
+            resourceInputs["ocspFailOpen"] = state ? state.ocspFailOpen : undefined;
+            resourceInputs["ocspQueryAllServers"] = state ? state.ocspQueryAllServers : undefined;
+            resourceInputs["ocspServersOverrides"] = state ? state.ocspServersOverrides : undefined;
             resourceInputs["requiredExtensions"] = state ? state.requiredExtensions : undefined;
             resourceInputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
             resourceInputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
@@ -221,6 +259,11 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
             resourceInputs["displayName"] = args ? args.displayName : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["ocspCaCertificates"] = args ? args.ocspCaCertificates : undefined;
+            resourceInputs["ocspEnabled"] = args ? args.ocspEnabled : undefined;
+            resourceInputs["ocspFailOpen"] = args ? args.ocspFailOpen : undefined;
+            resourceInputs["ocspQueryAllServers"] = args ? args.ocspQueryAllServers : undefined;
+            resourceInputs["ocspServersOverrides"] = args ? args.ocspServersOverrides : undefined;
             resourceInputs["requiredExtensions"] = args ? args.requiredExtensions : undefined;
             resourceInputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
             resourceInputs["tokenExplicitMaxTtl"] = args ? args.tokenExplicitMaxTtl : undefined;
@@ -294,7 +337,40 @@ export interface CertAuthBackendRoleState {
      */
     namespace?: pulumi.Input<string>;
     /**
-     * TLS extensions required on client certificates
+     * Any additional CA certificates
+     * needed to verify OCSP responses. Provided as base64 encoded PEM data.
+     * Requires Vault version 1.13+.
+     */
+    ocspCaCertificates?: pulumi.Input<string>;
+    /**
+     * - If enabled, validate certificates'
+     * revocation status using OCSP. Requires Vault version 1.13+.
+     */
+    ocspEnabled?: pulumi.Input<boolean>;
+    /**
+     * - If true and an OCSP response cannot
+     * be fetched or is of an unknown status, the login will proceed as if the
+     * certificate has not been revoked.
+     * Requires Vault version 1.13+.
+     */
+    ocspFailOpen?: pulumi.Input<boolean>;
+    /**
+     * - If set to true, rather than
+     * accepting the first successful OCSP response, query all servers and consider
+     * the certificate valid only if all servers agree.
+     * Requires Vault version 1.13+.
+     */
+    ocspQueryAllServers?: pulumi.Input<boolean>;
+    /**
+     * : A comma-separated list of OCSP
+     * server addresses. If unset, the OCSP server is determined from the
+     * AuthorityInformationAccess extension on the certificate being inspected.
+     * Requires Vault version 1.13+.
+     */
+    ocspServersOverrides?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * TLS extensions required on
+     * client certificates
      */
     requiredExtensions?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -409,7 +485,40 @@ export interface CertAuthBackendRoleArgs {
      */
     namespace?: pulumi.Input<string>;
     /**
-     * TLS extensions required on client certificates
+     * Any additional CA certificates
+     * needed to verify OCSP responses. Provided as base64 encoded PEM data.
+     * Requires Vault version 1.13+.
+     */
+    ocspCaCertificates?: pulumi.Input<string>;
+    /**
+     * - If enabled, validate certificates'
+     * revocation status using OCSP. Requires Vault version 1.13+.
+     */
+    ocspEnabled?: pulumi.Input<boolean>;
+    /**
+     * - If true and an OCSP response cannot
+     * be fetched or is of an unknown status, the login will proceed as if the
+     * certificate has not been revoked.
+     * Requires Vault version 1.13+.
+     */
+    ocspFailOpen?: pulumi.Input<boolean>;
+    /**
+     * - If set to true, rather than
+     * accepting the first successful OCSP response, query all servers and consider
+     * the certificate valid only if all servers agree.
+     * Requires Vault version 1.13+.
+     */
+    ocspQueryAllServers?: pulumi.Input<boolean>;
+    /**
+     * : A comma-separated list of OCSP
+     * server addresses. If unset, the OCSP server is determined from the
+     * AuthorityInformationAccess extension on the certificate being inspected.
+     * Requires Vault version 1.13+.
+     */
+    ocspServersOverrides?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * TLS extensions required on
+     * client certificates
      */
     requiredExtensions?: pulumi.Input<pulumi.Input<string>[]>;
     /**

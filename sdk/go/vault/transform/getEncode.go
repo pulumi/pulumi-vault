@@ -13,6 +13,64 @@ import (
 // This data source supports the "/transform/encode/{role_name}" Vault endpoint.
 //
 // It encodes the provided value using a named role.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/transform"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			transform, err := vault.NewMount(ctx, "transform", &vault.MountArgs{
+//				Path: pulumi.String("transform"),
+//				Type: pulumi.String("transform"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = transform.NewTransformation(ctx, "ccn-fpe", &transform.TransformationArgs{
+//				Path:        transform.Path,
+//				Type:        pulumi.String("fpe"),
+//				Template:    pulumi.String("builtin/creditcardnumber"),
+//				TweakSource: pulumi.String("internal"),
+//				AllowedRoles: pulumi.StringArray{
+//					pulumi.String("payments"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			payments, err := transform.NewRole(ctx, "payments", &transform.RoleArgs{
+//				Path: ccn_fpe.Path,
+//				Transformations: pulumi.StringArray{
+//					pulumi.String("ccn-fpe"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = transform.GetEncodeOutput(ctx, transform.GetEncodeOutputArgs{
+//				Path:     payments.Path,
+//				RoleName: pulumi.String("payments"),
+//				BatchInputs: pulumi.AnyMapArray{
+//					pulumi.AnyMap{
+//						"value": pulumi.Any("1111-2222-3333-4444"),
+//					},
+//				},
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetEncode(ctx *pulumi.Context, args *GetEncodeArgs, opts ...pulumi.InvokeOption) (*GetEncodeResult, error) {
 	var rv GetEncodeResult
 	err := ctx.Invoke("vault:transform/getEncode:getEncode", args, &rv, opts...)
@@ -30,6 +88,11 @@ type GetEncodeArgs struct {
 	BatchResults []map[string]interface{} `pulumi:"batchResults"`
 	// The result of encoding a value.
 	EncodedValue *string `pulumi:"encodedValue"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Path to where the back-end is mounted within Vault.
 	Path string `pulumi:"path"`
 	// The name of the role.
@@ -49,6 +112,7 @@ type GetEncodeResult struct {
 	EncodedValue string                   `pulumi:"encodedValue"`
 	// The provider-assigned unique ID for this managed resource.
 	Id             string  `pulumi:"id"`
+	Namespace      *string `pulumi:"namespace"`
 	Path           string  `pulumi:"path"`
 	RoleName       string  `pulumi:"roleName"`
 	Transformation *string `pulumi:"transformation"`
@@ -77,6 +141,11 @@ type GetEncodeOutputArgs struct {
 	BatchResults pulumi.MapArrayInput `pulumi:"batchResults"`
 	// The result of encoding a value.
 	EncodedValue pulumi.StringPtrInput `pulumi:"encodedValue"`
+	// The namespace of the target resource.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringInput `pulumi:"path"`
 	// The name of the role.
@@ -123,6 +192,10 @@ func (o GetEncodeResultOutput) EncodedValue() pulumi.StringOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o GetEncodeResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEncodeResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetEncodeResultOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetEncodeResult) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 func (o GetEncodeResultOutput) Path() pulumi.StringOutput {

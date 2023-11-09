@@ -24,6 +24,11 @@ type Transformation struct {
 	MaskingCharacter pulumi.StringPtrOutput `pulumi:"maskingCharacter"`
 	// The name of the transformation.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringOutput `pulumi:"path"`
 	// The name of the template to use.
@@ -78,6 +83,11 @@ type transformationState struct {
 	MaskingCharacter *string `pulumi:"maskingCharacter"`
 	// The name of the transformation.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Path to where the back-end is mounted within Vault.
 	Path *string `pulumi:"path"`
 	// The name of the template to use.
@@ -101,6 +111,11 @@ type TransformationState struct {
 	MaskingCharacter pulumi.StringPtrInput
 	// The name of the transformation.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringPtrInput
 	// The name of the template to use.
@@ -128,6 +143,11 @@ type transformationArgs struct {
 	MaskingCharacter *string `pulumi:"maskingCharacter"`
 	// The name of the transformation.
 	Name *string `pulumi:"name"`
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace *string `pulumi:"namespace"`
 	// Path to where the back-end is mounted within Vault.
 	Path string `pulumi:"path"`
 	// The name of the template to use.
@@ -152,6 +172,11 @@ type TransformationArgs struct {
 	MaskingCharacter pulumi.StringPtrInput
 	// The name of the transformation.
 	Name pulumi.StringPtrInput
+	// The namespace to provision the resource in.
+	// The value should not contain leading or trailing forward slashes.
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// *Available only for Vault Enterprise*.
+	Namespace pulumi.StringPtrInput
 	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringInput
 	// The name of the template to use.
@@ -271,6 +296,14 @@ func (o TransformationOutput) MaskingCharacter() pulumi.StringPtrOutput {
 // The name of the transformation.
 func (o TransformationOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Transformation) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace to provision the resource in.
+// The value should not contain leading or trailing forward slashes.
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// *Available only for Vault Enterprise*.
+func (o TransformationOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Transformation) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 // Path to where the back-end is mounted within Vault.

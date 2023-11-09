@@ -21,6 +21,7 @@ public final class AuthLoginKerberos {
     private @Nullable Boolean removeInstanceName;
     private @Nullable String service;
     private @Nullable String token;
+    private @Nullable Boolean useRootNamespace;
     private @Nullable String username;
 
     private AuthLoginKerberos() {}
@@ -51,6 +52,9 @@ public final class AuthLoginKerberos {
     public Optional<String> token() {
         return Optional.ofNullable(this.token);
     }
+    public Optional<Boolean> useRootNamespace() {
+        return Optional.ofNullable(this.useRootNamespace);
+    }
     public Optional<String> username() {
         return Optional.ofNullable(this.username);
     }
@@ -73,6 +77,7 @@ public final class AuthLoginKerberos {
         private @Nullable Boolean removeInstanceName;
         private @Nullable String service;
         private @Nullable String token;
+        private @Nullable Boolean useRootNamespace;
         private @Nullable String username;
         public Builder() {}
         public Builder(AuthLoginKerberos defaults) {
@@ -86,6 +91,7 @@ public final class AuthLoginKerberos {
     	      this.removeInstanceName = defaults.removeInstanceName;
     	      this.service = defaults.service;
     	      this.token = defaults.token;
+    	      this.useRootNamespace = defaults.useRootNamespace;
     	      this.username = defaults.username;
         }
 
@@ -135,6 +141,11 @@ public final class AuthLoginKerberos {
             return this;
         }
         @CustomType.Setter
+        public Builder useRootNamespace(@Nullable Boolean useRootNamespace) {
+            this.useRootNamespace = useRootNamespace;
+            return this;
+        }
+        @CustomType.Setter
         public Builder username(@Nullable String username) {
             this.username = username;
             return this;
@@ -150,6 +161,7 @@ public final class AuthLoginKerberos {
             o.removeInstanceName = removeInstanceName;
             o.service = service;
             o.token = token;
+            o.useRootNamespace = useRootNamespace;
             o.username = username;
             return o;
         }

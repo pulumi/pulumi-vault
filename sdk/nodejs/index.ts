@@ -154,6 +154,7 @@ import * as mongodbatlas from "./mongodbatlas";
 import * as okta from "./okta";
 import * as pkisecret from "./pkisecret";
 import * as rabbitmq from "./rabbitmq";
+import * as saml from "./saml";
 import * as ssh from "./ssh";
 import * as terraformcloud from "./terraformcloud";
 import * as tokenauth from "./tokenauth";
@@ -184,6 +185,7 @@ export {
     okta,
     pkisecret,
     rabbitmq,
+    saml,
     ssh,
     terraformcloud,
     tokenauth,
