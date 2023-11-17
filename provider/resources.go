@@ -476,6 +476,10 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_kv_secret_subkeys_v2": {
 				Docs: &tfbridge.DocInfo{Source: "kv_subkeys_v2.html.md"},
 			},
+
+			"vault_aws_static_access_credentials": {Docs: missingDocs},
+			"vault_ldap_dynamic_credentials":      {Docs: missingDocs},
+			"vault_ldap_static_credentials":       {Docs: missingDocs},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			Dependencies: map[string]string{
@@ -522,3 +526,5 @@ func Provider() tfbridge.ProviderInfo {
 
 	return prov
 }
+
+var missingDocs = &tfbridge.DocInfo{AllowMissing: true}
