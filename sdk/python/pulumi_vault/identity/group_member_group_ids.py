@@ -26,7 +26,7 @@ class GroupMemberGroupIdsArgs:
                If `true`, this resource will take exclusive control of the member groups that belong to the group and will set
                it equal to what is specified in the resource.
                
-               If set to `false`, this resource will simply ensure that the member groups specified in the resource are present
+               If set to `false`, this resource will simply ensure that the member groups specified in the resource are present 
                in the group. When destroying the resource, the resource will ensure that the member groups specified in the resource
                are removed.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] member_group_ids: List of member groups that belong to the group
@@ -64,7 +64,7 @@ class GroupMemberGroupIdsArgs:
         If `true`, this resource will take exclusive control of the member groups that belong to the group and will set
         it equal to what is specified in the resource.
 
-        If set to `false`, this resource will simply ensure that the member groups specified in the resource are present
+        If set to `false`, this resource will simply ensure that the member groups specified in the resource are present 
         in the group. When destroying the resource, the resource will ensure that the member groups specified in the resource
         are removed.
         """
@@ -116,7 +116,7 @@ class _GroupMemberGroupIdsState:
                If `true`, this resource will take exclusive control of the member groups that belong to the group and will set
                it equal to what is specified in the resource.
                
-               If set to `false`, this resource will simply ensure that the member groups specified in the resource are present
+               If set to `false`, this resource will simply ensure that the member groups specified in the resource are present 
                in the group. When destroying the resource, the resource will ensure that the member groups specified in the resource
                are removed.
         :param pulumi.Input[str] group_id: Group ID to assign member entities to.
@@ -144,7 +144,7 @@ class _GroupMemberGroupIdsState:
         If `true`, this resource will take exclusive control of the member groups that belong to the group and will set
         it equal to what is specified in the resource.
 
-        If set to `false`, this resource will simply ensure that the member groups specified in the resource are present
+        If set to `false`, this resource will simply ensure that the member groups specified in the resource are present 
         in the group. When destroying the resource, the resource will ensure that the member groups specified in the resource
         are removed.
         """
@@ -258,7 +258,7 @@ class GroupMemberGroupIds(pulumi.CustomResource):
                If `true`, this resource will take exclusive control of the member groups that belong to the group and will set
                it equal to what is specified in the resource.
                
-               If set to `false`, this resource will simply ensure that the member groups specified in the resource are present
+               If set to `false`, this resource will simply ensure that the member groups specified in the resource are present 
                in the group. When destroying the resource, the resource will ensure that the member groups specified in the resource
                are removed.
         :param pulumi.Input[str] group_id: Group ID to assign member entities to.
@@ -381,7 +381,7 @@ class GroupMemberGroupIds(pulumi.CustomResource):
                If `true`, this resource will take exclusive control of the member groups that belong to the group and will set
                it equal to what is specified in the resource.
                
-               If set to `false`, this resource will simply ensure that the member groups specified in the resource are present
+               If set to `false`, this resource will simply ensure that the member groups specified in the resource are present 
                in the group. When destroying the resource, the resource will ensure that the member groups specified in the resource
                are removed.
         :param pulumi.Input[str] group_id: Group ID to assign member entities to.
@@ -410,7 +410,7 @@ class GroupMemberGroupIds(pulumi.CustomResource):
         If `true`, this resource will take exclusive control of the member groups that belong to the group and will set
         it equal to what is specified in the resource.
 
-        If set to `false`, this resource will simply ensure that the member groups specified in the resource are present
+        If set to `false`, this resource will simply ensure that the member groups specified in the resource are present 
         in the group. When destroying the resource, the resource will ensure that the member groups specified in the resource
         are removed.
         """

@@ -110,13 +110,13 @@ export class SecretBackendRole extends pulumi.CustomResource {
     public readonly allowedExtensions!: pulumi.Output<string | undefined>;
     /**
      * Set of configuration blocks to define allowed  
-     * user key configuration, like key type and their lengths. Can be specified multiple times.
+     * user key configuration, like key type and their lengths. Can be specified multiple times.  
      * *See Configuration-Options for more info*
      */
     public readonly allowedUserKeyConfigs!: pulumi.Output<outputs.ssh.SecretBackendRoleAllowedUserKeyConfig[] | undefined>;
     /**
      * Specifies a map of ssh key types and their expected sizes which 
-     * are allowed to be signed by the CA type.
+     * are allowed to be signed by the CA type.  
      * *Deprecated: use* allowedUserKeyConfig *instead*
      *
      * @deprecated Set in allowed_user_key_config
@@ -315,13 +315,13 @@ export interface SecretBackendRoleState {
     allowedExtensions?: pulumi.Input<string>;
     /**
      * Set of configuration blocks to define allowed  
-     * user key configuration, like key type and their lengths. Can be specified multiple times.
+     * user key configuration, like key type and their lengths. Can be specified multiple times.  
      * *See Configuration-Options for more info*
      */
     allowedUserKeyConfigs?: pulumi.Input<pulumi.Input<inputs.ssh.SecretBackendRoleAllowedUserKeyConfig>[]>;
     /**
      * Specifies a map of ssh key types and their expected sizes which 
-     * are allowed to be signed by the CA type.
+     * are allowed to be signed by the CA type.  
      * *Deprecated: use* allowedUserKeyConfig *instead*
      *
      * @deprecated Set in allowed_user_key_config
@@ -440,13 +440,13 @@ export interface SecretBackendRoleArgs {
     allowedExtensions?: pulumi.Input<string>;
     /**
      * Set of configuration blocks to define allowed  
-     * user key configuration, like key type and their lengths. Can be specified multiple times.
+     * user key configuration, like key type and their lengths. Can be specified multiple times.  
      * *See Configuration-Options for more info*
      */
     allowedUserKeyConfigs?: pulumi.Input<pulumi.Input<inputs.ssh.SecretBackendRoleAllowedUserKeyConfig>[]>;
     /**
      * Specifies a map of ssh key types and their expected sizes which 
-     * are allowed to be signed by the CA type.
+     * are allowed to be signed by the CA type.  
      * *Deprecated: use* allowedUserKeyConfig *instead*
      *
      * @deprecated Set in allowed_user_key_config

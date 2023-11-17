@@ -159,7 +159,7 @@ namespace Pulumi.Vault
         public Output<bool> OcspQueryAllServers { get; private set; } = null!;
 
         /// <summary>
-        /// : A comma-separated list of OCSP
+        /// A comma-separated list of OCSP
         /// server addresses. If unset, the OCSP server is determined from the
         /// AuthorityInformationAccess extension on the certificate being inspected.
         /// Requires Vault version 1.13+.
@@ -445,7 +445,7 @@ namespace Pulumi.Vault
         private InputList<string>? _ocspServersOverrides;
 
         /// <summary>
-        /// : A comma-separated list of OCSP
+        /// A comma-separated list of OCSP
         /// server addresses. If unset, the OCSP server is determined from the
         /// AuthorityInformationAccess extension on the certificate being inspected.
         /// Requires Vault version 1.13+.
@@ -714,7 +714,7 @@ namespace Pulumi.Vault
         private InputList<string>? _ocspServersOverrides;
 
         /// <summary>
-        /// : A comma-separated list of OCSP
+        /// A comma-separated list of OCSP
         /// server addresses. If unset, the OCSP server is determined from the
         /// AuthorityInformationAccess extension on the certificate being inspected.
         /// Requires Vault version 1.13+.

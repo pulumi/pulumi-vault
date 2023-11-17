@@ -50,7 +50,7 @@ export class SecretBackendKey extends pulumi.CustomResource {
     /**
      * Specifies the number of bits to use for the generated keys. 
      * Allowed values are 0 (universal default); with `key_type=rsa`, allowed values are:
-     * 2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default),
+     * 2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default), 
      * 384, or 521; ignored with `key_type=ed25519`.
      */
     public readonly keyBits!: pulumi.Output<number>;
@@ -143,7 +143,7 @@ export interface SecretBackendKeyState {
     /**
      * Specifies the number of bits to use for the generated keys. 
      * Allowed values are 0 (universal default); with `key_type=rsa`, allowed values are:
-     * 2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default),
+     * 2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default), 
      * 384, or 521; ignored with `key_type=ed25519`.
      */
     keyBits?: pulumi.Input<number>;
@@ -192,7 +192,7 @@ export interface SecretBackendKeyArgs {
     /**
      * Specifies the number of bits to use for the generated keys. 
      * Allowed values are 0 (universal default); with `key_type=rsa`, allowed values are:
-     * 2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default),
+     * 2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default), 
      * 384, or 521; ignored with `key_type=ed25519`.
      */
     keyBits?: pulumi.Input<number>;

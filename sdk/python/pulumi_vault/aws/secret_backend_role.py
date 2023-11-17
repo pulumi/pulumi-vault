@@ -54,8 +54,8 @@ class SecretBackendRoleArgs:
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] permissions_boundary_arn: The ARN of the AWS Permissions 
-               Boundary to attach to IAM users created in the role. Valid only when
-               `credential_type` is `iam_user`. If not specified, then no permissions boundary
+               Boundary to attach to IAM users created in the role. Valid only when 
+               `credential_type` is `iam_user`. If not specified, then no permissions boundary 
                policy will be attached.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policy_arns: Specifies a list of AWS managed policy ARNs. The
                behavior depends on the credential type. With `iam_user`, the policies will be
@@ -205,8 +205,8 @@ class SecretBackendRoleArgs:
     def permissions_boundary_arn(self) -> Optional[pulumi.Input[str]]:
         """
         The ARN of the AWS Permissions 
-        Boundary to attach to IAM users created in the role. Valid only when
-        `credential_type` is `iam_user`. If not specified, then no permissions boundary
+        Boundary to attach to IAM users created in the role. Valid only when 
+        `credential_type` is `iam_user`. If not specified, then no permissions boundary 
         policy will be attached.
         """
         return pulumi.get(self, "permissions_boundary_arn")
@@ -320,8 +320,8 @@ class _SecretBackendRoleState:
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] permissions_boundary_arn: The ARN of the AWS Permissions 
-               Boundary to attach to IAM users created in the role. Valid only when
-               `credential_type` is `iam_user`. If not specified, then no permissions boundary
+               Boundary to attach to IAM users created in the role. Valid only when 
+               `credential_type` is `iam_user`. If not specified, then no permissions boundary 
                policy will be attached.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policy_arns: Specifies a list of AWS managed policy ARNs. The
                behavior depends on the credential type. With `iam_user`, the policies will be
@@ -473,8 +473,8 @@ class _SecretBackendRoleState:
     def permissions_boundary_arn(self) -> Optional[pulumi.Input[str]]:
         """
         The ARN of the AWS Permissions 
-        Boundary to attach to IAM users created in the role. Valid only when
-        `credential_type` is `iam_user`. If not specified, then no permissions boundary
+        Boundary to attach to IAM users created in the role. Valid only when 
+        `credential_type` is `iam_user`. If not specified, then no permissions boundary 
         policy will be attached.
         """
         return pulumi.get(self, "permissions_boundary_arn")
@@ -625,8 +625,8 @@ class SecretBackendRole(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] permissions_boundary_arn: The ARN of the AWS Permissions 
-               Boundary to attach to IAM users created in the role. Valid only when
-               `credential_type` is `iam_user`. If not specified, then no permissions boundary
+               Boundary to attach to IAM users created in the role. Valid only when 
+               `credential_type` is `iam_user`. If not specified, then no permissions boundary 
                policy will be attached.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policy_arns: Specifies a list of AWS managed policy ARNs. The
                behavior depends on the credential type. With `iam_user`, the policies will be
@@ -793,8 +793,8 @@ class SecretBackendRole(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] permissions_boundary_arn: The ARN of the AWS Permissions 
-               Boundary to attach to IAM users created in the role. Valid only when
-               `credential_type` is `iam_user`. If not specified, then no permissions boundary
+               Boundary to attach to IAM users created in the role. Valid only when 
+               `credential_type` is `iam_user`. If not specified, then no permissions boundary 
                policy will be attached.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policy_arns: Specifies a list of AWS managed policy ARNs. The
                behavior depends on the credential type. With `iam_user`, the policies will be
@@ -911,8 +911,8 @@ class SecretBackendRole(pulumi.CustomResource):
     def permissions_boundary_arn(self) -> pulumi.Output[Optional[str]]:
         """
         The ARN of the AWS Permissions 
-        Boundary to attach to IAM users created in the role. Valid only when
-        `credential_type` is `iam_user`. If not specified, then no permissions boundary
+        Boundary to attach to IAM users created in the role. Valid only when 
+        `credential_type` is `iam_user`. If not specified, then no permissions boundary 
         policy will be attached.
         """
         return pulumi.get(self, "permissions_boundary_arn")

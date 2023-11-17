@@ -311,7 +311,7 @@ namespace Pulumi.Vault.Jwt
 
         /// <summary>
         /// Specifies if the `user_claim` value uses
-        /// [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+        /// [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer) 
         /// syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
         /// Requires Vault 1.11+.
         /// </summary>
@@ -621,7 +621,7 @@ namespace Pulumi.Vault.Jwt
 
         /// <summary>
         /// Specifies if the `user_claim` value uses
-        /// [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+        /// [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer) 
         /// syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
         /// Requires Vault 1.11+.
         /// </summary>
@@ -893,7 +893,7 @@ namespace Pulumi.Vault.Jwt
 
         /// <summary>
         /// Specifies if the `user_claim` value uses
-        /// [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+        /// [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer) 
         /// syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
         /// Requires Vault 1.11+.
         /// </summary>

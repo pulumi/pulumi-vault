@@ -62,7 +62,7 @@ type GetAccessCredentialsArgs struct {
 	Backend string `pulumi:"backend"`
 	// The Azure environment to use during credential validation.
 	// Defaults to the environment configured in the Vault backend.
-	// Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`
+	// Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`\
 	// *See the caveats section for more information on this field.*
 	Environment *string `pulumi:"environment"`
 	// If 'validate_creds' is true,
@@ -86,11 +86,11 @@ type GetAccessCredentialsArgs struct {
 	// credentials from, with no leading or trailing `/`s.
 	Role string `pulumi:"role"`
 	// The subscription ID to use during credential
-	// validation. Defaults to the subscription ID configured in the Vault `backend`.
+	// validation. Defaults to the subscription ID configured in the Vault `backend`.\
 	// *See the caveats section for more information on this field.*
 	SubscriptionId *string `pulumi:"subscriptionId"`
 	// The tenant ID to use during credential validation.
-	// Defaults to the tenant ID configured in the Vault `backend`.
+	// Defaults to the tenant ID configured in the Vault `backend`.\
 	// *See the caveats section for more information on this field.*
 	TenantId *string `pulumi:"tenantId"`
 	// Whether generated credentials should be
@@ -148,7 +148,7 @@ type GetAccessCredentialsOutputArgs struct {
 	Backend pulumi.StringInput `pulumi:"backend"`
 	// The Azure environment to use during credential validation.
 	// Defaults to the environment configured in the Vault backend.
-	// Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`
+	// Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`\
 	// *See the caveats section for more information on this field.*
 	Environment pulumi.StringPtrInput `pulumi:"environment"`
 	// If 'validate_creds' is true,
@@ -172,11 +172,11 @@ type GetAccessCredentialsOutputArgs struct {
 	// credentials from, with no leading or trailing `/`s.
 	Role pulumi.StringInput `pulumi:"role"`
 	// The subscription ID to use during credential
-	// validation. Defaults to the subscription ID configured in the Vault `backend`.
+	// validation. Defaults to the subscription ID configured in the Vault `backend`.\
 	// *See the caveats section for more information on this field.*
 	SubscriptionId pulumi.StringPtrInput `pulumi:"subscriptionId"`
 	// The tenant ID to use during credential validation.
-	// Defaults to the tenant ID configured in the Vault `backend`.
+	// Defaults to the tenant ID configured in the Vault `backend`.\
 	// *See the caveats section for more information on this field.*
 	TenantId pulumi.StringPtrInput `pulumi:"tenantId"`
 	// Whether generated credentials should be

@@ -41,7 +41,7 @@ namespace Pulumi.Vault.Ssh.Inputs
 
         /// <summary>
         /// The SSH public key type.  
-        /// *Supported key types are:*
+        /// *Supported key types are:*  
         /// `rsa`, `ecdsa`, `ec`, `dsa`, `ed25519`, `ssh-rsa`, `ssh-dss`, `ssh-ed25519`,
         /// `ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`
         /// </summary>

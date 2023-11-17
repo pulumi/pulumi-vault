@@ -55,6 +55,7 @@ class AuthBackendArgs:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] namespace_in_state: Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
                
+               
                * tune - (Optional) Extra configuration block. Structure is documented below.
                
                The `tune` block is used to tune the auth backend:
@@ -241,6 +242,7 @@ class AuthBackendArgs:
         """
         Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
 
+
         * tune - (Optional) Extra configuration block. Structure is documented below.
 
         The `tune` block is used to tune the auth backend:
@@ -412,6 +414,7 @@ class _AuthBackendState:
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] namespace_in_state: Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
+               
                
                * tune - (Optional) Extra configuration block. Structure is documented below.
                
@@ -612,6 +615,7 @@ class _AuthBackendState:
     def namespace_in_state(self) -> Optional[pulumi.Input[bool]]:
         """
         Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
+
 
         * tune - (Optional) Extra configuration block. Structure is documented below.
 
@@ -856,6 +860,7 @@ class AuthBackend(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] namespace_in_state: Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
                
+               
                * tune - (Optional) Extra configuration block. Structure is documented below.
                
                The `tune` block is used to tune the auth backend:
@@ -1070,6 +1075,7 @@ class AuthBackend(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] namespace_in_state: Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
                
+               
                * tune - (Optional) Extra configuration block. Structure is documented below.
                
                The `tune` block is used to tune the auth backend:
@@ -1208,6 +1214,7 @@ class AuthBackend(pulumi.CustomResource):
     def namespace_in_state(self) -> pulumi.Output[Optional[bool]]:
         """
         Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
+
 
         * tune - (Optional) Extra configuration block. Structure is documented below.
 

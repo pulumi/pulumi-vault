@@ -116,8 +116,8 @@ export class SecretBackendRole extends pulumi.CustomResource {
     public readonly namespace!: pulumi.Output<string | undefined>;
     /**
      * The ARN of the AWS Permissions 
-     * Boundary to attach to IAM users created in the role. Valid only when
-     * `credentialType` is `iamUser`. If not specified, then no permissions boundary
+     * Boundary to attach to IAM users created in the role. Valid only when 
+     * `credentialType` is `iamUser`. If not specified, then no permissions boundary 
      * policy will be attached.
      */
     public readonly permissionsBoundaryArn!: pulumi.Output<string | undefined>;
@@ -254,8 +254,8 @@ export interface SecretBackendRoleState {
     namespace?: pulumi.Input<string>;
     /**
      * The ARN of the AWS Permissions 
-     * Boundary to attach to IAM users created in the role. Valid only when
-     * `credentialType` is `iamUser`. If not specified, then no permissions boundary
+     * Boundary to attach to IAM users created in the role. Valid only when 
+     * `credentialType` is `iamUser`. If not specified, then no permissions boundary 
      * policy will be attached.
      */
     permissionsBoundaryArn?: pulumi.Input<string>;
@@ -342,8 +342,8 @@ export interface SecretBackendRoleArgs {
     namespace?: pulumi.Input<string>;
     /**
      * The ARN of the AWS Permissions 
-     * Boundary to attach to IAM users created in the role. Valid only when
-     * `credentialType` is `iamUser`. If not specified, then no permissions boundary
+     * Boundary to attach to IAM users created in the role. Valid only when 
+     * `credentialType` is `iamUser`. If not specified, then no permissions boundary 
      * policy will be attached.
      */
     permissionsBoundaryArn?: pulumi.Input<string>;

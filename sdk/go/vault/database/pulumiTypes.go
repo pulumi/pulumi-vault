@@ -6714,7 +6714,7 @@ type SecretsMountMssql struct {
 	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	ConnectionUrl *string `pulumi:"connectionUrl"`
 	// For Vault v1.9+. Set to true when the target is a
-	// Contained Database, e.g. AzureSQL.
+	// Contained Database, e.g. AzureSQL.\
 	// See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
 	ContainedDb *bool `pulumi:"containedDb"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
@@ -6766,7 +6766,7 @@ type SecretsMountMssqlArgs struct {
 	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
 	// For Vault v1.9+. Set to true when the target is a
-	// Contained Database, e.g. AzureSQL.
+	// Contained Database, e.g. AzureSQL.\
 	// See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
 	ContainedDb pulumi.BoolPtrInput `pulumi:"containedDb"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
@@ -6863,7 +6863,7 @@ func (o SecretsMountMssqlOutput) ConnectionUrl() pulumi.StringPtrOutput {
 }
 
 // For Vault v1.9+. Set to true when the target is a
-// Contained Database, e.g. AzureSQL.
+// Contained Database, e.g. AzureSQL.\
 // See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
 func (o SecretsMountMssqlOutput) ContainedDb() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretsMountMssql) *bool { return v.ContainedDb }).(pulumi.BoolPtrOutput)

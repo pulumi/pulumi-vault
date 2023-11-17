@@ -95,14 +95,14 @@ export class SecretBackend extends pulumi.CustomResource {
     public readonly externalEntropyAccess!: pulumi.Output<boolean | undefined>;
     /**
      * A PEM-encoded CA certificate used by the 
-     * secrets engine to verify the Kubernetes API server certificate. Defaults to the local
+     * secrets engine to verify the Kubernetes API server certificate. Defaults to the local 
      * pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where
      * Vault is running.
      */
     public readonly kubernetesCaCert!: pulumi.Output<string | undefined>;
     /**
      * The Kubernetes API URL to connect to. Required if the 
-     * standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`
+     * standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT` 
      * are not set on the host that Vault is running on.
      */
     public readonly kubernetesHost!: pulumi.Output<string | undefined>;
@@ -135,7 +135,7 @@ export class SecretBackend extends pulumi.CustomResource {
     public readonly sealWrap!: pulumi.Output<boolean>;
     /**
      * The JSON web token of the service account used by the
-     * secrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault
+     * secrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault 
      * is running in Kubernetes.
      */
     public readonly serviceAccountJwt!: pulumi.Output<string | undefined>;
@@ -239,14 +239,14 @@ export interface SecretBackendState {
     externalEntropyAccess?: pulumi.Input<boolean>;
     /**
      * A PEM-encoded CA certificate used by the 
-     * secrets engine to verify the Kubernetes API server certificate. Defaults to the local
+     * secrets engine to verify the Kubernetes API server certificate. Defaults to the local 
      * pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where
      * Vault is running.
      */
     kubernetesCaCert?: pulumi.Input<string>;
     /**
      * The Kubernetes API URL to connect to. Required if the 
-     * standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`
+     * standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT` 
      * are not set on the host that Vault is running on.
      */
     kubernetesHost?: pulumi.Input<string>;
@@ -279,7 +279,7 @@ export interface SecretBackendState {
     sealWrap?: pulumi.Input<boolean>;
     /**
      * The JSON web token of the service account used by the
-     * secrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault
+     * secrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault 
      * is running in Kubernetes.
      */
     serviceAccountJwt?: pulumi.Input<string>;
@@ -320,14 +320,14 @@ export interface SecretBackendArgs {
     externalEntropyAccess?: pulumi.Input<boolean>;
     /**
      * A PEM-encoded CA certificate used by the 
-     * secrets engine to verify the Kubernetes API server certificate. Defaults to the local
+     * secrets engine to verify the Kubernetes API server certificate. Defaults to the local 
      * pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where
      * Vault is running.
      */
     kubernetesCaCert?: pulumi.Input<string>;
     /**
      * The Kubernetes API URL to connect to. Required if the 
-     * standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`
+     * standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT` 
      * are not set on the host that Vault is running on.
      */
     kubernetesHost?: pulumi.Input<string>;
@@ -360,7 +360,7 @@ export interface SecretBackendArgs {
     sealWrap?: pulumi.Input<boolean>;
     /**
      * The JSON web token of the service account used by the
-     * secrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault
+     * secrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault 
      * is running in Kubernetes.
      */
     serviceAccountJwt?: pulumi.Input<string>;

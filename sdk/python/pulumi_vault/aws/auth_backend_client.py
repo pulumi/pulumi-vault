@@ -50,7 +50,7 @@ class AuthBackendClientArgs:
         :param pulumi.Input[bool] use_sts_region_from_client: Available in Vault v1.15+. If set, 
                overrides both `sts_endpoint` and `sts_region` to instead use the region
                specified in the client request headers for IAM-based authentication.
-               This can be useful when you have client requests coming from different
+               This can be useful when you have client requests coming from different 
                regions and want flexibility in which regional STS API is used.
         """
         if access_key is not None:
@@ -201,7 +201,7 @@ class AuthBackendClientArgs:
         Available in Vault v1.15+. If set, 
         overrides both `sts_endpoint` and `sts_region` to instead use the region
         specified in the client request headers for IAM-based authentication.
-        This can be useful when you have client requests coming from different
+        This can be useful when you have client requests coming from different 
         regions and want flexibility in which regional STS API is used.
         """
         return pulumi.get(self, "use_sts_region_from_client")
@@ -250,7 +250,7 @@ class _AuthBackendClientState:
         :param pulumi.Input[bool] use_sts_region_from_client: Available in Vault v1.15+. If set, 
                overrides both `sts_endpoint` and `sts_region` to instead use the region
                specified in the client request headers for IAM-based authentication.
-               This can be useful when you have client requests coming from different
+               This can be useful when you have client requests coming from different 
                regions and want flexibility in which regional STS API is used.
         """
         if access_key is not None:
@@ -401,7 +401,7 @@ class _AuthBackendClientState:
         Available in Vault v1.15+. If set, 
         overrides both `sts_endpoint` and `sts_region` to instead use the region
         specified in the client request headers for IAM-based authentication.
-        This can be useful when you have client requests coming from different
+        This can be useful when you have client requests coming from different 
         regions and want flexibility in which regional STS API is used.
         """
         return pulumi.get(self, "use_sts_region_from_client")
@@ -475,7 +475,7 @@ class AuthBackendClient(pulumi.CustomResource):
         :param pulumi.Input[bool] use_sts_region_from_client: Available in Vault v1.15+. If set, 
                overrides both `sts_endpoint` and `sts_region` to instead use the region
                specified in the client request headers for IAM-based authentication.
-               This can be useful when you have client requests coming from different
+               This can be useful when you have client requests coming from different 
                regions and want flexibility in which regional STS API is used.
         """
         ...
@@ -603,7 +603,7 @@ class AuthBackendClient(pulumi.CustomResource):
         :param pulumi.Input[bool] use_sts_region_from_client: Available in Vault v1.15+. If set, 
                overrides both `sts_endpoint` and `sts_region` to instead use the region
                specified in the client request headers for IAM-based authentication.
-               This can be useful when you have client requests coming from different
+               This can be useful when you have client requests coming from different 
                regions and want flexibility in which regional STS API is used.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -713,7 +713,7 @@ class AuthBackendClient(pulumi.CustomResource):
         Available in Vault v1.15+. If set, 
         overrides both `sts_endpoint` and `sts_region` to instead use the region
         specified in the client request headers for IAM-based authentication.
-        This can be useful when you have client requests coming from different
+        This can be useful when you have client requests coming from different 
         regions and want flexibility in which regional STS API is used.
         """
         return pulumi.get(self, "use_sts_region_from_client")

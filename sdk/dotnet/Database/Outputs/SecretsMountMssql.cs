@@ -25,7 +25,7 @@ namespace Pulumi.Vault.Database.Outputs
         public readonly string? ConnectionUrl;
         /// <summary>
         /// For Vault v1.9+. Set to true when the target is a
-        /// Contained Database, e.g. AzureSQL.
+        /// Contained Database, e.g. AzureSQL.  
         /// See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
         /// </summary>
         public readonly bool? ContainedDb;

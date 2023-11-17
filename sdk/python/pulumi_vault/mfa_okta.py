@@ -38,7 +38,7 @@ class MfaOktaArgs:
         :param pulumi.Input[bool] primary_email: `(string: <required>)` - If set to true, the username will only match the 
                primary email for the account.
         :param pulumi.Input[str] username_format: `(string)` - A format string for mapping Identity names to MFA method names. 
-               Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
+               Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. 
                If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
                - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
                - entity.name: The name configured for the Entity
@@ -154,7 +154,7 @@ class MfaOktaArgs:
     def username_format(self) -> Optional[pulumi.Input[str]]:
         """
         `(string)` - A format string for mapping Identity names to MFA method names. 
-        Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
+        Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. 
         If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
         - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
         - entity.name: The name configured for the Entity
@@ -195,7 +195,7 @@ class _MfaOktaState:
         :param pulumi.Input[bool] primary_email: `(string: <required>)` - If set to true, the username will only match the 
                primary email for the account.
         :param pulumi.Input[str] username_format: `(string)` - A format string for mapping Identity names to MFA method names. 
-               Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
+               Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. 
                If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
                - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
                - entity.name: The name configured for the Entity
@@ -314,7 +314,7 @@ class _MfaOktaState:
     def username_format(self) -> Optional[pulumi.Input[str]]:
         """
         `(string)` - A format string for mapping Identity names to MFA method names. 
-        Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
+        Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. 
         If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
         - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
         - entity.name: The name configured for the Entity
@@ -387,7 +387,7 @@ class MfaOkta(pulumi.CustomResource):
         :param pulumi.Input[bool] primary_email: `(string: <required>)` - If set to true, the username will only match the 
                primary email for the account.
         :param pulumi.Input[str] username_format: `(string)` - A format string for mapping Identity names to MFA method names. 
-               Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
+               Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. 
                If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
                - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
                - entity.name: The name configured for the Entity
@@ -516,7 +516,7 @@ class MfaOkta(pulumi.CustomResource):
         :param pulumi.Input[bool] primary_email: `(string: <required>)` - If set to true, the username will only match the 
                primary email for the account.
         :param pulumi.Input[str] username_format: `(string)` - A format string for mapping Identity names to MFA method names. 
-               Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
+               Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. 
                If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
                - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
                - entity.name: The name configured for the Entity
@@ -604,7 +604,7 @@ class MfaOkta(pulumi.CustomResource):
     def username_format(self) -> pulumi.Output[Optional[str]]:
         """
         `(string)` - A format string for mapping Identity names to MFA method names. 
-        Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
+        Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. 
         If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
         - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
         - entity.name: The name configured for the Entity

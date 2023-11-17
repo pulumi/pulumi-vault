@@ -111,7 +111,7 @@ export class AuthBackend extends pulumi.CustomResource {
     public readonly path!: pulumi.Output<string | undefined>;
     /**
      * If set to `true`, logs additional, potentially sensitive
-     * information during the SAML exchange according to the current logging level. Not
+     * information during the SAML exchange according to the current logging level. Not 
      * recommended for production.
      */
     public readonly verboseLogging!: pulumi.Output<boolean>;
@@ -220,7 +220,7 @@ export interface AuthBackendState {
     path?: pulumi.Input<string>;
     /**
      * If set to `true`, logs additional, potentially sensitive
-     * information during the SAML exchange according to the current logging level. Not
+     * information during the SAML exchange according to the current logging level. Not 
      * recommended for production.
      */
     verboseLogging?: pulumi.Input<boolean>;
@@ -281,7 +281,7 @@ export interface AuthBackendArgs {
     path?: pulumi.Input<string>;
     /**
      * If set to `true`, logs additional, potentially sensitive
-     * information during the SAML exchange according to the current logging level. Not
+     * information during the SAML exchange according to the current logging level. Not 
      * recommended for production.
      */
     verboseLogging?: pulumi.Input<boolean>;

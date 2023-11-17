@@ -30,7 +30,7 @@ public final class SecretsMountMssql {
     private @Nullable String connectionUrl;
     /**
      * @return For Vault v1.9+. Set to true when the target is a
-     * Contained Database, e.g. AzureSQL.
+     * Contained Database, e.g. AzureSQL.\
      * See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
      * 
      */
@@ -116,7 +116,7 @@ public final class SecretsMountMssql {
     }
     /**
      * @return For Vault v1.9+. Set to true when the target is a
-     * Contained Database, e.g. AzureSQL.
+     * Contained Database, e.g. AzureSQL.\
      * See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
      * 
      */

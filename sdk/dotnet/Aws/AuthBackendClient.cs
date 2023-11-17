@@ -116,7 +116,7 @@ namespace Pulumi.Vault.Aws
         /// Available in Vault v1.15+. If set, 
         /// overrides both `sts_endpoint` and `sts_region` to instead use the region
         /// specified in the client request headers for IAM-based authentication.
-        /// This can be useful when you have client requests coming from different
+        /// This can be useful when you have client requests coming from different 
         /// regions and want flexibility in which regional STS API is used.
         /// </summary>
         [Output("useStsRegionFromClient")]
@@ -263,7 +263,7 @@ namespace Pulumi.Vault.Aws
         /// Available in Vault v1.15+. If set, 
         /// overrides both `sts_endpoint` and `sts_region` to instead use the region
         /// specified in the client request headers for IAM-based authentication.
-        /// This can be useful when you have client requests coming from different
+        /// This can be useful when you have client requests coming from different 
         /// regions and want flexibility in which regional STS API is used.
         /// </summary>
         [Input("useStsRegionFromClient")]
@@ -367,7 +367,7 @@ namespace Pulumi.Vault.Aws
         /// Available in Vault v1.15+. If set, 
         /// overrides both `sts_endpoint` and `sts_region` to instead use the region
         /// specified in the client request headers for IAM-based authentication.
-        /// This can be useful when you have client requests coming from different
+        /// This can be useful when you have client requests coming from different 
         /// regions and want flexibility in which regional STS API is used.
         /// </summary>
         [Input("useStsRegionFromClient")]

@@ -36,7 +36,7 @@ type SecretBackendRoleAllowedUserKeyConfig struct {
 	// ```
 	Lengths []int `pulumi:"lengths"`
 	// The SSH public key type.\
-	// *Supported key types are:*
+	// *Supported key types are:*\
 	// `rsa`, `ecdsa`, `ec`, `dsa`, `ed25519`, `ssh-rsa`, `ssh-dss`, `ssh-ed25519`,
 	// `ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`
 	Type string `pulumi:"type"`
@@ -76,7 +76,7 @@ type SecretBackendRoleAllowedUserKeyConfigArgs struct {
 	// ```
 	Lengths pulumi.IntArrayInput `pulumi:"lengths"`
 	// The SSH public key type.\
-	// *Supported key types are:*
+	// *Supported key types are:*\
 	// `rsa`, `ecdsa`, `ec`, `dsa`, `ed25519`, `ssh-rsa`, `ssh-dss`, `ssh-ed25519`,
 	// `ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`
 	Type pulumi.StringInput `pulumi:"type"`
@@ -161,7 +161,7 @@ func (o SecretBackendRoleAllowedUserKeyConfigOutput) Lengths() pulumi.IntArrayOu
 }
 
 // The SSH public key type.\
-// *Supported key types are:*
+// *Supported key types are:*\
 // `rsa`, `ecdsa`, `ec`, `dsa`, `ed25519`, `ssh-rsa`, `ssh-dss`, `ssh-ed25519`,
 // `ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`
 func (o SecretBackendRoleAllowedUserKeyConfigOutput) Type() pulumi.StringOutput {

@@ -17,14 +17,14 @@ public final class BackendState extends com.pulumi.resources.ResourceArgs {
     public static final BackendState Empty = new BackendState();
 
     /**
-     * The OAuth2 client id to connect to Azure.
+     * (`string:&#34;&#34;`) - The OAuth2 client id to connect to Azure.
      * 
      */
     @Import(name="clientId")
     private @Nullable Output<String> clientId;
 
     /**
-     * @return The OAuth2 client id to connect to Azure.
+     * @return (`string:&#34;&#34;`) - The OAuth2 client id to connect to Azure.
      * 
      */
     public Optional<Output<String>> clientId() {
@@ -32,14 +32,14 @@ public final class BackendState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The OAuth2 client secret to connect to Azure.
+     * (`string:&#34;&#34;`) - The OAuth2 client secret to connect to Azure.
      * 
      */
     @Import(name="clientSecret")
     private @Nullable Output<String> clientSecret;
 
     /**
-     * @return The OAuth2 client secret to connect to Azure.
+     * @return (`string:&#34;&#34;`) - The OAuth2 client secret to connect to Azure.
      * 
      */
     public Optional<Output<String>> clientSecret() {
@@ -79,14 +79,14 @@ public final class BackendState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The Azure environment.
+     * (`string:&#34;&#34;`) - The Azure environment.
      * 
      */
     @Import(name="environment")
     private @Nullable Output<String> environment;
 
     /**
-     * @return The Azure environment.
+     * @return (`string:&#34;&#34;`) - The Azure environment.
      * 
      */
     public Optional<Output<String>> environment() {
@@ -115,14 +115,14 @@ public final class BackendState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The unique path this backend should be mounted at. Defaults to `azure`.
+     * (`string: &lt;optional&gt;`) - The unique path this backend should be mounted at. Defaults to `azure`.
      * 
      */
     @Import(name="path")
     private @Nullable Output<String> path;
 
     /**
-     * @return The unique path this backend should be mounted at. Defaults to `azure`.
+     * @return (`string: &lt;optional&gt;`) - The unique path this backend should be mounted at. Defaults to `azure`.
      * 
      */
     public Optional<Output<String>> path() {
@@ -130,14 +130,14 @@ public final class BackendState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The subscription id for the Azure Active Directory.
+     * (`string: &lt;required&gt;`) - The subscription id for the Azure Active Directory.
      * 
      */
     @Import(name="subscriptionId")
     private @Nullable Output<String> subscriptionId;
 
     /**
-     * @return The subscription id for the Azure Active Directory.
+     * @return (`string: &lt;required&gt;`) - The subscription id for the Azure Active Directory.
      * 
      */
     public Optional<Output<String>> subscriptionId() {
@@ -145,14 +145,14 @@ public final class BackendState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The tenant id for the Azure Active Directory.
+     * (`string: &lt;required&gt;`) - The tenant id for the Azure Active Directory.
      * 
      */
     @Import(name="tenantId")
     private @Nullable Output<String> tenantId;
 
     /**
-     * @return The tenant id for the Azure Active Directory.
+     * @return (`string: &lt;required&gt;`) - The tenant id for the Azure Active Directory.
      * 
      */
     public Optional<Output<String>> tenantId() {
@@ -160,7 +160,7 @@ public final class BackendState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Indicates whether the secrets engine should use
+     * (`bool: &lt;optional&gt;`) - Indicates whether the secrets engine should use
      * the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
      * For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
      * 
@@ -169,7 +169,7 @@ public final class BackendState extends com.pulumi.resources.ResourceArgs {
     private @Nullable Output<Boolean> useMicrosoftGraphApi;
 
     /**
-     * @return Indicates whether the secrets engine should use
+     * @return (`bool: &lt;optional&gt;`) - Indicates whether the secrets engine should use
      * the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
      * For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
      * 
@@ -212,7 +212,7 @@ public final class BackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clientId The OAuth2 client id to connect to Azure.
+         * @param clientId (`string:&#34;&#34;`) - The OAuth2 client id to connect to Azure.
          * 
          * @return builder
          * 
@@ -223,7 +223,7 @@ public final class BackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clientId The OAuth2 client id to connect to Azure.
+         * @param clientId (`string:&#34;&#34;`) - The OAuth2 client id to connect to Azure.
          * 
          * @return builder
          * 
@@ -233,7 +233,7 @@ public final class BackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clientSecret The OAuth2 client secret to connect to Azure.
+         * @param clientSecret (`string:&#34;&#34;`) - The OAuth2 client secret to connect to Azure.
          * 
          * @return builder
          * 
@@ -244,7 +244,7 @@ public final class BackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clientSecret The OAuth2 client secret to connect to Azure.
+         * @param clientSecret (`string:&#34;&#34;`) - The OAuth2 client secret to connect to Azure.
          * 
          * @return builder
          * 
@@ -298,7 +298,7 @@ public final class BackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param environment The Azure environment.
+         * @param environment (`string:&#34;&#34;`) - The Azure environment.
          * 
          * @return builder
          * 
@@ -309,7 +309,7 @@ public final class BackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param environment The Azure environment.
+         * @param environment (`string:&#34;&#34;`) - The Azure environment.
          * 
          * @return builder
          * 
@@ -346,7 +346,7 @@ public final class BackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param path The unique path this backend should be mounted at. Defaults to `azure`.
+         * @param path (`string: &lt;optional&gt;`) - The unique path this backend should be mounted at. Defaults to `azure`.
          * 
          * @return builder
          * 
@@ -357,7 +357,7 @@ public final class BackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param path The unique path this backend should be mounted at. Defaults to `azure`.
+         * @param path (`string: &lt;optional&gt;`) - The unique path this backend should be mounted at. Defaults to `azure`.
          * 
          * @return builder
          * 
@@ -367,7 +367,7 @@ public final class BackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param subscriptionId The subscription id for the Azure Active Directory.
+         * @param subscriptionId (`string: &lt;required&gt;`) - The subscription id for the Azure Active Directory.
          * 
          * @return builder
          * 
@@ -378,7 +378,7 @@ public final class BackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param subscriptionId The subscription id for the Azure Active Directory.
+         * @param subscriptionId (`string: &lt;required&gt;`) - The subscription id for the Azure Active Directory.
          * 
          * @return builder
          * 
@@ -388,7 +388,7 @@ public final class BackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tenantId The tenant id for the Azure Active Directory.
+         * @param tenantId (`string: &lt;required&gt;`) - The tenant id for the Azure Active Directory.
          * 
          * @return builder
          * 
@@ -399,7 +399,7 @@ public final class BackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tenantId The tenant id for the Azure Active Directory.
+         * @param tenantId (`string: &lt;required&gt;`) - The tenant id for the Azure Active Directory.
          * 
          * @return builder
          * 
@@ -409,7 +409,7 @@ public final class BackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param useMicrosoftGraphApi Indicates whether the secrets engine should use
+         * @param useMicrosoftGraphApi (`bool: &lt;optional&gt;`) - Indicates whether the secrets engine should use
          * the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
          * For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
          * 
@@ -422,7 +422,7 @@ public final class BackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param useMicrosoftGraphApi Indicates whether the secrets engine should use
+         * @param useMicrosoftGraphApi (`bool: &lt;optional&gt;`) - Indicates whether the secrets engine should use
          * the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
          * For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
          * 

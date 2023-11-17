@@ -107,7 +107,7 @@ export class AuthBackendClient extends pulumi.CustomResource {
      * Available in Vault v1.15+. If set, 
      * overrides both `stsEndpoint` and `stsRegion` to instead use the region
      * specified in the client request headers for IAM-based authentication.
-     * This can be useful when you have client requests coming from different
+     * This can be useful when you have client requests coming from different 
      * regions and want flexibility in which regional STS API is used.
      */
     public readonly useStsRegionFromClient!: pulumi.Output<boolean>;
@@ -211,7 +211,7 @@ export interface AuthBackendClientState {
      * Available in Vault v1.15+. If set, 
      * overrides both `stsEndpoint` and `stsRegion` to instead use the region
      * specified in the client request headers for IAM-based authentication.
-     * This can be useful when you have client requests coming from different
+     * This can be useful when you have client requests coming from different 
      * regions and want flexibility in which regional STS API is used.
      */
     useStsRegionFromClient?: pulumi.Input<boolean>;
@@ -273,7 +273,7 @@ export interface AuthBackendClientArgs {
      * Available in Vault v1.15+. If set, 
      * overrides both `stsEndpoint` and `stsRegion` to instead use the region
      * specified in the client request headers for IAM-based authentication.
-     * This can be useful when you have client requests coming from different
+     * This can be useful when you have client requests coming from different 
      * regions and want flexibility in which regional STS API is used.
      */
     useStsRegionFromClient?: pulumi.Input<boolean>;

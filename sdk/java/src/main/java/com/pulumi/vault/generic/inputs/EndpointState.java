@@ -36,16 +36,16 @@ public final class EndpointState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * - (Optional) True/false. Set this to true if your
-     *   vault authentication is not able to delete the data or if the endpoint
-     *   does not support the `DELETE` method. Defaults to false.
+     * True/false. Set this to true if your
+     * vault authentication is not able to delete the data or if the endpoint
+     * does not support the `DELETE` method. Defaults to false.
      * 
      */
     @Import(name="disableDelete")
     private @Nullable Output<Boolean> disableDelete;
 
     /**
-     * @return - (Optional) True/false. Set this to true if your
+     * @return True/false. Set this to true if your
      * vault authentication is not able to delete the data or if the endpoint
      * does not support the `DELETE` method. Defaults to false.
      * 
@@ -78,20 +78,20 @@ public final class EndpointState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * - (Optional) True/false. If set to true,
-     *   ignore any fields present when the endpoint is read but that were not
-     *   in `data_json`. Also, if a field that was written is not returned when
-     *   the endpoint is read, treat that field as being up to date. You should
-     *   set this to `true` when writing to endpoint that, when read, returns a
-     *   different set of fields from the ones you wrote, as is common with
-     *   many configuration endpoints. Defaults to false.
+     * True/false. If set to true,
+     * ignore any fields present when the endpoint is read but that were not
+     * in `data_json`. Also, if a field that was written is not returned when
+     * the endpoint is read, treat that field as being up to date. You should
+     * set this to `true` when writing to endpoint that, when read, returns a
+     * different set of fields from the ones you wrote, as is common with
+     * many configuration endpoints. Defaults to false.
      * 
      */
     @Import(name="ignoreAbsentFields")
     private @Nullable Output<Boolean> ignoreAbsentFields;
 
     /**
-     * @return - (Optional) True/false. If set to true,
+     * @return True/false. If set to true,
      * ignore any fields present when the endpoint is read but that were not
      * in `data_json`. Also, if a field that was written is not returned when
      * the endpoint is read, treat that field as being up to date. You should
@@ -187,20 +187,20 @@ public final class EndpointState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * - (Optional). A list of fields that should be returned
-     *   in `write_data_json` and `write_data`. If omitted, data returned by
-     *   the write operation is not available to the resource or included in
-     *   state. This helps to avoid accidental storage of sensitive values in
-     *   state. Some endpoints, such as many dynamic secrets endpoints, return
-     *   data from writing to an endpoint rather than reading it. You should
-     *   use `write_fields` if you need information returned in this way.
+     * . A list of fields that should be returned
+     * in `write_data_json` and `write_data`. If omitted, data returned by
+     * the write operation is not available to the resource or included in
+     * state. This helps to avoid accidental storage of sensitive values in
+     * state. Some endpoints, such as many dynamic secrets endpoints, return
+     * data from writing to an endpoint rather than reading it. You should
+     * use `write_fields` if you need information returned in this way.
      * 
      */
     @Import(name="writeFields")
     private @Nullable Output<List<String>> writeFields;
 
     /**
-     * @return - (Optional). A list of fields that should be returned
+     * @return . A list of fields that should be returned
      * in `write_data_json` and `write_data`. If omitted, data returned by
      * the write operation is not available to the resource or included in
      * state. This helps to avoid accidental storage of sensitive values in
@@ -269,7 +269,7 @@ public final class EndpointState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param disableDelete - (Optional) True/false. Set this to true if your
+         * @param disableDelete True/false. Set this to true if your
          * vault authentication is not able to delete the data or if the endpoint
          * does not support the `DELETE` method. Defaults to false.
          * 
@@ -282,7 +282,7 @@ public final class EndpointState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param disableDelete - (Optional) True/false. Set this to true if your
+         * @param disableDelete True/false. Set this to true if your
          * vault authentication is not able to delete the data or if the endpoint
          * does not support the `DELETE` method. Defaults to false.
          * 
@@ -323,7 +323,7 @@ public final class EndpointState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param ignoreAbsentFields - (Optional) True/false. If set to true,
+         * @param ignoreAbsentFields True/false. If set to true,
          * ignore any fields present when the endpoint is read but that were not
          * in `data_json`. Also, if a field that was written is not returned when
          * the endpoint is read, treat that field as being up to date. You should
@@ -340,7 +340,7 @@ public final class EndpointState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param ignoreAbsentFields - (Optional) True/false. If set to true,
+         * @param ignoreAbsentFields True/false. If set to true,
          * ignore any fields present when the endpoint is read but that were not
          * in `data_json`. Also, if a field that was written is not returned when
          * the endpoint is read, treat that field as being up to date. You should
@@ -462,7 +462,7 @@ public final class EndpointState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param writeFields - (Optional). A list of fields that should be returned
+         * @param writeFields . A list of fields that should be returned
          * in `write_data_json` and `write_data`. If omitted, data returned by
          * the write operation is not available to the resource or included in
          * state. This helps to avoid accidental storage of sensitive values in
@@ -479,7 +479,7 @@ public final class EndpointState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param writeFields - (Optional). A list of fields that should be returned
+         * @param writeFields . A list of fields that should be returned
          * in `write_data_json` and `write_data`. If omitted, data returned by
          * the write operation is not available to the resource or included in
          * state. This helps to avoid accidental storage of sensitive values in
@@ -495,7 +495,7 @@ public final class EndpointState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param writeFields - (Optional). A list of fields that should be returned
+         * @param writeFields . A list of fields that should be returned
          * in `write_data_json` and `write_data`. If omitted, data returned by
          * the write operation is not available to the resource or included in
          * state. This helps to avoid accidental storage of sensitive values in

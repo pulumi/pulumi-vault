@@ -121,7 +121,7 @@ namespace Pulumi.Vault.Saml
 
         /// <summary>
         /// If set to `true`, logs additional, potentially sensitive
-        /// information during the SAML exchange according to the current logging level. Not
+        /// information during the SAML exchange according to the current logging level. Not 
         /// recommended for production.
         /// </summary>
         [Output("verboseLogging")]
@@ -250,7 +250,7 @@ namespace Pulumi.Vault.Saml
 
         /// <summary>
         /// If set to `true`, logs additional, potentially sensitive
-        /// information during the SAML exchange according to the current logging level. Not
+        /// information during the SAML exchange according to the current logging level. Not 
         /// recommended for production.
         /// </summary>
         [Input("verboseLogging")]
@@ -341,7 +341,7 @@ namespace Pulumi.Vault.Saml
 
         /// <summary>
         /// If set to `true`, logs additional, potentially sensitive
-        /// information during the SAML exchange according to the current logging level. Not
+        /// information during the SAML exchange according to the current logging level. Not 
         /// recommended for production.
         /// </summary>
         [Input("verboseLogging")]

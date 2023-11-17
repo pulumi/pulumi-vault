@@ -19,6 +19,7 @@ public final class SecretBackendRolePolicyIdentifierArgs extends com.pulumi.reso
      * The URL of the CPS for the policy identifier
      * 
      * Example usage:
+     * 
      * ```java
      * package generated_program;
      * 
@@ -82,6 +83,7 @@ public final class SecretBackendRolePolicyIdentifierArgs extends com.pulumi.reso
      * @return The URL of the CPS for the policy identifier
      * 
      * Example usage:
+     * 
      * ```java
      * package generated_program;
      * 
@@ -202,6 +204,7 @@ public final class SecretBackendRolePolicyIdentifierArgs extends com.pulumi.reso
          * @param cps The URL of the CPS for the policy identifier
          * 
          * Example usage:
+         * 
          * ```java
          * package generated_program;
          * 
@@ -269,6 +272,7 @@ public final class SecretBackendRolePolicyIdentifierArgs extends com.pulumi.reso
          * @param cps The URL of the CPS for the policy identifier
          * 
          * Example usage:
+         * 
          * ```java
          * package generated_program;
          * 

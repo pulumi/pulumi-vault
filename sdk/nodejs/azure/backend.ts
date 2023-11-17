@@ -66,11 +66,11 @@ export class Backend extends pulumi.CustomResource {
     }
 
     /**
-     * The OAuth2 client id to connect to Azure.
+     * (`string:""`) - The OAuth2 client id to connect to Azure.
      */
     public readonly clientId!: pulumi.Output<string | undefined>;
     /**
-     * The OAuth2 client secret to connect to Azure.
+     * (`string:""`) - The OAuth2 client secret to connect to Azure.
      */
     public readonly clientSecret!: pulumi.Output<string | undefined>;
     /**
@@ -83,7 +83,7 @@ export class Backend extends pulumi.CustomResource {
      */
     public readonly disableRemount!: pulumi.Output<boolean | undefined>;
     /**
-     * The Azure environment.
+     * (`string:""`) - The Azure environment.
      */
     public readonly environment!: pulumi.Output<string | undefined>;
     /**
@@ -94,20 +94,20 @@ export class Backend extends pulumi.CustomResource {
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
     /**
-     * The unique path this backend should be mounted at. Defaults to `azure`.
+     * (`string: <optional>`) - The unique path this backend should be mounted at. Defaults to `azure`.
      */
     public readonly path!: pulumi.Output<string | undefined>;
     /**
-     * The subscription id for the Azure Active Directory.
+     * (`string: <required>`) - The subscription id for the Azure Active Directory.
      */
     public readonly subscriptionId!: pulumi.Output<string>;
     /**
-     * The tenant id for the Azure Active Directory.
+     * (`string: <required>`) - The tenant id for the Azure Active Directory.
      */
     public readonly tenantId!: pulumi.Output<string>;
     /**
-     * Indicates whether the secrets engine should use 
-     * the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
+     * (`bool: <optional>`) - Indicates whether the secrets engine should use 
+     * the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`. 
      * For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
      */
     public readonly useMicrosoftGraphApi!: pulumi.Output<boolean>;
@@ -166,11 +166,11 @@ export class Backend extends pulumi.CustomResource {
  */
 export interface BackendState {
     /**
-     * The OAuth2 client id to connect to Azure.
+     * (`string:""`) - The OAuth2 client id to connect to Azure.
      */
     clientId?: pulumi.Input<string>;
     /**
-     * The OAuth2 client secret to connect to Azure.
+     * (`string:""`) - The OAuth2 client secret to connect to Azure.
      */
     clientSecret?: pulumi.Input<string>;
     /**
@@ -183,7 +183,7 @@ export interface BackendState {
      */
     disableRemount?: pulumi.Input<boolean>;
     /**
-     * The Azure environment.
+     * (`string:""`) - The Azure environment.
      */
     environment?: pulumi.Input<string>;
     /**
@@ -194,20 +194,20 @@ export interface BackendState {
      */
     namespace?: pulumi.Input<string>;
     /**
-     * The unique path this backend should be mounted at. Defaults to `azure`.
+     * (`string: <optional>`) - The unique path this backend should be mounted at. Defaults to `azure`.
      */
     path?: pulumi.Input<string>;
     /**
-     * The subscription id for the Azure Active Directory.
+     * (`string: <required>`) - The subscription id for the Azure Active Directory.
      */
     subscriptionId?: pulumi.Input<string>;
     /**
-     * The tenant id for the Azure Active Directory.
+     * (`string: <required>`) - The tenant id for the Azure Active Directory.
      */
     tenantId?: pulumi.Input<string>;
     /**
-     * Indicates whether the secrets engine should use 
-     * the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
+     * (`bool: <optional>`) - Indicates whether the secrets engine should use 
+     * the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`. 
      * For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
      */
     useMicrosoftGraphApi?: pulumi.Input<boolean>;
@@ -218,11 +218,11 @@ export interface BackendState {
  */
 export interface BackendArgs {
     /**
-     * The OAuth2 client id to connect to Azure.
+     * (`string:""`) - The OAuth2 client id to connect to Azure.
      */
     clientId?: pulumi.Input<string>;
     /**
-     * The OAuth2 client secret to connect to Azure.
+     * (`string:""`) - The OAuth2 client secret to connect to Azure.
      */
     clientSecret?: pulumi.Input<string>;
     /**
@@ -235,7 +235,7 @@ export interface BackendArgs {
      */
     disableRemount?: pulumi.Input<boolean>;
     /**
-     * The Azure environment.
+     * (`string:""`) - The Azure environment.
      */
     environment?: pulumi.Input<string>;
     /**
@@ -246,20 +246,20 @@ export interface BackendArgs {
      */
     namespace?: pulumi.Input<string>;
     /**
-     * The unique path this backend should be mounted at. Defaults to `azure`.
+     * (`string: <optional>`) - The unique path this backend should be mounted at. Defaults to `azure`.
      */
     path?: pulumi.Input<string>;
     /**
-     * The subscription id for the Azure Active Directory.
+     * (`string: <required>`) - The subscription id for the Azure Active Directory.
      */
     subscriptionId: pulumi.Input<string>;
     /**
-     * The tenant id for the Azure Active Directory.
+     * (`string: <required>`) - The tenant id for the Azure Active Directory.
      */
     tenantId: pulumi.Input<string>;
     /**
-     * Indicates whether the secrets engine should use 
-     * the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
+     * (`bool: <optional>`) - Indicates whether the secrets engine should use 
+     * the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`. 
      * For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
      */
     useMicrosoftGraphApi?: pulumi.Input<boolean>;

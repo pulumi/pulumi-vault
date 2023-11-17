@@ -168,15 +168,15 @@ export class SecretBackendRole extends pulumi.CustomResource {
     public readonly extraLabels!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The Role or ClusterRole rules to use when generating 
-     * a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `serviceAccountName`
-     * and `kubernetesRoleName`. If set, the entire chain of Kubernetes objects will be generated
+     * a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `serviceAccountName` 
+     * and `kubernetesRoleName`. If set, the entire chain of Kubernetes objects will be generated 
      * when credentials are requested.
      */
     public readonly generatedRoleRules!: pulumi.Output<string | undefined>;
     /**
      * The pre-existing Role or ClusterRole to bind a 
-     * generated service account to. Mutually exclusive with `serviceAccountName` and
-     * `generatedRoleRules`. If set, Kubernetes token, service account, and role
+     * generated service account to. Mutually exclusive with `serviceAccountName` and 
+     * `generatedRoleRules`. If set, Kubernetes token, service account, and role 
      * binding objects will be created when credentials are requested.
      */
     public readonly kubernetesRoleName!: pulumi.Output<string | undefined>;
@@ -297,15 +297,15 @@ export interface SecretBackendRoleState {
     extraLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The Role or ClusterRole rules to use when generating 
-     * a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `serviceAccountName`
-     * and `kubernetesRoleName`. If set, the entire chain of Kubernetes objects will be generated
+     * a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `serviceAccountName` 
+     * and `kubernetesRoleName`. If set, the entire chain of Kubernetes objects will be generated 
      * when credentials are requested.
      */
     generatedRoleRules?: pulumi.Input<string>;
     /**
      * The pre-existing Role or ClusterRole to bind a 
-     * generated service account to. Mutually exclusive with `serviceAccountName` and
-     * `generatedRoleRules`. If set, Kubernetes token, service account, and role
+     * generated service account to. Mutually exclusive with `serviceAccountName` and 
+     * `generatedRoleRules`. If set, Kubernetes token, service account, and role 
      * binding objects will be created when credentials are requested.
      */
     kubernetesRoleName?: pulumi.Input<string>;
@@ -374,15 +374,15 @@ export interface SecretBackendRoleArgs {
     extraLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The Role or ClusterRole rules to use when generating 
-     * a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `serviceAccountName`
-     * and `kubernetesRoleName`. If set, the entire chain of Kubernetes objects will be generated
+     * a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `serviceAccountName` 
+     * and `kubernetesRoleName`. If set, the entire chain of Kubernetes objects will be generated 
      * when credentials are requested.
      */
     generatedRoleRules?: pulumi.Input<string>;
     /**
      * The pre-existing Role or ClusterRole to bind a 
-     * generated service account to. Mutually exclusive with `serviceAccountName` and
-     * `generatedRoleRules`. If set, Kubernetes token, service account, and role
+     * generated service account to. Mutually exclusive with `serviceAccountName` and 
+     * `generatedRoleRules`. If set, Kubernetes token, service account, and role 
      * binding objects will be created when credentials are requested.
      */
     kubernetesRoleName?: pulumi.Input<string>;

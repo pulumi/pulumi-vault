@@ -94,11 +94,11 @@ type SecretBackendRole struct {
 	// Specifies a comma-separated list of extensions that certificates can have when signed.
 	AllowedExtensions pulumi.StringPtrOutput `pulumi:"allowedExtensions"`
 	// Set of configuration blocks to define allowed\
-	// user key configuration, like key type and their lengths. Can be specified multiple times.
+	// user key configuration, like key type and their lengths. Can be specified multiple times.\
 	// *See Configuration-Options for more info*
 	AllowedUserKeyConfigs SecretBackendRoleAllowedUserKeyConfigArrayOutput `pulumi:"allowedUserKeyConfigs"`
 	// Specifies a map of ssh key types and their expected sizes which
-	// are allowed to be signed by the CA type.
+	// are allowed to be signed by the CA type.\
 	// *Deprecated: use* allowedUserKeyConfig *instead*
 	//
 	// Deprecated: Set in allowed_user_key_config
@@ -197,11 +197,11 @@ type secretBackendRoleState struct {
 	// Specifies a comma-separated list of extensions that certificates can have when signed.
 	AllowedExtensions *string `pulumi:"allowedExtensions"`
 	// Set of configuration blocks to define allowed\
-	// user key configuration, like key type and their lengths. Can be specified multiple times.
+	// user key configuration, like key type and their lengths. Can be specified multiple times.\
 	// *See Configuration-Options for more info*
 	AllowedUserKeyConfigs []SecretBackendRoleAllowedUserKeyConfig `pulumi:"allowedUserKeyConfigs"`
 	// Specifies a map of ssh key types and their expected sizes which
-	// are allowed to be signed by the CA type.
+	// are allowed to be signed by the CA type.\
 	// *Deprecated: use* allowedUserKeyConfig *instead*
 	//
 	// Deprecated: Set in allowed_user_key_config
@@ -265,11 +265,11 @@ type SecretBackendRoleState struct {
 	// Specifies a comma-separated list of extensions that certificates can have when signed.
 	AllowedExtensions pulumi.StringPtrInput
 	// Set of configuration blocks to define allowed\
-	// user key configuration, like key type and their lengths. Can be specified multiple times.
+	// user key configuration, like key type and their lengths. Can be specified multiple times.\
 	// *See Configuration-Options for more info*
 	AllowedUserKeyConfigs SecretBackendRoleAllowedUserKeyConfigArrayInput
 	// Specifies a map of ssh key types and their expected sizes which
-	// are allowed to be signed by the CA type.
+	// are allowed to be signed by the CA type.\
 	// *Deprecated: use* allowedUserKeyConfig *instead*
 	//
 	// Deprecated: Set in allowed_user_key_config
@@ -337,11 +337,11 @@ type secretBackendRoleArgs struct {
 	// Specifies a comma-separated list of extensions that certificates can have when signed.
 	AllowedExtensions *string `pulumi:"allowedExtensions"`
 	// Set of configuration blocks to define allowed\
-	// user key configuration, like key type and their lengths. Can be specified multiple times.
+	// user key configuration, like key type and their lengths. Can be specified multiple times.\
 	// *See Configuration-Options for more info*
 	AllowedUserKeyConfigs []SecretBackendRoleAllowedUserKeyConfig `pulumi:"allowedUserKeyConfigs"`
 	// Specifies a map of ssh key types and their expected sizes which
-	// are allowed to be signed by the CA type.
+	// are allowed to be signed by the CA type.\
 	// *Deprecated: use* allowedUserKeyConfig *instead*
 	//
 	// Deprecated: Set in allowed_user_key_config
@@ -406,11 +406,11 @@ type SecretBackendRoleArgs struct {
 	// Specifies a comma-separated list of extensions that certificates can have when signed.
 	AllowedExtensions pulumi.StringPtrInput
 	// Set of configuration blocks to define allowed\
-	// user key configuration, like key type and their lengths. Can be specified multiple times.
+	// user key configuration, like key type and their lengths. Can be specified multiple times.\
 	// *See Configuration-Options for more info*
 	AllowedUserKeyConfigs SecretBackendRoleAllowedUserKeyConfigArrayInput
 	// Specifies a map of ssh key types and their expected sizes which
-	// are allowed to be signed by the CA type.
+	// are allowed to be signed by the CA type.\
 	// *Deprecated: use* allowedUserKeyConfig *instead*
 	//
 	// Deprecated: Set in allowed_user_key_config
@@ -590,7 +590,7 @@ func (o SecretBackendRoleOutput) AllowedExtensions() pulumi.StringPtrOutput {
 }
 
 // Set of configuration blocks to define allowed\
-// user key configuration, like key type and their lengths. Can be specified multiple times.
+// user key configuration, like key type and their lengths. Can be specified multiple times.\
 // *See Configuration-Options for more info*
 func (o SecretBackendRoleOutput) AllowedUserKeyConfigs() SecretBackendRoleAllowedUserKeyConfigArrayOutput {
 	return o.ApplyT(func(v *SecretBackendRole) SecretBackendRoleAllowedUserKeyConfigArrayOutput {
@@ -599,7 +599,7 @@ func (o SecretBackendRoleOutput) AllowedUserKeyConfigs() SecretBackendRoleAllowe
 }
 
 // Specifies a map of ssh key types and their expected sizes which
-// are allowed to be signed by the CA type.
+// are allowed to be signed by the CA type.\
 // *Deprecated: use* allowedUserKeyConfig *instead*
 //
 // Deprecated: Set in allowed_user_key_config

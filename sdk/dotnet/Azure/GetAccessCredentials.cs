@@ -95,7 +95,7 @@ namespace Pulumi.Vault.Azure
         /// <summary>
         /// The Azure environment to use during credential validation.
         /// Defaults to the environment configured in the Vault backend.
-        /// Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`
+        /// Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`  
         /// *See the caveats section for more information on this field.*
         /// </summary>
         [Input("environment")]
@@ -128,7 +128,7 @@ namespace Pulumi.Vault.Azure
 
         /// <summary>
         /// If 'validate_creds' is true, 
-        /// the number of sequential successes required to validate generated
+        /// the number of sequential successes required to validate generated 
         /// credentials. Defaults to 8.
         /// </summary>
         [Input("numSequentialSuccesses")]
@@ -143,7 +143,7 @@ namespace Pulumi.Vault.Azure
 
         /// <summary>
         /// The subscription ID to use during credential
-        /// validation. Defaults to the subscription ID configured in the Vault `backend`.
+        /// validation. Defaults to the subscription ID configured in the Vault `backend`.  
         /// *See the caveats section for more information on this field.*
         /// </summary>
         [Input("subscriptionId")]
@@ -151,7 +151,7 @@ namespace Pulumi.Vault.Azure
 
         /// <summary>
         /// The tenant ID to use during credential validation.
-        /// Defaults to the tenant ID configured in the Vault `backend`.
+        /// Defaults to the tenant ID configured in the Vault `backend`.  
         /// *See the caveats section for more information on this field.*
         /// </summary>
         [Input("tenantId")]
@@ -159,7 +159,7 @@ namespace Pulumi.Vault.Azure
 
         /// <summary>
         /// Whether generated credentials should be 
-        /// validated before being returned. Defaults to `false`, which returns
+        /// validated before being returned. Defaults to `false`, which returns 
         /// credentials without checking whether they have fully propagated throughout
         /// Azure Active Directory. Designating `true` activates testing.
         /// </summary>
@@ -184,7 +184,7 @@ namespace Pulumi.Vault.Azure
         /// <summary>
         /// The Azure environment to use during credential validation.
         /// Defaults to the environment configured in the Vault backend.
-        /// Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`
+        /// Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`  
         /// *See the caveats section for more information on this field.*
         /// </summary>
         [Input("environment")]
@@ -217,7 +217,7 @@ namespace Pulumi.Vault.Azure
 
         /// <summary>
         /// If 'validate_creds' is true, 
-        /// the number of sequential successes required to validate generated
+        /// the number of sequential successes required to validate generated 
         /// credentials. Defaults to 8.
         /// </summary>
         [Input("numSequentialSuccesses")]
@@ -232,7 +232,7 @@ namespace Pulumi.Vault.Azure
 
         /// <summary>
         /// The subscription ID to use during credential
-        /// validation. Defaults to the subscription ID configured in the Vault `backend`.
+        /// validation. Defaults to the subscription ID configured in the Vault `backend`.  
         /// *See the caveats section for more information on this field.*
         /// </summary>
         [Input("subscriptionId")]
@@ -240,7 +240,7 @@ namespace Pulumi.Vault.Azure
 
         /// <summary>
         /// The tenant ID to use during credential validation.
-        /// Defaults to the tenant ID configured in the Vault `backend`.
+        /// Defaults to the tenant ID configured in the Vault `backend`.  
         /// *See the caveats section for more information on this field.*
         /// </summary>
         [Input("tenantId")]
@@ -248,7 +248,7 @@ namespace Pulumi.Vault.Azure
 
         /// <summary>
         /// Whether generated credentials should be 
-        /// validated before being returned. Defaults to `false`, which returns
+        /// validated before being returned. Defaults to `false`, which returns 
         /// credentials without checking whether they have fully propagated throughout
         /// Azure Active Directory. Designating `true` activates testing.
         /// </summary>

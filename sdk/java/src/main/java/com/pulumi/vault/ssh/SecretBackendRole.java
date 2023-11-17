@@ -225,7 +225,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     }
     /**
      * Set of configuration blocks to define allowed\
-     * user key configuration, like key type and their lengths. Can be specified multiple times.
+     * user key configuration, like key type and their lengths. Can be specified multiple times.\
      * *See Configuration-Options for more info*
      * 
      */
@@ -234,7 +234,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Set of configuration blocks to define allowed\
-     * user key configuration, like key type and their lengths. Can be specified multiple times.
+     * user key configuration, like key type and their lengths. Can be specified multiple times.\
      * *See Configuration-Options for more info*
      * 
      */
@@ -243,7 +243,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     }
     /**
      * Specifies a map of ssh key types and their expected sizes which
-     * are allowed to be signed by the CA type.
+     * are allowed to be signed by the CA type.\
      * *Deprecated: use* allowed_user_key_config *instead*
      * 
      * @deprecated
@@ -256,7 +256,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Specifies a map of ssh key types and their expected sizes which
-     * are allowed to be signed by the CA type.
+     * are allowed to be signed by the CA type.\
      * *Deprecated: use* allowed_user_key_config *instead*
      * 
      */

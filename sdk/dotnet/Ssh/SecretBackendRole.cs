@@ -121,7 +121,7 @@ namespace Pulumi.Vault.Ssh
 
         /// <summary>
         /// Set of configuration blocks to define allowed  
-        /// user key configuration, like key type and their lengths. Can be specified multiple times.
+        /// user key configuration, like key type and their lengths. Can be specified multiple times.  
         /// *See Configuration-Options for more info*
         /// </summary>
         [Output("allowedUserKeyConfigs")]
@@ -129,7 +129,7 @@ namespace Pulumi.Vault.Ssh
 
         /// <summary>
         /// Specifies a map of ssh key types and their expected sizes which 
-        /// are allowed to be signed by the CA type.
+        /// are allowed to be signed by the CA type.  
         /// *Deprecated: use* allowed_user_key_config *instead*
         /// </summary>
         [Output("allowedUserKeyLengths")]
@@ -341,7 +341,7 @@ namespace Pulumi.Vault.Ssh
 
         /// <summary>
         /// Set of configuration blocks to define allowed  
-        /// user key configuration, like key type and their lengths. Can be specified multiple times.
+        /// user key configuration, like key type and their lengths. Can be specified multiple times.  
         /// *See Configuration-Options for more info*
         /// </summary>
         public InputList<Inputs.SecretBackendRoleAllowedUserKeyConfigArgs> AllowedUserKeyConfigs
@@ -355,7 +355,7 @@ namespace Pulumi.Vault.Ssh
 
         /// <summary>
         /// Specifies a map of ssh key types and their expected sizes which 
-        /// are allowed to be signed by the CA type.
+        /// are allowed to be signed by the CA type.  
         /// *Deprecated: use* allowed_user_key_config *instead*
         /// </summary>
         [Obsolete(@"Set in allowed_user_key_config")]
@@ -545,7 +545,7 @@ namespace Pulumi.Vault.Ssh
 
         /// <summary>
         /// Set of configuration blocks to define allowed  
-        /// user key configuration, like key type and their lengths. Can be specified multiple times.
+        /// user key configuration, like key type and their lengths. Can be specified multiple times.  
         /// *See Configuration-Options for more info*
         /// </summary>
         public InputList<Inputs.SecretBackendRoleAllowedUserKeyConfigGetArgs> AllowedUserKeyConfigs
@@ -559,7 +559,7 @@ namespace Pulumi.Vault.Ssh
 
         /// <summary>
         /// Specifies a map of ssh key types and their expected sizes which 
-        /// are allowed to be signed by the CA type.
+        /// are allowed to be signed by the CA type.  
         /// *Deprecated: use* allowed_user_key_config *instead*
         /// </summary>
         [Obsolete(@"Set in allowed_user_key_config")]

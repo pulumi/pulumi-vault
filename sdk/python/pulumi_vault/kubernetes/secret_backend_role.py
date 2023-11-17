@@ -40,12 +40,12 @@ class SecretBackendRoleArgs:
                
                This resource also directly accepts all Mount fields.
         :param pulumi.Input[str] generated_role_rules: The Role or ClusterRole rules to use when generating 
-               a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name`
-               and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated
+               a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name` 
+               and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated 
                when credentials are requested.
         :param pulumi.Input[str] kubernetes_role_name: The pre-existing Role or ClusterRole to bind a 
-               generated service account to. Mutually exclusive with `service_account_name` and
-               `generated_role_rules`. If set, Kubernetes token, service account, and role
+               generated service account to. Mutually exclusive with `service_account_name` and 
+               `generated_role_rules`. If set, Kubernetes token, service account, and role 
                binding objects will be created when credentials are requested.
         :param pulumi.Input[str] kubernetes_role_type: Specifies whether the Kubernetes role is a Role or 
                ClusterRole.
@@ -146,8 +146,8 @@ class SecretBackendRoleArgs:
     def generated_role_rules(self) -> Optional[pulumi.Input[str]]:
         """
         The Role or ClusterRole rules to use when generating 
-        a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name`
-        and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated
+        a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name` 
+        and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated 
         when credentials are requested.
         """
         return pulumi.get(self, "generated_role_rules")
@@ -161,8 +161,8 @@ class SecretBackendRoleArgs:
     def kubernetes_role_name(self) -> Optional[pulumi.Input[str]]:
         """
         The pre-existing Role or ClusterRole to bind a 
-        generated service account to. Mutually exclusive with `service_account_name` and
-        `generated_role_rules`. If set, Kubernetes token, service account, and role
+        generated service account to. Mutually exclusive with `service_account_name` and 
+        `generated_role_rules`. If set, Kubernetes token, service account, and role 
         binding objects will be created when credentials are requested.
         """
         return pulumi.get(self, "kubernetes_role_name")
@@ -292,12 +292,12 @@ class _SecretBackendRoleState:
                
                This resource also directly accepts all Mount fields.
         :param pulumi.Input[str] generated_role_rules: The Role or ClusterRole rules to use when generating 
-               a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name`
-               and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated
+               a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name` 
+               and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated 
                when credentials are requested.
         :param pulumi.Input[str] kubernetes_role_name: The pre-existing Role or ClusterRole to bind a 
-               generated service account to. Mutually exclusive with `service_account_name` and
-               `generated_role_rules`. If set, Kubernetes token, service account, and role
+               generated service account to. Mutually exclusive with `service_account_name` and 
+               `generated_role_rules`. If set, Kubernetes token, service account, and role 
                binding objects will be created when credentials are requested.
         :param pulumi.Input[str] kubernetes_role_type: Specifies whether the Kubernetes role is a Role or 
                ClusterRole.
@@ -400,8 +400,8 @@ class _SecretBackendRoleState:
     def generated_role_rules(self) -> Optional[pulumi.Input[str]]:
         """
         The Role or ClusterRole rules to use when generating 
-        a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name`
-        and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated
+        a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name` 
+        and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated 
         when credentials are requested.
         """
         return pulumi.get(self, "generated_role_rules")
@@ -415,8 +415,8 @@ class _SecretBackendRoleState:
     def kubernetes_role_name(self) -> Optional[pulumi.Input[str]]:
         """
         The pre-existing Role or ClusterRole to bind a 
-        generated service account to. Mutually exclusive with `service_account_name` and
-        `generated_role_rules`. If set, Kubernetes token, service account, and role
+        generated service account to. Mutually exclusive with `service_account_name` and 
+        `generated_role_rules`. If set, Kubernetes token, service account, and role 
         binding objects will be created when credentials are requested.
         """
         return pulumi.get(self, "kubernetes_role_name")
@@ -652,12 +652,12 @@ class SecretBackendRole(pulumi.CustomResource):
                
                This resource also directly accepts all Mount fields.
         :param pulumi.Input[str] generated_role_rules: The Role or ClusterRole rules to use when generating 
-               a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name`
-               and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated
+               a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name` 
+               and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated 
                when credentials are requested.
         :param pulumi.Input[str] kubernetes_role_name: The pre-existing Role or ClusterRole to bind a 
-               generated service account to. Mutually exclusive with `service_account_name` and
-               `generated_role_rules`. If set, Kubernetes token, service account, and role
+               generated service account to. Mutually exclusive with `service_account_name` and 
+               `generated_role_rules`. If set, Kubernetes token, service account, and role 
                binding objects will be created when credentials are requested.
         :param pulumi.Input[str] kubernetes_role_type: Specifies whether the Kubernetes role is a Role or 
                ClusterRole.
@@ -878,12 +878,12 @@ class SecretBackendRole(pulumi.CustomResource):
                
                This resource also directly accepts all Mount fields.
         :param pulumi.Input[str] generated_role_rules: The Role or ClusterRole rules to use when generating 
-               a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name`
-               and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated
+               a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name` 
+               and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated 
                when credentials are requested.
         :param pulumi.Input[str] kubernetes_role_name: The pre-existing Role or ClusterRole to bind a 
-               generated service account to. Mutually exclusive with `service_account_name` and
-               `generated_role_rules`. If set, Kubernetes token, service account, and role
+               generated service account to. Mutually exclusive with `service_account_name` and 
+               `generated_role_rules`. If set, Kubernetes token, service account, and role 
                binding objects will be created when credentials are requested.
         :param pulumi.Input[str] kubernetes_role_type: Specifies whether the Kubernetes role is a Role or 
                ClusterRole.
@@ -962,8 +962,8 @@ class SecretBackendRole(pulumi.CustomResource):
     def generated_role_rules(self) -> pulumi.Output[Optional[str]]:
         """
         The Role or ClusterRole rules to use when generating 
-        a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name`
-        and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated
+        a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name` 
+        and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated 
         when credentials are requested.
         """
         return pulumi.get(self, "generated_role_rules")
@@ -973,8 +973,8 @@ class SecretBackendRole(pulumi.CustomResource):
     def kubernetes_role_name(self) -> pulumi.Output[Optional[str]]:
         """
         The pre-existing Role or ClusterRole to bind a 
-        generated service account to. Mutually exclusive with `service_account_name` and
-        `generated_role_rules`. If set, Kubernetes token, service account, and role
+        generated service account to. Mutually exclusive with `service_account_name` and 
+        `generated_role_rules`. If set, Kubernetes token, service account, and role 
         binding objects will be created when credentials are requested.
         """
         return pulumi.get(self, "kubernetes_role_name")

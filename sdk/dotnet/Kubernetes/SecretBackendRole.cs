@@ -198,8 +198,8 @@ namespace Pulumi.Vault.Kubernetes
 
         /// <summary>
         /// The Role or ClusterRole rules to use when generating 
-        /// a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name`
-        /// and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated
+        /// a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name` 
+        /// and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated 
         /// when credentials are requested.
         /// </summary>
         [Output("generatedRoleRules")]
@@ -207,8 +207,8 @@ namespace Pulumi.Vault.Kubernetes
 
         /// <summary>
         /// The pre-existing Role or ClusterRole to bind a 
-        /// generated service account to. Mutually exclusive with `service_account_name` and
-        /// `generated_role_rules`. If set, Kubernetes token, service account, and role
+        /// generated service account to. Mutually exclusive with `service_account_name` and 
+        /// `generated_role_rules`. If set, Kubernetes token, service account, and role 
         /// binding objects will be created when credentials are requested.
         /// </summary>
         [Output("kubernetesRoleName")]
@@ -359,8 +359,8 @@ namespace Pulumi.Vault.Kubernetes
 
         /// <summary>
         /// The Role or ClusterRole rules to use when generating 
-        /// a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name`
-        /// and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated
+        /// a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name` 
+        /// and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated 
         /// when credentials are requested.
         /// </summary>
         [Input("generatedRoleRules")]
@@ -368,8 +368,8 @@ namespace Pulumi.Vault.Kubernetes
 
         /// <summary>
         /// The pre-existing Role or ClusterRole to bind a 
-        /// generated service account to. Mutually exclusive with `service_account_name` and
-        /// `generated_role_rules`. If set, Kubernetes token, service account, and role
+        /// generated service account to. Mutually exclusive with `service_account_name` and 
+        /// `generated_role_rules`. If set, Kubernetes token, service account, and role 
         /// binding objects will be created when credentials are requested.
         /// </summary>
         [Input("kubernetesRoleName")]
@@ -482,8 +482,8 @@ namespace Pulumi.Vault.Kubernetes
 
         /// <summary>
         /// The Role or ClusterRole rules to use when generating 
-        /// a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name`
-        /// and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated
+        /// a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name` 
+        /// and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated 
         /// when credentials are requested.
         /// </summary>
         [Input("generatedRoleRules")]
@@ -491,8 +491,8 @@ namespace Pulumi.Vault.Kubernetes
 
         /// <summary>
         /// The pre-existing Role or ClusterRole to bind a 
-        /// generated service account to. Mutually exclusive with `service_account_name` and
-        /// `generated_role_rules`. If set, Kubernetes token, service account, and role
+        /// generated service account to. Mutually exclusive with `service_account_name` and 
+        /// `generated_role_rules`. If set, Kubernetes token, service account, and role 
         /// binding objects will be created when credentials are requested.
         /// </summary>
         [Input("kubernetesRoleName")]

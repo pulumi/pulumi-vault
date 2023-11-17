@@ -137,7 +137,7 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
      */
     public readonly ocspQueryAllServers!: pulumi.Output<boolean>;
     /**
-     * : A comma-separated list of OCSP
+     * A comma-separated list of OCSP
      * server addresses. If unset, the OCSP server is determined from the
      * AuthorityInformationAccess extension on the certificate being inspected.
      * Requires Vault version 1.13+.
@@ -364,7 +364,7 @@ export interface CertAuthBackendRoleState {
      */
     ocspQueryAllServers?: pulumi.Input<boolean>;
     /**
-     * : A comma-separated list of OCSP
+     * A comma-separated list of OCSP
      * server addresses. If unset, the OCSP server is determined from the
      * AuthorityInformationAccess extension on the certificate being inspected.
      * Requires Vault version 1.13+.
@@ -514,7 +514,7 @@ export interface CertAuthBackendRoleArgs {
      */
     ocspQueryAllServers?: pulumi.Input<boolean>;
     /**
-     * : A comma-separated list of OCSP
+     * A comma-separated list of OCSP
      * server addresses. If unset, the OCSP server is determined from the
      * AuthorityInformationAccess extension on the certificate being inspected.
      * Requires Vault version 1.13+.

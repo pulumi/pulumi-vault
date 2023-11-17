@@ -316,7 +316,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
         return this.ocspQueryAllServers;
     }
     /**
-     * : A comma-separated list of OCSP
+     * A comma-separated list of OCSP
      * server addresses. If unset, the OCSP server is determined from the
      * AuthorityInformationAccess extension on the certificate being inspected.
      * Requires Vault version 1.13+.
@@ -326,7 +326,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ List<String>> ocspServersOverrides;
 
     /**
-     * @return : A comma-separated list of OCSP
+     * @return A comma-separated list of OCSP
      * server addresses. If unset, the OCSP server is determined from the
      * AuthorityInformationAccess extension on the certificate being inspected.
      * Requires Vault version 1.13+.

@@ -237,7 +237,7 @@ def get_access_credentials(backend: Optional[str] = None,
            read credentials from, with no leading or trailing `/`s.
     :param str environment: The Azure environment to use during credential validation.
            Defaults to the environment configured in the Vault backend.
-           Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`
+           Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`  
            *See the caveats section for more information on this field.*
     :param int max_cred_validation_seconds: If 'validate_creds' is true, 
            the number of seconds after which to give up validating credentials. Defaults
@@ -250,18 +250,18 @@ def get_access_credentials(backend: Optional[str] = None,
            the number of seconds to wait between each test of generated credentials.
            Defaults to 1.
     :param int num_sequential_successes: If 'validate_creds' is true, 
-           the number of sequential successes required to validate generated
+           the number of sequential successes required to validate generated 
            credentials. Defaults to 8.
     :param str role: The name of the Azure secret backend role to read
            credentials from, with no leading or trailing `/`s.
     :param str subscription_id: The subscription ID to use during credential
-           validation. Defaults to the subscription ID configured in the Vault `backend`.
+           validation. Defaults to the subscription ID configured in the Vault `backend`.  
            *See the caveats section for more information on this field.*
     :param str tenant_id: The tenant ID to use during credential validation.
-           Defaults to the tenant ID configured in the Vault `backend`.
+           Defaults to the tenant ID configured in the Vault `backend`.  
            *See the caveats section for more information on this field.*
     :param bool validate_creds: Whether generated credentials should be 
-           validated before being returned. Defaults to `false`, which returns
+           validated before being returned. Defaults to `false`, which returns 
            credentials without checking whether they have fully propagated throughout
            Azure Active Directory. Designating `true` activates testing.
     """
@@ -335,7 +335,7 @@ def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
            read credentials from, with no leading or trailing `/`s.
     :param str environment: The Azure environment to use during credential validation.
            Defaults to the environment configured in the Vault backend.
-           Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`
+           Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`  
            *See the caveats section for more information on this field.*
     :param int max_cred_validation_seconds: If 'validate_creds' is true, 
            the number of seconds after which to give up validating credentials. Defaults
@@ -348,18 +348,18 @@ def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
            the number of seconds to wait between each test of generated credentials.
            Defaults to 1.
     :param int num_sequential_successes: If 'validate_creds' is true, 
-           the number of sequential successes required to validate generated
+           the number of sequential successes required to validate generated 
            credentials. Defaults to 8.
     :param str role: The name of the Azure secret backend role to read
            credentials from, with no leading or trailing `/`s.
     :param str subscription_id: The subscription ID to use during credential
-           validation. Defaults to the subscription ID configured in the Vault `backend`.
+           validation. Defaults to the subscription ID configured in the Vault `backend`.  
            *See the caveats section for more information on this field.*
     :param str tenant_id: The tenant ID to use during credential validation.
-           Defaults to the tenant ID configured in the Vault `backend`.
+           Defaults to the tenant ID configured in the Vault `backend`.  
            *See the caveats section for more information on this field.*
     :param bool validate_creds: Whether generated credentials should be 
-           validated before being returned. Defaults to `false`, which returns
+           validated before being returned. Defaults to `false`, which returns 
            credentials without checking whether they have fully propagated throughout
            Azure Active Directory. Designating `true` activates testing.
     """

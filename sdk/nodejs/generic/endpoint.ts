@@ -95,7 +95,7 @@ export class Endpoint extends pulumi.CustomResource {
      */
     public readonly dataJson!: pulumi.Output<string>;
     /**
-     * - (Optional) True/false. Set this to true if your
+     * True/false. Set this to true if your
      * vault authentication is not able to delete the data or if the endpoint
      * does not support the `DELETE` method. Defaults to false.
      */
@@ -109,7 +109,7 @@ export class Endpoint extends pulumi.CustomResource {
      */
     public readonly disableRead!: pulumi.Output<boolean | undefined>;
     /**
-     * - (Optional) True/false. If set to true,
+     * True/false. If set to true,
      * ignore any fields present when the endpoint is read but that were not
      * in `dataJson`. Also, if a field that was written is not returned when
      * the endpoint is read, treat that field as being up to date. You should
@@ -146,7 +146,7 @@ export class Endpoint extends pulumi.CustomResource {
      */
     public /*out*/ readonly writeDataJson!: pulumi.Output<string>;
     /**
-     * - (Optional). A list of fields that should be returned
+     * . A list of fields that should be returned
      * in `writeDataJson` and `writeData`. If omitted, data returned by
      * the write operation is not available to the resource or included in
      * state. This helps to avoid accidental storage of sensitive values in
@@ -213,7 +213,7 @@ export interface EndpointState {
      */
     dataJson?: pulumi.Input<string>;
     /**
-     * - (Optional) True/false. Set this to true if your
+     * True/false. Set this to true if your
      * vault authentication is not able to delete the data or if the endpoint
      * does not support the `DELETE` method. Defaults to false.
      */
@@ -227,7 +227,7 @@ export interface EndpointState {
      */
     disableRead?: pulumi.Input<boolean>;
     /**
-     * - (Optional) True/false. If set to true,
+     * True/false. If set to true,
      * ignore any fields present when the endpoint is read but that were not
      * in `dataJson`. Also, if a field that was written is not returned when
      * the endpoint is read, treat that field as being up to date. You should
@@ -264,7 +264,7 @@ export interface EndpointState {
      */
     writeDataJson?: pulumi.Input<string>;
     /**
-     * - (Optional). A list of fields that should be returned
+     * . A list of fields that should be returned
      * in `writeDataJson` and `writeData`. If omitted, data returned by
      * the write operation is not available to the resource or included in
      * state. This helps to avoid accidental storage of sensitive values in
@@ -285,7 +285,7 @@ export interface EndpointArgs {
      */
     dataJson: pulumi.Input<string>;
     /**
-     * - (Optional) True/false. Set this to true if your
+     * True/false. Set this to true if your
      * vault authentication is not able to delete the data or if the endpoint
      * does not support the `DELETE` method. Defaults to false.
      */
@@ -299,7 +299,7 @@ export interface EndpointArgs {
      */
     disableRead?: pulumi.Input<boolean>;
     /**
-     * - (Optional) True/false. If set to true,
+     * True/false. If set to true,
      * ignore any fields present when the endpoint is read but that were not
      * in `dataJson`. Also, if a field that was written is not returned when
      * the endpoint is read, treat that field as being up to date. You should
@@ -323,7 +323,7 @@ export interface EndpointArgs {
      */
     path: pulumi.Input<string>;
     /**
-     * - (Optional). A list of fields that should be returned
+     * . A list of fields that should be returned
      * in `writeDataJson` and `writeData`. If omitted, data returned by
      * the write operation is not available to the resource or included in
      * state. This helps to avoid accidental storage of sensitive values in

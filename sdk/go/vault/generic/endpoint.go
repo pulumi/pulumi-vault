@@ -93,9 +93,9 @@ type Endpoint struct {
 	// String containing a JSON-encoded object that will be
 	// written to the given path as the secret data.
 	DataJson pulumi.StringOutput `pulumi:"dataJson"`
-	// - (Optional) True/false. Set this to true if your
-	//   vault authentication is not able to delete the data or if the endpoint
-	//   does not support the `DELETE` method. Defaults to false.
+	// True/false. Set this to true if your
+	// vault authentication is not able to delete the data or if the endpoint
+	// does not support the `DELETE` method. Defaults to false.
 	DisableDelete pulumi.BoolPtrOutput `pulumi:"disableDelete"`
 	// True/false. Set this to true if your vault
 	// authentication is not able to read the data or if the endpoint does
@@ -103,13 +103,13 @@ type Endpoint struct {
 	// detection. You should set this to `true` for endpoints that are
 	// write-only. Defaults to false.
 	DisableRead pulumi.BoolPtrOutput `pulumi:"disableRead"`
-	// - (Optional) True/false. If set to true,
-	//   ignore any fields present when the endpoint is read but that were not
-	//   in `dataJson`. Also, if a field that was written is not returned when
-	//   the endpoint is read, treat that field as being up to date. You should
-	//   set this to `true` when writing to endpoint that, when read, returns a
-	//   different set of fields from the ones you wrote, as is common with
-	//   many configuration endpoints. Defaults to false.
+	// True/false. If set to true,
+	// ignore any fields present when the endpoint is read but that were not
+	// in `dataJson`. Also, if a field that was written is not returned when
+	// the endpoint is read, treat that field as being up to date. You should
+	// set this to `true` when writing to endpoint that, when read, returns a
+	// different set of fields from the ones you wrote, as is common with
+	// many configuration endpoints. Defaults to false.
 	IgnoreAbsentFields pulumi.BoolPtrOutput `pulumi:"ignoreAbsentFields"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
@@ -130,13 +130,13 @@ type Endpoint struct {
 	// - The JSON data returned by the write operation.
 	//   Only fields set in `writeFields` are present in the JSON data.
 	WriteDataJson pulumi.StringOutput `pulumi:"writeDataJson"`
-	// - (Optional). A list of fields that should be returned
-	//   in `writeDataJson` and `writeData`. If omitted, data returned by
-	//   the write operation is not available to the resource or included in
-	//   state. This helps to avoid accidental storage of sensitive values in
-	//   state. Some endpoints, such as many dynamic secrets endpoints, return
-	//   data from writing to an endpoint rather than reading it. You should
-	//   use `writeFields` if you need information returned in this way.
+	// . A list of fields that should be returned
+	// in `writeDataJson` and `writeData`. If omitted, data returned by
+	// the write operation is not available to the resource or included in
+	// state. This helps to avoid accidental storage of sensitive values in
+	// state. Some endpoints, such as many dynamic secrets endpoints, return
+	// data from writing to an endpoint rather than reading it. You should
+	// use `writeFields` if you need information returned in this way.
 	WriteFields pulumi.StringArrayOutput `pulumi:"writeFields"`
 }
 
@@ -186,9 +186,9 @@ type endpointState struct {
 	// String containing a JSON-encoded object that will be
 	// written to the given path as the secret data.
 	DataJson *string `pulumi:"dataJson"`
-	// - (Optional) True/false. Set this to true if your
-	//   vault authentication is not able to delete the data or if the endpoint
-	//   does not support the `DELETE` method. Defaults to false.
+	// True/false. Set this to true if your
+	// vault authentication is not able to delete the data or if the endpoint
+	// does not support the `DELETE` method. Defaults to false.
 	DisableDelete *bool `pulumi:"disableDelete"`
 	// True/false. Set this to true if your vault
 	// authentication is not able to read the data or if the endpoint does
@@ -196,13 +196,13 @@ type endpointState struct {
 	// detection. You should set this to `true` for endpoints that are
 	// write-only. Defaults to false.
 	DisableRead *bool `pulumi:"disableRead"`
-	// - (Optional) True/false. If set to true,
-	//   ignore any fields present when the endpoint is read but that were not
-	//   in `dataJson`. Also, if a field that was written is not returned when
-	//   the endpoint is read, treat that field as being up to date. You should
-	//   set this to `true` when writing to endpoint that, when read, returns a
-	//   different set of fields from the ones you wrote, as is common with
-	//   many configuration endpoints. Defaults to false.
+	// True/false. If set to true,
+	// ignore any fields present when the endpoint is read but that were not
+	// in `dataJson`. Also, if a field that was written is not returned when
+	// the endpoint is read, treat that field as being up to date. You should
+	// set this to `true` when writing to endpoint that, when read, returns a
+	// different set of fields from the ones you wrote, as is common with
+	// many configuration endpoints. Defaults to false.
 	IgnoreAbsentFields *bool `pulumi:"ignoreAbsentFields"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
@@ -223,13 +223,13 @@ type endpointState struct {
 	// - The JSON data returned by the write operation.
 	//   Only fields set in `writeFields` are present in the JSON data.
 	WriteDataJson *string `pulumi:"writeDataJson"`
-	// - (Optional). A list of fields that should be returned
-	//   in `writeDataJson` and `writeData`. If omitted, data returned by
-	//   the write operation is not available to the resource or included in
-	//   state. This helps to avoid accidental storage of sensitive values in
-	//   state. Some endpoints, such as many dynamic secrets endpoints, return
-	//   data from writing to an endpoint rather than reading it. You should
-	//   use `writeFields` if you need information returned in this way.
+	// . A list of fields that should be returned
+	// in `writeDataJson` and `writeData`. If omitted, data returned by
+	// the write operation is not available to the resource or included in
+	// state. This helps to avoid accidental storage of sensitive values in
+	// state. Some endpoints, such as many dynamic secrets endpoints, return
+	// data from writing to an endpoint rather than reading it. You should
+	// use `writeFields` if you need information returned in this way.
 	WriteFields []string `pulumi:"writeFields"`
 }
 
@@ -237,9 +237,9 @@ type EndpointState struct {
 	// String containing a JSON-encoded object that will be
 	// written to the given path as the secret data.
 	DataJson pulumi.StringPtrInput
-	// - (Optional) True/false. Set this to true if your
-	//   vault authentication is not able to delete the data or if the endpoint
-	//   does not support the `DELETE` method. Defaults to false.
+	// True/false. Set this to true if your
+	// vault authentication is not able to delete the data or if the endpoint
+	// does not support the `DELETE` method. Defaults to false.
 	DisableDelete pulumi.BoolPtrInput
 	// True/false. Set this to true if your vault
 	// authentication is not able to read the data or if the endpoint does
@@ -247,13 +247,13 @@ type EndpointState struct {
 	// detection. You should set this to `true` for endpoints that are
 	// write-only. Defaults to false.
 	DisableRead pulumi.BoolPtrInput
-	// - (Optional) True/false. If set to true,
-	//   ignore any fields present when the endpoint is read but that were not
-	//   in `dataJson`. Also, if a field that was written is not returned when
-	//   the endpoint is read, treat that field as being up to date. You should
-	//   set this to `true` when writing to endpoint that, when read, returns a
-	//   different set of fields from the ones you wrote, as is common with
-	//   many configuration endpoints. Defaults to false.
+	// True/false. If set to true,
+	// ignore any fields present when the endpoint is read but that were not
+	// in `dataJson`. Also, if a field that was written is not returned when
+	// the endpoint is read, treat that field as being up to date. You should
+	// set this to `true` when writing to endpoint that, when read, returns a
+	// different set of fields from the ones you wrote, as is common with
+	// many configuration endpoints. Defaults to false.
 	IgnoreAbsentFields pulumi.BoolPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
@@ -274,13 +274,13 @@ type EndpointState struct {
 	// - The JSON data returned by the write operation.
 	//   Only fields set in `writeFields` are present in the JSON data.
 	WriteDataJson pulumi.StringPtrInput
-	// - (Optional). A list of fields that should be returned
-	//   in `writeDataJson` and `writeData`. If omitted, data returned by
-	//   the write operation is not available to the resource or included in
-	//   state. This helps to avoid accidental storage of sensitive values in
-	//   state. Some endpoints, such as many dynamic secrets endpoints, return
-	//   data from writing to an endpoint rather than reading it. You should
-	//   use `writeFields` if you need information returned in this way.
+	// . A list of fields that should be returned
+	// in `writeDataJson` and `writeData`. If omitted, data returned by
+	// the write operation is not available to the resource or included in
+	// state. This helps to avoid accidental storage of sensitive values in
+	// state. Some endpoints, such as many dynamic secrets endpoints, return
+	// data from writing to an endpoint rather than reading it. You should
+	// use `writeFields` if you need information returned in this way.
 	WriteFields pulumi.StringArrayInput
 }
 
@@ -292,9 +292,9 @@ type endpointArgs struct {
 	// String containing a JSON-encoded object that will be
 	// written to the given path as the secret data.
 	DataJson string `pulumi:"dataJson"`
-	// - (Optional) True/false. Set this to true if your
-	//   vault authentication is not able to delete the data or if the endpoint
-	//   does not support the `DELETE` method. Defaults to false.
+	// True/false. Set this to true if your
+	// vault authentication is not able to delete the data or if the endpoint
+	// does not support the `DELETE` method. Defaults to false.
 	DisableDelete *bool `pulumi:"disableDelete"`
 	// True/false. Set this to true if your vault
 	// authentication is not able to read the data or if the endpoint does
@@ -302,13 +302,13 @@ type endpointArgs struct {
 	// detection. You should set this to `true` for endpoints that are
 	// write-only. Defaults to false.
 	DisableRead *bool `pulumi:"disableRead"`
-	// - (Optional) True/false. If set to true,
-	//   ignore any fields present when the endpoint is read but that were not
-	//   in `dataJson`. Also, if a field that was written is not returned when
-	//   the endpoint is read, treat that field as being up to date. You should
-	//   set this to `true` when writing to endpoint that, when read, returns a
-	//   different set of fields from the ones you wrote, as is common with
-	//   many configuration endpoints. Defaults to false.
+	// True/false. If set to true,
+	// ignore any fields present when the endpoint is read but that were not
+	// in `dataJson`. Also, if a field that was written is not returned when
+	// the endpoint is read, treat that field as being up to date. You should
+	// set this to `true` when writing to endpoint that, when read, returns a
+	// different set of fields from the ones you wrote, as is common with
+	// many configuration endpoints. Defaults to false.
 	IgnoreAbsentFields *bool `pulumi:"ignoreAbsentFields"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
@@ -320,13 +320,13 @@ type endpointArgs struct {
 	// support the `PUT` methods and to determine whether they also support
 	// `DELETE` and `GET`.
 	Path string `pulumi:"path"`
-	// - (Optional). A list of fields that should be returned
-	//   in `writeDataJson` and `writeData`. If omitted, data returned by
-	//   the write operation is not available to the resource or included in
-	//   state. This helps to avoid accidental storage of sensitive values in
-	//   state. Some endpoints, such as many dynamic secrets endpoints, return
-	//   data from writing to an endpoint rather than reading it. You should
-	//   use `writeFields` if you need information returned in this way.
+	// . A list of fields that should be returned
+	// in `writeDataJson` and `writeData`. If omitted, data returned by
+	// the write operation is not available to the resource or included in
+	// state. This helps to avoid accidental storage of sensitive values in
+	// state. Some endpoints, such as many dynamic secrets endpoints, return
+	// data from writing to an endpoint rather than reading it. You should
+	// use `writeFields` if you need information returned in this way.
 	WriteFields []string `pulumi:"writeFields"`
 }
 
@@ -335,9 +335,9 @@ type EndpointArgs struct {
 	// String containing a JSON-encoded object that will be
 	// written to the given path as the secret data.
 	DataJson pulumi.StringInput
-	// - (Optional) True/false. Set this to true if your
-	//   vault authentication is not able to delete the data or if the endpoint
-	//   does not support the `DELETE` method. Defaults to false.
+	// True/false. Set this to true if your
+	// vault authentication is not able to delete the data or if the endpoint
+	// does not support the `DELETE` method. Defaults to false.
 	DisableDelete pulumi.BoolPtrInput
 	// True/false. Set this to true if your vault
 	// authentication is not able to read the data or if the endpoint does
@@ -345,13 +345,13 @@ type EndpointArgs struct {
 	// detection. You should set this to `true` for endpoints that are
 	// write-only. Defaults to false.
 	DisableRead pulumi.BoolPtrInput
-	// - (Optional) True/false. If set to true,
-	//   ignore any fields present when the endpoint is read but that were not
-	//   in `dataJson`. Also, if a field that was written is not returned when
-	//   the endpoint is read, treat that field as being up to date. You should
-	//   set this to `true` when writing to endpoint that, when read, returns a
-	//   different set of fields from the ones you wrote, as is common with
-	//   many configuration endpoints. Defaults to false.
+	// True/false. If set to true,
+	// ignore any fields present when the endpoint is read but that were not
+	// in `dataJson`. Also, if a field that was written is not returned when
+	// the endpoint is read, treat that field as being up to date. You should
+	// set this to `true` when writing to endpoint that, when read, returns a
+	// different set of fields from the ones you wrote, as is common with
+	// many configuration endpoints. Defaults to false.
 	IgnoreAbsentFields pulumi.BoolPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
@@ -363,13 +363,13 @@ type EndpointArgs struct {
 	// support the `PUT` methods and to determine whether they also support
 	// `DELETE` and `GET`.
 	Path pulumi.StringInput
-	// - (Optional). A list of fields that should be returned
-	//   in `writeDataJson` and `writeData`. If omitted, data returned by
-	//   the write operation is not available to the resource or included in
-	//   state. This helps to avoid accidental storage of sensitive values in
-	//   state. Some endpoints, such as many dynamic secrets endpoints, return
-	//   data from writing to an endpoint rather than reading it. You should
-	//   use `writeFields` if you need information returned in this way.
+	// . A list of fields that should be returned
+	// in `writeDataJson` and `writeData`. If omitted, data returned by
+	// the write operation is not available to the resource or included in
+	// state. This helps to avoid accidental storage of sensitive values in
+	// state. Some endpoints, such as many dynamic secrets endpoints, return
+	// data from writing to an endpoint rather than reading it. You should
+	// use `writeFields` if you need information returned in this way.
 	WriteFields pulumi.StringArrayInput
 }
 
@@ -466,9 +466,9 @@ func (o EndpointOutput) DataJson() pulumi.StringOutput {
 	return o.ApplyT(func(v *Endpoint) pulumi.StringOutput { return v.DataJson }).(pulumi.StringOutput)
 }
 
-//   - (Optional) True/false. Set this to true if your
-//     vault authentication is not able to delete the data or if the endpoint
-//     does not support the `DELETE` method. Defaults to false.
+// True/false. Set this to true if your
+// vault authentication is not able to delete the data or if the endpoint
+// does not support the `DELETE` method. Defaults to false.
 func (o EndpointOutput) DisableDelete() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Endpoint) pulumi.BoolPtrOutput { return v.DisableDelete }).(pulumi.BoolPtrOutput)
 }
@@ -482,13 +482,13 @@ func (o EndpointOutput) DisableRead() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Endpoint) pulumi.BoolPtrOutput { return v.DisableRead }).(pulumi.BoolPtrOutput)
 }
 
-//   - (Optional) True/false. If set to true,
-//     ignore any fields present when the endpoint is read but that were not
-//     in `dataJson`. Also, if a field that was written is not returned when
-//     the endpoint is read, treat that field as being up to date. You should
-//     set this to `true` when writing to endpoint that, when read, returns a
-//     different set of fields from the ones you wrote, as is common with
-//     many configuration endpoints. Defaults to false.
+// True/false. If set to true,
+// ignore any fields present when the endpoint is read but that were not
+// in `dataJson`. Also, if a field that was written is not returned when
+// the endpoint is read, treat that field as being up to date. You should
+// set this to `true` when writing to endpoint that, when read, returns a
+// different set of fields from the ones you wrote, as is common with
+// many configuration endpoints. Defaults to false.
 func (o EndpointOutput) IgnoreAbsentFields() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Endpoint) pulumi.BoolPtrOutput { return v.IgnoreAbsentFields }).(pulumi.BoolPtrOutput)
 }
@@ -524,13 +524,13 @@ func (o EndpointOutput) WriteDataJson() pulumi.StringOutput {
 	return o.ApplyT(func(v *Endpoint) pulumi.StringOutput { return v.WriteDataJson }).(pulumi.StringOutput)
 }
 
-//   - (Optional). A list of fields that should be returned
-//     in `writeDataJson` and `writeData`. If omitted, data returned by
-//     the write operation is not available to the resource or included in
-//     state. This helps to avoid accidental storage of sensitive values in
-//     state. Some endpoints, such as many dynamic secrets endpoints, return
-//     data from writing to an endpoint rather than reading it. You should
-//     use `writeFields` if you need information returned in this way.
+// . A list of fields that should be returned
+// in `writeDataJson` and `writeData`. If omitted, data returned by
+// the write operation is not available to the resource or included in
+// state. This helps to avoid accidental storage of sensitive values in
+// state. Some endpoints, such as many dynamic secrets endpoints, return
+// data from writing to an endpoint rather than reading it. You should
+// use `writeFields` if you need information returned in this way.
 func (o EndpointOutput) WriteFields() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Endpoint) pulumi.StringArrayOutput { return v.WriteFields }).(pulumi.StringArrayOutput)
 }

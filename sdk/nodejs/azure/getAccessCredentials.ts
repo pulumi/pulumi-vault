@@ -54,7 +54,7 @@ export interface GetAccessCredentialsArgs {
     /**
      * The Azure environment to use during credential validation.
      * Defaults to the environment configured in the Vault backend.
-     * Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`
+     * Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`  
      * *See the caveats section for more information on this field.*
      */
     environment?: string;
@@ -79,7 +79,7 @@ export interface GetAccessCredentialsArgs {
     numSecondsBetweenTests?: number;
     /**
      * If 'validate_creds' is true, 
-     * the number of sequential successes required to validate generated
+     * the number of sequential successes required to validate generated 
      * credentials. Defaults to 8.
      */
     numSequentialSuccesses?: number;
@@ -90,19 +90,19 @@ export interface GetAccessCredentialsArgs {
     role: string;
     /**
      * The subscription ID to use during credential
-     * validation. Defaults to the subscription ID configured in the Vault `backend`.
+     * validation. Defaults to the subscription ID configured in the Vault `backend`.  
      * *See the caveats section for more information on this field.*
      */
     subscriptionId?: string;
     /**
      * The tenant ID to use during credential validation.
-     * Defaults to the tenant ID configured in the Vault `backend`.
+     * Defaults to the tenant ID configured in the Vault `backend`.  
      * *See the caveats section for more information on this field.*
      */
     tenantId?: string;
     /**
      * Whether generated credentials should be 
-     * validated before being returned. Defaults to `false`, which returns
+     * validated before being returned. Defaults to `false`, which returns 
      * credentials without checking whether they have fully propagated throughout
      * Azure Active Directory. Designating `true` activates testing.
      */
@@ -185,7 +185,7 @@ export interface GetAccessCredentialsOutputArgs {
     /**
      * The Azure environment to use during credential validation.
      * Defaults to the environment configured in the Vault backend.
-     * Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`
+     * Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`  
      * *See the caveats section for more information on this field.*
      */
     environment?: pulumi.Input<string>;
@@ -210,7 +210,7 @@ export interface GetAccessCredentialsOutputArgs {
     numSecondsBetweenTests?: pulumi.Input<number>;
     /**
      * If 'validate_creds' is true, 
-     * the number of sequential successes required to validate generated
+     * the number of sequential successes required to validate generated 
      * credentials. Defaults to 8.
      */
     numSequentialSuccesses?: pulumi.Input<number>;
@@ -221,19 +221,19 @@ export interface GetAccessCredentialsOutputArgs {
     role: pulumi.Input<string>;
     /**
      * The subscription ID to use during credential
-     * validation. Defaults to the subscription ID configured in the Vault `backend`.
+     * validation. Defaults to the subscription ID configured in the Vault `backend`.  
      * *See the caveats section for more information on this field.*
      */
     subscriptionId?: pulumi.Input<string>;
     /**
      * The tenant ID to use during credential validation.
-     * Defaults to the tenant ID configured in the Vault `backend`.
+     * Defaults to the tenant ID configured in the Vault `backend`.  
      * *See the caveats section for more information on this field.*
      */
     tenantId?: pulumi.Input<string>;
     /**
      * Whether generated credentials should be 
-     * validated before being returned. Defaults to `false`, which returns
+     * validated before being returned. Defaults to `false`, which returns 
      * credentials without checking whether they have fully propagated throughout
      * Azure Active Directory. Designating `true` activates testing.
      */

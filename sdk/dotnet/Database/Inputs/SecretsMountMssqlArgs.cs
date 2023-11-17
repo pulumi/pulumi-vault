@@ -34,7 +34,7 @@ namespace Pulumi.Vault.Database.Inputs
 
         /// <summary>
         /// For Vault v1.9+. Set to true when the target is a
-        /// Contained Database, e.g. AzureSQL.
+        /// Contained Database, e.g. AzureSQL.  
         /// See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
         /// </summary>
         [Input("containedDb")]

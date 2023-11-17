@@ -71,7 +71,7 @@ class CertAuthBackendRoleArgs:
                accepting the first successful OCSP response, query all servers and consider
                the certificate valid only if all servers agree.
                Requires Vault version 1.13+.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ocsp_servers_overrides: : A comma-separated list of OCSP
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ocsp_servers_overrides: A comma-separated list of OCSP
                server addresses. If unset, the OCSP server is determined from the
                AuthorityInformationAccess extension on the certificate being inspected.
                Requires Vault version 1.13+.
@@ -372,7 +372,7 @@ class CertAuthBackendRoleArgs:
     @pulumi.getter(name="ocspServersOverrides")
     def ocsp_servers_overrides(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        : A comma-separated list of OCSP
+        A comma-separated list of OCSP
         server addresses. If unset, the OCSP server is determined from the
         AuthorityInformationAccess extension on the certificate being inspected.
         Requires Vault version 1.13+.
@@ -584,7 +584,7 @@ class _CertAuthBackendRoleState:
                accepting the first successful OCSP response, query all servers and consider
                the certificate valid only if all servers agree.
                Requires Vault version 1.13+.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ocsp_servers_overrides: : A comma-separated list of OCSP
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ocsp_servers_overrides: A comma-separated list of OCSP
                server addresses. If unset, the OCSP server is determined from the
                AuthorityInformationAccess extension on the certificate being inspected.
                Requires Vault version 1.13+.
@@ -886,7 +886,7 @@ class _CertAuthBackendRoleState:
     @pulumi.getter(name="ocspServersOverrides")
     def ocsp_servers_overrides(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        : A comma-separated list of OCSP
+        A comma-separated list of OCSP
         server addresses. If unset, the OCSP server is determined from the
         AuthorityInformationAccess extension on the certificate being inspected.
         Requires Vault version 1.13+.
@@ -1125,7 +1125,7 @@ class CertAuthBackendRole(pulumi.CustomResource):
                accepting the first successful OCSP response, query all servers and consider
                the certificate valid only if all servers agree.
                Requires Vault version 1.13+.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ocsp_servers_overrides: : A comma-separated list of OCSP
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ocsp_servers_overrides: A comma-separated list of OCSP
                server addresses. If unset, the OCSP server is determined from the
                AuthorityInformationAccess extension on the certificate being inspected.
                Requires Vault version 1.13+.
@@ -1342,7 +1342,7 @@ class CertAuthBackendRole(pulumi.CustomResource):
                accepting the first successful OCSP response, query all servers and consider
                the certificate valid only if all servers agree.
                Requires Vault version 1.13+.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ocsp_servers_overrides: : A comma-separated list of OCSP
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ocsp_servers_overrides: A comma-separated list of OCSP
                server addresses. If unset, the OCSP server is determined from the
                AuthorityInformationAccess extension on the certificate being inspected.
                Requires Vault version 1.13+.
@@ -1555,7 +1555,7 @@ class CertAuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="ocspServersOverrides")
     def ocsp_servers_overrides(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        : A comma-separated list of OCSP
+        A comma-separated list of OCSP
         server addresses. If unset, the OCSP server is determined from the
         AuthorityInformationAccess extension on the certificate being inspected.
         Requires Vault version 1.13+.

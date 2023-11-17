@@ -36,7 +36,7 @@ public final class GetAccessCredentialsPlainArgs extends com.pulumi.resources.In
     /**
      * The Azure environment to use during credential validation.
      * Defaults to the environment configured in the Vault backend.
-     * Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`
+     * Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`\
      * *See the caveats section for more information on this field.*
      * 
      */
@@ -46,7 +46,7 @@ public final class GetAccessCredentialsPlainArgs extends com.pulumi.resources.In
     /**
      * @return The Azure environment to use during credential validation.
      * Defaults to the environment configured in the Vault backend.
-     * Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`
+     * Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`\
      * *See the caveats section for more information on this field.*
      * 
      */
@@ -151,7 +151,7 @@ public final class GetAccessCredentialsPlainArgs extends com.pulumi.resources.In
 
     /**
      * The subscription ID to use during credential
-     * validation. Defaults to the subscription ID configured in the Vault `backend`.
+     * validation. Defaults to the subscription ID configured in the Vault `backend`.\
      * *See the caveats section for more information on this field.*
      * 
      */
@@ -160,7 +160,7 @@ public final class GetAccessCredentialsPlainArgs extends com.pulumi.resources.In
 
     /**
      * @return The subscription ID to use during credential
-     * validation. Defaults to the subscription ID configured in the Vault `backend`.
+     * validation. Defaults to the subscription ID configured in the Vault `backend`.\
      * *See the caveats section for more information on this field.*
      * 
      */
@@ -170,7 +170,7 @@ public final class GetAccessCredentialsPlainArgs extends com.pulumi.resources.In
 
     /**
      * The tenant ID to use during credential validation.
-     * Defaults to the tenant ID configured in the Vault `backend`.
+     * Defaults to the tenant ID configured in the Vault `backend`.\
      * *See the caveats section for more information on this field.*
      * 
      */
@@ -179,7 +179,7 @@ public final class GetAccessCredentialsPlainArgs extends com.pulumi.resources.In
 
     /**
      * @return The tenant ID to use during credential validation.
-     * Defaults to the tenant ID configured in the Vault `backend`.
+     * Defaults to the tenant ID configured in the Vault `backend`.\
      * *See the caveats section for more information on this field.*
      * 
      */
@@ -256,7 +256,7 @@ public final class GetAccessCredentialsPlainArgs extends com.pulumi.resources.In
         /**
          * @param environment The Azure environment to use during credential validation.
          * Defaults to the environment configured in the Vault backend.
-         * Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`
+         * Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`\
          * *See the caveats section for more information on this field.*
          * 
          * @return builder
@@ -334,7 +334,7 @@ public final class GetAccessCredentialsPlainArgs extends com.pulumi.resources.In
 
         /**
          * @param subscriptionId The subscription ID to use during credential
-         * validation. Defaults to the subscription ID configured in the Vault `backend`.
+         * validation. Defaults to the subscription ID configured in the Vault `backend`.\
          * *See the caveats section for more information on this field.*
          * 
          * @return builder
@@ -347,7 +347,7 @@ public final class GetAccessCredentialsPlainArgs extends com.pulumi.resources.In
 
         /**
          * @param tenantId The tenant ID to use during credential validation.
-         * Defaults to the tenant ID configured in the Vault `backend`.
+         * Defaults to the tenant ID configured in the Vault `backend`.\
          * *See the caveats section for more information on this field.*
          * 
          * @return builder

@@ -56,7 +56,7 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
 
     /**
      * For Vault v1.9+. Set to true when the target is a
-     * Contained Database, e.g. AzureSQL.
+     * Contained Database, e.g. AzureSQL.\
      * See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
      * 
      */
@@ -65,7 +65,7 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
 
     /**
      * @return For Vault v1.9+. Set to true when the target is a
-     * Contained Database, e.g. AzureSQL.
+     * Contained Database, e.g. AzureSQL.\
      * See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
      * 
      */
@@ -352,7 +352,7 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
 
         /**
          * @param containedDb For Vault v1.9+. Set to true when the target is a
-         * Contained Database, e.g. AzureSQL.
+         * Contained Database, e.g. AzureSQL.\
          * See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
          * 
          * @return builder
@@ -365,7 +365,7 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
 
         /**
          * @param containedDb For Vault v1.9+. Set to true when the target is a
-         * Contained Database, e.g. AzureSQL.
+         * Contained Database, e.g. AzureSQL.\
          * See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
          * 
          * @return builder

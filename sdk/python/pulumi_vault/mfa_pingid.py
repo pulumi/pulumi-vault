@@ -31,7 +31,7 @@ class MfaPingidArgs:
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] username_format: `(string)` - A format string for mapping Identity names to MFA method names. 
-               Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
+               Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. 
                If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
                - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
                - entity.name: The name configured for the Entity
@@ -105,7 +105,7 @@ class MfaPingidArgs:
     def username_format(self) -> Optional[pulumi.Input[str]]:
         """
         `(string)` - A format string for mapping Identity names to MFA method names. 
-        Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
+        Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. 
         If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
         - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
         - entity.name: The name configured for the Entity
@@ -153,7 +153,7 @@ class _MfaPingidState:
         :param pulumi.Input[str] type: `(string)` – Type of configuration computed by Vault
         :param pulumi.Input[bool] use_signature: `(string)` – If set to true, enables use of PingID signature. Computed by Vault
         :param pulumi.Input[str] username_format: `(string)` - A format string for mapping Identity names to MFA method names. 
-               Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
+               Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. 
                If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
                - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
                - entity.name: The name configured for the Entity
@@ -327,7 +327,7 @@ class _MfaPingidState:
     def username_format(self) -> Optional[pulumi.Input[str]]:
         """
         `(string)` - A format string for mapping Identity names to MFA method names. 
-        Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
+        Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. 
         If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
         - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
         - entity.name: The name configured for the Entity
@@ -394,7 +394,7 @@ class MfaPingid(pulumi.CustomResource):
         :param pulumi.Input[str] settings_file_base64: `(string: <required>)` - A base64-encoded third-party settings file retrieved
                from PingID's configuration page.
         :param pulumi.Input[str] username_format: `(string)` - A format string for mapping Identity names to MFA method names. 
-               Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
+               Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. 
                If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
                - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
                - entity.name: The name configured for the Entity
@@ -528,7 +528,7 @@ class MfaPingid(pulumi.CustomResource):
         :param pulumi.Input[str] type: `(string)` – Type of configuration computed by Vault
         :param pulumi.Input[bool] use_signature: `(string)` – If set to true, enables use of PingID signature. Computed by Vault
         :param pulumi.Input[str] username_format: `(string)` - A format string for mapping Identity names to MFA method names. 
-               Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
+               Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. 
                If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
                - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
                - entity.name: The name configured for the Entity
@@ -651,7 +651,7 @@ class MfaPingid(pulumi.CustomResource):
     def username_format(self) -> pulumi.Output[Optional[str]]:
         """
         `(string)` - A format string for mapping Identity names to MFA method names. 
-        Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
+        Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. 
         If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
         - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
         - entity.name: The name configured for the Entity

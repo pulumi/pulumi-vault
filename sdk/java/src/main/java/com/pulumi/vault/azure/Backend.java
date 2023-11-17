@@ -91,28 +91,28 @@ import javax.annotation.Nullable;
 @ResourceType(type="vault:azure/backend:Backend")
 public class Backend extends com.pulumi.resources.CustomResource {
     /**
-     * The OAuth2 client id to connect to Azure.
+     * (`string:&#34;&#34;`) - The OAuth2 client id to connect to Azure.
      * 
      */
     @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientId;
 
     /**
-     * @return The OAuth2 client id to connect to Azure.
+     * @return (`string:&#34;&#34;`) - The OAuth2 client id to connect to Azure.
      * 
      */
     public Output<Optional<String>> clientId() {
         return Codegen.optional(this.clientId);
     }
     /**
-     * The OAuth2 client secret to connect to Azure.
+     * (`string:&#34;&#34;`) - The OAuth2 client secret to connect to Azure.
      * 
      */
     @Export(name="clientSecret", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientSecret;
 
     /**
-     * @return The OAuth2 client secret to connect to Azure.
+     * @return (`string:&#34;&#34;`) - The OAuth2 client secret to connect to Azure.
      * 
      */
     public Output<Optional<String>> clientSecret() {
@@ -149,14 +149,14 @@ public class Backend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.disableRemount);
     }
     /**
-     * The Azure environment.
+     * (`string:&#34;&#34;`) - The Azure environment.
      * 
      */
     @Export(name="environment", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> environment;
 
     /**
-     * @return The Azure environment.
+     * @return (`string:&#34;&#34;`) - The Azure environment.
      * 
      */
     public Output<Optional<String>> environment() {
@@ -183,49 +183,49 @@ public class Backend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.namespace);
     }
     /**
-     * The unique path this backend should be mounted at. Defaults to `azure`.
+     * (`string: &lt;optional&gt;`) - The unique path this backend should be mounted at. Defaults to `azure`.
      * 
      */
     @Export(name="path", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> path;
 
     /**
-     * @return The unique path this backend should be mounted at. Defaults to `azure`.
+     * @return (`string: &lt;optional&gt;`) - The unique path this backend should be mounted at. Defaults to `azure`.
      * 
      */
     public Output<Optional<String>> path() {
         return Codegen.optional(this.path);
     }
     /**
-     * The subscription id for the Azure Active Directory.
+     * (`string: &lt;required&gt;`) - The subscription id for the Azure Active Directory.
      * 
      */
     @Export(name="subscriptionId", refs={String.class}, tree="[0]")
     private Output<String> subscriptionId;
 
     /**
-     * @return The subscription id for the Azure Active Directory.
+     * @return (`string: &lt;required&gt;`) - The subscription id for the Azure Active Directory.
      * 
      */
     public Output<String> subscriptionId() {
         return this.subscriptionId;
     }
     /**
-     * The tenant id for the Azure Active Directory.
+     * (`string: &lt;required&gt;`) - The tenant id for the Azure Active Directory.
      * 
      */
     @Export(name="tenantId", refs={String.class}, tree="[0]")
     private Output<String> tenantId;
 
     /**
-     * @return The tenant id for the Azure Active Directory.
+     * @return (`string: &lt;required&gt;`) - The tenant id for the Azure Active Directory.
      * 
      */
     public Output<String> tenantId() {
         return this.tenantId;
     }
     /**
-     * Indicates whether the secrets engine should use
+     * (`bool: &lt;optional&gt;`) - Indicates whether the secrets engine should use
      * the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
      * For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
      * 
@@ -234,7 +234,7 @@ public class Backend extends com.pulumi.resources.CustomResource {
     private Output<Boolean> useMicrosoftGraphApi;
 
     /**
-     * @return Indicates whether the secrets engine should use
+     * @return (`bool: &lt;optional&gt;`) - Indicates whether the secrets engine should use
      * the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
      * For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
      * 

@@ -4212,7 +4212,7 @@ class SecretsMountMssqlArgs:
         :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. 
                See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
         :param pulumi.Input[bool] contained_db: For Vault v1.9+. Set to true when the target is a
-               Contained Database, e.g. AzureSQL.
+               Contained Database, e.g. AzureSQL.  
                See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
@@ -4301,7 +4301,7 @@ class SecretsMountMssqlArgs:
     def contained_db(self) -> Optional[pulumi.Input[bool]]:
         """
         For Vault v1.9+. Set to true when the target is a
-        Contained Database, e.g. AzureSQL.
+        Contained Database, e.g. AzureSQL.  
         See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
         """
         return pulumi.get(self, "contained_db")

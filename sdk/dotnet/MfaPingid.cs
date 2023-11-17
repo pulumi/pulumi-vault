@@ -126,7 +126,7 @@ namespace Pulumi.Vault
 
         /// <summary>
         /// `(string)` - A format string for mapping Identity names to MFA method names. 
-        /// Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
+        /// Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. 
         /// If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
         /// - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
         /// - entity.name: The name configured for the Entity
@@ -213,7 +213,7 @@ namespace Pulumi.Vault
 
         /// <summary>
         /// `(string)` - A format string for mapping Identity names to MFA method names. 
-        /// Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
+        /// Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. 
         /// If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
         /// - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
         /// - entity.name: The name configured for the Entity
@@ -304,7 +304,7 @@ namespace Pulumi.Vault
 
         /// <summary>
         /// `(string)` - A format string for mapping Identity names to MFA method names. 
-        /// Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
+        /// Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. 
         /// If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
         /// - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
         /// - entity.name: The name configured for the Entity

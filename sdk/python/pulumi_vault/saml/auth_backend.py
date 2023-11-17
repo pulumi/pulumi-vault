@@ -47,7 +47,7 @@ class AuthBackendArgs:
         :param pulumi.Input[str] path: Path where the auth backend will be mounted. Defaults to `auth/saml`
                if not specified.
         :param pulumi.Input[bool] verbose_logging: If set to `true`, logs additional, potentially sensitive
-               information during the SAML exchange according to the current logging level. Not
+               information during the SAML exchange according to the current logging level. Not 
                recommended for production.
         """
         pulumi.set(__self__, "acs_urls", acs_urls)
@@ -205,7 +205,7 @@ class AuthBackendArgs:
     def verbose_logging(self) -> Optional[pulumi.Input[bool]]:
         """
         If set to `true`, logs additional, potentially sensitive
-        information during the SAML exchange according to the current logging level. Not
+        information during the SAML exchange according to the current logging level. Not 
         recommended for production.
         """
         return pulumi.get(self, "verbose_logging")
@@ -251,7 +251,7 @@ class _AuthBackendState:
         :param pulumi.Input[str] path: Path where the auth backend will be mounted. Defaults to `auth/saml`
                if not specified.
         :param pulumi.Input[bool] verbose_logging: If set to `true`, logs additional, potentially sensitive
-               information during the SAML exchange according to the current logging level. Not
+               information during the SAML exchange according to the current logging level. Not 
                recommended for production.
         """
         if acs_urls is not None:
@@ -411,7 +411,7 @@ class _AuthBackendState:
     def verbose_logging(self) -> Optional[pulumi.Input[bool]]:
         """
         If set to `true`, logs additional, potentially sensitive
-        information during the SAML exchange according to the current logging level. Not
+        information during the SAML exchange according to the current logging level. Not 
         recommended for production.
         """
         return pulumi.get(self, "verbose_logging")
@@ -487,7 +487,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] path: Path where the auth backend will be mounted. Defaults to `auth/saml`
                if not specified.
         :param pulumi.Input[bool] verbose_logging: If set to `true`, logs additional, potentially sensitive
-               information during the SAML exchange according to the current logging level. Not
+               information during the SAML exchange according to the current logging level. Not 
                recommended for production.
         """
         ...
@@ -621,7 +621,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] path: Path where the auth backend will be mounted. Defaults to `auth/saml`
                if not specified.
         :param pulumi.Input[bool] verbose_logging: If set to `true`, logs additional, potentially sensitive
-               information during the SAML exchange according to the current logging level. Not
+               information during the SAML exchange according to the current logging level. Not 
                recommended for production.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -735,7 +735,7 @@ class AuthBackend(pulumi.CustomResource):
     def verbose_logging(self) -> pulumi.Output[bool]:
         """
         If set to `true`, logs additional, potentially sensitive
-        information during the SAML exchange according to the current logging level. Not
+        information during the SAML exchange according to the current logging level. Not 
         recommended for production.
         """
         return pulumi.get(self, "verbose_logging")

@@ -98,7 +98,7 @@ namespace Pulumi.Vault.Kubernetes
 
         /// <summary>
         /// A PEM-encoded CA certificate used by the 
-        /// secrets engine to verify the Kubernetes API server certificate. Defaults to the local
+        /// secrets engine to verify the Kubernetes API server certificate. Defaults to the local 
         /// pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where
         /// Vault is running.
         /// </summary>
@@ -107,7 +107,7 @@ namespace Pulumi.Vault.Kubernetes
 
         /// <summary>
         /// The Kubernetes API URL to connect to. Required if the 
-        /// standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`
+        /// standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT` 
         /// are not set on the host that Vault is running on.
         /// </summary>
         [Output("kubernetesHost")]
@@ -154,7 +154,7 @@ namespace Pulumi.Vault.Kubernetes
 
         /// <summary>
         /// The JSON web token of the service account used by the
-        /// secrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault
+        /// secrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault 
         /// is running in Kubernetes.
         /// </summary>
         [Output("serviceAccountJwt")]
@@ -273,7 +273,7 @@ namespace Pulumi.Vault.Kubernetes
 
         /// <summary>
         /// A PEM-encoded CA certificate used by the 
-        /// secrets engine to verify the Kubernetes API server certificate. Defaults to the local
+        /// secrets engine to verify the Kubernetes API server certificate. Defaults to the local 
         /// pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where
         /// Vault is running.
         /// </summary>
@@ -282,7 +282,7 @@ namespace Pulumi.Vault.Kubernetes
 
         /// <summary>
         /// The Kubernetes API URL to connect to. Required if the 
-        /// standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`
+        /// standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT` 
         /// are not set on the host that Vault is running on.
         /// </summary>
         [Input("kubernetesHost")]
@@ -338,7 +338,7 @@ namespace Pulumi.Vault.Kubernetes
 
         /// <summary>
         /// The JSON web token of the service account used by the
-        /// secrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault
+        /// secrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault 
         /// is running in Kubernetes.
         /// </summary>
         public Input<string>? ServiceAccountJwt
@@ -428,7 +428,7 @@ namespace Pulumi.Vault.Kubernetes
 
         /// <summary>
         /// A PEM-encoded CA certificate used by the 
-        /// secrets engine to verify the Kubernetes API server certificate. Defaults to the local
+        /// secrets engine to verify the Kubernetes API server certificate. Defaults to the local 
         /// pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where
         /// Vault is running.
         /// </summary>
@@ -437,7 +437,7 @@ namespace Pulumi.Vault.Kubernetes
 
         /// <summary>
         /// The Kubernetes API URL to connect to. Required if the 
-        /// standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`
+        /// standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT` 
         /// are not set on the host that Vault is running on.
         /// </summary>
         [Input("kubernetesHost")]
@@ -493,7 +493,7 @@ namespace Pulumi.Vault.Kubernetes
 
         /// <summary>
         /// The JSON web token of the service account used by the
-        /// secrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault
+        /// secrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault 
         /// is running in Kubernetes.
         /// </summary>
         public Input<string>? ServiceAccountJwt

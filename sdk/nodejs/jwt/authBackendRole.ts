@@ -248,7 +248,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
     public readonly userClaim!: pulumi.Output<string>;
     /**
      * Specifies if the `userClaim` value uses
-     * [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+     * [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer) 
      * syntax for referencing claims. By default, the `userClaim` value will not use JSON pointer.
      * Requires Vault 1.11+.
      */
@@ -502,7 +502,7 @@ export interface AuthBackendRoleState {
     userClaim?: pulumi.Input<string>;
     /**
      * Specifies if the `userClaim` value uses
-     * [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+     * [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer) 
      * syntax for referencing claims. By default, the `userClaim` value will not use JSON pointer.
      * Requires Vault 1.11+.
      */
@@ -672,7 +672,7 @@ export interface AuthBackendRoleArgs {
     userClaim: pulumi.Input<string>;
     /**
      * Specifies if the `userClaim` value uses
-     * [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+     * [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer) 
      * syntax for referencing claims. By default, the `userClaim` value will not use JSON pointer.
      * Requires Vault 1.11+.
      */

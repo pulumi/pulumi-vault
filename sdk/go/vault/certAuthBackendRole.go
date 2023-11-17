@@ -114,7 +114,7 @@ type CertAuthBackendRole struct {
 	// the certificate valid only if all servers agree.
 	// Requires Vault version 1.13+.
 	OcspQueryAllServers pulumi.BoolOutput `pulumi:"ocspQueryAllServers"`
-	// : A comma-separated list of OCSP
+	// A comma-separated list of OCSP
 	// server addresses. If unset, the OCSP server is determined from the
 	// AuthorityInformationAccess extension on the certificate being inspected.
 	// Requires Vault version 1.13+.
@@ -239,7 +239,7 @@ type certAuthBackendRoleState struct {
 	// the certificate valid only if all servers agree.
 	// Requires Vault version 1.13+.
 	OcspQueryAllServers *bool `pulumi:"ocspQueryAllServers"`
-	// : A comma-separated list of OCSP
+	// A comma-separated list of OCSP
 	// server addresses. If unset, the OCSP server is determined from the
 	// AuthorityInformationAccess extension on the certificate being inspected.
 	// Requires Vault version 1.13+.
@@ -332,7 +332,7 @@ type CertAuthBackendRoleState struct {
 	// the certificate valid only if all servers agree.
 	// Requires Vault version 1.13+.
 	OcspQueryAllServers pulumi.BoolPtrInput
-	// : A comma-separated list of OCSP
+	// A comma-separated list of OCSP
 	// server addresses. If unset, the OCSP server is determined from the
 	// AuthorityInformationAccess extension on the certificate being inspected.
 	// Requires Vault version 1.13+.
@@ -429,7 +429,7 @@ type certAuthBackendRoleArgs struct {
 	// the certificate valid only if all servers agree.
 	// Requires Vault version 1.13+.
 	OcspQueryAllServers *bool `pulumi:"ocspQueryAllServers"`
-	// : A comma-separated list of OCSP
+	// A comma-separated list of OCSP
 	// server addresses. If unset, the OCSP server is determined from the
 	// AuthorityInformationAccess extension on the certificate being inspected.
 	// Requires Vault version 1.13+.
@@ -523,7 +523,7 @@ type CertAuthBackendRoleArgs struct {
 	// the certificate valid only if all servers agree.
 	// Requires Vault version 1.13+.
 	OcspQueryAllServers pulumi.BoolPtrInput
-	// : A comma-separated list of OCSP
+	// A comma-separated list of OCSP
 	// server addresses. If unset, the OCSP server is determined from the
 	// AuthorityInformationAccess extension on the certificate being inspected.
 	// Requires Vault version 1.13+.
@@ -750,7 +750,7 @@ func (o CertAuthBackendRoleOutput) OcspQueryAllServers() pulumi.BoolOutput {
 	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.BoolOutput { return v.OcspQueryAllServers }).(pulumi.BoolOutput)
 }
 
-// : A comma-separated list of OCSP
+// A comma-separated list of OCSP
 // server addresses. If unset, the OCSP server is determined from the
 // AuthorityInformationAccess extension on the certificate being inspected.
 // Requires Vault version 1.13+.

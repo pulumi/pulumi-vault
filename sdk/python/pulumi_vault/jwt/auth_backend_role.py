@@ -116,7 +116,7 @@ class AuthBackendRoleArgs:
                `default-service` and `default-batch` which specify the type to return unless the client
                requests a different type at generation time.
         :param pulumi.Input[bool] user_claim_json_pointer: Specifies if the `user_claim` value uses
-               [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+               [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer) 
                syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
                Requires Vault 1.11+.
         :param pulumi.Input[bool] verbose_oidc_logging: Log received OIDC tokens and claims when debug-level
@@ -552,7 +552,7 @@ class AuthBackendRoleArgs:
     def user_claim_json_pointer(self) -> Optional[pulumi.Input[bool]]:
         """
         Specifies if the `user_claim` value uses
-        [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+        [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer) 
         syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
         Requires Vault 1.11+.
         """
@@ -682,7 +682,7 @@ class _AuthBackendRoleState:
                the user; this will be used as the name for the Identity entity alias created
                due to a successful login.
         :param pulumi.Input[bool] user_claim_json_pointer: Specifies if the `user_claim` value uses
-               [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+               [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer) 
                syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
                Requires Vault 1.11+.
         :param pulumi.Input[bool] verbose_oidc_logging: Log received OIDC tokens and claims when debug-level
@@ -1120,7 +1120,7 @@ class _AuthBackendRoleState:
     def user_claim_json_pointer(self) -> Optional[pulumi.Input[bool]]:
         """
         Specifies if the `user_claim` value uses
-        [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+        [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer) 
         syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
         Requires Vault 1.11+.
         """
@@ -1313,7 +1313,7 @@ class AuthBackendRole(pulumi.CustomResource):
                the user; this will be used as the name for the Identity entity alias created
                due to a successful login.
         :param pulumi.Input[bool] user_claim_json_pointer: Specifies if the `user_claim` value uses
-               [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+               [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer) 
                syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
                Requires Vault 1.11+.
         :param pulumi.Input[bool] verbose_oidc_logging: Log received OIDC tokens and claims when debug-level
@@ -1589,7 +1589,7 @@ class AuthBackendRole(pulumi.CustomResource):
                the user; this will be used as the name for the Identity entity alias created
                due to a successful login.
         :param pulumi.Input[bool] user_claim_json_pointer: Specifies if the `user_claim` value uses
-               [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+               [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer) 
                syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
                Requires Vault 1.11+.
         :param pulumi.Input[bool] verbose_oidc_logging: Log received OIDC tokens and claims when debug-level
@@ -1895,7 +1895,7 @@ class AuthBackendRole(pulumi.CustomResource):
     def user_claim_json_pointer(self) -> pulumi.Output[Optional[bool]]:
         """
         Specifies if the `user_claim` value uses
-        [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
+        [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer) 
         syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
         Requires Vault 1.11+.
         """

@@ -119,8 +119,8 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// The ARN of the AWS Permissions 
-        /// Boundary to attach to IAM users created in the role. Valid only when
-        /// `credential_type` is `iam_user`. If not specified, then no permissions boundary
+        /// Boundary to attach to IAM users created in the role. Valid only when 
+        /// `credential_type` is `iam_user`. If not specified, then no permissions boundary 
         /// policy will be attached.
         /// </summary>
         [Output("permissionsBoundaryArn")]
@@ -277,8 +277,8 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// The ARN of the AWS Permissions 
-        /// Boundary to attach to IAM users created in the role. Valid only when
-        /// `credential_type` is `iam_user`. If not specified, then no permissions boundary
+        /// Boundary to attach to IAM users created in the role. Valid only when 
+        /// `credential_type` is `iam_user`. If not specified, then no permissions boundary 
         /// policy will be attached.
         /// </summary>
         [Input("permissionsBoundaryArn")]
@@ -409,8 +409,8 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// The ARN of the AWS Permissions 
-        /// Boundary to attach to IAM users created in the role. Valid only when
-        /// `credential_type` is `iam_user`. If not specified, then no permissions boundary
+        /// Boundary to attach to IAM users created in the role. Valid only when 
+        /// `credential_type` is `iam_user`. If not specified, then no permissions boundary 
         /// policy will be attached.
         /// </summary>
         [Input("permissionsBoundaryArn")]

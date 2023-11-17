@@ -110,7 +110,7 @@ namespace Pulumi.Vault.Generic
         public Output<string> DataJson { get; private set; } = null!;
 
         /// <summary>
-        /// - (Optional) True/false. Set this to true if your
+        /// True/false. Set this to true if your
         /// vault authentication is not able to delete the data or if the endpoint
         /// does not support the `DELETE` method. Defaults to false.
         /// </summary>
@@ -128,7 +128,7 @@ namespace Pulumi.Vault.Generic
         public Output<bool?> DisableRead { get; private set; } = null!;
 
         /// <summary>
-        /// - (Optional) True/false. If set to true,
+        /// True/false. If set to true,
         /// ignore any fields present when the endpoint is read but that were not
         /// in `data_json`. Also, if a field that was written is not returned when
         /// the endpoint is read, treat that field as being up to date. You should
@@ -175,7 +175,7 @@ namespace Pulumi.Vault.Generic
         public Output<string> WriteDataJson { get; private set; } = null!;
 
         /// <summary>
-        /// - (Optional). A list of fields that should be returned
+        /// . A list of fields that should be returned
         /// in `write_data_json` and `write_data`. If omitted, data returned by
         /// the write operation is not available to the resource or included in
         /// state. This helps to avoid accidental storage of sensitive values in
@@ -254,7 +254,7 @@ namespace Pulumi.Vault.Generic
         }
 
         /// <summary>
-        /// - (Optional) True/false. Set this to true if your
+        /// True/false. Set this to true if your
         /// vault authentication is not able to delete the data or if the endpoint
         /// does not support the `DELETE` method. Defaults to false.
         /// </summary>
@@ -272,7 +272,7 @@ namespace Pulumi.Vault.Generic
         public Input<bool>? DisableRead { get; set; }
 
         /// <summary>
-        /// - (Optional) True/false. If set to true,
+        /// True/false. If set to true,
         /// ignore any fields present when the endpoint is read but that were not
         /// in `data_json`. Also, if a field that was written is not returned when
         /// the endpoint is read, treat that field as being up to date. You should
@@ -305,7 +305,7 @@ namespace Pulumi.Vault.Generic
         private InputList<string>? _writeFields;
 
         /// <summary>
-        /// - (Optional). A list of fields that should be returned
+        /// . A list of fields that should be returned
         /// in `write_data_json` and `write_data`. If omitted, data returned by
         /// the write operation is not available to the resource or included in
         /// state. This helps to avoid accidental storage of sensitive values in
@@ -345,7 +345,7 @@ namespace Pulumi.Vault.Generic
         }
 
         /// <summary>
-        /// - (Optional) True/false. Set this to true if your
+        /// True/false. Set this to true if your
         /// vault authentication is not able to delete the data or if the endpoint
         /// does not support the `DELETE` method. Defaults to false.
         /// </summary>
@@ -363,7 +363,7 @@ namespace Pulumi.Vault.Generic
         public Input<bool>? DisableRead { get; set; }
 
         /// <summary>
-        /// - (Optional) True/false. If set to true,
+        /// True/false. If set to true,
         /// ignore any fields present when the endpoint is read but that were not
         /// in `data_json`. Also, if a field that was written is not returned when
         /// the endpoint is read, treat that field as being up to date. You should
@@ -419,7 +419,7 @@ namespace Pulumi.Vault.Generic
         private InputList<string>? _writeFields;
 
         /// <summary>
-        /// - (Optional). A list of fields that should be returned
+        /// . A list of fields that should be returned
         /// in `write_data_json` and `write_data`. If omitted, data returned by
         /// the write operation is not available to the resource or included in
         /// state. This helps to avoid accidental storage of sensitive values in

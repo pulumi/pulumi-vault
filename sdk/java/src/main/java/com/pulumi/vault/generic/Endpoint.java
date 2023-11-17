@@ -124,16 +124,16 @@ public class Endpoint extends com.pulumi.resources.CustomResource {
         return this.dataJson;
     }
     /**
-     * - (Optional) True/false. Set this to true if your
-     *   vault authentication is not able to delete the data or if the endpoint
-     *   does not support the `DELETE` method. Defaults to false.
+     * True/false. Set this to true if your
+     * vault authentication is not able to delete the data or if the endpoint
+     * does not support the `DELETE` method. Defaults to false.
      * 
      */
     @Export(name="disableDelete", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> disableDelete;
 
     /**
-     * @return - (Optional) True/false. Set this to true if your
+     * @return True/false. Set this to true if your
      * vault authentication is not able to delete the data or if the endpoint
      * does not support the `DELETE` method. Defaults to false.
      * 
@@ -164,20 +164,20 @@ public class Endpoint extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.disableRead);
     }
     /**
-     * - (Optional) True/false. If set to true,
-     *   ignore any fields present when the endpoint is read but that were not
-     *   in `data_json`. Also, if a field that was written is not returned when
-     *   the endpoint is read, treat that field as being up to date. You should
-     *   set this to `true` when writing to endpoint that, when read, returns a
-     *   different set of fields from the ones you wrote, as is common with
-     *   many configuration endpoints. Defaults to false.
+     * True/false. If set to true,
+     * ignore any fields present when the endpoint is read but that were not
+     * in `data_json`. Also, if a field that was written is not returned when
+     * the endpoint is read, treat that field as being up to date. You should
+     * set this to `true` when writing to endpoint that, when read, returns a
+     * different set of fields from the ones you wrote, as is common with
+     * many configuration endpoints. Defaults to false.
      * 
      */
     @Export(name="ignoreAbsentFields", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> ignoreAbsentFields;
 
     /**
-     * @return - (Optional) True/false. If set to true,
+     * @return True/false. If set to true,
      * ignore any fields present when the endpoint is read but that were not
      * in `data_json`. Also, if a field that was written is not returned when
      * the endpoint is read, treat that field as being up to date. You should
@@ -268,20 +268,20 @@ public class Endpoint extends com.pulumi.resources.CustomResource {
         return this.writeDataJson;
     }
     /**
-     * - (Optional). A list of fields that should be returned
-     *   in `write_data_json` and `write_data`. If omitted, data returned by
-     *   the write operation is not available to the resource or included in
-     *   state. This helps to avoid accidental storage of sensitive values in
-     *   state. Some endpoints, such as many dynamic secrets endpoints, return
-     *   data from writing to an endpoint rather than reading it. You should
-     *   use `write_fields` if you need information returned in this way.
+     * . A list of fields that should be returned
+     * in `write_data_json` and `write_data`. If omitted, data returned by
+     * the write operation is not available to the resource or included in
+     * state. This helps to avoid accidental storage of sensitive values in
+     * state. Some endpoints, such as many dynamic secrets endpoints, return
+     * data from writing to an endpoint rather than reading it. You should
+     * use `write_fields` if you need information returned in this way.
      * 
      */
     @Export(name="writeFields", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> writeFields;
 
     /**
-     * @return - (Optional). A list of fields that should be returned
+     * @return . A list of fields that should be returned
      * in `write_data_json` and `write_data`. If omitted, data returned by
      * the write operation is not available to the resource or included in
      * state. This helps to avoid accidental storage of sensitive values in

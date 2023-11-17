@@ -289,7 +289,7 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * : A comma-separated list of OCSP
+     * A comma-separated list of OCSP
      * server addresses. If unset, the OCSP server is determined from the
      * AuthorityInformationAccess extension on the certificate being inspected.
      * Requires Vault version 1.13+.
@@ -299,7 +299,7 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
     private @Nullable Output<List<String>> ocspServersOverrides;
 
     /**
-     * @return : A comma-separated list of OCSP
+     * @return A comma-separated list of OCSP
      * server addresses. If unset, the OCSP server is determined from the
      * AuthorityInformationAccess extension on the certificate being inspected.
      * Requires Vault version 1.13+.
@@ -989,7 +989,7 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param ocspServersOverrides : A comma-separated list of OCSP
+         * @param ocspServersOverrides A comma-separated list of OCSP
          * server addresses. If unset, the OCSP server is determined from the
          * AuthorityInformationAccess extension on the certificate being inspected.
          * Requires Vault version 1.13+.
@@ -1003,7 +1003,7 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param ocspServersOverrides : A comma-separated list of OCSP
+         * @param ocspServersOverrides A comma-separated list of OCSP
          * server addresses. If unset, the OCSP server is determined from the
          * AuthorityInformationAccess extension on the certificate being inspected.
          * Requires Vault version 1.13+.
@@ -1016,7 +1016,7 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param ocspServersOverrides : A comma-separated list of OCSP
+         * @param ocspServersOverrides A comma-separated list of OCSP
          * server addresses. If unset, the OCSP server is determined from the
          * AuthorityInformationAccess extension on the certificate being inspected.
          * Requires Vault version 1.13+.
