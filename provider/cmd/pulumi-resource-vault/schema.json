@@ -2058,7 +2058,7 @@
                 },
                 "containedDb": {
                     "type": "boolean",
-                    "description": "For Vault v1.9+. Set to true when the target is a\nContained Database, e.g. AzureSQL.\nSee [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)\n"
+                    "description": "For Vault v1.9+. Set to true when the target is a\nContained Database, e.g. AzureSQL.  \nSee [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)\n"
                 },
                 "data": {
                     "type": "object",
@@ -4097,7 +4097,7 @@
             "properties": {
                 "cps": {
                     "type": "string",
-                    "description": "The URL of the CPS for the policy identifier\n\nExample usage:\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.pkiSecret.SecretBackendRole;\nimport com.pulumi.vault.pkiSecret.SecretBackendRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var pki = new Mount(\"pki\", MountArgs.builder()        \n            .path(\"pki\")\n            .type(\"pki\")\n            .defaultLeaseTtlSeconds(3600)\n            .maxLeaseTtlSeconds(86400)\n            .build());\n\n        var role = new SecretBackendRole(\"role\", SecretBackendRoleArgs.builder()        \n            .backend(pki.path())\n            .ttl(3600)\n            .allowIpSans(true)\n            .keyType(\"rsa\")\n            .keyBits(4096)\n            .allowedDomains(            \n                \"example.com\",\n                \"my.domain\")\n            .allowSubdomains(true)\n            .policyIdentifiers(            \n                Map.ofEntries(\n                    Map.entry(\"oid\", \"1.3.6.1.4.1.7.8\"),\n                    Map.entry(\"notice\", \"I am a user Notice\")\n                ),\n                Map.ofEntries(\n                    Map.entry(\"oid\", \"1.3.6.1.4.1.44947.1.2.4\"),\n                    Map.entry(\"cps\", \"https://example.com\")\n                ))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  pki:\n    type: vault:Mount\n    properties:\n      path: pki\n      type: pki\n      defaultLeaseTtlSeconds: 3600\n      maxLeaseTtlSeconds: 86400\n  role:\n    type: vault:pkiSecret:SecretBackendRole\n    properties:\n      backend: ${pki.path}\n      ttl: 3600\n      allowIpSans: true\n      keyType: rsa\n      keyBits: 4096\n      allowedDomains:\n        - example.com\n        - my.domain\n      allowSubdomains: true\n      policyIdentifiers:\n        - oid: 1.3.6.1.4.1.7.8\n          notice: I am a user Notice\n        - oid: 1.3.6.1.4.1.44947.1.2.4\n          cps: https://example.com\n```\n"
+                    "description": "The URL of the CPS for the policy identifier\n\nExample usage:\n\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.pkiSecret.SecretBackendRole;\nimport com.pulumi.vault.pkiSecret.SecretBackendRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var pki = new Mount(\"pki\", MountArgs.builder()        \n            .path(\"pki\")\n            .type(\"pki\")\n            .defaultLeaseTtlSeconds(3600)\n            .maxLeaseTtlSeconds(86400)\n            .build());\n\n        var role = new SecretBackendRole(\"role\", SecretBackendRoleArgs.builder()        \n            .backend(pki.path())\n            .ttl(3600)\n            .allowIpSans(true)\n            .keyType(\"rsa\")\n            .keyBits(4096)\n            .allowedDomains(            \n                \"example.com\",\n                \"my.domain\")\n            .allowSubdomains(true)\n            .policyIdentifiers(            \n                Map.ofEntries(\n                    Map.entry(\"oid\", \"1.3.6.1.4.1.7.8\"),\n                    Map.entry(\"notice\", \"I am a user Notice\")\n                ),\n                Map.ofEntries(\n                    Map.entry(\"oid\", \"1.3.6.1.4.1.44947.1.2.4\"),\n                    Map.entry(\"cps\", \"https://example.com\")\n                ))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  pki:\n    type: vault:Mount\n    properties:\n      path: pki\n      type: pki\n      defaultLeaseTtlSeconds: 3600\n      maxLeaseTtlSeconds: 86400\n  role:\n    type: vault:pkiSecret:SecretBackendRole\n    properties:\n      backend: ${pki.path}\n      ttl: 3600\n      allowIpSans: true\n      keyType: rsa\n      keyBits: 4096\n      allowedDomains:\n        - example.com\n        - my.domain\n      allowSubdomains: true\n      policyIdentifiers:\n        - oid: 1.3.6.1.4.1.7.8\n          notice: I am a user Notice\n        - oid: 1.3.6.1.4.1.44947.1.2.4\n          cps: https://example.com\n```\n"
                 },
                 "notice": {
                     "type": "string",
@@ -4184,7 +4184,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "The SSH public key type.  \n*Supported key types are:*\n`rsa`, `ecdsa`, `ec`, `dsa`, `ed25519`, `ssh-rsa`, `ssh-dss`, `ssh-ed25519`,\n`ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`\n"
+                    "description": "The SSH public key type.  \n*Supported key types are:*  \n`rsa`, `ecdsa`, `ec`, `dsa`, `ed25519`, `ssh-rsa`, `ssh-dss`, `ssh-ed25519`,\n`ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`\n"
                 }
             },
             "type": "object",
@@ -6116,7 +6116,7 @@
                 },
                 "useStsRegionFromClient": {
                     "type": "boolean",
-                    "description": "Available in Vault v1.15+. If set, \noverrides both `sts_endpoint` and `sts_region` to instead use the region\nspecified in the client request headers for IAM-based authentication.\nThis can be useful when you have client requests coming from different\nregions and want flexibility in which regional STS API is used.\n"
+                    "description": "Available in Vault v1.15+. If set, \noverrides both `sts_endpoint` and `sts_region` to instead use the region\nspecified in the client request headers for IAM-based authentication.\nThis can be useful when you have client requests coming from different \nregions and want flexibility in which regional STS API is used.\n"
                 }
             },
             "required": [
@@ -6165,7 +6165,7 @@
                 },
                 "useStsRegionFromClient": {
                     "type": "boolean",
-                    "description": "Available in Vault v1.15+. If set, \noverrides both `sts_endpoint` and `sts_region` to instead use the region\nspecified in the client request headers for IAM-based authentication.\nThis can be useful when you have client requests coming from different\nregions and want flexibility in which regional STS API is used.\n"
+                    "description": "Available in Vault v1.15+. If set, \noverrides both `sts_endpoint` and `sts_region` to instead use the region\nspecified in the client request headers for IAM-based authentication.\nThis can be useful when you have client requests coming from different \nregions and want flexibility in which regional STS API is used.\n"
                 }
             },
             "stateInputs": {
@@ -6213,7 +6213,7 @@
                     },
                     "useStsRegionFromClient": {
                         "type": "boolean",
-                        "description": "Available in Vault v1.15+. If set, \noverrides both `sts_endpoint` and `sts_region` to instead use the region\nspecified in the client request headers for IAM-based authentication.\nThis can be useful when you have client requests coming from different\nregions and want flexibility in which regional STS API is used.\n"
+                        "description": "Available in Vault v1.15+. If set, \noverrides both `sts_endpoint` and `sts_region` to instead use the region\nspecified in the client request headers for IAM-based authentication.\nThis can be useful when you have client requests coming from different \nregions and want flexibility in which regional STS API is used.\n"
                     }
                 },
                 "type": "object"
@@ -7642,7 +7642,7 @@
                 },
                 "permissionsBoundaryArn": {
                     "type": "string",
-                    "description": "The ARN of the AWS Permissions \nBoundary to attach to IAM users created in the role. Valid only when\n`credential_type` is `iam_user`. If not specified, then no permissions boundary\npolicy will be attached.\n"
+                    "description": "The ARN of the AWS Permissions \nBoundary to attach to IAM users created in the role. Valid only when \n`credential_type` is `iam_user`. If not specified, then no permissions boundary \npolicy will be attached.\n"
                 },
                 "policyArns": {
                     "type": "array",
@@ -7711,7 +7711,7 @@
                 },
                 "permissionsBoundaryArn": {
                     "type": "string",
-                    "description": "The ARN of the AWS Permissions \nBoundary to attach to IAM users created in the role. Valid only when\n`credential_type` is `iam_user`. If not specified, then no permissions boundary\npolicy will be attached.\n"
+                    "description": "The ARN of the AWS Permissions \nBoundary to attach to IAM users created in the role. Valid only when \n`credential_type` is `iam_user`. If not specified, then no permissions boundary \npolicy will be attached.\n"
                 },
                 "policyArns": {
                     "type": "array",
@@ -7780,7 +7780,7 @@
                     },
                     "permissionsBoundaryArn": {
                         "type": "string",
-                        "description": "The ARN of the AWS Permissions \nBoundary to attach to IAM users created in the role. Valid only when\n`credential_type` is `iam_user`. If not specified, then no permissions boundary\npolicy will be attached.\n"
+                        "description": "The ARN of the AWS Permissions \nBoundary to attach to IAM users created in the role. Valid only when \n`credential_type` is `iam_user`. If not specified, then no permissions boundary \npolicy will be attached.\n"
                     },
                     "policyArns": {
                         "type": "array",
@@ -8333,12 +8333,12 @@
             "properties": {
                 "clientId": {
                     "type": "string",
-                    "description": "The OAuth2 client id to connect to Azure.\n",
+                    "description": "(`string:\"\"`) - The OAuth2 client id to connect to Azure.\n",
                     "secret": true
                 },
                 "clientSecret": {
                     "type": "string",
-                    "description": "The OAuth2 client secret to connect to Azure.\n",
+                    "description": "(`string:\"\"`) - The OAuth2 client secret to connect to Azure.\n",
                     "secret": true
                 },
                 "description": {
@@ -8351,7 +8351,7 @@
                 },
                 "environment": {
                     "type": "string",
-                    "description": "The Azure environment.\n"
+                    "description": "(`string:\"\"`) - The Azure environment.\n"
                 },
                 "namespace": {
                     "type": "string",
@@ -8359,21 +8359,21 @@
                 },
                 "path": {
                     "type": "string",
-                    "description": "The unique path this backend should be mounted at. Defaults to `azure`.\n"
+                    "description": "(`string: \u003coptional\u003e`) - The unique path this backend should be mounted at. Defaults to `azure`.\n"
                 },
                 "subscriptionId": {
                     "type": "string",
-                    "description": "The subscription id for the Azure Active Directory.\n",
+                    "description": "(`string: \u003crequired\u003e`) - The subscription id for the Azure Active Directory.\n",
                     "secret": true
                 },
                 "tenantId": {
                     "type": "string",
-                    "description": "The tenant id for the Azure Active Directory.\n",
+                    "description": "(`string: \u003crequired\u003e`) - The tenant id for the Azure Active Directory.\n",
                     "secret": true
                 },
                 "useMicrosoftGraphApi": {
                     "type": "boolean",
-                    "description": "Indicates whether the secrets engine should use \nthe Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.\nFor more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)\n"
+                    "description": "(`bool: \u003coptional\u003e`) - Indicates whether the secrets engine should use \nthe Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`. \nFor more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)\n"
                 }
             },
             "required": [
@@ -8384,12 +8384,12 @@
             "inputProperties": {
                 "clientId": {
                     "type": "string",
-                    "description": "The OAuth2 client id to connect to Azure.\n",
+                    "description": "(`string:\"\"`) - The OAuth2 client id to connect to Azure.\n",
                     "secret": true
                 },
                 "clientSecret": {
                     "type": "string",
-                    "description": "The OAuth2 client secret to connect to Azure.\n",
+                    "description": "(`string:\"\"`) - The OAuth2 client secret to connect to Azure.\n",
                     "secret": true
                 },
                 "description": {
@@ -8402,7 +8402,7 @@
                 },
                 "environment": {
                     "type": "string",
-                    "description": "The Azure environment.\n"
+                    "description": "(`string:\"\"`) - The Azure environment.\n"
                 },
                 "namespace": {
                     "type": "string",
@@ -8411,22 +8411,22 @@
                 },
                 "path": {
                     "type": "string",
-                    "description": "The unique path this backend should be mounted at. Defaults to `azure`.\n"
+                    "description": "(`string: \u003coptional\u003e`) - The unique path this backend should be mounted at. Defaults to `azure`.\n"
                 },
                 "subscriptionId": {
                     "type": "string",
-                    "description": "The subscription id for the Azure Active Directory.\n",
+                    "description": "(`string: \u003crequired\u003e`) - The subscription id for the Azure Active Directory.\n",
                     "secret": true,
                     "willReplaceOnChanges": true
                 },
                 "tenantId": {
                     "type": "string",
-                    "description": "The tenant id for the Azure Active Directory.\n",
+                    "description": "(`string: \u003crequired\u003e`) - The tenant id for the Azure Active Directory.\n",
                     "secret": true
                 },
                 "useMicrosoftGraphApi": {
                     "type": "boolean",
-                    "description": "Indicates whether the secrets engine should use \nthe Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.\nFor more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)\n"
+                    "description": "(`bool: \u003coptional\u003e`) - Indicates whether the secrets engine should use \nthe Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`. \nFor more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)\n"
                 }
             },
             "requiredInputs": [
@@ -8438,12 +8438,12 @@
                 "properties": {
                     "clientId": {
                         "type": "string",
-                        "description": "The OAuth2 client id to connect to Azure.\n",
+                        "description": "(`string:\"\"`) - The OAuth2 client id to connect to Azure.\n",
                         "secret": true
                     },
                     "clientSecret": {
                         "type": "string",
-                        "description": "The OAuth2 client secret to connect to Azure.\n",
+                        "description": "(`string:\"\"`) - The OAuth2 client secret to connect to Azure.\n",
                         "secret": true
                     },
                     "description": {
@@ -8456,7 +8456,7 @@
                     },
                     "environment": {
                         "type": "string",
-                        "description": "The Azure environment.\n"
+                        "description": "(`string:\"\"`) - The Azure environment.\n"
                     },
                     "namespace": {
                         "type": "string",
@@ -8465,22 +8465,22 @@
                     },
                     "path": {
                         "type": "string",
-                        "description": "The unique path this backend should be mounted at. Defaults to `azure`.\n"
+                        "description": "(`string: \u003coptional\u003e`) - The unique path this backend should be mounted at. Defaults to `azure`.\n"
                     },
                     "subscriptionId": {
                         "type": "string",
-                        "description": "The subscription id for the Azure Active Directory.\n",
+                        "description": "(`string: \u003crequired\u003e`) - The subscription id for the Azure Active Directory.\n",
                         "secret": true,
                         "willReplaceOnChanges": true
                     },
                     "tenantId": {
                         "type": "string",
-                        "description": "The tenant id for the Azure Active Directory.\n",
+                        "description": "(`string: \u003crequired\u003e`) - The tenant id for the Azure Active Directory.\n",
                         "secret": true
                     },
                     "useMicrosoftGraphApi": {
                         "type": "boolean",
-                        "description": "Indicates whether the secrets engine should use \nthe Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.\nFor more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)\n"
+                        "description": "(`bool: \u003coptional\u003e`) - Indicates whether the secrets engine should use \nthe Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`. \nFor more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)\n"
                     }
                 },
                 "type": "object"
@@ -11503,7 +11503,7 @@
                 },
                 "disableDelete": {
                     "type": "boolean",
-                    "description": "- (Optional) True/false. Set this to true if your\nvault authentication is not able to delete the data or if the endpoint\ndoes not support the `DELETE` method. Defaults to false.\n"
+                    "description": "True/false. Set this to true if your\nvault authentication is not able to delete the data or if the endpoint\ndoes not support the `DELETE` method. Defaults to false.\n"
                 },
                 "disableRead": {
                     "type": "boolean",
@@ -11511,7 +11511,7 @@
                 },
                 "ignoreAbsentFields": {
                     "type": "boolean",
-                    "description": "- (Optional) True/false. If set to true,\nignore any fields present when the endpoint is read but that were not\nin `data_json`. Also, if a field that was written is not returned when\nthe endpoint is read, treat that field as being up to date. You should\nset this to `true` when writing to endpoint that, when read, returns a\ndifferent set of fields from the ones you wrote, as is common with\nmany configuration endpoints. Defaults to false.\n"
+                    "description": "True/false. If set to true,\nignore any fields present when the endpoint is read but that were not\nin `data_json`. Also, if a field that was written is not returned when\nthe endpoint is read, treat that field as being up to date. You should\nset this to `true` when writing to endpoint that, when read, returns a\ndifferent set of fields from the ones you wrote, as is common with\nmany configuration endpoints. Defaults to false.\n"
                 },
                 "namespace": {
                     "type": "string",
@@ -11537,7 +11537,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "- (Optional). A list of fields that should be returned\nin `write_data_json` and `write_data`. If omitted, data returned by\nthe write operation is not available to the resource or included in\nstate. This helps to avoid accidental storage of sensitive values in\nstate. Some endpoints, such as many dynamic secrets endpoints, return\ndata from writing to an endpoint rather than reading it. You should\nuse `write_fields` if you need information returned in this way.\n"
+                    "description": ". A list of fields that should be returned\nin `write_data_json` and `write_data`. If omitted, data returned by\nthe write operation is not available to the resource or included in\nstate. This helps to avoid accidental storage of sensitive values in\nstate. Some endpoints, such as many dynamic secrets endpoints, return\ndata from writing to an endpoint rather than reading it. You should\nuse `write_fields` if you need information returned in this way.\n"
                 }
             },
             "required": [
@@ -11554,7 +11554,7 @@
                 },
                 "disableDelete": {
                     "type": "boolean",
-                    "description": "- (Optional) True/false. Set this to true if your\nvault authentication is not able to delete the data or if the endpoint\ndoes not support the `DELETE` method. Defaults to false.\n"
+                    "description": "True/false. Set this to true if your\nvault authentication is not able to delete the data or if the endpoint\ndoes not support the `DELETE` method. Defaults to false.\n"
                 },
                 "disableRead": {
                     "type": "boolean",
@@ -11562,7 +11562,7 @@
                 },
                 "ignoreAbsentFields": {
                     "type": "boolean",
-                    "description": "- (Optional) True/false. If set to true,\nignore any fields present when the endpoint is read but that were not\nin `data_json`. Also, if a field that was written is not returned when\nthe endpoint is read, treat that field as being up to date. You should\nset this to `true` when writing to endpoint that, when read, returns a\ndifferent set of fields from the ones you wrote, as is common with\nmany configuration endpoints. Defaults to false.\n"
+                    "description": "True/false. If set to true,\nignore any fields present when the endpoint is read but that were not\nin `data_json`. Also, if a field that was written is not returned when\nthe endpoint is read, treat that field as being up to date. You should\nset this to `true` when writing to endpoint that, when read, returns a\ndifferent set of fields from the ones you wrote, as is common with\nmany configuration endpoints. Defaults to false.\n"
                 },
                 "namespace": {
                     "type": "string",
@@ -11579,7 +11579,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "- (Optional). A list of fields that should be returned\nin `write_data_json` and `write_data`. If omitted, data returned by\nthe write operation is not available to the resource or included in\nstate. This helps to avoid accidental storage of sensitive values in\nstate. Some endpoints, such as many dynamic secrets endpoints, return\ndata from writing to an endpoint rather than reading it. You should\nuse `write_fields` if you need information returned in this way.\n"
+                    "description": ". A list of fields that should be returned\nin `write_data_json` and `write_data`. If omitted, data returned by\nthe write operation is not available to the resource or included in\nstate. This helps to avoid accidental storage of sensitive values in\nstate. Some endpoints, such as many dynamic secrets endpoints, return\ndata from writing to an endpoint rather than reading it. You should\nuse `write_fields` if you need information returned in this way.\n"
                 }
             },
             "requiredInputs": [
@@ -11596,7 +11596,7 @@
                     },
                     "disableDelete": {
                         "type": "boolean",
-                        "description": "- (Optional) True/false. Set this to true if your\nvault authentication is not able to delete the data or if the endpoint\ndoes not support the `DELETE` method. Defaults to false.\n"
+                        "description": "True/false. Set this to true if your\nvault authentication is not able to delete the data or if the endpoint\ndoes not support the `DELETE` method. Defaults to false.\n"
                     },
                     "disableRead": {
                         "type": "boolean",
@@ -11604,7 +11604,7 @@
                     },
                     "ignoreAbsentFields": {
                         "type": "boolean",
-                        "description": "- (Optional) True/false. If set to true,\nignore any fields present when the endpoint is read but that were not\nin `data_json`. Also, if a field that was written is not returned when\nthe endpoint is read, treat that field as being up to date. You should\nset this to `true` when writing to endpoint that, when read, returns a\ndifferent set of fields from the ones you wrote, as is common with\nmany configuration endpoints. Defaults to false.\n"
+                        "description": "True/false. If set to true,\nignore any fields present when the endpoint is read but that were not\nin `data_json`. Also, if a field that was written is not returned when\nthe endpoint is read, treat that field as being up to date. You should\nset this to `true` when writing to endpoint that, when read, returns a\ndifferent set of fields from the ones you wrote, as is common with\nmany configuration endpoints. Defaults to false.\n"
                     },
                     "namespace": {
                         "type": "string",
@@ -11632,7 +11632,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "- (Optional). A list of fields that should be returned\nin `write_data_json` and `write_data`. If omitted, data returned by\nthe write operation is not available to the resource or included in\nstate. This helps to avoid accidental storage of sensitive values in\nstate. Some endpoints, such as many dynamic secrets endpoints, return\ndata from writing to an endpoint rather than reading it. You should\nuse `write_fields` if you need information returned in this way.\n"
+                        "description": ". A list of fields that should be returned\nin `write_data_json` and `write_data`. If omitted, data returned by\nthe write operation is not available to the resource or included in\nstate. This helps to avoid accidental storage of sensitive values in\nstate. Some endpoints, such as many dynamic secrets endpoints, return\ndata from writing to an endpoint rather than reading it. You should\nuse `write_fields` if you need information returned in this way.\n"
                     }
                 },
                 "type": "object"
@@ -12826,7 +12826,7 @@
             "properties": {
                 "exclusive": {
                     "type": "boolean",
-                    "description": "Defaults to `true`.\n\nIf `true`, this resource will take exclusive control of the member groups that belong to the group and will set\nit equal to what is specified in the resource.\n\nIf set to `false`, this resource will simply ensure that the member groups specified in the resource are present\nin the group. When destroying the resource, the resource will ensure that the member groups specified in the resource\nare removed.\n"
+                    "description": "Defaults to `true`.\n\nIf `true`, this resource will take exclusive control of the member groups that belong to the group and will set\nit equal to what is specified in the resource.\n\nIf set to `false`, this resource will simply ensure that the member groups specified in the resource are present \nin the group. When destroying the resource, the resource will ensure that the member groups specified in the resource\nare removed.\n"
                 },
                 "groupId": {
                     "type": "string",
@@ -12850,7 +12850,7 @@
             "inputProperties": {
                 "exclusive": {
                     "type": "boolean",
-                    "description": "Defaults to `true`.\n\nIf `true`, this resource will take exclusive control of the member groups that belong to the group and will set\nit equal to what is specified in the resource.\n\nIf set to `false`, this resource will simply ensure that the member groups specified in the resource are present\nin the group. When destroying the resource, the resource will ensure that the member groups specified in the resource\nare removed.\n"
+                    "description": "Defaults to `true`.\n\nIf `true`, this resource will take exclusive control of the member groups that belong to the group and will set\nit equal to what is specified in the resource.\n\nIf set to `false`, this resource will simply ensure that the member groups specified in the resource are present \nin the group. When destroying the resource, the resource will ensure that the member groups specified in the resource\nare removed.\n"
                 },
                 "groupId": {
                     "type": "string",
@@ -12878,7 +12878,7 @@
                 "properties": {
                     "exclusive": {
                         "type": "boolean",
-                        "description": "Defaults to `true`.\n\nIf `true`, this resource will take exclusive control of the member groups that belong to the group and will set\nit equal to what is specified in the resource.\n\nIf set to `false`, this resource will simply ensure that the member groups specified in the resource are present\nin the group. When destroying the resource, the resource will ensure that the member groups specified in the resource\nare removed.\n"
+                        "description": "Defaults to `true`.\n\nIf `true`, this resource will take exclusive control of the member groups that belong to the group and will set\nit equal to what is specified in the resource.\n\nIf set to `false`, this resource will simply ensure that the member groups specified in the resource are present \nin the group. When destroying the resource, the resource will ensure that the member groups specified in the resource\nare removed.\n"
                     },
                     "groupId": {
                         "type": "string",
@@ -14996,7 +14996,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": ": A comma-separated list of OCSP\nserver addresses. If unset, the OCSP server is determined from the\nAuthorityInformationAccess extension on the certificate being inspected.\nRequires Vault version 1.13+.\n"
+                    "description": "A comma-separated list of OCSP\nserver addresses. If unset, the OCSP server is determined from the\nAuthorityInformationAccess extension on the certificate being inspected.\nRequires Vault version 1.13+.\n"
                 },
                 "requiredExtensions": {
                     "type": "array",
@@ -15158,7 +15158,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": ": A comma-separated list of OCSP\nserver addresses. If unset, the OCSP server is determined from the\nAuthorityInformationAccess extension on the certificate being inspected.\nRequires Vault version 1.13+.\n"
+                    "description": "A comma-separated list of OCSP\nserver addresses. If unset, the OCSP server is determined from the\nAuthorityInformationAccess extension on the certificate being inspected.\nRequires Vault version 1.13+.\n"
                 },
                 "requiredExtensions": {
                     "type": "array",
@@ -15310,7 +15310,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": ": A comma-separated list of OCSP\nserver addresses. If unset, the OCSP server is determined from the\nAuthorityInformationAccess extension on the certificate being inspected.\nRequires Vault version 1.13+.\n"
+                        "description": "A comma-separated list of OCSP\nserver addresses. If unset, the OCSP server is determined from the\nAuthorityInformationAccess extension on the certificate being inspected.\nRequires Vault version 1.13+.\n"
                     },
                     "requiredExtensions": {
                         "type": "array",
@@ -15626,7 +15626,7 @@
                 },
                 "usernameFormat": {
                     "type": "string",
-                    "description": "`(string)` - A format string for mapping Identity names to MFA method names. \nValues to substitute should be placed in `{{}}`. For example, `\"{{alias.name}}@example.com\"`.\nIf blank, the Alias's Name field will be used as-is. Currently-supported mappings:\n- alias.name: The name returned by the mount configured via the `mount_accessor` parameter\n- entity.name: The name configured for the Entity\n- alias.metadata.`\u003ckey\u003e`: The value of the Alias's metadata parameter\n- entity.metadata.`\u003ckey\u003e`: The value of the Entity's metadata parameter\n"
+                    "description": "`(string)` - A format string for mapping Identity names to MFA method names. \nValues to substitute should be placed in `{{}}`. For example, `\"{{alias.name}}@example.com\"`. \nIf blank, the Alias's Name field will be used as-is. Currently-supported mappings:\n- alias.name: The name returned by the mount configured via the `mount_accessor` parameter\n- entity.name: The name configured for the Entity\n- alias.metadata.`\u003ckey\u003e`: The value of the Alias's metadata parameter\n- entity.metadata.`\u003ckey\u003e`: The value of the Entity's metadata parameter\n"
                 }
             },
             "required": [
@@ -15674,7 +15674,7 @@
                 },
                 "usernameFormat": {
                     "type": "string",
-                    "description": "`(string)` - A format string for mapping Identity names to MFA method names. \nValues to substitute should be placed in `{{}}`. For example, `\"{{alias.name}}@example.com\"`.\nIf blank, the Alias's Name field will be used as-is. Currently-supported mappings:\n- alias.name: The name returned by the mount configured via the `mount_accessor` parameter\n- entity.name: The name configured for the Entity\n- alias.metadata.`\u003ckey\u003e`: The value of the Alias's metadata parameter\n- entity.metadata.`\u003ckey\u003e`: The value of the Entity's metadata parameter\n",
+                    "description": "`(string)` - A format string for mapping Identity names to MFA method names. \nValues to substitute should be placed in `{{}}`. For example, `\"{{alias.name}}@example.com\"`. \nIf blank, the Alias's Name field will be used as-is. Currently-supported mappings:\n- alias.name: The name returned by the mount configured via the `mount_accessor` parameter\n- entity.name: The name configured for the Entity\n- alias.metadata.`\u003ckey\u003e`: The value of the Alias's metadata parameter\n- entity.metadata.`\u003ckey\u003e`: The value of the Entity's metadata parameter\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -15724,7 +15724,7 @@
                     },
                     "usernameFormat": {
                         "type": "string",
-                        "description": "`(string)` - A format string for mapping Identity names to MFA method names. \nValues to substitute should be placed in `{{}}`. For example, `\"{{alias.name}}@example.com\"`.\nIf blank, the Alias's Name field will be used as-is. Currently-supported mappings:\n- alias.name: The name returned by the mount configured via the `mount_accessor` parameter\n- entity.name: The name configured for the Entity\n- alias.metadata.`\u003ckey\u003e`: The value of the Alias's metadata parameter\n- entity.metadata.`\u003ckey\u003e`: The value of the Entity's metadata parameter\n",
+                        "description": "`(string)` - A format string for mapping Identity names to MFA method names. \nValues to substitute should be placed in `{{}}`. For example, `\"{{alias.name}}@example.com\"`. \nIf blank, the Alias's Name field will be used as-is. Currently-supported mappings:\n- alias.name: The name returned by the mount configured via the `mount_accessor` parameter\n- entity.name: The name configured for the Entity\n- alias.metadata.`\u003ckey\u003e`: The value of the Alias's metadata parameter\n- entity.metadata.`\u003ckey\u003e`: The value of the Entity's metadata parameter\n",
                         "willReplaceOnChanges": true
                     }
                 },
@@ -15780,7 +15780,7 @@
                 },
                 "usernameFormat": {
                     "type": "string",
-                    "description": "`(string)` - A format string for mapping Identity names to MFA method names. \nValues to substitute should be placed in `{{}}`. For example, `\"{{alias.name}}@example.com\"`.\nIf blank, the Alias's Name field will be used as-is. Currently-supported mappings:\n- alias.name: The name returned by the mount configured via the `mount_accessor` parameter\n- entity.name: The name configured for the Entity\n- alias.metadata.`\u003ckey\u003e`: The value of the Alias's metadata parameter\n- entity.metadata.`\u003ckey\u003e`: The value of the Entity's metadata parameter\n"
+                    "description": "`(string)` - A format string for mapping Identity names to MFA method names. \nValues to substitute should be placed in `{{}}`. For example, `\"{{alias.name}}@example.com\"`. \nIf blank, the Alias's Name field will be used as-is. Currently-supported mappings:\n- alias.name: The name returned by the mount configured via the `mount_accessor` parameter\n- entity.name: The name configured for the Entity\n- alias.metadata.`\u003ckey\u003e`: The value of the Alias's metadata parameter\n- entity.metadata.`\u003ckey\u003e`: The value of the Entity's metadata parameter\n"
                 }
             },
             "required": [
@@ -15818,7 +15818,7 @@
                 },
                 "usernameFormat": {
                     "type": "string",
-                    "description": "`(string)` - A format string for mapping Identity names to MFA method names. \nValues to substitute should be placed in `{{}}`. For example, `\"{{alias.name}}@example.com\"`.\nIf blank, the Alias's Name field will be used as-is. Currently-supported mappings:\n- alias.name: The name returned by the mount configured via the `mount_accessor` parameter\n- entity.name: The name configured for the Entity\n- alias.metadata.`\u003ckey\u003e`: The value of the Alias's metadata parameter\n- entity.metadata.`\u003ckey\u003e`: The value of the Entity's metadata parameter\n",
+                    "description": "`(string)` - A format string for mapping Identity names to MFA method names. \nValues to substitute should be placed in `{{}}`. For example, `\"{{alias.name}}@example.com\"`. \nIf blank, the Alias's Name field will be used as-is. Currently-supported mappings:\n- alias.name: The name returned by the mount configured via the `mount_accessor` parameter\n- entity.name: The name configured for the Entity\n- alias.metadata.`\u003ckey\u003e`: The value of the Alias's metadata parameter\n- entity.metadata.`\u003ckey\u003e`: The value of the Entity's metadata parameter\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -15879,7 +15879,7 @@
                     },
                     "usernameFormat": {
                         "type": "string",
-                        "description": "`(string)` - A format string for mapping Identity names to MFA method names. \nValues to substitute should be placed in `{{}}`. For example, `\"{{alias.name}}@example.com\"`.\nIf blank, the Alias's Name field will be used as-is. Currently-supported mappings:\n- alias.name: The name returned by the mount configured via the `mount_accessor` parameter\n- entity.name: The name configured for the Entity\n- alias.metadata.`\u003ckey\u003e`: The value of the Alias's metadata parameter\n- entity.metadata.`\u003ckey\u003e`: The value of the Entity's metadata parameter\n",
+                        "description": "`(string)` - A format string for mapping Identity names to MFA method names. \nValues to substitute should be placed in `{{}}`. For example, `\"{{alias.name}}@example.com\"`. \nIf blank, the Alias's Name field will be used as-is. Currently-supported mappings:\n- alias.name: The name returned by the mount configured via the `mount_accessor` parameter\n- entity.name: The name configured for the Entity\n- alias.metadata.`\u003ckey\u003e`: The value of the Alias's metadata parameter\n- entity.metadata.`\u003ckey\u003e`: The value of the Entity's metadata parameter\n",
                         "willReplaceOnChanges": true
                     }
                 },
@@ -17926,7 +17926,7 @@
                 },
                 "namespaceInState": {
                     "type": "boolean",
-                    "description": "Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs\n\n* tune - (Optional) Extra configuration block. Structure is documented below.\n\nThe `tune` block is used to tune the auth backend:\n"
+                    "description": "Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs\n\n\n* tune - (Optional) Extra configuration block. Structure is documented below.\n\nThe `tune` block is used to tune the auth backend:\n"
                 },
                 "oidcClientId": {
                     "type": "string",
@@ -18030,7 +18030,7 @@
                 },
                 "namespaceInState": {
                     "type": "boolean",
-                    "description": "Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs\n\n* tune - (Optional) Extra configuration block. Structure is documented below.\n\nThe `tune` block is used to tune the auth backend:\n"
+                    "description": "Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs\n\n\n* tune - (Optional) Extra configuration block. Structure is documented below.\n\nThe `tune` block is used to tune the auth backend:\n"
                 },
                 "oidcClientId": {
                     "type": "string",
@@ -18137,7 +18137,7 @@
                     },
                     "namespaceInState": {
                         "type": "boolean",
-                        "description": "Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs\n\n* tune - (Optional) Extra configuration block. Structure is documented below.\n\nThe `tune` block is used to tune the auth backend:\n"
+                        "description": "Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs\n\n\n* tune - (Optional) Extra configuration block. Structure is documented below.\n\nThe `tune` block is used to tune the auth backend:\n"
                     },
                     "oidcClientId": {
                         "type": "string",
@@ -18324,7 +18324,7 @@
                 },
                 "userClaimJsonPointer": {
                     "type": "boolean",
-                    "description": "Specifies if the `user_claim` value uses\n[JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)\nsyntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.\nRequires Vault 1.11+.\n"
+                    "description": "Specifies if the `user_claim` value uses\n[JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer) \nsyntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.\nRequires Vault 1.11+.\n"
                 },
                 "verboseOidcLogging": {
                     "type": "boolean",
@@ -18473,7 +18473,7 @@
                 },
                 "userClaimJsonPointer": {
                     "type": "boolean",
-                    "description": "Specifies if the `user_claim` value uses\n[JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)\nsyntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.\nRequires Vault 1.11+.\n"
+                    "description": "Specifies if the `user_claim` value uses\n[JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer) \nsyntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.\nRequires Vault 1.11+.\n"
                 },
                 "verboseOidcLogging": {
                     "type": "boolean",
@@ -18622,7 +18622,7 @@
                     },
                     "userClaimJsonPointer": {
                         "type": "boolean",
-                        "description": "Specifies if the `user_claim` value uses\n[JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)\nsyntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.\nRequires Vault 1.11+.\n"
+                        "description": "Specifies if the `user_claim` value uses\n[JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer) \nsyntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.\nRequires Vault 1.11+.\n"
                     },
                     "verboseOidcLogging": {
                         "type": "boolean",
@@ -19663,11 +19663,11 @@
                 },
                 "kubernetesCaCert": {
                     "type": "string",
-                    "description": "A PEM-encoded CA certificate used by the \nsecrets engine to verify the Kubernetes API server certificate. Defaults to the local\npod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where\nVault is running.\n"
+                    "description": "A PEM-encoded CA certificate used by the \nsecrets engine to verify the Kubernetes API server certificate. Defaults to the local \npod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where\nVault is running.\n"
                 },
                 "kubernetesHost": {
                     "type": "string",
-                    "description": "The Kubernetes API URL to connect to. Required if the \nstandard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`\nare not set on the host that Vault is running on.\n"
+                    "description": "The Kubernetes API URL to connect to. Required if the \nstandard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT` \nare not set on the host that Vault is running on.\n"
                 },
                 "local": {
                     "type": "boolean",
@@ -19698,7 +19698,7 @@
                 },
                 "serviceAccountJwt": {
                     "type": "string",
-                    "description": "The JSON web token of the service account used by the\nsecrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault\nis running in Kubernetes.\n",
+                    "description": "The JSON web token of the service account used by the\nsecrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault \nis running in Kubernetes.\n",
                     "secret": true
                 }
             },
@@ -19753,11 +19753,11 @@
                 },
                 "kubernetesCaCert": {
                     "type": "string",
-                    "description": "A PEM-encoded CA certificate used by the \nsecrets engine to verify the Kubernetes API server certificate. Defaults to the local\npod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where\nVault is running.\n"
+                    "description": "A PEM-encoded CA certificate used by the \nsecrets engine to verify the Kubernetes API server certificate. Defaults to the local \npod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where\nVault is running.\n"
                 },
                 "kubernetesHost": {
                     "type": "string",
-                    "description": "The Kubernetes API URL to connect to. Required if the \nstandard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`\nare not set on the host that Vault is running on.\n"
+                    "description": "The Kubernetes API URL to connect to. Required if the \nstandard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT` \nare not set on the host that Vault is running on.\n"
                 },
                 "local": {
                     "type": "boolean",
@@ -19791,7 +19791,7 @@
                 },
                 "serviceAccountJwt": {
                     "type": "string",
-                    "description": "The JSON web token of the service account used by the\nsecrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault\nis running in Kubernetes.\n",
+                    "description": "The JSON web token of the service account used by the\nsecrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault \nis running in Kubernetes.\n",
                     "secret": true
                 }
             },
@@ -19846,11 +19846,11 @@
                     },
                     "kubernetesCaCert": {
                         "type": "string",
-                        "description": "A PEM-encoded CA certificate used by the \nsecrets engine to verify the Kubernetes API server certificate. Defaults to the local\npod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where\nVault is running.\n"
+                        "description": "A PEM-encoded CA certificate used by the \nsecrets engine to verify the Kubernetes API server certificate. Defaults to the local \npod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where\nVault is running.\n"
                     },
                     "kubernetesHost": {
                         "type": "string",
-                        "description": "The Kubernetes API URL to connect to. Required if the \nstandard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`\nare not set on the host that Vault is running on.\n"
+                        "description": "The Kubernetes API URL to connect to. Required if the \nstandard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT` \nare not set on the host that Vault is running on.\n"
                     },
                     "local": {
                         "type": "boolean",
@@ -19884,7 +19884,7 @@
                     },
                     "serviceAccountJwt": {
                         "type": "string",
-                        "description": "The JSON web token of the service account used by the\nsecrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault\nis running in Kubernetes.\n",
+                        "description": "The JSON web token of the service account used by the\nsecrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault \nis running in Kubernetes.\n",
                         "secret": true
                     }
                 },
@@ -19921,11 +19921,11 @@
                 },
                 "generatedRoleRules": {
                     "type": "string",
-                    "description": "The Role or ClusterRole rules to use when generating \na role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name`\nand `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated\nwhen credentials are requested.\n"
+                    "description": "The Role or ClusterRole rules to use when generating \na role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name` \nand `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated \nwhen credentials are requested.\n"
                 },
                 "kubernetesRoleName": {
                     "type": "string",
-                    "description": "The pre-existing Role or ClusterRole to bind a \ngenerated service account to. Mutually exclusive with `service_account_name` and\n`generated_role_rules`. If set, Kubernetes token, service account, and role\nbinding objects will be created when credentials are requested.\n"
+                    "description": "The pre-existing Role or ClusterRole to bind a \ngenerated service account to. Mutually exclusive with `service_account_name` and \n`generated_role_rules`. If set, Kubernetes token, service account, and role \nbinding objects will be created when credentials are requested.\n"
                 },
                 "kubernetesRoleType": {
                     "type": "string",
@@ -19990,11 +19990,11 @@
                 },
                 "generatedRoleRules": {
                     "type": "string",
-                    "description": "The Role or ClusterRole rules to use when generating \na role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name`\nand `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated\nwhen credentials are requested.\n"
+                    "description": "The Role or ClusterRole rules to use when generating \na role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name` \nand `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated \nwhen credentials are requested.\n"
                 },
                 "kubernetesRoleName": {
                     "type": "string",
-                    "description": "The pre-existing Role or ClusterRole to bind a \ngenerated service account to. Mutually exclusive with `service_account_name` and\n`generated_role_rules`. If set, Kubernetes token, service account, and role\nbinding objects will be created when credentials are requested.\n"
+                    "description": "The pre-existing Role or ClusterRole to bind a \ngenerated service account to. Mutually exclusive with `service_account_name` and \n`generated_role_rules`. If set, Kubernetes token, service account, and role \nbinding objects will be created when credentials are requested.\n"
                 },
                 "kubernetesRoleType": {
                     "type": "string",
@@ -20062,11 +20062,11 @@
                     },
                     "generatedRoleRules": {
                         "type": "string",
-                        "description": "The Role or ClusterRole rules to use when generating \na role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name`\nand `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated\nwhen credentials are requested.\n"
+                        "description": "The Role or ClusterRole rules to use when generating \na role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name` \nand `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated \nwhen credentials are requested.\n"
                     },
                     "kubernetesRoleName": {
                         "type": "string",
-                        "description": "The pre-existing Role or ClusterRole to bind a \ngenerated service account to. Mutually exclusive with `service_account_name` and\n`generated_role_rules`. If set, Kubernetes token, service account, and role\nbinding objects will be created when credentials are requested.\n"
+                        "description": "The pre-existing Role or ClusterRole to bind a \ngenerated service account to. Mutually exclusive with `service_account_name` and \n`generated_role_rules`. If set, Kubernetes token, service account, and role \nbinding objects will be created when credentials are requested.\n"
                     },
                     "kubernetesRoleType": {
                         "type": "string",
@@ -24286,7 +24286,7 @@
                 },
                 "keyBits": {
                     "type": "integer",
-                    "description": "Specifies the number of bits to use for the generated keys. \nAllowed values are 0 (universal default); with `key_type=rsa`, allowed values are:\n2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default),\n384, or 521; ignored with `key_type=ed25519`.\n"
+                    "description": "Specifies the number of bits to use for the generated keys. \nAllowed values are 0 (universal default); with `key_type=rsa`, allowed values are:\n2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default), \n384, or 521; ignored with `key_type=ed25519`.\n"
                 },
                 "keyId": {
                     "type": "string",
@@ -24332,7 +24332,7 @@
                 },
                 "keyBits": {
                     "type": "integer",
-                    "description": "Specifies the number of bits to use for the generated keys. \nAllowed values are 0 (universal default); with `key_type=rsa`, allowed values are:\n2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default),\n384, or 521; ignored with `key_type=ed25519`.\n",
+                    "description": "Specifies the number of bits to use for the generated keys. \nAllowed values are 0 (universal default); with `key_type=rsa`, allowed values are:\n2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default), \n384, or 521; ignored with `key_type=ed25519`.\n",
                     "willReplaceOnChanges": true
                 },
                 "keyName": {
@@ -24377,7 +24377,7 @@
                     },
                     "keyBits": {
                         "type": "integer",
-                        "description": "Specifies the number of bits to use for the generated keys. \nAllowed values are 0 (universal default); with `key_type=rsa`, allowed values are:\n2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default),\n384, or 521; ignored with `key_type=ed25519`.\n",
+                        "description": "Specifies the number of bits to use for the generated keys. \nAllowed values are 0 (universal default); with `key_type=rsa`, allowed values are:\n2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default), \n384, or 521; ignored with `key_type=ed25519`.\n",
                         "willReplaceOnChanges": true
                     },
                     "keyId": {
@@ -26772,7 +26772,7 @@
                 },
                 "verboseLogging": {
                     "type": "boolean",
-                    "description": "If set to `true`, logs additional, potentially sensitive\ninformation during the SAML exchange according to the current logging level. Not\nrecommended for production.\n"
+                    "description": "If set to `true`, logs additional, potentially sensitive\ninformation during the SAML exchange according to the current logging level. Not \nrecommended for production.\n"
                 }
             },
             "required": [
@@ -26828,7 +26828,7 @@
                 },
                 "verboseLogging": {
                     "type": "boolean",
-                    "description": "If set to `true`, logs additional, potentially sensitive\ninformation during the SAML exchange according to the current logging level. Not\nrecommended for production.\n"
+                    "description": "If set to `true`, logs additional, potentially sensitive\ninformation during the SAML exchange according to the current logging level. Not \nrecommended for production.\n"
                 }
             },
             "requiredInputs": [
@@ -26885,7 +26885,7 @@
                     },
                     "verboseLogging": {
                         "type": "boolean",
-                        "description": "If set to `true`, logs additional, potentially sensitive\ninformation during the SAML exchange according to the current logging level. Not\nrecommended for production.\n"
+                        "description": "If set to `true`, logs additional, potentially sensitive\ninformation during the SAML exchange according to the current logging level. Not \nrecommended for production.\n"
                     }
                 },
                 "type": "object"
@@ -27297,14 +27297,14 @@
                     "items": {
                         "$ref": "#/types/vault:ssh/SecretBackendRoleAllowedUserKeyConfig:SecretBackendRoleAllowedUserKeyConfig"
                     },
-                    "description": "Set of configuration blocks to define allowed  \nuser key configuration, like key type and their lengths. Can be specified multiple times.\n*See Configuration-Options for more info*\n"
+                    "description": "Set of configuration blocks to define allowed  \nuser key configuration, like key type and their lengths. Can be specified multiple times.  \n*See Configuration-Options for more info*\n"
                 },
                 "allowedUserKeyLengths": {
                     "type": "object",
                     "additionalProperties": {
                         "type": "integer"
                     },
-                    "description": "Specifies a map of ssh key types and their expected sizes which \nare allowed to be signed by the CA type.\n*Deprecated: use* allowed_user_key_config *instead*\n",
+                    "description": "Specifies a map of ssh key types and their expected sizes which \nare allowed to be signed by the CA type.  \n*Deprecated: use* allowed_user_key_config *instead*\n",
                     "deprecationMessage": "Set in allowed_user_key_config"
                 },
                 "allowedUsers": {
@@ -27430,14 +27430,14 @@
                     "items": {
                         "$ref": "#/types/vault:ssh/SecretBackendRoleAllowedUserKeyConfig:SecretBackendRoleAllowedUserKeyConfig"
                     },
-                    "description": "Set of configuration blocks to define allowed  \nuser key configuration, like key type and their lengths. Can be specified multiple times.\n*See Configuration-Options for more info*\n"
+                    "description": "Set of configuration blocks to define allowed  \nuser key configuration, like key type and their lengths. Can be specified multiple times.  \n*See Configuration-Options for more info*\n"
                 },
                 "allowedUserKeyLengths": {
                     "type": "object",
                     "additionalProperties": {
                         "type": "integer"
                     },
-                    "description": "Specifies a map of ssh key types and their expected sizes which \nare allowed to be signed by the CA type.\n*Deprecated: use* allowed_user_key_config *instead*\n",
+                    "description": "Specifies a map of ssh key types and their expected sizes which \nare allowed to be signed by the CA type.  \n*Deprecated: use* allowed_user_key_config *instead*\n",
                     "deprecationMessage": "Set in allowed_user_key_config"
                 },
                 "allowedUsers": {
@@ -27562,14 +27562,14 @@
                         "items": {
                             "$ref": "#/types/vault:ssh/SecretBackendRoleAllowedUserKeyConfig:SecretBackendRoleAllowedUserKeyConfig"
                         },
-                        "description": "Set of configuration blocks to define allowed  \nuser key configuration, like key type and their lengths. Can be specified multiple times.\n*See Configuration-Options for more info*\n"
+                        "description": "Set of configuration blocks to define allowed  \nuser key configuration, like key type and their lengths. Can be specified multiple times.  \n*See Configuration-Options for more info*\n"
                     },
                     "allowedUserKeyLengths": {
                         "type": "object",
                         "additionalProperties": {
                             "type": "integer"
                         },
-                        "description": "Specifies a map of ssh key types and their expected sizes which \nare allowed to be signed by the CA type.\n*Deprecated: use* allowed_user_key_config *instead*\n",
+                        "description": "Specifies a map of ssh key types and their expected sizes which \nare allowed to be signed by the CA type.  \n*Deprecated: use* allowed_user_key_config *instead*\n",
                         "deprecationMessage": "Set in allowed_user_key_config"
                     },
                     "allowedUsers": {
@@ -29427,7 +29427,7 @@
                     },
                     "environment": {
                         "type": "string",
-                        "description": "The Azure environment to use during credential validation.\nDefaults to the environment configured in the Vault backend.\nSome possible values: `AzurePublicCloud`, `AzureGovernmentCloud`\n*See the caveats section for more information on this field.*\n"
+                        "description": "The Azure environment to use during credential validation.\nDefaults to the environment configured in the Vault backend.\nSome possible values: `AzurePublicCloud`, `AzureGovernmentCloud`  \n*See the caveats section for more information on this field.*\n"
                     },
                     "maxCredValidationSeconds": {
                         "type": "integer",
@@ -29444,7 +29444,7 @@
                     },
                     "numSequentialSuccesses": {
                         "type": "integer",
-                        "description": "If 'validate_creds' is true, \nthe number of sequential successes required to validate generated\ncredentials. Defaults to 8.\n"
+                        "description": "If 'validate_creds' is true, \nthe number of sequential successes required to validate generated \ncredentials. Defaults to 8.\n"
                     },
                     "role": {
                         "type": "string",
@@ -29452,15 +29452,15 @@
                     },
                     "subscriptionId": {
                         "type": "string",
-                        "description": "The subscription ID to use during credential\nvalidation. Defaults to the subscription ID configured in the Vault `backend`.\n*See the caveats section for more information on this field.*\n"
+                        "description": "The subscription ID to use during credential\nvalidation. Defaults to the subscription ID configured in the Vault `backend`.  \n*See the caveats section for more information on this field.*\n"
                     },
                     "tenantId": {
                         "type": "string",
-                        "description": "The tenant ID to use during credential validation.\nDefaults to the tenant ID configured in the Vault `backend`.\n*See the caveats section for more information on this field.*\n"
+                        "description": "The tenant ID to use during credential validation.\nDefaults to the tenant ID configured in the Vault `backend`.  \n*See the caveats section for more information on this field.*\n"
                     },
                     "validateCreds": {
                         "type": "boolean",
-                        "description": "Whether generated credentials should be \nvalidated before being returned. Defaults to `false`, which returns\ncredentials without checking whether they have fully propagated throughout\nAzure Active Directory. Designating `true` activates testing.\n"
+                        "description": "Whether generated credentials should be \nvalidated before being returned. Defaults to `false`, which returns \ncredentials without checking whether they have fully propagated throughout\nAzure Active Directory. Designating `true` activates testing.\n"
                     }
                 },
                 "type": "object",
