@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -252,12 +251,6 @@ func (i *SecretBackendIntermediateSetSigned) ToSecretBackendIntermediateSetSigne
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendIntermediateSetSignedOutput)
 }
 
-func (i *SecretBackendIntermediateSetSigned) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendIntermediateSetSigned] {
-	return pulumix.Output[*SecretBackendIntermediateSetSigned]{
-		OutputState: i.ToSecretBackendIntermediateSetSignedOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretBackendIntermediateSetSignedArrayInput is an input type that accepts SecretBackendIntermediateSetSignedArray and SecretBackendIntermediateSetSignedArrayOutput values.
 // You can construct a concrete instance of `SecretBackendIntermediateSetSignedArrayInput` via:
 //
@@ -281,12 +274,6 @@ func (i SecretBackendIntermediateSetSignedArray) ToSecretBackendIntermediateSetS
 
 func (i SecretBackendIntermediateSetSignedArray) ToSecretBackendIntermediateSetSignedArrayOutputWithContext(ctx context.Context) SecretBackendIntermediateSetSignedArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendIntermediateSetSignedArrayOutput)
-}
-
-func (i SecretBackendIntermediateSetSignedArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendIntermediateSetSigned] {
-	return pulumix.Output[[]*SecretBackendIntermediateSetSigned]{
-		OutputState: i.ToSecretBackendIntermediateSetSignedArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SecretBackendIntermediateSetSignedMapInput is an input type that accepts SecretBackendIntermediateSetSignedMap and SecretBackendIntermediateSetSignedMapOutput values.
@@ -314,12 +301,6 @@ func (i SecretBackendIntermediateSetSignedMap) ToSecretBackendIntermediateSetSig
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendIntermediateSetSignedMapOutput)
 }
 
-func (i SecretBackendIntermediateSetSignedMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendIntermediateSetSigned] {
-	return pulumix.Output[map[string]*SecretBackendIntermediateSetSigned]{
-		OutputState: i.ToSecretBackendIntermediateSetSignedMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendIntermediateSetSignedOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendIntermediateSetSignedOutput) ElementType() reflect.Type {
@@ -332,12 +313,6 @@ func (o SecretBackendIntermediateSetSignedOutput) ToSecretBackendIntermediateSet
 
 func (o SecretBackendIntermediateSetSignedOutput) ToSecretBackendIntermediateSetSignedOutputWithContext(ctx context.Context) SecretBackendIntermediateSetSignedOutput {
 	return o
-}
-
-func (o SecretBackendIntermediateSetSignedOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendIntermediateSetSigned] {
-	return pulumix.Output[*SecretBackendIntermediateSetSigned]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The PKI secret backend the resource belongs to.
@@ -385,12 +360,6 @@ func (o SecretBackendIntermediateSetSignedArrayOutput) ToSecretBackendIntermedia
 	return o
 }
 
-func (o SecretBackendIntermediateSetSignedArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendIntermediateSetSigned] {
-	return pulumix.Output[[]*SecretBackendIntermediateSetSigned]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SecretBackendIntermediateSetSignedArrayOutput) Index(i pulumi.IntInput) SecretBackendIntermediateSetSignedOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackendIntermediateSetSigned {
 		return vs[0].([]*SecretBackendIntermediateSetSigned)[vs[1].(int)]
@@ -409,12 +378,6 @@ func (o SecretBackendIntermediateSetSignedMapOutput) ToSecretBackendIntermediate
 
 func (o SecretBackendIntermediateSetSignedMapOutput) ToSecretBackendIntermediateSetSignedMapOutputWithContext(ctx context.Context) SecretBackendIntermediateSetSignedMapOutput {
 	return o
-}
-
-func (o SecretBackendIntermediateSetSignedMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendIntermediateSetSigned] {
-	return pulumix.Output[map[string]*SecretBackendIntermediateSetSigned]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendIntermediateSetSignedMapOutput) MapIndex(k pulumi.StringInput) SecretBackendIntermediateSetSignedOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 var _ = internal.GetEnvOrDefault
@@ -95,12 +94,6 @@ func (i SecretBackendRoleAllowedUserKeyConfigArgs) ToSecretBackendRoleAllowedUse
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRoleAllowedUserKeyConfigOutput)
 }
 
-func (i SecretBackendRoleAllowedUserKeyConfigArgs) ToOutput(ctx context.Context) pulumix.Output[SecretBackendRoleAllowedUserKeyConfig] {
-	return pulumix.Output[SecretBackendRoleAllowedUserKeyConfig]{
-		OutputState: i.ToSecretBackendRoleAllowedUserKeyConfigOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretBackendRoleAllowedUserKeyConfigArrayInput is an input type that accepts SecretBackendRoleAllowedUserKeyConfigArray and SecretBackendRoleAllowedUserKeyConfigArrayOutput values.
 // You can construct a concrete instance of `SecretBackendRoleAllowedUserKeyConfigArrayInput` via:
 //
@@ -126,12 +119,6 @@ func (i SecretBackendRoleAllowedUserKeyConfigArray) ToSecretBackendRoleAllowedUs
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRoleAllowedUserKeyConfigArrayOutput)
 }
 
-func (i SecretBackendRoleAllowedUserKeyConfigArray) ToOutput(ctx context.Context) pulumix.Output[[]SecretBackendRoleAllowedUserKeyConfig] {
-	return pulumix.Output[[]SecretBackendRoleAllowedUserKeyConfig]{
-		OutputState: i.ToSecretBackendRoleAllowedUserKeyConfigArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendRoleAllowedUserKeyConfigOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendRoleAllowedUserKeyConfigOutput) ElementType() reflect.Type {
@@ -144,12 +131,6 @@ func (o SecretBackendRoleAllowedUserKeyConfigOutput) ToSecretBackendRoleAllowedU
 
 func (o SecretBackendRoleAllowedUserKeyConfigOutput) ToSecretBackendRoleAllowedUserKeyConfigOutputWithContext(ctx context.Context) SecretBackendRoleAllowedUserKeyConfigOutput {
 	return o
-}
-
-func (o SecretBackendRoleAllowedUserKeyConfigOutput) ToOutput(ctx context.Context) pulumix.Output[SecretBackendRoleAllowedUserKeyConfig] {
-	return pulumix.Output[SecretBackendRoleAllowedUserKeyConfig]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A list of allowed key lengths as integers.
@@ -199,12 +180,6 @@ func (o SecretBackendRoleAllowedUserKeyConfigArrayOutput) ToSecretBackendRoleAll
 
 func (o SecretBackendRoleAllowedUserKeyConfigArrayOutput) ToSecretBackendRoleAllowedUserKeyConfigArrayOutputWithContext(ctx context.Context) SecretBackendRoleAllowedUserKeyConfigArrayOutput {
 	return o
-}
-
-func (o SecretBackendRoleAllowedUserKeyConfigArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SecretBackendRoleAllowedUserKeyConfig] {
-	return pulumix.Output[[]SecretBackendRoleAllowedUserKeyConfig]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendRoleAllowedUserKeyConfigArrayOutput) Index(i pulumi.IntInput) SecretBackendRoleAllowedUserKeyConfigOutput {

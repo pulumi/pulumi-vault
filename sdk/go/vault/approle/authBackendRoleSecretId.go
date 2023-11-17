@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages an AppRole auth backend SecretID in a Vault server. See the [Vault
@@ -319,12 +318,6 @@ func (i *AuthBackendRoleSecretId) ToAuthBackendRoleSecretIdOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleSecretIdOutput)
 }
 
-func (i *AuthBackendRoleSecretId) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendRoleSecretId] {
-	return pulumix.Output[*AuthBackendRoleSecretId]{
-		OutputState: i.ToAuthBackendRoleSecretIdOutputWithContext(ctx).OutputState,
-	}
-}
-
 // AuthBackendRoleSecretIdArrayInput is an input type that accepts AuthBackendRoleSecretIdArray and AuthBackendRoleSecretIdArrayOutput values.
 // You can construct a concrete instance of `AuthBackendRoleSecretIdArrayInput` via:
 //
@@ -348,12 +341,6 @@ func (i AuthBackendRoleSecretIdArray) ToAuthBackendRoleSecretIdArrayOutput() Aut
 
 func (i AuthBackendRoleSecretIdArray) ToAuthBackendRoleSecretIdArrayOutputWithContext(ctx context.Context) AuthBackendRoleSecretIdArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleSecretIdArrayOutput)
-}
-
-func (i AuthBackendRoleSecretIdArray) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackendRoleSecretId] {
-	return pulumix.Output[[]*AuthBackendRoleSecretId]{
-		OutputState: i.ToAuthBackendRoleSecretIdArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // AuthBackendRoleSecretIdMapInput is an input type that accepts AuthBackendRoleSecretIdMap and AuthBackendRoleSecretIdMapOutput values.
@@ -381,12 +368,6 @@ func (i AuthBackendRoleSecretIdMap) ToAuthBackendRoleSecretIdMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleSecretIdMapOutput)
 }
 
-func (i AuthBackendRoleSecretIdMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackendRoleSecretId] {
-	return pulumix.Output[map[string]*AuthBackendRoleSecretId]{
-		OutputState: i.ToAuthBackendRoleSecretIdMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type AuthBackendRoleSecretIdOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendRoleSecretIdOutput) ElementType() reflect.Type {
@@ -399,12 +380,6 @@ func (o AuthBackendRoleSecretIdOutput) ToAuthBackendRoleSecretIdOutput() AuthBac
 
 func (o AuthBackendRoleSecretIdOutput) ToAuthBackendRoleSecretIdOutputWithContext(ctx context.Context) AuthBackendRoleSecretIdOutput {
 	return o
-}
-
-func (o AuthBackendRoleSecretIdOutput) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendRoleSecretId] {
-	return pulumix.Output[*AuthBackendRoleSecretId]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The unique ID for this SecretID that can be safely logged.
@@ -488,12 +463,6 @@ func (o AuthBackendRoleSecretIdArrayOutput) ToAuthBackendRoleSecretIdArrayOutput
 	return o
 }
 
-func (o AuthBackendRoleSecretIdArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackendRoleSecretId] {
-	return pulumix.Output[[]*AuthBackendRoleSecretId]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o AuthBackendRoleSecretIdArrayOutput) Index(i pulumi.IntInput) AuthBackendRoleSecretIdOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AuthBackendRoleSecretId {
 		return vs[0].([]*AuthBackendRoleSecretId)[vs[1].(int)]
@@ -512,12 +481,6 @@ func (o AuthBackendRoleSecretIdMapOutput) ToAuthBackendRoleSecretIdMapOutput() A
 
 func (o AuthBackendRoleSecretIdMapOutput) ToAuthBackendRoleSecretIdMapOutputWithContext(ctx context.Context) AuthBackendRoleSecretIdMapOutput {
 	return o
-}
-
-func (o AuthBackendRoleSecretIdMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackendRoleSecretId] {
-	return pulumix.Output[map[string]*AuthBackendRoleSecretId]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AuthBackendRoleSecretIdMapOutput) MapIndex(k pulumi.StringInput) AuthBackendRoleSecretIdOutput {

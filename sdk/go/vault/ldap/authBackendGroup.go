@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Provides a resource to create a group in an [LDAP auth backend within Vault](https://www.vaultproject.io/docs/auth/ldap.html).
@@ -209,12 +208,6 @@ func (i *AuthBackendGroup) ToAuthBackendGroupOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendGroupOutput)
 }
 
-func (i *AuthBackendGroup) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendGroup] {
-	return pulumix.Output[*AuthBackendGroup]{
-		OutputState: i.ToAuthBackendGroupOutputWithContext(ctx).OutputState,
-	}
-}
-
 // AuthBackendGroupArrayInput is an input type that accepts AuthBackendGroupArray and AuthBackendGroupArrayOutput values.
 // You can construct a concrete instance of `AuthBackendGroupArrayInput` via:
 //
@@ -238,12 +231,6 @@ func (i AuthBackendGroupArray) ToAuthBackendGroupArrayOutput() AuthBackendGroupA
 
 func (i AuthBackendGroupArray) ToAuthBackendGroupArrayOutputWithContext(ctx context.Context) AuthBackendGroupArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendGroupArrayOutput)
-}
-
-func (i AuthBackendGroupArray) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackendGroup] {
-	return pulumix.Output[[]*AuthBackendGroup]{
-		OutputState: i.ToAuthBackendGroupArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // AuthBackendGroupMapInput is an input type that accepts AuthBackendGroupMap and AuthBackendGroupMapOutput values.
@@ -271,12 +258,6 @@ func (i AuthBackendGroupMap) ToAuthBackendGroupMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendGroupMapOutput)
 }
 
-func (i AuthBackendGroupMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackendGroup] {
-	return pulumix.Output[map[string]*AuthBackendGroup]{
-		OutputState: i.ToAuthBackendGroupMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type AuthBackendGroupOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendGroupOutput) ElementType() reflect.Type {
@@ -289,12 +270,6 @@ func (o AuthBackendGroupOutput) ToAuthBackendGroupOutput() AuthBackendGroupOutpu
 
 func (o AuthBackendGroupOutput) ToAuthBackendGroupOutputWithContext(ctx context.Context) AuthBackendGroupOutput {
 	return o
-}
-
-func (o AuthBackendGroupOutput) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendGroup] {
-	return pulumix.Output[*AuthBackendGroup]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Path to the authentication backend
@@ -336,12 +311,6 @@ func (o AuthBackendGroupArrayOutput) ToAuthBackendGroupArrayOutputWithContext(ct
 	return o
 }
 
-func (o AuthBackendGroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackendGroup] {
-	return pulumix.Output[[]*AuthBackendGroup]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o AuthBackendGroupArrayOutput) Index(i pulumi.IntInput) AuthBackendGroupOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AuthBackendGroup {
 		return vs[0].([]*AuthBackendGroup)[vs[1].(int)]
@@ -360,12 +329,6 @@ func (o AuthBackendGroupMapOutput) ToAuthBackendGroupMapOutput() AuthBackendGrou
 
 func (o AuthBackendGroupMapOutput) ToAuthBackendGroupMapOutputWithContext(ctx context.Context) AuthBackendGroupMapOutput {
 	return o
-}
-
-func (o AuthBackendGroupMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackendGroup] {
-	return pulumix.Output[map[string]*AuthBackendGroup]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AuthBackendGroupMapOutput) MapIndex(k pulumi.StringInput) AuthBackendGroupOutput {

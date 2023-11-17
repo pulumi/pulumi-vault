@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 var _ = internal.GetEnvOrDefault
@@ -51,12 +50,6 @@ func (i AuthBackendGroupTypeArgs) ToAuthBackendGroupTypeOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendGroupTypeOutput)
 }
 
-func (i AuthBackendGroupTypeArgs) ToOutput(ctx context.Context) pulumix.Output[AuthBackendGroupType] {
-	return pulumix.Output[AuthBackendGroupType]{
-		OutputState: i.ToAuthBackendGroupTypeOutputWithContext(ctx).OutputState,
-	}
-}
-
 // AuthBackendGroupTypeArrayInput is an input type that accepts AuthBackendGroupTypeArray and AuthBackendGroupTypeArrayOutput values.
 // You can construct a concrete instance of `AuthBackendGroupTypeArrayInput` via:
 //
@@ -82,12 +75,6 @@ func (i AuthBackendGroupTypeArray) ToAuthBackendGroupTypeArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendGroupTypeArrayOutput)
 }
 
-func (i AuthBackendGroupTypeArray) ToOutput(ctx context.Context) pulumix.Output[[]AuthBackendGroupType] {
-	return pulumix.Output[[]AuthBackendGroupType]{
-		OutputState: i.ToAuthBackendGroupTypeArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type AuthBackendGroupTypeOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendGroupTypeOutput) ElementType() reflect.Type {
@@ -100,12 +87,6 @@ func (o AuthBackendGroupTypeOutput) ToAuthBackendGroupTypeOutput() AuthBackendGr
 
 func (o AuthBackendGroupTypeOutput) ToAuthBackendGroupTypeOutputWithContext(ctx context.Context) AuthBackendGroupTypeOutput {
 	return o
-}
-
-func (o AuthBackendGroupTypeOutput) ToOutput(ctx context.Context) pulumix.Output[AuthBackendGroupType] {
-	return pulumix.Output[AuthBackendGroupType]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Name of the group within the Okta
@@ -130,12 +111,6 @@ func (o AuthBackendGroupTypeArrayOutput) ToAuthBackendGroupTypeArrayOutput() Aut
 
 func (o AuthBackendGroupTypeArrayOutput) ToAuthBackendGroupTypeArrayOutputWithContext(ctx context.Context) AuthBackendGroupTypeArrayOutput {
 	return o
-}
-
-func (o AuthBackendGroupTypeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]AuthBackendGroupType] {
-	return pulumix.Output[[]AuthBackendGroupType]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AuthBackendGroupTypeArrayOutput) Index(i pulumi.IntInput) AuthBackendGroupTypeOutput {
@@ -185,12 +160,6 @@ func (i AuthBackendUserTypeArgs) ToAuthBackendUserTypeOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendUserTypeOutput)
 }
 
-func (i AuthBackendUserTypeArgs) ToOutput(ctx context.Context) pulumix.Output[AuthBackendUserType] {
-	return pulumix.Output[AuthBackendUserType]{
-		OutputState: i.ToAuthBackendUserTypeOutputWithContext(ctx).OutputState,
-	}
-}
-
 // AuthBackendUserTypeArrayInput is an input type that accepts AuthBackendUserTypeArray and AuthBackendUserTypeArrayOutput values.
 // You can construct a concrete instance of `AuthBackendUserTypeArrayInput` via:
 //
@@ -216,12 +185,6 @@ func (i AuthBackendUserTypeArray) ToAuthBackendUserTypeArrayOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendUserTypeArrayOutput)
 }
 
-func (i AuthBackendUserTypeArray) ToOutput(ctx context.Context) pulumix.Output[[]AuthBackendUserType] {
-	return pulumix.Output[[]AuthBackendUserType]{
-		OutputState: i.ToAuthBackendUserTypeArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type AuthBackendUserTypeOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendUserTypeOutput) ElementType() reflect.Type {
@@ -234,12 +197,6 @@ func (o AuthBackendUserTypeOutput) ToAuthBackendUserTypeOutput() AuthBackendUser
 
 func (o AuthBackendUserTypeOutput) ToAuthBackendUserTypeOutputWithContext(ctx context.Context) AuthBackendUserTypeOutput {
 	return o
-}
-
-func (o AuthBackendUserTypeOutput) ToOutput(ctx context.Context) pulumix.Output[AuthBackendUserType] {
-	return pulumix.Output[AuthBackendUserType]{
-		OutputState: o.OutputState,
-	}
 }
 
 // List of Okta groups to associate with this user
@@ -269,12 +226,6 @@ func (o AuthBackendUserTypeArrayOutput) ToAuthBackendUserTypeArrayOutput() AuthB
 
 func (o AuthBackendUserTypeArrayOutput) ToAuthBackendUserTypeArrayOutputWithContext(ctx context.Context) AuthBackendUserTypeArrayOutput {
 	return o
-}
-
-func (o AuthBackendUserTypeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]AuthBackendUserType] {
-	return pulumix.Output[[]AuthBackendUserType]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AuthBackendUserTypeArrayOutput) Index(i pulumi.IntInput) AuthBackendUserTypeOutput {

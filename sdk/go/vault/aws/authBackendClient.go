@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -321,12 +320,6 @@ func (i *AuthBackendClient) ToAuthBackendClientOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendClientOutput)
 }
 
-func (i *AuthBackendClient) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendClient] {
-	return pulumix.Output[*AuthBackendClient]{
-		OutputState: i.ToAuthBackendClientOutputWithContext(ctx).OutputState,
-	}
-}
-
 // AuthBackendClientArrayInput is an input type that accepts AuthBackendClientArray and AuthBackendClientArrayOutput values.
 // You can construct a concrete instance of `AuthBackendClientArrayInput` via:
 //
@@ -350,12 +343,6 @@ func (i AuthBackendClientArray) ToAuthBackendClientArrayOutput() AuthBackendClie
 
 func (i AuthBackendClientArray) ToAuthBackendClientArrayOutputWithContext(ctx context.Context) AuthBackendClientArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendClientArrayOutput)
-}
-
-func (i AuthBackendClientArray) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackendClient] {
-	return pulumix.Output[[]*AuthBackendClient]{
-		OutputState: i.ToAuthBackendClientArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // AuthBackendClientMapInput is an input type that accepts AuthBackendClientMap and AuthBackendClientMapOutput values.
@@ -383,12 +370,6 @@ func (i AuthBackendClientMap) ToAuthBackendClientMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendClientMapOutput)
 }
 
-func (i AuthBackendClientMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackendClient] {
-	return pulumix.Output[map[string]*AuthBackendClient]{
-		OutputState: i.ToAuthBackendClientMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type AuthBackendClientOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendClientOutput) ElementType() reflect.Type {
@@ -401,12 +382,6 @@ func (o AuthBackendClientOutput) ToAuthBackendClientOutput() AuthBackendClientOu
 
 func (o AuthBackendClientOutput) ToAuthBackendClientOutputWithContext(ctx context.Context) AuthBackendClientOutput {
 	return o
-}
-
-func (o AuthBackendClientOutput) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendClient] {
-	return pulumix.Output[*AuthBackendClient]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The AWS access key that Vault should use for the
@@ -489,12 +464,6 @@ func (o AuthBackendClientArrayOutput) ToAuthBackendClientArrayOutputWithContext(
 	return o
 }
 
-func (o AuthBackendClientArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackendClient] {
-	return pulumix.Output[[]*AuthBackendClient]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o AuthBackendClientArrayOutput) Index(i pulumi.IntInput) AuthBackendClientOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AuthBackendClient {
 		return vs[0].([]*AuthBackendClient)[vs[1].(int)]
@@ -513,12 +482,6 @@ func (o AuthBackendClientMapOutput) ToAuthBackendClientMapOutput() AuthBackendCl
 
 func (o AuthBackendClientMapOutput) ToAuthBackendClientMapOutputWithContext(ctx context.Context) AuthBackendClientMapOutput {
 	return o
-}
-
-func (o AuthBackendClientMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackendClient] {
-	return pulumix.Output[map[string]*AuthBackendClient]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AuthBackendClientMapOutput) MapIndex(k pulumi.StringInput) AuthBackendClientOutput {

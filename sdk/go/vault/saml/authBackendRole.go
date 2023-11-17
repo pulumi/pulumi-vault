@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages an SAML auth backend role in a Vault server. See the [Vault
@@ -437,12 +436,6 @@ func (i *AuthBackendRole) ToAuthBackendRoleOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleOutput)
 }
 
-func (i *AuthBackendRole) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendRole] {
-	return pulumix.Output[*AuthBackendRole]{
-		OutputState: i.ToAuthBackendRoleOutputWithContext(ctx).OutputState,
-	}
-}
-
 // AuthBackendRoleArrayInput is an input type that accepts AuthBackendRoleArray and AuthBackendRoleArrayOutput values.
 // You can construct a concrete instance of `AuthBackendRoleArrayInput` via:
 //
@@ -466,12 +459,6 @@ func (i AuthBackendRoleArray) ToAuthBackendRoleArrayOutput() AuthBackendRoleArra
 
 func (i AuthBackendRoleArray) ToAuthBackendRoleArrayOutputWithContext(ctx context.Context) AuthBackendRoleArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleArrayOutput)
-}
-
-func (i AuthBackendRoleArray) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackendRole] {
-	return pulumix.Output[[]*AuthBackendRole]{
-		OutputState: i.ToAuthBackendRoleArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // AuthBackendRoleMapInput is an input type that accepts AuthBackendRoleMap and AuthBackendRoleMapOutput values.
@@ -499,12 +486,6 @@ func (i AuthBackendRoleMap) ToAuthBackendRoleMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleMapOutput)
 }
 
-func (i AuthBackendRoleMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackendRole] {
-	return pulumix.Output[map[string]*AuthBackendRole]{
-		OutputState: i.ToAuthBackendRoleMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type AuthBackendRoleOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendRoleOutput) ElementType() reflect.Type {
@@ -517,12 +498,6 @@ func (o AuthBackendRoleOutput) ToAuthBackendRoleOutput() AuthBackendRoleOutput {
 
 func (o AuthBackendRoleOutput) ToAuthBackendRoleOutputWithContext(ctx context.Context) AuthBackendRoleOutput {
 	return o
-}
-
-func (o AuthBackendRoleOutput) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendRole] {
-	return pulumix.Output[*AuthBackendRole]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Mapping of attribute names to values that are expected to
@@ -647,12 +622,6 @@ func (o AuthBackendRoleArrayOutput) ToAuthBackendRoleArrayOutputWithContext(ctx 
 	return o
 }
 
-func (o AuthBackendRoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackendRole] {
-	return pulumix.Output[[]*AuthBackendRole]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o AuthBackendRoleArrayOutput) Index(i pulumi.IntInput) AuthBackendRoleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AuthBackendRole {
 		return vs[0].([]*AuthBackendRole)[vs[1].(int)]
@@ -671,12 +640,6 @@ func (o AuthBackendRoleMapOutput) ToAuthBackendRoleMapOutput() AuthBackendRoleMa
 
 func (o AuthBackendRoleMapOutput) ToAuthBackendRoleMapOutputWithContext(ctx context.Context) AuthBackendRoleMapOutput {
 	return o
-}
-
-func (o AuthBackendRoleMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackendRole] {
-	return pulumix.Output[map[string]*AuthBackendRole]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AuthBackendRoleMapOutput) MapIndex(k pulumi.StringInput) AuthBackendRoleOutput {

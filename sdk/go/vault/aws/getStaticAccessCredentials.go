@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetStaticAccessCredentials(ctx *pulumi.Context, args *GetStaticAccessCredentialsArgs, opts ...pulumi.InvokeOption) (*GetStaticAccessCredentialsResult, error) {
@@ -77,12 +76,6 @@ func (o GetStaticAccessCredentialsResultOutput) ToGetStaticAccessCredentialsResu
 
 func (o GetStaticAccessCredentialsResultOutput) ToGetStaticAccessCredentialsResultOutputWithContext(ctx context.Context) GetStaticAccessCredentialsResultOutput {
 	return o
-}
-
-func (o GetStaticAccessCredentialsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetStaticAccessCredentialsResult] {
-	return pulumix.Output[GetStaticAccessCredentialsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetStaticAccessCredentialsResultOutput) AccessKey() pulumi.StringOutput {

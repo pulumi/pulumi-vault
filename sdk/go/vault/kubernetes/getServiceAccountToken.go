@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -191,12 +190,6 @@ func (o GetServiceAccountTokenResultOutput) ToGetServiceAccountTokenResultOutput
 
 func (o GetServiceAccountTokenResultOutput) ToGetServiceAccountTokenResultOutputWithContext(ctx context.Context) GetServiceAccountTokenResultOutput {
 	return o
-}
-
-func (o GetServiceAccountTokenResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetServiceAccountTokenResult] {
-	return pulumix.Output[GetServiceAccountTokenResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetServiceAccountTokenResultOutput) Backend() pulumi.StringOutput {

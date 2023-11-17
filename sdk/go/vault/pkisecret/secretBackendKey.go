@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates a key on a PKI Secret Backend for Vault.
@@ -225,12 +224,6 @@ func (i *SecretBackendKey) ToSecretBackendKeyOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendKeyOutput)
 }
 
-func (i *SecretBackendKey) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendKey] {
-	return pulumix.Output[*SecretBackendKey]{
-		OutputState: i.ToSecretBackendKeyOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretBackendKeyArrayInput is an input type that accepts SecretBackendKeyArray and SecretBackendKeyArrayOutput values.
 // You can construct a concrete instance of `SecretBackendKeyArrayInput` via:
 //
@@ -254,12 +247,6 @@ func (i SecretBackendKeyArray) ToSecretBackendKeyArrayOutput() SecretBackendKeyA
 
 func (i SecretBackendKeyArray) ToSecretBackendKeyArrayOutputWithContext(ctx context.Context) SecretBackendKeyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendKeyArrayOutput)
-}
-
-func (i SecretBackendKeyArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendKey] {
-	return pulumix.Output[[]*SecretBackendKey]{
-		OutputState: i.ToSecretBackendKeyArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SecretBackendKeyMapInput is an input type that accepts SecretBackendKeyMap and SecretBackendKeyMapOutput values.
@@ -287,12 +274,6 @@ func (i SecretBackendKeyMap) ToSecretBackendKeyMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendKeyMapOutput)
 }
 
-func (i SecretBackendKeyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendKey] {
-	return pulumix.Output[map[string]*SecretBackendKey]{
-		OutputState: i.ToSecretBackendKeyMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendKeyOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendKeyOutput) ElementType() reflect.Type {
@@ -305,12 +286,6 @@ func (o SecretBackendKeyOutput) ToSecretBackendKeyOutput() SecretBackendKeyOutpu
 
 func (o SecretBackendKeyOutput) ToSecretBackendKeyOutputWithContext(ctx context.Context) SecretBackendKeyOutput {
 	return o
-}
-
-func (o SecretBackendKeyOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendKey] {
-	return pulumix.Output[*SecretBackendKey]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
@@ -379,12 +354,6 @@ func (o SecretBackendKeyArrayOutput) ToSecretBackendKeyArrayOutputWithContext(ct
 	return o
 }
 
-func (o SecretBackendKeyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendKey] {
-	return pulumix.Output[[]*SecretBackendKey]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SecretBackendKeyArrayOutput) Index(i pulumi.IntInput) SecretBackendKeyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackendKey {
 		return vs[0].([]*SecretBackendKey)[vs[1].(int)]
@@ -403,12 +372,6 @@ func (o SecretBackendKeyMapOutput) ToSecretBackendKeyMapOutput() SecretBackendKe
 
 func (o SecretBackendKeyMapOutput) ToSecretBackendKeyMapOutputWithContext(ctx context.Context) SecretBackendKeyMapOutput {
 	return o
-}
-
-func (o SecretBackendKeyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendKey] {
-	return pulumix.Output[map[string]*SecretBackendKey]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendKeyMapOutput) MapIndex(k pulumi.StringInput) SecretBackendKeyOutput {

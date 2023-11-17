@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 var _ = internal.GetEnvOrDefault
@@ -47,12 +46,6 @@ func (i BackendRoleAzureGroupArgs) ToBackendRoleAzureGroupOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(BackendRoleAzureGroupOutput)
 }
 
-func (i BackendRoleAzureGroupArgs) ToOutput(ctx context.Context) pulumix.Output[BackendRoleAzureGroup] {
-	return pulumix.Output[BackendRoleAzureGroup]{
-		OutputState: i.ToBackendRoleAzureGroupOutputWithContext(ctx).OutputState,
-	}
-}
-
 // BackendRoleAzureGroupArrayInput is an input type that accepts BackendRoleAzureGroupArray and BackendRoleAzureGroupArrayOutput values.
 // You can construct a concrete instance of `BackendRoleAzureGroupArrayInput` via:
 //
@@ -78,12 +71,6 @@ func (i BackendRoleAzureGroupArray) ToBackendRoleAzureGroupArrayOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(BackendRoleAzureGroupArrayOutput)
 }
 
-func (i BackendRoleAzureGroupArray) ToOutput(ctx context.Context) pulumix.Output[[]BackendRoleAzureGroup] {
-	return pulumix.Output[[]BackendRoleAzureGroup]{
-		OutputState: i.ToBackendRoleAzureGroupArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type BackendRoleAzureGroupOutput struct{ *pulumi.OutputState }
 
 func (BackendRoleAzureGroupOutput) ElementType() reflect.Type {
@@ -96,12 +83,6 @@ func (o BackendRoleAzureGroupOutput) ToBackendRoleAzureGroupOutput() BackendRole
 
 func (o BackendRoleAzureGroupOutput) ToBackendRoleAzureGroupOutputWithContext(ctx context.Context) BackendRoleAzureGroupOutput {
 	return o
-}
-
-func (o BackendRoleAzureGroupOutput) ToOutput(ctx context.Context) pulumix.Output[BackendRoleAzureGroup] {
-	return pulumix.Output[BackendRoleAzureGroup]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o BackendRoleAzureGroupOutput) GroupName() pulumi.StringOutput {
@@ -124,12 +105,6 @@ func (o BackendRoleAzureGroupArrayOutput) ToBackendRoleAzureGroupArrayOutput() B
 
 func (o BackendRoleAzureGroupArrayOutput) ToBackendRoleAzureGroupArrayOutputWithContext(ctx context.Context) BackendRoleAzureGroupArrayOutput {
 	return o
-}
-
-func (o BackendRoleAzureGroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]BackendRoleAzureGroup] {
-	return pulumix.Output[[]BackendRoleAzureGroup]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o BackendRoleAzureGroupArrayOutput) Index(i pulumi.IntInput) BackendRoleAzureGroupOutput {
@@ -173,12 +148,6 @@ func (i BackendRoleAzureRoleArgs) ToBackendRoleAzureRoleOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(BackendRoleAzureRoleOutput)
 }
 
-func (i BackendRoleAzureRoleArgs) ToOutput(ctx context.Context) pulumix.Output[BackendRoleAzureRole] {
-	return pulumix.Output[BackendRoleAzureRole]{
-		OutputState: i.ToBackendRoleAzureRoleOutputWithContext(ctx).OutputState,
-	}
-}
-
 // BackendRoleAzureRoleArrayInput is an input type that accepts BackendRoleAzureRoleArray and BackendRoleAzureRoleArrayOutput values.
 // You can construct a concrete instance of `BackendRoleAzureRoleArrayInput` via:
 //
@@ -204,12 +173,6 @@ func (i BackendRoleAzureRoleArray) ToBackendRoleAzureRoleArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(BackendRoleAzureRoleArrayOutput)
 }
 
-func (i BackendRoleAzureRoleArray) ToOutput(ctx context.Context) pulumix.Output[[]BackendRoleAzureRole] {
-	return pulumix.Output[[]BackendRoleAzureRole]{
-		OutputState: i.ToBackendRoleAzureRoleArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type BackendRoleAzureRoleOutput struct{ *pulumi.OutputState }
 
 func (BackendRoleAzureRoleOutput) ElementType() reflect.Type {
@@ -222,12 +185,6 @@ func (o BackendRoleAzureRoleOutput) ToBackendRoleAzureRoleOutput() BackendRoleAz
 
 func (o BackendRoleAzureRoleOutput) ToBackendRoleAzureRoleOutputWithContext(ctx context.Context) BackendRoleAzureRoleOutput {
 	return o
-}
-
-func (o BackendRoleAzureRoleOutput) ToOutput(ctx context.Context) pulumix.Output[BackendRoleAzureRole] {
-	return pulumix.Output[BackendRoleAzureRole]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o BackendRoleAzureRoleOutput) RoleId() pulumi.StringPtrOutput {
@@ -254,12 +211,6 @@ func (o BackendRoleAzureRoleArrayOutput) ToBackendRoleAzureRoleArrayOutput() Bac
 
 func (o BackendRoleAzureRoleArrayOutput) ToBackendRoleAzureRoleArrayOutputWithContext(ctx context.Context) BackendRoleAzureRoleArrayOutput {
 	return o
-}
-
-func (o BackendRoleAzureRoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]BackendRoleAzureRole] {
-	return pulumix.Output[[]BackendRoleAzureRole]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o BackendRoleAzureRoleArrayOutput) Index(i pulumi.IntInput) BackendRoleAzureRoleOutput {

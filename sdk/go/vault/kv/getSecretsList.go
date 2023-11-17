@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -156,12 +155,6 @@ func (o GetSecretsListResultOutput) ToGetSecretsListResultOutput() GetSecretsLis
 
 func (o GetSecretsListResultOutput) ToGetSecretsListResultOutputWithContext(ctx context.Context) GetSecretsListResultOutput {
 	return o
-}
-
-func (o GetSecretsListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSecretsListResult] {
-	return pulumix.Output[GetSecretsListResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

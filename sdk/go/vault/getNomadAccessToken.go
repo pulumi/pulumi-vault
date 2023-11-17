@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -145,12 +144,6 @@ func (o GetNomadAccessTokenResultOutput) ToGetNomadAccessTokenResultOutput() Get
 
 func (o GetNomadAccessTokenResultOutput) ToGetNomadAccessTokenResultOutputWithContext(ctx context.Context) GetNomadAccessTokenResultOutput {
 	return o
-}
-
-func (o GetNomadAccessTokenResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetNomadAccessTokenResult] {
-	return pulumix.Output[GetNomadAccessTokenResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The public identifier for a specific token. It can be used

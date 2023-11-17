@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages policies for an Identity Entity for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
@@ -259,12 +258,6 @@ func (i *EntityPolicies) ToEntityPoliciesOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(EntityPoliciesOutput)
 }
 
-func (i *EntityPolicies) ToOutput(ctx context.Context) pulumix.Output[*EntityPolicies] {
-	return pulumix.Output[*EntityPolicies]{
-		OutputState: i.ToEntityPoliciesOutputWithContext(ctx).OutputState,
-	}
-}
-
 // EntityPoliciesArrayInput is an input type that accepts EntityPoliciesArray and EntityPoliciesArrayOutput values.
 // You can construct a concrete instance of `EntityPoliciesArrayInput` via:
 //
@@ -288,12 +281,6 @@ func (i EntityPoliciesArray) ToEntityPoliciesArrayOutput() EntityPoliciesArrayOu
 
 func (i EntityPoliciesArray) ToEntityPoliciesArrayOutputWithContext(ctx context.Context) EntityPoliciesArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EntityPoliciesArrayOutput)
-}
-
-func (i EntityPoliciesArray) ToOutput(ctx context.Context) pulumix.Output[[]*EntityPolicies] {
-	return pulumix.Output[[]*EntityPolicies]{
-		OutputState: i.ToEntityPoliciesArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // EntityPoliciesMapInput is an input type that accepts EntityPoliciesMap and EntityPoliciesMapOutput values.
@@ -321,12 +308,6 @@ func (i EntityPoliciesMap) ToEntityPoliciesMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(EntityPoliciesMapOutput)
 }
 
-func (i EntityPoliciesMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*EntityPolicies] {
-	return pulumix.Output[map[string]*EntityPolicies]{
-		OutputState: i.ToEntityPoliciesMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type EntityPoliciesOutput struct{ *pulumi.OutputState }
 
 func (EntityPoliciesOutput) ElementType() reflect.Type {
@@ -339,12 +320,6 @@ func (o EntityPoliciesOutput) ToEntityPoliciesOutput() EntityPoliciesOutput {
 
 func (o EntityPoliciesOutput) ToEntityPoliciesOutputWithContext(ctx context.Context) EntityPoliciesOutput {
 	return o
-}
-
-func (o EntityPoliciesOutput) ToOutput(ctx context.Context) pulumix.Output[*EntityPolicies] {
-	return pulumix.Output[*EntityPolicies]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Entity ID to assign policies to.
@@ -393,12 +368,6 @@ func (o EntityPoliciesArrayOutput) ToEntityPoliciesArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o EntityPoliciesArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*EntityPolicies] {
-	return pulumix.Output[[]*EntityPolicies]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o EntityPoliciesArrayOutput) Index(i pulumi.IntInput) EntityPoliciesOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EntityPolicies {
 		return vs[0].([]*EntityPolicies)[vs[1].(int)]
@@ -417,12 +386,6 @@ func (o EntityPoliciesMapOutput) ToEntityPoliciesMapOutput() EntityPoliciesMapOu
 
 func (o EntityPoliciesMapOutput) ToEntityPoliciesMapOutputWithContext(ctx context.Context) EntityPoliciesMapOutput {
 	return o
-}
-
-func (o EntityPoliciesMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*EntityPolicies] {
-	return pulumix.Output[map[string]*EntityPolicies]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o EntityPoliciesMapOutput) MapIndex(k pulumi.StringInput) EntityPoliciesOutput {

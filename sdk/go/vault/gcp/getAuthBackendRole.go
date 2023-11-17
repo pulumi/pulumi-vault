@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Reads a GCP auth role from a Vault server.
@@ -240,12 +239,6 @@ func (o LookupAuthBackendRoleResultOutput) ToLookupAuthBackendRoleResultOutput()
 
 func (o LookupAuthBackendRoleResultOutput) ToLookupAuthBackendRoleResultOutputWithContext(ctx context.Context) LookupAuthBackendRoleResultOutput {
 	return o
-}
-
-func (o LookupAuthBackendRoleResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupAuthBackendRoleResult] {
-	return pulumix.Output[LookupAuthBackendRoleResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupAuthBackendRoleResultOutput) Backend() pulumi.StringPtrOutput {

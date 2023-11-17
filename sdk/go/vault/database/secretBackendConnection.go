@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -435,12 +434,6 @@ func (i *SecretBackendConnection) ToSecretBackendConnectionOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionOutput)
 }
 
-func (i *SecretBackendConnection) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnection] {
-	return pulumix.Output[*SecretBackendConnection]{
-		OutputState: i.ToSecretBackendConnectionOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretBackendConnectionArrayInput is an input type that accepts SecretBackendConnectionArray and SecretBackendConnectionArrayOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionArrayInput` via:
 //
@@ -464,12 +457,6 @@ func (i SecretBackendConnectionArray) ToSecretBackendConnectionArrayOutput() Sec
 
 func (i SecretBackendConnectionArray) ToSecretBackendConnectionArrayOutputWithContext(ctx context.Context) SecretBackendConnectionArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionArrayOutput)
-}
-
-func (i SecretBackendConnectionArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendConnection] {
-	return pulumix.Output[[]*SecretBackendConnection]{
-		OutputState: i.ToSecretBackendConnectionArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SecretBackendConnectionMapInput is an input type that accepts SecretBackendConnectionMap and SecretBackendConnectionMapOutput values.
@@ -497,12 +484,6 @@ func (i SecretBackendConnectionMap) ToSecretBackendConnectionMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionMapOutput)
 }
 
-func (i SecretBackendConnectionMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendConnection] {
-	return pulumix.Output[map[string]*SecretBackendConnection]{
-		OutputState: i.ToSecretBackendConnectionMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendConnectionOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionOutput) ElementType() reflect.Type {
@@ -515,12 +496,6 @@ func (o SecretBackendConnectionOutput) ToSecretBackendConnectionOutput() SecretB
 
 func (o SecretBackendConnectionOutput) ToSecretBackendConnectionOutputWithContext(ctx context.Context) SecretBackendConnectionOutput {
 	return o
-}
-
-func (o SecretBackendConnectionOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnection] {
-	return pulumix.Output[*SecretBackendConnection]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A list of roles that are allowed to use this
@@ -676,12 +651,6 @@ func (o SecretBackendConnectionArrayOutput) ToSecretBackendConnectionArrayOutput
 	return o
 }
 
-func (o SecretBackendConnectionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendConnection] {
-	return pulumix.Output[[]*SecretBackendConnection]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SecretBackendConnectionArrayOutput) Index(i pulumi.IntInput) SecretBackendConnectionOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackendConnection {
 		return vs[0].([]*SecretBackendConnection)[vs[1].(int)]
@@ -700,12 +669,6 @@ func (o SecretBackendConnectionMapOutput) ToSecretBackendConnectionMapOutput() S
 
 func (o SecretBackendConnectionMapOutput) ToSecretBackendConnectionMapOutputWithContext(ctx context.Context) SecretBackendConnectionMapOutput {
 	return o
-}
-
-func (o SecretBackendConnectionMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendConnection] {
-	return pulumix.Output[map[string]*SecretBackendConnection]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendConnectionMapOutput) MapIndex(k pulumi.StringInput) SecretBackendConnectionOutput {

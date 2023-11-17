@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // This is a data source which can be used to construct a HCL representation of an Vault policy document, for use with resources which expect policy documents, such as the `Policy` resource.
@@ -119,12 +118,6 @@ func (o GetPolicyDocumentResultOutput) ToGetPolicyDocumentResultOutput() GetPoli
 
 func (o GetPolicyDocumentResultOutput) ToGetPolicyDocumentResultOutputWithContext(ctx context.Context) GetPolicyDocumentResultOutput {
 	return o
-}
-
-func (o GetPolicyDocumentResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetPolicyDocumentResult] {
-	return pulumix.Output[GetPolicyDocumentResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The above arguments serialized as a standard Vault HCL policy document.

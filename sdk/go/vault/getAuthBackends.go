@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetAuthBackends(ctx *pulumi.Context, args *GetAuthBackendsArgs, opts ...pulumi.InvokeOption) (*GetAuthBackendsResult, error) {
@@ -86,12 +85,6 @@ func (o GetAuthBackendsResultOutput) ToGetAuthBackendsResultOutput() GetAuthBack
 
 func (o GetAuthBackendsResultOutput) ToGetAuthBackendsResultOutputWithContext(ctx context.Context) GetAuthBackendsResultOutput {
 	return o
-}
-
-func (o GetAuthBackendsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetAuthBackendsResult] {
-	return pulumix.Output[GetAuthBackendsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The accessor IDs for the auth methods.

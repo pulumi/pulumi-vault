@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Required Vault Capabilities
@@ -119,12 +118,6 @@ func (o LookupSecretV2ResultOutput) ToLookupSecretV2ResultOutput() LookupSecretV
 
 func (o LookupSecretV2ResultOutput) ToLookupSecretV2ResultOutputWithContext(ctx context.Context) LookupSecretV2ResultOutput {
 	return o
-}
-
-func (o LookupSecretV2ResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSecretV2Result] {
-	return pulumix.Output[LookupSecretV2Result]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Time at which secret was created.

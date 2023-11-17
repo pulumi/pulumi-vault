@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -280,12 +279,6 @@ func (i *BackendRole) ToBackendRoleOutputWithContext(ctx context.Context) Backen
 	return pulumi.ToOutputWithContext(ctx, i).(BackendRoleOutput)
 }
 
-func (i *BackendRole) ToOutput(ctx context.Context) pulumix.Output[*BackendRole] {
-	return pulumix.Output[*BackendRole]{
-		OutputState: i.ToBackendRoleOutputWithContext(ctx).OutputState,
-	}
-}
-
 // BackendRoleArrayInput is an input type that accepts BackendRoleArray and BackendRoleArrayOutput values.
 // You can construct a concrete instance of `BackendRoleArrayInput` via:
 //
@@ -309,12 +302,6 @@ func (i BackendRoleArray) ToBackendRoleArrayOutput() BackendRoleArrayOutput {
 
 func (i BackendRoleArray) ToBackendRoleArrayOutputWithContext(ctx context.Context) BackendRoleArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(BackendRoleArrayOutput)
-}
-
-func (i BackendRoleArray) ToOutput(ctx context.Context) pulumix.Output[[]*BackendRole] {
-	return pulumix.Output[[]*BackendRole]{
-		OutputState: i.ToBackendRoleArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // BackendRoleMapInput is an input type that accepts BackendRoleMap and BackendRoleMapOutput values.
@@ -342,12 +329,6 @@ func (i BackendRoleMap) ToBackendRoleMapOutputWithContext(ctx context.Context) B
 	return pulumi.ToOutputWithContext(ctx, i).(BackendRoleMapOutput)
 }
 
-func (i BackendRoleMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*BackendRole] {
-	return pulumix.Output[map[string]*BackendRole]{
-		OutputState: i.ToBackendRoleMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type BackendRoleOutput struct{ *pulumi.OutputState }
 
 func (BackendRoleOutput) ElementType() reflect.Type {
@@ -360,12 +341,6 @@ func (o BackendRoleOutput) ToBackendRoleOutput() BackendRoleOutput {
 
 func (o BackendRoleOutput) ToBackendRoleOutputWithContext(ctx context.Context) BackendRoleOutput {
 	return o
-}
-
-func (o BackendRoleOutput) ToOutput(ctx context.Context) pulumix.Output[*BackendRole] {
-	return pulumix.Output[*BackendRole]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Application Object ID for an existing service principal that will
@@ -439,12 +414,6 @@ func (o BackendRoleArrayOutput) ToBackendRoleArrayOutputWithContext(ctx context.
 	return o
 }
 
-func (o BackendRoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*BackendRole] {
-	return pulumix.Output[[]*BackendRole]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o BackendRoleArrayOutput) Index(i pulumi.IntInput) BackendRoleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *BackendRole {
 		return vs[0].([]*BackendRole)[vs[1].(int)]
@@ -463,12 +432,6 @@ func (o BackendRoleMapOutput) ToBackendRoleMapOutput() BackendRoleMapOutput {
 
 func (o BackendRoleMapOutput) ToBackendRoleMapOutputWithContext(ctx context.Context) BackendRoleMapOutput {
 	return o
-}
-
-func (o BackendRoleMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*BackendRole] {
-	return pulumix.Output[map[string]*BackendRole]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o BackendRoleMapOutput) MapIndex(k pulumi.StringInput) BackendRoleOutput {

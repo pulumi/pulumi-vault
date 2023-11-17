@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -138,12 +137,6 @@ func (o GetOidcPublicKeysResultOutput) ToGetOidcPublicKeysResultOutput() GetOidc
 
 func (o GetOidcPublicKeysResultOutput) ToGetOidcPublicKeysResultOutputWithContext(ctx context.Context) GetOidcPublicKeysResultOutput {
 	return o
-}
-
-func (o GetOidcPublicKeysResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetOidcPublicKeysResult] {
-	return pulumix.Output[GetOidcPublicKeysResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

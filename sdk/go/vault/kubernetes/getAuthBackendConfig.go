@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Reads the Role of an Kubernetes from a Vault server. See the [Vault
@@ -117,12 +116,6 @@ func (o LookupAuthBackendConfigResultOutput) ToLookupAuthBackendConfigResultOutp
 
 func (o LookupAuthBackendConfigResultOutput) ToLookupAuthBackendConfigResultOutputWithContext(ctx context.Context) LookupAuthBackendConfigResultOutput {
 	return o
-}
-
-func (o LookupAuthBackendConfigResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupAuthBackendConfigResult] {
-	return pulumix.Output[LookupAuthBackendConfigResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupAuthBackendConfigResultOutput) Backend() pulumi.StringPtrOutput {

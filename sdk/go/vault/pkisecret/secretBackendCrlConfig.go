@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows setting the duration for which the generated CRL should be marked valid. If the CRL is disabled, it will return a signed but zero-length CRL for any request. If enabled, it will re-build the CRL.
@@ -289,12 +288,6 @@ func (i *SecretBackendCrlConfig) ToSecretBackendCrlConfigOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendCrlConfigOutput)
 }
 
-func (i *SecretBackendCrlConfig) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendCrlConfig] {
-	return pulumix.Output[*SecretBackendCrlConfig]{
-		OutputState: i.ToSecretBackendCrlConfigOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretBackendCrlConfigArrayInput is an input type that accepts SecretBackendCrlConfigArray and SecretBackendCrlConfigArrayOutput values.
 // You can construct a concrete instance of `SecretBackendCrlConfigArrayInput` via:
 //
@@ -318,12 +311,6 @@ func (i SecretBackendCrlConfigArray) ToSecretBackendCrlConfigArrayOutput() Secre
 
 func (i SecretBackendCrlConfigArray) ToSecretBackendCrlConfigArrayOutputWithContext(ctx context.Context) SecretBackendCrlConfigArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendCrlConfigArrayOutput)
-}
-
-func (i SecretBackendCrlConfigArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendCrlConfig] {
-	return pulumix.Output[[]*SecretBackendCrlConfig]{
-		OutputState: i.ToSecretBackendCrlConfigArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SecretBackendCrlConfigMapInput is an input type that accepts SecretBackendCrlConfigMap and SecretBackendCrlConfigMapOutput values.
@@ -351,12 +338,6 @@ func (i SecretBackendCrlConfigMap) ToSecretBackendCrlConfigMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendCrlConfigMapOutput)
 }
 
-func (i SecretBackendCrlConfigMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendCrlConfig] {
-	return pulumix.Output[map[string]*SecretBackendCrlConfig]{
-		OutputState: i.ToSecretBackendCrlConfigMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendCrlConfigOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendCrlConfigOutput) ElementType() reflect.Type {
@@ -369,12 +350,6 @@ func (o SecretBackendCrlConfigOutput) ToSecretBackendCrlConfigOutput() SecretBac
 
 func (o SecretBackendCrlConfigOutput) ToSecretBackendCrlConfigOutputWithContext(ctx context.Context) SecretBackendCrlConfigOutput {
 	return o
-}
-
-func (o SecretBackendCrlConfigOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendCrlConfig] {
-	return pulumix.Output[*SecretBackendCrlConfig]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
@@ -462,12 +437,6 @@ func (o SecretBackendCrlConfigArrayOutput) ToSecretBackendCrlConfigArrayOutputWi
 	return o
 }
 
-func (o SecretBackendCrlConfigArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendCrlConfig] {
-	return pulumix.Output[[]*SecretBackendCrlConfig]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SecretBackendCrlConfigArrayOutput) Index(i pulumi.IntInput) SecretBackendCrlConfigOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackendCrlConfig {
 		return vs[0].([]*SecretBackendCrlConfig)[vs[1].(int)]
@@ -486,12 +455,6 @@ func (o SecretBackendCrlConfigMapOutput) ToSecretBackendCrlConfigMapOutput() Sec
 
 func (o SecretBackendCrlConfigMapOutput) ToSecretBackendCrlConfigMapOutputWithContext(ctx context.Context) SecretBackendCrlConfigMapOutput {
 	return o
-}
-
-func (o SecretBackendCrlConfigMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendCrlConfig] {
-	return pulumix.Output[map[string]*SecretBackendCrlConfig]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendCrlConfigMapOutput) MapIndex(k pulumi.StringInput) SecretBackendCrlConfigOutput {

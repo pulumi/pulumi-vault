@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Logs into a Vault server using an AWS auth backend. Login can be
@@ -343,12 +342,6 @@ func (i *AuthBackendLogin) ToAuthBackendLoginOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendLoginOutput)
 }
 
-func (i *AuthBackendLogin) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendLogin] {
-	return pulumix.Output[*AuthBackendLogin]{
-		OutputState: i.ToAuthBackendLoginOutputWithContext(ctx).OutputState,
-	}
-}
-
 // AuthBackendLoginArrayInput is an input type that accepts AuthBackendLoginArray and AuthBackendLoginArrayOutput values.
 // You can construct a concrete instance of `AuthBackendLoginArrayInput` via:
 //
@@ -372,12 +365,6 @@ func (i AuthBackendLoginArray) ToAuthBackendLoginArrayOutput() AuthBackendLoginA
 
 func (i AuthBackendLoginArray) ToAuthBackendLoginArrayOutputWithContext(ctx context.Context) AuthBackendLoginArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendLoginArrayOutput)
-}
-
-func (i AuthBackendLoginArray) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackendLogin] {
-	return pulumix.Output[[]*AuthBackendLogin]{
-		OutputState: i.ToAuthBackendLoginArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // AuthBackendLoginMapInput is an input type that accepts AuthBackendLoginMap and AuthBackendLoginMapOutput values.
@@ -405,12 +392,6 @@ func (i AuthBackendLoginMap) ToAuthBackendLoginMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendLoginMapOutput)
 }
 
-func (i AuthBackendLoginMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackendLogin] {
-	return pulumix.Output[map[string]*AuthBackendLogin]{
-		OutputState: i.ToAuthBackendLoginMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type AuthBackendLoginOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendLoginOutput) ElementType() reflect.Type {
@@ -423,12 +404,6 @@ func (o AuthBackendLoginOutput) ToAuthBackendLoginOutput() AuthBackendLoginOutpu
 
 func (o AuthBackendLoginOutput) ToAuthBackendLoginOutputWithContext(ctx context.Context) AuthBackendLoginOutput {
 	return o
-}
-
-func (o AuthBackendLoginOutput) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendLogin] {
-	return pulumix.Output[*AuthBackendLogin]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The token's accessor.
@@ -559,12 +534,6 @@ func (o AuthBackendLoginArrayOutput) ToAuthBackendLoginArrayOutputWithContext(ct
 	return o
 }
 
-func (o AuthBackendLoginArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackendLogin] {
-	return pulumix.Output[[]*AuthBackendLogin]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o AuthBackendLoginArrayOutput) Index(i pulumi.IntInput) AuthBackendLoginOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AuthBackendLogin {
 		return vs[0].([]*AuthBackendLogin)[vs[1].(int)]
@@ -583,12 +552,6 @@ func (o AuthBackendLoginMapOutput) ToAuthBackendLoginMapOutput() AuthBackendLogi
 
 func (o AuthBackendLoginMapOutput) ToAuthBackendLoginMapOutputWithContext(ctx context.Context) AuthBackendLoginMapOutput {
 	return o
-}
-
-func (o AuthBackendLoginMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackendLogin] {
-	return pulumix.Output[map[string]*AuthBackendLogin]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AuthBackendLoginMapOutput) MapIndex(k pulumi.StringInput) AuthBackendLoginOutput {

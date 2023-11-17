@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -224,12 +223,6 @@ func (i *SecretCreds) ToSecretCredsOutputWithContext(ctx context.Context) Secret
 	return pulumi.ToOutputWithContext(ctx, i).(SecretCredsOutput)
 }
 
-func (i *SecretCreds) ToOutput(ctx context.Context) pulumix.Output[*SecretCreds] {
-	return pulumix.Output[*SecretCreds]{
-		OutputState: i.ToSecretCredsOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretCredsArrayInput is an input type that accepts SecretCredsArray and SecretCredsArrayOutput values.
 // You can construct a concrete instance of `SecretCredsArrayInput` via:
 //
@@ -253,12 +246,6 @@ func (i SecretCredsArray) ToSecretCredsArrayOutput() SecretCredsArrayOutput {
 
 func (i SecretCredsArray) ToSecretCredsArrayOutputWithContext(ctx context.Context) SecretCredsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretCredsArrayOutput)
-}
-
-func (i SecretCredsArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretCreds] {
-	return pulumix.Output[[]*SecretCreds]{
-		OutputState: i.ToSecretCredsArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SecretCredsMapInput is an input type that accepts SecretCredsMap and SecretCredsMapOutput values.
@@ -286,12 +273,6 @@ func (i SecretCredsMap) ToSecretCredsMapOutputWithContext(ctx context.Context) S
 	return pulumi.ToOutputWithContext(ctx, i).(SecretCredsMapOutput)
 }
 
-func (i SecretCredsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretCreds] {
-	return pulumix.Output[map[string]*SecretCreds]{
-		OutputState: i.ToSecretCredsMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretCredsOutput struct{ *pulumi.OutputState }
 
 func (SecretCredsOutput) ElementType() reflect.Type {
@@ -304,12 +285,6 @@ func (o SecretCredsOutput) ToSecretCredsOutput() SecretCredsOutput {
 
 func (o SecretCredsOutput) ToSecretCredsOutputWithContext(ctx context.Context) SecretCredsOutput {
 	return o
-}
-
-func (o SecretCredsOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretCreds] {
-	return pulumix.Output[*SecretCreds]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Terraform Cloud secret backend to generate tokens from
@@ -372,12 +347,6 @@ func (o SecretCredsArrayOutput) ToSecretCredsArrayOutputWithContext(ctx context.
 	return o
 }
 
-func (o SecretCredsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretCreds] {
-	return pulumix.Output[[]*SecretCreds]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SecretCredsArrayOutput) Index(i pulumi.IntInput) SecretCredsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretCreds {
 		return vs[0].([]*SecretCreds)[vs[1].(int)]
@@ -396,12 +365,6 @@ func (o SecretCredsMapOutput) ToSecretCredsMapOutput() SecretCredsMapOutput {
 
 func (o SecretCredsMapOutput) ToSecretCredsMapOutputWithContext(ctx context.Context) SecretCredsMapOutput {
 	return o
-}
-
-func (o SecretCredsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretCreds] {
-	return pulumix.Output[map[string]*SecretCreds]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretCredsMapOutput) MapIndex(k pulumi.StringInput) SecretCredsOutput {

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -176,12 +175,6 @@ func (i *OidcKeyAllowedClientID) ToOidcKeyAllowedClientIDOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(OidcKeyAllowedClientIDOutput)
 }
 
-func (i *OidcKeyAllowedClientID) ToOutput(ctx context.Context) pulumix.Output[*OidcKeyAllowedClientID] {
-	return pulumix.Output[*OidcKeyAllowedClientID]{
-		OutputState: i.ToOidcKeyAllowedClientIDOutputWithContext(ctx).OutputState,
-	}
-}
-
 // OidcKeyAllowedClientIDArrayInput is an input type that accepts OidcKeyAllowedClientIDArray and OidcKeyAllowedClientIDArrayOutput values.
 // You can construct a concrete instance of `OidcKeyAllowedClientIDArrayInput` via:
 //
@@ -205,12 +198,6 @@ func (i OidcKeyAllowedClientIDArray) ToOidcKeyAllowedClientIDArrayOutput() OidcK
 
 func (i OidcKeyAllowedClientIDArray) ToOidcKeyAllowedClientIDArrayOutputWithContext(ctx context.Context) OidcKeyAllowedClientIDArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OidcKeyAllowedClientIDArrayOutput)
-}
-
-func (i OidcKeyAllowedClientIDArray) ToOutput(ctx context.Context) pulumix.Output[[]*OidcKeyAllowedClientID] {
-	return pulumix.Output[[]*OidcKeyAllowedClientID]{
-		OutputState: i.ToOidcKeyAllowedClientIDArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // OidcKeyAllowedClientIDMapInput is an input type that accepts OidcKeyAllowedClientIDMap and OidcKeyAllowedClientIDMapOutput values.
@@ -238,12 +225,6 @@ func (i OidcKeyAllowedClientIDMap) ToOidcKeyAllowedClientIDMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(OidcKeyAllowedClientIDMapOutput)
 }
 
-func (i OidcKeyAllowedClientIDMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*OidcKeyAllowedClientID] {
-	return pulumix.Output[map[string]*OidcKeyAllowedClientID]{
-		OutputState: i.ToOidcKeyAllowedClientIDMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type OidcKeyAllowedClientIDOutput struct{ *pulumi.OutputState }
 
 func (OidcKeyAllowedClientIDOutput) ElementType() reflect.Type {
@@ -256,12 +237,6 @@ func (o OidcKeyAllowedClientIDOutput) ToOidcKeyAllowedClientIDOutput() OidcKeyAl
 
 func (o OidcKeyAllowedClientIDOutput) ToOidcKeyAllowedClientIDOutputWithContext(ctx context.Context) OidcKeyAllowedClientIDOutput {
 	return o
-}
-
-func (o OidcKeyAllowedClientIDOutput) ToOutput(ctx context.Context) pulumix.Output[*OidcKeyAllowedClientID] {
-	return pulumix.Output[*OidcKeyAllowedClientID]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Client ID to allow usage with the OIDC named key
@@ -296,12 +271,6 @@ func (o OidcKeyAllowedClientIDArrayOutput) ToOidcKeyAllowedClientIDArrayOutputWi
 	return o
 }
 
-func (o OidcKeyAllowedClientIDArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*OidcKeyAllowedClientID] {
-	return pulumix.Output[[]*OidcKeyAllowedClientID]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o OidcKeyAllowedClientIDArrayOutput) Index(i pulumi.IntInput) OidcKeyAllowedClientIDOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *OidcKeyAllowedClientID {
 		return vs[0].([]*OidcKeyAllowedClientID)[vs[1].(int)]
@@ -320,12 +289,6 @@ func (o OidcKeyAllowedClientIDMapOutput) ToOidcKeyAllowedClientIDMapOutput() Oid
 
 func (o OidcKeyAllowedClientIDMapOutput) ToOidcKeyAllowedClientIDMapOutputWithContext(ctx context.Context) OidcKeyAllowedClientIDMapOutput {
 	return o
-}
-
-func (o OidcKeyAllowedClientIDMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*OidcKeyAllowedClientID] {
-	return pulumix.Output[map[string]*OidcKeyAllowedClientID]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o OidcKeyAllowedClientIDMapOutput) MapIndex(k pulumi.StringInput) OidcKeyAllowedClientIDOutput {

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Resource for configuring the duo MFA method.
@@ -258,12 +257,6 @@ func (i *MfaDuo) ToMfaDuoOutputWithContext(ctx context.Context) MfaDuoOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MfaDuoOutput)
 }
 
-func (i *MfaDuo) ToOutput(ctx context.Context) pulumix.Output[*MfaDuo] {
-	return pulumix.Output[*MfaDuo]{
-		OutputState: i.ToMfaDuoOutputWithContext(ctx).OutputState,
-	}
-}
-
 // MfaDuoArrayInput is an input type that accepts MfaDuoArray and MfaDuoArrayOutput values.
 // You can construct a concrete instance of `MfaDuoArrayInput` via:
 //
@@ -287,12 +280,6 @@ func (i MfaDuoArray) ToMfaDuoArrayOutput() MfaDuoArrayOutput {
 
 func (i MfaDuoArray) ToMfaDuoArrayOutputWithContext(ctx context.Context) MfaDuoArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MfaDuoArrayOutput)
-}
-
-func (i MfaDuoArray) ToOutput(ctx context.Context) pulumix.Output[[]*MfaDuo] {
-	return pulumix.Output[[]*MfaDuo]{
-		OutputState: i.ToMfaDuoArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // MfaDuoMapInput is an input type that accepts MfaDuoMap and MfaDuoMapOutput values.
@@ -320,12 +307,6 @@ func (i MfaDuoMap) ToMfaDuoMapOutputWithContext(ctx context.Context) MfaDuoMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(MfaDuoMapOutput)
 }
 
-func (i MfaDuoMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*MfaDuo] {
-	return pulumix.Output[map[string]*MfaDuo]{
-		OutputState: i.ToMfaDuoMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type MfaDuoOutput struct{ *pulumi.OutputState }
 
 func (MfaDuoOutput) ElementType() reflect.Type {
@@ -338,12 +319,6 @@ func (o MfaDuoOutput) ToMfaDuoOutput() MfaDuoOutput {
 
 func (o MfaDuoOutput) ToMfaDuoOutputWithContext(ctx context.Context) MfaDuoOutput {
 	return o
-}
-
-func (o MfaDuoOutput) ToOutput(ctx context.Context) pulumix.Output[*MfaDuo] {
-	return pulumix.Output[*MfaDuo]{
-		OutputState: o.OutputState,
-	}
 }
 
 // API hostname for Duo
@@ -430,12 +405,6 @@ func (o MfaDuoArrayOutput) ToMfaDuoArrayOutputWithContext(ctx context.Context) M
 	return o
 }
 
-func (o MfaDuoArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*MfaDuo] {
-	return pulumix.Output[[]*MfaDuo]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o MfaDuoArrayOutput) Index(i pulumi.IntInput) MfaDuoOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *MfaDuo {
 		return vs[0].([]*MfaDuo)[vs[1].(int)]
@@ -454,12 +423,6 @@ func (o MfaDuoMapOutput) ToMfaDuoMapOutput() MfaDuoMapOutput {
 
 func (o MfaDuoMapOutput) ToMfaDuoMapOutputWithContext(ctx context.Context) MfaDuoMapOutput {
 	return o
-}
-
-func (o MfaDuoMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*MfaDuo] {
-	return pulumix.Output[map[string]*MfaDuo]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o MfaDuoMapOutput) MapIndex(k pulumi.StringInput) MfaDuoOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -131,12 +130,6 @@ func (o GetBackendKeysResultOutput) ToGetBackendKeysResultOutput() GetBackendKey
 
 func (o GetBackendKeysResultOutput) ToGetBackendKeysResultOutputWithContext(ctx context.Context) GetBackendKeysResultOutput {
 	return o
-}
-
-func (o GetBackendKeysResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetBackendKeysResult] {
-	return pulumix.Output[GetBackendKeysResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetBackendKeysResultOutput) Backend() pulumi.StringOutput {

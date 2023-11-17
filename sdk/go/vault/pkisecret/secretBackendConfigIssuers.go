@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Allows setting the value of the default issuer. For more information, see the
@@ -222,12 +221,6 @@ func (i *SecretBackendConfigIssuers) ToSecretBackendConfigIssuersOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConfigIssuersOutput)
 }
 
-func (i *SecretBackendConfigIssuers) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConfigIssuers] {
-	return pulumix.Output[*SecretBackendConfigIssuers]{
-		OutputState: i.ToSecretBackendConfigIssuersOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretBackendConfigIssuersArrayInput is an input type that accepts SecretBackendConfigIssuersArray and SecretBackendConfigIssuersArrayOutput values.
 // You can construct a concrete instance of `SecretBackendConfigIssuersArrayInput` via:
 //
@@ -251,12 +244,6 @@ func (i SecretBackendConfigIssuersArray) ToSecretBackendConfigIssuersArrayOutput
 
 func (i SecretBackendConfigIssuersArray) ToSecretBackendConfigIssuersArrayOutputWithContext(ctx context.Context) SecretBackendConfigIssuersArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConfigIssuersArrayOutput)
-}
-
-func (i SecretBackendConfigIssuersArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendConfigIssuers] {
-	return pulumix.Output[[]*SecretBackendConfigIssuers]{
-		OutputState: i.ToSecretBackendConfigIssuersArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SecretBackendConfigIssuersMapInput is an input type that accepts SecretBackendConfigIssuersMap and SecretBackendConfigIssuersMapOutput values.
@@ -284,12 +271,6 @@ func (i SecretBackendConfigIssuersMap) ToSecretBackendConfigIssuersMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConfigIssuersMapOutput)
 }
 
-func (i SecretBackendConfigIssuersMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendConfigIssuers] {
-	return pulumix.Output[map[string]*SecretBackendConfigIssuers]{
-		OutputState: i.ToSecretBackendConfigIssuersMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendConfigIssuersOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConfigIssuersOutput) ElementType() reflect.Type {
@@ -302,12 +283,6 @@ func (o SecretBackendConfigIssuersOutput) ToSecretBackendConfigIssuersOutput() S
 
 func (o SecretBackendConfigIssuersOutput) ToSecretBackendConfigIssuersOutputWithContext(ctx context.Context) SecretBackendConfigIssuersOutput {
 	return o
-}
-
-func (o SecretBackendConfigIssuersOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConfigIssuers] {
-	return pulumix.Output[*SecretBackendConfigIssuers]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The path the PKI secret backend is mounted at, with no
@@ -349,12 +324,6 @@ func (o SecretBackendConfigIssuersArrayOutput) ToSecretBackendConfigIssuersArray
 	return o
 }
 
-func (o SecretBackendConfigIssuersArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendConfigIssuers] {
-	return pulumix.Output[[]*SecretBackendConfigIssuers]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SecretBackendConfigIssuersArrayOutput) Index(i pulumi.IntInput) SecretBackendConfigIssuersOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackendConfigIssuers {
 		return vs[0].([]*SecretBackendConfigIssuers)[vs[1].(int)]
@@ -373,12 +342,6 @@ func (o SecretBackendConfigIssuersMapOutput) ToSecretBackendConfigIssuersMapOutp
 
 func (o SecretBackendConfigIssuersMapOutput) ToSecretBackendConfigIssuersMapOutputWithContext(ctx context.Context) SecretBackendConfigIssuersMapOutput {
 	return o
-}
-
-func (o SecretBackendConfigIssuersMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendConfigIssuers] {
-	return pulumix.Output[map[string]*SecretBackendConfigIssuers]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendConfigIssuersMapOutput) MapIndex(k pulumi.StringInput) SecretBackendConfigIssuersOutput {

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -197,12 +196,6 @@ func (i *AuthBackendCert) ToAuthBackendCertOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendCertOutput)
 }
 
-func (i *AuthBackendCert) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendCert] {
-	return pulumix.Output[*AuthBackendCert]{
-		OutputState: i.ToAuthBackendCertOutputWithContext(ctx).OutputState,
-	}
-}
-
 // AuthBackendCertArrayInput is an input type that accepts AuthBackendCertArray and AuthBackendCertArrayOutput values.
 // You can construct a concrete instance of `AuthBackendCertArrayInput` via:
 //
@@ -226,12 +219,6 @@ func (i AuthBackendCertArray) ToAuthBackendCertArrayOutput() AuthBackendCertArra
 
 func (i AuthBackendCertArray) ToAuthBackendCertArrayOutputWithContext(ctx context.Context) AuthBackendCertArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendCertArrayOutput)
-}
-
-func (i AuthBackendCertArray) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackendCert] {
-	return pulumix.Output[[]*AuthBackendCert]{
-		OutputState: i.ToAuthBackendCertArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // AuthBackendCertMapInput is an input type that accepts AuthBackendCertMap and AuthBackendCertMapOutput values.
@@ -259,12 +246,6 @@ func (i AuthBackendCertMap) ToAuthBackendCertMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendCertMapOutput)
 }
 
-func (i AuthBackendCertMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackendCert] {
-	return pulumix.Output[map[string]*AuthBackendCert]{
-		OutputState: i.ToAuthBackendCertMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type AuthBackendCertOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendCertOutput) ElementType() reflect.Type {
@@ -277,12 +258,6 @@ func (o AuthBackendCertOutput) ToAuthBackendCertOutput() AuthBackendCertOutput {
 
 func (o AuthBackendCertOutput) ToAuthBackendCertOutputWithContext(ctx context.Context) AuthBackendCertOutput {
 	return o
-}
-
-func (o AuthBackendCertOutput) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendCert] {
-	return pulumix.Output[*AuthBackendCert]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The  Base64 encoded AWS Public key required to
@@ -333,12 +308,6 @@ func (o AuthBackendCertArrayOutput) ToAuthBackendCertArrayOutputWithContext(ctx 
 	return o
 }
 
-func (o AuthBackendCertArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackendCert] {
-	return pulumix.Output[[]*AuthBackendCert]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o AuthBackendCertArrayOutput) Index(i pulumi.IntInput) AuthBackendCertOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AuthBackendCert {
 		return vs[0].([]*AuthBackendCert)[vs[1].(int)]
@@ -357,12 +326,6 @@ func (o AuthBackendCertMapOutput) ToAuthBackendCertMapOutput() AuthBackendCertMa
 
 func (o AuthBackendCertMapOutput) ToAuthBackendCertMapOutputWithContext(ctx context.Context) AuthBackendCertMapOutput {
 	return o
-}
-
-func (o AuthBackendCertMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackendCert] {
-	return pulumix.Output[map[string]*AuthBackendCert]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AuthBackendCertMapOutput) MapIndex(k pulumi.StringInput) AuthBackendCertOutput {

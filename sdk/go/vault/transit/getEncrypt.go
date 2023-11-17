@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // This is a data source which can be used to encrypt plaintext using a Vault Transit key.
@@ -97,12 +96,6 @@ func (o GetEncryptResultOutput) ToGetEncryptResultOutput() GetEncryptResultOutpu
 
 func (o GetEncryptResultOutput) ToGetEncryptResultOutputWithContext(ctx context.Context) GetEncryptResultOutput {
 	return o
-}
-
-func (o GetEncryptResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetEncryptResult] {
-	return pulumix.Output[GetEncryptResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetEncryptResultOutput) Backend() pulumi.StringOutput {

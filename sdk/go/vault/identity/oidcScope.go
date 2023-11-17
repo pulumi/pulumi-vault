@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages OIDC Scopes in a Vault server. See the [Vault documentation](https://www.vaultproject.io/api-docs/secret/identity/oidc-provider#create-or-update-a-scope)
@@ -180,12 +179,6 @@ func (i *OidcScope) ToOidcScopeOutputWithContext(ctx context.Context) OidcScopeO
 	return pulumi.ToOutputWithContext(ctx, i).(OidcScopeOutput)
 }
 
-func (i *OidcScope) ToOutput(ctx context.Context) pulumix.Output[*OidcScope] {
-	return pulumix.Output[*OidcScope]{
-		OutputState: i.ToOidcScopeOutputWithContext(ctx).OutputState,
-	}
-}
-
 // OidcScopeArrayInput is an input type that accepts OidcScopeArray and OidcScopeArrayOutput values.
 // You can construct a concrete instance of `OidcScopeArrayInput` via:
 //
@@ -209,12 +202,6 @@ func (i OidcScopeArray) ToOidcScopeArrayOutput() OidcScopeArrayOutput {
 
 func (i OidcScopeArray) ToOidcScopeArrayOutputWithContext(ctx context.Context) OidcScopeArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OidcScopeArrayOutput)
-}
-
-func (i OidcScopeArray) ToOutput(ctx context.Context) pulumix.Output[[]*OidcScope] {
-	return pulumix.Output[[]*OidcScope]{
-		OutputState: i.ToOidcScopeArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // OidcScopeMapInput is an input type that accepts OidcScopeMap and OidcScopeMapOutput values.
@@ -242,12 +229,6 @@ func (i OidcScopeMap) ToOidcScopeMapOutputWithContext(ctx context.Context) OidcS
 	return pulumi.ToOutputWithContext(ctx, i).(OidcScopeMapOutput)
 }
 
-func (i OidcScopeMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*OidcScope] {
-	return pulumix.Output[map[string]*OidcScope]{
-		OutputState: i.ToOidcScopeMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type OidcScopeOutput struct{ *pulumi.OutputState }
 
 func (OidcScopeOutput) ElementType() reflect.Type {
@@ -260,12 +241,6 @@ func (o OidcScopeOutput) ToOidcScopeOutput() OidcScopeOutput {
 
 func (o OidcScopeOutput) ToOidcScopeOutputWithContext(ctx context.Context) OidcScopeOutput {
 	return o
-}
-
-func (o OidcScopeOutput) ToOutput(ctx context.Context) pulumix.Output[*OidcScope] {
-	return pulumix.Output[*OidcScope]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A description of the scope.
@@ -305,12 +280,6 @@ func (o OidcScopeArrayOutput) ToOidcScopeArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o OidcScopeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*OidcScope] {
-	return pulumix.Output[[]*OidcScope]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o OidcScopeArrayOutput) Index(i pulumi.IntInput) OidcScopeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *OidcScope {
 		return vs[0].([]*OidcScope)[vs[1].(int)]
@@ -329,12 +298,6 @@ func (o OidcScopeMapOutput) ToOidcScopeMapOutput() OidcScopeMapOutput {
 
 func (o OidcScopeMapOutput) ToOidcScopeMapOutputWithContext(ctx context.Context) OidcScopeMapOutput {
 	return o
-}
-
-func (o OidcScopeMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*OidcScope] {
-	return pulumix.Output[map[string]*OidcScope]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o OidcScopeMapOutput) MapIndex(k pulumi.StringInput) OidcScopeOutput {

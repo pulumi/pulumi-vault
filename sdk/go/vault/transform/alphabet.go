@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // This resource supports the "/transform/alphabet/{name}" Vault endpoint.
@@ -183,12 +182,6 @@ func (i *Alphabet) ToAlphabetOutputWithContext(ctx context.Context) AlphabetOutp
 	return pulumi.ToOutputWithContext(ctx, i).(AlphabetOutput)
 }
 
-func (i *Alphabet) ToOutput(ctx context.Context) pulumix.Output[*Alphabet] {
-	return pulumix.Output[*Alphabet]{
-		OutputState: i.ToAlphabetOutputWithContext(ctx).OutputState,
-	}
-}
-
 // AlphabetArrayInput is an input type that accepts AlphabetArray and AlphabetArrayOutput values.
 // You can construct a concrete instance of `AlphabetArrayInput` via:
 //
@@ -212,12 +205,6 @@ func (i AlphabetArray) ToAlphabetArrayOutput() AlphabetArrayOutput {
 
 func (i AlphabetArray) ToAlphabetArrayOutputWithContext(ctx context.Context) AlphabetArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AlphabetArrayOutput)
-}
-
-func (i AlphabetArray) ToOutput(ctx context.Context) pulumix.Output[[]*Alphabet] {
-	return pulumix.Output[[]*Alphabet]{
-		OutputState: i.ToAlphabetArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // AlphabetMapInput is an input type that accepts AlphabetMap and AlphabetMapOutput values.
@@ -245,12 +232,6 @@ func (i AlphabetMap) ToAlphabetMapOutputWithContext(ctx context.Context) Alphabe
 	return pulumi.ToOutputWithContext(ctx, i).(AlphabetMapOutput)
 }
 
-func (i AlphabetMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Alphabet] {
-	return pulumix.Output[map[string]*Alphabet]{
-		OutputState: i.ToAlphabetMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type AlphabetOutput struct{ *pulumi.OutputState }
 
 func (AlphabetOutput) ElementType() reflect.Type {
@@ -263,12 +244,6 @@ func (o AlphabetOutput) ToAlphabetOutput() AlphabetOutput {
 
 func (o AlphabetOutput) ToAlphabetOutputWithContext(ctx context.Context) AlphabetOutput {
 	return o
-}
-
-func (o AlphabetOutput) ToOutput(ctx context.Context) pulumix.Output[*Alphabet] {
-	return pulumix.Output[*Alphabet]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A string of characters that contains the alphabet set.
@@ -308,12 +283,6 @@ func (o AlphabetArrayOutput) ToAlphabetArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o AlphabetArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Alphabet] {
-	return pulumix.Output[[]*Alphabet]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o AlphabetArrayOutput) Index(i pulumi.IntInput) AlphabetOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Alphabet {
 		return vs[0].([]*Alphabet)[vs[1].(int)]
@@ -332,12 +301,6 @@ func (o AlphabetMapOutput) ToAlphabetMapOutput() AlphabetMapOutput {
 
 func (o AlphabetMapOutput) ToAlphabetMapOutputWithContext(ctx context.Context) AlphabetMapOutput {
 	return o
-}
-
-func (o AlphabetMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Alphabet] {
-	return pulumix.Output[map[string]*Alphabet]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AlphabetMapOutput) MapIndex(k pulumi.StringInput) AlphabetOutput {

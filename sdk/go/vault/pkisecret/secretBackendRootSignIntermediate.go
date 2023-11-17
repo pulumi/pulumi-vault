@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates PKI certificate.
@@ -438,12 +437,6 @@ func (i *SecretBackendRootSignIntermediate) ToSecretBackendRootSignIntermediateO
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRootSignIntermediateOutput)
 }
 
-func (i *SecretBackendRootSignIntermediate) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendRootSignIntermediate] {
-	return pulumix.Output[*SecretBackendRootSignIntermediate]{
-		OutputState: i.ToSecretBackendRootSignIntermediateOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretBackendRootSignIntermediateArrayInput is an input type that accepts SecretBackendRootSignIntermediateArray and SecretBackendRootSignIntermediateArrayOutput values.
 // You can construct a concrete instance of `SecretBackendRootSignIntermediateArrayInput` via:
 //
@@ -467,12 +460,6 @@ func (i SecretBackendRootSignIntermediateArray) ToSecretBackendRootSignIntermedi
 
 func (i SecretBackendRootSignIntermediateArray) ToSecretBackendRootSignIntermediateArrayOutputWithContext(ctx context.Context) SecretBackendRootSignIntermediateArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRootSignIntermediateArrayOutput)
-}
-
-func (i SecretBackendRootSignIntermediateArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendRootSignIntermediate] {
-	return pulumix.Output[[]*SecretBackendRootSignIntermediate]{
-		OutputState: i.ToSecretBackendRootSignIntermediateArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SecretBackendRootSignIntermediateMapInput is an input type that accepts SecretBackendRootSignIntermediateMap and SecretBackendRootSignIntermediateMapOutput values.
@@ -500,12 +487,6 @@ func (i SecretBackendRootSignIntermediateMap) ToSecretBackendRootSignIntermediat
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRootSignIntermediateMapOutput)
 }
 
-func (i SecretBackendRootSignIntermediateMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendRootSignIntermediate] {
-	return pulumix.Output[map[string]*SecretBackendRootSignIntermediate]{
-		OutputState: i.ToSecretBackendRootSignIntermediateMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendRootSignIntermediateOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendRootSignIntermediateOutput) ElementType() reflect.Type {
@@ -518,12 +499,6 @@ func (o SecretBackendRootSignIntermediateOutput) ToSecretBackendRootSignIntermed
 
 func (o SecretBackendRootSignIntermediateOutput) ToSecretBackendRootSignIntermediateOutputWithContext(ctx context.Context) SecretBackendRootSignIntermediateOutput {
 	return o
-}
-
-func (o SecretBackendRootSignIntermediateOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendRootSignIntermediate] {
-	return pulumix.Output[*SecretBackendRootSignIntermediate]{
-		OutputState: o.OutputState,
-	}
 }
 
 // List of alternative names
@@ -694,12 +669,6 @@ func (o SecretBackendRootSignIntermediateArrayOutput) ToSecretBackendRootSignInt
 	return o
 }
 
-func (o SecretBackendRootSignIntermediateArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendRootSignIntermediate] {
-	return pulumix.Output[[]*SecretBackendRootSignIntermediate]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SecretBackendRootSignIntermediateArrayOutput) Index(i pulumi.IntInput) SecretBackendRootSignIntermediateOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackendRootSignIntermediate {
 		return vs[0].([]*SecretBackendRootSignIntermediate)[vs[1].(int)]
@@ -718,12 +687,6 @@ func (o SecretBackendRootSignIntermediateMapOutput) ToSecretBackendRootSignInter
 
 func (o SecretBackendRootSignIntermediateMapOutput) ToSecretBackendRootSignIntermediateMapOutputWithContext(ctx context.Context) SecretBackendRootSignIntermediateMapOutput {
 	return o
-}
-
-func (o SecretBackendRootSignIntermediateMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendRootSignIntermediate] {
-	return pulumix.Output[map[string]*SecretBackendRootSignIntermediate]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendRootSignIntermediateMapOutput) MapIndex(k pulumi.StringInput) SecretBackendRootSignIntermediateOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetDynamicCredentials(ctx *pulumi.Context, args *GetDynamicCredentialsArgs, opts ...pulumi.InvokeOption) (*GetDynamicCredentialsResult, error) {
@@ -81,12 +80,6 @@ func (o GetDynamicCredentialsResultOutput) ToGetDynamicCredentialsResultOutput()
 
 func (o GetDynamicCredentialsResultOutput) ToGetDynamicCredentialsResultOutputWithContext(ctx context.Context) GetDynamicCredentialsResultOutput {
 	return o
-}
-
-func (o GetDynamicCredentialsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetDynamicCredentialsResult] {
-	return pulumix.Output[GetDynamicCredentialsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetDynamicCredentialsResultOutput) DistinguishedNames() pulumi.StringArrayOutput {

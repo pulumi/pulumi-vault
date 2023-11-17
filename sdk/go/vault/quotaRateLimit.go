@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manage rate limit quotas which enforce API rate limiting using a token bucket algorithm.
@@ -253,12 +252,6 @@ func (i *QuotaRateLimit) ToQuotaRateLimitOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(QuotaRateLimitOutput)
 }
 
-func (i *QuotaRateLimit) ToOutput(ctx context.Context) pulumix.Output[*QuotaRateLimit] {
-	return pulumix.Output[*QuotaRateLimit]{
-		OutputState: i.ToQuotaRateLimitOutputWithContext(ctx).OutputState,
-	}
-}
-
 // QuotaRateLimitArrayInput is an input type that accepts QuotaRateLimitArray and QuotaRateLimitArrayOutput values.
 // You can construct a concrete instance of `QuotaRateLimitArrayInput` via:
 //
@@ -282,12 +275,6 @@ func (i QuotaRateLimitArray) ToQuotaRateLimitArrayOutput() QuotaRateLimitArrayOu
 
 func (i QuotaRateLimitArray) ToQuotaRateLimitArrayOutputWithContext(ctx context.Context) QuotaRateLimitArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(QuotaRateLimitArrayOutput)
-}
-
-func (i QuotaRateLimitArray) ToOutput(ctx context.Context) pulumix.Output[[]*QuotaRateLimit] {
-	return pulumix.Output[[]*QuotaRateLimit]{
-		OutputState: i.ToQuotaRateLimitArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // QuotaRateLimitMapInput is an input type that accepts QuotaRateLimitMap and QuotaRateLimitMapOutput values.
@@ -315,12 +302,6 @@ func (i QuotaRateLimitMap) ToQuotaRateLimitMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(QuotaRateLimitMapOutput)
 }
 
-func (i QuotaRateLimitMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*QuotaRateLimit] {
-	return pulumix.Output[map[string]*QuotaRateLimit]{
-		OutputState: i.ToQuotaRateLimitMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type QuotaRateLimitOutput struct{ *pulumi.OutputState }
 
 func (QuotaRateLimitOutput) ElementType() reflect.Type {
@@ -333,12 +314,6 @@ func (o QuotaRateLimitOutput) ToQuotaRateLimitOutput() QuotaRateLimitOutput {
 
 func (o QuotaRateLimitOutput) ToQuotaRateLimitOutputWithContext(ctx context.Context) QuotaRateLimitOutput {
 	return o
-}
-
-func (o QuotaRateLimitOutput) ToOutput(ctx context.Context) pulumix.Output[*QuotaRateLimit] {
-	return pulumix.Output[*QuotaRateLimit]{
-		OutputState: o.OutputState,
-	}
 }
 
 // If set, when a client reaches a rate limit threshold, the client will
@@ -400,12 +375,6 @@ func (o QuotaRateLimitArrayOutput) ToQuotaRateLimitArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o QuotaRateLimitArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*QuotaRateLimit] {
-	return pulumix.Output[[]*QuotaRateLimit]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o QuotaRateLimitArrayOutput) Index(i pulumi.IntInput) QuotaRateLimitOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *QuotaRateLimit {
 		return vs[0].([]*QuotaRateLimit)[vs[1].(int)]
@@ -424,12 +393,6 @@ func (o QuotaRateLimitMapOutput) ToQuotaRateLimitMapOutput() QuotaRateLimitMapOu
 
 func (o QuotaRateLimitMapOutput) ToQuotaRateLimitMapOutputWithContext(ctx context.Context) QuotaRateLimitMapOutput {
 	return o
-}
-
-func (o QuotaRateLimitMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*QuotaRateLimit] {
-	return pulumix.Output[map[string]*QuotaRateLimit]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o QuotaRateLimitMapOutput) MapIndex(k pulumi.StringInput) QuotaRateLimitOutput {

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages policies for an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
@@ -267,12 +266,6 @@ func (i *GroupPolicies) ToGroupPoliciesOutputWithContext(ctx context.Context) Gr
 	return pulumi.ToOutputWithContext(ctx, i).(GroupPoliciesOutput)
 }
 
-func (i *GroupPolicies) ToOutput(ctx context.Context) pulumix.Output[*GroupPolicies] {
-	return pulumix.Output[*GroupPolicies]{
-		OutputState: i.ToGroupPoliciesOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GroupPoliciesArrayInput is an input type that accepts GroupPoliciesArray and GroupPoliciesArrayOutput values.
 // You can construct a concrete instance of `GroupPoliciesArrayInput` via:
 //
@@ -296,12 +289,6 @@ func (i GroupPoliciesArray) ToGroupPoliciesArrayOutput() GroupPoliciesArrayOutpu
 
 func (i GroupPoliciesArray) ToGroupPoliciesArrayOutputWithContext(ctx context.Context) GroupPoliciesArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GroupPoliciesArrayOutput)
-}
-
-func (i GroupPoliciesArray) ToOutput(ctx context.Context) pulumix.Output[[]*GroupPolicies] {
-	return pulumix.Output[[]*GroupPolicies]{
-		OutputState: i.ToGroupPoliciesArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GroupPoliciesMapInput is an input type that accepts GroupPoliciesMap and GroupPoliciesMapOutput values.
@@ -329,12 +316,6 @@ func (i GroupPoliciesMap) ToGroupPoliciesMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(GroupPoliciesMapOutput)
 }
 
-func (i GroupPoliciesMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*GroupPolicies] {
-	return pulumix.Output[map[string]*GroupPolicies]{
-		OutputState: i.ToGroupPoliciesMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GroupPoliciesOutput struct{ *pulumi.OutputState }
 
 func (GroupPoliciesOutput) ElementType() reflect.Type {
@@ -347,12 +328,6 @@ func (o GroupPoliciesOutput) ToGroupPoliciesOutput() GroupPoliciesOutput {
 
 func (o GroupPoliciesOutput) ToGroupPoliciesOutputWithContext(ctx context.Context) GroupPoliciesOutput {
 	return o
-}
-
-func (o GroupPoliciesOutput) ToOutput(ctx context.Context) pulumix.Output[*GroupPolicies] {
-	return pulumix.Output[*GroupPolicies]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Defaults to `true`.
@@ -401,12 +376,6 @@ func (o GroupPoliciesArrayOutput) ToGroupPoliciesArrayOutputWithContext(ctx cont
 	return o
 }
 
-func (o GroupPoliciesArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*GroupPolicies] {
-	return pulumix.Output[[]*GroupPolicies]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GroupPoliciesArrayOutput) Index(i pulumi.IntInput) GroupPoliciesOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *GroupPolicies {
 		return vs[0].([]*GroupPolicies)[vs[1].(int)]
@@ -425,12 +394,6 @@ func (o GroupPoliciesMapOutput) ToGroupPoliciesMapOutput() GroupPoliciesMapOutpu
 
 func (o GroupPoliciesMapOutput) ToGroupPoliciesMapOutputWithContext(ctx context.Context) GroupPoliciesMapOutput {
 	return o
-}
-
-func (o GroupPoliciesMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*GroupPolicies] {
-	return pulumix.Output[map[string]*GroupPolicies]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GroupPoliciesMapOutput) MapIndex(k pulumi.StringInput) GroupPoliciesOutput {
