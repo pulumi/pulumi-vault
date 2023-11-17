@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -358,12 +357,6 @@ func (i *SecretBackendCert) ToSecretBackendCertOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendCertOutput)
 }
 
-func (i *SecretBackendCert) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendCert] {
-	return pulumix.Output[*SecretBackendCert]{
-		OutputState: i.ToSecretBackendCertOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretBackendCertArrayInput is an input type that accepts SecretBackendCertArray and SecretBackendCertArrayOutput values.
 // You can construct a concrete instance of `SecretBackendCertArrayInput` via:
 //
@@ -387,12 +380,6 @@ func (i SecretBackendCertArray) ToSecretBackendCertArrayOutput() SecretBackendCe
 
 func (i SecretBackendCertArray) ToSecretBackendCertArrayOutputWithContext(ctx context.Context) SecretBackendCertArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendCertArrayOutput)
-}
-
-func (i SecretBackendCertArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendCert] {
-	return pulumix.Output[[]*SecretBackendCert]{
-		OutputState: i.ToSecretBackendCertArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SecretBackendCertMapInput is an input type that accepts SecretBackendCertMap and SecretBackendCertMapOutput values.
@@ -420,12 +407,6 @@ func (i SecretBackendCertMap) ToSecretBackendCertMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendCertMapOutput)
 }
 
-func (i SecretBackendCertMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendCert] {
-	return pulumix.Output[map[string]*SecretBackendCert]{
-		OutputState: i.ToSecretBackendCertMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendCertOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendCertOutput) ElementType() reflect.Type {
@@ -438,12 +419,6 @@ func (o SecretBackendCertOutput) ToSecretBackendCertOutput() SecretBackendCertOu
 
 func (o SecretBackendCertOutput) ToSecretBackendCertOutputWithContext(ctx context.Context) SecretBackendCertOutput {
 	return o
-}
-
-func (o SecretBackendCertOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendCert] {
-	return pulumix.Output[*SecretBackendCert]{
-		OutputState: o.OutputState,
-	}
 }
 
 // List of alternative names
@@ -588,12 +563,6 @@ func (o SecretBackendCertArrayOutput) ToSecretBackendCertArrayOutputWithContext(
 	return o
 }
 
-func (o SecretBackendCertArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendCert] {
-	return pulumix.Output[[]*SecretBackendCert]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SecretBackendCertArrayOutput) Index(i pulumi.IntInput) SecretBackendCertOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackendCert {
 		return vs[0].([]*SecretBackendCert)[vs[1].(int)]
@@ -612,12 +581,6 @@ func (o SecretBackendCertMapOutput) ToSecretBackendCertMapOutput() SecretBackend
 
 func (o SecretBackendCertMapOutput) ToSecretBackendCertMapOutputWithContext(ctx context.Context) SecretBackendCertMapOutput {
 	return o
-}
-
-func (o SecretBackendCertMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendCert] {
-	return pulumix.Output[map[string]*SecretBackendCert]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendCertMapOutput) MapIndex(k pulumi.StringInput) SecretBackendCertOutput {

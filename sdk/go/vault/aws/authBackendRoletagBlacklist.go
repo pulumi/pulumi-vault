@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Configures the periodic tidying operation of the blacklisted role tag entries.
@@ -200,12 +199,6 @@ func (i *AuthBackendRoletagBlacklist) ToAuthBackendRoletagBlacklistOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoletagBlacklistOutput)
 }
 
-func (i *AuthBackendRoletagBlacklist) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendRoletagBlacklist] {
-	return pulumix.Output[*AuthBackendRoletagBlacklist]{
-		OutputState: i.ToAuthBackendRoletagBlacklistOutputWithContext(ctx).OutputState,
-	}
-}
-
 // AuthBackendRoletagBlacklistArrayInput is an input type that accepts AuthBackendRoletagBlacklistArray and AuthBackendRoletagBlacklistArrayOutput values.
 // You can construct a concrete instance of `AuthBackendRoletagBlacklistArrayInput` via:
 //
@@ -229,12 +222,6 @@ func (i AuthBackendRoletagBlacklistArray) ToAuthBackendRoletagBlacklistArrayOutp
 
 func (i AuthBackendRoletagBlacklistArray) ToAuthBackendRoletagBlacklistArrayOutputWithContext(ctx context.Context) AuthBackendRoletagBlacklistArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoletagBlacklistArrayOutput)
-}
-
-func (i AuthBackendRoletagBlacklistArray) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackendRoletagBlacklist] {
-	return pulumix.Output[[]*AuthBackendRoletagBlacklist]{
-		OutputState: i.ToAuthBackendRoletagBlacklistArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // AuthBackendRoletagBlacklistMapInput is an input type that accepts AuthBackendRoletagBlacklistMap and AuthBackendRoletagBlacklistMapOutput values.
@@ -262,12 +249,6 @@ func (i AuthBackendRoletagBlacklistMap) ToAuthBackendRoletagBlacklistMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoletagBlacklistMapOutput)
 }
 
-func (i AuthBackendRoletagBlacklistMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackendRoletagBlacklist] {
-	return pulumix.Output[map[string]*AuthBackendRoletagBlacklist]{
-		OutputState: i.ToAuthBackendRoletagBlacklistMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type AuthBackendRoletagBlacklistOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendRoletagBlacklistOutput) ElementType() reflect.Type {
@@ -280,12 +261,6 @@ func (o AuthBackendRoletagBlacklistOutput) ToAuthBackendRoletagBlacklistOutput()
 
 func (o AuthBackendRoletagBlacklistOutput) ToAuthBackendRoletagBlacklistOutputWithContext(ctx context.Context) AuthBackendRoletagBlacklistOutput {
 	return o
-}
-
-func (o AuthBackendRoletagBlacklistOutput) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendRoletagBlacklist] {
-	return pulumix.Output[*AuthBackendRoletagBlacklist]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The path the AWS auth backend being configured was
@@ -329,12 +304,6 @@ func (o AuthBackendRoletagBlacklistArrayOutput) ToAuthBackendRoletagBlacklistArr
 	return o
 }
 
-func (o AuthBackendRoletagBlacklistArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackendRoletagBlacklist] {
-	return pulumix.Output[[]*AuthBackendRoletagBlacklist]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o AuthBackendRoletagBlacklistArrayOutput) Index(i pulumi.IntInput) AuthBackendRoletagBlacklistOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AuthBackendRoletagBlacklist {
 		return vs[0].([]*AuthBackendRoletagBlacklist)[vs[1].(int)]
@@ -353,12 +322,6 @@ func (o AuthBackendRoletagBlacklistMapOutput) ToAuthBackendRoletagBlacklistMapOu
 
 func (o AuthBackendRoletagBlacklistMapOutput) ToAuthBackendRoletagBlacklistMapOutputWithContext(ctx context.Context) AuthBackendRoletagBlacklistMapOutput {
 	return o
-}
-
-func (o AuthBackendRoletagBlacklistMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackendRoletagBlacklist] {
-	return pulumix.Output[map[string]*AuthBackendRoletagBlacklist]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AuthBackendRoletagBlacklistMapOutput) MapIndex(k pulumi.StringInput) AuthBackendRoletagBlacklistOutput {

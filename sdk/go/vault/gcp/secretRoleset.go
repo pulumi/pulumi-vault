@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates a Roleset in the [GCP Secrets Engine](https://www.vaultproject.io/docs/secrets/gcp/index.html) for Vault.
@@ -262,12 +261,6 @@ func (i *SecretRoleset) ToSecretRolesetOutputWithContext(ctx context.Context) Se
 	return pulumi.ToOutputWithContext(ctx, i).(SecretRolesetOutput)
 }
 
-func (i *SecretRoleset) ToOutput(ctx context.Context) pulumix.Output[*SecretRoleset] {
-	return pulumix.Output[*SecretRoleset]{
-		OutputState: i.ToSecretRolesetOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretRolesetArrayInput is an input type that accepts SecretRolesetArray and SecretRolesetArrayOutput values.
 // You can construct a concrete instance of `SecretRolesetArrayInput` via:
 //
@@ -291,12 +284,6 @@ func (i SecretRolesetArray) ToSecretRolesetArrayOutput() SecretRolesetArrayOutpu
 
 func (i SecretRolesetArray) ToSecretRolesetArrayOutputWithContext(ctx context.Context) SecretRolesetArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretRolesetArrayOutput)
-}
-
-func (i SecretRolesetArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretRoleset] {
-	return pulumix.Output[[]*SecretRoleset]{
-		OutputState: i.ToSecretRolesetArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SecretRolesetMapInput is an input type that accepts SecretRolesetMap and SecretRolesetMapOutput values.
@@ -324,12 +311,6 @@ func (i SecretRolesetMap) ToSecretRolesetMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(SecretRolesetMapOutput)
 }
 
-func (i SecretRolesetMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretRoleset] {
-	return pulumix.Output[map[string]*SecretRoleset]{
-		OutputState: i.ToSecretRolesetMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretRolesetOutput struct{ *pulumi.OutputState }
 
 func (SecretRolesetOutput) ElementType() reflect.Type {
@@ -342,12 +323,6 @@ func (o SecretRolesetOutput) ToSecretRolesetOutput() SecretRolesetOutput {
 
 func (o SecretRolesetOutput) ToSecretRolesetOutputWithContext(ctx context.Context) SecretRolesetOutput {
 	return o
-}
-
-func (o SecretRolesetOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretRoleset] {
-	return pulumix.Output[*SecretRoleset]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Path where the GCP Secrets Engine is mounted
@@ -407,12 +382,6 @@ func (o SecretRolesetArrayOutput) ToSecretRolesetArrayOutputWithContext(ctx cont
 	return o
 }
 
-func (o SecretRolesetArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretRoleset] {
-	return pulumix.Output[[]*SecretRoleset]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SecretRolesetArrayOutput) Index(i pulumi.IntInput) SecretRolesetOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretRoleset {
 		return vs[0].([]*SecretRoleset)[vs[1].(int)]
@@ -431,12 +400,6 @@ func (o SecretRolesetMapOutput) ToSecretRolesetMapOutput() SecretRolesetMapOutpu
 
 func (o SecretRolesetMapOutput) ToSecretRolesetMapOutputWithContext(ctx context.Context) SecretRolesetMapOutput {
 	return o
-}
-
-func (o SecretRolesetMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretRoleset] {
-	return pulumix.Output[map[string]*SecretRoleset]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretRolesetMapOutput) MapIndex(k pulumi.StringInput) SecretRolesetOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetBackendIssuer(ctx *pulumi.Context, args *GetBackendIssuerArgs, opts ...pulumi.InvokeOption) (*GetBackendIssuerResult, error) {
@@ -106,12 +105,6 @@ func (o GetBackendIssuerResultOutput) ToGetBackendIssuerResultOutput() GetBacken
 
 func (o GetBackendIssuerResultOutput) ToGetBackendIssuerResultOutputWithContext(ctx context.Context) GetBackendIssuerResultOutput {
 	return o
-}
-
-func (o GetBackendIssuerResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetBackendIssuerResult] {
-	return pulumix.Output[GetBackendIssuerResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetBackendIssuerResultOutput) Backend() pulumi.StringOutput {

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -385,12 +384,6 @@ func (i *SecretBackendSign) ToSecretBackendSignOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendSignOutput)
 }
 
-func (i *SecretBackendSign) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendSign] {
-	return pulumix.Output[*SecretBackendSign]{
-		OutputState: i.ToSecretBackendSignOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretBackendSignArrayInput is an input type that accepts SecretBackendSignArray and SecretBackendSignArrayOutput values.
 // You can construct a concrete instance of `SecretBackendSignArrayInput` via:
 //
@@ -414,12 +407,6 @@ func (i SecretBackendSignArray) ToSecretBackendSignArrayOutput() SecretBackendSi
 
 func (i SecretBackendSignArray) ToSecretBackendSignArrayOutputWithContext(ctx context.Context) SecretBackendSignArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendSignArrayOutput)
-}
-
-func (i SecretBackendSignArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendSign] {
-	return pulumix.Output[[]*SecretBackendSign]{
-		OutputState: i.ToSecretBackendSignArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SecretBackendSignMapInput is an input type that accepts SecretBackendSignMap and SecretBackendSignMapOutput values.
@@ -447,12 +434,6 @@ func (i SecretBackendSignMap) ToSecretBackendSignMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendSignMapOutput)
 }
 
-func (i SecretBackendSignMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendSign] {
-	return pulumix.Output[map[string]*SecretBackendSign]{
-		OutputState: i.ToSecretBackendSignMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendSignOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendSignOutput) ElementType() reflect.Type {
@@ -465,12 +446,6 @@ func (o SecretBackendSignOutput) ToSecretBackendSignOutput() SecretBackendSignOu
 
 func (o SecretBackendSignOutput) ToSecretBackendSignOutputWithContext(ctx context.Context) SecretBackendSignOutput {
 	return o
-}
-
-func (o SecretBackendSignOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendSign] {
-	return pulumix.Output[*SecretBackendSign]{
-		OutputState: o.OutputState,
-	}
 }
 
 // List of alternative names
@@ -605,12 +580,6 @@ func (o SecretBackendSignArrayOutput) ToSecretBackendSignArrayOutputWithContext(
 	return o
 }
 
-func (o SecretBackendSignArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendSign] {
-	return pulumix.Output[[]*SecretBackendSign]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SecretBackendSignArrayOutput) Index(i pulumi.IntInput) SecretBackendSignOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackendSign {
 		return vs[0].([]*SecretBackendSign)[vs[1].(int)]
@@ -629,12 +598,6 @@ func (o SecretBackendSignMapOutput) ToSecretBackendSignMapOutput() SecretBackend
 
 func (o SecretBackendSignMapOutput) ToSecretBackendSignMapOutputWithContext(ctx context.Context) SecretBackendSignMapOutput {
 	return o
-}
-
-func (o SecretBackendSignMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendSign] {
-	return pulumix.Output[map[string]*SecretBackendSign]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendSignMapOutput) MapIndex(k pulumi.StringInput) SecretBackendSignOutput {

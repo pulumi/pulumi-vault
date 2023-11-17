@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -286,12 +285,6 @@ func (i *OidcRole) ToOidcRoleOutputWithContext(ctx context.Context) OidcRoleOutp
 	return pulumi.ToOutputWithContext(ctx, i).(OidcRoleOutput)
 }
 
-func (i *OidcRole) ToOutput(ctx context.Context) pulumix.Output[*OidcRole] {
-	return pulumix.Output[*OidcRole]{
-		OutputState: i.ToOidcRoleOutputWithContext(ctx).OutputState,
-	}
-}
-
 // OidcRoleArrayInput is an input type that accepts OidcRoleArray and OidcRoleArrayOutput values.
 // You can construct a concrete instance of `OidcRoleArrayInput` via:
 //
@@ -315,12 +308,6 @@ func (i OidcRoleArray) ToOidcRoleArrayOutput() OidcRoleArrayOutput {
 
 func (i OidcRoleArray) ToOidcRoleArrayOutputWithContext(ctx context.Context) OidcRoleArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OidcRoleArrayOutput)
-}
-
-func (i OidcRoleArray) ToOutput(ctx context.Context) pulumix.Output[[]*OidcRole] {
-	return pulumix.Output[[]*OidcRole]{
-		OutputState: i.ToOidcRoleArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // OidcRoleMapInput is an input type that accepts OidcRoleMap and OidcRoleMapOutput values.
@@ -348,12 +335,6 @@ func (i OidcRoleMap) ToOidcRoleMapOutputWithContext(ctx context.Context) OidcRol
 	return pulumi.ToOutputWithContext(ctx, i).(OidcRoleMapOutput)
 }
 
-func (i OidcRoleMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*OidcRole] {
-	return pulumix.Output[map[string]*OidcRole]{
-		OutputState: i.ToOidcRoleMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type OidcRoleOutput struct{ *pulumi.OutputState }
 
 func (OidcRoleOutput) ElementType() reflect.Type {
@@ -366,12 +347,6 @@ func (o OidcRoleOutput) ToOidcRoleOutput() OidcRoleOutput {
 
 func (o OidcRoleOutput) ToOidcRoleOutputWithContext(ctx context.Context) OidcRoleOutput {
 	return o
-}
-
-func (o OidcRoleOutput) ToOutput(ctx context.Context) pulumix.Output[*OidcRole] {
-	return pulumix.Output[*OidcRole]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The value that will be included in the `aud` field of all the OIDC identity
@@ -426,12 +401,6 @@ func (o OidcRoleArrayOutput) ToOidcRoleArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o OidcRoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*OidcRole] {
-	return pulumix.Output[[]*OidcRole]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o OidcRoleArrayOutput) Index(i pulumi.IntInput) OidcRoleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *OidcRole {
 		return vs[0].([]*OidcRole)[vs[1].(int)]
@@ -450,12 +419,6 @@ func (o OidcRoleMapOutput) ToOidcRoleMapOutput() OidcRoleMapOutput {
 
 func (o OidcRoleMapOutput) ToOidcRoleMapOutputWithContext(ctx context.Context) OidcRoleMapOutput {
 	return o
-}
-
-func (o OidcRoleMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*OidcRole] {
-	return pulumix.Output[map[string]*OidcRole]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o OidcRoleMapOutput) MapIndex(k pulumi.StringInput) OidcRoleOutput {

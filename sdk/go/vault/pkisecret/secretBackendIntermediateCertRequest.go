@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -453,12 +452,6 @@ func (i *SecretBackendIntermediateCertRequest) ToSecretBackendIntermediateCertRe
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendIntermediateCertRequestOutput)
 }
 
-func (i *SecretBackendIntermediateCertRequest) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendIntermediateCertRequest] {
-	return pulumix.Output[*SecretBackendIntermediateCertRequest]{
-		OutputState: i.ToSecretBackendIntermediateCertRequestOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretBackendIntermediateCertRequestArrayInput is an input type that accepts SecretBackendIntermediateCertRequestArray and SecretBackendIntermediateCertRequestArrayOutput values.
 // You can construct a concrete instance of `SecretBackendIntermediateCertRequestArrayInput` via:
 //
@@ -482,12 +475,6 @@ func (i SecretBackendIntermediateCertRequestArray) ToSecretBackendIntermediateCe
 
 func (i SecretBackendIntermediateCertRequestArray) ToSecretBackendIntermediateCertRequestArrayOutputWithContext(ctx context.Context) SecretBackendIntermediateCertRequestArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendIntermediateCertRequestArrayOutput)
-}
-
-func (i SecretBackendIntermediateCertRequestArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendIntermediateCertRequest] {
-	return pulumix.Output[[]*SecretBackendIntermediateCertRequest]{
-		OutputState: i.ToSecretBackendIntermediateCertRequestArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SecretBackendIntermediateCertRequestMapInput is an input type that accepts SecretBackendIntermediateCertRequestMap and SecretBackendIntermediateCertRequestMapOutput values.
@@ -515,12 +502,6 @@ func (i SecretBackendIntermediateCertRequestMap) ToSecretBackendIntermediateCert
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendIntermediateCertRequestMapOutput)
 }
 
-func (i SecretBackendIntermediateCertRequestMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendIntermediateCertRequest] {
-	return pulumix.Output[map[string]*SecretBackendIntermediateCertRequest]{
-		OutputState: i.ToSecretBackendIntermediateCertRequestMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendIntermediateCertRequestOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendIntermediateCertRequestOutput) ElementType() reflect.Type {
@@ -533,12 +514,6 @@ func (o SecretBackendIntermediateCertRequestOutput) ToSecretBackendIntermediateC
 
 func (o SecretBackendIntermediateCertRequestOutput) ToSecretBackendIntermediateCertRequestOutputWithContext(ctx context.Context) SecretBackendIntermediateCertRequestOutput {
 	return o
-}
-
-func (o SecretBackendIntermediateCertRequestOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendIntermediateCertRequest] {
-	return pulumix.Output[*SecretBackendIntermediateCertRequest]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Adds a Basic Constraints extension with 'CA: true'.
@@ -710,12 +685,6 @@ func (o SecretBackendIntermediateCertRequestArrayOutput) ToSecretBackendIntermed
 	return o
 }
 
-func (o SecretBackendIntermediateCertRequestArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendIntermediateCertRequest] {
-	return pulumix.Output[[]*SecretBackendIntermediateCertRequest]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SecretBackendIntermediateCertRequestArrayOutput) Index(i pulumi.IntInput) SecretBackendIntermediateCertRequestOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackendIntermediateCertRequest {
 		return vs[0].([]*SecretBackendIntermediateCertRequest)[vs[1].(int)]
@@ -734,12 +703,6 @@ func (o SecretBackendIntermediateCertRequestMapOutput) ToSecretBackendIntermedia
 
 func (o SecretBackendIntermediateCertRequestMapOutput) ToSecretBackendIntermediateCertRequestMapOutputWithContext(ctx context.Context) SecretBackendIntermediateCertRequestMapOutput {
 	return o
-}
-
-func (o SecretBackendIntermediateCertRequestMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendIntermediateCertRequest] {
-	return pulumix.Output[map[string]*SecretBackendIntermediateCertRequest]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendIntermediateCertRequestMapOutput) MapIndex(k pulumi.StringInput) SecretBackendIntermediateCertRequestOutput {

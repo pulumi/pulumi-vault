@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 var _ = internal.GetEnvOrDefault
@@ -95,12 +94,6 @@ func (i AuthBackendTuneArgs) ToAuthBackendTuneOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendTuneOutput)
 }
 
-func (i AuthBackendTuneArgs) ToOutput(ctx context.Context) pulumix.Output[AuthBackendTune] {
-	return pulumix.Output[AuthBackendTune]{
-		OutputState: i.ToAuthBackendTuneOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i AuthBackendTuneArgs) ToAuthBackendTunePtrOutput() AuthBackendTunePtrOutput {
 	return i.ToAuthBackendTunePtrOutputWithContext(context.Background())
 }
@@ -142,12 +135,6 @@ func (i *authBackendTunePtrType) ToAuthBackendTunePtrOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendTunePtrOutput)
 }
 
-func (i *authBackendTunePtrType) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendTune] {
-	return pulumix.Output[*AuthBackendTune]{
-		OutputState: i.ToAuthBackendTunePtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type AuthBackendTuneOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendTuneOutput) ElementType() reflect.Type {
@@ -170,12 +157,6 @@ func (o AuthBackendTuneOutput) ToAuthBackendTunePtrOutputWithContext(ctx context
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v AuthBackendTune) *AuthBackendTune {
 		return &v
 	}).(AuthBackendTunePtrOutput)
-}
-
-func (o AuthBackendTuneOutput) ToOutput(ctx context.Context) pulumix.Output[AuthBackendTune] {
-	return pulumix.Output[AuthBackendTune]{
-		OutputState: o.OutputState,
-	}
 }
 
 // List of headers to whitelist and allowing
@@ -240,12 +221,6 @@ func (o AuthBackendTunePtrOutput) ToAuthBackendTunePtrOutput() AuthBackendTunePt
 
 func (o AuthBackendTunePtrOutput) ToAuthBackendTunePtrOutputWithContext(ctx context.Context) AuthBackendTunePtrOutput {
 	return o
-}
-
-func (o AuthBackendTunePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendTune] {
-	return pulumix.Output[*AuthBackendTune]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AuthBackendTunePtrOutput) Elem() AuthBackendTuneOutput {

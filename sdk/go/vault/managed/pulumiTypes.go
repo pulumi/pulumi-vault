@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 var _ = internal.GetEnvOrDefault
@@ -111,12 +110,6 @@ func (i KeysAwArgs) ToKeysAwOutputWithContext(ctx context.Context) KeysAwOutput 
 	return pulumi.ToOutputWithContext(ctx, i).(KeysAwOutput)
 }
 
-func (i KeysAwArgs) ToOutput(ctx context.Context) pulumix.Output[KeysAw] {
-	return pulumix.Output[KeysAw]{
-		OutputState: i.ToKeysAwOutputWithContext(ctx).OutputState,
-	}
-}
-
 // KeysAwArrayInput is an input type that accepts KeysAwArray and KeysAwArrayOutput values.
 // You can construct a concrete instance of `KeysAwArrayInput` via:
 //
@@ -142,12 +135,6 @@ func (i KeysAwArray) ToKeysAwArrayOutputWithContext(ctx context.Context) KeysAwA
 	return pulumi.ToOutputWithContext(ctx, i).(KeysAwArrayOutput)
 }
 
-func (i KeysAwArray) ToOutput(ctx context.Context) pulumix.Output[[]KeysAw] {
-	return pulumix.Output[[]KeysAw]{
-		OutputState: i.ToKeysAwArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type KeysAwOutput struct{ *pulumi.OutputState }
 
 func (KeysAwOutput) ElementType() reflect.Type {
@@ -160,12 +147,6 @@ func (o KeysAwOutput) ToKeysAwOutput() KeysAwOutput {
 
 func (o KeysAwOutput) ToKeysAwOutputWithContext(ctx context.Context) KeysAwOutput {
 	return o
-}
-
-func (o KeysAwOutput) ToOutput(ctx context.Context) pulumix.Output[KeysAw] {
-	return pulumix.Output[KeysAw]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The AWS access key to use.
@@ -256,12 +237,6 @@ func (o KeysAwArrayOutput) ToKeysAwArrayOutput() KeysAwArrayOutput {
 
 func (o KeysAwArrayOutput) ToKeysAwArrayOutputWithContext(ctx context.Context) KeysAwArrayOutput {
 	return o
-}
-
-func (o KeysAwArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]KeysAw] {
-	return pulumix.Output[[]KeysAw]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o KeysAwArrayOutput) Index(i pulumi.IntInput) KeysAwOutput {
@@ -369,12 +344,6 @@ func (i KeysAzureArgs) ToKeysAzureOutputWithContext(ctx context.Context) KeysAzu
 	return pulumi.ToOutputWithContext(ctx, i).(KeysAzureOutput)
 }
 
-func (i KeysAzureArgs) ToOutput(ctx context.Context) pulumix.Output[KeysAzure] {
-	return pulumix.Output[KeysAzure]{
-		OutputState: i.ToKeysAzureOutputWithContext(ctx).OutputState,
-	}
-}
-
 // KeysAzureArrayInput is an input type that accepts KeysAzureArray and KeysAzureArrayOutput values.
 // You can construct a concrete instance of `KeysAzureArrayInput` via:
 //
@@ -400,12 +369,6 @@ func (i KeysAzureArray) ToKeysAzureArrayOutputWithContext(ctx context.Context) K
 	return pulumi.ToOutputWithContext(ctx, i).(KeysAzureArrayOutput)
 }
 
-func (i KeysAzureArray) ToOutput(ctx context.Context) pulumix.Output[[]KeysAzure] {
-	return pulumix.Output[[]KeysAzure]{
-		OutputState: i.ToKeysAzureArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type KeysAzureOutput struct{ *pulumi.OutputState }
 
 func (KeysAzureOutput) ElementType() reflect.Type {
@@ -418,12 +381,6 @@ func (o KeysAzureOutput) ToKeysAzureOutput() KeysAzureOutput {
 
 func (o KeysAzureOutput) ToKeysAzureOutputWithContext(ctx context.Context) KeysAzureOutput {
 	return o
-}
-
-func (o KeysAzureOutput) ToOutput(ctx context.Context) pulumix.Output[KeysAzure] {
-	return pulumix.Output[KeysAzure]{
-		OutputState: o.OutputState,
-	}
 }
 
 // If no existing key can be found in
@@ -518,12 +475,6 @@ func (o KeysAzureArrayOutput) ToKeysAzureArrayOutput() KeysAzureArrayOutput {
 
 func (o KeysAzureArrayOutput) ToKeysAzureArrayOutputWithContext(ctx context.Context) KeysAzureArrayOutput {
 	return o
-}
-
-func (o KeysAzureArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]KeysAzure] {
-	return pulumix.Output[[]KeysAzure]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o KeysAzureArrayOutput) Index(i pulumi.IntInput) KeysAzureOutput {
@@ -645,12 +596,6 @@ func (i KeysPkcArgs) ToKeysPkcOutputWithContext(ctx context.Context) KeysPkcOutp
 	return pulumi.ToOutputWithContext(ctx, i).(KeysPkcOutput)
 }
 
-func (i KeysPkcArgs) ToOutput(ctx context.Context) pulumix.Output[KeysPkc] {
-	return pulumix.Output[KeysPkc]{
-		OutputState: i.ToKeysPkcOutputWithContext(ctx).OutputState,
-	}
-}
-
 // KeysPkcArrayInput is an input type that accepts KeysPkcArray and KeysPkcArrayOutput values.
 // You can construct a concrete instance of `KeysPkcArrayInput` via:
 //
@@ -676,12 +621,6 @@ func (i KeysPkcArray) ToKeysPkcArrayOutputWithContext(ctx context.Context) KeysP
 	return pulumi.ToOutputWithContext(ctx, i).(KeysPkcArrayOutput)
 }
 
-func (i KeysPkcArray) ToOutput(ctx context.Context) pulumix.Output[[]KeysPkc] {
-	return pulumix.Output[[]KeysPkc]{
-		OutputState: i.ToKeysPkcArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type KeysPkcOutput struct{ *pulumi.OutputState }
 
 func (KeysPkcOutput) ElementType() reflect.Type {
@@ -694,12 +633,6 @@ func (o KeysPkcOutput) ToKeysPkcOutput() KeysPkcOutput {
 
 func (o KeysPkcOutput) ToKeysPkcOutputWithContext(ctx context.Context) KeysPkcOutput {
 	return o
-}
-
-func (o KeysPkcOutput) ToOutput(ctx context.Context) pulumix.Output[KeysPkc] {
-	return pulumix.Output[KeysPkc]{
-		OutputState: o.OutputState,
-	}
 }
 
 // If no existing key can be found in
@@ -804,12 +737,6 @@ func (o KeysPkcArrayOutput) ToKeysPkcArrayOutput() KeysPkcArrayOutput {
 
 func (o KeysPkcArrayOutput) ToKeysPkcArrayOutputWithContext(ctx context.Context) KeysPkcArrayOutput {
 	return o
-}
-
-func (o KeysPkcArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]KeysPkc] {
-	return pulumix.Output[[]KeysPkc]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o KeysPkcArrayOutput) Index(i pulumi.IntInput) KeysPkcOutput {

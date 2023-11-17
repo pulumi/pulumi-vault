@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -587,12 +586,6 @@ func (i *SecretsMount) ToSecretsMountOutputWithContext(ctx context.Context) Secr
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountOutput)
 }
 
-func (i *SecretsMount) ToOutput(ctx context.Context) pulumix.Output[*SecretsMount] {
-	return pulumix.Output[*SecretsMount]{
-		OutputState: i.ToSecretsMountOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretsMountArrayInput is an input type that accepts SecretsMountArray and SecretsMountArrayOutput values.
 // You can construct a concrete instance of `SecretsMountArrayInput` via:
 //
@@ -616,12 +609,6 @@ func (i SecretsMountArray) ToSecretsMountArrayOutput() SecretsMountArrayOutput {
 
 func (i SecretsMountArray) ToSecretsMountArrayOutputWithContext(ctx context.Context) SecretsMountArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountArrayOutput)
-}
-
-func (i SecretsMountArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretsMount] {
-	return pulumix.Output[[]*SecretsMount]{
-		OutputState: i.ToSecretsMountArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SecretsMountMapInput is an input type that accepts SecretsMountMap and SecretsMountMapOutput values.
@@ -649,12 +636,6 @@ func (i SecretsMountMap) ToSecretsMountMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountMapOutput)
 }
 
-func (i SecretsMountMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretsMount] {
-	return pulumix.Output[map[string]*SecretsMount]{
-		OutputState: i.ToSecretsMountMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretsMountOutput struct{ *pulumi.OutputState }
 
 func (SecretsMountOutput) ElementType() reflect.Type {
@@ -667,12 +648,6 @@ func (o SecretsMountOutput) ToSecretsMountOutput() SecretsMountOutput {
 
 func (o SecretsMountOutput) ToSecretsMountOutputWithContext(ctx context.Context) SecretsMountOutput {
 	return o
-}
-
-func (o SecretsMountOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretsMount] {
-	return pulumix.Output[*SecretsMount]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Accessor of the mount
@@ -869,12 +844,6 @@ func (o SecretsMountArrayOutput) ToSecretsMountArrayOutputWithContext(ctx contex
 	return o
 }
 
-func (o SecretsMountArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretsMount] {
-	return pulumix.Output[[]*SecretsMount]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SecretsMountArrayOutput) Index(i pulumi.IntInput) SecretsMountOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretsMount {
 		return vs[0].([]*SecretsMount)[vs[1].(int)]
@@ -893,12 +862,6 @@ func (o SecretsMountMapOutput) ToSecretsMountMapOutput() SecretsMountMapOutput {
 
 func (o SecretsMountMapOutput) ToSecretsMountMapOutputWithContext(ctx context.Context) SecretsMountMapOutput {
 	return o
-}
-
-func (o SecretsMountMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretsMount] {
-	return pulumix.Output[map[string]*SecretsMount]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretsMountMapOutput) MapIndex(k pulumi.StringInput) SecretsMountOutput {

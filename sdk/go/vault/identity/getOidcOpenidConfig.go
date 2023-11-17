@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -161,12 +160,6 @@ func (o GetOidcOpenidConfigResultOutput) ToGetOidcOpenidConfigResultOutput() Get
 
 func (o GetOidcOpenidConfigResultOutput) ToGetOidcOpenidConfigResultOutputWithContext(ctx context.Context) GetOidcOpenidConfigResultOutput {
 	return o
-}
-
-func (o GetOidcOpenidConfigResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetOidcOpenidConfigResult] {
-	return pulumix.Output[GetOidcOpenidConfigResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The Authorization Endpoint for the provider.

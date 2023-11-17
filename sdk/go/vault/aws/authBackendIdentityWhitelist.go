@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Configures the periodic tidying operation of the whitelisted identity entries.
@@ -204,12 +203,6 @@ func (i *AuthBackendIdentityWhitelist) ToAuthBackendIdentityWhitelistOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendIdentityWhitelistOutput)
 }
 
-func (i *AuthBackendIdentityWhitelist) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendIdentityWhitelist] {
-	return pulumix.Output[*AuthBackendIdentityWhitelist]{
-		OutputState: i.ToAuthBackendIdentityWhitelistOutputWithContext(ctx).OutputState,
-	}
-}
-
 // AuthBackendIdentityWhitelistArrayInput is an input type that accepts AuthBackendIdentityWhitelistArray and AuthBackendIdentityWhitelistArrayOutput values.
 // You can construct a concrete instance of `AuthBackendIdentityWhitelistArrayInput` via:
 //
@@ -233,12 +226,6 @@ func (i AuthBackendIdentityWhitelistArray) ToAuthBackendIdentityWhitelistArrayOu
 
 func (i AuthBackendIdentityWhitelistArray) ToAuthBackendIdentityWhitelistArrayOutputWithContext(ctx context.Context) AuthBackendIdentityWhitelistArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendIdentityWhitelistArrayOutput)
-}
-
-func (i AuthBackendIdentityWhitelistArray) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackendIdentityWhitelist] {
-	return pulumix.Output[[]*AuthBackendIdentityWhitelist]{
-		OutputState: i.ToAuthBackendIdentityWhitelistArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // AuthBackendIdentityWhitelistMapInput is an input type that accepts AuthBackendIdentityWhitelistMap and AuthBackendIdentityWhitelistMapOutput values.
@@ -266,12 +253,6 @@ func (i AuthBackendIdentityWhitelistMap) ToAuthBackendIdentityWhitelistMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendIdentityWhitelistMapOutput)
 }
 
-func (i AuthBackendIdentityWhitelistMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackendIdentityWhitelist] {
-	return pulumix.Output[map[string]*AuthBackendIdentityWhitelist]{
-		OutputState: i.ToAuthBackendIdentityWhitelistMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type AuthBackendIdentityWhitelistOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendIdentityWhitelistOutput) ElementType() reflect.Type {
@@ -284,12 +265,6 @@ func (o AuthBackendIdentityWhitelistOutput) ToAuthBackendIdentityWhitelistOutput
 
 func (o AuthBackendIdentityWhitelistOutput) ToAuthBackendIdentityWhitelistOutputWithContext(ctx context.Context) AuthBackendIdentityWhitelistOutput {
 	return o
-}
-
-func (o AuthBackendIdentityWhitelistOutput) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendIdentityWhitelist] {
-	return pulumix.Output[*AuthBackendIdentityWhitelist]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The path of the AWS backend being configured.
@@ -332,12 +307,6 @@ func (o AuthBackendIdentityWhitelistArrayOutput) ToAuthBackendIdentityWhitelistA
 	return o
 }
 
-func (o AuthBackendIdentityWhitelistArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackendIdentityWhitelist] {
-	return pulumix.Output[[]*AuthBackendIdentityWhitelist]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o AuthBackendIdentityWhitelistArrayOutput) Index(i pulumi.IntInput) AuthBackendIdentityWhitelistOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AuthBackendIdentityWhitelist {
 		return vs[0].([]*AuthBackendIdentityWhitelist)[vs[1].(int)]
@@ -356,12 +325,6 @@ func (o AuthBackendIdentityWhitelistMapOutput) ToAuthBackendIdentityWhitelistMap
 
 func (o AuthBackendIdentityWhitelistMapOutput) ToAuthBackendIdentityWhitelistMapOutputWithContext(ctx context.Context) AuthBackendIdentityWhitelistMapOutput {
 	return o
-}
-
-func (o AuthBackendIdentityWhitelistMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackendIdentityWhitelist] {
-	return pulumix.Output[map[string]*AuthBackendIdentityWhitelist]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AuthBackendIdentityWhitelistMapOutput) MapIndex(k pulumi.StringInput) AuthBackendIdentityWhitelistOutput {

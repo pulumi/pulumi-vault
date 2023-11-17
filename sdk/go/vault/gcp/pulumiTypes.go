@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 var _ = internal.GetEnvOrDefault
@@ -69,12 +68,6 @@ func (i AuthBackendCustomEndpointArgs) ToAuthBackendCustomEndpointOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendCustomEndpointOutput)
 }
 
-func (i AuthBackendCustomEndpointArgs) ToOutput(ctx context.Context) pulumix.Output[AuthBackendCustomEndpoint] {
-	return pulumix.Output[AuthBackendCustomEndpoint]{
-		OutputState: i.ToAuthBackendCustomEndpointOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i AuthBackendCustomEndpointArgs) ToAuthBackendCustomEndpointPtrOutput() AuthBackendCustomEndpointPtrOutput {
 	return i.ToAuthBackendCustomEndpointPtrOutputWithContext(context.Background())
 }
@@ -116,12 +109,6 @@ func (i *authBackendCustomEndpointPtrType) ToAuthBackendCustomEndpointPtrOutputW
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendCustomEndpointPtrOutput)
 }
 
-func (i *authBackendCustomEndpointPtrType) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendCustomEndpoint] {
-	return pulumix.Output[*AuthBackendCustomEndpoint]{
-		OutputState: i.ToAuthBackendCustomEndpointPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type AuthBackendCustomEndpointOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendCustomEndpointOutput) ElementType() reflect.Type {
@@ -144,12 +131,6 @@ func (o AuthBackendCustomEndpointOutput) ToAuthBackendCustomEndpointPtrOutputWit
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v AuthBackendCustomEndpoint) *AuthBackendCustomEndpoint {
 		return &v
 	}).(AuthBackendCustomEndpointPtrOutput)
-}
-
-func (o AuthBackendCustomEndpointOutput) ToOutput(ctx context.Context) pulumix.Output[AuthBackendCustomEndpoint] {
-	return pulumix.Output[AuthBackendCustomEndpoint]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Replaces the service endpoint used in API requests to `https://www.googleapis.com`.
@@ -189,12 +170,6 @@ func (o AuthBackendCustomEndpointPtrOutput) ToAuthBackendCustomEndpointPtrOutput
 
 func (o AuthBackendCustomEndpointPtrOutput) ToAuthBackendCustomEndpointPtrOutputWithContext(ctx context.Context) AuthBackendCustomEndpointPtrOutput {
 	return o
-}
-
-func (o AuthBackendCustomEndpointPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendCustomEndpoint] {
-	return pulumix.Output[*AuthBackendCustomEndpoint]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AuthBackendCustomEndpointPtrOutput) Elem() AuthBackendCustomEndpointOutput {
@@ -289,12 +264,6 @@ func (i SecretRolesetBindingArgs) ToSecretRolesetBindingOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(SecretRolesetBindingOutput)
 }
 
-func (i SecretRolesetBindingArgs) ToOutput(ctx context.Context) pulumix.Output[SecretRolesetBinding] {
-	return pulumix.Output[SecretRolesetBinding]{
-		OutputState: i.ToSecretRolesetBindingOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretRolesetBindingArrayInput is an input type that accepts SecretRolesetBindingArray and SecretRolesetBindingArrayOutput values.
 // You can construct a concrete instance of `SecretRolesetBindingArrayInput` via:
 //
@@ -320,12 +289,6 @@ func (i SecretRolesetBindingArray) ToSecretRolesetBindingArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SecretRolesetBindingArrayOutput)
 }
 
-func (i SecretRolesetBindingArray) ToOutput(ctx context.Context) pulumix.Output[[]SecretRolesetBinding] {
-	return pulumix.Output[[]SecretRolesetBinding]{
-		OutputState: i.ToSecretRolesetBindingArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretRolesetBindingOutput struct{ *pulumi.OutputState }
 
 func (SecretRolesetBindingOutput) ElementType() reflect.Type {
@@ -338,12 +301,6 @@ func (o SecretRolesetBindingOutput) ToSecretRolesetBindingOutput() SecretRoleset
 
 func (o SecretRolesetBindingOutput) ToSecretRolesetBindingOutputWithContext(ctx context.Context) SecretRolesetBindingOutput {
 	return o
-}
-
-func (o SecretRolesetBindingOutput) ToOutput(ctx context.Context) pulumix.Output[SecretRolesetBinding] {
-	return pulumix.Output[SecretRolesetBinding]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings).
@@ -368,12 +325,6 @@ func (o SecretRolesetBindingArrayOutput) ToSecretRolesetBindingArrayOutput() Sec
 
 func (o SecretRolesetBindingArrayOutput) ToSecretRolesetBindingArrayOutputWithContext(ctx context.Context) SecretRolesetBindingArrayOutput {
 	return o
-}
-
-func (o SecretRolesetBindingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SecretRolesetBinding] {
-	return pulumix.Output[[]SecretRolesetBinding]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretRolesetBindingArrayOutput) Index(i pulumi.IntInput) SecretRolesetBindingOutput {
@@ -419,12 +370,6 @@ func (i SecretStaticAccountBindingArgs) ToSecretStaticAccountBindingOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(SecretStaticAccountBindingOutput)
 }
 
-func (i SecretStaticAccountBindingArgs) ToOutput(ctx context.Context) pulumix.Output[SecretStaticAccountBinding] {
-	return pulumix.Output[SecretStaticAccountBinding]{
-		OutputState: i.ToSecretStaticAccountBindingOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretStaticAccountBindingArrayInput is an input type that accepts SecretStaticAccountBindingArray and SecretStaticAccountBindingArrayOutput values.
 // You can construct a concrete instance of `SecretStaticAccountBindingArrayInput` via:
 //
@@ -450,12 +395,6 @@ func (i SecretStaticAccountBindingArray) ToSecretStaticAccountBindingArrayOutput
 	return pulumi.ToOutputWithContext(ctx, i).(SecretStaticAccountBindingArrayOutput)
 }
 
-func (i SecretStaticAccountBindingArray) ToOutput(ctx context.Context) pulumix.Output[[]SecretStaticAccountBinding] {
-	return pulumix.Output[[]SecretStaticAccountBinding]{
-		OutputState: i.ToSecretStaticAccountBindingArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretStaticAccountBindingOutput struct{ *pulumi.OutputState }
 
 func (SecretStaticAccountBindingOutput) ElementType() reflect.Type {
@@ -468,12 +407,6 @@ func (o SecretStaticAccountBindingOutput) ToSecretStaticAccountBindingOutput() S
 
 func (o SecretStaticAccountBindingOutput) ToSecretStaticAccountBindingOutputWithContext(ctx context.Context) SecretStaticAccountBindingOutput {
 	return o
-}
-
-func (o SecretStaticAccountBindingOutput) ToOutput(ctx context.Context) pulumix.Output[SecretStaticAccountBinding] {
-	return pulumix.Output[SecretStaticAccountBinding]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#bindings).
@@ -498,12 +431,6 @@ func (o SecretStaticAccountBindingArrayOutput) ToSecretStaticAccountBindingArray
 
 func (o SecretStaticAccountBindingArrayOutput) ToSecretStaticAccountBindingArrayOutputWithContext(ctx context.Context) SecretStaticAccountBindingArrayOutput {
 	return o
-}
-
-func (o SecretStaticAccountBindingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SecretStaticAccountBinding] {
-	return pulumix.Output[[]SecretStaticAccountBinding]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretStaticAccountBindingArrayOutput) Index(i pulumi.IntInput) SecretStaticAccountBindingOutput {

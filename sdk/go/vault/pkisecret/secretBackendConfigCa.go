@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -223,12 +222,6 @@ func (i *SecretBackendConfigCa) ToSecretBackendConfigCaOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConfigCaOutput)
 }
 
-func (i *SecretBackendConfigCa) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConfigCa] {
-	return pulumix.Output[*SecretBackendConfigCa]{
-		OutputState: i.ToSecretBackendConfigCaOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretBackendConfigCaArrayInput is an input type that accepts SecretBackendConfigCaArray and SecretBackendConfigCaArrayOutput values.
 // You can construct a concrete instance of `SecretBackendConfigCaArrayInput` via:
 //
@@ -252,12 +245,6 @@ func (i SecretBackendConfigCaArray) ToSecretBackendConfigCaArrayOutput() SecretB
 
 func (i SecretBackendConfigCaArray) ToSecretBackendConfigCaArrayOutputWithContext(ctx context.Context) SecretBackendConfigCaArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConfigCaArrayOutput)
-}
-
-func (i SecretBackendConfigCaArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendConfigCa] {
-	return pulumix.Output[[]*SecretBackendConfigCa]{
-		OutputState: i.ToSecretBackendConfigCaArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SecretBackendConfigCaMapInput is an input type that accepts SecretBackendConfigCaMap and SecretBackendConfigCaMapOutput values.
@@ -285,12 +272,6 @@ func (i SecretBackendConfigCaMap) ToSecretBackendConfigCaMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConfigCaMapOutput)
 }
 
-func (i SecretBackendConfigCaMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendConfigCa] {
-	return pulumix.Output[map[string]*SecretBackendConfigCa]{
-		OutputState: i.ToSecretBackendConfigCaMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendConfigCaOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConfigCaOutput) ElementType() reflect.Type {
@@ -303,12 +284,6 @@ func (o SecretBackendConfigCaOutput) ToSecretBackendConfigCaOutput() SecretBacke
 
 func (o SecretBackendConfigCaOutput) ToSecretBackendConfigCaOutputWithContext(ctx context.Context) SecretBackendConfigCaOutput {
 	return o
-}
-
-func (o SecretBackendConfigCaOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConfigCa] {
-	return pulumix.Output[*SecretBackendConfigCa]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The PKI secret backend the resource belongs to.
@@ -343,12 +318,6 @@ func (o SecretBackendConfigCaArrayOutput) ToSecretBackendConfigCaArrayOutputWith
 	return o
 }
 
-func (o SecretBackendConfigCaArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendConfigCa] {
-	return pulumix.Output[[]*SecretBackendConfigCa]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SecretBackendConfigCaArrayOutput) Index(i pulumi.IntInput) SecretBackendConfigCaOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackendConfigCa {
 		return vs[0].([]*SecretBackendConfigCa)[vs[1].(int)]
@@ -367,12 +336,6 @@ func (o SecretBackendConfigCaMapOutput) ToSecretBackendConfigCaMapOutput() Secre
 
 func (o SecretBackendConfigCaMapOutput) ToSecretBackendConfigCaMapOutputWithContext(ctx context.Context) SecretBackendConfigCaMapOutput {
 	return o
-}
-
-func (o SecretBackendConfigCaMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendConfigCa] {
-	return pulumix.Output[map[string]*SecretBackendConfigCa]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendConfigCaMapOutput) MapIndex(k pulumi.StringInput) SecretBackendConfigCaOutput {

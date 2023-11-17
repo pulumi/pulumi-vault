@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -121,12 +120,6 @@ func (o LookupAuthBackendResultOutput) ToLookupAuthBackendResultOutput() LookupA
 
 func (o LookupAuthBackendResultOutput) ToLookupAuthBackendResultOutputWithContext(ctx context.Context) LookupAuthBackendResultOutput {
 	return o
-}
-
-func (o LookupAuthBackendResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupAuthBackendResult] {
-	return pulumix.Output[LookupAuthBackendResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The accessor for this auth method.

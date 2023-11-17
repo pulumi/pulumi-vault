@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -343,12 +342,6 @@ func (i *NomadSecretBackend) ToNomadSecretBackendOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(NomadSecretBackendOutput)
 }
 
-func (i *NomadSecretBackend) ToOutput(ctx context.Context) pulumix.Output[*NomadSecretBackend] {
-	return pulumix.Output[*NomadSecretBackend]{
-		OutputState: i.ToNomadSecretBackendOutputWithContext(ctx).OutputState,
-	}
-}
-
 // NomadSecretBackendArrayInput is an input type that accepts NomadSecretBackendArray and NomadSecretBackendArrayOutput values.
 // You can construct a concrete instance of `NomadSecretBackendArrayInput` via:
 //
@@ -372,12 +365,6 @@ func (i NomadSecretBackendArray) ToNomadSecretBackendArrayOutput() NomadSecretBa
 
 func (i NomadSecretBackendArray) ToNomadSecretBackendArrayOutputWithContext(ctx context.Context) NomadSecretBackendArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NomadSecretBackendArrayOutput)
-}
-
-func (i NomadSecretBackendArray) ToOutput(ctx context.Context) pulumix.Output[[]*NomadSecretBackend] {
-	return pulumix.Output[[]*NomadSecretBackend]{
-		OutputState: i.ToNomadSecretBackendArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // NomadSecretBackendMapInput is an input type that accepts NomadSecretBackendMap and NomadSecretBackendMapOutput values.
@@ -405,12 +392,6 @@ func (i NomadSecretBackendMap) ToNomadSecretBackendMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(NomadSecretBackendMapOutput)
 }
 
-func (i NomadSecretBackendMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*NomadSecretBackend] {
-	return pulumix.Output[map[string]*NomadSecretBackend]{
-		OutputState: i.ToNomadSecretBackendMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type NomadSecretBackendOutput struct{ *pulumi.OutputState }
 
 func (NomadSecretBackendOutput) ElementType() reflect.Type {
@@ -423,12 +404,6 @@ func (o NomadSecretBackendOutput) ToNomadSecretBackendOutput() NomadSecretBacken
 
 func (o NomadSecretBackendOutput) ToNomadSecretBackendOutputWithContext(ctx context.Context) NomadSecretBackendOutput {
 	return o
-}
-
-func (o NomadSecretBackendOutput) ToOutput(ctx context.Context) pulumix.Output[*NomadSecretBackend] {
-	return pulumix.Output[*NomadSecretBackend]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Specifies the address of the Nomad instance, provided
@@ -530,12 +505,6 @@ func (o NomadSecretBackendArrayOutput) ToNomadSecretBackendArrayOutputWithContex
 	return o
 }
 
-func (o NomadSecretBackendArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*NomadSecretBackend] {
-	return pulumix.Output[[]*NomadSecretBackend]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o NomadSecretBackendArrayOutput) Index(i pulumi.IntInput) NomadSecretBackendOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *NomadSecretBackend {
 		return vs[0].([]*NomadSecretBackend)[vs[1].(int)]
@@ -554,12 +523,6 @@ func (o NomadSecretBackendMapOutput) ToNomadSecretBackendMapOutput() NomadSecret
 
 func (o NomadSecretBackendMapOutput) ToNomadSecretBackendMapOutputWithContext(ctx context.Context) NomadSecretBackendMapOutput {
 	return o
-}
-
-func (o NomadSecretBackendMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*NomadSecretBackend] {
-	return pulumix.Output[map[string]*NomadSecretBackend]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o NomadSecretBackendMapOutput) MapIndex(k pulumi.StringInput) NomadSecretBackendOutput {

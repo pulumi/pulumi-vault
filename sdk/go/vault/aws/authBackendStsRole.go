@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -202,12 +201,6 @@ func (i *AuthBackendStsRole) ToAuthBackendStsRoleOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendStsRoleOutput)
 }
 
-func (i *AuthBackendStsRole) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendStsRole] {
-	return pulumix.Output[*AuthBackendStsRole]{
-		OutputState: i.ToAuthBackendStsRoleOutputWithContext(ctx).OutputState,
-	}
-}
-
 // AuthBackendStsRoleArrayInput is an input type that accepts AuthBackendStsRoleArray and AuthBackendStsRoleArrayOutput values.
 // You can construct a concrete instance of `AuthBackendStsRoleArrayInput` via:
 //
@@ -231,12 +224,6 @@ func (i AuthBackendStsRoleArray) ToAuthBackendStsRoleArrayOutput() AuthBackendSt
 
 func (i AuthBackendStsRoleArray) ToAuthBackendStsRoleArrayOutputWithContext(ctx context.Context) AuthBackendStsRoleArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendStsRoleArrayOutput)
-}
-
-func (i AuthBackendStsRoleArray) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackendStsRole] {
-	return pulumix.Output[[]*AuthBackendStsRole]{
-		OutputState: i.ToAuthBackendStsRoleArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // AuthBackendStsRoleMapInput is an input type that accepts AuthBackendStsRoleMap and AuthBackendStsRoleMapOutput values.
@@ -264,12 +251,6 @@ func (i AuthBackendStsRoleMap) ToAuthBackendStsRoleMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendStsRoleMapOutput)
 }
 
-func (i AuthBackendStsRoleMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackendStsRole] {
-	return pulumix.Output[map[string]*AuthBackendStsRole]{
-		OutputState: i.ToAuthBackendStsRoleMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type AuthBackendStsRoleOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendStsRoleOutput) ElementType() reflect.Type {
@@ -282,12 +263,6 @@ func (o AuthBackendStsRoleOutput) ToAuthBackendStsRoleOutput() AuthBackendStsRol
 
 func (o AuthBackendStsRoleOutput) ToAuthBackendStsRoleOutputWithContext(ctx context.Context) AuthBackendStsRoleOutput {
 	return o
-}
-
-func (o AuthBackendStsRoleOutput) ToOutput(ctx context.Context) pulumix.Output[*AuthBackendStsRole] {
-	return pulumix.Output[*AuthBackendStsRole]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The AWS account ID to configure the STS role for.
@@ -329,12 +304,6 @@ func (o AuthBackendStsRoleArrayOutput) ToAuthBackendStsRoleArrayOutputWithContex
 	return o
 }
 
-func (o AuthBackendStsRoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AuthBackendStsRole] {
-	return pulumix.Output[[]*AuthBackendStsRole]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o AuthBackendStsRoleArrayOutput) Index(i pulumi.IntInput) AuthBackendStsRoleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AuthBackendStsRole {
 		return vs[0].([]*AuthBackendStsRole)[vs[1].(int)]
@@ -353,12 +322,6 @@ func (o AuthBackendStsRoleMapOutput) ToAuthBackendStsRoleMapOutput() AuthBackend
 
 func (o AuthBackendStsRoleMapOutput) ToAuthBackendStsRoleMapOutputWithContext(ctx context.Context) AuthBackendStsRoleMapOutput {
 	return o
-}
-
-func (o AuthBackendStsRoleMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthBackendStsRole] {
-	return pulumix.Output[map[string]*AuthBackendStsRole]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AuthBackendStsRoleMapOutput) MapIndex(k pulumi.StringInput) AuthBackendStsRoleOutput {

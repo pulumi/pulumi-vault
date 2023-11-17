@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Provides a resource to create a role in an [Cert auth backend within Vault](https://www.vaultproject.io/docs/auth/cert.html).
@@ -594,12 +593,6 @@ func (i *CertAuthBackendRole) ToCertAuthBackendRoleOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(CertAuthBackendRoleOutput)
 }
 
-func (i *CertAuthBackendRole) ToOutput(ctx context.Context) pulumix.Output[*CertAuthBackendRole] {
-	return pulumix.Output[*CertAuthBackendRole]{
-		OutputState: i.ToCertAuthBackendRoleOutputWithContext(ctx).OutputState,
-	}
-}
-
 // CertAuthBackendRoleArrayInput is an input type that accepts CertAuthBackendRoleArray and CertAuthBackendRoleArrayOutput values.
 // You can construct a concrete instance of `CertAuthBackendRoleArrayInput` via:
 //
@@ -623,12 +616,6 @@ func (i CertAuthBackendRoleArray) ToCertAuthBackendRoleArrayOutput() CertAuthBac
 
 func (i CertAuthBackendRoleArray) ToCertAuthBackendRoleArrayOutputWithContext(ctx context.Context) CertAuthBackendRoleArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CertAuthBackendRoleArrayOutput)
-}
-
-func (i CertAuthBackendRoleArray) ToOutput(ctx context.Context) pulumix.Output[[]*CertAuthBackendRole] {
-	return pulumix.Output[[]*CertAuthBackendRole]{
-		OutputState: i.ToCertAuthBackendRoleArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // CertAuthBackendRoleMapInput is an input type that accepts CertAuthBackendRoleMap and CertAuthBackendRoleMapOutput values.
@@ -656,12 +643,6 @@ func (i CertAuthBackendRoleMap) ToCertAuthBackendRoleMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(CertAuthBackendRoleMapOutput)
 }
 
-func (i CertAuthBackendRoleMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CertAuthBackendRole] {
-	return pulumix.Output[map[string]*CertAuthBackendRole]{
-		OutputState: i.ToCertAuthBackendRoleMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type CertAuthBackendRoleOutput struct{ *pulumi.OutputState }
 
 func (CertAuthBackendRoleOutput) ElementType() reflect.Type {
@@ -674,12 +655,6 @@ func (o CertAuthBackendRoleOutput) ToCertAuthBackendRoleOutput() CertAuthBackend
 
 func (o CertAuthBackendRoleOutput) ToCertAuthBackendRoleOutputWithContext(ctx context.Context) CertAuthBackendRoleOutput {
 	return o
-}
-
-func (o CertAuthBackendRoleOutput) ToOutput(ctx context.Context) pulumix.Output[*CertAuthBackendRole] {
-	return pulumix.Output[*CertAuthBackendRole]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Allowed the common names for authenticated client certificates
@@ -867,12 +842,6 @@ func (o CertAuthBackendRoleArrayOutput) ToCertAuthBackendRoleArrayOutputWithCont
 	return o
 }
 
-func (o CertAuthBackendRoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CertAuthBackendRole] {
-	return pulumix.Output[[]*CertAuthBackendRole]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o CertAuthBackendRoleArrayOutput) Index(i pulumi.IntInput) CertAuthBackendRoleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CertAuthBackendRole {
 		return vs[0].([]*CertAuthBackendRole)[vs[1].(int)]
@@ -891,12 +860,6 @@ func (o CertAuthBackendRoleMapOutput) ToCertAuthBackendRoleMapOutput() CertAuthB
 
 func (o CertAuthBackendRoleMapOutput) ToCertAuthBackendRoleMapOutputWithContext(ctx context.Context) CertAuthBackendRoleMapOutput {
 	return o
-}
-
-func (o CertAuthBackendRoleMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CertAuthBackendRole] {
-	return pulumix.Output[map[string]*CertAuthBackendRole]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CertAuthBackendRoleMapOutput) MapIndex(k pulumi.StringInput) CertAuthBackendRoleOutput {

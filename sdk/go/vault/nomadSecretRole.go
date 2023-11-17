@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -239,12 +238,6 @@ func (i *NomadSecretRole) ToNomadSecretRoleOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(NomadSecretRoleOutput)
 }
 
-func (i *NomadSecretRole) ToOutput(ctx context.Context) pulumix.Output[*NomadSecretRole] {
-	return pulumix.Output[*NomadSecretRole]{
-		OutputState: i.ToNomadSecretRoleOutputWithContext(ctx).OutputState,
-	}
-}
-
 // NomadSecretRoleArrayInput is an input type that accepts NomadSecretRoleArray and NomadSecretRoleArrayOutput values.
 // You can construct a concrete instance of `NomadSecretRoleArrayInput` via:
 //
@@ -268,12 +261,6 @@ func (i NomadSecretRoleArray) ToNomadSecretRoleArrayOutput() NomadSecretRoleArra
 
 func (i NomadSecretRoleArray) ToNomadSecretRoleArrayOutputWithContext(ctx context.Context) NomadSecretRoleArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NomadSecretRoleArrayOutput)
-}
-
-func (i NomadSecretRoleArray) ToOutput(ctx context.Context) pulumix.Output[[]*NomadSecretRole] {
-	return pulumix.Output[[]*NomadSecretRole]{
-		OutputState: i.ToNomadSecretRoleArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // NomadSecretRoleMapInput is an input type that accepts NomadSecretRoleMap and NomadSecretRoleMapOutput values.
@@ -301,12 +288,6 @@ func (i NomadSecretRoleMap) ToNomadSecretRoleMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(NomadSecretRoleMapOutput)
 }
 
-func (i NomadSecretRoleMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*NomadSecretRole] {
-	return pulumix.Output[map[string]*NomadSecretRole]{
-		OutputState: i.ToNomadSecretRoleMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type NomadSecretRoleOutput struct{ *pulumi.OutputState }
 
 func (NomadSecretRoleOutput) ElementType() reflect.Type {
@@ -319,12 +300,6 @@ func (o NomadSecretRoleOutput) ToNomadSecretRoleOutput() NomadSecretRoleOutput {
 
 func (o NomadSecretRoleOutput) ToNomadSecretRoleOutputWithContext(ctx context.Context) NomadSecretRoleOutput {
 	return o
-}
-
-func (o NomadSecretRoleOutput) ToOutput(ctx context.Context) pulumix.Output[*NomadSecretRole] {
-	return pulumix.Output[*NomadSecretRole]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The unique path this backend should be mounted at.
@@ -378,12 +353,6 @@ func (o NomadSecretRoleArrayOutput) ToNomadSecretRoleArrayOutputWithContext(ctx 
 	return o
 }
 
-func (o NomadSecretRoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*NomadSecretRole] {
-	return pulumix.Output[[]*NomadSecretRole]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o NomadSecretRoleArrayOutput) Index(i pulumi.IntInput) NomadSecretRoleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *NomadSecretRole {
 		return vs[0].([]*NomadSecretRole)[vs[1].(int)]
@@ -402,12 +371,6 @@ func (o NomadSecretRoleMapOutput) ToNomadSecretRoleMapOutput() NomadSecretRoleMa
 
 func (o NomadSecretRoleMapOutput) ToNomadSecretRoleMapOutputWithContext(ctx context.Context) NomadSecretRoleMapOutput {
 	return o
-}
-
-func (o NomadSecretRoleMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*NomadSecretRole] {
-	return pulumix.Output[map[string]*NomadSecretRole]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o NomadSecretRoleMapOutput) MapIndex(k pulumi.StringInput) NomadSecretRoleOutput {

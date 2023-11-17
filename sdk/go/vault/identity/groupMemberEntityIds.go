@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages member entities for an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
@@ -294,12 +293,6 @@ func (i *GroupMemberEntityIds) ToGroupMemberEntityIdsOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(GroupMemberEntityIdsOutput)
 }
 
-func (i *GroupMemberEntityIds) ToOutput(ctx context.Context) pulumix.Output[*GroupMemberEntityIds] {
-	return pulumix.Output[*GroupMemberEntityIds]{
-		OutputState: i.ToGroupMemberEntityIdsOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GroupMemberEntityIdsArrayInput is an input type that accepts GroupMemberEntityIdsArray and GroupMemberEntityIdsArrayOutput values.
 // You can construct a concrete instance of `GroupMemberEntityIdsArrayInput` via:
 //
@@ -323,12 +316,6 @@ func (i GroupMemberEntityIdsArray) ToGroupMemberEntityIdsArrayOutput() GroupMemb
 
 func (i GroupMemberEntityIdsArray) ToGroupMemberEntityIdsArrayOutputWithContext(ctx context.Context) GroupMemberEntityIdsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GroupMemberEntityIdsArrayOutput)
-}
-
-func (i GroupMemberEntityIdsArray) ToOutput(ctx context.Context) pulumix.Output[[]*GroupMemberEntityIds] {
-	return pulumix.Output[[]*GroupMemberEntityIds]{
-		OutputState: i.ToGroupMemberEntityIdsArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // GroupMemberEntityIdsMapInput is an input type that accepts GroupMemberEntityIdsMap and GroupMemberEntityIdsMapOutput values.
@@ -356,12 +343,6 @@ func (i GroupMemberEntityIdsMap) ToGroupMemberEntityIdsMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(GroupMemberEntityIdsMapOutput)
 }
 
-func (i GroupMemberEntityIdsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*GroupMemberEntityIds] {
-	return pulumix.Output[map[string]*GroupMemberEntityIds]{
-		OutputState: i.ToGroupMemberEntityIdsMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GroupMemberEntityIdsOutput struct{ *pulumi.OutputState }
 
 func (GroupMemberEntityIdsOutput) ElementType() reflect.Type {
@@ -374,12 +355,6 @@ func (o GroupMemberEntityIdsOutput) ToGroupMemberEntityIdsOutput() GroupMemberEn
 
 func (o GroupMemberEntityIdsOutput) ToGroupMemberEntityIdsOutputWithContext(ctx context.Context) GroupMemberEntityIdsOutput {
 	return o
-}
-
-func (o GroupMemberEntityIdsOutput) ToOutput(ctx context.Context) pulumix.Output[*GroupMemberEntityIds] {
-	return pulumix.Output[*GroupMemberEntityIds]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Defaults to `true`.
@@ -433,12 +408,6 @@ func (o GroupMemberEntityIdsArrayOutput) ToGroupMemberEntityIdsArrayOutputWithCo
 	return o
 }
 
-func (o GroupMemberEntityIdsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*GroupMemberEntityIds] {
-	return pulumix.Output[[]*GroupMemberEntityIds]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GroupMemberEntityIdsArrayOutput) Index(i pulumi.IntInput) GroupMemberEntityIdsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *GroupMemberEntityIds {
 		return vs[0].([]*GroupMemberEntityIds)[vs[1].(int)]
@@ -457,12 +426,6 @@ func (o GroupMemberEntityIdsMapOutput) ToGroupMemberEntityIdsMapOutput() GroupMe
 
 func (o GroupMemberEntityIdsMapOutput) ToGroupMemberEntityIdsMapOutputWithContext(ctx context.Context) GroupMemberEntityIdsMapOutput {
 	return o
-}
-
-func (o GroupMemberEntityIdsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*GroupMemberEntityIds] {
-	return pulumix.Output[map[string]*GroupMemberEntityIds]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GroupMemberEntityIdsMapOutput) MapIndex(k pulumi.StringInput) GroupMemberEntityIdsOutput {

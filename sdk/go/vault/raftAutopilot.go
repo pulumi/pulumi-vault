@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Autopilot enables automated workflows for managing Raft clusters. The
@@ -266,12 +265,6 @@ func (i *RaftAutopilot) ToRaftAutopilotOutputWithContext(ctx context.Context) Ra
 	return pulumi.ToOutputWithContext(ctx, i).(RaftAutopilotOutput)
 }
 
-func (i *RaftAutopilot) ToOutput(ctx context.Context) pulumix.Output[*RaftAutopilot] {
-	return pulumix.Output[*RaftAutopilot]{
-		OutputState: i.ToRaftAutopilotOutputWithContext(ctx).OutputState,
-	}
-}
-
 // RaftAutopilotArrayInput is an input type that accepts RaftAutopilotArray and RaftAutopilotArrayOutput values.
 // You can construct a concrete instance of `RaftAutopilotArrayInput` via:
 //
@@ -295,12 +288,6 @@ func (i RaftAutopilotArray) ToRaftAutopilotArrayOutput() RaftAutopilotArrayOutpu
 
 func (i RaftAutopilotArray) ToRaftAutopilotArrayOutputWithContext(ctx context.Context) RaftAutopilotArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RaftAutopilotArrayOutput)
-}
-
-func (i RaftAutopilotArray) ToOutput(ctx context.Context) pulumix.Output[[]*RaftAutopilot] {
-	return pulumix.Output[[]*RaftAutopilot]{
-		OutputState: i.ToRaftAutopilotArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // RaftAutopilotMapInput is an input type that accepts RaftAutopilotMap and RaftAutopilotMapOutput values.
@@ -328,12 +315,6 @@ func (i RaftAutopilotMap) ToRaftAutopilotMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(RaftAutopilotMapOutput)
 }
 
-func (i RaftAutopilotMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RaftAutopilot] {
-	return pulumix.Output[map[string]*RaftAutopilot]{
-		OutputState: i.ToRaftAutopilotMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type RaftAutopilotOutput struct{ *pulumi.OutputState }
 
 func (RaftAutopilotOutput) ElementType() reflect.Type {
@@ -346,12 +327,6 @@ func (o RaftAutopilotOutput) ToRaftAutopilotOutput() RaftAutopilotOutput {
 
 func (o RaftAutopilotOutput) ToRaftAutopilotOutputWithContext(ctx context.Context) RaftAutopilotOutput {
 	return o
-}
-
-func (o RaftAutopilotOutput) ToOutput(ctx context.Context) pulumix.Output[*RaftAutopilot] {
-	return pulumix.Output[*RaftAutopilot]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Specifies whether to remove dead server nodes
@@ -419,12 +394,6 @@ func (o RaftAutopilotArrayOutput) ToRaftAutopilotArrayOutputWithContext(ctx cont
 	return o
 }
 
-func (o RaftAutopilotArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RaftAutopilot] {
-	return pulumix.Output[[]*RaftAutopilot]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o RaftAutopilotArrayOutput) Index(i pulumi.IntInput) RaftAutopilotOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RaftAutopilot {
 		return vs[0].([]*RaftAutopilot)[vs[1].(int)]
@@ -443,12 +412,6 @@ func (o RaftAutopilotMapOutput) ToRaftAutopilotMapOutput() RaftAutopilotMapOutpu
 
 func (o RaftAutopilotMapOutput) ToRaftAutopilotMapOutputWithContext(ctx context.Context) RaftAutopilotMapOutput {
 	return o
-}
-
-func (o RaftAutopilotMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RaftAutopilot] {
-	return pulumix.Output[map[string]*RaftAutopilot]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RaftAutopilotMapOutput) MapIndex(k pulumi.StringInput) RaftAutopilotOutput {

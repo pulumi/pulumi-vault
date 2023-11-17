@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manage lease count quotas which enforce the number of leases that can be created.
@@ -230,12 +229,6 @@ func (i *QuotaLeaseCount) ToQuotaLeaseCountOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(QuotaLeaseCountOutput)
 }
 
-func (i *QuotaLeaseCount) ToOutput(ctx context.Context) pulumix.Output[*QuotaLeaseCount] {
-	return pulumix.Output[*QuotaLeaseCount]{
-		OutputState: i.ToQuotaLeaseCountOutputWithContext(ctx).OutputState,
-	}
-}
-
 // QuotaLeaseCountArrayInput is an input type that accepts QuotaLeaseCountArray and QuotaLeaseCountArrayOutput values.
 // You can construct a concrete instance of `QuotaLeaseCountArrayInput` via:
 //
@@ -259,12 +252,6 @@ func (i QuotaLeaseCountArray) ToQuotaLeaseCountArrayOutput() QuotaLeaseCountArra
 
 func (i QuotaLeaseCountArray) ToQuotaLeaseCountArrayOutputWithContext(ctx context.Context) QuotaLeaseCountArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(QuotaLeaseCountArrayOutput)
-}
-
-func (i QuotaLeaseCountArray) ToOutput(ctx context.Context) pulumix.Output[[]*QuotaLeaseCount] {
-	return pulumix.Output[[]*QuotaLeaseCount]{
-		OutputState: i.ToQuotaLeaseCountArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // QuotaLeaseCountMapInput is an input type that accepts QuotaLeaseCountMap and QuotaLeaseCountMapOutput values.
@@ -292,12 +279,6 @@ func (i QuotaLeaseCountMap) ToQuotaLeaseCountMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(QuotaLeaseCountMapOutput)
 }
 
-func (i QuotaLeaseCountMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*QuotaLeaseCount] {
-	return pulumix.Output[map[string]*QuotaLeaseCount]{
-		OutputState: i.ToQuotaLeaseCountMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type QuotaLeaseCountOutput struct{ *pulumi.OutputState }
 
 func (QuotaLeaseCountOutput) ElementType() reflect.Type {
@@ -310,12 +291,6 @@ func (o QuotaLeaseCountOutput) ToQuotaLeaseCountOutput() QuotaLeaseCountOutput {
 
 func (o QuotaLeaseCountOutput) ToQuotaLeaseCountOutputWithContext(ctx context.Context) QuotaLeaseCountOutput {
 	return o
-}
-
-func (o QuotaLeaseCountOutput) ToOutput(ctx context.Context) pulumix.Output[*QuotaLeaseCount] {
-	return pulumix.Output[*QuotaLeaseCount]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The maximum number of leases to be allowed by the quota
@@ -366,12 +341,6 @@ func (o QuotaLeaseCountArrayOutput) ToQuotaLeaseCountArrayOutputWithContext(ctx 
 	return o
 }
 
-func (o QuotaLeaseCountArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*QuotaLeaseCount] {
-	return pulumix.Output[[]*QuotaLeaseCount]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o QuotaLeaseCountArrayOutput) Index(i pulumi.IntInput) QuotaLeaseCountOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *QuotaLeaseCount {
 		return vs[0].([]*QuotaLeaseCount)[vs[1].(int)]
@@ -390,12 +359,6 @@ func (o QuotaLeaseCountMapOutput) ToQuotaLeaseCountMapOutput() QuotaLeaseCountMa
 
 func (o QuotaLeaseCountMapOutput) ToQuotaLeaseCountMapOutputWithContext(ctx context.Context) QuotaLeaseCountMapOutput {
 	return o
-}
-
-func (o QuotaLeaseCountMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*QuotaLeaseCount] {
-	return pulumix.Output[map[string]*QuotaLeaseCount]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o QuotaLeaseCountMapOutput) MapIndex(k pulumi.StringInput) QuotaLeaseCountOutput {

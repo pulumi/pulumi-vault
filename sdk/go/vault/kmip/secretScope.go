@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages KMIP Secret Scopes in a Vault server. This feature requires
@@ -201,12 +200,6 @@ func (i *SecretScope) ToSecretScopeOutputWithContext(ctx context.Context) Secret
 	return pulumi.ToOutputWithContext(ctx, i).(SecretScopeOutput)
 }
 
-func (i *SecretScope) ToOutput(ctx context.Context) pulumix.Output[*SecretScope] {
-	return pulumix.Output[*SecretScope]{
-		OutputState: i.ToSecretScopeOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretScopeArrayInput is an input type that accepts SecretScopeArray and SecretScopeArrayOutput values.
 // You can construct a concrete instance of `SecretScopeArrayInput` via:
 //
@@ -230,12 +223,6 @@ func (i SecretScopeArray) ToSecretScopeArrayOutput() SecretScopeArrayOutput {
 
 func (i SecretScopeArray) ToSecretScopeArrayOutputWithContext(ctx context.Context) SecretScopeArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretScopeArrayOutput)
-}
-
-func (i SecretScopeArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretScope] {
-	return pulumix.Output[[]*SecretScope]{
-		OutputState: i.ToSecretScopeArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SecretScopeMapInput is an input type that accepts SecretScopeMap and SecretScopeMapOutput values.
@@ -263,12 +250,6 @@ func (i SecretScopeMap) ToSecretScopeMapOutputWithContext(ctx context.Context) S
 	return pulumi.ToOutputWithContext(ctx, i).(SecretScopeMapOutput)
 }
 
-func (i SecretScopeMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretScope] {
-	return pulumix.Output[map[string]*SecretScope]{
-		OutputState: i.ToSecretScopeMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretScopeOutput struct{ *pulumi.OutputState }
 
 func (SecretScopeOutput) ElementType() reflect.Type {
@@ -281,12 +262,6 @@ func (o SecretScopeOutput) ToSecretScopeOutput() SecretScopeOutput {
 
 func (o SecretScopeOutput) ToSecretScopeOutputWithContext(ctx context.Context) SecretScopeOutput {
 	return o
-}
-
-func (o SecretScopeOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretScope] {
-	return pulumix.Output[*SecretScope]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Boolean field to force deletion even if there are managed objects in the scope.
@@ -327,12 +302,6 @@ func (o SecretScopeArrayOutput) ToSecretScopeArrayOutputWithContext(ctx context.
 	return o
 }
 
-func (o SecretScopeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretScope] {
-	return pulumix.Output[[]*SecretScope]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SecretScopeArrayOutput) Index(i pulumi.IntInput) SecretScopeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretScope {
 		return vs[0].([]*SecretScope)[vs[1].(int)]
@@ -351,12 +320,6 @@ func (o SecretScopeMapOutput) ToSecretScopeMapOutput() SecretScopeMapOutput {
 
 func (o SecretScopeMapOutput) ToSecretScopeMapOutputWithContext(ctx context.Context) SecretScopeMapOutput {
 	return o
-}
-
-func (o SecretScopeMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretScope] {
-	return pulumix.Output[map[string]*SecretScope]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretScopeMapOutput) MapIndex(k pulumi.StringInput) SecretScopeOutput {

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Resource for configuring the pingid MFA method.
@@ -229,12 +228,6 @@ func (i *MfaPingid) ToMfaPingidOutputWithContext(ctx context.Context) MfaPingidO
 	return pulumi.ToOutputWithContext(ctx, i).(MfaPingidOutput)
 }
 
-func (i *MfaPingid) ToOutput(ctx context.Context) pulumix.Output[*MfaPingid] {
-	return pulumix.Output[*MfaPingid]{
-		OutputState: i.ToMfaPingidOutputWithContext(ctx).OutputState,
-	}
-}
-
 // MfaPingidArrayInput is an input type that accepts MfaPingidArray and MfaPingidArrayOutput values.
 // You can construct a concrete instance of `MfaPingidArrayInput` via:
 //
@@ -258,12 +251,6 @@ func (i MfaPingidArray) ToMfaPingidArrayOutput() MfaPingidArrayOutput {
 
 func (i MfaPingidArray) ToMfaPingidArrayOutputWithContext(ctx context.Context) MfaPingidArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MfaPingidArrayOutput)
-}
-
-func (i MfaPingidArray) ToOutput(ctx context.Context) pulumix.Output[[]*MfaPingid] {
-	return pulumix.Output[[]*MfaPingid]{
-		OutputState: i.ToMfaPingidArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // MfaPingidMapInput is an input type that accepts MfaPingidMap and MfaPingidMapOutput values.
@@ -291,12 +278,6 @@ func (i MfaPingidMap) ToMfaPingidMapOutputWithContext(ctx context.Context) MfaPi
 	return pulumi.ToOutputWithContext(ctx, i).(MfaPingidMapOutput)
 }
 
-func (i MfaPingidMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*MfaPingid] {
-	return pulumix.Output[map[string]*MfaPingid]{
-		OutputState: i.ToMfaPingidMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type MfaPingidOutput struct{ *pulumi.OutputState }
 
 func (MfaPingidOutput) ElementType() reflect.Type {
@@ -309,12 +290,6 @@ func (o MfaPingidOutput) ToMfaPingidOutput() MfaPingidOutput {
 
 func (o MfaPingidOutput) ToMfaPingidOutputWithContext(ctx context.Context) MfaPingidOutput {
 	return o
-}
-
-func (o MfaPingidOutput) ToOutput(ctx context.Context) pulumix.Output[*MfaPingid] {
-	return pulumix.Output[*MfaPingid]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The admin URL, derived from "settingsFileBase64"
@@ -406,12 +381,6 @@ func (o MfaPingidArrayOutput) ToMfaPingidArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o MfaPingidArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*MfaPingid] {
-	return pulumix.Output[[]*MfaPingid]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o MfaPingidArrayOutput) Index(i pulumi.IntInput) MfaPingidOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *MfaPingid {
 		return vs[0].([]*MfaPingid)[vs[1].(int)]
@@ -430,12 +399,6 @@ func (o MfaPingidMapOutput) ToMfaPingidMapOutput() MfaPingidMapOutput {
 
 func (o MfaPingidMapOutput) ToMfaPingidMapOutputWithContext(ctx context.Context) MfaPingidMapOutput {
 	return o
-}
-
-func (o MfaPingidMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*MfaPingid] {
-	return pulumix.Output[map[string]*MfaPingid]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o MfaPingidMapOutput) MapIndex(k pulumi.StringInput) MfaPingidOutput {

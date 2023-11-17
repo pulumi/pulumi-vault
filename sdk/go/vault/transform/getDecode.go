@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // This data source supports the "/transform/decode/{role_name}" Vault endpoint.
@@ -174,12 +173,6 @@ func (o GetDecodeResultOutput) ToGetDecodeResultOutput() GetDecodeResultOutput {
 
 func (o GetDecodeResultOutput) ToGetDecodeResultOutputWithContext(ctx context.Context) GetDecodeResultOutput {
 	return o
-}
-
-func (o GetDecodeResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetDecodeResult] {
-	return pulumix.Output[GetDecodeResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetDecodeResultOutput) BatchInputs() pulumi.MapArrayOutput {

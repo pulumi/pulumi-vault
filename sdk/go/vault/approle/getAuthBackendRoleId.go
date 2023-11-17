@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Reads the Role ID of an AppRole from a Vault server.
@@ -120,12 +119,6 @@ func (o GetAuthBackendRoleIdResultOutput) ToGetAuthBackendRoleIdResultOutput() G
 
 func (o GetAuthBackendRoleIdResultOutput) ToGetAuthBackendRoleIdResultOutputWithContext(ctx context.Context) GetAuthBackendRoleIdResultOutput {
 	return o
-}
-
-func (o GetAuthBackendRoleIdResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetAuthBackendRoleIdResult] {
-	return pulumix.Output[GetAuthBackendRoleIdResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetAuthBackendRoleIdResultOutput) Backend() pulumi.StringPtrOutput {

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages the lifecycle of an existing issuer on a PKI Secret Backend. This resource does not
@@ -330,12 +329,6 @@ func (i *SecretBackendIssuer) ToSecretBackendIssuerOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendIssuerOutput)
 }
 
-func (i *SecretBackendIssuer) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendIssuer] {
-	return pulumix.Output[*SecretBackendIssuer]{
-		OutputState: i.ToSecretBackendIssuerOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretBackendIssuerArrayInput is an input type that accepts SecretBackendIssuerArray and SecretBackendIssuerArrayOutput values.
 // You can construct a concrete instance of `SecretBackendIssuerArrayInput` via:
 //
@@ -359,12 +352,6 @@ func (i SecretBackendIssuerArray) ToSecretBackendIssuerArrayOutput() SecretBacke
 
 func (i SecretBackendIssuerArray) ToSecretBackendIssuerArrayOutputWithContext(ctx context.Context) SecretBackendIssuerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendIssuerArrayOutput)
-}
-
-func (i SecretBackendIssuerArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendIssuer] {
-	return pulumix.Output[[]*SecretBackendIssuer]{
-		OutputState: i.ToSecretBackendIssuerArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SecretBackendIssuerMapInput is an input type that accepts SecretBackendIssuerMap and SecretBackendIssuerMapOutput values.
@@ -392,12 +379,6 @@ func (i SecretBackendIssuerMap) ToSecretBackendIssuerMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendIssuerMapOutput)
 }
 
-func (i SecretBackendIssuerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendIssuer] {
-	return pulumix.Output[map[string]*SecretBackendIssuer]{
-		OutputState: i.ToSecretBackendIssuerMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendIssuerOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendIssuerOutput) ElementType() reflect.Type {
@@ -410,12 +391,6 @@ func (o SecretBackendIssuerOutput) ToSecretBackendIssuerOutput() SecretBackendIs
 
 func (o SecretBackendIssuerOutput) ToSecretBackendIssuerOutputWithContext(ctx context.Context) SecretBackendIssuerOutput {
 	return o
-}
-
-func (o SecretBackendIssuerOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendIssuer] {
-	return pulumix.Output[*SecretBackendIssuer]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The path the PKI secret backend is mounted at, with no
@@ -507,12 +482,6 @@ func (o SecretBackendIssuerArrayOutput) ToSecretBackendIssuerArrayOutputWithCont
 	return o
 }
 
-func (o SecretBackendIssuerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretBackendIssuer] {
-	return pulumix.Output[[]*SecretBackendIssuer]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SecretBackendIssuerArrayOutput) Index(i pulumi.IntInput) SecretBackendIssuerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackendIssuer {
 		return vs[0].([]*SecretBackendIssuer)[vs[1].(int)]
@@ -531,12 +500,6 @@ func (o SecretBackendIssuerMapOutput) ToSecretBackendIssuerMapOutput() SecretBac
 
 func (o SecretBackendIssuerMapOutput) ToSecretBackendIssuerMapOutputWithContext(ctx context.Context) SecretBackendIssuerMapOutput {
 	return o
-}
-
-func (o SecretBackendIssuerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretBackendIssuer] {
-	return pulumix.Output[map[string]*SecretBackendIssuer]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendIssuerMapOutput) MapIndex(k pulumi.StringInput) SecretBackendIssuerOutput {

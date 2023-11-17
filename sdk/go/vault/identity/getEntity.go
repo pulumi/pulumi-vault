@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -165,12 +164,6 @@ func (o LookupEntityResultOutput) ToLookupEntityResultOutput() LookupEntityResul
 
 func (o LookupEntityResultOutput) ToLookupEntityResultOutputWithContext(ctx context.Context) LookupEntityResultOutput {
 	return o
-}
-
-func (o LookupEntityResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupEntityResult] {
-	return pulumix.Output[LookupEntityResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupEntityResultOutput) AliasId() pulumi.StringOutput {

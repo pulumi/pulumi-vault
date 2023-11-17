@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -204,12 +203,6 @@ func (o GetAccessCredentialsResultOutput) ToGetAccessCredentialsResultOutput() G
 
 func (o GetAccessCredentialsResultOutput) ToGetAccessCredentialsResultOutputWithContext(ctx context.Context) GetAccessCredentialsResultOutput {
 	return o
-}
-
-func (o GetAccessCredentialsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetAccessCredentialsResult] {
-	return pulumix.Output[GetAccessCredentialsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetAccessCredentialsResultOutput) Backend() pulumi.StringOutput {

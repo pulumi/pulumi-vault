@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 var _ = internal.GetEnvOrDefault
@@ -51,12 +50,6 @@ func (i SecretBackendRoleVhostArgs) ToSecretBackendRoleVhostOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRoleVhostOutput)
 }
 
-func (i SecretBackendRoleVhostArgs) ToOutput(ctx context.Context) pulumix.Output[SecretBackendRoleVhost] {
-	return pulumix.Output[SecretBackendRoleVhost]{
-		OutputState: i.ToSecretBackendRoleVhostOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretBackendRoleVhostArrayInput is an input type that accepts SecretBackendRoleVhostArray and SecretBackendRoleVhostArrayOutput values.
 // You can construct a concrete instance of `SecretBackendRoleVhostArrayInput` via:
 //
@@ -82,12 +75,6 @@ func (i SecretBackendRoleVhostArray) ToSecretBackendRoleVhostArrayOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRoleVhostArrayOutput)
 }
 
-func (i SecretBackendRoleVhostArray) ToOutput(ctx context.Context) pulumix.Output[[]SecretBackendRoleVhost] {
-	return pulumix.Output[[]SecretBackendRoleVhost]{
-		OutputState: i.ToSecretBackendRoleVhostArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendRoleVhostOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendRoleVhostOutput) ElementType() reflect.Type {
@@ -100,12 +87,6 @@ func (o SecretBackendRoleVhostOutput) ToSecretBackendRoleVhostOutput() SecretBac
 
 func (o SecretBackendRoleVhostOutput) ToSecretBackendRoleVhostOutputWithContext(ctx context.Context) SecretBackendRoleVhostOutput {
 	return o
-}
-
-func (o SecretBackendRoleVhostOutput) ToOutput(ctx context.Context) pulumix.Output[SecretBackendRoleVhost] {
-	return pulumix.Output[SecretBackendRoleVhost]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendRoleVhostOutput) Configure() pulumi.StringOutput {
@@ -136,12 +117,6 @@ func (o SecretBackendRoleVhostArrayOutput) ToSecretBackendRoleVhostArrayOutput()
 
 func (o SecretBackendRoleVhostArrayOutput) ToSecretBackendRoleVhostArrayOutputWithContext(ctx context.Context) SecretBackendRoleVhostArrayOutput {
 	return o
-}
-
-func (o SecretBackendRoleVhostArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SecretBackendRoleVhost] {
-	return pulumix.Output[[]SecretBackendRoleVhost]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendRoleVhostArrayOutput) Index(i pulumi.IntInput) SecretBackendRoleVhostOutput {
@@ -185,12 +160,6 @@ func (i SecretBackendRoleVhostTopicArgs) ToSecretBackendRoleVhostTopicOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRoleVhostTopicOutput)
 }
 
-func (i SecretBackendRoleVhostTopicArgs) ToOutput(ctx context.Context) pulumix.Output[SecretBackendRoleVhostTopic] {
-	return pulumix.Output[SecretBackendRoleVhostTopic]{
-		OutputState: i.ToSecretBackendRoleVhostTopicOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretBackendRoleVhostTopicArrayInput is an input type that accepts SecretBackendRoleVhostTopicArray and SecretBackendRoleVhostTopicArrayOutput values.
 // You can construct a concrete instance of `SecretBackendRoleVhostTopicArrayInput` via:
 //
@@ -216,12 +185,6 @@ func (i SecretBackendRoleVhostTopicArray) ToSecretBackendRoleVhostTopicArrayOutp
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRoleVhostTopicArrayOutput)
 }
 
-func (i SecretBackendRoleVhostTopicArray) ToOutput(ctx context.Context) pulumix.Output[[]SecretBackendRoleVhostTopic] {
-	return pulumix.Output[[]SecretBackendRoleVhostTopic]{
-		OutputState: i.ToSecretBackendRoleVhostTopicArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendRoleVhostTopicOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendRoleVhostTopicOutput) ElementType() reflect.Type {
@@ -234,12 +197,6 @@ func (o SecretBackendRoleVhostTopicOutput) ToSecretBackendRoleVhostTopicOutput()
 
 func (o SecretBackendRoleVhostTopicOutput) ToSecretBackendRoleVhostTopicOutputWithContext(ctx context.Context) SecretBackendRoleVhostTopicOutput {
 	return o
-}
-
-func (o SecretBackendRoleVhostTopicOutput) ToOutput(ctx context.Context) pulumix.Output[SecretBackendRoleVhostTopic] {
-	return pulumix.Output[SecretBackendRoleVhostTopic]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendRoleVhostTopicOutput) Host() pulumi.StringOutput {
@@ -263,12 +220,6 @@ func (o SecretBackendRoleVhostTopicArrayOutput) ToSecretBackendRoleVhostTopicArr
 
 func (o SecretBackendRoleVhostTopicArrayOutput) ToSecretBackendRoleVhostTopicArrayOutputWithContext(ctx context.Context) SecretBackendRoleVhostTopicArrayOutput {
 	return o
-}
-
-func (o SecretBackendRoleVhostTopicArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SecretBackendRoleVhostTopic] {
-	return pulumix.Output[[]SecretBackendRoleVhostTopic]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendRoleVhostTopicArrayOutput) Index(i pulumi.IntInput) SecretBackendRoleVhostTopicOutput {
@@ -312,12 +263,6 @@ func (i SecretBackendRoleVhostTopicVhostArgs) ToSecretBackendRoleVhostTopicVhost
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRoleVhostTopicVhostOutput)
 }
 
-func (i SecretBackendRoleVhostTopicVhostArgs) ToOutput(ctx context.Context) pulumix.Output[SecretBackendRoleVhostTopicVhost] {
-	return pulumix.Output[SecretBackendRoleVhostTopicVhost]{
-		OutputState: i.ToSecretBackendRoleVhostTopicVhostOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretBackendRoleVhostTopicVhostArrayInput is an input type that accepts SecretBackendRoleVhostTopicVhostArray and SecretBackendRoleVhostTopicVhostArrayOutput values.
 // You can construct a concrete instance of `SecretBackendRoleVhostTopicVhostArrayInput` via:
 //
@@ -343,12 +288,6 @@ func (i SecretBackendRoleVhostTopicVhostArray) ToSecretBackendRoleVhostTopicVhos
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRoleVhostTopicVhostArrayOutput)
 }
 
-func (i SecretBackendRoleVhostTopicVhostArray) ToOutput(ctx context.Context) pulumix.Output[[]SecretBackendRoleVhostTopicVhost] {
-	return pulumix.Output[[]SecretBackendRoleVhostTopicVhost]{
-		OutputState: i.ToSecretBackendRoleVhostTopicVhostArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendRoleVhostTopicVhostOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendRoleVhostTopicVhostOutput) ElementType() reflect.Type {
@@ -361,12 +300,6 @@ func (o SecretBackendRoleVhostTopicVhostOutput) ToSecretBackendRoleVhostTopicVho
 
 func (o SecretBackendRoleVhostTopicVhostOutput) ToSecretBackendRoleVhostTopicVhostOutputWithContext(ctx context.Context) SecretBackendRoleVhostTopicVhostOutput {
 	return o
-}
-
-func (o SecretBackendRoleVhostTopicVhostOutput) ToOutput(ctx context.Context) pulumix.Output[SecretBackendRoleVhostTopicVhost] {
-	return pulumix.Output[SecretBackendRoleVhostTopicVhost]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendRoleVhostTopicVhostOutput) Read() pulumi.StringOutput {
@@ -393,12 +326,6 @@ func (o SecretBackendRoleVhostTopicVhostArrayOutput) ToSecretBackendRoleVhostTop
 
 func (o SecretBackendRoleVhostTopicVhostArrayOutput) ToSecretBackendRoleVhostTopicVhostArrayOutputWithContext(ctx context.Context) SecretBackendRoleVhostTopicVhostArrayOutput {
 	return o
-}
-
-func (o SecretBackendRoleVhostTopicVhostArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SecretBackendRoleVhostTopicVhost] {
-	return pulumix.Output[[]SecretBackendRoleVhostTopicVhost]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendRoleVhostTopicVhostArrayOutput) Index(i pulumi.IntInput) SecretBackendRoleVhostTopicVhostOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 var _ = internal.GetEnvOrDefault
@@ -91,12 +90,6 @@ func (i SecretBackendConnectionCassandraArgs) ToSecretBackendConnectionCassandra
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionCassandraOutput)
 }
 
-func (i SecretBackendConnectionCassandraArgs) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionCassandra] {
-	return pulumix.Output[SecretBackendConnectionCassandra]{
-		OutputState: i.ToSecretBackendConnectionCassandraOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i SecretBackendConnectionCassandraArgs) ToSecretBackendConnectionCassandraPtrOutput() SecretBackendConnectionCassandraPtrOutput {
 	return i.ToSecretBackendConnectionCassandraPtrOutputWithContext(context.Background())
 }
@@ -138,12 +131,6 @@ func (i *secretBackendConnectionCassandraPtrType) ToSecretBackendConnectionCassa
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionCassandraPtrOutput)
 }
 
-func (i *secretBackendConnectionCassandraPtrType) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionCassandra] {
-	return pulumix.Output[*SecretBackendConnectionCassandra]{
-		OutputState: i.ToSecretBackendConnectionCassandraPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendConnectionCassandraOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionCassandraOutput) ElementType() reflect.Type {
@@ -166,12 +153,6 @@ func (o SecretBackendConnectionCassandraOutput) ToSecretBackendConnectionCassand
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendConnectionCassandra) *SecretBackendConnectionCassandra {
 		return &v
 	}).(SecretBackendConnectionCassandraPtrOutput)
-}
-
-func (o SecretBackendConnectionCassandraOutput) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionCassandra] {
-	return pulumix.Output[SecretBackendConnectionCassandra]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The number of seconds to use as a connection
@@ -240,12 +221,6 @@ func (o SecretBackendConnectionCassandraPtrOutput) ToSecretBackendConnectionCass
 
 func (o SecretBackendConnectionCassandraPtrOutput) ToSecretBackendConnectionCassandraPtrOutputWithContext(ctx context.Context) SecretBackendConnectionCassandraPtrOutput {
 	return o
-}
-
-func (o SecretBackendConnectionCassandraPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionCassandra] {
-	return pulumix.Output[*SecretBackendConnectionCassandra]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendConnectionCassandraPtrOutput) Elem() SecretBackendConnectionCassandraOutput {
@@ -425,12 +400,6 @@ func (i SecretBackendConnectionCouchbaseArgs) ToSecretBackendConnectionCouchbase
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionCouchbaseOutput)
 }
 
-func (i SecretBackendConnectionCouchbaseArgs) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionCouchbase] {
-	return pulumix.Output[SecretBackendConnectionCouchbase]{
-		OutputState: i.ToSecretBackendConnectionCouchbaseOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i SecretBackendConnectionCouchbaseArgs) ToSecretBackendConnectionCouchbasePtrOutput() SecretBackendConnectionCouchbasePtrOutput {
 	return i.ToSecretBackendConnectionCouchbasePtrOutputWithContext(context.Background())
 }
@@ -472,12 +441,6 @@ func (i *secretBackendConnectionCouchbasePtrType) ToSecretBackendConnectionCouch
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionCouchbasePtrOutput)
 }
 
-func (i *secretBackendConnectionCouchbasePtrType) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionCouchbase] {
-	return pulumix.Output[*SecretBackendConnectionCouchbase]{
-		OutputState: i.ToSecretBackendConnectionCouchbasePtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendConnectionCouchbaseOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionCouchbaseOutput) ElementType() reflect.Type {
@@ -500,12 +463,6 @@ func (o SecretBackendConnectionCouchbaseOutput) ToSecretBackendConnectionCouchba
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendConnectionCouchbase) *SecretBackendConnectionCouchbase {
 		return &v
 	}).(SecretBackendConnectionCouchbasePtrOutput)
-}
-
-func (o SecretBackendConnectionCouchbaseOutput) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionCouchbase] {
-	return pulumix.Output[SecretBackendConnectionCouchbase]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
@@ -561,12 +518,6 @@ func (o SecretBackendConnectionCouchbasePtrOutput) ToSecretBackendConnectionCouc
 
 func (o SecretBackendConnectionCouchbasePtrOutput) ToSecretBackendConnectionCouchbasePtrOutputWithContext(ctx context.Context) SecretBackendConnectionCouchbasePtrOutput {
 	return o
-}
-
-func (o SecretBackendConnectionCouchbasePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionCouchbase] {
-	return pulumix.Output[*SecretBackendConnectionCouchbase]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendConnectionCouchbasePtrOutput) Elem() SecretBackendConnectionCouchbaseOutput {
@@ -731,12 +682,6 @@ func (i SecretBackendConnectionElasticsearchArgs) ToSecretBackendConnectionElast
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionElasticsearchOutput)
 }
 
-func (i SecretBackendConnectionElasticsearchArgs) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionElasticsearch] {
-	return pulumix.Output[SecretBackendConnectionElasticsearch]{
-		OutputState: i.ToSecretBackendConnectionElasticsearchOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i SecretBackendConnectionElasticsearchArgs) ToSecretBackendConnectionElasticsearchPtrOutput() SecretBackendConnectionElasticsearchPtrOutput {
 	return i.ToSecretBackendConnectionElasticsearchPtrOutputWithContext(context.Background())
 }
@@ -778,12 +723,6 @@ func (i *secretBackendConnectionElasticsearchPtrType) ToSecretBackendConnectionE
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionElasticsearchPtrOutput)
 }
 
-func (i *secretBackendConnectionElasticsearchPtrType) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionElasticsearch] {
-	return pulumix.Output[*SecretBackendConnectionElasticsearch]{
-		OutputState: i.ToSecretBackendConnectionElasticsearchPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendConnectionElasticsearchOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionElasticsearchOutput) ElementType() reflect.Type {
@@ -806,12 +745,6 @@ func (o SecretBackendConnectionElasticsearchOutput) ToSecretBackendConnectionEla
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendConnectionElasticsearch) *SecretBackendConnectionElasticsearch {
 		return &v
 	}).(SecretBackendConnectionElasticsearchPtrOutput)
-}
-
-func (o SecretBackendConnectionElasticsearchOutput) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionElasticsearch] {
-	return pulumix.Output[SecretBackendConnectionElasticsearch]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
@@ -877,12 +810,6 @@ func (o SecretBackendConnectionElasticsearchPtrOutput) ToSecretBackendConnection
 
 func (o SecretBackendConnectionElasticsearchPtrOutput) ToSecretBackendConnectionElasticsearchPtrOutputWithContext(ctx context.Context) SecretBackendConnectionElasticsearchPtrOutput {
 	return o
-}
-
-func (o SecretBackendConnectionElasticsearchPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionElasticsearch] {
-	return pulumix.Output[*SecretBackendConnectionElasticsearch]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendConnectionElasticsearchPtrOutput) Elem() SecretBackendConnectionElasticsearchOutput {
@@ -1065,12 +992,6 @@ func (i SecretBackendConnectionHanaArgs) ToSecretBackendConnectionHanaOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionHanaOutput)
 }
 
-func (i SecretBackendConnectionHanaArgs) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionHana] {
-	return pulumix.Output[SecretBackendConnectionHana]{
-		OutputState: i.ToSecretBackendConnectionHanaOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i SecretBackendConnectionHanaArgs) ToSecretBackendConnectionHanaPtrOutput() SecretBackendConnectionHanaPtrOutput {
 	return i.ToSecretBackendConnectionHanaPtrOutputWithContext(context.Background())
 }
@@ -1112,12 +1033,6 @@ func (i *secretBackendConnectionHanaPtrType) ToSecretBackendConnectionHanaPtrOut
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionHanaPtrOutput)
 }
 
-func (i *secretBackendConnectionHanaPtrType) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionHana] {
-	return pulumix.Output[*SecretBackendConnectionHana]{
-		OutputState: i.ToSecretBackendConnectionHanaPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendConnectionHanaOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionHanaOutput) ElementType() reflect.Type {
@@ -1140,12 +1055,6 @@ func (o SecretBackendConnectionHanaOutput) ToSecretBackendConnectionHanaPtrOutpu
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendConnectionHana) *SecretBackendConnectionHana {
 		return &v
 	}).(SecretBackendConnectionHanaPtrOutput)
-}
-
-func (o SecretBackendConnectionHanaOutput) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionHana] {
-	return pulumix.Output[SecretBackendConnectionHana]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A URL containing connection information. See
@@ -1201,12 +1110,6 @@ func (o SecretBackendConnectionHanaPtrOutput) ToSecretBackendConnectionHanaPtrOu
 
 func (o SecretBackendConnectionHanaPtrOutput) ToSecretBackendConnectionHanaPtrOutputWithContext(ctx context.Context) SecretBackendConnectionHanaPtrOutput {
 	return o
-}
-
-func (o SecretBackendConnectionHanaPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionHana] {
-	return pulumix.Output[*SecretBackendConnectionHana]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendConnectionHanaPtrOutput) Elem() SecretBackendConnectionHanaOutput {
@@ -1372,12 +1275,6 @@ func (i SecretBackendConnectionInfluxdbArgs) ToSecretBackendConnectionInfluxdbOu
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionInfluxdbOutput)
 }
 
-func (i SecretBackendConnectionInfluxdbArgs) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionInfluxdb] {
-	return pulumix.Output[SecretBackendConnectionInfluxdb]{
-		OutputState: i.ToSecretBackendConnectionInfluxdbOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i SecretBackendConnectionInfluxdbArgs) ToSecretBackendConnectionInfluxdbPtrOutput() SecretBackendConnectionInfluxdbPtrOutput {
 	return i.ToSecretBackendConnectionInfluxdbPtrOutputWithContext(context.Background())
 }
@@ -1419,12 +1316,6 @@ func (i *secretBackendConnectionInfluxdbPtrType) ToSecretBackendConnectionInflux
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionInfluxdbPtrOutput)
 }
 
-func (i *secretBackendConnectionInfluxdbPtrType) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionInfluxdb] {
-	return pulumix.Output[*SecretBackendConnectionInfluxdb]{
-		OutputState: i.ToSecretBackendConnectionInfluxdbPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendConnectionInfluxdbOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionInfluxdbOutput) ElementType() reflect.Type {
@@ -1447,12 +1338,6 @@ func (o SecretBackendConnectionInfluxdbOutput) ToSecretBackendConnectionInfluxdb
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendConnectionInfluxdb) *SecretBackendConnectionInfluxdb {
 		return &v
 	}).(SecretBackendConnectionInfluxdbPtrOutput)
-}
-
-func (o SecretBackendConnectionInfluxdbOutput) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionInfluxdb] {
-	return pulumix.Output[SecretBackendConnectionInfluxdb]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The number of seconds to use as a connection
@@ -1521,12 +1406,6 @@ func (o SecretBackendConnectionInfluxdbPtrOutput) ToSecretBackendConnectionInflu
 
 func (o SecretBackendConnectionInfluxdbPtrOutput) ToSecretBackendConnectionInfluxdbPtrOutputWithContext(ctx context.Context) SecretBackendConnectionInfluxdbPtrOutput {
 	return o
-}
-
-func (o SecretBackendConnectionInfluxdbPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionInfluxdb] {
-	return pulumix.Output[*SecretBackendConnectionInfluxdb]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendConnectionInfluxdbPtrOutput) Elem() SecretBackendConnectionInfluxdbOutput {
@@ -1712,12 +1591,6 @@ func (i SecretBackendConnectionMongodbArgs) ToSecretBackendConnectionMongodbOutp
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionMongodbOutput)
 }
 
-func (i SecretBackendConnectionMongodbArgs) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionMongodb] {
-	return pulumix.Output[SecretBackendConnectionMongodb]{
-		OutputState: i.ToSecretBackendConnectionMongodbOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i SecretBackendConnectionMongodbArgs) ToSecretBackendConnectionMongodbPtrOutput() SecretBackendConnectionMongodbPtrOutput {
 	return i.ToSecretBackendConnectionMongodbPtrOutputWithContext(context.Background())
 }
@@ -1759,12 +1632,6 @@ func (i *secretBackendConnectionMongodbPtrType) ToSecretBackendConnectionMongodb
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionMongodbPtrOutput)
 }
 
-func (i *secretBackendConnectionMongodbPtrType) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionMongodb] {
-	return pulumix.Output[*SecretBackendConnectionMongodb]{
-		OutputState: i.ToSecretBackendConnectionMongodbPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendConnectionMongodbOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionMongodbOutput) ElementType() reflect.Type {
@@ -1787,12 +1654,6 @@ func (o SecretBackendConnectionMongodbOutput) ToSecretBackendConnectionMongodbPt
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendConnectionMongodb) *SecretBackendConnectionMongodb {
 		return &v
 	}).(SecretBackendConnectionMongodbPtrOutput)
-}
-
-func (o SecretBackendConnectionMongodbOutput) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionMongodb] {
-	return pulumix.Output[SecretBackendConnectionMongodb]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A URL containing connection information. See
@@ -1848,12 +1709,6 @@ func (o SecretBackendConnectionMongodbPtrOutput) ToSecretBackendConnectionMongod
 
 func (o SecretBackendConnectionMongodbPtrOutput) ToSecretBackendConnectionMongodbPtrOutputWithContext(ctx context.Context) SecretBackendConnectionMongodbPtrOutput {
 	return o
-}
-
-func (o SecretBackendConnectionMongodbPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionMongodb] {
-	return pulumix.Output[*SecretBackendConnectionMongodb]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendConnectionMongodbPtrOutput) Elem() SecretBackendConnectionMongodbOutput {
@@ -1983,12 +1838,6 @@ func (i SecretBackendConnectionMongodbatlasArgs) ToSecretBackendConnectionMongod
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionMongodbatlasOutput)
 }
 
-func (i SecretBackendConnectionMongodbatlasArgs) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionMongodbatlas] {
-	return pulumix.Output[SecretBackendConnectionMongodbatlas]{
-		OutputState: i.ToSecretBackendConnectionMongodbatlasOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i SecretBackendConnectionMongodbatlasArgs) ToSecretBackendConnectionMongodbatlasPtrOutput() SecretBackendConnectionMongodbatlasPtrOutput {
 	return i.ToSecretBackendConnectionMongodbatlasPtrOutputWithContext(context.Background())
 }
@@ -2030,12 +1879,6 @@ func (i *secretBackendConnectionMongodbatlasPtrType) ToSecretBackendConnectionMo
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionMongodbatlasPtrOutput)
 }
 
-func (i *secretBackendConnectionMongodbatlasPtrType) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionMongodbatlas] {
-	return pulumix.Output[*SecretBackendConnectionMongodbatlas]{
-		OutputState: i.ToSecretBackendConnectionMongodbatlasPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendConnectionMongodbatlasOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionMongodbatlasOutput) ElementType() reflect.Type {
@@ -2058,12 +1901,6 @@ func (o SecretBackendConnectionMongodbatlasOutput) ToSecretBackendConnectionMong
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendConnectionMongodbatlas) *SecretBackendConnectionMongodbatlas {
 		return &v
 	}).(SecretBackendConnectionMongodbatlasPtrOutput)
-}
-
-func (o SecretBackendConnectionMongodbatlasOutput) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionMongodbatlas] {
-	return pulumix.Output[SecretBackendConnectionMongodbatlas]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The Private Programmatic API Key used to connect with MongoDB Atlas API.
@@ -2093,12 +1930,6 @@ func (o SecretBackendConnectionMongodbatlasPtrOutput) ToSecretBackendConnectionM
 
 func (o SecretBackendConnectionMongodbatlasPtrOutput) ToSecretBackendConnectionMongodbatlasPtrOutputWithContext(ctx context.Context) SecretBackendConnectionMongodbatlasPtrOutput {
 	return o
-}
-
-func (o SecretBackendConnectionMongodbatlasPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionMongodbatlas] {
-	return pulumix.Output[*SecretBackendConnectionMongodbatlas]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendConnectionMongodbatlasPtrOutput) Elem() SecretBackendConnectionMongodbatlasOutput {
@@ -2224,12 +2055,6 @@ func (i SecretBackendConnectionMssqlArgs) ToSecretBackendConnectionMssqlOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionMssqlOutput)
 }
 
-func (i SecretBackendConnectionMssqlArgs) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionMssql] {
-	return pulumix.Output[SecretBackendConnectionMssql]{
-		OutputState: i.ToSecretBackendConnectionMssqlOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i SecretBackendConnectionMssqlArgs) ToSecretBackendConnectionMssqlPtrOutput() SecretBackendConnectionMssqlPtrOutput {
 	return i.ToSecretBackendConnectionMssqlPtrOutputWithContext(context.Background())
 }
@@ -2271,12 +2096,6 @@ func (i *secretBackendConnectionMssqlPtrType) ToSecretBackendConnectionMssqlPtrO
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionMssqlPtrOutput)
 }
 
-func (i *secretBackendConnectionMssqlPtrType) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionMssql] {
-	return pulumix.Output[*SecretBackendConnectionMssql]{
-		OutputState: i.ToSecretBackendConnectionMssqlPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendConnectionMssqlOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionMssqlOutput) ElementType() reflect.Type {
@@ -2299,12 +2118,6 @@ func (o SecretBackendConnectionMssqlOutput) ToSecretBackendConnectionMssqlPtrOut
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendConnectionMssql) *SecretBackendConnectionMssql {
 		return &v
 	}).(SecretBackendConnectionMssqlPtrOutput)
-}
-
-func (o SecretBackendConnectionMssqlOutput) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionMssql] {
-	return pulumix.Output[SecretBackendConnectionMssql]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A URL containing connection information. See
@@ -2373,12 +2186,6 @@ func (o SecretBackendConnectionMssqlPtrOutput) ToSecretBackendConnectionMssqlPtr
 
 func (o SecretBackendConnectionMssqlPtrOutput) ToSecretBackendConnectionMssqlPtrOutputWithContext(ctx context.Context) SecretBackendConnectionMssqlPtrOutput {
 	return o
-}
-
-func (o SecretBackendConnectionMssqlPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionMssql] {
-	return pulumix.Output[*SecretBackendConnectionMssql]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendConnectionMssqlPtrOutput) Elem() SecretBackendConnectionMssqlOutput {
@@ -2575,12 +2382,6 @@ func (i SecretBackendConnectionMysqlArgs) ToSecretBackendConnectionMysqlOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionMysqlOutput)
 }
 
-func (i SecretBackendConnectionMysqlArgs) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionMysql] {
-	return pulumix.Output[SecretBackendConnectionMysql]{
-		OutputState: i.ToSecretBackendConnectionMysqlOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i SecretBackendConnectionMysqlArgs) ToSecretBackendConnectionMysqlPtrOutput() SecretBackendConnectionMysqlPtrOutput {
 	return i.ToSecretBackendConnectionMysqlPtrOutputWithContext(context.Background())
 }
@@ -2622,12 +2423,6 @@ func (i *secretBackendConnectionMysqlPtrType) ToSecretBackendConnectionMysqlPtrO
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionMysqlPtrOutput)
 }
 
-func (i *secretBackendConnectionMysqlPtrType) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionMysql] {
-	return pulumix.Output[*SecretBackendConnectionMysql]{
-		OutputState: i.ToSecretBackendConnectionMysqlPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendConnectionMysqlOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionMysqlOutput) ElementType() reflect.Type {
@@ -2650,12 +2445,6 @@ func (o SecretBackendConnectionMysqlOutput) ToSecretBackendConnectionMysqlPtrOut
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendConnectionMysql) *SecretBackendConnectionMysql {
 		return &v
 	}).(SecretBackendConnectionMysqlPtrOutput)
-}
-
-func (o SecretBackendConnectionMysqlOutput) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionMysql] {
-	return pulumix.Output[SecretBackendConnectionMysql]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
@@ -2731,12 +2520,6 @@ func (o SecretBackendConnectionMysqlPtrOutput) ToSecretBackendConnectionMysqlPtr
 
 func (o SecretBackendConnectionMysqlPtrOutput) ToSecretBackendConnectionMysqlPtrOutputWithContext(ctx context.Context) SecretBackendConnectionMysqlPtrOutput {
 	return o
-}
-
-func (o SecretBackendConnectionMysqlPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionMysql] {
-	return pulumix.Output[*SecretBackendConnectionMysql]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendConnectionMysqlPtrOutput) Elem() SecretBackendConnectionMysqlOutput {
@@ -2934,12 +2717,6 @@ func (i SecretBackendConnectionMysqlAuroraArgs) ToSecretBackendConnectionMysqlAu
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionMysqlAuroraOutput)
 }
 
-func (i SecretBackendConnectionMysqlAuroraArgs) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionMysqlAurora] {
-	return pulumix.Output[SecretBackendConnectionMysqlAurora]{
-		OutputState: i.ToSecretBackendConnectionMysqlAuroraOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i SecretBackendConnectionMysqlAuroraArgs) ToSecretBackendConnectionMysqlAuroraPtrOutput() SecretBackendConnectionMysqlAuroraPtrOutput {
 	return i.ToSecretBackendConnectionMysqlAuroraPtrOutputWithContext(context.Background())
 }
@@ -2981,12 +2758,6 @@ func (i *secretBackendConnectionMysqlAuroraPtrType) ToSecretBackendConnectionMys
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionMysqlAuroraPtrOutput)
 }
 
-func (i *secretBackendConnectionMysqlAuroraPtrType) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionMysqlAurora] {
-	return pulumix.Output[*SecretBackendConnectionMysqlAurora]{
-		OutputState: i.ToSecretBackendConnectionMysqlAuroraPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendConnectionMysqlAuroraOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionMysqlAuroraOutput) ElementType() reflect.Type {
@@ -3009,12 +2780,6 @@ func (o SecretBackendConnectionMysqlAuroraOutput) ToSecretBackendConnectionMysql
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendConnectionMysqlAurora) *SecretBackendConnectionMysqlAurora {
 		return &v
 	}).(SecretBackendConnectionMysqlAuroraPtrOutput)
-}
-
-func (o SecretBackendConnectionMysqlAuroraOutput) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionMysqlAurora] {
-	return pulumix.Output[SecretBackendConnectionMysqlAurora]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A URL containing connection information. See
@@ -3070,12 +2835,6 @@ func (o SecretBackendConnectionMysqlAuroraPtrOutput) ToSecretBackendConnectionMy
 
 func (o SecretBackendConnectionMysqlAuroraPtrOutput) ToSecretBackendConnectionMysqlAuroraPtrOutputWithContext(ctx context.Context) SecretBackendConnectionMysqlAuroraPtrOutput {
 	return o
-}
-
-func (o SecretBackendConnectionMysqlAuroraPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionMysqlAurora] {
-	return pulumix.Output[*SecretBackendConnectionMysqlAurora]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendConnectionMysqlAuroraPtrOutput) Elem() SecretBackendConnectionMysqlAuroraOutput {
@@ -3233,12 +2992,6 @@ func (i SecretBackendConnectionMysqlLegacyArgs) ToSecretBackendConnectionMysqlLe
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionMysqlLegacyOutput)
 }
 
-func (i SecretBackendConnectionMysqlLegacyArgs) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionMysqlLegacy] {
-	return pulumix.Output[SecretBackendConnectionMysqlLegacy]{
-		OutputState: i.ToSecretBackendConnectionMysqlLegacyOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i SecretBackendConnectionMysqlLegacyArgs) ToSecretBackendConnectionMysqlLegacyPtrOutput() SecretBackendConnectionMysqlLegacyPtrOutput {
 	return i.ToSecretBackendConnectionMysqlLegacyPtrOutputWithContext(context.Background())
 }
@@ -3280,12 +3033,6 @@ func (i *secretBackendConnectionMysqlLegacyPtrType) ToSecretBackendConnectionMys
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionMysqlLegacyPtrOutput)
 }
 
-func (i *secretBackendConnectionMysqlLegacyPtrType) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionMysqlLegacy] {
-	return pulumix.Output[*SecretBackendConnectionMysqlLegacy]{
-		OutputState: i.ToSecretBackendConnectionMysqlLegacyPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendConnectionMysqlLegacyOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionMysqlLegacyOutput) ElementType() reflect.Type {
@@ -3308,12 +3055,6 @@ func (o SecretBackendConnectionMysqlLegacyOutput) ToSecretBackendConnectionMysql
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendConnectionMysqlLegacy) *SecretBackendConnectionMysqlLegacy {
 		return &v
 	}).(SecretBackendConnectionMysqlLegacyPtrOutput)
-}
-
-func (o SecretBackendConnectionMysqlLegacyOutput) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionMysqlLegacy] {
-	return pulumix.Output[SecretBackendConnectionMysqlLegacy]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A URL containing connection information. See
@@ -3369,12 +3110,6 @@ func (o SecretBackendConnectionMysqlLegacyPtrOutput) ToSecretBackendConnectionMy
 
 func (o SecretBackendConnectionMysqlLegacyPtrOutput) ToSecretBackendConnectionMysqlLegacyPtrOutputWithContext(ctx context.Context) SecretBackendConnectionMysqlLegacyPtrOutput {
 	return o
-}
-
-func (o SecretBackendConnectionMysqlLegacyPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionMysqlLegacy] {
-	return pulumix.Output[*SecretBackendConnectionMysqlLegacy]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendConnectionMysqlLegacyPtrOutput) Elem() SecretBackendConnectionMysqlLegacyOutput {
@@ -3532,12 +3267,6 @@ func (i SecretBackendConnectionMysqlRdsArgs) ToSecretBackendConnectionMysqlRdsOu
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionMysqlRdsOutput)
 }
 
-func (i SecretBackendConnectionMysqlRdsArgs) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionMysqlRds] {
-	return pulumix.Output[SecretBackendConnectionMysqlRds]{
-		OutputState: i.ToSecretBackendConnectionMysqlRdsOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i SecretBackendConnectionMysqlRdsArgs) ToSecretBackendConnectionMysqlRdsPtrOutput() SecretBackendConnectionMysqlRdsPtrOutput {
 	return i.ToSecretBackendConnectionMysqlRdsPtrOutputWithContext(context.Background())
 }
@@ -3579,12 +3308,6 @@ func (i *secretBackendConnectionMysqlRdsPtrType) ToSecretBackendConnectionMysqlR
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionMysqlRdsPtrOutput)
 }
 
-func (i *secretBackendConnectionMysqlRdsPtrType) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionMysqlRds] {
-	return pulumix.Output[*SecretBackendConnectionMysqlRds]{
-		OutputState: i.ToSecretBackendConnectionMysqlRdsPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendConnectionMysqlRdsOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionMysqlRdsOutput) ElementType() reflect.Type {
@@ -3607,12 +3330,6 @@ func (o SecretBackendConnectionMysqlRdsOutput) ToSecretBackendConnectionMysqlRds
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendConnectionMysqlRds) *SecretBackendConnectionMysqlRds {
 		return &v
 	}).(SecretBackendConnectionMysqlRdsPtrOutput)
-}
-
-func (o SecretBackendConnectionMysqlRdsOutput) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionMysqlRds] {
-	return pulumix.Output[SecretBackendConnectionMysqlRds]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A URL containing connection information. See
@@ -3668,12 +3385,6 @@ func (o SecretBackendConnectionMysqlRdsPtrOutput) ToSecretBackendConnectionMysql
 
 func (o SecretBackendConnectionMysqlRdsPtrOutput) ToSecretBackendConnectionMysqlRdsPtrOutputWithContext(ctx context.Context) SecretBackendConnectionMysqlRdsPtrOutput {
 	return o
-}
-
-func (o SecretBackendConnectionMysqlRdsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionMysqlRds] {
-	return pulumix.Output[*SecretBackendConnectionMysqlRds]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendConnectionMysqlRdsPtrOutput) Elem() SecretBackendConnectionMysqlRdsOutput {
@@ -3831,12 +3542,6 @@ func (i SecretBackendConnectionOracleArgs) ToSecretBackendConnectionOracleOutput
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionOracleOutput)
 }
 
-func (i SecretBackendConnectionOracleArgs) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionOracle] {
-	return pulumix.Output[SecretBackendConnectionOracle]{
-		OutputState: i.ToSecretBackendConnectionOracleOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i SecretBackendConnectionOracleArgs) ToSecretBackendConnectionOraclePtrOutput() SecretBackendConnectionOraclePtrOutput {
 	return i.ToSecretBackendConnectionOraclePtrOutputWithContext(context.Background())
 }
@@ -3878,12 +3583,6 @@ func (i *secretBackendConnectionOraclePtrType) ToSecretBackendConnectionOraclePt
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionOraclePtrOutput)
 }
 
-func (i *secretBackendConnectionOraclePtrType) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionOracle] {
-	return pulumix.Output[*SecretBackendConnectionOracle]{
-		OutputState: i.ToSecretBackendConnectionOraclePtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendConnectionOracleOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionOracleOutput) ElementType() reflect.Type {
@@ -3906,12 +3605,6 @@ func (o SecretBackendConnectionOracleOutput) ToSecretBackendConnectionOraclePtrO
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendConnectionOracle) *SecretBackendConnectionOracle {
 		return &v
 	}).(SecretBackendConnectionOraclePtrOutput)
-}
-
-func (o SecretBackendConnectionOracleOutput) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionOracle] {
-	return pulumix.Output[SecretBackendConnectionOracle]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A URL containing connection information. See
@@ -3967,12 +3660,6 @@ func (o SecretBackendConnectionOraclePtrOutput) ToSecretBackendConnectionOracleP
 
 func (o SecretBackendConnectionOraclePtrOutput) ToSecretBackendConnectionOraclePtrOutputWithContext(ctx context.Context) SecretBackendConnectionOraclePtrOutput {
 	return o
-}
-
-func (o SecretBackendConnectionOraclePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionOracle] {
-	return pulumix.Output[*SecretBackendConnectionOracle]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendConnectionOraclePtrOutput) Elem() SecretBackendConnectionOracleOutput {
@@ -4142,12 +3829,6 @@ func (i SecretBackendConnectionPostgresqlArgs) ToSecretBackendConnectionPostgres
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionPostgresqlOutput)
 }
 
-func (i SecretBackendConnectionPostgresqlArgs) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionPostgresql] {
-	return pulumix.Output[SecretBackendConnectionPostgresql]{
-		OutputState: i.ToSecretBackendConnectionPostgresqlOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i SecretBackendConnectionPostgresqlArgs) ToSecretBackendConnectionPostgresqlPtrOutput() SecretBackendConnectionPostgresqlPtrOutput {
 	return i.ToSecretBackendConnectionPostgresqlPtrOutputWithContext(context.Background())
 }
@@ -4189,12 +3870,6 @@ func (i *secretBackendConnectionPostgresqlPtrType) ToSecretBackendConnectionPost
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionPostgresqlPtrOutput)
 }
 
-func (i *secretBackendConnectionPostgresqlPtrType) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionPostgresql] {
-	return pulumix.Output[*SecretBackendConnectionPostgresql]{
-		OutputState: i.ToSecretBackendConnectionPostgresqlPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendConnectionPostgresqlOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionPostgresqlOutput) ElementType() reflect.Type {
@@ -4217,12 +3892,6 @@ func (o SecretBackendConnectionPostgresqlOutput) ToSecretBackendConnectionPostgr
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendConnectionPostgresql) *SecretBackendConnectionPostgresql {
 		return &v
 	}).(SecretBackendConnectionPostgresqlPtrOutput)
-}
-
-func (o SecretBackendConnectionPostgresqlOutput) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionPostgresql] {
-	return pulumix.Output[SecretBackendConnectionPostgresql]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
@@ -4293,12 +3962,6 @@ func (o SecretBackendConnectionPostgresqlPtrOutput) ToSecretBackendConnectionPos
 
 func (o SecretBackendConnectionPostgresqlPtrOutput) ToSecretBackendConnectionPostgresqlPtrOutputWithContext(ctx context.Context) SecretBackendConnectionPostgresqlPtrOutput {
 	return o
-}
-
-func (o SecretBackendConnectionPostgresqlPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionPostgresql] {
-	return pulumix.Output[*SecretBackendConnectionPostgresql]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendConnectionPostgresqlPtrOutput) Elem() SecretBackendConnectionPostgresqlOutput {
@@ -4478,12 +4141,6 @@ func (i SecretBackendConnectionRedisArgs) ToSecretBackendConnectionRedisOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionRedisOutput)
 }
 
-func (i SecretBackendConnectionRedisArgs) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionRedis] {
-	return pulumix.Output[SecretBackendConnectionRedis]{
-		OutputState: i.ToSecretBackendConnectionRedisOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i SecretBackendConnectionRedisArgs) ToSecretBackendConnectionRedisPtrOutput() SecretBackendConnectionRedisPtrOutput {
 	return i.ToSecretBackendConnectionRedisPtrOutputWithContext(context.Background())
 }
@@ -4525,12 +4182,6 @@ func (i *secretBackendConnectionRedisPtrType) ToSecretBackendConnectionRedisPtrO
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionRedisPtrOutput)
 }
 
-func (i *secretBackendConnectionRedisPtrType) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionRedis] {
-	return pulumix.Output[*SecretBackendConnectionRedis]{
-		OutputState: i.ToSecretBackendConnectionRedisPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendConnectionRedisOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionRedisOutput) ElementType() reflect.Type {
@@ -4553,12 +4204,6 @@ func (o SecretBackendConnectionRedisOutput) ToSecretBackendConnectionRedisPtrOut
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendConnectionRedis) *SecretBackendConnectionRedis {
 		return &v
 	}).(SecretBackendConnectionRedisPtrOutput)
-}
-
-func (o SecretBackendConnectionRedisOutput) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionRedis] {
-	return pulumix.Output[SecretBackendConnectionRedis]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
@@ -4610,12 +4255,6 @@ func (o SecretBackendConnectionRedisPtrOutput) ToSecretBackendConnectionRedisPtr
 
 func (o SecretBackendConnectionRedisPtrOutput) ToSecretBackendConnectionRedisPtrOutputWithContext(ctx context.Context) SecretBackendConnectionRedisPtrOutput {
 	return o
-}
-
-func (o SecretBackendConnectionRedisPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionRedis] {
-	return pulumix.Output[*SecretBackendConnectionRedis]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendConnectionRedisPtrOutput) Elem() SecretBackendConnectionRedisOutput {
@@ -4747,12 +4386,6 @@ func (i SecretBackendConnectionRedisElasticacheArgs) ToSecretBackendConnectionRe
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionRedisElasticacheOutput)
 }
 
-func (i SecretBackendConnectionRedisElasticacheArgs) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionRedisElasticache] {
-	return pulumix.Output[SecretBackendConnectionRedisElasticache]{
-		OutputState: i.ToSecretBackendConnectionRedisElasticacheOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i SecretBackendConnectionRedisElasticacheArgs) ToSecretBackendConnectionRedisElasticachePtrOutput() SecretBackendConnectionRedisElasticachePtrOutput {
 	return i.ToSecretBackendConnectionRedisElasticachePtrOutputWithContext(context.Background())
 }
@@ -4794,12 +4427,6 @@ func (i *secretBackendConnectionRedisElasticachePtrType) ToSecretBackendConnecti
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionRedisElasticachePtrOutput)
 }
 
-func (i *secretBackendConnectionRedisElasticachePtrType) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionRedisElasticache] {
-	return pulumix.Output[*SecretBackendConnectionRedisElasticache]{
-		OutputState: i.ToSecretBackendConnectionRedisElasticachePtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendConnectionRedisElasticacheOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionRedisElasticacheOutput) ElementType() reflect.Type {
@@ -4822,12 +4449,6 @@ func (o SecretBackendConnectionRedisElasticacheOutput) ToSecretBackendConnection
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendConnectionRedisElasticache) *SecretBackendConnectionRedisElasticache {
 		return &v
 	}).(SecretBackendConnectionRedisElasticachePtrOutput)
-}
-
-func (o SecretBackendConnectionRedisElasticacheOutput) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionRedisElasticache] {
-	return pulumix.Output[SecretBackendConnectionRedisElasticache]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The password to authenticate with.
@@ -4863,12 +4484,6 @@ func (o SecretBackendConnectionRedisElasticachePtrOutput) ToSecretBackendConnect
 
 func (o SecretBackendConnectionRedisElasticachePtrOutput) ToSecretBackendConnectionRedisElasticachePtrOutputWithContext(ctx context.Context) SecretBackendConnectionRedisElasticachePtrOutput {
 	return o
-}
-
-func (o SecretBackendConnectionRedisElasticachePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionRedisElasticache] {
-	return pulumix.Output[*SecretBackendConnectionRedisElasticache]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendConnectionRedisElasticachePtrOutput) Elem() SecretBackendConnectionRedisElasticacheOutput {
@@ -4995,12 +4610,6 @@ func (i SecretBackendConnectionRedshiftArgs) ToSecretBackendConnectionRedshiftOu
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionRedshiftOutput)
 }
 
-func (i SecretBackendConnectionRedshiftArgs) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionRedshift] {
-	return pulumix.Output[SecretBackendConnectionRedshift]{
-		OutputState: i.ToSecretBackendConnectionRedshiftOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i SecretBackendConnectionRedshiftArgs) ToSecretBackendConnectionRedshiftPtrOutput() SecretBackendConnectionRedshiftPtrOutput {
 	return i.ToSecretBackendConnectionRedshiftPtrOutputWithContext(context.Background())
 }
@@ -5042,12 +4651,6 @@ func (i *secretBackendConnectionRedshiftPtrType) ToSecretBackendConnectionRedshi
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionRedshiftPtrOutput)
 }
 
-func (i *secretBackendConnectionRedshiftPtrType) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionRedshift] {
-	return pulumix.Output[*SecretBackendConnectionRedshift]{
-		OutputState: i.ToSecretBackendConnectionRedshiftPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendConnectionRedshiftOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionRedshiftOutput) ElementType() reflect.Type {
@@ -5070,12 +4673,6 @@ func (o SecretBackendConnectionRedshiftOutput) ToSecretBackendConnectionRedshift
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendConnectionRedshift) *SecretBackendConnectionRedshift {
 		return &v
 	}).(SecretBackendConnectionRedshiftPtrOutput)
-}
-
-func (o SecretBackendConnectionRedshiftOutput) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionRedshift] {
-	return pulumix.Output[SecretBackendConnectionRedshift]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A URL containing connection information. See
@@ -5136,12 +4733,6 @@ func (o SecretBackendConnectionRedshiftPtrOutput) ToSecretBackendConnectionRedsh
 
 func (o SecretBackendConnectionRedshiftPtrOutput) ToSecretBackendConnectionRedshiftPtrOutputWithContext(ctx context.Context) SecretBackendConnectionRedshiftPtrOutput {
 	return o
-}
-
-func (o SecretBackendConnectionRedshiftPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionRedshift] {
-	return pulumix.Output[*SecretBackendConnectionRedshift]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendConnectionRedshiftPtrOutput) Elem() SecretBackendConnectionRedshiftOutput {
@@ -5309,12 +4900,6 @@ func (i SecretBackendConnectionSnowflakeArgs) ToSecretBackendConnectionSnowflake
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionSnowflakeOutput)
 }
 
-func (i SecretBackendConnectionSnowflakeArgs) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionSnowflake] {
-	return pulumix.Output[SecretBackendConnectionSnowflake]{
-		OutputState: i.ToSecretBackendConnectionSnowflakeOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i SecretBackendConnectionSnowflakeArgs) ToSecretBackendConnectionSnowflakePtrOutput() SecretBackendConnectionSnowflakePtrOutput {
 	return i.ToSecretBackendConnectionSnowflakePtrOutputWithContext(context.Background())
 }
@@ -5356,12 +4941,6 @@ func (i *secretBackendConnectionSnowflakePtrType) ToSecretBackendConnectionSnowf
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionSnowflakePtrOutput)
 }
 
-func (i *secretBackendConnectionSnowflakePtrType) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionSnowflake] {
-	return pulumix.Output[*SecretBackendConnectionSnowflake]{
-		OutputState: i.ToSecretBackendConnectionSnowflakePtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendConnectionSnowflakeOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionSnowflakeOutput) ElementType() reflect.Type {
@@ -5384,12 +4963,6 @@ func (o SecretBackendConnectionSnowflakeOutput) ToSecretBackendConnectionSnowfla
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendConnectionSnowflake) *SecretBackendConnectionSnowflake {
 		return &v
 	}).(SecretBackendConnectionSnowflakePtrOutput)
-}
-
-func (o SecretBackendConnectionSnowflakeOutput) ToOutput(ctx context.Context) pulumix.Output[SecretBackendConnectionSnowflake] {
-	return pulumix.Output[SecretBackendConnectionSnowflake]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A URL containing connection information. See
@@ -5445,12 +5018,6 @@ func (o SecretBackendConnectionSnowflakePtrOutput) ToSecretBackendConnectionSnow
 
 func (o SecretBackendConnectionSnowflakePtrOutput) ToSecretBackendConnectionSnowflakePtrOutputWithContext(ctx context.Context) SecretBackendConnectionSnowflakePtrOutput {
 	return o
-}
-
-func (o SecretBackendConnectionSnowflakePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretBackendConnectionSnowflake] {
-	return pulumix.Output[*SecretBackendConnectionSnowflake]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendConnectionSnowflakePtrOutput) Elem() SecretBackendConnectionSnowflakeOutput {
@@ -5646,12 +5213,6 @@ func (i SecretsMountCassandraArgs) ToSecretsMountCassandraOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountCassandraOutput)
 }
 
-func (i SecretsMountCassandraArgs) ToOutput(ctx context.Context) pulumix.Output[SecretsMountCassandra] {
-	return pulumix.Output[SecretsMountCassandra]{
-		OutputState: i.ToSecretsMountCassandraOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretsMountCassandraArrayInput is an input type that accepts SecretsMountCassandraArray and SecretsMountCassandraArrayOutput values.
 // You can construct a concrete instance of `SecretsMountCassandraArrayInput` via:
 //
@@ -5677,12 +5238,6 @@ func (i SecretsMountCassandraArray) ToSecretsMountCassandraArrayOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountCassandraArrayOutput)
 }
 
-func (i SecretsMountCassandraArray) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountCassandra] {
-	return pulumix.Output[[]SecretsMountCassandra]{
-		OutputState: i.ToSecretsMountCassandraArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretsMountCassandraOutput struct{ *pulumi.OutputState }
 
 func (SecretsMountCassandraOutput) ElementType() reflect.Type {
@@ -5695,12 +5250,6 @@ func (o SecretsMountCassandraOutput) ToSecretsMountCassandraOutput() SecretsMoun
 
 func (o SecretsMountCassandraOutput) ToSecretsMountCassandraOutputWithContext(ctx context.Context) SecretsMountCassandraOutput {
 	return o
-}
-
-func (o SecretsMountCassandraOutput) ToOutput(ctx context.Context) pulumix.Output[SecretsMountCassandra] {
-	return pulumix.Output[SecretsMountCassandra]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A list of roles that are allowed to use this
@@ -5804,12 +5353,6 @@ func (o SecretsMountCassandraArrayOutput) ToSecretsMountCassandraArrayOutputWith
 	return o
 }
 
-func (o SecretsMountCassandraArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountCassandra] {
-	return pulumix.Output[[]SecretsMountCassandra]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SecretsMountCassandraArrayOutput) Index(i pulumi.IntInput) SecretsMountCassandraOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretsMountCassandra {
 		return vs[0].([]SecretsMountCassandra)[vs[1].(int)]
@@ -5909,12 +5452,6 @@ func (i SecretsMountCouchbaseArgs) ToSecretsMountCouchbaseOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountCouchbaseOutput)
 }
 
-func (i SecretsMountCouchbaseArgs) ToOutput(ctx context.Context) pulumix.Output[SecretsMountCouchbase] {
-	return pulumix.Output[SecretsMountCouchbase]{
-		OutputState: i.ToSecretsMountCouchbaseOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretsMountCouchbaseArrayInput is an input type that accepts SecretsMountCouchbaseArray and SecretsMountCouchbaseArrayOutput values.
 // You can construct a concrete instance of `SecretsMountCouchbaseArrayInput` via:
 //
@@ -5940,12 +5477,6 @@ func (i SecretsMountCouchbaseArray) ToSecretsMountCouchbaseArrayOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountCouchbaseArrayOutput)
 }
 
-func (i SecretsMountCouchbaseArray) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountCouchbase] {
-	return pulumix.Output[[]SecretsMountCouchbase]{
-		OutputState: i.ToSecretsMountCouchbaseArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretsMountCouchbaseOutput struct{ *pulumi.OutputState }
 
 func (SecretsMountCouchbaseOutput) ElementType() reflect.Type {
@@ -5958,12 +5489,6 @@ func (o SecretsMountCouchbaseOutput) ToSecretsMountCouchbaseOutput() SecretsMoun
 
 func (o SecretsMountCouchbaseOutput) ToSecretsMountCouchbaseOutputWithContext(ctx context.Context) SecretsMountCouchbaseOutput {
 	return o
-}
-
-func (o SecretsMountCouchbaseOutput) ToOutput(ctx context.Context) pulumix.Output[SecretsMountCouchbase] {
-	return pulumix.Output[SecretsMountCouchbase]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A list of roles that are allowed to use this
@@ -6052,12 +5577,6 @@ func (o SecretsMountCouchbaseArrayOutput) ToSecretsMountCouchbaseArrayOutput() S
 
 func (o SecretsMountCouchbaseArrayOutput) ToSecretsMountCouchbaseArrayOutputWithContext(ctx context.Context) SecretsMountCouchbaseArrayOutput {
 	return o
-}
-
-func (o SecretsMountCouchbaseArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountCouchbase] {
-	return pulumix.Output[[]SecretsMountCouchbase]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretsMountCouchbaseArrayOutput) Index(i pulumi.IntInput) SecretsMountCouchbaseOutput {
@@ -6167,12 +5686,6 @@ func (i SecretsMountElasticsearchArgs) ToSecretsMountElasticsearchOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountElasticsearchOutput)
 }
 
-func (i SecretsMountElasticsearchArgs) ToOutput(ctx context.Context) pulumix.Output[SecretsMountElasticsearch] {
-	return pulumix.Output[SecretsMountElasticsearch]{
-		OutputState: i.ToSecretsMountElasticsearchOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretsMountElasticsearchArrayInput is an input type that accepts SecretsMountElasticsearchArray and SecretsMountElasticsearchArrayOutput values.
 // You can construct a concrete instance of `SecretsMountElasticsearchArrayInput` via:
 //
@@ -6198,12 +5711,6 @@ func (i SecretsMountElasticsearchArray) ToSecretsMountElasticsearchArrayOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountElasticsearchArrayOutput)
 }
 
-func (i SecretsMountElasticsearchArray) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountElasticsearch] {
-	return pulumix.Output[[]SecretsMountElasticsearch]{
-		OutputState: i.ToSecretsMountElasticsearchArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretsMountElasticsearchOutput struct{ *pulumi.OutputState }
 
 func (SecretsMountElasticsearchOutput) ElementType() reflect.Type {
@@ -6216,12 +5723,6 @@ func (o SecretsMountElasticsearchOutput) ToSecretsMountElasticsearchOutput() Sec
 
 func (o SecretsMountElasticsearchOutput) ToSecretsMountElasticsearchOutputWithContext(ctx context.Context) SecretsMountElasticsearchOutput {
 	return o
-}
-
-func (o SecretsMountElasticsearchOutput) ToOutput(ctx context.Context) pulumix.Output[SecretsMountElasticsearch] {
-	return pulumix.Output[SecretsMountElasticsearch]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A list of roles that are allowed to use this
@@ -6320,12 +5821,6 @@ func (o SecretsMountElasticsearchArrayOutput) ToSecretsMountElasticsearchArrayOu
 
 func (o SecretsMountElasticsearchArrayOutput) ToSecretsMountElasticsearchArrayOutputWithContext(ctx context.Context) SecretsMountElasticsearchArrayOutput {
 	return o
-}
-
-func (o SecretsMountElasticsearchArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountElasticsearch] {
-	return pulumix.Output[[]SecretsMountElasticsearch]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretsMountElasticsearchArrayOutput) Index(i pulumi.IntInput) SecretsMountElasticsearchOutput {
@@ -6427,12 +5922,6 @@ func (i SecretsMountHanaArgs) ToSecretsMountHanaOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountHanaOutput)
 }
 
-func (i SecretsMountHanaArgs) ToOutput(ctx context.Context) pulumix.Output[SecretsMountHana] {
-	return pulumix.Output[SecretsMountHana]{
-		OutputState: i.ToSecretsMountHanaOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretsMountHanaArrayInput is an input type that accepts SecretsMountHanaArray and SecretsMountHanaArrayOutput values.
 // You can construct a concrete instance of `SecretsMountHanaArrayInput` via:
 //
@@ -6458,12 +5947,6 @@ func (i SecretsMountHanaArray) ToSecretsMountHanaArrayOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountHanaArrayOutput)
 }
 
-func (i SecretsMountHanaArray) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountHana] {
-	return pulumix.Output[[]SecretsMountHana]{
-		OutputState: i.ToSecretsMountHanaArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretsMountHanaOutput struct{ *pulumi.OutputState }
 
 func (SecretsMountHanaOutput) ElementType() reflect.Type {
@@ -6476,12 +5959,6 @@ func (o SecretsMountHanaOutput) ToSecretsMountHanaOutput() SecretsMountHanaOutpu
 
 func (o SecretsMountHanaOutput) ToSecretsMountHanaOutputWithContext(ctx context.Context) SecretsMountHanaOutput {
 	return o
-}
-
-func (o SecretsMountHanaOutput) ToOutput(ctx context.Context) pulumix.Output[SecretsMountHana] {
-	return pulumix.Output[SecretsMountHana]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A list of roles that are allowed to use this
@@ -6567,12 +6044,6 @@ func (o SecretsMountHanaArrayOutput) ToSecretsMountHanaArrayOutput() SecretsMoun
 
 func (o SecretsMountHanaArrayOutput) ToSecretsMountHanaArrayOutputWithContext(ctx context.Context) SecretsMountHanaArrayOutput {
 	return o
-}
-
-func (o SecretsMountHanaArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountHana] {
-	return pulumix.Output[[]SecretsMountHana]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretsMountHanaArrayOutput) Index(i pulumi.IntInput) SecretsMountHanaOutput {
@@ -6688,12 +6159,6 @@ func (i SecretsMountInfluxdbArgs) ToSecretsMountInfluxdbOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountInfluxdbOutput)
 }
 
-func (i SecretsMountInfluxdbArgs) ToOutput(ctx context.Context) pulumix.Output[SecretsMountInfluxdb] {
-	return pulumix.Output[SecretsMountInfluxdb]{
-		OutputState: i.ToSecretsMountInfluxdbOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretsMountInfluxdbArrayInput is an input type that accepts SecretsMountInfluxdbArray and SecretsMountInfluxdbArrayOutput values.
 // You can construct a concrete instance of `SecretsMountInfluxdbArrayInput` via:
 //
@@ -6719,12 +6184,6 @@ func (i SecretsMountInfluxdbArray) ToSecretsMountInfluxdbArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountInfluxdbArrayOutput)
 }
 
-func (i SecretsMountInfluxdbArray) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountInfluxdb] {
-	return pulumix.Output[[]SecretsMountInfluxdb]{
-		OutputState: i.ToSecretsMountInfluxdbArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretsMountInfluxdbOutput struct{ *pulumi.OutputState }
 
 func (SecretsMountInfluxdbOutput) ElementType() reflect.Type {
@@ -6737,12 +6196,6 @@ func (o SecretsMountInfluxdbOutput) ToSecretsMountInfluxdbOutput() SecretsMountI
 
 func (o SecretsMountInfluxdbOutput) ToSecretsMountInfluxdbOutputWithContext(ctx context.Context) SecretsMountInfluxdbOutput {
 	return o
-}
-
-func (o SecretsMountInfluxdbOutput) ToOutput(ctx context.Context) pulumix.Output[SecretsMountInfluxdb] {
-	return pulumix.Output[SecretsMountInfluxdb]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A list of roles that are allowed to use this
@@ -6846,12 +6299,6 @@ func (o SecretsMountInfluxdbArrayOutput) ToSecretsMountInfluxdbArrayOutputWithCo
 	return o
 }
 
-func (o SecretsMountInfluxdbArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountInfluxdb] {
-	return pulumix.Output[[]SecretsMountInfluxdb]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SecretsMountInfluxdbArrayOutput) Index(i pulumi.IntInput) SecretsMountInfluxdbOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretsMountInfluxdb {
 		return vs[0].([]SecretsMountInfluxdb)[vs[1].(int)]
@@ -6951,12 +6398,6 @@ func (i SecretsMountMongodbArgs) ToSecretsMountMongodbOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountMongodbOutput)
 }
 
-func (i SecretsMountMongodbArgs) ToOutput(ctx context.Context) pulumix.Output[SecretsMountMongodb] {
-	return pulumix.Output[SecretsMountMongodb]{
-		OutputState: i.ToSecretsMountMongodbOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretsMountMongodbArrayInput is an input type that accepts SecretsMountMongodbArray and SecretsMountMongodbArrayOutput values.
 // You can construct a concrete instance of `SecretsMountMongodbArrayInput` via:
 //
@@ -6982,12 +6423,6 @@ func (i SecretsMountMongodbArray) ToSecretsMountMongodbArrayOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountMongodbArrayOutput)
 }
 
-func (i SecretsMountMongodbArray) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountMongodb] {
-	return pulumix.Output[[]SecretsMountMongodb]{
-		OutputState: i.ToSecretsMountMongodbArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretsMountMongodbOutput struct{ *pulumi.OutputState }
 
 func (SecretsMountMongodbOutput) ElementType() reflect.Type {
@@ -7000,12 +6435,6 @@ func (o SecretsMountMongodbOutput) ToSecretsMountMongodbOutput() SecretsMountMon
 
 func (o SecretsMountMongodbOutput) ToSecretsMountMongodbOutputWithContext(ctx context.Context) SecretsMountMongodbOutput {
 	return o
-}
-
-func (o SecretsMountMongodbOutput) ToOutput(ctx context.Context) pulumix.Output[SecretsMountMongodb] {
-	return pulumix.Output[SecretsMountMongodb]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A list of roles that are allowed to use this
@@ -7093,12 +6522,6 @@ func (o SecretsMountMongodbArrayOutput) ToSecretsMountMongodbArrayOutputWithCont
 	return o
 }
 
-func (o SecretsMountMongodbArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountMongodb] {
-	return pulumix.Output[[]SecretsMountMongodb]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SecretsMountMongodbArrayOutput) Index(i pulumi.IntInput) SecretsMountMongodbOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretsMountMongodb {
 		return vs[0].([]SecretsMountMongodb)[vs[1].(int)]
@@ -7176,12 +6599,6 @@ func (i SecretsMountMongodbatlaArgs) ToSecretsMountMongodbatlaOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountMongodbatlaOutput)
 }
 
-func (i SecretsMountMongodbatlaArgs) ToOutput(ctx context.Context) pulumix.Output[SecretsMountMongodbatla] {
-	return pulumix.Output[SecretsMountMongodbatla]{
-		OutputState: i.ToSecretsMountMongodbatlaOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretsMountMongodbatlaArrayInput is an input type that accepts SecretsMountMongodbatlaArray and SecretsMountMongodbatlaArrayOutput values.
 // You can construct a concrete instance of `SecretsMountMongodbatlaArrayInput` via:
 //
@@ -7207,12 +6624,6 @@ func (i SecretsMountMongodbatlaArray) ToSecretsMountMongodbatlaArrayOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountMongodbatlaArrayOutput)
 }
 
-func (i SecretsMountMongodbatlaArray) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountMongodbatla] {
-	return pulumix.Output[[]SecretsMountMongodbatla]{
-		OutputState: i.ToSecretsMountMongodbatlaArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretsMountMongodbatlaOutput struct{ *pulumi.OutputState }
 
 func (SecretsMountMongodbatlaOutput) ElementType() reflect.Type {
@@ -7225,12 +6636,6 @@ func (o SecretsMountMongodbatlaOutput) ToSecretsMountMongodbatlaOutput() Secrets
 
 func (o SecretsMountMongodbatlaOutput) ToSecretsMountMongodbatlaOutputWithContext(ctx context.Context) SecretsMountMongodbatlaOutput {
 	return o
-}
-
-func (o SecretsMountMongodbatlaOutput) ToOutput(ctx context.Context) pulumix.Output[SecretsMountMongodbatla] {
-	return pulumix.Output[SecretsMountMongodbatla]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A list of roles that are allowed to use this
@@ -7293,12 +6698,6 @@ func (o SecretsMountMongodbatlaArrayOutput) ToSecretsMountMongodbatlaArrayOutput
 
 func (o SecretsMountMongodbatlaArrayOutput) ToSecretsMountMongodbatlaArrayOutputWithContext(ctx context.Context) SecretsMountMongodbatlaArrayOutput {
 	return o
-}
-
-func (o SecretsMountMongodbatlaArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountMongodbatla] {
-	return pulumix.Output[[]SecretsMountMongodbatla]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretsMountMongodbatlaArrayOutput) Index(i pulumi.IntInput) SecretsMountMongodbatlaOutput {
@@ -7412,12 +6811,6 @@ func (i SecretsMountMssqlArgs) ToSecretsMountMssqlOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountMssqlOutput)
 }
 
-func (i SecretsMountMssqlArgs) ToOutput(ctx context.Context) pulumix.Output[SecretsMountMssql] {
-	return pulumix.Output[SecretsMountMssql]{
-		OutputState: i.ToSecretsMountMssqlOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretsMountMssqlArrayInput is an input type that accepts SecretsMountMssqlArray and SecretsMountMssqlArrayOutput values.
 // You can construct a concrete instance of `SecretsMountMssqlArrayInput` via:
 //
@@ -7443,12 +6836,6 @@ func (i SecretsMountMssqlArray) ToSecretsMountMssqlArrayOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountMssqlArrayOutput)
 }
 
-func (i SecretsMountMssqlArray) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountMssql] {
-	return pulumix.Output[[]SecretsMountMssql]{
-		OutputState: i.ToSecretsMountMssqlArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretsMountMssqlOutput struct{ *pulumi.OutputState }
 
 func (SecretsMountMssqlOutput) ElementType() reflect.Type {
@@ -7461,12 +6848,6 @@ func (o SecretsMountMssqlOutput) ToSecretsMountMssqlOutput() SecretsMountMssqlOu
 
 func (o SecretsMountMssqlOutput) ToSecretsMountMssqlOutputWithContext(ctx context.Context) SecretsMountMssqlOutput {
 	return o
-}
-
-func (o SecretsMountMssqlOutput) ToOutput(ctx context.Context) pulumix.Output[SecretsMountMssql] {
-	return pulumix.Output[SecretsMountMssql]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A list of roles that are allowed to use this
@@ -7564,12 +6945,6 @@ func (o SecretsMountMssqlArrayOutput) ToSecretsMountMssqlArrayOutput() SecretsMo
 
 func (o SecretsMountMssqlArrayOutput) ToSecretsMountMssqlArrayOutputWithContext(ctx context.Context) SecretsMountMssqlArrayOutput {
 	return o
-}
-
-func (o SecretsMountMssqlArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountMssql] {
-	return pulumix.Output[[]SecretsMountMssql]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretsMountMssqlArrayOutput) Index(i pulumi.IntInput) SecretsMountMssqlOutput {
@@ -7683,12 +7058,6 @@ func (i SecretsMountMysqlArgs) ToSecretsMountMysqlOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountMysqlOutput)
 }
 
-func (i SecretsMountMysqlArgs) ToOutput(ctx context.Context) pulumix.Output[SecretsMountMysql] {
-	return pulumix.Output[SecretsMountMysql]{
-		OutputState: i.ToSecretsMountMysqlOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretsMountMysqlArrayInput is an input type that accepts SecretsMountMysqlArray and SecretsMountMysqlArrayOutput values.
 // You can construct a concrete instance of `SecretsMountMysqlArrayInput` via:
 //
@@ -7714,12 +7083,6 @@ func (i SecretsMountMysqlArray) ToSecretsMountMysqlArrayOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountMysqlArrayOutput)
 }
 
-func (i SecretsMountMysqlArray) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountMysql] {
-	return pulumix.Output[[]SecretsMountMysql]{
-		OutputState: i.ToSecretsMountMysqlArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretsMountMysqlOutput struct{ *pulumi.OutputState }
 
 func (SecretsMountMysqlOutput) ElementType() reflect.Type {
@@ -7732,12 +7095,6 @@ func (o SecretsMountMysqlOutput) ToSecretsMountMysqlOutput() SecretsMountMysqlOu
 
 func (o SecretsMountMysqlOutput) ToSecretsMountMysqlOutputWithContext(ctx context.Context) SecretsMountMysqlOutput {
 	return o
-}
-
-func (o SecretsMountMysqlOutput) ToOutput(ctx context.Context) pulumix.Output[SecretsMountMysql] {
-	return pulumix.Output[SecretsMountMysql]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A list of roles that are allowed to use this
@@ -7843,12 +7200,6 @@ func (o SecretsMountMysqlArrayOutput) ToSecretsMountMysqlArrayOutputWithContext(
 	return o
 }
 
-func (o SecretsMountMysqlArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountMysql] {
-	return pulumix.Output[[]SecretsMountMysql]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SecretsMountMysqlArrayOutput) Index(i pulumi.IntInput) SecretsMountMysqlOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretsMountMysql {
 		return vs[0].([]SecretsMountMysql)[vs[1].(int)]
@@ -7948,12 +7299,6 @@ func (i SecretsMountMysqlAuroraArgs) ToSecretsMountMysqlAuroraOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountMysqlAuroraOutput)
 }
 
-func (i SecretsMountMysqlAuroraArgs) ToOutput(ctx context.Context) pulumix.Output[SecretsMountMysqlAurora] {
-	return pulumix.Output[SecretsMountMysqlAurora]{
-		OutputState: i.ToSecretsMountMysqlAuroraOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretsMountMysqlAuroraArrayInput is an input type that accepts SecretsMountMysqlAuroraArray and SecretsMountMysqlAuroraArrayOutput values.
 // You can construct a concrete instance of `SecretsMountMysqlAuroraArrayInput` via:
 //
@@ -7979,12 +7324,6 @@ func (i SecretsMountMysqlAuroraArray) ToSecretsMountMysqlAuroraArrayOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountMysqlAuroraArrayOutput)
 }
 
-func (i SecretsMountMysqlAuroraArray) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountMysqlAurora] {
-	return pulumix.Output[[]SecretsMountMysqlAurora]{
-		OutputState: i.ToSecretsMountMysqlAuroraArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretsMountMysqlAuroraOutput struct{ *pulumi.OutputState }
 
 func (SecretsMountMysqlAuroraOutput) ElementType() reflect.Type {
@@ -7997,12 +7336,6 @@ func (o SecretsMountMysqlAuroraOutput) ToSecretsMountMysqlAuroraOutput() Secrets
 
 func (o SecretsMountMysqlAuroraOutput) ToSecretsMountMysqlAuroraOutputWithContext(ctx context.Context) SecretsMountMysqlAuroraOutput {
 	return o
-}
-
-func (o SecretsMountMysqlAuroraOutput) ToOutput(ctx context.Context) pulumix.Output[SecretsMountMysqlAurora] {
-	return pulumix.Output[SecretsMountMysqlAurora]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A list of roles that are allowed to use this
@@ -8088,12 +7421,6 @@ func (o SecretsMountMysqlAuroraArrayOutput) ToSecretsMountMysqlAuroraArrayOutput
 
 func (o SecretsMountMysqlAuroraArrayOutput) ToSecretsMountMysqlAuroraArrayOutputWithContext(ctx context.Context) SecretsMountMysqlAuroraArrayOutput {
 	return o
-}
-
-func (o SecretsMountMysqlAuroraArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountMysqlAurora] {
-	return pulumix.Output[[]SecretsMountMysqlAurora]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretsMountMysqlAuroraArrayOutput) Index(i pulumi.IntInput) SecretsMountMysqlAuroraOutput {
@@ -8195,12 +7522,6 @@ func (i SecretsMountMysqlLegacyArgs) ToSecretsMountMysqlLegacyOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountMysqlLegacyOutput)
 }
 
-func (i SecretsMountMysqlLegacyArgs) ToOutput(ctx context.Context) pulumix.Output[SecretsMountMysqlLegacy] {
-	return pulumix.Output[SecretsMountMysqlLegacy]{
-		OutputState: i.ToSecretsMountMysqlLegacyOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretsMountMysqlLegacyArrayInput is an input type that accepts SecretsMountMysqlLegacyArray and SecretsMountMysqlLegacyArrayOutput values.
 // You can construct a concrete instance of `SecretsMountMysqlLegacyArrayInput` via:
 //
@@ -8226,12 +7547,6 @@ func (i SecretsMountMysqlLegacyArray) ToSecretsMountMysqlLegacyArrayOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountMysqlLegacyArrayOutput)
 }
 
-func (i SecretsMountMysqlLegacyArray) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountMysqlLegacy] {
-	return pulumix.Output[[]SecretsMountMysqlLegacy]{
-		OutputState: i.ToSecretsMountMysqlLegacyArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretsMountMysqlLegacyOutput struct{ *pulumi.OutputState }
 
 func (SecretsMountMysqlLegacyOutput) ElementType() reflect.Type {
@@ -8244,12 +7559,6 @@ func (o SecretsMountMysqlLegacyOutput) ToSecretsMountMysqlLegacyOutput() Secrets
 
 func (o SecretsMountMysqlLegacyOutput) ToSecretsMountMysqlLegacyOutputWithContext(ctx context.Context) SecretsMountMysqlLegacyOutput {
 	return o
-}
-
-func (o SecretsMountMysqlLegacyOutput) ToOutput(ctx context.Context) pulumix.Output[SecretsMountMysqlLegacy] {
-	return pulumix.Output[SecretsMountMysqlLegacy]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A list of roles that are allowed to use this
@@ -8335,12 +7644,6 @@ func (o SecretsMountMysqlLegacyArrayOutput) ToSecretsMountMysqlLegacyArrayOutput
 
 func (o SecretsMountMysqlLegacyArrayOutput) ToSecretsMountMysqlLegacyArrayOutputWithContext(ctx context.Context) SecretsMountMysqlLegacyArrayOutput {
 	return o
-}
-
-func (o SecretsMountMysqlLegacyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountMysqlLegacy] {
-	return pulumix.Output[[]SecretsMountMysqlLegacy]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretsMountMysqlLegacyArrayOutput) Index(i pulumi.IntInput) SecretsMountMysqlLegacyOutput {
@@ -8442,12 +7745,6 @@ func (i SecretsMountMysqlRdArgs) ToSecretsMountMysqlRdOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountMysqlRdOutput)
 }
 
-func (i SecretsMountMysqlRdArgs) ToOutput(ctx context.Context) pulumix.Output[SecretsMountMysqlRd] {
-	return pulumix.Output[SecretsMountMysqlRd]{
-		OutputState: i.ToSecretsMountMysqlRdOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretsMountMysqlRdArrayInput is an input type that accepts SecretsMountMysqlRdArray and SecretsMountMysqlRdArrayOutput values.
 // You can construct a concrete instance of `SecretsMountMysqlRdArrayInput` via:
 //
@@ -8473,12 +7770,6 @@ func (i SecretsMountMysqlRdArray) ToSecretsMountMysqlRdArrayOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountMysqlRdArrayOutput)
 }
 
-func (i SecretsMountMysqlRdArray) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountMysqlRd] {
-	return pulumix.Output[[]SecretsMountMysqlRd]{
-		OutputState: i.ToSecretsMountMysqlRdArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretsMountMysqlRdOutput struct{ *pulumi.OutputState }
 
 func (SecretsMountMysqlRdOutput) ElementType() reflect.Type {
@@ -8491,12 +7782,6 @@ func (o SecretsMountMysqlRdOutput) ToSecretsMountMysqlRdOutput() SecretsMountMys
 
 func (o SecretsMountMysqlRdOutput) ToSecretsMountMysqlRdOutputWithContext(ctx context.Context) SecretsMountMysqlRdOutput {
 	return o
-}
-
-func (o SecretsMountMysqlRdOutput) ToOutput(ctx context.Context) pulumix.Output[SecretsMountMysqlRd] {
-	return pulumix.Output[SecretsMountMysqlRd]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A list of roles that are allowed to use this
@@ -8582,12 +7867,6 @@ func (o SecretsMountMysqlRdArrayOutput) ToSecretsMountMysqlRdArrayOutput() Secre
 
 func (o SecretsMountMysqlRdArrayOutput) ToSecretsMountMysqlRdArrayOutputWithContext(ctx context.Context) SecretsMountMysqlRdArrayOutput {
 	return o
-}
-
-func (o SecretsMountMysqlRdArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountMysqlRd] {
-	return pulumix.Output[[]SecretsMountMysqlRd]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretsMountMysqlRdArrayOutput) Index(i pulumi.IntInput) SecretsMountMysqlRdOutput {
@@ -8689,12 +7968,6 @@ func (i SecretsMountOracleArgs) ToSecretsMountOracleOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountOracleOutput)
 }
 
-func (i SecretsMountOracleArgs) ToOutput(ctx context.Context) pulumix.Output[SecretsMountOracle] {
-	return pulumix.Output[SecretsMountOracle]{
-		OutputState: i.ToSecretsMountOracleOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretsMountOracleArrayInput is an input type that accepts SecretsMountOracleArray and SecretsMountOracleArrayOutput values.
 // You can construct a concrete instance of `SecretsMountOracleArrayInput` via:
 //
@@ -8720,12 +7993,6 @@ func (i SecretsMountOracleArray) ToSecretsMountOracleArrayOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountOracleArrayOutput)
 }
 
-func (i SecretsMountOracleArray) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountOracle] {
-	return pulumix.Output[[]SecretsMountOracle]{
-		OutputState: i.ToSecretsMountOracleArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretsMountOracleOutput struct{ *pulumi.OutputState }
 
 func (SecretsMountOracleOutput) ElementType() reflect.Type {
@@ -8738,12 +8005,6 @@ func (o SecretsMountOracleOutput) ToSecretsMountOracleOutput() SecretsMountOracl
 
 func (o SecretsMountOracleOutput) ToSecretsMountOracleOutputWithContext(ctx context.Context) SecretsMountOracleOutput {
 	return o
-}
-
-func (o SecretsMountOracleOutput) ToOutput(ctx context.Context) pulumix.Output[SecretsMountOracle] {
-	return pulumix.Output[SecretsMountOracle]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A list of roles that are allowed to use this
@@ -8829,12 +8090,6 @@ func (o SecretsMountOracleArrayOutput) ToSecretsMountOracleArrayOutput() Secrets
 
 func (o SecretsMountOracleArrayOutput) ToSecretsMountOracleArrayOutputWithContext(ctx context.Context) SecretsMountOracleArrayOutput {
 	return o
-}
-
-func (o SecretsMountOracleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountOracle] {
-	return pulumix.Output[[]SecretsMountOracle]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretsMountOracleArrayOutput) Index(i pulumi.IntInput) SecretsMountOracleOutput {
@@ -8944,12 +8199,6 @@ func (i SecretsMountPostgresqlArgs) ToSecretsMountPostgresqlOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountPostgresqlOutput)
 }
 
-func (i SecretsMountPostgresqlArgs) ToOutput(ctx context.Context) pulumix.Output[SecretsMountPostgresql] {
-	return pulumix.Output[SecretsMountPostgresql]{
-		OutputState: i.ToSecretsMountPostgresqlOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretsMountPostgresqlArrayInput is an input type that accepts SecretsMountPostgresqlArray and SecretsMountPostgresqlArrayOutput values.
 // You can construct a concrete instance of `SecretsMountPostgresqlArrayInput` via:
 //
@@ -8975,12 +8224,6 @@ func (i SecretsMountPostgresqlArray) ToSecretsMountPostgresqlArrayOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountPostgresqlArrayOutput)
 }
 
-func (i SecretsMountPostgresqlArray) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountPostgresql] {
-	return pulumix.Output[[]SecretsMountPostgresql]{
-		OutputState: i.ToSecretsMountPostgresqlArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretsMountPostgresqlOutput struct{ *pulumi.OutputState }
 
 func (SecretsMountPostgresqlOutput) ElementType() reflect.Type {
@@ -8993,12 +8236,6 @@ func (o SecretsMountPostgresqlOutput) ToSecretsMountPostgresqlOutput() SecretsMo
 
 func (o SecretsMountPostgresqlOutput) ToSecretsMountPostgresqlOutputWithContext(ctx context.Context) SecretsMountPostgresqlOutput {
 	return o
-}
-
-func (o SecretsMountPostgresqlOutput) ToOutput(ctx context.Context) pulumix.Output[SecretsMountPostgresql] {
-	return pulumix.Output[SecretsMountPostgresql]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A list of roles that are allowed to use this
@@ -9099,12 +8336,6 @@ func (o SecretsMountPostgresqlArrayOutput) ToSecretsMountPostgresqlArrayOutputWi
 	return o
 }
 
-func (o SecretsMountPostgresqlArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountPostgresql] {
-	return pulumix.Output[[]SecretsMountPostgresql]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SecretsMountPostgresqlArrayOutput) Index(i pulumi.IntInput) SecretsMountPostgresqlOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretsMountPostgresql {
 		return vs[0].([]SecretsMountPostgresql)[vs[1].(int)]
@@ -9202,12 +8433,6 @@ func (i SecretsMountRediArgs) ToSecretsMountRediOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountRediOutput)
 }
 
-func (i SecretsMountRediArgs) ToOutput(ctx context.Context) pulumix.Output[SecretsMountRedi] {
-	return pulumix.Output[SecretsMountRedi]{
-		OutputState: i.ToSecretsMountRediOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretsMountRediArrayInput is an input type that accepts SecretsMountRediArray and SecretsMountRediArrayOutput values.
 // You can construct a concrete instance of `SecretsMountRediArrayInput` via:
 //
@@ -9233,12 +8458,6 @@ func (i SecretsMountRediArray) ToSecretsMountRediArrayOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountRediArrayOutput)
 }
 
-func (i SecretsMountRediArray) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountRedi] {
-	return pulumix.Output[[]SecretsMountRedi]{
-		OutputState: i.ToSecretsMountRediArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretsMountRediOutput struct{ *pulumi.OutputState }
 
 func (SecretsMountRediOutput) ElementType() reflect.Type {
@@ -9251,12 +8470,6 @@ func (o SecretsMountRediOutput) ToSecretsMountRediOutput() SecretsMountRediOutpu
 
 func (o SecretsMountRediOutput) ToSecretsMountRediOutputWithContext(ctx context.Context) SecretsMountRediOutput {
 	return o
-}
-
-func (o SecretsMountRediOutput) ToOutput(ctx context.Context) pulumix.Output[SecretsMountRedi] {
-	return pulumix.Output[SecretsMountRedi]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A list of roles that are allowed to use this
@@ -9341,12 +8554,6 @@ func (o SecretsMountRediArrayOutput) ToSecretsMountRediArrayOutput() SecretsMoun
 
 func (o SecretsMountRediArrayOutput) ToSecretsMountRediArrayOutputWithContext(ctx context.Context) SecretsMountRediArrayOutput {
 	return o
-}
-
-func (o SecretsMountRediArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountRedi] {
-	return pulumix.Output[[]SecretsMountRedi]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretsMountRediArrayOutput) Index(i pulumi.IntInput) SecretsMountRediOutput {
@@ -9434,12 +8641,6 @@ func (i SecretsMountRedisElasticachArgs) ToSecretsMountRedisElasticachOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountRedisElasticachOutput)
 }
 
-func (i SecretsMountRedisElasticachArgs) ToOutput(ctx context.Context) pulumix.Output[SecretsMountRedisElasticach] {
-	return pulumix.Output[SecretsMountRedisElasticach]{
-		OutputState: i.ToSecretsMountRedisElasticachOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretsMountRedisElasticachArrayInput is an input type that accepts SecretsMountRedisElasticachArray and SecretsMountRedisElasticachArrayOutput values.
 // You can construct a concrete instance of `SecretsMountRedisElasticachArrayInput` via:
 //
@@ -9465,12 +8666,6 @@ func (i SecretsMountRedisElasticachArray) ToSecretsMountRedisElasticachArrayOutp
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountRedisElasticachArrayOutput)
 }
 
-func (i SecretsMountRedisElasticachArray) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountRedisElasticach] {
-	return pulumix.Output[[]SecretsMountRedisElasticach]{
-		OutputState: i.ToSecretsMountRedisElasticachArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretsMountRedisElasticachOutput struct{ *pulumi.OutputState }
 
 func (SecretsMountRedisElasticachOutput) ElementType() reflect.Type {
@@ -9483,12 +8678,6 @@ func (o SecretsMountRedisElasticachOutput) ToSecretsMountRedisElasticachOutput()
 
 func (o SecretsMountRedisElasticachOutput) ToSecretsMountRedisElasticachOutputWithContext(ctx context.Context) SecretsMountRedisElasticachOutput {
 	return o
-}
-
-func (o SecretsMountRedisElasticachOutput) ToOutput(ctx context.Context) pulumix.Output[SecretsMountRedisElasticach] {
-	return pulumix.Output[SecretsMountRedisElasticach]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A list of roles that are allowed to use this
@@ -9558,12 +8747,6 @@ func (o SecretsMountRedisElasticachArrayOutput) ToSecretsMountRedisElasticachArr
 
 func (o SecretsMountRedisElasticachArrayOutput) ToSecretsMountRedisElasticachArrayOutputWithContext(ctx context.Context) SecretsMountRedisElasticachArrayOutput {
 	return o
-}
-
-func (o SecretsMountRedisElasticachArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountRedisElasticach] {
-	return pulumix.Output[[]SecretsMountRedisElasticach]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretsMountRedisElasticachArrayOutput) Index(i pulumi.IntInput) SecretsMountRedisElasticachOutput {
@@ -9669,12 +8852,6 @@ func (i SecretsMountRedshiftArgs) ToSecretsMountRedshiftOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountRedshiftOutput)
 }
 
-func (i SecretsMountRedshiftArgs) ToOutput(ctx context.Context) pulumix.Output[SecretsMountRedshift] {
-	return pulumix.Output[SecretsMountRedshift]{
-		OutputState: i.ToSecretsMountRedshiftOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretsMountRedshiftArrayInput is an input type that accepts SecretsMountRedshiftArray and SecretsMountRedshiftArrayOutput values.
 // You can construct a concrete instance of `SecretsMountRedshiftArrayInput` via:
 //
@@ -9700,12 +8877,6 @@ func (i SecretsMountRedshiftArray) ToSecretsMountRedshiftArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountRedshiftArrayOutput)
 }
 
-func (i SecretsMountRedshiftArray) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountRedshift] {
-	return pulumix.Output[[]SecretsMountRedshift]{
-		OutputState: i.ToSecretsMountRedshiftArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretsMountRedshiftOutput struct{ *pulumi.OutputState }
 
 func (SecretsMountRedshiftOutput) ElementType() reflect.Type {
@@ -9718,12 +8889,6 @@ func (o SecretsMountRedshiftOutput) ToSecretsMountRedshiftOutput() SecretsMountR
 
 func (o SecretsMountRedshiftOutput) ToSecretsMountRedshiftOutputWithContext(ctx context.Context) SecretsMountRedshiftOutput {
 	return o
-}
-
-func (o SecretsMountRedshiftOutput) ToOutput(ctx context.Context) pulumix.Output[SecretsMountRedshift] {
-	return pulumix.Output[SecretsMountRedshift]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A list of roles that are allowed to use this
@@ -9814,12 +8979,6 @@ func (o SecretsMountRedshiftArrayOutput) ToSecretsMountRedshiftArrayOutput() Sec
 
 func (o SecretsMountRedshiftArrayOutput) ToSecretsMountRedshiftArrayOutputWithContext(ctx context.Context) SecretsMountRedshiftArrayOutput {
 	return o
-}
-
-func (o SecretsMountRedshiftArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountRedshift] {
-	return pulumix.Output[[]SecretsMountRedshift]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretsMountRedshiftArrayOutput) Index(i pulumi.IntInput) SecretsMountRedshiftOutput {
@@ -9921,12 +9080,6 @@ func (i SecretsMountSnowflakeArgs) ToSecretsMountSnowflakeOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountSnowflakeOutput)
 }
 
-func (i SecretsMountSnowflakeArgs) ToOutput(ctx context.Context) pulumix.Output[SecretsMountSnowflake] {
-	return pulumix.Output[SecretsMountSnowflake]{
-		OutputState: i.ToSecretsMountSnowflakeOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretsMountSnowflakeArrayInput is an input type that accepts SecretsMountSnowflakeArray and SecretsMountSnowflakeArrayOutput values.
 // You can construct a concrete instance of `SecretsMountSnowflakeArrayInput` via:
 //
@@ -9952,12 +9105,6 @@ func (i SecretsMountSnowflakeArray) ToSecretsMountSnowflakeArrayOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountSnowflakeArrayOutput)
 }
 
-func (i SecretsMountSnowflakeArray) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountSnowflake] {
-	return pulumix.Output[[]SecretsMountSnowflake]{
-		OutputState: i.ToSecretsMountSnowflakeArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretsMountSnowflakeOutput struct{ *pulumi.OutputState }
 
 func (SecretsMountSnowflakeOutput) ElementType() reflect.Type {
@@ -9970,12 +9117,6 @@ func (o SecretsMountSnowflakeOutput) ToSecretsMountSnowflakeOutput() SecretsMoun
 
 func (o SecretsMountSnowflakeOutput) ToSecretsMountSnowflakeOutputWithContext(ctx context.Context) SecretsMountSnowflakeOutput {
 	return o
-}
-
-func (o SecretsMountSnowflakeOutput) ToOutput(ctx context.Context) pulumix.Output[SecretsMountSnowflake] {
-	return pulumix.Output[SecretsMountSnowflake]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A list of roles that are allowed to use this
@@ -10061,12 +9202,6 @@ func (o SecretsMountSnowflakeArrayOutput) ToSecretsMountSnowflakeArrayOutput() S
 
 func (o SecretsMountSnowflakeArrayOutput) ToSecretsMountSnowflakeArrayOutputWithContext(ctx context.Context) SecretsMountSnowflakeArrayOutput {
 	return o
-}
-
-func (o SecretsMountSnowflakeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SecretsMountSnowflake] {
-	return pulumix.Output[[]SecretsMountSnowflake]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretsMountSnowflakeArrayOutput) Index(i pulumi.IntInput) SecretsMountSnowflakeOutput {

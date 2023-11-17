@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // This data source supports the "/transform/encode/{role_name}" Vault endpoint.
@@ -178,12 +177,6 @@ func (o GetEncodeResultOutput) ToGetEncodeResultOutput() GetEncodeResultOutput {
 
 func (o GetEncodeResultOutput) ToGetEncodeResultOutputWithContext(ctx context.Context) GetEncodeResultOutput {
 	return o
-}
-
-func (o GetEncodeResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetEncodeResult] {
-	return pulumix.Output[GetEncodeResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetEncodeResultOutput) BatchInputs() pulumi.MapArrayOutput {

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Provides a resource to manage Role Governing Policy (RGP) via [Sentinel](https://www.vaultproject.io/docs/enterprise/sentinel/index.html).
@@ -178,12 +177,6 @@ func (i *RgpPolicy) ToRgpPolicyOutputWithContext(ctx context.Context) RgpPolicyO
 	return pulumi.ToOutputWithContext(ctx, i).(RgpPolicyOutput)
 }
 
-func (i *RgpPolicy) ToOutput(ctx context.Context) pulumix.Output[*RgpPolicy] {
-	return pulumix.Output[*RgpPolicy]{
-		OutputState: i.ToRgpPolicyOutputWithContext(ctx).OutputState,
-	}
-}
-
 // RgpPolicyArrayInput is an input type that accepts RgpPolicyArray and RgpPolicyArrayOutput values.
 // You can construct a concrete instance of `RgpPolicyArrayInput` via:
 //
@@ -207,12 +200,6 @@ func (i RgpPolicyArray) ToRgpPolicyArrayOutput() RgpPolicyArrayOutput {
 
 func (i RgpPolicyArray) ToRgpPolicyArrayOutputWithContext(ctx context.Context) RgpPolicyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RgpPolicyArrayOutput)
-}
-
-func (i RgpPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]*RgpPolicy] {
-	return pulumix.Output[[]*RgpPolicy]{
-		OutputState: i.ToRgpPolicyArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // RgpPolicyMapInput is an input type that accepts RgpPolicyMap and RgpPolicyMapOutput values.
@@ -240,12 +227,6 @@ func (i RgpPolicyMap) ToRgpPolicyMapOutputWithContext(ctx context.Context) RgpPo
 	return pulumi.ToOutputWithContext(ctx, i).(RgpPolicyMapOutput)
 }
 
-func (i RgpPolicyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RgpPolicy] {
-	return pulumix.Output[map[string]*RgpPolicy]{
-		OutputState: i.ToRgpPolicyMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type RgpPolicyOutput struct{ *pulumi.OutputState }
 
 func (RgpPolicyOutput) ElementType() reflect.Type {
@@ -258,12 +239,6 @@ func (o RgpPolicyOutput) ToRgpPolicyOutput() RgpPolicyOutput {
 
 func (o RgpPolicyOutput) ToRgpPolicyOutputWithContext(ctx context.Context) RgpPolicyOutput {
 	return o
-}
-
-func (o RgpPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*RgpPolicy] {
-	return pulumix.Output[*RgpPolicy]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
@@ -303,12 +278,6 @@ func (o RgpPolicyArrayOutput) ToRgpPolicyArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o RgpPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RgpPolicy] {
-	return pulumix.Output[[]*RgpPolicy]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o RgpPolicyArrayOutput) Index(i pulumi.IntInput) RgpPolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RgpPolicy {
 		return vs[0].([]*RgpPolicy)[vs[1].(int)]
@@ -327,12 +296,6 @@ func (o RgpPolicyMapOutput) ToRgpPolicyMapOutput() RgpPolicyMapOutput {
 
 func (o RgpPolicyMapOutput) ToRgpPolicyMapOutputWithContext(ctx context.Context) RgpPolicyMapOutput {
 	return o
-}
-
-func (o RgpPolicyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RgpPolicy] {
-	return pulumix.Output[map[string]*RgpPolicy]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RgpPolicyMapOutput) MapIndex(k pulumi.StringInput) RgpPolicyOutput {

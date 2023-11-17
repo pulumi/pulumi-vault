@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -224,12 +223,6 @@ func (i *OidcKey) ToOidcKeyOutputWithContext(ctx context.Context) OidcKeyOutput 
 	return pulumi.ToOutputWithContext(ctx, i).(OidcKeyOutput)
 }
 
-func (i *OidcKey) ToOutput(ctx context.Context) pulumix.Output[*OidcKey] {
-	return pulumix.Output[*OidcKey]{
-		OutputState: i.ToOidcKeyOutputWithContext(ctx).OutputState,
-	}
-}
-
 // OidcKeyArrayInput is an input type that accepts OidcKeyArray and OidcKeyArrayOutput values.
 // You can construct a concrete instance of `OidcKeyArrayInput` via:
 //
@@ -253,12 +246,6 @@ func (i OidcKeyArray) ToOidcKeyArrayOutput() OidcKeyArrayOutput {
 
 func (i OidcKeyArray) ToOidcKeyArrayOutputWithContext(ctx context.Context) OidcKeyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OidcKeyArrayOutput)
-}
-
-func (i OidcKeyArray) ToOutput(ctx context.Context) pulumix.Output[[]*OidcKey] {
-	return pulumix.Output[[]*OidcKey]{
-		OutputState: i.ToOidcKeyArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // OidcKeyMapInput is an input type that accepts OidcKeyMap and OidcKeyMapOutput values.
@@ -286,12 +273,6 @@ func (i OidcKeyMap) ToOidcKeyMapOutputWithContext(ctx context.Context) OidcKeyMa
 	return pulumi.ToOutputWithContext(ctx, i).(OidcKeyMapOutput)
 }
 
-func (i OidcKeyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*OidcKey] {
-	return pulumix.Output[map[string]*OidcKey]{
-		OutputState: i.ToOidcKeyMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type OidcKeyOutput struct{ *pulumi.OutputState }
 
 func (OidcKeyOutput) ElementType() reflect.Type {
@@ -304,12 +285,6 @@ func (o OidcKeyOutput) ToOidcKeyOutput() OidcKeyOutput {
 
 func (o OidcKeyOutput) ToOidcKeyOutputWithContext(ctx context.Context) OidcKeyOutput {
 	return o
-}
-
-func (o OidcKeyOutput) ToOutput(ctx context.Context) pulumix.Output[*OidcKey] {
-	return pulumix.Output[*OidcKey]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Signing algorithm to use. Signing algorithm to use.
@@ -362,12 +337,6 @@ func (o OidcKeyArrayOutput) ToOidcKeyArrayOutputWithContext(ctx context.Context)
 	return o
 }
 
-func (o OidcKeyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*OidcKey] {
-	return pulumix.Output[[]*OidcKey]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o OidcKeyArrayOutput) Index(i pulumi.IntInput) OidcKeyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *OidcKey {
 		return vs[0].([]*OidcKey)[vs[1].(int)]
@@ -386,12 +355,6 @@ func (o OidcKeyMapOutput) ToOidcKeyMapOutput() OidcKeyMapOutput {
 
 func (o OidcKeyMapOutput) ToOidcKeyMapOutputWithContext(ctx context.Context) OidcKeyMapOutput {
 	return o
-}
-
-func (o OidcKeyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*OidcKey] {
-	return pulumix.Output[map[string]*OidcKey]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o OidcKeyMapOutput) MapIndex(k pulumi.StringInput) OidcKeyOutput {

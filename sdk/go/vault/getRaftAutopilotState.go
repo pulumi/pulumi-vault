@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Displays the state of the raft cluster under integrated storage as seen by
@@ -129,12 +128,6 @@ func (o GetRaftAutopilotStateResultOutput) ToGetRaftAutopilotStateResultOutput()
 
 func (o GetRaftAutopilotStateResultOutput) ToGetRaftAutopilotStateResultOutputWithContext(ctx context.Context) GetRaftAutopilotStateResultOutput {
 	return o
-}
-
-func (o GetRaftAutopilotStateResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetRaftAutopilotStateResult] {
-	return pulumix.Output[GetRaftAutopilotStateResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // How many nodes could fail before the cluster becomes unhealthy.

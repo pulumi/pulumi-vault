@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates a Static Account in the [GCP Secrets Engine](https://www.vaultproject.io/docs/secrets/gcp/index.html) for Vault.
@@ -268,12 +267,6 @@ func (i *SecretStaticAccount) ToSecretStaticAccountOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(SecretStaticAccountOutput)
 }
 
-func (i *SecretStaticAccount) ToOutput(ctx context.Context) pulumix.Output[*SecretStaticAccount] {
-	return pulumix.Output[*SecretStaticAccount]{
-		OutputState: i.ToSecretStaticAccountOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretStaticAccountArrayInput is an input type that accepts SecretStaticAccountArray and SecretStaticAccountArrayOutput values.
 // You can construct a concrete instance of `SecretStaticAccountArrayInput` via:
 //
@@ -297,12 +290,6 @@ func (i SecretStaticAccountArray) ToSecretStaticAccountArrayOutput() SecretStati
 
 func (i SecretStaticAccountArray) ToSecretStaticAccountArrayOutputWithContext(ctx context.Context) SecretStaticAccountArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretStaticAccountArrayOutput)
-}
-
-func (i SecretStaticAccountArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretStaticAccount] {
-	return pulumix.Output[[]*SecretStaticAccount]{
-		OutputState: i.ToSecretStaticAccountArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SecretStaticAccountMapInput is an input type that accepts SecretStaticAccountMap and SecretStaticAccountMapOutput values.
@@ -330,12 +317,6 @@ func (i SecretStaticAccountMap) ToSecretStaticAccountMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(SecretStaticAccountMapOutput)
 }
 
-func (i SecretStaticAccountMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretStaticAccount] {
-	return pulumix.Output[map[string]*SecretStaticAccount]{
-		OutputState: i.ToSecretStaticAccountMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretStaticAccountOutput struct{ *pulumi.OutputState }
 
 func (SecretStaticAccountOutput) ElementType() reflect.Type {
@@ -348,12 +329,6 @@ func (o SecretStaticAccountOutput) ToSecretStaticAccountOutput() SecretStaticAcc
 
 func (o SecretStaticAccountOutput) ToSecretStaticAccountOutputWithContext(ctx context.Context) SecretStaticAccountOutput {
 	return o
-}
-
-func (o SecretStaticAccountOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretStaticAccount] {
-	return pulumix.Output[*SecretStaticAccount]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Path where the GCP Secrets Engine is mounted
@@ -413,12 +388,6 @@ func (o SecretStaticAccountArrayOutput) ToSecretStaticAccountArrayOutputWithCont
 	return o
 }
 
-func (o SecretStaticAccountArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretStaticAccount] {
-	return pulumix.Output[[]*SecretStaticAccount]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SecretStaticAccountArrayOutput) Index(i pulumi.IntInput) SecretStaticAccountOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretStaticAccount {
 		return vs[0].([]*SecretStaticAccount)[vs[1].(int)]
@@ -437,12 +406,6 @@ func (o SecretStaticAccountMapOutput) ToSecretStaticAccountMapOutput() SecretSta
 
 func (o SecretStaticAccountMapOutput) ToSecretStaticAccountMapOutputWithContext(ctx context.Context) SecretStaticAccountMapOutput {
 	return o
-}
-
-func (o SecretStaticAccountMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretStaticAccount] {
-	return pulumix.Output[map[string]*SecretStaticAccount]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretStaticAccountMapOutput) MapIndex(k pulumi.StringInput) SecretStaticAccountOutput {

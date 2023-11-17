@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -681,12 +680,6 @@ func (i *RaftSnapshotAgentConfig) ToRaftSnapshotAgentConfigOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(RaftSnapshotAgentConfigOutput)
 }
 
-func (i *RaftSnapshotAgentConfig) ToOutput(ctx context.Context) pulumix.Output[*RaftSnapshotAgentConfig] {
-	return pulumix.Output[*RaftSnapshotAgentConfig]{
-		OutputState: i.ToRaftSnapshotAgentConfigOutputWithContext(ctx).OutputState,
-	}
-}
-
 // RaftSnapshotAgentConfigArrayInput is an input type that accepts RaftSnapshotAgentConfigArray and RaftSnapshotAgentConfigArrayOutput values.
 // You can construct a concrete instance of `RaftSnapshotAgentConfigArrayInput` via:
 //
@@ -710,12 +703,6 @@ func (i RaftSnapshotAgentConfigArray) ToRaftSnapshotAgentConfigArrayOutput() Raf
 
 func (i RaftSnapshotAgentConfigArray) ToRaftSnapshotAgentConfigArrayOutputWithContext(ctx context.Context) RaftSnapshotAgentConfigArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RaftSnapshotAgentConfigArrayOutput)
-}
-
-func (i RaftSnapshotAgentConfigArray) ToOutput(ctx context.Context) pulumix.Output[[]*RaftSnapshotAgentConfig] {
-	return pulumix.Output[[]*RaftSnapshotAgentConfig]{
-		OutputState: i.ToRaftSnapshotAgentConfigArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // RaftSnapshotAgentConfigMapInput is an input type that accepts RaftSnapshotAgentConfigMap and RaftSnapshotAgentConfigMapOutput values.
@@ -743,12 +730,6 @@ func (i RaftSnapshotAgentConfigMap) ToRaftSnapshotAgentConfigMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(RaftSnapshotAgentConfigMapOutput)
 }
 
-func (i RaftSnapshotAgentConfigMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RaftSnapshotAgentConfig] {
-	return pulumix.Output[map[string]*RaftSnapshotAgentConfig]{
-		OutputState: i.ToRaftSnapshotAgentConfigMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type RaftSnapshotAgentConfigOutput struct{ *pulumi.OutputState }
 
 func (RaftSnapshotAgentConfigOutput) ElementType() reflect.Type {
@@ -761,12 +742,6 @@ func (o RaftSnapshotAgentConfigOutput) ToRaftSnapshotAgentConfigOutput() RaftSna
 
 func (o RaftSnapshotAgentConfigOutput) ToRaftSnapshotAgentConfigOutputWithContext(ctx context.Context) RaftSnapshotAgentConfigOutput {
 	return o
-}
-
-func (o RaftSnapshotAgentConfigOutput) ToOutput(ctx context.Context) pulumix.Output[*RaftSnapshotAgentConfig] {
-	return pulumix.Output[*RaftSnapshotAgentConfig]{
-		OutputState: o.OutputState,
-	}
 }
 
 // AWS access key ID.
@@ -964,12 +939,6 @@ func (o RaftSnapshotAgentConfigArrayOutput) ToRaftSnapshotAgentConfigArrayOutput
 	return o
 }
 
-func (o RaftSnapshotAgentConfigArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RaftSnapshotAgentConfig] {
-	return pulumix.Output[[]*RaftSnapshotAgentConfig]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o RaftSnapshotAgentConfigArrayOutput) Index(i pulumi.IntInput) RaftSnapshotAgentConfigOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RaftSnapshotAgentConfig {
 		return vs[0].([]*RaftSnapshotAgentConfig)[vs[1].(int)]
@@ -988,12 +957,6 @@ func (o RaftSnapshotAgentConfigMapOutput) ToRaftSnapshotAgentConfigMapOutput() R
 
 func (o RaftSnapshotAgentConfigMapOutput) ToRaftSnapshotAgentConfigMapOutputWithContext(ctx context.Context) RaftSnapshotAgentConfigMapOutput {
 	return o
-}
-
-func (o RaftSnapshotAgentConfigMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RaftSnapshotAgentConfig] {
-	return pulumix.Output[map[string]*RaftSnapshotAgentConfig]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RaftSnapshotAgentConfigMapOutput) MapIndex(k pulumi.StringInput) RaftSnapshotAgentConfigOutput {

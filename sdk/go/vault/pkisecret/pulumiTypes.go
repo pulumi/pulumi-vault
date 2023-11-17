@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 var _ = internal.GetEnvOrDefault
@@ -59,12 +58,6 @@ func (i SecretBackendRolePolicyIdentifierArgs) ToSecretBackendRolePolicyIdentifi
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRolePolicyIdentifierOutput)
 }
 
-func (i SecretBackendRolePolicyIdentifierArgs) ToOutput(ctx context.Context) pulumix.Output[SecretBackendRolePolicyIdentifier] {
-	return pulumix.Output[SecretBackendRolePolicyIdentifier]{
-		OutputState: i.ToSecretBackendRolePolicyIdentifierOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SecretBackendRolePolicyIdentifierArrayInput is an input type that accepts SecretBackendRolePolicyIdentifierArray and SecretBackendRolePolicyIdentifierArrayOutput values.
 // You can construct a concrete instance of `SecretBackendRolePolicyIdentifierArrayInput` via:
 //
@@ -90,12 +83,6 @@ func (i SecretBackendRolePolicyIdentifierArray) ToSecretBackendRolePolicyIdentif
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRolePolicyIdentifierArrayOutput)
 }
 
-func (i SecretBackendRolePolicyIdentifierArray) ToOutput(ctx context.Context) pulumix.Output[[]SecretBackendRolePolicyIdentifier] {
-	return pulumix.Output[[]SecretBackendRolePolicyIdentifier]{
-		OutputState: i.ToSecretBackendRolePolicyIdentifierArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SecretBackendRolePolicyIdentifierOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendRolePolicyIdentifierOutput) ElementType() reflect.Type {
@@ -108,12 +95,6 @@ func (o SecretBackendRolePolicyIdentifierOutput) ToSecretBackendRolePolicyIdenti
 
 func (o SecretBackendRolePolicyIdentifierOutput) ToSecretBackendRolePolicyIdentifierOutputWithContext(ctx context.Context) SecretBackendRolePolicyIdentifierOutput {
 	return o
-}
-
-func (o SecretBackendRolePolicyIdentifierOutput) ToOutput(ctx context.Context) pulumix.Output[SecretBackendRolePolicyIdentifier] {
-	return pulumix.Output[SecretBackendRolePolicyIdentifier]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The URL of the CPS for the policy identifier
@@ -145,12 +126,6 @@ func (o SecretBackendRolePolicyIdentifierArrayOutput) ToSecretBackendRolePolicyI
 
 func (o SecretBackendRolePolicyIdentifierArrayOutput) ToSecretBackendRolePolicyIdentifierArrayOutputWithContext(ctx context.Context) SecretBackendRolePolicyIdentifierArrayOutput {
 	return o
-}
-
-func (o SecretBackendRolePolicyIdentifierArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SecretBackendRolePolicyIdentifier] {
-	return pulumix.Output[[]SecretBackendRolePolicyIdentifier]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SecretBackendRolePolicyIdentifierArrayOutput) Index(i pulumi.IntInput) SecretBackendRolePolicyIdentifierOutput {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -172,12 +171,6 @@ func (o GetSecretSubkeysV2ResultOutput) ToGetSecretSubkeysV2ResultOutput() GetSe
 
 func (o GetSecretSubkeysV2ResultOutput) ToGetSecretSubkeysV2ResultOutputWithContext(ctx context.Context) GetSecretSubkeysV2ResultOutput {
 	return o
-}
-
-func (o GetSecretSubkeysV2ResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSecretSubkeysV2Result] {
-	return pulumix.Output[GetSecretSubkeysV2Result]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Subkeys for the KV-V2 secret stored as a serialized map of strings.
