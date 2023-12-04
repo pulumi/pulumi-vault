@@ -12,7 +12,7 @@ import * as utilities from "../utilities";
  * import * as fs from "fs";
  * import * as vault from "@pulumi/vault";
  *
- * const gcp = new vault.gcp.SecretBackend("gcp", {credentials: fs.readFileSync("credentials.json")});
+ * const gcp = new vault.gcp.SecretBackend("gcp", {credentials: fs.readFileSync("credentials.json", "utf8")});
  * ```
  */
 export class SecretBackend extends pulumi.CustomResource {

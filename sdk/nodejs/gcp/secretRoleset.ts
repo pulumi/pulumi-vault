@@ -21,7 +21,7 @@ import * as utilities from "../utilities";
  * const project = "my-awesome-project";
  * const gcp = new vault.gcp.SecretBackend("gcp", {
  *     path: "gcp",
- *     credentials: fs.readFileSync("credentials.json"),
+ *     credentials: fs.readFileSync("credentials.json", "utf8"),
  * });
  * const roleset = new vault.gcp.SecretRoleset("roleset", {
  *     backend: gcp.path,
