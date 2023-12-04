@@ -161,7 +161,7 @@ namespace Pulumi.Vault.AppRole
                 Version = Utilities.Version,
                 Aliases =
                 {
-                    new global::Pulumi.Alias { Type = "vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID"},
+                    new global::Pulumi.Alias { Type = "vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID" },
                 },
                 AdditionalSecretOutputs =
                 {

@@ -17,7 +17,7 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const gcp = new vault.gcp.AuthBackend("gcp", {
- *     credentials: fs.readFileSync("vault-gcp-credentials.json"),
+ *     credentials: fs.readFileSync("vault-gcp-credentials.json", "utf8"),
  *     customEndpoint: {
  *         api: "www.googleapis.com",
  *         iam: "iam.googleapis.com",

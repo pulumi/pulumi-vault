@@ -18,8 +18,8 @@ import * as utilities from "../utilities";
  *     path: "kubernetes",
  *     description: "kubernetes secrets engine description",
  *     kubernetesHost: "https://127.0.0.1:61233",
- *     kubernetesCaCert: fs.readFileSync("/path/to/cert"),
- *     serviceAccountJwt: fs.readFileSync("/path/to/token"),
+ *     kubernetesCaCert: fs.readFileSync("/path/to/cert", "utf8"),
+ *     serviceAccountJwt: fs.readFileSync("/path/to/token", "utf8"),
  *     disableLocalCaJwt: false,
  * });
  * const sa_example = new vault.kubernetes.SecretBackendRole("sa-example", {
@@ -50,8 +50,8 @@ import * as utilities from "../utilities";
  *     path: "kubernetes",
  *     description: "kubernetes secrets engine description",
  *     kubernetesHost: "https://127.0.0.1:61233",
- *     kubernetesCaCert: fs.readFileSync("/path/to/cert"),
- *     serviceAccountJwt: fs.readFileSync("/path/to/token"),
+ *     kubernetesCaCert: fs.readFileSync("/path/to/cert", "utf8"),
+ *     serviceAccountJwt: fs.readFileSync("/path/to/token", "utf8"),
  *     disableLocalCaJwt: false,
  * });
  * const name_example = new vault.kubernetes.SecretBackendRole("name-example", {
@@ -82,8 +82,8 @@ import * as utilities from "../utilities";
  *     path: "kubernetes",
  *     description: "kubernetes secrets engine description",
  *     kubernetesHost: "https://127.0.0.1:61233",
- *     kubernetesCaCert: fs.readFileSync("/path/to/cert"),
- *     serviceAccountJwt: fs.readFileSync("/path/to/token"),
+ *     kubernetesCaCert: fs.readFileSync("/path/to/cert", "utf8"),
+ *     serviceAccountJwt: fs.readFileSync("/path/to/token", "utf8"),
  *     disableLocalCaJwt: false,
  * });
  * const rules_example = new vault.kubernetes.SecretBackendRole("rules-example", {
