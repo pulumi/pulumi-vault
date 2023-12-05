@@ -19,7 +19,7 @@ import * as utilities from "./utilities";
  *     type: "cert",
  * });
  * const certCertAuthBackendRole = new vault.CertAuthBackendRole("certCertAuthBackendRole", {
- *     certificate: fs.readFileSync("/path/to/certs/ca-cert.pem"),
+ *     certificate: fs.readFileSync("/path/to/certs/ca-cert.pem", "utf8"),
  *     backend: certAuthBackend.path,
  *     allowedNames: [
  *         "foo.example.org",

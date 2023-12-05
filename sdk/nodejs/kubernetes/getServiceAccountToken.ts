@@ -16,8 +16,8 @@ import * as utilities from "../utilities";
  *     path: "kubernetes",
  *     description: "kubernetes secrets engine description",
  *     kubernetesHost: "https://127.0.0.1:61233",
- *     kubernetesCaCert: fs.readFileSync("/path/to/cert"),
- *     serviceAccountJwt: fs.readFileSync("/path/to/token"),
+ *     kubernetesCaCert: fs.readFileSync("/path/to/cert", "utf8"),
+ *     serviceAccountJwt: fs.readFileSync("/path/to/token", "utf8"),
  *     disableLocalCaJwt: false,
  * });
  * const role = new vault.kubernetes.SecretBackendRole("role", {
@@ -146,8 +146,8 @@ export interface GetServiceAccountTokenResult {
  *     path: "kubernetes",
  *     description: "kubernetes secrets engine description",
  *     kubernetesHost: "https://127.0.0.1:61233",
- *     kubernetesCaCert: fs.readFileSync("/path/to/cert"),
- *     serviceAccountJwt: fs.readFileSync("/path/to/token"),
+ *     kubernetesCaCert: fs.readFileSync("/path/to/cert", "utf8"),
+ *     serviceAccountJwt: fs.readFileSync("/path/to/token", "utf8"),
  *     disableLocalCaJwt: false,
  * });
  * const role = new vault.kubernetes.SecretBackendRole("role", {
