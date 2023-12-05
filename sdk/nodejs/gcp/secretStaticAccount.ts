@@ -23,7 +23,7 @@ import * as utilities from "../utilities";
  * const _this = new gcp.serviceaccount.Account("this", {accountId: "my-awesome-account"});
  * const gcp = new vault.gcp.SecretBackend("gcp", {
  *     path: "gcp",
- *     credentials: fs.readFileSync("credentials.json"),
+ *     credentials: fs.readFileSync("credentials.json", "utf8"),
  * });
  * const staticAccount = new vault.gcp.SecretStaticAccount("staticAccount", {
  *     backend: gcp.path,

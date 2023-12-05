@@ -18,8 +18,8 @@ import * as utilities from "../utilities";
  *     defaultLeaseTtlSeconds: 43200,
  *     maxLeaseTtlSeconds: 86400,
  *     kubernetesHost: "https://127.0.0.1:61233",
- *     kubernetesCaCert: fs.readFileSync("/path/to/cert"),
- *     serviceAccountJwt: fs.readFileSync("/path/to/token"),
+ *     kubernetesCaCert: fs.readFileSync("/path/to/cert", "utf8"),
+ *     serviceAccountJwt: fs.readFileSync("/path/to/token", "utf8"),
  *     disableLocalCaJwt: false,
  * });
  * ```
