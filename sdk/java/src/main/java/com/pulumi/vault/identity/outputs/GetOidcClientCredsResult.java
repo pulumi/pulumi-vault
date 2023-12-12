@@ -110,13 +110,13 @@ public final class GetOidcClientCredsResult {
             return this;
         }
         public GetOidcClientCredsResult build() {
-            final var o = new GetOidcClientCredsResult();
-            o.clientId = clientId;
-            o.clientSecret = clientSecret;
-            o.id = id;
-            o.name = name;
-            o.namespace = namespace;
-            return o;
+            final var _resultValue = new GetOidcClientCredsResult();
+            _resultValue.clientId = clientId;
+            _resultValue.clientSecret = clientSecret;
+            _resultValue.id = id;
+            _resultValue.name = name;
+            _resultValue.namespace = namespace;
+            return _resultValue;
         }
     }
 }

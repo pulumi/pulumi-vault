@@ -49,10 +49,10 @@ public final class ClientAuth {
             return this;
         }
         public ClientAuth build() {
-            final var o = new ClientAuth();
-            o.certFile = certFile;
-            o.keyFile = keyFile;
-            return o;
+            final var _resultValue = new ClientAuth();
+            _resultValue.certFile = certFile;
+            _resultValue.keyFile = keyFile;
+            return _resultValue;
         }
     }
 }

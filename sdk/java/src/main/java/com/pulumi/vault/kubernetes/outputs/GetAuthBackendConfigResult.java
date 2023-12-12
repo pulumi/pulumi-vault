@@ -173,17 +173,17 @@ public final class GetAuthBackendConfigResult {
             return pemKeys(List.of(pemKeys));
         }
         public GetAuthBackendConfigResult build() {
-            final var o = new GetAuthBackendConfigResult();
-            o.backend = backend;
-            o.disableIssValidation = disableIssValidation;
-            o.disableLocalCaJwt = disableLocalCaJwt;
-            o.id = id;
-            o.issuer = issuer;
-            o.kubernetesCaCert = kubernetesCaCert;
-            o.kubernetesHost = kubernetesHost;
-            o.namespace = namespace;
-            o.pemKeys = pemKeys;
-            return o;
+            final var _resultValue = new GetAuthBackendConfigResult();
+            _resultValue.backend = backend;
+            _resultValue.disableIssValidation = disableIssValidation;
+            _resultValue.disableLocalCaJwt = disableLocalCaJwt;
+            _resultValue.id = id;
+            _resultValue.issuer = issuer;
+            _resultValue.kubernetesCaCert = kubernetesCaCert;
+            _resultValue.kubernetesHost = kubernetesHost;
+            _resultValue.namespace = namespace;
+            _resultValue.pemKeys = pemKeys;
+            return _resultValue;
         }
     }
 }

@@ -163,17 +163,17 @@ public final class GetSecretSubkeysV2Result {
             return this;
         }
         public GetSecretSubkeysV2Result build() {
-            final var o = new GetSecretSubkeysV2Result();
-            o.data = data;
-            o.dataJson = dataJson;
-            o.depth = depth;
-            o.id = id;
-            o.mount = mount;
-            o.name = name;
-            o.namespace = namespace;
-            o.path = path;
-            o.version = version;
-            return o;
+            final var _resultValue = new GetSecretSubkeysV2Result();
+            _resultValue.data = data;
+            _resultValue.dataJson = dataJson;
+            _resultValue.depth = depth;
+            _resultValue.id = id;
+            _resultValue.mount = mount;
+            _resultValue.name = name;
+            _resultValue.namespace = namespace;
+            _resultValue.path = path;
+            _resultValue.version = version;
+            return _resultValue;
         }
     }
 }

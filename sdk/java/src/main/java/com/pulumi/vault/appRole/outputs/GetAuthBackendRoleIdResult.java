@@ -100,13 +100,13 @@ public final class GetAuthBackendRoleIdResult {
             return this;
         }
         public GetAuthBackendRoleIdResult build() {
-            final var o = new GetAuthBackendRoleIdResult();
-            o.backend = backend;
-            o.id = id;
-            o.namespace = namespace;
-            o.roleId = roleId;
-            o.roleName = roleName;
-            return o;
+            final var _resultValue = new GetAuthBackendRoleIdResult();
+            _resultValue.backend = backend;
+            _resultValue.id = id;
+            _resultValue.namespace = namespace;
+            _resultValue.roleId = roleId;
+            _resultValue.roleName = roleName;
+            return _resultValue;
         }
     }
 }

@@ -159,19 +159,19 @@ public final class GetStaticCredentialsResult {
             return this;
         }
         public GetStaticCredentialsResult build() {
-            final var o = new GetStaticCredentialsResult();
-            o.dn = dn;
-            o.id = id;
-            o.lastPassword = lastPassword;
-            o.lastVaultRotation = lastVaultRotation;
-            o.mount = mount;
-            o.namespace = namespace;
-            o.password = password;
-            o.roleName = roleName;
-            o.rotationPeriod = rotationPeriod;
-            o.ttl = ttl;
-            o.username = username;
-            return o;
+            final var _resultValue = new GetStaticCredentialsResult();
+            _resultValue.dn = dn;
+            _resultValue.id = id;
+            _resultValue.lastPassword = lastPassword;
+            _resultValue.lastVaultRotation = lastVaultRotation;
+            _resultValue.mount = mount;
+            _resultValue.namespace = namespace;
+            _resultValue.password = password;
+            _resultValue.roleName = roleName;
+            _resultValue.rotationPeriod = rotationPeriod;
+            _resultValue.ttl = ttl;
+            _resultValue.username = username;
+            return _resultValue;
         }
     }
 }

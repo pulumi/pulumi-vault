@@ -138,15 +138,15 @@ public final class GetAccessCredentialsResult {
             return this;
         }
         public GetAccessCredentialsResult build() {
-            final var o = new GetAccessCredentialsResult();
-            o.backend = backend;
-            o.currentPassword = currentPassword;
-            o.id = id;
-            o.lastPassword = lastPassword;
-            o.namespace = namespace;
-            o.role = role;
-            o.username = username;
-            return o;
+            final var _resultValue = new GetAccessCredentialsResult();
+            _resultValue.backend = backend;
+            _resultValue.currentPassword = currentPassword;
+            _resultValue.id = id;
+            _resultValue.lastPassword = lastPassword;
+            _resultValue.namespace = namespace;
+            _resultValue.role = role;
+            _resultValue.username = username;
+            return _resultValue;
         }
     }
 }

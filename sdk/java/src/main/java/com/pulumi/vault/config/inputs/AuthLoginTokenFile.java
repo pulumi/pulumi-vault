@@ -63,11 +63,11 @@ public final class AuthLoginTokenFile {
             return this;
         }
         public AuthLoginTokenFile build() {
-            final var o = new AuthLoginTokenFile();
-            o.filename = filename;
-            o.namespace = namespace;
-            o.useRootNamespace = useRootNamespace;
-            return o;
+            final var _resultValue = new AuthLoginTokenFile();
+            _resultValue.filename = filename;
+            _resultValue.namespace = namespace;
+            _resultValue.useRootNamespace = useRootNamespace;
+            return _resultValue;
         }
     }
 }

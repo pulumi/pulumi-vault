@@ -181,16 +181,16 @@ public final class GetSecretResult {
             return this;
         }
         public GetSecretResult build() {
-            final var o = new GetSecretResult();
-            o.data = data;
-            o.dataJson = dataJson;
-            o.id = id;
-            o.leaseDuration = leaseDuration;
-            o.leaseId = leaseId;
-            o.leaseRenewable = leaseRenewable;
-            o.namespace = namespace;
-            o.path = path;
-            return o;
+            final var _resultValue = new GetSecretResult();
+            _resultValue.data = data;
+            _resultValue.dataJson = dataJson;
+            _resultValue.id = id;
+            _resultValue.leaseDuration = leaseDuration;
+            _resultValue.leaseId = leaseId;
+            _resultValue.leaseRenewable = leaseRenewable;
+            _resultValue.namespace = namespace;
+            _resultValue.path = path;
+            return _resultValue;
         }
     }
 }

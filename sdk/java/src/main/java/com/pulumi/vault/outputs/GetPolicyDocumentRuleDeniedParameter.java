@@ -69,10 +69,10 @@ public final class GetPolicyDocumentRuleDeniedParameter {
             return values(List.of(values));
         }
         public GetPolicyDocumentRuleDeniedParameter build() {
-            final var o = new GetPolicyDocumentRuleDeniedParameter();
-            o.key = key;
-            o.values = values;
-            return o;
+            final var _resultValue = new GetPolicyDocumentRuleDeniedParameter();
+            _resultValue.key = key;
+            _resultValue.values = values;
+            return _resultValue;
         }
     }
 }

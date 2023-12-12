@@ -348,24 +348,24 @@ public final class KeysPkc {
             return this;
         }
         public KeysPkc build() {
-            final var o = new KeysPkc();
-            o.allowGenerateKey = allowGenerateKey;
-            o.allowReplaceKey = allowReplaceKey;
-            o.allowStoreKey = allowStoreKey;
-            o.anyMount = anyMount;
-            o.curve = curve;
-            o.forceRwSession = forceRwSession;
-            o.keyBits = keyBits;
-            o.keyId = keyId;
-            o.keyLabel = keyLabel;
-            o.library = library;
-            o.mechanism = mechanism;
-            o.name = name;
-            o.pin = pin;
-            o.slot = slot;
-            o.tokenLabel = tokenLabel;
-            o.uuid = uuid;
-            return o;
+            final var _resultValue = new KeysPkc();
+            _resultValue.allowGenerateKey = allowGenerateKey;
+            _resultValue.allowReplaceKey = allowReplaceKey;
+            _resultValue.allowStoreKey = allowStoreKey;
+            _resultValue.anyMount = anyMount;
+            _resultValue.curve = curve;
+            _resultValue.forceRwSession = forceRwSession;
+            _resultValue.keyBits = keyBits;
+            _resultValue.keyId = keyId;
+            _resultValue.keyLabel = keyLabel;
+            _resultValue.library = library;
+            _resultValue.mechanism = mechanism;
+            _resultValue.name = name;
+            _resultValue.pin = pin;
+            _resultValue.slot = slot;
+            _resultValue.tokenLabel = tokenLabel;
+            _resultValue.uuid = uuid;
+            return _resultValue;
         }
     }
 }

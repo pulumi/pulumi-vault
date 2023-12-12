@@ -84,11 +84,11 @@ public final class SecretBackendConnectionMongodbatlas {
             return this;
         }
         public SecretBackendConnectionMongodbatlas build() {
-            final var o = new SecretBackendConnectionMongodbatlas();
-            o.privateKey = privateKey;
-            o.projectId = projectId;
-            o.publicKey = publicKey;
-            return o;
+            final var _resultValue = new SecretBackendConnectionMongodbatlas();
+            _resultValue.privateKey = privateKey;
+            _resultValue.projectId = projectId;
+            _resultValue.publicKey = publicKey;
+            return _resultValue;
         }
     }
 }

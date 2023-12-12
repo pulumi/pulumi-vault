@@ -91,12 +91,12 @@ public final class SecretV2CustomMetadata {
             return this;
         }
         public SecretV2CustomMetadata build() {
-            final var o = new SecretV2CustomMetadata();
-            o.casRequired = casRequired;
-            o.data = data;
-            o.deleteVersionAfter = deleteVersionAfter;
-            o.maxVersions = maxVersions;
-            return o;
+            final var _resultValue = new SecretV2CustomMetadata();
+            _resultValue.casRequired = casRequired;
+            _resultValue.data = data;
+            _resultValue.deleteVersionAfter = deleteVersionAfter;
+            _resultValue.maxVersions = maxVersions;
+            return _resultValue;
         }
     }
 }

@@ -205,18 +205,18 @@ public final class GetAuthBackendResult {
             return this;
         }
         public GetAuthBackendResult build() {
-            final var o = new GetAuthBackendResult();
-            o.accessor = accessor;
-            o.defaultLeaseTtlSeconds = defaultLeaseTtlSeconds;
-            o.description = description;
-            o.id = id;
-            o.listingVisibility = listingVisibility;
-            o.local = local;
-            o.maxLeaseTtlSeconds = maxLeaseTtlSeconds;
-            o.namespace = namespace;
-            o.path = path;
-            o.type = type;
-            return o;
+            final var _resultValue = new GetAuthBackendResult();
+            _resultValue.accessor = accessor;
+            _resultValue.defaultLeaseTtlSeconds = defaultLeaseTtlSeconds;
+            _resultValue.description = description;
+            _resultValue.id = id;
+            _resultValue.listingVisibility = listingVisibility;
+            _resultValue.local = local;
+            _resultValue.maxLeaseTtlSeconds = maxLeaseTtlSeconds;
+            _resultValue.namespace = namespace;
+            _resultValue.path = path;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

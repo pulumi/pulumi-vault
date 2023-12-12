@@ -319,23 +319,23 @@ public final class KeysAzure {
             return this;
         }
         public KeysAzure build() {
-            final var o = new KeysAzure();
-            o.allowGenerateKey = allowGenerateKey;
-            o.allowReplaceKey = allowReplaceKey;
-            o.allowStoreKey = allowStoreKey;
-            o.anyMount = anyMount;
-            o.clientId = clientId;
-            o.clientSecret = clientSecret;
-            o.environment = environment;
-            o.keyBits = keyBits;
-            o.keyName = keyName;
-            o.keyType = keyType;
-            o.name = name;
-            o.resource = resource;
-            o.tenantId = tenantId;
-            o.uuid = uuid;
-            o.vaultName = vaultName;
-            return o;
+            final var _resultValue = new KeysAzure();
+            _resultValue.allowGenerateKey = allowGenerateKey;
+            _resultValue.allowReplaceKey = allowReplaceKey;
+            _resultValue.allowStoreKey = allowStoreKey;
+            _resultValue.anyMount = anyMount;
+            _resultValue.clientId = clientId;
+            _resultValue.clientSecret = clientSecret;
+            _resultValue.environment = environment;
+            _resultValue.keyBits = keyBits;
+            _resultValue.keyName = keyName;
+            _resultValue.keyType = keyType;
+            _resultValue.name = name;
+            _resultValue.resource = resource;
+            _resultValue.tenantId = tenantId;
+            _resultValue.uuid = uuid;
+            _resultValue.vaultName = vaultName;
+            return _resultValue;
         }
     }
 }

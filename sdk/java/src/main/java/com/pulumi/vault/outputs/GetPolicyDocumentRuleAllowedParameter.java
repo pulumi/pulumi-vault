@@ -69,10 +69,10 @@ public final class GetPolicyDocumentRuleAllowedParameter {
             return values(List.of(values));
         }
         public GetPolicyDocumentRuleAllowedParameter build() {
-            final var o = new GetPolicyDocumentRuleAllowedParameter();
-            o.key = key;
-            o.values = values;
-            return o;
+            final var _resultValue = new GetPolicyDocumentRuleAllowedParameter();
+            _resultValue.key = key;
+            _resultValue.values = values;
+            return _resultValue;
         }
     }
 }

@@ -229,18 +229,18 @@ public final class SecretBackendConnectionInfluxdb {
             return this;
         }
         public SecretBackendConnectionInfluxdb build() {
-            final var o = new SecretBackendConnectionInfluxdb();
-            o.connectTimeout = connectTimeout;
-            o.host = host;
-            o.insecureTls = insecureTls;
-            o.password = password;
-            o.pemBundle = pemBundle;
-            o.pemJson = pemJson;
-            o.port = port;
-            o.tls = tls;
-            o.username = username;
-            o.usernameTemplate = usernameTemplate;
-            return o;
+            final var _resultValue = new SecretBackendConnectionInfluxdb();
+            _resultValue.connectTimeout = connectTimeout;
+            _resultValue.host = host;
+            _resultValue.insecureTls = insecureTls;
+            _resultValue.password = password;
+            _resultValue.pemBundle = pemBundle;
+            _resultValue.pemJson = pemJson;
+            _resultValue.port = port;
+            _resultValue.tls = tls;
+            _resultValue.username = username;
+            _resultValue.usernameTemplate = usernameTemplate;
+            return _resultValue;
         }
     }
 }

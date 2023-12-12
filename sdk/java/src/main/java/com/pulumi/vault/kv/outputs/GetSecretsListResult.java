@@ -93,12 +93,12 @@ public final class GetSecretsListResult {
             return this;
         }
         public GetSecretsListResult build() {
-            final var o = new GetSecretsListResult();
-            o.id = id;
-            o.names = names;
-            o.namespace = namespace;
-            o.path = path;
-            return o;
+            final var _resultValue = new GetSecretsListResult();
+            _resultValue.id = id;
+            _resultValue.names = names;
+            _resultValue.namespace = namespace;
+            _resultValue.path = path;
+            return _resultValue;
         }
     }
 }

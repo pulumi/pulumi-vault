@@ -92,11 +92,11 @@ public final class AuthBackendUser {
             return this;
         }
         public AuthBackendUser build() {
-            final var o = new AuthBackendUser();
-            o.groups = groups;
-            o.policies = policies;
-            o.username = username;
-            return o;
+            final var _resultValue = new AuthBackendUser();
+            _resultValue.groups = groups;
+            _resultValue.policies = policies;
+            _resultValue.username = username;
+            return _resultValue;
         }
     }
 }

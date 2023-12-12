@@ -153,18 +153,18 @@ public final class GetDynamicCredentialsResult {
             return this;
         }
         public GetDynamicCredentialsResult build() {
-            final var o = new GetDynamicCredentialsResult();
-            o.distinguishedNames = distinguishedNames;
-            o.id = id;
-            o.leaseDuration = leaseDuration;
-            o.leaseId = leaseId;
-            o.leaseRenewable = leaseRenewable;
-            o.mount = mount;
-            o.namespace = namespace;
-            o.password = password;
-            o.roleName = roleName;
-            o.username = username;
-            return o;
+            final var _resultValue = new GetDynamicCredentialsResult();
+            _resultValue.distinguishedNames = distinguishedNames;
+            _resultValue.id = id;
+            _resultValue.leaseDuration = leaseDuration;
+            _resultValue.leaseId = leaseId;
+            _resultValue.leaseRenewable = leaseRenewable;
+            _resultValue.mount = mount;
+            _resultValue.namespace = namespace;
+            _resultValue.password = password;
+            _resultValue.roleName = roleName;
+            _resultValue.username = username;
+            return _resultValue;
         }
     }
 }

@@ -96,14 +96,14 @@ public final class AuthLoginCert {
             return this;
         }
         public AuthLoginCert build() {
-            final var o = new AuthLoginCert();
-            o.certFile = certFile;
-            o.keyFile = keyFile;
-            o.mount = mount;
-            o.name = name;
-            o.namespace = namespace;
-            o.useRootNamespace = useRootNamespace;
-            return o;
+            final var _resultValue = new AuthLoginCert();
+            _resultValue.certFile = certFile;
+            _resultValue.keyFile = keyFile;
+            _resultValue.mount = mount;
+            _resultValue.name = name;
+            _resultValue.namespace = namespace;
+            _resultValue.useRootNamespace = useRootNamespace;
+            return _resultValue;
         }
     }
 }

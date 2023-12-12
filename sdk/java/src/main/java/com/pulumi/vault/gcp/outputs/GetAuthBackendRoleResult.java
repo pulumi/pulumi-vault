@@ -467,29 +467,29 @@ public final class GetAuthBackendRoleResult {
             return this;
         }
         public GetAuthBackendRoleResult build() {
-            final var o = new GetAuthBackendRoleResult();
-            o.backend = backend;
-            o.boundInstanceGroups = boundInstanceGroups;
-            o.boundLabels = boundLabels;
-            o.boundProjects = boundProjects;
-            o.boundRegions = boundRegions;
-            o.boundServiceAccounts = boundServiceAccounts;
-            o.boundZones = boundZones;
-            o.id = id;
-            o.namespace = namespace;
-            o.roleId = roleId;
-            o.roleName = roleName;
-            o.tokenBoundCidrs = tokenBoundCidrs;
-            o.tokenExplicitMaxTtl = tokenExplicitMaxTtl;
-            o.tokenMaxTtl = tokenMaxTtl;
-            o.tokenNoDefaultPolicy = tokenNoDefaultPolicy;
-            o.tokenNumUses = tokenNumUses;
-            o.tokenPeriod = tokenPeriod;
-            o.tokenPolicies = tokenPolicies;
-            o.tokenTtl = tokenTtl;
-            o.tokenType = tokenType;
-            o.type = type;
-            return o;
+            final var _resultValue = new GetAuthBackendRoleResult();
+            _resultValue.backend = backend;
+            _resultValue.boundInstanceGroups = boundInstanceGroups;
+            _resultValue.boundLabels = boundLabels;
+            _resultValue.boundProjects = boundProjects;
+            _resultValue.boundRegions = boundRegions;
+            _resultValue.boundServiceAccounts = boundServiceAccounts;
+            _resultValue.boundZones = boundZones;
+            _resultValue.id = id;
+            _resultValue.namespace = namespace;
+            _resultValue.roleId = roleId;
+            _resultValue.roleName = roleName;
+            _resultValue.tokenBoundCidrs = tokenBoundCidrs;
+            _resultValue.tokenExplicitMaxTtl = tokenExplicitMaxTtl;
+            _resultValue.tokenMaxTtl = tokenMaxTtl;
+            _resultValue.tokenNoDefaultPolicy = tokenNoDefaultPolicy;
+            _resultValue.tokenNumUses = tokenNumUses;
+            _resultValue.tokenPeriod = tokenPeriod;
+            _resultValue.tokenPolicies = tokenPolicies;
+            _resultValue.tokenTtl = tokenTtl;
+            _resultValue.tokenType = tokenType;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

@@ -85,13 +85,13 @@ public final class AuthLoginRadius {
             return this;
         }
         public AuthLoginRadius build() {
-            final var o = new AuthLoginRadius();
-            o.mount = mount;
-            o.namespace = namespace;
-            o.password = password;
-            o.useRootNamespace = useRootNamespace;
-            o.username = username;
-            return o;
+            final var _resultValue = new AuthLoginRadius();
+            _resultValue.mount = mount;
+            _resultValue.namespace = namespace;
+            _resultValue.password = password;
+            _resultValue.useRootNamespace = useRootNamespace;
+            _resultValue.username = username;
+            return _resultValue;
         }
     }
 }

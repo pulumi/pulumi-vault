@@ -122,15 +122,15 @@ public final class GetDecryptResult {
             return this;
         }
         public GetDecryptResult build() {
-            final var o = new GetDecryptResult();
-            o.backend = backend;
-            o.ciphertext = ciphertext;
-            o.context = context;
-            o.id = id;
-            o.key = key;
-            o.namespace = namespace;
-            o.plaintext = plaintext;
-            return o;
+            final var _resultValue = new GetDecryptResult();
+            _resultValue.backend = backend;
+            _resultValue.ciphertext = ciphertext;
+            _resultValue.context = context;
+            _resultValue.id = id;
+            _resultValue.key = key;
+            _resultValue.namespace = namespace;
+            _resultValue.plaintext = plaintext;
+            return _resultValue;
         }
     }
 }

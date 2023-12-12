@@ -237,20 +237,20 @@ public final class GetSecretV2Result {
             return this;
         }
         public GetSecretV2Result build() {
-            final var o = new GetSecretV2Result();
-            o.createdTime = createdTime;
-            o.customMetadata = customMetadata;
-            o.data = data;
-            o.dataJson = dataJson;
-            o.deletionTime = deletionTime;
-            o.destroyed = destroyed;
-            o.id = id;
-            o.mount = mount;
-            o.name = name;
-            o.namespace = namespace;
-            o.path = path;
-            o.version = version;
-            return o;
+            final var _resultValue = new GetSecretV2Result();
+            _resultValue.createdTime = createdTime;
+            _resultValue.customMetadata = customMetadata;
+            _resultValue.data = data;
+            _resultValue.dataJson = dataJson;
+            _resultValue.deletionTime = deletionTime;
+            _resultValue.destroyed = destroyed;
+            _resultValue.id = id;
+            _resultValue.mount = mount;
+            _resultValue.name = name;
+            _resultValue.namespace = namespace;
+            _resultValue.path = path;
+            _resultValue.version = version;
+            return _resultValue;
         }
     }
 }

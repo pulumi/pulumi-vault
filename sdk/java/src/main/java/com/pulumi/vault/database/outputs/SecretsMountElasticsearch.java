@@ -345,24 +345,24 @@ public final class SecretsMountElasticsearch {
             return this;
         }
         public SecretsMountElasticsearch build() {
-            final var o = new SecretsMountElasticsearch();
-            o.allowedRoles = allowedRoles;
-            o.caCert = caCert;
-            o.caPath = caPath;
-            o.clientCert = clientCert;
-            o.clientKey = clientKey;
-            o.data = data;
-            o.insecure = insecure;
-            o.name = name;
-            o.password = password;
-            o.pluginName = pluginName;
-            o.rootRotationStatements = rootRotationStatements;
-            o.tlsServerName = tlsServerName;
-            o.url = url;
-            o.username = username;
-            o.usernameTemplate = usernameTemplate;
-            o.verifyConnection = verifyConnection;
-            return o;
+            final var _resultValue = new SecretsMountElasticsearch();
+            _resultValue.allowedRoles = allowedRoles;
+            _resultValue.caCert = caCert;
+            _resultValue.caPath = caPath;
+            _resultValue.clientCert = clientCert;
+            _resultValue.clientKey = clientKey;
+            _resultValue.data = data;
+            _resultValue.insecure = insecure;
+            _resultValue.name = name;
+            _resultValue.password = password;
+            _resultValue.pluginName = pluginName;
+            _resultValue.rootRotationStatements = rootRotationStatements;
+            _resultValue.tlsServerName = tlsServerName;
+            _resultValue.url = url;
+            _resultValue.username = username;
+            _resultValue.usernameTemplate = usernameTemplate;
+            _resultValue.verifyConnection = verifyConnection;
+            return _resultValue;
         }
     }
 }

@@ -198,11 +198,11 @@ public final class SecretBackendRolePolicyIdentifier {
             return this;
         }
         public SecretBackendRolePolicyIdentifier build() {
-            final var o = new SecretBackendRolePolicyIdentifier();
-            o.cps = cps;
-            o.notice = notice;
-            o.oid = oid;
-            return o;
+            final var _resultValue = new SecretBackendRolePolicyIdentifier();
+            _resultValue.cps = cps;
+            _resultValue.notice = notice;
+            _resultValue.oid = oid;
+            return _resultValue;
         }
     }
 }

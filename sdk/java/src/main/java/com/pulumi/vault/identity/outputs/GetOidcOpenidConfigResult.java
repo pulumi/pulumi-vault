@@ -322,23 +322,23 @@ public final class GetOidcOpenidConfigResult {
             return this;
         }
         public GetOidcOpenidConfigResult build() {
-            final var o = new GetOidcOpenidConfigResult();
-            o.authorizationEndpoint = authorizationEndpoint;
-            o.grantTypesSupporteds = grantTypesSupporteds;
-            o.id = id;
-            o.idTokenSigningAlgValuesSupporteds = idTokenSigningAlgValuesSupporteds;
-            o.issuer = issuer;
-            o.jwksUri = jwksUri;
-            o.name = name;
-            o.namespace = namespace;
-            o.requestUriParameterSupported = requestUriParameterSupported;
-            o.responseTypesSupporteds = responseTypesSupporteds;
-            o.scopesSupporteds = scopesSupporteds;
-            o.subjectTypesSupporteds = subjectTypesSupporteds;
-            o.tokenEndpoint = tokenEndpoint;
-            o.tokenEndpointAuthMethodsSupporteds = tokenEndpointAuthMethodsSupporteds;
-            o.userinfoEndpoint = userinfoEndpoint;
-            return o;
+            final var _resultValue = new GetOidcOpenidConfigResult();
+            _resultValue.authorizationEndpoint = authorizationEndpoint;
+            _resultValue.grantTypesSupporteds = grantTypesSupporteds;
+            _resultValue.id = id;
+            _resultValue.idTokenSigningAlgValuesSupporteds = idTokenSigningAlgValuesSupporteds;
+            _resultValue.issuer = issuer;
+            _resultValue.jwksUri = jwksUri;
+            _resultValue.name = name;
+            _resultValue.namespace = namespace;
+            _resultValue.requestUriParameterSupported = requestUriParameterSupported;
+            _resultValue.responseTypesSupporteds = responseTypesSupporteds;
+            _resultValue.scopesSupporteds = scopesSupporteds;
+            _resultValue.subjectTypesSupporteds = subjectTypesSupporteds;
+            _resultValue.tokenEndpoint = tokenEndpoint;
+            _resultValue.tokenEndpointAuthMethodsSupporteds = tokenEndpointAuthMethodsSupporteds;
+            _resultValue.userinfoEndpoint = userinfoEndpoint;
+            return _resultValue;
         }
     }
 }

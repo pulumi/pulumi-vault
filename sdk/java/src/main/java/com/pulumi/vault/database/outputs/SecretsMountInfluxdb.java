@@ -352,24 +352,24 @@ public final class SecretsMountInfluxdb {
             return this;
         }
         public SecretsMountInfluxdb build() {
-            final var o = new SecretsMountInfluxdb();
-            o.allowedRoles = allowedRoles;
-            o.connectTimeout = connectTimeout;
-            o.data = data;
-            o.host = host;
-            o.insecureTls = insecureTls;
-            o.name = name;
-            o.password = password;
-            o.pemBundle = pemBundle;
-            o.pemJson = pemJson;
-            o.pluginName = pluginName;
-            o.port = port;
-            o.rootRotationStatements = rootRotationStatements;
-            o.tls = tls;
-            o.username = username;
-            o.usernameTemplate = usernameTemplate;
-            o.verifyConnection = verifyConnection;
-            return o;
+            final var _resultValue = new SecretsMountInfluxdb();
+            _resultValue.allowedRoles = allowedRoles;
+            _resultValue.connectTimeout = connectTimeout;
+            _resultValue.data = data;
+            _resultValue.host = host;
+            _resultValue.insecureTls = insecureTls;
+            _resultValue.name = name;
+            _resultValue.password = password;
+            _resultValue.pemBundle = pemBundle;
+            _resultValue.pemJson = pemJson;
+            _resultValue.pluginName = pluginName;
+            _resultValue.port = port;
+            _resultValue.rootRotationStatements = rootRotationStatements;
+            _resultValue.tls = tls;
+            _resultValue.username = username;
+            _resultValue.usernameTemplate = usernameTemplate;
+            _resultValue.verifyConnection = verifyConnection;
+            return _resultValue;
         }
     }
 }

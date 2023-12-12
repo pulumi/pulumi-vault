@@ -69,10 +69,10 @@ public final class AuthBackendGroup {
             return policies(List.of(policies));
         }
         public AuthBackendGroup build() {
-            final var o = new AuthBackendGroup();
-            o.groupName = groupName;
-            o.policies = policies;
-            return o;
+            final var _resultValue = new AuthBackendGroup();
+            _resultValue.groupName = groupName;
+            _resultValue.policies = policies;
+            return _resultValue;
         }
     }
 }

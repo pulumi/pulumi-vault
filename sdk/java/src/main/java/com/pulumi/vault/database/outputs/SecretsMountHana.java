@@ -293,21 +293,21 @@ public final class SecretsMountHana {
             return this;
         }
         public SecretsMountHana build() {
-            final var o = new SecretsMountHana();
-            o.allowedRoles = allowedRoles;
-            o.connectionUrl = connectionUrl;
-            o.data = data;
-            o.disableEscaping = disableEscaping;
-            o.maxConnectionLifetime = maxConnectionLifetime;
-            o.maxIdleConnections = maxIdleConnections;
-            o.maxOpenConnections = maxOpenConnections;
-            o.name = name;
-            o.password = password;
-            o.pluginName = pluginName;
-            o.rootRotationStatements = rootRotationStatements;
-            o.username = username;
-            o.verifyConnection = verifyConnection;
-            return o;
+            final var _resultValue = new SecretsMountHana();
+            _resultValue.allowedRoles = allowedRoles;
+            _resultValue.connectionUrl = connectionUrl;
+            _resultValue.data = data;
+            _resultValue.disableEscaping = disableEscaping;
+            _resultValue.maxConnectionLifetime = maxConnectionLifetime;
+            _resultValue.maxIdleConnections = maxIdleConnections;
+            _resultValue.maxOpenConnections = maxOpenConnections;
+            _resultValue.name = name;
+            _resultValue.password = password;
+            _resultValue.pluginName = pluginName;
+            _resultValue.rootRotationStatements = rootRotationStatements;
+            _resultValue.username = username;
+            _resultValue.verifyConnection = verifyConnection;
+            return _resultValue;
         }
     }
 }

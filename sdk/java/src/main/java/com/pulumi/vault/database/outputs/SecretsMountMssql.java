@@ -335,23 +335,23 @@ public final class SecretsMountMssql {
             return this;
         }
         public SecretsMountMssql build() {
-            final var o = new SecretsMountMssql();
-            o.allowedRoles = allowedRoles;
-            o.connectionUrl = connectionUrl;
-            o.containedDb = containedDb;
-            o.data = data;
-            o.disableEscaping = disableEscaping;
-            o.maxConnectionLifetime = maxConnectionLifetime;
-            o.maxIdleConnections = maxIdleConnections;
-            o.maxOpenConnections = maxOpenConnections;
-            o.name = name;
-            o.password = password;
-            o.pluginName = pluginName;
-            o.rootRotationStatements = rootRotationStatements;
-            o.username = username;
-            o.usernameTemplate = usernameTemplate;
-            o.verifyConnection = verifyConnection;
-            return o;
+            final var _resultValue = new SecretsMountMssql();
+            _resultValue.allowedRoles = allowedRoles;
+            _resultValue.connectionUrl = connectionUrl;
+            _resultValue.containedDb = containedDb;
+            _resultValue.data = data;
+            _resultValue.disableEscaping = disableEscaping;
+            _resultValue.maxConnectionLifetime = maxConnectionLifetime;
+            _resultValue.maxIdleConnections = maxIdleConnections;
+            _resultValue.maxOpenConnections = maxOpenConnections;
+            _resultValue.name = name;
+            _resultValue.password = password;
+            _resultValue.pluginName = pluginName;
+            _resultValue.rootRotationStatements = rootRotationStatements;
+            _resultValue.username = username;
+            _resultValue.usernameTemplate = usernameTemplate;
+            _resultValue.verifyConnection = verifyConnection;
+            return _resultValue;
         }
     }
 }

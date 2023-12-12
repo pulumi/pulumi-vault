@@ -62,11 +62,11 @@ public final class BackendRoleAzureRole {
             return this;
         }
         public BackendRoleAzureRole build() {
-            final var o = new BackendRoleAzureRole();
-            o.roleId = roleId;
-            o.roleName = roleName;
-            o.scope = scope;
-            return o;
+            final var _resultValue = new BackendRoleAzureRole();
+            _resultValue.roleId = roleId;
+            _resultValue.roleName = roleName;
+            _resultValue.scope = scope;
+            return _resultValue;
         }
     }
 }

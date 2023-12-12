@@ -176,15 +176,15 @@ public final class SecretBackendConnectionHana {
             return this;
         }
         public SecretBackendConnectionHana build() {
-            final var o = new SecretBackendConnectionHana();
-            o.connectionUrl = connectionUrl;
-            o.disableEscaping = disableEscaping;
-            o.maxConnectionLifetime = maxConnectionLifetime;
-            o.maxIdleConnections = maxIdleConnections;
-            o.maxOpenConnections = maxOpenConnections;
-            o.password = password;
-            o.username = username;
-            return o;
+            final var _resultValue = new SecretBackendConnectionHana();
+            _resultValue.connectionUrl = connectionUrl;
+            _resultValue.disableEscaping = disableEscaping;
+            _resultValue.maxConnectionLifetime = maxConnectionLifetime;
+            _resultValue.maxIdleConnections = maxIdleConnections;
+            _resultValue.maxOpenConnections = maxOpenConnections;
+            _resultValue.password = password;
+            _resultValue.username = username;
+            return _resultValue;
         }
     }
 }

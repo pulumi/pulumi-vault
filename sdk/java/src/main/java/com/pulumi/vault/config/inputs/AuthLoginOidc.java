@@ -96,14 +96,14 @@ public final class AuthLoginOidc {
             return this;
         }
         public AuthLoginOidc build() {
-            final var o = new AuthLoginOidc();
-            o.callbackAddress = callbackAddress;
-            o.callbackListenerAddress = callbackListenerAddress;
-            o.mount = mount;
-            o.namespace = namespace;
-            o.role = role;
-            o.useRootNamespace = useRootNamespace;
-            return o;
+            final var _resultValue = new AuthLoginOidc();
+            _resultValue.callbackAddress = callbackAddress;
+            _resultValue.callbackListenerAddress = callbackListenerAddress;
+            _resultValue.mount = mount;
+            _resultValue.namespace = namespace;
+            _resultValue.role = role;
+            _resultValue.useRootNamespace = useRootNamespace;
+            return _resultValue;
         }
     }
 }

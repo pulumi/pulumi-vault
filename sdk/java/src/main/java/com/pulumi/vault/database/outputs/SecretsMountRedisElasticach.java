@@ -233,18 +233,18 @@ public final class SecretsMountRedisElasticach {
             return this;
         }
         public SecretsMountRedisElasticach build() {
-            final var o = new SecretsMountRedisElasticach();
-            o.allowedRoles = allowedRoles;
-            o.data = data;
-            o.name = name;
-            o.password = password;
-            o.pluginName = pluginName;
-            o.region = region;
-            o.rootRotationStatements = rootRotationStatements;
-            o.url = url;
-            o.username = username;
-            o.verifyConnection = verifyConnection;
-            return o;
+            final var _resultValue = new SecretsMountRedisElasticach();
+            _resultValue.allowedRoles = allowedRoles;
+            _resultValue.data = data;
+            _resultValue.name = name;
+            _resultValue.password = password;
+            _resultValue.pluginName = pluginName;
+            _resultValue.region = region;
+            _resultValue.rootRotationStatements = rootRotationStatements;
+            _resultValue.url = url;
+            _resultValue.username = username;
+            _resultValue.verifyConnection = verifyConnection;
+            return _resultValue;
         }
     }
 }

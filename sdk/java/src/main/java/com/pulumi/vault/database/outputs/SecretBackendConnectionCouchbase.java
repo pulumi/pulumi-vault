@@ -188,16 +188,16 @@ public final class SecretBackendConnectionCouchbase {
             return this;
         }
         public SecretBackendConnectionCouchbase build() {
-            final var o = new SecretBackendConnectionCouchbase();
-            o.base64Pem = base64Pem;
-            o.bucketName = bucketName;
-            o.hosts = hosts;
-            o.insecureTls = insecureTls;
-            o.password = password;
-            o.tls = tls;
-            o.username = username;
-            o.usernameTemplate = usernameTemplate;
-            return o;
+            final var _resultValue = new SecretBackendConnectionCouchbase();
+            _resultValue.base64Pem = base64Pem;
+            _resultValue.bucketName = bucketName;
+            _resultValue.hosts = hosts;
+            _resultValue.insecureTls = insecureTls;
+            _resultValue.password = password;
+            _resultValue.tls = tls;
+            _resultValue.username = username;
+            _resultValue.usernameTemplate = usernameTemplate;
+            return _resultValue;
         }
     }
 }

@@ -69,10 +69,10 @@ public final class SecretRolesetBinding {
             return roles(List.of(roles));
         }
         public SecretRolesetBinding build() {
-            final var o = new SecretRolesetBinding();
-            o.resource = resource;
-            o.roles = roles;
-            return o;
+            final var _resultValue = new SecretRolesetBinding();
+            _resultValue.resource = resource;
+            _resultValue.roles = roles;
+            return _resultValue;
         }
     }
 }

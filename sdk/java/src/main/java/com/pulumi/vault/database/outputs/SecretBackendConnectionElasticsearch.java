@@ -222,18 +222,18 @@ public final class SecretBackendConnectionElasticsearch {
             return this;
         }
         public SecretBackendConnectionElasticsearch build() {
-            final var o = new SecretBackendConnectionElasticsearch();
-            o.caCert = caCert;
-            o.caPath = caPath;
-            o.clientCert = clientCert;
-            o.clientKey = clientKey;
-            o.insecure = insecure;
-            o.password = password;
-            o.tlsServerName = tlsServerName;
-            o.url = url;
-            o.username = username;
-            o.usernameTemplate = usernameTemplate;
-            return o;
+            final var _resultValue = new SecretBackendConnectionElasticsearch();
+            _resultValue.caCert = caCert;
+            _resultValue.caPath = caPath;
+            _resultValue.clientCert = clientCert;
+            _resultValue.clientKey = clientKey;
+            _resultValue.insecure = insecure;
+            _resultValue.password = password;
+            _resultValue.tlsServerName = tlsServerName;
+            _resultValue.url = url;
+            _resultValue.username = username;
+            _resultValue.usernameTemplate = usernameTemplate;
+            return _resultValue;
         }
     }
 }

@@ -151,19 +151,19 @@ public final class AuthLoginKerberos {
             return this;
         }
         public AuthLoginKerberos build() {
-            final var o = new AuthLoginKerberos();
-            o.disableFastNegotiation = disableFastNegotiation;
-            o.keytabPath = keytabPath;
-            o.krb5confPath = krb5confPath;
-            o.mount = mount;
-            o.namespace = namespace;
-            o.realm = realm;
-            o.removeInstanceName = removeInstanceName;
-            o.service = service;
-            o.token = token;
-            o.useRootNamespace = useRootNamespace;
-            o.username = username;
-            return o;
+            final var _resultValue = new AuthLoginKerberos();
+            _resultValue.disableFastNegotiation = disableFastNegotiation;
+            _resultValue.keytabPath = keytabPath;
+            _resultValue.krb5confPath = krb5confPath;
+            _resultValue.mount = mount;
+            _resultValue.namespace = namespace;
+            _resultValue.realm = realm;
+            _resultValue.removeInstanceName = removeInstanceName;
+            _resultValue.service = service;
+            _resultValue.token = token;
+            _resultValue.useRootNamespace = useRootNamespace;
+            _resultValue.username = username;
+            return _resultValue;
         }
     }
 }

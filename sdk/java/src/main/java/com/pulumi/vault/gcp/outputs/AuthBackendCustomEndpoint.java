@@ -115,12 +115,12 @@ public final class AuthBackendCustomEndpoint {
             return this;
         }
         public AuthBackendCustomEndpoint build() {
-            final var o = new AuthBackendCustomEndpoint();
-            o.api = api;
-            o.compute = compute;
-            o.crm = crm;
-            o.iam = iam;
-            return o;
+            final var _resultValue = new AuthBackendCustomEndpoint();
+            _resultValue.api = api;
+            _resultValue.compute = compute;
+            _resultValue.crm = crm;
+            _resultValue.iam = iam;
+            return _resultValue;
         }
     }
 }
