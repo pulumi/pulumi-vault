@@ -477,33 +477,33 @@ public final class GetGroupResult {
             return this;
         }
         public GetGroupResult build() {
-            final var o = new GetGroupResult();
-            o.aliasCanonicalId = aliasCanonicalId;
-            o.aliasCreationTime = aliasCreationTime;
-            o.aliasId = aliasId;
-            o.aliasLastUpdateTime = aliasLastUpdateTime;
-            o.aliasMergedFromCanonicalIds = aliasMergedFromCanonicalIds;
-            o.aliasMetadata = aliasMetadata;
-            o.aliasMountAccessor = aliasMountAccessor;
-            o.aliasMountPath = aliasMountPath;
-            o.aliasMountType = aliasMountType;
-            o.aliasName = aliasName;
-            o.creationTime = creationTime;
-            o.dataJson = dataJson;
-            o.groupId = groupId;
-            o.groupName = groupName;
-            o.id = id;
-            o.lastUpdateTime = lastUpdateTime;
-            o.memberEntityIds = memberEntityIds;
-            o.memberGroupIds = memberGroupIds;
-            o.metadata = metadata;
-            o.modifyIndex = modifyIndex;
-            o.namespace = namespace;
-            o.namespaceId = namespaceId;
-            o.parentGroupIds = parentGroupIds;
-            o.policies = policies;
-            o.type = type;
-            return o;
+            final var _resultValue = new GetGroupResult();
+            _resultValue.aliasCanonicalId = aliasCanonicalId;
+            _resultValue.aliasCreationTime = aliasCreationTime;
+            _resultValue.aliasId = aliasId;
+            _resultValue.aliasLastUpdateTime = aliasLastUpdateTime;
+            _resultValue.aliasMergedFromCanonicalIds = aliasMergedFromCanonicalIds;
+            _resultValue.aliasMetadata = aliasMetadata;
+            _resultValue.aliasMountAccessor = aliasMountAccessor;
+            _resultValue.aliasMountPath = aliasMountPath;
+            _resultValue.aliasMountType = aliasMountType;
+            _resultValue.aliasName = aliasName;
+            _resultValue.creationTime = creationTime;
+            _resultValue.dataJson = dataJson;
+            _resultValue.groupId = groupId;
+            _resultValue.groupName = groupName;
+            _resultValue.id = id;
+            _resultValue.lastUpdateTime = lastUpdateTime;
+            _resultValue.memberEntityIds = memberEntityIds;
+            _resultValue.memberGroupIds = memberGroupIds;
+            _resultValue.metadata = metadata;
+            _resultValue.modifyIndex = modifyIndex;
+            _resultValue.namespace = namespace;
+            _resultValue.namespaceId = namespaceId;
+            _resultValue.parentGroupIds = parentGroupIds;
+            _resultValue.policies = policies;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

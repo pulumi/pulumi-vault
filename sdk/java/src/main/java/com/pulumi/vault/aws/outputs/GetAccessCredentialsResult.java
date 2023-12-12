@@ -248,23 +248,23 @@ public final class GetAccessCredentialsResult {
             return this;
         }
         public GetAccessCredentialsResult build() {
-            final var o = new GetAccessCredentialsResult();
-            o.accessKey = accessKey;
-            o.backend = backend;
-            o.id = id;
-            o.leaseDuration = leaseDuration;
-            o.leaseId = leaseId;
-            o.leaseRenewable = leaseRenewable;
-            o.leaseStartTime = leaseStartTime;
-            o.namespace = namespace;
-            o.region = region;
-            o.role = role;
-            o.roleArn = roleArn;
-            o.secretKey = secretKey;
-            o.securityToken = securityToken;
-            o.ttl = ttl;
-            o.type = type;
-            return o;
+            final var _resultValue = new GetAccessCredentialsResult();
+            _resultValue.accessKey = accessKey;
+            _resultValue.backend = backend;
+            _resultValue.id = id;
+            _resultValue.leaseDuration = leaseDuration;
+            _resultValue.leaseId = leaseId;
+            _resultValue.leaseRenewable = leaseRenewable;
+            _resultValue.leaseStartTime = leaseStartTime;
+            _resultValue.namespace = namespace;
+            _resultValue.region = region;
+            _resultValue.role = role;
+            _resultValue.roleArn = roleArn;
+            _resultValue.secretKey = secretKey;
+            _resultValue.securityToken = securityToken;
+            _resultValue.ttl = ttl;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

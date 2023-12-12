@@ -121,14 +121,14 @@ public final class GetNomadAccessTokenResult {
             return this;
         }
         public GetNomadAccessTokenResult build() {
-            final var o = new GetNomadAccessTokenResult();
-            o.accessorId = accessorId;
-            o.backend = backend;
-            o.id = id;
-            o.namespace = namespace;
-            o.role = role;
-            o.secretId = secretId;
-            return o;
+            final var _resultValue = new GetNomadAccessTokenResult();
+            _resultValue.accessorId = accessorId;
+            _resultValue.backend = backend;
+            _resultValue.id = id;
+            _resultValue.namespace = namespace;
+            _resultValue.role = role;
+            _resultValue.secretId = secretId;
+            return _resultValue;
         }
     }
 }

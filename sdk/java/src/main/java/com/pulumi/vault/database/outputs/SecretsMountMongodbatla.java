@@ -210,17 +210,17 @@ public final class SecretsMountMongodbatla {
             return this;
         }
         public SecretsMountMongodbatla build() {
-            final var o = new SecretsMountMongodbatla();
-            o.allowedRoles = allowedRoles;
-            o.data = data;
-            o.name = name;
-            o.pluginName = pluginName;
-            o.privateKey = privateKey;
-            o.projectId = projectId;
-            o.publicKey = publicKey;
-            o.rootRotationStatements = rootRotationStatements;
-            o.verifyConnection = verifyConnection;
-            return o;
+            final var _resultValue = new SecretsMountMongodbatla();
+            _resultValue.allowedRoles = allowedRoles;
+            _resultValue.data = data;
+            _resultValue.name = name;
+            _resultValue.pluginName = pluginName;
+            _resultValue.privateKey = privateKey;
+            _resultValue.projectId = projectId;
+            _resultValue.publicKey = publicKey;
+            _resultValue.rootRotationStatements = rootRotationStatements;
+            _resultValue.verifyConnection = verifyConnection;
+            return _resultValue;
         }
     }
 }

@@ -175,15 +175,15 @@ public final class SecretBackendConnectionMysqlLegacy {
             return this;
         }
         public SecretBackendConnectionMysqlLegacy build() {
-            final var o = new SecretBackendConnectionMysqlLegacy();
-            o.connectionUrl = connectionUrl;
-            o.maxConnectionLifetime = maxConnectionLifetime;
-            o.maxIdleConnections = maxIdleConnections;
-            o.maxOpenConnections = maxOpenConnections;
-            o.password = password;
-            o.username = username;
-            o.usernameTemplate = usernameTemplate;
-            return o;
+            final var _resultValue = new SecretBackendConnectionMysqlLegacy();
+            _resultValue.connectionUrl = connectionUrl;
+            _resultValue.maxConnectionLifetime = maxConnectionLifetime;
+            _resultValue.maxIdleConnections = maxIdleConnections;
+            _resultValue.maxOpenConnections = maxOpenConnections;
+            _resultValue.password = password;
+            _resultValue.username = username;
+            _resultValue.usernameTemplate = usernameTemplate;
+            return _resultValue;
         }
     }
 }

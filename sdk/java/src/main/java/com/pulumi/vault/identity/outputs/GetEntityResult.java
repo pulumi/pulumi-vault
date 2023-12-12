@@ -367,27 +367,27 @@ public final class GetEntityResult {
             return policies(List.of(policies));
         }
         public GetEntityResult build() {
-            final var o = new GetEntityResult();
-            o.aliasId = aliasId;
-            o.aliasMountAccessor = aliasMountAccessor;
-            o.aliasName = aliasName;
-            o.aliases = aliases;
-            o.creationTime = creationTime;
-            o.dataJson = dataJson;
-            o.directGroupIds = directGroupIds;
-            o.disabled = disabled;
-            o.entityId = entityId;
-            o.entityName = entityName;
-            o.groupIds = groupIds;
-            o.id = id;
-            o.inheritedGroupIds = inheritedGroupIds;
-            o.lastUpdateTime = lastUpdateTime;
-            o.mergedEntityIds = mergedEntityIds;
-            o.metadata = metadata;
-            o.namespace = namespace;
-            o.namespaceId = namespaceId;
-            o.policies = policies;
-            return o;
+            final var _resultValue = new GetEntityResult();
+            _resultValue.aliasId = aliasId;
+            _resultValue.aliasMountAccessor = aliasMountAccessor;
+            _resultValue.aliasName = aliasName;
+            _resultValue.aliases = aliases;
+            _resultValue.creationTime = creationTime;
+            _resultValue.dataJson = dataJson;
+            _resultValue.directGroupIds = directGroupIds;
+            _resultValue.disabled = disabled;
+            _resultValue.entityId = entityId;
+            _resultValue.entityName = entityName;
+            _resultValue.groupIds = groupIds;
+            _resultValue.id = id;
+            _resultValue.inheritedGroupIds = inheritedGroupIds;
+            _resultValue.lastUpdateTime = lastUpdateTime;
+            _resultValue.mergedEntityIds = mergedEntityIds;
+            _resultValue.metadata = metadata;
+            _resultValue.namespace = namespace;
+            _resultValue.namespaceId = namespaceId;
+            _resultValue.policies = policies;
+            return _resultValue;
         }
     }
 }

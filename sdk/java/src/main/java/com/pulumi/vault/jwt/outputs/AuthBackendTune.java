@@ -214,16 +214,16 @@ public final class AuthBackendTune {
             return this;
         }
         public AuthBackendTune build() {
-            final var o = new AuthBackendTune();
-            o.allowedResponseHeaders = allowedResponseHeaders;
-            o.auditNonHmacRequestKeys = auditNonHmacRequestKeys;
-            o.auditNonHmacResponseKeys = auditNonHmacResponseKeys;
-            o.defaultLeaseTtl = defaultLeaseTtl;
-            o.listingVisibility = listingVisibility;
-            o.maxLeaseTtl = maxLeaseTtl;
-            o.passthroughRequestHeaders = passthroughRequestHeaders;
-            o.tokenType = tokenType;
-            return o;
+            final var _resultValue = new AuthBackendTune();
+            _resultValue.allowedResponseHeaders = allowedResponseHeaders;
+            _resultValue.auditNonHmacRequestKeys = auditNonHmacRequestKeys;
+            _resultValue.auditNonHmacResponseKeys = auditNonHmacResponseKeys;
+            _resultValue.defaultLeaseTtl = defaultLeaseTtl;
+            _resultValue.listingVisibility = listingVisibility;
+            _resultValue.maxLeaseTtl = maxLeaseTtl;
+            _resultValue.passthroughRequestHeaders = passthroughRequestHeaders;
+            _resultValue.tokenType = tokenType;
+            return _resultValue;
         }
     }
 }

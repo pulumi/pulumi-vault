@@ -175,15 +175,15 @@ public final class SecretBackendConnectionMongodb {
             return this;
         }
         public SecretBackendConnectionMongodb build() {
-            final var o = new SecretBackendConnectionMongodb();
-            o.connectionUrl = connectionUrl;
-            o.maxConnectionLifetime = maxConnectionLifetime;
-            o.maxIdleConnections = maxIdleConnections;
-            o.maxOpenConnections = maxOpenConnections;
-            o.password = password;
-            o.username = username;
-            o.usernameTemplate = usernameTemplate;
-            return o;
+            final var _resultValue = new SecretBackendConnectionMongodb();
+            _resultValue.connectionUrl = connectionUrl;
+            _resultValue.maxConnectionLifetime = maxConnectionLifetime;
+            _resultValue.maxIdleConnections = maxIdleConnections;
+            _resultValue.maxOpenConnections = maxOpenConnections;
+            _resultValue.password = password;
+            _resultValue.username = username;
+            _resultValue.usernameTemplate = usernameTemplate;
+            return _resultValue;
         }
     }
 }

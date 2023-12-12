@@ -233,18 +233,18 @@ public final class SecretBackendConnectionCassandra {
             return this;
         }
         public SecretBackendConnectionCassandra build() {
-            final var o = new SecretBackendConnectionCassandra();
-            o.connectTimeout = connectTimeout;
-            o.hosts = hosts;
-            o.insecureTls = insecureTls;
-            o.password = password;
-            o.pemBundle = pemBundle;
-            o.pemJson = pemJson;
-            o.port = port;
-            o.protocolVersion = protocolVersion;
-            o.tls = tls;
-            o.username = username;
-            return o;
+            final var _resultValue = new SecretBackendConnectionCassandra();
+            _resultValue.connectTimeout = connectTimeout;
+            _resultValue.hosts = hosts;
+            _resultValue.insecureTls = insecureTls;
+            _resultValue.password = password;
+            _resultValue.pemBundle = pemBundle;
+            _resultValue.pemJson = pemJson;
+            _resultValue.port = port;
+            _resultValue.protocolVersion = protocolVersion;
+            _resultValue.tls = tls;
+            _resultValue.username = username;
+            return _resultValue;
         }
     }
 }

@@ -85,13 +85,13 @@ public final class AuthLoginJwt {
             return this;
         }
         public AuthLoginJwt build() {
-            final var o = new AuthLoginJwt();
-            o.jwt = jwt;
-            o.mount = mount;
-            o.namespace = namespace;
-            o.role = role;
-            o.useRootNamespace = useRootNamespace;
-            return o;
+            final var _resultValue = new AuthLoginJwt();
+            _resultValue.jwt = jwt;
+            _resultValue.mount = mount;
+            _resultValue.namespace = namespace;
+            _resultValue.role = role;
+            _resultValue.useRootNamespace = useRootNamespace;
+            return _resultValue;
         }
     }
 }

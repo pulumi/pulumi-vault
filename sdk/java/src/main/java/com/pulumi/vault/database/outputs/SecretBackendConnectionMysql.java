@@ -251,19 +251,19 @@ public final class SecretBackendConnectionMysql {
             return this;
         }
         public SecretBackendConnectionMysql build() {
-            final var o = new SecretBackendConnectionMysql();
-            o.authType = authType;
-            o.connectionUrl = connectionUrl;
-            o.maxConnectionLifetime = maxConnectionLifetime;
-            o.maxIdleConnections = maxIdleConnections;
-            o.maxOpenConnections = maxOpenConnections;
-            o.password = password;
-            o.serviceAccountJson = serviceAccountJson;
-            o.tlsCa = tlsCa;
-            o.tlsCertificateKey = tlsCertificateKey;
-            o.username = username;
-            o.usernameTemplate = usernameTemplate;
-            return o;
+            final var _resultValue = new SecretBackendConnectionMysql();
+            _resultValue.authType = authType;
+            _resultValue.connectionUrl = connectionUrl;
+            _resultValue.maxConnectionLifetime = maxConnectionLifetime;
+            _resultValue.maxIdleConnections = maxIdleConnections;
+            _resultValue.maxOpenConnections = maxOpenConnections;
+            _resultValue.password = password;
+            _resultValue.serviceAccountJson = serviceAccountJson;
+            _resultValue.tlsCa = tlsCa;
+            _resultValue.tlsCertificateKey = tlsCertificateKey;
+            _resultValue.username = username;
+            _resultValue.usernameTemplate = usernameTemplate;
+            return _resultValue;
         }
     }
 }

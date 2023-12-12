@@ -276,21 +276,21 @@ public final class GetRaftAutopilotStateResult {
             return voters(List.of(voters));
         }
         public GetRaftAutopilotStateResult build() {
-            final var o = new GetRaftAutopilotStateResult();
-            o.failureTolerance = failureTolerance;
-            o.healthy = healthy;
-            o.id = id;
-            o.leader = leader;
-            o.namespace = namespace;
-            o.optimisticFailureTolerance = optimisticFailureTolerance;
-            o.redundancyZones = redundancyZones;
-            o.redundancyZonesJson = redundancyZonesJson;
-            o.servers = servers;
-            o.serversJson = serversJson;
-            o.upgradeInfo = upgradeInfo;
-            o.upgradeInfoJson = upgradeInfoJson;
-            o.voters = voters;
-            return o;
+            final var _resultValue = new GetRaftAutopilotStateResult();
+            _resultValue.failureTolerance = failureTolerance;
+            _resultValue.healthy = healthy;
+            _resultValue.id = id;
+            _resultValue.leader = leader;
+            _resultValue.namespace = namespace;
+            _resultValue.optimisticFailureTolerance = optimisticFailureTolerance;
+            _resultValue.redundancyZones = redundancyZones;
+            _resultValue.redundancyZonesJson = redundancyZonesJson;
+            _resultValue.servers = servers;
+            _resultValue.serversJson = serversJson;
+            _resultValue.upgradeInfo = upgradeInfo;
+            _resultValue.upgradeInfoJson = upgradeInfoJson;
+            _resultValue.voters = voters;
+            return _resultValue;
         }
     }
 }

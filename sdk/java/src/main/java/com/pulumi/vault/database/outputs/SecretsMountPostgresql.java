@@ -334,24 +334,24 @@ public final class SecretsMountPostgresql {
             return this;
         }
         public SecretsMountPostgresql build() {
-            final var o = new SecretsMountPostgresql();
-            o.allowedRoles = allowedRoles;
-            o.authType = authType;
-            o.connectionUrl = connectionUrl;
-            o.data = data;
-            o.disableEscaping = disableEscaping;
-            o.maxConnectionLifetime = maxConnectionLifetime;
-            o.maxIdleConnections = maxIdleConnections;
-            o.maxOpenConnections = maxOpenConnections;
-            o.name = name;
-            o.password = password;
-            o.pluginName = pluginName;
-            o.rootRotationStatements = rootRotationStatements;
-            o.serviceAccountJson = serviceAccountJson;
-            o.username = username;
-            o.usernameTemplate = usernameTemplate;
-            o.verifyConnection = verifyConnection;
-            return o;
+            final var _resultValue = new SecretsMountPostgresql();
+            _resultValue.allowedRoles = allowedRoles;
+            _resultValue.authType = authType;
+            _resultValue.connectionUrl = connectionUrl;
+            _resultValue.data = data;
+            _resultValue.disableEscaping = disableEscaping;
+            _resultValue.maxConnectionLifetime = maxConnectionLifetime;
+            _resultValue.maxIdleConnections = maxIdleConnections;
+            _resultValue.maxOpenConnections = maxOpenConnections;
+            _resultValue.name = name;
+            _resultValue.password = password;
+            _resultValue.pluginName = pluginName;
+            _resultValue.rootRotationStatements = rootRotationStatements;
+            _resultValue.serviceAccountJson = serviceAccountJson;
+            _resultValue.username = username;
+            _resultValue.usernameTemplate = usernameTemplate;
+            _resultValue.verifyConnection = verifyConnection;
+            return _resultValue;
         }
     }
 }

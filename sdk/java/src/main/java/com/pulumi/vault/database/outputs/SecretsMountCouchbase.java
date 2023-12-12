@@ -310,22 +310,22 @@ public final class SecretsMountCouchbase {
             return this;
         }
         public SecretsMountCouchbase build() {
-            final var o = new SecretsMountCouchbase();
-            o.allowedRoles = allowedRoles;
-            o.base64Pem = base64Pem;
-            o.bucketName = bucketName;
-            o.data = data;
-            o.hosts = hosts;
-            o.insecureTls = insecureTls;
-            o.name = name;
-            o.password = password;
-            o.pluginName = pluginName;
-            o.rootRotationStatements = rootRotationStatements;
-            o.tls = tls;
-            o.username = username;
-            o.usernameTemplate = usernameTemplate;
-            o.verifyConnection = verifyConnection;
-            return o;
+            final var _resultValue = new SecretsMountCouchbase();
+            _resultValue.allowedRoles = allowedRoles;
+            _resultValue.base64Pem = base64Pem;
+            _resultValue.bucketName = bucketName;
+            _resultValue.data = data;
+            _resultValue.hosts = hosts;
+            _resultValue.insecureTls = insecureTls;
+            _resultValue.name = name;
+            _resultValue.password = password;
+            _resultValue.pluginName = pluginName;
+            _resultValue.rootRotationStatements = rootRotationStatements;
+            _resultValue.tls = tls;
+            _resultValue.username = username;
+            _resultValue.usernameTemplate = usernameTemplate;
+            _resultValue.verifyConnection = verifyConnection;
+            return _resultValue;
         }
     }
 }

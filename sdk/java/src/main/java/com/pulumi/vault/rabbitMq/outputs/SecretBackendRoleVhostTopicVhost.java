@@ -60,11 +60,11 @@ public final class SecretBackendRoleVhostTopicVhost {
             return this;
         }
         public SecretBackendRoleVhostTopicVhost build() {
-            final var o = new SecretBackendRoleVhostTopicVhost();
-            o.read = read;
-            o.topic = topic;
-            o.write = write;
-            return o;
+            final var _resultValue = new SecretBackendRoleVhostTopicVhost();
+            _resultValue.read = read;
+            _resultValue.topic = topic;
+            _resultValue.write = write;
+            return _resultValue;
         }
     }
 }

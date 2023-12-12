@@ -233,18 +233,18 @@ public final class SecretBackendConnectionPostgresql {
             return this;
         }
         public SecretBackendConnectionPostgresql build() {
-            final var o = new SecretBackendConnectionPostgresql();
-            o.authType = authType;
-            o.connectionUrl = connectionUrl;
-            o.disableEscaping = disableEscaping;
-            o.maxConnectionLifetime = maxConnectionLifetime;
-            o.maxIdleConnections = maxIdleConnections;
-            o.maxOpenConnections = maxOpenConnections;
-            o.password = password;
-            o.serviceAccountJson = serviceAccountJson;
-            o.username = username;
-            o.usernameTemplate = usernameTemplate;
-            return o;
+            final var _resultValue = new SecretBackendConnectionPostgresql();
+            _resultValue.authType = authType;
+            _resultValue.connectionUrl = connectionUrl;
+            _resultValue.disableEscaping = disableEscaping;
+            _resultValue.maxConnectionLifetime = maxConnectionLifetime;
+            _resultValue.maxIdleConnections = maxIdleConnections;
+            _resultValue.maxOpenConnections = maxOpenConnections;
+            _resultValue.password = password;
+            _resultValue.serviceAccountJson = serviceAccountJson;
+            _resultValue.username = username;
+            _resultValue.usernameTemplate = usernameTemplate;
+            return _resultValue;
         }
     }
 }

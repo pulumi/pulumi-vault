@@ -51,10 +51,10 @@ public final class BackendRoleAzureGroup {
             return this;
         }
         public BackendRoleAzureGroup build() {
-            final var o = new BackendRoleAzureGroup();
-            o.groupName = groupName;
-            o.objectId = objectId;
-            return o;
+            final var _resultValue = new BackendRoleAzureGroup();
+            _resultValue.groupName = groupName;
+            _resultValue.objectId = objectId;
+            return _resultValue;
         }
     }
 }

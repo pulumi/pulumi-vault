@@ -49,10 +49,10 @@ public final class Headers {
             return this;
         }
         public Headers build() {
-            final var o = new Headers();
-            o.name = name;
-            o.value = value;
-            return o;
+            final var _resultValue = new Headers();
+            _resultValue.name = name;
+            _resultValue.value = value;
+            return _resultValue;
         }
     }
 }

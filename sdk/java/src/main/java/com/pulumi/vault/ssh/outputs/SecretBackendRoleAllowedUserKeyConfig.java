@@ -130,10 +130,10 @@ public final class SecretBackendRoleAllowedUserKeyConfig {
             return this;
         }
         public SecretBackendRoleAllowedUserKeyConfig build() {
-            final var o = new SecretBackendRoleAllowedUserKeyConfig();
-            o.lengths = lengths;
-            o.type = type;
-            return o;
+            final var _resultValue = new SecretBackendRoleAllowedUserKeyConfig();
+            _resultValue.lengths = lengths;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

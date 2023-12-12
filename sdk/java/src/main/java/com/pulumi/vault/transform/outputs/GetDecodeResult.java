@@ -150,18 +150,18 @@ public final class GetDecodeResult {
             return this;
         }
         public GetDecodeResult build() {
-            final var o = new GetDecodeResult();
-            o.batchInputs = batchInputs;
-            o.batchResults = batchResults;
-            o.decodedValue = decodedValue;
-            o.id = id;
-            o.namespace = namespace;
-            o.path = path;
-            o.roleName = roleName;
-            o.transformation = transformation;
-            o.tweak = tweak;
-            o.value = value;
-            return o;
+            final var _resultValue = new GetDecodeResult();
+            _resultValue.batchInputs = batchInputs;
+            _resultValue.batchResults = batchResults;
+            _resultValue.decodedValue = decodedValue;
+            _resultValue.id = id;
+            _resultValue.namespace = namespace;
+            _resultValue.path = path;
+            _resultValue.roleName = roleName;
+            _resultValue.transformation = transformation;
+            _resultValue.tweak = tweak;
+            _resultValue.value = value;
+            return _resultValue;
         }
     }
 }

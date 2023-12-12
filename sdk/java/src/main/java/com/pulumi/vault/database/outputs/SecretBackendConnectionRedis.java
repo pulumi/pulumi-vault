@@ -168,15 +168,15 @@ public final class SecretBackendConnectionRedis {
             return this;
         }
         public SecretBackendConnectionRedis build() {
-            final var o = new SecretBackendConnectionRedis();
-            o.caCert = caCert;
-            o.host = host;
-            o.insecureTls = insecureTls;
-            o.password = password;
-            o.port = port;
-            o.tls = tls;
-            o.username = username;
-            return o;
+            final var _resultValue = new SecretBackendConnectionRedis();
+            _resultValue.caCert = caCert;
+            _resultValue.host = host;
+            _resultValue.insecureTls = insecureTls;
+            _resultValue.password = password;
+            _resultValue.port = port;
+            _resultValue.tls = tls;
+            _resultValue.username = username;
+            return _resultValue;
         }
     }
 }

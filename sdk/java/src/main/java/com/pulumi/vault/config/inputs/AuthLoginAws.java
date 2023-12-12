@@ -206,24 +206,24 @@ public final class AuthLoginAws {
             return this;
         }
         public AuthLoginAws build() {
-            final var o = new AuthLoginAws();
-            o.awsAccessKeyId = awsAccessKeyId;
-            o.awsIamEndpoint = awsIamEndpoint;
-            o.awsProfile = awsProfile;
-            o.awsRegion = awsRegion;
-            o.awsRoleArn = awsRoleArn;
-            o.awsRoleSessionName = awsRoleSessionName;
-            o.awsSecretAccessKey = awsSecretAccessKey;
-            o.awsSessionToken = awsSessionToken;
-            o.awsSharedCredentialsFile = awsSharedCredentialsFile;
-            o.awsStsEndpoint = awsStsEndpoint;
-            o.awsWebIdentityTokenFile = awsWebIdentityTokenFile;
-            o.headerValue = headerValue;
-            o.mount = mount;
-            o.namespace = namespace;
-            o.role = role;
-            o.useRootNamespace = useRootNamespace;
-            return o;
+            final var _resultValue = new AuthLoginAws();
+            _resultValue.awsAccessKeyId = awsAccessKeyId;
+            _resultValue.awsIamEndpoint = awsIamEndpoint;
+            _resultValue.awsProfile = awsProfile;
+            _resultValue.awsRegion = awsRegion;
+            _resultValue.awsRoleArn = awsRoleArn;
+            _resultValue.awsRoleSessionName = awsRoleSessionName;
+            _resultValue.awsSecretAccessKey = awsSecretAccessKey;
+            _resultValue.awsSessionToken = awsSessionToken;
+            _resultValue.awsSharedCredentialsFile = awsSharedCredentialsFile;
+            _resultValue.awsStsEndpoint = awsStsEndpoint;
+            _resultValue.awsWebIdentityTokenFile = awsWebIdentityTokenFile;
+            _resultValue.headerValue = headerValue;
+            _resultValue.mount = mount;
+            _resultValue.namespace = namespace;
+            _resultValue.role = role;
+            _resultValue.useRootNamespace = useRootNamespace;
+            return _resultValue;
         }
     }
 }

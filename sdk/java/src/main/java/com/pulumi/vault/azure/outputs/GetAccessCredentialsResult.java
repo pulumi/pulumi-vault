@@ -262,25 +262,25 @@ public final class GetAccessCredentialsResult {
             return this;
         }
         public GetAccessCredentialsResult build() {
-            final var o = new GetAccessCredentialsResult();
-            o.backend = backend;
-            o.clientId = clientId;
-            o.clientSecret = clientSecret;
-            o.environment = environment;
-            o.id = id;
-            o.leaseDuration = leaseDuration;
-            o.leaseId = leaseId;
-            o.leaseRenewable = leaseRenewable;
-            o.leaseStartTime = leaseStartTime;
-            o.maxCredValidationSeconds = maxCredValidationSeconds;
-            o.namespace = namespace;
-            o.numSecondsBetweenTests = numSecondsBetweenTests;
-            o.numSequentialSuccesses = numSequentialSuccesses;
-            o.role = role;
-            o.subscriptionId = subscriptionId;
-            o.tenantId = tenantId;
-            o.validateCreds = validateCreds;
-            return o;
+            final var _resultValue = new GetAccessCredentialsResult();
+            _resultValue.backend = backend;
+            _resultValue.clientId = clientId;
+            _resultValue.clientSecret = clientSecret;
+            _resultValue.environment = environment;
+            _resultValue.id = id;
+            _resultValue.leaseDuration = leaseDuration;
+            _resultValue.leaseId = leaseId;
+            _resultValue.leaseRenewable = leaseRenewable;
+            _resultValue.leaseStartTime = leaseStartTime;
+            _resultValue.maxCredValidationSeconds = maxCredValidationSeconds;
+            _resultValue.namespace = namespace;
+            _resultValue.numSecondsBetweenTests = numSecondsBetweenTests;
+            _resultValue.numSequentialSuccesses = numSequentialSuccesses;
+            _resultValue.role = role;
+            _resultValue.subscriptionId = subscriptionId;
+            _resultValue.tenantId = tenantId;
+            _resultValue.validateCreds = validateCreds;
+            return _resultValue;
         }
     }
 }

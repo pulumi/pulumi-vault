@@ -103,14 +103,14 @@ public final class GetStaticAccessCredentialsResult {
             return this;
         }
         public GetStaticAccessCredentialsResult build() {
-            final var o = new GetStaticAccessCredentialsResult();
-            o.accessKey = accessKey;
-            o.backend = backend;
-            o.id = id;
-            o.name = name;
-            o.namespace = namespace;
-            o.secretKey = secretKey;
-            return o;
+            final var _resultValue = new GetStaticAccessCredentialsResult();
+            _resultValue.accessKey = accessKey;
+            _resultValue.backend = backend;
+            _resultValue.id = id;
+            _resultValue.name = name;
+            _resultValue.namespace = namespace;
+            _resultValue.secretKey = secretKey;
+            return _resultValue;
         }
     }
 }

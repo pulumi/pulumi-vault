@@ -196,16 +196,16 @@ public final class GetPolicyDocumentRule {
             return requiredParameters(List.of(requiredParameters));
         }
         public GetPolicyDocumentRule build() {
-            final var o = new GetPolicyDocumentRule();
-            o.allowedParameters = allowedParameters;
-            o.capabilities = capabilities;
-            o.deniedParameters = deniedParameters;
-            o.description = description;
-            o.maxWrappingTtl = maxWrappingTtl;
-            o.minWrappingTtl = minWrappingTtl;
-            o.path = path;
-            o.requiredParameters = requiredParameters;
-            return o;
+            final var _resultValue = new GetPolicyDocumentRule();
+            _resultValue.allowedParameters = allowedParameters;
+            _resultValue.capabilities = capabilities;
+            _resultValue.deniedParameters = deniedParameters;
+            _resultValue.description = description;
+            _resultValue.maxWrappingTtl = maxWrappingTtl;
+            _resultValue.minWrappingTtl = minWrappingTtl;
+            _resultValue.path = path;
+            _resultValue.requiredParameters = requiredParameters;
+            return _resultValue;
         }
     }
 }

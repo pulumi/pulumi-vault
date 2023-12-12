@@ -242,20 +242,20 @@ public final class GetBackendIssuerResult {
             return this;
         }
         public GetBackendIssuerResult build() {
-            final var o = new GetBackendIssuerResult();
-            o.backend = backend;
-            o.caChains = caChains;
-            o.certificate = certificate;
-            o.id = id;
-            o.issuerId = issuerId;
-            o.issuerName = issuerName;
-            o.issuerRef = issuerRef;
-            o.keyId = keyId;
-            o.leafNotAfterBehavior = leafNotAfterBehavior;
-            o.manualChains = manualChains;
-            o.namespace = namespace;
-            o.usage = usage;
-            return o;
+            final var _resultValue = new GetBackendIssuerResult();
+            _resultValue.backend = backend;
+            _resultValue.caChains = caChains;
+            _resultValue.certificate = certificate;
+            _resultValue.id = id;
+            _resultValue.issuerId = issuerId;
+            _resultValue.issuerName = issuerName;
+            _resultValue.issuerRef = issuerRef;
+            _resultValue.keyId = keyId;
+            _resultValue.leafNotAfterBehavior = leafNotAfterBehavior;
+            _resultValue.manualChains = manualChains;
+            _resultValue.namespace = namespace;
+            _resultValue.usage = usage;
+            return _resultValue;
         }
     }
 }

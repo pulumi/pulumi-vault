@@ -162,20 +162,20 @@ public final class AuthLoginAzure {
             return this;
         }
         public AuthLoginAzure build() {
-            final var o = new AuthLoginAzure();
-            o.clientId = clientId;
-            o.jwt = jwt;
-            o.mount = mount;
-            o.namespace = namespace;
-            o.resourceGroupName = resourceGroupName;
-            o.role = role;
-            o.scope = scope;
-            o.subscriptionId = subscriptionId;
-            o.tenantId = tenantId;
-            o.useRootNamespace = useRootNamespace;
-            o.vmName = vmName;
-            o.vmssName = vmssName;
-            return o;
+            final var _resultValue = new AuthLoginAzure();
+            _resultValue.clientId = clientId;
+            _resultValue.jwt = jwt;
+            _resultValue.mount = mount;
+            _resultValue.namespace = namespace;
+            _resultValue.resourceGroupName = resourceGroupName;
+            _resultValue.role = role;
+            _resultValue.scope = scope;
+            _resultValue.subscriptionId = subscriptionId;
+            _resultValue.tenantId = tenantId;
+            _resultValue.useRootNamespace = useRootNamespace;
+            _resultValue.vmName = vmName;
+            _resultValue.vmssName = vmssName;
+            return _resultValue;
         }
     }
 }

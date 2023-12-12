@@ -355,24 +355,24 @@ public final class SecretsMountCassandra {
             return this;
         }
         public SecretsMountCassandra build() {
-            final var o = new SecretsMountCassandra();
-            o.allowedRoles = allowedRoles;
-            o.connectTimeout = connectTimeout;
-            o.data = data;
-            o.hosts = hosts;
-            o.insecureTls = insecureTls;
-            o.name = name;
-            o.password = password;
-            o.pemBundle = pemBundle;
-            o.pemJson = pemJson;
-            o.pluginName = pluginName;
-            o.port = port;
-            o.protocolVersion = protocolVersion;
-            o.rootRotationStatements = rootRotationStatements;
-            o.tls = tls;
-            o.username = username;
-            o.verifyConnection = verifyConnection;
-            return o;
+            final var _resultValue = new SecretsMountCassandra();
+            _resultValue.allowedRoles = allowedRoles;
+            _resultValue.connectTimeout = connectTimeout;
+            _resultValue.data = data;
+            _resultValue.hosts = hosts;
+            _resultValue.insecureTls = insecureTls;
+            _resultValue.name = name;
+            _resultValue.password = password;
+            _resultValue.pemBundle = pemBundle;
+            _resultValue.pemJson = pemJson;
+            _resultValue.pluginName = pluginName;
+            _resultValue.port = port;
+            _resultValue.protocolVersion = protocolVersion;
+            _resultValue.rootRotationStatements = rootRotationStatements;
+            _resultValue.tls = tls;
+            _resultValue.username = username;
+            _resultValue.verifyConnection = verifyConnection;
+            return _resultValue;
         }
     }
 }

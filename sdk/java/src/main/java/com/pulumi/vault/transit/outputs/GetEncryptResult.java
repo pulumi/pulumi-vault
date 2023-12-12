@@ -134,16 +134,16 @@ public final class GetEncryptResult {
             return this;
         }
         public GetEncryptResult build() {
-            final var o = new GetEncryptResult();
-            o.backend = backend;
-            o.ciphertext = ciphertext;
-            o.context = context;
-            o.id = id;
-            o.key = key;
-            o.keyVersion = keyVersion;
-            o.namespace = namespace;
-            o.plaintext = plaintext;
-            return o;
+            final var _resultValue = new GetEncryptResult();
+            _resultValue.backend = backend;
+            _resultValue.ciphertext = ciphertext;
+            _resultValue.context = context;
+            _resultValue.id = id;
+            _resultValue.key = key;
+            _resultValue.keyVersion = keyVersion;
+            _resultValue.namespace = namespace;
+            _resultValue.plaintext = plaintext;
+            return _resultValue;
         }
     }
 }

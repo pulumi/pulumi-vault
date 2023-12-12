@@ -223,18 +223,18 @@ public final class GetEntityAlias {
             return this;
         }
         public GetEntityAlias build() {
-            final var o = new GetEntityAlias();
-            o.canonicalId = canonicalId;
-            o.creationTime = creationTime;
-            o.id = id;
-            o.lastUpdateTime = lastUpdateTime;
-            o.mergedFromCanonicalIds = mergedFromCanonicalIds;
-            o.metadata = metadata;
-            o.mountAccessor = mountAccessor;
-            o.mountPath = mountPath;
-            o.mountType = mountType;
-            o.name = name;
-            return o;
+            final var _resultValue = new GetEntityAlias();
+            _resultValue.canonicalId = canonicalId;
+            _resultValue.creationTime = creationTime;
+            _resultValue.id = id;
+            _resultValue.lastUpdateTime = lastUpdateTime;
+            _resultValue.mergedFromCanonicalIds = mergedFromCanonicalIds;
+            _resultValue.metadata = metadata;
+            _resultValue.mountAccessor = mountAccessor;
+            _resultValue.mountPath = mountPath;
+            _resultValue.mountType = mountType;
+            _resultValue.name = name;
+            return _resultValue;
         }
     }
 }

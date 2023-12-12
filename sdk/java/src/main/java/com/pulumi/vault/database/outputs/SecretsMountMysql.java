@@ -353,25 +353,25 @@ public final class SecretsMountMysql {
             return this;
         }
         public SecretsMountMysql build() {
-            final var o = new SecretsMountMysql();
-            o.allowedRoles = allowedRoles;
-            o.authType = authType;
-            o.connectionUrl = connectionUrl;
-            o.data = data;
-            o.maxConnectionLifetime = maxConnectionLifetime;
-            o.maxIdleConnections = maxIdleConnections;
-            o.maxOpenConnections = maxOpenConnections;
-            o.name = name;
-            o.password = password;
-            o.pluginName = pluginName;
-            o.rootRotationStatements = rootRotationStatements;
-            o.serviceAccountJson = serviceAccountJson;
-            o.tlsCa = tlsCa;
-            o.tlsCertificateKey = tlsCertificateKey;
-            o.username = username;
-            o.usernameTemplate = usernameTemplate;
-            o.verifyConnection = verifyConnection;
-            return o;
+            final var _resultValue = new SecretsMountMysql();
+            _resultValue.allowedRoles = allowedRoles;
+            _resultValue.authType = authType;
+            _resultValue.connectionUrl = connectionUrl;
+            _resultValue.data = data;
+            _resultValue.maxConnectionLifetime = maxConnectionLifetime;
+            _resultValue.maxIdleConnections = maxIdleConnections;
+            _resultValue.maxOpenConnections = maxOpenConnections;
+            _resultValue.name = name;
+            _resultValue.password = password;
+            _resultValue.pluginName = pluginName;
+            _resultValue.rootRotationStatements = rootRotationStatements;
+            _resultValue.serviceAccountJson = serviceAccountJson;
+            _resultValue.tlsCa = tlsCa;
+            _resultValue.tlsCertificateKey = tlsCertificateKey;
+            _resultValue.username = username;
+            _resultValue.usernameTemplate = usernameTemplate;
+            _resultValue.verifyConnection = verifyConnection;
+            return _resultValue;
         }
     }
 }

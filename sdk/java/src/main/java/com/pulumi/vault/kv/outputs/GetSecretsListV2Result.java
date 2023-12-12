@@ -123,14 +123,14 @@ public final class GetSecretsListV2Result {
             return this;
         }
         public GetSecretsListV2Result build() {
-            final var o = new GetSecretsListV2Result();
-            o.id = id;
-            o.mount = mount;
-            o.name = name;
-            o.names = names;
-            o.namespace = namespace;
-            o.path = path;
-            return o;
+            final var _resultValue = new GetSecretsListV2Result();
+            _resultValue.id = id;
+            _resultValue.mount = mount;
+            _resultValue.name = name;
+            _resultValue.names = names;
+            _resultValue.namespace = namespace;
+            _resultValue.path = path;
+            return _resultValue;
         }
     }
 }

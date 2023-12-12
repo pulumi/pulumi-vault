@@ -94,12 +94,12 @@ public final class GetOidcPublicKeysResult {
             return this;
         }
         public GetOidcPublicKeysResult build() {
-            final var o = new GetOidcPublicKeysResult();
-            o.id = id;
-            o.keys = keys;
-            o.name = name;
-            o.namespace = namespace;
-            return o;
+            final var _resultValue = new GetOidcPublicKeysResult();
+            _resultValue.id = id;
+            _resultValue.keys = keys;
+            _resultValue.name = name;
+            _resultValue.namespace = namespace;
+            return _resultValue;
         }
     }
 }

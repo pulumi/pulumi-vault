@@ -230,21 +230,21 @@ public final class GetServiceAccountTokenResult {
             return this;
         }
         public GetServiceAccountTokenResult build() {
-            final var o = new GetServiceAccountTokenResult();
-            o.backend = backend;
-            o.clusterRoleBinding = clusterRoleBinding;
-            o.id = id;
-            o.kubernetesNamespace = kubernetesNamespace;
-            o.leaseDuration = leaseDuration;
-            o.leaseId = leaseId;
-            o.leaseRenewable = leaseRenewable;
-            o.namespace = namespace;
-            o.role = role;
-            o.serviceAccountName = serviceAccountName;
-            o.serviceAccountNamespace = serviceAccountNamespace;
-            o.serviceAccountToken = serviceAccountToken;
-            o.ttl = ttl;
-            return o;
+            final var _resultValue = new GetServiceAccountTokenResult();
+            _resultValue.backend = backend;
+            _resultValue.clusterRoleBinding = clusterRoleBinding;
+            _resultValue.id = id;
+            _resultValue.kubernetesNamespace = kubernetesNamespace;
+            _resultValue.leaseDuration = leaseDuration;
+            _resultValue.leaseId = leaseId;
+            _resultValue.leaseRenewable = leaseRenewable;
+            _resultValue.namespace = namespace;
+            _resultValue.role = role;
+            _resultValue.serviceAccountName = serviceAccountName;
+            _resultValue.serviceAccountNamespace = serviceAccountNamespace;
+            _resultValue.serviceAccountToken = serviceAccountToken;
+            _resultValue.ttl = ttl;
+            return _resultValue;
         }
     }
 }

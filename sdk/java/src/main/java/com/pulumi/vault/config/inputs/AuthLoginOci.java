@@ -85,13 +85,13 @@ public final class AuthLoginOci {
             return this;
         }
         public AuthLoginOci build() {
-            final var o = new AuthLoginOci();
-            o.authType = authType;
-            o.mount = mount;
-            o.namespace = namespace;
-            o.role = role;
-            o.useRootNamespace = useRootNamespace;
-            return o;
+            final var _resultValue = new AuthLoginOci();
+            _resultValue.authType = authType;
+            _resultValue.mount = mount;
+            _resultValue.namespace = namespace;
+            _resultValue.role = role;
+            _resultValue.useRootNamespace = useRootNamespace;
+            return _resultValue;
         }
     }
 }

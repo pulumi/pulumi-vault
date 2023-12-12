@@ -220,17 +220,17 @@ public final class SecretBackendConnectionMssql {
             return this;
         }
         public SecretBackendConnectionMssql build() {
-            final var o = new SecretBackendConnectionMssql();
-            o.connectionUrl = connectionUrl;
-            o.containedDb = containedDb;
-            o.disableEscaping = disableEscaping;
-            o.maxConnectionLifetime = maxConnectionLifetime;
-            o.maxIdleConnections = maxIdleConnections;
-            o.maxOpenConnections = maxOpenConnections;
-            o.password = password;
-            o.username = username;
-            o.usernameTemplate = usernameTemplate;
-            return o;
+            final var _resultValue = new SecretBackendConnectionMssql();
+            _resultValue.connectionUrl = connectionUrl;
+            _resultValue.containedDb = containedDb;
+            _resultValue.disableEscaping = disableEscaping;
+            _resultValue.maxConnectionLifetime = maxConnectionLifetime;
+            _resultValue.maxIdleConnections = maxIdleConnections;
+            _resultValue.maxOpenConnections = maxOpenConnections;
+            _resultValue.password = password;
+            _resultValue.username = username;
+            _resultValue.usernameTemplate = usernameTemplate;
+            return _resultValue;
         }
     }
 }

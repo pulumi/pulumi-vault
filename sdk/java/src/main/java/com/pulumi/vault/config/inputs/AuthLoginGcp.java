@@ -107,15 +107,15 @@ public final class AuthLoginGcp {
             return this;
         }
         public AuthLoginGcp build() {
-            final var o = new AuthLoginGcp();
-            o.credentials = credentials;
-            o.jwt = jwt;
-            o.mount = mount;
-            o.namespace = namespace;
-            o.role = role;
-            o.serviceAccount = serviceAccount;
-            o.useRootNamespace = useRootNamespace;
-            return o;
+            final var _resultValue = new AuthLoginGcp();
+            _resultValue.credentials = credentials;
+            _resultValue.jwt = jwt;
+            _resultValue.mount = mount;
+            _resultValue.namespace = namespace;
+            _resultValue.role = role;
+            _resultValue.serviceAccount = serviceAccount;
+            _resultValue.useRootNamespace = useRootNamespace;
+            return _resultValue;
         }
     }
 }

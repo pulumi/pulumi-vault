@@ -94,12 +94,12 @@ public final class GetPolicyDocumentResult {
             return rules(List.of(rules));
         }
         public GetPolicyDocumentResult build() {
-            final var o = new GetPolicyDocumentResult();
-            o.hcl = hcl;
-            o.id = id;
-            o.namespace = namespace;
-            o.rules = rules;
-            return o;
+            final var _resultValue = new GetPolicyDocumentResult();
+            _resultValue.hcl = hcl;
+            _resultValue.id = id;
+            _resultValue.namespace = namespace;
+            _resultValue.rules = rules;
+            return _resultValue;
         }
     }
 }

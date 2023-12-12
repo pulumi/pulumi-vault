@@ -107,12 +107,12 @@ public final class SecretBackendConnectionRedisElasticache {
             return this;
         }
         public SecretBackendConnectionRedisElasticache build() {
-            final var o = new SecretBackendConnectionRedisElasticache();
-            o.password = password;
-            o.region = region;
-            o.url = url;
-            o.username = username;
-            return o;
+            final var _resultValue = new SecretBackendConnectionRedisElasticache();
+            _resultValue.password = password;
+            _resultValue.region = region;
+            _resultValue.url = url;
+            _resultValue.username = username;
+            return _resultValue;
         }
     }
 }

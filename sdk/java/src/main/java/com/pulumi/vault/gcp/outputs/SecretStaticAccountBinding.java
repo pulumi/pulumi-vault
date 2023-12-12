@@ -69,10 +69,10 @@ public final class SecretStaticAccountBinding {
             return roles(List.of(roles));
         }
         public SecretStaticAccountBinding build() {
-            final var o = new SecretStaticAccountBinding();
-            o.resource = resource;
-            o.roles = roles;
-            return o;
+            final var _resultValue = new SecretStaticAccountBinding();
+            _resultValue.resource = resource;
+            _resultValue.roles = roles;
+            return _resultValue;
         }
     }
 }

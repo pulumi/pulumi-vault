@@ -115,13 +115,13 @@ public final class GetAuthBackendsResult {
             return this;
         }
         public GetAuthBackendsResult build() {
-            final var o = new GetAuthBackendsResult();
-            o.accessors = accessors;
-            o.id = id;
-            o.namespace = namespace;
-            o.paths = paths;
-            o.type = type;
-            return o;
+            final var _resultValue = new GetAuthBackendsResult();
+            _resultValue.accessors = accessors;
+            _resultValue.id = id;
+            _resultValue.namespace = namespace;
+            _resultValue.paths = paths;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

@@ -86,13 +86,13 @@ public final class AuthLogin {
             return this;
         }
         public AuthLogin build() {
-            final var o = new AuthLogin();
-            o.method = method;
-            o.namespace = namespace;
-            o.parameters = parameters;
-            o.path = path;
-            o.useRootNamespace = useRootNamespace;
-            return o;
+            final var _resultValue = new AuthLogin();
+            _resultValue.method = method;
+            _resultValue.namespace = namespace;
+            _resultValue.parameters = parameters;
+            _resultValue.path = path;
+            _resultValue.useRootNamespace = useRootNamespace;
+            return _resultValue;
         }
     }
 }

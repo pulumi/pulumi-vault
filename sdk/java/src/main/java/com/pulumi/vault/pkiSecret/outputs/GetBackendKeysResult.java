@@ -133,14 +133,14 @@ public final class GetBackendKeysResult {
             return this;
         }
         public GetBackendKeysResult build() {
-            final var o = new GetBackendKeysResult();
-            o.backend = backend;
-            o.id = id;
-            o.keyInfo = keyInfo;
-            o.keyInfoJson = keyInfoJson;
-            o.keys = keys;
-            o.namespace = namespace;
-            return o;
+            final var _resultValue = new GetBackendKeysResult();
+            _resultValue.backend = backend;
+            _resultValue.id = id;
+            _resultValue.keyInfo = keyInfo;
+            _resultValue.keyInfoJson = keyInfoJson;
+            _resultValue.keys = keys;
+            _resultValue.namespace = namespace;
+            return _resultValue;
         }
     }
 }

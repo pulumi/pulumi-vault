@@ -195,16 +195,16 @@ public final class SecretBackendConnectionRedshift {
             return this;
         }
         public SecretBackendConnectionRedshift build() {
-            final var o = new SecretBackendConnectionRedshift();
-            o.connectionUrl = connectionUrl;
-            o.disableEscaping = disableEscaping;
-            o.maxConnectionLifetime = maxConnectionLifetime;
-            o.maxIdleConnections = maxIdleConnections;
-            o.maxOpenConnections = maxOpenConnections;
-            o.password = password;
-            o.username = username;
-            o.usernameTemplate = usernameTemplate;
-            return o;
+            final var _resultValue = new SecretBackendConnectionRedshift();
+            _resultValue.connectionUrl = connectionUrl;
+            _resultValue.disableEscaping = disableEscaping;
+            _resultValue.maxConnectionLifetime = maxConnectionLifetime;
+            _resultValue.maxIdleConnections = maxIdleConnections;
+            _resultValue.maxOpenConnections = maxOpenConnections;
+            _resultValue.password = password;
+            _resultValue.username = username;
+            _resultValue.usernameTemplate = usernameTemplate;
+            return _resultValue;
         }
     }
 }

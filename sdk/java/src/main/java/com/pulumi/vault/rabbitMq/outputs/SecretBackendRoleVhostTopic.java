@@ -63,10 +63,10 @@ public final class SecretBackendRoleVhostTopic {
             return vhosts(List.of(vhosts));
         }
         public SecretBackendRoleVhostTopic build() {
-            final var o = new SecretBackendRoleVhostTopic();
-            o.host = host;
-            o.vhosts = vhosts;
-            return o;
+            final var _resultValue = new SecretBackendRoleVhostTopic();
+            _resultValue.host = host;
+            _resultValue.vhosts = vhosts;
+            return _resultValue;
         }
     }
 }

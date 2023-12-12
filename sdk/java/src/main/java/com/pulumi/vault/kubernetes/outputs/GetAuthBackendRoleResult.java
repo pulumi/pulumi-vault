@@ -379,25 +379,25 @@ public final class GetAuthBackendRoleResult {
             return this;
         }
         public GetAuthBackendRoleResult build() {
-            final var o = new GetAuthBackendRoleResult();
-            o.aliasNameSource = aliasNameSource;
-            o.audience = audience;
-            o.backend = backend;
-            o.boundServiceAccountNames = boundServiceAccountNames;
-            o.boundServiceAccountNamespaces = boundServiceAccountNamespaces;
-            o.id = id;
-            o.namespace = namespace;
-            o.roleName = roleName;
-            o.tokenBoundCidrs = tokenBoundCidrs;
-            o.tokenExplicitMaxTtl = tokenExplicitMaxTtl;
-            o.tokenMaxTtl = tokenMaxTtl;
-            o.tokenNoDefaultPolicy = tokenNoDefaultPolicy;
-            o.tokenNumUses = tokenNumUses;
-            o.tokenPeriod = tokenPeriod;
-            o.tokenPolicies = tokenPolicies;
-            o.tokenTtl = tokenTtl;
-            o.tokenType = tokenType;
-            return o;
+            final var _resultValue = new GetAuthBackendRoleResult();
+            _resultValue.aliasNameSource = aliasNameSource;
+            _resultValue.audience = audience;
+            _resultValue.backend = backend;
+            _resultValue.boundServiceAccountNames = boundServiceAccountNames;
+            _resultValue.boundServiceAccountNamespaces = boundServiceAccountNamespaces;
+            _resultValue.id = id;
+            _resultValue.namespace = namespace;
+            _resultValue.roleName = roleName;
+            _resultValue.tokenBoundCidrs = tokenBoundCidrs;
+            _resultValue.tokenExplicitMaxTtl = tokenExplicitMaxTtl;
+            _resultValue.tokenMaxTtl = tokenMaxTtl;
+            _resultValue.tokenNoDefaultPolicy = tokenNoDefaultPolicy;
+            _resultValue.tokenNumUses = tokenNumUses;
+            _resultValue.tokenPeriod = tokenPeriod;
+            _resultValue.tokenPolicies = tokenPolicies;
+            _resultValue.tokenTtl = tokenTtl;
+            _resultValue.tokenType = tokenType;
+            return _resultValue;
         }
     }
 }

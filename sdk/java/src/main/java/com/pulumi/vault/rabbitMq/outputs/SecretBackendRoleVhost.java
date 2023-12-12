@@ -71,12 +71,12 @@ public final class SecretBackendRoleVhost {
             return this;
         }
         public SecretBackendRoleVhost build() {
-            final var o = new SecretBackendRoleVhost();
-            o.configure = configure;
-            o.host = host;
-            o.read = read;
-            o.write = write;
-            return o;
+            final var _resultValue = new SecretBackendRoleVhost();
+            _resultValue.configure = configure;
+            _resultValue.host = host;
+            _resultValue.read = read;
+            _resultValue.write = write;
+            return _resultValue;
         }
     }
 }

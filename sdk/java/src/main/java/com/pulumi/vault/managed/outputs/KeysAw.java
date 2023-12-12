@@ -302,22 +302,22 @@ public final class KeysAw {
             return this;
         }
         public KeysAw build() {
-            final var o = new KeysAw();
-            o.accessKey = accessKey;
-            o.allowGenerateKey = allowGenerateKey;
-            o.allowReplaceKey = allowReplaceKey;
-            o.allowStoreKey = allowStoreKey;
-            o.anyMount = anyMount;
-            o.curve = curve;
-            o.endpoint = endpoint;
-            o.keyBits = keyBits;
-            o.keyType = keyType;
-            o.kmsKey = kmsKey;
-            o.name = name;
-            o.region = region;
-            o.secretKey = secretKey;
-            o.uuid = uuid;
-            return o;
+            final var _resultValue = new KeysAw();
+            _resultValue.accessKey = accessKey;
+            _resultValue.allowGenerateKey = allowGenerateKey;
+            _resultValue.allowReplaceKey = allowReplaceKey;
+            _resultValue.allowStoreKey = allowStoreKey;
+            _resultValue.anyMount = anyMount;
+            _resultValue.curve = curve;
+            _resultValue.endpoint = endpoint;
+            _resultValue.keyBits = keyBits;
+            _resultValue.keyType = keyType;
+            _resultValue.kmsKey = kmsKey;
+            _resultValue.name = name;
+            _resultValue.region = region;
+            _resultValue.secretKey = secretKey;
+            _resultValue.uuid = uuid;
+            return _resultValue;
         }
     }
 }

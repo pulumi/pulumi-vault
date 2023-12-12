@@ -291,21 +291,21 @@ public final class SecretsMountRedi {
             return this;
         }
         public SecretsMountRedi build() {
-            final var o = new SecretsMountRedi();
-            o.allowedRoles = allowedRoles;
-            o.caCert = caCert;
-            o.data = data;
-            o.host = host;
-            o.insecureTls = insecureTls;
-            o.name = name;
-            o.password = password;
-            o.pluginName = pluginName;
-            o.port = port;
-            o.rootRotationStatements = rootRotationStatements;
-            o.tls = tls;
-            o.username = username;
-            o.verifyConnection = verifyConnection;
-            return o;
+            final var _resultValue = new SecretsMountRedi();
+            _resultValue.allowedRoles = allowedRoles;
+            _resultValue.caCert = caCert;
+            _resultValue.data = data;
+            _resultValue.host = host;
+            _resultValue.insecureTls = insecureTls;
+            _resultValue.name = name;
+            _resultValue.password = password;
+            _resultValue.pluginName = pluginName;
+            _resultValue.port = port;
+            _resultValue.rootRotationStatements = rootRotationStatements;
+            _resultValue.tls = tls;
+            _resultValue.username = username;
+            _resultValue.verifyConnection = verifyConnection;
+            return _resultValue;
         }
     }
 }

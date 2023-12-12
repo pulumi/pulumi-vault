@@ -293,21 +293,21 @@ public final class SecretsMountMysqlRd {
             return this;
         }
         public SecretsMountMysqlRd build() {
-            final var o = new SecretsMountMysqlRd();
-            o.allowedRoles = allowedRoles;
-            o.connectionUrl = connectionUrl;
-            o.data = data;
-            o.maxConnectionLifetime = maxConnectionLifetime;
-            o.maxIdleConnections = maxIdleConnections;
-            o.maxOpenConnections = maxOpenConnections;
-            o.name = name;
-            o.password = password;
-            o.pluginName = pluginName;
-            o.rootRotationStatements = rootRotationStatements;
-            o.username = username;
-            o.usernameTemplate = usernameTemplate;
-            o.verifyConnection = verifyConnection;
-            return o;
+            final var _resultValue = new SecretsMountMysqlRd();
+            _resultValue.allowedRoles = allowedRoles;
+            _resultValue.connectionUrl = connectionUrl;
+            _resultValue.data = data;
+            _resultValue.maxConnectionLifetime = maxConnectionLifetime;
+            _resultValue.maxIdleConnections = maxIdleConnections;
+            _resultValue.maxOpenConnections = maxOpenConnections;
+            _resultValue.name = name;
+            _resultValue.password = password;
+            _resultValue.pluginName = pluginName;
+            _resultValue.rootRotationStatements = rootRotationStatements;
+            _resultValue.username = username;
+            _resultValue.usernameTemplate = usernameTemplate;
+            _resultValue.verifyConnection = verifyConnection;
+            return _resultValue;
         }
     }
 }

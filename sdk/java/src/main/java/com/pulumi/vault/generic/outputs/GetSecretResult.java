@@ -206,19 +206,19 @@ public final class GetSecretResult {
             return this;
         }
         public GetSecretResult build() {
-            final var o = new GetSecretResult();
-            o.data = data;
-            o.dataJson = dataJson;
-            o.id = id;
-            o.leaseDuration = leaseDuration;
-            o.leaseId = leaseId;
-            o.leaseRenewable = leaseRenewable;
-            o.leaseStartTime = leaseStartTime;
-            o.namespace = namespace;
-            o.path = path;
-            o.version = version;
-            o.withLeaseStartTime = withLeaseStartTime;
-            return o;
+            final var _resultValue = new GetSecretResult();
+            _resultValue.data = data;
+            _resultValue.dataJson = dataJson;
+            _resultValue.id = id;
+            _resultValue.leaseDuration = leaseDuration;
+            _resultValue.leaseId = leaseId;
+            _resultValue.leaseRenewable = leaseRenewable;
+            _resultValue.leaseStartTime = leaseStartTime;
+            _resultValue.namespace = namespace;
+            _resultValue.path = path;
+            _resultValue.version = version;
+            _resultValue.withLeaseStartTime = withLeaseStartTime;
+            return _resultValue;
         }
     }
 }
