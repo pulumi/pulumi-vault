@@ -4,7 +4,7 @@ go 1.21.3
 
 require (
 	github.com/hashicorp/terraform-provider-vault v0.0.0
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.68.0
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.68.1-0.20231212210504-7a439ad045c6
 	github.com/pulumi/pulumi/sdk/v3 v3.96.2
 )
 
@@ -93,6 +93,7 @@ require (
 	github.com/ettle/strcase v0.1.1 // indirect
 	github.com/evanphx/json-patch/v5 v5.6.0 // indirect
 	github.com/fatih/color v1.15.0 // indirect
+	github.com/frankban/quicktest v1.14.4 // indirect
 	github.com/gedex/inflector v0.0.0-20170307190818-16278e9db813 // indirect
 	github.com/go-asn1-ber/asn1-ber v1.5.4 // indirect
 	github.com/go-git/gcfg v1.5.1-0.20230307220236-3a3c6141e376 // indirect
@@ -283,7 +284,6 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	k8s.io/utils v0.0.0-20230726121419-3b25d923346b // indirect
 	lukechampine.com/frand v1.4.2 // indirect
-	mvdan.cc/gofumpt v0.3.1 // indirect
 )
 
 replace (
