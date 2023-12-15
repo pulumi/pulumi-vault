@@ -1,7 +1,13 @@
-diff --git b/go.mod a/go.mod
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Ian Wahbe <ian@wahbe.com>
+Date: Fri, 15 Dec 2023 13:32:07 -0800
+Subject: [PATCH] fork
+
+
+diff --git a/go.mod b/go.mod
 index f663a934..9dc8ba7f 100644
---- b/go.mod
-+++ a/go.mod
+--- a/go.mod
++++ b/go.mod
 @@ -1,6 +1,6 @@
  module github.com/hashicorp/terraform-provider-vault
  
@@ -163,10 +169,10 @@ index f663a934..9dc8ba7f 100644
  	gopkg.in/jcmturner/goidentity.v3 v3.0.0 // indirect
  	gopkg.in/square/go-jose.v2 v2.6.0 // indirect
  	gopkg.in/yaml.v3 v3.0.1 // indirect
-diff --git b/go.sum a/go.sum
+diff --git a/go.sum b/go.sum
 index 62c4ed28..69fcc0b5 100644
---- b/go.sum
-+++ a/go.sum
+--- a/go.sum
++++ b/go.sum
 @@ -3,7 +3,6 @@ bazil.org/fuse v0.0.0-20200407214033-5883e5a4b512/go.mod h1:FbcW6z/2VytnFDhZfumh
  cloud.google.com/go v0.26.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw=
  cloud.google.com/go v0.34.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw=
@@ -1001,10 +1007,10 @@ index 62c4ed28..69fcc0b5 100644
  gopkg.in/jcmturner/goidentity.v3 v3.0.0 h1:1duIyWiTaYvVx3YX2CYtpJbUFd7/UuPYCfgXtQ3VTbI=
  gopkg.in/jcmturner/goidentity.v3 v3.0.0/go.mod h1:oG2kH0IvSYNIu80dVAyu/yoefjq1mNfM5bm88whjWx4=
  gopkg.in/natefinch/lumberjack.v2 v2.0.0/go.mod h1:l0ndWWf7gzL7RNwBG7wST/UCcT4T24xpD6X8LsfU/+k=
-diff --git b/internal/provider/meta.go a/internal/provider/meta.go
-index 230453aa..56d58232 100644
---- b/internal/provider/meta.go
-+++ a/internal/provider/meta.go
+diff --git a/internal/provider/meta.go b/internal/provider/meta.go
+index b7cb02ed..dc75587f 100644
+--- a/internal/provider/meta.go
++++ b/internal/provider/meta.go
 @@ -4,23 +4,27 @@
  package provider
  
@@ -1034,7 +1040,7 @@ index 230453aa..56d58232 100644
  	"k8s.io/utils/pointer"
  
  	"github.com/hashicorp/terraform-provider-vault/helper"
-@@ -554,16 +558,70 @@ func GetToken(d *schema.ResourceData) (string, error) {
+@@ -622,16 +626,70 @@ func GetToken(d *schema.ResourceData) (string, error) {
  		}
  	}
  
@@ -1111,10 +1117,10 @@ index 230453aa..56d58232 100644
  }
  
  func getHCLogger() hclog.Logger {
-diff --git b/vault/provider_test.go a/vault/provider_test.go
-index fa155bac..7b9aea9f 100644
---- b/vault/provider_test.go
-+++ a/vault/provider_test.go
+diff --git a/vault/provider_test.go b/vault/provider_test.go
+index b6959856..48318a79 100644
+--- a/vault/provider_test.go
++++ b/vault/provider_test.go
 @@ -16,7 +16,6 @@ import (
  	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
  	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
@@ -1165,10 +1171,10 @@ index fa155bac..7b9aea9f 100644
  			t.Fatal(err)
  		}
  
-diff --git b/vault/resource_consul_secret_backend_test.go a/vault/resource_consul_secret_backend_test.go
+diff --git a/vault/resource_consul_secret_backend_test.go b/vault/resource_consul_secret_backend_test.go
 index 604968b8..71389eaf 100644
---- b/vault/resource_consul_secret_backend_test.go
-+++ a/vault/resource_consul_secret_backend_test.go
+--- a/vault/resource_consul_secret_backend_test.go
++++ b/vault/resource_consul_secret_backend_test.go
 @@ -5,7 +5,6 @@ package vault
  
  import (
@@ -1262,10 +1268,10 @@ index 604968b8..71389eaf 100644
  func TestConsulSecretBackend_remount(t *testing.T) {
  	t.Parallel()
  	path := acctest.RandomWithPrefix("tf-test-consul")
-diff --git b/vault/resource_database_secret_backend_connection_test.go a/vault/resource_database_secret_backend_connection_test.go
-index 9670504d..20c774ec 100644
---- b/vault/resource_database_secret_backend_connection_test.go
-+++ a/vault/resource_database_secret_backend_connection_test.go
+diff --git a/vault/resource_database_secret_backend_connection_test.go b/vault/resource_database_secret_backend_connection_test.go
+index 653b50a5..8624a542 100644
+--- a/vault/resource_database_secret_backend_connection_test.go
++++ b/vault/resource_database_secret_backend_connection_test.go
 @@ -24,7 +24,6 @@ import (
  	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
  	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
@@ -1390,10 +1396,10 @@ index 9670504d..20c774ec 100644
  func TestAccDatabaseSecretBackendConnection_mysql(t *testing.T) {
  	MaybeSkipDBTests(t, dbEngineMySQL)
  
-diff --git b/vault/resource_database_secrets_mount_test.go a/vault/resource_database_secrets_mount_test.go
-index fee4b344..52291b8c 100644
---- b/vault/resource_database_secrets_mount_test.go
-+++ a/vault/resource_database_secrets_mount_test.go
+diff --git a/vault/resource_database_secrets_mount_test.go b/vault/resource_database_secrets_mount_test.go
+index d702255a..52291b8c 100644
+--- a/vault/resource_database_secrets_mount_test.go
++++ b/vault/resource_database_secrets_mount_test.go
 @@ -6,233 +6,8 @@ package vault
  import (
  	"fmt"
@@ -1465,7 +1471,7 @@ index fee4b344..52291b8c 100644
 -			},
 -			{
 -				PreConfig: func() {
--					client := testProvider.Meta().(*provider.ProviderMeta).GetClient()
+-					client := testProvider.Meta().(*provider.ProviderMeta).MustGetClient()
 -
 -					resp, err := client.Logical().Read(fmt.Sprintf("%s/creds/%s", backend, "dev"))
 -					if err != nil {
@@ -1567,7 +1573,7 @@ index fee4b344..52291b8c 100644
 -			},
 -			{
 -				PreConfig: func() {
--					client := testProvider.Meta().(*provider.ProviderMeta).GetClient()
+-					client := testProvider.Meta().(*provider.ProviderMeta).MustGetClient()
 -
 -					for _, role := range []string{"dev1", "dev2"} {
 -						resp, err := client.Logical().Read(fmt.Sprintf("%s/creds/%s", backend, role))
@@ -1628,10 +1634,10 @@ index fee4b344..52291b8c 100644
  func testAccDatabaseSecretsMount_mssql(name, path, pluginName string, parsedURL *url.URL) string {
  	password, _ := parsedURL.User.Password()
  
-diff --git b/vault/resource_okta_auth_backend_user.go a/vault/resource_okta_auth_backend_user.go
+diff --git a/vault/resource_okta_auth_backend_user.go b/vault/resource_okta_auth_backend_user.go
 index 21ae8a9d..e97cf988 100644
---- b/vault/resource_okta_auth_backend_user.go
-+++ a/vault/resource_okta_auth_backend_user.go
+--- a/vault/resource_okta_auth_backend_user.go
++++ b/vault/resource_okta_auth_backend_user.go
 @@ -21,6 +21,19 @@ func oktaAuthBackendUserResource() *schema.Resource {
  		Read:   provider.ReadWrapper(oktaAuthBackendUserRead),
  		Update: oktaAuthBackendUserWrite,
@@ -1652,10 +1658,10 @@ index 21ae8a9d..e97cf988 100644
  
  		Schema: map[string]*schema.Schema{
  			"path": {
-diff --git b/website/docs/r/okta_auth_backend_user.html.md a/website/docs/r/okta_auth_backend_user.html.md
+diff --git a/website/docs/r/okta_auth_backend_user.html.md b/website/docs/r/okta_auth_backend_user.html.md
 index 176d6445..b7ada82d 100644
---- b/website/docs/r/okta_auth_backend_user.html.md
-+++ a/website/docs/r/okta_auth_backend_user.html.md
+--- a/website/docs/r/okta_auth_backend_user.html.md
++++ b/website/docs/r/okta_auth_backend_user.html.md
 @@ -46,3 +46,11 @@ The following arguments are supported:
  ## Attributes Reference
  
