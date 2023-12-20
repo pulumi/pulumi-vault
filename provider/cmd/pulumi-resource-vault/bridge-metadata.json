@@ -2117,6 +2117,7 @@
             }
         }
     },
+    "auto-settings": {},
     "renames": {
         "resources": {
             "vault:ad/secretBackend:SecretBackend": "vault_ad_secret_backend",
