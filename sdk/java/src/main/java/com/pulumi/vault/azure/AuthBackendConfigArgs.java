@@ -5,6 +5,7 @@ package com.pulumi.vault.azure;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -338,8 +339,12 @@ public final class AuthBackendConfigArgs extends com.pulumi.resources.ResourceAr
         }
 
         public AuthBackendConfigArgs build() {
-            $.resource = Objects.requireNonNull($.resource, "expected parameter 'resource' to be non-null");
-            $.tenantId = Objects.requireNonNull($.tenantId, "expected parameter 'tenantId' to be non-null");
+            if ($.resource == null) {
+                throw new MissingRequiredPropertyException("AuthBackendConfigArgs", "resource");
+            }
+            if ($.tenantId == null) {
+                throw new MissingRequiredPropertyException("AuthBackendConfigArgs", "tenantId");
+            }
             return $;
         }
     }

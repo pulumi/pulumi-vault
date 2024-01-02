@@ -5,6 +5,7 @@ package com.pulumi.vault;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -247,9 +248,15 @@ public final class EgpPolicyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public EgpPolicyArgs build() {
-            $.enforcementLevel = Objects.requireNonNull($.enforcementLevel, "expected parameter 'enforcementLevel' to be non-null");
-            $.paths = Objects.requireNonNull($.paths, "expected parameter 'paths' to be non-null");
-            $.policy = Objects.requireNonNull($.policy, "expected parameter 'policy' to be non-null");
+            if ($.enforcementLevel == null) {
+                throw new MissingRequiredPropertyException("EgpPolicyArgs", "enforcementLevel");
+            }
+            if ($.paths == null) {
+                throw new MissingRequiredPropertyException("EgpPolicyArgs", "paths");
+            }
+            if ($.policy == null) {
+                throw new MissingRequiredPropertyException("EgpPolicyArgs", "policy");
+            }
             return $;
         }
     }

@@ -5,6 +5,7 @@ package com.pulumi.vault.managed.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -599,13 +600,27 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public KeysAzureArgs build() {
-            $.clientId = Objects.requireNonNull($.clientId, "expected parameter 'clientId' to be non-null");
-            $.clientSecret = Objects.requireNonNull($.clientSecret, "expected parameter 'clientSecret' to be non-null");
-            $.keyName = Objects.requireNonNull($.keyName, "expected parameter 'keyName' to be non-null");
-            $.keyType = Objects.requireNonNull($.keyType, "expected parameter 'keyType' to be non-null");
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
-            $.tenantId = Objects.requireNonNull($.tenantId, "expected parameter 'tenantId' to be non-null");
-            $.vaultName = Objects.requireNonNull($.vaultName, "expected parameter 'vaultName' to be non-null");
+            if ($.clientId == null) {
+                throw new MissingRequiredPropertyException("KeysAzureArgs", "clientId");
+            }
+            if ($.clientSecret == null) {
+                throw new MissingRequiredPropertyException("KeysAzureArgs", "clientSecret");
+            }
+            if ($.keyName == null) {
+                throw new MissingRequiredPropertyException("KeysAzureArgs", "keyName");
+            }
+            if ($.keyType == null) {
+                throw new MissingRequiredPropertyException("KeysAzureArgs", "keyType");
+            }
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("KeysAzureArgs", "name");
+            }
+            if ($.tenantId == null) {
+                throw new MissingRequiredPropertyException("KeysAzureArgs", "tenantId");
+            }
+            if ($.vaultName == null) {
+                throw new MissingRequiredPropertyException("KeysAzureArgs", "vaultName");
+            }
             return $;
         }
     }

@@ -5,6 +5,7 @@ package com.pulumi.vault.identity;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -162,8 +163,12 @@ public final class OidcKeyAllowedClientIDArgs extends com.pulumi.resources.Resou
         }
 
         public OidcKeyAllowedClientIDArgs build() {
-            $.allowedClientId = Objects.requireNonNull($.allowedClientId, "expected parameter 'allowedClientId' to be non-null");
-            $.keyName = Objects.requireNonNull($.keyName, "expected parameter 'keyName' to be non-null");
+            if ($.allowedClientId == null) {
+                throw new MissingRequiredPropertyException("OidcKeyAllowedClientIDArgs", "allowedClientId");
+            }
+            if ($.keyName == null) {
+                throw new MissingRequiredPropertyException("OidcKeyAllowedClientIDArgs", "keyName");
+            }
             return $;
         }
     }

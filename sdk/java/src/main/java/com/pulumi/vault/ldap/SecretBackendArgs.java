@@ -5,6 +5,7 @@ package com.pulumi.vault.ldap;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Object;
@@ -1207,8 +1208,12 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public SecretBackendArgs build() {
-            $.binddn = Objects.requireNonNull($.binddn, "expected parameter 'binddn' to be non-null");
-            $.bindpass = Objects.requireNonNull($.bindpass, "expected parameter 'bindpass' to be non-null");
+            if ($.binddn == null) {
+                throw new MissingRequiredPropertyException("SecretBackendArgs", "binddn");
+            }
+            if ($.bindpass == null) {
+                throw new MissingRequiredPropertyException("SecretBackendArgs", "bindpass");
+            }
             return $;
         }
     }

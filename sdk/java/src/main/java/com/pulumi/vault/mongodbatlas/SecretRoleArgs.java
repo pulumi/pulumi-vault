@@ -5,6 +5,7 @@ package com.pulumi.vault.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -507,8 +508,12 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public SecretRoleArgs build() {
-            $.mount = Objects.requireNonNull($.mount, "expected parameter 'mount' to be non-null");
-            $.roles = Objects.requireNonNull($.roles, "expected parameter 'roles' to be non-null");
+            if ($.mount == null) {
+                throw new MissingRequiredPropertyException("SecretRoleArgs", "mount");
+            }
+            if ($.roles == null) {
+                throw new MissingRequiredPropertyException("SecretRoleArgs", "roles");
+            }
             return $;
         }
     }

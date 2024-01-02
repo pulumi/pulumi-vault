@@ -5,6 +5,7 @@ package com.pulumi.vault.okta;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.vault.okta.inputs.AuthBackendGroupArgs;
 import com.pulumi.vault.okta.inputs.AuthBackendUserArgs;
 import java.lang.Boolean;
@@ -545,7 +546,9 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public AuthBackendArgs build() {
-            $.organization = Objects.requireNonNull($.organization, "expected parameter 'organization' to be non-null");
+            if ($.organization == null) {
+                throw new MissingRequiredPropertyException("AuthBackendArgs", "organization");
+            }
             return $;
         }
     }

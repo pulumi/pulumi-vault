@@ -5,6 +5,7 @@ package com.pulumi.vault.gcp;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.vault.gcp.inputs.SecretRolesetBindingArgs;
 import java.lang.String;
 import java.util.List;
@@ -332,10 +333,18 @@ public final class SecretRolesetArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public SecretRolesetArgs build() {
-            $.backend = Objects.requireNonNull($.backend, "expected parameter 'backend' to be non-null");
-            $.bindings = Objects.requireNonNull($.bindings, "expected parameter 'bindings' to be non-null");
-            $.project = Objects.requireNonNull($.project, "expected parameter 'project' to be non-null");
-            $.roleset = Objects.requireNonNull($.roleset, "expected parameter 'roleset' to be non-null");
+            if ($.backend == null) {
+                throw new MissingRequiredPropertyException("SecretRolesetArgs", "backend");
+            }
+            if ($.bindings == null) {
+                throw new MissingRequiredPropertyException("SecretRolesetArgs", "bindings");
+            }
+            if ($.project == null) {
+                throw new MissingRequiredPropertyException("SecretRolesetArgs", "project");
+            }
+            if ($.roleset == null) {
+                throw new MissingRequiredPropertyException("SecretRolesetArgs", "roleset");
+            }
             return $;
         }
     }

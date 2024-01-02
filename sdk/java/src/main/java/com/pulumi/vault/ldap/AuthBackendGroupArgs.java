@@ -5,6 +5,7 @@ package com.pulumi.vault.ldap;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -218,7 +219,9 @@ public final class AuthBackendGroupArgs extends com.pulumi.resources.ResourceArg
         }
 
         public AuthBackendGroupArgs build() {
-            $.groupname = Objects.requireNonNull($.groupname, "expected parameter 'groupname' to be non-null");
+            if ($.groupname == null) {
+                throw new MissingRequiredPropertyException("AuthBackendGroupArgs", "groupname");
+            }
             return $;
         }
     }

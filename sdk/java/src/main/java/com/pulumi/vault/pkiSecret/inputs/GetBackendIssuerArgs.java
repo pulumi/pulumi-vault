@@ -5,6 +5,7 @@ package com.pulumi.vault.pkiSecret.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -166,8 +167,12 @@ public final class GetBackendIssuerArgs extends com.pulumi.resources.InvokeArgs 
         }
 
         public GetBackendIssuerArgs build() {
-            $.backend = Objects.requireNonNull($.backend, "expected parameter 'backend' to be non-null");
-            $.issuerRef = Objects.requireNonNull($.issuerRef, "expected parameter 'issuerRef' to be non-null");
+            if ($.backend == null) {
+                throw new MissingRequiredPropertyException("GetBackendIssuerArgs", "backend");
+            }
+            if ($.issuerRef == null) {
+                throw new MissingRequiredPropertyException("GetBackendIssuerArgs", "issuerRef");
+            }
             return $;
         }
     }

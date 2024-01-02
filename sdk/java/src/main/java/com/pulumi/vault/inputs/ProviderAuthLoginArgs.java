@@ -5,6 +5,7 @@ package com.pulumi.vault.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Map;
@@ -126,7 +127,9 @@ public final class ProviderAuthLoginArgs extends com.pulumi.resources.ResourceAr
         }
 
         public ProviderAuthLoginArgs build() {
-            $.path = Objects.requireNonNull($.path, "expected parameter 'path' to be non-null");
+            if ($.path == null) {
+                throw new MissingRequiredPropertyException("ProviderAuthLoginArgs", "path");
+            }
             return $;
         }
     }

@@ -5,6 +5,7 @@ package com.pulumi.vault.ad.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -170,8 +171,12 @@ public final class GetAccessCredentialsArgs extends com.pulumi.resources.InvokeA
         }
 
         public GetAccessCredentialsArgs build() {
-            $.backend = Objects.requireNonNull($.backend, "expected parameter 'backend' to be non-null");
-            $.role = Objects.requireNonNull($.role, "expected parameter 'role' to be non-null");
+            if ($.backend == null) {
+                throw new MissingRequiredPropertyException("GetAccessCredentialsArgs", "backend");
+            }
+            if ($.role == null) {
+                throw new MissingRequiredPropertyException("GetAccessCredentialsArgs", "role");
+            }
             return $;
         }
     }

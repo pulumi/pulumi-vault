@@ -4,6 +4,7 @@
 package com.pulumi.vault.transit.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -159,9 +160,15 @@ public final class GetDecryptPlainArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         public GetDecryptPlainArgs build() {
-            $.backend = Objects.requireNonNull($.backend, "expected parameter 'backend' to be non-null");
-            $.ciphertext = Objects.requireNonNull($.ciphertext, "expected parameter 'ciphertext' to be non-null");
-            $.key = Objects.requireNonNull($.key, "expected parameter 'key' to be non-null");
+            if ($.backend == null) {
+                throw new MissingRequiredPropertyException("GetDecryptPlainArgs", "backend");
+            }
+            if ($.ciphertext == null) {
+                throw new MissingRequiredPropertyException("GetDecryptPlainArgs", "ciphertext");
+            }
+            if ($.key == null) {
+                throw new MissingRequiredPropertyException("GetDecryptPlainArgs", "key");
+            }
             return $;
         }
     }

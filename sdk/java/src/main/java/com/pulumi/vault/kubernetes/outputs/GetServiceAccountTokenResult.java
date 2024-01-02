@@ -4,6 +4,7 @@
 package com.pulumi.vault.kubernetes.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -166,66 +167,99 @@ public final class GetServiceAccountTokenResult {
 
         @CustomType.Setter
         public Builder backend(String backend) {
-            this.backend = Objects.requireNonNull(backend);
+            if (backend == null) {
+              throw new MissingRequiredPropertyException("GetServiceAccountTokenResult", "backend");
+            }
+            this.backend = backend;
             return this;
         }
         @CustomType.Setter
         public Builder clusterRoleBinding(@Nullable Boolean clusterRoleBinding) {
+
             this.clusterRoleBinding = clusterRoleBinding;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetServiceAccountTokenResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder kubernetesNamespace(String kubernetesNamespace) {
-            this.kubernetesNamespace = Objects.requireNonNull(kubernetesNamespace);
+            if (kubernetesNamespace == null) {
+              throw new MissingRequiredPropertyException("GetServiceAccountTokenResult", "kubernetesNamespace");
+            }
+            this.kubernetesNamespace = kubernetesNamespace;
             return this;
         }
         @CustomType.Setter
         public Builder leaseDuration(Integer leaseDuration) {
-            this.leaseDuration = Objects.requireNonNull(leaseDuration);
+            if (leaseDuration == null) {
+              throw new MissingRequiredPropertyException("GetServiceAccountTokenResult", "leaseDuration");
+            }
+            this.leaseDuration = leaseDuration;
             return this;
         }
         @CustomType.Setter
         public Builder leaseId(String leaseId) {
-            this.leaseId = Objects.requireNonNull(leaseId);
+            if (leaseId == null) {
+              throw new MissingRequiredPropertyException("GetServiceAccountTokenResult", "leaseId");
+            }
+            this.leaseId = leaseId;
             return this;
         }
         @CustomType.Setter
         public Builder leaseRenewable(Boolean leaseRenewable) {
-            this.leaseRenewable = Objects.requireNonNull(leaseRenewable);
+            if (leaseRenewable == null) {
+              throw new MissingRequiredPropertyException("GetServiceAccountTokenResult", "leaseRenewable");
+            }
+            this.leaseRenewable = leaseRenewable;
             return this;
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder role(String role) {
-            this.role = Objects.requireNonNull(role);
+            if (role == null) {
+              throw new MissingRequiredPropertyException("GetServiceAccountTokenResult", "role");
+            }
+            this.role = role;
             return this;
         }
         @CustomType.Setter
         public Builder serviceAccountName(String serviceAccountName) {
-            this.serviceAccountName = Objects.requireNonNull(serviceAccountName);
+            if (serviceAccountName == null) {
+              throw new MissingRequiredPropertyException("GetServiceAccountTokenResult", "serviceAccountName");
+            }
+            this.serviceAccountName = serviceAccountName;
             return this;
         }
         @CustomType.Setter
         public Builder serviceAccountNamespace(String serviceAccountNamespace) {
-            this.serviceAccountNamespace = Objects.requireNonNull(serviceAccountNamespace);
+            if (serviceAccountNamespace == null) {
+              throw new MissingRequiredPropertyException("GetServiceAccountTokenResult", "serviceAccountNamespace");
+            }
+            this.serviceAccountNamespace = serviceAccountNamespace;
             return this;
         }
         @CustomType.Setter
         public Builder serviceAccountToken(String serviceAccountToken) {
-            this.serviceAccountToken = Objects.requireNonNull(serviceAccountToken);
+            if (serviceAccountToken == null) {
+              throw new MissingRequiredPropertyException("GetServiceAccountTokenResult", "serviceAccountToken");
+            }
+            this.serviceAccountToken = serviceAccountToken;
             return this;
         }
         @CustomType.Setter
         public Builder ttl(@Nullable String ttl) {
+
             this.ttl = ttl;
             return this;
         }

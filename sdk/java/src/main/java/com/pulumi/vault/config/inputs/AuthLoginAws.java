@@ -4,6 +4,7 @@
 package com.pulumi.vault.config.inputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -127,81 +128,99 @@ public final class AuthLoginAws {
 
         @CustomType.Setter
         public Builder awsAccessKeyId(@Nullable String awsAccessKeyId) {
+
             this.awsAccessKeyId = awsAccessKeyId;
             return this;
         }
         @CustomType.Setter
         public Builder awsIamEndpoint(@Nullable String awsIamEndpoint) {
+
             this.awsIamEndpoint = awsIamEndpoint;
             return this;
         }
         @CustomType.Setter
         public Builder awsProfile(@Nullable String awsProfile) {
+
             this.awsProfile = awsProfile;
             return this;
         }
         @CustomType.Setter
         public Builder awsRegion(@Nullable String awsRegion) {
+
             this.awsRegion = awsRegion;
             return this;
         }
         @CustomType.Setter
         public Builder awsRoleArn(@Nullable String awsRoleArn) {
+
             this.awsRoleArn = awsRoleArn;
             return this;
         }
         @CustomType.Setter
         public Builder awsRoleSessionName(@Nullable String awsRoleSessionName) {
+
             this.awsRoleSessionName = awsRoleSessionName;
             return this;
         }
         @CustomType.Setter
         public Builder awsSecretAccessKey(@Nullable String awsSecretAccessKey) {
+
             this.awsSecretAccessKey = awsSecretAccessKey;
             return this;
         }
         @CustomType.Setter
         public Builder awsSessionToken(@Nullable String awsSessionToken) {
+
             this.awsSessionToken = awsSessionToken;
             return this;
         }
         @CustomType.Setter
         public Builder awsSharedCredentialsFile(@Nullable String awsSharedCredentialsFile) {
+
             this.awsSharedCredentialsFile = awsSharedCredentialsFile;
             return this;
         }
         @CustomType.Setter
         public Builder awsStsEndpoint(@Nullable String awsStsEndpoint) {
+
             this.awsStsEndpoint = awsStsEndpoint;
             return this;
         }
         @CustomType.Setter
         public Builder awsWebIdentityTokenFile(@Nullable String awsWebIdentityTokenFile) {
+
             this.awsWebIdentityTokenFile = awsWebIdentityTokenFile;
             return this;
         }
         @CustomType.Setter
         public Builder headerValue(@Nullable String headerValue) {
+
             this.headerValue = headerValue;
             return this;
         }
         @CustomType.Setter
         public Builder mount(@Nullable String mount) {
+
             this.mount = mount;
             return this;
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder role(String role) {
-            this.role = Objects.requireNonNull(role);
+            if (role == null) {
+              throw new MissingRequiredPropertyException("AuthLoginAws", "role");
+            }
+            this.role = role;
             return this;
         }
         @CustomType.Setter
         public Builder useRootNamespace(@Nullable Boolean useRootNamespace) {
+
             this.useRootNamespace = useRootNamespace;
             return this;
         }

@@ -5,6 +5,7 @@ package com.pulumi.vault.rabbitMq.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -105,10 +106,18 @@ public final class SecretBackendRoleVhostArgs extends com.pulumi.resources.Resou
         }
 
         public SecretBackendRoleVhostArgs build() {
-            $.configure = Objects.requireNonNull($.configure, "expected parameter 'configure' to be non-null");
-            $.host = Objects.requireNonNull($.host, "expected parameter 'host' to be non-null");
-            $.read = Objects.requireNonNull($.read, "expected parameter 'read' to be non-null");
-            $.write = Objects.requireNonNull($.write, "expected parameter 'write' to be non-null");
+            if ($.configure == null) {
+                throw new MissingRequiredPropertyException("SecretBackendRoleVhostArgs", "configure");
+            }
+            if ($.host == null) {
+                throw new MissingRequiredPropertyException("SecretBackendRoleVhostArgs", "host");
+            }
+            if ($.read == null) {
+                throw new MissingRequiredPropertyException("SecretBackendRoleVhostArgs", "read");
+            }
+            if ($.write == null) {
+                throw new MissingRequiredPropertyException("SecretBackendRoleVhostArgs", "write");
+            }
             return $;
         }
     }

@@ -5,6 +5,7 @@ package com.pulumi.vault.kv;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -166,8 +167,12 @@ public final class SecretArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public SecretArgs build() {
-            $.dataJson = Objects.requireNonNull($.dataJson, "expected parameter 'dataJson' to be non-null");
-            $.path = Objects.requireNonNull($.path, "expected parameter 'path' to be non-null");
+            if ($.dataJson == null) {
+                throw new MissingRequiredPropertyException("SecretArgs", "dataJson");
+            }
+            if ($.path == null) {
+                throw new MissingRequiredPropertyException("SecretArgs", "path");
+            }
             return $;
         }
     }

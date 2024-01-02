@@ -4,6 +4,7 @@
 package com.pulumi.vault.aws.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -77,8 +78,12 @@ public final class GetStaticAccessCredentialsPlainArgs extends com.pulumi.resour
         }
 
         public GetStaticAccessCredentialsPlainArgs build() {
-            $.backend = Objects.requireNonNull($.backend, "expected parameter 'backend' to be non-null");
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
+            if ($.backend == null) {
+                throw new MissingRequiredPropertyException("GetStaticAccessCredentialsPlainArgs", "backend");
+            }
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("GetStaticAccessCredentialsPlainArgs", "name");
+            }
             return $;
         }
     }

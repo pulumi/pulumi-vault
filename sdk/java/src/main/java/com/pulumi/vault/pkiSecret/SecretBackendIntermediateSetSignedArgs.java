@@ -5,6 +5,7 @@ package com.pulumi.vault.pkiSecret;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -170,8 +171,12 @@ public final class SecretBackendIntermediateSetSignedArgs extends com.pulumi.res
         }
 
         public SecretBackendIntermediateSetSignedArgs build() {
-            $.backend = Objects.requireNonNull($.backend, "expected parameter 'backend' to be non-null");
-            $.certificate = Objects.requireNonNull($.certificate, "expected parameter 'certificate' to be non-null");
+            if ($.backend == null) {
+                throw new MissingRequiredPropertyException("SecretBackendIntermediateSetSignedArgs", "backend");
+            }
+            if ($.certificate == null) {
+                throw new MissingRequiredPropertyException("SecretBackendIntermediateSetSignedArgs", "certificate");
+            }
             return $;
         }
     }

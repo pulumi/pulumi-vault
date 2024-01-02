@@ -5,6 +5,7 @@ package com.pulumi.vault.transit.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -242,9 +243,15 @@ public final class GetEncryptArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         public GetEncryptArgs build() {
-            $.backend = Objects.requireNonNull($.backend, "expected parameter 'backend' to be non-null");
-            $.key = Objects.requireNonNull($.key, "expected parameter 'key' to be non-null");
-            $.plaintext = Objects.requireNonNull($.plaintext, "expected parameter 'plaintext' to be non-null");
+            if ($.backend == null) {
+                throw new MissingRequiredPropertyException("GetEncryptArgs", "backend");
+            }
+            if ($.key == null) {
+                throw new MissingRequiredPropertyException("GetEncryptArgs", "key");
+            }
+            if ($.plaintext == null) {
+                throw new MissingRequiredPropertyException("GetEncryptArgs", "plaintext");
+            }
             return $;
         }
     }

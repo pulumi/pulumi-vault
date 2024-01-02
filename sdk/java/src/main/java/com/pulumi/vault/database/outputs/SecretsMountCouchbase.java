@@ -4,6 +4,7 @@
 package com.pulumi.vault.database.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
@@ -232,6 +233,7 @@ public final class SecretsMountCouchbase {
 
         @CustomType.Setter
         public Builder allowedRoles(@Nullable List<String> allowedRoles) {
+
             this.allowedRoles = allowedRoles;
             return this;
         }
@@ -240,22 +242,28 @@ public final class SecretsMountCouchbase {
         }
         @CustomType.Setter
         public Builder base64Pem(@Nullable String base64Pem) {
+
             this.base64Pem = base64Pem;
             return this;
         }
         @CustomType.Setter
         public Builder bucketName(@Nullable String bucketName) {
+
             this.bucketName = bucketName;
             return this;
         }
         @CustomType.Setter
         public Builder data(@Nullable Map<String,Object> data) {
+
             this.data = data;
             return this;
         }
         @CustomType.Setter
         public Builder hosts(List<String> hosts) {
-            this.hosts = Objects.requireNonNull(hosts);
+            if (hosts == null) {
+              throw new MissingRequiredPropertyException("SecretsMountCouchbase", "hosts");
+            }
+            this.hosts = hosts;
             return this;
         }
         public Builder hosts(String... hosts) {
@@ -263,26 +271,35 @@ public final class SecretsMountCouchbase {
         }
         @CustomType.Setter
         public Builder insecureTls(@Nullable Boolean insecureTls) {
+
             this.insecureTls = insecureTls;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("SecretsMountCouchbase", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder password(String password) {
-            this.password = Objects.requireNonNull(password);
+            if (password == null) {
+              throw new MissingRequiredPropertyException("SecretsMountCouchbase", "password");
+            }
+            this.password = password;
             return this;
         }
         @CustomType.Setter
         public Builder pluginName(@Nullable String pluginName) {
+
             this.pluginName = pluginName;
             return this;
         }
         @CustomType.Setter
         public Builder rootRotationStatements(@Nullable List<String> rootRotationStatements) {
+
             this.rootRotationStatements = rootRotationStatements;
             return this;
         }
@@ -291,21 +308,27 @@ public final class SecretsMountCouchbase {
         }
         @CustomType.Setter
         public Builder tls(@Nullable Boolean tls) {
+
             this.tls = tls;
             return this;
         }
         @CustomType.Setter
         public Builder username(String username) {
-            this.username = Objects.requireNonNull(username);
+            if (username == null) {
+              throw new MissingRequiredPropertyException("SecretsMountCouchbase", "username");
+            }
+            this.username = username;
             return this;
         }
         @CustomType.Setter
         public Builder usernameTemplate(@Nullable String usernameTemplate) {
+
             this.usernameTemplate = usernameTemplate;
             return this;
         }
         @CustomType.Setter
         public Builder verifyConnection(@Nullable Boolean verifyConnection) {
+
             this.verifyConnection = verifyConnection;
             return this;
         }

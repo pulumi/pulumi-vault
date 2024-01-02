@@ -5,6 +5,7 @@ package com.pulumi.vault.okta;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -257,8 +258,12 @@ public final class AuthBackendUserArgs extends com.pulumi.resources.ResourceArgs
         }
 
         public AuthBackendUserArgs build() {
-            $.path = Objects.requireNonNull($.path, "expected parameter 'path' to be non-null");
-            $.username = Objects.requireNonNull($.username, "expected parameter 'username' to be non-null");
+            if ($.path == null) {
+                throw new MissingRequiredPropertyException("AuthBackendUserArgs", "path");
+            }
+            if ($.username == null) {
+                throw new MissingRequiredPropertyException("AuthBackendUserArgs", "username");
+            }
             return $;
         }
     }

@@ -5,6 +5,7 @@ package com.pulumi.vault;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Map;
@@ -283,8 +284,12 @@ public final class AuditArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public AuditArgs build() {
-            $.options = Objects.requireNonNull($.options, "expected parameter 'options' to be non-null");
-            $.type = Objects.requireNonNull($.type, "expected parameter 'type' to be non-null");
+            if ($.options == null) {
+                throw new MissingRequiredPropertyException("AuditArgs", "options");
+            }
+            if ($.type == null) {
+                throw new MissingRequiredPropertyException("AuditArgs", "type");
+            }
             return $;
         }
     }

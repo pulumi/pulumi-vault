@@ -5,6 +5,7 @@ package com.pulumi.vault.kv;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.vault.kv.inputs.SecretV2CustomMetadataArgs;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -433,8 +434,12 @@ public final class SecretV2Args extends com.pulumi.resources.ResourceArgs {
         }
 
         public SecretV2Args build() {
-            $.dataJson = Objects.requireNonNull($.dataJson, "expected parameter 'dataJson' to be non-null");
-            $.mount = Objects.requireNonNull($.mount, "expected parameter 'mount' to be non-null");
+            if ($.dataJson == null) {
+                throw new MissingRequiredPropertyException("SecretV2Args", "dataJson");
+            }
+            if ($.mount == null) {
+                throw new MissingRequiredPropertyException("SecretV2Args", "mount");
+            }
             return $;
         }
     }

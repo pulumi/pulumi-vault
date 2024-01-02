@@ -4,6 +4,7 @@
 package com.pulumi.vault.kv.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -101,7 +102,9 @@ public final class GetSecretsListPlainArgs extends com.pulumi.resources.InvokeAr
         }
 
         public GetSecretsListPlainArgs build() {
-            $.path = Objects.requireNonNull($.path, "expected parameter 'path' to be non-null");
+            if ($.path == null) {
+                throw new MissingRequiredPropertyException("GetSecretsListPlainArgs", "path");
+            }
             return $;
         }
     }

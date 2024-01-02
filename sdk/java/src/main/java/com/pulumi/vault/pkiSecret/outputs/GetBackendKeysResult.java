@@ -4,6 +4,7 @@
 package com.pulumi.vault.pkiSecret.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Object;
 import java.lang.String;
 import java.util.List;
@@ -101,27 +102,42 @@ public final class GetBackendKeysResult {
 
         @CustomType.Setter
         public Builder backend(String backend) {
-            this.backend = Objects.requireNonNull(backend);
+            if (backend == null) {
+              throw new MissingRequiredPropertyException("GetBackendKeysResult", "backend");
+            }
+            this.backend = backend;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetBackendKeysResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder keyInfo(Map<String,Object> keyInfo) {
-            this.keyInfo = Objects.requireNonNull(keyInfo);
+            if (keyInfo == null) {
+              throw new MissingRequiredPropertyException("GetBackendKeysResult", "keyInfo");
+            }
+            this.keyInfo = keyInfo;
             return this;
         }
         @CustomType.Setter
         public Builder keyInfoJson(String keyInfoJson) {
-            this.keyInfoJson = Objects.requireNonNull(keyInfoJson);
+            if (keyInfoJson == null) {
+              throw new MissingRequiredPropertyException("GetBackendKeysResult", "keyInfoJson");
+            }
+            this.keyInfoJson = keyInfoJson;
             return this;
         }
         @CustomType.Setter
         public Builder keys(List<String> keys) {
-            this.keys = Objects.requireNonNull(keys);
+            if (keys == null) {
+              throw new MissingRequiredPropertyException("GetBackendKeysResult", "keys");
+            }
+            this.keys = keys;
             return this;
         }
         public Builder keys(String... keys) {
@@ -129,6 +145,7 @@ public final class GetBackendKeysResult {
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }

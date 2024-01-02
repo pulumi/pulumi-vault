@@ -4,6 +4,7 @@
 package com.pulumi.vault.ssh.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -118,7 +119,10 @@ public final class SecretBackendRoleAllowedUserKeyConfig {
 
         @CustomType.Setter
         public Builder lengths(List<Integer> lengths) {
-            this.lengths = Objects.requireNonNull(lengths);
+            if (lengths == null) {
+              throw new MissingRequiredPropertyException("SecretBackendRoleAllowedUserKeyConfig", "lengths");
+            }
+            this.lengths = lengths;
             return this;
         }
         public Builder lengths(Integer... lengths) {
@@ -126,7 +130,10 @@ public final class SecretBackendRoleAllowedUserKeyConfig {
         }
         @CustomType.Setter
         public Builder type(String type) {
-            this.type = Objects.requireNonNull(type);
+            if (type == null) {
+              throw new MissingRequiredPropertyException("SecretBackendRoleAllowedUserKeyConfig", "type");
+            }
+            this.type = type;
             return this;
         }
         public SecretBackendRoleAllowedUserKeyConfig build() {

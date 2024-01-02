@@ -4,6 +4,7 @@
 package com.pulumi.vault.managed.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -269,81 +270,109 @@ public final class KeysPkc {
 
         @CustomType.Setter
         public Builder allowGenerateKey(@Nullable Boolean allowGenerateKey) {
+
             this.allowGenerateKey = allowGenerateKey;
             return this;
         }
         @CustomType.Setter
         public Builder allowReplaceKey(@Nullable Boolean allowReplaceKey) {
+
             this.allowReplaceKey = allowReplaceKey;
             return this;
         }
         @CustomType.Setter
         public Builder allowStoreKey(@Nullable Boolean allowStoreKey) {
+
             this.allowStoreKey = allowStoreKey;
             return this;
         }
         @CustomType.Setter
         public Builder anyMount(@Nullable Boolean anyMount) {
+
             this.anyMount = anyMount;
             return this;
         }
         @CustomType.Setter
         public Builder curve(@Nullable String curve) {
+
             this.curve = curve;
             return this;
         }
         @CustomType.Setter
         public Builder forceRwSession(@Nullable String forceRwSession) {
+
             this.forceRwSession = forceRwSession;
             return this;
         }
         @CustomType.Setter
         public Builder keyBits(@Nullable String keyBits) {
+
             this.keyBits = keyBits;
             return this;
         }
         @CustomType.Setter
         public Builder keyId(String keyId) {
-            this.keyId = Objects.requireNonNull(keyId);
+            if (keyId == null) {
+              throw new MissingRequiredPropertyException("KeysPkc", "keyId");
+            }
+            this.keyId = keyId;
             return this;
         }
         @CustomType.Setter
         public Builder keyLabel(String keyLabel) {
-            this.keyLabel = Objects.requireNonNull(keyLabel);
+            if (keyLabel == null) {
+              throw new MissingRequiredPropertyException("KeysPkc", "keyLabel");
+            }
+            this.keyLabel = keyLabel;
             return this;
         }
         @CustomType.Setter
         public Builder library(String library) {
-            this.library = Objects.requireNonNull(library);
+            if (library == null) {
+              throw new MissingRequiredPropertyException("KeysPkc", "library");
+            }
+            this.library = library;
             return this;
         }
         @CustomType.Setter
         public Builder mechanism(String mechanism) {
-            this.mechanism = Objects.requireNonNull(mechanism);
+            if (mechanism == null) {
+              throw new MissingRequiredPropertyException("KeysPkc", "mechanism");
+            }
+            this.mechanism = mechanism;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("KeysPkc", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder pin(String pin) {
-            this.pin = Objects.requireNonNull(pin);
+            if (pin == null) {
+              throw new MissingRequiredPropertyException("KeysPkc", "pin");
+            }
+            this.pin = pin;
             return this;
         }
         @CustomType.Setter
         public Builder slot(@Nullable String slot) {
+
             this.slot = slot;
             return this;
         }
         @CustomType.Setter
         public Builder tokenLabel(@Nullable String tokenLabel) {
+
             this.tokenLabel = tokenLabel;
             return this;
         }
         @CustomType.Setter
         public Builder uuid(@Nullable String uuid) {
+
             this.uuid = uuid;
             return this;
         }

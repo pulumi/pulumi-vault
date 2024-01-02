@@ -156,41 +156,49 @@ public final class SecretBackendConnectionRedshift {
 
         @CustomType.Setter
         public Builder connectionUrl(@Nullable String connectionUrl) {
+
             this.connectionUrl = connectionUrl;
             return this;
         }
         @CustomType.Setter
         public Builder disableEscaping(@Nullable Boolean disableEscaping) {
+
             this.disableEscaping = disableEscaping;
             return this;
         }
         @CustomType.Setter
         public Builder maxConnectionLifetime(@Nullable Integer maxConnectionLifetime) {
+
             this.maxConnectionLifetime = maxConnectionLifetime;
             return this;
         }
         @CustomType.Setter
         public Builder maxIdleConnections(@Nullable Integer maxIdleConnections) {
+
             this.maxIdleConnections = maxIdleConnections;
             return this;
         }
         @CustomType.Setter
         public Builder maxOpenConnections(@Nullable Integer maxOpenConnections) {
+
             this.maxOpenConnections = maxOpenConnections;
             return this;
         }
         @CustomType.Setter
         public Builder password(@Nullable String password) {
+
             this.password = password;
             return this;
         }
         @CustomType.Setter
         public Builder username(@Nullable String username) {
+
             this.username = username;
             return this;
         }
         @CustomType.Setter
         public Builder usernameTemplate(@Nullable String usernameTemplate) {
+
             this.usernameTemplate = usernameTemplate;
             return this;
         }

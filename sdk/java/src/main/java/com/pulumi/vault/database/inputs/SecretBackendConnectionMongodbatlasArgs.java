@@ -5,6 +5,7 @@ package com.pulumi.vault.database.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -148,9 +149,15 @@ public final class SecretBackendConnectionMongodbatlasArgs extends com.pulumi.re
         }
 
         public SecretBackendConnectionMongodbatlasArgs build() {
-            $.privateKey = Objects.requireNonNull($.privateKey, "expected parameter 'privateKey' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
-            $.publicKey = Objects.requireNonNull($.publicKey, "expected parameter 'publicKey' to be non-null");
+            if ($.privateKey == null) {
+                throw new MissingRequiredPropertyException("SecretBackendConnectionMongodbatlasArgs", "privateKey");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("SecretBackendConnectionMongodbatlasArgs", "projectId");
+            }
+            if ($.publicKey == null) {
+                throw new MissingRequiredPropertyException("SecretBackendConnectionMongodbatlasArgs", "publicKey");
+            }
             return $;
         }
     }

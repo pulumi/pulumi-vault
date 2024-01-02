@@ -4,6 +4,7 @@
 package com.pulumi.vault.identity.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Object;
 import java.lang.String;
 import java.util.List;
@@ -171,27 +172,42 @@ public final class GetEntityAlias {
 
         @CustomType.Setter
         public Builder canonicalId(String canonicalId) {
-            this.canonicalId = Objects.requireNonNull(canonicalId);
+            if (canonicalId == null) {
+              throw new MissingRequiredPropertyException("GetEntityAlias", "canonicalId");
+            }
+            this.canonicalId = canonicalId;
             return this;
         }
         @CustomType.Setter
         public Builder creationTime(String creationTime) {
-            this.creationTime = Objects.requireNonNull(creationTime);
+            if (creationTime == null) {
+              throw new MissingRequiredPropertyException("GetEntityAlias", "creationTime");
+            }
+            this.creationTime = creationTime;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetEntityAlias", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder lastUpdateTime(String lastUpdateTime) {
-            this.lastUpdateTime = Objects.requireNonNull(lastUpdateTime);
+            if (lastUpdateTime == null) {
+              throw new MissingRequiredPropertyException("GetEntityAlias", "lastUpdateTime");
+            }
+            this.lastUpdateTime = lastUpdateTime;
             return this;
         }
         @CustomType.Setter
         public Builder mergedFromCanonicalIds(List<String> mergedFromCanonicalIds) {
-            this.mergedFromCanonicalIds = Objects.requireNonNull(mergedFromCanonicalIds);
+            if (mergedFromCanonicalIds == null) {
+              throw new MissingRequiredPropertyException("GetEntityAlias", "mergedFromCanonicalIds");
+            }
+            this.mergedFromCanonicalIds = mergedFromCanonicalIds;
             return this;
         }
         public Builder mergedFromCanonicalIds(String... mergedFromCanonicalIds) {
@@ -199,27 +215,42 @@ public final class GetEntityAlias {
         }
         @CustomType.Setter
         public Builder metadata(Map<String,Object> metadata) {
-            this.metadata = Objects.requireNonNull(metadata);
+            if (metadata == null) {
+              throw new MissingRequiredPropertyException("GetEntityAlias", "metadata");
+            }
+            this.metadata = metadata;
             return this;
         }
         @CustomType.Setter
         public Builder mountAccessor(String mountAccessor) {
-            this.mountAccessor = Objects.requireNonNull(mountAccessor);
+            if (mountAccessor == null) {
+              throw new MissingRequiredPropertyException("GetEntityAlias", "mountAccessor");
+            }
+            this.mountAccessor = mountAccessor;
             return this;
         }
         @CustomType.Setter
         public Builder mountPath(String mountPath) {
-            this.mountPath = Objects.requireNonNull(mountPath);
+            if (mountPath == null) {
+              throw new MissingRequiredPropertyException("GetEntityAlias", "mountPath");
+            }
+            this.mountPath = mountPath;
             return this;
         }
         @CustomType.Setter
         public Builder mountType(String mountType) {
-            this.mountType = Objects.requireNonNull(mountType);
+            if (mountType == null) {
+              throw new MissingRequiredPropertyException("GetEntityAlias", "mountType");
+            }
+            this.mountType = mountType;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetEntityAlias", "name");
+            }
+            this.name = name;
             return this;
         }
         public GetEntityAlias build() {

@@ -4,6 +4,7 @@
 package com.pulumi.vault.rabbitMq.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -46,17 +47,26 @@ public final class SecretBackendRoleVhostTopicVhost {
 
         @CustomType.Setter
         public Builder read(String read) {
-            this.read = Objects.requireNonNull(read);
+            if (read == null) {
+              throw new MissingRequiredPropertyException("SecretBackendRoleVhostTopicVhost", "read");
+            }
+            this.read = read;
             return this;
         }
         @CustomType.Setter
         public Builder topic(String topic) {
-            this.topic = Objects.requireNonNull(topic);
+            if (topic == null) {
+              throw new MissingRequiredPropertyException("SecretBackendRoleVhostTopicVhost", "topic");
+            }
+            this.topic = topic;
             return this;
         }
         @CustomType.Setter
         public Builder write(String write) {
-            this.write = Objects.requireNonNull(write);
+            if (write == null) {
+              throw new MissingRequiredPropertyException("SecretBackendRoleVhostTopicVhost", "write");
+            }
+            this.write = write;
             return this;
         }
         public SecretBackendRoleVhostTopicVhost build() {

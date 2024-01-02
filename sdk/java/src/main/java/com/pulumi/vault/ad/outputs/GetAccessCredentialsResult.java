@@ -4,6 +4,7 @@
 package com.pulumi.vault.ad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -104,37 +105,56 @@ public final class GetAccessCredentialsResult {
 
         @CustomType.Setter
         public Builder backend(String backend) {
-            this.backend = Objects.requireNonNull(backend);
+            if (backend == null) {
+              throw new MissingRequiredPropertyException("GetAccessCredentialsResult", "backend");
+            }
+            this.backend = backend;
             return this;
         }
         @CustomType.Setter
         public Builder currentPassword(String currentPassword) {
-            this.currentPassword = Objects.requireNonNull(currentPassword);
+            if (currentPassword == null) {
+              throw new MissingRequiredPropertyException("GetAccessCredentialsResult", "currentPassword");
+            }
+            this.currentPassword = currentPassword;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetAccessCredentialsResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder lastPassword(String lastPassword) {
-            this.lastPassword = Objects.requireNonNull(lastPassword);
+            if (lastPassword == null) {
+              throw new MissingRequiredPropertyException("GetAccessCredentialsResult", "lastPassword");
+            }
+            this.lastPassword = lastPassword;
             return this;
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder role(String role) {
-            this.role = Objects.requireNonNull(role);
+            if (role == null) {
+              throw new MissingRequiredPropertyException("GetAccessCredentialsResult", "role");
+            }
+            this.role = role;
             return this;
         }
         @CustomType.Setter
         public Builder username(String username) {
-            this.username = Objects.requireNonNull(username);
+            if (username == null) {
+              throw new MissingRequiredPropertyException("GetAccessCredentialsResult", "username");
+            }
+            this.username = username;
             return this;
         }
         public GetAccessCredentialsResult build() {

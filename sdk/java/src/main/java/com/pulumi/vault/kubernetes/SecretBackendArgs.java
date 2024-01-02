@@ -5,6 +5,7 @@ package com.pulumi.vault.kubernetes;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Object;
@@ -710,7 +711,9 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public SecretBackendArgs build() {
-            $.path = Objects.requireNonNull($.path, "expected parameter 'path' to be non-null");
+            if ($.path == null) {
+                throw new MissingRequiredPropertyException("SecretBackendArgs", "path");
+            }
             return $;
         }
     }

@@ -4,6 +4,7 @@
 package com.pulumi.vault.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Object;
@@ -209,67 +210,104 @@ public final class GetRaftAutopilotStateResult {
 
         @CustomType.Setter
         public Builder failureTolerance(Integer failureTolerance) {
-            this.failureTolerance = Objects.requireNonNull(failureTolerance);
+            if (failureTolerance == null) {
+              throw new MissingRequiredPropertyException("GetRaftAutopilotStateResult", "failureTolerance");
+            }
+            this.failureTolerance = failureTolerance;
             return this;
         }
         @CustomType.Setter
         public Builder healthy(Boolean healthy) {
-            this.healthy = Objects.requireNonNull(healthy);
+            if (healthy == null) {
+              throw new MissingRequiredPropertyException("GetRaftAutopilotStateResult", "healthy");
+            }
+            this.healthy = healthy;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetRaftAutopilotStateResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder leader(String leader) {
-            this.leader = Objects.requireNonNull(leader);
+            if (leader == null) {
+              throw new MissingRequiredPropertyException("GetRaftAutopilotStateResult", "leader");
+            }
+            this.leader = leader;
             return this;
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder optimisticFailureTolerance(Integer optimisticFailureTolerance) {
-            this.optimisticFailureTolerance = Objects.requireNonNull(optimisticFailureTolerance);
+            if (optimisticFailureTolerance == null) {
+              throw new MissingRequiredPropertyException("GetRaftAutopilotStateResult", "optimisticFailureTolerance");
+            }
+            this.optimisticFailureTolerance = optimisticFailureTolerance;
             return this;
         }
         @CustomType.Setter
         public Builder redundancyZones(Map<String,Object> redundancyZones) {
-            this.redundancyZones = Objects.requireNonNull(redundancyZones);
+            if (redundancyZones == null) {
+              throw new MissingRequiredPropertyException("GetRaftAutopilotStateResult", "redundancyZones");
+            }
+            this.redundancyZones = redundancyZones;
             return this;
         }
         @CustomType.Setter
         public Builder redundancyZonesJson(String redundancyZonesJson) {
-            this.redundancyZonesJson = Objects.requireNonNull(redundancyZonesJson);
+            if (redundancyZonesJson == null) {
+              throw new MissingRequiredPropertyException("GetRaftAutopilotStateResult", "redundancyZonesJson");
+            }
+            this.redundancyZonesJson = redundancyZonesJson;
             return this;
         }
         @CustomType.Setter
         public Builder servers(Map<String,Object> servers) {
-            this.servers = Objects.requireNonNull(servers);
+            if (servers == null) {
+              throw new MissingRequiredPropertyException("GetRaftAutopilotStateResult", "servers");
+            }
+            this.servers = servers;
             return this;
         }
         @CustomType.Setter
         public Builder serversJson(String serversJson) {
-            this.serversJson = Objects.requireNonNull(serversJson);
+            if (serversJson == null) {
+              throw new MissingRequiredPropertyException("GetRaftAutopilotStateResult", "serversJson");
+            }
+            this.serversJson = serversJson;
             return this;
         }
         @CustomType.Setter
         public Builder upgradeInfo(Map<String,Object> upgradeInfo) {
-            this.upgradeInfo = Objects.requireNonNull(upgradeInfo);
+            if (upgradeInfo == null) {
+              throw new MissingRequiredPropertyException("GetRaftAutopilotStateResult", "upgradeInfo");
+            }
+            this.upgradeInfo = upgradeInfo;
             return this;
         }
         @CustomType.Setter
         public Builder upgradeInfoJson(String upgradeInfoJson) {
-            this.upgradeInfoJson = Objects.requireNonNull(upgradeInfoJson);
+            if (upgradeInfoJson == null) {
+              throw new MissingRequiredPropertyException("GetRaftAutopilotStateResult", "upgradeInfoJson");
+            }
+            this.upgradeInfoJson = upgradeInfoJson;
             return this;
         }
         @CustomType.Setter
         public Builder voters(List<String> voters) {
-            this.voters = Objects.requireNonNull(voters);
+            if (voters == null) {
+              throw new MissingRequiredPropertyException("GetRaftAutopilotStateResult", "voters");
+            }
+            this.voters = voters;
             return this;
         }
         public Builder voters(String... voters) {

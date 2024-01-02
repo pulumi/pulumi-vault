@@ -5,6 +5,7 @@ package com.pulumi.vault.azure;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.vault.azure.inputs.BackendRoleAzureGroupArgs;
 import com.pulumi.vault.azure.inputs.BackendRoleAzureRoleArgs;
 import java.lang.Boolean;
@@ -461,7 +462,9 @@ public final class BackendRoleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public BackendRoleArgs build() {
-            $.role = Objects.requireNonNull($.role, "expected parameter 'role' to be non-null");
+            if ($.role == null) {
+                throw new MissingRequiredPropertyException("BackendRoleArgs", "role");
+            }
             return $;
         }
     }

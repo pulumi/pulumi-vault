@@ -5,6 +5,7 @@ package com.pulumi.vault.ssh.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -270,8 +271,12 @@ public final class SecretBackendRoleAllowedUserKeyConfigArgs extends com.pulumi.
         }
 
         public SecretBackendRoleAllowedUserKeyConfigArgs build() {
-            $.lengths = Objects.requireNonNull($.lengths, "expected parameter 'lengths' to be non-null");
-            $.type = Objects.requireNonNull($.type, "expected parameter 'type' to be non-null");
+            if ($.lengths == null) {
+                throw new MissingRequiredPropertyException("SecretBackendRoleAllowedUserKeyConfigArgs", "lengths");
+            }
+            if ($.type == null) {
+                throw new MissingRequiredPropertyException("SecretBackendRoleAllowedUserKeyConfigArgs", "type");
+            }
             return $;
         }
     }

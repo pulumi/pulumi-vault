@@ -4,6 +4,7 @@
 package com.pulumi.vault.kv.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Object;
@@ -178,61 +179,93 @@ public final class GetSecretV2Result {
 
         @CustomType.Setter
         public Builder createdTime(String createdTime) {
-            this.createdTime = Objects.requireNonNull(createdTime);
+            if (createdTime == null) {
+              throw new MissingRequiredPropertyException("GetSecretV2Result", "createdTime");
+            }
+            this.createdTime = createdTime;
             return this;
         }
         @CustomType.Setter
         public Builder customMetadata(Map<String,Object> customMetadata) {
-            this.customMetadata = Objects.requireNonNull(customMetadata);
+            if (customMetadata == null) {
+              throw new MissingRequiredPropertyException("GetSecretV2Result", "customMetadata");
+            }
+            this.customMetadata = customMetadata;
             return this;
         }
         @CustomType.Setter
         public Builder data(Map<String,Object> data) {
-            this.data = Objects.requireNonNull(data);
+            if (data == null) {
+              throw new MissingRequiredPropertyException("GetSecretV2Result", "data");
+            }
+            this.data = data;
             return this;
         }
         @CustomType.Setter
         public Builder dataJson(String dataJson) {
-            this.dataJson = Objects.requireNonNull(dataJson);
+            if (dataJson == null) {
+              throw new MissingRequiredPropertyException("GetSecretV2Result", "dataJson");
+            }
+            this.dataJson = dataJson;
             return this;
         }
         @CustomType.Setter
         public Builder deletionTime(String deletionTime) {
-            this.deletionTime = Objects.requireNonNull(deletionTime);
+            if (deletionTime == null) {
+              throw new MissingRequiredPropertyException("GetSecretV2Result", "deletionTime");
+            }
+            this.deletionTime = deletionTime;
             return this;
         }
         @CustomType.Setter
         public Builder destroyed(Boolean destroyed) {
-            this.destroyed = Objects.requireNonNull(destroyed);
+            if (destroyed == null) {
+              throw new MissingRequiredPropertyException("GetSecretV2Result", "destroyed");
+            }
+            this.destroyed = destroyed;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetSecretV2Result", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder mount(String mount) {
-            this.mount = Objects.requireNonNull(mount);
+            if (mount == null) {
+              throw new MissingRequiredPropertyException("GetSecretV2Result", "mount");
+            }
+            this.mount = mount;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetSecretV2Result", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder path(String path) {
-            this.path = Objects.requireNonNull(path);
+            if (path == null) {
+              throw new MissingRequiredPropertyException("GetSecretV2Result", "path");
+            }
+            this.path = path;
             return this;
         }
         @CustomType.Setter
         public Builder version(@Nullable Integer version) {
+
             this.version = version;
             return this;
         }

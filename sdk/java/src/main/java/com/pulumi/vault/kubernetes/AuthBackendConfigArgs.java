@@ -5,6 +5,7 @@ package com.pulumi.vault.kubernetes;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -396,7 +397,9 @@ public final class AuthBackendConfigArgs extends com.pulumi.resources.ResourceAr
         }
 
         public AuthBackendConfigArgs build() {
-            $.kubernetesHost = Objects.requireNonNull($.kubernetesHost, "expected parameter 'kubernetesHost' to be non-null");
+            if ($.kubernetesHost == null) {
+                throw new MissingRequiredPropertyException("AuthBackendConfigArgs", "kubernetesHost");
+            }
             return $;
         }
     }

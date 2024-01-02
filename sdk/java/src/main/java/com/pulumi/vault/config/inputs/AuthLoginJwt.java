@@ -4,6 +4,7 @@
 package com.pulumi.vault.config.inputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -61,26 +62,35 @@ public final class AuthLoginJwt {
 
         @CustomType.Setter
         public Builder jwt(String jwt) {
-            this.jwt = Objects.requireNonNull(jwt);
+            if (jwt == null) {
+              throw new MissingRequiredPropertyException("AuthLoginJwt", "jwt");
+            }
+            this.jwt = jwt;
             return this;
         }
         @CustomType.Setter
         public Builder mount(@Nullable String mount) {
+
             this.mount = mount;
             return this;
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder role(String role) {
-            this.role = Objects.requireNonNull(role);
+            if (role == null) {
+              throw new MissingRequiredPropertyException("AuthLoginJwt", "role");
+            }
+            this.role = role;
             return this;
         }
         @CustomType.Setter
         public Builder useRootNamespace(@Nullable Boolean useRootNamespace) {
+
             this.useRootNamespace = useRootNamespace;
             return this;
         }

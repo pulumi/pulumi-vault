@@ -5,6 +5,7 @@ package com.pulumi.vault;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -199,8 +200,12 @@ public final class RgpPolicyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public RgpPolicyArgs build() {
-            $.enforcementLevel = Objects.requireNonNull($.enforcementLevel, "expected parameter 'enforcementLevel' to be non-null");
-            $.policy = Objects.requireNonNull($.policy, "expected parameter 'policy' to be non-null");
+            if ($.enforcementLevel == null) {
+                throw new MissingRequiredPropertyException("RgpPolicyArgs", "enforcementLevel");
+            }
+            if ($.policy == null) {
+                throw new MissingRequiredPropertyException("RgpPolicyArgs", "policy");
+            }
             return $;
         }
     }

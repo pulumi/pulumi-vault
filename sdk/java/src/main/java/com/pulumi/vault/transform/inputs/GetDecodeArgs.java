@@ -5,6 +5,7 @@ package com.pulumi.vault.transform.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Object;
 import java.lang.String;
 import java.util.List;
@@ -407,8 +408,12 @@ public final class GetDecodeArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         public GetDecodeArgs build() {
-            $.path = Objects.requireNonNull($.path, "expected parameter 'path' to be non-null");
-            $.roleName = Objects.requireNonNull($.roleName, "expected parameter 'roleName' to be non-null");
+            if ($.path == null) {
+                throw new MissingRequiredPropertyException("GetDecodeArgs", "path");
+            }
+            if ($.roleName == null) {
+                throw new MissingRequiredPropertyException("GetDecodeArgs", "roleName");
+            }
             return $;
         }
     }

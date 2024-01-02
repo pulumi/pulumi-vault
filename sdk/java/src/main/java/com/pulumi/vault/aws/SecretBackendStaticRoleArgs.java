@@ -5,6 +5,7 @@ package com.pulumi.vault.aws;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -245,8 +246,12 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
         }
 
         public SecretBackendStaticRoleArgs build() {
-            $.rotationPeriod = Objects.requireNonNull($.rotationPeriod, "expected parameter 'rotationPeriod' to be non-null");
-            $.username = Objects.requireNonNull($.username, "expected parameter 'username' to be non-null");
+            if ($.rotationPeriod == null) {
+                throw new MissingRequiredPropertyException("SecretBackendStaticRoleArgs", "rotationPeriod");
+            }
+            if ($.username == null) {
+                throw new MissingRequiredPropertyException("SecretBackendStaticRoleArgs", "username");
+            }
             return $;
         }
     }

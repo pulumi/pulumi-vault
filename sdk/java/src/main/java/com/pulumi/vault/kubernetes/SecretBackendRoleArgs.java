@@ -5,6 +5,7 @@ package com.pulumi.vault.kubernetes;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -610,8 +611,12 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         public SecretBackendRoleArgs build() {
-            $.allowedKubernetesNamespaces = Objects.requireNonNull($.allowedKubernetesNamespaces, "expected parameter 'allowedKubernetesNamespaces' to be non-null");
-            $.backend = Objects.requireNonNull($.backend, "expected parameter 'backend' to be non-null");
+            if ($.allowedKubernetesNamespaces == null) {
+                throw new MissingRequiredPropertyException("SecretBackendRoleArgs", "allowedKubernetesNamespaces");
+            }
+            if ($.backend == null) {
+                throw new MissingRequiredPropertyException("SecretBackendRoleArgs", "backend");
+            }
             return $;
         }
     }

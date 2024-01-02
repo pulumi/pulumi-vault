@@ -4,6 +4,7 @@
 package com.pulumi.vault.managed.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -245,77 +246,106 @@ public final class KeysAzure {
 
         @CustomType.Setter
         public Builder allowGenerateKey(@Nullable Boolean allowGenerateKey) {
+
             this.allowGenerateKey = allowGenerateKey;
             return this;
         }
         @CustomType.Setter
         public Builder allowReplaceKey(@Nullable Boolean allowReplaceKey) {
+
             this.allowReplaceKey = allowReplaceKey;
             return this;
         }
         @CustomType.Setter
         public Builder allowStoreKey(@Nullable Boolean allowStoreKey) {
+
             this.allowStoreKey = allowStoreKey;
             return this;
         }
         @CustomType.Setter
         public Builder anyMount(@Nullable Boolean anyMount) {
+
             this.anyMount = anyMount;
             return this;
         }
         @CustomType.Setter
         public Builder clientId(String clientId) {
-            this.clientId = Objects.requireNonNull(clientId);
+            if (clientId == null) {
+              throw new MissingRequiredPropertyException("KeysAzure", "clientId");
+            }
+            this.clientId = clientId;
             return this;
         }
         @CustomType.Setter
         public Builder clientSecret(String clientSecret) {
-            this.clientSecret = Objects.requireNonNull(clientSecret);
+            if (clientSecret == null) {
+              throw new MissingRequiredPropertyException("KeysAzure", "clientSecret");
+            }
+            this.clientSecret = clientSecret;
             return this;
         }
         @CustomType.Setter
         public Builder environment(@Nullable String environment) {
+
             this.environment = environment;
             return this;
         }
         @CustomType.Setter
         public Builder keyBits(@Nullable String keyBits) {
+
             this.keyBits = keyBits;
             return this;
         }
         @CustomType.Setter
         public Builder keyName(String keyName) {
-            this.keyName = Objects.requireNonNull(keyName);
+            if (keyName == null) {
+              throw new MissingRequiredPropertyException("KeysAzure", "keyName");
+            }
+            this.keyName = keyName;
             return this;
         }
         @CustomType.Setter
         public Builder keyType(String keyType) {
-            this.keyType = Objects.requireNonNull(keyType);
+            if (keyType == null) {
+              throw new MissingRequiredPropertyException("KeysAzure", "keyType");
+            }
+            this.keyType = keyType;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("KeysAzure", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder resource(@Nullable String resource) {
+
             this.resource = resource;
             return this;
         }
         @CustomType.Setter
         public Builder tenantId(String tenantId) {
-            this.tenantId = Objects.requireNonNull(tenantId);
+            if (tenantId == null) {
+              throw new MissingRequiredPropertyException("KeysAzure", "tenantId");
+            }
+            this.tenantId = tenantId;
             return this;
         }
         @CustomType.Setter
         public Builder uuid(@Nullable String uuid) {
+
             this.uuid = uuid;
             return this;
         }
         @CustomType.Setter
         public Builder vaultName(String vaultName) {
-            this.vaultName = Objects.requireNonNull(vaultName);
+            if (vaultName == null) {
+              throw new MissingRequiredPropertyException("KeysAzure", "vaultName");
+            }
+            this.vaultName = vaultName;
             return this;
         }
         public KeysAzure build() {

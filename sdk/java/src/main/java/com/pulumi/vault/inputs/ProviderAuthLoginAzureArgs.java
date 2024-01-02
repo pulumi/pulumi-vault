@@ -5,6 +5,7 @@ package com.pulumi.vault.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -244,9 +245,15 @@ public final class ProviderAuthLoginAzureArgs extends com.pulumi.resources.Resou
         }
 
         public ProviderAuthLoginAzureArgs build() {
-            $.resourceGroupName = Objects.requireNonNull($.resourceGroupName, "expected parameter 'resourceGroupName' to be non-null");
-            $.role = Objects.requireNonNull($.role, "expected parameter 'role' to be non-null");
-            $.subscriptionId = Objects.requireNonNull($.subscriptionId, "expected parameter 'subscriptionId' to be non-null");
+            if ($.resourceGroupName == null) {
+                throw new MissingRequiredPropertyException("ProviderAuthLoginAzureArgs", "resourceGroupName");
+            }
+            if ($.role == null) {
+                throw new MissingRequiredPropertyException("ProviderAuthLoginAzureArgs", "role");
+            }
+            if ($.subscriptionId == null) {
+                throw new MissingRequiredPropertyException("ProviderAuthLoginAzureArgs", "subscriptionId");
+            }
             return $;
         }
     }
